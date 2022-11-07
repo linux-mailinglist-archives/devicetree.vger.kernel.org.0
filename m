@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6D6061F3F1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 14:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB06461F3F0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 14:04:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbiKGNEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 08:04:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46772 "EHLO
+        id S232147AbiKGNEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 08:04:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiKGNEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 08:04:42 -0500
+        with ESMTP id S232125AbiKGNEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 08:04:40 -0500
 Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA3F19C1A
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 05:04:41 -0800 (PST)
-Received: from mail-io1-f72.google.com (mail-io1-f72.google.com [209.85.166.72]) by mx-outbound22-4.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Nov 2022 13:04:38 +0000
-Received: by mail-io1-f72.google.com with SMTP id i3-20020a5d8403000000b006c9271c3465so7087933ion.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 05:04:39 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98A9BAA
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 05:04:37 -0800 (PST)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200]) by mx-outbound22-4.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Nov 2022 13:04:34 +0000
+Received: by mail-pg1-f200.google.com with SMTP id f22-20020a635556000000b0046fd05d55cdso6153819pgm.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 05:04:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mistralsolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qJF709bicUUb+8NhhqwXBdF0vLDptkKEpCyX6Snn00E=;
-        b=NK0gBe9a5COxZiVsUb05B3wSiwwfGnJ2c9MBNQaq3Js7+szkGO9pP452NQWju1uRB+
-         jRNkREtjtjroIMXnyVjMs7PAu/dQOVJjd3qpxP4Madi9bH1KHLiKanxX5wshPvq6cO18
-         h71xsyeuRsRbxQPUE3gIIUYBA+gtTp7OxOgbQ=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n3fekhuJzqQjnOV7EOjdSfwujFb3JS6F18skKmkiRfg=;
+        b=S88OjYHxaC+/Z9m7nJNQsgQFP+xzwK1W3pNYLBqlUn3gokLj/tMaSjHyxxAvWt7w7s
+         vYm2NyLlyFqbniYmAb3sQ88UhHJiGNK37+agfK/LjQJDWPxRMW2CjA6RDtT1UVyS/f8h
+         /HyeTb7ZZnxPAwptzMwJ8d+PolvDGez+vO7pA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qJF709bicUUb+8NhhqwXBdF0vLDptkKEpCyX6Snn00E=;
-        b=zernHbwmbKjvzwkH9s63LQQ6dlWk7dTz1+CcLjNnXwW4Lp8kjXGERL3kYOdtZXhylp
-         OhN3nnijCQahOOLlZPBaSjBYkjlxmVRzM/uxdqUdZZcHEP3DZmsQzJSyBdLDRa33vBgF
-         MUsa8eExtEqLpZLHJfmGCViSh4/q0y2Fd3JXroX+CaD2OgXdKD7S8RrwnbE5XdbsMewk
-         T17xyqUR9y2W3H6mwRcp42F5ON5U02AvzxjE9It+SPXKhb5q8nTcfK64pSKFkCCIRd5Q
-         cLEDhHHq+/g0HC8jcaUoCI63aoeDF1h5MA0HOUD4WV/dTMMiKEuVINLaUn7ZBH5nEost
-         VOAg==
-X-Gm-Message-State: ACrzQf3Cmg+WFhW2CDqWHUYl5IYyPGGOMgtWDJIdYnOvJw+Xs+h1/hiu
-        QwyV+gbAE/4p8eBuvGZWiRM22JXwIGA9uUpd8nX1f87G4+OCqUAcJuR0Q0A3rRTG1lZcBzu+8Ki
-        Tk/O3qk2xI2SuNbeMj3q3yqtboVD7SAC3KAAdXmhAmDg/4ggGRppcAGtSsw==
-X-Received: by 2002:a63:4c05:0:b0:46f:3dfb:98a1 with SMTP id z5-20020a634c05000000b0046f3dfb98a1mr44543179pga.30.1667824745525;
-        Mon, 07 Nov 2022 04:39:05 -0800 (PST)
-X-Google-Smtp-Source: AMsMyM6UEiI0GGPOGHH6U54AKkBHF8oCkkLQ4OU9/768dprcBx141wATMrqu3NMK7jbnWtwBGFSrdA==
-X-Received: by 2002:a63:4c05:0:b0:46f:3dfb:98a1 with SMTP id z5-20020a634c05000000b0046f3dfb98a1mr44543160pga.30.1667824745148;
-        Mon, 07 Nov 2022 04:39:05 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n3fekhuJzqQjnOV7EOjdSfwujFb3JS6F18skKmkiRfg=;
+        b=hs0li3SRT2q01CZHTIQdEWjuV7mDoxfogDW7IG7LTR7rJ8jdg4yOV2NDOaAIP4inZ6
+         6YnK+3KqIpTQWrx5PnUcaRGubCqM89YvYS0oiddlAlve9PoXodvc4/UTstv0V3TznJkc
+         iEby18+s3ageqqoqmbZdaR2Ypawmp1SUUNmg44jEroNeXnCaFRqVgEBLUMmBNa8ci4Wf
+         P7AIgCpmnJLleMyUMmOstm9/KdX+ThnvSZOVYnIc/8dWrSTccHaJhlkkpfJvn3OdobQD
+         LVQ6QQdZYQ576lL3Tgptuq44elC1AC6+N6d7nE+KUN0XZhIjrVryqkVNqJj2iHawcDnJ
+         74UA==
+X-Gm-Message-State: ACrzQf1RVpJ8JBBhqHSeRfNbmZtsHll1uDgfiXqXGFOEYFxhueeNUMxf
+        E3j9Nw+r2iyDlvSd35lRPIIcpY2fgFS6+jKbqQM9cq6TAOpw6cTKFCasUGwPtDQ8AgPRxJQkz9Q
+        0O5A0z+ztvjstYkVa/sm1JQp/TZyV2k5iEdkZjKj2dWtpcq8sxyzJVW6ThQ==
+X-Received: by 2002:a17:902:ced2:b0:187:1dda:6897 with SMTP id d18-20020a170902ced200b001871dda6897mr42411218plg.83.1667824758028;
+        Mon, 07 Nov 2022 04:39:18 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM6zMq4EUJFyhK1yy6QTtys5rpDqjx+vwL8/IB/QQkllZcAoUE4k4PN6hf9cI6iaKIL6rRs0ng==
+X-Received: by 2002:a17:902:ced2:b0:187:1dda:6897 with SMTP id d18-20020a170902ced200b001871dda6897mr42411188plg.83.1667824757680;
+        Mon, 07 Nov 2022 04:39:17 -0800 (PST)
 Received: from LAP568U.mistral.in ([106.51.69.35])
-        by smtp.gmail.com with ESMTPSA id x11-20020aa7956b000000b0056bbba4302dsm4400423pfq.119.2022.11.07.04.39.01
+        by smtp.gmail.com with ESMTPSA id x11-20020aa7956b000000b0056bbba4302dsm4400423pfq.119.2022.11.07.04.39.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 04:39:04 -0800 (PST)
+        Mon, 07 Nov 2022 04:39:17 -0800 (PST)
 From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
 X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
 To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -57,26 +58,28 @@ Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V2 0/3] AM68 SK: Add initial support
-Date:   Mon,  7 Nov 2022 18:08:49 +0530
-Message-Id: <20221107123852.8063-1-sinthu.raja@ti.com>
+Subject: [PATCH V2 3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
+Date:   Mon,  7 Nov 2022 18:08:52 +0530
+Message-Id: <20221107123852.8063-4-sinthu.raja@ti.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20221107123852.8063-1-sinthu.raja@ti.com>
+References: <20221107123852.8063-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1667826278-305636-5387-13409-1
+X-BESS-ID: 1667826274-305636-5389-13404-1
 X-BESS-VER: 2019.1_20221024.2147
-X-BESS-Apparent-Source-IP: 209.85.166.72
-X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Apparent-Source-IP: 209.85.215.200
+X-BESS-Outbound-Spam-Score: 0.90
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.243991 [from 
-        cloudscan17-91.eu-central-1b.ess.aws.cudaops.com]
+        cloudscan11-132.eu-central-1a.ess.aws.cudaops.com]
         Rule breakdown below
          pts rule name              description
         ---- ---------------------- --------------------------------
+        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
         0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
         0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
         0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_SA085b, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-Outbound-Spam-Status: SCORE=0.90 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_SC0_SA085b, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
 X-BESS-BRTS-Status: 1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -90,38 +93,498 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Sinthu Raja <sinthu.raja@ti.com>
 
-Hi,
-This series of patches add support for AM68 Starter kit(SK). AM68 SK
-is a low cost, small form factor board designed for TI’s J721S2/AM68 SoC.
+The SK architecture comprises of baseboard and a SOM board. The
+AM68 Starter Kit's baseboard contains most of the actual connectors,
+power supply etc. The System on Module (SoM) is plugged on to the base
+board. Therefore, add support for peripherals brought out in the base
+board.
 
-Refer below link to J721S2/AM68 Technical Reference Manual for further details: 
-http://www.ti.com/lit/pdf/spruj28
+Schematics: https://www.ti.com/lit/zip/SPRR463
 
-Design files can be referrred from https://www.ti.com/lit/zip/SPRR463
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
 
-Changes in  V2:
-Addressed all the review comments and the changes are captured in seperate patches.
+Changes in V2:
+*Addressed the review comments:
  - Updated the commit description.
  - Updated the regulator nodes: fixedregulator to "regulator-"
  - Updated the commit $subject to align with rest of the commits.
  - Dropped the blank lines
  - Changed the node names that are added with underscore("_") with "-"
 
-V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-1-sinthu.raja@ti.com/t/#mbe43b02221733bb6eb06b203359e90ec08406afc
-
-Sinthu Raja (3):
-  dt-bindings: arm: ti: Add binding for AM68 SK
-  arm64: dts: ti: Add initial support for AM68 SK System on Module
-  arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
-
- .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-3-sinthu.raja@ti.com/
+ 
  arch/arm64/boot/dts/ti/Makefile               |   2 +
  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 447 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    | 127 +++++
- 4 files changed, 577 insertions(+)
+ 2 files changed, 449 insertions(+)
  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
 
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 4555a5be2257..eeeebda30e3d 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+ 
++dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
++
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+new file mode 100644
+index 000000000000..ad727495e99b
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+@@ -0,0 +1,447 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ * Base Board: https://www.ti.com/lit/zip/SPRR463
++ */
++
++/dts-v1/;
++
++#include "k3-am68-sk-som.dtsi"
++#include <dt-bindings/net/ti-dp83867.h>
++#include <dt-bindings/phy/phy-cadence.h>
++#include <dt-bindings/phy/phy.h>
++#include <dt-bindings/mux/ti-serdes.h>
++
++/ {
++	compatible = "ti,am68-sk", "ti,j721s2";
++	model = "Texas Instruments AM68 SK";
++
++	chosen {
++		stdout-path = "serial2:115200n8";
++	};
++
++	aliases {
++		serial2 = &main_uart8;
++		mmc1 = &main_sdhci1;
++		can0 = &mcu_mcan0;
++		can1 = &mcu_mcan1;
++		can2 = &main_mcan6;
++		can3 = &main_mcan7;
++	};
++
++	vusb_main: regulator-vusb-main5v0 {
++		/* USB MAIN INPUT 5V DC */
++		compatible = "regulator-fixed";
++		regulator-name = "vusb-main5v0";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vsys_3v3: regulator-vsys3v3 {
++		/* Output of LM5141 */
++		compatible = "regulator-fixed";
++		regulator-name = "vsys_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vusb_main>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vdd_mmc1: regulator-sd {
++		/* Output of TPS22918 */
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_mmc1";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		enable-active-high;
++		vin-supply = <&vsys_3v3>;
++		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
++	};
++
++	vdd_sd_dv: gpio-regulator-tlv71033 {
++		/* Output of TLV71033 */
++		compatible = "regulator-gpio";
++		regulator-name = "tlv71033";
++		pinctrl-names = "default";
++		pinctrl-0 = <&vdd_sd_dv_pins_default>;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		vin-supply = <&vsys_3v3>;
++		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
++		states = <1800000 0x0>,
++			 <3300000 0x1>;
++	};
++
++	vsys_io_1v8: regulator-vsys-io-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vsys_io_1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vsys_io_1v2: regulator-vsys-io-1v2 {
++		compatible = "regulator-fixed";
++		regulator-name = "vsys_io_1v2";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	transceiver1: can-phy0 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
++
++	transceiver2: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
++
++	transceiver3: can-phy2 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
++
++	transceiver4: can-phy3 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
++};
++
++&main_pmx0 {
++	main_uart8_pins_default: main-uart8-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
++			J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
++		>;
++	};
++
++	main_i2c0_pins_default: main-i2c0-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
++			J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
++		>;
++	};
++
++	main_mmc1_pins_default: main-mmc1-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
++			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
++			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
++			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
++			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
++			J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
++			J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
++		>;
++	};
++
++	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
++		>;
++	};
++
++	main_usbss0_pins_default: main-usbss0-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
++		>;
++	};
++
++	main_mcan6_pins_default: main-mcan6-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
++			J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
++		>;
++	};
++
++	main_mcan7_pins_default: main-mcan7-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
++			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
++		>;
++	};
++};
++
++&wkup_pmx0 {
++	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
++			J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
++			J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
++			J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
++			J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
++			J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
++			J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
++			J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
++			J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
++			J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
++			J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
++			J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
++		>;
++	};
++
++	mcu_mdio_pins_default: mcu-mdio-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
++			J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
++		>;
++	};
++
++	mcu_mcan0_pins_default: mcu-mcan0-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
++			J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
++		>;
++	};
++
++	mcu_mcan1_pins_default: mcu-mcan1-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
++			J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
++		>;
++	};
++
++	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
++			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
++		>;
++	};
++};
++
++&main_gpio2 {
++	status = "disabled";
++};
++
++&main_gpio4 {
++	status = "disabled";
++};
++
++&main_gpio6 {
++	status = "disabled";
++};
++
++&wkup_gpio1 {
++	status = "disabled";
++};
++
++&wkup_uart0 {
++	status = "reserved";
++};
++
++&main_uart0 {
++	status = "disabled";
++};
++
++&main_uart1 {
++	status = "disabled";
++};
++
++&main_uart2 {
++	status = "disabled";
++};
++
++&main_uart3 {
++	status = "disabled";
++};
++
++&main_uart4 {
++	status = "disabled";
++};
++
++&main_uart5 {
++	status = "disabled";
++};
++
++&main_uart6 {
++	status = "disabled";
++};
++
++&main_uart7 {
++	status = "disabled";
++};
++
++&main_uart8 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_uart8_pins_default>;
++	/* Shared with TFA on this platform */
++	power-domains = <&k3_pds 357 TI_SCI_PD_SHARED>;
++};
++
++&main_uart9 {
++	status = "disabled";
++};
++
++&main_i2c0 {
++	clock-frequency = <400000>;
++
++	exp1: gpio@21 {
++		compatible = "ti,tca6416";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
++					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
++					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
++					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RST#",
++					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
++					"CSI1_B_GPIO1";
++	};
++};
++
++&main_i2c1 {
++	status = "disabled";
++};
++
++&main_i2c2 {
++	status = "disabled";
++};
++
++&main_i2c3 {
++	status = "disabled";
++};
++
++&main_i2c4 {
++	status = "disabled";
++};
++
++&main_i2c5 {
++	status = "disabled";
++};
++
++&main_i2c6 {
++	status = "disabled";
++};
++
++&main_sdhci0 {
++	status = "disabled";
++};
++
++&main_sdhci1 {
++	/* SD card */
++	pinctrl-0 = <&main_mmc1_pins_default>;
++	pinctrl-names = "default";
++	disable-wp;
++	vmmc-supply = <&vdd_mmc1>;
++	vqmmc-supply = <&vdd_sd_dv>;
++};
++
++&mcu_cpsw {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
++};
++
++&davinci_mdio {
++	phy0: ethernet-phy@0 {
++		reg = <0>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,min-output-impedance;
++	};
++};
++
++&cpsw_port1 {
++	phy-mode = "rgmii-rxid";
++	phy-handle = <&phy0>;
++};
++
++&mcu_mcan0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver1>;
++};
++
++&mcu_mcan1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan1_pins_default>;
++	phys = <&transceiver2>;
++};
++
++&main_mcan0 {
++	status = "disabled";
++};
++
++&main_mcan1 {
++	status = "disabled";
++};
++
++&main_mcan2 {
++	status = "disabled";
++};
++
++&main_mcan3 {
++	status = "disabled";
++};
++
++&main_mcan4 {
++	status = "disabled";
++};
++
++&main_mcan5 {
++	status = "disabled";
++};
++
++&main_mcan6 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan6_pins_default>;
++	phys = <&transceiver3>;
++};
++
++&main_mcan7 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan7_pins_default>;
++	phys = <&transceiver4>;
++};
++
++&main_mcan8 {
++	status = "disabled";
++};
++
++&main_mcan9 {
++	status = "disabled";
++};
++
++&main_mcan10 {
++	status = "disabled";
++};
++
++&main_mcan11 {
++	status = "disabled";
++};
++
++&main_mcan12 {
++	status = "disabled";
++};
++
++&main_mcan13 {
++	status = "disabled";
++};
++
++&main_mcan14 {
++	status = "disabled";
++};
++
++&main_mcan15 {
++	status = "disabled";
++};
++
++&main_mcan16 {
++	status = "disabled";
++};
++
++&main_mcan17 {
++	status = "disabled";
++};
 -- 
 2.36.1
 
