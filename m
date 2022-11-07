@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 793B461F783
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54C7561F7C7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:37:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232861AbiKGPXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 10:23:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60566 "EHLO
+        id S232893AbiKGPhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 10:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231438AbiKGPX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:23:29 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9CECD9;
-        Mon,  7 Nov 2022 07:23:24 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4F5BF240007;
-        Mon,  7 Nov 2022 15:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1667834603;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SJd93Y5HIkbd3Alvti1JPtGvDBLfYghJCCdXFuuDQuY=;
-        b=oa6r8eHOhRqhyq8m0OyGQMeXXLO+mcrcHTch6Sxrcj+ToRz4YE1Pjfq5pgFZyZ+KoSMwf9
-        oZrCPxvhvmALjaTn2UyYyKJIqTOz8HEuqVpkCYHBbMjEAQ0+Q5CWMcFZ7d4np9xSjS1z8M
-        5ZETcxVWIiJ59CLrOBZzIuIqVfHcmEUNSrMTUfTp60LirRgQzSKMVoAQNrXSnrgPZ6i4lA
-        b4vFUl1iCad/M8DwIiK8RcISyYi7J1BebN4suQzD4xBTVORiwfLer29EeEHbDv/3zhpb28
-        ykYPaKzQgdmBxAhRPtOFbMb5BlmCoSe3coP40G18XD/FOZ8eMYQP3+QNC8hR5g==
-Date:   Mon, 7 Nov 2022 16:23:19 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 5/7] usb: gadget: udc: add Renesas RZ/N1 USBF controller
- support
-Message-ID: <20221107162319.7945f241@bootlin.com>
-In-Reply-To: <CAMuHMdVod1VqKSBFa5syeSPU=RzgqQ=3tg70V1OSZFOext7kgw@mail.gmail.com>
-References: <20221107135825.583877-1-herve.codina@bootlin.com>
-        <20221107135825.583877-6-herve.codina@bootlin.com>
-        <CAMuHMdVod1VqKSBFa5syeSPU=RzgqQ=3tg70V1OSZFOext7kgw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        with ESMTP id S232437AbiKGPhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:37:40 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FF01E70A;
+        Mon,  7 Nov 2022 07:37:39 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECB76E7B;
+        Mon,  7 Nov 2022 16:37:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1667835456;
+        bh=tN24SZMtxVeuqD+eft5ip0/oeDHTUb64yvneuF+U788=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PxZ/oB51BM477JHOCVHIqzj6lgE4O2muFTyRKew3QS71DkicIdsMHTZlJTkXQlyBu
+         tPrDtPDNw76DwivUyQNBHW2AfSswNsAMNu2aC1scthPqMk4DXSKwr2H/KsR24m8qIo
+         2VOXA43amBSRJmGKefMTJVrfTrljH066CZk9UusI=
+Message-ID: <50f0e9a2-33a4-9afb-4105-eadd6da21e99@ideasonboard.com>
+Date:   Mon, 7 Nov 2022 17:37:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 0/8] i2c-atr and FPDLink
+Content-Language: en-US
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        "satish.nagireddy@getcruise.com" <satish.nagireddy@getcruise.com>
+References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
+ <b0319f7c-54af-3132-2775-fba7dcad6bbe@fi.rohmeurope.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <b0319f7c-54af-3132-2775-fba7dcad6bbe@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,152 +64,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Matti,
 
-On Mon, 7 Nov 2022 15:37:40 +0100
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On 07/11/2022 16:37, Vaittinen, Matti wrote:
 
-> Hi Herv=C3=A9,
->=20
-> On Mon, Nov 7, 2022 at 3:00 PM Herve Codina <herve.codina@bootlin.com> wr=
-ote:
-> > Add support for the Renesas USBF controller.
-> > This controller is an USB2.0 UDC controller available in the
-> > Renesas r9a06g032 SoC (RZ/N1 family).
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com> =20
->=20
-> > --- /dev/null
-> > +++ b/drivers/usb/gadget/udc/renesas_usbf.c =20
->=20
-> > +struct usbf_udc {
-> > +       struct usb_gadget               gadget;
-> > +       struct usb_gadget_driver        *driver;
-> > +       struct device                   *dev;
-> > +       struct clk_bulk_data            *clocks;
-> > +       int                             nclocks;
-> > +       void __iomem                    *regs;
-> > +       spinlock_t                      lock;
-> > +       bool                            is_remote_wakeup;
-> > +       bool                            is_usb_suspended;
-> > +       struct usbf_ep                  ep[USBF_NUM_ENDPOINTS];
-> > +       /* for EP0 control messages */
-> > +       enum usbf_ep0state              ep0state;
-> > +       struct usbf_req                 setup_reply;
-> > +       u8                              ep0_buf[USBF_EP0_MAX_PCKT_SIZE];
-> > +}; =20
->=20
-> > +static int usbf_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev =3D &pdev->dev;
-> > +       struct usbf_udc *udc;
-> > +       struct usbf_ep *ep;
-> > +       bool h2mode;
-> > +       int irq;
-> > +       int ret;
-> > +       int i;
-> > +
-> > +       ret =3D r9a06g032_sysctrl_get_usb_h2mode(&h2mode);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (h2mode) {
-> > +               dev_warn(dev, "Disabled in H2 (host) mode\n");
-> > +               return -ENODEV;
-> > +       }
-> > +
-> > +       udc =3D devm_kzalloc(dev, sizeof(*udc), GFP_KERNEL);
-> > +       if (!udc)
-> > +               return -ENOMEM;
-> > +       platform_set_drvdata(pdev, udc);
-> > +
-> > +       udc->dev =3D dev;
-> > +       spin_lock_init(&udc->lock);
-> > +
-> > +       udc->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> > +       if (IS_ERR(udc->regs))
-> > +               return PTR_ERR(udc->regs);
-> > +
-> > +       devm_pm_runtime_enable(&pdev->dev);
-> > +       ret =3D pm_runtime_resume_and_get(&pdev->dev);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       ret =3D devm_clk_bulk_get_all(dev, &udc->clocks);
-> > +       if (ret < 1) {
-> > +               dev_err(dev, "failed to get clocks %d\n", ret);
-> > +               return ret;
-> > +       }
-> > +       udc->nclocks =3D ret;
-> > +
-> > +       ret =3D clk_bulk_prepare_enable(udc->nclocks, udc->clocks);
-> > +       if (ret) {
-> > +               dev_err(dev, "can not enable the clock\n");
-> > +               return ret;
-> > +       } =20
->=20
-> As this driver only enables/disables the clocks, perhaps you could
-> just delegate this to Runtime PM (through the clock domain pointed
-> by the power-domains property in DT), and drop the .clocks and
-> .nclocks fields?
+I only had time to have a brief look at your code, but I have a few 
+quick questions.
 
-Yes, indeed.
-I tested it and it works.
-I will remove the the clocks handling from this driver in v2 series.
+> I think it was Tomi who asked me the benefit of using MFD. In some cases
+> the digital interface towards pinctrl/GPIO or other functional blocks in
+> SER/DES is re-used from other products - or the blocks are re-used on
+> other products. Separating them in own platform-drivers is a nice way to
+> re-use drivers and avoid code duplication.
 
->=20
-> > +clk_disable:
-> > +       clk_bulk_disable_unprepare(udc->nclocks, udc->clocks);
-> > +       return ret;
-> > +}
-> > +
-> > +static int usbf_remove(struct platform_device *pdev)
-> > +{
-> > +       struct usbf_udc *udc =3D platform_get_drvdata(pdev);
-> > +
-> > +       usb_del_gadget_udc(&udc->gadget);
-> > +
-> > +       clk_bulk_disable_unprepare(udc->nclocks, udc->clocks);
-> > +
-> > +       pm_runtime_put(&pdev->dev);
-> > +
-> > +       return 0;
-> > +} =20
->=20
-> > +MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>"); =20
->=20
-> Herv=C3=A9? ;-)
+Is there anything that prevents us (or makes it difficult) from 
+refactoring a "monolithic" driver into an MFD later? If we see such IP 
+re-use, can we then move to an MFD?
 
-Just to be consistent with other places where my email appears,
-I keep "Herve" :)
+I admit I have never written an MFD driver (but I have hacked with a few 
+years back). As I see it, the "subcomponents" in FPDLink ICs are more or 
+less tied to the FPDLink. It's not like they're independent. Compare to, 
+for example, a PMIC which provides regulators and GPIOs, and possibly 
+the only shared part between those two features are the pins.
 
->=20
-> > +MODULE_DESCRIPTION("Renesas R-Car Gen3 & RZ/N1 USB Function driver");
-> > +MODULE_LICENSE("GPL"); =20
->=20
-> > --
-> > 2.37.3
-> > =20
->=20
->=20
-> --
-> Gr{oetje,eeting}s,
->=20
->                         Geert
->=20
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->=20
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+So, I think I'm still wondering about the benefit...
 
-Thanks for this review,
-Herv=C3=A9
+In the current version I have the deser driver supporting UB960 and 
+UB9702. I guess I could split those into separate drivers, and using MFD 
+I could share lot of code between them. But I still can't see why that's 
+better than having both UB960 and UB9702 in the same driver (and, if the 
+amount of supported devices increases, perhaps dividing some parts to 
+separate files and using function points for a few things).
 
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+The benefit would be more obvious if there was some other type of IC 
+that uses the same IP subcomponents. Maybe the display side FPDLink 
+devices are such, but I have never done a deep dive in their 
+documentation. And, even then, I think I still have the question: can we 
+just move to an MFD later when the need comes?
+
+Also, isn't the use or non-use of MFD strictly a driver private thing, 
+it should not affect any shared parts or shared designs? In other words, 
+if you have your ROHM hat on, why do you care how the UB9xx driver is 
+structured internally? ;)
+
+  Tomi
+
