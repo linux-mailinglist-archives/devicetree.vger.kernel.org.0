@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C5F61E92B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5940B61E92E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:13:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231153AbiKGDNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:13:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35480 "EHLO
+        id S231158AbiKGDNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:13:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbiKGDNX (ORCPT
+        with ESMTP id S231156AbiKGDNX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:13:23 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFC1DE0BD;
-        Sun,  6 Nov 2022 19:12:58 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3F110541;
+        Sun,  6 Nov 2022 19:12:59 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CD6F60E86;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D535660E9A;
+        Mon,  7 Nov 2022 03:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9428CC43470;
         Mon,  7 Nov 2022 03:12:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14305C43147;
-        Mon,  7 Nov 2022 03:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667790777;
-        bh=WUtm2U0A/CO3KFQPZikX45IlMbJoyuVByko9/qzxXxo=;
+        s=k20201202; t=1667790779;
+        bh=8zKQoOSwM/JNbKtCi6LLDClHontuHUAIT/YiIPat3/Q=;
         h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=gSV5lRDodQCTvwrzpwGSV+9RiQ4ZZ1JRD21WEoISDqUlEL669GQ9P7q85sd366IwT
-         eJ4KE3nqnPiHdZrX2YvDLCm+Ko3pHaSCWQH9AS5Qw+lenzP3CMaae4EWDSghabaiFr
-         qOpVba7gYCDAyW1K6FzOHTENPNsknRvcngKdQYxG7CayHDkxJqIhLc1bdUbPM47+06
-         iVgohrOqkDgyPk/E4rJZN+J7pNfAFmPogSEcYIR4MMqncV9ydDKQi2UaPAlunJAxNw
-         sqpa2PaaE/WIeGQ9q5Gs3lx+w3jQgwl7m2WNDCJpn28St/Dd/seAJKp6pB3fazkXG6
-         YT2KgLdK6hlkw==
+        b=CDp3BURavGezNPUErQVahpwBcvxeCS7wWGZb0K9Jwt3ORrc3AFArwcv77sJGDDrrg
+         4+BPkE/mJeWCsl9eAqze+qEfkP41ORG/sdKbeCN3dLJsvqrsOscEvzf1mmz6/62Va1
+         IpQQMjk0NjZUy5za0mzKkPPWsBYRemlznxc/uqud9f8d9JMVGEWH2auXDQB/JMzE+Q
+         rdEpvto5hxisMOpJ+tWbLJom0lDTzf+3hgA/xmd6TTBWLQkoS//XIjrCACoL+zc0Dx
+         A9B4H85LESEb66F/EgtGG47GKwuqJMN85M8LsjhWcyt279gMnBayvexuDSeN4lNzV5
+         gy2q0dOQesnjQ==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, konrad.dybcio@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>
-Subject: Re: (subset) [PATCH 1/4] dt-bindings: vendor-prefixes: Add ALFA Network
-Date:   Sun,  6 Nov 2022 21:12:15 -0600
-Message-Id: <166779074258.500303.13493332831111343217.b4-ty@kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: qcom: document Google Cheza
+Date:   Sun,  6 Nov 2022 21:12:17 -0600
+Message-Id: <166779074249.500303.10585711813005933420.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221013155418.47577-1-krzysztof.kozlowski@linaro.org>
-References: <20221013155418.47577-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220918095430.18068-1-krzysztof.kozlowski@linaro.org>
+References: <20220918095430.18068-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,23 +55,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Oct 2022 11:54:15 -0400, Krzysztof Kozlowski wrote:
-> Add vendor prefix for ALFA Network Inc.
-> 
-> https://www.alfa.com.tw/
+On Sun, 18 Sep 2022 10:54:30 +0100, Krzysztof Kozlowski wrote:
+> Document Google Cheza board compatibles recently added.
 > 
 > 
 
 Applied, thanks!
 
-[1/4] dt-bindings: vendor-prefixes: Add ALFA Network
-      commit: fd42d456bf22a894b3dafe19d7d8302e5de5fcb3
-[2/4] dt-bindings: arm: qcom: Document IPQ4018 boards
-      commit: 2c36509c9c7b0e9be1ec68828826a3754c5b0f28
-[3/4] ARM: dts: qcom: ipq4018-ap120c-ac: Add SoC compatible
-      commit: a35f1a75e7e2f73157a16ab56fcc01f09b133e50
-[4/4] ARM: dts: qcom: ipq4018-jalapeno: Add SoC compatible
-      commit: bd40a8c773165e8175fa51d9f3fdcf00968ce8dc
+[1/1] dt-bindings: arm: qcom: document Google Cheza
+      commit: f1e6243b37db8e589009cb333140fa23ee4d984c
 
 Best regards,
 -- 
