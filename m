@@ -2,49 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0FBA61E90E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:13:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBC761E912
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:13:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbiKGDNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:13:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35046 "EHLO
+        id S230526AbiKGDNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:13:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbiKGDM6 (ORCPT
+        with ESMTP id S230445AbiKGDM6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:12:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A0BDF8B;
-        Sun,  6 Nov 2022 19:12:52 -0800 (PST)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059BC10551;
+        Sun,  6 Nov 2022 19:12:53 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 203C5B80D8E;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A55C60E86;
+        Mon,  7 Nov 2022 03:12:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32720C43152;
         Mon,  7 Nov 2022 03:12:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05279C433B5;
-        Mon,  7 Nov 2022 03:12:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667790769;
-        bh=2z0Swf5gWoaqNl0BXqBEmu6CuAxocfOtJzK3VCpU6a0=;
+        s=k20201202; t=1667790771;
+        bh=mweBuL50kxsp/aioXeFamnDpfnxNOo+ji52Azj8DQi4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QgZehyyV7k4ECrMlxKtMysvqJx5DQhepRTZDrA9szsDo2zikL/r1WfHPAs1xUlBVb
-         e3J7iH8hcB3ld8p6jLSZ8M+meXp6H/b3pXBNASjAZdnHSyrCmM5VaEpklnsSggNFV8
-         21OguizgftkW/hXnTEDYwoqhXYc67O3SOSSpIuaKeTR5kuWfEteHKA0EjoltKjh0Yo
-         sHyu5ay7TM6YLCRSFLY7u5966C12TheMLAIaAzAgJQHxF6pudCu1IAKG7o9vniRFoB
-         coJQ7BRk3DPQyWmDGOf9ueJu8uCxh7iJFFGRU2fAE9szKp6F3L2S/hSVK+IjGB50Hz
-         5SdqPX9i8gIzw==
+        b=pFiujuQQprBMUq4qe7Q7UNX6rHJNHmuRVkitKVMqoXPgXaykPe3e/ERcC7u8QbsUh
+         HlcdurDBRDW2tezIngRX4HHcuhIU+h119d4CjtPkJ4zfLOux1euJPEybwEBhPitkpT
+         5z3jMo+0aLLH8js8XwzPh4cjbHDGkmH9ZTnd7NkyBhhDnEoVKdHWFiwqMViEDcNN3+
+         YmP2y7KcpbC0MyhPXIlSj+BDpBUYLyYij4NR7lbBfZVTwG5ghmX3r2ZqasC1o1OJoG
+         3asofeR+75ZI375mDwsdtrVV9q2118gbRfyLBVadEEf5ZPGU1s42qGSU/VOBQMOE2Y
+         FvCqBHh6nltUw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     johan+linaro@kernel.org
-Cc:     dmitry.baryshkov@linaro.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
+To:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, vkoul@kernel.org,
-        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH 0/4] arm64: dts: qcom: fix UFS PHY registers
-Date:   Sun,  6 Nov 2022 21:12:07 -0600
-Message-Id: <166779074265.500303.10223051049432517680.b4-ty@kernel.org>
+        linux-arm-msm@vger.kernel.org, konrad.dybcio@somainline.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>
+Cc:     dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH 0/4] arm64: dts: qcom: sm8450: add SDHCI
+Date:   Sun,  6 Nov 2022 21:12:09 -0600
+Message-Id: <166779074265.500303.15502116502642876255.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221024091507.20342-1-johan+linaro@kernel.org>
-References: <20221024091507.20342-1-johan+linaro@kernel.org>
+In-Reply-To: <20221026200357.391635-1-krzysztof.kozlowski@linaro.org>
+References: <20221026200357.391635-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,27 +56,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Oct 2022 11:15:03 +0200, Johan Hovold wrote:
-> When working on the updated QMP binding for SC8280XP, I noticed that the
-> UFS PHY register definitions for most platforms are wrong. Apparently
-> the register region sizes have just been copied verbatim from the
-> original SDM845.
+On Wed, 26 Oct 2022 16:03:53 -0400, Krzysztof Kozlowski wrote:
+> Depends on:
+> https://lore.kernel.org/all/20220410205127.1670705-2-dmitry.baryshkov@linaro.org/
 > 
-> As Linux maps these regions as full pages this is currently not an issue
-> on Linux, but let's update the sizes to match the vendor drivers.
+> Best regards,
+> Krzysztof
+> 
+> Krzysztof Kozlowski (4):
+>   arm64: dts: qcom: sm8450: move SDHCI pin configuration to DTSI
+>   arm64: dts: qcom: sm8450: disable SDHCI SDR104/SDR50 on all boards
+>   arm64: dts: qcom: sm8450-hdk: add SDHCI for microSD
+>   arm64: dts: qcom: sm8450-qrd: add SDHCI for microSD
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: qcom: sm8150: fix UFS PHY registers
-      commit: 36a31b3a8d9ba1707a23de8d8dc1ceaef4eda695
-[2/4] arm64: dts: qcom: sm8250: fix UFS PHY registers
-      commit: 7f8b37dd4e7bf50160529530d9789b846153df71
-[3/4] arm64: dts: qcom: sm8350: fix UFS PHY registers
-      commit: b3c7839b698cc617e97dd2e4f1eeb4adc280fe58
-[4/4] arm64: dts: qcom: sm8450: fix UFS PHY registers
-      commit: 7af949211a0554bbc06163b081fc2cb516674880
+[1/4] arm64: dts: qcom: sm8450: move SDHCI pin configuration to DTSI
+      commit: a0646262ec94faaf95b3dba8f17774d9762ee9ac
+[2/4] arm64: dts: qcom: sm8450: disable SDHCI SDR104/SDR50 on all boards
+      commit: 9d561dc4e5cc31e757f91eb7bb709d2e2a8c9ce0
+[3/4] arm64: dts: qcom: sm8450-hdk: add SDHCI for microSD
+      commit: 1f52331285ed9f412f85e321ae6574714725d634
+[4/4] arm64: dts: qcom: sm8450-qrd: add SDHCI for microSD
+      commit: 4a5923fe4e1df52fafa4026363a349f30c061a15
 
 Best regards,
 -- 
