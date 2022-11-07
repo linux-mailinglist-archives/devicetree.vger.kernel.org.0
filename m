@@ -2,86 +2,401 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897CC61EF25
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA4661EF28
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbiKGJfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:35:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59928 "EHLO
+        id S230239AbiKGJgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:36:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbiKGJfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:35:55 -0500
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13096C10;
-        Mon,  7 Nov 2022 01:35:53 -0800 (PST)
-Received: by mail-qv1-f52.google.com with SMTP id lf15so7268590qvb.9;
-        Mon, 07 Nov 2022 01:35:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fi0NICzB6CQRFVjI8GHZ+Wi7PHRf6zbpoIi4V5fnIFk=;
-        b=vM3+hdmTJg7BFHEq55F1ra9/J8fuDlEk6SsqOroXArcd7OIfbya/fBEdhlkvmRFlFH
-         E4jE7fr+Knq85eHxGt75DPQx4KOtHdRSi/e1JH12YrxCQSsBaapE5slTOKXpFrdB85z9
-         6J/XYKTart7nMxriCCOpIwpm5RNNjUVGXXawXgeDcsy4Tc9seRhCuaemOsho18BXc76r
-         rwSv1iDC03hhMYMV65BFRNbEt8IH0ffZL5JAhJ2DStke1CPnzThUbg8X95ZjnuZ8drTJ
-         5NVdwqtkC8GxWARkiiRlfm4C5kCLzlyMfAJGi4F2SF0pcfR+Sb4fKJ463OdMqjnVUSgb
-         N08w==
-X-Gm-Message-State: ACrzQf3dTeGoPFpphMGv4pe2yHmP89bT2cliacy7MHVaVIPGre3kaPMj
-        4KohO0TMOyzqcYbbsOd3BSECF21NOukrUw19
-X-Google-Smtp-Source: AMsMyM4jCSpy9AAI+xuEscgNL5kWAHLRhFYAkKoRyaf7G1hvhbeC56qXDbohueVWFL0k1dE1hGZ/qw==
-X-Received: by 2002:ad4:5f4c:0:b0:4b8:ec94:68e with SMTP id p12-20020ad45f4c000000b004b8ec94068emr43215733qvg.38.1667813752048;
-        Mon, 07 Nov 2022 01:35:52 -0800 (PST)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id f9-20020a05622a104900b0039cb59f00fcsm5792245qte.30.2022.11.07.01.35.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 01:35:51 -0800 (PST)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-36a4b86a0abso98661197b3.7;
-        Mon, 07 Nov 2022 01:35:51 -0800 (PST)
-X-Received: by 2002:a0d:e301:0:b0:374:a8ba:99b0 with SMTP id
- m1-20020a0de301000000b00374a8ba99b0mr941336ywe.358.1667813751027; Mon, 07 Nov
- 2022 01:35:51 -0800 (PST)
+        with ESMTP id S229778AbiKGJgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:36:36 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2A4C2C;
+        Mon,  7 Nov 2022 01:36:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C4A7CB80E80;
+        Mon,  7 Nov 2022 09:36:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA2E0C433C1;
+        Mon,  7 Nov 2022 09:36:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667813792;
+        bh=QkBQeKZeJY0MJMmAxi1AZtHEbBvFtwGmoy8z8AX9ANY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g8hzCOWFgwGFFxYBhDUDb1w+IP99Xl31OZDv9XjQm7ZRoQVFnjiuepEglqSnc/b9e
+         XmJKlV84lpu38LgDlCwv/BezMJcchjo4HWic5GfTGfavBcLpI3W2sfC0xu8SKodYBU
+         3UFPSZC/HMQP356SOQ+9wIpqrcCC2CUh63HMGHvsgz2/wMYyfDf3iefTEQ5nqWUbVH
+         H8AagrZwbxe84wbix0CynxX3ppKhGL0AijUWoWsknhEqZg1k8hg5X5ceeCk032p50H
+         9n9IbsMKgSxbPziijd2eeecBd04zq7kpr9nHMDWjrGg/0jEJsahbM+mJcth10rI+wj
+         LkmBdgo3tcw/Q==
+Date:   Mon, 7 Nov 2022 09:36:27 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+Subject: Re: [PATCH v8 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
+Message-ID: <Y2jRm2J4tvK5ET1e@google.com>
+References: <20221103213425.2474772-1-Naresh.Solanki@9elements.com>
+ <20221103213425.2474772-3-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-References: <20221104150642.4587-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20221104150642.4587-1-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Nov 2022 10:35:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWwp421JC2E9cBViG55xi3TOzCpKAo99V6vfH14LVm6gw@mail.gmail.com>
-Message-ID: <CAMuHMdWwp421JC2E9cBViG55xi3TOzCpKAo99V6vfH14LVm6gw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas,cmt: Add r8a779g0 CMT support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221103213425.2474772-3-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 4, 2022 at 4:07 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Thu, 03 Nov 2022, Naresh Solanki wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> 
+> Implement a regulator driver with IRQ support for fault management.
 
-Gr{oetje,eeting}s,
+This is not a "regulator driver".
 
-                        Geert
+> Written against documentation [1] and [2] and tested on real hardware.
+> 
+> Every channel has its own regulator supplies nammed 'vss1-supply' and
+> 'vss2-supply'. The regulator supply is used to determine the output
+> voltage, as the smart switch provides no output regulation.
+> The driver requires the 'shunt-resistor-micro-ohms' property to be
+> present in Device Tree to properly calculate current related
+> values.
+> 
+> Datasheet links:
+> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Can you explain these tags to me please?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Patrick wrote it.  Then what happened?
+
+> ---
+>  drivers/mfd/Kconfig         |  12 +++++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/max597x.c       |  92 ++++++++++++++++++++++++++++++++
+>  include/linux/mfd/max597x.h | 103 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 208 insertions(+)
+>  create mode 100644 drivers/mfd/max597x.c
+>  create mode 100644 include/linux/mfd/max597x.h
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 8b93856de432..416fe7986b7b 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -253,6 +253,18 @@ config MFD_MADERA_SPI
+>  	  Support for the Cirrus Logic Madera platform audio SoC
+>  	  core functionality controlled via SPI.
+>  
+> +config MFD_MAX597X
+> +	tristate "Maxim 597x Power Switch and Monitor"
+> +	depends on I2C
+> +	depends on OF
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	help
+> +	  This driver controls a Maxim 5970/5978 switch via I2C bus.
+> +	  The MAX5970/5978 is a smart switch with no output regulation, but
+> +	  fault protection and voltage and current monitoring capabilities.
+> +	  Also it supports upto 4 indication LEDs.
+> +
+>  config MFD_CS47L15
+>  	bool "Cirrus Logic CS47L15"
+>  	select PINCTRL_CS47L15
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 7ed3ef4a698c..819d711fa748 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -161,6 +161,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
+>  obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
+>  
+>  obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
+> +obj-$(CONFIG_MFD_MAX597X)	+= max597x.o
+>  obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
+>  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
+>  obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
+> diff --git a/drivers/mfd/max597x.c b/drivers/mfd/max597x.c
+> new file mode 100644
+> index 000000000000..2c64edb6b6dd
+> --- /dev/null
+> +++ b/drivers/mfd/max597x.c
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Maxim MAX5970/MAX5978 MFD Driver
+
+Please drop "MFD Driver" and replace it with what it does.
+
+"Power Switch and Monitor"?
+
+> + * Copyright (c) 2022 9elements GmbH
+> + *
+> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/max597x.h>
+> +#include <linux/regmap.h>
+> +
+> +static const struct regmap_config max597x_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = MAX_REGISTERS,
+> +};
+> +
+> +static const struct mfd_cell max597x_cells[] = {
+> +	{ .name = "max597x-regulator", },
+> +	{ .name = "max597x-iio", },
+> +	{ .name = "max597x-led", },
+> +};
+> +
+> +static int max597x_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+> +{
+> +	struct max597x_data *ddata;
+> +	enum max597x_chip_type chip = id->driver_data;
+> +
+> +	ddata = devm_kzalloc(&i2c->dev, sizeof(*ddata),	GFP_KERNEL);
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	/* Initialize num of switch based on chip type for later use by regulator
+> +	 * & iio cells
+> +	 */
+
+Please use proper multi-line comment structure.
+
+Also use proper words, unlike 'num'.
+
+In fact, it looks like this whole comment could do with some love.
+
+> +	switch (chip) {
+> +	case MAX597x_TYPE_MAX5970:
+> +		ddata->num_switches = MAX5970_NUM_SWITCHES;
+> +		break;
+> +	case MAX597x_TYPE_MAX5978:
+> +		ddata->num_switches = MAX5978_NUM_SWITCHES;
+> +		break;
+> +	}
+> +
+> +	ddata->regmap = devm_regmap_init_i2c(i2c, &max597x_regmap_config);
+> +	if (IS_ERR(ddata->regmap)) {
+> +		dev_err(&i2c->dev, "Failed to initialise regmap");
+
+Are you using American spelling or English?
+
+Please make up your mind and be consistent.
+
+> +		return -EINVAL;
+
+Shouldn't you be propagating the error you received?
+
+> +	}
+> +
+> +	/* IRQ used by regulator cell */
+
+What IRQ is this?  Does it have a name?
+
+If it's only used in Regulator, why not fetch it there?
+
+> +	ddata->irq = i2c->irq;
+> +	ddata->dev = &i2c->dev;
+
+You should already have access to the Driver, else how are you going
+to fetch the data back in the first place?
+
+> +	i2c_set_clientdata(i2c, ddata);
+> +
+> +	return devm_mfd_add_devices(ddata->dev, PLATFORM_DEVID_AUTO,
+> +				    max597x_cells, ARRAY_SIZE(max597x_cells),
+> +				    NULL, 0, NULL);
+> +}
+> +
+> +static const struct i2c_device_id max597x_table[] = {
+> +	{ .name = "max5970", MAX597x_TYPE_MAX5970 },
+> +	{ .name = "max5978", MAX597x_TYPE_MAX5978 },
+
+You don't need ".name = ".
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, max597x_table);
+> +
+> +static const struct of_device_id max597x_of_match[] = {
+> +	{ .compatible = "maxim,max5970", .data = (void *)MAX597x_TYPE_MAX5970 },
+> +	{ .compatible = "maxim,max5978", .data = (void *)MAX597x_TYPE_MAX5978 },
+
+Where is .data used?
+
+> +	{ /* sentinel */ }
+
+Drop the comment.  We know what a NULL entry means.
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, max597x_of_match);
+> +
+> +static struct i2c_driver max597x_driver = {
+> +	.id_table = max597x_table,
+> +	.driver = {
+> +		.name = "max597x",
+> +		.of_match_table = of_match_ptr(max597x_of_match),
+> +		},
+
+Tabbing error.
+
+> +	.probe = max597x_probe,
+> +};
+> +
+
+Remove this line.
+
+> +module_i2c_driver(max597x_driver);
+> +
+> +MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
+> +MODULE_DESCRIPTION("MAX597X Power Switch and Monitor");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/include/linux/mfd/max597x.h b/include/linux/mfd/max597x.h
+> new file mode 100644
+> index 000000000000..f88a57f0e4f2
+> --- /dev/null
+> +++ b/include/linux/mfd/max597x.h
+> @@ -0,0 +1,103 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Maxim MAX5970/MAX5978 MFD Driver
+
+Same here.
+
+> + * Copyright (c) 2022 9elements GmbH
+> + *
+> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+> + */
+> +
+> +#ifndef MFD_MAX597X_H
+> +#define MFD_MAX597X_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/regmap.h>
+> +
+> +/* Number of switch based on chip variant */
+
+This comment is superfluous.
+
+> +#define MAX5970_NUM_SWITCHES 2
+> +#define MAX5978_NUM_SWITCHES 1
+> +/* Both chip variant have 4 indication LEDs used by LED cell */
+
+Here too I think.
+
+> +#define MAX597X_NUM_LEDS     4
+> +
+> +enum max597x_chip_type {
+> +	MAX597x_TYPE_MAX5978 = 1,
+
+Why 1?
+
+> +	MAX597x_TYPE_MAX5970,
+> +};
+> +
+> +#define MAX5970_REG_CURRENT_L(ch)		(0x01 + (ch) * 4)
+> +#define MAX5970_REG_CURRENT_H(ch)		(0x00 + (ch) * 4)
+> +#define MAX5970_REG_VOLTAGE_L(ch)		(0x03 + (ch) * 4)
+> +#define MAX5970_REG_VOLTAGE_H(ch)		(0x02 + (ch) * 4)
+> +#define MAX5970_REG_MON_RANGE			0x18
+> +#define  MAX5970_MON_MASK				0x3
+> +#define  MAX5970_MON(reg, ch)		(((reg) >> ((ch) * 2)) & MAX5970_MON_MASK)
+> +#define  MAX5970_MON_MAX_RANGE_UV		16000000
+> +
+> +#define MAX5970_REG_CH_UV_WARN_H(ch)	(0x1A + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_WARN_L(ch)	(0x1B + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_CRIT_H(ch)	(0x1C + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_CRIT_L(ch)	(0x1D + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_WARN_H(ch)	(0x1E + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_WARN_L(ch)	(0x1F + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_CRIT_H(ch)	(0x20 + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_CRIT_L(ch)	(0x21 + (ch) * 10)
+> +
+> +#define  MAX5970_VAL2REG_H(x)			(((x) >> 2) & 0xFF)
+> +#define  MAX5970_VAL2REG_L(x)			((x) & 0x3)
+> +
+> +#define MAX5970_REG_DAC_FAST(ch)		(0x2E + (ch))
+> +
+> +#define MAX5970_FAST2SLOW_RATIO			200
+> +
+> +#define MAX5970_REG_STATUS0				0x31
+> +#define  MAX5970_CB_IFAULTF(ch)			(1 << (ch))
+> +#define  MAX5970_CB_IFAULTS(ch)			(1 << ((ch) + 4))
+> +
+> +#define MAX5970_REG_STATUS1				0x32
+> +#define  STATUS1_PROT_MASK				0x3
+> +#define  STATUS1_PROT(reg) \
+> +	(((reg) >> 6) & STATUS1_PROT_MASK)
+> +#define  STATUS1_PROT_SHUTDOWN			0
+> +#define  STATUS1_PROT_CLEAR_PG			1
+> +#define  STATUS1_PROT_ALERT_ONLY		2
+> +
+> +#define MAX5970_REG_STATUS2				0x33
+> +#define  MAX5970_IRNG_MASK				0x3
+> +#define  MAX5970_IRNG(reg, ch)	\
+> +						(((reg) >> ((ch) * 2)) & MAX5970_IRNG_MASK)
+> +
+> +#define MAX5970_REG_STATUS3				0x34
+> +#define  MAX5970_STATUS3_ALERT			BIT(4)
+> +#define  MAX5970_STATUS3_PG(ch)			BIT(ch)
+> +
+> +#define MAX5970_REG_FAULT0				0x35
+> +#define  UV_STATUS_WARN(ch)				BIT(ch)
+> +#define  UV_STATUS_CRIT(ch)				BIT(ch + 4)
+> +
+> +#define MAX5970_REG_FAULT1				0x36
+> +#define  OV_STATUS_WARN(ch)				BIT(ch)
+> +#define  OV_STATUS_CRIT(ch)				BIT(ch + 4)
+> +
+> +#define MAX5970_REG_FAULT2				0x37
+> +#define  OC_STATUS_WARN(ch)				BIT(ch)
+> +
+> +#define MAX5970_REG_CHXEN				0x3b
+> +#define  CHXEN(ch)						(3 << (ch * 2))
+> +
+> +#define MAX5970_REG_LED_FLASH			0x43
+
+Do these all need to be shared?
+
+Or can they be isolated into, say, the Regulator driver?
+
+> +#define MAX_REGISTERS					0x49
+> +#define ADC_MASK						0x3FF
+> +
+> +struct max597x_data {
+> +	struct device *dev;
+> +	int irq;
+> +	int num_switches;
+> +	struct regmap *regmap;
+> +	/* Chip specific parameters needed by regulator & iio cells */
+> +	u32 irng[MAX5970_NUM_SWITCHES];
+> +	u32 mon_rng[MAX5970_NUM_SWITCHES];
+> +	u32 shunt_micro_ohms[MAX5970_NUM_SWITCHES];
+> +};
+> +
+> +#endif				/* _MAX597X_H */
+
+                                       This is incorrect and doesn't
+				       need to be tabbed out over
+				       here.
+
+-- 
+Lee Jones [李琼斯]
