@@ -2,183 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE2461EDD8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 09:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DE3561EE05
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbiKGIz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 03:55:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54448 "EHLO
+        id S231599AbiKGJCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:02:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231556AbiKGIzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 03:55:22 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2109.outbound.protection.outlook.com [40.107.114.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7EFA15FEA;
-        Mon,  7 Nov 2022 00:55:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FcFFOqjMkJ+uwuGRz/fQL2L+qTbe4LpV7Q9UDS5Av9NcMObKzeSbGdtRqkqqVzK6t7eIcEYGtbsl1F5Ve4/9GrIVKzcmhnLHvcCDmRqFmBN2ryUloQ2J8yDDnR1f7FivVleHbp3/HLm+x+AD+m/Enq2GszoLPGmp6uGwq0vWV5wb5RM3tYILaZ6hzZ+EDqPESEEJyCtynlhX2A73OIfn8v8bIIPKDWI4F/LtMqTvVT512xVE5KxVfrPyMb6Wu61GqE/i7zQc/ZoCL2J2cZi2jADV7NAOE6ztC+E+3f0gTnOOIGen4A5QMEbmroYpVMa39EaggG3hN+nUastL4BgS8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=onPSQxlfnyrEV6C+2KhXSY1u6JSR47c/euWC4W8Ybyc=;
- b=oXc050Wl2qHkpD1CLk+3AEnIjTXd5acn6fsW/MWoOUwJdLudtJmRhw0iERWrNXCgJi8BTT04pkndGkWMUrOmBWGvCvzi96aswrCi2xy78j9TvwuQ4SNtb6R5ZiXgLQbAqOE1zum6mwmcArH7w1kspenbrqc6tU0+KY2g08YIp/2QIJ4CDmcpuIGP6LR5bNDDk5HOoZBFCbfH3YGNXUipD3PKv5JzpSvDyX4qAdlGbjaIrl1CV5wgUNPqgpCpsZuDOY37r6Vh4WfvJ0k5kkhF9GtewQyhHBAihAk74ie3/TEVNrAlIaoTw/b79U/bxHhS8H5JHEFcwU/6fa8IE/FQ0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=onPSQxlfnyrEV6C+2KhXSY1u6JSR47c/euWC4W8Ybyc=;
- b=sxCnLBkx8fwPmthed+R/6nWrKfYkIyuDYkv8CcG2F/IofZa0kVQF0B1tjXc77eZWtv4j2k2Cnv+fP45xVBzDYEMY2jY9X/6hT9prcqEa1jfEHJh9cnSJy7aSEUTAurtW7+YHtA96VRQKXwEblya+/hl8GB3PCj+MR61WgSFejp8=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB6038.jpnprd01.prod.outlook.com (2603:1096:604:d9::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Mon, 7 Nov
- 2022 08:55:11 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2%3]) with mapi id 15.20.5791.026; Mon, 7 Nov 2022
- 08:55:11 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "garnermic@meta.com" <garnermic@meta.com>
-CC:     kernel test robot <lkp@intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: RE: [v3 2/3] pwm: Add Aspeed ast2600 PWM support
-Thread-Topic: [v3 2/3] pwm: Add Aspeed ast2600 PWM support
-Thread-Index: AQHY7p7kl1T9YGA12UCEvmgRzmEVOa4ryCswgAdlwYCAAAAiYA==
-Date:   Mon, 7 Nov 2022 08:55:11 +0000
-Message-ID: <OS0PR01MB5922EC7AB73207DF30F42A0A863C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20221102083601.10456-1-billy_tsai@aspeedtech.com>
- <20221102083601.10456-3-billy_tsai@aspeedtech.com>
- <OS0PR01MB5922014A7D74A884D2E7BDC286399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <C7224BE1-D81E-4FE0-8B7C-5A3CA69898D2@aspeedtech.com>
-In-Reply-To: <C7224BE1-D81E-4FE0-8B7C-5A3CA69898D2@aspeedtech.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB6038:EE_
-x-ms-office365-filtering-correlation-id: bac88005-2379-4580-e8f1-08dac09dc76a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xGYA/S+qqPIBxWfVUqDoXAhzSFrfy/zIpTzmXh21OiQlSIPgOx2+WjcF+R5q7DHMCOTzLdGgdI8Mnu234B/9lKQ7meMnUgjwfoG+SnR4uBgNrpxHrPNTBaDLdpQSIn3QVtK9b3sD4hFYwXAyAP74d7rdRIjQn41QBDbcKVIdxUT1JiVur0br+0U7/LUkErRsbYdN3Wy9GD/zKqaJOaoiDCiADi6rFG7BNJ0Sph/9/2p2b4HWAeuZ3cYX+rX7+HB66ZB8aIb4c8/2cLglOiTOh7UBQS4T8pKO5IfNyLKZ5c00mzCv2O6qofsqsi8zSf39qBRdnQooPaw01+KidXmKgHuQLxB+okNA5z0z9VGYbdd4ftkMHJa1mWMkMW31O6ZHJ9tJhWlDFryP1pCKNwzPl+CjTQA3pK6cHi4riON6lbFZEXD/pW9Nrn6YnnT4+FvOXyTtNCaw13sK0fMcktxsdXRAx7HbA2xTxwn5oqI670+eZLVyrekrwAzJavRTPVZ9i02odT0Sf9NLLSIC5P4GSg8HJG+XqzWWVskc4ycxaMYlvxoa3FocJG2RUL47Urprv6RcBfMzqYj+WfVCdyw56PKg8T3Ij833nqT2N1Pgpr3/ir3vqVHHPpYCZeA7opaJtRZOP6h2KJFbK/F3B3r4M//WbC1sOxMSMEkYw16/4p1fl6I3RvjnESCA+ULwWKVcnjdK06m2jXJYj4rUFpe1wSPovK9SDqQ4HflBRm7ISaPk8Cvj8So09pYGjJfJXsdpchi6F97qr7Z0XRlFM5mWRnudVoyifuaVsQIFjFD5hAU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(39860400002)(346002)(366004)(396003)(136003)(451199015)(316002)(33656002)(5660300002)(54906003)(921005)(55016003)(110136005)(71200400001)(7416002)(83380400001)(38070700005)(478600001)(2906002)(4326008)(41300700001)(52536014)(8936002)(76116006)(66556008)(66476007)(66446008)(64756008)(66946007)(8676002)(53546011)(9686003)(186003)(38100700002)(26005)(122000001)(86362001)(7696005)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZWc0ZExLV1VhR3ZxTVlBeVphRzZBNFVuOHh4QnpqS2pDWExreXJGU2VKSzIv?=
- =?utf-8?B?cnluTTFGOVNPVnlYT1RYa3lsd3BIaklDSlNTSzlaMldsQVMydXhpeGlROGxh?=
- =?utf-8?B?bmtqTDJnU3RMaEdoditKb2JjR3hURWlnbHBkcFRpb2ZkQzlsNzVuRWZ3dnBQ?=
- =?utf-8?B?SXlDMXUxdTJQM0FCV0JSUTl3WnlHT3VlK3o0dVNzVXA1d0d1OG95bHVhd0tq?=
- =?utf-8?B?MEFtZnk3djcyQmJJVzdtbGJOS3NRSlRTajZHTUJMQ1ZqV2xtSUx2RmdrOXNU?=
- =?utf-8?B?Q3FSa1ZhVm1mMHMyQ1NjQ2ZpNmVRa1Y2VWpkNWR0c1BxL3RTN0E1dGRwcTlj?=
- =?utf-8?B?WlpEU09EUy9pdThpVnZPOVhxdkptcFN6NkwxTlAwY0sza095QVhFUjhaZjcy?=
- =?utf-8?B?L29RMk5TbW55YWdVQWdqdFg1VDlXQzJsMksrNmJseGlGNXpIM2JMZlptYkRm?=
- =?utf-8?B?V2pUZFRGUm5YSWhqSHJqNUFPSkZHWHpsMGtzeTMyWGVDYjFhSEU5SnhIeG9Q?=
- =?utf-8?B?M0ltVWRMMmtYQ3BPTWJCV3B2KzUyNVdyMnNnWURPdUV0cTV6Yk5LV0R1bWlL?=
- =?utf-8?B?Rm1VcEl5eThYT080anJWOVFOakQ1Mkw1VWZMT1pwcVkrcnYxNHdnK3NRR05I?=
- =?utf-8?B?OW14eThYM2ZCU2NnLytSd2E1czJzTS8zUGZwUTZwVWVObGhQc2dRVUxCTDhC?=
- =?utf-8?B?RFhiNHNlVytHbkZKQ21sSjdBQ1NXNDlRalQ0UStTVmtYSFBwV09RZCt4TXFs?=
- =?utf-8?B?UEtSaHNvTmlMRUdtbUtObmtmZk9STDNDR0hIVDBrODdVTEgwSEJ1SnRDclpj?=
- =?utf-8?B?aWE0NWl6emJ0aEtnSVFHdFFuREdwc2g4UkZwUjZZWXY0bXhHTVJQQ0xHbUFu?=
- =?utf-8?B?TGFqZzFPMG1UQkNVNG41bkxQaFI1cDE2bGFKOXh2Rno5NHo1WWhJVk5Kb3RE?=
- =?utf-8?B?bzdMSGFiUFlsNzBmRWY5T1UwT0dJNEN0QWhOTG13bXFsQnBmK2FHR0Z3ZDBZ?=
- =?utf-8?B?OUpIU3BKYjVhMCtjZXRiN1BCeW1ZVkd5Mzk1YjRYeFdYQi9jdTZ5d1lsN1lF?=
- =?utf-8?B?d3F6aEJaZTRmU3YySmNrUEc3cVYvdVFURjJ3NlYwUSthUjJtdHhIcmY2eGZN?=
- =?utf-8?B?aG5rVWcwVWVEai9tb0F6Z0hMTDVJUzFJbGd2dWFZbXYrSmt0bU5ITEZtZFVE?=
- =?utf-8?B?SW1sWldiUjNBemFyT1UwVWp6amFyanZ3RG9qbGlOQlBaMldLQ2ZsSWUvUWVz?=
- =?utf-8?B?QzlVNUdxbCtRb05LZkFHdmhRYlBSRHVKWVlidC9zRStObGRpVGpKbFh3NkNY?=
- =?utf-8?B?YWt4aWdLd1I0dkhsNnVGZWNTUWx4Y29aRHpRejdHeE5qU056dUlDeVBOR1RV?=
- =?utf-8?B?RW8zSjRhT2FCOGpoR05RcC9wakJyZnpEZDB6TU9tMnBXMFl1Q1lvSHQ5c1dO?=
- =?utf-8?B?MXdMcWcyMTNocDRid0R5Z0xXNVp2a3VPb2twbWN6WnBZNHZjSFhNOGtzckV3?=
- =?utf-8?B?eFRiYi9IM2Zrd0tIR21QZjZHek83cnhaTURMODVJby93SENjazJCejBKeHNC?=
- =?utf-8?B?Y29qemZTT0tyWDhWTDFieEhrZHlsVm5lNEVYWWhVWWIwV1ZXRzJwTDg0KzBy?=
- =?utf-8?B?NXFiRVdjSWcrbUt6dFJjRW9INU5sZEp6OXFjdnI1SHBmUTNsanF3VzhtaStD?=
- =?utf-8?B?ZXlYTWZValpxZHI3aGxDUE43WDU4bjdvV0hmWE5GQ3RYdE14aGNsVnp2MmZx?=
- =?utf-8?B?VGRaaFlFd3FWNWR4L2lmWE1vZ0tKOFdIWnhOVWNlNFc2L1BIT0lxNlpvV2k3?=
- =?utf-8?B?eFcrV1BuRWRObE11MVZVeGdaOHJ3TWQzYWRxTkdFc2pyZ3l4UGZ1M1JFd000?=
- =?utf-8?B?QWZIVWVVeXhTS0xMRVZ1bEI4cUgwcnZKQlhPUXFkU1FOODBvaG1KNnJGTk40?=
- =?utf-8?B?Ym5zY01SQnluejlYV1JMbVNLRHBoM0h5VitHSkVqWTFwYzBiU1BqaENhS25x?=
- =?utf-8?B?dmFWTi9Lb3VETGVJVHR2LzVtV3VUV0RyM05VUHhWOGlOK1FUcngxd05hbzNp?=
- =?utf-8?B?MnJTSFo5bUNER3Y2S0pDOWhXTjNPc2M2bUNpSlNTTEc0OFlrN2U3Y2dDL3ZL?=
- =?utf-8?B?elc5eW52cmhuazJ2bUJkVmJlcDArTWVzdFlPNmFwQzFEeFlSTXY3WnlFQjJ5?=
- =?utf-8?B?S1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231596AbiKGJCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:02:02 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D092A12AFA;
+        Mon,  7 Nov 2022 01:02:00 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id f5so28245514ejc.5;
+        Mon, 07 Nov 2022 01:02:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cW5LkWgcRlMNKLV3GazkMSxbvLqyy3R2vB1Tb2XIh4k=;
+        b=FJtmWIUmERN0XZT6R7B0ZeZ/AZdoSIRjpHX24tLtPg4vmwpC7n0lbmli9A4ArzUdwN
+         RjvCoyOzDdt4RlQBTatgdGY6PzoivWqC2mialFJUMEZR5NSiTdXsoazK+js3Gj1H6WDw
+         +k/F/62Kt/i1N06Fb8X298f0xqPxepzkyVPnSDqC8u2C94jZP3EA1AkhgwaxmvQa5YCs
+         7ArUDSo/AL6n+Wk4itecHmVXWtIuqGgl4fSrDqITk6kj9cDjkyYYFx2tQtmrMXsfCRK/
+         5qIp548tPhscmU8YVqrmMb44IcmIzZmNfkrNwM+U3g5Q5N654YFd/xB3sMlL8kt+CAmu
+         I0Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cW5LkWgcRlMNKLV3GazkMSxbvLqyy3R2vB1Tb2XIh4k=;
+        b=GuTeWnFzX2hdN6ji+zMF30NBNQeLpkMe07pzlRsA828hGplEUb7vS7BjuRI35wonUQ
+         3H9Ix8pe+TFvvrT+R17wPpnNdwzclZu799XH2IGVBfzFoAnPS6gl0VUCJ+dZxe8GRcw2
+         IdC+L2hA2rOpLwoAYOvVYZ4cBfeLn9RVLxaroaTA3ftsKT8bXf2g7JX9c3ACUkP2W706
+         U1UVMfElEJieZhmDv4aaxG7w0tIe8UyItaAWyLIz5fTJ9+vI1FfS7/X2g/arz2NR/uVj
+         ktBgt5elTks8BZbhnAb+ZyNWLGPRu7hNUMz3xnEKb1648iembeb009pMtyxAlVRu+KfI
+         VPqA==
+X-Gm-Message-State: ACrzQf1EYeMklbzs6PcmFZvdYRoKjUqnTprdZPVUUU7h6jm6n7ClzYqm
+        YG80+9EP5iJFojo36I0OXRA=
+X-Google-Smtp-Source: AMsMyM5EN3f0b4ueU4DZk3y/oY0gnVreX+TZQctLnAwmzjUlOuqffd20LFevB1oZ2YD5YFmR7WPWIA==
+X-Received: by 2002:a17:907:3f19:b0:7a3:2317:4221 with SMTP id hq25-20020a1709073f1900b007a323174221mr46310466ejc.562.1667811719295;
+        Mon, 07 Nov 2022 01:01:59 -0800 (PST)
+Received: from [192.168.74.101] ([77.78.20.135])
+        by smtp.gmail.com with ESMTPSA id k18-20020a05640212d200b0044ef2ac2650sm3793355edx.90.2022.11.07.01.01.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 01:01:58 -0800 (PST)
+Message-ID: <fa8450f5-13c5-17b7-a239-768554b150e5@gmail.com>
+Date:   Mon, 7 Nov 2022 11:01:57 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bac88005-2379-4580-e8f1-08dac09dc76a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2022 08:55:11.4104
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: V25z6brqmhGpknkmgJiAZ1/f6zAwk8+SCeY5iHXafTrri/vG7SjHuIfaf0x8eWVM5Ln8qVKoS9txI04rMKp/NliiZ/tTXmPOxhbiWdaJzFM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6038
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v5 8/8] arm64: dts: qcom: sm4250: Add support for
+ oneplus-billie2
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20221030094258.486428-1-iskren.chernev@gmail.com>
+ <20221030094258.486428-9-iskren.chernev@gmail.com>
+ <1880c054-08d9-3901-f44e-290d1fd27ed4@linaro.org>
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+In-Reply-To: <1880c054-08d9-3901-f44e-290d1fd27ed4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQmlsbHkgVHNhaSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBC
-aWxseSBUc2FpIDxiaWxseV90c2FpQGFzcGVlZHRlY2guY29tPg0KPiBTZW50OiAwNyBOb3ZlbWJl
-ciAyMDIyIDA4OjQ4DQo+IFRvOiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+
-OyBqZGVsdmFyZUBzdXNlLmNvbTsgbGludXhAcm9lY2stDQo+IHVzLm5ldDsgcm9iaCtkdEBrZXJu
-ZWwub3JnOyBqb2VsQGptcy5pZC5hdTsgYW5kcmV3QGFqLmlkLmF1Ow0KPiBsZWUuam9uZXNAbGlu
-YXJvLm9yZzsgdGhpZXJyeS5yZWRpbmdAZ21haWwuY29tOyB1LmtsZWluZS0NCj4ga29lbmlnQHBl
-bmd1dHJvbml4LmRlOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBsaW51eC1od21vbkB2Z2VyLmtl
-cm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1hcm0ta2VybmVs
-QGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4LQ0KPiBhc3BlZWRAbGlzdHMub3psYWJzLm9yZzsg
-bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IHB3bUB2Z2VyLmtlcm5lbC5v
-cmc7IEJNQy1TVyA8Qk1DLVNXQGFzcGVlZHRlY2guY29tPjsgZ2FybmVybWljQG1ldGEuY29tDQo+
-IENjOiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4NCj4gU3ViamVjdDogUmU6IFt2
-MyAyLzNdIHB3bTogQWRkIEFzcGVlZCBhc3QyNjAwIFBXTSBzdXBwb3J0DQo+IA0KPiBPbiAyMDIy
-LzExLzIsIDExOjU2IFBNLCAiQmlqdSBEYXMiIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4g
-d3JvdGU6DQo+IA0KPiAgICAgPiA+ICsJcGFyZW50X2RldiA9IG9mX2ZpbmRfZGV2aWNlX2J5X25v
-ZGUobnApOw0KPiAgICAgPiA+ICsJcHJpdi0+Y2xrID0gZGV2bV9jbGtfZ2V0X2VuYWJsZWQoJnBh
-cmVudF9kZXYtPmRldiwgTlVMTCk7DQo+ICAgICA+ID4gKwlpZiAoSVNfRVJSKHByaXYtPmNsaykp
-DQo+ICAgICA+ID4gKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCBQVFJfRVJSKHByaXYtPmNs
-ayksDQo+ICAgICA+ID4gKwkJCQkgICAgICJDb3VsZG4ndCBnZXQgY2xvY2tcbiIpOw0KPiANCj4g
-ICAgID4gV2hhdCBpcyB0aGUgdXNlIGNhc2U/DQo+IA0KPiAgICAgPiBJcyBwd20gY29uZmlndXJl
-ZCBieSBib290IGxvYWRlciBpbml0aWFsbHkgPw0KPiANCj4gICAgID4gT3INCj4gDQo+ICAgICA+
-IHB3bSBjb25maWd1cmVkIGJ5IExpbnV4LCBub3QgYnkgdGhlIGJvb3Rsb2FkZXIgaW5pdGlhbGx5
-Pw0KPiANCj4gICAgID4gT3INCj4gDQo+ICAgICA+IERyaXZlciBuZWVkcyB0byBoYW5kbGUgYm90
-aCBjYXNlcz8NCj4gDQo+ICAgICA+IEp1c3QgYXNraW5nLCBiZWNhdXNlIHlvdSBhcmUgdHVybmlu
-ZyBvbiB0aGUgY2xvY2sgdW5uZWNlc3NhcmlseSBoZXJlLA0KPiAgICAgPiBJZiB5b3UgbmVlZCB0
-byBhZGRyZXNzIGFsbCB0aGUgdXNlIGNhc2VzLiBJZiBpdCBpcyBqdXN0IGZpcnN0IG9uZSwgdGhl
-bg0KPiAgICAgPiBJdCBpcyBvay4NCj4gDQo+IEhpIEJpanUsDQo+IA0KPiBUaGUgZHJpdmVyIHdh
-bnQgdG8gaGFuZGxlIGFsbCBvZiB0aGUgdXNlIGNhc2VzLiBDYW4geW91IHRlbGwgbWUgd2h5IHR1
-cm5pbmcNCj4gb24gdGhlIGNsb2NrIGlzIHVubmVjZXNzYXJpbHkgaGVyZT8NCg0KRm9yIHRoZSB1
-c2UgY2FzZSwgInB3bSBjb25maWd1cmVkIGJ5IExpbnV4LCBub3QgYnkgdGhlIGJvb3Rsb2FkZXIg
-aW5pdGlhbGx5IiwNCg0KWW91IGFyZSB1bm5lY2Vzc2FyaWx5IHR1cm5pbmcgb24gdGhlIGNsb2Nr
-cy4gWW91IGNvdWxkIA0KDQplbmFibGUgaXQgZHVyaW5nIHB3bV9lbmFibGUNCmFuZCBkaXNhYmxl
-IGl0IGR1cmluZyBwd21fZGlzYWJsZS4NCg0KRm9yIGNvbmZpZ3VyaW5nIHJlZ2lzdGVycywgd2hp
-bGUgcHdtIGlzIGluIGRpc2FibGUgc3RhdGUsIA0KeW91IGNvdWxkIGp1c3QgdHVybiBvbiB0aGUg
-Y2xvY2sgYW5kIGRvIHRoZSByZWdpc3RlciBjb25maWd1cmF0aW9ucyBhbmQgdHVybiBpdCBvZmYu
-DQoNCkJ5IHRoaXMgd2F5IHlvdSBhcmUgc2F2aW5nIHBvd2VyLg0KDQpDaGVlcnMsDQpCaWp1DQoN
-Cg0KDQoNCiANCg0K
+
+
+On 11/4/22 21:17, Krzysztof Kozlowski wrote:
+> On 30/10/2022 05:42, Iskren Chernev wrote:
+>> Add initial support for OnePlus Nord N100, based on SM4250. Currently
+>> working:
+>> - boots
+>> - usb
+>> - built-in flash storage (UFS)
+>> - SD card reader
+>>
+>> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  | 241 ++++++++++++++++++
+>>  2 files changed, 242 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index b0558d3389e5..eb2a58b8af5f 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -142,6 +142,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+>> new file mode 100644
+>> index 000000000000..a3f1c7c41fd7
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+>> @@ -0,0 +1,241 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>> +/*
+>> + * Copyright (c) 2021, Iskren Chernev <iskren.chernev@gmail.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "sm4250.dtsi"
+>> +
+>> +/ {
+>> +	model = "OnePlus Nord N100";
+>> +	compatible = "oneplus,billie2", "qcom,sm4250";
+>> +
+>> +	/* required for bootloader to select correct board */
+>> +	qcom,msm-id = <0x1a1 0x10000 0x1bc 0x10000>;
+>> +	qcom,board-id = <0x1000b 0x00>;
+>
+> These are currently not allowed for SM4250. If there are really needed,
+> please justify it and update
+> Documentation/devicetree/bindings/arm/qcom.yaml. Then also update
+> include/dt-bindings/arm/qcom,ids.h and socinfo driver.
+
+I'm having some trouble with testing this ATM. If this is the only patch
+with remaining complaints, the rest can be merged (because there is other
+work prepped for 4250/6115 that depends on it), and once billie2 is figured
+out it could be merged separately.
+
+> Best regards,
+> Krzysztof
+
+Regards,
+Iskren
