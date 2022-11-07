@@ -2,87 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82A3C61FDED
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A625861FE12
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232760AbiKGSx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:53:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34176 "EHLO
+        id S231652AbiKGS7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:59:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231635AbiKGSxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:53:25 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3004F324;
-        Mon,  7 Nov 2022 10:53:22 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id d26so32603329eje.10;
-        Mon, 07 Nov 2022 10:53:22 -0800 (PST)
+        with ESMTP id S230438AbiKGS7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:59:38 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63D423E96
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:59:35 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id t10so17802157ljj.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:59:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MHuTiv5pA7Z5U4slTvhn316jmXmIhRsedaLyw6JXUZ4=;
-        b=clr5qcxN412LMBY5jD8myVaJv+L9wuRCNP9/q0SvA2z1598KF3UGP2J0C5iigZtfvU
-         vsv4HdZQOZDvbKE3RlQzdHTq1ZGb9Faq4EHy0znY5f/iVgN3e9fDYzzUHgTJO7r6byWh
-         ISWs+rkHvzbAF55lPkP+lRcKdgnz86eEG88bTWxS1JCtxRTqnRMThW0g7RLGiQNoqVyx
-         I1btALmfkpTjFOJnzWeILL5B0NRLei1XjG98BnoblyGb7EyydcMcy7mIy2Nt5981xKnn
-         xXIFyphzuW/cih7rzbt08H113TSopxOVWKECaB/4p/9Y28g4QivR/x8zv0hV+POJ4v/M
-         LYqA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mzBdSHu6u/NiAzmAan71AbHEXCztDx1eWL0MFLAjVBw=;
+        b=eXWffAkvcIDnpIT9k3tN/pH23NmpS9g1ezQUyC4o6pP3m9rAiOWXxdMoQN3mrCwSzh
+         mxEcG8m5Sl8UHiMsm05BINaRZfGAnr5l9fJ+21eVmQ6uT0a6e1Pn1iTIwNyFqk0heP9y
+         YihmAswiiTjDleWGouA4s4PkEFWrhDaY1yq57UoOTVvB4nTtRDq0ZiKP1N+mwKaD1Vz/
+         RD6j3ffiy1bs7aFywSYySzNcknoDU0s/XKhDKPGC0Glr6Y7iRFVMiQcPIQ3748X2QS8/
+         ZiRwEwuGQfy66+1Xqu0vE39GeabAlcxGaHkFrjFPNAKOk5jAukmJ+N2lkH40uowMiu16
+         p5EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MHuTiv5pA7Z5U4slTvhn316jmXmIhRsedaLyw6JXUZ4=;
-        b=fDVaCR207JvR4rU2zzyO0Cbgj4FFQ84F4lveI8ab7F8OLeSQZxZ4f1hkTZD4F4IZ5E
-         6kZNkagn1CpxeMRCS0kB2wP5+DYvpRtRUsuZtRM99lxkwV1UWn6Zq1TThWzTMx0JCevm
-         Rc0RVeS20XRxCNzXW00H+5uPlv4WmczaLnkvR0eu6JZ0gp3rt9levYKXw6/wD+8iiwWL
-         w4cSgERBa9KdrAJcsIufit1yqRl8FnIuFzOXde+pPU7njTNyb70SzCV2FfbbPAtDNTYS
-         igH1AluD/uf0hQNsLRUa5/R3diz3kaCuKbmw2rbNiEtqR4+wMA17FSA92DILSlYb7Uss
-         gmoA==
-X-Gm-Message-State: ACrzQf12xdni9/4tk0Na7j7Vt/roxchlRKio/R80GEq7ik2rKHdHd2eP
-        ac7yt1yvTr2barMLvwLKyIRHU8paot/G9w==
-X-Google-Smtp-Source: AMsMyM7NOS2sIcUk455aW9lYACwFLShzitw0Ev5rmbRLgYjOyibIMT46vE6fi9XSb5TANamUkc0UXQ==
-X-Received: by 2002:a17:907:74a:b0:77e:9455:b4e1 with SMTP id xc10-20020a170907074a00b0077e9455b4e1mr49239709ejb.462.1667847200786;
-        Mon, 07 Nov 2022 10:53:20 -0800 (PST)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id u10-20020a056402110a00b0045b3853c4b7sm4624452edv.51.2022.11.07.10.53.19
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mzBdSHu6u/NiAzmAan71AbHEXCztDx1eWL0MFLAjVBw=;
+        b=R4fanyWGbHui3im5UPQVJ/wx6adKscZgWB+GJNyYueu1a4lHXghN3FmAMzoo3FbFxe
+         a73+Kp0JAELgO+U2kxvGRdidUy103BUOmrqW+GuCC3q/ipDLSUAoTIgAN3Sp8aMDy4he
+         BUPhg2sZgVM+6yMGmRTlbw73Cfn8yvjvAHHoqwevlomS9lChT0OcLjmRxRHDYaPAW3GF
+         fvevMGJcKKF/XAUrrZvJXHe7AN9tAeuuDt4WhDqPQKXkyco+efBPRBZtWetOHIvnIoIR
+         FBYaykH0F5ZXx4E1WE4OOiYssB4ydW1723DJihk8QwM1LI9pT+MIRfXBwVyMphcnS07W
+         oijA==
+X-Gm-Message-State: ACrzQf3CwB0m+Q+KAlLndL1yu/965+5mO2jrP8lKXa9wHnGQ/WaHmSqK
+        eh8f0iS3/1poegUBhZQwmxrGvQ==
+X-Google-Smtp-Source: AMsMyM5hqxGfwz8P6yjzN7RdozQ/Ufrx1pPbdjNFT9maL8BpEkZziOYwFfCO3upfHVZBBSMO4WgpOQ==
+X-Received: by 2002:a2e:6e03:0:b0:277:d99:9971 with SMTP id j3-20020a2e6e03000000b002770d999971mr18911047ljc.34.1667847574140;
+        Mon, 07 Nov 2022 10:59:34 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id y5-20020a05651c106500b002770a9ed61bsm1327875ljm.66.2022.11.07.10.59.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 10:53:20 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v6 5/5] riscv: dts: allwinner: d1: Add RGB LEDs to boards
-Date:   Mon, 07 Nov 2022 19:53:19 +0100
-Message-ID: <1806312.atdPhlSkOF@kista>
-In-Reply-To: <20221107053247.1180-6-samuel@sholland.org>
-References: <20221107053247.1180-1-samuel@sholland.org> <20221107053247.1180-6-samuel@sholland.org>
+        Mon, 07 Nov 2022 10:59:33 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom,msm8660: convert to dtschema
+Date:   Mon,  7 Nov 2022 19:59:30 +0100
+Message-Id: <20221107185931.22075-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 07. november 2022 ob 06:32:46 CET je Samuel Holland 
-napisal(a):
-> Some D1-based boards feature an onboard RGB LED. Enable them.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Convert Qualcomm MSM8660 pin controller bindings to DT schema.  Keep the
+parsing of pin configuration subnodes consistent with other Qualcomm
+schemas (children named with '-state' suffix, their children with
+'-pins').
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/pinctrl/qcom,msm8660-pinctrl.txt |  96 --------------
+ .../pinctrl/qcom,msm8660-pinctrl.yaml         | 125 ++++++++++++++++++
+ 2 files changed, 125 insertions(+), 96 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.yaml
 
-Best regards,
-Jernej
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.txt
+deleted file mode 100644
+index f095209848c8..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.txt
++++ /dev/null
+@@ -1,96 +0,0 @@
+-Qualcomm MSM8660 TLMM block
+-
+-Required properties:
+-- compatible: "qcom,msm8660-pinctrl"
+-- reg: Should be the base address and length of the TLMM block.
+-- interrupts: Should be the parent IRQ of the TLMM block.
+-- interrupt-controller: Marks the device node as an interrupt controller.
+-- #interrupt-cells: Should be two.
+-- gpio-controller: Marks the device node as a GPIO controller.
+-- #gpio-cells : Should be two.
+-                The first cell is the gpio pin number and the
+-                second cell is used for optional parameters.
+-- gpio-ranges: see ../gpio/gpio.txt
+-
+-Optional properties:
+-
+-- gpio-reserved-ranges: see ../gpio/gpio.txt
+-
+-Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
+-a general description of GPIO and interrupt bindings.
+-
+-Please refer to pinctrl-bindings.txt in this directory for details of the
+-common pinctrl bindings used by client devices, including the meaning of the
+-phrase "pin configuration node".
+-
+-Qualcomm's pin configuration nodes act as a container for an arbitrary number of
+-subnodes. Each of these subnodes represents some desired configuration for a
+-pin, a group, or a list of pins or groups. This configuration can include the
+-mux function to select on those pin(s)/group(s), and various pin configuration
+-parameters, such as pull-up, drive strength, etc.
+-
+-The name of each subnode is not important; all subnodes should be enumerated
+-and processed purely based on their content.
+-
+-Each subnode only affects those parameters that are explicitly listed. In
+-other words, a subnode that lists a mux function but no pin configuration
+-parameters implies no information about any pin configuration parameters.
+-Similarly, a pin subnode that describes a pullup parameter implies no
+-information about e.g. the mux function.
+-
+-
+-The following generic properties as defined in pinctrl-bindings.txt are valid
+-to specify in a pin configuration subnode:
+-
+- pins, function, bias-disable, bias-pull-down, bias-pull-up, drive-strength,
+- output-low, output-high.
+-
+-Non-empty subnodes must specify the 'pins' property.
+-
+-Valid values for pins are:
+-  gpio0-gpio172, sdc3_clk, sdc3_cmd, sdc3_data sdc4_clk, sdc4_cmd, sdc4_data
+-
+-Valid values for function are:
+-  gpio, cam_mclk, dsub, ext_gps, gp_clk_0a, gp_clk_0b, gp_clk_1a, gp_clk_1b,
+-  gp_clk_2a, gp_clk_2b, gp_mn, gsbi1, gsbi1_spi_cs1_n, gsbi1_spi_cs2a_n,
+-  gsbi1_spi_cs2b_n, gsbi1_spi_cs3_n, gsbi2, gsbi2_spi_cs1_n, gsbi2_spi_cs2_n,
+-  gsbi2_spi_cs3_n, gsbi3, gsbi3_spi_cs1_n, gsbi3_spi_cs2_n, gsbi3_spi_cs3_n,
+-  gsbi4, gsbi5, gsbi6, gsbi7, gsbi8, gsbi9, gsbi10, gsbi11, gsbi12, hdmi, i2s,
+-  lcdc, mdp_vsync, mi2s, pcm, ps_hold, sdc1, sdc2, sdc5, tsif1, tsif2, usb_fs1,
+-  usb_fs1_oe_n, usb_fs2, usb_fs2_oe_n, vfe, vsens_alarm, ebi2, ebi2cs
+-
+-Example:
+-
+-	msmgpio: pinctrl@800000 {
+-		compatible = "qcom,msm8660-pinctrl";
+-		reg = <0x800000 0x4000>;
+-
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		gpio-ranges = <&msmgpio 0 0 173>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		interrupts = <0 16 0x4>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&gsbi12_uart>;
+-
+-		gsbi12_uart: gsbi12-uart {
+-			mux {
+-				pins = "gpio117", "gpio118";
+-				function = "gsbi12";
+-			};
+-
+-			tx {
+-				pins = "gpio118";
+-				drive-strength = <8>;
+-				bias-disable;
+-			};
+-
+-			rx {
+-				pins = "gpio117";
+-				drive-strength = <2>;
+-				bias-pull-up;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.yaml
+new file mode 100644
+index 000000000000..ad0cad4694c0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8660-pinctrl.yaml
+@@ -0,0 +1,125 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,msm8660-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm MSM8660 TLMM pin controller
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  Top Level Mode Multiplexer pin controller in Qualcomm MSM8660 SoC.
++
++properties:
++  compatible:
++    const: qcom,msm8660-pinctrl
++
++  reg:
++    maxItems: 1
++
++  interrupts: true
++  interrupt-controller: true
++  "#interrupt-cells": true
++  gpio-controller: true
++  "#gpio-cells": true
++  gpio-ranges: true
++  wakeup-parent: true
++
++  gpio-reserved-ranges:
++    minItems: 1
++    maxItems: 86
++
++  gpio-line-names:
++    maxItems: 173
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-msm8660-tlmm-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-msm8660-tlmm-state"
++        additionalProperties: false
++
++$defs:
++  qcom-msm8660-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-2])$"
++            - enum: [ sdc3_clk, sdc3_cmd, sdc3_data, sdc4_clk, sdc4_cmd, sdc4_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ gpio, cam_mclk, dsub, ext_gps, gp_clk_0a, gp_clk_0b, gp_clk_1a,
++                gp_clk_1b, gp_clk_2a, gp_clk_2b, gp_mn, gsbi1, gsbi1_spi_cs1_n,
++                gsbi1_spi_cs2a_n, gsbi1_spi_cs2b_n, gsbi1_spi_cs3_n, gsbi2,
++                gsbi2_spi_cs1_n, gsbi2_spi_cs2_n, gsbi2_spi_cs3_n, gsbi3,
++                gsbi3_spi_cs1_n, gsbi3_spi_cs2_n, gsbi3_spi_cs3_n, gsbi4,
++                gsbi5, gsbi6, gsbi7, gsbi8, gsbi9, gsbi10, gsbi11, gsbi12,
++                hdmi, i2s, lcdc, mdp_vsync, mi2s, pcm, ps_hold, sdc1, sdc2,
++                sdc5, tsif1, tsif2, usb_fs1, usb_fs1_oe_n, usb_fs2,
++                usb_fs2_oe_n, vfe, vsens_alarm, ebi2, ebi2cs ]
++
++
++      bias-pull-down: true
++      bias-pull-up: true
++      bias-disable: true
++      drive-strength: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++
++    additionalProperties: false
++
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    tlmm: pinctrl@800000 {
++        compatible = "qcom,msm8660-pinctrl";
++        reg = <0x800000 0x4000>;
++
++        gpio-controller;
++        gpio-ranges = <&tlmm 0 0 173>;
++        #gpio-cells = <2>;
++        interrupts = <0 16 0x4>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++
++        gsbi3-i2c-state {
++            pins = "gpio43", "gpio44";
++            function = "gsbi3";
++            drive-strength = <8>;
++            bias-disable;
++        };
++    };
+-- 
+2.34.1
 
