@@ -2,226 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E98861E8A6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 03:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FC061E8EE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:12:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbiKGCmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 21:42:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55960 "EHLO
+        id S230370AbiKGDMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:12:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiKGCmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 21:42:19 -0500
-Received: from out28-74.mail.aliyun.com (out28-74.mail.aliyun.com [115.124.28.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0181CE1E;
-        Sun,  6 Nov 2022 18:42:16 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0747996|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0154244-0.00114708-0.983428;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=lee@arducam.com;NM=1;PH=DS;RN=7;RT=7;SR=0;TI=SMTPD_---.Q10hEk9_1667788923;
-Received: from localhost(mailfrom:lee@arducam.com fp:SMTPD_---.Q10hEk9_1667788923)
-          by smtp.aliyun-inc.com;
-          Mon, 07 Nov 2022 10:42:04 +0800
-Date:   Mon, 7 Nov 2022 10:42:02 +0800
-From:   lee <lee@arducam.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
- binding
-Message-ID: <20221107104202.00002f0f@arducam.com>
-In-Reply-To: <4556aebd-1296-bb08-2cd7-3d92571ed71b@linaro.org>
-References: <20221103110424.00007a48@arducam.com>
-        <4556aebd-1296-bb08-2cd7-3d92571ed71b@linaro.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S230146AbiKGDMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:12:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9343DF8A;
+        Sun,  6 Nov 2022 19:12:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3420EB80D8F;
+        Mon,  7 Nov 2022 03:12:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED97C433D7;
+        Mon,  7 Nov 2022 03:12:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667790757;
+        bh=xSarG0tAU/SBUZo/l5uciGdCVm+EuqT0ZUYkek4PDVM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=vCTett2Sg4rPGOHKU3NSjCJFYGqluETa0eDj4GUPemrsKUXK+rbBDCpbwegLEzGwP
+         A7P0m7HzCOJItso1XF5V4E80HmdN9QiiQ/PxJAWU6iXH5V1kkMfR3S/ocZHUmYFUks
+         lF8RLH7bFmptoOiPP6Hf9yMNrD7hVnHRifi02OovBHZYjXk1SpCBCD2vbhEJtmEIlQ
+         ov0Vx9DXBGer8VeMlQbvpMxDWST7VCHT9NjIeJdg7vX6QoUAUAhLocsN7m1L2OYzVN
+         KLVVbMR0VyW0ZibfjBbukAkZamnGDyBu5NIAnWXSjX9mKxoA0xq8kZlF6WDUYPA88O
+         aQqvsf4wXM9EA==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     angelogioacchino.delregno@collabora.com, agross@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
+        konrad.dybcio@somainline.org, kernel@collabora.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Support MSM8976 SAW2 for both clusters
+Date:   Sun,  6 Nov 2022 21:11:56 -0600
+Message-Id: <166779074270.500303.16911926659610369577.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221104133452.131227-1-angelogioacchino.delregno@collabora.com>
+References: <20221104133452.131227-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Nov 2022 09:05:05 -0400
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Fri, 4 Nov 2022 14:34:50 +0100, AngeloGioacchino Del Regno wrote:
+> This series adds support for the L2 cache SAW2 on MSM8976,
+> required to configure sleep modes and managing part of DVFS.
+> 
+> AngeloGioacchino Del Regno (2):
+>   dt-bindings: soc: qcom: spm: Add compatibles for MSM8976 L2
+>   soc: qcom: spm: Implement support for SAWv2.3, MSM8976 L2 PM
+> 
+> [...]
 
-Hi,
-Thanks a lot for detailed comments and suggestions for revisions,there is one place where I have some doubts.
-> On 02/11/2022 23:04, lee wrote:
-> > Add YAML device tree binding for IMX519 CMOS image sensor, and
-> > the relevant MAINTAINERS entries.
-> > 
-> > Signed-off-by: Lee Jackson <lee@arducam.com>  
-> 
-> Your From does not match fully SoB.
-> 
-> > ---
-> >  .../bindings/media/i2c/sony,imx519.yaml       | 107
-> > ++++++++++++++++++ MAINTAINERS                                   |
-> >  9 ++ 2 files changed, 116 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> > b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml new
-> > file mode 100644 index 000000000000..9b6cda96f613 --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> > @@ -0,0 +1,107 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - Lee Jackson <lee@arducam.com>
-> > +
-> > +description: |-
-> > +  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image
-> > sensor
-> > +  with an active array size of 4656H x 3496V. It is programmable
-> > through
-> > +  I2C interface. The I2C address is fixed to 0x1A as per sensor
-> > data sheet.
-> > +  Image data is sent through MIPI CSI-2, which is configured as
-> > either 2 or
-> > +  4 data lanes.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sony,imx519
-> > +
-> > +  reg:
-> > +    description: I2C device address  
-> 
-> Skip description.
-> 
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  VDIG-supply:  
-> 
-> Use lower case names.
+Applied, thanks!
 
-Here we refer to other drivers (imx219), they are all uppercase, is lowercase mandatory?
-> 
-> > +    description:
-> > +      Digital I/O voltage supply, 1.05 volts
-> > +
-> > +  VANA-supply:
-> > +    description:
-> > +      Analog voltage supply, 2.8 volts
-> > +
-> > +  VDDL-supply:
-> > +    description:
-> > +      Digital core voltage supply, 1.8 volts
-> > +
-> > +  reset-gpios:
-> > +    description: |-
-> > +      Reference to the GPIO connected to the xclr pin, if any.
-> > +      Must be released (set high) after all supplies and INCK are
-> > applied. +
-> > +port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            description: |-
-> > +              The driver only supports two-lane operation.  
-> 
-> Please describe the hardware, not driver.
-> 
-> > +            items:
-> > +              - const: 1
-> > +              - const: 2
-> > +
-> > +          clock-noncontinuous: true
-> > +          link-frequencies: true  
-> 
-> I think these are coming from video-interfaces, so no need for them.
-> 
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +          - link-frequencies
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - VANA-supply
-> > +  - VDIG-supply
-> > +  - VDDL-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c0 {  
-> 
-> i2c
-> 
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +  
-> 
-> > +        imx519: sensor@1a {
-> > +            compatible = "sony,imx519";
-> > +            reg = <0x1a>;
-> > +            clocks = <&imx519_clk>;
-> > +            VANA-supply = <&imx519_vana>;   /* 2.8v */
-> > +            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
-> > +            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
-> > +
-> > +            port {
-> > +                imx519_0: endpoint {
-> > +                    remote-endpoint = <&csi1_ep>;
-> > +                    data-lanes = <1 2>;
-> > +                    clock-noncontinuous;
-> > +                    link-frequencies = /bits/ 64 <493500000>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index e04d944005ba..5a617ab8c9b2 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -19236,6 +19236,15 @@ T:	git
-> > git://linuxtv.org/media_tree.git F:
-> > Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
-> > F:	drivers/media/i2c/imx412.c 
-> > +SONY IMX519 SENSOR DRIVER
-> > +M:	Arducam Kernel Maintenance <info@arducam.com>
-> > +M:	Lee Jackson <lee@arducam.com>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Maintained
-> > +T:	git git://linuxtv.org/media_tree.git
-> > +F:
-> > Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> > +F:	drivers/media/i2c/imx519.c  
-> 
-> The file does not exist, so path is not correct (yet). Add it in 2/2.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+[1/2] dt-bindings: soc: qcom: spm: Add compatibles for MSM8976 L2
+      commit: 7a21fddb355a01c5655d43e4723c6fe99f2a4146
+[2/2] soc: qcom: spm: Implement support for SAWv2.3, MSM8976 L2 PM
+      commit: 33268bb9fdb64f57c08d400709bae7b9cda3120a
 
 Best regards,
-lee
+-- 
+Bjorn Andersson <andersson@kernel.org>
