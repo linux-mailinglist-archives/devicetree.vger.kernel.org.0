@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D803161FD88
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B28161FDA7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:35:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232398AbiKGS2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44712 "EHLO
+        id S232575AbiKGSfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:35:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232601AbiKGS2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:28:40 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5551D1181C
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:28:39 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id l12so6813332lfp.6
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:28:39 -0800 (PST)
+        with ESMTP id S232471AbiKGSfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:35:42 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852A620F5D
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:35:41 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id r12so17991846lfp.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:35:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vdp7PDi0T7BQyAwkQUhSfvaQ6xRVmE/EG/6MvECjXbE=;
-        b=uuadWkdCxNQeLEDr/RNoiZGpYCm7HXdRuNfjc6nZ8jTbjDCDb1W8PnYCE6V7sOJywA
-         8+1uBCvsqT+UMdS/Bb8zisl8pmTNqD3lW7aQ8tqEtkVUki9Gukbzb/QxGvDQrjzSXb6a
-         R2p5eH4RwbDQ2xVDqRjdPTM5m5NXrFiUX3WmQ0Wz7aHzBnDad54KAMjQPRWocC89E4i/
-         oB7f64FItvZILL5UFCMBEVkfCJG7gUTtttfqUIfC/pGiViGu1/TWtgEA6CtLKBgpphtq
-         unwJdYs8F8CmEuayXFNst5C7PjQBL5myT0KASV705GuY7KsHMAjlZL/Wif5EowNEWXLu
-         iNlA==
+        bh=RZto2aI8Bptli2OzTKbCF8aaAGorStB0N8MSB1xDDtE=;
+        b=vo5nLgHJwfnXEhjUBrU1bPOwdaFEjM909+M2qoa53AjbBjcM3hNZqMa4pZzsuCQRn0
+         lpPDAJnxdGAijHfUaO4MdbZe4RjB65J7KstdKxwI6d0f8BLN822lpu8f8Wc8TuJClkKN
+         ZM9eJuggIQbYxLVe77V7d3dGfkJih4Yo4HoeUA5JtntxU5R0KyJbIJnhQ5nOBYCh0Mnr
+         eQcH3mcm+IGiCba6xHn9au9243J9KLjzFhg9TBAUT76iv1KbLNYW+yMMrjdHST1AD7NQ
+         LSJFvlneJpLNT3t2mc0UA85cSd1YTHdFuOg2ZYtRlHQ/kkiQOWjtN+E6UePW9qbg/ZXZ
+         RCWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vdp7PDi0T7BQyAwkQUhSfvaQ6xRVmE/EG/6MvECjXbE=;
-        b=IJUK1BIy29FTxYxRMl5wTKvureU8S2Dn8bGvnLYosf/HvzN5cGFNM7gPfOYXFDthsW
-         Od3kCxvYYUvyq4a+4MQ6C4qwrTWmIPsfdxtZ8g6bYzDnwCm6EwfzE/LyAXlVRm0oZ80Z
-         aMD3tWNolXU/hcYF+S8ioNXICABHPA3GlEiGg9iem7nyN9/hNWfhIfQBxuPbRip6NQ6Q
-         +kZrkunHFMhDZsA/NAB86Xbh4r1jmvzXB7PkhXxo2uF8gzDz886rq1ZAqSsmFp9nX3WF
-         zu4SECvgIrkxBB8Y8KNhqHTC6dWkNa8W7JXhFWz/OHJv+Z7/isxeHCCxIPJzp26xf503
-         xK1Q==
-X-Gm-Message-State: ACrzQf2iJCPIxrvnvkzCTZed8QrQMJ0Y1vnF0jPvlLaI5/fsUTdQ5IjK
-        YzPwjnku/nXHO27y/F+8YWbpDQ==
-X-Google-Smtp-Source: AMsMyM4Fch0PTguwDhppGmnjE9bqmftS6Hp4ihDF4ZawlEs716t6BvwccW5CVSk4fPZ8D4+0ydYL3g==
-X-Received: by 2002:a05:6512:2fb:b0:4b0:620:b106 with SMTP id m27-20020a05651202fb00b004b00620b106mr19073030lfq.470.1667845717694;
-        Mon, 07 Nov 2022 10:28:37 -0800 (PST)
+        bh=RZto2aI8Bptli2OzTKbCF8aaAGorStB0N8MSB1xDDtE=;
+        b=WzXDexA4peR++GkbYJrTo+hIYNXpyGoxX/Kj96BES2rlpGhl43PuVryThruJ+Ife85
+         vwuTz1/YRx7q8g46z+QOVW+GN62yLFLI3TZejMnHA7CeJSARxZkF5BsoyBD87jFI86Fb
+         uHqzDoobwN+WT52Xv3VYlXVowTpXYKxVYfMMp3oun3RmXpyZGTQwPw99r00lyhiusqmZ
+         v8wnWlS9jyqVK2c/45GLvwazdMUEstwyg73Ws7Ebi85kzRn0L5X3F8S3wZpSvViTPKi0
+         rvRJj+8A3TQXMlKxvsDunRPL4wGeXPR/VYJyZ+RymTrrKTxznwLr1bfxv4EG2/uXg8Dr
+         cfLg==
+X-Gm-Message-State: ACrzQf1u4k+IjFUzDST+dc9VvPwNHo57RHQoa8hdk2PlQ53LbRoSDqJ/
+        mSJYLtl6ynOtjG7uEwqGgZ/PGQ==
+X-Google-Smtp-Source: AMsMyM6ioglBiZGtDLKRsAr68YwkWzhXxrEcAKOa49F6LtuCSk/ZFcxVyr3OS6Jtu4/aUqvZZJBsLQ==
+X-Received: by 2002:ac2:5221:0:b0:4a4:5af7:8ad5 with SMTP id i1-20020ac25221000000b004a45af78ad5mr17457353lfl.388.1667846139899;
+        Mon, 07 Nov 2022 10:35:39 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id 18-20020ac24d52000000b004ab2cb8deb5sm1363225lfp.18.2022.11.07.10.28.36
+        by smtp.gmail.com with ESMTPSA id j23-20020a056512345700b00492d064e8f8sm1371621lfr.263.2022.11.07.10.35.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:28:36 -0800 (PST)
-Message-ID: <225f3ff2-62cb-7f11-3eb1-f677360b4359@linaro.org>
-Date:   Mon, 7 Nov 2022 19:28:36 +0100
+        Mon, 07 Nov 2022 10:35:39 -0800 (PST)
+Message-ID: <c8ad788b-5934-8dee-e122-3450a19dd08f@linaro.org>
+Date:   Mon, 7 Nov 2022 19:35:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/3] dt-bindings: interconnect: Remove required reg
- field
+Subject: Re: [PATCH] dt-bindings: examples: add a list of templates and
+ solutions
 Content-Language: en-US
-To:     Georgi Djakov <djakov@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221026190520.4004264-1-quic_molvera@quicinc.com>
- <20221026190520.4004264-2-quic_molvera@quicinc.com>
- <a214f513-fe28-2096-c2b0-2107e97f3ce2@linaro.org>
- <64d0e5ef-fd36-6f25-2c39-00e8e1346af7@quicinc.com>
- <1a7fd1fd-4f0d-bec3-ddd5-7c6a99a2ab01@linaro.org>
- <7d2c43b7-1507-7c30-27f7-3081c6ec77ba@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221028233701.572280-1-krzysztof.kozlowski@linaro.org>
+ <20221101130720.GA963805-robh@kernel.org>
+ <34f40c1c-f933-cee6-f022-14c37650dc3a@linaro.org>
+ <20221104214744.GA2878314-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7d2c43b7-1507-7c30-27f7-3081c6ec77ba@kernel.org>
+In-Reply-To: <20221104214744.GA2878314-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -86,57 +81,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 15:36, Georgi Djakov wrote:
-> Hi,
-> 
-> On 2.11.22 23:11, Krzysztof Kozlowski wrote:
->> On 31/10/2022 19:29, Melody Olvera wrote:
+On 04/11/2022 22:47, Rob Herring wrote:
+>>>> +7. Phandle to syscon with offset:
+>>>> +   Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>>>> +   Line: 42
+>>>> +
+>>>> +8. Variable length of array (e.g. clocks and clock-names) but narrowed to
+>>>> +   specific variant:
+>>>> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+>>>> +   Lines: 33 and 71
 >>>
->>>
->>> On 10/27/2022 8:29 AM, Krzysztof Kozlowski wrote:
->>>> On 26/10/2022 15:05, Melody Olvera wrote:
->>>>> Many of the *-virt compatible devices do not have a reg field
->>>>> so remove it as required from the bindings.
->>>> and some virt have it... This should be probably separate binding or if
->>>> the list is small - allOf:if:then.
->>> I attempted this; however I'm still seeing failures in dtb_check. I've added this
->>> to the binding; does this look correct?
->>>   allOf:
->>>     - $ref: qcom,rpmh-common.yaml#
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - qcom,qdu1000-clk-virt
->>> +              - qcom,qdu1000-mc-virt
->>> +
->>> +    then:
->>> +      required:
->>> +        - compatible
+>>> It seems like some of these that are just a single property we could add 
+>>> to example-schema.yaml.
 >>
->> No, because we talk about reg, not compatible. You should not require
->> reg instead for some compatibles... but then the schema is getting
->> complicated.
->>
->> It's difficult to give you recommendation because I do not know what are
->> all these "virt" interconnects. Why some have unit address, why some do not?
+>> I am afraid the example-schema will grow too big for folks to look into.
+>> It's already quite complicated, with explanations of the dtschema
+>> behavior itself.
 > 
-> My understanding is that the "reg" property is required for the NoCs that have
-> registers for controlling the QoS settings for the ports from Linux side.
-> Other NoCs might be controlled by some remote processor and direct access from
-> Linux may not be possible, so they do not have unit address and are outside of
-> the soc DT node.
-> Do we need to strictly define when exactly the "reg" property is required,
-> can't we just mark it as optional?
+> How about splitting up the top-level descriptions and property examples?
 
-It's preferred to make it strictly required or not allowed, so the
-bindings are specific. This also allows to validate for mistakes. It
-would be a bit different case if such test for req would make the
-bindings complicated. I think it's not the case because we could just
-split the bindings into two files:
-1. One for controlled by AP, with reg.
-2. One for controller by remote processors, without reg.
+You mean splitting up to separate YAML files? I guess this could work
+and still be concise - few examples showing different concepts.
+
+> 
+>> How about then RST file with small code snippets?
+> 
+> Then they don't validate.
+> 
+>>
+>>> Also, perhaps a reference to this from writing-schema.rst.
+>>
+>> I can do this as well.
+>>
+>> The problem with my approach above (and adding these to writing-schema)
+>> is that examples above can change, lines can be inadequate.
+> 
+> I just meant a link in writing-schema.rst to this doc. We already have 
+> that for example-schema.yaml.
+
 
 Best regards,
 Krzysztof
