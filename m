@@ -2,101 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 017F761EF84
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DC0D61EE32
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:07:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231801AbiKGJrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:47:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
+        id S231487AbiKGJHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:07:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbiKGJrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:47:35 -0500
-X-Greylist: delayed 2018 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Nov 2022 01:47:34 PST
-Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8671742C;
-        Mon,  7 Nov 2022 01:47:34 -0800 (PST)
-Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
-        by spamfilter04.delta.nl with esmtp (Exim 4.92)
-        (envelope-from <mike.looijmans@topic.nl>)
-        id 1orxtj-00016D-V4; Mon, 07 Nov 2022 09:54:33 +0100
-X-Sender-IP: 204.168.188.16
-Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
-        (Authenticated sender: glasveze@delta.nl)
-        by mail.zeelandnet.nl (Postfix) with ESMTPA;
-        Mon,  7 Nov 2022 09:54:08 +0100 (CET)
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     linux-rtc@vger.kernel.org
-Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S229586AbiKGJHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:07:32 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B4F167FC;
+        Mon,  7 Nov 2022 01:07:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D4F7260F6A;
+        Mon,  7 Nov 2022 09:07:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D30C433D7;
+        Mon,  7 Nov 2022 09:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667812050;
+        bh=NExr18SAzyXYkii6f9h88e7VFGJJiIJjiIyLxLarNyE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CbRu5qlUwoVm6c4Vn1uOZOm3uDLldohqcEkHf2r/F+UkX4FspEnqHdoF1f6lqsiXA
+         Y5J/zX3+wv89K8F0nawnRdQ1FO0Zren7eKtvipsZP4vTfv7Rs3B4HPM3GfupB55NmV
+         FpbPfHVAkFe6TP9s/6oQLASaGIMY/AOX3JBU25W/UcNhwgQQVgU4rfwNc+/L2OWDpe
+         2Xi9B8GaGdKX4nZQmpN0lMxTBqDfDGZ7XF2zCbpx+XP++vlJXh/JIaI1icnRjCYvn/
+         fKbxpADaJpuMytMeH5O83sAztqs2TRo+pu9vUXUiGdOiGEBEBakO+pDeH5oMelDju0
+         QGEOZKC9dDXbA==
+Date:   Mon, 7 Nov 2022 09:07:23 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afd@ti.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: rtc: ds1307: Add support for Epson RX8111
-Date:   Mon,  7 Nov 2022 09:54:07 +0100
-Message-Id: <20221107085408.28341-1-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: 217.102.255.198
-X-DELTA-Domain: zeelandnet.nl
-X-DELTA-Username: 217.102.255.198
-Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
-X-DELTA-Outgoing-Class: ham
-X-DELTA-Outgoing-Evidence: SB/global_tokens (0.00272519686927)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT84HAmXDrak62ISD7MDA5A7PUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wqSBOxlRVmV45FJ8CYZCUIt8C9mOBdONdnsxgsk1D2pwpi
- 79/9lCWegUcH0YAeiESZu3hhVxUr+XbzYNuhZTyMN2jRpXv406oGDMCZBpfLj6tXYKbjfBt0vNkw
- cgcqpVi2EeDr8t3Z6zKdUQQxqR+SNjz3rkBrmCeUsHTfzqlbREQW59v6OzLaYvRKiPHtemyFp+Fb
- q4/dza6vunvz714/oUhDTJc8JF+XcA6Coahq6p9OU3mS/dDcjm11n8LBBaHmFYGlZcUx+feeIofU
- vaKO2wvHbfwld3xCwVQvwEuT74WwDyq/Nv4s81lckG+lIDvnx8yeplRO3sLIqUlSH7OGQQJWpNFf
- IrI9o3HL432ZkXLwENyZMPyeFLnoLT8oU4J5ip9csxSp5vs/cqLV2uCxa1gbjNr6zuq/msj6Lhvp
- vuDB+q8tdeTHeaut22yP2PJxAZuIytYBPaHe1r36ekBjoLoOc/cuTx5izBB4vDJo75HWAoddgXQw
- hX0bgQM/NQzAznOAUImGZ//xcQKfbL7egPacf1SEo03G99/UIdTGSFjTsZRW5VqyvaeMWA2+RBXp
- D59QdM/f9KJhSSfjTAUyLIywuTEI0kISK7u1AZUYs3NofNjT1oDBvJQtMIHPcVtYe7ERN3HHxFjX
- YLlttEV1+/5W5+zU8lWY6rju5hxPyAc8I07FTFcjpdfX/Jcr87ciF4YonbkVO2PUjQCgejWG/gXy
- CqWmPgffPsl4eG9LUHZn0HrRDnLnZ852fb3E4hoxzFQacs7vQRDI1X8MhtLrVdedPS0ZKWYGDxP4
- bm0tXIBvHwWS2MhtCcgqeX9Zchdoh9VoIekQHpwUfpYnEThmw/mwIQ9kzAAqBOEV406mI5N7efIT
- B+/xrftEfewwGTqvpVFKdMPCmCxgDmATtnDZnWrF+C9myP/AxQ/B0u0sl2oeA9rb47uAGdIJwe/d
- DL921bkn7bebrPKsrBkER41T0z6bhalFEM/pjPCQA+BAlgSU/nzBkyxPcgBtPVrWxiKQanUl0Ewx
- po60Ztqjl+7BLqqughUzQLrV0KR+CasIdaXCBfrmeYK8zgsf5hgnJcP/h8APlf2P6dpQsddkjLHr
- eL7FwJbXl3T/igMoCpp5k+ewp8wxtcXgs9dII53Mh+MSuRiGDjN98X3Nl4UFl9YcoKxhfyAlRS/e
- WdITuOAzdpAv9Li9J+PnOe4auO+Cjkw6V5e2HJtcKidgYBP/KMQZZJx675xB/yl1ErnBxiCZrSRW
- 4RPBB8BFstI1Wbmb/HHdhFxMiLYEP2q9G4ugDu0B5/eYuJyja1pmN+nUwcYeaQ==
-X-Report-Abuse-To: spam@spamfilter03.delta.nl
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: qcom,spmi-pmic: support more
+ types
+Message-ID: <Y2jKyyZqAssNiRNB@google.com>
+References: <20221031173933.936147-1-luca@z3ntu.xyz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221031173933.936147-1-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rx_8111 is quite similar to the rx_8030. This adds support for this
-chip to the ds1307 driver.
+On Mon, 31 Oct 2022, Luca Weiss wrote:
 
-This adds the entry to the devicetree bindings.
+> * 'adc@' is either spmi-iadc or spmi-vadc
+> * 'charger@' is either pm8941-charger or pm8941-coincell
+> * 'usb-vbus-regulator@' is usb-vbus-regulator
+> * 'vibrator@' is now in yaml format, so add it
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+> Changes since v1:
+> * Change dcdc@ to usb-vbus-regulator@
+> * Link to pm8xxx-vib.yaml
+> 
+>  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml  | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+I don't see the other 2 patches.
 
-(no changes since v1)
+Is this okay to take on its own?
 
- Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> index 777f2da52f1e..cf10d62ace54 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> @@ -105,7 +105,9 @@ properties:
+>  patternProperties:
+>    "^adc@[0-9a-f]+$":
+>      type: object
+> -    $ref: /schemas/iio/adc/qcom,spmi-vadc.yaml#
+> +    oneOf:
+> +      - $ref: /schemas/iio/adc/qcom,spmi-iadc.yaml#
+> +      - $ref: /schemas/iio/adc/qcom,spmi-vadc.yaml#
+>  
+>    "^adc-tm@[0-9a-f]+$":
+>      type: object
+> @@ -115,6 +117,12 @@ patternProperties:
+>      type: object
+>      additionalProperties: true # FIXME qcom,pm8916-wcd-analog-codec binding not converted yet
+>  
+> +  "^charger@[0-9a-f]+$":
+> +    type: object
+> +    oneOf:
+> +      - $ref: /schemas/power/supply/qcom,pm8941-charger.yaml#
+> +      - $ref: /schemas/power/supply/qcom,pm8941-coincell.yaml#
+> +
+>    "extcon@[0-9a-f]+$":
+>      type: object
+>      $ref: /schemas/extcon/qcom,pm8941-misc.yaml#
+> @@ -135,9 +143,13 @@ patternProperties:
+>      type: object
+>      $ref: /schemas/thermal/qcom,spmi-temp-alarm.yaml#
+>  
+> +  "^usb-vbus-regulator@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/regulator/qcom,usb-vbus-regulator.yaml#
+> +
+>    "^vibrator@[0-9a-f]+$":
+>      type: object
+> -    additionalProperties: true # FIXME qcom,pm8916-vib binding not converted yet
+> +    $ref: /schemas/input/qcom,pm8xxx-vib.yaml#
+>  
+>    "^mpps@[0-9a-f]+$":
+>      type: object
 
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
-index 98d10e680144..a9590da64b84 100644
---- a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
-+++ b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
-@@ -30,6 +30,7 @@ properties:
-           - pericom,pt7c4338
-           - epson,rx8025
-           - isil,isl12057
-+          - epson,rx8111
-           - epson,rx8130
- 
-       - items:
 -- 
-2.17.1
-
+Lee Jones [李琼斯]
