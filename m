@@ -2,137 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D682C61E794
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 00:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 335FB61E7CC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 01:04:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiKFX2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 18:28:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
+        id S230163AbiKGAEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 19:04:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiKFX2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 18:28:32 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D19635B;
-        Sun,  6 Nov 2022 15:28:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 18E94B80D69;
-        Sun,  6 Nov 2022 23:28:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E12FC433D6;
-        Sun,  6 Nov 2022 23:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667777307;
-        bh=3Cd2pgUygkB4hpu5zj8Mcl7NTGFw2u8uR5Ty1Bp3ClQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aFJU8jeYmL8IiEbZgaZyhNW9UdTViNEfDOvsC0oWDH9BVeKXZPcNbJFFf0fgreBJ+
-         UBd+dlQsh5BiyuBFTgHZCDWRc9igRo36Hyc08+4kXVSs6raLKXFVIY493qY20RZfxd
-         9FLc4rTF5lds3P4wWqSiLBB/4wuooo0rEMH6R8htn/Y6pu0sgubNg2QqcuTsaVQLAR
-         90KDqvKIX1Z8ZHkT56T+ZLXJIVZGAzELNPH7o/Fzp5sGz+RazF48gukFGXNpNfiTtN
-         Mx8MZZEvOSXD+jsehkLmNPtMsM+itr+nDHYhEB4J2M/cozviqiNQYvQDXoBxDj+e5W
-         0G8RK88EHdYRQ==
-Received: by pali.im (Postfix)
-        id 9A5F8858; Mon,  7 Nov 2022 00:28:24 +0100 (CET)
-Date:   Mon, 7 Nov 2022 00:28:24 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mauri Sandberg <maukka@ext.kapsi.fi>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/7] PCI: mvebu: add support for orion soc
-Message-ID: <20221106232824.du4uou6pf77rqu45@pali>
-References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
- <20220905192310.22786-1-pali@kernel.org>
- <Y1qRaBowB2EBS6Sg@lpieralisi>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y1qRaBowB2EBS6Sg@lpieralisi>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230100AbiKGAEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 19:04:10 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2579BF48
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 16:04:06 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221107000402epoutp03f13dff7f769ee19dc417337f40b046dd~lJJEuWtca2050220502epoutp03s
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 00:04:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221107000402epoutp03f13dff7f769ee19dc417337f40b046dd~lJJEuWtca2050220502epoutp03s
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1667779443;
+        bh=yiy9+tK/kn9g0w+SJYCkGz8hXLmunRnS/MAznVjLMC0=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=BCr9miUZJalpeBe7j8YEkG/5Rnz1lGnff6ciAU5BPlaihzzqt1qcbx4tQYe7KmI/q
+         jQU08IHXjAVmId8f/ruJjMPJ5icP/A8tnIPhK18SbldHgtwX3Ps8rDp9/n06TtCBR1
+         WnnFTncW2qMpp3glLbi4hjF29wjwI0ONOOaYaMI8=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20221107000402epcas2p46f7c6ac5789584e7c15f8c56594e67fc~lJJEImNDD0386203862epcas2p4v;
+        Mon,  7 Nov 2022 00:04:02 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.102]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4N5BKY5tRyz4x9Q2; Mon,  7 Nov
+        2022 00:04:01 +0000 (GMT)
+X-AuditID: b6c32a47-ac5b870000002127-7f-63684b711fce
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EF.BB.08487.17B48636; Mon,  7 Nov 2022 09:04:01 +0900 (KST)
+Mime-Version: 1.0
+Subject: RE: Re: [PATCH] dt-bindings: clock: exynosautov9: fix reference to
+ CMU_FSYS1 mmc card clock
+Reply-To: chanho61.park@samsung.com
+Sender: CHANHO PARK <chanho61.park@samsung.com>
+From:   CHANHO PARK <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Inbaraj E <inbaraj.e@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        "tomasz.figa@gmail.com" <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        ALIM AKHTAR <alim.akhtar@samsung.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        CHANHO PARK <chanho61.park@samsung.com>
+CC:     "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PANKAJ KUMAR DUBEY <pankaj.dubey@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c@epcms2p3>
+Date:   Mon, 07 Nov 2022 09:04:01 +0900
+X-CMS-MailID: 20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmuW6hd0aywYn3WhYP5m1js7i8X9vi
+        +pfnrBbzj5xjtbj7ZxKbxd7XW9ktNj2+xmrxseceq8XlXXPYLGac38dkcfGUq8WirV/YLVr3
+        HmG3OPymndXi37WNLBardv1hdBDweH+jld1j56y77B6bVnWyedy5tofNY/OSeo++LasYPT5v
+        kgtgj8q2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdSyEvMTbVVcvEJ0HXLzAE6
+        XUmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yYW1yal66Xl1piZWhgYGQK
+        VJiQnXH2+DSWgqvsFfdadrI3MK5g62Lk5JAQMJHYvWQ3UxcjF4eQwA5Gibap54AcDg5eAUGJ
+        vzuEQWqEBdIknt79yA4SFhJQlti4LRYirC/xvb+JBcRmE9CVmP/hEyvIGBGBQ8wSLT2PwBxm
+        gQ5mie/X3jBDLOOVmNH+lAXClpbYvnwrI8hQTgE7iRdz4yHCGhI/lvVClYtK3Fz9lh3Gfn9s
+        PiOELSLReu8sVI2gxIOfu6HikhL/l+1lAxkpIVAt8e9qBUS4QmL3+01MELa5xPWPU8DKeQV8
+        JRZteAh2DYuAqkTv5aNQNS4SjyY8AbOZBeQltr+dwwwykllAU2L9Ln2I6coSR26xQFTwSXQc
+        /ssO89+OeU+gpqhLHNg+HepXWYnuOZ9ZIWwPiak9X9gmMCrOQgTzLCS7ZiHsWsDIvIpRLLWg
+        ODc9tdiowBges8n5uZsYwUlYy30H44y3H/QOMTJxMB5ilOBgVhLhveGWlizEm5JYWZValB9f
+        VJqTWnyI0RToy4nMUqLJ+cA8kFcSb2hiaWBiZmZobmRqYK4kzts1QytZSCA9sSQ1OzW1ILUI
+        po+Jg1Oqgcm35cecyH23X6/2/KtSsP6lzmnWgE0vH3w9t2eHbrzdBQ8JfT0dwSdPNfZtiVN7
+        2sl21/Sfd7PWFK+9Cr/Z8g6uULQtuMQvk9mceHVnbslBPb0NXjV3+JJ/PNpc+8jC2fLbR9lq
+        7TO7sj5tzxI6H77TgW32vDlN/7PnLPaakds1p3Z/dh3HEpET/kyqLpod6bNvvd97905Ocs89
+        i/OSGZHpYmfnvtxUk/dY5gZPCtN8LrM7kUvkfk5+wjqvSP/r4dBrOvXPZN+47DpZFvvVU6Ti
+        QOqkpZqbKvg3aEcGzqyUX9CT1+7J76apNcn1sOW/L20Cahc4H/b++1J/9m2YwpmpvCEHQq9+
+        EXnz6W7zpWYlluKMREMt5qLiRAAkDlTUSwQAAA==
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221104085410epcas5p24d88f59001b739075e9e190e2c47841e
+References: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
+        <20221104090019.88387-1-inbaraj.e@samsung.com>
+        <CGME20221104085410epcas5p24d88f59001b739075e9e190e2c47841e@epcms2p3>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 27 October 2022 16:10:48 Lorenzo Pieralisi wrote:
-> On Mon, Sep 05, 2022 at 09:23:03PM +0200, Pali Rohár wrote:
-> > Hello! This patch series add support for Orion PCIe controller into
-> > pci-mvebu.c driver. V3 version has completely rewritten pci-mvebu.c code
-> > to parse all physical addresses from device tree files according to
-> > mvebu-pci.txt documentation, allow access to all extended PCIe config
-> > space registers and use modern kernel API pci_remap_cfgspace() and
-> > mvebu_mbus_add_window_by_id() fir mapping PCIe config space.
-> > 
-> > Most of Marvell device tree code in pci-mvebu.c is giant magic, but it was
-> > there because this change and it is de-facto API between dts files and
-> > kernel used for a long time. Note that it is misused according to PCI
-> > device tree bindings, but we have to follow this Marvell bindings to do
-> > not introduce backward incompatibility issues for other non-Orion
-> > platforms.
-> > 
-> > Mauri tested these changes on DNS323 board with both DT and non-DT builds.
-> > PCIe AER is working too (one of the feature which proved that access to
-> > extended PCIe config registers is working fine).
-> > 
-> > After this patch is accepted we are planning to look at existing Orion
-> > arch specific code and covert it to use this new DT based pci-mvebu.c
-> > code. Later this would allow to kill arch specific Orion PCIe code,
-> > which is in arch/arm/plat-orion/pcie.c and parts also in file
-> > arch/arm/mach-orion5x/pci.c (shared with old-PCI bus code).
-> > 
-> > This patch series depends on another patches:
-> > https://lore.kernel.org/linux-pci/20220524122817.7199-1-pali@kernel.org/
-> > https://lore.kernel.org/linux-pci/20220817230036.817-3-pali@kernel.org/
+> > Fix reference to CMU_FSYS1 mmc card clock to gout clock instead of dout.
+> >
+> > This fixes make dtbs_check warning as shown below:
+> >
+> > arch/arm64/boot/dts/exynos/exynosautov9-sadk.dtb: clock-
+> controller@17040000:
+> > clock-names:2: 'dout_clkcmu_fsys1_mmc_card' was expected From schema:
+> > /home/inbaraj/mainline/linux/Documentation/devicetree/
+> > bindings/clock/samsung,exynosautov9-clock.yaml
 > 
-> Can this series be rebased please on top of v6.1-rc1 so that we can merge it ?
+> I don't understand:
+> 1. Why bindings are wrong not DTSI?
+> 2. What is "gout"? "dout" had a meaning as clock divider output.
 
-IIRC above two dependent patches still applies on master branch and this
-patch series applies on above two dependent patches.
+"gout" is output of a gate clock, AFAIK.
+Unlike any other clocks, the fsys1 mmc top clock does not have a divider. So, it should be "mout -> gout" instead of "mout -> gout -> dout".
 
-> Thanks,
-> Lorenzo
 > 
-> > Mauri Sandberg (2):
-> >   bus: mvebu-mbus: add configuration space aperture
-> >   dt-bindings: PCI: mvebu: Add orion5x compatible
-> > 
-> > Pali Rohár (5):
-> >   ARM: orion: Move PCIe mbus window mapping from orion5x_setup_wins() to
-> >     pcie_setup()
-> >   PCI: mvebu: Remove unused busn member
-> >   PCI: mvebu: Cleanup error handling in mvebu_pcie_probe()
-> >   PCI: mvebu: Add support for Orion PCIe controller
-> >   ARM: dts: orion5x: Add PCIe node
-> > 
-> >  .../devicetree/bindings/pci/mvebu-pci.txt     |   4 +-
-> >  arch/arm/boot/dts/orion5x.dtsi                |  51 +++++
-> >  arch/arm/mach-orion5x/common.c                |  13 --
-> >  arch/arm/mach-orion5x/pci.c                   |  14 ++
-> >  drivers/bus/mvebu-mbus.c                      |  26 ++-
-> >  drivers/pci/controller/Kconfig                |   4 +-
-> >  drivers/pci/controller/pci-mvebu.c            | 202 ++++++++++++++----
-> >  include/linux/mbus.h                          |   1 +
-> >  8 files changed, 256 insertions(+), 59 deletions(-)
-> > 
-> > -- 
-> > 2.20.1
-> > 
-> > 
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >
+> > Fixes: 4b6ec8d88623 ("dt-bindings: clock: exynosautov9: add schema for
+> > cmu_fsys0/1")
+> > Signed-off-by: Inbaraj <inbaraj.e@samsung.com>
+
+Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+
+Best Regards,
+Chanho Park
