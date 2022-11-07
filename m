@@ -2,120 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D315561F66A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6A561F671
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:44:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232113AbiKGOnN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Nov 2022 09:43:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
+        id S231419AbiKGOoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 09:44:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiKGOnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:43:09 -0500
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6144B1A3BB;
-        Mon,  7 Nov 2022 06:43:02 -0800 (PST)
-Received: by mail-qv1-f51.google.com with SMTP id j6so8184969qvn.12;
-        Mon, 07 Nov 2022 06:43:02 -0800 (PST)
+        with ESMTP id S231324AbiKGOoB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:44:01 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9259F63EA
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 06:44:00 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id s24so16569743ljs.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 06:44:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i0O2rk5E0cL+fm306yvacQlome9MWqlkSl0PtbnJ/Fk=;
+        b=KGd9O5AMOGZXp+tE3f0j+hwAkW+8r8XE9RmQsXGMLtLEL+k0tlrOTlc9x3z6DY60pT
+         hoRXvYOeD/Og/ka1ZIfwjHVVwiYkMECBdxL+qr6sOmlcw2M4myVgfy3mUcsg34OUY9JJ
+         q2lBidE2ZbHrX8DY8H34jBlgMAfqbaTK5gWDjPBKRDyH0O/aQ5nkMbT7YyKZ1J3wKPKE
+         g2HXUzVU7qAK/Wi5p4uk8UO+C3/OrXQtIeJ+BKMBSvKfMctlvCZ9EjPETJgknfSh0Eme
+         qzAIsFJwkk2g1boA0NctS759r6L3DUzwJ6BMZO1g8SlxiYVglENC/U8KI+IphbjhOzQm
+         oWPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=unzujgx2IFO2xv07GVYQlpwOttD9eRvw4Avn0aUkXh0=;
-        b=ikEUrvshKQKGXyGHSxNs+XWwWvhkNuKFWYf2rr8sMbaLhf/AK/2B8mi0plcv0DaF8n
-         rk0EKBqXt5jPxzGc+GCJCT+C1AkOnmydldvaqh1AhAW1jWdrE7RDJOkdOFlCLyUFxWuh
-         je67RAPN8XcczpPn5yr9OKJ0rxzVtVmi2Mc8tpZkTjIGrbJl1lHg3wZnxZjxA+U6QvcX
-         Lmt+MquDZrmIPb5RRjUsffsSFXR6UCdz5Xo5uEdkUhQfbgT8i/LMQh98rt4zlEu1fbck
-         SCTyebp9D1tI3JtpgUgPj+lUsqJW0mwlGqG9mErg1zAMEOR9NpmPsJG/bOr0ZFdW0mxZ
-         56cw==
-X-Gm-Message-State: ACrzQf2tc5mFwjagLvnuRPOqa71yTP5vwUzjrS45laddeSKrOnvEA5Tq
-        DKCy2YyYfGBKacpFIThe9ONv2D1pz1T3KA==
-X-Google-Smtp-Source: AMsMyM4YdpqCnMUIlta2r1PoISSOqxEC2UNRJ7E3az1m+YbJI4n82Lz6v04AWIjTdxhE2+F0YZLPRQ==
-X-Received: by 2002:a05:6214:1a48:b0:4bb:604d:fb2c with SMTP id fi8-20020a0562141a4800b004bb604dfb2cmr44477643qvb.93.1667832181400;
-        Mon, 07 Nov 2022 06:43:01 -0800 (PST)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id 69-20020a370c48000000b006eea4b5abcesm6821459qkm.89.2022.11.07.06.43.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 06:43:01 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id 131so9452079ybl.3;
-        Mon, 07 Nov 2022 06:43:01 -0800 (PST)
-X-Received: by 2002:a05:6902:503:b0:6cf:c510:6a23 with SMTP id
- x3-20020a056902050300b006cfc5106a23mr30806206ybs.380.1667832180877; Mon, 07
- Nov 2022 06:43:00 -0800 (PST)
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i0O2rk5E0cL+fm306yvacQlome9MWqlkSl0PtbnJ/Fk=;
+        b=YC73fS4e89KIlErVVqFEYOxVP5+XVaN/v+YAVusGTcEgnu+UoAlU4S1vKPCj6NR8iW
+         EEqkx3Zq/RJI4LlyD9dE5ODFzXlZtmeD1XRlOlG41Cb6cGeTUxZTGw/cVQ95CVSMEi5O
+         tiHuhnaqRh7jec4BDpc4sxTp7dcQaLy2SUPKod3PD4M+McGalIY6vl004E8CbZ4PZMaw
+         BwiwwZByM5m9joZzJ8WRRHRFKZxr7OxuYhCRDMd2rWKCpf570/Tfrzug8uB6W9Z2AByF
+         TTPA0S7a7bvKqYafsOqjta9SXY6tPtlvCo0paksP5qonh3vMzdt9zCp7720Cb4iTRq5K
+         nLNw==
+X-Gm-Message-State: ACrzQf00vcIAKoRwdHFQr/K/F3X0IUn4RlTaxleEGAwMsXek4+pwrQ1l
+        pgIAlncSSpZZWjgAnkpdw4LPhWbYcbgkMHvDTVn8hw==
+X-Google-Smtp-Source: AMsMyM6xHORFjhVs0PnFDG1Q5hbXYVz1Gde1fVXPnnjTrXUg8FmzxrTbBpDXilPPBRiYEYQWH0D3yvUDzcEPlfT2y8I=
+X-Received: by 2002:a2e:2e0c:0:b0:277:75bb:429e with SMTP id
+ u12-20020a2e2e0c000000b0027775bb429emr9673388lju.314.1667832238908; Mon, 07
+ Nov 2022 06:43:58 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 7 Nov 2022 14:43:58 +0000
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-3-a803f2660127@baylibre.com>
+ <05183178-32cb-98c0-4fcb-d5e78874e6c4@collabora.com>
+In-Reply-To: <05183178-32cb-98c0-4fcb-d5e78874e6c4@collabora.com>
 MIME-Version: 1.0
-References: <20221107135825.583877-1-herve.codina@bootlin.com> <20221107135825.583877-8-herve.codina@bootlin.com>
-In-Reply-To: <20221107135825.583877-8-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Nov 2022 15:42:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVip_e7dZ2P7sv1OH+P48dQyjnmsJBoATHLAqzPEcwDdw@mail.gmail.com>
-Message-ID: <CAMuHMdVip_e7dZ2P7sv1OH+P48dQyjnmsJBoATHLAqzPEcwDdw@mail.gmail.com>
-Subject: Re: [PATCH 7/7] MAINTAINERS: add the Renesas RZ/N1 USBF controller entry
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+Date:   Mon, 7 Nov 2022 14:43:58 +0000
+Message-ID: <CABnWg9sZ29jnCbCjtJ-tLWn2s1JYjFVEEGkau72WJyukHWU9=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 03/12] drm/mediatek: hdmi: use a regmap instead of iomem
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        mac.shen@mediatek.com, linux-phy@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
-
-On Mon, Nov 7, 2022 at 3:00 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> After contributing the driver, add myself as the maintainer
-> for Renesas RZ/N1 USBF controller.
+On Mon, 07 Nov 2022 12:20, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
+>> To prepare support for newer chips that need to share their address
+>> range with a dedicated ddc driver, use a regmap.
+>>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_hdmi.c | 43 +++++++++++--------------------------
+>>   1 file changed, 13 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> index 4c80b6896dc3..9b02b30a193a 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> @@ -171,7 +171,7 @@ struct mtk_hdmi {
+>>   	u32 ibias_up;
+>>   	struct regmap *sys_regmap;
+>>   	unsigned int sys_offset;
+>> -	void __iomem *regs;
+>> +	struct regmap *regs;
+>>   	enum hdmi_colorspace csp;
+>>   	struct hdmi_audio_param aud_param;
+>>   	bool audio_enable;
+>> @@ -187,44 +187,29 @@ static inline struct mtk_hdmi *hdmi_ctx_from_bridge(struct drm_bridge *b)
+>>   	return container_of(b, struct mtk_hdmi, bridge);
+>>   }
+>>
+>> -static u32 mtk_hdmi_read(struct mtk_hdmi *hdmi, u32 offset)
+>> +static int mtk_hdmi_read(struct mtk_hdmi *hdmi, u32 offset, u32 *val)
+>>   {
+>> -	return readl(hdmi->regs + offset);
+>> +	return regmap_read(hdmi->regs, offset, val);
+>>   }
+>>
+>>   static void mtk_hdmi_write(struct mtk_hdmi *hdmi, u32 offset, u32 val)
+>>   {
+>> -	writel(val, hdmi->regs + offset);
+>> +	regmap_write(hdmi->regs, offset, val);
+>>   }
+>>
+>>   static void mtk_hdmi_clear_bits(struct mtk_hdmi *hdmi, u32 offset, u32 bits)
 >
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-Thanks for your patch!
-
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17627,6 +17627,14 @@ S:     Maintained
->  F:     Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
->  F:     drivers/rtc/rtc-rzn1.c
+>You don't need these functions anymore, as these are now simply wrapping
+>regmap calls, hence these don't contain any "real" logic anymore.
 >
-> +RENESAS RZ/N1 USBF CONTROLLER DRIVER
-> +M:     Herve Codina <herve.codina@bootlin.com>
+>Please remove them and use the regmap API directly.
+>
+>Thanks,
+>Angelo
+>
 
-Hervé?
+Agree with that, my intent was to minimize the change size so that it
+would be easy to review.
 
-> +L:     linux-renesas-soc@vger.kernel.org
-> +L:     linux-usb@vger.kernel.org
-> +S:     Maintained
-> +F:     Documentation/devicetree/bindings/usb/renesas,usbf.yaml
-> +F:     drivers/usb/gadget/udc/renesas_usbf.c
-> +
->  RENESAS R-CAR GEN3 & RZ/N1 NAND CONTROLLER DRIVER
->  M:     Miquel Raynal <miquel.raynal@bootlin.com>
->  L:     linux-mtd@lists.infradead.org
+My mistake, I'll remove the wrappers.
 
-Up to you, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thx,
+Guillaume.
