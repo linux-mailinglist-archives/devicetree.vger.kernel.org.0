@@ -2,111 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F228461FB9F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 18:38:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE5361FBBE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 18:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbiKGRis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 12:38:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50216 "EHLO
+        id S231580AbiKGRop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 12:44:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232896AbiKGRir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 12:38:47 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6219F1A383;
-        Mon,  7 Nov 2022 09:38:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F35CA611AB;
-        Mon,  7 Nov 2022 17:38:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8279C433D6;
-        Mon,  7 Nov 2022 17:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667842725;
-        bh=xVAlVw8T4kdHMYEynEaUD6upOqRZnblNhn2cN35CtlM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RPtJHwSIV+DwFPdZpYjNHsElW3aQdKbKkG/CzfYJB3O6sjIzoo3Yk/PgPLlHuAf6J
-         Pz4cg1lXsiJNBrOCCAskHDu/lu+fA9mWo5LzdHpxMZXOCi4TMlP07w/PSsyDnltWZO
-         DIgimj886jLb4C3/sSiKavxtE3ikw4TI+XRkbQ6LaS7/3xAjFthZed6xWQYp0p+i5W
-         YwBjoYcjTmOGS2uAAw4tDhozZzCtXF33HCd6GHWWmDxkzfuvjFjovUDFfMfDAfEWPx
-         n+ZNjn3iJ3Av4sfMx+YpF5ms/YPonVOMldEWB1/0OzCgtohXgHDGmPFglZZgypIt5b
-         FXhbY4DgJEpgA==
-Date:   Mon, 7 Nov 2022 11:38:42 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Melody Olvera <quic_molvera@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232973AbiKGRoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 12:44:17 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6AE72252E;
+        Mon,  7 Nov 2022 09:44:15 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ud5so32209633ejc.4;
+        Mon, 07 Nov 2022 09:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7eWjaoBznqoj2kM89mZeHCIKl3bnIdWJhw4wamO+Cyo=;
+        b=gQi8cQ8zlsuNHXSruqHBWQD7jzzllZymlS2SVI594uYKR2I2PAK8IcakFFIhp4s0sa
+         lplCEl40Iv5NK8qEomSZ2cy2dT8/yxbOf0ZegzW7Itqh3vbYTI5vcrmSCwmdWu49TRZa
+         ugoayL7w+pfrzqcrwVljsvaJRq2BaDEQEwOIIPGFQ/p2V0WvBcjfz11VYLswsRuAQqla
+         ii7YJSmTazshE9zf1sSJ1Hv559UsUxzgcwgUDKoIF9Ho2yFx+co//WLc7xaKXa6g62T5
+         eZLSUZUMAdlB70cagU28SAaXkI35MH7LaNSRCea0EXsT6zX+TtpvUwmZCaV5jpi0Ms5X
+         Rhfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7eWjaoBznqoj2kM89mZeHCIKl3bnIdWJhw4wamO+Cyo=;
+        b=dVHevbCocUgVUANXxFP535cwmTr2cE1WxUMDmjMTKURIZHL/Lr3g61rMAPE1oE/C+n
+         jl4s0wX+HIVR50wxG9apFHH5wLKdkMCsG9ylS8t1CFpV9nt+5d3AC4H/Bp7EmrgdpqTj
+         iFSxsrCopK5TIggWcPOhrgIxs2AkvZN2uwMjNAOSGm5xhHSuKd//zanBd5rKb7PctI2D
+         T3kSRowiQArUNaPkRHRusoqsu57BuUa3bQ1DQ/RNg5Qzqq9yr8+SIRhsc1MvcnsGQ0VJ
+         YfzcIrAYGWHtGp3SIswT74zhidQ/urbOccpXZDhMJHYnETUcqaPmx3Thy1XHjLtmRPfu
+         WZ7g==
+X-Gm-Message-State: ACrzQf3BqDLNZiCLyhGWUp/vsVQmm1f/jokSsBHz+BujD5xYKn01poaT
+        ufXzXhEYU+tU2Uk9zi8iuZyCJVwX0HDVMg==
+X-Google-Smtp-Source: AMsMyM5u1DyyUIQOXXJaLbM+lyY524+zMvhbc3473zPBgeiGrfroqdUpFBfrRcxzqBUKNFxQ4IT/5A==
+X-Received: by 2002:a17:907:60c8:b0:78d:bc8d:8457 with SMTP id hv8-20020a17090760c800b0078dbc8d8457mr47448621ejc.418.1667843054363;
+        Mon, 07 Nov 2022 09:44:14 -0800 (PST)
+Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id u18-20020a509512000000b004611c230bd0sm4565884eda.37.2022.11.07.09.44.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 09:44:14 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
-Message-ID: <20221107173842.6ct43x7wyuulqv33@builder.lan>
-References: <20221026190549.4005703-1-quic_molvera@quicinc.com>
- <20221026190549.4005703-2-quic_molvera@quicinc.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v3 10/11] phy: sun4i-usb: Replace types with explicit quirk flags
+Date:   Mon, 07 Nov 2022 18:44:12 +0100
+Message-ID: <2120524.irdbgypaU6@kista>
+In-Reply-To: <20221106154826.6687-11-andre.przywara@arm.com>
+References: <20221106154826.6687-1-andre.przywara@arm.com> <20221106154826.6687-11-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221026190549.4005703-2-quic_molvera@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 12:05:45PM -0700, Melody Olvera wrote:
-> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
+Dne nedelja, 06. november 2022 ob 16:48:25 CET je Andre Przywara napisal(a):
+> So far we were assigning some crude "type" (SoC name, really) to each
+> Allwinner USB PHY model, then guarding certain quirks based on this.
+> This does not only look weird, but gets more or more cumbersome to
+> maintain.
 > 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
->  .../devicetree/bindings/firmware/qcom,scm.yaml    | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> Remove the bogus type names altogether, instead introduce flags for each
+> quirk, and explicitly check for them.
+> This improves readability, and simplifies future extensions.
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index be1b5746eddb..5352181aa393 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -38,6 +38,7 @@ properties:
->            - qcom,scm-msm8994
->            - qcom,scm-msm8996
->            - qcom,scm-msm8998
-> +          - qcom,scm-qdu1000
->            - qcom,scm-sc7180
->            - qcom,scm-sc7280
->            - qcom,scm-sc8280xp
-> @@ -81,6 +82,20 @@ properties:
->      description: TCSR hardware block
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,scm-qdu1000
-> +    then:
-> +      properties:
-> +        '#reset-cells':
-> +          maxItems: 1
-> +        clocks: false
-> +        clock-names: false
-> +
-> +      required:
-> +        - '#reset-cells'
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Please document what this reset is expected to be wired to, and write a
-sentence or two in the commit message how the QDU differs from existing
-platforms supported by the binding.
+Thanks for working on that, nice cleanup!
 
-Thanks,
-Bjorn
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
->    - if:
->        properties:
->          compatible:
-> -- 
-> 2.25.1
-> 
+Best regards,
+Jernej
+
+
