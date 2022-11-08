@@ -2,82 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E70621BE2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29D9A621BF0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:32:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbiKHS2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 13:28:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
+        id S230439AbiKHScm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 13:32:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbiKHS2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:28:09 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7201BEA2
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:28:07 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id x21so22367832ljg.10
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:28:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hHKr619QPayYxsSRYbswMzokC2JQ4Oi/Wq2gqRIuOvM=;
-        b=PVmG5m8jAq2xwxpCSN2uSale2A+FhaQo5+RlVsuw/VPlmvJ++fN3FbObkhywrsVrhq
-         2OOpuQTtFoO/wqwno+MccxXfMk0Vp0oXmprXPKDWQVE1Rr47knMPpFqkRPB0qp+9izt5
-         eciwb3kGckOkI7G5Sd6QX7WlMzfizvLq78Ywi1x9k02ZPuBGIDZ37rvU35Mnnpy+MJbc
-         b+OaPaSKLq+Ocya6nO3G5y5ufYCbQdpUPKwhNcTE0RKtDz6fBfuWpn9l6Da6yFIBFv28
-         ANwo376m1jRFaBW9vIrnFuYnX4G4Am4tLwB1JUBT6ROnvQfW9Qm0moglQcRCrc/vtJcM
-         994w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hHKr619QPayYxsSRYbswMzokC2JQ4Oi/Wq2gqRIuOvM=;
-        b=S4lRid3bm1K+uIGuY4IvoaafVWa88Zc0bTxQ4BYBVwNhgVcERhfY3zEWkXm3ezrW5M
-         B4XJUaLAhON86dtkOh8ekylRoK3QK7PUT5FxDGw8V/VVtThCPoSvoUgdWKo+SNsf2ZdP
-         whQGtVhlEQa7TGGXzyfc+5e1qzjF8nbEzvaymmJ92f1Po5yA2oYlg+npVE5HGSq6mNpF
-         70VCMK+ja0JanaAuJ2Xqpe9p1RptaR7RjGaTxVU2NJ0KPJV53GHtxDxM8Ms50tW+qFRz
-         eTMMQAP5mrqEGSD2qEBn3QB6RNILH4VWIJVYgKewC3Un628ANzAdFA36GpEVN4TqIsyC
-         asAA==
-X-Gm-Message-State: ACrzQf3CMdi8L6ifK2l+4zBKM1K28K9D6r5XrT/u4tlyBrPqEb8IMwAE
-        +KHaJV92oOGvI1rt/Gm/zoCchQ==
-X-Google-Smtp-Source: AMsMyM5Nym6RZ34g67gWCqGyki2McZepT8/2ocl0CW4TUh1qgTO+dZr2F897iV+DpfibrKwv+Ei9vQ==
-X-Received: by 2002:a2e:a106:0:b0:277:3d6:a751 with SMTP id s6-20020a2ea106000000b0027703d6a751mr20209408ljl.201.1667932085827;
-        Tue, 08 Nov 2022 10:28:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id w1-20020a19c501000000b004b177293a8dsm1870138lfe.210.2022.11.08.10.28.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 10:28:05 -0800 (PST)
-Message-ID: <2326682f-3b2b-0a2e-0601-2d79390ab92a@linaro.org>
-Date:   Tue, 8 Nov 2022 19:28:04 +0100
+        with ESMTP id S230425AbiKHScl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:32:41 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBFF5B857;
+        Tue,  8 Nov 2022 10:32:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 36DCF6172D;
+        Tue,  8 Nov 2022 18:32:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF60C433D6;
+        Tue,  8 Nov 2022 18:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667932359;
+        bh=icGd5GPv/GdZwBY/786e7bQnWud2lRKv3P3CCjaRWwE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=a/QCsyZVFIsh05wFYGWDM5HvOPRftrE/fzPySxFQ1QLZO5vPvCQzLjemwA6U40rDN
+         6eRue9wigTFnq1mnUKNWvYJbTvuPk5+oxl7fu1l41VXw54zXZ58d/ohmgRHKXllanJ
+         rsHfhvV4RwTTky8/LlBWWA+b0PMg0Mm7Z2JsJTtkq+6WLSSNaYFTbuRM2lndXwwaqk
+         VCZCJ/Bedf3tFCCzc0auvYy3jA7hvxazGUvCG+KnFEECTFdx5GZ6YEKT4OYmeqk+bE
+         2P8ZsA4FJPAsOmqkUFhsx4XuDXmIX+yllRNvCE1ec0m5bEwsatB7mpn8brQXTLgUN2
+         609wVqoWlAMSQ==
+Date:   Tue, 8 Nov 2022 18:32:35 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v11 3/4] pwm: add microchip soft ip corePWM driver
+Message-ID: <Y2qgw2wAezkHSgg5@spud>
+References: <20221007113512.91501-1-conor.dooley@microchip.com>
+ <20221007113512.91501-4-conor.dooley@microchip.com>
+ <20221108155041.t4oppot5wy77jzgd@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add support for
- phyBOARD-Electra-AM642
-Content-Language: en-US
-To:     Wadim Egorov <W.Egorov@phytec.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc:     "upstream@phytec.de" <upstream@phytec.de>, "nm@ti.com" <nm@ti.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20221108175050.285340-1-w.egorov@phytec.de>
- <20221108175050.285340-2-w.egorov@phytec.de>
- <414f8281-80ba-dd2c-e5f9-9e9cde1ad1e0@linaro.org>
- <4963de6e-275b-e1d2-859c-7c7364b4599b@phytec.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4963de6e-275b-e1d2-859c-7c7364b4599b@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221108155041.t4oppot5wy77jzgd@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,40 +61,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 19:25, Wadim Egorov wrote:
-> 
->>> +	leds {
->>> +		compatible = "gpio-leds";
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&user_leds_pins_default>;
->>> +
->>> +		led-1 {
->>> +			color = <LED_COLOR_ID_RED>;
->>> +			gpios = <&main_gpio0 15 GPIO_ACTIVE_HIGH>;
->>> +			linux,default-trigger = "mmc0";
->>> +			function = LED_FUNCTION_DISK;
->>> +		};
->>> +
->>> +		led-2 {
->>> +			color = <LED_COLOR_ID_GREEN>;
->>> +			gpios = <&main_gpio0 16 GPIO_ACTIVE_HIGH>;
->>> +			linux,default-trigger = "mmc1";
->>> +			function = LED_FUNCTION_DISK;
->>> +		};
->>> +	};
->>> +
->>> +	vcc_3v3_mmc: regulator-sd {
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all
->> requested changes or keep discussing them.
-> 
-> But what is wrong with the "regulator-sd" node name?
+On Tue, Nov 08, 2022 at 04:50:41PM +0100, Uwe Kleine-König wrote:
+> Hello,
 
-Uh, you are right, this is correct, my eyes are playing tricks on me...
+Hello! Thanks for the review Uwe :)
 
-Best regards,
-Krzysztof
+> On Fri, Oct 07, 2022 at 12:35:12PM +0100, Conor Dooley wrote:
+
+> > +static int mchp_core_pwm_apply_locked(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +				      const struct pwm_state *state)
+> > +{
+> > +	struct mchp_core_pwm_chip *mchp_core_pwm = to_mchp_core_pwm(chip);
+> > +	struct pwm_state current_state = pwm->state;
+> > +	bool period_locked;
+> > +	u64 duty_steps;
+> > +	u16 prescale;
+> > +	u8 period_steps;
+> > +
+> > +	if (!state->enabled) {
+> > +		mchp_core_pwm_enable(chip, pwm, false, current_state.period);
+> > +		return 0;
+> > +	}
+> > +
+> > +	/*
+> > +	 * If the only thing that has changed is the duty cycle or the polarity,
+> > +	 * we can shortcut the calculations and just compute/apply the new duty
+> > +	 * cycle pos & neg edges
+> > +	 * As all the channels share the same period, do not allow it to be
+> > +	 * changed if any other channels are enabled.
+> > +	 * If the period is locked, it may not be possible to use a period
+> > +	 * less than that requested. In that case, we just abort.
+> > +	 */
+> > +	period_locked = mchp_core_pwm->channel_enabled & ~(1 << pwm->hwpwm);
+> > +
+> > +	if (period_locked) {
+> > +		u16 hw_prescale;
+> > +		u8 hw_period_steps;
+> > +
+> > +		mchp_core_pwm_calc_period(chip, state, &prescale, &period_steps);
+> > +		hw_prescale = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
+> > +		hw_period_steps = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
+> > +
+> > +		if ((period_steps + 1) * (prescale + 1) <
+> > +		    (hw_period_steps + 1) * (hw_prescale + 1))
+> > +			return -EINVAL;
+> > +
+> > +		/*
+> > +		 * It is possible that something could have set the period_steps
+> > +		 * register to 0xff, which would prevent us from setting a 100%
+> > +		 * or 0% relative duty cycle, as explained above in
+> > +		 * mchp_core_pwm_calc_period().
+> > +		 * The period is locked and we cannot change this, so we abort.
+> > +		 */
+> > +		if (hw_period_steps == MCHPCOREPWM_PERIOD_STEPS_MAX)
+> > +			return -EINVAL;
+> > +
+> > +		prescale = hw_prescale;
+> > +		period_steps = hw_period_steps;
+> > +	} else {
+> > +		int ret;
+> > +
+> > +		ret = mchp_core_pwm_calc_period(chip, state, &prescale, &period_steps);
+> > +		if (ret)
+> > +			return ret;
+> > +
+> > +		mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
+> > +	}
+> > +
+> > +	duty_steps = mchp_core_pwm_calc_duty(chip, pwm, state, prescale, period_steps);
+> 
+> Both mchp_core_pwm_calc_period and mchp_core_pwm_calc_duty call
+> clk_get_rate(), I suggest call this only once and pass the rate to these
+> two functions.
+
+Sure. I think the signatures of both of those functions could be reduced
+in the process which would be nice.
+
+> Both branches of the if above start with calling
+> mchp_core_pwm_calc_period, this could be simplified, too.
+
+	ret = mchp_core_pwm_calc_period(chip, state, &prescale, &period_steps);
+	if (ret)
+		return ret;
+
+	period_locked = mchp_core_pwm->channel_enabled & ~(1 << pwm->hwpwm);
+
+	if (period_locked) {
+		u16 hw_prescale;
+		u8 hw_period_steps;
+
+		hw_prescale = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
+		hw_period_steps = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
+
+		if ((period_steps + 1) * (prescale + 1) <
+		    (hw_period_steps + 1) * (hw_prescale + 1))
+			return -EINVAL;
+
+		/*
+		 * It is possible that something could have set the period_steps
+		 * register to 0xff, which would prevent us from setting a 100%
+		 * or 0% relative duty cycle, as explained above in
+		 * mchp_core_pwm_calc_period().
+		 * The period is locked and we cannot change this, so we abort.
+		 */
+		if (hw_period_steps == MCHPCOREPWM_PERIOD_STEPS_MAX)
+			return -EINVAL;
+
+		prescale = hw_prescale;
+		period_steps = hw_period_steps;
+	} else {
+		mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
+	}
+
+	duty_steps = mchp_core_pwm_calc_duty(chip, pwm, state, prescale, period_steps);
+
+I'll aim for something like the (absolutely untested) above then when I
+respin.
+
+> (Hmm, in
+> exactly one of them you check the return code, wouldn't that be sensible
+> for both callers?)
+
+Been messing with rust a bit of late, I love the #[must_use] attribute.
+Looks to be an oversight since it's only going to return an error if the
+clock rate exceeds what the FPGA is actually capable of.
+
+Thanks again,
+Conor.
 
