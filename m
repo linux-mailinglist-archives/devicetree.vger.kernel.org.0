@@ -2,77 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D755D621F60
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:32:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B9C3621F72
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:45:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbiKHWcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 17:32:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
+        id S229920AbiKHWp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 17:45:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiKHWcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 17:32:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A691A15A3E;
-        Tue,  8 Nov 2022 14:32:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 42ED9617CF;
-        Tue,  8 Nov 2022 22:32:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFF5C4314A;
-        Tue,  8 Nov 2022 22:32:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667946753;
-        bh=C7cfJNnFHnwN+Dt+RBevE2dF73eXyltwRwAzsZdY/0M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hRwIVGcA/z119YdQcE4otRl/Y3HMv6/1zWWvYRwOs5guBXJh2SMBsNXs8iZetc9X9
-         N1E5aUqiyNMt0LCstBvFWq0c1cqPuVxP8rNqHQPim1z1Lr9ftMOyyJ/hPGjEBPOq5V
-         6RUPb6sOrlpMywK3vZVnfccdhDfYFMWohA+4AxkPOQkCHZeN7BkjlkEmxH0OGRJioA
-         U9jATc70EYJ4rGP929dE0UF/3Eea6XaixISj0SSXymTPzj4AHMvs9wcmAUSsljYwrW
-         RaWT/YKWWoIfkCSvkqI6LXC6c0GoSt22XH751dM2n6M+px2f7Kp9B+919EOUUa2FKC
-         w/9wPsgvl30SQ==
-Received: by mail-lj1-f171.google.com with SMTP id c25so23198562ljr.8;
-        Tue, 08 Nov 2022 14:32:33 -0800 (PST)
-X-Gm-Message-State: ACrzQf0FvKD3vjgLg2MKNZ2PI6hbKW5DFX21Dy96KiNKLddDXX1T+Zyr
-        A2+pYgiAJuWF2XUe1kqghUXZ1bqE6O3VsRkwEg==
-X-Google-Smtp-Source: AMsMyM79MD2K3KPMVXymYEssotlGplfJ1g3Tr8XMyNdqkAYV8JnBI2uYKzWBlsni9BR1wivgUkvUZa8W2XAfVOuMFMc=
-X-Received: by 2002:a2e:9a85:0:b0:275:1343:df71 with SMTP id
- p5-20020a2e9a85000000b002751343df71mr7582015lji.215.1667946751374; Tue, 08
- Nov 2022 14:32:31 -0800 (PST)
+        with ESMTP id S229899AbiKHWpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 17:45:53 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF89764A2C;
+        Tue,  8 Nov 2022 14:45:50 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A8Mjcgs062621;
+        Tue, 8 Nov 2022 16:45:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667947538;
+        bh=BhXq8IRuZwYufdYayVffJkVeEfIGfFl1eMDVj0/IwzA=;
+        h=From:To:CC:Subject:Date;
+        b=d/93x65lVrIDwEHfYKxNsVrDGPyLsTog2ScNUmP4t48TA5bgdemm1BQpCzcoiN4Is
+         GdmwYq8f06cOf2PtdSaKNcMvhRA82vlMLk/66kd0VpTELSl7p9M8yW3yW5i4JANmiy
+         NUc5nA5V6KVU+CNH9/NVFBmC3OwePrjtuGJAn5ZY=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A8MjcEN113777
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Nov 2022 16:45:38 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 8 Nov
+ 2022 16:45:37 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 8 Nov 2022 16:45:37 -0600
+Received: from jti.ent.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A8MjSou071038;
+        Tue, 8 Nov 2022 16:45:30 -0600
+From:   Georgi Vlaev <g-vlaev@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vibhore Vardhan <vibhore@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v2 0/5] firmware: ti_sci: Introduce system suspend support
+Date:   Wed, 9 Nov 2022 00:45:22 +0200
+Message-ID: <20221108224527.137179-1-g-vlaev@ti.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20221107204934.32655-1-Sergey.Semin@baikalelectronics.ru>
- <20221107204934.32655-10-Sergey.Semin@baikalelectronics.ru>
- <TYBPR01MB5341E18D15BF78FFD6FA9782D83F9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20221108135218.v3jsla67372wt7ny@mobilestation>
-In-Reply-To: <20221108135218.v3jsla67372wt7ny@mobilestation>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 8 Nov 2022 16:32:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLC04=JA6b0ezsm06-SUsEQix=hZLwTgVDuswa_+41qgg@mail.gmail.com>
-Message-ID: <CAL_JsqLC04=JA6b0ezsm06-SUsEQix=hZLwTgVDuswa_+41qgg@mail.gmail.com>
-Subject: Re: [PATCH v6 09/20] dt-bindings: PCI: dwc: Add interrupts/interrupt-names
- common properties
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,57 +65,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 8, 2022 at 7:52 AM Serge Semin <fancer.lancer@gmail.com> wrote:
->
-> Hi Yoshihiro
->
-> On Tue, Nov 08, 2022 at 12:40:54PM +0000, Yoshihiro Shimoda wrote:
-> > Hi Serge,
-> >
-> > > From: Serge Semin, Sent: Tuesday, November 8, 2022 5:49 AM
-> > >
-> > > Currently the 'interrupts' and 'interrupt-names' properties are defined
-> > > being too generic to really describe any actual IRQ interface. Moreover
-> > > the DW PCIe End-point devices are left with no IRQ signals. All of that
-> > > can be fixed by adding the IRQ-related properties to the common DW PCIe
-> > > DT-schemas in accordance with the hardware reference manual. The DW PCIe
-> > > common DT-schema will contain the generic properties definitions with just
-> > > a number of entries per property, while the DW PCIe RP/EP-specific schemas
-> > > will have the particular number of items and the generic resource names
-> > > listed.
-> > >
-> > > Note since there are DW PCI-based vendor-specific DT-bindings with the
-> > > custom names assigned to the same IRQ resources we have no much choice but
-> > > to add them to the generic DT-schemas in order to have the schemas being
-> > > applicable for such devices. These names are marked as vendor-specific and
-> > > should be avoided being used in new bindings in favor of the generic
-> > > names.
-> > >
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > >
-> > > ---
-> > >
-> > > Note without the next dtschema tool fix
-> > >
-> > > --- a/lib.py 2022-09-29 15:17:13.100033810 +0300
-> > > +++ b/lib.py     2022-09-29 15:19:54.886172794 +0300
-> >
->
-> > JFYI.
-> >
-> > git am command could not work correctly by this lib.py file:
-> > ---
-> > Applying: dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
-> > error: lib.py: does not exist in index
-> > Patch failed at 0001 dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
-> > ---
-> >
-> > If I used patch command and skipped the lib.py, it could apply this patch correctly.
->
-> Got it. Thanks for the note. I'll either drop this part on the next
-> patchset revision (hopefully Rob will do something about that by then)
-> or make it less looking like a patch so git am wouldn't be confused.
+This series introduces necessary ti_sci driver functionality in
+preparation of supporting DeepSleep mode for suspend to mem on TI
+K3 AM62x. This version is a fixup and rebase of the patch series by
+Dave Gerlach [1]. It applies on top of v6.1-rc4.
 
-Now fixed in main branch. Thanks for the report.
+Deep Sleep mode is described in section "5.2.4.4 DeepSleep" of the
+AM62x Technical Reference Manual [2].
 
-Rob
+The kernel triggers entry to Deep Sleep mode through the mem suspend
+transition with the following:
+
+* Use a TF-A binary that supports PSCI_SYSTEM_SUSPEND call. This causes
+  system to use PSCI system suspend as last step of mem sleep.
+
+* The firmware requires that the OS sends a TISCI_MSG_PREPARE_SLEEP
+  message in order to provide details about suspend, so we must add the
+  ability to send this message. We also add TISCI_MSG_LPM_WAKE_REASON
+  and TISCI_MSG_SET_IO_ISOLATION messages as part of a new PM ops. These
+  messages are part of the TISCI PM Low Power Mode API [3]. (Patch 2)
+
+* A memory address must be provided to the firmware using the above
+  message, which is allocated and managed by dma_alloc_coherent()
+  and friends. (Patch 3)
+
+* System must load firmware to a specific location before Deep Sleep is
+  entered, and this is accomplished using a memory region in device
+  tree to indicate where this firmware should be loaded, and also a
+  "firmware-name" property to indicate the name of the firmware
+  to load. The ti_sci driver checks in its pm handler to see if
+  the firmware has been loaded and if not, loads it. (Patch 4)
+
+* Finally, the ti_sci driver must actually send TISCI_MSG_PREPARE_SLEEP
+  message to firmware with the above information included, which it
+  does during the driver suspend handler when PM_MEM_SUSPEND is the
+  determined state being entered. (Patch 5)
+
+This is tested on am625-sk using a limited dts with all devices disabled
+apart from cpu0, main_uart0, i2c, rtc, mmc/sd, dmsc, and secure_proxy_main.
+
+Testing this sequence requires K3 sdhci suspend/resume support [4],
+enable the wkup_rtc in the am625-sk.dts, disable devices that don't
+support system suspend/resume like OSPI and CPSW3G.
+
+In can be tested on the following branch:
+https://github.com/gvlaev/linux/tree/upstream-v6.2/lpm-ti-sci-v1
+
+Changelog:
+v2:
+- Addressed comments received for v1 series [1].
+- Updated v1 patch 5 to use pm notifier to avoid firmware loading
+  issues.
+- Dropped the reserved region requirement and allocate DMA memory
+  instead. The reserved region binding patch is also removed.
+- Introduce two more TISCI LPM messages that are supported in SysFW.
+- Fixes in error handling.
+
+[1] https://lore.kernel.org/lkml/20220421203659.27853-1-d-gerlach@ti.com
+[2] https://www.ti.com/lit/pdf/spruiv7
+[3] https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html
+[4] https://lore.kernel.org/lkml/20220408124338.27090-1-a-govindraju@ti.com
+
+Dave Gerlach (5):
+  dt-bindings: ti, sci: Add lpm region and firmware-name
+  firmware: ti_sci: Introduce Power Management Ops
+  firmware: ti_sci: Allocate memory for the LPM modes
+  firmware: ti_sci: Use dt provided fw name and address to load at
+    suspend time
+  firmware: ti_sci: Introduce prepare system suspend call
+
+ .../bindings/arm/keystone/ti,sci.yaml         |  21 +-
+ drivers/firmware/ti_sci.c                     | 356 ++++++++++++++++++
+ drivers/firmware/ti_sci.h                     |  64 +++-
+ include/linux/soc/ti/ti_sci_protocol.h        |  44 +++
+ 4 files changed, 480 insertions(+), 5 deletions(-)
+
+
+base-commit: f0c4d9fc9cc9462659728d168387191387e903cc
+-- 
+2.30.2
+
