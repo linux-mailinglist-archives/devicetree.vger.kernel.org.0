@@ -2,113 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C9F0621018
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55A1621024
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:18:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233971AbiKHMQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:16:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
+        id S234096AbiKHMSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:18:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233856AbiKHMQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:16:53 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20C82F390
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:16:51 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id p13-20020a05600c468d00b003cf8859ed1bso8952706wmo.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:16:51 -0800 (PST)
+        with ESMTP id S234082AbiKHMS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:18:29 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC3932048
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:18:25 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id m22so876451eji.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:18:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oy8fNIahsBx3vtTe9hvgf4a/7hnmlEn4ezDWT7gnkfs=;
-        b=Ef7F2oxs6rtbcUxBc1pUCZCtXZUPJsH586RlelsWz7FFCL8WJxlEs8/g9fnEuiaQzb
-         mo5k16GMPwYUaHIqag8gCHRGufqXERNw/tACpH5yMB6VbJcCMoetyV1FzdAgX05aMnfZ
-         wgi2h2CxjKN1hE1puIBWGIu1yrzA0D3SrrzAda5Vihyyk9o3q/kQLb4SKFqUlA1hJTmY
-         n3Wo+XSGY0zy9TyIrlf//vX7ec4+OYWlAkoWynkfgZTTP6wiejKczj8j2SyUGVhO3QZp
-         Qh5D4tyQ9fmtyOcwahAc92z0QAgdnCyEMfCV3fAhn+I2IQpGfTLWKCCWcr+gPlNSLYiw
-         FXZQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=k4F6NNy3a9JKGxqIkVEd+ypPrQuW+NOqc3zUbmZnBIg=;
+        b=RlWeLJGad5+ye5AWSLxrsZlN1dg8kSHWzv1Dyex3oEnUu8/bG91OG6U5MeFBmN8E3w
+         vB+TrEkrrXt8lDF5bZBHwa1w7sbQ3vWilzy7lZNC6QWOHu6rYYgQ0tBbFALG0kCz+mHi
+         nNEB8oDc6PF2uaygV+VIA92AdDSvST/wv3sbK/6tQKZC13bjPpzKEAzmonoTujynVtGR
+         hf1IYQVWuZJGQI95y5fAzXAaWr4L087vfgeFdORzySmJgpa7FyPK6RMiOZwP7BYFXXy9
+         jvqq7Br0xsN4Xm5xl5VeWwh8dC+rD7tvfnZvG2ycFlW4Eu1d1COYhK+M+YaQuUpY3zdM
+         AnhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oy8fNIahsBx3vtTe9hvgf4a/7hnmlEn4ezDWT7gnkfs=;
-        b=Y16XO5hPfxeIGCePYJv38lFGYnnW9V9FQVK5RnPkjszd6mwX97CAKE6DHvTbGx8BoD
-         dnS17FWnVfWbBHg4Sp66ZDYuOZ7ihUU/Yh3Y1MjUV0DRsZEghCr9AMca2/Sk/Y0xyahm
-         qdIv7QlXCu7MyJ7L2NJWQyfP7aP+5L/DB+HIfSQvxHZc4ObcMutxY/pTfLFrRL445naD
-         ZbAWClNIkiGCtnXmPJ/D8GAcXmAknDVrh6UNWc483kgSO5D0p2B3uCc/hp08S+kJb73S
-         4wGBzXbY3iQfY6HmfBLgKLBBVbnnBfmJmG6gp3BkJCKjCPzyikF7SmYVm9YaSUqA7HGP
-         /0DA==
-X-Gm-Message-State: ANoB5pmScLjyw4es3lYtYZ88WAMZs8+/cM25vAQToTvwChVUUUgfqQUQ
-        Nu7bTvUn88MUso5H+a709YKvUg==
-X-Google-Smtp-Source: AA0mqf4bOzFPBf9nqxVYz2ey9wkBGO5R/pMSwoNsyGLIDngNVH9CBbpshPdAQcule338C1uymSSk1Q==
-X-Received: by 2002:a05:600c:4e8b:b0:3cf:ad58:feaa with SMTP id f11-20020a05600c4e8b00b003cfad58feaamr6301168wmq.70.1667909810176;
-        Tue, 08 Nov 2022 04:16:50 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id f66-20020a1c3845000000b003c6b70a4d69sm10909264wma.42.2022.11.08.04.16.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 04:16:49 -0800 (PST)
-Message-ID: <7a0c6afd-e757-46f6-5837-576070e966ec@linaro.org>
-Date:   Tue, 8 Nov 2022 12:16:48 +0000
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k4F6NNy3a9JKGxqIkVEd+ypPrQuW+NOqc3zUbmZnBIg=;
+        b=bjiIZNyo6YKUKjOsviKwrsLkSqiRFlxTN90LlyuYgrdDabUSsD2tQa7jpr+1npHAWB
+         uOIIhnhdkU7wx8LH2ngDMHRw/x4MM9T0tJx8pMPczkBzlaCw2+Br0YUXfohnqTlbzZTW
+         kwfx/n9hYMVgkF28fd+u+RqJxbssjkCj01fwPFlqpB9g/nEONklEEfd9lsCXFFhEjayz
+         +a5e3Lh/VRtkpRC1D41KljrfPtCVEB1tTF9j2msG6k1mZivlgD7Bgu8ZgJqDbyXF1M/9
+         tqbhZ6g0ppCezNhxQCZYIhs59wkx3i4Z2Vu6Cr6MVV4V1ISg9oUrLTIFWRQOJVs8MugX
+         mdnA==
+X-Gm-Message-State: ACrzQf23ZOLD9cXueGSEQba/qc45D2v+Fp6C7+fSSiaEWExHrh3XNW85
+        16x5BY1CoJxGp1fApoBcKMUTRy3+/lJMB6f8LanV/w==
+X-Google-Smtp-Source: AMsMyM4H8JIEgzYp5NIJE/wBpxIx6VRfnGH3T2bKh2gbpHmDTB+ZvTSz2DsvECaRyOPOnPzNLNJLoLdNGi+tnImFGrA=
+X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
+ d11-20020a1709064c4b00b007ada197b58emr53763030ejw.203.1667909904164; Tue, 08
+ Nov 2022 04:18:24 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 13/18] arm64: dts: qcom: sc7180: Add compat
- qcom,mdss-dsi-ctrl-sc7180
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, quic_mkrishn@quicinc.com,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
- <20221107235654.1769462-14-bryan.odonoghue@linaro.org>
- <CAD=FV=XZ79JjmCW7wYoc0eEhMsAtqxb+p40x2f4mH+kdb0byow@mail.gmail.com>
-Content-Language: en-US
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAD=FV=XZ79JjmCW7wYoc0eEhMsAtqxb+p40x2f4mH+kdb0byow@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20221028153505.23741-1-y.oudjana@protonmail.com> <20221028153505.23741-2-y.oudjana@protonmail.com>
+In-Reply-To: <20221028153505.23741-2-y.oudjana@protonmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Nov 2022 13:18:12 +0100
+Message-ID: <CACRpkdYtJze2ziz+XBzNnsi_7r0jzujW0o=2P5Brgsi5QCZBuw@mail.gmail.com>
+Subject: Re: [PATCH v4 01/13] arm64: dts: mediatek: mt6779: Remove syscon
+ compatible from pin controller
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 00:24, Doug Anderson wrote:
-> This seems fine, but I don't think it matches your bindings. Your
-> bindings says you can have one compatible string. It could be
-> "qcom,mdss-dsi-ctrl-sc7180" or it could be "qcom,mdss-dsi-ctrl".
-> ...but your device tree has two compatible strings: the SoC specific
-> one and the fallback one. You need to change your bindings to make
-> this work.
+On Fri, Oct 28, 2022 at 5:35 PM Yassine Oudjana
+<yassine.oudjana@gmail.com> wrote:
 
-With the update in this series the binding has a required const.
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+>
+> Remove syscon compatible string from pin controller to follow
+> DT bindings and pass checks. Adding the syscon compatible to
+> the DT bindings documentation instead causes a different check
+> error due to the syscon document specifying a maximum of 1 item
+> in the reg property, while this has 9. This pin controller has
+> never been, and will never be, used as a syscon, hence it is
+> safe to drop this compatible.
+>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-If you drop back to just "qcom,mdss-dsi-ctrl-sc7180" you get a warning 
-like this.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb: dsi@ae94000: 
-compatible: ['qcom,mdss-dsi-ctrl-sc7180'] is too short
-
-If you just have 'qcom,mdss-dsi-ctrl' you get
-
-arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb: dsi@ae94000: 
-compatible:0: 'qcom,mdss-dsi-ctrl' is not one of 
-['qcom,dsi-ctrl-6g-qcm2290', 'qcom,mdss-dsi-ctrl-apq8064', 
-'qcom,mdss-dsi-ctrl-msm8916', 'qcom,mdss-dsi-ctrl-msm8974', 
-'qcom,mdss-dsi-ctrl-msm8996', 'qcom,mdss-dsi-ctrl-sc7180', 
-'qcom,mdss-dsi-ctrl-sc7280', 'qcom,mdss-dsi-ctrl-sdm630', 
-'qcom,mdss-dsi-ctrl-sdm660', 'qcom,mdss-dsi-ctrl-sdm845', 
-'qcom,mdss-dsi-ctrl-sm8250']
-
----
-bod
+Yours,
+Linus Walleij
