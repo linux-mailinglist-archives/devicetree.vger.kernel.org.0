@@ -2,76 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64CC1620FBC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 319EF620FD7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234032AbiKHMDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:03:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
+        id S233494AbiKHMHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:07:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234038AbiKHMDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:03:03 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C842AE05
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:03:01 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bs21so20633439wrb.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:03:01 -0800 (PST)
+        with ESMTP id S232929AbiKHMHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:07:52 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB8423EBD
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:07:49 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id ft34so1681389ejc.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:07:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=34uELl7iSr0KkNMrPbDK0p3kOxj5Rp7IXkKhGBvUSAg=;
-        b=FCj0qS9DEU91XF9GU6/3CVjhV71oQF+Et5zuA/pS/cIe9ojQbZnfwNRx7EFmp7hBvG
-         TyRCjQNgGqJwe6+L75yUR/xe7XOrPKWiqXjoObsPy8JLGK40qYvnjc1orcH+YMw1nra5
-         VnFujy8cqUXcguo7JfGiJzjvSYCiAYs5auWGzE3DyUmvHeKC/v0PphLW64buuGR7QLjb
-         RZGPBBf3tWMHfKjhHPf+nkYMs7zGB/unm5MGmFBAOv6pYwO8w4b/FEAqntdZD3Lbly0J
-         sOgh7XxzZZtc+dVpWv6jzKoim1uiRNG8BzTvX2WAEZdnO2SeYqIyZI/WjITUZj0i4nC/
-         71Uw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0xYqr+Uz1wM4DuiLSGjwWjZGbL0AQqraqB70BN0+x48=;
+        b=sZKkvBgctqD8M35VR3XU58po8c6M03W9+PWnejx2k7Ew7l2HLUIaWcyhtmzO/TnBK8
+         1Eg+QxZrjCioYko8y6gTorCj07ht8zRw4G5lJ7pGbNRlv8zpiC+nToYPeaSOKver0+Y3
+         p+vnG/k+zmG+RSU1WbnDm88jzbBcwXt6Htfeth+Xm3x5vDIWWq/0jAEs7E0+3JxVfdNB
+         xcT9yN/D+HViBWTN6xQ68oa+h4EFk5RhnXD9uCxD50uC3akT7Qz2n8zGhvysGeshYNQZ
+         XAxv79DwsFeiVlxjbYhvcCJwPbOiIFGc727NSjoriRm2GHAn0X7D1b9c03HzD3ZcAzNr
+         U7PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=34uELl7iSr0KkNMrPbDK0p3kOxj5Rp7IXkKhGBvUSAg=;
-        b=Oi4YWbgJTcx8uz1fuKn/hKKLs50n3TxdstO/cJ3MKJWEixGXoFTpYeBOiaxj0sy5Zi
-         dBp4AUpi2/XMpQ1rStL3sQXW2Ums4BHbFi7z+Ce9JNBNjVvrpbb8g86CGRjcoEv8Q4+L
-         z6LieTVhh6brCEvHXIhEfBDK/wiSoPwlEG9gPKFY0/bxwmWrFMmhJk3tknDeOpD1Y8Uo
-         18SZy9cZFjdpLZw9BmK4e73WvehUQMq6mPK/J5OeU6wtxRiC2Aj/PmfzeWAG+d13PN9O
-         XZpz9JUj/yLH91ooPeJkoWkS3ebN06BApIZft/IpAdePvLmY1m2g8FGXRxzqYpiaRGWp
-         xvpg==
-X-Gm-Message-State: ACrzQf2Vx6myGth1scGbOIVslRbrDItqgIx0UsgCW1/5gj1sPVmN3HoP
-        mfYY0jsXIPzSZ+m+eK/flwuFxA==
-X-Google-Smtp-Source: AMsMyM7K13gbsFzH2YQDtPN8bvUJhHqreRaknylxG4yXs1QpWmAIghwCjAVDLvh7FGZApvlAxGuW0g==
-X-Received: by 2002:a5d:52d0:0:b0:21e:4923:fa09 with SMTP id r16-20020a5d52d0000000b0021e4923fa09mr35961603wrv.244.1667908980061;
-        Tue, 08 Nov 2022 04:03:00 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b0023662245d3csm10056034wru.95.2022.11.08.04.02.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 04:02:59 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 08 Nov 2022 13:02:54 +0100
-Subject: [PATCH v5 2/2] rtc: pm8xxx: drop unused pm8018 compatible
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0xYqr+Uz1wM4DuiLSGjwWjZGbL0AQqraqB70BN0+x48=;
+        b=acy5M/5/YaC0b7WNikHdorV4H5bEBTp94+IMoaNDqhE4q3U4xwDm/kftZDaOfvnQQ+
+         DVdrTWtO1Mj6q5idw4YKsCP46Ms3F5pc0ZMglAjeptI4KZS02SmTUDfPXJtu12yXewkn
+         xDFcLdwiFU+H7oK2Z1AipBnOEbHDJrPZHUA68XhBQqik+LOyKfgwouVDnQPbyMZzWmwi
+         zTZ8YhFfYshpyhH+P8Zq33UTVx997myY6+7MF1kb3YGz4fTLWeFQPhuLVhx7NdHlMqQH
+         RbyehSk4XnppUUSRNuC7YpraCrAxHcjXHa/L/7qiy3aV0bNRZsGzcmFKJq1XmJAUZBei
+         ra8Q==
+X-Gm-Message-State: ANoB5pmevCKXh2qfCyFOlXBZgWeRYZhsP88QD3WnkeVaq6lJFlttG6As
+        BvmTecwlUrT+0LMdnrkeEazrpuXisoXlww+K44wVTA==
+X-Google-Smtp-Source: AA0mqf6RSnKeTfCNRJIBg0kmOP/JSg7vEVx+gUCbPvDOgdWTiuPrAMVe0Tg8Ee5TtvF2GMQNNi/AuJO5zOPeAYPLvbI=
+X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
+ q12-20020a1709066acc00b007ae658cee45mr10844145ejs.190.1667909268497; Tue, 08
+ Nov 2022 04:07:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v5-2-bbb120c6766a@linaro.org>
-References: <20220928-mdm9615-dt-schema-fixes-v5-0-bbb120c6766a@linaro.org>
-In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v5-0-bbb120c6766a@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+References: <20221103080217.2533-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221103080217.2533-1-zhuyinbo@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Nov 2022 13:07:37 +0100
+Message-ID: <CACRpkdYpEtaKmq8mDhKDTGZyrLDhHbZXvhrDGztmKt-mnkkc_A@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-X-Mailer: b4 0.10.1
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -81,28 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PM8018 compatible is always used with PM8921 fallback, so PM8018
-compatible can be safely removed from device ID table
+On Thu, Nov 3, 2022 at 9:02 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/rtc/rtc-pm8xxx.c | 1 -
- 1 file changed, 1 deletion(-)
+> The Loongson-2 SoC has a few pins that can be used as GPIOs or take
+> multiple other functions. Add a driver for the pinmuxing.
+>
+> There is currently no support for GPIO pin pull-up and pull-down.
+>
+> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v7:
+>                 1. Add all history change log information.
 
-diff --git a/drivers/rtc/rtc-pm8xxx.c b/drivers/rtc/rtc-pm8xxx.c
-index dc6d1476baa5..716e5d9ad74d 100644
---- a/drivers/rtc/rtc-pm8xxx.c
-+++ b/drivers/rtc/rtc-pm8xxx.c
-@@ -461,7 +461,6 @@ static const struct pm8xxx_rtc_regs pmk8350_regs = {
-  */
- static const struct of_device_id pm8xxx_id_table[] = {
- 	{ .compatible = "qcom,pm8921-rtc", .data = &pm8921_regs },
--	{ .compatible = "qcom,pm8018-rtc", .data = &pm8921_regs },
- 	{ .compatible = "qcom,pm8058-rtc", .data = &pm8058_regs },
- 	{ .compatible = "qcom,pm8941-rtc", .data = &pm8941_regs },
- 	{ .compatible = "qcom,pmk8350-rtc", .data = &pmk8350_regs },
+Patch applied!
 
--- 
-b4 0.10.1
+Yours,
+Linus Walleij
