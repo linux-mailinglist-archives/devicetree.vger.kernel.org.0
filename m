@@ -2,55 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E046062057D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B40E66205C4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:27:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233158AbiKHBAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 20:00:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37656 "EHLO
+        id S232832AbiKHB1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 20:27:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233071AbiKHBAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:00:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74631274B;
-        Mon,  7 Nov 2022 17:00:18 -0800 (PST)
+        with ESMTP id S232776AbiKHB1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:27:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45E028733;
+        Mon,  7 Nov 2022 17:27:47 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 62DEAB81609;
-        Tue,  8 Nov 2022 01:00:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1B3B4C433D6;
-        Tue,  8 Nov 2022 01:00:16 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 77090B81711;
+        Tue,  8 Nov 2022 01:27:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 527A5C433D6;
+        Tue,  8 Nov 2022 01:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667869216;
-        bh=ma4Mel+r4wJmpVvhzxTUsdruuj5LRP8y1aHtf0Or6x0=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=n83rsdK7cKabZQdvi3CLDRnAqxKQfk017QpghF6KvydKzqhe3a/CymD4s1eHZGbcG
-         9Ud4EoVMdoW73Gs7Yx73gOst2Y+2SqL5GiTkT1jkc6O+CymDRREZpikA4xtV/ppyUm
-         C1tgCJHKjWNmRoh7RQg8OUQI6J7x7lmDllGGCwnGXiBl68ERO5Tig7udI+WaPqF8sT
-         TYoFpadibBW/vxn14p65AMM7m45nO8czPa2wOVNCIT/9Kj4N5LKPWXJNq9obNvKZk8
-         XTTpzRXR3Z0M4nzbpF4YPMHEtUH1gK79dGi6NWFCL4RdvDkIpSs+j2qUyohhqLiahh
-         GrO+JzH48JV0A==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 048E0E270D0;
-        Tue,  8 Nov 2022 01:00:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1667870865;
+        bh=YVL/Z4RHzbZLpJLzw4S+SsdSECoQ90X3z5A4ZYCso3M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=N36T1pBkQqEnmWp0xa+IsgsKycL4H8OGWCgTXKGiPQIcIOGUlgXMjhTsbx2MhQckF
+         cvWh2acMkhcqXo5ex3qlBSD5mos1zZuB2SR1PgI2J3APx8PrDmGhsjKSxPP2Nzhnpf
+         hnhYnaS9hH3MucvtIVML33rVnUkLc6wMhVjpRkbA1sCTN4b94O52hxR7OyglCy6iU/
+         0MC2aJN4GFSBIB4sodrsT4XpFr9Mk6YWiNn3LpZV2/sl/waCpFqhGZ6wCH8vlF93GP
+         NTXG6rVxpyLdyTNBnD7KsTkcaKvJdFhBdXLk5m982pd976Ap43WjX08Gj443OSXcyG
+         M21MnRe7bwiTg==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     dianders@chromium.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org, swboyd@chromium.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Villager doesn't have NVME
+Date:   Mon,  7 Nov 2022 19:27:17 -0600
+Message-Id: <166787084678.599230.3259461323160653012.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
+References: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 0/7] Broadcom/Apple Bluetooth driver for Apple Silicon
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <166786921601.3686.4643669436357800810.git-patchwork-notify@kernel.org>
-Date:   Tue, 08 Nov 2022 01:00:16 +0000
-References: <20221104211303.70222-1-sven@svenpeter.dev>
-In-Reply-To: <20221104211303.70222-1-sven@svenpeter.dev>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, pabeni@redhat.com,
-        robh+dt@kernel.org, marcan@marcan.st, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,40 +55,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
-
-On Fri,  4 Nov 2022 22:12:56 +0100 you wrote:
-> Hi,
+On Tue, 25 Oct 2022 16:52:39 -0700, Douglas Anderson wrote:
+> The sc7280-herobrine-villager derivative doesn't have NVME enabled so
+> we shouldn't mark the PCIe nodes as "okay" since they're just for
+> boards that have NVME.
 > 
-> v1: https://lore.kernel.org/asahi/20220801103633.27772-1-sven@svenpeter.dev/
-> v2: https://lore.kernel.org/asahi/20220907170935.11757-1-sven@svenpeter.dev/
-> v3: https://lore.kernel.org/asahi/20220919164834.62739-1-sven@svenpeter.dev/
-> v4: https://lore.kernel.org/asahi/20221027150822.26120-1-sven@svenpeter.dev/
 > 
-> [...]
 
-Here is the summary with links:
-  - [v5,1/7] dt-bindings: net: Add generic Bluetooth controller
-    https://git.kernel.org/bluetooth/bluetooth-next/c/dea8565cb4a6
-  - [v5,2/7] dt-bindings: net: Add Broadcom BCM4377 family PCIe Bluetooth
-    https://git.kernel.org/bluetooth/bluetooth-next/c/f29c81596cd9
-  - [v5,3/7] arm64: dts: apple: t8103: Add Bluetooth controller
-    https://git.kernel.org/bluetooth/bluetooth-next/c/58092596a45f
-  - [v5,4/7] Bluetooth: hci_event: Ignore reserved bits in LE Extended Adv Report
-    https://git.kernel.org/bluetooth/bluetooth-next/c/7e551e41a298
-  - [v5,5/7] Bluetooth: Add quirk to disable extended scanning
-    https://git.kernel.org/bluetooth/bluetooth-next/c/612a79830bed
-  - [v5,6/7] Bluetooth: Add quirk to disable MWS Transport Configuration
-    https://git.kernel.org/bluetooth/bluetooth-next/c/d73a5e165e2e
-  - [v5,7/7] Bluetooth: hci_bcm4377: Add new driver for BCM4377 PCIe boards
-    https://git.kernel.org/bluetooth/bluetooth-next/c/ab80b2cec05f
+Applied, thanks!
 
-You are awesome, thank you!
+[1/1] arm64: dts: qcom: sc7280: Villager doesn't have NVME
+      commit: bcfefc98c5781ee97f1b7a8063870830d9e42b30
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Bjorn Andersson <andersson@kernel.org>
