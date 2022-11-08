@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B16F962060C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:29:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C67620610
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:29:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233453AbiKHB3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 20:29:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50446 "EHLO
+        id S233490AbiKHB3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 20:29:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233373AbiKHB2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:28:47 -0500
+        with ESMTP id S233498AbiKHB2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:28:53 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FCF62DA80;
-        Mon,  7 Nov 2022 17:28:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6177C2E688;
+        Mon,  7 Nov 2022 17:28:15 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C9AD61373;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE6DB61381;
+        Tue,  8 Nov 2022 01:28:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B0BC433B5;
         Tue,  8 Nov 2022 01:28:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B465BC43144;
-        Tue,  8 Nov 2022 01:28:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667870892;
-        bh=U85DRq54TH+b0df/abPxixa1UfJG6ZFMZomXBCrdXLo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LDfpnymLLO6dtcHjuPLZs316twbrd8ji9HHjHC3rzkEyVNSNep7PNvsiM0MYvM6o/
-         M6yyExRr220wJoXFoxTqL6nU8czmKcOIV5mEjQ89U7hk/PA7jlK/vQU2oBRV9gIozp
-         HgHFDSW0Ys/+N0/LPdl+QlYyygpl5OY1EnWCIPLk+DDkA4A1WAOT+1zfestOIPPp1g
-         xvq/JAI3Zvt3zAlkc97aoljRvAUmSTMdvGtBkYQYuLyuCnQdkMiOAGUFiA8tU/XwNt
-         7XezW0fwt7kAi3dBD9u/9HUoH06K8/ZJTlEpFL/9X6P4FoSYFqSqCZ36ohq0/I4VD2
-         SeA0KtRNAwlEg==
+        s=k20201202; t=1667870894;
+        bh=Crxd1ML6E33FgEfYcWzzIz4tDqidtID7RRad67vi5CE=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=aAb1r/6h5zWL0QrUxmaQ8c+BP8PAjPp6e22FYud3MX+q/EfFxRgZln2vT78W1pYlj
+         su05M9ibmWRYORqcLf+u2SCYOrBLLMFjJiyVaPKiVydk0S39TdN05vg5jVGcHQGL2u
+         jBxJzFiy4wbDxLVjtMaYpJKqvfx0+XpOLySevpJSpKudqhHB81vKvZrgbs5aWlw3Vu
+         b7Rc8XnavGw9bbqezHFMx19WKr5ZOcirMUd5EG8M8z8CnygLhkE52jjdMRwppFuy0X
+         hU6K02knHcpdM6h7awyFTavmgSf2BLm0VshaqvKl/pHTIoaNftvZg9cTNJ8vpnoaPU
+         7ccP6BYGvEiYA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     LKML <linux-kernel@vger.kernel.org>,
-        sheng-liang.pan@quanta.corp-partner.google.com
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v11 0/5] Add LTE SKU for sc7280-evoker family
-Date:   Mon,  7 Nov 2022 19:27:41 -0600
-Message-Id: <166787084685.599230.17663027600845570716.b4-ty@kernel.org>
+To:     vincent.knecht@mailoo.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH v1 1/2] arm64: dts: qcom: msm8916-alcatel-idol347: add GPIO torch LED
+Date:   Mon,  7 Nov 2022 19:27:43 -0600
+Message-Id: <166787084681.599230.10487688499814954760.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
+In-Reply-To: <20221029145557.106920-1-vincent.knecht@mailoo.org>
+References: <20221029145557.106920-1-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,30 +54,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Nov 2022 17:43:40 +0800, Sheng-Liang Pan wrote:
-> This patch add common dtsi and WIFI/LTE dts for evoker.
+On Sat, 29 Oct 2022 16:55:56 +0200, Vincent Knecht wrote:
+> Add support for torch LED on GPIO 32.
 > 
-> Changes in v11:
-> - sort out the "Status" property with sc7280-herobrine-audio-rt5682.dtsi
-> - sort out the "Status" property with sc7280-herobrine-audio-rt5682-3mic.dtsi
 > 
-> Changes in v10:
-> - add sc7280-herobrine-audio-rt5682-3mic.dtsi then evoker can include it
-> 
-> [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: arm: qcom: Separate LTE/WIFI SKU for sc7280-evoker
-      commit: f1714f85d40e53645139824d0d903c1e050cdf00
-[2/5] arm64: dts: qcom: sc7280: Add LTE SKU for sc7280-evoker family
-      commit: ef4fc701d4021eeb2a614fdffb3231560ee43c18
-[3/5] arm64: dts: qcom: sc7280: Add touchscreen and touchpad support for evoker
-      commit: 928263d17413e406d7bbcd10e585b081f36c4114
-[4/5] arm64: dts: qcom: sc7280: add sc7280-herobrine-audio-rt5682-3mic3.dtsi for evoker
-      commit: 5977c14285ca9ba933f4d048b0d995b046727788
-[5/5] arm64: dts: qcom: sc7280: sort out the "Status" to last property with sc7280-herobrine-audio-rt5682.dtsi
-      commit: 3d11e7e120eee29ef837830bee8442195a2c4552
+[1/2] arm64: dts: qcom: msm8916-alcatel-idol347: add GPIO torch LED
+      commit: 64323952aa5a14471a1225f2c1121aa5447c6ded
+[2/2] arm64: dts: qcom: msm8916-alcatel-idol347: add LED indicator
+      commit: 1c8cc183d07059d23d28c29a8e345464c4055127
 
 Best regards,
 -- 
