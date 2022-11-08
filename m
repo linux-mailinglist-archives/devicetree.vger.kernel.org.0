@@ -2,166 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E76E262082B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:16:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 789B4620833
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233270AbiKHEP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 23:15:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
+        id S232060AbiKHEVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 23:21:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233311AbiKHEPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:15:18 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF1A12AE14
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 20:15:17 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id v28so12706069pfi.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 20:15:17 -0800 (PST)
+        with ESMTP id S232307AbiKHEVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:21:12 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B56B18E24
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 20:21:03 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id gw22so12657275pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 20:21:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TYyNTGIwXr/GE3idzYmzpH2DtKCuhncte1jYNZp9aAc=;
-        b=OAgv1jX6xzIECtZXDJMubwEYPjmOTnnJhBukpuLkJaed7E1GWrna9MWzcipU/aKDFd
-         dWR2T54wiv6YlJmA1VuIdVcz4WJ7gnYY1fLPsAFC4Slpp2k7DkLWTszL9jEOIs+IoFwv
-         7nARqDQil+0fEpPac9JzR8K/IFVnC1Dh0RrlKmzI8p4o5Ee7ftrcAHSzFYtCKKYyVSmx
-         4O0CntLKneKNVJOU7A7d07pkt6CZD+8w8tw2Brppqhd2EUkRx3SdRqqX1RX5Cqj/eqOa
-         AEEzWqu/H1VDqCuIA6rGnAERpnSCm545MtrG8vKSDufZG1j0xaWFW9oqZmgHrX3wV+Tt
-         aHbw==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SfqLAbIddyq76wOhovHVJdZznkWEzSpDefKEM7fw48=;
+        b=JIPRYFMoxy3GfAJ8By4TEu05YaVP1ntog5Y9wfjBHbFI1pS5m1s0/JiB9eBWyuxgRs
+         0d4P4UZ4vPDsNtFUnv4GxztfLBlFtpjOiBeHFieTSpPDV2eF6EeOrHaJX6plPhQ34F3w
+         NDtQwNc7pWMxanGPjLm8ziu+H56nHbzmXNyTJm/MiMdm4aGS/2EnyHjpHA41vfCOcdkk
+         PZYkoCZKIO9P2X7ul2+Brtdrn31FQo4Aagnu5OsEx780t6woauhvhYEAvhfUjk8RRfFn
+         Y1i98rgs9vswK1e9wRByWf0TlSpa1oD0/+RnVPkKSHpOqiPHpkhoezw0CyhuWqJvao1G
+         dkcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TYyNTGIwXr/GE3idzYmzpH2DtKCuhncte1jYNZp9aAc=;
-        b=lkf3xyYbKLzBOCkI1k+wUxrGI8y78AcOKH5AYT/SYHcDJe4MKeHpDBvGNPUIPW4JsN
-         UIqlL6opq3ZwMp5uSdP3vSozeYv0bruQlSIeBMsPxfz9Ao6FRtwf3Wfgc8GHPpDA42un
-         wh4cjPNPfuCP2FtkKLakfDZNyYiBSU7yRWqiUUequ9TijSmMG2+owFaplZs9Mdhz7rQp
-         +VJljRJZuq1i/1vJHjEg8r0gBSKsagmNuPrfOkD0BleyNxCjJ2QSmFfQheen1ggwMCVM
-         d0w0uha9EJEkAlPdd+zmtUbqe027HCVjPgzGg2ujoq5s35Lw9/Xpbhasie5MsOalwOnw
-         NyYg==
-X-Gm-Message-State: ACrzQf2/kqrBclYoAInZSH1r6yb+J4XJ9iIaJY5hH1FqVeioInCuxAid
-        mO+Jzp/gnhlNFdtb1Q8+PqU8Nw==
-X-Google-Smtp-Source: AMsMyM6Xjnc2MFXNPjQNxB4+JepsOpRNFHKjnNYWo28X1Agifr4p7e+WBqh5KMeLQE8UzAFkBP72UA==
-X-Received: by 2002:a65:6702:0:b0:470:15c5:4363 with SMTP id u2-20020a656702000000b0047015c54363mr24853682pgf.546.1667880917243;
-        Mon, 07 Nov 2022 20:15:17 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a809:63d1:2564:ea55:4e97])
-        by smtp.gmail.com with ESMTPSA id e5-20020a170902b78500b00186ac812ab0sm5799783pls.83.2022.11.07.20.15.14
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3SfqLAbIddyq76wOhovHVJdZznkWEzSpDefKEM7fw48=;
+        b=lCRk9P91xtYCu1vvqNJoUh9Igwvkpl6jsjuVrVDdNPKOF8ScZnLQ6DU0FtRhZVQCm4
+         DkiQRrWSRIzPSU/Q/OoVOYhAZ5UEbLC6KLzENFsJXdhyDBaRTihTNR5zjioVxPQY5dmw
+         RYOaDNipvjwCinElDF/oLin/NT02R9d155d7b51eWdAQTO7Um7HK+9481I6HTiuqfohw
+         kIA1igkvGHhD/ipaWQqEEaOlXygDCAMrYG3d3hnRuICKrL2mNbq4AfB0mHp9Jjdx4evK
+         o9Z5CESUkFl+Uv25ivkOgyW/t/HT2qRrP6k3XJi6yLGw0+7Tj8bNAWaGokZXxODWhqgJ
+         Nt5A==
+X-Gm-Message-State: ACrzQf3Yj+Cb37tCRpcygoo/iq8hbCjKeo5BnOe17QuOAZK/nOKSfiDb
+        IzxehqArILVh3jeKCO3V9lVgTg==
+X-Google-Smtp-Source: AMsMyM6rouWEqC5wyKoVUJdp0gW7NIB8ViQoUIR9P8lG8d913aUjGMtR7fXDusx8RWaiFC72isNXQA==
+X-Received: by 2002:a17:90b:33d0:b0:213:137b:1343 with SMTP id lk16-20020a17090b33d000b00213137b1343mr55451053pjb.128.1667881263179;
+        Mon, 07 Nov 2022 20:21:03 -0800 (PST)
+Received: from localhost ([122.172.84.80])
+        by smtp.gmail.com with ESMTPSA id k4-20020a17090a39c400b00211d5f93029sm6873798pjf.24.2022.11.07.20.21.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 20:15:17 -0800 (PST)
-From:   Jagan Teki <jagan@edgeble.ai>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>, Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v7 10/10] ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2) IO
-Date:   Tue,  8 Nov 2022 09:44:00 +0530
-Message-Id: <20221108041400.157052-11-jagan@edgeble.ai>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221108041400.157052-1-jagan@edgeble.ai>
-References: <20221108041400.157052-1-jagan@edgeble.ai>
+        Mon, 07 Nov 2022 20:21:02 -0800 (PST)
+Date:   Tue, 8 Nov 2022 09:50:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: opp-v2: Fix clock-latency-ns prop in example
+Message-ID: <20221108042058.o7xuzkuokykv5xcs@vireshk-i7>
+References: <20221107204355.31971-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221107204355.31971-1-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neural Compute Module 2(Neu2) IO board is an industrial form factor
-evaluation board from Edgeble AI.
+On 07-11-22, 23:43, Serge Semin wrote:
+> Accidentally discovered a hidden typo in the DT-nodes defined in the
+> opp-v2 bindings example. Instead of specifying the "clock-latency-ns"
+> property the DT-node has been created with the "lock-latency-ns" property
+> in it, which doesn't exist neither in opp-v2 nor in the base schemas.
+> Let's fix the name to having the "clock-" prefix as it was originally
+> implied and as the rest of the similar nodes has.
+> 
+> Fixes: 94274f20f6bf ("dt-bindings: opp: Convert to DT schema")
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 
-General features:
-- microSD slot
-- MIPI DSI connector
-- 2x USB Host
-- 1x USB OTG
-- Ethernet
-- mini PCIe
-- Onboard PoE
-- RS485, RS232, CAN
-- Micro Phone array
-- Speaker
-- RTC battery slot
-- 40-pin expansion
+Applied. Thanks.
 
-Neu2 needs to mount on top of this IO board in order to create complete
-Edgeble Neural Compute Module 2(Neu2) IO platform.
-
-Add support for it.
-
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
----
-Changes for v7:
-- none
-Changes for v6:
-- update the carrier name.
-
- arch/arm/boot/dts/Makefile                   |  1 +
- arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts | 38 ++++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e48cfbc4e8e4..40cc34bd4945 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1122,6 +1122,7 @@ dtb-$(CONFIG_ARCH_RENESAS) += \
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-+	rv1126-edgeble-neu2-io.dtb \
- 	rk3036-evb.dtb \
- 	rk3036-kylin.dtb \
- 	rk3066a-bqcurie2.dtb \
-diff --git a/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-new file mode 100644
-index 000000000000..ae1cf344239b
---- /dev/null
-+++ b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
-+ */
-+
-+/dts-v1/;
-+#include "rv1126.dtsi"
-+#include "rv1126-edgeble-neu2.dtsi"
-+
-+/ {
-+	model = "Edgeble Neu2 IO Board";
-+	compatible = "edgeble,neural-compute-module-2-io",
-+		     "edgeble,neural-compute-module-2", "rockchip,rv1126";
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_bus4 &sdmmc0_det>;
-+	rockchip,default-sample-phase = <90>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr104;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
 -- 
-2.25.1
-
+viresh
