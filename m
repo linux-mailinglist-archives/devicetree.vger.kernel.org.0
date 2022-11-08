@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3703621B80
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09742621BA0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:14:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234800AbiKHSLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 13:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
+        id S233817AbiKHSOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 13:14:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234617AbiKHSLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:11:04 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 334DB5E3D9
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:10:58 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id l12so11214939lfp.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:10:58 -0800 (PST)
+        with ESMTP id S234725AbiKHSNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:13:44 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA57A1583B
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:13:31 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id p8so22305984lfu.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:13:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GN4ncCbN5RXq4bC+MjIVUQcmL6JMKzPTfDQ6haXvn40=;
-        b=TvkxlNCJYlXgbwKJ9uhCOG1ZdtKYxRdjqIoE23FwVJwjBRO452fLQA194b0cxvY4bX
-         PqMgG7HVAu8bRxc9KkQNpQK/BF7AgQJMCc097kvMqV6lR1cW0qbEE/hPYNEpXyn2SmWX
-         QmoED+FTYkD3gxElk8y0uZ7hkEA83qlUpMnzPAFISDC4VWG2HJha1EAnOq+QPkK1ObFo
-         uRU2hkN6tW/mC4f1EKwb/xoNmHJme3mvQ48XjAT5DUyirJA6jwabHyT4DwwDPqVA5iB8
-         1Du8LV/QYG4Lt9kMLecUhSihQdiXrZ+ZjP7mxzfiyBUjGKl+kjttu+lFDZZJ1wvpd73x
-         2Isg==
+        bh=HbRy3Yn8zVIZMpnViCKLzdpGPVd73KtafUDM0aTDS/o=;
+        b=XRPzAuFK8UDVqtzd6xneMNHNxOpFkeuZF8TeJ6/2tO1pAlFuW6Hnddef+UE5EZsDxR
+         +tOuD/jgdBHMhYW+nqLTI+L0v7eIdxrEoeqOPqmuBjcyVzI/+jbgWrjNwHya2S79Cvf7
+         gO92uhoM5XeMe5b0VF63OmvWB/R6mhQ9D9JHKZf+Q+HXzxhapVuyYsB/YLfOvmycpplp
+         BrbxodIfCB3wyxGll5w34MUr++JswmjhzH9ILOHieAXMRo9ILQ3rDBUSuwIt4EllIaG+
+         INSMKw8cilt3UasjJP3HzIHoGy0qgk7GD8PAe8cWxrDxKABCDiHTG4m2SYjEqGEaJkQw
+         7iOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GN4ncCbN5RXq4bC+MjIVUQcmL6JMKzPTfDQ6haXvn40=;
-        b=TXqxsuYE9V4OYEE+HbppdYpiibKMq6e6DRS3S3MQK0q02leo1w2yy72TduJ5Nt9z4X
-         jBzAtO4UXsbwXqtYkhnje6vN930Dvs5WvF+kiZrAvPLdA5Qyzgn8Z+PtlucIbpKjFbkp
-         LmW5gtYhSJcXcDY8h+8axVRvfr1v/Ih+ntPi6pOObuV2Zy8mdeUz1GgraPdhVKdgEtLz
-         o5/Sh7tmGM9pdbuIWCzV8GfWmG/j3zQ3IG0BbmUUGdrvy6WIyd1wdW4DAq4smyHU5zal
-         WenwlJ2AcgNj3OainrXO1gQnVNW8iMcq6FIospArsz2se5M1g6k8nNwYZHsmcabhPqjP
-         Kw6w==
-X-Gm-Message-State: ACrzQf2J+I/iFOGLZ8CwLiyOlJjEDC39FZhzf2uDgJ1XvjnfTR0kBLN9
-        XetdsclK4M9NDRcDPdMqyLwbhA==
-X-Google-Smtp-Source: AMsMyM52maW3sfRovKLSKGvPEi5QOxDIojC6VtVzehizWEqqHR11l1zKljI5liw/ss4HdcCpLn/rhg==
-X-Received: by 2002:ac2:447c:0:b0:4a2:4fc6:4cbb with SMTP id y28-20020ac2447c000000b004a24fc64cbbmr19141894lfl.99.1667931057375;
-        Tue, 08 Nov 2022 10:10:57 -0800 (PST)
+        bh=HbRy3Yn8zVIZMpnViCKLzdpGPVd73KtafUDM0aTDS/o=;
+        b=cN6/ohyrpLsWtwrPftAV1zKuBhgPNBlb8EY2PAeRWYfN5bXJTTGeSA0T1lQPisJ4CN
+         JDLSemY3lyqdYYumE1qnuZBP0HJZC2ZFtz77TzpzUvtLf1MsJWnIP+smR/gFAZInjsJw
+         HccpPfFQvfGHx7dp85oZV9r5ZFdM9ZyDCHSifZDtb0g5bSXAjCHvWi2DOHKP7tMT8cnB
+         Qihqc3/Wb2mSIMVa2svLA4iPIt80lonS2PlJTEFxfe55ijjFo0oTuDXVj1NCGp2mjPBC
+         QH9W33AMV1MIypiLDW05vR4Y2s5w5PS4v4KFCjbD3e3QPnQQu9nnwwbcfm/M7lQy7W1/
+         H9TA==
+X-Gm-Message-State: ACrzQf3UBhfXMRk1UUiQ2MHancLZQxAPukJ3MclFtCfzN4aKarB86w0y
+        RKabx6G+gS8TRPLLVWt62dacWw==
+X-Google-Smtp-Source: AMsMyM5WEfVa3N0n9y2WWZhW7PbtyhtoV6F6Bcn3Fp7VEJ4rOKVkNBpcv0lO4QNFZIqAyD/V1XssWw==
+X-Received: by 2002:a05:6512:3b10:b0:4a4:74c5:de39 with SMTP id f16-20020a0565123b1000b004a474c5de39mr19092399lfv.626.1667931209772;
+        Tue, 08 Nov 2022 10:13:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id k19-20020a192d13000000b00492b0d23d24sm1867848lfj.247.2022.11.08.10.10.56
+        by smtp.gmail.com with ESMTPSA id f10-20020a05651232ca00b004a4754c5db5sm1861383lfg.244.2022.11.08.10.13.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 10:10:56 -0800 (PST)
-Message-ID: <e77cf459-b4f3-199a-0c59-85a166a286a7@linaro.org>
-Date:   Tue, 8 Nov 2022 19:10:56 +0100
+        Tue, 08 Nov 2022 10:13:28 -0800 (PST)
+Message-ID: <429df965-bd4a-afa4-e66c-6907677fbf8c@linaro.org>
+Date:   Tue, 8 Nov 2022 19:13:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v7 04/10] dt-bindings: timer: rk-timer: Add rktimer for
- rv1126
+Subject: Re: [PATCH v7 06/10] ARM: dts: rockchip: Add Rockchip RV1126 SoC
 Content-Language: en-US
 To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>, linux-kernel@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
+        Johan Jonker <jbx6244@gmail.com>,
+        Jon Lin <jon.lin@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
 References: <20221108041400.157052-1-jagan@edgeble.ai>
- <20221108041400.157052-5-jagan@edgeble.ai>
+ <20221108041400.157052-7-jagan@edgeble.ai>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108041400.157052-5-jagan@edgeble.ai>
+In-Reply-To: <20221108041400.157052-7-jagan@edgeble.ai>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,21 +80,122 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/11/2022 05:13, Jagan Teki wrote:
-> Add rockchip timer compatible string for rockchip rv1126.
+> RV1126 is a high-performance vision processor SoC for IPC/CVR,
+> especially for AI related application.
 > 
-> Cc: linux-kernel@vger.kernel.org
-
-There is really no point to store it in the kernel log.
-
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-
-I would argue this also does not make any sense to keep in kernel log.
-It's maintainer, not a person who is somehow interested in this commit
-and should be cced.
-
-Keep both below --- in all patches.
-
+> It is based on quad-core ARM Cortex-A7 32-bit core which integrates
+> NEON and FPU. There is a 32KB I-cache and 32KB D-cache for each core
+> and 512KB unified L2 cache. It has build-in NPU supports INT8/INT16
+> hybrid operation and computing power is up to 2.0TOPs.
+> 
+> This patch add basic core dtsi support.
+> 
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
 > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
+> Changes for v7:
+> - fix dtbs_check
+> - rearrange nodes
+> - remove Edegble in license text
+> Changes for v6:
+> - add psci node
+> Changes for v5:
+> - none
+> Changes for v4:
+> - update i2c0
+> - rebase on -next
+> Changes for v3:
+> - update cru and power file names
+> Changes for v2:
+> - split pinctrl in separate patch
+> 
+>  arch/arm/boot/dts/rv1126.dtsi | 438 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 438 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/rv1126.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/rv1126.dtsi b/arch/arm/boot/dts/rv1126.dtsi
+> new file mode 100644
+> index 000000000000..a485420551f5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rv1126.dtsi
+> @@ -0,0 +1,438 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/clock/rockchip,rv1126-cru.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/power/rockchip,rv1126-power.h>
+> +#include <dt-bindings/soc/rockchip,boot-mode.h>
+> +
+> +/ {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	compatible = "rockchip,rv1126";
+> +
+> +	interrupt-parent = <&gic>;
+> +
+> +	aliases {
+> +		i2c0 = &i2c0;
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+
+These are not properties of a SoC but board. They depend on the
+particular routing on the board... unless this SoC is an exception from
+all others?
+
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+
+(...)
+
+> +
+> +	uart5: serial@ff5a0000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff5a0000 0x100>;
+> +		interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+> +		dmas = <&dmac 15>, <&dmac 14>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart5m0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	saradc: saradc@ff5e0000 {
+
+Node names should be generic, so adc.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "rockchip,rv1126-saradc", "rockchip,rk3399-saradc";
+> +		reg = <0xff5e0000 0x100>;
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +		#io-channel-cells = <1>;
+> +		clocks = <&cru CLK_SARADC>, <&cru PCLK_SARADC>;
+> +		clock-names = "saradc", "apb_pclk";
+> +		resets = <&cru SRST_SARADC_P>;
+> +		reset-names = "saradc-apb";
+> +		status = "disabled";
+> +	};
+> +
+
 
 
 
