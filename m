@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B4F621567
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7680562158B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:13:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235227AbiKHOMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 09:12:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49076 "EHLO
+        id S235294AbiKHONC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:13:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235296AbiKHOLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:11:46 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345F2121257
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:11:22 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id f5so38938816ejc.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:11:22 -0800 (PST)
+        with ESMTP id S235218AbiKHOMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:12:49 -0500
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8809957B7B
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:12:37 -0800 (PST)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3701a0681daso134885107b3.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:12:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GL2VB6yiqlJd7PXl9jCnnQ5NQhRNVLQL22XW+04witg=;
-        b=Hhzk8FopA98HaJrgwoizCtMQjYbKieZLMyCwD4Px4prPzIh0xGexW33aaq/j+JippB
-         cqlKGLoDi1XLjx+IY/su4mqqiHWvQUn+7tIVIJpEfiMquxhwIgRmC6N5SNcWnRVbdNtM
-         YqocapQY/un37wC8kJ/7a0MLAYUePF1vbV8ex4L8Iifyb07W16xzVj2vo1LoYLVFUy8N
-         aqdEWC1LNRy/bl5J7tZLgNbI7e8kqA4LHWdgOgQvzCSwe24kskKnAt7bt3IM1TdsdXyO
-         zuAVijftra0VXnB2A5j20mQhvzZMmjKJrg1kYqt9t3FKqqZ2I58VGv1kCgZ2SCIAeVEg
-         lwaA==
+        bh=ZS4/7A7uR8ROGh/drdouQHQube7YpqT1U80rwDMtwgM=;
+        b=UFXVWbkyTwY5gAbT6ZetyNc5MaK1NDLLXVD8Bhg7TqB85/MJikG2vcrubqMJZ35VfU
+         xQ68Khvh9c5ysFVu7HYlcfaQKQoME+Irk1sU52tiayJ1dGEx/bsVj7jFyN1m+lxY0Tji
+         TtLEPXS1naEgT8GWEV1LuQ3Q2TimkKqk1bRbCphM/UqZ92CXnhLeIZY6RkaTXwk5ZpE8
+         FL2bHXBf1sl1flLGnonMKaTqVrcj/THk+9xYXFKt7Tkvyt/wHVk4gVUZhZS2WIzrvKis
+         7gZNP8tfx/4n1n5S6MhdYqNZs+c2tB2iBkkEt5zCyDix6dNfzWZ2+I1Pc7t6xnu7kdTI
+         ZCrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GL2VB6yiqlJd7PXl9jCnnQ5NQhRNVLQL22XW+04witg=;
-        b=IJAUFzTh+Y2GDbYEOXaUFCtdQhK2Z2TWggUmKP3shZEqW44XKNYw0QuhlYAq68n7oF
-         YeQMQBeeuA4ufPiCeJpuCqj+2gKi0ENoH2o0kUWjqUOsiIxZ3bC0Q9bP/I/CxtvzZTpC
-         W6iglQxFeFkyVB39MgV0HrgtB/NaZSr5DcoLe2vLeoieckIskdSiJCvialj+rAPK9sDd
-         uTeKy/bUO/Zoy4USYxdCqx/3q/vO/VnXkQHCuJzYzOfGT7aKXPSnqOznLvgnm2qYdlOm
-         dXV21CyGFeiXdyWteB4+v3/vFNLP+/r5u2VwMLdxP3J6lGnF4eg09awCk7ALrGzommOl
-         TpvA==
-X-Gm-Message-State: ACrzQf0FJ5esWDHwJkkPDR6G3F+VU8TmuY3I8/r2ogFu/u04nPe3A74Z
-        ur+yDb7ouDxOMI6gzTItvasrk16s4cZuT/rqQOFBzA==
-X-Google-Smtp-Source: AMsMyM7J3Sd4gnDvu8zGm0CMMNKR4LFB/CGFMpK5G/rfqAvubgf422+2XMl7L688bBueJ+zjJiz/yGcF4N7ozpUkS1c=
-X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
- d11-20020a1709064c4b00b007ada197b58emr54232684ejw.203.1667916681564; Tue, 08
- Nov 2022 06:11:21 -0800 (PST)
+        bh=ZS4/7A7uR8ROGh/drdouQHQube7YpqT1U80rwDMtwgM=;
+        b=cUM6MLr+bBwdqz3L1Ag8E3vFpkSaaLwiOwbl7wCocYIY7iwm/HSKHbJM/wTxiOKKOd
+         RKsVjk4D9Si/ZLyMRedXLibRRo++6R3UK0GsbcF15tluxAxH3V+wMgub/hc3YNvJsBao
+         0vXjL3dI6LOAegRODHf4gURxiO6j9QwVG3/n3Xxp2T58pFx9IDm2CoVOxYVZVSoncrxn
+         3uhW2LmeQS5Wg3NoYW3Hd3eO0DY/mraHoASPYHjw2Lnn4ZTnb5sPRgKU9e5oo9TsL6dZ
+         RYxEYdAoHHBgJIvOYB6TD9KujkCa29hlncLaga4+eTp0bXCUysUdQ6NZf1iXsf54ywW4
+         lSTQ==
+X-Gm-Message-State: ACrzQf0nYHTuM6Ih3zZmi6Jl7bE5+esMKCY0j8SfhoM74jIQ4Fwy0DiZ
+        O4p4l4pbFIJQ8gaFQoIYTdSczuRFIa7U6HACPvOaYQ==
+X-Google-Smtp-Source: AMsMyM4OP2zUGBnfwEM1zz9G6bDnE/vktJzs0yVSbH49S3Z3kfDvLLQpg1pNbtjU6PCODa40ClvlgZ2qadooOqTSNwo=
+X-Received: by 2002:a0d:dd49:0:b0:36b:f81c:ceb8 with SMTP id
+ g70-20020a0ddd49000000b0036bf81cceb8mr54401842ywe.171.1667916756940; Tue, 08
+ Nov 2022 06:12:36 -0800 (PST)
 MIME-Version: 1.0
-References: <20221104142345.1562750-1-thierry.reding@gmail.com> <20221104142345.1562750-5-thierry.reding@gmail.com>
-In-Reply-To: <20221104142345.1562750-5-thierry.reding@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 15:11:10 +0100
-Message-ID: <CACRpkdbegcxckaYA5h0VKQonK72srZWDZYynHhUKSTHngWGHWA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] arm64: tegra: Separate AON pinmux from main pinmux
- on Tegra194
-To:     Thierry Reding <thierry.reding@gmail.com>
+References: <20221103141155.1105961-1-jagan@edgeble.ai> <20221103141155.1105961-4-jagan@edgeble.ai>
+ <CACRpkdYEW4z6EZ7UC9wT3NtRVnE=0L6AAHJDxtu5Jb-UrB+WSA@mail.gmail.com>
+In-Reply-To: <CACRpkdYEW4z6EZ7UC9wT3NtRVnE=0L6AAHJDxtu5Jb-UrB+WSA@mail.gmail.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 8 Nov 2022 19:42:26 +0530
+Message-ID: <CA+VMnFxyx=NP2QUiJ6RnfapZ9c=S4-cj+0kQn8PYyaMTBP3i-g@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+To:     Linus Walleij <linus.walleij@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 4, 2022 at 3:23 PM Thierry Reding <thierry.reding@gmail.com> wrote:
-
-> From: Thierry Reding <treding@nvidia.com>
+On Tue, 8 Nov 2022 at 19:31, Linus Walleij <linus.walleij@linaro.org> wrote:
 >
-> The registers for the AON pinmux reside in a partition different from
-> the registers for the main pinmux. Instead of treating them as one and
-> the same device, split them up so that they are each their own devices.
-> Also add gpio-ranges properties to the corresponding GPIO controllers
-> such that the pinmux and GPIO controllers can be paired up properly.
+> On Thu, Nov 3, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
 >
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
+> > dot matrix LCD with 800RGBx1280 dots at maximum.
+> >
+> > Add support for it.
+> >
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > ---
+> > Changes for v3:
+> > - updatd to WXGA
+> > - use JD9365DA_CMD_DCS and JD9365DA_CMD_DELAY
+>
+> My comments on v2 have not been addressed, for example I asked to
+> remove the delay from sequences and just use an explicit delay and
+> to then use the existing sequence sending macro.
 
-Is this one of those few cases where this patch should also be
-applied to the pin control tree to keep things coherent for e.g.
-git bisect?
+True, I responded on the same day [1], since I didn't get the reply I
+have posted by assuming my comment is valid. Would you please check
+and respond?
 
-Normally I would ask for this to be queued in the SoC tree separately.
+[1] https://lore.kernel.org/all/CA+VMnFz0w-6O=wt3iuJo1BhQgPZ2XbpX6JdDz6vg_JW9nHTR2A@mail.gmail.com/
 
-Yours,
-Linus Walleij
+Thanks,
+Jagan.
