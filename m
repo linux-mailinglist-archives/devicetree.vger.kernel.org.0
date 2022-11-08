@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A92506210BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:31:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DEF46210DD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233657AbiKHMbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:31:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49062 "EHLO
+        id S233819AbiKHMgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:36:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233333AbiKHMba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:31:30 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F19F120A8
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:31:29 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id 13so38260244ejn.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:31:29 -0800 (PST)
+        with ESMTP id S233936AbiKHMgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:36:00 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF7A32BBD
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:35:59 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id g7so21057384lfv.5
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:35:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sm+oC/YPWF/iZNcfGahmynT1lvQ6GZ85C3/IGkCpcBg=;
-        b=uOF5AWIk4QTXqHhAviukr3WgFBbqJAthELAkouqC5SPAKtYa2dhvPvalBKk8aQIhOA
-         C6QdxBUGCZD8XHA2Tcb+stvMx6RD+jEN1FXcMt8EUTde5Nqt/yPwiziVSrIl6FRzAKGw
-         7WHs+gNB2Eo04TurLhyHF8DQsMsnUTszhbPTkNgxpNrM9TQLoVL2g/ipepIsbu42c8f/
-         Ucsk2YPk64Le/SK6lOoCE7EwcTsmdJPRGngxdwSP/My16Inn864TipaOy4Gfu0AuQAB3
-         PQn8l9hT4+yg8dGyptmbz+Gw0qSt+XZfk/9UDi4UyA1YUFJ8WhLyl+ztp8lueLoPPHRo
-         dc0A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iNRUdsuvY7c1Nj94/oTEANQHqS8U5hc27GeoZ4o3mrE=;
+        b=cH8HGGi55LA8q/7nwAdlY78765ZvpMnrMIgLscnN+m62FjT2EHsCspSdyTLHui5Lz5
+         EImbQhjXh7RdhLM/FG7yXuwk8iU9A8Hs4EfMy0xNUBEJOS+kFEGjUENW28+4vawqZbG0
+         EYTbzRls4KfpMfuBjJ7e20pQ+rWQnZE4/ofeAy1yFqpi5u1UXizMOlHQxcXvGZP/SiLZ
+         Y+YUFVT8yCK5Xfbm7JlAVGrkU2f56E2IwKYQPskZNtUfAtgvYZvHRMBJgmegFEHRU8J+
+         DMixdfTjMG+GmLIXnZcNkPgQoIqteT1SgRxJBadmbZnzkY3VRRW7gfijBQToUwO0K17e
+         Oxdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sm+oC/YPWF/iZNcfGahmynT1lvQ6GZ85C3/IGkCpcBg=;
-        b=1Ot9WuctydvZhZJtFoIFg/3eXsDvvvwpwmCOMmTxML3SrV5vqA+L3g5qWTDLK1iDWK
-         xp9bi+9076+7RIecfMwE0JRpxYCwCJvGUt133nNdmH4UxQq7wsxSUwYQFA/dBeSid5ZJ
-         NSPXFS/NSZkRDl+fSrUqi/z1iyiloHEmSA1sSH5jIB0Dluu9LrF3nvkDZTDxs0la5rtO
-         zuF0njBsmUQ5BDjjK87EgawgtFTB0hffmAqseUl4WkJkXdkFrIJA8815mV10IMqw4B/z
-         WPTWSnAIyh/PCmKva3GUuR9hRkEgx/8ANe2FnflrowEfPdbCysOL+bukYlHK2Srqumh/
-         G4Xg==
-X-Gm-Message-State: ANoB5pm7sZbjI72Ik9DjrFkuTvLhk5DtX9EvH4SGUJuJUv1t8O+y2oMh
-        JCpPOj3nZnLd2dNSUioZ5c/Il8WTZLE67jhoA0gtjg==
-X-Google-Smtp-Source: AA0mqf6mScTI8wfSGbpo+cE2WOMgktUG3GbfO4kwbhqKSf/NX3F8x3YQuNjKwU0wd/caXHpjY3fm9Kvzkc0l9DucqnE=
-X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
- q12-20020a1709066acc00b007ae658cee45mr10953313ejs.190.1667910688158; Tue, 08
- Nov 2022 04:31:28 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iNRUdsuvY7c1Nj94/oTEANQHqS8U5hc27GeoZ4o3mrE=;
+        b=Ld1YrtMElmGKEtuvL8XrI4jiSSwqOCcinurhY6ESTRN6HC/1WCzW0WLlG11Ccf9Wu5
+         1pgUKX26vDVk4ahxsOkaGPXHSGH/KASB6nd+0ctwxexAq3q/UZn3oOkYnw+UTkNE544P
+         gno0Mpr++suZM60T0LjQacO+iNAtWiSZYzFDBJOOAdAMTN/0riQ902gwK2RJVTCxq3Q+
+         UJs6J5MlB/a3AVzFEg1J8tzCSRYhlLYdzs3nD4thu+f3YwQUdtg6nXOLGdzoPgELQxha
+         euLsQWaID2z4kyXZvOqG5XNl/TND3MfUqtuY5+Kzotp/qU+owjPpHrfKfGAUTcko9mz7
+         Mw4A==
+X-Gm-Message-State: ACrzQf1NBEGBSO10LppsmF2QIAjxJHg7ptmGw29paSyfGvuaEqUvc9NU
+        kSVyORsC4Xqkp4FHNjfBl8MvQw==
+X-Google-Smtp-Source: AMsMyM5TDQ+lKG+eFrm5U8acDAnlb/ZJeqAb+4hY75v7A/a2remZhRkhBz/z0zrYmuBWxDgKGkbU7g==
+X-Received: by 2002:ac2:5cba:0:b0:4aa:5b6d:fb33 with SMTP id e26-20020ac25cba000000b004aa5b6dfb33mr19618866lfq.491.1667910957432;
+        Tue, 08 Nov 2022 04:35:57 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id j15-20020a05651231cf00b004946b549a19sm1763483lfe.45.2022.11.08.04.35.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 04:35:56 -0800 (PST)
+Message-ID: <d5d6b2ca-ce4d-4492-a33e-08448974e6b2@linaro.org>
+Date:   Tue, 8 Nov 2022 13:35:56 +0100
 MIME-Version: 1.0
-References: <20221031100843.14579-1-clin@suse.com> <20221031100843.14579-2-clin@suse.com>
-In-Reply-To: <20221031100843.14579-2-clin@suse.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 13:31:16 +0100
-Message-ID: <CACRpkdY-uaQ--vFM+vVPbwa-q9nbSU0rQB+qbL=9m0wVMwA3Aw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: add schema for NXP S32 SoCs
-To:     Chester Lin <clin@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/3] dt-bindings: slimbus: convert bus description to
+ DT schema
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        s32@nxp.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>
-Content-Type: text/plain; charset="UTF-8"
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>
+References: <20221026164315.39038-1-krzysztof.kozlowski@linaro.org>
+ <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,30 +82,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chester,
+On 26/10/2022 18:43, Krzysztof Kozlowski wrote:
+> Convert the SLIMbus bus description bindings to DT Schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
 
-thanks for your patch!
+Srini, ping.
 
-On Mon, Oct 31, 2022 at 11:09 AM Chester Lin <clin@suse.com> wrote:
+These wait for some time now... v2 was waiting and this is just a rebase.
 
-> Add DT schema for the pinctrl driver of NXP S32 SoC family.
->
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
-(...)
-> +  nxp,pins:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      A list of [start, end] pin ID boundaries that correspond to each of
-> +      the register regions reserved.
+Best regards,
+Krzysztof
 
-That's an interesting approach.
-
-But what about just hardcoding this into the driver instead?
-
-If you have the compatible, surely you know these indexes from
-that compatible string?
-
-Yours,
-Linus Walleij
