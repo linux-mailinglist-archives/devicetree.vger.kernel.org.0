@@ -2,150 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0F3620AD5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 09:02:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 253E1620AE3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 09:06:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233416AbiKHICk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 03:02:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57760 "EHLO
+        id S233741AbiKHIGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 03:06:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233203AbiKHICj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 03:02:39 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32039A19C;
-        Tue,  8 Nov 2022 00:02:38 -0800 (PST)
+        with ESMTP id S233461AbiKHIGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 03:06:50 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37A641CB1E;
+        Tue,  8 Nov 2022 00:06:49 -0800 (PST)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A882Ew8073665;
-        Tue, 8 Nov 2022 02:02:14 -0600
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A886BAr088047;
+        Tue, 8 Nov 2022 02:06:11 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667894534;
-        bh=6XtgOCmcOebxwTAMGJJaIMOr0LLKjuEqe0CutpmiHJw=;
-        h=Date:From:To:CC:References:In-Reply-To:Subject;
-        b=YeT4DHP31A8Jg2MIMMb4/GYngYbVDu91nQYu6SAfl0cssK01FXOuSwXfoZ7vGpFwp
-         QaE8e8WLrnwXw1iIi9q7XO6B+ttX51x7NFuJZa+waFbHgjoaKCwiKGAsTf7847i68s
-         tgtBEVwFGL+1+06RmRt0qJhlsgtJ3oBeonlIiw5A=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A882EbO016525
+        s=ti-com-17Q1; t=1667894771;
+        bh=wY9z7UvZj24VC3mNio1jVMalD20CbZ1aaOEVGgiwzY0=;
+        h=From:To:CC:Subject:Date;
+        b=NfOT7oZ/R3Z7Aa0WN6kUTO9/qMXu7qxRNh6n57QM5Po9WYvF8UiBk9fFlcq7CuUDK
+         qtNywROZ/287/hK+q9V/+GcxJV6af0BBeQPnXHHRZgVBba3RvhFjeIlaKWF1lndTnb
+         G62v1ND74qValWCTeK2kjxuxnbVvcjUZ6EYzYFLY=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A886BBt018819
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Nov 2022 02:02:14 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 8 Nov 2022 02:06:11 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 8 Nov
- 2022 02:02:13 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 02:06:11 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 8 Nov 2022 02:02:13 -0600
-Received: from [172.24.223.232] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A8826rl032224;
-        Tue, 8 Nov 2022 02:02:07 -0600
-Message-ID: <5d049f9c-f86e-990d-6e81-168606172d63@ti.com>
-Date:   Tue, 8 Nov 2022 13:32:06 +0530
+ Frontend Transport; Tue, 8 Nov 2022 02:06:11 -0600
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A8866mC033956;
+        Tue, 8 Nov 2022 02:06:07 -0600
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v4 0/3] Add support for QSGMII mode for J721e CPSW9G to am65-cpsw driver
+Date:   Tue, 8 Nov 2022 13:36:03 +0530
+Message-ID: <20221108080606.124596-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Dominic Rath <dominic.rath@ibv-augsburg.net>,
-        Rob Herring <robh@kernel.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <tjoseph@cadence.com>,
-        <bhelgaas@google.com>, <lpieralisi@kernel.org>, <nm@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>,
-        Alexander Bahle <bahle@ibv-augsburg.de>,
-        Dominic Rath <rath@ibv-augsburg.de>
-References: <20221013062649.303184-1-dominic.rath@ibv-augsburg.de>
- <20221013062649.303184-2-dominic.rath@ibv-augsburg.de>
- <20221013191249.GA38183-robh@kernel.org> <20221014134114.GA307620@JADEVM-DRA>
-Content-Language: en-US
-In-Reply-To: <20221014134114.GA307620@JADEVM-DRA>
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: cdns: Add PHY latency properties
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dominic,
+Add compatible to am65-cpsw driver for J721e CPSW9G, which contains 8
+external ports and 1 internal host port.
 
-On 14/10/22 7:11 pm, Dominic Rath wrote:
-> On Thu, Oct 13, 2022 at 02:12:49PM -0500, Rob Herring wrote:
->> On Thu, Oct 13, 2022 at 08:26:47AM +0200, Dominic Rath wrote:
->>> From: Alexander Bahle <bahle@ibv-augsburg.de>
->>>
->>> Add "cdns,tx-phy-latency-ps" and "cdns,rx-phy-latency-ps" DT bindings for
->>> setting the PCIe PHY latencies.
->>> The properties expect a list of uint32 PHY latencies in picoseconds for
->>> every supported speed starting at PCIe Gen1, e.g.:
->>>
->>>   max-link-speed = <2>;
->>>   tx-phy-latency-ps = <100000 200000>; /* Gen1: 100ns, Gen2: 200ns */
->>>   rx-phy-latency-ps = <150000 250000>; /* Gen1: 150ns, Gen2: 250ns */
->>
->> These are a property of the PHY or PCI host? Sounds like PHY to me and 
->> that should be in the PHY node. No reason the PCI driver can't go read 
->> PHY node properties.
-> 
-> I'm actually not sure if this a property of the PHY, the PCIe host, or
-> of the combination of the two.
-> 
+Add support to power on and power off the SERDES PHY which is used by the
+CPSW MAC.
 
-Latency is mostly related to propogation latency through SERDES PCS and
-PMA layers.
+=========
+Changelog
+=========
+v3 -> v4:
+1. Fix subject of patch-1/3, updating it to:
+   "dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support"
+   and collect Reviewed-by tag.
+2. Rebase series on linux-next tree tagged: next-20221107.
 
-> We thought about adding this property to the PHY, too, but we didn't
-> know how to handle cases where a single PCIe host is linked with
-> multiple PHYs for multi-lane configurations (see TI's AM65x for
-> example). Which PHYs latency would you use to configure this PCIe RC?
+v2 -> v3:
+1. Run 'make DT_CHECKER_FLAGS=-m dt_binding_check' and fix errors and
+   warnings corresponding to the patch for:
+   Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+   with the latest dt-schema and yamllint.
 
-On AM65x, all lanes go through SERDES of same design (but just different
-instances) and thus latencies will remain same across lanes as the PCS
-and PMA logics are same. So, the delays are not lane specific
+v1 -> v2:
+1. Drop all patches corresponding to SGMII mode. This is done since I do
+   not have a method to test SGMII in the standard mode which uses an
+   SGMII PHY. The previous series used SGMII in a fixed-link mode,
+   bypassing the SGMII PHY. I will post the SGMII patches in a future
+   series after testing them.
+2. Drop all patches corresponding to fixed-link in the am65-cpsw driver.
+   This is done since PHYLINK takes care of fixed-link automatically and
+   there is no need to deal with fixed-link in a custom fashion.
+3. Fix indentation errors in k3-am65-cpsw-nuss.yaml.
+4. Remove the stale code which tries to power on and power off the CPSW
+   MAC's phy, since the CPSW MAC's phy driver does not support it.
+5. Rename the function "am65_cpsw_init_phy()" to
+   "am65_cpsw_init_serdes_phy()", to indicate that the phy corresponds to
+   the SERDES.
+6. Invoke "am65_cpsw_disable_serdes_phy()" as a part of the cleanup that
+   is associated with the "am65_cpsw_nuss_remove()" function.
 
-> 
-> Personally I don't have a very strong opinion either way - we just
-> didn't know any better than to put this into the PCIe host that needs
-> it. If you think this is better put into the PHY node we can of course
-> send a new version of this patch.
-> 
+v3:
+https://lore.kernel.org/r/20221026090957.180592-1-s-vadapalli@ti.com/
+v2:
+https://lore.kernel.org/r/20221018085810.151327-1-s-vadapalli@ti.com/
+v1:
+https://lore.kernel.org/r/20220914095053.189851-1-s-vadapalli@ti.com/
 
-I don't have a preference here...  Delays are dependent on PHYs being
-used but something that host needs, will leave it to framework
-maintainers.
+Siddharth Vadapalli (3):
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support
+  net: ethernet: ti: am65-cpsw: Enable QSGMII mode for J721e CPSW9G
+  net: ethernet: ti: am65-cpsw: Add support for SERDES configuration
 
-> Is there any binding that specifies "generic" PCIe properties, similar
-> to ethernet-phy.yaml? We couldn't find any.
-> 
-> I guess in the AM64x case the "PHY" is serdes0_pcie_link below serdes0:
-> 
-> &serdes0 {
->         serdes0_pcie_link: phy@0 {
-> 	...
-> 
-> This seems to be described by bindings/phy/phy-cadence-torrent.yaml.
-> 
-> Should we add a generic (without cdns) tx/rx-phy-latency-ps property
-> there?
-> 
->> If PTM is a standard PCIe thing, then I don't think these should be 
->> Cadence specific. IOW, drop 'cdns'. 
-> 
-> Yes, it is a standard PCIe thing, but we haven't seen that many
-> implementations yet, so we didn't want to pretend to know what this
-> looks like in the generic case. We can of course drop 'cdns'.
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 33 ++++++++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 73 +++++++++++++++++++
+ 2 files changed, 102 insertions(+), 4 deletions(-)
 
-PTM is definitely standard and vendor specific prefix don't make sense
-to me.
-
-> 
-> Best Regards,
-> 
-> Dominic & Alexander
-
+-- 
+2.25.1
 
