@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3575621F49
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D755D621F60
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:32:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbiKHWap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 17:30:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        id S229531AbiKHWcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 17:32:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbiKHWaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 17:30:17 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DA9FEF;
-        Tue,  8 Nov 2022 14:30:08 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id t62so17021378oib.12;
-        Tue, 08 Nov 2022 14:30:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WVr22nk4SndJ8H66JU2yibJo3CMhTG//flCyYnxoDWc=;
-        b=BYitRpomvygWCNAqEhv8R0GKmcsJ01hGJ6/ERY+NR2eA3w07wDIaBnnv89NkB2mlPl
-         Kh0AszQube+5QpFxpFv7wcVehvZKpcZDlIgq+VlqHe0I4cG9rgwKeAAZ0nmrGE0mA7DN
-         /ndHbh6g3N8rvyeSWJQFDxBZgkR+rMWYk6qgiAVMdRir3wqNPj+sT3cjj5EX4wmQkYoK
-         4XK45C7fZRKT3ap5kr7VkqatLw5YwxAmZyUHG2zkdOTL2jstD97Ka71gmGyzTk6UIFEd
-         Yc7G0iFn8gAqM/MCfxTbDPnNBumWvAZ9r6ZJoqPbUEJZfxtVxgyvCZ3O2m3mwH9UZiE5
-         Sc/w==
-X-Gm-Message-State: ANoB5plf8gySrPIkNLbJH4UWWiD5bTFNqavFN6W5CbMgiRvthXlIZTaD
-        Vhj8Nb5rUO09+u8lFYwmYQ==
-X-Google-Smtp-Source: AA0mqf6RlGieEbcl+dbrT/D28zOgZua9hO0IvxHXERfgLyfC27jlopKZRm2zIWGtIbWYsCWz7LHTjQ==
-X-Received: by 2002:a05:6808:d52:b0:35a:83c5:d8e2 with SMTP id w18-20020a0568080d5200b0035a83c5d8e2mr7905378oik.160.1667946607517;
-        Tue, 08 Nov 2022 14:30:07 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s41-20020a05687024a900b0012763819bcasm5224061oaq.50.2022.11.08.14.30.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 14:30:07 -0800 (PST)
-Received: (nullmailer pid 4095481 invoked by uid 1000);
-        Tue, 08 Nov 2022 22:30:08 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229516AbiKHWcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 17:32:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A691A15A3E;
+        Tue,  8 Nov 2022 14:32:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 42ED9617CF;
+        Tue,  8 Nov 2022 22:32:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFF5C4314A;
+        Tue,  8 Nov 2022 22:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667946753;
+        bh=C7cfJNnFHnwN+Dt+RBevE2dF73eXyltwRwAzsZdY/0M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hRwIVGcA/z119YdQcE4otRl/Y3HMv6/1zWWvYRwOs5guBXJh2SMBsNXs8iZetc9X9
+         N1E5aUqiyNMt0LCstBvFWq0c1cqPuVxP8rNqHQPim1z1Lr9ftMOyyJ/hPGjEBPOq5V
+         6RUPb6sOrlpMywK3vZVnfccdhDfYFMWohA+4AxkPOQkCHZeN7BkjlkEmxH0OGRJioA
+         U9jATc70EYJ4rGP929dE0UF/3Eea6XaixISj0SSXymTPzj4AHMvs9wcmAUSsljYwrW
+         RaWT/YKWWoIfkCSvkqI6LXC6c0GoSt22XH751dM2n6M+px2f7Kp9B+919EOUUa2FKC
+         w/9wPsgvl30SQ==
+Received: by mail-lj1-f171.google.com with SMTP id c25so23198562ljr.8;
+        Tue, 08 Nov 2022 14:32:33 -0800 (PST)
+X-Gm-Message-State: ACrzQf0FvKD3vjgLg2MKNZ2PI6hbKW5DFX21Dy96KiNKLddDXX1T+Zyr
+        A2+pYgiAJuWF2XUe1kqghUXZ1bqE6O3VsRkwEg==
+X-Google-Smtp-Source: AMsMyM79MD2K3KPMVXymYEssotlGplfJ1g3Tr8XMyNdqkAYV8JnBI2uYKzWBlsni9BR1wivgUkvUZa8W2XAfVOuMFMc=
+X-Received: by 2002:a2e:9a85:0:b0:275:1343:df71 with SMTP id
+ p5-20020a2e9a85000000b002751343df71mr7582015lji.215.1667946751374; Tue, 08
+ Nov 2022 14:32:31 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Steven Rostedt <rostedt@goodmis.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-gpio@vger.kernel.org,
-        linux-doc@vger.kernel.org, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221107204934.32655-1-Sergey.Semin@baikalelectronics.ru>
+ <20221107204934.32655-10-Sergey.Semin@baikalelectronics.ru>
+ <TYBPR01MB5341E18D15BF78FFD6FA9782D83F9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221108135218.v3jsla67372wt7ny@mobilestation>
+In-Reply-To: <20221108135218.v3jsla67372wt7ny@mobilestation>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Nov 2022 16:32:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLC04=JA6b0ezsm06-SUsEQix=hZLwTgVDuswa_+41qgg@mail.gmail.com>
+Message-ID: <CAL_JsqLC04=JA6b0ezsm06-SUsEQix=hZLwTgVDuswa_+41qgg@mail.gmail.com>
+Subject: Re: [PATCH v6 09/20] dt-bindings: PCI: dwc: Add interrupts/interrupt-names
+ common properties
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lee Jones <lee@kernel.org>, Hector Martin <marcan@marcan.st>,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        Petr Mladek <pmladek@suse.com>, devicetree@vger.kernel.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>
-In-Reply-To: <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-Message-Id: <166794645363.4092121.5573869968792780468.robh@kernel.org>
-Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Date:   Tue, 08 Nov 2022 16:30:08 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 8, 2022 at 7:52 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> Hi Yoshihiro
+>
+> On Tue, Nov 08, 2022 at 12:40:54PM +0000, Yoshihiro Shimoda wrote:
+> > Hi Serge,
+> >
+> > > From: Serge Semin, Sent: Tuesday, November 8, 2022 5:49 AM
+> > >
+> > > Currently the 'interrupts' and 'interrupt-names' properties are defined
+> > > being too generic to really describe any actual IRQ interface. Moreover
+> > > the DW PCIe End-point devices are left with no IRQ signals. All of that
+> > > can be fixed by adding the IRQ-related properties to the common DW PCIe
+> > > DT-schemas in accordance with the hardware reference manual. The DW PCIe
+> > > common DT-schema will contain the generic properties definitions with just
+> > > a number of entries per property, while the DW PCIe RP/EP-specific schemas
+> > > will have the particular number of items and the generic resource names
+> > > listed.
+> > >
+> > > Note since there are DW PCI-based vendor-specific DT-bindings with the
+> > > custom names assigned to the same IRQ resources we have no much choice but
+> > > to add them to the generic DT-schemas in order to have the schemas being
+> > > applicable for such devices. These names are marked as vendor-specific and
+> > > should be avoided being used in new bindings in favor of the generic
+> > > names.
+> > >
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > >
+> > > ---
+> > >
+> > > Note without the next dtschema tool fix
+> > >
+> > > --- a/lib.py 2022-09-29 15:17:13.100033810 +0300
+> > > +++ b/lib.py     2022-09-29 15:19:54.886172794 +0300
+> >
+>
+> > JFYI.
+> >
+> > git am command could not work correctly by this lib.py file:
+> > ---
+> > Applying: dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
+> > error: lib.py: does not exist in index
+> > Patch failed at 0001 dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
+> > ---
+> >
+> > If I used patch command and skipped the lib.py, it could apply this patch correctly.
+>
+> Got it. Thanks for the note. I'll either drop this part on the next
+> patchset revision (hopefully Rob will do something about that by then)
+> or make it less looking like a patch so git am wouldn't be confused.
 
-On Tue, 08 Nov 2022 16:33:27 +0000, Russell King (Oracle) wrote:
-> Add a DT binding for the Apple Mac System Management Controller.
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> 
+Now fixed in main branch. Thanks for the report.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/apple,smc.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/apple,smc.example.dtb: smc@23e400000: gpio: False schema does not allow {'gpio-controller': True, '#gpio-cells': [[2]]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
