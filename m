@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC55762181D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F27621830
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:26:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233878AbiKHPYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 10:24:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48026 "EHLO
+        id S234455AbiKHP0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 10:26:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234221AbiKHPYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:24:04 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A55B1EAD3
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 07:24:03 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id be13so21699193lfb.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 07:24:03 -0800 (PST)
+        with ESMTP id S233784AbiKHP0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:26:40 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C8157B7A
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 07:26:38 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id z14so21533515wrn.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 07:26:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9YFJOu0XDUwSMV4HlzPsBtzWFfjpA6oXKFrKM34sNA0=;
-        b=TXy8CXgst6eQgVXCjpwFhkbq1sDFn8ZQ1os/Paiuc5v/850VElNA4oCq6839IbZyFB
-         J+NTJ45xwMHQ0C4wlouPDhWflPkZwkkEnFtPtnY5qZhUQrptjq/cetkG8cba8RBoIOFo
-         zwSyeiY10I97lPYfnQyMxGcAqp6P5nhIFk0dojMpiblZkDIVRwGJkbr+8Zp0YdDzpCSi
-         MHKsC5yT8eMaP1bvFyrXXMvG5dk0HH6zXVpRfGPUYt82Azp7mTaZK1UfnRLdKGhtzjAw
-         RZ6mcZW5K/FRkLA5Q+I5Py+bdE772ldICSEG4Fc/dxm69b1Ba9AXNkPgmbQxJAjvX5C6
-         s2mQ==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TvR80LVdsscm0xWlfFqvwa6kHBrxAgN8E99bgym/lJo=;
+        b=J3PDOPYVI7z5KJUAMp6886HfsZb7DXUof/VnIwz777seMY66yrJDKyKGUdqPY+6lwO
+         NIpIQXOAVVZ2hF1//paiF4CVkVQX15ntXWQrBKsuRzdynVRgqPTBU/4caQ/U1h+tBn/R
+         wknXkAzfYmcxyANKMUwA/fsZlcoRks8JggoysodzqAw8xLRcOtJ0qyC9bhKIa47MLIYD
+         qOI3pn6cX3M4dW96Xffc1byO7bc3wYfUefruS6/RLQmVKOAI3I96s4lluYD9q2ohsAZG
+         qw70YuI4jQGtROnIYxwgoxichwM6p/+ufqMO11svF0tYzNt0kzdmflRL1FxxDuP7+Sdl
+         TrsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9YFJOu0XDUwSMV4HlzPsBtzWFfjpA6oXKFrKM34sNA0=;
-        b=ZXwZf2HLHtVnqy2sVoAvGphDRxwgCR8VY58iKdN25kn1gD5eF3M69Fnmk+iXWqfRSg
-         s3suCRcULB8aNBcKqbgLorln79KX354k4Xfbk47H0dk7Ip/sx3fYnAQl+QgRc1BWiBFo
-         D28UCyX2Y8K5P8A/Am6IaPpRI1b5acxwybqdyAvxzLt3EtU3yYd9yCanP2V1bb0e/I+c
-         0OBX+O8/R2dH4fOGQZDuN28lffXZBaHKlfM+shvvAJaPccBg8ult2GND+vbUedqgIEQU
-         9AXmgjVhjgH0o0lsJNF5KGBHcAwgeWXt4LJ0xF0n3MGVulC72RrJLGow8xkCNhFqg59T
-         RnqA==
-X-Gm-Message-State: ACrzQf1hu8cuGrg9veyj2wSUf9Fpk1SLuuA+DSpoQ+o7xuiw8J6iNqsm
-        hp4TxItth1d9aHklz69/qB7umw==
-X-Google-Smtp-Source: AMsMyM5DKj0dhTSmcnruS0GH7qH+RzTX6TXWLtlRXrs7TbVUtjZ13JLB+mXri70h5yH15nHfxXzhuQ==
-X-Received: by 2002:a05:6512:54a:b0:4af:b4ac:c2bb with SMTP id h10-20020a056512054a00b004afb4acc2bbmr18867249lfl.650.1667921041714;
-        Tue, 08 Nov 2022 07:24:01 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id c20-20020a056512075400b0048a9e18ae67sm1817239lfs.84.2022.11.08.07.24.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 07:24:01 -0800 (PST)
-Message-ID: <f2feffc1-2845-662b-b0ad-8f75e74edc03@linaro.org>
-Date:   Tue, 8 Nov 2022 16:24:00 +0100
+        bh=TvR80LVdsscm0xWlfFqvwa6kHBrxAgN8E99bgym/lJo=;
+        b=3VkBkp7ZvMnL419kkuTTJnTSM+xwfUaa/46XfzsfoSefbtBUcOKq97EHaLsSxEoqAf
+         4aaFwL7c7bcI1JcZ3xjGkRQJlhzLi3SA7iim1K6E+EIoYEcdKgKwR2SM0QjBBiFq1kHw
+         QUi4v8BSU+FyP+wupKItLtPQEf6dWhSMUJIfsNsfuQ5SRDpzdau9w/tRQiNYtw8PF5Gv
+         B0ZNHUbW/slSy/R4hum19iWl9vkETsDH/TMvNjj7dsU8fL53NFsiGO/166BoVvGI4NGc
+         cTUwN6rN4bQZ/YPXDXC8QIY6AJEOHSMXNXjtFGYzp179IyCs2X0EbBHqolrXWBxlk32M
+         PpHw==
+X-Gm-Message-State: ACrzQf1NUESi78nSAZEiN2urXLTf+T+sptqDCj+kQTd6w4LvW4deMLwv
+        YHp8WTFGgfR0enYHTYNhzleB
+X-Google-Smtp-Source: AMsMyM7e6GzNHw6noG4Qd92Gw20xjFP9RHVMX37w1xF2ibdF9F2SUqIM1P7HqesxoQo03Io2IBnnKg==
+X-Received: by 2002:a5d:48ce:0:b0:236:e7d2:f5f0 with SMTP id p14-20020a5d48ce000000b00236e7d2f5f0mr25767131wrs.172.1667921197242;
+        Tue, 08 Nov 2022 07:26:37 -0800 (PST)
+Received: from thinkpad ([117.207.25.46])
+        by smtp.gmail.com with ESMTPSA id k186-20020a1ca1c3000000b003cf4d99fd2asm11502430wme.6.2022.11.08.07.26.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Nov 2022 07:26:36 -0800 (PST)
+Date:   Tue, 8 Nov 2022 20:56:25 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     viresh.kumar@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] cpufreq: qcom-hw: Add CPU clock provider support
+Message-ID: <20221108152625.GB88842@thinkpad>
+References: <20221102090818.65321-1-manivannan.sadhasivam@linaro.org>
+ <20221102090818.65321-4-manivannan.sadhasivam@linaro.org>
+ <20221107223055.k6bc7bp7djww5lxg@builder.lan>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/3] arm: dts: nuvoton: npcm7xx: add sgpio node
-Content-Language: en-US
-To:     Jim Liu <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
-        KWLIU@nuvoton.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com>
- <20221108092840.14945-3-JJLIU0@nuvoton.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108092840.14945-3-JJLIU0@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221107223055.k6bc7bp7djww5lxg@builder.lan>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,68 +75,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 10:28, Jim Liu wrote:
-> Add the SGPIO controller to the NPCM750 devicetree
+On Mon, Nov 07, 2022 at 04:30:55PM -0600, Bjorn Andersson wrote:
+> On Wed, Nov 02, 2022 at 02:38:18PM +0530, Manivannan Sadhasivam wrote:
+> > Qcom CPUFreq hardware (EPSS/OSM) controls clock and voltage to the CPU
+> > cores. But this relationship is not represented with the clk framework
+> > so far.
+> > 
+> > So, let's make the qcom-cpufreq-hw driver a clock provider. This makes the
+> > clock producer/consumer relationship cleaner and is also useful for CPU
+> > related frameworks like OPP to know the frequency at which the CPUs are
+> > running.
+> > 
+> > The clock frequency provided by the driver is for each frequency domain.
+> > We cannot get the frequency of each CPU core because, not all platforms
+> > support per-core DCVS feature.
+> > 
+> > Also the frequency supplied by the driver is the actual frequency that
+> > comes out of the EPSS/OSM block after the DCVS operation. This frequency is
+> > not same as what the CPUFreq framework has set but it is the one that gets
+> > supplied to the CPUs after throttling by LMh.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/cpufreq/qcom-cpufreq-hw.c | 43 +++++++++++++++++++++++++++++++
+> >  1 file changed, 43 insertions(+)
+> > 
+> > diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > index 5e0598730a04..5b5f9a4d1466 100644
+> > --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> > +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > @@ -4,6 +4,7 @@
+> >   */
+> >  
+> >  #include <linux/bitfield.h>
+> > +#include <linux/clk-provider.h>
+> >  #include <linux/cpufreq.h>
+> >  #include <linux/init.h>
+> >  #include <linux/interconnect.h>
+> > @@ -54,6 +55,7 @@ struct qcom_cpufreq_data {
+> >  	bool cancel_throttle;
+> >  	struct delayed_work throttle_work;
+> >  	struct cpufreq_policy *policy;
+> > +	struct clk_hw cpu_clk;
+> >  
+> >  	bool per_core_dcvs;
+> >  
+> > @@ -615,8 +617,20 @@ static struct cpufreq_driver cpufreq_qcom_hw_driver = {
+> >  	.ready		= qcom_cpufreq_ready,
+> >  };
+> >  
+> > +static unsigned long qcom_cpufreq_hw_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> > +{
+> > +	struct qcom_cpufreq_data *data = container_of(hw, struct qcom_cpufreq_data, cpu_clk);
+> > +
+> > +	return qcom_lmh_get_throttle_freq(data) / HZ_PER_KHZ;
 > 
-> Signed-off-by: Jim Liu <JJLIU0@nuvoton.com>
-> ---
-> Changes for v2:
->    - modify dts node 
-> ---
->  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+> Shouldn't this just be qcom_lmh_get_throttle_freq()? So that we get a
+> value in Hz.
 > 
-> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> index c7b5ef15b716..9cac60734b57 100644
-> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> @@ -330,6 +330,36 @@
->  				status = "disabled";
->  			};
->  
-> +			sgpio1: sgpio@101000 {
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Right.
 
-> +				compatible = "nuvoton,npcm750-sgpio";
-> +				reg = <0x101000 0x200>;
-> +				clocks = <&clk NPCM7XX_CLK_APB3>;
-> +				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +				bus-frequency = <16000000>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&iox1_pins>;
-> +				nin_gpios = <64>;
-> +				nout_gpios = <64>;
-> +				status = "disabled";
+> 
+> I presume you got the division from qcom_lmh_dcvs_notify(), where
+> throttled_freq seems to supposed to be in kHz when passed to
+> topology_update_thermal_pressure(), as it contains a division by 1000
+> and a comment that it takes us to units of MHz.
+> 
+> But it's not clear what the frequency unit for freq_qos_update_request()
+> would be - but it's a 31 bit value, so better hope it's kHz there as
+> well(?)
+> 
 
-Why? What is missing from external resources?
+No, I think it is better to use Hz. Let me fix it in next revision.
 
-> +			};
-> +
-> +			sgpio2: sgpio@102000 {
+Thanks,
+Mani
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> Regards,
+> Bjorn
+> 
+> > +}
+> > +
+> > +static const struct clk_ops qcom_cpufreq_hw_clk_ops = {
+> > +	.recalc_rate = qcom_cpufreq_hw_recalc_rate,
+> > +};
+> > +
+> >  static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+> >  {
+> > +	struct clk_hw_onecell_data *clk_data;
+> >  	struct device *dev = &pdev->dev;
+> >  	struct device *cpu_dev;
+> >  	struct clk *clk;
+> > @@ -659,8 +673,16 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+> >  
+> >  	qcom_cpufreq.soc_data = of_device_get_match_data(dev);
+> >  
+> > +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, num_domains), GFP_KERNEL);
+> > +	if (!clk_data)
+> > +		return -ENOMEM;
+> > +
+> > +	clk_data->num = num_domains;
+> > +
+> >  	for (i = 0; i < num_domains; i++) {
+> >  		struct qcom_cpufreq_data *data = &qcom_cpufreq.data[i];
+> > +		struct clk_init_data init = {};
+> > +		const char *clk_name;
+> >  		struct resource *res;
+> >  		void __iomem *base;
+> >  
+> > @@ -672,6 +694,27 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+> >  
+> >  		data->base = base;
+> >  		data->res = res;
+> > +
+> > +		/* Register CPU clock for each frequency domain */
+> > +		clk_name = devm_kasprintf(dev, GFP_KERNEL, "qcom_cpufreq%d", i);
+> > +		init.name = clk_name;
+> > +		init.flags = CLK_GET_RATE_NOCACHE;
+> > +		init.ops = &qcom_cpufreq_hw_clk_ops;
+> > +		data->cpu_clk.init = &init;
+> > +
+> > +		ret = devm_clk_hw_register(dev, &data->cpu_clk);
+> > +		if (ret < 0) {
+> > +			dev_err(dev, "Failed to register Qcom CPUFreq clock\n");
+> > +			return ret;
+> > +		}
+> > +
+> > +		clk_data->hws[i] = &data->cpu_clk;
+> > +	}
+> > +
+> > +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to add Qcom CPUFreq clock provider\n");
+> > +		return ret;
+> >  	}
+> >  
+> >  	ret = cpufreq_register_driver(&cpufreq_qcom_hw_driver);
+> > -- 
+> > 2.25.1
+> > 
 
-> +				compatible = "nuvoton,npcm750-sgpio";
-> +				reg = <0x102000 0x200>;
-> +				clocks = <&clk NPCM7XX_CLK_APB3>;
-> +				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-> +				bus-frequency = <16000000>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&iox2_pins>;
-> +				nin_gpios = <64>;
-> +				nout_gpios = <64>;
-> +				status = "disabled";
-
-Why? What is missing from external resources?
-
-
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
