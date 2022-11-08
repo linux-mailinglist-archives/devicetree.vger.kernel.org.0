@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 596B76211B1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 14:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 588CE6211B9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 14:01:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234315AbiKHNAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 08:00:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43204 "EHLO
+        id S234319AbiKHNBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 08:01:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234309AbiKHNAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 08:00:32 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161C1528A2
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 05:00:31 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id z24so20980923ljn.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 05:00:30 -0800 (PST)
+        with ESMTP id S234310AbiKHNBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 08:01:14 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF57528A2
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 05:01:13 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id x21so20957843ljg.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 05:01:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+kDjx/qzL2eh0m5wmlwsVx4x6L1R0dhYWzrrpOUccM0=;
-        b=BQCNeJKIieoDBIAbTLQmr5SsfrzWxJdQ8odb739ZpsbXnIIoXJ6kKQ/uR5prOyAsIG
-         E30yRLq11cpGe2l49t1UE5Anm28aOSCFL8ol1Mv2clj500sTbHvTz/+HqpzWjuvVE4mh
-         lzxVUAG3FEKOwMU3Eo8n2YSjIwzipRG0K0eAuolBakV6utWJ3dhNe4gseNClVc4PD17P
-         DNnOLCEKqJIu5AFswLkR2bFMniFJTvYL+NSfBdHlryHJtQteSOuUgcA+1QhEKSxl1/sk
-         oJstNBKCEyiAEJ+APCyg0uVqXTrGpfLA0k6ca6mGu2Wem87mbFak5IoAcMX5He0Ibrah
-         9yOQ==
+        bh=o2KBnjP+nSiovlrgCNq3pgnMfvwR/TgjyTkfX/lxAXY=;
+        b=B1NLcQxYD/tx2pF3yzopjY1j/+5ZIQBGNS2nBPNbnSEbAaWVMjzgybAcu8U73wnSpS
+         2p6Wl/qwuoxfmZpHd4pLS6PNPs01SywKDuEOkq/q9Ll06Uhqm9dlrj5PlresGVgbve64
+         81jMN8Is3/iJqmZxDo7rnXCEDUqiUT60X5AEQtVsfFO+9JPBb1eHrIMgmHyC84lpfQty
+         9u8nsXg0URwU1h2oRYR5vAB2D5t6Snyqq+Yxr9V/yyuKVp2JYkbfKX1XfxXOF1yYSOwy
+         F5+k72GuWuWwlibeltt6Y62hytjwcAWnJqWAeXfoAy6vj5S9H50BOjRbtsk+tq78j1X8
+         3IQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+kDjx/qzL2eh0m5wmlwsVx4x6L1R0dhYWzrrpOUccM0=;
-        b=ya7PC2fZT/Hz2qpth6JgehUnyBLXODVKAPQ5BjhHDoVWevcoeolXfXaf8bO5BY/0X5
-         UXDtgHxV4sFdwN3+MKTu6dGeG0sn2M0FHt/aIdiG57px3Mi2oGNKiEEN49j5BARLTOKb
-         7PJfdm5a1H6oIiJAYp3WYxFL9HuJE8QsIsGpP2lEqq1CeY5iiKz0m1vUR6K3nll+/ilm
-         kF+KvvhFdXrYtmgb1cR/eiLy+M1v/NHfUbpuqRlm67j/G6mLQZbcpx2/sHPokLUQicYJ
-         2I+AMxvULzBS4n4nJhR51zH0+fn23/D6T1nTvfeXzsg84y0bGEO/1miGD67/bQC17BzV
-         B8PA==
-X-Gm-Message-State: ACrzQf3OSWDAnjP4yzb5jqvbeoHwMFDwJnyWk6h0aAY6VAmF1VuZ53RM
-        QB9hfmZWmbsufusE8CXIQailuw==
-X-Google-Smtp-Source: AMsMyM6qrseYnJvmYhGPEvo2m0jeaZaM8yLMkfFFJSe2l9UtWRUdVcy9J/LnwHDzusZVXXYtM7zxpw==
-X-Received: by 2002:a2e:98d0:0:b0:277:979:85da with SMTP id s16-20020a2e98d0000000b00277097985damr18057672ljj.23.1667912429363;
-        Tue, 08 Nov 2022 05:00:29 -0800 (PST)
+        bh=o2KBnjP+nSiovlrgCNq3pgnMfvwR/TgjyTkfX/lxAXY=;
+        b=I6ZBn+yQdhyzI47wQ3mwMrDOifFRlV2kzZa7HXMkmOXlgfDno8j7XoqZS0EeCYE+R8
+         5Dhh2oH1HPjKWq1pauGA46SS7BYewM20fwuGPJ1nXUsdQLFpCnXWX5WyQwbajdbzoT/M
+         eKB2CETSuNtvSQl+bcDChFYtkjNjdZFwRx80fIwKMo6NXXClmOyQz4pjDUHioQfFHJgj
+         hVXAzV2x9GO4GhnggHCDFjjwXPlKC0Er0Nd+m9H44f3p5x0RGt7zhlreef0/d9+ztbeA
+         IOEO080OrGxyigI0tLIEMKNbmdG4cXbwVDwy9qVd1+1zpcSfTp1kgdB6WfB+OK5y6D82
+         DW9A==
+X-Gm-Message-State: ACrzQf2MhvbFD8StmNtB/R9dhSBahwxvcOO662/c+/TNydUWhDUnpjb4
+        s13p3puTzuZtpSRVOe+w8sCacw==
+X-Google-Smtp-Source: AMsMyM66xrug6V/sv7oOh3M+8rA31Sg6TAYX3OsMnAX7+YblTowGVcUPAZ+KslM0y4845evMIBVXVA==
+X-Received: by 2002:a05:651c:178a:b0:277:8a07:a558 with SMTP id bn10-20020a05651c178a00b002778a07a558mr5264594ljb.333.1667912471539;
+        Tue, 08 Nov 2022 05:01:11 -0800 (PST)
 Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b0049480c8e7bcsm1774176lfg.176.2022.11.08.05.00.28
+        by smtp.gmail.com with ESMTPSA id h7-20020ac250c7000000b004a2386b8cf5sm1767451lfm.215.2022.11.08.05.01.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 05:00:29 -0800 (PST)
-Message-ID: <eb36741a-6e07-402e-b707-0eb0708f6b9d@linaro.org>
-Date:   Tue, 8 Nov 2022 16:00:28 +0300
+        Tue, 08 Nov 2022 05:01:11 -0800 (PST)
+Message-ID: <228c9136-0c52-af0b-459e-23c9f7ee08f3@linaro.org>
+Date:   Tue, 8 Nov 2022 16:01:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 04/18] dt-bindings: msm: dsi-controller-main: Fix clock
- declarations
+Subject: Re: [PATCH v2 05/18] dt-bindings: msm: dsi-controller-main: Fix
+ description of core clock
 Content-Language: en-GB
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
         quic_abhinavk@quicinc.com, krzysztof.kozlowski+dt@linaro.org,
@@ -66,9 +66,9 @@ Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
- <20221107235654.1769462-5-bryan.odonoghue@linaro.org>
+ <20221107235654.1769462-6-bryan.odonoghue@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221107235654.1769462-5-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221107235654.1769462-6-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,12 +82,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/11/2022 02:56, Bryan O'Donoghue wrote:
-> When converting from .txt to .yaml dt-binding descriptions we appear to
-> have missed some of the previous detail on the number and names of
-> permissible clocks.
+> There's a typo in describing the core clock as an 'escape' clock. The
+> accurate description is 'core'.
 > 
 > Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > Cc: Rob Clark <robdclark@gmail.com>
 > Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -102,43 +100,26 @@ On 08/11/2022 02:56, Bryan O'Donoghue wrote:
 > Cc: devicetree@vger.kernel.org
 > Cc: linux-kernel@vger.kernel.org
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-However it might be easier to move this patch after the patch adding the 
-per-platform compat strings. Then you can push these items into the 
-clauses where they are required.
-
-> ---
->   .../bindings/display/msm/dsi-controller-main.yaml         | 8 ++++++++
->   1 file changed, 8 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 0f7747e55b9be..cab38a20a54b0 100644
+> index cab38a20a54b0..a607ccd4a905a 100644
 > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -35,6 +35,10 @@ properties:
->         - description: Display escape clock
+> @@ -32,7 +32,7 @@ properties:
+>         - description: Display byte clock
+>         - description: Display byte interface clock
+>         - description: Display pixel clock
+> -      - description: Display escape clock
+> +      - description: Display core clock
 >         - description: Display AHB clock
 >         - description: Display AXI clock
-> +      - description: Core MultiMedia SubSystem clock
-> +      - description: MDP Core clock
-> +      - description: MNOC clock
-> +    minItems: 6
->   
->     clock-names:
->       items:
-> @@ -44,6 +48,10 @@ properties:
->         - const: core
->         - const: iface
->         - const: bus
-> +      - const: core_mmss
-> +      - const: mdp_core
-> +      - const: mnoc
-> +    minItems: 6
->   
->     phys:
->       maxItems: 1
+>         - description: Core MultiMedia SubSystem clock
 
 -- 
 With best wishes
