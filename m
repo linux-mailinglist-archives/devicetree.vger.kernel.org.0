@@ -2,74 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 789B4620833
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53215620844
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232060AbiKHEVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 23:21:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47082 "EHLO
+        id S232125AbiKHEgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 23:36:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232307AbiKHEVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:21:12 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B56B18E24
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 20:21:03 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id gw22so12657275pjb.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 20:21:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3SfqLAbIddyq76wOhovHVJdZznkWEzSpDefKEM7fw48=;
-        b=JIPRYFMoxy3GfAJ8By4TEu05YaVP1ntog5Y9wfjBHbFI1pS5m1s0/JiB9eBWyuxgRs
-         0d4P4UZ4vPDsNtFUnv4GxztfLBlFtpjOiBeHFieTSpPDV2eF6EeOrHaJX6plPhQ34F3w
-         NDtQwNc7pWMxanGPjLm8ziu+H56nHbzmXNyTJm/MiMdm4aGS/2EnyHjpHA41vfCOcdkk
-         PZYkoCZKIO9P2X7ul2+Brtdrn31FQo4Aagnu5OsEx780t6woauhvhYEAvhfUjk8RRfFn
-         Y1i98rgs9vswK1e9wRByWf0TlSpa1oD0/+RnVPkKSHpOqiPHpkhoezw0CyhuWqJvao1G
-         dkcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3SfqLAbIddyq76wOhovHVJdZznkWEzSpDefKEM7fw48=;
-        b=lCRk9P91xtYCu1vvqNJoUh9Igwvkpl6jsjuVrVDdNPKOF8ScZnLQ6DU0FtRhZVQCm4
-         DkiQRrWSRIzPSU/Q/OoVOYhAZ5UEbLC6KLzENFsJXdhyDBaRTihTNR5zjioVxPQY5dmw
-         RYOaDNipvjwCinElDF/oLin/NT02R9d155d7b51eWdAQTO7Um7HK+9481I6HTiuqfohw
-         kIA1igkvGHhD/ipaWQqEEaOlXygDCAMrYG3d3hnRuICKrL2mNbq4AfB0mHp9Jjdx4evK
-         o9Z5CESUkFl+Uv25ivkOgyW/t/HT2qRrP6k3XJi6yLGw0+7Tj8bNAWaGokZXxODWhqgJ
-         Nt5A==
-X-Gm-Message-State: ACrzQf3Yj+Cb37tCRpcygoo/iq8hbCjKeo5BnOe17QuOAZK/nOKSfiDb
-        IzxehqArILVh3jeKCO3V9lVgTg==
-X-Google-Smtp-Source: AMsMyM6rouWEqC5wyKoVUJdp0gW7NIB8ViQoUIR9P8lG8d913aUjGMtR7fXDusx8RWaiFC72isNXQA==
-X-Received: by 2002:a17:90b:33d0:b0:213:137b:1343 with SMTP id lk16-20020a17090b33d000b00213137b1343mr55451053pjb.128.1667881263179;
-        Mon, 07 Nov 2022 20:21:03 -0800 (PST)
-Received: from localhost ([122.172.84.80])
-        by smtp.gmail.com with ESMTPSA id k4-20020a17090a39c400b00211d5f93029sm6873798pjf.24.2022.11.07.20.21.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 20:21:02 -0800 (PST)
-Date:   Tue, 8 Nov 2022 09:50:58 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: opp-v2: Fix clock-latency-ns prop in example
-Message-ID: <20221108042058.o7xuzkuokykv5xcs@vireshk-i7>
-References: <20221107204355.31971-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S231659AbiKHEgd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:36:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF2B2183B;
+        Mon,  7 Nov 2022 20:36:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D89436142E;
+        Tue,  8 Nov 2022 04:36:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D60BC433D6;
+        Tue,  8 Nov 2022 04:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667882191;
+        bh=9xpt49gT45y/+nP1FfaBQXR9URrzOWIJn66IA+DB+sk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HjCBJUeBgGz2ODaX1HRfOnfsBtvMUnH2fl3S2+1qoij+ELta2STas35VnJ0cZE8On
+         /AmM2XQk8QBDzICPthsipx1OgPsvRb1+Zsnshrz+QPQQZzUHMDPIHG0cyMPpf4Zt8+
+         pHH5uDOjqMiX6XnDCeYBW9OgN7f06gEwrCuoLUZ2CFJMv/xhJuQ8QR67eaIWUYMyWQ
+         PUkq/n+3z4fDK7h0d4r9MD/CkgCMB5mwk9P4n6/0C0CkvChi3Xg3yrLHklhmZ0EueJ
+         hvjAQEc/TNEwIVg4OAHp4gOA3ywFvJKY9ED4T7vYB2wU2VFnqCi0+JqqZWpFIVzLWs
+         zRYGIPwHBb/Yw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        will@kernel.org, robh+dt@kernel.org, joro@8bytes.org,
+        konrad.dybcio@somainline.org, dmitry.baryshkov@linaro.org,
+        robin.murphy@arm.com
+Cc:     iommu@lists.linux.dev, quic_saipraka@quicinc.com,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [RFC PATCH v2 01/11] arm64: dts: qcom: msm8996: change order of SMMU clocks on this platform
+Date:   Mon,  7 Nov 2022 22:36:25 -0600
+Message-Id: <166788218325.625965.13235761598838044244.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221102184420.534094-2-dmitry.baryshkov@linaro.org>
+References: <20221102184420.534094-1-dmitry.baryshkov@linaro.org> <20221102184420.534094-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221107204355.31971-1-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,18 +58,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-11-22, 23:43, Serge Semin wrote:
-> Accidentally discovered a hidden typo in the DT-nodes defined in the
-> opp-v2 bindings example. Instead of specifying the "clock-latency-ns"
-> property the DT-node has been created with the "lock-latency-ns" property
-> in it, which doesn't exist neither in opp-v2 nor in the base schemas.
-> Let's fix the name to having the "clock-" prefix as it was originally
-> implied and as the rest of the similar nodes has.
+On Wed, 2 Nov 2022 21:44:10 +0300, Dmitry Baryshkov wrote:
+> Change order of SMMU clocks to match the schema.
 > 
-> Fixes: 94274f20f6bf ("dt-bindings: opp: Convert to DT schema")
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
 
-Applied. Thanks.
+Applied, thanks!
 
+[01/11] arm64: dts: qcom: msm8996: change order of SMMU clocks on this platform
+        commit: d6e636787d462c047a424dd442b68a249edde2a7
+
+Best regards,
 -- 
-viresh
+Bjorn Andersson <andersson@kernel.org>
