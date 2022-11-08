@@ -2,112 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA2862174B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FDFC62175E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233704AbiKHOsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 09:48:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53372 "EHLO
+        id S233920AbiKHOvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:51:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233938AbiKHOs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:48:28 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3399E58BC3
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:48:08 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id kt23so39178290ejc.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:48:07 -0800 (PST)
+        with ESMTP id S233956AbiKHOvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:51:08 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B67814022
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:51:07 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id bj12so39142463ejb.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:51:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=udlUQxbpymKCwohxFY8X9JBSfOjmetBU5zbQOm9wbdg=;
-        b=flNVoZG0dQayUX3DheVklirArChf7wKr16/xVvQxkvag0tVM5K9IwITBbykd7tROsH
-         fTL90PtV9yxmU3v0EDxiW4LmInWBtlAD2Gz1AeXSvyXwb/m1ScBQ1Kj4VPMrhsUtqCRp
-         8uGw1qzKnNqzT3B62BdTmwZwQm9ID5XDxOPhYGbJqz+P3frFIg/TSeCCq/KpfhDQFygO
-         fUAvZgvalmOlTjuBhF6fenKHF5SyLjE2/EE1eyubAwxTyzxd4LhaltcuSBXswa8BDCqH
-         3w+rbdtmvtqlj4k+id3pCqyMTapYSycxr3ffl3bk2lKZMn08xhsV8uPWPZ2eeJss53up
-         AQuQ==
+        bh=5RfhvWt1Tv41V7xOdh182isXRfcqnMCvMMU4ZxjHa4I=;
+        b=vgPgq/fKoy91SWpS9t2e6oRNux2GYZ11uz4nq69Ecusn/WQxEr9PnRkXeciq96q9Kf
+         Y/uc1JXxwDcE7DZk4ERIHWnMD3xCOKQOkmZ9szh6zLYAHlS8jB3/9Vzu0GTEcRvD273p
+         QcJzqGu94FAUp4fND/CyiussZorc4AISQgkF6NZxvG/MLLVHHNxJkea27kaoeMZFf8NM
+         MrPmIrciQQHldO1W0L/ICYsoJczxk/E5K1ku/kfcnyWtcEYwFARIfMuiqAHSi0RwOReo
+         3xg6N55uGAcHesseexA8+25xPiouSe/QNOgAQpSqMWJsa4JVGZPnnvoO6B0S9mYDKIX0
+         HTaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=udlUQxbpymKCwohxFY8X9JBSfOjmetBU5zbQOm9wbdg=;
-        b=jumSAGDXm+CnwVNmL/VsLIldIEbgfbUtxfetexJQcaChYoke0dhmx/KGqmGydm1gyx
-         Tk8mLGAiX6lUGJEyrkcGehg4VuNrv0B5f4nXa7yre4Cp77bOAtXAKP3bViT7sYBKNX3R
-         FiitYeEZUmGCITZv+Upz27cSaJceRc3tEOO8QkBdtZy4hGGi5s9ipZomKtN+MtRAaY2l
-         gfo6Je6AFIHZOchWBMKrJG7yAOOitDUXqXIsgqKEHs1wBu2eIBUka4FQYiuMWM+he9SF
-         SAVqvjrkVffCkFvVZdOc95wtd5SUc3Vb9IdIcZzWgVaY0wbCQmTpHWp/3/SvCJ2CajOS
-         xcjA==
-X-Gm-Message-State: ACrzQf0/Uljg3lYhsV9dpIZfPWlK3pQ4Q7o//A/sj0wgBvoYIBxjfn2b
-        xp/gv6wNRXVbt0R31cy9ne1Ed4UPBQ3/5ZrzM9S7vw==
-X-Google-Smtp-Source: AMsMyM6wPLp+JJnawhuS9S6jZpX6mhnsHwb+BX87E31yK1EBAt+OPX86JS7UErDrFwQ1Vj7NhSGbHK0eVyErspJyIwA=
-X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
- d11-20020a1709064c4b00b007ada197b58emr54380391ejw.203.1667918886588; Tue, 08
- Nov 2022 06:48:06 -0800 (PST)
+        bh=5RfhvWt1Tv41V7xOdh182isXRfcqnMCvMMU4ZxjHa4I=;
+        b=nAD8UuK7B1/GbNhOwQt6N+QVCFS7YIEbwV+s9ZbWii1Alb0xRBIGPDy3hU35e7+9J7
+         JTYX2JuOVOSQefjJvGVdtB9KyalWEJWDPeMPeCmu8j0jk/q8jMoUZToD2MhvewtuoQ9P
+         ipf3KK2HWQE2ZsgxrJhED5+oiyGFCppRvjIMPIuqZoe+8ZnaSZ2rZJS0HsghPk8ka7K+
+         zQAyy9O96LIAoBZMYkQGlJ2ETDfP+uJwzA+9JUOCK+Gdbs0xfg3hzv+BlpEuez7t+vaj
+         RVV9UhBU3qTzxyM9GBilhBw9m32kpA7/DJ5pjK8bF82BVzD4XPY3fUvx0KJafBWtfnSd
+         1nUg==
+X-Gm-Message-State: ACrzQf2he0VfHrqX6uX0X0eDUILxlhXqe6XfQ6qe9RerdEjAEE0s+5NW
+        zs/NWTn4pDSQVOPgytMh0Z6eENZb3Eood7t5QvnkEA==
+X-Google-Smtp-Source: AMsMyM43GACP12dQZV6v3KIC5Qxaj6QVCASShwmiPx6+SaG+30Y/RBMbREK4KJlCmGU7p1c/8UJC8IQmuja8j8BZsDc=
+X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
+ ga30-20020a1709070c1e00b007ae31a0571emr21471098ejc.690.1667919065615; Tue, 08
+ Nov 2022 06:51:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20221103141155.1105961-1-jagan@edgeble.ai> <20221103141155.1105961-4-jagan@edgeble.ai>
- <CACRpkdYEW4z6EZ7UC9wT3NtRVnE=0L6AAHJDxtu5Jb-UrB+WSA@mail.gmail.com> <CA+VMnFxyx=NP2QUiJ6RnfapZ9c=S4-cj+0kQn8PYyaMTBP3i-g@mail.gmail.com>
-In-Reply-To: <CA+VMnFxyx=NP2QUiJ6RnfapZ9c=S4-cj+0kQn8PYyaMTBP3i-g@mail.gmail.com>
+References: <20221025070255.14407-1-linux@fw-web.de> <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
+ <trinity-889b4468-8a50-4eae-80a1-6bd9ffbeaaf2-1667577856206@3c-app-gmx-bs24>
+In-Reply-To: <trinity-889b4468-8a50-4eae-80a1-6bd9ffbeaaf2-1667577856206@3c-app-gmx-bs24>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 15:47:54 +0100
-Message-ID: <CACRpkdaZnGgJ3egXEtoH0gTmR0m_-9Q+iGZr2eOx2JVHYgXCXA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 8 Nov 2022 15:50:44 +0100
+Message-ID: <CACRpkdZFkeX7J9R2C0rhF+WZJXe65y6FfeBEMBGGkSTh4AWmsQ@mail.gmail.com>
+Subject: Re: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for
+ MT7986 SoC
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 8, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
-> On Tue, 8 Nov 2022 at 19:31, Linus Walleij <linus.walleij@linaro.org> wrote:
+On Fri, Nov 4, 2022 at 5:04 PM Frank Wunderlich <frank-w@public-files.de> wrote:
+
+> > Gesendet: Dienstag, 25. Oktober 2022 um 20:35 Uhr
+> > Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> > Betreff: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for MT7986 SoC
 > >
-> > On Thu, Nov 3, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
-> >
-> > > Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
-> > > dot matrix LCD with 800RGBx1280 dots at maximum.
+> > On 25/10/2022 03:02, Frank Wunderlich wrote:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
 > > >
-> > > Add support for it.
+> > > Add new splitted uart pins and emmc_51
 > > >
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > > ---
-> > > Changes for v3:
-> > > - updatd to WXGA
-> > > - use JD9365DA_CMD_DCS and JD9365DA_CMD_DELAY
+> > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > >
-> > My comments on v2 have not been addressed, for example I asked to
-> > remove the delay from sequences and just use an explicit delay and
-> > to then use the existing sequence sending macro.
+> >
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
-> True, I responded on the same day [1], since I didn't get the reply I
-> have posted by assuming my comment is valid. Would you please check
-> and respond?
+> after talking with MTK for the emmc pinctrl settings (custom pull-up) they suggested me to change
+> binding to fix other emmc-values and allow multiple (2) uart-items
 >
-> [1] https://lore.kernel.org/all/CA+VMnFz0w-6O=wt3iuJo1BhQgPZ2XbpX6JdDz6vg_JW9nHTR2A@mail.gmail.com/
+> so on top of this patch
+>
+>              then:
+>                properties:
+>                  groups:
+> -                  enum: [emmc, emmc_rst, emmc_51]
+> +                  enum: [emmc_45, emmc_51]
+>            - if:
+>                properties:
+>                  function:
+> @@ -231,10 +231,12 @@ patternProperties:
+>              then:
+>                properties:
+>                  groups:
+> -                  enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
+> -                         uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
+> -                         uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
+> -                         uart2_1, uart0, uart1, uart2]
+> +                  items:
+> +                    enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
+> +                           uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
+> +                           uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
+> +                           uart2_1, uart0, uart1, uart2]
+> +                  maxItems: 2
+>
+> i would squash these changes and send as v3 or should i send an extra-patch?
 
-OK I see, sorry for not reading close.
-
-The driver just supports one single variant.
-
-What you are doing is preparing the ground for more variants
-that may or may not exist. This creates the antipattern "big upfront design"
-i.e. abstractions added for things that do not yet exist.
-
-I think it is better to strip it down to just open coding the delay after
-the init sequence. When the next variant appears, if ever, they can
-add abstraction. Maybe they need the same delay in the same
-place? Who knows...
+Squash and send av v3 if you haven't already! Easiest for me.
 
 Yours,
 Linus Walleij
