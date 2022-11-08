@@ -2,132 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 180D1620F14
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2023620F1F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:31:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbiKHL2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:28:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39172 "EHLO
+        id S234083AbiKHLbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:31:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233941AbiKHL2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:28:30 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B0A4C240
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:28:27 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bp15so20738654lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:28:27 -0800 (PST)
+        with ESMTP id S234099AbiKHLbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:31:00 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029344E416;
+        Tue,  8 Nov 2022 03:30:56 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id l11so21994834edb.4;
+        Tue, 08 Nov 2022 03:30:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/4bF5b4uSR+PiYI+2EWUk5/vuKUO/CvUGHdFYYb5oFo=;
-        b=eQF7DappUd2N5b981o9yxaOb99guRAo/uqgsDGSn0OHT6KEsr9JBcQZsnjJryaoGQu
-         Lzd7refSfqCHKxgt/iggiTidS17wYvvC5/njGYkdC7HWK5XCGhl+Eogk13MTtcjuyj7w
-         dDDkX4Lov7LGbMfUDGJqQdlf/PwCVg5LcwJ9numup5jCw/DOl9OZUsByaXBbjqTwsT+N
-         YjxwKE0BouFoXlnRZnOaxl0uOnh8gTFc0/DyiJACGRQzvjg0M9eiPLWCNRjcV6KeTg64
-         ORO/CyTHsaZuXplWrTB4h9ClRxhgLqDCGVJvYxeY4MqGlvWkP1SUxntZZmZmFEsL+YO9
-         0Fzg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wL2n7EuR8P7CPo0/whRos0A/zGJ3McpJONiv/y4QNg0=;
+        b=VtOnZxabcY1KU2EIYSidXphIP4a2KBXFBW9VWRN2obDePoy4eePXqw7w0J7Q1i1B4w
+         36YTNcyp+a4QIZKnj6/Tx+aoQrQOwq/CsATs7f+cMqGr7Jy2yMmryF9ELgzS1pXLDBUQ
+         828hePRKAWWigWt4Z8GMI7LqWVSQyfRs88qBDx4MRYytVsVE+5wFhGqtAebkI+pVfard
+         LEP99eK1ntYfarG5h9uwcXkElJzvRhtd2dLQ3/u7NO5FuXG4M9zkgUXlhnth2KYvC9jM
+         jCabGVOzJhvIbn4uPPOoSNn0+OtQGsSW/FTSjXWA0f+nSMydyvdpvWOsInxiZjDl0pH2
+         3l0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/4bF5b4uSR+PiYI+2EWUk5/vuKUO/CvUGHdFYYb5oFo=;
-        b=pjrC1AvOrRtgLd/F5nqysxlp82HSWu/CRy5LvsphHdNnxGmIjV4bPoushiBkK7Nx4k
-         CO/ERxxGrdznvRlYciYYqDJJUD/QXYORLmcGYyvpFT3xxe0L21PvMjCQUHPe2YX/Chca
-         cc+XAelZ0IslN1RXH5x/FtM2ut72BurK2pY0obAzAs9NYbTG78ElXRis0yaZRWT01oDi
-         3L3BJOZCU5Jt/hMig+ExPPKEdICOf6sJG7PAT6qg2hfRbhTyMCLcWaIKCv2LyOIRpiIQ
-         9ikQVrMCZnwOrit7OT3seT1dt+mYlhSoThRCGdcdiWmeT7lDhQ2YhW/4svM8YuLlKbeB
-         T+Zg==
-X-Gm-Message-State: ACrzQf33y/2gno0RxUzi54Z4xI6VVMBtrBt6xB3iy/FfP7iHDwRlnJJL
-        YMd/RXxJ6qFnVhZNE7fAKb+P5Q==
-X-Google-Smtp-Source: AMsMyM4yHGNR2Ct1uNwRmvEy3UsNs7Pg4gtxGic+wGvnBCnfwKCtFXI0kII1QiSaoswtC8dY0bIHIg==
-X-Received: by 2002:a05:6512:150c:b0:4aa:f81e:6c17 with SMTP id bq12-20020a056512150c00b004aaf81e6c17mr20752532lfb.275.1667906906320;
-        Tue, 08 Nov 2022 03:28:26 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id v21-20020a2e9255000000b002776ce08326sm1699183ljg.29.2022.11.08.03.28.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:28:25 -0800 (PST)
-Message-ID: <fd9ee5df-0b9d-59c1-92c6-4874312aae1c@linaro.org>
-Date:   Tue, 8 Nov 2022 12:28:24 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wL2n7EuR8P7CPo0/whRos0A/zGJ3McpJONiv/y4QNg0=;
+        b=MHlTFqls2t+VBJGLLn+5CD+Ug9qUfpg0U9r2K3WSsffsZ7IJLqsGjH3vH+OFHYRZZ2
+         xbuWS4cWZTKanbIppotsawRODfxUAblK5LvM7GBgy/tEZoMN0rJQtCeFwsCDkCAEGZ8m
+         sXEXkHrf/VU1wF0bgLyKjw6zvLqDE5hSD8R6T9ThZNF3P7lnYguIwTaJdvWTARHoF2ff
+         mZaP/5WPBOi/3EOu7NjL5ySa7HJGNxR/KYR7tzQ5kpJwhJQGKa3sS+gxzqcvOnRRzuXM
+         RD8KB059jLN/JGUfQ/l7ROJa44u78qs1jrO3+RtidwWyzCJGgjuhZgAgF+HJwszA6JK3
+         tnoQ==
+X-Gm-Message-State: ACrzQf1GNdISA+cTJEbi8AheTACylXlGM6b0AzzTgecvzMJ6T6LnE/TW
+        DqwNlrt0m8hn6uKhzSRFoAWDPs1QyJxnUn1LIIg=
+X-Google-Smtp-Source: AMsMyM4TBJguhG8wh+Yi9QFwi2sB7qSY83X5NZglly7UHCWA+t0R5H1JdMwglw8UX1bGl5CflUNXw5SYunnMYZL5UWg=
+X-Received: by 2002:a05:6402:3217:b0:461:d6d7:7f19 with SMTP id
+ g23-20020a056402321700b00461d6d77f19mr33920546eda.109.1667907054452; Tue, 08
+ Nov 2022 03:30:54 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 5/7] ARM: dts: hpe: Add UDC nodes
-Content-Language: en-US
-To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221103160625.15574-1-richard.yu@hpe.com>
- <20221103160625.15574-6-richard.yu@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103160625.15574-6-richard.yu@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221107172953.63218-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221107172953.63218-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWZyiRz0Qe2OgCZLeQe4L+ty7MR2AHQVVeC0upaM3X8OQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWZyiRz0Qe2OgCZLeQe4L+ty7MR2AHQVVeC0upaM3X8OQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 8 Nov 2022 11:30:27 +0000
+Message-ID: <CA+V-a8vNxyw_ivDSpFk5kJznSktYU=7KwqY3x3R9MNE-yXvKUA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g054: Drop #address-cells from
+ pinctrl node
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 17:06, richard.yu@hpe.com wrote:
-> From: Richard Yu <richard.yu@hpe.com>
-> 
-> Add support for the USB drivers on HPE GXP SoC.
-> 
-> Signed-off-by: Richard Yu <richard.yu@hpe.com>
-> ---
->  arch/arm/boot/dts/hpe-gxp.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
-> index cf735b3c4f35..60f2d3b15d90 100644
-> --- a/arch/arm/boot/dts/hpe-gxp.dtsi
-> +++ b/arch/arm/boot/dts/hpe-gxp.dtsi
-> @@ -59,6 +59,36 @@
->  			ranges = <0x0 0xc0000000 0x30000000>;
->  			dma-ranges;
->  
-> +			vuhc0: vuhc@80400000 {
-> +				compatible = "hpe,gxp-vuhc", "syscon";
-> +				reg = <0x80400000 0x80>;
-> +			};
-> +
-> +			udc_system_controller: system-controller@80400800 {
-> +				compatible = "hpe,gxp-udcg", "syscon";
-> +				reg = <0x80400800 0x200>;
-> +			};
-> +
-> +			gadget0: udc@80401000 {
-> +				compatible = "hpe,gxp-udc";
-> +				reg = <0x80401000 0x1000>;
-> +				interrupts = <13>;
-> +				interrupt-parent = <&vic1>;
-> +				vdevnum = <0>;
-> +				fepnum = <7>;
-> +				hpe,syscon-phandle = <&udc_system_controller>;
-> +			};
-> +
-> +			gadget1: udc@80402000 {
-> +				compatible = "hpe,gxp-udc";
-> +				reg = <0x80402000 0x1000>;
-> +				interrupts = <13>;
-> +				interrupt-parent = <&vic1>;
-> +				vdevnum = <1>;
-> +				fepnum = <7>;
-> +				hpe,syscon-phandle = <&udc_system_controller>;
+Hi Geert,
 
-Based on your bindings explanation, UDC should be rather the device
-with multiple children representing actual devices.
+Thank you for the review.
 
-Best regards,
-Krzysztof
+On Tue, Nov 8, 2022 at 11:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Mon, Nov 7, 2022 at 6:30 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > This fixes the below dtbs_check warning:
+> >
+> > arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dtb: pinctrl@11030000: #address-cells: 'anyOf' conditional failed, one must be fixed:
+> >     [[2]] is not of type 'object'
+> >     From schema: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> >
+> > Drop #address-cells property from pinctrl node as it has no child nodes in it.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.2.
+> If you don't mind, I'll squash both patches into a single commit.
+>
+Sure not a problem.
 
+Cheers,
+Prabhakar
