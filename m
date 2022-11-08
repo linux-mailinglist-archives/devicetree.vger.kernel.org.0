@@ -2,58 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2893620F6F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:48:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A8C620FA6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233591AbiKHLsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:48:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48236 "EHLO
+        id S233935AbiKHL7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:59:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233689AbiKHLsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:48:33 -0500
+        with ESMTP id S233620AbiKHL7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:59:24 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0ACEBF4
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:48:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E6012082
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:59:23 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ukl@pengutronix.de>)
-        id 1osN5c-0004G3-TY; Tue, 08 Nov 2022 12:48:24 +0100
+        id 1osNGB-0005Z5-PF; Tue, 08 Nov 2022 12:59:19 +0100
 Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <ukl@pengutronix.de>)
-        id 1osN5a-0032nL-Gu; Tue, 08 Nov 2022 12:48:23 +0100
+        id 1osNG8-0032oU-5I; Tue, 08 Nov 2022 12:59:17 +0100
 Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ukl@pengutronix.de>)
-        id 1osN5a-00FAkq-8O; Tue, 08 Nov 2022 12:48:22 +0100
-Date:   Tue, 8 Nov 2022 12:48:22 +0100
+        id 1osNG8-00FAop-B0; Tue, 08 Nov 2022 12:59:16 +0100
+Date:   Tue, 8 Nov 2022 12:59:16 +0100
 From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-Subject: Re: [PATCH v6 00/10] Designware PWM driver updates for OF
-Message-ID: <20221108114822.7aktlzgbz7xziudb@pengutronix.de>
-References: <20221020151610.59443-1-ben.dooks@sifive.com>
- <623284c8-f4bb-1020-2f2e-a475f424c5b5@linux.intel.com>
- <bcd96d79-71b2-9d6a-6397-a47162e52acc@sifive.com>
+To:     Erwan LE RAY <erwan.leray@foss.st.com>
+Cc:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-kernel@vger.kernel.org,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
+Message-ID: <20221108115916.hlmbvyrnmkxymeed@pengutronix.de>
+References: <20220203171114.10888-1-erwan.leray@foss.st.com>
+ <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
+ <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
+ <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uk7th4v7jksyqa5r"
+        protocol="application/pgp-signature"; boundary="c7xl74gxbk272rwu"
 Content-Disposition: inline
-In-Reply-To: <bcd96d79-71b2-9d6a-6397-a47162e52acc@sifive.com>
+In-Reply-To: <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: ukl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,35 +65,79 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---uk7th4v7jksyqa5r
+--c7xl74gxbk272rwu
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 08, 2022 at 11:19:44AM +0000, Ben Dooks wrote:
-> On 24/10/2022 09:39, Jarkko Nikula wrote:
-> > Hi
+On Fri, Feb 04, 2022 at 04:41:55PM +0100, Erwan LE RAY wrote:
+> On 2/4/22 2:22 PM, Alexandre TORGUE wrote:
+> > Hi Ahmad
 > >=20
-> > On 10/20/22 18:16, Ben Dooks wrote:
-> > > This is an updated version of the Designware PWM driver updates
-> > > for OF support, which now splits the driver into PCI and OF parts
-> > > as well as tries to sort out the review comments.
+> > On 2/3/22 18:25, Ahmad Fatoum wrote:
+> > > Hello Erwan,
 > > >=20
-> > > Hopefully this can now be queued for the next kernel version.
+> > > On 03.02.22 18:10, Erwan Le Ray wrote:
+> > > > Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
+> > > > remove it at board level to keep current PIO behavior when needed.
+> > > > For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
+> > > > (no HW flow control pin available) are kept in PIO mode, while USAR=
+T3
+> > > > is now configured in DMA mode.
+> > > > UART4 (console UART) has to be kept in irq mode, as DMA support for
+> > > > console has been removed from the driver by commit e359b4411c28
+> > > > ("serial: stm32: fix threaded interrupt handling").
 > > >=20
-> > > v6:
-> > > =A0 - fix removal ordering of DWC_PERIOD_NS
+> > > Do I understand correctly that your first patch breaks consoles of
+> > > most/all boards, because they will briefly use DMA, which is refused
+> > > by the stm32-usart driver and then you add a patch for each board
+> > > to fix that breakage?
 > >=20
-> > I did a quick test on our HW and PWM was counting as before.
+> > We have two solutions and both have pro/drawbacks. The first one (Erwan
+> > ones, can break the boot if the patch is taken "alone". Your proposition
+> > avoids this breakage but deletes a non define property (which is a bit
+> > weird). However I prefer to keep a functional behavior, and keep Ahmad
+> > proposition. Ahmad, just one question, dt-bindings check doesn't
+> > complain about it ?
 > >=20
-> > Tested-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+> > Cheers
+> > Alex
+> >=20
+> > >=20
+> > > Such intermittent breakage makes bisection a hassle. /delete-property/
+> > > is a no-op when the property doesn't exist, so you could move the fir=
+st
+> > > patch to the very end to avoid intermittent breakage.
+> > >=20
+> > > I also think that the driver's behavior is a bit harsh. I think it wo=
+uld
+> > > be better for the UART driver to print a warning and fall back to
+> > > PIO for console instead of outright refusing and rendering the system
+> > > silent. That's not mutually exclusive with your patch series here,
+> > > of course.
+> > >=20
+> > > Cheers,
+> > > Ahmad
+> > >=20
 >=20
-> Just to follow up on this, should I post a v7 of this (given
-> I think it is all just updates for review/tested) ?
+> The driver implementation will consider the request to probe the UART
+> console in DMA mode as an error (-ENODEV), and will fallback this UART pr=
+obe
+> in irq mode.
 
-Just to add the tags doesn't justify a resend.
+> Whatever the patch ordering, the boot will never be broken. The board dt
+> patches aim to get a "proper" implementation, but from functional
+> perspective the driver will manage a request to probe an UART console in =
+DMA
+> mode as an error and fall it back in irq mode.
 
-Reviewing this is in my todo list, I hope to come to it later this week.
+I didn't debug this further yet, but my machine (with an out-of-tree
+dts) fails to boot 6.1-rc4 without removing the dma properties from the
+console UART. This is a bug isn't it? The same dts created a working
+setup with stm32mp157.dtsi from 5.15 + kernel 5.15.
+
+I can debug this further, but maybe you know off-hand what the problem
+is?
 
 Best regards
 Uwe
@@ -98,19 +146,19 @@ Uwe
 Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
 Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---uk7th4v7jksyqa5r
+--c7xl74gxbk272rwu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNqQgMACgkQwfwUeK3K
-7AkETQf/RblT34D1zc1x6a69+2ynE5hvgoKtdk6F0NfPyZwUe4GP67DEtg6NMvOw
-mhpqrVNR8LlxZ1RT55YruAJMGDaoCYaw6syw3KOyVU0d9vlDh8wJ7IUsBUADtxzY
-uGhPmqoa2DdghZZj1Pk4fwr9KL52pB0bh8ciUK+899e53nb632fIk0daicYtXrWO
-HiatrZIlxfr/7x5W7IzqnssTOTHP89RigbDfOoG4bYG5yN/++IxzhCYAfUmJ4n4J
-T0BZhL7Qul3YDzdc58pKQ0YxAWeQwjt3IWeluTT+UZdTEflwhOzHCinRiZ5IZYpm
-DU6DBQT/01s8L0lQuqcUUAGIPTV1lw==
-=5KdU
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNqRJEACgkQwfwUeK3K
+7AlviAf/aWq+f5jZ43D9mr3TUb0MZkP1KLvPgtrpBfPs15Bp8S74wsXD2uMZcX82
+CtouQO0Y39ByPVDx1rWTJt5PUIGObQsAuQe9J9jVj2dKecRqa5amu8OueqZX0rMs
+VrLueFarS1+Jj95JwpTXaDMWmD7u7Mzh643Xr1aIQ2RPajOkMtaeGuSwqAHhGPTw
+Du5FdhPlIPpetKNn3L+TLHJ3sXWHyQa/BL/wqHjvg575tSiLFLCXGjnYNs9Wqk4h
+BJcHXwFi0hkE37vCKHT6chnyRwF93xR7ZWCJI49KenTK7AC0tSqVZHdFFFD/wV1m
+/g8RuN7EB/xJFEYSrPbtnhILSKTC/Q==
+=yKut
 -----END PGP SIGNATURE-----
 
---uk7th4v7jksyqa5r--
+--c7xl74gxbk272rwu--
