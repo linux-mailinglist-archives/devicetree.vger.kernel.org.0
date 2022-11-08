@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B0EF621E3A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 22:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7735621E4C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 22:12:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiKHVKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 16:10:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39506 "EHLO
+        id S229821AbiKHVMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 16:12:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiKHVKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 16:10:34 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F1F3C6ED
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 13:10:33 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id z24so22960846ljn.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 13:10:33 -0800 (PST)
+        with ESMTP id S229533AbiKHVMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 16:12:07 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0F23C6FE
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 13:12:06 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id l8so22958020ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 13:12:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZAafqOZBdpxx83ZFYFN1Hi8JWgUTuB0MF2wqgfb+j0=;
-        b=BmbRlhuIxfQgv60+/uxmJD2mUTMS1D0a5vXHhZdSI+B0M5n7f+PY+aY+i3bYejK+47
-         QAdInA8SRHniQJjhhghXtj43Y63XNmSMkmmTfTfgYedB6o8JaZTnyatSRXboWFXzzkD8
-         g2QTiyGD9OFXonYu/wW1c7sVz7Lz7oaxfiWFJNRGfSlCfaPJrTkpgUNBuc9HeD98Ah24
-         YpHZNx0F0/+cfv0RdCs+sd/hp7I/iGeLbyq/AyZr/jaiGdiBxohdkNnS+fx/fy2Hpfyr
-         3WxJzj5MdugdN3Sot7qFgjiKrVQpDMLOmwPQXKT4N6+Tmja50fD0vqu1PTZ0NNp4I0Lt
-         djPA==
+        bh=HVjkux3cMwAxtEY/edHmZbgZZbL5KTdoZT7aFc5Nogw=;
+        b=dbYV2VcOWcvtdXJeZS+WpMJdos1rClEv4l9pAMufctBzG2GcWGpxOy7nQA+Hea/m03
+         SDIljuQ01BtW/oHZr7z+1as1K1GNVkjpIw0FFshiVH64g85I6zjS8IVbfj1q71gXNLn9
+         si+8IuB+wzSudkQTUgLp0UJsVlwDKy3Feqwc6BpkXkFqfjAJNU4DemYABJtj8O4MD55b
+         QOkisRpCLDbj23IoBuI3SJXiRXFxaLrvCJlUqKDMTBDZnl4xupRC4gvjtT0TKkFDYido
+         umwwftIezMunFx15wDEgy/PQi0Itzw97t2gXRooZivOfGaIp3IXnwI9DdcyGCCRpBIOF
+         rRag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZAafqOZBdpxx83ZFYFN1Hi8JWgUTuB0MF2wqgfb+j0=;
-        b=QmpeEnp3C0a8n5Jwg4gkdXupb0XAyuU0kmulahls6mdE1OHDZpKmSnsG9tt9UyVt1S
-         Ub1nLvotEu3Oq3ZPLcmuGpEb6zvTN4pG6eYgZXFxQmfevO883MTiQJJHbscd0cYpi+7P
-         4iL4VXct27Sh2yHk6SCBSzp+XkUrhigHMTa1j1UAwblwkWowRyvqilE3kIga/pAcFDwe
-         dGnWIo7ivLDwHfynaX6vhfHDPD5SvLN3JJ+h2pe//FhNEnM8BMP9KQEik5xHeUAXj7kI
-         62ygmyEoOGxznc/psCWKLK/Rbf5c2aN3FqWypzTaUDkyl1npVeMwmcs/n+TRC16BiN5A
-         ZdIg==
-X-Gm-Message-State: ACrzQf18b3yp8oD/0VXBGpUggWUQ0Bm9hSwf/03dui6GTXYBuNPHCjdh
-        GJwJaq61KgbRjzDqNFNDiaXh6Q==
-X-Google-Smtp-Source: AMsMyM4fusBtXtXt1yqqm9JfpkjsgoZrmDOHZ38/STvFvd3nHz0ohLlYZyuEMRbdkEJIFvFcju188w==
-X-Received: by 2002:a05:651c:1207:b0:277:276a:9d7b with SMTP id i7-20020a05651c120700b00277276a9d7bmr19141181lja.129.1667941831467;
-        Tue, 08 Nov 2022 13:10:31 -0800 (PST)
+        bh=HVjkux3cMwAxtEY/edHmZbgZZbL5KTdoZT7aFc5Nogw=;
+        b=HC4aawZj1BFKnWPaX0uUZ1pL5VxdXJ/0AXOxHLRaWrMN0Rp+ZV0hf60b7StiXBvUg3
+         O8wVy4YjzA2aTa+3/qsCv2zV7hqL00FVjD+S065BzsJPS09oqENiOqMBB6Q8hzDKRzK0
+         MG2r9q0omaOOa9+HwSG7hSjQhjBEBE3LabpdjQ0iRCN7rk+UVJ6gWwskDXA6XyWjWCGE
+         0EXz1+t/AGcoIg/XDWdWSf+D9zJP6eQZT4xDG8xMRTzKtADP8BoA2PbFjpy1aEVuJYHu
+         DoAmZOv/+W9KhIySLiSrjUrgd0hY2wo7tNKIvbkiNJqtxXCRGjneXRgYcT5fu646vETu
+         Q2VQ==
+X-Gm-Message-State: ACrzQf0fk1FLHXb//swfA+ne7kwB+++aZhGV8WhDQquV/mayBWsZ0uWE
+        bRm5iosGxmG6qnZaJWAuG7Uy8g==
+X-Google-Smtp-Source: AMsMyM5xlFqWOoqod0wnpXrCUnHoB0Up1jQ/+andB9sQZbg3hz+hkC/To36ahRaWgJQbAmcI3XRq6w==
+X-Received: by 2002:a05:651c:1682:b0:277:1d5b:74b with SMTP id bd2-20020a05651c168200b002771d5b074bmr7029770ljb.522.1667941924622;
+        Tue, 08 Nov 2022 13:12:04 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id q13-20020a056512210d00b0049c29292250sm1932529lfr.149.2022.11.08.13.10.29
+        by smtp.gmail.com with ESMTPSA id a17-20020a056512201100b004a26b9cea32sm1926651lfb.271.2022.11.08.13.12.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 13:10:30 -0800 (PST)
-Message-ID: <b482360f-16d2-6a7d-2cbe-72f2a1c6f50f@linaro.org>
-Date:   Tue, 8 Nov 2022 22:10:29 +0100
+        Tue, 08 Nov 2022 13:12:03 -0800 (PST)
+Message-ID: <18e16410-2f20-96c5-1e9c-1ccb6c58c1b3@linaro.org>
+Date:   Tue, 8 Nov 2022 22:12:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 02/18] dt-bindings: msm: dsi-controller-main: Fix
- power-domain constraint
+Subject: Re: [PATCH v2 03/18] dt-bindings: msm: dsi-controller-main: Add vdd*
+ descriptions back in
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
         quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
@@ -66,15 +66,14 @@ Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
- <20221107235654.1769462-3-bryan.odonoghue@linaro.org>
+ <20221107235654.1769462-4-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107235654.1769462-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221107235654.1769462-4-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,27 +81,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/11/2022 00:56, Bryan O'Donoghue wrote:
-> power-domain is required for the sc7180 dispcc GDSC but not every qcom SoC
-> has a similar dependency for example the aqp8064.
+> When converting from .txt to .yaml we didn't include descriptions for the
+> existing regulator supplies.
 > 
-> Most Qcom SoC's using mdss-dsi-ctrl seem to have the ability to
-> power-collapse the MDP without collapsing DSI.
+> - vdd
+> - vdda
+> - vddio
 > 
-> For example the qcom vendor kernel commit for apq8084, msm8226, msm8916, msm8974
+> Add those descriptions into the yaml now as they were prior to the
+> conversion. Mark the supplies as required as was previously the case in the
+> .txt implementation.
 > 
-> https://review.carbonrom.org/plugins/gitiles/CarbonROM/android_kernel_oneplus_msm8994/+/7b5c011a770daa2811778937ed646237a28a8694
-> 
-> "ARM: dts: msm: add mdss gdsc supply to dsi controller device
-> 
->  It is possible for the DSI controller to be active when MDP is
->  power collapsed. DSI controller needs to have it's own vote for
->  mdss gdsc to ensure that gdsc remains on in such cases."
-> 
-> This however doesn't appear to be the case for the apq8064 so we shouldn't
-> be marking power-domain as required in yaml checks.
+> Warnings about missing regulators can be resolved by updating the relevant
+> dtsi files to point to fixed always-on regulators where appropriate.
 > 
 > Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > Cc: Rob Clark <robdclark@gmail.com>
 > Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -116,11 +109,30 @@ On 08/11/2022 00:56, Bryan O'Donoghue wrote:
 > Cc: freedreno@lists.freedesktop.org
 > Cc: devicetree@vger.kernel.org
 > Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/display/msm/dsi-controller-main.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index cf782c5f5bdb0..0f7747e55b9be 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -124,6 +124,18 @@ properties:
+>        - port@0
+>        - port@1
+>  
+> +  vdd-supply:
+> +    description:
+> +      Phandle to vdd regulator device node
 
-Your Cc list is huge and not necessary to store in git log. For example
-I am appearing there twice. Please keep it under '---'.
+Drop "Phandle to" and "device node", so just "VDD regulator". You
+describe hardware rather (when applicable), not Devicetree syntax.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The same in other places and with that:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
