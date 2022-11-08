@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1968E621060
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A22621087
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:26:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234103AbiKHMXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:23:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43452 "EHLO
+        id S233819AbiKHM0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:26:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233825AbiKHMXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:23:33 -0500
+        with ESMTP id S232367AbiKHM0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:26:41 -0500
 Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F1C12ABF
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:23:32 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id q9so38257662ejd.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:23:32 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0874549B7A
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:26:41 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id kt23so38109234ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:26:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=luG0mZqT42s4ScqDpuvA+QkBwlM0zBwaqn4Z6IkWsZs=;
-        b=Xo5p4+/dUqGyH5ORFbKrP+oJCQSQZB2ct6cj9l+ZnpTHECjKZE3OYxIXu59IrSc1Qc
-         nX/Uwl5d/LXVdtHWsbictVgjLJXjo6Z2VFcV12W3es7PHiCPt0ByVeiUb52qE4sZ+R6J
-         M4g06BObqOsWQdjKRSJgJbGxBWKl1UxTSLpW+M0o6UylEofMwGIkMQwGLQRyoCqTQCDW
-         9v8p3f/niQpiMs3IfG007/5NdmqFN4TXIrkHYGVLXYFcI5DrApq4k59Hdd64Ou5IAMvq
-         /Io29eYqa4UiQwlbhsoVxuAvrAcKYxdDybe9320eNpkUuE+TapewW0K/bzYgVJnvFE8j
-         mSdg==
+        bh=tyyODRHXtilG30dzd65m7MqoIR0cCDBRC2Fx24RI5us=;
+        b=NwqsXVnBhJboZ5eY8Xcr2QcAQU3A73tG4C/C3p5ehSjxJZ4ThJ57K0n0cIX/tv2Ybk
+         e/aZXkZsV/52EeZ3Le1b63V7g/eNCwIkd0TE/TLJWWeahFa03vuMnSydXOenjn2O+r26
+         2b/+7v45FlbfjgjFEiKAW+5AGPVmIMb+x2naOXmRQRPBYZAOl0H/J1XwncIGM27oUW7h
+         hwdUK4R8iXXnUYFHq2CJ0iS+KSgnH7rgwtSsFICV9x+QW4KvtpbstlLVmnp8jZn3Hx9j
+         iqUALcQYxf7JGjd41US5zsmlUnqFpgwe4nBqHKXNNqmk2K57ezo4Pl9D8wU9l/HVgEGF
+         A9GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=luG0mZqT42s4ScqDpuvA+QkBwlM0zBwaqn4Z6IkWsZs=;
-        b=qvDL9bH1fcZmmoqjzUtwsjuI4AO8tuzDJjkzEo5VOFdHK584LzoMj8wYUNRbQRj+St
-         CMzajzniOUVvy2H2DBlIFOZEfcUJe0GUbDHS5oxhTT2NHpS5PFV3VtU5ne2Yf0lkkkOu
-         Xg9/YVDnQhddfg1i8gWxokH5IVl1pLPhbn8Jxp6UpqCh2GbAlKNfB2cCEy2WFdWtw/oa
-         oTQ71GagNZZ+klNJD/AQlyQb82jgcCg3aGWCadV+ICoPLxsQ+tC/mRSegBAZMpbe8iYy
-         R7jwTSokZ6I127kebNEMWI3ptcl74a9zn9l1hZt8VzSDBESfeQ9LhmuE15kazp7gXmVq
-         TUrg==
-X-Gm-Message-State: ACrzQf1VFiV+BcqCGhMWjhPM/lE+xjw71Jt0KSV2sm5FI3rikkVEA5EY
-        P25+17jvwaENGLuS40LnafskmTjl2pDm1senf5ZDxg==
-X-Google-Smtp-Source: AMsMyM7jqo3lgKIdTCyv/JBJ/W0wENabsLDVFGDmYAZKK61Yj7hYAsmkI+a+tjUCNWOJv5Ff4m1Sdtecqie2DFAhPwg=
-X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
- d11-20020a1709064c4b00b007ada197b58emr53785934ejw.203.1667910210848; Tue, 08
- Nov 2022 04:23:30 -0800 (PST)
+        bh=tyyODRHXtilG30dzd65m7MqoIR0cCDBRC2Fx24RI5us=;
+        b=TuHkQgcMLC1lPfLJidPww2+n3+cS/Dq59vQ8eJYHgmsvIMyM1JbBKnXFK0kuDLOV+2
+         Wzn3+l293C8Jpl49PBt5B5McP5pwYPW0ZoijQVzJZTwCTduTFn6795n24imqmTgR1y66
+         1WyyQB8vcO8qcCHyHdnzARoUXwx7Q11NZKKW4gSbeDfqHwtJck1LOU5nDHIln1HFRfvf
+         BlM/PiJp8jBW494dQpCqWIz45hz0quZKvBoc7+mlO69Z8TKoP4sfOp/XqsG0TCXZewVG
+         /xNmHfr1rWzJ9B3hOtRvJ8LnWCw1oGOgjLV7LIjA7+GVQrwgb851d28BrriPZR/qi5Jz
+         Rsnw==
+X-Gm-Message-State: ANoB5pmK5KrqqhJrYae3fsDQoZmU6SfO+POpA2g53FPq1YD4YlWRHXTJ
+        9yzKB2wFNZBzmhS+8Kj7IgklG4BS9wxxdlDZM16xWw==
+X-Google-Smtp-Source: AA0mqf7/Kq3Eo4YzTUVxcP/fg8+u1hyvRb5r0lVcTK6pr5Bewd4oHaTol2L4r9Xfdxk26RfW13/NiikTqCw5vcoldf8=
+X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
+ q12-20020a1709066acc00b007ae658cee45mr10932109ejs.190.1667910399610; Tue, 08
+ Nov 2022 04:26:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20221028153505.23741-1-y.oudjana@protonmail.com> <20221028153505.23741-7-y.oudjana@protonmail.com>
-In-Reply-To: <20221028153505.23741-7-y.oudjana@protonmail.com>
+References: <20221028153505.23741-1-y.oudjana@protonmail.com>
+In-Reply-To: <20221028153505.23741-1-y.oudjana@protonmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 13:23:18 +0100
-Message-ID: <CACRpkdaWFe87x0NDb5PqZo1PDDG1W9Q4do2o=e4T=Jz+ksGPfA@mail.gmail.com>
-Subject: Re: [PATCH v4 06/13] dt-bindings: pinctrl: mediatek,pinctrl-mt6795:
- Improve interrupts description
+Date:   Tue, 8 Nov 2022 13:26:28 +0100
+Message-ID: <CACRpkdb6FFCtry+93jnXw0f8jeu7yDR7_S2GOKaGYiEGSGc27A@mail.gmail.com>
+Subject: Re: [PATCH v4 00/13] MediaTek pinctrl DT binding cleanup and MT6735
+ pinctrl support
 To:     Yassine Oudjana <yassine.oudjana@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -75,17 +75,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yassine,
+
 On Fri, Oct 28, 2022 at 5:35 PM Yassine Oudjana
 <yassine.oudjana@gmail.com> wrote:
 
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> This series adds a driver for the pin controller found on the MediaTek MT6735
+> and MT6735M SoCs. The two differ in the last 6 physical pins, which are used
+> for MSDC2 on MT6735 but don't exist on MT6735M (since MSDC2 doesn't exist on it
+> to begin with). In preparation to document DT bindings for this pin controller,
+> the existing documents for MT67xx SoCs are combined into one in order to
+> eliminate duplicate property definitions and standardize pin configuration node
+> names. Necessary cleanup is done along the way.
 >
-> Clarify the meaning of sysirq to avoid confusion.
->
-> Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Changes since v3:
+>  - Improve interrupts description to make clear what sysirq means.
+>  - Set drive-strength constraints per variant.
+>  - Set maxItems for reg in MT6795.
+>  - Add blank lines between conditionals.
+>  - Add ref for both pinmux-node.yaml and pincfg-node.yaml.
+>  - Make pinctrl subnode-related changes in separate patch.
+>  - Fix up some pinctrl subnode property descriptions.
+>  - Add interrupts items descriptions to MT6765 and MT6735.
 
-Patch applied.
+I have applied patches 1-6 so you do not need to resend those.
+Keep it going with the rest!
 
 Yours,
 Linus Walleij
