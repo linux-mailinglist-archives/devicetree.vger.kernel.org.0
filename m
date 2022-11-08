@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C58621053
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABEED621059
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:22:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234270AbiKHMVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:21:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
+        id S234129AbiKHMW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:22:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234216AbiKHMVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:21:24 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D4551C34
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:21:14 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id bj12so38011898ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:21:14 -0800 (PST)
+        with ESMTP id S234198AbiKHMWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:22:12 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92FF51C1B
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:22:03 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id i21so22168138edj.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dmDShQas36dD47uGMxvPlh2813rtPjLDfwhfhXJ2dxc=;
-        b=zzZvUa+kn9M4LdUavXU8BveFUJ8sU8c0cLaSZOAQAh5EZdN2tfmviS8k0Zavi8DIel
-         /dBmC5zWcS9gq/LQ/SDLrCHtN0vhmDWWfTNTACxTfyLvLtjFq//hA5Ijx/XjFl2tYpUR
-         S/tdHgCAWFMjXAZPWORRTvFaufVSwUPEMBRK5GVO4YUhnIrV5pPjYcGMct0W7728uoD3
-         IAMz73S10iBaN1IKsfiCVgfbA4jun7k/2163Q21nOT0zSLAWe7gAlVO5WuIwaMDAaluk
-         OUmhpA58BaClzFN04y93ABrlYvNRckp7aGznHEJW7VNYz3pUJZ5I79ZnxPc/GRmbk4bw
-         BtCg==
+        bh=pwAIz5YfCHExcR//d2Cu4bwUY83DjgUJ7OTx4aGy0bY=;
+        b=rRtHApUTLpmrb49VLXgA8lhpuLIaEa3606cZ54m2fuII2W/So0ITWAFEOlZ4VuODIp
+         Y1H7bruRbTk/hT6r332Bqpy8CALuz4SrqJDFgAJbiafdnlD2qSNL4JEt3+uPYsEauc4q
+         IJrPM50qDhnfdQUOP2RtMMkVr+RJ+6l9aY/Z6P8K47uU3TuE0Vl76mWT5HD+CQyLB9Px
+         +LhD4z36nZDK8oVfJwJ8tNZ7A/MmL46f5Hjvagt7FRY8BLsHcxIVLeayMxhvMvZlJBnm
+         iSxKSJLnrAJDXMGoJAp9cdhSWAGePaD9PgLbQuD1A4qIIY1j3R2pRC5qvqi1vc7oX5WV
+         xDNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dmDShQas36dD47uGMxvPlh2813rtPjLDfwhfhXJ2dxc=;
-        b=dHxWsPEJNmsunRU7MpqPT/J0b6jMKwkePPdNphcxJtcHdKzt6dG7FMr8VLpP3nZjw9
-         oRdjNv0JmPS5+7ex2VHrAuZ+HrdbM7De6omzUODygHhnAKI5A0FfRqBXzJBeTJZLI3cE
-         P/q0EJSbT7aO/65bndGXRilt2udYq1UTX+KmG4LU/T7WB6IH8+/FKUwkqtaaF1C8GFWA
-         4bn95k1ySMP4m3EDDm15VU1xi+JSNjn5R27JvRZoo7R6/EahhFlin4MeHoiIZkwhQOlI
-         GKzY2RQJ+g2caIZWoAeiRurOm5RZsF1ECBlaijffDOngAtq+irOR6f0+xflkoT8dePYt
-         LSRQ==
-X-Gm-Message-State: ACrzQf3mYgS27aTLtxA21WNCXr2Dlay3zDc7QLkU0lE8z9zoU8kGak4X
-        aMtD69Ad+ZCp4I/T8LZ6qWu6+Ww2RT+RI/MIQxZaXg==
-X-Google-Smtp-Source: AMsMyM7XWqou6nmQNE71q7T1t2yLoNihbYJr+6ZowdOGs74VIQIL9SSg+uc7KcTEC4HyYqrCBRtBbqd7X7SEY2qwhDo=
-X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
- d11-20020a1709064c4b00b007ada197b58emr53775608ejw.203.1667910073486; Tue, 08
- Nov 2022 04:21:13 -0800 (PST)
+        bh=pwAIz5YfCHExcR//d2Cu4bwUY83DjgUJ7OTx4aGy0bY=;
+        b=D0KKND3x0kvgAyRqZSBi3FqobSTwTMmdy+Q8uGXdnz/N/L3lS9JkDraqsImbENnmbv
+         gU0lMwUqoIwVr3JOzywS08u4lNAykd16FUneRn1iDzrISaU8qr/N/nDcaSSgf00HTR4a
+         onpI+Rx1g1zBCEdFXpjqd3pDu7wKqxwJbGi779r3b9/+mSXghB2baCq0R4pIfwM4mwed
+         HOjhizSaLlcCWm+guIjhdaVYc22Bx/xZ8y0vivXaAHuJMFOLhv+OcFnLTPkZ+R6rGrZX
+         rikZYJArnsTzFtPrcVawOxBb792iZQLn64wN8JFs9OuX4dKpL2WPIOcWVv+BDgVXO9sT
+         l1ag==
+X-Gm-Message-State: ACrzQf3UQHL3YF2vro2OBotI5dLxPilN7DJA1UvOCoRQIdAHe80aEdhX
+        ngNbDWbS+23vUPoek8WC4V50CNdKk0kbj2l7ejVbtg==
+X-Google-Smtp-Source: AMsMyM6Fgdh9c+uQFDawnv1UbeThmCU3kZMq94IY+4QXNwDLtyC7UETuZQ23UkDyD8Oirb1FDA8qn/LXTheGxCkZ8CI=
+X-Received: by 2002:a05:6402:659:b0:463:a83c:e0af with SMTP id
+ u25-20020a056402065900b00463a83ce0afmr900244edx.158.1667910122493; Tue, 08
+ Nov 2022 04:22:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20221028153505.23741-1-y.oudjana@protonmail.com> <20221028153505.23741-4-y.oudjana@protonmail.com>
-In-Reply-To: <20221028153505.23741-4-y.oudjana@protonmail.com>
+References: <20221028153505.23741-1-y.oudjana@protonmail.com> <20221028153505.23741-5-y.oudjana@protonmail.com>
+In-Reply-To: <20221028153505.23741-5-y.oudjana@protonmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 13:21:01 +0100
-Message-ID: <CACRpkdaHHDQt4_u-Y3KZiRuOuZSGd7HUydWJttW2p6NfXaveVw@mail.gmail.com>
-Subject: Re: [PATCH v4 03/13] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
- Make gpio-ranges optional
+Date:   Tue, 8 Nov 2022 13:21:50 +0100
+Message-ID: <CACRpkdbquWk3F=3CrkSWfWkWFQpzRPPbE3nL+zcuBx57aW4WYA@mail.gmail.com>
+Subject: Re: [PATCH v4 04/13] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
+ Add MT6797
 To:     Yassine Oudjana <yassine.oudjana@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -68,8 +68,7 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,11 +80,15 @@ On Fri, Oct 28, 2022 at 5:35 PM Yassine Oudjana
 
 > From: Yassine Oudjana <y.oudjana@protonmail.com>
 >
-> The pin controller can function without specifying gpio-ranges so remove
-> it from required properties. This is also done in preparation for adding
-> other pin controllers which currently don't have the gpio-ranges property
-> defined where they are used in DTS. This allows dtbs_check to pass on
-> those device trees.
+> Combine MT6797 pin controller document into MT6779 one. reg and
+> reg-names property constraints are set using conditionals.
+> A conditional is also used to make interrupt-related properties
+> required on the MT6779 pin controller only, since the MT6797
+> controller doesn't support interrupts (or not yet, at least).
+> drive-strength and slew-rate properties which weren't described
+> in the MT6779 document before are brought in from the MT6797 one.
+> Both pin controllers share a common driver core so they should
+> both support these properties.
 >
 > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > Reviewed-by: Rob Herring <robh@kernel.org>
