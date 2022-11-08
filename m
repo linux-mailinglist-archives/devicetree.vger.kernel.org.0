@@ -2,600 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029FC6209A5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 07:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 723F16209E3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 08:14:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233203AbiKHGmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 01:42:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46638 "EHLO
+        id S232798AbiKHHOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 02:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbiKHGms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 01:42:48 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F03C1BE9F;
-        Mon,  7 Nov 2022 22:42:46 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A86NqHS030677;
-        Tue, 8 Nov 2022 06:42:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=rccwM7Sp0HsNq0oa9pJgw0v9wFdRXRpWq59zQyF0x3A=;
- b=f2BT2lPSvAWTcAs7cNESlZ0lZ/e51ivXnBvwDxh1wbS9nMPAoZNrMLYSi5HViPD9JdoP
- zmKjhZt7BjFBRMsqsHGHrvYe0aZDaAUNFiH229AlGoKb3hyTQQTsqytJRrq2LkvjzRLR
- 8c8jsIA7zV2GEd+r7CW9Y+jEMMwOO0qUllRfPRVO0RhSDV+OXmygJI6AIVOlBxm7cDvm
- 2xTsS1/amO2FOk6NhUL8zo3/uHYaukICS3iNNm0XZJGuOafGSSv8LgRmSu3mBOQN2l5C
- D0XESJljpN8US5L4sTME0biYqnFQGzi6gCDRAV9HBD1MN2i3/LRuw1rLeFp6xB1dams1 Lg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kqht881sw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Nov 2022 06:42:31 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A86gUwe016866
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 8 Nov 2022 06:42:30 GMT
-Received: from [10.216.10.186] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 7 Nov 2022
- 22:42:24 -0800
-Message-ID: <2a6b68df-54e0-28b4-2eb2-fd8c1ad7ed60@quicinc.com>
-Date:   Tue, 8 Nov 2022 12:12:20 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 3/3] dt-bindings: soundwire: Convert text bindings to
- DT Schema
+        with ESMTP id S229731AbiKHHOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 02:14:22 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2121.outbound.protection.outlook.com [40.107.114.121])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36786120B6;
+        Mon,  7 Nov 2022 23:14:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Fe8AnFbsIkLhN6241D1oX9nC2Nar8aFYCX34EyGEDHKJpJwaHBut/IBDRVtb1G+fT+hr0fGn6UtUZH6P8hhEqpXTYdzIW9Sd4m8PBpYETbicqqa7pW5aQazbCL+Ae2+vFKg9kpzS86wDeHmqU4x8oo8l6g/KXOOVOoSltyyslw43YVDUmiSDB6x7aadoiSNTPLOU9agDU0IpCCb9TZop3aOiOouQcGe+rzHqnyscmgDc/F5Hm4f3vIgc80foyXQq8NPi/jmJ+ibsZinpxbZ8uy0F60j3Ocl6xBCpZ7l0yeNQEKraYgjQWTY88p/tQIqofyyRyKYF4JgC2qDKDLhcfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+Dpr4k5A1Gf7YrnHhYjO/kO6xwwbfrkzxW9vGXyNqy0=;
+ b=MLXr5No0YKyHGkURnTmBcrqdbZUEYXStZnghinbOCkJ+5PbEsnp8WthGhZ/+kOe8+1h2pnCGb6cxO51a8EgOiMqj5v5UTmyWEPAq4fWGUcIEnYncw7AOtmkH5SH/KO+c6AilzXk2J7MblWF0Bpga8XdIoRdIWR6kRpRlLGYowKpZpmFHVLqg0JAGGspfOFyZObgiJHFBHFUdok9cHiFvKJfKMlhW8/uKfCMLYPJrwIDny6yBLSSnphHWhw9R6YKnJ8khnROG6m76ruuyqZP4iD8QIHEEMwJD9VcQmBOU+IDCqQa58NshIQKY8b7kxUV9dPbdY71ooTRnrjIHlxihlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Dpr4k5A1Gf7YrnHhYjO/kO6xwwbfrkzxW9vGXyNqy0=;
+ b=vUe7Ti81K6nwc5br95x0soZRA+9hyN//WMBukZRPmWgUaWtMpv5yAnQ/bOX1m2/1FywsD8VNm/TjbjtaOhieo9dWM911pXfsvoxlOz5OeS9LILSqFTADb4VyYB1zeba168AoCPUeVWo9bUWgotDnB1a4RQHA1KeCuQ8WpYPGTrM=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYCPR01MB10794.jpnprd01.prod.outlook.com (2603:1096:400:296::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Tue, 8 Nov
+ 2022 07:14:16 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::5b24:f581:85bd:6ce2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::5b24:f581:85bd:6ce2%3]) with mapi id 15.20.5791.027; Tue, 8 Nov 2022
+ 07:14:14 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH RFC 2/5] pinctrl: renesas: rzg2l: Fix configuring the GPIO
+ pins as interrupts
+Thread-Topic: [PATCH RFC 2/5] pinctrl: renesas: rzg2l: Fix configuring the
+ GPIO pins as interrupts
+Thread-Index: AQHY8tHTw1YXCrAdj0KX+iZlhq0xQa40m+uw
+Date:   Tue, 8 Nov 2022 07:14:14 +0000
+Message-ID: <OS0PR01MB592295C7DBA5E0A85B4D26AF863F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221107175305.63975-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221107175305.63975-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <vkoul@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
-        <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <alsa-devel@alsa-project.org>, <quic_rjendra@quicinc.com>,
-        <konrad.dybcio@somainline.org>, <mka@chromium.org>
-CC:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
-References: <1667830844-31566-1-git-send-email-quic_srivasam@quicinc.com>
- <1667830844-31566-4-git-send-email-quic_srivasam@quicinc.com>
- <7abbac13-3a2b-2ea7-98d2-8bcace52c3de@linaro.org>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <7abbac13-3a2b-2ea7-98d2-8bcace52c3de@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cCuta8TT4h_rpDUqdzDHuN8bWLTYiAQB
-X-Proofpoint-GUID: cCuta8TT4h_rpDUqdzDHuN8bWLTYiAQB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_11,2022-11-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- impostorscore=0 suspectscore=0 clxscore=1015 bulkscore=0 phishscore=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211080034
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYCPR01MB10794:EE_
+x-ms-office365-filtering-correlation-id: c36819ea-3ef2-4c97-a119-08dac158d7ac
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PoJLz8twoQIulCs+oTHDN0fCzaJE/cJfu6w2qdFUoyS/Ys+Ky44jKsfyvD10OIQcCf9vgiyrLBaU5ash1M0qCPPy/mZgxfzqth6uLPvClaIXsTNmUmQoJtb6mwM0+lw3d1ALumAr4Rjulz5Ty8J8n65o08CFi2dShBghEZ+WNv5soI3tNe+7WY0qc5nDo1alH3URPZlOI5l+QZRCIP5mlP9++oYc6X65cubv7ea/veKQNQOWNbh3uRZlYQ1pBJda1bJ1GiAQed9uPcYIoiLDb4CFlzSy1PZ/6JxO6CvaytnV9/qikV+IaFTelqQgW2jxHbH4XmbYYVmaL0FcPpCy5d7LWNARnAAhwK5qEVtR2BgSqKc7EvGxDjsLDxYitajiZ7yprU77Vp1BmeFJh2FBoYtjGxYBkwYnJUR1N3AAWgyiODwp7y5OUhEsN966Qj9iJi4anAza2R63xSprmOZm/8Rk7QP/K/PVQW303b9skCvZWpCqqi23YvY2ydKDJB7i5SF1rbhYrHJSTXcV8A7Uo9wsjP+zBUjloXExVo6dLealL4KQfy9bdwBNgVSn2X0GiMme3C6FGUkANN153eu2BApYmvJoBUJtiRvd+4OkLCfvxSNTyG6koKaJ8SB9ub/u4hBPA9kbk51EFHf6FobMEBAZ+SfARaSsKdSVmLPqwQMHlH0fIEEKrset0u9UnQMZ+hEceOpSnciaCvdtRPISKN0qZ/nAs7nwc7whw0gwnzdW+FCLZFmSOiLnppErQ59AsVWTive3xmPmmdzt/yxhsNULki/mjMUSKAIJbf0Ubj8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(451199015)(33656002)(122000001)(38070700005)(86362001)(38100700002)(2906002)(55016003)(7416002)(5660300002)(83380400001)(107886003)(7696005)(186003)(6506007)(9686003)(26005)(66946007)(76116006)(966005)(54906003)(71200400001)(4326008)(478600001)(52536014)(316002)(66476007)(66556008)(66446008)(110136005)(64756008)(8676002)(41300700001)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?r5+wlI30y9/Ql4KCevqXAqgkcruwYJF91NyPm8lvyI2U7gyoi0CcDAMfe0Lv?=
+ =?us-ascii?Q?dOztxsCOOR+5ehaiegX8Jr/FYQvf8y0afEkVi48HxXj7tQiK75rmC9D5d7HX?=
+ =?us-ascii?Q?OJoKTMtDf+D8xapAGcgI9VS0ru5k/jtzj2YLS/LkfQa1jbCkBK4J/tJk6IV4?=
+ =?us-ascii?Q?SbWO1G76OTjzFazdVQBqZkZ+p2gnuU2ndPH41JEBVCsK841mC1738uRYIGnl?=
+ =?us-ascii?Q?HiUxryG05BP13Bdjd+HEyXglXHeniji3iTyWyLOoMzvcxllMgS3SpjuKNJWW?=
+ =?us-ascii?Q?MfUD4JkEa7a/RxdzpSYnUiF6Z/ku/8tHcURJQy0J/NiUl/R2LStW1ZidMTIZ?=
+ =?us-ascii?Q?pX4uF87NJ3N5ktJrNSMd4FAe86vXmD33Qz0vzRcOahhAZypGrMZEVBz08/cd?=
+ =?us-ascii?Q?s0wqISRT4Ys1lnhwt1Ep6p+ntTgt/y4tERHq/FNvZ9D0RABTST1m82idzEnH?=
+ =?us-ascii?Q?n0ZVZQ4dPOC2dp7u5AnXaT6cycCIXq4AL9OIvRCokY0sGpX8VMjARVipyEeV?=
+ =?us-ascii?Q?dEmSHOPoi07XvKuGwbSuCCGIVEB0jN0tAPQJLN4e+ckBqb8XjYDDSHCysIZi?=
+ =?us-ascii?Q?PYlG8TBhxQzKNpzdJvYFB394qTfQfdRFHzX8K2GwRLHXKODbnvp3TmAs3FBh?=
+ =?us-ascii?Q?4Kl2lJGoe30f0w4+j/qfXpHTxYNfT18SQtm9ekejj+nWhZXBkm6d7ABQGlRC?=
+ =?us-ascii?Q?Uty19q0vxtAHPZ2Sxnn6XeE3ohmRg3b7Q6hrqaBm8c4pgwMVJpCRNe+cFHGG?=
+ =?us-ascii?Q?uP2TzO61LPSrP8cDtAvbDdT3hniF41L4Ooa4gEr0tUHcNGJFK20H7AsnLJfR?=
+ =?us-ascii?Q?Cgq6sD2QML11cAkz5YmrfwGqpgyQIDw/ZyGrYiNN8Lx2yNXL8NTeaS7VOxGO?=
+ =?us-ascii?Q?ciUxXM8pjRfe5xO8QPFW4yx4ObwJHzHX3KGBZISgW6EXAef2Z9C7UIFg3ggc?=
+ =?us-ascii?Q?UT0S1lckml52CBTNQtlC3LTjnKbMww8ZODPM+p8a/D07sH2/YK/dpoNGDgK1?=
+ =?us-ascii?Q?dPdZfqhaNyXDzmH29Dy/tgjRFhMyz3qMZYg80Wi4rSKIH0nkwH4F6pZSWZb1?=
+ =?us-ascii?Q?F94vfH5IXy6OMc743QWswttq7QTkStI9xYw0ldBH+WT79OKL2nIWZHtMTGPb?=
+ =?us-ascii?Q?Yfl2uo++cISk5dNCwyNWy7c0n4+EmEiFsQp4AB53Hu80l8MWVZj1qEmXdCZN?=
+ =?us-ascii?Q?c8EA4lfR6xXQdGQU49clCV5zM3CPPBP97H9HqC4Af1ICnM2xaCwx4ymQOT3m?=
+ =?us-ascii?Q?bi6j04FCHKH6jhXgnxEszx00M1Ds8PO4TggV+yypyD+ClUxSm2NWlbooeXnr?=
+ =?us-ascii?Q?6wT6ryFzNFsoq8JJM2SImBHJ9zkneQRlEtqb/EEp/eMjkndaDRt+QxvBJoCQ?=
+ =?us-ascii?Q?M8AqSxb9OzyON8q5gh+v6HkS24Du2onilAZ9zHCa64RhnExHkyFllPaksBcr?=
+ =?us-ascii?Q?SLI0jQIG8QixmVxcF7DG1nLKsg/QzDcqw/MLv/FXj4QBnPVSng5iOBoACHId?=
+ =?us-ascii?Q?PaifV/94iCa6+P4c5nWX2Y7VuOuodhuYzjkhf8HzwtrUghiO/bCqIHSX7ULh?=
+ =?us-ascii?Q?nEmLiKn2mDdLT8x7KRPyF40adb76xgMuOOPvAsK0O1rZGWVjhCmow2i+lef9?=
+ =?us-ascii?Q?+Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c36819ea-3ef2-4c97-a119-08dac158d7ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2022 07:14:14.5887
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: D4TUd+bsof3PJEnEtdGqkvkrLtDFxzElGTV1Wj0fAcVg+eSzJG6Vc+JYSS49SKbxGfCjUtMd5QRGTQ4KteZ1DY21VQzlbE4K31qbEtlwx6A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB10794
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
-On 11/7/2022 8:41 PM, Krzysztof Kozlowski wrote:
-Thanks for Your time Krzysztof!!!
-> On 07/11/2022 15:20, Srinivasa Rao Mandadapu wrote:
->> Convert soundwire text bindings to DT Schema format.
->>
->> Update interrupt property items as per device tree,
->> as it is not appropriately described in text file.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Co-developed-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
->> Signed-off-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
->> ---
->> This patch depends on:
->>      https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=42801e6185290d63691bd39cf8a3bba6cd5fe520
-> Hi,
->
-> This is a bit surprising. You pointed to Linus' repo, so what does this
-> dependency mean? The Linus' repo is the mainline, there is nothing else,
-> so all its commits are already in every tree... unless this is an RC
-> fix? If so, you should rather say which RC is needed.
 
-Yeah. Will remove it. Actually in initial version, when used different 
-repo, got bot errors.
+> Subject: [PATCH RFC 2/5] pinctrl: renesas: rzg2l: Fix configuring the GPI=
+O
+> pins as interrupts
+>=20
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> On the RZ/G2UL SoC we have less number of pins compared to RZ/G2L and als=
+o
+> the pin configs are completely different. This patch makes sure we use th=
+e
+> appropriate pin configs for each SoC (which is passed as part of the OF
+> data) while configuring the GPIO pin as interrupts instead of using
+> rzg2l_gpio_configs[] for all the SoCs.
+>=20
 
-So to fix that, mentioned this dependency and continued the same in next 
-versions.
+Looks like you are missing fixes tag.
+Fixes: db2e5f21a48ed ("pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to h=
+andle GPIO interrupt")
 
->
->> Changes since V3:
->>    -- Remove subnode description and add appropriate pattern properties.
->>    -- Add interrput names in example.
->>    -- update some properties description.
->>    -- Revert minIteams change in previous version.
->>    -- Rebase to latest code base.
->> Changes since V2:
->>    -- Update commit message.
->>    -- Add child node property.
->>    -- Change file name.
->>    -- Remove minIteams for few properties.
->>    -- Remove redundant required properties.
->>    -- Remove redundant description for wakeup-source property.
->>    -- Update interrupt property items.
->> Changes since V1:
->>    -- Remove the status field in example.
->>    -- Remove interrupt-names property in the required list.
->>    -- Add the wakeup-source property.	
->>   
->>   .../devicetree/bindings/soundwire/qcom,sdw.txt     | 215 ------------------
->>   .../bindings/soundwire/qcom,soundwire.yaml         | 241 +++++++++++++++++++++
->>   2 files changed, 241 insertions(+), 215 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->>   create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->> deleted file mode 100644
->> index e0faed8..0000000
->> --- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->> +++ /dev/null
->> @@ -1,215 +0,0 @@
->> -Qualcomm SoundWire Controller Bindings
->> -
->> -
->> -This binding describes the Qualcomm SoundWire Controller along with its
->> -board specific bus parameters.
->> -
->> -- compatible:
->> -	Usage: required
->> -	Value type: <stringlist>
->> -	Definition: must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
->> -		    Example:
->> -			"qcom,soundwire-v1.3.0"
->> -			"qcom,soundwire-v1.5.0"
->> -			"qcom,soundwire-v1.5.1"
->> -			"qcom,soundwire-v1.6.0"
->> -			"qcom,soundwire-v1.7.0"
->> -- reg:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: the base address and size of SoundWire controller
->> -		    address space.
->> -
->> -- interrupts:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: should specify the SoundWire Controller core and optional
->> -		    wake IRQ
->> -
->> -- interrupt-names:
->> -	Usage: Optional
->> -	Value type: boolean
->> -	Value type: <stringlist>
->> -	Definition: should be "core" for core and "wakeup" for wake interrupt.
->> -
->> -- wakeup-source:
->> -	Usage: Optional
->> -	Value type: boolean
->> -	Definition: should specify if SoundWire Controller is wake up capable.
->> -
->> -- clock-names:
->> -	Usage: required
->> -	Value type: <stringlist>
->> -	Definition: should be "iface" for SoundWire Controller interface clock
->> -
->> -- clocks:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: should specify the SoundWire Controller interface clock
->> -
->> -- #sound-dai-cells:
->> -	Usage: required
->> -	Value type: <u32>
->> -	Definition: must be 1 for digital audio interfaces on the controller.
->> -
->> -- qcom,dout-ports:
->> -	Usage: required
->> -	Value type: <u32>
->> -	Definition: must be count of data out ports
->> -
->> -- qcom,din-ports:
->> -	Usage: required
->> -	Value type: <u32>
->> -	Definition: must be count of data in ports
->> -
->> -- qcom,ports-offset1:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: should specify payload transport window offset1 of each
->> -		    data port. Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-offset2:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: should specify payload transport window offset2 of each
->> -		    data port. Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-sinterval-low:
->> -	Usage: required
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be sample interval low of each data port.
->> -		    Out ports followed by In ports. Used for Sample Interval
->> -		    calculation.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-word-length:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be size of payload channel sample.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-block-pack-mode:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be 0 or 1 to indicate the block packing mode.
->> -		    0 to indicate Blocks are per Channel
->> -		    1 to indicate Blocks are per Port.
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-block-group-count:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be in range 1 to 4 to indicate how many sample
->> -		    intervals are combined into a payload.
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-lane-control:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be in range 0 to 7 to identify which	data lane
->> -		    the data port uses.
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-hstart:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be number identifying lowerst numbered coloum in
->> -		    SoundWire Frame, i.e. left edge of the Transport sub-frame
->> -		    for each port. Values between 0 and 15 are valid.
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,ports-hstop:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be number identifying highest numbered coloum in
->> -		    SoundWire Frame, i.e. the right edge of the Transport
->> -		    sub-frame for each port. Values between 0 and 15 are valid.
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- qcom,dports-type:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: should be one of the following types
->> -		    0 for reduced port
->> -		    1 for simple ports
->> -		    2 for full port
->> -		    Out ports followed by In ports.
->> -		    Value of 0xFF indicates that this option is not implemented
->> -		    or applicable for the respective data port.
->> -		    More info in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -- reset:
->> -	Usage: optional
->> -	Value type: <prop-encoded-array>
->> -	Definition: Should specify the SoundWire audio CSR reset controller interface,
->> -		    which is required for SoundWire version 1.6.0 and above.
->> -
->> -- reset-names:
->> -	Usage: optional
->> -	Value type: <stringlist>
->> -	Definition: should be "swr_audio_cgcr" for SoundWire audio CSR reset
->> -		    controller interface.
->> -
->> -Note:
->> -	More Information on detail of encoding of these fields can be
->> -found in MIPI Alliance SoundWire 1.0 Specifications.
->> -
->> -= SoundWire devices
->> -Each subnode of the bus represents SoundWire device attached to it.
->> -The properties of these nodes are defined by the individual bindings.
->> -
->> -= EXAMPLE
->> -The following example represents a SoundWire controller on DB845c board
->> -which has controller integrated inside WCD934x codec on SDM845 SoC.
->> -
->> -soundwire: soundwire@c85 {
->> -	compatible = "qcom,soundwire-v1.3.0";
->> -	reg = <0xc85 0x20>;
->> -	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
->> -	clocks = <&wcc>;
->> -	clock-names = "iface";
->> -	resets = <&lpass_audiocc LPASS_AUDIO_SWR_TX_CGCR>;
->> -	reset-names = "swr_audio_cgcr";
->> -	#sound-dai-cells = <1>;
->> -	qcom,dports-type = <0>;
->> -	qcom,dout-ports	= <6>;
->> -	qcom,din-ports	= <2>;
->> -	qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
->> -	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
->> -	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
->> -
->> -	/* Left Speaker */
->> -	left{
->> -		....
->> -	};
->> -
->> -	/* Right Speaker */
->> -	right{
->> -		....
->> -	};
->> -};
->> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->> new file mode 100644
->> index 0000000..b0590cb
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
->> @@ -0,0 +1,241 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soundwire/qcom,soundwire.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SoundWire Controller
->> +
->> +maintainers:
->> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> +  - Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> +
->> +description:
->> +  The Qualcomm SoundWire controller along with its board specific bus parameters.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,soundwire-v1.3.0
->> +      - qcom,soundwire-v1.5.0
->> +      - qcom,soundwire-v1.5.1
->> +      - qcom,soundwire-v1.6.0
->> +      - qcom,soundwire-v1.7.0
-> Missing blank line.
-Okay. will add it.
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    items:
->> +      - description: specify the SoundWire controller core.
->> +      - description: specify the Soundwire controller wake IRQ.
->> +
->> +  interrupt-names:
->> +    minItems: 1
->> +    items:
->> +      - const: core
->> +      - const: wakeup
->> +
->> +  clocks:
->> +    items:
->> +      - description: iface clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: iface
->> +
->> +  resets:
->> +    items:
->> +      - description: SWR_AUDIO_CGCR RESET
->> +
->> +  reset-names:
->> +    items:
->> +      - const: swr_audio_cgcr
->> +
->> +  '#sound-dai-cells':
->> +    const: 1
->> +
->> +  '#address-cells':
->> +    const: 2
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +  wakeup-source: true
->> +
->> +  qcom,din-ports:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: count of data in ports
->> +
->> +  qcom,dout-ports:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: count of data out ports
->> +
->> +  qcom,ports-word-length:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Size of payload channel sample.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 5
->> +
->> +  qcom,ports-sinterval-low:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Sample interval low of each data port.
->> +                 Out ports followed by In ports. Used for Sample Interval
->> +                 calculation.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 8
->> +
->> +  qcom,ports-offset1:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Payload transport window offset1 of each
->> +                 data port. Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 8
->> +
->> +  qcom,ports-offset2:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Payload transport window offset2 of each
->> +                 data port. Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 8
->> +
->> +  qcom,ports-lane-control:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Identify which data lane the data port uses.
->> +                 Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 5
->> +
->> +  qcom,ports-block-pack-mode:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Indicate the block packing mode.
->> +                 0 to indicate Blocks are per Channel
->> +                 1 to indicate Blocks are per Port.
->> +                 Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 8
->> +
->> +  qcom,ports-hstart:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Identifying lowerst numbered coloum in
->> +                 SoundWire Frame, i.e. left edge of the Transport sub-frame
->> +                 for each port. Values between 0 and 15 are valid.
->> +                 Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 5
->> +
->> +  qcom,ports-hstop:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: Identifying highest numbered coloum in
->> +                 SoundWire Frame, i.e. the right edge of the Transport
->> +                 sub-frame for each port. Values between 0 and 15 are valid.
->> +                 Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 5
->> +
->> +  qcom,ports-block-group-count:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: In range 1 to 4 to indicate how many sample
->> +                 intervals are combined into a payload.
->> +                 Out ports followed by In ports.
->> +                 Value of 0xFF indicates that this option is not implemented
->> +                 or applicable for the respective data port.
->> +                 More info in MIPI Alliance SoundWire 1.0 Specifications.
->> +    minItems: 3
->> +    maxItems: 5
->> +
->> +  label:
->> +    maxItems: 1
->> +
->> +patternProperties:
->> +  "^.*@[0-9a-f],[0-9a-f]$":
->> +    type: object
-> You should have here a description.
+As we have already pinctrl support for RZ/G2UL [1]
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
+it/drivers/pinctrl/renesas/pinctrl-rzg2l.c?h=3Dv6.1-rc4&id=3Dbfc69bdbaad141=
+ac408e6de86b7e0d771c8e3ccb
 
-Bit confusion Here. In any of examples there is no description for 
-patternProperties.
+Cheers,
+Biju
 
-You mean, description for below compatible property?
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 17 ++++++++++-------
+>  1 file changed, 10 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> index a43824fd9505..dcc495baa678 100644
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> @@ -127,6 +127,7 @@ struct rzg2l_dedicated_configs {  struct
+> rzg2l_pinctrl_data {
+>  	const char * const *port_pins;
+>  	const u32 *port_pin_configs;
+> +	unsigned int n_port_pin_configs;
+>  	struct rzg2l_dedicated_configs *dedicated_pins;
+>  	unsigned int n_port_pins;
+>  	unsigned int n_dedicated_pins;
+> @@ -1122,7 +1123,7 @@ static struct {
+>  	}
+>  };
+>=20
+> -static int rzg2l_gpio_get_gpioint(unsigned int virq)
+> +static int rzg2l_gpio_get_gpioint(unsigned int virq, const struct
+> +rzg2l_pinctrl_data *data)
+>  {
+>  	unsigned int gpioint;
+>  	unsigned int i;
+> @@ -1131,13 +1132,13 @@ static int rzg2l_gpio_get_gpioint(unsigned int vi=
+rq)
+>  	port =3D virq / 8;
+>  	bit =3D virq % 8;
+>=20
+> -	if (port >=3D ARRAY_SIZE(rzg2l_gpio_configs) ||
+> -	    bit >=3D RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[port]))
+> +	if (port >=3D data->n_port_pin_configs ||
+> +	    bit >=3D RZG2L_GPIO_PORT_GET_PINCNT(data->port_pin_configs[port]))
+>  		return -EINVAL;
+>=20
+>  	gpioint =3D bit;
+>  	for (i =3D 0; i < port; i++)
+> -		gpioint +=3D RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[i]);
+> +		gpioint +=3D RZG2L_GPIO_PORT_GET_PINCNT(data->port_pin_configs[i]);
+>=20
+>  	return gpioint;
+>  }
+> @@ -1237,7 +1238,7 @@ static int rzg2l_gpio_child_to_parent_hwirq(struct
+> gpio_chip *gc,
+>  	unsigned long flags;
+>  	int gpioint, irq;
+>=20
+> -	gpioint =3D rzg2l_gpio_get_gpioint(child);
+> +	gpioint =3D rzg2l_gpio_get_gpioint(child, pctrl->data);
+>  	if (gpioint < 0)
+>  		return gpioint;
+>=20
+> @@ -1311,8 +1312,8 @@ static void rzg2l_init_irq_valid_mask(struct gpio_c=
+hip
+> *gc,
+>  		port =3D offset / 8;
+>  		bit =3D offset % 8;
+>=20
+> -		if (port >=3D ARRAY_SIZE(rzg2l_gpio_configs) ||
+> -		    bit >=3D RZG2L_GPIO_PORT_GET_PINCNT(rzg2l_gpio_configs[port]))
+> +		if (port >=3D pctrl->data->n_port_pin_configs ||
+> +		    bit >=3D
+> +RZG2L_GPIO_PORT_GET_PINCNT(pctrl->data->port_pin_configs[port]))
+>  			clear_bit(offset, valid_mask);
+>  	}
+>  }
+> @@ -1517,6 +1518,7 @@ static int rzg2l_pinctrl_probe(struct platform_devi=
+ce
+> *pdev)  static struct rzg2l_pinctrl_data r9a07g043_data =3D {
+>  	.port_pins =3D rzg2l_gpio_names,
+>  	.port_pin_configs =3D r9a07g043_gpio_configs,
+> +	.n_port_pin_configs =3D ARRAY_SIZE(r9a07g043_gpio_configs),
+>  	.dedicated_pins =3D rzg2l_dedicated_pins.common,
+>  	.n_port_pins =3D ARRAY_SIZE(r9a07g043_gpio_configs) *
+> RZG2L_PINS_PER_PORT,
+>  	.n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common),
+> @@ -1525,6 +1527,7 @@ static struct rzg2l_pinctrl_data r9a07g043_data =3D=
+ {
+> static struct rzg2l_pinctrl_data r9a07g044_data =3D {
+>  	.port_pins =3D rzg2l_gpio_names,
+>  	.port_pin_configs =3D rzg2l_gpio_configs,
+> +	.n_port_pin_configs =3D ARRAY_SIZE(rzg2l_gpio_configs),
+>  	.dedicated_pins =3D rzg2l_dedicated_pins.common,
+>  	.n_port_pins =3D ARRAY_SIZE(rzg2l_gpio_names),
+>  	.n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common) +
+> --
+> 2.25.1
 
->
->> +    properties:
->> +      compatible:
->> +        pattern: "^sdw[0-9a-f]{1}[0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - '#sound-dai-cells'
->> +  - '#address-cells'
->> +  - '#size-cells'
->> +  - qcom,dout-ports
->> +  - qcom,din-ports
->> +  - qcom,ports-sinterval-low
->> +  - qcom,ports-offset1
->> +  - qcom,ports-offset2
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
->> +
->> +    soundwire@3210000 {
->> +        compatible = "qcom,soundwire-v1.6.0";
->> +        reg = <0x03210000 0x2000>;
->> +
->> +        interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
->> +                     <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +        interrupt-names = "core";
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Tested bindings and didn't see any issues on my setup. will do cross check.
->
-> Best regards,
-> Krzysztof
->
