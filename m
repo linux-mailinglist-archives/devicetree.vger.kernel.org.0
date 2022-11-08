@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F59620B51
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 09:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14261620B80
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 09:50:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233278AbiKHIh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 03:37:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
+        id S233658AbiKHIuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 03:50:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbiKHIh2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 03:37:28 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFA65F89;
-        Tue,  8 Nov 2022 00:37:27 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id v17so21348660edc.8;
-        Tue, 08 Nov 2022 00:37:27 -0800 (PST)
+        with ESMTP id S233681AbiKHIuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 03:50:39 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 451C42E683;
+        Tue,  8 Nov 2022 00:50:38 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id k2so36772524ejr.2;
+        Tue, 08 Nov 2022 00:50:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rBcpmwuR/ODR32oPZ7gdO9KQiR1ADfHBqKZSH0UVkho=;
-        b=e4j1eCR1UhFtQybAXCXqziDfdLRUycEpk/7naGJdMUOu4pI6U8USOSWrdlRg1ua+IP
-         tdDQIACKuwIaWYopM6cZNwvb378Q51l1yGftXacFsJWHJl2yJH8HqYiPENH29e/Zj7DB
-         HxRA7azZ/7nXFkwC4DagnuOc82yl468l2fWKpJhluCtCpsC1TKbaL3T20lwM0ifFxqpU
-         5jDRZRVAUhft1F4qoCW5byKCPthBsfo+/M7fgcig74nWZiI2B6ZiXG5Ur5A0HbsojhSK
-         2lXaWU4y6slfgD3MyPf/xp65XNaCtXA7FISVcF+BDqPpXubeYeYqItufm1yu/RMEJyCP
-         u2yQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=w0n10CzsZUUxFcmUjhE4yWbFLhcZbhAP4KcpYcEywCY=;
+        b=QW0Krfd49YlhRsqSpEJSBDsAV+LXFNv9eZsUyDj6rQjTz8iO/ApJdc7UW7ZEaFfJVt
+         MJhKCoceyU+OnaCreV+mqwIG+1L81AOYCAxd2OgMPcF0xfZDQ7bWZHJxL+tyl1GPxTWf
+         ham9k3bssv3Xb3DY7MA/lyUtSWzdvah3qnLBE4CPFORYavezFvZWE0WoTNu70rv7CdKE
+         T3wbm0YIyR2MYJYs8If+BzmsMXMow9md8yS/9VGHoDB0ArvOyrZO6MCOR2XC2TO0CBgg
+         xoFZLEYLunlqQLdqE467aL509jBV+vivSmZj0eS5XfWdy2JeoAIUoEPb1LaQjsnDaDjV
+         VBQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rBcpmwuR/ODR32oPZ7gdO9KQiR1ADfHBqKZSH0UVkho=;
-        b=B+GJZKYzvZaRiuCVh0ocmCiRWI+54CGwls+kzl3pxKjhiCMBqURybJ4FxXyepKYwCf
-         s15L6teVsdcctJy4Xk6HQZ4r0948ISuceNSTDSwmcmzk1HNmGefH5sT7ztdi/6m71LA6
-         SJmdl0yi4/REpB37REtpSjR0ifeUt7kQoDAxv+guwSYhbRilhR+gB8GF4dshLUB2yUfA
-         bgCX+uluXC4die9lfIVG2YGtBt+ZnCoWUJGk84x9psd+S0FJ8fLYaKHp2AQLhb5e2H26
-         dZbn1aMVE7HFNemYxs9qvuAYMtwVDjw1e27GpXTwAPcPuG3O0SJYdoRbQxVa1cWtNAJZ
-         DvTQ==
-X-Gm-Message-State: ACrzQf2NaWkhL2SOTTWJZl+5ur0Cj34t7kS6VhT5LBTzagnLUdeSgPEW
-        BEqdMKVlhTVJOUeQ65W0KLk=
-X-Google-Smtp-Source: AMsMyM4EPEB/0Jafx+7+CGq+VrkQ04VdIij6KXFGXzOJRr7vzS9gA0A6MtNcCXd6mZfRmkj20o3Q7Q==
-X-Received: by 2002:aa7:c9cf:0:b0:462:f136:d143 with SMTP id i15-20020aa7c9cf000000b00462f136d143mr899540edt.418.1667896645648;
-        Tue, 08 Nov 2022 00:37:25 -0800 (PST)
-Received: from [10.76.84.153] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id ca12-20020a170906a3cc00b0079800b81709sm4399358ejb.219.2022.11.08.00.37.24
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w0n10CzsZUUxFcmUjhE4yWbFLhcZbhAP4KcpYcEywCY=;
+        b=hTmLuuqNyNKhugwZU2YCHE6mgL3MfGYmYIgc2T27WHFy08thT86TiA2aZg3OM5pO7Y
+         KKYP8bVgQdq0bGn3RRXue/obyGddCI38uq5KeBGii17G1DJeZPC9niD7aV1+vZRNGzJ5
+         IPg0FofNkdQv2xjP/z1Xfp0e/ZPY4sU8sMFrBOJfJJz8EhNZwFlqaQ2rx6+MMk+XtGWc
+         xof4hGoaNKNe4IwlmkPN8BLF1HNFqxjE3VYzAi9MquChSheyjCyyfmrwmmkoumeQKa21
+         zoaKlkPMkKEuUJgrGtwRSgauF6aOAXyTiuQ4FnDsmzr0468qfPobvQk2M1GfM4W9XuwO
+         YDiQ==
+X-Gm-Message-State: ACrzQf36KUFLOJupjhD9kH6WQlMy4FUnNB+FKqt8I9uKH5caQSWl03ay
+        1kbjuuZa613kOn/WfY/QJQw=
+X-Google-Smtp-Source: AMsMyM4W1QOPKIz2N+H3NcVKZbRaHXo7P14zKsxtm0HFnMrcXc23Tiyvx6IyS9lbI4zHZF5Te1B7sQ==
+X-Received: by 2002:a17:906:9602:b0:78d:b5be:e5f with SMTP id s2-20020a170906960200b0078db5be0e5fmr910771ejx.601.1667897436542;
+        Tue, 08 Nov 2022 00:50:36 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id lj18-20020a170906f9d200b007adade0e9easm4368043ejb.85.2022.11.08.00.50.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 00:37:25 -0800 (PST)
-Message-ID: <ba6b64f733aaee22ff85feba467ff01ccb220913.camel@gmail.com>
-Subject: Re: [PATCH v4 11/13] dt-bindings: iio: temperature: ltc2983: use
- generic node name in example
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-To:     Rob Herring <robh@kernel.org>, Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+        Tue, 08 Nov 2022 00:50:36 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Date:   Tue, 08 Nov 2022 10:37:23 +0200
-In-Reply-To: <20221107181328.GA1354289-robh@kernel.org>
-References: <20221103130041.2153295-1-demonsingur@gmail.com>
-         <20221103130041.2153295-12-demonsingur@gmail.com>
-         <20221107181328.GA1354289-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.1 
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] mips: dts: brcm: bcm7435: add "interrupt-names" for NAND controller
+Date:   Tue,  8 Nov 2022 09:50:32 +0100
+Message-Id: <20221108085032.4609-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,52 +73,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-11-07 at 12:13 -0600, Rob Herring wrote:
-> On Thu, Nov 03, 2022 at 03:00:39PM +0200, Cosmin Tanislav wrote:
-> > From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> >=20
-> > Examples should use the generic IIO node name. Fix it.
-> >=20
-> > Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> > ---
-> > =C2=A0.../devicetree/bindings/iio/temperature/adi,ltc2983.yaml=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
-> > 2 +-
-> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
-> > l
-> > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
-> > l
-> > index 467e165e9b0b..bd357ff28e65 100644
-> > ---
-> > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
-> > l
-> > +++
-> > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
-> > l
-> > @@ -420,7 +420,7 @@ examples:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>=
-;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> > =C2=A0
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sensor_ltc2983: ltc2983@0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 temp@0 {
->=20
-> The DT spec defines 'temperature-sensor'.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Jonathan, could you maybe fix this (replace 'temp' with
-'temperature-sensor') while picking it up? Thanks.
+Second interrupt can be DMA or EDU one. Specify it explicitly using
+interrupt-names property. This matches documented binding.
 
->=20
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,ltc2983";
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0>;
-> > =C2=A0
-> > --=20
-> > 2.38.1
-> >=20
-> >=20
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/mips/boot/dts/brcm/bcm7435.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/mips/boot/dts/brcm/bcm7435.dtsi b/arch/mips/boot/dts/brcm/bcm7435.dtsi
+index 8c001b944c8b..cfdf9804e126 100644
+--- a/arch/mips/boot/dts/brcm/bcm7435.dtsi
++++ b/arch/mips/boot/dts/brcm/bcm7435.dtsi
+@@ -422,6 +422,7 @@ nand: nand@41c800 {
+ 			reg = <0x41c800 0x600>, <0x41d000 0x100>;
+ 			interrupt-parent = <&hif_l2_intc>;
+ 			interrupts = <24>, <4>;
++			interrupt-names = "nand_ctlrdy", "flash_dma_done";
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.34.1
 
