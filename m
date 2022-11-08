@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE0B620E51
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E636C620E57
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:14:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233976AbiKHLNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:13:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56052 "EHLO
+        id S234069AbiKHLOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:14:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233826AbiKHLNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:13:32 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB19766E
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:13:29 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id l8so20560680ljh.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:13:29 -0800 (PST)
+        with ESMTP id S233660AbiKHLN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:13:58 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB5717422
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:13:58 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id z24so20577348ljn.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:13:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=b6jOxeuiN/P01zuIfksPvOeqYmxHvoXJTsaDxoCzoKc=;
-        b=AJWW7q3rfm8uJ5TAPfZceGmBAUYtgGRyVzRsBn9NKAmQkl07a0ZA9Z0sebEgvC4Qqj
-         h++Y2PeOi5je4QMztSNvVfQyfBHESw54AWECOf06LfbR0Zq/phtWTUjZVK2wpABXlI0p
-         8jStsY+gWu3bdmXhjNh8WSf0a8ez4apalpQ887SIIQ6PcSzSYaAhDR4Y2/MS7K7dcYtW
-         vIRu1DvBEnt3t7la1J980coDN+bggzpB3VblRVqxWuRoNsdaZYNqTIfsMj2pG6YfWMbb
-         zwrwTs5MN2EzDFL6J7s0l7VtIiC5e0YLVOKcI6+LTDRgAWU2x4YPpCJ85vu+RNfmgDMi
-         BfdQ==
+        bh=uEGHhzKbszqMWjuxMkREdBe3r8rfRgsqdTFsuaG+D8g=;
+        b=NJ7n5tDHA4FKrxdgKfMSK0JsHzzrPAaCYu9uFHzMI+iTMHzefvTrNRAMFyVDOa+Oke
+         SW0pFZ6VU3hfW9BacyR3YDPhurrPdQ0CX54079uUcGSkc5ci79eI5s0ENkwlVcxMumu/
+         JMK0yeEhyIe1tAIHjkny0+Qi/juWsPUek0fiUAirUKHM5bRLwFLmsv2ymf8Bl6bDntf0
+         tuL1j5f95LjnqRlvoeZsSRpFgW/3+N+1BFu3GByNkq0kjw6j317MtEYkxcg9K4hmGmsI
+         eqTliulwoOQVUFWIzLRzamvebCQH9XKIIvLN+FNGAVwTENV0KufYpY8qdPdCT3s/yVgO
+         QkPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b6jOxeuiN/P01zuIfksPvOeqYmxHvoXJTsaDxoCzoKc=;
-        b=8N8mnlnYm9IWYZSH2lGSMibpExhkT3m6gS+8FK/sGmIZCZTJxTkoB7ylHpWd//l0pd
-         HCP1+fCUP6szpAq2irEwLeIrHTj3o/CfDefDYKgRWL3uQ8cteHeC6xbcO3SYPdOHQlLJ
-         HlkfK6zOe/L3VnaqaajfdSzbCoQmjc7keVtwyEoX9Q52jC2mMqyXAarn1KR5+voWgW3+
-         Li10HRCWQ277ZK87knLab/vKFMSE9VprJ2xkjONOSKmJTrsw6Rg757xMqUT7DAkKYhd6
-         Ldcui1vkZ93Sb0Wr+XzfupT1Ld7Nhbbqr7cojlC0qS79pwCV8dukdOsiGGJx0Q7klYmw
-         sT/Q==
-X-Gm-Message-State: ACrzQf3XBcbd3iLLVvjMsxU9t0Y2VzC435H+C7XgI7kwRJANfHX+SRc1
-        x9S/eNhfOna1HYxB9I61PrygbA==
-X-Google-Smtp-Source: AMsMyM4BamTVwnVRVEzHMxTSWzVqGEy7NnZV4CojHp0kgr4RUINHxdiS3OTFIT2molBMkjMfY86rKg==
-X-Received: by 2002:a2e:9545:0:b0:277:8a06:fda2 with SMTP id t5-20020a2e9545000000b002778a06fda2mr5368558ljh.32.1667906007777;
-        Tue, 08 Nov 2022 03:13:27 -0800 (PST)
+        bh=uEGHhzKbszqMWjuxMkREdBe3r8rfRgsqdTFsuaG+D8g=;
+        b=W+GPdlr8AYaRdC2JxYwGk6dR48kCfYXE2IPGttbZdkNyj0433W25BNIUp8PxYiKmli
+         CHFnYHawadgBWb1e6/8o5cNxMLo6xHhITvrhk8A8pME0kQOXMMM2IuLr8neFsT72XMW9
+         w5z/XutEI0H/IcxBKhlJdcsvDnAvmD4hrRqnB6u4vxksBaZ9gLNFkPxLrYiQ36pHRStR
+         iRTce5KLWrRQHYIIq8t9E/QsEZGp8B11fq17KD5a7kSvuc61zyLHcbquX81MFCi3Qsta
+         u4EIiSGrmTYqyRATU/nlN0rvuPLyf2UsMbsROO+ZPFjSlVCKarfLUSiMHvdjFqSrb6WQ
+         TY6Q==
+X-Gm-Message-State: ACrzQf054dv9bqWee39e76+kMLVK22y8ooa+tLJRR/WonLriJDTjqNjH
+        /DE+vHFQqokPsa0hX8uLZNAdxA==
+X-Google-Smtp-Source: AMsMyM5LerxL9uLhjvhqx4rdYZ00h9GhQiY/qVsIX6zMEtdfJqU1Zg/x1+q1u6X6IVzcNyzLs9GczQ==
+X-Received: by 2002:a2e:8ec6:0:b0:26d:f909:6b7f with SMTP id e6-20020a2e8ec6000000b0026df9096b7fmr6984570ljl.482.1667906036420;
+        Tue, 08 Nov 2022 03:13:56 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id p16-20020ac246d0000000b004acd6e441cesm1735642lfo.205.2022.11.08.03.13.26
+        by smtp.gmail.com with ESMTPSA id a11-20020ac25e6b000000b004b3e6010827sm685992lfr.66.2022.11.08.03.13.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:13:27 -0800 (PST)
-Message-ID: <f8f83839-2e76-e500-a16e-5fd2985a278d@linaro.org>
-Date:   Tue, 8 Nov 2022 12:13:26 +0100
+        Tue, 08 Nov 2022 03:13:55 -0800 (PST)
+Message-ID: <37f8f24a-0f25-2f3d-1bc6-de9d5556d18e@linaro.org>
+Date:   Tue, 8 Nov 2022 12:13:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 5/5] arm64: dts: uniphier: Add NX1 SoC and boards
- support
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom: ipq8074: add missing
+ networking resets
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
- <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221107132901.489240-1-robimarko@gmail.com>
+ <20221107132901.489240-2-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20221107132901.489240-2-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,35 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 11:34, Kunihiko Hayashi wrote:
-> Initial version of devicetree sources for NX1 SoC and boards.
+On 07/11/2022 14:29, Robert Marko wrote:
+> Add bindings for the missing networking resets found in IPQ8074 GCC.
 > 
-> NX1 SoC belongs to the UniPhier armv8 architecture platform, and is
-> designed for IoT and AI/ML application fields.
-> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  include/dt-bindings/clock/qcom,gcc-ipq8074.h | 14 ++++++++++++++
 
-> +
-> +		soc_glue: syscon@1f800000 {
-> +			compatible = "socionext,uniphier-nx1-soc-glue",
-> +				     "simple-mfd", "syscon";
-> +			reg = <0x1f800000 0x2000>;
-> +
-> +			pinctrl: pinctrl {
-> +				compatible = "socionext,uniphier-nx1-pinctrl";
 
-So instead of documenting the hardware precisily, you have one big bag
-for everything under simple-mfd. This is not how the SoC should be
-described in DTS.
-
-> +			};
-> +		};
-> +
-> +		soc-glue@1f900000 {
-> +			compatible = "simple-mfd";
-
-No, it is not allowed on its own. You need a specific compatible and
-bindings describing its children.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
