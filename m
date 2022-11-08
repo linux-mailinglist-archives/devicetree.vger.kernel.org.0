@@ -2,48 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32C7621CAF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 20:08:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8754621CBA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 20:10:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiKHTID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 14:08:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
+        id S229724AbiKHTKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 14:10:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiKHTIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 14:08:02 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF04B8C598;
-        Tue,  8 Nov 2022 11:08:01 -0800 (PST)
-Received: from zn.tnic (p200300ea9733e764329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e764:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229638AbiKHTKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 14:10:21 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A83261B89;
+        Tue,  8 Nov 2022 11:10:18 -0800 (PST)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 617CB1EC0430;
-        Tue,  8 Nov 2022 20:08:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1667934480;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=Lssjc5TnqqSvaM+L8ZN7oXHyNntVLTRDNG/h5HCVRG4=;
-        b=TCW+thf3GAae5pyCrOoT6jIb8UU9CIRtNU8CY8V/TOovkaqcbhjnKzHBdaGUDWDcRcSOy1
-        OnSLZ5d707sKyxVyUgUGxhRqdWcoDG3Uw3sIlQuth+vWQN+m2Pw/rxJYdTrDlQZ1SmtrFs
-        4+HEb9xvYDbPxDXkXjOla3jBKiIe8Jk=
-Date:   Tue, 8 Nov 2022 20:07:55 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-edac@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, michal.simek@xilinx.com,
-        rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v2 0/2] edac: xilinx: Added EDAC support for Xilinx DDR
- controller
-Message-ID: <Y2qpC6sk+1Wpde9h@zn.tnic>
-References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 820AC6600368;
+        Tue,  8 Nov 2022 19:10:12 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667934616;
+        bh=+x4MJ+AKsMXulMyAxgCPfV7Jwz5088uT1madjdL8Tz8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BRDC25qS/b9DoOMeS9+X1xOhzrYzjJ0K+UMCDrdd5CzVCjVAppxTOHAWslva/SSu9
+         NL9nUjDGzLJZJpr+wMKKP9RIdrM7AaUWuJfEeWZRCIHN+eHEUsnb0EvACqTkv6W8Jp
+         4dntC6xlVsxRTOCRGoipLyVa4zRcMfGQzTqKM8Xn/11GTIkxDal0kLBGUkDnUBwt+t
+         +opiUMga30d7GKHUBZAWoImtcmjGW1RVtmNOskstabT0EELCuWZ8LQoeA2XFkk7XEc
+         teXnZwEdUPUZsMHtlNFFRq4f+Nf7dSENPvwVC6XuyIdlKeqZTtnXW2daF6ybhkdotC
+         41306fZsagfkQ==
+Date:   Tue, 8 Nov 2022 14:10:08 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v28 04/11] soc: mediatek: add mtk-mmsys support for
+ mt8195 vdosys1
+Message-ID: <20221108191008.lsasjskm7tzvpa42@notapiano>
+References: <20221107072243.15748-1-nancy.lin@mediatek.com>
+ <20221107072243.15748-5-nancy.lin@mediatek.com>
+ <90d8dfb1-2a37-e79a-b912-c77076e493c6@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <90d8dfb1-2a37-e79a-b912-c77076e493c6@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -53,33 +73,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 11:54:11AM +0530, Shubhrajyoti Datta wrote:
+On Tue, Nov 08, 2022 at 06:46:54PM +0100, Matthias Brugger wrote:
+> On 07/11/2022 08:22, Nancy.Lin wrote:
+[..]
+> > --- a/drivers/soc/mediatek/mtk-mmsys.c
+> > +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> > @@ -80,6 +80,12 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
+> >   	.num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
+> >   };
+> > +static const struct mtk_mmsys_driver_data mt8195_vdosys1_driver_data = {
+> > +	.clk_driver = "clk-mt8195-vdo1",
+> > +	.routes = mmsys_mt8195_vdo1_routing_table,
+> > +	.num_routes = ARRAY_SIZE(mmsys_mt8195_vdo1_routing_table),
+> > +};
+> > +
+> >   static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
+> >   	.clk_driver = "clk-mt8365-mm",
+> >   	.routes = mt8365_mmsys_routing_table,
+> > @@ -292,6 +298,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
+> >   		.compatible = "mediatek,mt8195-vdosys0",
+> >   		.data = &mt8195_vdosys0_driver_data,
 > 
-> The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and LPDDR4/4X
-> memory interfaces. It has four programmable NoC interface ports and is designed
-> to handle multiple streams of traffic.
+> It seems we are missing a patch in the series. vdosys0 also correct was
+> never introduced in the driver...
+
+Hi Matthias,
+
+as mentioned in the cover letter, this series is based on the series "Change
+mmsys compatible for mt8195 mediatek-drm" [1], which introduces vdosys0. This
+compatible entry specifically is added on patch 3 of that series [2].
+
+[1] https://lore.kernel.org/all/20220927152704.12018-1-jason-jh.lin@mediatek.com/
+[2] https://lore.kernel.org/all/20220927152704.12018-4-jason-jh.lin@mediatek.com/
+
+Thanks,
+Nícolas
+
 > 
-> Optional external interface reliability include ECC error detection/correction
-> and command address parity.
-> 
-> Adding edac support for DDR Memory controller.
-
-Same question as in
-
-https://lore.kernel.org/r/Y2qiRoiYepte/R4W@zn.tnic
-
-How many memory controllers are there in Xilinx boards and how many EDAC
-drivers can potentially be needed to run in parallel?
-
-Also, this is an integrated memory controller, ZynqMP OCM is a on-chip
-controller. Can we have a single xilinx_edac driver which contains
-support for both memory controller types or are they completely
-different?
-
-Thx.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+> >   	},
+> > +	{
+> > +		.compatible = "mediatek,mt8195-vdosys1",
+> > +		.data = &mt8195_vdosys1_driver_data,
+> > +	},
+> >   	{
+> >   		.compatible = "mediatek,mt8365-mmsys",
+> >   		.data = &mt8365_mmsys_driver_data,
