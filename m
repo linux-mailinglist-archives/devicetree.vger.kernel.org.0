@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7826A620C50
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6022620C64
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233259AbiKHJfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 04:35:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
+        id S233779AbiKHJhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 04:37:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232896AbiKHJfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:35:02 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF4A25C5B
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:35:01 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id d20so20187033ljc.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 01:35:01 -0800 (PST)
+        with ESMTP id S233799AbiKHJhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:37:04 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30D127930
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:37:01 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id s24so20202865ljs.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 01:37:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qFBXnwgYOk+9t2BDdNhXWV8qbBDtXWeNI3uKhBQ7ls4=;
-        b=UuOwT9mhHADA8vHd27kyiqSt7CIiFzPF6F5uT0NWiM8bqT+Je+D57oUY+GEDq/1ngd
-         Rh5NffOhwc+y2Ld7raVbwTPBJ8dOJ7zQ/cdzpyVn6XToQm/OCv3besj4D435Nyuk22Hi
-         O+jt5ZzcURAa3lgkis5O5gCmInNdb24F4CCMxnHDbmR3tyME68PHa8WR7ffDhy51pq5E
-         w8rG4vAhu9ACebJS8c185ySkockMDDrgP5NYf6orCBunJTmWqAGFGpmy6ajH1l7SK1bV
-         GjIvNXTJhd+NTR8bfX6OyyEMBjkQHn/jMif7NfJ2PpQL2p8QzjGBFRZMpiGxoJ90c8LM
-         JsyQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/IOGz3JIjCjJ+AfC0TfrJGceNt7uhIjDuv8tUMl3IPk=;
+        b=fYBxFH8nQzIrfsjs1Pfp8dYfCKoJlv2dPKJ9vpdmLS+dnjpkz14QfOmyTW85cmfXAg
+         AQ1m6RdChNtONceYCxrVVEbUWS/6T3r3ilHKs0ckmoYBA+LBFohxBPeS1Gq11Qi/2rgF
+         A68af37wTkju8vMZ5dQE3NBVhjTixMxbOYV3/KB7lH1jbilq2vUN9Q1dP/dajt4+819c
+         iu4mZi9f9Qf5AGhOAq/Rx/Qpi6I7Ds4+mAk2upkN13qwXuWYMbdMvhJeRr21RdLFpk0/
+         N1Y4RRVOjAe5s6zVZrnq6h1anLGbTPDXRJJqBNUXrdie0RsvOY6Ev7HvUYQwAJm0vw2i
+         yt8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qFBXnwgYOk+9t2BDdNhXWV8qbBDtXWeNI3uKhBQ7ls4=;
-        b=osZihXxwi4hnQ8Bw/reHj6hzMmzaz1aiTi2Gpe76JVkbFS8GYkQgbJCse5fN3lAul2
-         BdsErU3j9GuDTQMx/zxPNrWFePlKzLdbECICAN1SRd4I2zvgc8sI5D4hbowuY2wWM3MJ
-         +2VbDty+LFdoWl8bBkwf1Qtxgz50zaNh0SzrrDW91zS2VuYHvgqPpSZG0xRjhfVHmdlU
-         ouXC6HLI0LMXsJP0Q53bHWLrt5rD+ZsshrMtdYblC/R+ZiXttZvDG9iCjVqLB/C58IZW
-         m13sqtrIs9RB26ZEFDIT+ITC6+g4rRw20UoYtCRmV119AxR+1y3KVDUKL1wcKVrn5YzW
-         bY/w==
-X-Gm-Message-State: ACrzQf0jRJ0ZPSWF1Dn0iEFfnroQkBaWuKKLu0kdW3UTRlhG81mQOXDu
-        mG01Y79UBEt4a2bJCjfbJa8MNg==
-X-Google-Smtp-Source: AMsMyM5DrqNB/gqUBduco3X7kWyZPPJsKStm6QI6mvBTP7DVgH6Dgw6IfeWXDPqGPvmhosUFK1XFDA==
-X-Received: by 2002:a2e:9545:0:b0:277:8a06:fda2 with SMTP id t5-20020a2e9545000000b002778a06fda2mr5265716ljh.32.1667900099346;
-        Tue, 08 Nov 2022 01:34:59 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id t8-20020ac25488000000b004b0b131453csm1709404lfk.49.2022.11.08.01.34.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 01:34:57 -0800 (PST)
-Message-ID: <ca515021-326d-6034-2af9-54e73e1cc8fa@linaro.org>
-Date:   Tue, 8 Nov 2022 10:34:57 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V2 1/2] arm64: dts: qcom: sc7280: Mark all Qualcomm
- reference boards as LTE
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, bjorn.andersson@linaro.org,
-        dianders@chromium.org, jinghung.chen3@hotmail.com
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@somainline.org
-References: <20221108092207.8186-1-quic_sibis@quicinc.com>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/IOGz3JIjCjJ+AfC0TfrJGceNt7uhIjDuv8tUMl3IPk=;
+        b=uZ42sSNw9/r+oFbGzbZD5x4J2PkZjoz0wVbFhyt6uYp0jEMb/QAVS2HqvplN03paLd
+         VhJMRoeJx7YhXaL0QC4HAwJnfn0bfa8eLsyFY1FMiJv6vefF/VPWA0L6d9rbtHFFHG40
+         kr7bo2B78tZEOy/RvushlT/E7KSJuvElGmsn1wWvsx1vEWAOYv/Cj3EDQMi/LRouKcqP
+         uXt5MMg8mamQ6Ljdx5lytao8sQMllx/fLp9149jFUFOpqcTnfV9Fy9wARXxyb2g5pW5E
+         CcAA7K48QbQCcB4ZzfEW+vJSd+etyoAmPr/Fh30ESnuf/uhngnxdJqsGca5Q3UWxe/D0
+         Z5Og==
+X-Gm-Message-State: ACrzQf3Nxpp/Jbwu9i/AXZdJ2U2RdlAR9j4N1VJWTMaBhSwBBJJkhf1v
+        xmXS8zT7sGFkRlQhsk7d5n509w==
+X-Google-Smtp-Source: AMsMyM5zKaceMhir3TCvSjW3E5V722syxQYPWOSTQ5gANUjFP4AgoeOyAfzdbFGDCU0lH+EkdLONrA==
+X-Received: by 2002:a2e:2e1a:0:b0:26d:e38f:7e21 with SMTP id u26-20020a2e2e1a000000b0026de38f7e21mr6451877lju.273.1667900220156;
+        Tue, 08 Nov 2022 01:37:00 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id d32-20020a0565123d2000b004a2386b8cf9sm1704478lfv.206.2022.11.08.01.36.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Nov 2022 01:36:59 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108092207.8186-1-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: (subset) [PATCH 2/2] dt-bindings: pinctrl: qcom,qcs404: convert to dtschema
+Date:   Tue,  8 Nov 2022 10:36:57 +0100
+Message-Id: <166790021413.13942.4359654341384885728.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221104161131.57719-2-krzysztof.kozlowski@linaro.org>
+References: <20221104161131.57719-1-krzysztof.kozlowski@linaro.org> <20221104161131.57719-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 10:22, Sibi Sankar wrote:
-> When the modem node was re-located to a separate LTE source file
-> "sc7280-herobrine-lte-sku.dtsi", some of the previous LTE users
-> weren't marked appropriately. Fix this by marking all Qualcomm
-> reference devices as LTE.
+On Fri, 4 Nov 2022 12:11:31 -0400, Krzysztof Kozlowski wrote:
+> Convert Qualcomm QCS404 pin controller bindings to DT schema.  Keep the
+> parsing of pin configuration subnodes consistent with other Qualcomm
+> schemas (children named with '-state' suffix, their children with
+> '-pins').
 > 
-> Fix-suggested-by: Douglas Anderson <dianders@chromium.org>
+> Changes during conversion: add sdc1_rclk pins (used in qcs404-evb.dtsi).
+> 
+> [...]
 
-There is no such tag. If it is a fix, use Reported-by. If it is not, use
-Suggested-by.
+Applied, thanks!
 
-> Fixes: d42fae738f3a ("arm64: dts: qcom: Add LTE SKUs for sc7280-villager family")
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+[2/2] dt-bindings: pinctrl: qcom,qcs404: convert to dtschema
+      https://git.kernel.org/krzk/linux-dt/c/d9bae354bc5666453cf7297fb566306cd53cfcbc
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
