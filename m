@@ -2,385 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E4162198C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A86E76219AA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234452AbiKHQdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 11:33:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58720 "EHLO
+        id S233613AbiKHQlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 11:41:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233654AbiKHQdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:33:53 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6960357B45;
-        Tue,  8 Nov 2022 08:33:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-        In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=0YuT/1kkHJsdBfN/BGMqpUuaH3DBVYf6Kah8+7mSTP0=; b=zSRN7jM4d9Lez4dLQdLNSCChFn
-        gvXBWsZDj7VDAWF7OVrUrSrlsDcCpQvKvJeTFFCvrzTKytGBmnOsqHnkpZfjgGMZqfYYJDl5RJKNv
-        xq9tFz3wdy7ZQeqNek/Avy2ErToMa1GEf8td2P/9KAu8mztJW3He4S6O3+bObLUSB38ilJiNbbuhz
-        LvCw7Sj+dC+1LrJwv8s+Wxtezuvwc+peXoxkgzO35f2vdOTnDx240BFR+JfRkXxcGWWL2pmXsTWVD
-        PEsgfiSNJlbVDU30cBX6suit1nUohBix3iHEcjZbvxowkBor8b+gSSLGW/XFoKYeVeRF29FVqzOqD
-        gjTXczFg==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:40942 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1osRXo-0003Ta-Lt; Tue, 08 Nov 2022 16:33:48 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-        id 1osRXo-002mwR-1T; Tue, 08 Nov 2022 16:33:48 +0000
-In-Reply-To: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
-From:   Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: [PATCH v3 7/7] gpio: Add new gpio-macsmc driver for Apple Macs
+        with ESMTP id S233472AbiKHQlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:41:44 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E263554CC
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 08:41:43 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 21so23398279edv.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 08:41:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=O2Ws9Qx69GuD1J9J9bmsI82Gf3KYLXPK5jGr7y6CVC4=;
+        b=VALpYz56XXVunOxbSeS184Gb3GWoGIO0NvdwMmt4TbW2If0Yr5HY1eyLJ1rJSxVb5D
+         zw/A2a/LhqueQSmD37NaaOlRNFez3SbH1Ca0cG5pjDq67X0vV6xnwl8k65n/U3exReM2
+         2O5uiZxjcc1kz5FhU8CmntwfP11xhwHSiY72c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O2Ws9Qx69GuD1J9J9bmsI82Gf3KYLXPK5jGr7y6CVC4=;
+        b=dTGHldQyXev465OivI2zjw5Q62N0p9Uch7V+oJKReWInZ5OIf3y6LVrsS9QDYl+rDX
+         +kyO91aI1XHLXh1MciGpQ/d/lfMfXGOUCfc/5BI/xIdTwTTePozGcZEah/Ze2kSc2Ryg
+         +LMe8F+qpDVCNBVoMT4iMv/VjYQdiIEESusHOcZxUxU3VH+wFWSvqkthHrCVCSUgYy8N
+         +o9fsovt+/wPB6Cydfm39vkuS7UtACTKHQmuA+sqfBR1AK0UnETxhSTt8pOA0JH1r+E+
+         Aw5gj5wNvW4zt5snrzKtjVmx41UY+XsU5HpzbCVxF250B0KxcoROGN0g9Wu06mgUOdnP
+         ljBw==
+X-Gm-Message-State: ACrzQf2XYn73N1tveK9+k0yrieV9gPuXn042yE7OfmhxovtzAqgr9gvd
+        BxmKfFRSCufmBqnAqNKSpxlAGzZnqGcS4vqr
+X-Google-Smtp-Source: AMsMyM455aCZF1nodqwAHgU3ZP6eev93/vYaEtNiAeMlOFTexja31r1x0U3OMkFO+1fgw9jhNccBNw==
+X-Received: by 2002:a05:6402:22a5:b0:462:b393:f281 with SMTP id cx5-20020a05640222a500b00462b393f281mr57184012edb.379.1667925701421;
+        Tue, 08 Nov 2022 08:41:41 -0800 (PST)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id p17-20020a17090653d100b007adf125cde3sm4974253ejo.12.2022.11.08.08.41.33
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 08:41:35 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id j5-20020a05600c410500b003cfa9c0ea76so4021632wmi.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 08:41:33 -0800 (PST)
+X-Received: by 2002:a1c:4c16:0:b0:3cf:6f1a:9038 with SMTP id
+ z22-20020a1c4c16000000b003cf6f1a9038mr34826018wmf.151.1667925693341; Tue, 08
+ Nov 2022 08:41:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1osRXo-002mwR-1T@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Tue, 08 Nov 2022 16:33:48 +0000
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
+ <20221107235654.1769462-14-bryan.odonoghue@linaro.org> <CAD=FV=XZ79JjmCW7wYoc0eEhMsAtqxb+p40x2f4mH+kdb0byow@mail.gmail.com>
+ <7a0c6afd-e757-46f6-5837-576070e966ec@linaro.org>
+In-Reply-To: <7a0c6afd-e757-46f6-5837-576070e966ec@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 8 Nov 2022 08:41:21 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Up7yFEG_5JRBOOzpeQWBhXhoceWszO7G91zJKOUDSMpQ@mail.gmail.com>
+Message-ID: <CAD=FV=Up7yFEG_5JRBOOzpeQWBhXhoceWszO7G91zJKOUDSMpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 13/18] arm64: dts: qcom: sc7180: Add compat qcom,mdss-dsi-ctrl-sc7180
+To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, quic_mkrishn@quicinc.com,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hector Martin <marcan@marcan.st>
+Hi,
 
-This driver implements the GPIO service on top of the SMC framework
-on Apple Mac machines. In particular, these are the GPIOs present in the
-PMU IC which are used to control power to certain on-board devices.
+On Tue, Nov 8, 2022 at 4:16 AM Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> On 08/11/2022 00:24, Doug Anderson wrote:
+> > This seems fine, but I don't think it matches your bindings. Your
+> > bindings says you can have one compatible string. It could be
+> > "qcom,mdss-dsi-ctrl-sc7180" or it could be "qcom,mdss-dsi-ctrl".
+> > ...but your device tree has two compatible strings: the SoC specific
+> > one and the fallback one. You need to change your bindings to make
+> > this work.
+>
+> With the update in this series the binding has a required const.
+>
+> If you drop back to just "qcom,mdss-dsi-ctrl-sc7180" you get a warning
+> like this.
+>
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb: dsi@ae94000:
+> compatible: ['qcom,mdss-dsi-ctrl-sc7180'] is too short
+>
+> If you just have 'qcom,mdss-dsi-ctrl' you get
+>
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb: dsi@ae94000:
+> compatible:0: 'qcom,mdss-dsi-ctrl' is not one of
+> ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,mdss-dsi-ctrl-apq8064',
+> 'qcom,mdss-dsi-ctrl-msm8916', 'qcom,mdss-dsi-ctrl-msm8974',
+> 'qcom,mdss-dsi-ctrl-msm8996', 'qcom,mdss-dsi-ctrl-sc7180',
+> 'qcom,mdss-dsi-ctrl-sc7280', 'qcom,mdss-dsi-ctrl-sdm630',
+> 'qcom,mdss-dsi-ctrl-sdm660', 'qcom,mdss-dsi-ctrl-sdm845',
+> 'qcom,mdss-dsi-ctrl-sm8250']
 
-Although the underlying hardware supports various pin config settings
-(input/output, open drain, etc.), this driver does not implement that
-functionality and leaves it up to the firmware to configure things
-properly. We also don't yet support interrupts/events. This is
-sufficient for device power control, which is the only thing we need to
-support at this point. More features will be implemented when needed.
+Huh. I must have missed something then. Ah, I see the problem. Since
+you didn't CC me on the bindings change I searched myself. I found
+patch #7 in your series ("dt-bindings: msm: dsi-controller-main: Add
+compatible strings for every current SoC"). In that patch everything
+is flat. I didn't notice patch #8 in your series which changes this. I
+would just get the compatibles right the right time. Looking at patch
+#8 I see that Dmitry already suggested this.
 
-To our knowledge, only Apple Silicon Macs implement this SMC feature.
+So that means this is fine with me. A slight nit that I suspect Bjorn
+would prefer you to blow past the 80 column limit and put both
+compatibles on one line, but it's not huge in my mind.
 
-Signed-off-by: Hector Martin <marcan@marcan.st>
-Reviewed-by: Bartosz Golaszewski <brgl@bgdev.pl>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- drivers/gpio/Kconfig       |  11 ++
- drivers/gpio/Makefile      |   1 +
- drivers/gpio/gpio-macsmc.c | 245 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 257 insertions(+)
- create mode 100644 drivers/gpio/gpio-macsmc.c
-
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index a01af1180616..08138322010a 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1283,6 +1283,17 @@ config GPIO_LP87565
- 	  This driver can also be built as a module. If so, the module will be
- 	  called gpio-lp87565.
- 
-+config GPIO_MACSMC
-+	tristate "Apple Mac SMC GPIO"
-+	depends on MFD_MACSMC
-+	default ARCH_APPLE
-+	help
-+	  Support for GPIOs controlled by the SMC microcontroller on Apple Mac
-+	  systems.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called gpio-macsmc.
-+
- config GPIO_MADERA
- 	tristate "Cirrus Logic Madera class codecs"
- 	depends on PINCTRL_MADERA
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 29e3beb6548c..467833cc9a9d 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -83,6 +83,7 @@ obj-$(CONFIG_GPIO_LP873X)		+= gpio-lp873x.o
- obj-$(CONFIG_GPIO_LP87565)		+= gpio-lp87565.o
- obj-$(CONFIG_GPIO_LPC18XX)		+= gpio-lpc18xx.o
- obj-$(CONFIG_GPIO_LPC32XX)		+= gpio-lpc32xx.o
-+obj-$(CONFIG_GPIO_MACSMC)		+= gpio-macsmc.o
- obj-$(CONFIG_GPIO_MADERA)		+= gpio-madera.o
- obj-$(CONFIG_GPIO_MAX3191X)		+= gpio-max3191x.o
- obj-$(CONFIG_GPIO_MAX7300)		+= gpio-max7300.o
-diff --git a/drivers/gpio/gpio-macsmc.c b/drivers/gpio/gpio-macsmc.c
-new file mode 100644
-index 000000000000..24ec98ad18f7
---- /dev/null
-+++ b/drivers/gpio/gpio-macsmc.c
-@@ -0,0 +1,245 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Apple SMC GPIO driver
-+ * Copyright The Asahi Linux Contributors
-+ *
-+ * This driver implements basic SMC PMU GPIO support that can read inputs
-+ * and write outputs. Mode changes and IRQ config are not yet implemented.
-+ */
-+
-+#include <linux/bitmap.h>
-+#include <linux/device.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mfd/core.h>
-+#include <linux/mfd/macsmc.h>
-+
-+#define MAX_GPIO 64
-+
-+/*
-+ * Commands 0-6 are, presumably, the intended API.
-+ * Command 0xff lets you get/set the pin configuration in detail directly,
-+ * but the bit meanings seem not to be stable between devices/PMU hardware
-+ * versions.
-+ *
-+ * We're going to try to make do with the low commands for now.
-+ * We don't implement pin mode changes at this time.
-+ */
-+
-+#define CMD_ACTION	(0 << 24)
-+#define CMD_OUTPUT	(1 << 24)
-+#define CMD_INPUT	(2 << 24)
-+#define CMD_PINMODE	(3 << 24)
-+#define CMD_IRQ_ENABLE	(4 << 24)
-+#define CMD_IRQ_ACK	(5 << 24)
-+#define CMD_IRQ_MODE	(6 << 24)
-+#define CMD_CONFIG	(0xff << 24)
-+
-+#define MODE_INPUT	0
-+#define MODE_OUTPUT	1
-+#define MODE_VALUE_0	0
-+#define MODE_VALUE_1	2
-+
-+#define IRQ_MODE_HIGH		0
-+#define IRQ_MODE_LOW		1
-+#define IRQ_MODE_RISING		2
-+#define IRQ_MODE_FALLING	3
-+#define IRQ_MODE_BOTH		4
-+
-+#define CONFIG_MASK	GENMASK(23, 16)
-+#define CONFIG_VAL	GENMASK(7, 0)
-+
-+#define CONFIG_OUTMODE	GENMASK(7, 6)
-+#define CONFIG_IRQMODE	GENMASK(5, 3)
-+#define CONFIG_PULLDOWN	BIT(2)
-+#define CONFIG_PULLUP	BIT(1)
-+#define CONFIG_OUTVAL	BIT(0)
-+
-+/*
-+ * Output modes seem to differ depending on the PMU in use... ?
-+ * j274 / M1 (Sera PMU):
-+ *   0 = input
-+ *   1 = output
-+ *   2 = open drain
-+ *   3 = disable
-+ * j314 / M1Pro (Maverick PMU):
-+ *   0 = input
-+ *   1 = open drain
-+ *   2 = output
-+ *   3 = ?
-+ */
-+
-+struct macsmc_gpio {
-+	struct device *dev;
-+	struct apple_smc *smc;
-+	struct gpio_chip gc;
-+
-+	int first_index;
-+};
-+
-+static int macsmc_gpio_nr(smc_key key)
-+{
-+	int low = hex_to_bin(key & 0xff);
-+	int high = hex_to_bin((key >> 8) & 0xff);
-+
-+	if (low < 0 || high < 0)
-+		return -1;
-+
-+	return low | (high << 4);
-+}
-+
-+static int macsmc_gpio_key(unsigned int offset)
-+{
-+	return _SMC_KEY("gP\0\0") | hex_asc_hi(offset) << 8 | hex_asc_lo(offset);
-+}
-+
-+static int macsmc_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct macsmc_gpio *smcgp = gpiochip_get_data(gc);
-+	smc_key key = macsmc_gpio_key(offset);
-+	u32 val;
-+	int ret;
-+
-+	/* First try reading the explicit pin mode register */
-+	ret = apple_smc_rw_u32(smcgp->smc, key, CMD_PINMODE, &val);
-+	if (!ret)
-+		return (val & MODE_OUTPUT) ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
-+
-+	/*
-+	 * Less common IRQ configs cause CMD_PINMODE to fail, and so does open drain mode.
-+	 * Fall back to reading IRQ mode, which will only succeed for inputs.
-+	 */
-+	ret = apple_smc_rw_u32(smcgp->smc, key, CMD_IRQ_MODE, &val);
-+	return ret ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
-+}
-+
-+static int macsmc_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct macsmc_gpio *smcgp = gpiochip_get_data(gc);
-+	smc_key key = macsmc_gpio_key(offset);
-+	u32 cmd, val;
-+	int ret;
-+
-+	ret = macsmc_gpio_get_direction(gc, offset);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (ret == GPIO_LINE_DIRECTION_OUT)
-+		cmd = CMD_OUTPUT;
-+	else
-+		cmd = CMD_INPUT;
-+
-+	ret = apple_smc_rw_u32(smcgp->smc, key, cmd, &val);
-+	if (ret < 0)
-+		return ret;
-+
-+	return val ? 1 : 0;
-+}
-+
-+static void macsmc_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
-+{
-+	struct macsmc_gpio *smcgp = gpiochip_get_data(gc);
-+	smc_key key = macsmc_gpio_key(offset);
-+	int ret;
-+
-+	value |= CMD_OUTPUT;
-+	ret = apple_smc_write_u32(smcgp->smc, key, CMD_OUTPUT | value);
-+	if (ret < 0)
-+		dev_err(smcgp->dev, "GPIO set failed %p4ch = 0x%x\n", &key, value);
-+}
-+
-+static int macsmc_gpio_init_valid_mask(struct gpio_chip *gc,
-+				       unsigned long *valid_mask, unsigned int ngpios)
-+{
-+	struct macsmc_gpio *smcgp = gpiochip_get_data(gc);
-+	int count;
-+	int i;
-+
-+	count = apple_smc_get_key_count(smcgp->smc) - smcgp->first_index;
-+	if (count > MAX_GPIO)
-+		count = MAX_GPIO;
-+
-+	bitmap_zero(valid_mask, ngpios);
-+
-+	for (i = 0; i < count; i++) {
-+		int ret, gpio_nr;
-+		smc_key key;
-+
-+		ret = apple_smc_get_key_by_index(smcgp->smc, smcgp->first_index + i, &key);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (key > SMC_KEY(gPff))
-+			break;
-+
-+		gpio_nr = macsmc_gpio_nr(key);
-+		if (gpio_nr < 0 || gpio_nr > MAX_GPIO) {
-+			dev_err(smcgp->dev, "Bad GPIO key %p4ch\n", &key);
-+			continue;
-+		}
-+
-+		set_bit(gpio_nr, valid_mask);
-+	}
-+
-+	return 0;
-+}
-+
-+static int macsmc_gpio_probe(struct platform_device *pdev)
-+{
-+	struct macsmc_gpio *smcgp;
-+	struct apple_smc *smc = dev_get_drvdata(pdev->dev.parent);
-+	smc_key key;
-+	int ret;
-+
-+	smcgp = devm_kzalloc(&pdev->dev, sizeof(*smcgp), GFP_KERNEL);
-+	if (!smcgp)
-+		return -ENOMEM;
-+
-+	smcgp->dev = &pdev->dev;
-+	smcgp->smc = smc;
-+	smcgp->first_index = apple_smc_find_first_key_index(smc, SMC_KEY(gP00));
-+
-+	if (smcgp->first_index >= apple_smc_get_key_count(smc))
-+		return -ENODEV;
-+
-+	ret = apple_smc_get_key_by_index(smc, smcgp->first_index, &key);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (key > macsmc_gpio_key(MAX_GPIO - 1))
-+		return -ENODEV;
-+
-+	dev_info(smcgp->dev, "First GPIO key: %p4ch\n", &key);
-+
-+	smcgp->gc.label = "macsmc-pmu-gpio";
-+	smcgp->gc.owner = THIS_MODULE;
-+	smcgp->gc.get = macsmc_gpio_get;
-+	smcgp->gc.set = macsmc_gpio_set;
-+	smcgp->gc.get_direction = macsmc_gpio_get_direction;
-+	smcgp->gc.init_valid_mask = macsmc_gpio_init_valid_mask;
-+	smcgp->gc.can_sleep = true;
-+	smcgp->gc.ngpio = MAX_GPIO;
-+	smcgp->gc.base = -1;
-+	smcgp->gc.parent = &pdev->dev;
-+
-+	return devm_gpiochip_add_data(&pdev->dev, &smcgp->gc, smcgp);
-+}
-+
-+static const struct of_device_id macsmc_gpio_of_table[] = {
-+	{ .compatible = "apple,smc-gpio", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, macsmc_gpio_of_table);
-+
-+static struct platform_driver macsmc_gpio_driver = {
-+	.driver = {
-+		.name = "macsmc-gpio",
-+		.of_match_table = macsmc_gpio_of_table,
-+	},
-+	.probe = macsmc_gpio_probe,
-+};
-+module_platform_driver(macsmc_gpio_driver);
-+
-+MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
-+MODULE_LICENSE("Dual MIT/GPL");
-+MODULE_DESCRIPTION("Apple SMC GPIO driver");
-+MODULE_ALIAS("platform:macsmc-gpio");
--- 
-2.30.2
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
