@@ -2,181 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6C0620C38
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9CFF620C3F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233379AbiKHJaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 04:30:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46584 "EHLO
+        id S233417AbiKHJbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 04:31:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233791AbiKHJ3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:29:52 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC92B286CE
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:29:49 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id h12so20160880ljg.9
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 01:29:49 -0800 (PST)
+        with ESMTP id S233264AbiKHJbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:31:10 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE78712620
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:31:09 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id l8so20179183ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 01:31:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rOVmsonL+k/0HZVK2nxpFgpQMHWhsli4Q3QlCw0qmsE=;
-        b=tDhHK71PxNsz0WNgtB/w97HLA516yj+UB6dkiAiSfyEHunUfai9u2vudUgCSjnZK4g
-         XI212VYIzT3Z+8kAiNxqL44J0IDz9EM7L3a/5hY3TcY0mCcDlWjy1fKU610hHLUwsIQD
-         fFP+Eh2u7g8oP0fWT2YC+pbmkzlY0bAnFBuEgUa5Ueb5UjR/UQGUMk9TspPhb7/vGvdX
-         4vjAT1iZDFUTnIOncRdoPRk5iPbMhvDc4tkiwBGsF7GV/R7SLGvcmlSeCL8pz6M0YM7T
-         rw9ymsI/bExsNZV4Rxiq7izCA9+5l2J9B5A0HtYIj2ceFX1E3i31FYCC44Ssg9ZrBITd
-         nXeQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ftbevrgtih63VaCsliryG3KSGXdgekb5SUTzoftgRy8=;
+        b=K0ReUNEtSMEujlwjW/cq6kOWPxMWv88ZPD/lememy7+WkqQ5PYSv37AtqLYtiI32Pe
+         j6MNxHKLdLz3YK1n6Dwl4xXgNs4KMPzJNbZkvIu0r7r9wmeTPky+VPXJEqxyYQcWkPbH
+         61s79UMBCtgxuMb2DjRKr3eUI6CDBJIMB6w+ELcNjUJliJaxtxfsY9xcLftsTff4d9Bg
+         OvcphL9UTobvRIynSq0zyQ/b3folaM2kF/Vyo2Lh/ywu/HiXcrgGde2Y/J7yB4ViL4UM
+         UMcCSEglkn//0tIN35NUFrbP89xPHuuXJKjmQtiSQaxnqav3Hzv0YrOoDZNFpjGft82u
+         hUpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOVmsonL+k/0HZVK2nxpFgpQMHWhsli4Q3QlCw0qmsE=;
-        b=ucJVRN7KBgBhm6dTiwnfiE+8Vc9jff5SRPGkHnv0IBdWBcGl5LT+ttQbOe53RfuhLM
-         zWdDydslT1vhgmpGhq/ZdR7XOdX42rdIWRZOZrfSDbacX96ljt6B85ZXUhVPHIHWrGEH
-         WxMt+GVAlInsk5yBlo/8JixjGZEFpA9CaeuzrUy+r+i4nssApEBeGMsWO6cXBmoYNA7j
-         eBXsgmaRUB+rYYNRPO5AEuE0g+e2Ewd2CMWnyXzW9wwdPlhdhc4PQ810w5ZZblIKKcjh
-         GYIxTT6rLDLc6gRreFKacwRxwMJUD80SBAURa+MAkzKgE35dGeUAuHUxlaOGQZYia7q9
-         Z9jA==
-X-Gm-Message-State: ACrzQf2PBW1sSTzI3DzPzC8tt7BRgUi2Q01K24WrQ6h9PdS+LtyLcUT4
-        rxUbYjD2s6naqamMWOmKnkW74w==
-X-Google-Smtp-Source: AMsMyM40579+zfxIe+Ql7/outiP4k9BXLWi8yzxj8i7/ri53RvHNqLkyvFPwfRVxa4oQ6UqtiowIyw==
-X-Received: by 2002:a2e:a211:0:b0:277:1888:e14b with SMTP id h17-20020a2ea211000000b002771888e14bmr6331047ljm.339.1667899788261;
-        Tue, 08 Nov 2022 01:29:48 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id o4-20020a05651205c400b0048ae518364dsm1721417lfo.148.2022.11.08.01.29.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 01:29:47 -0800 (PST)
-Message-ID: <13d80a37-9202-480c-94ec-13cb1abce305@linaro.org>
-Date:   Tue, 8 Nov 2022 10:29:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: add sdm670 and pixel 3a device
- trees
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ftbevrgtih63VaCsliryG3KSGXdgekb5SUTzoftgRy8=;
+        b=1Q3PfPIpBG5p+1kRFYozvN9dfLvj06Z0kRv1bmE/IiN3O0Fck/F4bVCx9kxQ9VV6sv
+         Snw3sZ7cUS+c4JViaL7xtbNMwVidsLGRNDMFQ3m9pYJgUsCixiNQtCe92MYex4iNRRbd
+         RzkLTeYXgrRkBzsLK9aKKrPuqmeHGFiUkZ0DpMjfhzgroc2qlOTp+a7YM43vu9vmft3b
+         7pp+2kq4zEuLb4P14JkhP3dFarpkc24oM5FkWdnK/z9WJpxW3IVfSb1cg7nWlISyR97w
+         4Mt8QCKgzZrWf22QDp18Dl+sytT9DE1ujJMi86kD+vamzW1oNLB+BpDXj1o4usXESv3Z
+         nohQ==
+X-Gm-Message-State: ACrzQf0hHVmafS0RZKHnhpZJJrRsZlWAU/GHWpJndI9eeSrcMHGkbszo
+        9uvMzLbicx4BypOtNmwoxlO0qiRG1UE=
+X-Google-Smtp-Source: AMsMyM5GSzFDSGW+7ZDlfd7Q4hqT/SORFzaWiOMga5/UO3X85bIb4VgHLJAQ0UWp18TW7yMRzpt5sQ==
+X-Received: by 2002:a2e:8884:0:b0:277:693c:83b with SMTP id k4-20020a2e8884000000b00277693c083bmr12074951lji.68.1667899867880;
+        Tue, 08 Nov 2022 01:31:07 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id bf20-20020a2eaa14000000b0027708921b43sm1617772ljb.68.2022.11.08.01.31.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Nov 2022 01:31:07 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20221108030411.59409-1-mailingradian@gmail.com>
- <20221108030411.59409-5-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108030411.59409-5-mailingradian@gmail.com>
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH mtd/next] dt-bindings: mtd: partitions: allow SafeLoader dynamic subpartitions
+Date:   Tue,  8 Nov 2022 10:31:02 +0100
+Message-Id: <20221108093102.8360-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 04:04, Richard Acayan wrote:
-> The Qualcomm Snapdragon 670 has been out for a while. Add a device tree
-> for it and the Google Pixel 3a as the first device.
-> 
-> The Pixel 3a has the same bootloader issue as the Pixel 3 and will not work
-> on Android 10 bootloaders or later until it gets fixed for the Pixel 3.
-> 
-> SoC Initial Features:
->  - power management
->  - clocks
->  - pinctrl
->  - eMMC
->  - USB 2.0
->  - GENI I2C
->  - IOMMU
->  - RPMh
->  - interrupts
-> 
-> Device-Specific Initial Features:
->  - side buttons (keys)
->  - regulators
->  - touchscreen
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->  .../boot/dts/qcom/sdm670-google-sargo.dts     |  533 ++++++++
->  arch/arm64/boot/dts/qcom/sdm670.dtsi          | 1160 +++++++++++++++++
->  3 files changed, 1694 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm670.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index b0558d3389e5..4eb5d8829efb 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> new file mode 100644
-> index 000000000000..fe3f61f8a348
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> @@ -0,0 +1,533 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device tree for Google Pixel 3a, adapted from google-blueline device tree,
-> + * xiaomi-lavender device tree, and oneplus-common device tree.
-> + *
-> + * Copyright (c) 2022, Richard Acayan. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include "sdm670.dtsi"
-> +#include "pm660.dtsi"
-> +#include "pm660l.dtsi"
-> +
-> +/delete-node/ &mpss_region;
-> +/delete-node/ &venus_mem;
-> +/delete-node/ &wlan_msa_mem;
-> +/delete-node/ &cdsp_mem;
-> +/delete-node/ &mba_region;
-> +/delete-node/ &adsp_mem;
-> +/delete-node/ &ipa_fw_mem;
-> +/delete-node/ &ipa_gsi_mem;
-> +/delete-node/ &gpu_mem;
-> +
-> +/ {
-> +	model = "Google Pixel 3a";
-> +	compatible = "google,sargo", "qcom,sdm670";
-> +	qcom,board-id = <0x00041e05 0>;
-> +	qcom,msm-id = <321 0x20001>;
+From: Rafał Miłecki <rafal@milecki.pl>
 
-These two are not allowed for your platform. If you tested your DTS, you
-would see:
+TP-Link SafeLoader partitioning means flash contains multiple partitions
+defined in the on-flash table. Some of those partitions may have a
+special meaning and may require describing additionally. Allow that.
 
- /: qcom,board-id: False schema does not allow [[269829, 0]]
- /: qcom,msm-id: False schema does not allow [[321, 131073]]
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../mtd/partitions/tplink,safeloader-partitions.yaml      | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-This must be fixed.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+index 63e596aa0ca3..a24bbaac3a90 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/tplink,safeloader-partitions.yaml
+@@ -36,6 +36,10 @@ properties:
+     description: Flash offset of partitions table
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
++patternProperties:
++  "^partition-.*$":
++    $ref: partition.yaml#
++
+ required:
+   - partitions-table-offset
+ 
+@@ -46,4 +50,8 @@ examples:
+     partitions {
+         compatible = "tplink,safeloader-partitions";
+         partitions-table-offset = <0x100000>;
++
++        partition-file-system {
++                linux,rootfs;
++        };
+     };
+-- 
+2.34.1
 
