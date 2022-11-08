@@ -2,162 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2585362194D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3B5E621956
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:27:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234506AbiKHQZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 11:25:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
+        id S234091AbiKHQ1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 11:27:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233814AbiKHQZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:25:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB91205E2;
-        Tue,  8 Nov 2022 08:25:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DEC20B81BA9;
-        Tue,  8 Nov 2022 16:25:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85F3AC43470;
-        Tue,  8 Nov 2022 16:25:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667924729;
-        bh=G5C8vewa6rwRjTQumguODaoFHIR0XcRiyJloc2k0v58=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YDvCNfZAE++VSoSMXo4tFfRN+M7Squ9lo1fAKdJ6Sc3BofusKDvrVPwfNeRwrh3J1
-         xGcNsTn2HEF6arClGp4F2hDprqj2KyvNFQpk7mi+6axr/bbbAdBqh7tDSkk7y8uExr
-         R7SLLKeI5TarnucAc0XKQ4+WKbqDAmdCEB0YIkHGJVmcuVmQ9sqpGvtfiRpdmy3nbM
-         MFBFH4ZVi+v22MYHLfOZUFqvSswpasrp5DntthEkcjERWfAtFKMnjXRVX/WqTeEw8D
-         9quoVRVLvMJ77tchhcWNmbn/qhfNmwnk0202ZSjjXEkP5F3yb11dqm8Z0AhH1g4tgQ
-         Yco5taEowexqg==
-Received: by mail-lj1-f182.google.com with SMTP id c25so21876786ljr.8;
-        Tue, 08 Nov 2022 08:25:29 -0800 (PST)
-X-Gm-Message-State: ACrzQf3HZHw5hLttVa0EY9A5wFuro+V5qIQrON8XfUCRynBmA9+KeZpN
-        u7fnzvcZj/W59ohuiYQH88UVbwLs+3iYQG9bYg==
-X-Google-Smtp-Source: AMsMyM4iXpsQim/WrEqsQekIVlLAJVyM1LSjKUemsBwuFcfOC9oe0pnOfouA+Sw6MXCdIgQeUs5R9dLsb5ojWInStbo=
-X-Received: by 2002:a2e:9a85:0:b0:275:1343:df71 with SMTP id
- p5-20020a2e9a85000000b002751343df71mr7268096lji.215.1667924727546; Tue, 08
- Nov 2022 08:25:27 -0800 (PST)
+        with ESMTP id S234646AbiKHQ1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:27:06 -0500
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB4D1FF92
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 08:27:05 -0800 (PST)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-333a4a5d495so138379877b3.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 08:27:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tAZBstAdAsmK2XVl2Tom+G2xfbr9YP3jCR0NWwLcpbY=;
+        b=HiGTzUoVmhEVvVkdyNqwuF6heV9nAwZvdLKlIXsppaoNt+uX/qVAQNtFGgYmPsBGHM
+         0F9S5/bsxeZCjF0LQEYGU9FcMiHDVR50vlIZ6RKwgEFqBYEb/SsdGHuFycPHMw9MmghX
+         JjXvd2EuDhKDQ9Isyh1iu309DukrHDA6mX8uOCxPHXgO2TvVT3sf1ovRCns3OwWcPg5R
+         jRCEfTr/BIz/5+1S8pIwwjXLmEf5g1xz6RFdomtLcAxOnwpB+kWGnszEEf0rbebzYfr+
+         32G35niUMCT9cuuQFobooLkMDxKcF4TCb5KHkYcr5IaZ/IFlv1mnMNXdgwXk5goxJNTD
+         obsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tAZBstAdAsmK2XVl2Tom+G2xfbr9YP3jCR0NWwLcpbY=;
+        b=Am/6xCWFh5mzrR5FrEl5kJog6yY1fgq7rrOqBhhWjMjLuFeG8RqKbll36TM5oPkbqC
+         5A/wsAvPnk1/J7CO3ORY6/miPP3uJTjUBfiggXsYhyK61MhPMPoH931a7ILCL2pfnIMH
+         5tZHct9OzBay3BL3M3VVF0QdzNp2OEN8A9q6GOzrNajCSPJtRCtdNTAf8Y4aBixhbPsw
+         auMSh2IeKTto4sN/iqy6pggkDqAXrUGp68+Za8tVgdch+uHTZ/kPemgCK4j0CoeE6RdY
+         FJ7w6OVEKbnZblVd3I8nqL4vn2cRt23ac9xJtR+II5aV70r3y6u0u7J9w8oYoJLRezJo
+         nN/w==
+X-Gm-Message-State: ACrzQf0Cg7blEnHRjHE9hwLBDwcvBRvDj7UkUN7+lxEOBdJKr9nS6PAk
+        U/yqs+WtxcvV2UZ217+YNMuDyyOVF3yxnwElEidz6g==
+X-Google-Smtp-Source: AMsMyM6l2BaUQaFUsRd0n/pdKYEWQEefaZfrhq2KgsqeM81bGZLhCI92KaCqsVBeiJB0GDyRYIblXXScpd1fyEvMuwY=
+X-Received: by 2002:a0d:dd49:0:b0:36b:f81c:ceb8 with SMTP id
+ g70-20020a0ddd49000000b0036bf81cceb8mr55021890ywe.171.1667924824513; Tue, 08
+ Nov 2022 08:27:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20221103133900.1473855-1-thierry.reding@gmail.com>
- <20221103133900.1473855-3-thierry.reding@gmail.com> <20221107193035.GA1394942-robh@kernel.org>
- <Y2popxNd2uIdXmlf@orome>
-In-Reply-To: <Y2popxNd2uIdXmlf@orome>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Nov 2022 10:25:18 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
-Message-ID: <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
-Subject: Re: [PATCH v10 2/5] of: Stop DMA translation at last DMA parent
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+References: <20221103141155.1105961-1-jagan@edgeble.ai> <20221103141155.1105961-4-jagan@edgeble.ai>
+ <CACRpkdYEW4z6EZ7UC9wT3NtRVnE=0L6AAHJDxtu5Jb-UrB+WSA@mail.gmail.com>
+ <CA+VMnFxyx=NP2QUiJ6RnfapZ9c=S4-cj+0kQn8PYyaMTBP3i-g@mail.gmail.com>
+ <CACRpkdaZnGgJ3egXEtoH0gTmR0m_-9Q+iGZr2eOx2JVHYgXCXA@mail.gmail.com>
+ <CA+VMnFz1h0MfwxiQeFCdvMJWQ9uKWvwstJvKnpDTKjaVHN3pYw@mail.gmail.com> <CACRpkdZGXeGc_vyAGw3zW4MyR+tp9jhvKJ4sf2tSS7L9B+oyOA@mail.gmail.com>
+In-Reply-To: <CACRpkdZGXeGc_vyAGw3zW4MyR+tp9jhvKJ4sf2tSS7L9B+oyOA@mail.gmail.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 8 Nov 2022 21:56:53 +0530
+Message-ID: <CA+VMnFwKFFDADLDyjm-EG5p_8K8HE7V851b0uLPqR+i=MKFZDA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 8, 2022 at 8:33 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+On Tue, 8 Nov 2022 at 20:33, Linus Walleij <linus.walleij@linaro.org> wrote:
 >
-> On Mon, Nov 07, 2022 at 01:30:35PM -0600, Rob Herring wrote:
-> > On Thu, Nov 03, 2022 at 02:38:57PM +0100, Thierry Reding wrote:
-> > > From: Thierry Reding <treding@nvidia.com>
+> On Tue, Nov 8, 2022 at 3:53 PM Jagan Teki <jagan@edgeble.ai> wrote:
+> > On Tue, 8 Nov 2022 at 20:18, Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Tue, Nov 8, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
+> > > > On Tue, 8 Nov 2022 at 19:31, Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > >
+> > > > > On Thu, Nov 3, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
+> > > > >
+> > > > > > Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
+> > > > > > dot matrix LCD with 800RGBx1280 dots at maximum.
+> > > > > >
+> > > > > > Add support for it.
+> > > > > >
+> > > > > > Cc: dri-devel@lists.freedesktop.org
+> > > > > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > > > > > ---
+> > > > > > Changes for v3:
+> > > > > > - updatd to WXGA
+> > > > > > - use JD9365DA_CMD_DCS and JD9365DA_CMD_DELAY
+> > > > >
+> > > > > My comments on v2 have not been addressed, for example I asked to
+> > > > > remove the delay from sequences and just use an explicit delay and
+> > > > > to then use the existing sequence sending macro.
+> > > >
+> > > > True, I responded on the same day [1], since I didn't get the reply I
+> > > > have posted by assuming my comment is valid. Would you please check
+> > > > and respond?
+> > > >
+> > > > [1] https://lore.kernel.org/all/CA+VMnFz0w-6O=wt3iuJo1BhQgPZ2XbpX6JdDz6vg_JW9nHTR2A@mail.gmail.com/
 > > >
-> > > DMA parent devices can define separate DMA busses via the "dma-ranges"
-> > > and "#address-cells" and "#size-cells" properties. If the DMA bus has
-> > > different cell counts than its parent, this can cause the translation
-> > > of DMA address to fails (e.g. truncation from 2 to 1 address cells).
-> >
-> > My assumption in this case was that the parent cell sizes should be
-> > increased to 2 cells. That tends to be what people want to do anyways
-> > (64-bit everywhere on 64-bit CPUs).
-> >
-> > > Avoid this by stopping to search for DMA parents when a parent without
-> > > a "dma-ranges" property is encountered. Also, since it is the DMA parent
-> > > that defines the DMA bus, use the bus' cell counts instead of its parent
-> > > cell counts.
-> >
-> > We treat no 'dma-ranges' as equivalent to 'dma-ranges;'. IIRC, the spec
-> > even says that because I hit that case.
-> >
-> > Is this going to work for 'dma-device' with something like this?:
-> >
-> >   bus@0 {
-> >     dma-ranges = <...>;
-> >     child-bus@... {
-> >       dma-device@... {
-> >       };
-> >     };
-> >   };
-> >
+> > > OK I see, sorry for not reading close.
 > > >
-> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > ---
-> > > Changes in v10:
-> > > - new patch to avoid address truncation when traversing a bus hierarchy
-> > >   with mismatching #address-cells properties
+> > > The driver just supports one single variant.
 > > >
-> > > Example from Tegra194 (redacted for clarity):
+> > > What you are doing is preparing the ground for more variants
+> > > that may or may not exist. This creates the antipattern "big upfront design"
+> > > i.e. abstractions added for things that do not yet exist.
 > > >
-> > >     reserved-memory {
-> > >             #address-cells = <2>;
-> > >             #size-cells = <2>;
-> > >             ranges;
-> > >
-> > >             framebuffer@0,0 {
-> > >                     compatible = "framebuffer";
-> > >                     reg = <0x2 0x57320000 0x0 0x00800000>;
-> > >                     iommu-addresses = <&dc0 0x2 0x57320000 0x0 0x00800000>;
-> > >             };
-> > >     };
-> > >
-> > >     bus@0 {
-> > >             /* truncation happens here */
-> > >             #address-cells = <1>;
-> > >             #size-cells = <1>;
-> > >             ranges = <0x0 0x0 0x0 0x40000000>;
-> > >
-> > >             mc: memory-controller@2c00000 {
-> > >                     #address-cells = <2>;
-> > >                     #size-cells = <2>;
+> > > I think it is better to strip it down to just open coding the delay after
+> > > the init sequence. When the next variant appears, if ever, they can
+> > > add abstraction. Maybe they need the same delay in the same
+> > > place? Who knows...
 > >
-> > I think this is wrong. The parent should have more or equal number of
-> > cells.
+> > I understand your point, but delays are strictly mentioned by the
+> > panel vendor init sequence, cz101b4001 do you think adding in the
+> > generic or common code is still valid since we have code added for
+> > cz101b4001 specifically via driver data?
 >
-> I was half suspecting that. The reason why I hesitated is that I recall
-> having the opposite discussion a while ago when we were adding bus@0 to
-> 64-bit Tegra devices. We had at some point (probably around Tegra114 or
-> Tegra124, 32-bit ARM chips that support LPAE) started to set #address-
-> cells = <2> precisely because the CPU could address more than 32-bit
-> addresses. We then did the same thing transitioning to 64-bit ARM. When
-> we then started discussing bus@0, someone (might have been you) had
-> argued that all these peripherals could be addressed with a single cell
-> so there'd be no need for #address-cells = <2>, so then we went with
-> that.
+> I would instead of encoding a sequence into the driver data
+> encode a per-variant callback that sends the sequence (which
+> can then be just static array) and then ends with an explicit delay.
 
-I may have not thinking about the DMA side of things.
+Okay. I will wrap up that delay to make it explicit and update the dcs
+packet send sequence.
 
-> Reverting back to #address-cells = <2> is now going to cause quite a bit
-> of churn, but I guess if it's the right thing, so be it.
->
-> Another possible alternative would be to move the memory-controller node
-> from the bus@0 to the top-level. Not sure if that's any better.
-
-I stumbled upon 'ibm,#dma-address-cells' and 'ibm,#dma-size-cells'
-while reviewing this. Those seem to be for the same purpose AFAICT. We
-could consider adding those (w/o 'ibm') to handle this situation.
-
-Rob
+Thanks,
+Jagan.
