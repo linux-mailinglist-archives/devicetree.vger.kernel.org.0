@@ -2,126 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FDFC62175E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 609FB621765
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233920AbiKHOvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 09:51:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
+        id S233826AbiKHOxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:53:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233956AbiKHOvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:51:08 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B67814022
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:51:07 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id bj12so39142463ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:51:07 -0800 (PST)
+        with ESMTP id S233410AbiKHOxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:53:03 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1133ADA7
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:53:03 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-370547b8ca0so136192727b3.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:53:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5RfhvWt1Tv41V7xOdh182isXRfcqnMCvMMU4ZxjHa4I=;
-        b=vgPgq/fKoy91SWpS9t2e6oRNux2GYZ11uz4nq69Ecusn/WQxEr9PnRkXeciq96q9Kf
-         Y/uc1JXxwDcE7DZk4ERIHWnMD3xCOKQOkmZ9szh6zLYAHlS8jB3/9Vzu0GTEcRvD273p
-         QcJzqGu94FAUp4fND/CyiussZorc4AISQgkF6NZxvG/MLLVHHNxJkea27kaoeMZFf8NM
-         MrPmIrciQQHldO1W0L/ICYsoJczxk/E5K1ku/kfcnyWtcEYwFARIfMuiqAHSi0RwOReo
-         3xg6N55uGAcHesseexA8+25xPiouSe/QNOgAQpSqMWJsa4JVGZPnnvoO6B0S9mYDKIX0
-         HTaw==
+        bh=ZeruRM6pLf0L2avHjfnGbDq+RAbm6eC6yZuwoRzHAnA=;
+        b=iuA6PP+T9uVV7ZG4XlLfplyArIAnLIDkoJqaQysMhRw8M/5NtjlVpvsWpULdCxJsZH
+         qkkAKhezpwR6cdXuteUIoNSwD6zX2GN65l6CTQUqDw5A3e3kDeyG2IVB0QfnBVrSm2Np
+         jVmYvTfq4DtXeM8qAo5gCXZjZaF5NehUyRX5F/tS8eT7lmCB8dUt6QhqtnLLrxj/BRfV
+         8B86BhDVWPN2RKjcw2gFCxdabk4WJRHtDYmIOg1xBVx7+egvQXLwXPhrPL0wvasRYjiu
+         3tgLSId9Tcw6yQ3dEiMN7UQnRDThfu1V7fVGXWK3WC+bkhhOiDfq+AKWZ/41VJqki0ur
+         lpjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5RfhvWt1Tv41V7xOdh182isXRfcqnMCvMMU4ZxjHa4I=;
-        b=nAD8UuK7B1/GbNhOwQt6N+QVCFS7YIEbwV+s9ZbWii1Alb0xRBIGPDy3hU35e7+9J7
-         JTYX2JuOVOSQefjJvGVdtB9KyalWEJWDPeMPeCmu8j0jk/q8jMoUZToD2MhvewtuoQ9P
-         ipf3KK2HWQE2ZsgxrJhED5+oiyGFCppRvjIMPIuqZoe+8ZnaSZ2rZJS0HsghPk8ka7K+
-         zQAyy9O96LIAoBZMYkQGlJ2ETDfP+uJwzA+9JUOCK+Gdbs0xfg3hzv+BlpEuez7t+vaj
-         RVV9UhBU3qTzxyM9GBilhBw9m32kpA7/DJ5pjK8bF82BVzD4XPY3fUvx0KJafBWtfnSd
-         1nUg==
-X-Gm-Message-State: ACrzQf2he0VfHrqX6uX0X0eDUILxlhXqe6XfQ6qe9RerdEjAEE0s+5NW
-        zs/NWTn4pDSQVOPgytMh0Z6eENZb3Eood7t5QvnkEA==
-X-Google-Smtp-Source: AMsMyM43GACP12dQZV6v3KIC5Qxaj6QVCASShwmiPx6+SaG+30Y/RBMbREK4KJlCmGU7p1c/8UJC8IQmuja8j8BZsDc=
-X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
- ga30-20020a1709070c1e00b007ae31a0571emr21471098ejc.690.1667919065615; Tue, 08
- Nov 2022 06:51:05 -0800 (PST)
+        bh=ZeruRM6pLf0L2avHjfnGbDq+RAbm6eC6yZuwoRzHAnA=;
+        b=gU3epaqYdlqL2bd3xRBwaz09h0tM0rNUb4gjgx6f98+LZREQoxGgR8frHTqhPdRBWw
+         oim5jdQ+HSk5o4aOj6FhwOibHlbEFkWjk9JeW0hEUywQHkrj+jh8SUcma2g7Ci4AsklG
+         p4M9a/i6aUiM+ritMtur7878Z9xCDNjvHZwwY4k85kB8jNp193NsvUHMVGdDikok+ZpY
+         OlBNlxnQN8hJaiVBd0yxctUedIJ3DI0XiZcXLonFMgFmJw7YJR2bIBauALf1fvWOvdXY
+         zXOrAs8RWK44qATwRpg0OhvKbURoBVlwAiwUY2mc74koLYtaO0QXfvKJ9T921ZZ32wKP
+         ri3Q==
+X-Gm-Message-State: ACrzQf2D+z6kWQNkm6TuFVVSux7NyAEIc5HPR/IR2cS/hwySOolKOSNE
+        ym4ugKdf7YaHMGncAdZXq9wK7FVV5wkjyAwsOMP3cnriza/DyqTMcR6SWQ==
+X-Google-Smtp-Source: AMsMyM7umw9tL2RgbOU7i+wbmGkatqn7q9n9iSKlRNYjy/7igub4VkhEoChiS0zAcmHPAVfN8dn6fPdtAk0N+fxIX/M=
+X-Received: by 2002:a81:468b:0:b0:364:8aa:8196 with SMTP id
+ t133-20020a81468b000000b0036408aa8196mr53986180ywa.468.1667919182275; Tue, 08
+ Nov 2022 06:53:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20221025070255.14407-1-linux@fw-web.de> <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
- <trinity-889b4468-8a50-4eae-80a1-6bd9ffbeaaf2-1667577856206@3c-app-gmx-bs24>
-In-Reply-To: <trinity-889b4468-8a50-4eae-80a1-6bd9ffbeaaf2-1667577856206@3c-app-gmx-bs24>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 15:50:44 +0100
-Message-ID: <CACRpkdZFkeX7J9R2C0rhF+WZJXe65y6FfeBEMBGGkSTh4AWmsQ@mail.gmail.com>
-Subject: Re: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for
- MT7986 SoC
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221103141155.1105961-1-jagan@edgeble.ai> <20221103141155.1105961-4-jagan@edgeble.ai>
+ <CACRpkdYEW4z6EZ7UC9wT3NtRVnE=0L6AAHJDxtu5Jb-UrB+WSA@mail.gmail.com>
+ <CA+VMnFxyx=NP2QUiJ6RnfapZ9c=S4-cj+0kQn8PYyaMTBP3i-g@mail.gmail.com> <CACRpkdaZnGgJ3egXEtoH0gTmR0m_-9Q+iGZr2eOx2JVHYgXCXA@mail.gmail.com>
+In-Reply-To: <CACRpkdaZnGgJ3egXEtoH0gTmR0m_-9Q+iGZr2eOx2JVHYgXCXA@mail.gmail.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 8 Nov 2022 20:22:51 +0530
+Message-ID: <CA+VMnFz1h0MfwxiQeFCdvMJWQ9uKWvwstJvKnpDTKjaVHN3pYw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 4, 2022 at 5:04 PM Frank Wunderlich <frank-w@public-files.de> wrote:
-
-> > Gesendet: Dienstag, 25. Oktober 2022 um 20:35 Uhr
-> > Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> > Betreff: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for MT7986 SoC
-> >
-> > On 25/10/2022 03:02, Frank Wunderlich wrote:
-> > > From: Frank Wunderlich <frank-w@public-files.de>
+On Tue, 8 Nov 2022 at 20:18, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Tue, Nov 8, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
+> > On Tue, 8 Nov 2022 at 19:31, Linus Walleij <linus.walleij@linaro.org> wrote:
 > > >
-> > > Add new splitted uart pins and emmc_51
+> > > On Thu, Nov 3, 2022 at 3:12 PM Jagan Teki <jagan@edgeble.ai> wrote:
 > > >
-> > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > > > Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
+> > > > dot matrix LCD with 800RGBx1280 dots at maximum.
+> > > >
+> > > > Add support for it.
+> > > >
+> > > > Cc: dri-devel@lists.freedesktop.org
+> > > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > > > ---
+> > > > Changes for v3:
+> > > > - updatd to WXGA
+> > > > - use JD9365DA_CMD_DCS and JD9365DA_CMD_DELAY
+> > >
+> > > My comments on v2 have not been addressed, for example I asked to
+> > > remove the delay from sequences and just use an explicit delay and
+> > > to then use the existing sequence sending macro.
 > >
+> > True, I responded on the same day [1], since I didn't get the reply I
+> > have posted by assuming my comment is valid. Would you please check
+> > and respond?
 > >
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > [1] https://lore.kernel.org/all/CA+VMnFz0w-6O=wt3iuJo1BhQgPZ2XbpX6JdDz6vg_JW9nHTR2A@mail.gmail.com/
 >
-> after talking with MTK for the emmc pinctrl settings (custom pull-up) they suggested me to change
-> binding to fix other emmc-values and allow multiple (2) uart-items
+> OK I see, sorry for not reading close.
 >
-> so on top of this patch
+> The driver just supports one single variant.
 >
->              then:
->                properties:
->                  groups:
-> -                  enum: [emmc, emmc_rst, emmc_51]
-> +                  enum: [emmc_45, emmc_51]
->            - if:
->                properties:
->                  function:
-> @@ -231,10 +231,12 @@ patternProperties:
->              then:
->                properties:
->                  groups:
-> -                  enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
-> -                         uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
-> -                         uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
-> -                         uart2_1, uart0, uart1, uart2]
-> +                  items:
-> +                    enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
-> +                           uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
-> +                           uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
-> +                           uart2_1, uart0, uart1, uart2]
-> +                  maxItems: 2
+> What you are doing is preparing the ground for more variants
+> that may or may not exist. This creates the antipattern "big upfront design"
+> i.e. abstractions added for things that do not yet exist.
 >
-> i would squash these changes and send as v3 or should i send an extra-patch?
+> I think it is better to strip it down to just open coding the delay after
+> the init sequence. When the next variant appears, if ever, they can
+> add abstraction. Maybe they need the same delay in the same
+> place? Who knows...
 
-Squash and send av v3 if you haven't already! Easiest for me.
+I understand your point, but delays are strictly mentioned by the
+panel vendor init sequence, cz101b4001 do you think adding in the
+generic or common code is still valid since we have code added for
+cz101b4001 specifically via driver data?
 
-Yours,
-Linus Walleij
+Thanks,
+Jagan.
