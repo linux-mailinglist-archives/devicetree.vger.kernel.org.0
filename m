@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE644620FB9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64CC1620FBC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:03:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234029AbiKHMDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:03:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55872 "EHLO
+        id S234032AbiKHMDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:03:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234019AbiKHMDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:03:01 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960341F9E5
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:03:00 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 187-20020a1c02c4000000b003cf9c3f3b80so4039728wmc.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:03:00 -0800 (PST)
+        with ESMTP id S234038AbiKHMDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:03:03 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C842AE05
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:03:01 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id bs21so20633439wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:03:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BCCT8tgaqG5OldHtlkklSVmkDx8WUdXNiCaVQRja2yA=;
-        b=U7WGio8V1prSmN3Mln9Ld/PbUtMtK4E3C/I7QfP9z+GltDmjDNFwK6sGRVhnYuN3nE
-         tjsf44EHUhh6ZN8skkDpgWLw6Ombd4+M1+71FpTCp9L/BmJ096VP1RsZVjruvbUJgsaj
-         uZz3X+nnSu7hY658FwKwMmmn+PqNTcu/lCtwD6+QgRYwpBfC8lSDKSdVDxjrK8V9DhQq
-         S63vTnkE0uEI7ii3pM95+VpzrI2S+ltbMLOk4M0Vg01QdiJpmvPU/F+jQNGSrgZVMRPP
-         ST1wRarcRgV0fF4Qf/bTBSctKDh1gO/Y/NZTbCnhYpty7Rei6rihU5MoAC1JLbLgCj/5
-         600A==
+        bh=34uELl7iSr0KkNMrPbDK0p3kOxj5Rp7IXkKhGBvUSAg=;
+        b=FCj0qS9DEU91XF9GU6/3CVjhV71oQF+Et5zuA/pS/cIe9ojQbZnfwNRx7EFmp7hBvG
+         TyRCjQNgGqJwe6+L75yUR/xe7XOrPKWiqXjoObsPy8JLGK40qYvnjc1orcH+YMw1nra5
+         VnFujy8cqUXcguo7JfGiJzjvSYCiAYs5auWGzE3DyUmvHeKC/v0PphLW64buuGR7QLjb
+         RZGPBBf3tWMHfKjhHPf+nkYMs7zGB/unm5MGmFBAOv6pYwO8w4b/FEAqntdZD3Lbly0J
+         sOgh7XxzZZtc+dVpWv6jzKoim1uiRNG8BzTvX2WAEZdnO2SeYqIyZI/WjITUZj0i4nC/
+         71Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BCCT8tgaqG5OldHtlkklSVmkDx8WUdXNiCaVQRja2yA=;
-        b=N63j/Fnk4a9VGO3rFsfjeORT/8iUEAxeoyYRWbyFURrxvI/jMF+pPXav1z75tEKt0x
-         yGMrej/zgkPVfNnDABxSwfutVr9YZmYggDkA7mqhUF+AF+aA4NcWmx3piNj3S2OaUF5A
-         9VKvZyjFoOl6R3J7tUsm4Fdqw1Fgs/pHbB7Uf5cx6PW0EYChe9OhuZkl6VqKycYeVW2V
-         8zE5mpSQdWA3Ek+en4nAmeSSBYWbQJG7KGituYZih7ZJIjjHBLWhsFfRVEiHxGn8FryT
-         kGkgDEKWahcCniAdl65pRTXH06QAXnvoIsl5PvgmKRPsOKlLzHslV+T9VGwOpLk352gl
-         5aog==
-X-Gm-Message-State: ACrzQf0npCYX3wCWo7XULbelCQ4tz/2EJW1/7XVrXCnbPGwDmS7M4Nyq
-        Fkp1ku7Uu8VTBd1G4ih7YATMBA==
-X-Google-Smtp-Source: AMsMyM7V66Sx1uuIUNwAZdTcklqiRvYcgNuFIuC0qulmR6/MvfqNgkKfUB/Lx5hjVEJoOBoCq4E6Ug==
-X-Received: by 2002:a7b:c5d6:0:b0:3c6:f970:e755 with SMTP id n22-20020a7bc5d6000000b003c6f970e755mr36584276wmk.132.1667908979158;
-        Tue, 08 Nov 2022 04:02:59 -0800 (PST)
+        bh=34uELl7iSr0KkNMrPbDK0p3kOxj5Rp7IXkKhGBvUSAg=;
+        b=Oi4YWbgJTcx8uz1fuKn/hKKLs50n3TxdstO/cJ3MKJWEixGXoFTpYeBOiaxj0sy5Zi
+         dBp4AUpi2/XMpQ1rStL3sQXW2Ums4BHbFi7z+Ce9JNBNjVvrpbb8g86CGRjcoEv8Q4+L
+         z6LieTVhh6brCEvHXIhEfBDK/wiSoPwlEG9gPKFY0/bxwmWrFMmhJk3tknDeOpD1Y8Uo
+         18SZy9cZFjdpLZw9BmK4e73WvehUQMq6mPK/J5OeU6wtxRiC2Aj/PmfzeWAG+d13PN9O
+         XZpz9JUj/yLH91ooPeJkoWkS3ebN06BApIZft/IpAdePvLmY1m2g8FGXRxzqYpiaRGWp
+         xvpg==
+X-Gm-Message-State: ACrzQf2Vx6myGth1scGbOIVslRbrDItqgIx0UsgCW1/5gj1sPVmN3HoP
+        mfYY0jsXIPzSZ+m+eK/flwuFxA==
+X-Google-Smtp-Source: AMsMyM7K13gbsFzH2YQDtPN8bvUJhHqreRaknylxG4yXs1QpWmAIghwCjAVDLvh7FGZApvlAxGuW0g==
+X-Received: by 2002:a5d:52d0:0:b0:21e:4923:fa09 with SMTP id r16-20020a5d52d0000000b0021e4923fa09mr35961603wrv.244.1667908980061;
+        Tue, 08 Nov 2022 04:03:00 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b0023662245d3csm10056034wru.95.2022.11.08.04.02.58
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b0023662245d3csm10056034wru.95.2022.11.08.04.02.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 04:02:58 -0800 (PST)
+        Tue, 08 Nov 2022 04:02:59 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 08 Nov 2022 13:02:53 +0100
-Subject: [PATCH v5 1/2] dt-bindings: rtc: qcom-pm8xxx: document qcom,pm8921-rtc as
- fallback of qcom,pm8018-rtc
+Date:   Tue, 08 Nov 2022 13:02:54 +0100
+Subject: [PATCH v5 2/2] rtc: pm8xxx: drop unused pm8018 compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v5-1-bbb120c6766a@linaro.org>
+Message-Id: <20220928-mdm9615-dt-schema-fixes-v5-2-bbb120c6766a@linaro.org>
 References: <20220928-mdm9615-dt-schema-fixes-v5-0-bbb120c6766a@linaro.org>
 In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v5-0-bbb120c6766a@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -82,42 +81,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PM8018 RTC is used as compatible with PM8921 RTC on the MDM9615,
-document this situation.
+The PM8018 compatible is always used with PM8921 fallback, so PM8018
+compatible can be safely removed from device ID table
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/rtc/rtc-pm8xxx.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-index 23ab5bb4f395..0a7aa29563c1 100644
---- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-@@ -11,12 +11,16 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - qcom,pm8058-rtc
--      - qcom,pm8921-rtc
--      - qcom,pm8941-rtc
--      - qcom,pm8018-rtc
--      - qcom,pmk8350-rtc
-+    oneOf:
-+      - enum:
-+          - qcom,pm8058-rtc
-+          - qcom,pm8921-rtc
-+          - qcom,pm8941-rtc
-+          - qcom,pmk8350-rtc
-+      - items:
-+          - enum:
-+              - qcom,pm8018-rtc
-+          - const: qcom,pm8921-rtc
- 
-   reg:
-     minItems: 1
+diff --git a/drivers/rtc/rtc-pm8xxx.c b/drivers/rtc/rtc-pm8xxx.c
+index dc6d1476baa5..716e5d9ad74d 100644
+--- a/drivers/rtc/rtc-pm8xxx.c
++++ b/drivers/rtc/rtc-pm8xxx.c
+@@ -461,7 +461,6 @@ static const struct pm8xxx_rtc_regs pmk8350_regs = {
+  */
+ static const struct of_device_id pm8xxx_id_table[] = {
+ 	{ .compatible = "qcom,pm8921-rtc", .data = &pm8921_regs },
+-	{ .compatible = "qcom,pm8018-rtc", .data = &pm8921_regs },
+ 	{ .compatible = "qcom,pm8058-rtc", .data = &pm8058_regs },
+ 	{ .compatible = "qcom,pm8941-rtc", .data = &pm8941_regs },
+ 	{ .compatible = "qcom,pmk8350-rtc", .data = &pmk8350_regs },
 
 -- 
 b4 0.10.1
