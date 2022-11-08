@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 367DB621150
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA7C62115E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:49:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233437AbiKHMrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:47:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33966 "EHLO
+        id S233603AbiKHMsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:48:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233981AbiKHMrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:47:47 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23DFE52886
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:47:46 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id c25so20917282ljr.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:47:46 -0800 (PST)
+        with ESMTP id S234287AbiKHMsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:48:36 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7751A528B8
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:48:20 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id a15so20920842ljb.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E8byaTjI34WIB+yOKjv/+/yWJamfZUXaWqdaKU0UJy8=;
-        b=BgA7M1Q6P8QxvSenmeBorycsBcPQC8sgFH3SV83LA0Zh6JRQVOAoyB3II4IXFyXM91
-         xvSQd1q/wswVq4GRhXZ8sV94VpCoLJiESYza+uLY/jVWdk34pEsVY4wmwL6c9DssQXWl
-         q0dKPaOrcY8PGk/nRJxH/pcVlR7blsfX+hAytyYgeihR+zSWy9QTD20h6ob0zi6UGx0C
-         xDVqmSzJ0ftClO9RStjVTLiPqgHXPJERbnRJpbe/bNrzpZ6S+/84guyHpkk4oNaRe4xM
-         2aXHUu/aUvX4meGiF7PoqfnSA7AgyEXHNGqkiKmVrVggO1io7vRdtEffs2VMrOhz7Xtm
-         fzFw==
+        bh=4s4Z1WdUOPpLx6Zbqf7L1892zlqXckJCl3Ja/uP89L4=;
+        b=q4zKbmw94I9pKmSWoe1A3Z/AzqpYt6qpaN3SW9lzEWOqTY8eaaaJuqXM1wk6WGGLYM
+         7sI2uCTjDurSYYLQu1LE/8Rj4uHJGC+81xE4Q4OnEwH/uqCsLXMy1yiHuAhdbRxtjE5y
+         AaTHEEkEAzPsI+cVKXlTxV771Mkg7tCW4n6Urqq3KBG9y5jeZBV0q8dX132l6sNaOCb4
+         jQe5GMdRFVrP3Hyqq7uM5RI/fSmKBXO504+GUY+jokmW7j4Ztrhx7fRGiwyr8UWfopPy
+         MJ1e8STAA0bb7J07uwj3dFWVoiVfLcYqSIlFHs9W7OZfx09PfDB4zDzlNwDxgCq4HrBS
+         86Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E8byaTjI34WIB+yOKjv/+/yWJamfZUXaWqdaKU0UJy8=;
-        b=YvUlZNHtHKPb9vuFygYXODkdLhCMbuaq9hrN0Dy1qnF2dsic8viXPrAJ7+wCQFWH8o
-         ZRVByZsIiss1Er9+r4KRm9AmNgI9Dyv1kkQ6HnU08o9ENoCBn8yNNj7yv3+qzf0zIy0i
-         6IqBXw2dcTp1M/Xg4zuHJZ2Jl6+ZYg0YX7JP5CEEQEmcD6IE7MgpuL/5jcM+7A8vp/41
-         oqcG8rYf0EDHygV7LkU+J8G3hSNTzm4O5Y2JGwE6turx9QX0IcSK8cZ3sKTSyjzauBl+
-         VF9Gzu+1SJ7ogGwgmarJLfyn3nvwoQgUldn8QAOm11bBwwVBGxY0RiL/l5w94DYy4dtI
-         Kujw==
-X-Gm-Message-State: ACrzQf2ZrezyNWm8XeE2Oaw/3QiMYan86FqMqHNnDhKjD0/CHt2vPfvi
-        o+sg4yeAIxluq7k/l8skscjmkQ==
-X-Google-Smtp-Source: AMsMyM5eZyVR8HYAuCGoAL9yPEkKIDwjawSXvmKyCHK3Vgi3r988Pk+PdQ8GcKIt82iqoGsyk/tIMg==
-X-Received: by 2002:a2e:8304:0:b0:277:31c3:ca17 with SMTP id a4-20020a2e8304000000b0027731c3ca17mr6687104ljh.523.1667911664501;
-        Tue, 08 Nov 2022 04:47:44 -0800 (PST)
+        bh=4s4Z1WdUOPpLx6Zbqf7L1892zlqXckJCl3Ja/uP89L4=;
+        b=mnqnpSmjJQ/DSd7x+H6MKnr2VXv629z9EtIiR/1WlJRNMsBaHBQbCx7yDY/PJhN2Ua
+         xF8IuTTGQQguhZJvjAbKxYapLCta7CqULGWCwRhOoGkTwlM5kvtJl96ClsqoNlqGUvmC
+         idgLghk72UtB1tyEzb57ZbzGX4Utuxw6PwplgvKpfXAbaS+WxZ3vU5M3PvTzyTD3ZZR8
+         jConUkhYKT9aN3oaoH2aqG6PDe6KdbwyPpVUWzFd64b8ivN8dG6QxpBHRtVoDg0CRKe/
+         4RUQSWFhweyLKXVhJ4Bj4Xj9YwDVmqhRwKTEJBMWqmTehRIUS7dNtJB8bqfzQRopFwXn
+         TCDg==
+X-Gm-Message-State: ACrzQf3xWH/4zXWOF/3Mp2vDzzhT6zB7s8/D1YTlDmCdycHSr1p2pYms
+        Pkv8NAt65mf0rvnkiqVqvZIciA==
+X-Google-Smtp-Source: AMsMyM6tlA5qzQlcNJ0y1TkIG//th+wyQ8gWeyik8VyEAXOPTD7CNbXS8/glvZgW2PFrCL59t12K8g==
+X-Received: by 2002:a05:651c:2d9:b0:277:14bc:da0 with SMTP id f25-20020a05651c02d900b0027714bc0da0mr18784418ljo.212.1667911699164;
+        Tue, 08 Nov 2022 04:48:19 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id a11-20020ac2520b000000b004b1892aa5c8sm1776095lfl.56.2022.11.08.04.47.43
+        by smtp.gmail.com with ESMTPSA id a7-20020a2e88c7000000b0026daf4fc0f7sm1729753ljk.92.2022.11.08.04.48.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 04:47:43 -0800 (PST)
-Message-ID: <78e5caf3-3be4-540b-33b3-0ff886f262cd@linaro.org>
-Date:   Tue, 8 Nov 2022 13:47:42 +0100
+        Tue, 08 Nov 2022 04:48:18 -0800 (PST)
+Message-ID: <6a939e52-b69f-b30f-664d-dfb9f279b5dd@linaro.org>
+Date:   Tue, 8 Nov 2022 13:48:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v5 2/4] arm64: dts: qcom: sm8250: Remove redundant
+Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: sc7280: Remove redundant
  soundwire property
 Content-Language: en-US
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
@@ -68,9 +68,9 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         konrad.dybcio@somainline.org, mka@chromium.org
 Cc:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
 References: <1667911156-19238-1-git-send-email-quic_srivasam@quicinc.com>
- <1667911156-19238-3-git-send-email-quic_srivasam@quicinc.com>
+ <1667911156-19238-4-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1667911156-19238-3-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1667911156-19238-4-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,15 +89,11 @@ On 08/11/2022 13:39, Srinivasa Rao Mandadapu wrote:
 > This patch is required to avoid dtbs_check errors with
 > qcom,soundwie.yaml
 
-s/soundwie/soundwire/
-
 > 
-> Fixes: 24f52ef0c4bf ("arm64: dts: qcom: sm8250: Add nodes for tx and rx macros with soundwire masters")
+> Fixes: 12ef689f09ab ("arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital macro codecs")
 > 
 
-No blank lines between tags.
-
-With two above fixed:
+Same two comments as patch #2.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
