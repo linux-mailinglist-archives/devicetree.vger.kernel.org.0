@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B003620623
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13351620660
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 03:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233232AbiKHBfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 20:35:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59448 "EHLO
+        id S233112AbiKHCAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 21:00:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233178AbiKHBfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:35:05 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92ABFC2;
-        Mon,  7 Nov 2022 17:35:04 -0800 (PST)
+        with ESMTP id S229561AbiKHCAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 21:00:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD551A07D;
+        Mon,  7 Nov 2022 18:00:18 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 46AAD6139D;
-        Tue,  8 Nov 2022 01:35:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0CC5C4347C;
-        Tue,  8 Nov 2022 01:35:02 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E4946B817C0;
+        Tue,  8 Nov 2022 02:00:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 57741C433D7;
+        Tue,  8 Nov 2022 02:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667871303;
-        bh=VbHtwiRY9OrRcqTZTxylig5/x3MC+EqH11/EcgSsNa8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VWBE9yzzMyLiLN6q/6wYb/7IWK9zU71a0tE9xTvGa0JXRDuv3/bSHJqnGZVxtPxuq
-         NnCc+OOwcmfl48BnPKFluIV6w/iFbx5ZqsiwM2ad25v5rwfS+QiYpluzrSkVuVGJmD
-         5Zbq6y+m+y8RfrCRIuEUPI3MRR5CuBkw8D/0tNHRMTOQFo8MrpOReeCL+Tw4sIs2+D
-         0TPAjC3ymldiz1xkEjDUv1GoKfthpyKxmtP3gLAdw45IwF9K+ztmVdShP5uo4tVOHZ
-         cWsSa/WzX3IB52OejiLIfnMw1nVh4zPXiEx6hs3ZRsHXw8gCvD1+AbJwSBWlfm43hH
-         Z/LkN+Vw0FwoA==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     phone-devel@vger.kernel.org, marijn.suijten@somainline.org
-Cc:     agross@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        jami.kettunen@somainline.org, martin.botka@somainline.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm6125: Enable Command Queue Engine (CQE) for SDHCI 1
-Date:   Mon,  7 Nov 2022 19:35:00 -0600
-Message-Id: <166787129212.608852.6548286601468082055.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221107214702.311271-1-marijn.suijten@somainline.org>
-References: <20221107214702.311271-1-marijn.suijten@somainline.org>
-MIME-Version: 1.0
+        s=k20201202; t=1667872815;
+        bh=WPJXS3+wpSz4dtb1CWNy5hwjDCzVPOifqi2qEE1KGVM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=XMbEycK39WIoljuyFkfprdtNKvLeQg+6gShWxAXWwWpq3azqPDRFt5BvzJFsb4BHW
+         WXb5zCgMqEmrxBJ1amgDObAfKwiKVl/GJziSY5v0/LaZjwgEPUK+34kkunAgycR2EK
+         IPJ8jDeoTNdONcIVIBl/4hYBGAz9ocVBvnMD0rM+EUo6OHotNhwDe7bMIXJBrDwVs8
+         SsdQgZ/oh/56exjBFra3iUMtawlBqW2G2uxLJOUPDie+N/TrzY9+/1QsMruolUV3a3
+         O/3ou0KkePh4Woy8dO3dhPZiklN1o+3i5EmMZO+FFByVf5qAb5lFkJkpz5DUL5Xj/M
+         op92WgMUaGsiA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3223DC73FFC;
+        Tue,  8 Nov 2022 02:00:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: tsnep: Fix typo on generic nvmem
+ property
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166787281519.2068.13306857950915060036.git-patchwork-notify@kernel.org>
+Date:   Tue, 08 Nov 2022 02:00:15 +0000
+References: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        edumazet@google.com, netdev@vger.kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        gerhard@engleder-embedded.com
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -58,21 +58,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Nov 2022 22:47:01 +0100, Marijn Suijten wrote:
-> Downstream sources confirm sm6125 supports CQE, and after fixing the
-> reg name for this range [1] this feature probes and enables correctly:
+Hello:
+
+This patch was applied to netdev/net.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Fri,  4 Nov 2022 17:21:47 +0100 you wrote:
+> While working on the nvmem description I figured out this file had the
+> "nvmem-cell-names" property name misspelled. Fix the typo, as
+> "nvmem-cells-names" has never existed.
 > 
->     [    0.391950] sdhci_msm 4744000.mmc: mmc0: CQE init: success
-> 
-> [1]: https://lore.kernel.org/all/20221026163646.37433-1-krzysztof.kozlowski@linaro.org/
+> Fixes: 603094b2cdb7 ("dt-bindings: net: Add tsnep Ethernet controller")
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > 
 > [...]
 
-Applied, thanks!
+Here is the summary with links:
+  - [net-next] dt-bindings: net: tsnep: Fix typo on generic nvmem property
+    https://git.kernel.org/netdev/net/c/ec683f02a150
 
-[1/1] arm64: dts: qcom: sm6125: Enable Command Queue Engine (CQE) for SDHCI 1
-      commit: f53152d1d4e6c711bb9728611bbe0b32deda36b1
-
-Best regards,
+You are awesome, thank you!
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
