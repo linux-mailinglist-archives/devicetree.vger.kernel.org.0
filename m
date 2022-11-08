@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 254C2620855
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0909462088F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 05:57:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232367AbiKHElO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 23:41:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53178 "EHLO
+        id S233387AbiKHE5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 23:57:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiKHElN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:41:13 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A035E0C5;
-        Mon,  7 Nov 2022 20:41:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2400B61466;
-        Tue,  8 Nov 2022 04:41:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A17A9C433C1;
-        Tue,  8 Nov 2022 04:41:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667882471;
-        bh=u+aMSC7NtK/eF/XnaxPejrZT3LQ1++Bwr4IovOzzV24=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IWRfF3klqBvKduJp26siphyeNq3/RNm+nQkelqIna629PgV8dlx2m5+L7iJ/t2Isl
-         CEBTukWsBpBnf8uLp9k3v3BvT8dovqFTIaIlF0vSt2euKYlIZFQe4PgFSYulFmmAEr
-         Zk3KiHQMNF8skaoacDySPbl2cYzMTSuoVikmI66kLBdfqMXz/6XmabefgHk22meK1A
-         vxhHNPSX0nLU0airdnO+Jm4QT2lPKkvK/t2lB1yTAnXy2kyVCn9FOAaA6BsWm6gK55
-         4h3E+//4Ae+v3izNeGulcQpVBmWZGbcS7yZmWPjAlzrUH8r8693DBVsYaS7OkSwnLR
-         QpYkHuETB4zRg==
-Date:   Mon, 7 Nov 2022 22:41:08 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S232816AbiKHE5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 23:57:30 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130D847312;
+        Mon,  7 Nov 2022 20:53:55 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id i21so20716058edj.10;
+        Mon, 07 Nov 2022 20:53:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pg8ScU3pDth5YYtNSba+y23tAKdqXF6at6ma5iPQR6A=;
+        b=pGvdsmvMKFLMKcPCJ/8gIwtPi3zr+g4v+hyqpNSP1SZ6ryQSKid/FM5BGy4rrZNU72
+         n63/4aKYpRf8Yx5ig/3MTBoyRD6xLQfS4ZLpUNXMepLGkSyOFw4qq63fA36whOjwwvX6
+         Zs0iVwIqYwC7cZXF71DFuAKWms7xNV2HVPFu2JirGIYHk51DxN1PpgC9XCS7/cGC2cj+
+         udl1KzVAGytG3QK43KyAHCBkOf2OC12zTX6khFD9jeGY2yEk6hLltLCEdRXrYO9462DN
+         u/wSz0330JH+QYLkymEmAT65BpxqA9ObL8VOBZaBxTr+IKwk1paW0MaDYlS1oLlacmKx
+         f/2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pg8ScU3pDth5YYtNSba+y23tAKdqXF6at6ma5iPQR6A=;
+        b=zn8GZ7JpDZBFk38QlgJXHXhgExFo1fL0D9x1wec/w4AlrTyMDP6Bo2jy379Ovs5CJf
+         +eppK01FDoBPMi22Je0u2JHdu1jVcKZq5FLv9zTPXhpfOyXP8k5LByMZWKnmZ3zGVGky
+         2dSfteq+JWZJ2hM/GLpz0G/H4Vdu4noLmG4aePLR+ekGgXRIlYziQyD2mFR0LgoIIMBv
+         u6EgWBbxVnQ0EuRcxNkYPfcP14FmZuJWT6gnaeKCK4bXqT++lbL2H9iMqNdXuUOfIizb
+         QIsGpIKIUM7/G6+f5Jar8uS/8E59Tp66ioTgDOgpHpy8F3a+fuh1OczAViJRfATzVkp3
+         CUvg==
+X-Gm-Message-State: ACrzQf2b1EgSX3ljfAtbK7gjib59nriX/ExWGjMazyM4OGGMHAchw96W
+        kfeDzxCIBgQatJp4PQqaTmU=
+X-Google-Smtp-Source: AMsMyM6mGObMOMcT/OgXEfSZ/+y0XBnkWG4w7scRQPt88ebiOnXXWel3+lC+Td5lko/J2dEDfjF17A==
+X-Received: by 2002:aa7:cb09:0:b0:461:e6b6:4bad with SMTP id s9-20020aa7cb09000000b00461e6b64badmr30898511edt.27.1667883233519;
+        Mon, 07 Nov 2022 20:53:53 -0800 (PST)
+Received: from hp-power-15.localdomain (mm-58-12-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.12.58])
+        by smtp.gmail.com with ESMTPSA id p11-20020a05640210cb00b004637489cf08sm4994444edu.88.2022.11.07.20.53.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 20:53:53 -0800 (PST)
+From:   Siarhei Volkau <lis8215@gmail.com>
+Cc:     Siarhei Volkau <lis8215@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996pro-xiaomi-scorpio: Remove DSI
- PHY clocks from MMCC
-Message-ID: <20221108044108.se3et4do5q2dspsb@builder.lan>
-References: <20221107114016.356112-1-y.oudjana@protonmail.com>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: [PATCH 0/2] mmc: jz4740: Don't change parent clock rate for some SoCs
+Date:   Tue,  8 Nov 2022 07:52:58 +0300
+Message-Id: <20221108045300.2084671-1-lis8215@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221107114016.356112-1-y.oudjana@protonmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 02:40:17PM +0300, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Having DSI PHY clocks listed in the MMCC node while MDSS is disabled makes
-> it defer probe indefinitely, resulting in simplefb and other blocks that
-> depend on its clocks to defer probe as well. Remove DSI PHY clocks from
-> MMCC to let it probe with MDSS disabled.
-> 
+Some SoCs have one clock divider for all MMC units, thus changing one
+affects others as well. This leads to random hangs and memory
+corruptions, observed on the JZ4755 based device with two MMC slots
+used at the same time.
 
-Isn't this a generic problem that we will have all over the place, where
-we describe incoming clocks from all PHYs and then only enable the ones
-actually available on each platform?
+List of SoCs affected includes: JZ4725b, JZ4755, JZ4760 and JZ4760b.
 
-Am I missing something special with this case? I think the kernel need
-to handle this.
+The MMC core has its own clock divisor and it goes to the first plan in
+that case.
 
-Regards,
-Bjorn
+Siarhei Volkau (2):
+  mmc: jz4740: Don't change parent clock rate for some SoCs
+  MIPS: ingenic: rs90: set MMC_MUX clock
 
-> Fixes: 48aa636285ad ("arm64: dts: qcom: msm8996: add clocks to the MMCC device node")
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../boot/dts/qcom/msm8996pro-xiaomi-scorpio.dts     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dts b/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dts
-> index 7bf6ad1a214b..c68c2dadd7b4 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dts
-> @@ -113,6 +113,19 @@ &mdss {
->  	status = "disabled";
->  };
->  
-> +&mmcc {
-> +	/*
-> +	 * Remove non-essential DSI PHY clocks to allow MMCC to probe
-> +	 * with MDSS disabled.
-> +	 */
-> +	clocks = <&xo_board>,
-> +		 <&gcc GCC_MMSS_NOC_CFG_AHB_CLK>,
-> +		 <&gcc GPLL0>;
-> +	clock-names = "xo",
-> +		      "gcc_mmss_noc_cfg_ahb_clk",
-> +		      "gpll0";
-> +};
-> +
->  &mss_pil {
->  	firmware-name = "qcom/msm8996/scorpio/mba.mbn",
->  			"qcom/msm8996/scorpio/modem.mbn";
-> -- 
-> 2.38.1
-> 
+ arch/mips/boot/dts/ingenic/rs90.dts |  5 +++--
+ drivers/mmc/host/jz4740_mmc.c       | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 3 deletions(-)
+
+-- 
+2.36.1
+
