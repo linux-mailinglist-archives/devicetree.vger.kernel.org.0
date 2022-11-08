@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E40A621DD0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23081621DFA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbiKHUmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 15:42:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49572 "EHLO
+        id S229916AbiKHUrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 15:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbiKHUmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:42:22 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D1667133
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:42:20 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id a67so24284108edf.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:42:20 -0800 (PST)
+        with ESMTP id S229948AbiKHUr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:47:28 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62BF76409
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:47:27 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id l8so22875008ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:47:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8PDeB4nZ2b0/kaV55EwLdKiv7+4Bjm3GYojARxweqjE=;
-        b=AVqZhoAy5n+PtVAMMbVx+483gzWF1tI70Wt+diEOnr/EEFplpI0IFX1YwVIOi7rt+5
-         xKjZRLDc7nKF1ln5nELX1axvNvA5KYnfEpaqcCUyQ1pFevFiis+oM1AT+lyQk3g7zHXY
-         LCaPl0JSId8MgYe21cyHU2fF6H+jewXU4nMH02zBTKFcCs2BJmeM/k0IOqOeQqCcSB32
-         Y6WYvyPjSIPQ9vvrFv+lQAHO3ltLKEVdP+WdsH1qA8J8GYSCb6l+9H4m2VSi05fgWWYa
-         RryX9TkQXOsmrkLmuqRSFQyVkoTeXgUcRgclZKN9oXRwEyoI5GUOItPRM4ZgJNwyzF37
-         S9og==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WH0kqwpxGIZYfxFpOcVNB2gb2+jLt3tA6OnKcaJzpJw=;
+        b=LL6DhQeKueOBbZ0yrubELXYbG9bPM4jB+g3J6wp2AZiF0Ec7wh822/bdNIG2FlCVSr
+         ZZVoRE50QEjtc268iTWooeNSE5nWjiUlAOyz1aPLWKw4Jn9MxZavtqZhoekuA5yzcw9+
+         jplSY2C5WMO7lW1lK/0ncvZjCxyVLsPKNIjXY2bVcu5eQKa7VT8Nx1BCt90f21CWfEdp
+         KtxIzZN9AhJWpPwZ/iLgdcpmDXc5TFJwOBElnl+fs0ROvU4DoVs+JIWeQ+GkHhqYoG/K
+         3O9GZ64tm31dj30hx63slzfEg3hKDTl0WRlAw5UIXJxU+0e/+/StEBzdOsvtkNHsyaIU
+         isPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8PDeB4nZ2b0/kaV55EwLdKiv7+4Bjm3GYojARxweqjE=;
-        b=2htHnChLIgSfuMzWx2b5I236e/GRB1vooqKrpf3ERVblP8RjsZUhbLgCI87shJU/aL
-         CU/cvzc7JSP/aorr+PCUbQdwnTYjtSzlgjPGYYuGsR2PwtNP+SdaMvLSlzaKFgyT/h+m
-         EEQvFca2ydwXMusT9dC2I4SVkcUYxPcGaFGCw7IUHEAX8lurRpeY4kivK3abaxfBVRv3
-         m5D2ydTY8/5rz9oypC/1FyNZ97k/yFBAQWtKKUrdhMKLU+TFVuAVDOBY48vYekX5Df0l
-         rgBUJooz/0HqTX6jmi+pJOF6+eiODej1cG7EPB78RB6+qnTkpdK1dcVj6PMHgSJKh9nS
-         cJVQ==
-X-Gm-Message-State: ACrzQf2D0//jk+NpScjj5V3D7PKLyAM0gJJ+myXwNqSZi1HrCh2kN8QK
-        HzKqXt9f4bjkMxD/TLlmaWCyuZzDG9iknGlRnTR17g==
-X-Google-Smtp-Source: AMsMyM5UacZlCRfKiRNa0kTrzT5kX7+K684naVNWV/pxq0wgKsP9jRI7CKgITH4pf2zDtNIwin7mrjQA9a0Qs67HpcE=
-X-Received: by 2002:aa7:c718:0:b0:462:ff35:95dc with SMTP id
- i24-20020aa7c718000000b00462ff3595dcmr56160916edq.32.1667940139213; Tue, 08
- Nov 2022 12:42:19 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WH0kqwpxGIZYfxFpOcVNB2gb2+jLt3tA6OnKcaJzpJw=;
+        b=SfCu5k82TomB8rnBsQP0fA3bxgoKjrI1tVBEr1Yu6aqXky1D0yWzH7KpKCS2GLnpuj
+         eJxgezgu+32aYdfk2qpj6Tu5Y/D2bLks02ilaBbJy53/Mnm2l3nZloItWsLcp65l/7Yw
+         F2wow2MxwUuhxsim5Rofp3aAvxevMHf+ynMg1j/7zUQDMz55ai144kQatHxt0uwx0cLK
+         3LTPvRvysqKlRqV2AZPo1+KrXKL4VXSmEBXgNKuMADFc/w6xcz7B7EPdSu+YGCnsDhnd
+         WApOcnmpz+Tot/VQylU4aStotUuiDtZPovTrRtvha3VDCCEzCL5LLw1tA3PCTKWzicOW
+         gsXg==
+X-Gm-Message-State: ACrzQf2emXAV+N8/I9VPQ3dLkclFkMWUAMQns5uzFD3saNxqzc611dno
+        B29lJqwj3XT0GSIVeAhCS+WTgw==
+X-Google-Smtp-Source: AMsMyM6WchxytjU83P1mNKppO4lxP/cfuiEpegw2PhzeLuNkIqtJuWOB+GSEATPdCX7+GwDNlIMbCw==
+X-Received: by 2002:a05:651c:30b:b0:277:6cc:c6ae with SMTP id a11-20020a05651c030b00b0027706ccc6aemr18907935ljp.179.1667940445769;
+        Tue, 08 Nov 2022 12:47:25 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id w20-20020a05651c119400b0026c4c1a0b4dsm1856127ljo.126.2022.11.08.12.47.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 12:47:25 -0800 (PST)
+Message-ID: <11d29754-3e36-895b-e791-2c2f88c6dbed@linaro.org>
+Date:   Tue, 8 Nov 2022 21:47:23 +0100
 MIME-Version: 1.0
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk> <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 21:42:08 +0100
-Message-ID: <CACRpkdaPwe0igrZOnA3Q3QosySTEa9H06kdXLQMcpeEmt+hiBw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280-idp: don't modify &ipa twice
+To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221108201625.1220919-1-elder@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221108201625.1220919-1-elder@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,15 +75,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 8, 2022 at 5:33 PM Russell King (Oracle)
-<rmk+kernel@armlinux.org.uk> wrote:
 
-> Add a DT binding for the Apple Mac System Management Controller.
->
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Looks good to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On 08/11/2022 21:16, Alex Elder wrote:
+> In "sc7280-idp.dts", the IPA node is modified after being defined.
+> However that file includes "sc7280-idp.dtsi", which also modifies
+> the IPA node (in the same way).  This only needs to be done in
+> "sc7280-idp.dtsi".
+> 
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Yours,
-Linus Walleij
+Konrad
+>   arch/arm64/boot/dts/qcom/sc7280-idp.dts | 5 -----
+>   1 file changed, 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 7559164cdda08..9ddfdfdd354ee 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -61,11 +61,6 @@ &bluetooth {
+>   	vddio-supply = <&vreg_l19b_1p8>;
+>   };
+>   
+> -&ipa {
+> -	status = "okay";
+> -	modem-init;
+> -};
+> -
+>   &pmk8350_rtc {
+>   	status = "okay";
+>   };
