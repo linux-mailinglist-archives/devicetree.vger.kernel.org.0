@@ -2,93 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D73F621030
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:19:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E02F862104C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234144AbiKHMTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:19:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38196 "EHLO
+        id S234193AbiKHMUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:20:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234139AbiKHMTJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:19:09 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CB64AF29;
-        Tue,  8 Nov 2022 04:19:07 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A8BQqD1017080;
-        Tue, 8 Nov 2022 12:18:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=srVU2cCpRFJnn8Ug0/PmYzbtYBRCHX2caqSNC/6Jmic=;
- b=Y3n7veTaxnEy28r8Y5FzcKD4/vGSZRi3h7wr8KeMxarbJjfbvRSyfnIKch1ZEVkhkdlL
- VmMhBqKCY8hoP9ABGerYNDi5wMkyY5iM76mskP9rcYsyKN7blps5enXHr77mwGTpAaYH
- 2j/XoJEwcU48bbIO3lWEk8DpFSiqpBOeiV3qSEXYxyhLJMcvttK01xdo5NnJW+CN2mWr
- 9hXSkInaEvn0wJbcJ8Nb94BUwWiRdJW5lGHiKyB9wrVDhS4dYCzVi2cyrPim15OfielH
- ZcHiCAQiw8kMZHB/13AgzycCsI/bqk/kpRw+yT5raxhDvJPb5qAvj5xvjeiz++0m6vqT tg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kqht88qjy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Nov 2022 12:18:54 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A8CIqLA008967
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 8 Nov 2022 12:18:52 GMT
-Received: from [10.239.133.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 8 Nov 2022
- 04:18:48 -0800
-Message-ID: <4f3ccfe9-b244-439b-bb58-9b01af6d6087@quicinc.com>
-Date:   Tue, 8 Nov 2022 20:18:45 +0800
+        with ESMTP id S234196AbiKHMUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:20:47 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB7645094
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:20:42 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id kt23so38068875ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:20:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9L32CqPO5tpdtIdmdwuItDbHeb4WCU0OCUvAkL0z1s0=;
+        b=PaH8zVNZFaWxZkBeTqFrrlAIn52Z6ALOySEFQbN+48YB7eswuhqFfbwMqDBq2GsSCR
+         jNyGe3sfw9BsM3W78ySx+zpEwrY2gFRB+rnPJkIorUoFeKXDAokh8dE40JpXipGkbuPy
+         RB9f8UlJcTdmz0I9lVinKLHKT4idjh8iIgQU/viUJUMSJI1RczuQ768aebjuYJ+Djd/K
+         F22AwkMtR7jLfsJnJf0VmYF5W8lEah7PeJ+/RynLIY+zXK5/8BSsT/5YIW2ELhBGAIwq
+         jD3Ar6khX4wA/0taPM3wyTh49EynpnfsTOmVdiv2KirYhA+1gxwCIOHhj5kWnni0ft0X
+         j60Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9L32CqPO5tpdtIdmdwuItDbHeb4WCU0OCUvAkL0z1s0=;
+        b=az39+vvyiuP9MmXBZVy/xH7YJ+XfiV066gnuqhDWHA62LRdTkb7J3+WA4GfETNmwXZ
+         4duYXWtZomU2xa5YflsChW223ntFUAaOxAfin+LUvYRVflln8WOWaeQcz0KwLspA78zp
+         L2/b/ak3XWwiluTgfhUgN0cac3w+lWXsKNDI7J/7bV9jWJBTFcR3+ceXF15NrmiCkNg7
+         hUmlImHHSFysTUaKAVISDakRqz++9DsrlhV9E5qrS8gv03DdIsycTfEk5CcHkfejwzFG
+         Ezclqly+suKQk/9m1R5iv2Sm5DiVYVxb39QlXu16Okuc35ZEzMnG+CxGlR1+75vIsJCE
+         qwAw==
+X-Gm-Message-State: ANoB5pn5Ztx2C/OGhVgdgywddYk0SvAw1spvUn1g0x8N8ApFnVHkyDac
+        V65ei49rdHDT+3oG2qz91h6+sK44NKJp+d9VMf4tqA==
+X-Google-Smtp-Source: AA0mqf7E/HvXj5m2jiuxDKBMSeyESiNXwJ8GfekmAZnuir2VaYGD+S+2Vjc6wyIWXX54igq6ImLmaPPOUbp/cZQLOjc=
+X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
+ q12-20020a1709066acc00b007ae658cee45mr10905848ejs.190.1667910040934; Tue, 08
+ Nov 2022 04:20:40 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v14 8/9] arm64: dts: qcom: sm8250: Add coresight
- components
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20221102091915.15281-1-quic_jinlmao@quicinc.com>
- <20221102091915.15281-9-quic_jinlmao@quicinc.com>
- <92b1ee79-edb4-4612-cf27-081b936a12aa@arm.com>
-From:   Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <92b1ee79-edb4-4612-cf27-081b936a12aa@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -jhmSQZUZUTn3APkmRDzZiu19XxSrWWv
-X-Proofpoint-GUID: -jhmSQZUZUTn3APkmRDzZiu19XxSrWWv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_11,2022-11-08_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=592
- impostorscore=0 suspectscore=0 clxscore=1015 bulkscore=0 phishscore=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211080071
+References: <20221028153505.23741-1-y.oudjana@protonmail.com> <20221028153505.23741-3-y.oudjana@protonmail.com>
+In-Reply-To: <20221028153505.23741-3-y.oudjana@protonmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Nov 2022 13:20:29 +0100
+Message-ID: <CACRpkdbXKhTXNrxUmoFjuO6rmwb-8+seaj-L9ZcHpdFUuYp_Dw@mail.gmail.com>
+Subject: Re: [PATCH v4 02/13] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
+ Improve description
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,17 +75,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 28, 2022 at 5:35 PM Yassine Oudjana
+<yassine.oudjana@gmail.com> wrote:
 
-On 11/8/2022 6:53 PM, Suzuki K Poulose wrote:
-> On 02/11/2022 09:19, Mao Jinlong wrote:
->> Add coresight components for sm8250. STM/ETM are added.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 >
+> The current description mentions having to put the pin controller
+> node under a syscon node, but this is not the case in the current
+> MT6779 device tree. This is not actually needed, so replace the
+> current description with something more generic that describes
+> the use of the hardware block.
 >
-> Can this not be pushed outside this series ?
-This can be pushed outside this series.
->
-> Acked-by: Suzuki K Poulouse <suzuki.poulose@arm.com>
->
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Patch applied to the pinctrl tree.
+
+I am checking how much I can just apply so we get down the
+depth of your patch stack.
+
+Yours,
+Linus Walleij
