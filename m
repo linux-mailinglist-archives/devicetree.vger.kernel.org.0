@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B17620956
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 07:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E1F62094D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 07:06:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233230AbiKHGLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 01:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33696 "EHLO
+        id S233278AbiKHGGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 01:06:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233128AbiKHGLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 01:11:08 -0500
+        with ESMTP id S232736AbiKHGGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 01:06:08 -0500
+X-Greylist: delayed 618 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Nov 2022 22:06:06 PST
 Received: from gw.atmark-techno.com (gw.atmark-techno.com [13.115.124.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843131E73A
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 22:11:06 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430703F059
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 22:06:06 -0800 (PST)
 Received: from gw.atmark-techno.com (localhost [127.0.0.1])
-        by gw.atmark-techno.com (Postfix) with ESMTP id 01F8660132
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 14:56:03 +0900 (JST)
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-        by gw.atmark-techno.com (Postfix) with ESMTPS id BA67860132
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 14:56:02 +0900 (JST)
-Received: by mail-pl1-f200.google.com with SMTP id q3-20020a17090311c300b0017898180dddso10549655plh.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 21:56:02 -0800 (PST)
+        by gw.atmark-techno.com (Postfix) with ESMTP id 967EF60143
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 14:56:06 +0900 (JST)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+        by gw.atmark-techno.com (Postfix) with ESMTPS id 5BD4660141
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 14:56:04 +0900 (JST)
+Received: by mail-pg1-f200.google.com with SMTP id l63-20020a639142000000b0046f5bbb7372so7457734pge.23
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 21:56:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a8ltF6Z7hveQcIoHTD+Ocqy8FGU/fVCDeqON4Kuh0Nw=;
-        b=TLGQ+bpFvKahxd97S1J6b6aSk9SJqC9sf5zZSy1isgbQO/tDVjykJE9rO9mxhWjebo
-         QqguitWAYKvVCAj6ZL8GDHJCdXDnKiV6XuaCepTcxx64gZ/TpVCU1CFb4YtDp0by573L
-         pAQ1x43K0rlBdGVRg+NHPuOlz8J3gJKc8HqEXyz3/qezop+oNoBqJRgQ2CmrEqolGvGP
-         T8kk5u6jxl7eKavK7xRkZEBWOg//+im+lXFTjGjnuN382K28dgCKt7qxNyjJJWwTravc
-         y3PONDVxjdjkV/zHaB+lm7scSjHpbOSPSVS37KUFaVY96mh0Dxu/NUSefXWztTXc2EF8
-         oYxw==
-X-Gm-Message-State: ACrzQf2pv6zoLrg7EgbVlv5L/gLC8TGrzfEvroLMTG7rfycfzWxI/tJM
-        Xoev9OXnR9Ass2eLasiXdTVp6JgK3tSVo5nzyx3ucyea9vMa3+YYgckWbnsT1SNsexD0zjNNbC5
-        L2ZdOGkyT6t6K/Ra+kI2YMRzBiQ==
-X-Received: by 2002:a17:902:c948:b0:187:2d90:9fab with SMTP id i8-20020a170902c94800b001872d909fabmr38509290pla.42.1667886962288;
-        Mon, 07 Nov 2022 21:56:02 -0800 (PST)
-X-Google-Smtp-Source: AMsMyM51AQAM3Z9fEXEvq6HmWSn1u66y5bNSh60R/YuoHRFzhZ5NB8hMybzH+M6NCCVrPHnP1znooQ==
-X-Received: by 2002:a17:902:c948:b0:187:2d90:9fab with SMTP id i8-20020a170902c94800b001872d909fabmr38509273pla.42.1667886962062;
-        Mon, 07 Nov 2022 21:56:02 -0800 (PST)
-Received: from pc-zest.atmarktech (103.131.189.35.bc.googleusercontent.com. [35.189.131.103])
-        by smtp.gmail.com with ESMTPSA id q8-20020a170902a3c800b00186ad73e2d5sm5950422plb.208.2022.11.07.21.56.01
+        bh=757yoDhLQoswhPSAxDBASMvHCABau1Li9dh0moZLC3E=;
+        b=Uxk7wiXZyRWU/uarhkE3GAn9hKIPrV1xagrpUZMpCbj5cov9X77JdoCqYElW2EpLa/
+         MdLORv5mE8/hR6bs/xI2EGju5Mbn7lwD+WbljcfNB7yBaFhvoDsB2aq+A7SvAt3mSlR2
+         qvmmpv6kK4Sjcf1vCfbLJOoVVttHfuGSz+NqxTycMSRHG4PQNmUKLMeDZmDt9NsMLCRW
+         UI1xMU7E0hxnZthgf9KT5fbcsxKJBG5R9j2wfCu+F6PnNi9VKNr6dFzoZkfZVxBTGWTE
+         9h34nKWqpz+cxO3nlcwUnSNhrs1MHuzyjRvtHJuZ4tq/XN+jIacKrLlML8ZWNxq/VJog
+         /KDg==
+X-Gm-Message-State: ACrzQf31l62qrvW8G2M/GkFEzT8PxgV8DssgFNDzs4wWsrgKHhqgvYHt
+        PlgwGIBAZq3Y9L9hTaidlpaArdgh1CrjqFVGUT0CqSmke1XqUVeA8IKGPJ9QNdySqzHQCPzs9FQ
+        oqcCvUHxkIoB3uvCS21mdE4e/GQ==
+X-Received: by 2002:a17:90a:974b:b0:213:9bec:ae4e with SMTP id i11-20020a17090a974b00b002139becae4emr54696306pjw.200.1667886963450;
+        Mon, 07 Nov 2022 21:56:03 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM6Ej7xAYS13CrilvxqHh45cmxbHS136/9OIxkPX14RdA4xZx9ZMGzAQKiHNN+jhcNtN8vFgmg==
+X-Received: by 2002:a17:90a:974b:b0:213:9bec:ae4e with SMTP id i11-20020a17090a974b00b002139becae4emr54696286pjw.200.1667886963226;
+        Mon, 07 Nov 2022 21:56:03 -0800 (PST)
+Received: from pc-zest.atmarktech (178.101.200.35.bc.googleusercontent.com. [35.200.101.178])
+        by smtp.gmail.com with ESMTPSA id f14-20020a170902ce8e00b00180033438a0sm5978640plg.106.2022.11.07.21.56.02
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Nov 2022 21:56:01 -0800 (PST)
+        Mon, 07 Nov 2022 21:56:02 -0800 (PST)
 Received: from martinet by pc-zest.atmarktech with local (Exim 4.96)
         (envelope-from <martinet@pc-zest>)
-        id 1osHaa-0098Kr-1g;
-        Tue, 08 Nov 2022 14:56:00 +0900
+        id 1osHab-0098L1-2q;
+        Tue, 08 Nov 2022 14:56:01 +0900
 From:   Dominique Martinet <dominique.martinet@atmark-techno.com>
 To:     Marcel Holtmann <marcel@holtmann.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,89 +64,148 @@ Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
         Eric Dumazet <edumazet@google.com>,
         "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com,
         Dominique Martinet <dominique.martinet@atmark-techno.com>
-Subject: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings for hci_h4
-Date:   Tue,  8 Nov 2022 14:55:30 +0900
-Message-Id: <20221108055531.2176793-2-dominique.martinet@atmark-techno.com>
+Subject: [RFC PATCH 2/2] bluetooth/hci_h4: add serdev support
+Date:   Tue,  8 Nov 2022 14:55:31 +0900
+Message-Id: <20221108055531.2176793-3-dominique.martinet@atmark-techno.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221108055531.2176793-1-dominique.martinet@atmark-techno.com>
 References: <20221108055531.2176793-1-dominique.martinet@atmark-techno.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding to support defining a bluetooth device using the h4
-uart protocol
+adding serdev support to hci_h4 allows users to define h4 bluetooth
+controllers in dts files
 
-This was tested with a NXP wireless+BT AW-XM458 module, but might
-benefit others as the H4 protocol seems often used.
+This allows users of bluetooth modules with an uart h4 interface to use
+dt bindings instead of manually running btattach
 
 Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
 ---
- .../devicetree/bindings/net/h4-bluetooth.yaml | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/h4-bluetooth.yaml
+ drivers/bluetooth/Kconfig  |  1 +
+ drivers/bluetooth/hci_h4.c | 65 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 66 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/h4-bluetooth.yaml b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-new file mode 100644
-index 000000000000..5d11b89ca386
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/h4-bluetooth.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/bluetooth/Kconfig b/drivers/bluetooth/Kconfig
+index e30707405455..69edc76a8611 100644
+--- a/drivers/bluetooth/Kconfig
++++ b/drivers/bluetooth/Kconfig
+@@ -113,6 +113,7 @@ config BT_HCIUART_SERDEV
+ config BT_HCIUART_H4
+ 	bool "UART (H4) protocol support"
+ 	depends on BT_HCIUART
++	depends on BT_HCIUART_SERDEV
+ 	help
+ 	  UART (H4) is serial protocol for communication between Bluetooth
+ 	  device and host. This protocol is required for most Bluetooth devices
+diff --git a/drivers/bluetooth/hci_h4.c b/drivers/bluetooth/hci_h4.c
+index 1d0cdf023243..b214c8a4d450 100644
+--- a/drivers/bluetooth/hci_h4.c
++++ b/drivers/bluetooth/hci_h4.c
+@@ -18,6 +18,8 @@
+ #include <linux/ptrace.h>
+ #include <linux/poll.h>
+ 
++#include <linux/of.h>
++#include <linux/serdev.h>
+ #include <linux/slab.h>
+ #include <linux/tty.h>
+ #include <linux/errno.h>
+@@ -32,6 +34,10 @@
+ 
+ #include "hci_uart.h"
+ 
++struct h4_device {
++	struct hci_uart hu;
++};
 +
-+title: H4 Bluetooth
+ struct h4_struct {
+ 	struct sk_buff *rx_skb;
+ 	struct sk_buff_head txq;
+@@ -130,6 +136,63 @@ static struct sk_buff *h4_dequeue(struct hci_uart *hu)
+ 	return skb_dequeue(&h4->txq);
+ }
+ 
++static const struct hci_uart_proto h4p;
 +
-+maintainers:
-+  - Dominique Martinet <dominique.martinet@atmark-techno.com>
++static int h4_probe(struct serdev_device *serdev)
++{
++	struct h4_device *h4dev;
++	struct hci_uart *hu;
++	int ret;
++	u32 speed;
 +
-+description:
-+  H4 is a common bluetooth over uart protocol.
-+  For example, the AW-XM458 is a WiFi + BT module where the WiFi part is
-+  connected over PCI (M.2), while BT is connected over serial speaking
-+  the H4 protocol. Its firmware is sent on the PCI side.
++	h4dev = devm_kzalloc(&serdev->dev, sizeof(*h4dev), GFP_KERNEL);
++	if (!h4dev)
++		return -ENOMEM;
 +
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,aw-xm458-bt
++	hu = &h4dev->hu;
 +
-+  max-speed: true
++	hu->serdev = serdev;
++	ret = device_property_read_u32(&serdev->dev, "max-speed", &speed);
++	if (!ret) {
++		/* h4 does not have any baudrate handling:
++		 * user oper speed from the start
++		 */
++		hu->init_speed = speed;
++		hu->oper_speed = speed;
++	}
 +
-+required:
-+  - compatible
++	serdev_device_set_drvdata(serdev, h4dev);
++	dev_info(&serdev->dev, "h4 device registered.\n");
 +
-+additionalProperties: false
++	return hci_uart_register_device(hu, &h4p);
++}
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/imx8mp-clock.h>
++static void h4_remove(struct serdev_device *serdev)
++{
++	struct h4_device *h4dev = serdev_device_get_drvdata(serdev);
 +
-+    uart1 {
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_uart1>;
-+        assigned-clocks = <&clk IMX8MP_CLK_UART1>;
-+        assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-+        status = "okay";
-+        fsl,dte-mode = <1>;
-+        fsl,uart-has-rtscts;
++	dev_info(&serdev->dev, "h4 device unregistered.\n");
 +
++	hci_uart_unregister_device(&h4dev->hu);
++}
 +
-+        bluetooth {
-+            compatible = "nxp,aw-xm458-bt";
-+            max-speed = <3000000>;
-+        };
-+    };
++#ifdef CONFIG_OF
++static const struct of_device_id h4_bluetooth_of_match[] = {
++	{ .compatible = "nxp,aw-xm458-bt" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, h4_bluetooth_of_match);
++#endif
++
++static struct serdev_device_driver h4_serdev_driver = {
++	.probe = h4_probe,
++	.remove = h4_remove,
++	.driver = {
++		.name = "hci_uart_h4",
++		.of_match_table = of_match_ptr(h4_bluetooth_of_match),
++	},
++};
++
+ static const struct hci_uart_proto h4p = {
+ 	.id		= HCI_UART_H4,
+ 	.name		= "H4",
+@@ -143,11 +206,13 @@ static const struct hci_uart_proto h4p = {
+ 
+ int __init h4_init(void)
+ {
++	serdev_device_driver_register(&h4_serdev_driver);
+ 	return hci_uart_register_proto(&h4p);
+ }
+ 
+ int __exit h4_deinit(void)
+ {
++	serdev_device_driver_unregister(&h4_serdev_driver);
+ 	return hci_uart_unregister_proto(&h4p);
+ }
+ 
 -- 
 2.35.1
 
