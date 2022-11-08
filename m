@@ -2,623 +2,425 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F44C620CCC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3852C620CDB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233635AbiKHKCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 05:02:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38232 "EHLO
+        id S233376AbiKHKIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 05:08:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233832AbiKHKCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:02:33 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39282A264
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:02:31 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id l12so9375945lfp.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EHNjQqKpTzK+fEHFihMcLQbytKyXJaAokofqYVuV5wA=;
-        b=f85zp0xvskFQs6eDSsm9sGJ4sEVBcwAiIqc558ZScZ4Yn+2/z4pNFHdcuuv3HvK8qC
-         iGcjgoIkfZK/EqVv9aKkdlRe0CJhurh5MRXZtPkgnfvZK3VJtWiJWtFmXMIKcASshUfr
-         xyw1DFkkSWrQiqvWk/ft854ZYZfr/lk0PEjxs52vM4Y9ZJ6NPZpHKk/WvVse7PnjerHn
-         z+8zzjS5Ukpw3VTkAOTr/GGm/qODRsnhBGfJBSG7d3hymD+twapfeix7EcdQDAG6x5r9
-         +FE7igQb1BQZ0xSzjdDKlCdoMM57GgB3FptPUUOW8z1vKx/n2nsKtt1Ard4HlT2oEwBt
-         SV3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EHNjQqKpTzK+fEHFihMcLQbytKyXJaAokofqYVuV5wA=;
-        b=q4rdWcwSPOysARgjiGexNOGVAMb4AFR4Rj0Jy2gIYig0dhK/KW2PqBD7EQRn/afJP9
-         wBX46jJJsfJTKTiyTQvjNq92uu2siQ+WW2ykUGstVkq8631jn2EaX9AV0dIptZSKxv+T
-         t3vtTh0pa2cXUCeJn7JR5vFb9RAT4kk77cDMsgE1KPWtRoOcEOtE7JWoe9RcUf87utNF
-         81vdWsAE/DW67ajcPUn7pHthH20px014iY16AmLEu5bZKjE9Z6T33+k3VUGsf6qi/z1K
-         uRB3FYsJfnWdGoaNt4EZ/Se/Bc9HqG2qwCa7Xs23+wNp/i9rRVEg2H7YJPHnkuv57tl8
-         N17A==
-X-Gm-Message-State: ACrzQf2ewwge5Fm6E62jxVL5bcQkRQvhqHJOh2BpDbdE4lDoCQ38Yqe2
-        S2fFIOG07I0/f6rDP74n11crRQ==
-X-Google-Smtp-Source: AMsMyM5jPJ5kxg3fGIpaqiQgN+hS5YgpEZHRkTfYuVrNQHj2/36SpHFHuyzVb7LjBRkKTr5gFoWR+g==
-X-Received: by 2002:a05:6512:2144:b0:4a2:3c2b:f694 with SMTP id s4-20020a056512214400b004a23c2bf694mr20770760lfr.642.1667901749862;
-        Tue, 08 Nov 2022 02:02:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id v2-20020ac258e2000000b0048af397c827sm1711096lfo.218.2022.11.08.02.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 02:02:29 -0800 (PST)
-Message-ID: <c2535843-f05e-256a-65dc-59b2325f247b@linaro.org>
-Date:   Tue, 8 Nov 2022 11:02:28 +0100
+        with ESMTP id S233253AbiKHKIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:08:24 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1AC28E32;
+        Tue,  8 Nov 2022 02:08:20 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A8A86GW042606;
+        Tue, 8 Nov 2022 04:08:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667902086;
+        bh=BdrT6yX1JwmbFBWLfTAC1LjDWVIHt4u0EWQTUoiiWYE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=JZjO795GiiXYS0/yHh0tlGG22rd3A8rwDFepofLTej1/M8SCDsiai5DBsTkAX1+Dy
+         66mJAztYt4ZT9tPud1ayUNHu+c9yceJ8ZPhPw2U+Gdrnj/NSFtrGdVmPbmCeMVSyvB
+         eKwdExEyZ7j+U30EUute7SYKJcFLGkOuE6vDXMxA=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A8A86PF002892
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Nov 2022 04:08:06 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 8 Nov
+ 2022 04:08:06 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 8 Nov 2022 04:08:06 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A8A81wx017243;
+        Tue, 8 Nov 2022 04:08:02 -0600
+Message-ID: <fcb77e1d-0d2a-046d-e5ea-abbe5ee5a288@ti.com>
+Date:   Tue, 8 Nov 2022 15:38:01 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] arm64: dts: mediatek: Initial mt8365-evk support
+ Thunderbird/102.2.2
+Subject: Re: [EXTERNAL] Re: [PATCH v7 2/5] remoteproc: pru: Add APIs to get
+ and put the PRU cores
 Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-References: <20221107211001.257393-1-bero@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107211001.257393-1-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <srk@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221031073801.130541-1-danishanwar@ti.com>
+ <20221031073801.130541-3-danishanwar@ti.com>
+ <a729e4e2-2f2e-8c3e-af45-3b8276bc6522@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+In-Reply-To: <a729e4e2-2f2e-8c3e-af45-3b8276bc6522@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 22:10, Bernhard Rosenkränzer wrote:
-> From: Fabien Parent <fparent@baylibre.com>
+Hi Roger,
+
+On 04/11/22 18:25, Roger Quadros wrote:
+> Hi Danish,
 > 
-> This adds minimal support for the MediaTek 8365 SOC and the EVK reference
-> board, allowing the board to boot to initramfs with serial port I/O.
+> On 31/10/2022 09:37, MD Danish Anwar wrote:
+>> From: Tero Kristo <t-kristo@ti.com>
+>>
+>> Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
+>> driver to allow client drivers to acquire and release the remoteproc
+>> device associated with a PRU core. The PRU cores are treated as
+>> resources with only one client owning it at a time.
+>>
+>> The pru_rproc_get() function returns the rproc handle corresponding
+>> to a PRU core identified by the device tree "ti,prus" property under
+>> the client node. The pru_rproc_put() is the complementary function
+>> to pru_rproc_get().
+>>
+>> Co-developed-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  drivers/remoteproc/pru_rproc.c | 142 +++++++++++++++++++++++++++++++--
+>>  include/linux/pruss.h          |  56 +++++++++++++
+>>  2 files changed, 193 insertions(+), 5 deletions(-)
+>>  create mode 100644 include/linux/pruss.h
+>>
+>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>> index 128bf9912f2c..9ba73cfc29e2 100644
+>> --- a/drivers/remoteproc/pru_rproc.c
+>> +++ b/drivers/remoteproc/pru_rproc.c
+>> @@ -2,12 +2,14 @@
+>>  /*
+>>   * PRU-ICSS remoteproc driver for various TI SoCs
+>>   *
+>> - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+>> + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
+>>   *
+>>   * Author(s):
+>>   *	Suman Anna <s-anna@ti.com>
+>>   *	Andrew F. Davis <afd@ti.com>
+>>   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+>> + *	Puranjay Mohan <p-mohan@ti.com>
+>> + *	Md Danish Anwar <danishanwar@ti.com>
+>>   */
+>>  
+>>  #include <linux/bitops.h>
+>> @@ -16,6 +18,7 @@
+>>  #include <linux/module.h>
+>>  #include <linux/of_device.h>
+>>  #include <linux/of_irq.h>
+>> +#include <linux/pruss.h>
+>>  #include <linux/pruss_driver.h>
+>>  #include <linux/remoteproc.h>
+>>  
+>> @@ -111,6 +114,8 @@ struct pru_private_data {
+>>   * @rproc: remoteproc pointer for this PRU core
+>>   * @data: PRU core specific data
+>>   * @mem_regions: data for each of the PRU memory regions
+>> + * @client_np: client device node
+>> + * @lock: mutex to protect client usage
+>>   * @fw_name: name of firmware image used during loading
+>>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+>>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+>> @@ -126,6 +131,8 @@ struct pru_rproc {
+>>  	struct rproc *rproc;
+>>  	const struct pru_private_data *data;
+>>  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+>> +	struct device_node *client_np;
+>> +	struct mutex lock; /* client access lock */
+>>  	const char *fw_name;
+>>  	unsigned int *mapped_irq;
+>>  	struct pru_irq_rsc *pru_interrupt_map;
+>> @@ -146,6 +153,127 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+>>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+>>  }
+>>  
+>> +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+>> +{
+>> +	struct rproc *rproc;
+>> +	phandle rproc_phandle;
+>> +	int ret;
+>> +
+>> +	ret = of_property_read_u32_index(np, "ti,prus", index, &rproc_phandle);
+>> +	if (ret)
+>> +		return ERR_PTR(ret);
+>> +
+>> +	rproc = rproc_get_by_phandle(rproc_phandle);
+>> +	if (!rproc) {
+>> +		ret = -EPROBE_DEFER;
+>> +		goto err_no_rproc_handle;
+>> +	}
+>> +
+>> +	/* make sure it is PRU rproc */
+>> +	if (!is_pru_rproc(rproc->dev.parent)) {
+>> +		rproc_put(rproc);
+>> +		return ERR_PTR(-ENODEV);
+>> +	}
+>> +
+>> +	get_device(&rproc->dev);
 > 
-> GPIO keys are supported, MMC is partially supported (needs the clocks
-> driver for full support).
+> Why do you need a get_device() here?
+> rproc_get_by_phandle() does it right?
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> [bero@baylibre.com: Removed parts depending on drivers that aren't upstream yet, cleanups]
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> ---
+
+Yes, this get_device() is not required. I'll remove it.
+
+>> +
+>> +	return rproc;
+>> +
+>> +err_no_rproc_handle:
+>> +	rproc_put(rproc);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +
+>> +/**
+>> + * pru_rproc_get() - get the PRU rproc instance from a device node
+>> + * @np: the user/client device node
+>> + * @index: index to use for the ti,prus property
+>> + * @pru_id: optional pointer to return the PRU remoteproc processor id
+>> + *
+>> + * This function looks through a client device node's "ti,prus" property at
+>> + * index @index and returns the rproc handle for a valid PRU remote processor if
+>> + * found. The function allows only one user to own the PRU rproc resource at a
+>> + * time. Caller must call pru_rproc_put() when done with using the rproc, not
+>> + * required if the function returns a failure.
+>> + *
+>> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+>> + * returned.
+>> + *
+>> + * Return: rproc handle on success, and an ERR_PTR on failure using one
+>> + * of the following error values
+>> + *    -ENODEV if device is not found
+>> + *    -EBUSY if PRU is already acquired by anyone
+>> + *    -EPROBE_DEFER is PRU device is not probed yet
+>> + */
+>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>> +			    enum pruss_pru_id *pru_id)
+>> +{
+>> +	struct rproc *rproc;
+>> +	struct pru_rproc *pru;
+>> +	struct device *dev;
+>> +	int ret;
+>> +
+>> +	rproc = __pru_rproc_get(np, index);
+>> +	if (IS_ERR(rproc))
+>> +		return rproc;
 > 
-> Compared to the previous version of the patch submitted by Fabien
-> Parent, this removes dependencies on drivers/patches that are not yet in
-> mainline (obviously this comes with some reduced functionality for now;
-> this will be added back as drivers are accepted), and addresses some
-> feedback from reviewers.
+> Why bother doing __pru_rproc_get() if pru->client_np exists?
 > 
->  arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->  arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 344 +++++++++++
->  arch/arm64/boot/dts/mediatek/mt8365.dtsi    | 602 ++++++++++++++++++++
->  3 files changed, 947 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-evk.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> You could do the below if check first and exit if pru->client_np exists.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 0ec90cb3ef289..e668fd50a3326 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -46,4 +46,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r2.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> new file mode 100644
-> index 0000000000000..a24e478fff51f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> @@ -0,0 +1,344 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021-2022 BayLibre, SAS.
-> + * Authors:
-> + * Fabien Parent <fparent@baylibre.com>
-> + * Bernhard Rosenkränzer <bero@baylibre.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
-> +#include "mt8365.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8365 Open Platform EVK";
-> +	compatible = "mediatek,mt8365-evk", "mediatek,mt8365";
 
-Missing documentation.
+In order to do the below if check, we need to have pru. pru is obtained from
+rproc->priv and rproc is obtained from __pru_rproc_get() API. So in order to
+run the below if check we need to call the __pru_rproc_get() API first.
 
-Run checkpatch on your patches. It will print several warnings, which
-must be fixed.
+So, first we are obtaining rproc from __pru_rproc_get() API and then checking
+and exiting if pru->client_np exists.
 
+>> +
+>> +	pru = rproc->priv;
+>> +	dev = &rproc->dev;
+>> +
+>> +	mutex_lock(&pru->lock);
+>> +
+>> +	if (pru->client_np) {
+>> +		mutex_unlock(&pru->lock);
+>> +		put_device(dev);
+>> +		ret = -EBUSY;
+>> +		goto err_no_rproc_handle;
+>> +	}
+>> +
+>> +	pru->client_np = np;
+>> +
+>> +	mutex_unlock(&pru->lock);
+>> +
+>> +	if (pru_id)
+>> +		*pru_id = pru->id;
+>> +
+>> +	return rproc;
+>> +
+>> +err_no_rproc_handle:
+>> +	rproc_put(rproc);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pru_rproc_get);
+>> +
+>> +/**
+>> + * pru_rproc_put() - release the PRU rproc resource
+>> + * @rproc: the rproc resource to release
+>> + *
+>> + * Releases the PRU rproc resource and makes it available to other
+>> + * users.
+>> + */
+>> +void pru_rproc_put(struct rproc *rproc)
+>> +{
+>> +	struct pru_rproc *pru;
+>> +
+>> +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
+>> +		return;
+>> +
+>> +	pru = rproc->priv;
+>> +
+>> +	mutex_lock(&pru->lock);
+>> +
+>> +	if (!pru->client_np) {
+>> +		mutex_unlock(&pru->lock);
+>> +		return;
+>> +	}
+>> +
+>> +	pru->client_np = NULL;
+>> +	mutex_unlock(&pru->lock);
+>> +
+>> +	rproc_put(rproc);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pru_rproc_put);
+>> +
+>>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+>>  {
+>>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+>> @@ -438,7 +566,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>>  	/* PRU1 has its local RAM addresses reversed */
+>> -	if (pru->id == 1)
+>> +	if (pru->id == PRUSS_PRU1)
+> 
+> Introduction of PRUSS_PRU0/1 enum could have been a separate patch.
+> 
+>>  		swap(dram0, dram1);
+>>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>>  
+>> @@ -747,14 +875,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>>  	case RTU0_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case PRU0_IRAM_ADDR_MASK:
+>> -		pru->id = 0;
+>> +		pru->id = PRUSS_PRU0;
+>>  		break;
+>>  	case TX_PRU1_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case RTU1_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case PRU1_IRAM_ADDR_MASK:
+>> -		pru->id = 1;
+>> +		pru->id = PRUSS_PRU1;
+>>  		break;
+>>  	default:
+>>  		ret = -EINVAL;
+>> @@ -816,6 +944,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
+>>  	pru->pruss = platform_get_drvdata(ppdev);
+>>  	pru->rproc = rproc;
+>>  	pru->fw_name = fw_name;
+>> +	pru->client_np = NULL;
+>> +	mutex_init(&pru->lock);
+>>  
+>>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+>>  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>> @@ -904,7 +1034,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
+>>  
+>>  static struct platform_driver pru_rproc_driver = {
+>>  	.driver = {
+>> -		.name   = "pru-rproc",
+>> +		.name   = PRU_RPROC_DRVNAME,
+>>  		.of_match_table = pru_rproc_match,
+>>  		.suppress_bind_attrs = true,
+>>  	},
+>> @@ -916,5 +1046,7 @@ module_platform_driver(pru_rproc_driver);
+>>  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+>>  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+>>  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+>> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
+>> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
+>>  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+>>  MODULE_LICENSE("GPL v2");
+>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+>> new file mode 100644
+>> index 000000000000..fdc719b43db0
+>> --- /dev/null
+>> +++ b/include/linux/pruss.h
+>> @@ -0,0 +1,56 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/**
+>> + * PRU-ICSS Subsystem user interfaces
+>> + *
+>> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+>> + *	Suman Anna <s-anna@ti.com>
+>> + */
+>> +
+>> +#ifndef __LINUX_PRUSS_H
+>> +#define __LINUX_PRUSS_H
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/types.h>
+>> +
+>> +#define PRU_RPROC_DRVNAME "pru-rproc"
+>> +
+>> +/*
+>> + * enum pruss_pru_id - PRU core identifiers
+>> + */
+>> +enum pruss_pru_id {
+>> +	PRUSS_PRU0 = 0,
+>> +	PRUSS_PRU1,
+>> +	PRUSS_NUM_PRUS,
+>> +};
+>> +
+>> +struct device_node;
+>> +
+>> +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>> +
+>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>> +			    enum pruss_pru_id *pru_id);
+>> +void pru_rproc_put(struct rproc *rproc);
+>> +
+>> +#else
+>> +
+>> +static inline struct rproc *
+>> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline void pru_rproc_put(struct rproc *rproc) { }
+>> +
+>> +#endif /* CONFIG_PRU_REMOTEPROC */
+>> +
+>> +static inline bool is_pru_rproc(struct device *dev)
+>> +{
+>> +	const char *drv_name = dev_driver_string(dev);
+>> +
+>> +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>> +
+>> +#endif /* __LINUX_PRUSS_H */
+> 
+> cheers,
+> -roger
 
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	firmware {
-> +		optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		input-name = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_keys>;
-> +
-> +		key-volume-up {
-> +			gpios = <&pio 24 GPIO_ACTIVE_LOW>;
-> +			label = "volume_up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			wakeup-source;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0xc0000000>;
-> +	};
-> +
-> +	usb_otg_vbus: regulator-2 {
-
-Where are regulators 0 and 1 (or just 1)?
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "otg_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&pio 16 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-
-(...)
-
-> +
-> +		mcucfg: syscon@10200000 {
-> +			compatible = "mediatek,mt8365-mcucfg", "syscon";
-> +			reg = <0 0x10200000 0 0x2000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		sysirq: interrupt-controller@10200a80 {
-> +			compatible = "mediatek,mt8365-sysirq",
-> +				     "mediatek,mt6577-sysirq";
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +			interrupt-parent = <&gic>;
-> +			reg = <0 0x10200a80 0 0x20>;
-> +		};
-> +
-> +		infracfg_nao: infracfg-nao@1020e000 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			compatible = "syscon";
-
-Not allowed on its own.
-
-> +			reg = <0 0x1020e000 0 0x1000>;
-> +		};
-> +
-> +		rng: rng@1020f000 {
-> +			compatible = "mediatek,mt8365-rng",
-> +				     "mediatek,mt7623-rng";
-> +			reg = <0 0x1020f000 0 0x100>;
-> +			clocks = <&infracfg CLK_IFR_TRNG>;
-> +			clock-names = "rng";
-> +		};
-> +
-> +		apdma: dma-controller@11000280 {
-> +			compatible = "mediatek,mt8365-uart-dma",
-> +				     "mediatek,mt6577-uart-dma";
-> +			reg = <0 0x11000280 0 0x80>,
-> +			      <0 0x11000300 0 0x80>,
-> +			      <0 0x11000380 0 0x80>,
-> +			      <0 0x11000400 0 0x80>,
-> +			      <0 0x11000580 0 0x80>,
-> +			      <0 0x11000600 0 0x80>;
-> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_LOW>,
-> +				     <GIC_SPI 46 IRQ_TYPE_LEVEL_LOW>,
-> +				     <GIC_SPI 47 IRQ_TYPE_LEVEL_LOW>,
-> +				     <GIC_SPI 48 IRQ_TYPE_LEVEL_LOW>,
-> +				     <GIC_SPI 51 IRQ_TYPE_LEVEL_LOW>,
-> +				     <GIC_SPI 52 IRQ_TYPE_LEVEL_LOW>;
-> +			dma-requests = <6>;
-> +			clocks = <&infracfg CLK_IFR_AP_DMA>;
-> +			clock-names = "apdma";
-> +			#dma-cells = <1>;
-> +		};
-> +
-> +		auxadc: adc@11001000 {
-> +			compatible = "mediatek,mt8365-auxadc",
-> +				     "mediatek,mt8173-auxadc";
-> +			reg = <0 0x11001000 0 0x1000>;
-> +			clocks = <&infracfg CLK_IFR_AUXADC>;
-> +			clock-names = "main";
-> +			#io-channel-cells = <1>;
-> +		};
-> +
-> +		uart0: serial@11002000 {
-> +			compatible = "mediatek,mt8365-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11002000 0 0x1000>;
-> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&clk26m>, <&infracfg CLK_IFR_UART0>;
-> +			clock-names = "baud", "bus";
-> +			dmas = <&apdma 0>, <&apdma 1>;
-> +			dma-names = "tx", "rx";
-> +			status = "disabled";
-> +		};
-> +
-> +		uart1: serial@11003000 {
-> +			compatible = "mediatek,mt8365-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11003000 0 0x1000>;
-> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&clk26m>, <&infracfg CLK_IFR_UART1>;
-> +			clock-names = "baud", "bus";
-> +			dmas = <&apdma 2>, <&apdma 3>;
-> +			dma-names = "tx", "rx";
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@11004000 {
-> +			compatible = "mediatek,mt8365-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11004000 0 0x1000>;
-> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&clk26m>, <&infracfg CLK_IFR_UART2>;
-> +			clock-names = "baud", "bus";
-> +			dmas = <&apdma 4>, <&apdma 5>;
-> +			dma-names = "tx", "rx";
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm: pwm@11006000 {
-> +			compatible = "mediatek,mt8365-pwm";
-> +			reg = <0 0x11006000 0 0x1000>;
-> +			#pwm-cells = <2>;
-> +			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&infracfg CLK_IFR_PWM_HCLK>,
-> +				 <&infracfg CLK_IFR_PWM>,
-> +				 <&infracfg CLK_IFR_PWM1>,
-> +				 <&infracfg CLK_IFR_PWM2>,
-> +				 <&infracfg CLK_IFR_PWM3>;
-> +			clock-names = "top", "main", "pwm1", "pwm2", "pwm3";
-> +		};
-> +
-> +		i2c0: i2c@11007000 {
-> +			compatible = "mediatek,mt8365-i2c",
-> +				     "mediatek,mt8168-i2c";
-> +			reg = <0 0x11007000 0 0xa0>,
-> +			      <0 0x11000080 0 0x80>;
-> +			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_LOW>;
-> +			clock-div = <1>;
-> +			clocks = <&infracfg CLK_IFR_I2C0_AXI>,
-> +				 <&infracfg CLK_IFR_AP_DMA>;
-> +			clock-names = "main", "dma";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c1: i2c@11008000 {
-> +			compatible = "mediatek,mt8365-i2c",
-> +				     "mediatek,mt8168-i2c";
-> +			reg = <0 0x11008000 0 0xa0>,
-> +			      <0 0x11000100 0 0x80>;
-> +			interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_LOW>;
-> +			clock-div = <1>;
-> +			clocks = <&infracfg CLK_IFR_I2C1_AXI>,
-> +				 <&infracfg CLK_IFR_AP_DMA>;
-> +			clock-names = "main", "dma";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c2: i2c@11009000 {
-> +			compatible = "mediatek,mt8365-i2c",
-> +				     "mediatek,mt8168-i2c";
-> +			reg = <0 0x11009000 0 0xa0>,
-> +			      <0 0x11000180 0 0x80>;
-> +			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_LOW>;
-> +			clock-div = <1>;
-> +			clocks = <&infracfg CLK_IFR_I2C2_AXI>,
-> +				 <&infracfg CLK_IFR_AP_DMA>;
-> +			clock-names = "main", "dma";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		spi: spi@1100a000 {
-> +			compatible = "mediatek,mt8365-spi",
-> +				     "mediatek,mt7622-spi";
-> +			reg = <0 0x1100a000 0 0x100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&topckgen CLK_TOP_UNIVPLL2_D4>,
-> +				 <&topckgen CLK_TOP_SPI_SEL>,
-> +				 <&infracfg CLK_IFR_SPI0>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +			status = "disabled";
-> +		};
-> +
-> +		thermal: thermal@1100b000 {
-> +			compatible = "mediatek,mt8365-thermal";
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&infracfg CLK_IFR_THERM>,
-> +				 <&infracfg CLK_IFR_AUXADC>;
-> +			clock-names = "therm", "auxadc";
-> +			mediatek,auxadc = <&auxadc>;
-> +			mediatek,apmixedsys = <&apmixedsys>;
-> +			nvmem-cells = <&thermal_calibration>;
-> +			nvmem-cell-names = "calibration-data";
-> +			#thermal-sensor-cells = <1>;
-> +		};
-> +
-> +		i2c3: i2c@1100f000 {
-> +			compatible = "mediatek,mt8365-i2c",
-> +				     "mediatek,mt8168-i2c";
-> +			reg = <0 0x1100f000 0 0xa0>,
-> +			      <0 0x11000200 0 0x80>;
-> +			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_LOW>;
-> +			clock-div = <1>;
-> +			clocks = <&infracfg CLK_IFR_I2C3_AXI>,
-> +				 <&infracfg CLK_IFR_AP_DMA>;
-> +			clock-names = "main", "dma";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		ssusb: usb@11201000 {
-> +			compatible = "mediatek,mt8365-mtu3", "mediatek,mtu3";
-> +			reg = <0 0x11201000 0 0x2e00>,
-> +			      <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_LOW>;
-> +			phys = <&u2port0 PHY_TYPE_USB2>,
-> +			       <&u2port1 PHY_TYPE_USB2>;
-> +			clocks = <&topckgen CLK_TOP_SSUSB_TOP_CK_EN>,
-> +				 <&infracfg CLK_IFR_SSUSB_REF>,
-> +				 <&infracfg CLK_IFR_SSUSB_SYS>,
-> +				 <&infracfg CLK_IFR_ICUSB>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck",
-> +				      "dma_ck";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			usb_host: usb@11200000 {
-> +				compatible = "mediatek,mt8365-xhci",
-> +					     "mediatek,mtk-xhci";
-> +				reg = <0 0x11200000 0 0x1000>;
-> +				reg-names = "mac";
-> +				interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_LOW>;
-> +				clocks = <&topckgen CLK_TOP_SSUSB_TOP_CK_EN>,
-> +					 <&infracfg CLK_IFR_SSUSB_REF>,
-> +					 <&infracfg CLK_IFR_SSUSB_SYS>,
-> +					 <&infracfg CLK_IFR_ICUSB>,
-> +					 <&infracfg CLK_IFR_SSUSB_XHCI>;
-> +				clock-names = "sys_ck", "ref_ck", "mcu_ck",
-> +					      "dma_ck", "xhci_ck";
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		mmc0: mmc@11230000 {
-> +			compatible = "mediatek,mt8365-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11230000 0 0x1000>,
-> +			      <0 0x11cd0000 0 0x1000>;
-> +			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
-> +				 <&infracfg CLK_IFR_MSDC0_HCLK>,
-> +				 <&infracfg CLK_IFR_MSDC0_SRC>;
-> +			clock-names = "source", "hclk", "source_cg";
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc1: mmc@11240000 {
-> +			compatible = "mediatek,mt8365-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11240000 0 0x1000>,
-> +			      <0 0x11c90000 0 0x1000>;
-> +			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
-> +				 <&infracfg CLK_IFR_MSDC1_HCLK>,
-> +				 <&infracfg CLK_IFR_MSDC1_SRC>;
-> +			clock-names = "source", "hclk", "source_cg";
-> +			status = "disabled";
-> +		};
-> +
-> +		ethernet: ethernet@112a0000 {
-> +			compatible = "mediatek,mt8365-eth";
-> +			reg = <0 0x112a0000 0 0x1000>;
-> +			mediatek,pericfg = <&infracfg>;
-> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&topckgen CLK_TOP_ETH_SEL>,
-> +				 <&infracfg CLK_IFR_NIC_AXI>,
-> +				 <&infracfg CLK_IFR_NIC_SLV_AXI>;
-> +			clock-names = "core", "reg", "trans";
-> +			status = "disabled";
-> +		};
-> +
-> +		mipi_tx0: dsi-phy@11c00000 {
-> +			compatible = "mediatek,mt8365-mipi-tx",
-> +				     "mediatek,mt8183-mipi-tx";
-> +			reg = <0 0x11c00000 0 0x800>;
-> +			clocks = <&clk26m>;
-> +			clock-names = "ref_clk";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			clock-output-names = "mipi_tx0_pll";
-> +		};
-> +
-> +		efuse: efuse@11c50000 {
-> +			compatible = "mediatek,mt8365-efuse", "mediatek,efuse";
-> +			reg = <0 0x11c50000 0 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			thermal_calibration: calib@180 {
-> +				reg = <0x180 0xc>;
-> +			};
-> +		};
-> +
-> +		u3phy: t-phy@11cc0000 {
-
-Node names should be generic, so just phy
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			compatible = "mediatek,mt8365-tphy",
-> +				     "mediatek,generic-tphy-v2";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			#phy-cells = <1>;
-> +			ranges;
-> +
-> +			u2port0: usb-phy@11cc0000 {
-> +				reg = <0 0x11cc0000 0 0x400>;
-> +				clocks = <&topckgen CLK_TOP_SSUSB_PHY_CK_EN>,
-> +					 <&topckgen CLK_TOP_USB20_48M_EN>;
-> +				clock-names = "ref", "da_ref";
-> +				#phy-cells = <1>;
-> +			};
-> +
-> +			u2port1: usb-phy@11cc1000 {
-> +				reg = <0 0x11cc1000 0 0x400>;
-> +				clocks = <&topckgen CLK_TOP_SSUSB_PHY_CK_EN>,
-> +					 <&topckgen CLK_TOP_USB20_48M_EN>;
-> +				clock-names = "ref", "da_ref";
-> +				#phy-cells = <1>;
-> +			};
-> +		};
-> +
-> +		mfgcfg: syscon@13000000 {
-> +			compatible = "mediatek,mt8365-mfgcfg", "syscon";
-> +			reg = <0 0x13000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		mmsys: syscon@14000000 {
-> +			compatible = "mediatek,mt8365-mmsys", "syscon";
-> +			reg = <0 0x14000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		camsys: syscon@15000000 {
-> +			compatible = "mediatek,mt8365-imgsys", "syscon";
-> +			reg = <0 0x15000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		vdecsys: syscon@16000000 {
-> +			compatible = "mediatek,mt8365-vdecsys", "syscon";
-> +			reg = <0 0x16000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		vencsys: syscon@17000000 {
-> +			compatible = "mediatek,mt8365-vencsys", "syscon";
-> +			reg = <0 0x17000000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		apu: syscon@19020000 {
-> +			compatible = "mediatek,mt8365-apu", "syscon";
-> +			reg = <0 0x19020000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +	};
-> +
-> +	thermal-zones {
-> +		cpu_thermal: cpu-thermal {
-> +			polling-delay-passive = <1000>; /* milliseconds */
-> +			polling-delay = <1000>; /* milliseconds */
-> +			thermal-sensors = <&thermal 0>;
-> +
-> +			trips {
-> +				threshold: trip-point0 {
-> +					temperature = <95000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				target: trip-point1 {
-> +					temperature = <105000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu_crit: cpu_crit0 {
-> +					temperature = <117000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&target>;
-> +					cooling-device =
-> +						<&cpu0
-> +						 THERMAL_NO_LIMIT
-> +						 THERMAL_NO_LIMIT>,
-> +						<&cpu1
-> +						 THERMAL_NO_LIMIT
-> +						 THERMAL_NO_LIMIT>,
-> +						<&cpu2
-> +						 THERMAL_NO_LIMIT
-> +						 THERMAL_NO_LIMIT>,
-> +						<&cpu3
-> +						 THERMAL_NO_LIMIT
-> +						 THERMAL_NO_LIMIT>;
-> +					contribution = <100>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +
-
-Only one blank line.
-
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
-> +	};
-> +};
-
-Best regards,
-Krzysztof
-
+Thanks and Regards,
+Danish.
