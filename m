@@ -2,67 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D613621BDE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E70621BE2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:28:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiKHS1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 13:27:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43916 "EHLO
+        id S229802AbiKHS2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 13:28:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiKHS1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:27:38 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8081A390
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:27:37 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id 63so12131782iov.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:27:37 -0800 (PST)
+        with ESMTP id S229912AbiKHS2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:28:09 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7201BEA2
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:28:07 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id x21so22367832ljg.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:28:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jf9WajsSrjJ+WBtuoM/CpRnwctyi+9OwrkPgKP+pwEs=;
-        b=TQ6GCM2ZX3ATNDOT1a3PVgvZMVBdxJafFMx8wGqde06tEytrAox7rS8LG5d092Pe44
-         p1C4VNGKKKeNwC3dvgOUUFSy67+N8PBrntcWv6hZwEfll8Esox+En7rKccC88K0NkbqH
-         Jpwdv+MDM3k/WuztnZnjCOONej93KjlplrZWI=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hHKr619QPayYxsSRYbswMzokC2JQ4Oi/Wq2gqRIuOvM=;
+        b=PVmG5m8jAq2xwxpCSN2uSale2A+FhaQo5+RlVsuw/VPlmvJ++fN3FbObkhywrsVrhq
+         2OOpuQTtFoO/wqwno+MccxXfMk0Vp0oXmprXPKDWQVE1Rr47knMPpFqkRPB0qp+9izt5
+         eciwb3kGckOkI7G5Sd6QX7WlMzfizvLq78Ywi1x9k02ZPuBGIDZ37rvU35Mnnpy+MJbc
+         b+OaPaSKLq+Ocya6nO3G5y5ufYCbQdpUPKwhNcTE0RKtDz6fBfuWpn9l6Da6yFIBFv28
+         ANwo376m1jRFaBW9vIrnFuYnX4G4Am4tLwB1JUBT6ROnvQfW9Qm0moglQcRCrc/vtJcM
+         994w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jf9WajsSrjJ+WBtuoM/CpRnwctyi+9OwrkPgKP+pwEs=;
-        b=XzCqhj7ijyRR9ymYY6S2bMeAXSx4/PcAwnKFBuhU2c4KQHkGfIC3txr/PTfcIGuH8h
-         qH0S6NRF4o67T3BOZAkFI/Y+iXXEvzHBgghUygyb1HH4jHA8D2Ym5vCHM08Vm/BN4vrx
-         lDeYd4UeFGEslC62nlTXx66eRhifZHTYHOeQMMzQ6wv0oaoRvDumzy4cvCxo2We8Vv4+
-         LVj3xBO1uftZQ1EDBUjOGzPQhLhoYKftOz/joUqrHMY/03O+nBEPWa5I6Q64PIPIDNUw
-         3WXxVgMoMZ/XYgGF6TZkuOvwA8yNqPpSDLzqfU2uzrLWfpHDWl0kDU2zslTBWuHZFZAv
-         qvqw==
-X-Gm-Message-State: ACrzQf1qxdM6y9xBLOxmMEIuHs81oe6SUf8vZ3bZQGWCCS964hZOczxY
-        a7OAeO1AI6VvkBlsGhkj0k1P+g==
-X-Google-Smtp-Source: AMsMyM4wQ+H9Ug7agqUznRjmIm264rk28jmElmlQ86/RFNioHxizEbgv6+UCugSdMK5ZPgNbYj0cAA==
-X-Received: by 2002:a02:cc71:0:b0:373:1604:274d with SMTP id j17-20020a02cc71000000b003731604274dmr32211390jaq.119.1667932057170;
-        Tue, 08 Nov 2022 10:27:37 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id f24-20020a056638113800b0036371872137sm4022229jar.11.2022.11.08.10.27.36
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hHKr619QPayYxsSRYbswMzokC2JQ4Oi/Wq2gqRIuOvM=;
+        b=S4lRid3bm1K+uIGuY4IvoaafVWa88Zc0bTxQ4BYBVwNhgVcERhfY3zEWkXm3ezrW5M
+         B4XJUaLAhON86dtkOh8ekylRoK3QK7PUT5FxDGw8V/VVtThCPoSvoUgdWKo+SNsf2ZdP
+         whQGtVhlEQa7TGGXzyfc+5e1qzjF8nbEzvaymmJ92f1Po5yA2oYlg+npVE5HGSq6mNpF
+         70VCMK+ja0JanaAuJ2Xqpe9p1RptaR7RjGaTxVU2NJ0KPJV53GHtxDxM8Ms50tW+qFRz
+         eTMMQAP5mrqEGSD2qEBn3QB6RNILH4VWIJVYgKewC3Un628ANzAdFA36GpEVN4TqIsyC
+         asAA==
+X-Gm-Message-State: ACrzQf3CMdi8L6ifK2l+4zBKM1K28K9D6r5XrT/u4tlyBrPqEb8IMwAE
+        +KHaJV92oOGvI1rt/Gm/zoCchQ==
+X-Google-Smtp-Source: AMsMyM5Nym6RZ34g67gWCqGyki2McZepT8/2ocl0CW4TUh1qgTO+dZr2F897iV+DpfibrKwv+Ei9vQ==
+X-Received: by 2002:a2e:a106:0:b0:277:3d6:a751 with SMTP id s6-20020a2ea106000000b0027703d6a751mr20209408ljl.201.1667932085827;
+        Tue, 08 Nov 2022 10:28:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id w1-20020a19c501000000b004b177293a8dsm1870138lfe.210.2022.11.08.10.28.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 10:27:36 -0800 (PST)
-Date:   Tue, 8 Nov 2022 18:27:36 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] cpufreq: qcom-hw: Add CPU clock provider support
-Message-ID: <Y2qfmFVK665b1Nbw@google.com>
-References: <20221108154037.111794-1-manivannan.sadhasivam@linaro.org>
- <20221108154037.111794-4-manivannan.sadhasivam@linaro.org>
+        Tue, 08 Nov 2022 10:28:05 -0800 (PST)
+Message-ID: <2326682f-3b2b-0a2e-0601-2d79390ab92a@linaro.org>
+Date:   Tue, 8 Nov 2022 19:28:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221108154037.111794-4-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add support for
+ phyBOARD-Electra-AM642
+Content-Language: en-US
+To:     Wadim Egorov <W.Egorov@phytec.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     "upstream@phytec.de" <upstream@phytec.de>, "nm@ti.com" <nm@ti.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20221108175050.285340-1-w.egorov@phytec.de>
+ <20221108175050.285340-2-w.egorov@phytec.de>
+ <414f8281-80ba-dd2c-e5f9-9e9cde1ad1e0@linaro.org>
+ <4963de6e-275b-e1d2-859c-7c7364b4599b@phytec.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4963de6e-275b-e1d2-859c-7c7364b4599b@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,124 +85,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 08/11/2022 19:25, Wadim Egorov wrote:
+> 
+>>> +	leds {
+>>> +		compatible = "gpio-leds";
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&user_leds_pins_default>;
+>>> +
+>>> +		led-1 {
+>>> +			color = <LED_COLOR_ID_RED>;
+>>> +			gpios = <&main_gpio0 15 GPIO_ACTIVE_HIGH>;
+>>> +			linux,default-trigger = "mmc0";
+>>> +			function = LED_FUNCTION_DISK;
+>>> +		};
+>>> +
+>>> +		led-2 {
+>>> +			color = <LED_COLOR_ID_GREEN>;
+>>> +			gpios = <&main_gpio0 16 GPIO_ACTIVE_HIGH>;
+>>> +			linux,default-trigger = "mmc1";
+>>> +			function = LED_FUNCTION_DISK;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	vcc_3v3_mmc: regulator-sd {
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my previous comments were not fully addressed. Maybe my
+>> feedback got lost between the quotes, maybe you just forgot to apply it.
+>> Please go back to the previous discussion and either implement all
+>> requested changes or keep discussing them.
+> 
+> But what is wrong with the "regulator-sd" node name?
 
-On Tue, Nov 08, 2022 at 09:10:37PM +0530, Manivannan Sadhasivam wrote:
-> Qcom CPUFreq hardware (EPSS/OSM) controls clock and voltage to the CPU
-> cores. But this relationship is not represented with the clk framework
-> so far.
-> 
-> So, let's make the qcom-cpufreq-hw driver a clock provider. This makes the
-> clock producer/consumer relationship cleaner and is also useful for CPU
-> related frameworks like OPP to know the frequency at which the CPUs are
-> running.
-> 
-> The clock frequency provided by the driver is for each frequency domain.
-> We cannot get the frequency of each CPU core because, not all platforms
-> support per-core DCVS feature.
-> 
-> Also the frequency supplied by the driver is the actual frequency that
-> comes out of the EPSS/OSM block after the DCVS operation. This frequency is
-> not same as what the CPUFreq framework has set but it is the one that gets
-> supplied to the CPUs after throttling by LMh.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/cpufreq/qcom-cpufreq-hw.c | 43 +++++++++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-> index 5e0598730a04..86bb11de347f 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/bitfield.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/cpufreq.h>
->  #include <linux/init.h>
->  #include <linux/interconnect.h>
-> @@ -54,6 +55,7 @@ struct qcom_cpufreq_data {
->  	bool cancel_throttle;
->  	struct delayed_work throttle_work;
->  	struct cpufreq_policy *policy;
-> +	struct clk_hw cpu_clk;
->  
->  	bool per_core_dcvs;
->  
-> @@ -615,8 +617,20 @@ static struct cpufreq_driver cpufreq_qcom_hw_driver = {
->  	.ready		= qcom_cpufreq_ready,
->  };
->  
-> +static unsigned long qcom_cpufreq_hw_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-> +{
-> +	struct qcom_cpufreq_data *data = container_of(hw, struct qcom_cpufreq_data, cpu_clk);
-> +
-> +	return qcom_lmh_get_throttle_freq(data);
-> +}
-> +
-> +static const struct clk_ops qcom_cpufreq_hw_clk_ops = {
-> +	.recalc_rate = qcom_cpufreq_hw_recalc_rate,
-> +};
-> +
->  static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
->  {
-> +	struct clk_hw_onecell_data *clk_data;
->  	struct device *dev = &pdev->dev;
->  	struct device *cpu_dev;
->  	struct clk *clk;
-> @@ -659,8 +673,16 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
->  
->  	qcom_cpufreq.soc_data = of_device_get_match_data(dev);
->  
-> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, num_domains), GFP_KERNEL);
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	clk_data->num = num_domains;
-> +
->  	for (i = 0; i < num_domains; i++) {
->  		struct qcom_cpufreq_data *data = &qcom_cpufreq.data[i];
-> +		struct clk_init_data init = {};
-> +		const char *clk_name;
->  		struct resource *res;
->  		void __iomem *base;
->  
-> @@ -672,6 +694,27 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
->  
->  		data->base = base;
->  		data->res = res;
-> +
-> +		/* Register CPU clock for each frequency domain */
-> +		clk_name = devm_kasprintf(dev, GFP_KERNEL, "qcom_cpufreq%d", i);
-> +		init.name = clk_name;
+Uh, you are right, this is correct, my eyes are playing tricks on me...
 
-nit: 'clk_name' isn't really needed, the result of devm_kasprintf() could be
-assigned directly to 'init.name'. 'init' could be renamed to 'clk_init' if
-the purpose of using 'clk_name' is to make clear that this is the name of a
-clock.
+Best regards,
+Krzysztof
 
-> +		init.flags = CLK_GET_RATE_NOCACHE;
-> +		init.ops = &qcom_cpufreq_hw_clk_ops;
-> +		data->cpu_clk.init = &init;
-> +
-> +		ret = devm_clk_hw_register(dev, &data->cpu_clk);
-> +		if (ret < 0) {
-> +			dev_err(dev, "Failed to register Qcom CPUFreq clock\n");
-> +			return ret;
-> +		}
-> +
-> +		clk_data->hws[i] = &data->cpu_clk;
-> +	}
-> +
-> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to add Qcom CPUFreq clock provider\n");
-> +		return ret;
->  	}
->  
->  	ret = cpufreq_register_driver(&cpufreq_qcom_hw_driver);
-> -- 
-> 2.25.1
-> 
