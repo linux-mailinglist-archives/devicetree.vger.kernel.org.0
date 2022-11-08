@@ -2,97 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DEF46210DD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0486210E0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:36:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233819AbiKHMgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:36:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
+        id S234052AbiKHMgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:36:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233936AbiKHMgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:36:00 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF7A32BBD
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:35:59 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id g7so21057384lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:35:59 -0800 (PST)
+        with ESMTP id S234065AbiKHMgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:36:16 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD82F4B996
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:36:14 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id a13so22301389edj.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:36:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iNRUdsuvY7c1Nj94/oTEANQHqS8U5hc27GeoZ4o3mrE=;
-        b=cH8HGGi55LA8q/7nwAdlY78765ZvpMnrMIgLscnN+m62FjT2EHsCspSdyTLHui5Lz5
-         EImbQhjXh7RdhLM/FG7yXuwk8iU9A8Hs4EfMy0xNUBEJOS+kFEGjUENW28+4vawqZbG0
-         EYTbzRls4KfpMfuBjJ7e20pQ+rWQnZE4/ofeAy1yFqpi5u1UXizMOlHQxcXvGZP/SiLZ
-         Y+YUFVT8yCK5Xfbm7JlAVGrkU2f56E2IwKYQPskZNtUfAtgvYZvHRMBJgmegFEHRU8J+
-         DMixdfTjMG+GmLIXnZcNkPgQoIqteT1SgRxJBadmbZnzkY3VRRW7gfijBQToUwO0K17e
-         Oxdw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lUte8uNFM/Ko5EYA94xDS4OarmRppybS52Yd06EmKs0=;
+        b=exue/41mpesJS2YHEz7v0h7Ysi3Mac6gew2UFoCbLeSfddgbKISLJDgotDgMFVYkqV
+         9buWnp6zQNtN4O6AT4aswNa1CgAq2FNtGMgCfMy4m9mpKJRgu1fYulX/Xu6c2NRdsrZR
+         +1UMYXNI35yEqCowzKJyC9duOFwQ4Cnb1qzmCMTBdbPsQvk/ovnmKvU5XaMVOLDX9YCC
+         zm/3t5mRGmoSf7cYJxhv+m6jHMhM/vsh6iB2JP+he/UnWDMxUsNMbXr+xYv+oOK+Kcmh
+         uUVENFfQvlvi1WxCN6Xhp29t2LjaXSIuDLSg2jHWW+/BIljG+y/Z/FVMf5D6HDZQTmd4
+         wDxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iNRUdsuvY7c1Nj94/oTEANQHqS8U5hc27GeoZ4o3mrE=;
-        b=Ld1YrtMElmGKEtuvL8XrI4jiSSwqOCcinurhY6ESTRN6HC/1WCzW0WLlG11Ccf9Wu5
-         1pgUKX26vDVk4ahxsOkaGPXHSGH/KASB6nd+0ctwxexAq3q/UZn3oOkYnw+UTkNE544P
-         gno0Mpr++suZM60T0LjQacO+iNAtWiSZYzFDBJOOAdAMTN/0riQ902gwK2RJVTCxq3Q+
-         UJs6J5MlB/a3AVzFEg1J8tzCSRYhlLYdzs3nD4thu+f3YwQUdtg6nXOLGdzoPgELQxha
-         euLsQWaID2z4kyXZvOqG5XNl/TND3MfUqtuY5+Kzotp/qU+owjPpHrfKfGAUTcko9mz7
-         Mw4A==
-X-Gm-Message-State: ACrzQf1NBEGBSO10LppsmF2QIAjxJHg7ptmGw29paSyfGvuaEqUvc9NU
-        kSVyORsC4Xqkp4FHNjfBl8MvQw==
-X-Google-Smtp-Source: AMsMyM5TDQ+lKG+eFrm5U8acDAnlb/ZJeqAb+4hY75v7A/a2remZhRkhBz/z0zrYmuBWxDgKGkbU7g==
-X-Received: by 2002:ac2:5cba:0:b0:4aa:5b6d:fb33 with SMTP id e26-20020ac25cba000000b004aa5b6dfb33mr19618866lfq.491.1667910957432;
-        Tue, 08 Nov 2022 04:35:57 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id j15-20020a05651231cf00b004946b549a19sm1763483lfe.45.2022.11.08.04.35.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 04:35:56 -0800 (PST)
-Message-ID: <d5d6b2ca-ce4d-4492-a33e-08448974e6b2@linaro.org>
-Date:   Tue, 8 Nov 2022 13:35:56 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lUte8uNFM/Ko5EYA94xDS4OarmRppybS52Yd06EmKs0=;
+        b=htipVQFPYta/XoqY8ouQYj56jgnbKVTxm6pxF3uWrJdUr7ZHuKcXTmN1HM17uSczQj
+         a22DD540PYE/bCtf0U+/fbttoLm/kNYoDLAYFEc3I4uKFbrEiMcENndbEYwr91qZiZt2
+         3omhlNFpYGVotR2EBjth5FBY/SASyaKBt/bUvOC1tGo/c8BA/JTP6O1BZhbT+mQMcmiU
+         QDMDM/h3rkBanb+fGqT+c3sNsq3dYSOjLI0/l+bC17c5muvWLQAq7luv5nOOSHnknAUs
+         jrtWa4EV4nd1/Nldm0wG86VcCpNmEnEC+GA9u7PFAx7Y8UaK9e22FMFtZDF0QEqHTT41
+         67UA==
+X-Gm-Message-State: ACrzQf2fqy9ZDdCjFGREseywH3VekKD+DxPsoEENut0/F+VSIm+E9oE1
+        vXIxzW4fzkppO5OJntni3mjGuPiQxZsYVJT0/IAT/g==
+X-Google-Smtp-Source: AMsMyM6J5Wkx9+mm9M5bnxR10MBsY4ZpxY0vOQ398u8OSuBf312QsZh7E7zi2Rnq4+DElyDARXmG+vClXK7CeAYG5YY=
+X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
+ eb11-20020a0564020d0b00b00458a2444e99mr55652244edb.46.1667910973339; Tue, 08
+ Nov 2022 04:36:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/3] dt-bindings: slimbus: convert bus description to
- DT schema
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>
-References: <20221026164315.39038-1-krzysztof.kozlowski@linaro.org>
- <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221031100843.14579-1-clin@suse.com> <20221031100843.14579-3-clin@suse.com>
+In-Reply-To: <20221031100843.14579-3-clin@suse.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 8 Nov 2022 13:35:59 +0100
+Message-ID: <CACRpkdYWLVc4Rp4U=hRV9qDdTWeWUXM1BF0WrBxRpCWkwt6VQw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pinctrl: add NXP S32 SoC family support
+To:     Chester Lin <clin@suse.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 18:43, Krzysztof Kozlowski wrote:
-> Convert the SLIMbus bus description bindings to DT Schema.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+Hi Chester,
 
-Srini, ping.
+thanks for your patch!
 
-These wait for some time now... v2 was waiting and this is just a rebase.
+On Mon, Oct 31, 2022 at 11:10 AM Chester Lin <clin@suse.com> wrote:
 
-Best regards,
-Krzysztof
+> Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
+> on NXP's downstream implementation on CodeAurora[1].
+>
+> [1] https://source.codeaurora.org/external/autobsps32/linux/tree/drivers/pinctrl/freescale?h=bsp34.0-5.10.120-rt
+>
+> Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Signed-off-by: Chester Lin <clin@suse.com>
 
+Overall this looks very good, special thanks for using as much generic code
+as possible.
+
+Only main thing I want you to look into are those magic nxp,pins ranges encoded
+into the device tree.
+
+> +static struct s32_pinctrl_soc_info s32_pinctrl_info = {
+> +       .pins = s32_pinctrl_pads_siul2,
+> +       .npins = ARRAY_SIZE(s32_pinctrl_pads_siul2),
+> +};
+> +
+> +static const struct of_device_id s32_pinctrl_of_match[] = {
+> +       {
+> +
+> +               .compatible = "nxp,s32g-siul2-pinctrl",
+> +               .data = (void *) &s32_pinctrl_info,
+> +       },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, s32_pinctrl_of_match);
+
+Since you are already using .data so nicely for the variants surely the
+nxp,pins info can go in there too?
+
+Yours,
+Linus Walleij
