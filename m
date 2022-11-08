@@ -2,62 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B67F620FE7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:08:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB135620FFC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:12:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233895AbiKHMIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:08:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59200 "EHLO
+        id S233825AbiKHML4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:11:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234027AbiKHMI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:08:26 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067B44FF91
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:08:23 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id l11so22140434edb.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:08:22 -0800 (PST)
+        with ESMTP id S232891AbiKHML4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:11:56 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4F5E02
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:11:55 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id v27so22167068eda.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=grSyOaCRo6TQJVxhX/3R51EXHCwzJ6WhC857Fhfih98=;
-        b=B02te6kXG6P/t/PkYUCc6Lv/otIIBm1qePalgjo7XJITLsmNOUsKMIZnL66kqalVe1
-         Fac9mC4NpFrq+upzr542yRIBhTMsv4muCQCbn96zkHY/2qjN4RZR6Hxfmd3oC9Mlin8o
-         1ikXkGkN1zniXFOJ/PSO9G0tDKFnaLj4EPo44GL2uoAIcQWQS8shSsCCtlPqVhzhWgPA
-         9YzJt7SiptO9vGPIyNEgt9biNzsU/IgQ4OaLqLflSBN8dChvCD2ZvbFW9JSpMfgD7Kkk
-         +e+GKDGNcBHoV1kleoJ8IFEW/L0NdxsjUWkEggWV3QauAsRj1f2QLf01kCZdK49Wdswu
-         nkxQ==
+        bh=mzMlRiYVPoJeiMegBbQ1MjhjUAcP2BQ4/F4++yECz0k=;
+        b=GBzcjxcTtY7cjcCkSCQAIGHks2ribsjrH6lBTtbG/1zwiEhQlsnJaSbsqWIDSpSOFx
+         gJ6vlVgZq0l1FPcHLDk7jVXjlQ09V1dSyORgcpzPxrcHaQIAAMaR7a79x2DQ8AjUhDRz
+         JMSHe1Q0tSvaXY4Pm09q1nRDHcwJZNo3OelsxpJBoi8C2q5sBwP+dCKAYZwBnAOhhu7f
+         0aTgOUlr+3G93d5ICdGrtgnqHR0oAI81DJiwEiIC8Z6SnaSq/fzV9s0eUgMTPpF/ueZY
+         N3lw/eDF0TozdSQV7+4aMpm8/4Zw++xw6a1SretE87N2695SH3E7QEONPdbUartnY7F4
+         JuPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=grSyOaCRo6TQJVxhX/3R51EXHCwzJ6WhC857Fhfih98=;
-        b=fEoHt6bGsjHmMS8K1Iv78wimhu++8bFd7KaBzgp4L/fCHNJxai5gGy1f/vRXxoTe2e
-         DgHuz3It3E5D0WReWnjhpeABOEugZbTaPcsNUa8/w8bYGUFRx3Z6EGAX1zjRSW8cgyr3
-         wuWWL7OdjynP+StpH/FDAHE+nbk1JFpMU2wfiZNS0M3KY+/QZajkr3YgCICNjNonT3bv
-         1b8ayN5zHtQQbdF/iwjNCUNF4hxRT1fDZUr0CN03yZIPzTwAlgxHC3lP6r2zZoENusmd
-         jwOnjLVPseI/YD7VDX1vSeDySodwHedWOj4OzHeGa+3azYnRJmnZNMlWR/i0RsgF665Y
-         /q+A==
-X-Gm-Message-State: ACrzQf1/rmNlPyAjaO6xpKoEAyn+zXuu6PhXLY//HA3S0TqafkJQUfki
-        qT11FhaijeoNAYWvg+xR25FoyX4xiF/eAYGjHzyOEg==
-X-Google-Smtp-Source: AMsMyM47mPv9vBTxaC8ghusdFxqlb0Qj9KBoSD51roW7OmhUSi6H9DVQVtt3Z8+1i2OBelmKJL1LVIiklYImuBVWtp8=
-X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
- eb11-20020a0564020d0b00b00458a2444e99mr55520803edb.46.1667909301609; Tue, 08
- Nov 2022 04:08:21 -0800 (PST)
+        bh=mzMlRiYVPoJeiMegBbQ1MjhjUAcP2BQ4/F4++yECz0k=;
+        b=FaK5YI/e63NA2VK5SnIPSI3eSZFFH3uwbVEyb2cnXSjExue6VOdBL8gfiFExxbsWN7
+         4QIFdk77Foylm0ztBFspEVGtB+3uPfHPfTKspew7gYjL+mjJvVYPop3oQpEFzqr3k6Hn
+         B1qCM0bii4J8nSrh3WZ21hkqKfHr7zxqa/ewH/nTg7hFof4kmPr7RNUZ0mC8BjSLMTAU
+         ezQqi/zSdZ7v/pCNi9c6Knvqr7HwNthznZ6Mc11dPc3bfoM9nnQTRo33mYTKQpJNNLf8
+         m2i3A2HtLWJ83cwsHDN7PxCAG1CU5ASO7Fy2/JH8auS89L/Fzdocu1R1smTpldk0d/ru
+         FaZA==
+X-Gm-Message-State: ACrzQf3LJnGfhSlzA9Kukq9Y4JhE2mH2TZBte1YRhx63lL2TSkGVhfea
+        bci5OTRoCTvPIXZR5LYHf5uRxOTSmxu2z3wiBsG5Xw==
+X-Google-Smtp-Source: AMsMyM5kiWVSRjqdEOc/GfF/lf+nlKsl0ToMTcnzZ4XbNPlmja/gkGsp1SDtfcczBpZBE8Xvq90EA3Kh3ciEP69xttM=
+X-Received: by 2002:aa7:d6d1:0:b0:463:ba50:e574 with SMTP id
+ x17-20020aa7d6d1000000b00463ba50e574mr37546370edr.158.1667909513741; Tue, 08
+ Nov 2022 04:11:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20221103080217.2533-1-zhuyinbo@loongson.cn> <20221103080217.2533-2-zhuyinbo@loongson.cn>
-In-Reply-To: <20221103080217.2533-2-zhuyinbo@loongson.cn>
+References: <20221108092107.28996-1-zhuyinbo@loongson.cn> <20221108092107.28996-2-zhuyinbo@loongson.cn>
+In-Reply-To: <20221108092107.28996-2-zhuyinbo@loongson.cn>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 13:08:10 +0100
-Message-ID: <CACRpkdaPK-_a=394wz2q2FkPPsVLfy0zZQ3EY04r-0x=CaRu2g@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] dt-bindings: pinctrl: add loongson-2 pinctrl
+Date:   Tue, 8 Nov 2022 13:11:42 +0100
+Message-ID: <CACRpkdbJFNhE1acJ5eNncvfK0VZgW=pCB3716Rv3KahdK1dokQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: gpio: add loongson series gpio
 To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        richard.liu@st.com, Arnaud Patard <apatard@mandriva.com>,
+        Hongbing Hu <huhb@lemote.com>,
+        Huacai Chen <chenhuacai@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -68,15 +77,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 3, 2022 at 9:02 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+Hi Yinbo,
 
-> Add the Loongson-2 pinctrl binding with DT schema format using
+thanks for your patch!
+
+On Tue, Nov 8, 2022 at 10:21 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+
+> Add the Loongson series gpio binding with DT schema format using
 > json-schema.
 >
 > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-Collected Rob's review tag from an old identical patch and applied,
-thanks!
+> +  gpio-ranges: true
+
+So you are using GPIO ranges... and...
+
+> +  loongson,gpio_base:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This option indicate the first GPIO number in this node.
+
+Then you have added this to reimplement gpio ranges.
+
+It also shows in the driver.
+
+Drop gpio_base altogether (we do not encode linux-specific properties
+into the device trees) and use gpio-ranges as they are intended to
+map between the GPIO numberspace and the pin control pin number
+space.
+
+See
+Documentation/devicetree/bindings/gpio/gpio.txt
+for documentation on gpio-ranges, also look how other drivers are
+using them.
 
 Yours,
 Linus Walleij
