@@ -2,105 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA133620E9B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:21:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01947620EC3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:22:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233482AbiKHLU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:20:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60340 "EHLO
+        id S233771AbiKHLWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:22:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233782AbiKHLU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:20:57 -0500
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC242B25C
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:20:56 -0800 (PST)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-3321c2a8d4cso130735297b3.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:20:56 -0800 (PST)
+        with ESMTP id S234123AbiKHLWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:22:17 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86E24D5C8
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:22:11 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id j16so20732350lfe.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:22:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jD/YBCtOhOa1ipEyheDVa6geA3XolzkSqDbroMLmTEw=;
-        b=GeOdQLywkqInDLMSCGIYr1HATLEXYswtxpWi2VoG03Vh2ZRDwjGwGkpHK/ryskFU35
-         F//bzT9U++KCAV9dFAdFj8UxPLvWy9vIVTN6dVcBIdjfywKMqczsVYbodgHzeYHmiQZK
-         teGJCKqeDB/LgbSQmerzAC1d8gvT+Jczw5UzcWJyIsW9tvlYMdgXF66CF0bxd2ZyUQbl
-         jsS8oidWbXO3S/vRkFzZQ7/lxZO2osqYcz8D1RjleGKXcZAcibsGErhoezcSPOGdcUTl
-         +dMicqaVDDUlhzuley5Tw3lmmWlzwHfhvpBt7cnrJ0a07ABCbr8IFS8QChbyup9Z97lN
-         6NxQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6S31b1GgAuSZeRVi3aE6k9Lv1kYy2JgOJdueU/WrfPk=;
+        b=FQVTX03+/jYDhFiJtnC4PlzY3j6O7eqRrURGbxCj9uxURjFPxqXVMZP/7fLhWbImBm
+         JdC6fC+nWdrCet4LQal83kXfuzLLawXKFxu/oLYv8Kh2r6x559FfrsvfHjCmy2lBT2pa
+         QV3OVJL19Mn4gyrzkg6t6afH5exahrLMKp49Zciw9Ta4DwOEluePqPBp/VNPXU+77weK
+         lmit955EmN4VKHGupVAVSjMQxm/PKGzojOJMymAfU8+zG2QjMYaXztogXBUZ6oJAEr9X
+         BXxZOLcPkDq8/wEIfmqbcQ9xMX56E55y+wwH5Tx8zJ331BBicVaEbuCsdYGaIZWrHAOU
+         7t/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jD/YBCtOhOa1ipEyheDVa6geA3XolzkSqDbroMLmTEw=;
-        b=5/WxB1yTfrElBJRS5fZ7XJlvorLG4/yjMe+0Cggo2y2xB8mhX+9JyF8M8NPfrZ84lg
-         DE3Q/s3C9u+qRyxNqXqdqjDU2LUijE9njVsFfMF+mRtbnbCJ4I2YeOTLOugD99lf2WFM
-         mGUrrU56tOPpSqQSOa5BBZbLZvnuhApG0b63L4g1uCyKpqS6jTStopnE8SZmucWU59zi
-         af/X0WPPtjhILTstvU4DeHZQIBiC+A/YfqEcH++GyrdHdulzB5CUdejFn2f8LDVhvSkJ
-         7pMAt0oHzLBwxx56cRGGIgevkd5cbKqxS8xHPhSjt/g3rKkZnu+EyF/zaDWLSF7VIvty
-         ZvyQ==
-X-Gm-Message-State: ACrzQf3c4r5/q2JOVoAiAOpLKflcoVDwj6jXWXPj4WooZlMwfXHMwpSM
-        XVBr3ykUEnHZ9GiEWiX3/BaRbFC02uXAltuoceA=
-X-Google-Smtp-Source: AMsMyM6DFCY40TH31aG0F6eTomPF/Gekjtc8cIPb5CEMtO76PI/fKG8EYlN2x4+nTo9+r+J78FsIeFoiat1SBgqE0pk=
-X-Received: by 2002:a81:8644:0:b0:349:1126:97a4 with SMTP id
- w65-20020a818644000000b00349112697a4mr50323039ywf.333.1667906455548; Tue, 08
- Nov 2022 03:20:55 -0800 (PST)
+        bh=6S31b1GgAuSZeRVi3aE6k9Lv1kYy2JgOJdueU/WrfPk=;
+        b=EcGW/XHNuASxtORp0kW9EwQ3Y1cR/u9Zomi3bYdBak9lbw3r4T+z7kkl/YehUXSXZ/
+         8l2d7Edmc4IyBQetbam3Kf124osiqqBTeB5gBJ837YLx/EamJbMOwiLu3ZLLHXRXczYg
+         xrM3/evlBN0RpliKgZj5B/KcmASk+jcWD+hvtWra1RExJ5o2JIgiUfYC/plWfNUPN1FL
+         0XqHFttwjBf1K0dHGBU+fDf29Ew8e0bapzDyTqQy68kKKu9cMgauoMjI4wSsMWRVk/Xi
+         EvKAbNdAFdQg6mevVPA0iayp8MaewdiOSTCmtsfCu0qo1RmrHbI7Tf3UMXRpq01Fu1iJ
+         2NEQ==
+X-Gm-Message-State: ANoB5pkT886WPnHw7kozHPnJANJ0KeIJOUvOrbqENCBEGurgjFJM+CFJ
+        f66xSd+tjMBQWdTeNzGaA1czQA==
+X-Google-Smtp-Source: AA0mqf71iUpqb4+BI/4RUZw1laBPRBQU7iqH2g/sTobl9bST23hwOoH26omyo1cgyvEyZZV9JTdQ2Q==
+X-Received: by 2002:ac2:43b0:0:b0:4b2:805:f5cb with SMTP id t16-20020ac243b0000000b004b20805f5cbmr5885841lfl.204.1667906530035;
+        Tue, 08 Nov 2022 03:22:10 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id q7-20020ac25107000000b004b40c2fccfdsm221399lfb.59.2022.11.08.03.22.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 03:22:09 -0800 (PST)
+Message-ID: <95f588d2-04f3-0be6-ebce-cb6957f5aa1a@linaro.org>
+Date:   Tue, 8 Nov 2022 12:22:08 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:7010:a38a:b0:313:c983:1d7e with HTTP; Tue, 8 Nov 2022
- 03:20:55 -0800 (PST)
-Reply-To: mrinvest1010@gmail.com
-From:   "K. A. Mr. Kairi" <ctocik2@gmail.com>
-Date:   Tue, 8 Nov 2022 03:20:55 -0800
-Message-ID: <CAC9COZd+CP91qtBZ4qVfYoNY3bSP8XNzO8wUyONsbrDtKXxqYw@mail.gmail.com>
-Subject: Re: My Response..
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:112e listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [mrinvest1010[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [ctocik2[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [ctocik2[at]gmail.com]
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 3/6] dt-bindings: hwmon: Add hpe,gxp-fan-ctrl
+Content-Language: en-US
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221104193657.105130-1-nick.hawkins@hpe.com>
+ <20221104193657.105130-4-nick.hawkins@hpe.com>
+ <1b90f86c-9c0f-225b-38b5-6f37a4eded69@linaro.org>
+ <236F9C0A-797D-41C6-B342-4C32DF28C426@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <236F9C0A-797D-41C6-B342-4C32DF28C426@hpe.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hi
+On 07/11/2022 23:36, Hawkins, Nick wrote:
+> 
+>     > > This provides the base registers address, programmable logic registers
+>     > > address, and the function 2 registers to allow control access of the HPE
+>     > > fans on the GXP SoC.
+> 
+>     > What is "This"? If "This patch", then drop it.
+>     > https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+>     > If "This hardware" then please instead describe the hardware, not it
+>     components. What are its features? If it controls the fan, then why
+>     there are no PWM-related cells? How do you set the speed?
+> 
+> Greetings Krzysztof,
+> 
+>     Thank you for the feedback. The intention was this binding.. however, that was an error on my part, and I will correct it to reflect the hardware situation of the GXP with the fan controller and how each of the mapped registers provide control to the system. To answer your questions: The fans speeds are controlled through an external CPLD device which we provide a PWM value (0-255) using the "base" register to the CIF interface. 
 
-How are you with your family, I have a serious client, whom will be
-interested to invest in your country, I got your Details through the
-Investment Network and world Global Business directory.
+Wrap your emails, it's impossible to simply reply to it.
 
-If you are interested for more details.....
+Then your CIF interface is a PWM device?
 
-Sincerely,
-Kairi Andrew
+
+> This interface provides access to the CPLD. The CPLD then drives the fan. The CPLD can generate up to 8 unique different PWMs to multiple fans. 
+
+So you have other CPLD (not external) which generates PWM based on first
+CPLD base register? Hm, I think it's one CPLD.
+
+> The CPLD monitors the fans and reports the status back to the SoC through the CIF interface to the "plreg base". The plreg includes the installation, failed, and identification statuses. The function 2 register base is used to check the power state of the system as that influences the PWM values read back.
+
+> As the PWM generation happens outside the SoC do we still need pwm-cells? If so, should we have a custom compatible for that?
+> 
+
+Depends, if these are actually tightly coupled and you cannot use PWM
+for anything else, then you do not need.
+
+> Thanks,
+> 
+> -Nick
+> 
+> 
+
+Best regards,
+Krzysztof
+
