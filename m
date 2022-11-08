@@ -2,131 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AAE620F1B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:30:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B46F620F36
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233936AbiKHLap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:30:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40802 "EHLO
+        id S233756AbiKHLho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:37:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbiKHLao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:30:44 -0500
+        with ESMTP id S232939AbiKHLhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:37:43 -0500
 Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD9710FC0
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:30:42 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id d20so20618166ljc.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:30:42 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6222015723
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:37:42 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id c25so20653492ljr.8
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:37:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Df/2yQeWb1d9To2ggEgy9JGgAa1dKPEwPJTnp7RFKKI=;
-        b=EGFgZfWK7iun8X4qrBI1QRrVUzXrZHgr2HFTDssPuXHld6e8Xff5dU+7CK6LgoZcKj
-         VssQGbAgiwR9Gzn3En0qjbNygDiU+SR1mlKF773u8yeQjlcMYsBcBWen7rJGWtLa5Vwe
-         GDDdv0ND0P0qgO4+rk5YfUdGa6HupktHiuwh05B3qfqYD9ew/E7bbwSiOsKESe9ZUo/y
-         u+gGusZQi8Gp2XOH36SN6AATQzDVT3HlIEfFzGpnCuGaHzS1kitrfKBRiliff+su6GC6
-         7csYZ1r6Ksqe/Vvcf96JWHr3OzVSLAaD94108//PzpeM1OOMi1YEGxVGRg8Hh9BgEsIG
-         mv4g==
+        bh=/lVzoqt83Ak42kIKiN8LqOfDF7RgMmRJivY7ZIPnKXQ=;
+        b=KbCk9zzDc2wv90rxSwsopGI0FlGUd0PHG+RyDVhJXRh4SJnAEKlKOHAO9WzEyon8/U
+         x8mfPKi9UZIZ9QyvTtebQx0+Gx0ESDxdOVK95xjJ0U2s0YKMlQua3U2+b/ucPREDz8ia
+         OYEVwIEafPl7Sencx2iu54Uzz/81mg7fz8Zm+KNetL+aRMNVH03nrfONnWzdc4Z9Q75h
+         11a45zws/P3tKRV/zIyFERUv6WRx8DqVi6CTX+cBPFYQv9ROPz47OMh6mXx2IIjhTxuU
+         pZ+fSG0PFRhHeZYK5Gx4OQHEQWQ/Nav1ZvRnWCgN7+2C/IddxLnpLb7U11DpCM11lOLJ
+         J9+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Df/2yQeWb1d9To2ggEgy9JGgAa1dKPEwPJTnp7RFKKI=;
-        b=eYv0c37KeUzrDcUL7Jz3vpSPutV8VZPgkYwRTz59V2d6noQmHRTDQkNIgpUyXOq8uA
-         CTQHDA54Jn6/2GQ0tAvOON09xsTbG+bbC+UzLXRZK5JuFD2Eh8GhZzx7EXiknpMJD9Mw
-         Cu28Lerhwa2F4T+mQAkjZ4sOBPsQlw1CQ9pguAslmDOx6amMi8UTu/3RV3I5RqCrFUX8
-         qCNX0+QIVp8Fys3Ovg+8ZQP9+T9j5lNhwZjUA+6jMIv14nQnkzqO4KZtkawsn/dRCKdN
-         6ZNxE0fsA8JYTmd7qjNpPkBhuITpSAMTNMo0DalsI3FkYf8MKmqubCwdbo+aAK8xaO6y
-         hq1Q==
-X-Gm-Message-State: ACrzQf1uIuqjJ8ncNKLigkgmPmsVqfDuX+XWBURvLfG0L+AHqTG99TyC
-        O8Xsf8eIr6H0Gzp68AP1VJkgEQ==
-X-Google-Smtp-Source: AMsMyM4e3RprgOpTHPLpEtvIddL3m+QxWSPCTr4lHwgBI3qmC3SEGP42bF556j32ASbvjV3XzlbtRg==
-X-Received: by 2002:a2e:550:0:b0:277:e8c:a5a4 with SMTP id 77-20020a2e0550000000b002770e8ca5a4mr7011231ljf.311.1667907040968;
-        Tue, 08 Nov 2022 03:30:40 -0800 (PST)
+        bh=/lVzoqt83Ak42kIKiN8LqOfDF7RgMmRJivY7ZIPnKXQ=;
+        b=OMfmZTwFXM4od/KFxrp3IQ6x6z2UVKD8PLCwT9KB4uX//XgjxrfvBPj4RTZR84gj3J
+         tUjuib1qmA0bwXBXpx2NL925lsURzz20riLIqwfAH7pUxamrYOoWwYvT4sNfrJBKWbLd
+         Y0zAhSwAuK0jJOz9pbJKlWTB9DbJwi+I+gLXnIb68iKDo1GJW2yb+eFVSLUvsuuHsxYp
+         jwuKLEXJ7oeDLbjdUFhcPaMPzONd0dqOclZHhXnWO2hm1tQylO8U6SHfrC429D08toUM
+         COpiiOjTQKD+6TYj9CgC79WF8WA+F2Oj+kNQCRQJ27TU5sIM0UOd1t4jOUtwNDcvRFRl
+         uf0g==
+X-Gm-Message-State: ACrzQf15WNdhQ+xE0mKm4MtMimv3ySn1GOpI7nglJCz+qWUL2k/+aCYi
+        iRLfd/6rDAICkuKa8K+T1TSyZg==
+X-Google-Smtp-Source: AMsMyM5KfVSdGMmsYyYqwDpB8dMs4e5lU9f2Z35qXgpVXEtl8NlkUdlhY05UJ83tg5wczhgiCdWTlg==
+X-Received: by 2002:a05:651c:307:b0:277:113f:3a1e with SMTP id a7-20020a05651c030700b00277113f3a1emr19582705ljp.518.1667907460751;
+        Tue, 08 Nov 2022 03:37:40 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id n1-20020ac24901000000b004971a83f839sm1744968lfi.39.2022.11.08.03.30.39
+        by smtp.gmail.com with ESMTPSA id o4-20020ac25e24000000b0048af4dc964asm1758175lfg.73.2022.11.08.03.37.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:30:40 -0800 (PST)
-Message-ID: <c199600a-aad9-5639-ea57-a4d59d719ade@linaro.org>
-Date:   Tue, 8 Nov 2022 12:30:39 +0100
+        Tue, 08 Nov 2022 03:37:40 -0800 (PST)
+Message-ID: <6a4f7104-8b6f-7dcd-a7ac-f866956e31d6@linaro.org>
+Date:   Tue, 8 Nov 2022 12:37:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1 2/7] dt-bindings: usb: hpe,gxp-udc: Add binding for gxp
- gadget
+Subject: Re: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings
+ for hci_h4
 Content-Language: en-US
-To:     "Yu, Richard" <richard.yu@hpe.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221103160625.15574-1-richard.yu@hpe.com>
- <20221103160625.15574-3-richard.yu@hpe.com>
- <b85230d4-8fce-ba49-0d6b-8c4d20132cda@linaro.org>
- <SJ0PR84MB2085E6B922DAF1070DC802EF8D3C9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+To:     Dominique Martinet <dominique.martinet@atmark-techno.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Johan Hedberg <johan.hedberg@gmail.com>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com
+References: <20221108055531.2176793-1-dominique.martinet@atmark-techno.com>
+ <20221108055531.2176793-2-dominique.martinet@atmark-techno.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SJ0PR84MB2085E6B922DAF1070DC802EF8D3C9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <20221108055531.2176793-2-dominique.martinet@atmark-techno.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 21:16, Yu, Richard wrote:
-> Hi Mr. Kozlowski,
+On 08/11/2022 06:55, Dominique Martinet wrote:
+> Add devicetree binding to support defining a bluetooth device using the h4
+> uart protocol
 > 
->>> +
->>> +  vdevnum:
->>> +    description:
->>> +      virtual device number.
+
+subject: drop second redundant "bindings"
+
+> This was tested with a NXP wireless+BT AW-XM458 module, but might
+> benefit others as the H4 protocol seems often used.
 > 
->> That's unusual property... Why numbering devices is part of DT (hardware description)?
+> Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
+> ---
+>  .../devicetree/bindings/net/h4-bluetooth.yaml | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/h4-bluetooth.yaml
 > 
-> In HPE GXP virtual EHCI controller chipset, it can support up to 8 virtual devices(gadgets). Each device/gadget will be represented by a bit in 8 bits register. For example, the interrupt register bit 0 indicates the interrupt from device 0, bit 1 for device 1 ... so on.  When a user defines a device/gadget, he/she can define the device number as between 0 and 7. Thus, the driver can look up to the bit position. That is why we have numbering devices as part of DT.
+> diff --git a/Documentation/devicetree/bindings/net/h4-bluetooth.yaml b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
+> new file mode 100644
+> index 000000000000..5d11b89ca386
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
 
-Wrap your lines properly, it's impossible to reply in-line to such messages.
+If the schema is for one specific device, then filename matching the
+compatible, so nxp,aw-xm458-bt.yaml... but I understand you want to
+describe here class of devices using H4 Bluetooth? Won't they need their
+own specific properties?
 
-Then how do you specify two devices? You allow here only one, right?
 
-Which bit in which register? Your devices have separate address space,
-so why they cannot poke the same register, right? Then just always set
-it to 0...
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/h4-bluetooth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: H4 Bluetooth
+> +
+> +maintainers:
+> +  - Dominique Martinet <dominique.martinet@atmark-techno.com>
+> +
+> +description:
+> +  H4 is a common bluetooth over uart protocol.
 
-I might miss here something but so far it looks to me like some hacky
-description matching the driver, not hardware, not existing bindings.
+Bluetooth
+UART
 
-> 
->>> +
->>> +  fepnum:
->>> +    description:
->>> +      number of the flexible end-points this device is needed.
-> 
->> Similar question.
-> 
-> In HPE GXP virtual EHCI Controller chipset, there is a flexible End-Point(EP) pool. Each flexible EP has its own mapping register. The mapping register bit 0 to 3 is for device number (vdevnum) and bit 4 to 7 is for EP number inside the device. The device driver configures the mapping register to assign a flexible EP to a specific device.  Here, "fepnum" is the input letting the driver know how many EPs are needed for this device/gadget.
+> +  For example, the AW-XM458 is a WiFi + BT module where the WiFi part is
+> +  connected over PCI (M.2), while BT is connected over serial speaking
+> +  the H4 protocol. Its firmware is sent on the PCI side.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,aw-xm458-bt
+> +
+> +  max-speed: true
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +
+> +    uart1 {
 
-Nope. So you create here some weird IDs to poke into syscon register.
-First, syscon has offset if you need. You could treat it maybe as bits?
-I don't know... but even then your design is poor - two devices changing
-the same register. Even though it is sunchronized by regmap, it is
-conflicting, obfuscated access.
+uart
+
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_uart1>;
+> +        assigned-clocks = <&clk IMX8MP_CLK_UART1>;
+> +        assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
+
+Drop unrelated properties.
+
+> +        status = "okay";
+
+Drop status.
+
+> +        fsl,dte-mode = <1>;
+> +        fsl,uart-has-rtscts;
+
+Are these two related to this hardware?
+
+> +
+> +
+> +        bluetooth {
+> +            compatible = "nxp,aw-xm458-bt";
+> +            max-speed = <3000000>;
+> +        };
+> +    };
 
 Best regards,
 Krzysztof
