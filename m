@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11281621F4D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:30:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A8B621F57
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 23:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230357AbiKHWaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 17:30:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59450 "EHLO
+        id S230186AbiKHWar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 17:30:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiKHWaS (ORCPT
+        with ESMTP id S229614AbiKHWaS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 17:30:18 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EC8103D;
-        Tue,  8 Nov 2022 14:30:11 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id a7-20020a056830008700b0066c82848060so9026078oto.4;
-        Tue, 08 Nov 2022 14:30:11 -0800 (PST)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E6F1007;
+        Tue,  8 Nov 2022 14:30:10 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so9176811otu.7;
+        Tue, 08 Nov 2022 14:30:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=R1WKX3mhauPH6bKxydCd7dq3bfOqHAw8fJeX48VwC0I=;
-        b=o+p7g2O1naByvyIf/EQAQWapsFb0Mx1S+5ZhFk489g7bZkEtCFnQ3rTxt4xj8i3UWt
-         MMVU1h2L/812K+ffkx20M9QuJQUlIZCTvx8SSOrtv/WoXM4u5qoe0cGwr+eIjaYxoxzF
-         NEGdABocQa5sNPUmc2NV1k3f7tKi2AVSkGzjXWk4anfct/W+20luTckU5tcrqlQetnbn
-         4fngSrfEqTkcQF4p1T8nwRpGPwMQOo9XGBC9AFmKdu+UwNxiNx5EZxtxusk3gfUTi4Ub
-         YUTTd1xBAoKbZJ9+zV/PEzsPQY3fqN0MuuQftam3rmItcM4TxjQkz3bny7fjsiI3vgqO
-         Yinw==
-X-Gm-Message-State: ANoB5pntdCGMDEefNXpe91BB3LBM1derPF3DL+tIS2JYZXkeZGg5IZL5
-        n7ehDf0SN35UsxDd6e1H7w==
-X-Google-Smtp-Source: AA0mqf4zvuBgBQtWRjglf80mZSS/pe7Lb0MVGC15SN46DgXXn1AcWsYO5Yj90DM7DAAiaxP3BQJhUA==
-X-Received: by 2002:a9d:4814:0:b0:66d:81b:f06 with SMTP id c20-20020a9d4814000000b0066d081b0f06mr223823otf.297.1667946611045;
-        Tue, 08 Nov 2022 14:30:11 -0800 (PST)
+        bh=kj6QYdjPI+Mq4cfZXxle0k51SIZ4UdpD/shGFJqOIiY=;
+        b=rsC4XHHvIUH0nLc+i/7PA/kswwxqAmsLvjMD22FJ3M7Av6bBi4dHg/hIX5VmWkFJdD
+         To/UUF8AFMMp/cQoyiyOjfOPvuS58XZqiwV1oUZ0KK//v8gv9qy3RGj04afmnqU7Vvzg
+         nNaaZowYu7a7bT7i9WewRrn8al4pE1APi1zd6DreCWMy8CK46/j6ggPcWdvtkh7aBgg2
+         W0h976ttbEiKZXGLje4DACRpb9QEDeuKnLMmyqpGkR98p6yxaCxhaSLaJ+nAUerebH6G
+         eIyjSLryLU9FLXMiLy8hhSRbRFT0p+QuAZMzGcrB6+hw8sI4POo0YTIrF8wRv4RlC6dx
+         mbdw==
+X-Gm-Message-State: ACrzQf0SJp5nNUiFJspgchMn+Mh6lJ8SIBk2fF4eNnKEohvvAZ0KaraX
+        3L+4SXQKTKzs32DlPEPY5g==
+X-Google-Smtp-Source: AMsMyM4w+Q0bbTEoYWhch8yicb0YbQQFv0vfYscvOAojHPlu4xud6CxfcJeuZdXmpshPM5pW0gSwWA==
+X-Received: by 2002:a05:6830:628b:b0:660:d639:f380 with SMTP id ce11-20020a056830628b00b00660d639f380mr27602176otb.181.1667946609236;
+        Tue, 08 Nov 2022 14:30:09 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ca1-20020a056830610100b0066ca61230casm4099653otb.8.2022.11.08.14.30.09
+        by smtp.gmail.com with ESMTPSA id y36-20020a05687045a400b0013ae39d0575sm5230025oao.15.2022.11.08.14.30.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 14:30:10 -0800 (PST)
-Received: (nullmailer pid 4095488 invoked by uid 1000);
+        Tue, 08 Nov 2022 14:30:08 -0800 (PST)
+Received: (nullmailer pid 4095484 invoked by uid 1000);
         Tue, 08 Nov 2022 22:30:08 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>, asahi@lists.linux.dev,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-leds@vger.kernel.org, linux-input@vger.kernel.org,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>
-In-Reply-To: <20221005-mt6357-support-v4-4-5d2bb58e6087@baylibre.com>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-4-5d2bb58e6087@baylibre.com>
-Message-Id: <166794645715.4092263.2351084357250073444.robh@kernel.org>
-Subject: Re: [PATCH v4 4/9] dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-gpio@vger.kernel.org,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        linux-doc@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <E1osRXi-002mwL-UB@rmk-PC.armlinux.org.uk>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXi-002mwL-UB@rmk-PC.armlinux.org.uk>
+Message-Id: <166794645522.4092185.9292599131300169784.robh@kernel.org>
+Subject: Re: [PATCH v3 6/7] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
 Date:   Tue, 08 Nov 2022 16:30:08 -0600
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -81,21 +77,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 08 Nov 2022 19:43:39 +0100, Alexandre Mergnat wrote:
-> Currently, almost all MT63XX PMIC are documented mfd/mt6397.txt.
-> Unfortunately, the PMICs haven't always similar HW sub-features.
-> To have a better human readable schema, I chose to make one PMIC schema
-> to match the exact HW capabilities instead of convert mt6397.txt to
-> mediatek,mt63xx.yaml and put a bunch of properties behind
-> "if contain ... then ..."
+On Tue, 08 Nov 2022 16:33:42 +0000, Russell King (Oracle) wrote:
+> Add the DT binding for the Apple Mac System Management Controller GPIOs.
 > 
-> - add interrupt property
-> - change property refs to match with new yaml documentation
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > ---
->  .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 102 +++++++++++++++++++++
->  1 file changed, 102 insertions(+)
+>  .../bindings/gpio/apple,smc-gpio.yaml         | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -104,12 +93,8 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml
-Error: Documentation/devicetree/bindings/mfd/mediatek,mt6357.example.dts:26.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/mfd/mediatek,mt6357.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/gpio/apple,smc-gpio.yaml#
 
 doc reference errors (make refcheckdocs):
 
