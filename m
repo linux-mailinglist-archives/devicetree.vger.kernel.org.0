@@ -2,183 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B46F620F36
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 161CA620F56
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbiKHLho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:37:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44436 "EHLO
+        id S233450AbiKHLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:42:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232939AbiKHLhn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:37:43 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6222015723
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:37:42 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id c25so20653492ljr.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:37:42 -0800 (PST)
+        with ESMTP id S233345AbiKHLm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:42:26 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47E32EF5F;
+        Tue,  8 Nov 2022 03:42:25 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id w14so20517364wru.8;
+        Tue, 08 Nov 2022 03:42:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/lVzoqt83Ak42kIKiN8LqOfDF7RgMmRJivY7ZIPnKXQ=;
-        b=KbCk9zzDc2wv90rxSwsopGI0FlGUd0PHG+RyDVhJXRh4SJnAEKlKOHAO9WzEyon8/U
-         x8mfPKi9UZIZ9QyvTtebQx0+Gx0ESDxdOVK95xjJ0U2s0YKMlQua3U2+b/ucPREDz8ia
-         OYEVwIEafPl7Sencx2iu54Uzz/81mg7fz8Zm+KNetL+aRMNVH03nrfONnWzdc4Z9Q75h
-         11a45zws/P3tKRV/zIyFERUv6WRx8DqVi6CTX+cBPFYQv9ROPz47OMh6mXx2IIjhTxuU
-         pZ+fSG0PFRhHeZYK5Gx4OQHEQWQ/Nav1ZvRnWCgN7+2C/IddxLnpLb7U11DpCM11lOLJ
-         J9+g==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QKWZw8f3KDA3uN1tbZ06k0BAsz8ZmwlT0FyHTdt1NpE=;
+        b=bbFVf4ehELM6Sf47QyuVf6xwC/JS0r6QsJ2HCw/mb0bmmhjKAQDLzV+8W8KaTmtdaU
+         WlhROl2mLDodTdp8k93NPp0C+tuU9C1p0oSgUftsOydJiR7kiHjx6bIb9aQuOzTd6laf
+         64svrr+CMLf2ylsIPBGZaow3hOQYAIzaKQ0CBFJ1RQrEHYQlje7zUUfRZKm0yu4w98Gn
+         FZlfkRhXLjlBnaG08+d4Te61Gg26jLIfN/jY3V1Q7STY9CNL3VhqP2biRHrms8kbCmWc
+         2V1/swCWsWbdno/JJuso3OkZOXQ9RNC2gTKl7JWM2Z3Y8B0lxar994olPJQz3r5XZgw9
+         7Q5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/lVzoqt83Ak42kIKiN8LqOfDF7RgMmRJivY7ZIPnKXQ=;
-        b=OMfmZTwFXM4od/KFxrp3IQ6x6z2UVKD8PLCwT9KB4uX//XgjxrfvBPj4RTZR84gj3J
-         tUjuib1qmA0bwXBXpx2NL925lsURzz20riLIqwfAH7pUxamrYOoWwYvT4sNfrJBKWbLd
-         Y0zAhSwAuK0jJOz9pbJKlWTB9DbJwi+I+gLXnIb68iKDo1GJW2yb+eFVSLUvsuuHsxYp
-         jwuKLEXJ7oeDLbjdUFhcPaMPzONd0dqOclZHhXnWO2hm1tQylO8U6SHfrC429D08toUM
-         COpiiOjTQKD+6TYj9CgC79WF8WA+F2Oj+kNQCRQJ27TU5sIM0UOd1t4jOUtwNDcvRFRl
-         uf0g==
-X-Gm-Message-State: ACrzQf15WNdhQ+xE0mKm4MtMimv3ySn1GOpI7nglJCz+qWUL2k/+aCYi
-        iRLfd/6rDAICkuKa8K+T1TSyZg==
-X-Google-Smtp-Source: AMsMyM5KfVSdGMmsYyYqwDpB8dMs4e5lU9f2Z35qXgpVXEtl8NlkUdlhY05UJ83tg5wczhgiCdWTlg==
-X-Received: by 2002:a05:651c:307:b0:277:113f:3a1e with SMTP id a7-20020a05651c030700b00277113f3a1emr19582705ljp.518.1667907460751;
-        Tue, 08 Nov 2022 03:37:40 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id o4-20020ac25e24000000b0048af4dc964asm1758175lfg.73.2022.11.08.03.37.39
+        bh=QKWZw8f3KDA3uN1tbZ06k0BAsz8ZmwlT0FyHTdt1NpE=;
+        b=7y4YYeLFN/CSOd++e921ZDDvso7NKfZuvsmwm8hhV2zvqpYt1M6dCZBRo9+PKbEV7R
+         m2nbtb/z1urayYIOVgAvE3wFSKWmTZgsCWygUEPGIdkdP8MIO5qcGg0gjXh525tfV+LN
+         zxqNZj9sCmXo1mB2HN82trYv4ZwmepG6FYELWjVy1DN6GghuaIcDN2NVO5mUE5WnjorO
+         TzCJjVc0+GBG+FPWZNnafI/cCHot2dWcg+2WOcba4vsqHkwhelYNc/NraZEPRueFCdx6
+         JVAQH4U7OVnUu5xNjqeBazrbunrOjV2dlxf2cQWqMgb71GVL5ZItlUm6TenO5XmHVmSN
+         VE/A==
+X-Gm-Message-State: ACrzQf0+Qf1ZL8ERECGdv+sj4WEXQd6zc7xdJQpn1EKD99/IsWQCZTGG
+        O3kqYuICjeXk1zG1kiGbctU=
+X-Google-Smtp-Source: AMsMyM5nUdlHaDGjmApV1ZGe5XmH3xwHTqd1fvJFnS1APUmgka76olr6JYvnDs2PnV9JeIF2IMEadg==
+X-Received: by 2002:a5d:538c:0:b0:236:a6a5:9cfe with SMTP id d12-20020a5d538c000000b00236a6a59cfemr33267919wrv.121.1667907744110;
+        Tue, 08 Nov 2022 03:42:24 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id k4-20020adfe3c4000000b0022ccae2fa62sm10188253wrm.22.2022.11.08.03.42.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:37:40 -0800 (PST)
-Message-ID: <6a4f7104-8b6f-7dcd-a7ac-f866956e31d6@linaro.org>
-Date:   Tue, 8 Nov 2022 12:37:39 +0100
+        Tue, 08 Nov 2022 03:42:22 -0800 (PST)
+Message-ID: <552e9d45-715a-62dc-09bf-58d565b62837@gmail.com>
+Date:   Tue, 8 Nov 2022 12:42:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings
- for hci_h4
+ Thunderbird/102.4.1
 Content-Language: en-US
-To:     Dominique Martinet <dominique.martinet@atmark-techno.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com
-References: <20221108055531.2176793-1-dominique.martinet@atmark-techno.com>
- <20221108055531.2176793-2-dominique.martinet@atmark-techno.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108055531.2176793-2-dominique.martinet@atmark-techno.com>
-Content-Type: text/plain; charset=UTF-8
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-13-pierre.gondois@arm.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v2 12/23] arm64: dts: Update cache properties for mediatek
+In-Reply-To: <20221107155825.1644604-13-pierre.gondois@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 06:55, Dominique Martinet wrote:
-> Add devicetree binding to support defining a bluetooth device using the h4
-> uart protocol
-> 
 
-subject: drop second redundant "bindings"
 
-> This was tested with a NXP wireless+BT AW-XM458 module, but might
-> benefit others as the H4 protocol seems often used.
+On 07/11/2022 16:57, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> The 'cache-unified' property should be present if one of the
+> properties for unified cache is present ('cache-size', ...).
 > 
-> Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
+> Update the Device Trees accordingly.
+> 
+> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+
+Applied, thanks,
+Matthias
+
 > ---
->  .../devicetree/bindings/net/h4-bluetooth.yaml | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/h4-bluetooth.yaml
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 3 +++
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 3 +++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 +++
+>   3 files changed, 9 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/h4-bluetooth.yaml b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-> new file mode 100644
-> index 000000000000..5d11b89ca386
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-
-If the schema is for one specific device, then filename matching the
-compatible, so nxp,aw-xm458-bt.yaml... but I understand you want to
-describe here class of devices using H4 Bluetooth? Won't they need their
-own specific properties?
-
-
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/h4-bluetooth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: H4 Bluetooth
-> +
-> +maintainers:
-> +  - Dominique Martinet <dominique.martinet@atmark-techno.com>
-> +
-> +description:
-> +  H4 is a common bluetooth over uart protocol.
-
-Bluetooth
-UART
-
-> +  For example, the AW-XM458 is a WiFi + BT module where the WiFi part is
-> +  connected over PCI (M.2), while BT is connected over serial speaking
-> +  the H4 protocol. Its firmware is sent on the PCI side.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,aw-xm458-bt
-> +
-> +  max-speed: true
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    uart1 {
-
-uart
-
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_uart1>;
-> +        assigned-clocks = <&clk IMX8MP_CLK_UART1>;
-> +        assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-
-Drop unrelated properties.
-
-> +        status = "okay";
-
-Drop status.
-
-> +        fsl,dte-mode = <1>;
-> +        fsl,uart-has-rtscts;
-
-Are these two related to this hardware?
-
-> +
-> +
-> +        bluetooth {
-> +            compatible = "nxp,aw-xm458-bt";
-> +            max-speed = <3000000>;
-> +        };
-> +    };
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> index 64693c17af9e..c326aeb33a10 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> @@ -198,16 +198,19 @@ cluster_off_b: cluster-off-b {
+>   
+>   		l2_0: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l2_1: l2-cache1 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l3_0: l3-cache {
+>   			compatible = "cache";
+> +			cache-level = <3>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 6b20376191a7..424fc89cc6f7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -169,16 +169,19 @@ core3 {
+>   
+>   		l2_0: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l2_1: l2-cache1 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l3_0: l3-cache {
+>   			compatible = "cache";
+> +			cache-level = <3>;
+>   		};
+>   
+>   		idle-states {
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..cb74905cfbb8 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -213,16 +213,19 @@ cluster_off_b: cluster-off-b {
+>   
+>   		l2_0: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l2_1: l2-cache1 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   			next-level-cache = <&l3_0>;
+>   		};
+>   
+>   		l3_0: l3-cache {
+>   			compatible = "cache";
+> +			cache-level = <3>;
+>   		};
+>   	};
+>   
