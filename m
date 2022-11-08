@@ -2,97 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08C87621188
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15BBC621194
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233438AbiKHMzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:55:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
+        id S233971AbiKHM5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:57:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233437AbiKHMzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:55:41 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 483DB202
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:55:41 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id j12so14099989plj.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:55:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
-        b=Xu3q1wpAFZi5siecx8YJYeMVEiNO3QQV0TxZRQ+DJyt3xesiqjEQF0Rm7HTl3nwOFx
-         axFRcyI6i7i6G4/pP2PvVEqbCOsB5kO0Bz5I7GGRrQ5Gw4A4Y5+pCeaCclAgMJGi5sLD
-         EqDwDVpkgunNcDGahlfRBuw9Y/t4QzNoq+MJQosb/zVUJD7djXxdETeMvdiX+3iENykj
-         /L2SxI+qBvUTceQFCbCgAE/U6X7DwfDOgC1n6cPEToepiM9X2r1bEe3nVe4yS9labuc0
-         vSFhNVcwJs6y2ZBANwx+PchOUfyI1hgi5b0wl44pDO48PKbbUM63TL33jEl8pD0dx9Cw
-         DrjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
-        b=gRVUnKeYK5unpMxyTHG69Ak+X1h/yJsqJpHwNHG7dsIKLDvkMJ1fmliwKBcutV+U1e
-         +gcIjQuv2XLNOOkXTsF0dd/y9TOZOLGYihL5/rI8B0dKx4N5omAGJf4OJfbxyTeDQbKg
-         a/uR8u2jFTVXjkFc3J+wW/PG4mTmYt7ZYkNWoU0esGv0rYtpKle4F8KDOn01YdCIJL8D
-         7Fw7W0pmjb0l/oWpKLNH/BlwpXqaHvm+s5pujeOfGpPW6NP7DJto+gteXW0C3ksruTGM
-         VgZHzj8mGUnB8U1LxxriXHgn3yMKK77csXhx9B5U4ukweERgvm0qpISykmkzB8G2AxAx
-         69PQ==
-X-Gm-Message-State: ACrzQf1y7as3/xYcHt4+ZsuPtlAejfbZqsXYGiPpGU1+kqTYAKTlWk42
-        acS2b9a4c+iLA5ZuToKXd5WKzaXu+bq8UUySKk8=
-X-Google-Smtp-Source: AMsMyM47LS1qPZzLkwuenKG9e8EkqVAx0b1o0h2FMTeFjb4uVbum8HuMg+fTLdolpE8VrYkkaCtOGqUAWl4+Li1UXi0=
-X-Received: by 2002:a17:903:124c:b0:179:da2f:2463 with SMTP id
- u12-20020a170903124c00b00179da2f2463mr55014644plh.128.1667912140584; Tue, 08
- Nov 2022 04:55:40 -0800 (PST)
+        with ESMTP id S233313AbiKHM5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:57:14 -0500
+Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr [80.12.242.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D3238A8
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:57:11 -0800 (PST)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id sOA7o2YX9XaejsOA7odE9X; Tue, 08 Nov 2022 13:57:09 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 08 Nov 2022 13:57:09 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <482e8394-ceac-658f-7a69-29033f805440@wanadoo.fr>
+Date:   Tue, 8 Nov 2022 13:57:07 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:6a11:c394:b0:352:4c7b:293f with HTTP; Tue, 8 Nov 2022
- 04:55:39 -0800 (PST)
-Reply-To: mr.abraham022@gmail.com
-From:   "Mr.Abraham" <petersina60@gmail.com>
-Date:   Tue, 8 Nov 2022 12:55:39 +0000
-Message-ID: <CAAxicr_Ht+E1c1=DdHJU221hdcfi0CkGrtNrQpRt0EnGUPsFUA@mail.gmail.com>
-Subject: Greeting
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:62f listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4979]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [mr.abraham022[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [petersina60[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [petersina60[at]gmail.com]
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v3 1/2] drivers: rtc: add max313xx series rtc driver
+To:     ibrahim.tilki@analog.com
+Cc:     Zeynep.Arslanbenzer@analog.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
+        jdelvare@suse.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux@roeck-us.net, robh+dt@kernel.org
+References: <20221108122254.1185-1-Ibrahim.Tilki@analog.com>
+ <20221108122254.1185-2-Ibrahim.Tilki@analog.com>
+Content-Language: fr
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20221108122254.1185-2-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My Greeting, Did you receive the letter i sent to you. Please answer me.
-Regard, Mr.Abraham
+Le 08/11/2022 à 13:22, Ibrahim Tilki a écrit :
+> Adding support for Analog Devices MAX313XX series RTCs.
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+> ---
+
+[...]
+
+> +static int max313xx_clkout_register(struct device *dev)
+> +{
+> +	struct max313xx *rtc = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	if (!device_property_present(dev, "#clock-cells"))
+> +		return 0;
+> +
+> +	max313xx_clk_init.name = rtc->chip->clkout_name;
+> +	device_property_read_string(dev, "clock-output-names",
+> +				    &max313xx_clk_init.name);
+> +	rtc->clkout.init = &max313xx_clk_init;
+> +
+> +	ret = devm_clk_hw_register(dev, &rtc->clkout);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "cannot register clock\n");
+> +
+> +	return of_clk_add_provider(dev->of_node, of_clk_src_simple_get,
+> +				   rtc->clkout.clk);
+
+Hi,
+
+No devm like functionality here?
+
+devm_of_clk_add_hw_provider()? (not sure of the impact or not of the 
+"_hw_" in the function name)
+
+> +}
+
+[...]
+
+> +static int max313xx_irq_init(struct device *dev, const char *devname)
+> +{
+> +	struct max313xx *rtc = dev_get_drvdata(dev);
+> +	bool wakeup;
+> +	int ret;
+> +
+> +	rtc->irq = rtc->irqs[0];
+> +
+> +	switch (rtc->id) {
+> +	case ID_MAX31328:
+> +		/* max31328 sqw ant int pin is shared */
+> +		if (rtc->id == ID_MAX31328 && rtc->irq > 0 && rtc->clkout.clk)
+> +			return dev_err_probe(dev, -EOPNOTSUPP,
+> +					     "cannot have both sqw clock output and irq enabled");
+> +
+> +		break;
+> +	case ID_MAX31331:
+> +	case ID_MAX31334:
+> +		if (rtc->clkout.clk) {
+> +			/* clockout needs to be enabled for using INTA pin */
+> +			ret = clk_prepare_enable(rtc->clkout.clk);
+> +			if (ret)
+> +				return dev_err_probe(dev, ret,
+> +						     "cannot enable clkout\n");
+> +		} else {
+> +			rtc->irq = rtc->irqs[1];
+> +		}
+> +		break;
+> +	default:
+> +		if (rtc->clkin) {
+> +			rtc->irq = rtc->irqs[1];
+> +
+> +			/* wrong interrupt specified */
+> +			if (rtc->irqs[0] > 0 && rtc->irqs[1] <= 0)
+> +				dev_warn(dev, "INTA is specified but INTB required for irq when clkin is enabled\n");
+> +
+> +			if (rtc->clkout.clk && rtc->irq > 0)
+> +				return dev_err_probe(dev, -EOPNOTSUPP,
+> +						"irq not possible when both clkin and clkout are configured\n");
+> +
+> +			if (rtc->irq <= 0)
+> +				break;
+> +
+> +			/* clkout needs to be disabled for using INTB pin */
+> +			if (rtc->chip->clkout->en_invert)
+> +				ret = regmap_set_bits(rtc->regmap,
+> +						      rtc->chip->clkout->reg,
+> +						      rtc->chip->clkout->en_bit);
+> +			else
+> +				ret = regmap_clear_bits(rtc->regmap,
+> +							rtc->chip->clkout->reg,
+> +							rtc->chip->clkout->en_bit);
+> +
+> +			if (ret)
+> +				return ret;
+> +		}
+> +		break;
+> +	}
+> +
+> +	if (rtc->irq > 0) {
+> +		ret = devm_request_threaded_irq(dev, rtc->irq, NULL,
+> +						&max313xx_irq, IRQF_ONESHOT,
+> +						devname, rtc);
+> +		if (ret)
+> +			return ret;
+> +
+> +		wakeup = device_property_read_bool(dev, "wakeup-source");
+> +		return device_init_wakeup(dev, wakeup);
+> +	}
+> +
+> +	__clear_bit(RTC_FEATURE_ALARM, rtc->rtc->features);
+
+Is it safe? Does it worth it to use __clear_bit() instead of clear_bit() 
+here?
+
+> +
+> +	return 0;
+> +}
+
+[...]
+
+
