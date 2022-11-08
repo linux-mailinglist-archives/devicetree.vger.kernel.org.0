@@ -2,185 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53533621E1B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:56:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18F7B621E21
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:56:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiKHU4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 15:56:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
+        id S229603AbiKHU45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 15:56:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiKHU4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:56:03 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23909201AA
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:56:02 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id l12so11755616lfp.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:56:02 -0800 (PST)
+        with ESMTP id S230002AbiKHU44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:56:56 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2270B5D6BA
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:56:52 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id p12so9746026plq.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:56:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZN9uZSDNWvaPFO2rZ2x2Euvj8Fn47RRK/0sBC6DfBoo=;
-        b=CuaG+ej43GV97bUxgLQ9Mm7HA7sNVVPduZA+KOU+AD0jUQpgdK2xLg5+jOzpTkMTkd
-         YRdoqohWEn/klIj6bPC4IgxMSsVVC5svI2BPsorqQfBxwe2o/DohjYx8NEPwa7rt9UKU
-         ZzBGG9pXB6oIJ2M1xF0rDC5J/WyZQlJFOzL436PLSirh6EBvyoOzAwnGoGNKwu+7RWN8
-         GmyflwkKAKtNq2iUMsLJJCxoFxNgINizTJBJ8uNMxS7U19tp/v6cAF224e07LIq/QTo0
-         NSiBRikayAq+us4QpLNdvEfZjYkk1nwrFpBCSb26a3cbqrN+o7ih+b5KtV5C0CaseA0o
-         4K+g==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0onMt+air2lNK6el66wGss5pMPyUXTVLi3zz0gmD1tU=;
+        b=Bkzc2mkmAhE0IfooRK3Sqm+LJEDbscvB/8Mtcavis1yMpw3YbvTuzd92c69U6SDhz2
+         0MXN/D7PjXKOaohVDWk/7fK9jeU08WfIQmlPOI/ud26TW1vpPFga1JJzVlCPvMYvhOgt
+         MCBYFHAwDkAlYxK7K3LzL4j2BlVZdQ49bT+GWcXBxmB6NnWkKBiy1H6Z4X+uoiI4MTpZ
+         YrdywVH2mQ90EIROULO3rnpsZomcMQQDis7SVMhTv+UmvTJzAn4nFOivziiLKPEX1iMZ
+         B1GWw8h1SDgPWA0A6IFvzoRnF6OJpu9hzjTPRSr4gkXKcmdrCPSI4FuBql/IMc3IhCtB
+         EBZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZN9uZSDNWvaPFO2rZ2x2Euvj8Fn47RRK/0sBC6DfBoo=;
-        b=pYRslZlYbBb5c0wWy5SazLAuRpZ41i0sFMM0aWM2A/g+4ROxQ6H3zmQf4QI2x6vxTH
-         SdxjX7tEDbmOTjtJ9LdGCZC2KgNiZJDCGU7piOiaji4SOQGKw7RScrU7dz50SjrX3aZL
-         ly2msqCFudZfo3q19NnVDKHZMwY4tGrJuLIdIw09+Eji4pErocZQffVkq9Sw9VMYcNAC
-         1NLMgYod5erLMkCrLlYg5DzGn3VFCbSelrvC/aZPZiOwpvvvAbf/+nh54V1lfO5PBDRf
-         Tst3m+xBCnAjzLPZ6Pg3qVwPyLRQlfizNLtyg9J4bsI87/fcsby/yLU/cvHo0UsRn1vj
-         313g==
-X-Gm-Message-State: ANoB5plrQ8hsXTsa55sTsNirWda1t2L6T63QSFLmadicwnQeVZ0VJhnR
-        zz1SEgJX3fA56XFsWGqAyFXPTA==
-X-Google-Smtp-Source: AA0mqf5bvyq3TmeVB175nUAweelEZ+MjMm8/M3KZoRYAcUcfeLH2drcbccrcU5kqWiR1zP0FQH25kg==
-X-Received: by 2002:ac2:5b8f:0:b0:4b3:e970:693f with SMTP id o15-20020ac25b8f000000b004b3e970693fmr2654998lfn.421.1667940960464;
-        Tue, 08 Nov 2022 12:56:00 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id g4-20020a056512118400b00497a1f92a72sm1933759lfr.221.2022.11.08.12.55.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 12:55:59 -0800 (PST)
-Message-ID: <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
-Date:   Tue, 8 Nov 2022 21:55:58 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0onMt+air2lNK6el66wGss5pMPyUXTVLi3zz0gmD1tU=;
+        b=uU2WrGhrYQH4GsfTbvC3SPh5AXw8mw2RCHYBx7FzdeIcCN5s1yUuLD74jGMW2tjSVt
+         HJmqRQrCl+v/9AB1OO8OTdXezO2Xeo7n9MSXtKDatpQqRG7i/DmH+9DARR7viLtLa5xg
+         SmOiiawJAcnxzKERPdVHdP6go6x3QrIeNJHposv9+hQcAR5IF8Z7HjHuEdzhfoOmbmzY
+         nio5pG2kxWZJb28dqip8D9lmZO0kI0jd1QhaU+cp6E7Wj+dL3JZySUGqmX9KKeKMHPAY
+         ywfG7EHw3OXYEYcYE46pdi2pSHpcC4I4GRT+f2nrC5fm7VIwh/HcBX6ezQPuI88JMAaq
+         YGag==
+X-Gm-Message-State: ACrzQf2mHuCPW5tiDqIY6bwxiu9FcpycelKprCGDQBe75xQNnpLdn4Mz
+        H8vuwELe2oK93dcO8Ba00ugus6JxnlIJcXnH+lkrBA==
+X-Google-Smtp-Source: AMsMyM4gITR694JEoUnHOm2v2lMU0mdPEvB4EDyjuKZCqRozgFfRmPYW4lW2mOdcVea8X79bo6W2zY2H2Bz1Z24VxCA=
+X-Received: by 2002:a17:902:f786:b0:180:6f9e:23b with SMTP id
+ q6-20020a170902f78600b001806f9e023bmr58978856pln.37.1667941011429; Tue, 08
+ Nov 2022 12:56:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221103210650.2325784-1-sean.anderson@seco.com>
+ <20221103210650.2325784-9-sean.anderson@seco.com> <20221107201010.GA1525628-robh@kernel.org>
+ <20221107202223.ihdk4ubbqpro5w5y@skbuf> <7caf2d6a-3be9-4261-9e92-db55fe161f7e@seco.com>
+ <CAL_JsqKw=1iP6KUj=c6stgCMo7V6hGO9iB+MgixA5tiackeNnA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKw=1iP6KUj=c6stgCMo7V6hGO9iB+MgixA5tiackeNnA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 8 Nov 2022 12:56:15 -0800
+Message-ID: <CAGETcx-=Z4wo8JaYJN=SjxirbgRoRvobN8zxm+BSHjwouHzeJg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 08/11] of: property: Add device link support
+ for PCS
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 17:33, Russell King (Oracle) wrote:
-> Add a DT binding for the Apple Mac System Management Controller.
+On Mon, Nov 7, 2022 at 1:36 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Nov 7, 2022 at 2:50 PM Sean Anderson <sean.anderson@seco.com> wrote:
+> >
+> > On 11/7/22 15:22, Vladimir Oltean wrote:
+> > > On Mon, Nov 07, 2022 at 02:10:10PM -0600, Rob Herring wrote:
+> > >> On Thu, Nov 03, 2022 at 05:06:47PM -0400, Sean Anderson wrote:
+> > >> > This adds device link support for PCS devices. Both the recommended
+> > >> > pcs-handle and the deprecated pcsphy-handle properties are supported.
+> > >> > This should provide better probe ordering.
+> > >> >
+> > >> > Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> > >> > ---
+> > >> >
+> > >> > (no changes since v1)
+> > >> >
+> > >> >  drivers/of/property.c | 4 ++++
+> > >> >  1 file changed, 4 insertions(+)
+> > >>
+> > >> Seems like no dependency on the rest of the series, so I can take this
+> > >> patch?
+> > >
+> > > Is fw_devlink well-behaved these days, so as to not break (forever defer)
+> > > the probing of the device having the pcs-handle, if no driver probed on
+> > > the referenced PCS? Because the latter is what will happen if no one
+> > > picks up Sean's patches to probe PCS devices in the usual device model
+> > > way, I think.
+> >
+> > Last time [1], Saravana suggested to move this to the end of the series to
+> > avoid such problems. FWIW, I just tried booting a LS1046A with the
+> > following patches applied
+> >
+> > 01/11 (compatibles) 05/11 (device) 08/11 (link) 09/11 (consumer)
+> > =================== ============== ============ ================
+> > Y                   N              Y            N
+> > Y                   Y              Y            Y
+> > Y                   Y              Y            N
+> > N                   Y              Y            N
+> > N                   N              Y            N
+> >
+> > and all interfaces probed each time. So maybe it is safe to pick
+> > this patch.
+>
+> Maybe? Just take it with the rest of the series.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Drop the second, redundant "binding" from subject. It's already in prefix.
+Let's have Vladimir ack this. I'm not sure if it's fully safe yet. I
+haven't done the necessary fixes for phy-handle yet, but I don't know
+how pcs-handle and pcsphy-handle are used or if none of their uses
+will hit the chicken and egg problem that some uses of phy-handle hit.
 
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> new file mode 100644
-> index 000000000000..014eba5a1bbc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple Mac System Management Controller
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +description:
-> +  Apple Mac System Management Controller implements various functions
-> +  such as GPIO, RTC, power, reboot.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - apple,t6000-smc
-> +          - apple,t8103-smc
-> +          - apple,t8112-smc
-> +      - const: apple,smc
-> +
-> +  reg:
-> +    items:
-> +      - description: SMC area
-> +      - description: SRAM area
-> +
-> +  reg-names:
-> +    items:
-> +      - const: smc
-> +      - const: sram
-> +
-> +  mboxes:
-> +    maxItems: 1
-> +
-> +  gpio:
-> +    $ref: /schemas/gpio/gpio-macsmc.yaml
-
-So this depends on other patch, so:
-1. You need mention the dependency in cover letter (nothing there),
-2. Re-order patches.
-
-The GPIO cannot go separate tree and this must be explicitly communicated.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - mboxes
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      smc@23e400000 {
-
-Usually these are called system-controller, to have a generic name (as
-asked by DT spec).
-
-> +        compatible = "apple,t8103-smc", "apple,smc";
-> +        reg = <0x2 0x3e400000 0x0 0x4000>,
-> +               <0x2 0x3fe00000 0x0 0x100000>;
-
-Align the items (opening <).
-
-With three above:
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-Saravana
