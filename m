@@ -2,51 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C67620610
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55C1962061F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:34:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233490AbiKHB3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 20:29:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
+        id S231992AbiKHBeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 20:34:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233498AbiKHB2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:28:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6177C2E688;
-        Mon,  7 Nov 2022 17:28:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EE6DB61381;
-        Tue,  8 Nov 2022 01:28:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B0BC433B5;
-        Tue,  8 Nov 2022 01:28:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667870894;
-        bh=Crxd1ML6E33FgEfYcWzzIz4tDqidtID7RRad67vi5CE=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=aAb1r/6h5zWL0QrUxmaQ8c+BP8PAjPp6e22FYud3MX+q/EfFxRgZln2vT78W1pYlj
-         su05M9ibmWRYORqcLf+u2SCYOrBLLMFjJiyVaPKiVydk0S39TdN05vg5jVGcHQGL2u
-         jBxJzFiy4wbDxLVjtMaYpJKqvfx0+XpOLySevpJSpKudqhHB81vKvZrgbs5aWlw3Vu
-         b7Rc8XnavGw9bbqezHFMx19WKr5ZOcirMUd5EG8M8z8CnygLhkE52jjdMRwppFuy0X
-         hU6K02knHcpdM6h7awyFTavmgSf2BLm0VshaqvKl/pHTIoaNftvZg9cTNJ8vpnoaPU
-         7ccP6BYGvEiYA==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     vincent.knecht@mailoo.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH v1 1/2] arm64: dts: qcom: msm8916-alcatel-idol347: add GPIO torch LED
-Date:   Mon,  7 Nov 2022 19:27:43 -0600
-Message-Id: <166787084681.599230.10487688499814954760.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221029145557.106920-1-vincent.knecht@mailoo.org>
-References: <20221029145557.106920-1-vincent.knecht@mailoo.org>
+        with ESMTP id S231796AbiKHBea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:34:30 -0500
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76779E6;
+        Mon,  7 Nov 2022 17:34:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1667871240; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=hYnDcG3IUi2Ki1Z9MH7oJY6XcT3e6Ni25zdj7tgu1X6Ingy9wqrJEWctWM1RPgcLEm38BJ1CchDqGLGMApBSGG5AF44pqM1D//aO7+FfGXHMufKCPumvxwyXpEcRyzSDXvelP3qqIwzFQe7ur6F7sS1iPsXA+G/q669ty/7+NY4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1667871240; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=bWSow0ANRbgZL+RpPiwpQoWZxSeKC1ZJf+WW9du0GoQ=; 
+        b=GnCZUIn6vVdh/hyI22q1ZfSx2UxHv+el5LQ2Mc2z0NvJj7/GQE/Ci3EPSwdE/Fo2KIj+K+czVRCcruydY06m/J5iN503a/fDxeoO2AeXWTS5NbYrEfSBqIX/SvVb5wiFLzQyDJqZQ4cFtp0h76sgfSf/U4zArjasbd7qS8dY0vo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1667871240;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=bWSow0ANRbgZL+RpPiwpQoWZxSeKC1ZJf+WW9du0GoQ=;
+        b=DsPm34O2/9q5MaN31669a52IxxaOMzZwIPBZEL8oS0nzuCvw3mLfXOJO4zfvZb/P
+        /7razN4vVgVy8aL0kSm60zYb7yVqOMuWNyDib6i9hduTFXl0O4rzmRhzl8N+xK7TcSz
+        QImmjbxKlcmzAq+r0stL5AEDG/1wpaTgoDZxa7eQ=
+Received: from edelgard.fodlan.icenowy.me (112.94.103.200 [112.94.103.200]) by mx.zohomail.com
+        with SMTPS id 1667871237476152.56577536025281; Mon, 7 Nov 2022 17:33:57 -0800 (PST)
+Message-ID: <6b11ee97ebf53dd30bab14c9c40ef8f073a616aa.camel@icenowy.me>
+Subject: Re: [PATCH v2] arm64: allwinner: a64: add device tree for SoPine
+ with clusterboard
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Renze Nicolai <renze@rnplus.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Date:   Tue, 08 Nov 2022 09:33:51 +0800
+In-Reply-To: <c2523181268451aa04a2474a2cf5bedb@rnplus.nl>
+References: <b3b8320f0d2b54a0557331977582d05c@rnplus.nl>
+         <334c5f69-2f25-aeb1-b87f-500cf2a6c205@linaro.org>
+         <c2523181268451aa04a2474a2cf5bedb@rnplus.nl>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,18 +67,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 Oct 2022 16:55:56 +0200, Vincent Knecht wrote:
-> Add support for torch LED on GPIO 32.
-> 
-> 
+=E5=9C=A8 2022-11-07=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 21:55 +0100=EF=BC=
+=8CRenze Nicolai=E5=86=99=E9=81=93=EF=BC=9A
+> Hello Krzysztof,
+>=20
+> Thank you for your feedback! I've fixed the indentation and I've
+> added=20
+> the compatible and model elements.
 
-Applied, thanks!
+One small issue, I think the clusterboard has one node that comes with
+eMMC, which is different from other nodes.
 
-[1/2] arm64: dts: qcom: msm8916-alcatel-idol347: add GPIO torch LED
-      commit: 64323952aa5a14471a1225f2c1121aa5447c6ded
-[2/2] arm64: dts: qcom: msm8916-alcatel-idol347: add LED indicator
-      commit: 1c8cc183d07059d23d28c29a8e345464c4055127
+Should these have different DT's ?
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+>=20
+> Greetings,
+> Renze Nicolai
+>=20
+>=20
+> The Pine64 clusterboard needs a to have the tx delay changed to
+> 500ps for ethernet to work. This solution was described by multiple
+> people on the Pine64 forum years ago and nobody has submitted it.
+>=20
+> Add a device tree for SoPine with the clusterboard.
+>=20
+> Signed-off-by: Renze Nicolai <renze@rnplus.nl>
+> ---
+> =C2=A0 arch/arm64/boot/dts/allwinner/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0 .../allwinner/sun50i-a64-sopine-clusterboard.dts | 16
+> ++++++++++++++++
+> =C2=A0 2 files changed, 17 insertions(+)
+> =C2=A0 create mode 100644=20
+> arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile=20
+> b/arch/arm64/boot/dts/allwinner/Makefile
+> index 6a96494a2e0a..15b011d1aaea 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D=20
+> sun50i-a64-pinephone-1.2.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab-early-adopter.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboard.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-clusterboard.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1.dtb
+> =C2=A0 dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus.dtb
+> diff --git=20
+> a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts=20
+> b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts
+> new file mode 100644
+> index 000000000000..f75325d43d76
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-
+> clusterboard.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (c) 2022 Renze Nicolai <renze@rnplus.nl>
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-a64-sopine-baseboard.dts"
+> +
+> +/ {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0model =3D "SoPine with cluster=
+board";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "pine64,sopine-=
+clusterboard", "pine64,sopine",
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "allwinner,sun50i-a64";
+> +};
+> +
+> +&emac {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0allwinner,tx-delay-ps =3D <500=
+>;
+> +};
+
