@@ -2,54 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9587862167B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6605162169B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234269AbiKHO1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 09:27:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59112 "EHLO
+        id S233788AbiKHOa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234519AbiKHO0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:26:55 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB6654B21;
-        Tue,  8 Nov 2022 06:25:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C2B5BB81ADB;
-        Tue,  8 Nov 2022 14:25:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DED6C433C1;
-        Tue,  8 Nov 2022 14:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667917544;
-        bh=h+OS/eZgJV0ZrEr+BmOb2Klmpo3eKv9LYWIpJROuFGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RHcUzAeQY1Qwi5CovXPIcX3MfxTd7xPUidAtjdD8jYyOrgusaZ6+EhH76mxf6wpKD
-         pGhXPpk6Tm9nU10yR5gv27xqD5LdnRkoH7U1xGpoUeCIwLId1QcrIF45sZoi1xc5oc
-         1WTvKZ2hZv0kpMdA+zxwNTUpPafgf8N8Vpyahct42uow1fsYuIgbOVdk7j/gTkB8lG
-         qOMRX+k2a/JhQtPKLqFkFrmFk8g1IiV0fixJ/irlifzkjdzwsV3C3vVMwnHwNZ09c+
-         bEZzqSbPWgAozKi5IfDWnti98NozxlQPr0JRlcachFjnbXx4PznTfHXYFONl2NbmsJ
-         eQQE1dhsAltcw==
-Date:   Tue, 8 Nov 2022 15:25:40 +0100
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     jic23@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, lorenzo.bianconi@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6dsv16x
- device bindings
-Message-ID: <Y2pm5HpHu+O1cl4n@localhost.localdomain>
-References: <cover.1667745215.git.lorenzo@kernel.org>
- <8d10a63ec6abd22863ab25addd8c2f578dbc9cd9.1667745215.git.lorenzo@kernel.org>
- <a464ae19-3b18-3a34-9706-151b1512057b@linaro.org>
+        with ESMTP id S233847AbiKHOaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:30:39 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A60BA20F58;
+        Tue,  8 Nov 2022 06:30:08 -0800 (PST)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 08 Nov 2022 23:30:08 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id EC8A72059027;
+        Tue,  8 Nov 2022 23:30:07 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 8 Nov 2022 23:30:07 +0900
+Received: from [10.212.157.169] (unknown [10.212.157.169])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 1D870B62A4;
+        Tue,  8 Nov 2022 23:30:07 +0900 (JST)
+Message-ID: <3fcebf71-bdcb-8592-020c-4aa240a9e9a7@socionext.com>
+Date:   Tue, 8 Nov 2022 23:30:06 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wTnk1G2BRa0HT9Ms"
-Content-Disposition: inline
-In-Reply-To: <a464ae19-3b18-3a34-9706-151b1512057b@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: uniphier: Add system controller
+ bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
+ <20221107103410.3443-2-hayashi.kunihiko@socionext.com>
+ <48988a50-3c3d-7a85-af28-66f7842e5893@linaro.org>
+Content-Language: en-US
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <48988a50-3c3d-7a85-af28-66f7842e5893@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,45 +53,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---wTnk1G2BRa0HT9Ms
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2022/11/08 20:09, Krzysztof Kozlowski wrote:
+> On 07/11/2022 11:34, Kunihiko Hayashi wrote:
+>> Add DT binding schema for system controller implemented in UniPhier SoCs.
+>> This describes that the nodes defined here are treated as "syscon".
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   .../socionext/socionext,uniphier-sysctrl.yaml | 92 +++++++++++++++++++
+>>   1 file changed, 92 insertions(+)
+>>   create mode 100644
+>> Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
+>>
+>> diff --git
+>> a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
+>> b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
+>> new file mode 100644
+>> index 000000000000..be7cf72c232e
+>> --- /dev/null
+>> +++
+>> b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
+> 
+> arm is only for top-level stuff. System controllers go to soc.
 
-> On 06/11/2022 15:36, Lorenzo Bianconi wrote:
-> > Add device bindings for lsm6dsv16x IMU sensor.
->=20
-> Drop redundant, second "device bindings" in subject.  So the subject
-> should be (also with different prefix):
+Okay. I wondered if I should put it here.
+I'll make vendor's directory on "soc" and move it.
 
-ack
 
->=20
-> dt-bindings: iio: imu:: st,lsm6dsx.yaml: add lsm6dsv16x
->=20
-> With subject fixes:
->=20
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Best regards,
-> Krzysztof
->=20
+>> @@ -0,0 +1,92 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id:
+>> http://devicetree.org/schemas/arm/socionext/socionext,uniphier-sysctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Socionext UniPhier system controller
+>> +
+>> +maintainers:
+>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> +
+>> +description: |+
+>> +  This describes the devicetree bindings for system controller
+>> +  implemented on Socionext UniPhier SoCs.
+> 
+> Drop "This describes the devicetree bindings for" and instead describe
+> the hardware.
 
-@Jonathan: do you want me send v2 or are you going to take care of it?
+Surely I think the system controller's description itself is insufficient.
+This description contains multiple controllers, so add descriptions for each.
 
-Regards,
-Lorenzo
 
---wTnk1G2BRa0HT9Ms
-Content-Type: application/pgp-signature; name="signature.asc"
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+> 
+> You do not have more than one entry, so no need for oneOf.
 
------BEGIN PGP SIGNATURE-----
+Got it.
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCY2pm4QAKCRA6cBh0uS2t
-rE2vAP9BE6X9wPoL+D+iHzKiPQ1cakg+w07uzTgSIT+3k/eriAD6AsdaLY8NEAsf
-ZlSKLVLQPO6rI87pdP8w0DLe6vzLLwo=
-=Uv2j
------END PGP SIGNATURE-----
+>> +      - items:
+>> +          - enum:
+>> +              # sysctrl
+>> +              - socionext,uniphier-ld4-sysctrl
+>> +              - socionext,uniphier-pro4-sysctrl
+>> +              - socionext,uniphier-pro5-sysctrl
+>> +              - socionext,uniphier-pxs2-sysctrl
+>> +              - socionext,uniphier-ld6b-sysctrl
+>> +              - socionext,uniphier-sld8-sysctrl
+>> +              - socionext,uniphier-ld11-sysctrl
+>> +              - socionext,uniphier-ld20-sysctrl
+>> +              - socionext,uniphier-pxs3-sysctrl
+>> +              - socionext,uniphier-nx1-sysctrl
+>> +              - socionext,uniphier-sysctrl
+>> +              # soc-glue
+>> +              - socionext,uniphier-ld4-soc-glue
+>> +              - socionext,uniphier-pro4-soc-glue
+>> +              - socionext,uniphier-pro5-soc-glue
+>> +              - socionext,uniphier-pxs2-soc-glue
+>> +              - socionext,uniphier-ld6b-soc-glue
+>> +              - socionext,uniphier-sld8-soc-glue
+>> +              - socionext,uniphier-ld11-soc-glue
+>> +              - socionext,uniphier-ld20-soc-glue
+>> +              - socionext,uniphier-pxs3-soc-glue
+>> +              - socionext,uniphier-nx1-soc-glue
+>> +              - socionext,uniphier-soc-glue
+>> +              # perictrl
+>> +              - socionext,uniphier-ld4-perictrl
+>> +              - socionext,uniphier-pro4-perictrl
+>> +              - socionext,uniphier-pro5-perictrl
+>> +              - socionext,uniphier-pxs2-perictrl
+>> +              - socionext,uniphier-ld6b-perictrl
+>> +              - socionext,uniphier-sld8-perictrl
+>> +              - socionext,uniphier-ld11-perictrl
+>> +              - socionext,uniphier-ld20-perictrl
+>> +              - socionext,uniphier-pxs3-perictrl
+>> +              - socionext,uniphier-nx1-perictrl
+>> +              - socionext,uniphier-perictrl
+>> +              # sdctrl
+>> +              - socionext,uniphier-ld4-sdctrl
+>> +              - socionext,uniphier-pro4-sdctrl
+>> +              - socionext,uniphier-pro5-sdctrl
+>> +              - socionext,uniphier-pxs2-sdctrl
+>> +              - socionext,uniphier-ld6b-sdctrl
+>> +              - socionext,uniphier-sld8-sdctrl
+>> +              - socionext,uniphier-ld11-sdctrl
+>> +              - socionext,uniphier-ld20-sdctrl
+>> +              - socionext,uniphier-pxs3-sdctrl
+>> +              - socionext,uniphier-nx1-sdctrl
+>> +              - socionext,uniphier-sdctrl
+>> +              # mioctrl
+>> +              - socionext,uniphier-ld4-mioctrl
+>> +              - socionext,uniphier-pro4-mioctrl
+>> +              - socionext,uniphier-sld8-mioctrl
+>> +              - socionext,uniphier-ld11-mioctrl
+>> +              - socionext,uniphier-mioctrl
+>> +              # adamv
+>> +              - socionext,uniphier-ld11-adamv
+>> +              - socionext,uniphier-ld20-adamv
+>> +              - socionext,uniphier-adamv
+>> +          - const: simple-mfd
+>> +          - const: syscon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties:
+>> +  type: object
+> 
+> No, instead you should describe the children. This must me
+> additionalProperties: false
 
---wTnk1G2BRa0HT9Ms--
+Each controller has different children, so need to define children
+for each controller using "if".
+
+> You also miss example.
+> 
+> Start from example-schema as your template or guidance.
+
+I see. I'll add example.
+
+Thank you,
+
+---
+Best Regards
+Kunihiko Hayashi
