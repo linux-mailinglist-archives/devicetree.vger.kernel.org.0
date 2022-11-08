@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE2B86205C6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9015C6205CC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 02:27:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233045AbiKHB1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 20:27:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49956 "EHLO
+        id S233121AbiKHB14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 20:27:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232829AbiKHB1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:27:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A030E2AC76;
-        Mon,  7 Nov 2022 17:27:49 -0800 (PST)
+        with ESMTP id S233089AbiKHB1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 20:27:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0602AE05;
+        Mon,  7 Nov 2022 17:27:50 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 56E9EB81714;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 40744B81711;
+        Tue,  8 Nov 2022 01:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B381C43470;
         Tue,  8 Nov 2022 01:27:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DCEEC433C1;
-        Tue,  8 Nov 2022 01:27:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667870867;
-        bh=4WltsRf5IjO7g4zMPi90qgCp9u2ZiS2cPNrDlbUkOuY=;
+        s=k20201202; t=1667870868;
+        bh=mj2CkqKyrRQCE9gS8pWPHxCMQuCruAUEPSa++i1xp3M=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hiOIf8MM/HdouNh3GXUn/XjOCESbGi4LpXE0UcODKrPkYZO0k2sEuT1VvvA9QTh0g
-         1GG02Y/olzRvQANtPWFfE88/jq8eVUzXKuL0MX6NCowvD7rU5JP12llHnZ6ry5Rjal
-         pm/wBev8LIP14clUQ7dfy3ctodKbpgVtDFcXp0Hoku/rcyC5VoSEvwQ1yEkwMBvWMu
-         t/vXlkjgrkRNryuFkx6p9RgkhNWU3jQqOVfSVvGhMGiKB1KxDv0aTtQvJYKyZt8XoX
-         YgqbCzE8e8wxjfb+Fm5a1yVv45WkGkEvcEOODI48fD5V+uvl1yHjrpM24K/R68K3L2
-         4mS1y6R6D7lrw==
+        b=cr35a+xs2w/8+cGkqD0nD61brwWBEi8TkXzrG09mUXa9erv8r3sSrsds5ZnETLOtl
+         jwM0vtUqcMhv0+V6nK9+MD26k6KpdTcuXtj5J2ZOoyaj0wr9Y1CXxKGCZBQ27KBw2y
+         bSFqWmacuSODc5MEkSOBT93BuePhWOD9wGx2VEUl1t7yxJQFB4XSnoj2VexptbZtuD
+         x8nRHna9gZ5FHaq/UfEeGyF3veU05cSP2yNPkMKPRnHyyh1IWVupLnaMy2S2ksgtrJ
+         MHs/7eATxS8xy0pTSyaX7AURd319TZb+I510MDu89OQ6H1k7nRF2busULZW28jjhpI
+         fgNf563tht2eQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     dmitry.baryshkov@linaro.org, robh+dt@kernel.org,
+To:     johan+linaro@kernel.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
         konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: soc: qcom: YAML-ify SSBI bindings
-Date:   Mon,  7 Nov 2022 19:27:19 -0600
-Message-Id: <166787084675.599230.12174671721035803055.b4-ty@kernel.org>
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix USB MP QMP PHY nodes
+Date:   Mon,  7 Nov 2022 19:27:21 -0600
+Message-Id: <166787084686.599230.4516103701135899392.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
-References: <20220930212052.894834-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221107081705.18446-1-johan+linaro@kernel.org>
+References: <20221107081705.18446-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -54,16 +55,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 1 Oct 2022 00:20:51 +0300, Dmitry Baryshkov wrote:
-> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with SoC
-> bindings (soc/qcom/).
+On Mon, 7 Nov 2022 09:17:05 +0100, Johan Hovold wrote:
+> Update the USB MP QMP PHY nodes to match the new binding which
+> specifically includes the missing register regions (e.g. PCS_USB).
 > 
 > 
 
 Applied, thanks!
 
-[2/2] ARM: dts: qcom: mdm9615: drop unit ids from PMIC nodes
-      commit: 0d6e44e257ec53b41c2969130e0eb97b0a41b1d6
+[1/1] arm64: dts: qcom: sc8280xp: fix USB MP QMP PHY nodes
+      commit: 0d0be9d88bf2b1c36146712761ab04623a855647
 
 Best regards,
 -- 
