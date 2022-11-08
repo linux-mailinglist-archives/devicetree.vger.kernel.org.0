@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C8E46213EF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 14:55:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 769D7621597
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:13:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234773AbiKHNzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 08:55:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
+        id S235215AbiKHONY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:13:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234772AbiKHNzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 08:55:31 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749792BF6;
-        Tue,  8 Nov 2022 05:55:30 -0800 (PST)
+        with ESMTP id S235255AbiKHONX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:13:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE44BB1;
+        Tue,  8 Nov 2022 06:13:22 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3121EB81AF7;
-        Tue,  8 Nov 2022 13:55:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44420C433C1;
-        Tue,  8 Nov 2022 13:55:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 36ED160025;
+        Tue,  8 Nov 2022 14:13:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31397C433D6;
+        Tue,  8 Nov 2022 14:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1667915727;
-        bh=mfi0wsHe8iBtwirFDQ2mdHyHj3RoxXdX1ibAjTGwr+k=;
+        s=korg; t=1667916801;
+        bh=UHKzE7k9Sx80WMLRf2QfDfovw+SNyTDrEBBrnkdfrw8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bQhOGu+SEXlNG2vy41zfufCAu/EWS4ehS7+NcEMMU855G87Lyh+xfXx5Z87/BTHqG
-         9MwN158IOMzbgN4RIMaP9KOAflPDox55KBgu40gszjTYAdTqqni5HS9INexpC5552S
-         cbvDZBOLY5aLMdaT5xmkI8zqO0Xspz21sK4+/tRM=
+        b=oIzS44TpCXAFS4nVT2GPx3VZyugYFlUPurknUjOlUACu32lm7XtrtiHEWFxaDaNty
+         9bLBjjYB5sgp1t5Eb2ijCe7KUlQxqWR2MTK/N69UQ/2FPFFrfg9hwUaEgeMHzWde1M
+         CjpdXz3HrSryglgnu6+rZWHnFs4xBB/1o9nTsqnc=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     stable@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -37,12 +37,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Cristian Marussi <cristian.marussi@arm.com>,
         Sudeep Holla <sudeep.holla@arm.com>,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.10 074/118] arm64: dts: juno: Add thermal critical trip points
-Date:   Tue,  8 Nov 2022 14:39:12 +0100
-Message-Id: <20221108133343.957974083@linuxfoundation.org>
+Subject: [PATCH 6.0 120/197] arm64: dts: juno: Add thermal critical trip points
+Date:   Tue,  8 Nov 2022 14:39:18 +0100
+Message-Id: <20221108133400.439625821@linuxfoundation.org>
 X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221108133340.718216105@linuxfoundation.org>
-References: <20221108133340.718216105@linuxfoundation.org>
+In-Reply-To: <20221108133354.787209461@linuxfoundation.org>
+References: <20221108133354.787209461@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -80,10 +80,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 2c0161125ece..cb45a2f0537a 100644
+index 2f27619d8abd..8b4d280b1e7e 100644
 --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
 +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -595,12 +595,26 @@ pmic {
+@@ -751,12 +751,26 @@ pmic {
  			polling-delay = <1000>;
  			polling-delay-passive = <100>;
  			thermal-sensors = <&scpi_sensors0 0>;
