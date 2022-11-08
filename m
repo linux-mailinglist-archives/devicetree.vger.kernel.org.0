@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E0486210E0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5236210FC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234052AbiKHMgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 07:36:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52786 "EHLO
+        id S233744AbiKHMjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234065AbiKHMgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:36:16 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD82F4B996
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:36:14 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id a13so22301389edj.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:36:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lUte8uNFM/Ko5EYA94xDS4OarmRppybS52Yd06EmKs0=;
-        b=exue/41mpesJS2YHEz7v0h7Ysi3Mac6gew2UFoCbLeSfddgbKISLJDgotDgMFVYkqV
-         9buWnp6zQNtN4O6AT4aswNa1CgAq2FNtGMgCfMy4m9mpKJRgu1fYulX/Xu6c2NRdsrZR
-         +1UMYXNI35yEqCowzKJyC9duOFwQ4Cnb1qzmCMTBdbPsQvk/ovnmKvU5XaMVOLDX9YCC
-         zm/3t5mRGmoSf7cYJxhv+m6jHMhM/vsh6iB2JP+he/UnWDMxUsNMbXr+xYv+oOK+Kcmh
-         uUVENFfQvlvi1WxCN6Xhp29t2LjaXSIuDLSg2jHWW+/BIljG+y/Z/FVMf5D6HDZQTmd4
-         wDxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lUte8uNFM/Ko5EYA94xDS4OarmRppybS52Yd06EmKs0=;
-        b=htipVQFPYta/XoqY8ouQYj56jgnbKVTxm6pxF3uWrJdUr7ZHuKcXTmN1HM17uSczQj
-         a22DD540PYE/bCtf0U+/fbttoLm/kNYoDLAYFEc3I4uKFbrEiMcENndbEYwr91qZiZt2
-         3omhlNFpYGVotR2EBjth5FBY/SASyaKBt/bUvOC1tGo/c8BA/JTP6O1BZhbT+mQMcmiU
-         QDMDM/h3rkBanb+fGqT+c3sNsq3dYSOjLI0/l+bC17c5muvWLQAq7luv5nOOSHnknAUs
-         jrtWa4EV4nd1/Nldm0wG86VcCpNmEnEC+GA9u7PFAx7Y8UaK9e22FMFtZDF0QEqHTT41
-         67UA==
-X-Gm-Message-State: ACrzQf2fqy9ZDdCjFGREseywH3VekKD+DxPsoEENut0/F+VSIm+E9oE1
-        vXIxzW4fzkppO5OJntni3mjGuPiQxZsYVJT0/IAT/g==
-X-Google-Smtp-Source: AMsMyM6J5Wkx9+mm9M5bnxR10MBsY4ZpxY0vOQ398u8OSuBf312QsZh7E7zi2Rnq4+DElyDARXmG+vClXK7CeAYG5YY=
-X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
- eb11-20020a0564020d0b00b00458a2444e99mr55652244edb.46.1667910973339; Tue, 08
- Nov 2022 04:36:13 -0800 (PST)
+        with ESMTP id S233722AbiKHMjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:39:54 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F9850F1E;
+        Tue,  8 Nov 2022 04:39:53 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A8B9C5F007152;
+        Tue, 8 Nov 2022 12:39:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=q9qehZe1/+k/iE/NA33eOV6DMpMRqdCUVApIAg5+EFI=;
+ b=iuLjNTr8p9MKkDdNHGYHpag9FMdp2nh3jD9MUjzNqY/USuFdpegEdRQVOkD90E+gV7KY
+ anMAtfImFUudK3sOaISgtEHepBnAGpTUq0tKnV5Fq9q3x2cUtmV6+v7jCh+qdQrXdq+A
+ M7ZsoEpP/eQFJIqHqVu77tnAtyKBqRMZL1hE68mdvTq7BEPT9517bnb7Dlfy4sMCKBNU
+ aiv6PgZNW+Xye9p+41/2u8hzlx7o+0UNph/g03+jwkKo7ubv1M9QVNZR3k1S7Sc3hFDl
+ CBNT4WblDGIcaVRe+VAdI7PxFo1IUnN/oFWYfGXf3lVSQyEkA2gAkhROLboYVowp62M4 8g== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kqhvj0svu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Nov 2022 12:39:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A8CdeHS031182
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 8 Nov 2022 12:39:40 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 8 Nov 2022 04:39:35 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <vkoul@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <broonie@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <alsa-devel@alsa-project.org>, <quic_rjendra@quicinc.com>,
+        <konrad.dybcio@somainline.org>, <mka@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v5 0/4] Convert soundwire bindings to DT schema
+Date:   Tue, 8 Nov 2022 18:09:12 +0530
+Message-ID: <1667911156-19238-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20221031100843.14579-1-clin@suse.com> <20221031100843.14579-3-clin@suse.com>
-In-Reply-To: <20221031100843.14579-3-clin@suse.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 13:35:59 +0100
-Message-ID: <CACRpkdYWLVc4Rp4U=hRV9qDdTWeWUXM1BF0WrBxRpCWkwt6VQw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: add NXP S32 SoC family support
-To:     Chester Lin <clin@suse.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Radu Pirea <radu-nicolae.pirea@nxp.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Matthew Nunez <matthew.nunez@nxp.com>,
-        Phu Luu An <phu.luuan@nxp.com>,
-        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: THRXcTmLHAV2Pp3N4Y50e_F4OdglklPM
+X-Proofpoint-GUID: THRXcTmLHAV2Pp3N4Y50e_F4OdglklPM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-07_11,2022-11-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ impostorscore=0 mlxscore=0 mlxlogscore=859 spamscore=0 suspectscore=0
+ adultscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211080073
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -78,49 +78,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chester,
+Convert soundwire bindings text file to DT schema and update
+device tree entries to follow strict dt-bindings.
+Changes Since V4:
+  -- Update interrupt names in example.
+  -- Fix blank lines.
+  -- Remove dependecy patch info.
+  -- Split dtsi patches as per SoC.
+Changes Since V3:
+  -- Remove subnode description and add appropriate pattern properties.
+  -- Add interrput names in example.
+  -- update some properties description.
+  -- Revert minIteams change in previous version.
+  -- Rebase to latest code base.
+  -- Update dtsi node names,
+  -- Remove redundant property in soundwire node.
 
-thanks for your patch!
+Srinivasa Rao Mandadapu (4):
+  arm64: dts: qcom: Update soundwire slave node names
+  arm64: dts: qcom: sm8250: Remove redundant soundwire property
+  arm64: dts: qcom: sc7280: Remove redundant soundwire property
+  dt-bindings: soundwire: Convert text bindings to DT Schema
 
-On Mon, Oct 31, 2022 at 11:10 AM Chester Lin <clin@suse.com> wrote:
+ .../devicetree/bindings/soundwire/qcom,sdw.txt     | 215 ------------------
+ .../bindings/soundwire/qcom,soundwire.yaml         | 244 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts           |   4 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |   1 -
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts         |   4 +-
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      |   4 +-
+ arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts   |   4 +-
+ arch/arm64/boot/dts/qcom/sm8250-mtp.dts            |   4 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |   1 -
+ 9 files changed, 254 insertions(+), 227 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+ create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
 
-> Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
-> on NXP's downstream implementation on CodeAurora[1].
->
-> [1] https://source.codeaurora.org/external/autobsps32/linux/tree/drivers/pinctrl/freescale?h=bsp34.0-5.10.120-rt
->
-> Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
-> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
-> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
+-- 
+2.7.4
 
-Overall this looks very good, special thanks for using as much generic code
-as possible.
-
-Only main thing I want you to look into are those magic nxp,pins ranges encoded
-into the device tree.
-
-> +static struct s32_pinctrl_soc_info s32_pinctrl_info = {
-> +       .pins = s32_pinctrl_pads_siul2,
-> +       .npins = ARRAY_SIZE(s32_pinctrl_pads_siul2),
-> +};
-> +
-> +static const struct of_device_id s32_pinctrl_of_match[] = {
-> +       {
-> +
-> +               .compatible = "nxp,s32g-siul2-pinctrl",
-> +               .data = (void *) &s32_pinctrl_info,
-> +       },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, s32_pinctrl_of_match);
-
-Since you are already using .data so nicely for the variants surely the
-nxp,pins info can go in there too?
-
-Yours,
-Linus Walleij
