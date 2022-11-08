@@ -2,102 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D28D6211E3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 14:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2071B621215
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 14:15:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234417AbiKHNDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 08:03:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45256 "EHLO
+        id S233751AbiKHNPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 08:15:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234431AbiKHNDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 08:03:17 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8258158008
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 05:03:03 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id v17so22358065edc.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 05:03:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o3T20fdGbELUpw/30bYXW9rk8UUViyvlGwNQtDEeL60=;
-        b=HftOwyrtLxzbkKxUC8HfvovTHmxETKauLq+2NZsmwAsaMGT6OQPWRuF5ff1cijRifO
-         wITQzfD0MbU45cAGywh7YwS+ps2iau6ZaG2lIqsWGKvD3SY8gBLFkxkCsjFGyd3gmUyQ
-         dAATAj4FpkOIkWA4ePVCwkeo3E5jCQeNXyYqkCGU+vsAHVsiH5LoKSmHjAnfAJK+Z7Gt
-         d9x2V1epibgaTLN6SV3Jgw3jfliBg0IRYRMgaLmq5Fq0DSXAR+054B+BoCIpg0IyodZ5
-         YjoPZmxUjN/VAVz4bhpOBNOXAyX/bC8b4TuCXCqOYiqJkroZnJk7zVEbVD58dvpx0Rc1
-         m7kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o3T20fdGbELUpw/30bYXW9rk8UUViyvlGwNQtDEeL60=;
-        b=oVo27ZLQsLIuPfQSPqXr2DwGy93PgQE4QkTcBeTWdVW47bYRTzhqmXSkfsNSK9toPp
-         GL1XusIu62GzsPq1iHcSiVnfA8Ktc/YxA0Sln1FjMsD1ZVpdOkrQ94tg4V9TkekUHYnt
-         o8PEdugDss03ssa8RPouTbz9ngVpMMyV+2qo0oHKpSx3jFQ3JxyEXJXAY4EDFdZRnBtt
-         +oEUFv606YXQsHdRtqMWLl839bsfK4je3svFCItHRucZtEFQPpt6jSMXXRD0uBtbdPV/
-         twmV1B/ZVekAyekrzqb8IU2ecQXl/Jsqd66R7RaySdAXCum4CkhNQn/F9dtcoeBmTLgE
-         +IhQ==
-X-Gm-Message-State: ACrzQf00DJAEspoeNTbcEIqyGqSZpPGPdETDwsGouN+Rm+LWR8GbJE5B
-        u9C038HIIR9OE8jYrNoAP0XVCaXE0Pkx8PlkrzCVxQ==
-X-Google-Smtp-Source: AMsMyM76jkge9pSTavwCFjj3qtMVFFWyyr0y/FOcVzLJN3+Hurvyb53krF/r4r33HtFj9uBHLuQAPOvLjzn3W9ENCGY=
-X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
- eb11-20020a0564020d0b00b00458a2444e99mr55757302edb.46.1667912581984; Tue, 08
- Nov 2022 05:03:01 -0800 (PST)
+        with ESMTP id S234324AbiKHNPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 08:15:46 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5000E27B25;
+        Tue,  8 Nov 2022 05:15:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1667913346; x=1699449346;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=V8a1s54ki0Du02Crq9QZu279WBYeboXOkqd8m36ok38=;
+  b=Tl2D9JtP+tKzBoZ5ip/xbtUwQPlPN6gbQaN/k5y5Yk/tpEcbrHswhYKs
+   zALvlTfFe5WCCyK/GDZ0E8jDCQa5ZU+yHnS2GzkNx/r6kc/w6s68lAVab
+   ciYUTuACMO2PqIEKTULPjiMKl2B4CwVQtxdAbxgxCOCkGDDPtGjnMEnKM
+   7OutSS8fAFtEP5n0sJkrctDamr1k0aBOvsPWkY2WgH4WQvBIwNiviXEHC
+   /kKszd923cm/p1Nhvmzq7MqxknPkB6xVN0Yj9UwSbblwi2wJqfz/QxN7E
+   VWg5aj07v6DduuRBa3SCattzHjgeuicXRBI1tH/9//cLeJ1ObRks7Efvb
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="372831877"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; 
+   d="scan'208";a="372831877"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2022 05:15:45 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10524"; a="614275786"
+X-IronPort-AV: E=Sophos;i="5.96,147,1665471600"; 
+   d="scan'208";a="614275786"
+Received: from smoriord-mobl.ger.corp.intel.com (HELO localhost) ([10.252.16.110])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2022 05:15:38 -0800
+From:   Jani Nikula <jani.nikula@intel.com>
+To:     Sandor Yu <Sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, vkoul@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, tzimmermann@suse.de, lyude@redhat.com,
+        Sandor.yu@nxp.com, javierm@redhat.com,
+        ville.syrjala@linux.intel.com, sam@ravnborg.org, maxime@cerno.tech,
+        penguin-kernel@I-love.SAKURA.ne.jp, oliver.brown@nxp.com
+Subject: Re: [PATCH v3 00/10] Initial support for Cadence MHDP(HDMI/DP) for
+ i.MX8MQ
+In-Reply-To: <cover.1667911321.git.Sandor.yu@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1667911321.git.Sandor.yu@nxp.com>
+Date:   Tue, 08 Nov 2022 15:15:32 +0200
+Message-ID: <87iljp8u4r.fsf@intel.com>
 MIME-Version: 1.0
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-2-JJLIU0@nuvoton.com>
-In-Reply-To: <20221108092840.14945-2-JJLIU0@nuvoton.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 14:02:50 +0100
-Message-ID: <CACRpkdb5NzUcnu6yK6t9CUPVb=FSpSJdWOwHVbJqq5FxapT_RA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] gpio:gpio-npcm-sgpio: Add Nuvoton sgpio driver
-To:     Jim Liu <jim.t90615@gmail.com>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jim!
+On Tue, 08 Nov 2022, Sandor Yu <Sandor.yu@nxp.com> wrote:
+> The patch set initial support for Cadence MHDP(HDMI/DP) DRM bridge
+> drivers and Cadence HDP-TX PHY(HDMI/DP) drivers for iMX8MQ.
 
-thanks for your patch!
+Has some get_maintainer.pl guidance changed recently or something, or
+why am I increasingly being Cc'd on patches that are largely irrelevant
+to me?
 
-On Tue, Nov 8, 2022 at 10:29 AM Jim Liu <jim.t90615@gmail.com> wrote:
+BR,
+Jani.
 
-> Add Nuvoton BMC sgpio driver support.
->
-> Signed-off-by: Jim Liu <JJLIU0@nuvoton.com>
-> ---
-> Changes for v2:
->    - add prefix
->    - write the enum values in all capitals
->    - remove _init in npcm_sgpio_probe
-
-Overall this looks very good.
-
-But:
-
-> +       u8 nin_sgpio;
-> +       u8 nout_sgpio;
-
-These seem to be software constructs, for which you also add
-custom device tree bindings.
-
-The purpose seems to be an extra layer of protection, such as
-blocking a user from setting some GPIOs as input or output.
-
-I think you should just remove this, the GPIO driver is already
-sufficiently low level without the need of protecting the users
-from themselves.
-
-Yours,
-Linus Walleij
+-- 
+Jani Nikula, Intel Open Source Graphics Center
