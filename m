@@ -2,132 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65553620D55
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C2C620D7F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233710AbiKHKeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 05:34:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56782 "EHLO
+        id S233681AbiKHKho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 05:37:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233658AbiKHKeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:34:11 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A63619C12
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:34:10 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id 21so21799645edv.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:34:10 -0800 (PST)
+        with ESMTP id S233938AbiKHKhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:37:19 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C62140918
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:37:01 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id c1so18973738lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:37:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tsUmXbk4TNC/4MmU7uBNzHDSvmsd/gvHqvtl9XqOUAI=;
-        b=VuPrjU6CgHEVr8cZWDLWiAtOQEiLw7eStVzErc7DE/HRQdxYO3MklKO/ZwYYZQjb+V
-         btQbjcHQmnyOwzXBZCSS1Kb6FQ4FXDg0hM5AxhLa0U2NApXH3pxSHalBImKVQJ65GRZI
-         F2dVnqxT/qMe+qAVKg0qs6Fg0sFsaz3JRNgXadcHkmz9OhQtsxb0NfuA5lzsG334Rv2V
-         qF2K22EjqiUdSRYhNtVxcgU25u2EkLHSyG/EYZ4mJfoVNXEYor+cEZu59CFx6ZKNZuX1
-         NqUJCcAPsPRCfyVXU0o4AFTFVCADk2WeWocIkoBerDoFEcxMFnJiXeJQVcc1jCbZq/sB
-         iXrw==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F1eU2MNzr9lEfofB/L6YKz5jRjvrNUwGoC1RPrJsqIc=;
+        b=qxlKoNOCj8bwEn/unr4ZPcnBCXcdPnwp6/SZBWWeD1f+nNzLQZ17cHnkenX1JoZ+nJ
+         l5mhxoz3baMzHRwcGvuZBeAgFsbmfiw5waqPt908NhhIv4tecxmqQPdV0Dhf9IJm8Dt0
+         k0NtuvI7zoLtlVsm93UDSI5nvXT8giTAEmr04mTtPEhLQpmnA/bd5jRs34pBIxkPVDZp
+         sLD6ufM7RkVvdGhirGvWrEpWffO+PQUzvRoxY2bs+2fNm4Hu8I9+dliDE1l3I0yRMuNK
+         qnErbVUK+0FDLBkKVwWv6dWzXNsnSoy7R0nrBCaZxdKQNiCL0RQeH6J78bt+69PPVLrT
+         Kytw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tsUmXbk4TNC/4MmU7uBNzHDSvmsd/gvHqvtl9XqOUAI=;
-        b=ga0NBuK19LGnvP126tlv+M9UxqFRDwjwAEyd69/x958JHE0y/geTggcR8pPNBWVLwl
-         s6OsSym7e68HCAl2OSeCz7wo4+yrPdyOHZ3VImc3QgqFRGWzXQETpwOj0lfFmjaIXLMc
-         wkDjcC24U89/HnmcncYVEl0tLtcTrLje2+MPhNU/xqovoa8h/LCRPURXMmHyBrS/Vx67
-         lyEpLLf12CCr3R4g4JPxuG7QDiaya6vmMzN/QvusKeeFiA+1MUDZxIGnBd2i0+XsxvjK
-         R9Me2IzE2vtmW2jDavzhniCwGz1ZbyENW7Qe+MVR3fj71h7V4ATG8LLG1fyn1YRuZecc
-         8Jrg==
-X-Gm-Message-State: ACrzQf1CKK6R6BQp3NCONlZ0UOMMEOlslpI2l4L78INY21Ca5QMgcxTv
-        4A7CGkbYnOSp10KIwdm3iWoAM2iQCYMoNx3N5UpcrA==
-X-Google-Smtp-Source: AMsMyM6CM9EB4GkMIn4TVZFQa4ELD7L1wq9h2NlxoAuEHedbK/6RBB+xRP+Enb0V9DWuVMOhrwtG9OysjNLjhV6w1/4=
-X-Received: by 2002:a05:6402:d0b:b0:458:a244:4e99 with SMTP id
- eb11-20020a0564020d0b00b00458a2444e99mr55160795edb.46.1667903648874; Tue, 08
- Nov 2022 02:34:08 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F1eU2MNzr9lEfofB/L6YKz5jRjvrNUwGoC1RPrJsqIc=;
+        b=7vvK7ed689VS2huK+TDE4C9X4klNg0k/5ghQ82HL5jQuf04574ZVAmuHfc435iwrit
+         57pHqCWp0hrC16kCwkyXu7mxsgjMoxiFopzeCYi4kx8A/Ezj7CycforzO3axzsV5XctH
+         FcGGUf8iDtieVDqC3viqf8xqtwoOast1OuJm0s3n7AIrtMPu/Ggqq7DCpMIfThmZY2ZD
+         LQvG0eprdPuisXW6wVmSByRwkwFERpg30reov6KrVWWL+GrDrskWsIe/hxsr4KhE88OC
+         aPWxLfznMzjwgv0nvweJGd5cqwjLrTEzeEFBp17npdTuByPKhn2eXL+/A3W88eIm45yX
+         X+6Q==
+X-Gm-Message-State: ACrzQf3qG56JzdK1hUBaMkRwAfXCiTUT1XCuk8Oxc4DtnHGJAPhxnXpO
+        hjSuD6LBx1ItmLX6j3AVBbgoXg==
+X-Google-Smtp-Source: AMsMyM6S9IhbB/K0PCnZCtTSePbIeEuS4EFok4irDdkDhHZDjaoZyjyvFW3wOa0V66uhD+fgmiISkQ==
+X-Received: by 2002:ac2:569c:0:b0:4b1:966f:7a19 with SMTP id 28-20020ac2569c000000b004b1966f7a19mr8890286lfr.587.1667903819567;
+        Tue, 08 Nov 2022 02:36:59 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id l10-20020a056512110a00b00497b198987bsm1726912lfg.26.2022.11.08.02.36.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 02:36:59 -0800 (PST)
+Message-ID: <2ba09d50-229a-25d6-e437-c0b31429eaf0@linaro.org>
+Date:   Tue, 8 Nov 2022 11:36:57 +0100
 MIME-Version: 1.0
-References: <20221026034219.172880-1-chenweilong@huawei.com>
-In-Reply-To: <20221026034219.172880-1-chenweilong@huawei.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 11:33:57 +0100
-Message-ID: <CACRpkdbfZoBsKhH-fDHbuiBMz=LuWJ5kRfRT9JupycJQLFzJZw@mail.gmail.com>
-Subject: Re: [PATCH next 1/2] gpio: hisi: Add initial device tree support
-To:     Weilong Chen <chenweilong@huawei.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     f.fangjian@huawei.com, yangyicong@hisilicon.com, xuwei5@huawei.com,
-        robh+dt@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 3/6] dt-bindings: sound: Add sound card bindings for Tesla
+ FSD
+To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
+        'Rob Herring' <robh@kernel.org>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+ <CGME20221014104901epcas5p1a61ea81c3b1640bd8a064633c0b1e40d@epcas5p1.samsung.com>
+ <20221014102151.108539-4-p.rajanbabu@samsung.com>
+ <20221014151325.GA1940481-robh@kernel.org>
+ <04b901d8e529$573b17e0$05b147a0$@samsung.com>
+ <253fc459-c3dc-7710-6f34-0466d5301482@linaro.org>
+ <01c101d8f333$b3bc8db0$1b35a910$@samsung.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <01c101d8f333$b3bc8db0$1b35a910$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weilong,
+On 08/11/2022 06:33, Padmanabhan Rajanbabu wrote:
+>>>
+>>> The actual reason for having a custom sound card driver lies in the
+>>> fact that the Samsung i2s cpu dai requires configuration of some
+>>> Samsung specific properties like rfs, bfs, codec clock direction and
+>>> root clock source. We do not have flexibility of configuring the same
+>>> in simple card driver (sound/soc/generic/simple-card.c) or audio graph
+>>> card driver (sound/soc/generic/audio-graph-card.c). The binding has
+>>> been added to support the custom sound card driver.
+>>>
+>>> I understand from your query that the newly added card has device tree
+>>> nodes and properties which are used in simple card as well, but having
+>>> a different or new prefixes. I believe to address that, we can
+>>> restructure the string names to generic ones.
+>>
+>> You must use generic, existing properties where applicable.
+> 
+> Okay
+> 
+>>
+>>> But I would like to understand, to reuse the simple card or audio
+>>> graph card bindings, can we add secondary compatible strings in the
+>>> simple card dt-binding for the custom sound card to probe ?
+>>
+>> If you see other vendor compatibles there, then yes... But there aren't any,
+>> right?
+> 
+> Yes you are right, we don't see other vendor compatibles. But, am I allowed
+> to add such secondary compatibles so that we can extend the simple card
+> and its utilities to a large extent?
+> 
+> If no, then I believe we will need a separate binding to extend the generic
+> properties.
 
-thanks for your patch!
+If you have any custom properties, then yes. But you don't have.
 
-On Wed, Oct 26, 2022 at 5:34 AM Weilong Chen <chenweilong@huawei.com> wrote:
 
-> Add support for HiSilicon GPIO controller in embedded platform, which
-> boot from devicetree.
->
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+Best regards,
+Krzysztof
 
-I will provide OF comments, I let Andy and other ACPI experts say
-what is necessary for ACPI.
-
-(...)
-> +#include <linux/acpi.h>
-
-I don't know if this is necessary, check it.
-
->  #include <linux/gpio/driver.h>
->  #include <linux/module.h>
->  #include <linux/mod_devicetable.h>
-> +#include <linux/of.h>
-
-This is unnecessary for what you are trying to do. Drop it.
-
-> +#ifdef CONFIG_ACPI
->  static const struct acpi_device_id hisi_gpio_acpi_match[] = {
->         {"HISI0184", 0},
->         {}
->  };
->  MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
-> +#endif
-
-Don't know about this #ifdef, check if it is needed.
-
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id hisi_gpio_dts_match[] = {
-> +       { .compatible = "hisilicon,gpio-ascend910", },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
-> +#endif
-
-Drop the ifdef, it is not needed.
-
->  static void hisi_gpio_get_pdata(struct device *dev,
->                                 struct hisi_gpio *hisi_gpio)
-> @@ -310,7 +322,8 @@ static int hisi_gpio_probe(struct platform_device *pdev)
->  static struct platform_driver hisi_gpio_driver = {
->         .driver         = {
->                 .name   = HISI_GPIO_DRIVER_NAME,
-> -               .acpi_match_table = hisi_gpio_acpi_match,
-> +               .acpi_match_table = ACPI_PTR(hisi_gpio_acpi_match),
-> +               .of_match_table = of_match_ptr(hisi_gpio_dts_match),
-
-Drop of_match_ptr() just assign it.
-
-The reason it works is because we put struct of_device_id into the generic
-headers so we can avoid the ifdefing.
-
-Yours,
-Linus Walleij
