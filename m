@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2151A620D2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C05F6620D2F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:25:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233326AbiKHKYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 05:24:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
+        id S233214AbiKHKY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 05:24:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233103AbiKHKYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:24:36 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F911C133
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:24:35 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id y14so37325307ejd.9
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:24:35 -0800 (PST)
+        with ESMTP id S233883AbiKHKY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:24:58 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DA020F5E
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:24:56 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 21so21763993edv.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:24:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BTTHBNjBtTpYDRiI+nagl9P0lankquzjvOptk3WzP7A=;
-        b=o4IaTT6mhB9aAAypocUuyM2wEnWmwMci2CqOIhamCcZJft7dfV07Yi/lxD5tqDaSyd
-         L2aWt7W6dKFVwLMl0fk8yoK6DgH8pD7V5Zf5XWEVf72mnA8oxAvDjwoJoZ7GG0AvLKR6
-         E87H251kjTeHwZYlaHZ8+LeUlvEP4+cxss1jZZ68MvMsX8bZWHk4zc7O5usiF1WHi3xE
-         yj79OrOl0aAjhm2JJt62dC7OzxEqFLr9MnJGKcVx9Uu3CNJaShSn4u1A+vvB6t1V/Sue
-         ZbWEKlTDwTGsAxRQbqqrax+WkjN5H1Tt0Kn2iGd44eAnKt6oU7ieLXP4qyfSduLnbjI9
-         ixbg==
+        bh=3U9H2oDYo0jHZ5n7VD9WQgIXQHftQXj5Rvrab9Xb/3M=;
+        b=FoICTrB0HokDj9Jr/RWi2HeiYU3xlqoZr/QJxMZBhg5PgaXUia0hn4SzasJunwTCQi
+         a59ynF8QExOW/dv2VvDEGzEJ+4nEy2fmWW/CIKkF++Rvlh7B0mkvjIvBQ5UQ/+ZBVwLq
+         0en6zt2YjQxJqsexkTC9HaxD5t5dEhp9BBx4GBInvt0LzgIBuIMZUp0NhP4czatc80P5
+         ZnRfaPTyQkiWEBBkoVxs8b8umWvE1hkQpZzlqNQQzBa8n9YllreQs1gCq1gaEyXol0SY
+         4gI2NFkG/zwVc7S4pTrIk/eoPajcxNRH3YCJnxzdgBggAUUMmopZOn4+5qm3/I4g2i6p
+         0lpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=BTTHBNjBtTpYDRiI+nagl9P0lankquzjvOptk3WzP7A=;
-        b=Moc48HKHGzCoEf87Yt9f7h3sencSo4dGqmbTEJpj/RuV9v267LSCtIO8eoKtXEOMjx
-         9rTzqm6F5sp23r6YVKBVPrPK2gumhkiiwG0xnaPM5JAneG7KTzFSo7t2wrjNGPVgNGMG
-         RW3XHe0D8RL52faMnelqmPy76IMvXWrpzkKo8y3lL1tNdH/kxASMKUNkzAI0GT8m9UC7
-         n6XVTf/IqTKBFDjLPgF5Lu823ZcDIaR64n5hRaf5YCzhtrbOAJejLeqD8gXYb1PteTTo
-         rb5R28Rte6egD9LW6yrE31gq7bZZl/9Pe3PcocEjgab+4vXlbWg0/iXmL4+h6LjGFIuB
-         qLCQ==
-X-Gm-Message-State: ANoB5pkNx5BVs4xVnzi+KDRe6CkE1NMNvKpKnIGtlLlEdHkGuLWL37SF
-        2iL7sVAY8oG83K1iAj2zYpWw9F4/anVTKCGHtLbtvQ==
-X-Google-Smtp-Source: AA0mqf5MOcAk17Z/aFvf+7ny+bpNY81RyNBA5Z+fpcYISwJidn/J6X0PdTakonxMEwooWMgTwTgz96R8CVOZ3Cwd1/U=
-X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
- q12-20020a1709066acc00b007ae658cee45mr10466302ejs.190.1667903074024; Tue, 08
- Nov 2022 02:24:34 -0800 (PST)
+        bh=3U9H2oDYo0jHZ5n7VD9WQgIXQHftQXj5Rvrab9Xb/3M=;
+        b=yYkHWA/BkrFkOxS9b7njy0puFi7zoA9HCCGzmvimLTNyC7p0g/F1JfkePW450q8lI+
+         mNUASQK6S1a1gzqz5z6QAw3Hq9WuMbyYVBsLwwn5LawlG9xG+Z/O+PoOvqhyS63r41ob
+         NP7OPVcL6/DpBFXtUpSCz3/yLhmK6E5igNTOnU5L7lA85ovsQe0SCmIz6b9toB8RZYnP
+         ZYI6itI1zu2WjAnjHqDEOjyYm+KFe04lJ+ts/dl4NOmfL/HY58qplYEaWHypH1rhKdvU
+         EJQwZ+e5NOM1syIG6CfBGyu9sFWAFcWMk149UzKn8T8YaQwVC7l6g5oK31kw5tygQzJ2
+         WDMw==
+X-Gm-Message-State: ACrzQf2R/q4vOa9INkpa3ta3bppfNr/XM8FxDT0wzx1mdwcb8XC8aD6S
+        0dlSTgDRPwMYYplIIvwQT/9ULkux0TptE1IoemLMNQ==
+X-Google-Smtp-Source: AMsMyM4+kmlt812NqsehPqTcJthwr/1SzuUus2LC5jb9udkKVf+AcR8z9rgNjpkcnZ+q75/1Cp00Q60NPGoskvtIQ5Q=
+X-Received: by 2002:aa7:d6d1:0:b0:463:ba50:e574 with SMTP id
+ x17-20020aa7d6d1000000b00463ba50e574mr37142535edr.158.1667903094898; Tue, 08
+ Nov 2022 02:24:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20221027130859.1444412-1-shenwei.wang@nxp.com> <20221027130859.1444412-2-shenwei.wang@nxp.com>
-In-Reply-To: <20221027130859.1444412-2-shenwei.wang@nxp.com>
+References: <20221027130859.1444412-1-shenwei.wang@nxp.com> <20221027130859.1444412-3-shenwei.wang@nxp.com>
+In-Reply-To: <20221027130859.1444412-3-shenwei.wang@nxp.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 8 Nov 2022 11:24:23 +0100
-Message-ID: <CACRpkdbrnxmHv-rn7fiuMkH=asK2D82fdiUUgdqk70Hs9V4b9g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/5] arm64: dts: imx8dxl-ss-lsio: add gpio-ranges property
+Date:   Tue, 8 Nov 2022 11:24:43 +0100
+Message-ID: <CACRpkdY5Eu6gb+nsw6Teg21C7PVUUKB8vpvPE_0y_qmqyK6_CQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] arm64: dts: imx8qm-ss-lsio: add gpio-ranges property
 To:     Shenwei Wang <shenwei.wang@nxp.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -69,7 +69,8 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,7 +79,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Oct 27, 2022 at 3:09 PM Shenwei Wang <shenwei.wang@nxp.com> wrote:
 
-> add gpio-ranges property for imx8dxl soc.
+> add gpio-ranges property for imx8qm soc.
 >
 > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
 > Reviewed-by: Peng Fan <peng.fan@nxp.com>
