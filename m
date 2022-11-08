@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5433362183E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D3B621873
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:38:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233817AbiKHP27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 10:28:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52144 "EHLO
+        id S233972AbiKHPiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 10:38:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233696AbiKHP26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:28:58 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E999617A;
-        Tue,  8 Nov 2022 07:28:56 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D8AE184F72;
-        Tue,  8 Nov 2022 16:28:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667921334;
-        bh=ynxbc+MKCLeWwRbrLNxyC55qaclB4jtg/aYQ5o2Qus0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Vj5vX/8z6GAYG4Gbp9pE6bV2u66FuorO5FcT4mzj/Y+t6tVekBYjMjMlEpnypjGi0
-         hQTkJCcz+q6IWhDARns9vzfBSrZCsbrvyzPzyjC1gNKvms3/yaVldzCFhCptVlCWOD
-         Fa/1M//h1HT6/pFzgEZRynlSV8EiDnH67mXd0j7NYyO/SYyGvG34wSLHeNzwnlaJPm
-         3KssiGAfo3W2XeL4dMV93PMD50h6wEwzIzlDzR2jk33Sbmz4QnRrV1E3GlHzxPJhfy
-         qdQCJV/8GbCRjZcheSTR74okbWjEv6dKZPD/2F+yLOf8KGKZVt0fnsOaCSGANPX86f
-         cjgcqZmRJa4lA==
-Message-ID: <230c26ea-f7c5-2688-16fd-e4a91f421833@denx.de>
-Date:   Tue, 8 Nov 2022 16:28:52 +0100
+        with ESMTP id S233737AbiKHPiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:38:04 -0500
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8644258038;
+        Tue,  8 Nov 2022 07:38:03 -0800 (PST)
+Received: by mail-qt1-f169.google.com with SMTP id z6so8855712qtv.5;
+        Tue, 08 Nov 2022 07:38:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e1z+a2J7Rl+GyLpkq46imOOD0yWvTx4mqso+OFzooPY=;
+        b=1mTqDMnmb96dDTpkIodXOu9X+Pk/grKsN+VzQGiVkhUZZOQPiwXhPK3S3KXq3Ic30U
+         LXE3RYSRFbVmIqTl1Lt40mlEyarZQlrsmAa65mrodaNyokg1ZixBLlzX0RTYq/yhzBY0
+         sqG5zuNlXhqtJibhxno0Plhn7tgpCr3iFLTQb7z/6CUbxers2WkcU3Sz7bm4KfGa9NFJ
+         Ah0XSVtE9TisTQJB0rpvhQUieAABfyfdM/QNm7FiIgLQg97te7+Da+aSX/yz9MgTmEbP
+         GdSGISp2TMCRrhwchQXRirupVs5ZP/h73N/YdwP3J6faz51eMH62AQikJgwn1R1ObxI4
+         z7Yg==
+X-Gm-Message-State: ACrzQf0zl7VJfFaHCsS98gC+b+dXNqkkRCChn75FOm266S0ZtxZ0IYSl
+        gBDgZxQsWrk65DDwMG9vmAMhr8clEkzz+9HS
+X-Google-Smtp-Source: AMsMyM4uyTbfjxwhaBma4SAODuQ7cjGmK32pMHXXk5PPI5AHfj9hLyZh1O0xdOfjkWfA777ojCh2zg==
+X-Received: by 2002:ac8:6a18:0:b0:3a5:49fb:2365 with SMTP id t24-20020ac86a18000000b003a549fb2365mr25772988qtr.587.1667921882522;
+        Tue, 08 Nov 2022 07:38:02 -0800 (PST)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id f1-20020a05620a408100b006fa4a81e895sm9498087qko.67.2022.11.08.07.38.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 07:38:01 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-36a4b86a0abso137141317b3.7;
+        Tue, 08 Nov 2022 07:38:01 -0800 (PST)
+X-Received: by 2002:a81:12c8:0:b0:36a:bd6b:92fb with SMTP id
+ 191-20020a8112c8000000b0036abd6b92fbmr51884942yws.316.1667921881301; Tue, 08
+ Nov 2022 07:38:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Erwan LE RAY <erwan.leray@foss.st.com>
-Cc:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221028165921.94487-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221028165921.94487-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Nov 2022 16:37:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVFnCDz2FaH6hCxADBgrzkcCC8ASh2qDXbkcJq4=B1UUQ@mail.gmail.com>
+Message-ID: <CAMuHMdVFnCDz2FaH6hCxADBgrzkcCC8ASh2qDXbkcJq4=B1UUQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] riscv: Kconfig.socs: Add ARCH_RENESAS kconfig option
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Amelie DELAUNAY <amelie.delaunay@st.com>
-References: <20220203171114.10888-1-erwan.leray@foss.st.com>
- <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
- <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
- <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
- <20221108115916.hlmbvyrnmkxymeed@pengutronix.de>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20221108115916.hlmbvyrnmkxymeed@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/8/22 12:59, Uwe Kleine-König wrote:
-> On Fri, Feb 04, 2022 at 04:41:55PM +0100, Erwan LE RAY wrote:
->> On 2/4/22 2:22 PM, Alexandre TORGUE wrote:
->>> Hi Ahmad
->>>
->>> On 2/3/22 18:25, Ahmad Fatoum wrote:
->>>> Hello Erwan,
->>>>
->>>> On 03.02.22 18:10, Erwan Le Ray wrote:
->>>>> Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
->>>>> remove it at board level to keep current PIO behavior when needed.
->>>>> For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
->>>>> (no HW flow control pin available) are kept in PIO mode, while USART3
->>>>> is now configured in DMA mode.
->>>>> UART4 (console UART) has to be kept in irq mode, as DMA support for
->>>>> console has been removed from the driver by commit e359b4411c28
->>>>> ("serial: stm32: fix threaded interrupt handling").
->>>>
->>>> Do I understand correctly that your first patch breaks consoles of
->>>> most/all boards, because they will briefly use DMA, which is refused
->>>> by the stm32-usart driver and then you add a patch for each board
->>>> to fix that breakage?
->>>
->>> We have two solutions and both have pro/drawbacks. The first one (Erwan
->>> ones, can break the boot if the patch is taken "alone". Your proposition
->>> avoids this breakage but deletes a non define property (which is a bit
->>> weird). However I prefer to keep a functional behavior, and keep Ahmad
->>> proposition. Ahmad, just one question, dt-bindings check doesn't
->>> complain about it ?
->>>
->>> Cheers
->>> Alex
->>>
->>>>
->>>> Such intermittent breakage makes bisection a hassle. /delete-property/
->>>> is a no-op when the property doesn't exist, so you could move the first
->>>> patch to the very end to avoid intermittent breakage.
->>>>
->>>> I also think that the driver's behavior is a bit harsh. I think it would
->>>> be better for the UART driver to print a warning and fall back to
->>>> PIO for console instead of outright refusing and rendering the system
->>>> silent. That's not mutually exclusive with your patch series here,
->>>> of course.
->>>>
->>>> Cheers,
->>>> Ahmad
->>>>
->>
->> The driver implementation will consider the request to probe the UART
->> console in DMA mode as an error (-ENODEV), and will fallback this UART probe
->> in irq mode.
-> 
->> Whatever the patch ordering, the boot will never be broken. The board dt
->> patches aim to get a "proper" implementation, but from functional
->> perspective the driver will manage a request to probe an UART console in DMA
->> mode as an error and fall it back in irq mode.
-> 
-> I didn't debug this further yet, but my machine (with an out-of-tree
-> dts) fails to boot 6.1-rc4 without removing the dma properties from the
-> console UART. This is a bug isn't it? The same dts created a working
-> setup with stm32mp157.dtsi from 5.15 + kernel 5.15.
-> 
-> I can debug this further, but maybe you know off-hand what the problem
-> is?
+On Fri, Oct 28, 2022 at 6:59 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add ARCH_RENESAS config option to allow selecting the Renesas RISC-V SoCs.
+> We currently have the newly added RZ/Five (R9A07G043) RISC-V based SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> v4 -> v5
+> * Sorted as per SoC name
+> * Included RB tag from Conor
 
-+CC Amelie, as this might be related to the DMA series that landed recently:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-$ git log --oneline v5.18..v6.0 -- drivers/dma/stm32*
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
