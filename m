@@ -2,133 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CB40621640
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56AA4621666
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 15:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233876AbiKHOZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 09:25:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
+        id S234091AbiKHO1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 09:27:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234049AbiKHOZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:25:25 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4EC70553
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:24:04 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id c1so19805605lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:24:03 -0800 (PST)
+        with ESMTP id S233826AbiKHO0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 09:26:45 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD43511A30
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 06:25:31 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id g62so13929940pfb.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 06:25:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dnA9bYpkTooTYFD8QmC/+zf1bx2KSFMylSXBFYcLmDE=;
-        b=w+jxQcrXMmL3YJK2Yqlz9qJJAFSmW9RV0w4RDT8uZYaWLnavtdA9o9cOAPvlAz3Nzm
-         ROxchebgsEtjz33rq0UOvaZYn10Q8fRNW79DAWcpzLxvTUUdyM8RBB38SjnOwU0XEvnn
-         4ez2AXTkfjZ2vnqovvqVfhPEwo8ePxqlV1+uPkURDejBDWjm9oqRZ+TMOASEm21GChGg
-         EsJiOX9BvEb2CXqKbHpnV+PyNbhk2vhJG0f5ji3er96WIi5x7bhKxeLhd8Q71HvCRLTF
-         tUZD7iJv1GIK5jXoKjXoMcK/aFdMZI3cGp4CLw57hOQ35WvKAJ3MoZlOo31jKOgwyWXO
-         hsDw==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
+        b=dj7L8L4Tt3T52fNCiLgU1wmk4q3GKw+FgtxNNdpNZejQJQ1k3Xi+uLyqI46mZtlAe9
+         HLOA9P1jXmiTZuSDq5pdxRxdF0a/HoEZnGcKQ3YQ37POKm1J5RjeTmEaXOGvNGsQ/aCd
+         x8X3wRq447BygztmxjMMFJOJydFOJUOGXobl/qzDVFAJS2xNGHdVGGQVxwZyaR/NBt0/
+         bE+cdHmQ/pyeyXGzJcY+3ABqxwuM8e+fvQz2jyAv1cJHWTFyjffI5j3/3Sk+yOdlf96H
+         6ymXuWHpJpL3yt30UdlgfE5yAEKuZaLtj9+SPJvm7HvWfCahTeKPqye7UyLe1WT7erj+
+         Thwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dnA9bYpkTooTYFD8QmC/+zf1bx2KSFMylSXBFYcLmDE=;
-        b=CFf3IWokS4Og2H/eKaUw+YsQWzLt2wO0Ahi0ssnvKXnMf6wDxRH9MB8QIKWgJkzPuI
-         dQTtFjohN/zlLgRvWjjhOqyTsWxsNHOaU0kumx1dlQihqTtcgHWgqi1/bp0ajtwoxL6D
-         aFUGbStrtR1HhG0jDoadfPEPR1Oozg2hQiIEvvigQy1XIsHEBJ+QRRImAeinzp3sdFJA
-         HR3PEFoZEUFbmbcKjnYOar9icrCC9/AcZKXUfy5+RE2KDxn2monNH28EVhmNFDTl8r9i
-         yt99iywXFYk+YpCXfDz0pL0kXK7WfbOiQUVPVwv0JQnM3CCGWZFYz1ynXJaKRivx1dFK
-         Ynuw==
-X-Gm-Message-State: ACrzQf3reUSu1jk+KdMmuZLTJzUOyx6HT7NkjEkix2+RP9o0ls96Iv1E
-        fTvLYpefEuCM3yAfQLYETtk2yw==
-X-Google-Smtp-Source: AMsMyM6GqXVfTcMkI6O8ZqfO3omLsoJJHDwa+uiCfDjpOJFpULP4ho/TRINlM+RIDv9MIuruVlxMGw==
-X-Received: by 2002:ac2:447c:0:b0:4a2:4fc6:4cbb with SMTP id y28-20020ac2447c000000b004a24fc64cbbmr18747443lfl.99.1667917442449;
-        Tue, 08 Nov 2022 06:24:02 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id k7-20020ac24f07000000b004a65780e4cfsm1815117lfr.106.2022.11.08.06.24.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 06:24:01 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: ipq8074: align TLMM pin configuration with DT schema
-Date:   Tue,  8 Nov 2022 15:23:57 +0100
-Message-Id: <20221108142357.67202-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
-References: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
+        b=0du/8yB0QEIKPKxtz5woZu2PMEHP483eRC1dwhmH6t6z2SkYdMuuey1dUFQK5rjbeZ
+         UGxCeRDjrV4n0NsndeREQJKzbB5uXn2u3bcU+qFZ7auDxw3mQO7irAX/i11C91IKPpZL
+         sEGqNm844a+ChHm96K35LqLaJzO9DAAK6eRyeAAdjGdQr4jV28rdAiWVdJu+6N/L1sf3
+         FZD7bUBKT8g6YB+TN48gAjScNf9XVi0XdKDo+4BRZFN7Mn6dJhJPb3LI3ukGBwpkmnsO
+         JscEk/H68qFUN8Fgx6XypZb7LfIrvx6E8iA4N7yFU+jmPpehgJtedNSGzAzSxC7G3Vr1
+         qjSQ==
+X-Gm-Message-State: ACrzQf3RpwP63rCpsYh1YY6OMwX7YJah013RM1hpg/+fl7TqcEcisIZQ
+        wDkwifzrPkPUx1em8YMWjwLiBb5gTTZvw2+CzGw=
+X-Google-Smtp-Source: AMsMyM5/o8Tv1jtvv5i5ish68BM3WfS9X9eqWOTVG2elMlgZjohDVk/23K/5zEIB58o7eHSGPzDyTC5sLFDQxOS4ibc=
+X-Received: by 2002:a63:2c8b:0:b0:41c:5f9e:a1d6 with SMTP id
+ s133-20020a632c8b000000b0041c5f9ea1d6mr47624667pgs.601.1667917531062; Tue, 08
+ Nov 2022 06:25:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7300:5388:b0:85:81c6:896c with HTTP; Tue, 8 Nov 2022
+ 06:25:29 -0800 (PST)
+Reply-To: mr.abraham022@gmail.com
+From:   "Mr.Abraham" <davidkekeli11@gmail.com>
+Date:   Tue, 8 Nov 2022 14:25:29 +0000
+Message-ID: <CAPBO+FLUDBD86dHQM6-TOwtKbf996Qz13VQWrvY27T9ETbCTEA@mail.gmail.com>
+Subject: Greeting
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:430 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.4869]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [mr.abraham022[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [davidkekeli11[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [davidkekeli11[at]gmail.com]
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects TLMM pin configuration nodes to be named with
-'-state' suffix and their optional children with '-pins' suffix.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index d3d9e7eb5837..363ccc272cf1 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -317,35 +317,35 @@ tlmm: pinctrl@1000000 {
- 			interrupt-controller;
- 			#interrupt-cells = <0x2>;
- 
--			serial_4_pins: serial4-pinmux {
-+			serial_4_pins: serial4-state {
- 				pins = "gpio23", "gpio24";
- 				function = "blsp4_uart1";
- 				drive-strength = <8>;
- 				bias-disable;
- 			};
- 
--			i2c_0_pins: i2c-0-pinmux {
-+			i2c_0_pins: i2c-0-state {
- 				pins = "gpio42", "gpio43";
- 				function = "blsp1_i2c";
- 				drive-strength = <8>;
- 				bias-disable;
- 			};
- 
--			spi_0_pins: spi-0-pins {
-+			spi_0_pins: spi-0-state {
- 				pins = "gpio38", "gpio39", "gpio40", "gpio41";
- 				function = "blsp0_spi";
- 				drive-strength = <8>;
- 				bias-disable;
- 			};
- 
--			hsuart_pins: hsuart-pins {
-+			hsuart_pins: hsuart-state {
- 				pins = "gpio46", "gpio47", "gpio48", "gpio49";
- 				function = "blsp2_uart";
- 				drive-strength = <8>;
- 				bias-disable;
- 			};
- 
--			qpic_pins: qpic-pins {
-+			qpic_pins: qpic-state {
- 				pins = "gpio1", "gpio3", "gpio4",
- 				       "gpio5", "gpio6", "gpio7",
- 				       "gpio8", "gpio10", "gpio11",
--- 
-2.34.1
-
+My Greeting, Did you receive the letter i sent to you. Please answer me.
+Regard, Mr.Abraham
