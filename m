@@ -2,187 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD64620696
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 03:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7C46206AB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 03:19:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233607AbiKHCST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 21:18:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
+        id S233546AbiKHCT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 21:19:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233614AbiKHCRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 21:17:51 -0500
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70053.outbound.protection.outlook.com [40.107.7.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4C12C659;
-        Mon,  7 Nov 2022 18:17:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=at6kMLXS/lFlP9XaY66HOXk1xDsgVkRqu65zpxxD6FQmzHJNg04Aqe7JNtbpjV/c9owU/jxNk4mfaDSr11atDMIiPZqXD9sNbyIZNDJbGCegyP9fgIopJ89wh5eECkm3iS9/h0ChGQTZq3Rcir/+5DmCEZrzjBvXq5gOSg703qX4KLY0cIpav1qiqrkXE9Ol9vHZF0GX6RUmpouY1R0XXcpnbiv5bl7YEvkJ/UHKJ7qIWuiwcqz81UpFexCdmOAA3bceEQYs23BvcAqtouCH7KINJj3BjzXnr5cRCXhGTPsmRk/l9PlV/1wY2zxHinv1XGj7INO7ZZMSRaxxXW6ESg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rMOqevrOfn6aOSvH8+ncOwTcoL5CLsJ0bqXH6/P4n0I=;
- b=ByNHemi815SnjYB8cQhTf0nZqDIQqQhf7HkF0mOJ7ekULqqAoAOVRskFQUczu8NESkdQp+b+qRqa+/7vCAW97YwL4rsTDjMWZc/mKvSvheBpCTPmKeeiNPOoCmForEUp0zDY2EN4kBAju4do1CcA/vavhWwD2qK7qhowtbC44dAwTAKb4FCByhHIjaFDMX/N0f2e12pNmULjZjlnHsKHuetb40ZTDHjIb70Za1WQIUBKSu4ieR9FyP3I/vk6CdZfv3WLRHKRiXuYfcwvP4vY0rNAxBDFQHO8DAl+vJgaXvdJTQNJZyTrG5kgP8G5GA5h8zjTgPumwxLJI8LoVujIqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rMOqevrOfn6aOSvH8+ncOwTcoL5CLsJ0bqXH6/P4n0I=;
- b=ccuWeX3Cv7iWuGVvjPd4D6c3sHe3W8pcGQirmV6p76ohnW4Q3DfNSB7PhzrLxfYpoBILLVlANyOO05Ne7mBipiu1UEwk/a42EOgzhBPRfO5kw/fcgfaN4f0hbMW+GI3Lji6t6o4cflwZucCgftM8KgX2r7k/j7bTuEDQB2mF5rs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS4PR04MB9243.eurprd04.prod.outlook.com (2603:10a6:20b:4e2::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Tue, 8 Nov
- 2022 02:17:47 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::36a4:e1fc:67a2:c701]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::36a4:e1fc:67a2:c701%9]) with mapi id 15.20.5791.027; Tue, 8 Nov 2022
- 02:17:47 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V3 09/14] arm64: dts: imx8mn-evk: add i2c gpio recovery settings
-Date:   Tue,  8 Nov 2022 10:18:15 +0800
-Message-Id: <20221108021820.1854971-10-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221108021820.1854971-1-peng.fan@oss.nxp.com>
-References: <20221108021820.1854971-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0012.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::8) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S233616AbiKHCTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 21:19:03 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3DF27B39
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 18:18:35 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id v7so7960422wmn.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 18:18:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6gJOeL3OzXTVRmzSvErkhUVE7t+al9Oo/WcNfNQzWbU=;
+        b=zb8rBc02OAPUAE9AMXw89ol0/SsTpKSh9DlHiMa7s9ZYCVQ0LnUYyr0NkCkeHqygrS
+         PHsCYxmAOhn6MJPXfErBL4wRxk/BNVrrZS8ZEj6YlCiqCmQGv+6sNHqsNH5FRZRhPOS0
+         3aX+1jODKTDlpjNg9ejwXdLIJDcBgG3KI0RSn1bbCmWZ6fPINZ7OiRaSQjgUBAn7h65I
+         GKu7nzy9WJWVFFltqzLp9IumvKfH4SxRacjMGWApGeVj3Odu+5v0+2Zm3zLiPcYqsMnt
+         D4juqky3MdoWBuMf9FoJlfHsVGc3VSx7vwRRNRS6MOH3NTkViN60t+ZD3QjfDmk/8zxj
+         7xzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6gJOeL3OzXTVRmzSvErkhUVE7t+al9Oo/WcNfNQzWbU=;
+        b=Ni8bO3BMqEapnuOW8tM3BKCfUX4QjMXsdf9I/flPPVSaKRYfYVnC6615malzn6L/hT
+         ZTOI9fxRiy0qQYsXKIz1Wf1PHsUPs2lyPFEPUs7AIjEMsOjZZ8H+IzhdrcBxvtfby3U6
+         UBaLYVJo84DQaEVQz/FDLRgcSa301FJimSvu4pIsFWCcrKA8fwe7gHSCMujLSdUSpawr
+         gC8xrVdk49BNC+nSMIO94kbtWWpQWOuGOzu8HcJAlURJW3Pp0iTlkTJ5Y9IB3IavnCGr
+         yIlC2tlH9YHvvLmVjnjZ14+/4dtzmkdlQSfkgnP9tjOOe1ObQ43/FUnKSDQa7HpzK1KB
+         MLLg==
+X-Gm-Message-State: ACrzQf3ddVbDwEQfYSfDBIkqMYF58XC+57QN41YXfecrBgm6AAn3roF7
+        0O6s4IKgSKLHMhqPNcSJAVK4uA==
+X-Google-Smtp-Source: AMsMyM7ruirY+T9CwzKht2hNCTf/aBD7l7pP8QrY9sMOA7plJh7A4FmBaKmvODYLo4+QUlypEpXEOg==
+X-Received: by 2002:a05:600c:2d85:b0:3cf:9cd9:a88b with SMTP id i5-20020a05600c2d8500b003cf9cd9a88bmr11815787wmg.92.1667873913706;
+        Mon, 07 Nov 2022 18:18:33 -0800 (PST)
+Received: from planet9.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id d6-20020adfe2c6000000b0022cc6b8df5esm8890354wrj.7.2022.11.07.18.18.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 18:18:33 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 2/3] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Add vision mezzanine
+Date:   Tue,  8 Nov 2022 02:18:15 +0000
+Message-Id: <20221108021816.213084-3-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221108021816.213084-1-bryan.odonoghue@linaro.org>
+References: <20221108021816.213084-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS4PR04MB9243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ab91cbf-03e9-47c7-5584-08dac12f6d84
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8jcoJymN7Q2QWBpzELMMBsMaUWjzPiaczuYJmn/HXrXZsBnQkNkTmWPGap2hVDL1Q10fwMmajT2FbIV097E1WQNX8Cp7Debr48ekfivr+dEFTLR3q14eGwy9ih7Q6BdNWN4IYJyMqSiSdrN6c/FbnxIKlyttxBZ87mU7ONQHaPHJTXdDAGJDZX0R5rl4/yQ0CC+UMxqQxK3X7hlqy+sbSv0EXiE0poc2x4ziR4EbEUMPeSfdkjsxTsl00kHgLneYTuax26i2RUfx4EfCkNjuqopm1/9M46froFRztM6JwHSJq8lST9qTeAR3G6Io4OlsSElQDd1DZb8tyR/BWHydpDUogemJszRdUR4oJQ3VZdTFtPksT1sTSOIE2RIRWYBuH/1cL/JXNomo7oWKtGsme2L6FJm993bSgn+6EwbH0AelstyCb2AWkhYKxg7Lt3GbVIOqmjFKBY28Uid6OWqoWN0obMwyMd3IzqwyviX1i2gKVcs+r9WzMgZj6y0S/4BDPZYhPq2cvW+xEpKii4nmsKli6WCuJfdtU1StYAJp1Rs+WjnAbk1S8D9PSQKb8SiynD6k+/8RKW2aD9QlR42cHvix5h3ulkibruSC9XH8uMMNEXrjj54FdXW5edjEfBcRiPBqJq8jqT52KQ4F2cUsr+S+9f1F35tlEcrODZDHee26agHZLRroNFm9svAkZZqT64DzVAMDt+yHSpNIGYCp6KE28N/4n4oS4drJlh0f5qv3m5zcrwRScQdlX1ekiD0179oxEJTly1dqPTclSWmcbYhzbys28qRtTw9uO7Wn2nc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(346002)(366004)(39860400002)(376002)(451199015)(6506007)(38100700002)(478600001)(66556008)(4326008)(66946007)(8676002)(316002)(41300700001)(8936002)(1076003)(5660300002)(6486002)(2906002)(86362001)(6512007)(83380400001)(2616005)(52116002)(38350700002)(66476007)(6666004)(26005)(186003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RP8JWa1/SqPvIeQiXNbPk1yHQIlHENCYuYNREHFpQs0Fdk8QMWMABk/qwbLp?=
- =?us-ascii?Q?zNeeLYrwn5VBtL2qUmZ+DwxkWIk3YT7pd+CXbcRul7ukbny+mmaM8wvVKmCX?=
- =?us-ascii?Q?bJnBS/5QgzQujdxFqAwcDqgrbwW3RHxMiospy1fLnsdnwjQOaTOis0NH2NzU?=
- =?us-ascii?Q?RIn8lhDbNcdubf3pMHVCc4e6Z7lV4b0JVHrCu2eJUqlL/7oUgCXph2I8oNgV?=
- =?us-ascii?Q?4lGID42qrLHTSqq11KG6rvGeTutkwpo1diKU0CibYjePzT08XpN3ZrPVocoA?=
- =?us-ascii?Q?GAaHLYQZuTjbShvbtKf+a46XreF2OkzV5km8x0GRdBQzIM3FOAVQHmisipem?=
- =?us-ascii?Q?yDtp2DJRiey9B5rPqy3fzYTdFroyKInzHCtjZDtUL77f0j5ZbYzySdn94fkX?=
- =?us-ascii?Q?o6tiVTx57q5tp+naNFlKL17mKT4sdWlLrzYOPbXCEDryjse3bH4VeFNSLGYc?=
- =?us-ascii?Q?eqUMEia4cjmS3Dnm0bGhchlXJBC80CLh26coikv8g6dLYc/6+n86CR9w5sOq?=
- =?us-ascii?Q?efKfUTVuAPRmHZ7+b2+3r6MIVgcRMj5eqPiZIdj3i8RIdUe9VedcmuHcs+mF?=
- =?us-ascii?Q?zn+E86Hc70c0aM55iDRH0k4OVQ7F+koih5lncSSjmksDE+zaRdvt9M3Ex8Gz?=
- =?us-ascii?Q?GigM2U7CZmUp/Qk0ugOt8NQFDSUnYVa0nZlWGzCpliJZdlbuYeysb0rTWLEf?=
- =?us-ascii?Q?apJD8bCUiXTQMVzRZv3ozxDNmyUphdF9RwuQYGFMsSLEjBUWnZSesXZUJA5C?=
- =?us-ascii?Q?lvzBhYpL41n6CBsuOkg5WH6f5VsPSuEhVcmiJQuZdvZBR7UG9FzbCz+w9Ynq?=
- =?us-ascii?Q?jEHOIn/FnzdBTA18iFf/v9UGSBmmJ6Le1IWTf1MYVGoj9Z9SkBpjOPmMrV9B?=
- =?us-ascii?Q?STTh+/iqtYbbOnsoXmA7oU8sGDDmur9/9HSFN/3uAD+sR0Lfrj3ryuYqtGXa?=
- =?us-ascii?Q?9koPu2Ubq5YvL5//9JUKCop/NsEW7rVhHfI9T0CWsNZ7ATxZXpUpCv03gObS?=
- =?us-ascii?Q?61gL7blx4hlirdwd9qR/tSRAds4nljpgR3lDxPu4m11C67zAqiEn/Ri58T/A?=
- =?us-ascii?Q?UwgigGMZIdMb0o6D4FUngYLWP0DH7ENXFX8GO/5qgrSSiJmR+DXcWJYgbHdY?=
- =?us-ascii?Q?47P6Urb+A56dcq8I3ZozFzV+K//PapZP8yfzZGInj4P+rlolw7nAzV+CakkM?=
- =?us-ascii?Q?2lGQvvqTtxrCzIyVKk3VAs15GIRiTMNvRX57c51sQdUjZ80rOrPzk8Yz0dsK?=
- =?us-ascii?Q?elWTuYbCJlyZfqUUoDHNhOwP2dh0zel79JXggwMCNFGJpaxS8KNWeJkAXXWx?=
- =?us-ascii?Q?/bLIET0ZT+ceXhGR9tL9TWwIpX0I14keclNyAFUUinY2j4WvdSeGp6qRuXCi?=
- =?us-ascii?Q?Uv/xCrXwbwlzGYl4hgP24jD5OeoO5lTF0h6B75fmxxaGQw8VxVgXHYxRPbC7?=
- =?us-ascii?Q?RS7HTxqd3Nki0X8wmgkkb4n19vfxoiH3g5jhdMsId9/bqnUkaqbipb0PTDMj?=
- =?us-ascii?Q?JRxZ9Uc4PlgpPmq0mAWZNltvPr+GHjdLz+574TwNUuYRufJN4iEV0hpuUPj4?=
- =?us-ascii?Q?FDX2X36xnPZ1imLglSD0XjsEE6RHT34X//exz9JH?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ab91cbf-03e9-47c7-5584-08dac12f6d84
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2022 02:17:47.4015
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XelZNPpZDp8e8kFoYFr7W35I3ll5Kgz/YMeDWhve2LGodFeIlgqtxe7fgsJ6e5y3gQKL4+5LWxGm5Dc31xZ6Gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9243
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+The Vision Mezzanine for the RB5 ships with an imx517 and ov9282 populated.
+Other sensors and components may be added or stacked with additional
+mezzanines.
 
-Add I2C gpio recovery iomuxc settings
+Enable both the IMX577
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+An example media-ctl pipeline for the imx577 is:
+
+media-ctl --reset
+media-ctl -v -d /dev/media0 -V '"imx577 '22-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+media-ctl -V '"msm_csiphy2":0[fmt:SRGGB10/4056x3040]'
+media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
+media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+
+yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/Makefile             |  1 +
+ .../dts/qcom/qrb5165-rb5-vision-mezzanine.dts | 64 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 33 ++++++++++
+ 3 files changed, 98 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-index 2b4395854283..1971f095e4c2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-@@ -160,8 +160,11 @@ &i2c1 {
- 
- &i2c2 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio5 16 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- 
- 	ptn5110: tcpc@50 {
-@@ -196,8 +199,11 @@ typec1_con: connector {
- 
- &i2c3 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio5 18 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&gpio5 19 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- 
- 	pca6416: gpio@20 {
-@@ -370,6 +376,13 @@ MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
- 		>;
- 	};
- 
-+	pinctrl_i2c2_gpio: i2c2grp-gpio {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C2_SCL_GPIO5_IO16	0x1c3
-+			MX8MN_IOMUXC_I2C2_SDA_GPIO5_IO17	0x1c3
-+		>;
-+	};
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index b0558d3389e5..78f6e78d8ed4 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -52,6 +52,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5-vision-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+new file mode 100644
+index 000000000000..307b09094e7f
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+@@ -0,0 +1,64 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2022, Linaro Ltd.
++ */
 +
- 	pinctrl_i2c3: i2c3grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
-@@ -377,6 +390,13 @@ MX8MN_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
- 		>;
- 	};
- 
-+	pinctrl_i2c3_gpio: i2c3grp-gpio {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C3_SCL_GPIO5_IO18	0x1c3
-+			MX8MN_IOMUXC_I2C3_SDA_GPIO5_IO19	0x1c3
-+		>;
-+	};
++/dts-v1/;
 +
- 	pinctrl_pmic: pmicirqgrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x141
++#include "qrb5165-rb5.dts"
++
++&camss {
++	status = "okay";
++	vdda-phy-supply = <&vreg_l5a_0p88>;
++	vdda-pll-supply = <&vreg_l9a_1p2>;
++
++	ports {
++		/* The port index denotes CSIPHY id i.e. csiphy2 */
++		port@2 {
++			reg = <2>;
++			csiphy2_ep: endpoint {
++				clock-lanes = <7>;
++				data-lanes = <0 1 2 3>;
++				remote-endpoint = <&imx577_ep>;
++			};
++
++		};
++	};
++};
++
++&camcc {
++	status = "okay";
++};
++
++&cci1 {
++	status = "okay";
++};
++
++&cci1_i2c0 {
++	camera@1a {
++		compatible = "sony,imx577";
++		reg = <0x1a>;
++
++		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
++		pinctrl-names = "default", "suspend";
++		pinctrl-0 = <&cam2_default>;
++		pinctrl-1 = <&cam2_suspend>;
++
++		clocks = <&camcc CAM_CC_MCLK2_CLK>;
++		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
++		assigned-clock-rates = <24000000>;
++
++		dovdd-supply  = <&vreg_l7f_1p8>;
++		avdd-supply = <&vdc_5v>;
++		dvdd-supply = <&vdc_5v>;
++
++		port {
++			imx577_ep: endpoint {
++				clock-lanes = <1>;
++				link-frequencies = /bits/ 64 <600000000>;
++				data-lanes = <1 2 3 4>;
++				remote-endpoint = <&csiphy2_ep>;
++			};
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 8ef0a9fe67dd..7199a86d2cbe 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3801,6 +3801,39 @@ tlmm: pinctrl@f100000 {
+ 			gpio-ranges = <&tlmm 0 0 181>;
+ 			wakeup-parent = <&pdc>;
+ 
++			cam2_default: cam2-default {
++				rst {
++					pins = "gpio78";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-disable;
++				};
++
++				mclk {
++					pins = "gpio96";
++					function = "cam_mclk";
++					drive-strength = <16>;
++					bias-disable;
++				};
++			};
++
++			cam2_suspend: cam2-suspend {
++				rst {
++					pins = "gpio78";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-pull-down;
++					output-low;
++				};
++
++				mclk {
++					pins = "gpio96";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
+ 			cci0_default: cci0-default-state {
+ 				cci0_i2c0_default: cci0-i2c0-default-pins {
+ 					/* SDA, SCL */
 -- 
-2.37.1
+2.34.1
 
