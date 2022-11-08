@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F740621AAE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 18:31:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71854621AAF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 18:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234530AbiKHRbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 12:31:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35096 "EHLO
+        id S234531AbiKHRbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 12:31:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234535AbiKHRbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 12:31:41 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034094047C
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 09:31:40 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id io19so14783213plb.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 09:31:39 -0800 (PST)
+        with ESMTP id S234532AbiKHRbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 12:31:45 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A3857B6C
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 09:31:43 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id m6-20020a17090a5a4600b00212f8dffec9so14068804pji.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 09:31:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l6LXqb1ieiev6h1Macbn9SxAX5KyBkVuXnZ2xDqGvEY=;
-        b=ECg44PoVQHiZfLtrii2Djl2abPTl2FAyrp1t37Fx2Fra3XLtHsC9ZJpfu/10zQIcCq
-         SCucchs/JSSg+3sul3ovQAWnc97zjsR2x0zFYTN7UDreDiCH6sI1lYiy2bLyrnaewcjd
-         JLVLng0eHoo4SY9wA4b/A0bK6h5I7GJi/7fa3prGeCGDabyl3Ce5utl2OMOCDlgR8hKL
-         WiVmghBNOLd6gYkF1Jz5Ja/lGG+ys2EU6G7EiXmDX5p3u51hP4MGR7WPk2hWG3kqeQpg
-         RhO6KbsfZ9fgoMpMtCeKCGt/uqnzfLLjrj4/pxejDoUWpxdLJO0o3SdQ9rDWtTNXqrPx
-         wgEA==
+        bh=pSwjb+whwXD+pKtYqyWMkhfO86LF865Txu2gaV2AraE=;
+        b=nPBoNzCzfvu38POKbigxnsAZL4krN9LKouj+CohWptW2TaBHZhuupRFP2NebQDzm7L
+         cMGd/R8xryYyma3E7myQW07dLAxJosEIFB8AfqVGRpxZW462MGbPpg0SaKPO/4PM4UuV
+         EAq41MKdoTqTu4dKuMzU9QMUjDyx/clWEXdynsFK9YSkPUFEFShE/U2I9JcfznJmy8CA
+         56XIlKRjlpjXfCioFFHuYBrcUpOsGCT6WFiIC+yZBxZcPHjBvFG6UVRrAHlHvb6Y1QVn
+         rZtMgh66MA+PsT+/TyPWVSPsYVBMETdRFkJlrAurgLvm4gjEQ8EJ2uMQA9Y/xWL0cxVf
+         Zx/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l6LXqb1ieiev6h1Macbn9SxAX5KyBkVuXnZ2xDqGvEY=;
-        b=C1dS+JbkIfgHQBFEqhN5mbpj5fDNFeClc3iOWHVe8ZNaY1x8hTDb/a7GBiLcz4EnNW
-         Z+xZdSKGgKG1CbPVWhR5ImoirvnqI9xAp99uKm9emqONg0Yv4ZZxR/94k/xxbV+FPYCl
-         sDu87fauhXkqrLmNoBG4bjjJ2BBCoerfSs0d6PlPNNZ3rrASPjLIaV7sxpebVHwlcAJD
-         urc32jnqOCAZsJE5Y00lhMpj1oDlg+KGqVsW4jOvk7Qfb44/7mynlyjYzclkw+o6K8R0
-         u1JJhQXEvS25t6XH+ioOdSV5pZb4z5zJ0HXPy5/sBGcXdxIUkbFZTsvGbBfeFET+S/oU
-         C9Hw==
-X-Gm-Message-State: ACrzQf34GGq/l0n8UxdGK6lXaXXUqDCGM2YLLN/uOUrH5wIxnp2HlmF9
-        Lf/rl5X5LNtQO9osP5Mkk+KZAtJA/SCh2kUHtlQEsA==
-X-Google-Smtp-Source: AMsMyM7ONbZkXU/VzZzLfd8zKn/wB9T7LhunMocpBSwFdebiijL7xDKg8IRgB+6iEQg6Anlyuwr05Q==
-X-Received: by 2002:a17:90a:df04:b0:213:1cf1:435d with SMTP id gp4-20020a17090adf0400b002131cf1435dmr59443674pjb.210.1667928699542;
-        Tue, 08 Nov 2022 09:31:39 -0800 (PST)
+        bh=pSwjb+whwXD+pKtYqyWMkhfO86LF865Txu2gaV2AraE=;
+        b=wSOU7ba6OF25XwAiIMV5yu3NgX9T3X5UJrPalmfdDz/RAX8BuiPkw3NigcLuaZCjVS
+         k6ddjNvnySJ26gealL87tJGv8yx0NLCyarCFnZ/HjpDfELZ23xP1an9iFCygrbq0/jLx
+         w2Y4B+q7Y2faQ9bMGp/UwkLdZIwP8f5IJKm3ZUvsaoWPKP80rBHl3DobO/GYa/+1iX2v
+         C/smrKrSKKwUJk7awMSrMfceDjGVUmEI3IvdB4+xds6diD0jrg+0nLA/rDzv7ydPO9VN
+         P4uv6kU/+6pvWF0HLeH3VMUMphbcqQXSXGrJeGD/gQBYyzCTraFg5g5dv5MXJiMHlCaF
+         BfWA==
+X-Gm-Message-State: ACrzQf1W+nC/xSZVwZyMlWNuZRxlzb5FGkVWoslObBQGVpil0g8BJq6o
+        R9J5j4E/ynBLudqPbdr1SZ3jHg==
+X-Google-Smtp-Source: AMsMyM6jPe5ZzsPEdXmwb94D7L5/BZBAUgBaVQrmBuu9koI1Au+Fa8hGsjqtxnmCujCfaQxWaQ5xuA==
+X-Received: by 2002:a17:903:32cf:b0:187:4b3a:15fd with SMTP id i15-20020a17090332cf00b001874b3a15fdmr34763830plr.99.1667928702929;
+        Tue, 08 Nov 2022 09:31:42 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c00a:a809:c2c:74c3:d3ed:4dfa])
-        by smtp.gmail.com with ESMTPSA id h3-20020a63df43000000b0046fd180640asm6018517pgj.24.2022.11.08.09.31.36
+        by smtp.gmail.com with ESMTPSA id h3-20020a63df43000000b0046fd180640asm6018517pgj.24.2022.11.08.09.31.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 09:31:39 -0800 (PST)
+        Tue, 08 Nov 2022 09:31:42 -0800 (PST)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,11 +56,10 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>,
         Linus Walleij <linus.walleij@linaro.org>
 Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Jagan Teki <jagan@edgeble.ai>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/4] dt-bindings: display: Document Jadard JD9365DA-H3 DSI panel
-Date:   Tue,  8 Nov 2022 23:01:19 +0530
-Message-Id: <20221108173120.618312-3-jagan@edgeble.ai>
+        Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH v4 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+Date:   Tue,  8 Nov 2022 23:01:20 +0530
+Message-Id: <20221108173120.618312-4-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221108173120.618312-1-jagan@edgeble.ai>
 References: <20221108173120.618312-1-jagan@edgeble.ai>
@@ -78,118 +77,551 @@ X-Mailing-List: devicetree@vger.kernel.org
 Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
 dot matrix LCD with 800RGBx1280 dots at maximum.
 
-Document it.
+Add support for it.
 
 Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 Changes for v4:
-- none
+- add delay explictly
+- update init sequence
 Changes for v3:
-- updated title
-- collect Krzysztof r-b
-- rebased on drm-misc-next
+- updatd to WXGA
+- use JD9365DA_CMD_DCS and JD9365DA_CMD_DELAY
 Changes for v2:
 - none
 
- .../display/panel/jadard,jd9365da-h3.yaml     | 70 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/panel/Kconfig                 |  10 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 473 ++++++++++++++++++
+ 4 files changed, 485 insertions(+)
+ create mode 100644 drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
 
-diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-new file mode 100644
-index 000000000000..c06902e4fe70
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/jadard,jd9365da-h3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Jadard JD9365DA-HE WXGA DSI panel
-+
-+maintainers:
-+  - Jagan Teki <jagan@edgeble.ai>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - chongzhou,cz101b4001
-+      - const: jadard,jd9365da-h3
-+
-+  reg: true
-+
-+  vdd-supply:
-+    description: supply regulator for VDD, usually 3.3V
-+
-+  vccio-supply:
-+    description: supply regulator for VCCIO, usually 1.8V
-+
-+  reset-gpios: true
-+
-+  backlight: true
-+
-+  port: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - vccio-supply
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/pinctrl/rockchip.h>
-+
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "chongzhou,cz101b4001", "jadard,jd9365da-h3";
-+            reg = <0>;
-+            vdd-supply = <&lcd_3v3>;
-+            vccio-supply = <&vcca_1v8>;
-+            reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+            backlight = <&backlight>;
-+
-+            port {
-+                mipi_in_panel: endpoint {
-+                    remote-endpoint = <&mipi_out_panel>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 20554fd74596..8cd909cd34e0 100644
+index 8cd909cd34e0..5f66378dcfb0 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -6530,6 +6530,11 @@ S:	Orphan / Obsolete
- F:	drivers/gpu/drm/i810/
- F:	include/uapi/drm/i810_drm.h
+@@ -6534,6 +6534,7 @@ DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
+ M:	Jagan Teki <jagan@edgeble.ai>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++F:	drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
  
-+DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
-+M:	Jagan Teki <jagan@edgeble.ai>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-+
  DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
  M:	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
- S:	Supported
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index a582ddd583c2..6f6cc6662b2e 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -203,6 +203,16 @@ config DRM_PANEL_INNOLUX_P079ZCA
+ 	  24 bit RGB per pixel. It provides a MIPI DSI interface to
+ 	  the host and has a built-in LED backlight.
+ 
++config DRM_PANEL_JADARD_JD9365DA_H3
++	tristate "Jadard JD9365DA-H3 WXGA DSI panel"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	help
++	  Say Y here if you want to enable support for Jadard JD9365DA-H3
++	  WXGA MIPI DSI panel. The panel support TFT dot matrix LCD with
++	  800RGBx1280 dots at maximum.
++
+ config DRM_PANEL_JDI_LT070ME05000
+ 	tristate "JDI LT070ME05000 WUXGA DSI panel"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 34e717382dbb..af0b1ebdbac8 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -18,6 +18,7 @@ obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9341) += panel-ilitek-ili9341.o
+ obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
+ obj-$(CONFIG_DRM_PANEL_INNOLUX_EJ030NA) += panel-innolux-ej030na.o
+ obj-$(CONFIG_DRM_PANEL_INNOLUX_P079ZCA) += panel-innolux-p079zca.o
++obj-$(CONFIG_DRM_PANEL_JADARD_JD9365DA_H3) += panel-jadard-jd9365da-h3.o
+ obj-$(CONFIG_DRM_PANEL_JDI_LT070ME05000) += panel-jdi-lt070me05000.o
+ obj-$(CONFIG_DRM_PANEL_JDI_R63452) += panel-jdi-fhd-r63452.o
+ obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
+diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+new file mode 100644
+index 000000000000..48c1702a863b
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+@@ -0,0 +1,473 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2019 Radxa Limited
++ * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
++ *
++ * Author:
++ * - Jagan Teki <jagan@amarulasolutions.com>
++ * - Stephen Chen <stephen@radxa.com>
++ */
++
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++#include <drm/drm_print.h>
++
++#include <linux/gpio/consumer.h>
++#include <linux/delay.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/regulator/consumer.h>
++
++#define JD9365DA_INIT_CMD_LEN		2
++
++struct jadard_init_cmd {
++	u8 data[JD9365DA_INIT_CMD_LEN];
++};
++
++struct jadard_panel_desc {
++	const struct drm_display_mode mode;
++	unsigned int lanes;
++	enum mipi_dsi_pixel_format format;
++	const struct jadard_init_cmd *init_cmds;
++	u32 num_init_cmds;
++};
++
++struct jadard {
++	struct drm_panel panel;
++	struct mipi_dsi_device *dsi;
++	const struct jadard_panel_desc *desc;
++
++	struct regulator *vdd;
++	struct regulator *vccio;
++	struct gpio_desc *reset;
++};
++
++static inline struct jadard *panel_to_jadard(struct drm_panel *panel)
++{
++	return container_of(panel, struct jadard, panel);
++}
++
++static int jadard_enable(struct drm_panel *panel)
++{
++	struct device *dev = panel->dev;
++	struct jadard *jadard = panel_to_jadard(panel);
++	const struct jadard_panel_desc *desc = jadard->desc;
++	struct mipi_dsi_device *dsi = jadard->dsi;
++	unsigned int i;
++	int err;
++
++	msleep(10);
++
++	for (i = 0; i < desc->num_init_cmds; i++) {
++		const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
++
++		err = mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD9365DA_INIT_CMD_LEN);
++		if (err < 0)
++			return err;
++	}
++
++	msleep(120);
++
++	err = mipi_dsi_dcs_exit_sleep_mode(dsi);
++	if (err < 0)
++		DRM_DEV_ERROR(dev, "failed to exit sleep mode ret = %d\n", err);
++
++	err =  mipi_dsi_dcs_set_display_on(dsi);
++	if (err < 0)
++		DRM_DEV_ERROR(dev, "failed to set display on ret = %d\n", err);
++
++	return 0;
++}
++
++static int jadard_disable(struct drm_panel *panel)
++{
++	struct device *dev = panel->dev;
++	struct jadard *jadard = panel_to_jadard(panel);
++	int ret;
++
++	ret = mipi_dsi_dcs_set_display_off(jadard->dsi);
++	if (ret < 0)
++		DRM_DEV_ERROR(dev, "failed to set display off: %d\n", ret);
++
++	ret = mipi_dsi_dcs_enter_sleep_mode(jadard->dsi);
++	if (ret < 0)
++		DRM_DEV_ERROR(dev, "failed to enter sleep mode: %d\n", ret);
++
++	return 0;
++}
++
++static int jadard_prepare(struct drm_panel *panel)
++{
++	struct jadard *jadard = panel_to_jadard(panel);
++	int ret;
++
++	ret = regulator_enable(jadard->vccio);
++	if (ret)
++		return ret;
++
++	ret = regulator_enable(jadard->vdd);
++	if (ret)
++		return ret;
++
++	gpiod_set_value(jadard->reset, 1);
++	msleep(5);
++
++	gpiod_set_value(jadard->reset, 0);
++	msleep(10);
++
++	gpiod_set_value(jadard->reset, 1);
++	msleep(120);
++
++	return 0;
++}
++
++static int jadard_unprepare(struct drm_panel *panel)
++{
++	struct jadard *jadard = panel_to_jadard(panel);
++
++	gpiod_set_value(jadard->reset, 1);
++	msleep(120);
++
++	regulator_disable(jadard->vdd);
++	regulator_disable(jadard->vccio);
++
++	return 0;
++}
++
++static int jadard_get_modes(struct drm_panel *panel,
++			    struct drm_connector *connector)
++{
++	struct jadard *jadard = panel_to_jadard(panel);
++	const struct drm_display_mode *desc_mode = &jadard->desc->mode;
++	struct drm_display_mode *mode;
++
++	mode = drm_mode_duplicate(connector->dev, desc_mode);
++	if (!mode) {
++		DRM_DEV_ERROR(&jadard->dsi->dev, "failed to add mode %ux%ux@%u\n",
++			      desc_mode->hdisplay, desc_mode->vdisplay,
++			      drm_mode_vrefresh(desc_mode));
++		return -ENOMEM;
++	}
++
++	drm_mode_set_name(mode);
++	drm_mode_probed_add(connector, mode);
++
++	connector->display_info.width_mm = mode->width_mm;
++	connector->display_info.height_mm = mode->height_mm;
++
++	return 1;
++}
++
++static const struct drm_panel_funcs jadard_funcs = {
++	.disable = jadard_disable,
++	.unprepare = jadard_unprepare,
++	.prepare = jadard_prepare,
++	.enable = jadard_enable,
++	.get_modes = jadard_get_modes,
++};
++
++static const struct jadard_init_cmd cz101b4001_init_cmds[] = {
++	{ .data = { 0xE0, 0x00 } },
++	{ .data = { 0xE1, 0x93 } },
++	{ .data = { 0xE2, 0x65 } },
++	{ .data = { 0xE3, 0xF8 } },
++	{ .data = { 0x80, 0x03 } },
++	{ .data = { 0xE0, 0x01 } },
++	{ .data = { 0x00, 0x00 } },
++	{ .data = { 0x01, 0x3B } },
++	{ .data = { 0x0C, 0x74 } },
++	{ .data = { 0x17, 0x00 } },
++	{ .data = { 0x18, 0xAF } },
++	{ .data = { 0x19, 0x00 } },
++	{ .data = { 0x1A, 0x00 } },
++	{ .data = { 0x1B, 0xAF } },
++	{ .data = { 0x1C, 0x00 } },
++	{ .data = { 0x35, 0x26 } },
++	{ .data = { 0x37, 0x09 } },
++	{ .data = { 0x38, 0x04 } },
++	{ .data = { 0x39, 0x00 } },
++	{ .data = { 0x3A, 0x01 } },
++	{ .data = { 0x3C, 0x78 } },
++	{ .data = { 0x3D, 0xFF } },
++	{ .data = { 0x3E, 0xFF } },
++	{ .data = { 0x3F, 0x7F } },
++	{ .data = { 0x40, 0x06 } },
++	{ .data = { 0x41, 0xA0 } },
++	{ .data = { 0x42, 0x81 } },
++	{ .data = { 0x43, 0x14 } },
++	{ .data = { 0x44, 0x23 } },
++	{ .data = { 0x45, 0x28 } },
++	{ .data = { 0x55, 0x02 } },
++	{ .data = { 0x57, 0x69 } },
++	{ .data = { 0x59, 0x0A } },
++	{ .data = { 0x5A, 0x2A } },
++	{ .data = { 0x5B, 0x17 } },
++	{ .data = { 0x5D, 0x7F } },
++	{ .data = { 0x5E, 0x6B } },
++	{ .data = { 0x5F, 0x5C } },
++	{ .data = { 0x60, 0x4F } },
++	{ .data = { 0x61, 0x4D } },
++	{ .data = { 0x62, 0x3F } },
++	{ .data = { 0x63, 0x42 } },
++	{ .data = { 0x64, 0x2B } },
++	{ .data = { 0x65, 0x44 } },
++	{ .data = { 0x66, 0x43 } },
++	{ .data = { 0x67, 0x43 } },
++	{ .data = { 0x68, 0x63 } },
++	{ .data = { 0x69, 0x52 } },
++	{ .data = { 0x6A, 0x5A } },
++	{ .data = { 0x6B, 0x4F } },
++	{ .data = { 0x6C, 0x4E } },
++	{ .data = { 0x6D, 0x20 } },
++	{ .data = { 0x6E, 0x0F } },
++	{ .data = { 0x6F, 0x00 } },
++	{ .data = { 0x70, 0x7F } },
++	{ .data = { 0x71, 0x6B } },
++	{ .data = { 0x72, 0x5C } },
++	{ .data = { 0x73, 0x4F } },
++	{ .data = { 0x74, 0x4D } },
++	{ .data = { 0x75, 0x3F } },
++	{ .data = { 0x76, 0x42 } },
++	{ .data = { 0x77, 0x2B } },
++	{ .data = { 0x78, 0x44 } },
++	{ .data = { 0x79, 0x43 } },
++	{ .data = { 0x7A, 0x43 } },
++	{ .data = { 0x7B, 0x63 } },
++	{ .data = { 0x7C, 0x52 } },
++	{ .data = { 0x7D, 0x5A } },
++	{ .data = { 0x7E, 0x4F } },
++	{ .data = { 0x7F, 0x4E } },
++	{ .data = { 0x80, 0x20 } },
++	{ .data = { 0x81, 0x0F } },
++	{ .data = { 0x82, 0x00 } },
++	{ .data = { 0xE0, 0x02 } },
++	{ .data = { 0x00, 0x02 } },
++	{ .data = { 0x01, 0x02 } },
++	{ .data = { 0x02, 0x00 } },
++	{ .data = { 0x03, 0x00 } },
++	{ .data = { 0x04, 0x1E } },
++	{ .data = { 0x05, 0x1E } },
++	{ .data = { 0x06, 0x1F } },
++	{ .data = { 0x07, 0x1F } },
++	{ .data = { 0x08, 0x1F } },
++	{ .data = { 0x09, 0x17 } },
++	{ .data = { 0x0A, 0x17 } },
++	{ .data = { 0x0B, 0x37 } },
++	{ .data = { 0x0C, 0x37 } },
++	{ .data = { 0x0D, 0x47 } },
++	{ .data = { 0x0E, 0x47 } },
++	{ .data = { 0x0F, 0x45 } },
++	{ .data = { 0x10, 0x45 } },
++	{ .data = { 0x11, 0x4B } },
++	{ .data = { 0x12, 0x4B } },
++	{ .data = { 0x13, 0x49 } },
++	{ .data = { 0x14, 0x49 } },
++	{ .data = { 0x15, 0x1F } },
++	{ .data = { 0x16, 0x01 } },
++	{ .data = { 0x17, 0x01 } },
++	{ .data = { 0x18, 0x00 } },
++	{ .data = { 0x19, 0x00 } },
++	{ .data = { 0x1A, 0x1E } },
++	{ .data = { 0x1B, 0x1E } },
++	{ .data = { 0x1C, 0x1F } },
++	{ .data = { 0x1D, 0x1F } },
++	{ .data = { 0x1E, 0x1F } },
++	{ .data = { 0x1F, 0x17 } },
++	{ .data = { 0x20, 0x17 } },
++	{ .data = { 0x21, 0x37 } },
++	{ .data = { 0x22, 0x37 } },
++	{ .data = { 0x23, 0x46 } },
++	{ .data = { 0x24, 0x46 } },
++	{ .data = { 0x25, 0x44 } },
++	{ .data = { 0x26, 0x44 } },
++	{ .data = { 0x27, 0x4A } },
++	{ .data = { 0x28, 0x4A } },
++	{ .data = { 0x29, 0x48 } },
++	{ .data = { 0x2A, 0x48 } },
++	{ .data = { 0x2B, 0x1F } },
++	{ .data = { 0x2C, 0x01 } },
++	{ .data = { 0x2D, 0x01 } },
++	{ .data = { 0x2E, 0x00 } },
++	{ .data = { 0x2F, 0x00 } },
++	{ .data = { 0x30, 0x1F } },
++	{ .data = { 0x31, 0x1F } },
++	{ .data = { 0x32, 0x1E } },
++	{ .data = { 0x33, 0x1E } },
++	{ .data = { 0x34, 0x1F } },
++	{ .data = { 0x35, 0x17 } },
++	{ .data = { 0x36, 0x17 } },
++	{ .data = { 0x37, 0x37 } },
++	{ .data = { 0x38, 0x37 } },
++	{ .data = { 0x39, 0x08 } },
++	{ .data = { 0x3A, 0x08 } },
++	{ .data = { 0x3B, 0x0A } },
++	{ .data = { 0x3C, 0x0A } },
++	{ .data = { 0x3D, 0x04 } },
++	{ .data = { 0x3E, 0x04 } },
++	{ .data = { 0x3F, 0x06 } },
++	{ .data = { 0x40, 0x06 } },
++	{ .data = { 0x41, 0x1F } },
++	{ .data = { 0x42, 0x02 } },
++	{ .data = { 0x43, 0x02 } },
++	{ .data = { 0x44, 0x00 } },
++	{ .data = { 0x45, 0x00 } },
++	{ .data = { 0x46, 0x1F } },
++	{ .data = { 0x47, 0x1F } },
++	{ .data = { 0x48, 0x1E } },
++	{ .data = { 0x49, 0x1E } },
++	{ .data = { 0x4A, 0x1F } },
++	{ .data = { 0x4B, 0x17 } },
++	{ .data = { 0x4C, 0x17 } },
++	{ .data = { 0x4D, 0x37 } },
++	{ .data = { 0x4E, 0x37 } },
++	{ .data = { 0x4F, 0x09 } },
++	{ .data = { 0x50, 0x09 } },
++	{ .data = { 0x51, 0x0B } },
++	{ .data = { 0x52, 0x0B } },
++	{ .data = { 0x53, 0x05 } },
++	{ .data = { 0x54, 0x05 } },
++	{ .data = { 0x55, 0x07 } },
++	{ .data = { 0x56, 0x07 } },
++	{ .data = { 0x57, 0x1F } },
++	{ .data = { 0x58, 0x40 } },
++	{ .data = { 0x5B, 0x30 } },
++	{ .data = { 0x5C, 0x16 } },
++	{ .data = { 0x5D, 0x34 } },
++	{ .data = { 0x5E, 0x05 } },
++	{ .data = { 0x5F, 0x02 } },
++	{ .data = { 0x63, 0x00 } },
++	{ .data = { 0x64, 0x6A } },
++	{ .data = { 0x67, 0x73 } },
++	{ .data = { 0x68, 0x1D } },
++	{ .data = { 0x69, 0x08 } },
++	{ .data = { 0x6A, 0x6A } },
++	{ .data = { 0x6B, 0x08 } },
++	{ .data = { 0x6C, 0x00 } },
++	{ .data = { 0x6D, 0x00 } },
++	{ .data = { 0x6E, 0x00 } },
++	{ .data = { 0x6F, 0x88 } },
++	{ .data = { 0x75, 0xFF } },
++	{ .data = { 0x77, 0xDD } },
++	{ .data = { 0x78, 0x3F } },
++	{ .data = { 0x79, 0x15 } },
++	{ .data = { 0x7A, 0x17 } },
++	{ .data = { 0x7D, 0x14 } },
++	{ .data = { 0x7E, 0x82 } },
++	{ .data = { 0xE0, 0x04 } },
++	{ .data = { 0x00, 0x0E } },
++	{ .data = { 0x02, 0xB3 } },
++	{ .data = { 0x09, 0x61 } },
++	{ .data = { 0x0E, 0x48 } },
++	{ .data = { 0xE0, 0x00 } },
++	{ .data = { 0xE6, 0x02 } },
++	{ .data = { 0xE7, 0x0C } },
++};
++
++static const struct jadard_panel_desc cz101b4001_desc = {
++	.mode = {
++		.clock		= 70000,
++
++		.hdisplay	= 800,
++		.hsync_start	= 800 + 40,
++		.hsync_end	= 800 + 40 + 18,
++		.htotal		= 800 + 40 + 18 + 20,
++
++		.vdisplay	= 1280,
++		.vsync_start	= 1280 + 20,
++		.vsync_end	= 1280 + 20 + 4,
++		.vtotal		= 1280 + 20 + 4 + 20,
++
++		.width_mm	= 62,
++		.height_mm	= 110,
++		.type		= DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++	},
++	.lanes = 4,
++	.format = MIPI_DSI_FMT_RGB888,
++	.init_cmds = cz101b4001_init_cmds,
++	.num_init_cmds = ARRAY_SIZE(cz101b4001_init_cmds),
++};
++
++static int jadard_dsi_probe(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	const struct jadard_panel_desc *desc;
++	struct jadard *jadard;
++	int ret;
++
++	jadard = devm_kzalloc(&dsi->dev, sizeof(*jadard), GFP_KERNEL);
++	if (!jadard)
++		return -ENOMEM;
++
++	desc = of_device_get_match_data(dev);
++	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
++			  MIPI_DSI_MODE_NO_EOT_PACKET;
++	dsi->format = desc->format;
++	dsi->lanes = desc->lanes;
++
++	jadard->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
++	if (IS_ERR(jadard->reset)) {
++		DRM_DEV_ERROR(&dsi->dev, "failed to get our reset GPIO\n");
++		return PTR_ERR(jadard->reset);
++	}
++
++	jadard->vdd = devm_regulator_get(dev, "vdd");
++	if (IS_ERR(jadard->vdd)) {
++		DRM_DEV_ERROR(&dsi->dev, "failed to get vdd regulator\n");
++		return PTR_ERR(jadard->vdd);
++	}
++
++	jadard->vccio = devm_regulator_get(dev, "vccio");
++	if (IS_ERR(jadard->vccio)) {
++		DRM_DEV_ERROR(&dsi->dev, "failed to get vccio regulator\n");
++		return PTR_ERR(jadard->vccio);
++	}
++
++	drm_panel_init(&jadard->panel, dev, &jadard_funcs,
++		       DRM_MODE_CONNECTOR_DSI);
++
++	ret = drm_panel_of_backlight(&jadard->panel);
++	if (ret)
++		return ret;
++
++	drm_panel_add(&jadard->panel);
++
++	mipi_dsi_set_drvdata(dsi, jadard);
++	jadard->dsi = dsi;
++	jadard->desc = desc;
++
++	ret = mipi_dsi_attach(dsi);
++	if (ret < 0)
++		drm_panel_remove(&jadard->panel);
++
++	return ret;
++}
++
++static void jadard_dsi_remove(struct mipi_dsi_device *dsi)
++{
++	struct jadard *jadard = mipi_dsi_get_drvdata(dsi);
++
++	mipi_dsi_detach(dsi);
++	drm_panel_remove(&jadard->panel);
++}
++
++static const struct of_device_id jadard_of_match[] = {
++	{ .compatible = "chongzhou,cz101b4001", .data = &cz101b4001_desc },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, jadard_of_match);
++
++static struct mipi_dsi_driver jadard_driver = {
++	.probe = jadard_dsi_probe,
++	.remove = jadard_dsi_remove,
++	.driver = {
++		.name = "jadard-jd9365da",
++		.of_match_table = jadard_of_match,
++	},
++};
++module_mipi_dsi_driver(jadard_driver);
++
++MODULE_AUTHOR("Jagan Teki <jagan@edgeble.ai>");
++MODULE_AUTHOR("Stephen Chen <stephen@radxa.com>");
++MODULE_DESCRIPTION("Jadard JD9365DA-H3 WXGA DSI panel");
++MODULE_LICENSE("GPL");
 -- 
 2.25.1
 
