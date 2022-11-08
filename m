@@ -2,134 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01947620EC3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F32E3620F07
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:27:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233771AbiKHLWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:22:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33394 "EHLO
+        id S233264AbiKHL1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:27:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234123AbiKHLWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:22:17 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86E24D5C8
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:22:11 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id j16so20732350lfe.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:22:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6S31b1GgAuSZeRVi3aE6k9Lv1kYy2JgOJdueU/WrfPk=;
-        b=FQVTX03+/jYDhFiJtnC4PlzY3j6O7eqRrURGbxCj9uxURjFPxqXVMZP/7fLhWbImBm
-         JdC6fC+nWdrCet4LQal83kXfuzLLawXKFxu/oLYv8Kh2r6x559FfrsvfHjCmy2lBT2pa
-         QV3OVJL19Mn4gyrzkg6t6afH5exahrLMKp49Zciw9Ta4DwOEluePqPBp/VNPXU+77weK
-         lmit955EmN4VKHGupVAVSjMQxm/PKGzojOJMymAfU8+zG2QjMYaXztogXBUZ6oJAEr9X
-         BXxZOLcPkDq8/wEIfmqbcQ9xMX56E55y+wwH5Tx8zJ331BBicVaEbuCsdYGaIZWrHAOU
-         7t/A==
+        with ESMTP id S229784AbiKHL1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:27:43 -0500
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F8B1D0DE;
+        Tue,  8 Nov 2022 03:27:42 -0800 (PST)
+Received: by mail-qk1-f178.google.com with SMTP id x18so8868872qki.4;
+        Tue, 08 Nov 2022 03:27:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6S31b1GgAuSZeRVi3aE6k9Lv1kYy2JgOJdueU/WrfPk=;
-        b=EcGW/XHNuASxtORp0kW9EwQ3Y1cR/u9Zomi3bYdBak9lbw3r4T+z7kkl/YehUXSXZ/
-         8l2d7Edmc4IyBQetbam3Kf124osiqqBTeB5gBJ837YLx/EamJbMOwiLu3ZLLHXRXczYg
-         xrM3/evlBN0RpliKgZj5B/KcmASk+jcWD+hvtWra1RExJ5o2JIgiUfYC/plWfNUPN1FL
-         0XqHFttwjBf1K0dHGBU+fDf29Ew8e0bapzDyTqQy68kKKu9cMgauoMjI4wSsMWRVk/Xi
-         EvKAbNdAFdQg6mevVPA0iayp8MaewdiOSTCmtsfCu0qo1RmrHbI7Tf3UMXRpq01Fu1iJ
-         2NEQ==
-X-Gm-Message-State: ANoB5pkT886WPnHw7kozHPnJANJ0KeIJOUvOrbqENCBEGurgjFJM+CFJ
-        f66xSd+tjMBQWdTeNzGaA1czQA==
-X-Google-Smtp-Source: AA0mqf71iUpqb4+BI/4RUZw1laBPRBQU7iqH2g/sTobl9bST23hwOoH26omyo1cgyvEyZZV9JTdQ2Q==
-X-Received: by 2002:ac2:43b0:0:b0:4b2:805:f5cb with SMTP id t16-20020ac243b0000000b004b20805f5cbmr5885841lfl.204.1667906530035;
-        Tue, 08 Nov 2022 03:22:10 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id q7-20020ac25107000000b004b40c2fccfdsm221399lfb.59.2022.11.08.03.22.08
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fBJ14flGz4qbu94DTpiasIKodwrjiggJ5qyDbPrXNj4=;
+        b=Dhe15we2hTI/0JQR0j97gAEkUkFyO6iL1w829WeUj+ERtBK2OLLdR7pI49sqtiachj
+         xnPsCFsXtUDGhvli94tHG6AzG3atfiZSeYhX1uCOjjjIJ1eDGIdfI43BnwPl86bsfyGA
+         RhDO/pidAmZGBH5qUSLwxtpmNzhquNPzSC1+GNXhPtURFt+c75xRxWJUeUUaDBFwqXZk
+         J4TuqUbqw5T/9rpPR+vE/j3SLEqRW9qa0yetfTpWlOTCXvFGCdeMoHA59Xv2fSH85FBD
+         3fWyX6FT1x4K+FSmxpFD8stKNGmBA6eREscfaNyMww82cb1t4YLutwyfza9+nmxSNCnD
+         z5LA==
+X-Gm-Message-State: ANoB5pk3W+Otf9o8+uTbOwVDz4zhE/e2FhNJq0VbzRCX6zQZbFZAfuqT
+        K5XydblYW9D9jGKeW/JQQKW9+1k9vCytnA==
+X-Google-Smtp-Source: AA0mqf5mmNfxraIJ9iPkUaT49dAba0jIRAB40sEcTG7kNhR2nUTfavfxBtsZ3rUNY5LaAnYoHtaWsw==
+X-Received: by 2002:a05:620a:4ec:b0:6fa:f76d:bb45 with SMTP id b12-20020a05620a04ec00b006faf76dbb45mr4047654qkh.680.1667906861428;
+        Tue, 08 Nov 2022 03:27:41 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id r3-20020a05620a298300b006eecc4a0de9sm9445790qkp.62.2022.11.08.03.27.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:22:09 -0800 (PST)
-Message-ID: <95f588d2-04f3-0be6-ebce-cb6957f5aa1a@linaro.org>
-Date:   Tue, 8 Nov 2022 12:22:08 +0100
+        Tue, 08 Nov 2022 03:27:41 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-367b8adf788so130864207b3.2;
+        Tue, 08 Nov 2022 03:27:40 -0800 (PST)
+X-Received: by 2002:a0d:e301:0:b0:374:a8ba:99b0 with SMTP id
+ m1-20020a0de301000000b00374a8ba99b0mr6626131ywe.358.1667906860433; Tue, 08
+ Nov 2022 03:27:40 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 3/6] dt-bindings: hwmon: Add hpe,gxp-fan-ctrl
-Content-Language: en-US
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221104193657.105130-1-nick.hawkins@hpe.com>
- <20221104193657.105130-4-nick.hawkins@hpe.com>
- <1b90f86c-9c0f-225b-38b5-6f37a4eded69@linaro.org>
- <236F9C0A-797D-41C6-B342-4C32DF28C426@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <236F9C0A-797D-41C6-B342-4C32DF28C426@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221107172953.63218-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221107172953.63218-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Nov 2022 12:27:28 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVcn=r_hj3OOOCzqtcGQstvxyNzi5dahQMwDHgKnJAS+A@mail.gmail.com>
+Message-ID: <CAMuHMdVcn=r_hj3OOOCzqtcGQstvxyNzi5dahQMwDHgKnJAS+A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Drop #address-cells from
+ pinctrl node
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 23:36, Hawkins, Nick wrote:
-> 
->     > > This provides the base registers address, programmable logic registers
->     > > address, and the function 2 registers to allow control access of the HPE
->     > > fans on the GXP SoC.
-> 
->     > What is "This"? If "This patch", then drop it.
->     > https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
->     > If "This hardware" then please instead describe the hardware, not it
->     components. What are its features? If it controls the fan, then why
->     there are no PWM-related cells? How do you set the speed?
-> 
-> Greetings Krzysztof,
-> 
->     Thank you for the feedback. The intention was this binding.. however, that was an error on my part, and I will correct it to reflect the hardware situation of the GXP with the fan controller and how each of the mapped registers provide control to the system. To answer your questions: The fans speeds are controlled through an external CPLD device which we provide a PWM value (0-255) using the "base" register to the CIF interface. 
+On Mon, Nov 7, 2022 at 6:30 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> This fixes the below dtbs_check warning:
+>
+> arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dtb: pinctrl@11030000: #address-cells: 'anyOf' conditional failed, one must be fixed:
+>     [[2]] is not of type 'object'
+>     From schema: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dtb: pinctrl@11030000: #address-cells: 'anyOf' conditional failed, one must be fixed:
+>     [[2]] is not of type 'object'
+>     From schema: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+>
+> Drop #address-cells property from pinctrl node as it has no child nodes in it.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Wrap your emails, it's impossible to simply reply to it.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.2.
 
-Then your CIF interface is a PWM device?
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> This interface provides access to the CPLD. The CPLD then drives the fan. The CPLD can generate up to 8 unique different PWMs to multiple fans. 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-So you have other CPLD (not external) which generates PWM based on first
-CPLD base register? Hm, I think it's one CPLD.
-
-> The CPLD monitors the fans and reports the status back to the SoC through the CIF interface to the "plreg base". The plreg includes the installation, failed, and identification statuses. The function 2 register base is used to check the power state of the system as that influences the PWM values read back.
-
-> As the PWM generation happens outside the SoC do we still need pwm-cells? If so, should we have a custom compatible for that?
-> 
-
-Depends, if these are actually tightly coupled and you cannot use PWM
-for anything else, then you do not need.
-
-> Thanks,
-> 
-> -Nick
-> 
-> 
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
