@@ -2,108 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3629E620BCB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A44620BD6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:14:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233313AbiKHJKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 04:10:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33662 "EHLO
+        id S233343AbiKHJNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 04:13:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233358AbiKHJKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:10:07 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47451A047;
-        Tue,  8 Nov 2022 01:10:06 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 21so21485716edv.3;
-        Tue, 08 Nov 2022 01:10:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wxg9R63E/LdpcjaJ1QXBZQ2mfpoLnn2CNR5q0txR95Q=;
-        b=ogCSi5jgLyz06Qj/c6EJv9UE5I5iKSMxLytwg1lrGusO+4y+j4+AxQscA2mU30i42a
-         JIASDnnCHv4STIP+XYOVQvGqZm7L6cWat+SmVGKGiJbMht7ZO33lSuaMyM+yy2s4TWZw
-         smqOj19N4qK+Pf3tloAaYEq3NZ/ybhbC9BNxMW7VR2uIzLiOODeIKwGIaQrGoFEMrL1k
-         jpKv/Xtx7iEzkApoe0yPfXaQr+B6ExWMiZD0vivjZzLMC4k/UpdQg0mcNU5J3tuZ0nzm
-         Cda232w0MQ4cXFptnNwidf4Vsxb39ivcI1B3MIIrGBLa1J8bGKR5q+XR9AxG0VMoa8cZ
-         dLtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wxg9R63E/LdpcjaJ1QXBZQ2mfpoLnn2CNR5q0txR95Q=;
-        b=DA+3K1PPBIgiWTuC4sJuxODGTLrEhuv8piuhRGouCob8FLVhB30gFJW1c+c96F1x9M
-         8lMxZTDQTA+nYL0jVl1JXtCvYHt0gcfdoE2jhRfmxf4GcZefgtRJjtez8agoqHHZnSxk
-         /Yl3GRq856pF9BhXmESrYnI58D65OcFRaESuJJUpJ1tdQ5RHWBc7YMXCrrm+vlR36ICv
-         VuxzKk02o1lOwNw9BF8Qqq+ZOryhcPYpRbA2kjwaML0gezSdeGP1HL4CrwVYtGOvCrw/
-         nOMjFB8xzLmf3tAtKSiUE0ZiAJ1AhMhaUOma5LVePRApzGlQ/f332NLEObIxUWM3vvET
-         xmNA==
-X-Gm-Message-State: ACrzQf36ruLK6+c3e67SsJSm/5UAd8Pd9/rtR97bHAmDcoTMdab6k0Vf
-        AZkjbANkyPtX6vaqAHvcTKBtO9xsSGSQPMoV0Gw=
-X-Google-Smtp-Source: AMsMyM6T8HbMBQWOPhacutnHoVxAwoc4LO6/Vkb+hKjPKYPLcf66oY+UO8xaFlbDTqs1tDwpCp3vAWrQhbUfzdh3GJs=
-X-Received: by 2002:a05:6402:3217:b0:461:d6d7:7f19 with SMTP id
- g23-20020a056402321700b00461d6d77f19mr33389993eda.109.1667898605416; Tue, 08
- Nov 2022 01:10:05 -0800 (PST)
+        with ESMTP id S233339AbiKHJNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:13:50 -0500
+Received: from mail.groupteam.pl (mail.groupteam.pl [51.75.73.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACEB11AD8A
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:13:49 -0800 (PST)
+Received: by mail.groupteam.pl (Postfix, from userid 1002)
+        id C49E5A3051; Tue,  8 Nov 2022 09:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groupteam.pl; s=mail;
+        t=1667898805; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
+        h=Date:From:To:Subject:From;
+        b=R0oRdkxZZnrBew3uiNUxTIlCdpuwEu9okoR/zvBEuGdpgiapJRVJ3wjQzAdvykTh+
+         bSYBO21IV/vcBF2fEEVGEYUdvndxdi5Y+d2opO5a91qPye6qaB0GKbULj1mMM74zAr
+         N6JK41k/nua4D9kQrg4saIIxCh7TE+zRJQq3KkzUQ69hp7VGlfeqWvfaVob9kUPS5O
+         fWyyuUxGnhOaAegYwgsl5eDxhOjjLGUr/eVyiSdx+fQCqXa+j1e1+HcXFScthTC2mI
+         DbDikxWUFcScMMJdHs2w4vlxm4gyU3tPcZ2pYc13XYAN9Xrx2+yLjX+mOeotWuLr+R
+         yjf8PxPJIfc8g==
+Received: by mail.groupteam.pl for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 09:11:17 GMT
+Message-ID: <20221108074500-0.1.6j.2aq4s.0.fm52bgzpqg@groupteam.pl>
+Date:   Tue,  8 Nov 2022 09:11:17 GMT
+From:   "Krzysztof Maj" <krzysztof.maj@groupteam.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Biznesowy angielski
+X-Mailer: mail.groupteam.pl
 MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221107175305.63975-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <OS0PR01MB592295C7DBA5E0A85B4D26AF863F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB592295C7DBA5E0A85B4D26AF863F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 8 Nov 2022 09:09:39 +0000
-Message-ID: <CA+V-a8u6J3+OkANOQYec9-Xe6voAiNTkLo_Zvy6dkC03EYp-4Q@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/5] pinctrl: renesas: rzg2l: Fix configuring the GPIO
- pins as interrupts
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,
+        RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,
+        URIBL_DBL_SPAM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: groupteam.pl]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *      [51.75.73.133 listed in zen.spamhaus.org]
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: groupteam.pl]
+        * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [51.75.73.133 listed in bl.score.senderscore.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Dzie=C5=84 dobry,=20
 
-On Tue, Nov 8, 2022 at 7:14 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
->
-> Hi Prabhakar,
->
->
-> > Subject: [PATCH RFC 2/5] pinctrl: renesas: rzg2l: Fix configuring the GPIO
-> > pins as interrupts
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On the RZ/G2UL SoC we have less number of pins compared to RZ/G2L and also
-> > the pin configs are completely different. This patch makes sure we use the
-> > appropriate pin configs for each SoC (which is passed as part of the OF
-> > data) while configuring the GPIO pin as interrupts instead of using
-> > rzg2l_gpio_configs[] for all the SoCs.
-> >
->
-> Looks like you are missing fixes tag.
-> Fixes: db2e5f21a48ed ("pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO interrupt")
->
-I did think about but then I realised this fixes the GPIO IRQ
-functions only and we didn't support IRQC and GPIO interrupts up until
-now so I hadn't added the fixes tag.
+czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
+swoich pracownik=C3=B3w?
 
-Cheers,
-Prabhakar
+Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
+w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
+ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
+=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+
+Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
+=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
+re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
+o=C5=BCliwo=C5=9Bci biznesowe.=20
+
+Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
+ kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
+za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
+=2E
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
+w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+
+
+Pozdrawiam
+Krzysztof Maj
