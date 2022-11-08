@@ -2,345 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3092621A4A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 18:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D77CC621A5C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 18:23:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234017AbiKHRTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 12:19:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53198 "EHLO
+        id S234289AbiKHRXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 12:23:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233995AbiKHRTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 12:19:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA0B65A8
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 09:19:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A9E4DB81B4D
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 17:19:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5604FC433B5
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 17:19:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667927951;
-        bh=fs6iZs+nUZQPzjRmezXZRMySB4NdJeNIzJpDufNp4eI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=llQU0jVCgXnVpxyzdUGSlo7mj4h/8XiC066y0rVuT/GO/XrZekJBmTNx7YmivY6p8
-         WddxwRfj688DI1J8k33+QLgdufAphAKdEGWTUFoik2bCVorD/6G+mZfOUWe9Om3MP5
-         eQitERa1AF2GnoM+GRbiHoE0JdqG7N+8zby4llzRJ+/77OWdvUGcr6g5eZSeWSFMHC
-         lvrwqSkIuzT81TH8RmQ4a6IbPPPoo4r6YX6RekqBhkbXqcvrkv4jrfSpR4Bom8ID4H
-         Ko6Obo2W0pu7gt7nVO++ncLAFRx0CwLQJN2oqMZxcJMMU8CjZ/m0NnQh+4Ysd4+leP
-         iyGkSpifCsODw==
-Received: by mail-lf1-f48.google.com with SMTP id d6so22155644lfs.10
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 09:19:11 -0800 (PST)
-X-Gm-Message-State: ACrzQf23rMF34DKFm/u49lKCPBeBCK/5bTG1M3SEtwoy3ZU7hYRbAiMT
-        orcTfCHymviNsN7HCGeFdm44L02sSyJtImhZBg==
-X-Google-Smtp-Source: AMsMyM4bCYAEWK8+M/FP2Ou8cNtUCR1bi+QPjOZIEXjMz/9Q2RA3Bb0mwP0eRrYLEIm/1Q/hC631DfNWWpIkGlIwsI4=
-X-Received: by 2002:a19:5048:0:b0:4b1:3856:e422 with SMTP id
- z8-20020a195048000000b004b13856e422mr11776167lfj.368.1667927949259; Tue, 08
- Nov 2022 09:19:09 -0800 (PST)
+        with ESMTP id S234343AbiKHRXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 12:23:16 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 866F063AD;
+        Tue,  8 Nov 2022 09:23:15 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id u24so23484849edd.13;
+        Tue, 08 Nov 2022 09:23:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dC3L8rB3CkJyDbuZvPYnhdgYhGJJjGWGEHVBgM03GHs=;
+        b=IgUA4OfmcJprV1FMZVj2AsH/Vv1caqsiAxOyP8ItQcOxavflQq6m1SHf/Z2Q7sKksH
+         jNmhReqyWRlHw4PbXsnx68KMkNLWHbdcR7rGKfNLLTGG6+83KRD6GIVe2k9+Mp3egB0p
+         LlizWFnOdvO29+5sXSJpzOe/SV7T30jeGHby2i8VYybQTLqjzUXdv1wW921WMl6D9H8j
+         MXcGeS4Q1Qu9g3E2NxbhNCO4ldjzExw+gFvFQtsoR6WCeFRLIRBR+O0QmcZuSS8ebc3l
+         cj6DnW2hoRv3LIN+/6S1+aF7PhqwvVZyvoV3Q+5uA6uyWlWr3oWWQ44cQR+3MFl3tKNX
+         Zyng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dC3L8rB3CkJyDbuZvPYnhdgYhGJJjGWGEHVBgM03GHs=;
+        b=C0Uqei7YxWHZgjgYTbknjI1H0aMvS2WrD/Lwi74IhT1OefAYlBa1zFvkrmVTDRIYLd
+         v5ulGoG8wQNzZQCePK1SucotVC7xlWQxwS5xHS9AfaMdFhpWvJHV5U3aXC2RBM1oFXdp
+         EjEG9ePAArygsBA/ZJeG4SHT0g2ITXfy2xH+KYx+aRM5UNM4dQoJu7dstUyiSadzo4AN
+         t3oxLEJ+t0JoVXyoWtLDaBlesWy+u7bswKN9KvUcNWSyJdetRHSQdT88tu6W5XhLzO5e
+         2wRWsip1bFvTopvhtbDctaqIBwxy35oA5RKtToTB5ECOZ27Sayj2KnngAck0VskQbQPJ
+         bU7w==
+X-Gm-Message-State: ACrzQf1gMjRN7ZtiRTJ00OAUKvgCHl9CqCzpODprdprIUMghFheFFlF9
+        j3RJWuJUm0W6Ak8A1UlMaLS3Pug275wxZSGWxkE=
+X-Google-Smtp-Source: AMsMyM4KBxQ83QplDTic1T/lCguYhFxZcj0K/xWDI5KytX5mkaRDpx64THZabd4ot55hyo8nCD5UsMnDqg9b2zQGIzM=
+X-Received: by 2002:aa7:c389:0:b0:463:5926:7254 with SMTP id
+ k9-20020aa7c389000000b0046359267254mr49367313edq.255.1667928194005; Tue, 08
+ Nov 2022 09:23:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20221102031312.216353-1-sjg@chromium.org>
-In-Reply-To: <20221102031312.216353-1-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Nov 2022 11:19:00 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJHgxkmswiA_WgYmcGcTbqOgnqNL0TQzaHHpupwKaS6UA@mail.gmail.com>
-Message-ID: <CAL_JsqJHgxkmswiA_WgYmcGcTbqOgnqNL0TQzaHHpupwKaS6UA@mail.gmail.com>
-Subject: Re: [PATCH v4] schemas: Add schema for U-Boot driver model 'phase tags'
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        U-Boot Mailing List <u-boot@lists.denx.de>
+References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdUKVxO24Qgyx37tbs5+m0Us0VF3eTZCC2KV=AC8z2JneQ@mail.gmail.com>
+ <CA+V-a8t5Qah3MNm2m__xnmgK-52=HC9QBPPudnB+1j4-FYJ_NA@mail.gmail.com> <CAMuHMdWTJf24XR+KR8yVJOnfpgs-PkUf9b8B=PX9Dd4mfawD5Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdWTJf24XR+KR8yVJOnfpgs-PkUf9b8B=PX9Dd4mfawD5Q@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 8 Nov 2022 17:22:47 +0000
+Message-ID: <CA+V-a8vCGDHL1SUTEnD-WvoUGKSVL=xzDeQxy77=1vFJdk+fYg@mail.gmail.com>
+Subject: Re: [PATCH v5 7/7] riscv: configs: defconfig: Enable Renesas RZ/Five SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 1, 2022 at 10:13 PM Simon Glass <sjg@chromium.org> wrote:
->
-> U-Boot has some particular challenges with device tree and devices:
->
-> - U-Boot has multiple build phases, such as a Secondary Program Loader
->   (SPL) phase which typically runs in a pre-SDRAM environment where code
->   and data space are limited. In particular, there may not be enough
->   space for the full device tree blob. U-Boot uses various automated
->   techniques to reduce the size from perhaps 40KB to 3KB. It is not
->   always possible to handle these tags entirely at build time, since
->   U-Boot proper must have the full device tree, even though we do not
->   want it to process all nodes until after relocation.
-> - Some U-Boot phases needs to run before the clocks are properly set up,
->   where the CPU may be running very slowly. Therefore it is important to
->   bind only those devices which are actually needed in that phase
-> - U-Boot uses lazy initialisation for its devices, with 'bind' and
->   'probe' being separate steps. Even if a device is bound, it is not
->   actually probed until it is used. This is necessary to keep the boot
->   time reasonable, e.g. to under a second
->
-> The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
-> pre-relocation, then post-relocation). ALl but the last two are optional.
->
-> For the above reasons, U-Boot only includes the full device tree in the
-> final 'U-Boot proper' build. Even then, before relocation U-Boot only
-> processes nodes which are marked as being needed.
->
-> For this to work, U-Boot's driver model[1] provides a way to mark device
-> tree nodes as applicable for a particular phase. This works by adding a
-> tag to the node, e.g.:
->
->    cru: clock-controller@ff760000 {
->       phase,all;
->       compatible = "rockchip,rk3399-cru";
->       reg = <0x0 0xff760000 0x0 0x1000>;
->       rockchip,grf = <&grf>;
->       #clock-cells = <1>;
->       #reset-cells = <1>;
->       ...
->    };
->
-> Here the "phase,all" tag indicates that the node must be present in all
-> phases, since the clock driver is required.
->
-> There has been discussion over the years about whether this could be done
-> in a property instead, e.g.
->
->    options {
->       phase,all = <&cru> <&gpio_a> ...;
->       ...
->    };
->
-> Some problems with this:
->
-> - we need to be able to merge several such tags from different .dtsi files
->   since many boards have their own specific requirements
-> - it is hard to find and cross-reference the affected nodes
-> - it is more error-prone
-> - it requires significant tool rework in U-Boot, including fdtgrep and
->   the build system
-> - is harder (slower, more code) to process since it involves scanning
->   another node/property to find out what to do with a particular node
-> - we don't want to add phandle arguments to the above since we are
->   referring, e.g., to the clock device as a whole, not a paricular clock
-> - the of-platdata feature[2], which converts device tree to C for even
->   more constrained environments, would need to become aware of the
->   /options node
->
-> There is also the question about whether this needs to be U-Boot-specific,
-> or whether the tags could be generic. From what I can tell, U-Boot is the
-> only bootloader which seriously attempts to use a runtime device tree in
-> all cases. For this version, an attempt is made to name the phases in a
-> generic manner.
->
-> It should also be noted that the approach provided here has stood the test
-> of time, used in U-Boot for 8 years so far.
->
-> So add the schema for this. This will allow a major class of schema
-> exceptions to be dropped from the U-Boot source tree.
->
-> This being sent to the mailing list since it might attract more review.
-> A PR will be sent when this has had some review. That is why the file
-> path is set up for https://github.com/devicetree-org/dt-schema rather
-> than the Linux kernel.
->
-> [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
-> [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
-> Changes in v4:
-> - Drop some unnecessary context from the commit message
-> - Explain why parent nodes do not automatically inherit their children's
->   tags
-> - Rename the tags to use a phase,xxx format, explaining each one
->
-> Changes in v3:
-> - Fix an incorrect schema path in $id
->
-> Changes in v2:
-> - Expand docs to include a description of each tag
-> - Fix some typos and unclear wording
->
->  dtschema/lib.py             |  5 +++
->  dtschema/schemas/phase.yaml | 73 +++++++++++++++++++++++++++++++++++++
->  test/phases.dts             | 26 +++++++++++++
->  3 files changed, 104 insertions(+)
->  create mode 100644 dtschema/schemas/phase.yaml
->  create mode 100644 test/phases.dts
->
-> diff --git a/dtschema/lib.py b/dtschema/lib.py
-> index 3b6c937..9a2fafa 100644
-> --- a/dtschema/lib.py
-> +++ b/dtschema/lib.py
-> @@ -514,6 +514,11 @@ def fixup_node_props(schema):
->      schema['properties'].setdefault('status', True)
->      schema['properties'].setdefault('secure-status', True)
->      schema['properties'].setdefault('$nodename', True)
-> +    schema['properties'].setdefault('phase,pre-sram', True)
-> +    schema['properties'].setdefault('phase,verify', True)
-> +    schema['properties'].setdefault('phase,pre-ram', True)
-> +    schema['properties'].setdefault('phase,some-ram', True)
-> +    schema['properties'].setdefault('phase,all', True)
+Hi Geert,
 
-These are added to just about every node in every schema. Maybe they
-should be filtered out of the DTB instead. Anyways, that's an
-implementation detail which is not too important to worry about yet.
-
->      keys = list()
->      if 'properties' in schema:
-> diff --git a/dtschema/schemas/phase.yaml b/dtschema/schemas/phase.yaml
-> new file mode 100644
-> index 0000000..886dbb0
-> --- /dev/null
-> +++ b/dtschema/schemas/phase.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: BSD-2-Clause
-> +# Copyright 2022 Google LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phase.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for phase-specific device nodes
-
-s/Bindings for/Boot/
-
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +
-> +patternProperties:
-> +  "^phase,(pre-sram,verify,pre-ram,some-ram,all)$":
-
-Nit: s/,/-/
-
-'phase' is not a vendor prefix. Commas other than separating the
-vendor prefix is a pattern we're trying to avoid.
-
-> +    type: boolean
-> +    description: |
-> +      Some programs run in memory-constrained environments yet want to make use
-> +      of device tree.
-> +
-> +      The full device tree is often quite large (e.g. 40KB) and cannot fit into
-> +      every phase of the boot process. Even when memory is not a problem, some
-> +      phases may wish to limit which device nodes are present, so as to reduce
-> +      execution time.
-> +
-> +      This binding supports adding tags to device tree nodes to allow them to be
-> +      marked according to the phases where they should be included.
-> +
-> +      Without any tags, nodes are included only in final phase, where all memory
-> +      is available. Any untagged nodes are dropped from previous phases and are
-> +      ignored before the final phase is reached.
-> +
-> +      The build process produces a separate executable for each phase. It can
-> +      use fdtgrep to drop any nodes which are not needed for a particular build.
-> +      For example, the pre-sram build will drop any nodes which are not marked
-> +      with phase,pre-sram or phase,all tags.
-> +
-> +      The available tags are as follows, in order of phase execution:
-> +
-> +        phase,pre-sram:
-> +          Enable this node when SRAM is not available. This phase must set up
-> +          some SRAM or cache-as-RAM so it can execute.
-
-Presumably this is some XIP flash region?
-
-> +
-> +        phase,verify:
-> +          Enable this node in the verification step, which decides which of the
-> +          available images should be run next.
-> +
-> +        phase,pre-ram:
-> +          Enable this node in the phase that sets up SDRAM.
-> +
-> +        phase,some-ram:
-> +          Enable this node in the phase that is run after SDRAM is working but
-> +          before all of it is available. Some RAM is available but it is limited
-> +          (e.g. it may be split into two pieces by the location of the running
-> +          program) because the program code is not yet relocated out of the way.
-> +
-> +        phase,all:
-> +          Include this node in all phases (for U-Boot see enum u_boot_phase)
-> +
-> +      Note that phase builds may drop the tags, since they have served their
-> +      purpose by that point. So when looking at phase-specific device tree files
-> +      you may not see these tags.
-> +
-> +      Multiple tags can be used in the same node.
-> +
-> +      One complication with fdtgrep is that tags apply only to the node they are
-> +      added to, not to any parents. This means that you often need to add the
-> +      same tag to parent nodes so that any properties needed by the parent
-> +      driver are included. Without that, the parent node may have no properties,
-> +      or may not be bound before relocation (meaning that its child will not be
-> +      bound either). This is for implementation reasons and it may be possible
-> +      to address this in the future.
-
-First, I don't think a tool limitation should define the design.
-
-Second, switching this later is a problem. U-boot can only support 1
-behavior as there is no other indication whether parents are
-implicitly or explicitly included. So all possible DT files have to
-change in sync to u-boot changing. That's not manageable. If we are
-changing the property names as we are here, then we can change the
-behavior and move platforms 1 by 1.
-
-I browsed through the u-boot dts files looking at where the tags are
-used. There's a definite common pattern of what nodes are kept. It's
-the console (serial or LCD) and flash device(s) primarily. The other
-things look like dependencies of those or various other bits that need
-to be poked. There's always going to be some exceptions that need
-explicit hints, but manually identifying every node to keep seems
-redundant and fragile. We already have a way to identify which device
-is the console, so why not use that information along with
-CONFIG_xPL_SERIAL to determine whether to keep a serial node and which
-one to keep.
-
-> +
-> +additionalProperties: true
-> diff --git a/test/phases.dts b/test/phases.dts
-> new file mode 100644
-> index 0000000..7f59840
-> --- /dev/null
-> +++ b/test/phases.dts
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: BSD-2-Clause
-> +// Copyright 2022 Google LLC
-> +
-> +// An attempt to provide a device tree to validate
-> +
-> +// dt-mk-schema -j test/schemas/ > processed-schema.json
-
-What is 'test/schemas/'? From dtschema? Those are only for the dtschema tests.
-
-> +// dtc -O dtb -o test.dtb test/phases.dts && tools/dt-validate -s processed-schema.json / test.dtb
-
-What's the '/' for? That's going to recursively validate every file under /.
-
-> +// Traceback (most recent call last):
-> +//   File "/scratch/sglass/cosarm/dt-schema/tools/dt-validate", line 167, in <module>
-> +//     sg.check_trees(filename, testtree)
-> +//   File "/scratch/sglass/cosarm/dt-schema/tools/dt-validate", line 122, in check_trees
-> +//     self.check_subtree(dt, subtree, False, "/", "/", filename)
-> +//   File "/scratch/sglass/cosarm/dt-schema/tools/dt-validate", line 106, in check_subtree
-> +//     self.check_node(tree, subtree, disabled, nodename, fullname, filename)
-> +//   File "/scratch/sglass/cosarm/dt-schema/tools/dt-validate", line 38, in check_node
-> +//     node['$nodename'] = [ nodename ]
-> +// TypeError: 'str' object does not support item assignment
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +       some-device {
-> +               compatible = "vendor,soc1-ip";
-> +               phase,pre-sram;
-> +       };
-> +};
-> --
-> 2.38.1.273.g43a17bfeac-goog
+On Tue, Nov 8, 2022 at 4:12 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
+> Hi Prabhakar,
+>
+> On Tue, Nov 8, 2022 at 5:07 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Tue, Nov 8, 2022 at 3:52 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Oct 28, 2022 at 6:59 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Enable Renesas RZ/Five SoC config in defconfig. It allows the default
+> > > > upstream kernel to boot on RZ/Five SMARC EVK board.
+> > > >
+> > > > Alongside enable SERIAL_SH_SCI config so that the serial driver used by
+> > > > RZ/Five SoC is built-in.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > ---
+> > > > v4 -> v5
+> > > > * No change
+> > > >
+> > > > v3 -> v4
+> > > > * Explicitly enabled ARCH_R9A07G043 config (note I have restored the RB
+> > > >   tags with this change)
+> > > > * Used riscv instead of RISC-V in subject line
+> > >
+> > > Thanks for the update!
+> > >
+> > > > --- a/arch/riscv/configs/defconfig
+> > > > +++ b/arch/riscv/configs/defconfig
+> > > > @@ -29,6 +29,8 @@ CONFIG_SOC_MICROCHIP_POLARFIRE=y
+> > > >  CONFIG_SOC_SIFIVE=y
+> > > >  CONFIG_SOC_STARFIVE=y
+> > > >  CONFIG_SOC_VIRT=y
+> > > > +CONFIG_ARCH_RENESAS=y
+> > > > +CONFIG_ARCH_R9A07G043=y
+> > >
+> > > You forgot to refresh after moving ARCH_RENESAS in v5 of "riscv:
+> > > Kconfig.socs: Add ARCH_RENESAS kconfig option", and after relying on
+> > > ARCH_R9A07G043 in drivers/soc/renesas/Kconfig.
+> > >
+> > Sorry I missed your point here, could you please elaborate.
+>
+> I mean that the options have moved, so you should update
+> your patch like this:
+>
+Ouch got that.
+
+>     --- a/arch/riscv/configs/defconfig
+>     +++ b/arch/riscv/configs/defconfig
+>     @@ -26,11 +26,10 @@ CONFIG_EXPERT=y
+>      # CONFIG_SYSFS_SYSCALL is not set
+>      CONFIG_PROFILING=y
+>      CONFIG_SOC_MICROCHIP_POLARFIRE=y
+>     +CONFIG_ARCH_RENESAS=y
+>      CONFIG_SOC_SIFIVE=y
+>      CONFIG_SOC_STARFIVE=y
+>      CONFIG_SOC_VIRT=y
+>     -CONFIG_ARCH_RENESAS=y
+>     -CONFIG_ARCH_R9A07G043=y
+>      CONFIG_SMP=y
+>      CONFIG_HOTPLUG_CPU=y
+>      CONFIG_PM=y
+>     @@ -163,6 +159,7 @@ CONFIG_MAILBOX=y
+>      CONFIG_RPMSG_CHAR=y
+>      CONFIG_RPMSG_CTRL=y
+>      CONFIG_RPMSG_VIRTIO=y
+>     +CONFIG_ARCH_R9A07G043=y
+>      CONFIG_EXT4_FS=y
+>      CONFIG_EXT4_FS_POSIX_ACL=y
+>      CONFIG_EXT4_FS_SECURITY=y
+>
+> > > >  CONFIG_SMP=y
+> > > >  CONFIG_HOTPLUG_CPU=y
+> > > >  CONFIG_PM=y
+> > >
+> > > PM and GPIOLIB are auto-selected by ARCH_R9A07G043 (through ARCH_RZG2L)
+> > > resp. SOC_RENESAS, so they can be dropped.  But it's better to do this
+> > > after the release of v6.2-rc1, when all pieces have fallen together.
+> > >
+> > Are you suggesting dropping it from defconfig?
+>
+> Yes, but not right now, as that would make it depend on my
+> renesas-drivers-for-v6.2 branch to keep them enabled.
+>
+I was wondering if that's required by other platforms though.
+CONFIG_PM was added for VIRT machine and GPIOLIB for HiFive.
+
+Cheers,
+Prabhakar
