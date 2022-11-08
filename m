@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28484620E42
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:09:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BE0B620E51
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233976AbiKHLJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:09:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
+        id S233976AbiKHLNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:13:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233995AbiKHLJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:09:35 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE118D6C
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:09:33 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id z24so20561019ljn.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:09:33 -0800 (PST)
+        with ESMTP id S233826AbiKHLNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:13:32 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB19766E
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:13:29 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id l8so20560680ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 03:13:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NUpbWABUTfzB/pi8dKsIix5VNK7uNSZkTxF1xyi8p6Q=;
-        b=daN5I+/5Xw346JyVPdd1+XPv2eW52SdEi5GCLbHumqVdyvfYvxcJhaIx34QQ5Dn7os
-         Fae392wuPFHszQMlyavcl29jJLneUBI8TK+Y6KRRu9xoBjwAtJD2swOVmH+ba/409k/S
-         Dn50bdnfGF4BOz6p2nml/ojfgtxOofgKyorrOpR3Yc6vq7DAMbfNxjBIRoS0wfglbZAI
-         CqjLQ3yfvB9BVugVfHxWYg5svx8ztRlkm1ePEz1U/O5t1g7/ypvKvMKDvVTOt55XLIzc
-         aQjj36nbMXMIApSQW6W8pR5W8a1QiFotDDmfqT/6zXxhLlENE3GemEtvSjMKgf42fYNA
-         MSyw==
+        bh=b6jOxeuiN/P01zuIfksPvOeqYmxHvoXJTsaDxoCzoKc=;
+        b=AJWW7q3rfm8uJ5TAPfZceGmBAUYtgGRyVzRsBn9NKAmQkl07a0ZA9Z0sebEgvC4Qqj
+         h++Y2PeOi5je4QMztSNvVfQyfBHESw54AWECOf06LfbR0Zq/phtWTUjZVK2wpABXlI0p
+         8jStsY+gWu3bdmXhjNh8WSf0a8ez4apalpQ887SIIQ6PcSzSYaAhDR4Y2/MS7K7dcYtW
+         vIRu1DvBEnt3t7la1J980coDN+bggzpB3VblRVqxWuRoNsdaZYNqTIfsMj2pG6YfWMbb
+         zwrwTs5MN2EzDFL6J7s0l7VtIiC5e0YLVOKcI6+LTDRgAWU2x4YPpCJ85vu+RNfmgDMi
+         BfdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NUpbWABUTfzB/pi8dKsIix5VNK7uNSZkTxF1xyi8p6Q=;
-        b=CcHZLGHUCwks2e+Xvd0vdd2wwu5NA6pCnc4PDY6aJhYGLZtpDFZHUufuKSITmcqK9g
-         JCSBsgHSRbFGPJzB8O+Wd+VTx0taLj4sKTY1buSDcTQYTQqeoGoxBpCIBTED7ZJWfc7h
-         WUZvfezrrNwpIC8z0hb11wFmZ3AEAnYfzHIoaeRZSLFkKY5BDSpihanubm3JLXACvzhB
-         BRNddW1vqEtO2xqLmhy9auAvgcSkqK1qBZZ6AG2+6NA22tz3U4NVTQ7MY2o3DPRcpG11
-         lnfTdIxSIIBBbTJW6k86QDPZ1kVS1xj8TX5vd5toIvuTt87nDn9RoAc7AmeEflYJa8V4
-         S4KA==
-X-Gm-Message-State: ACrzQf015BjfhYGhrnX9s4NXxSlDNRlJNIA/5GLL8buCJh9k5EWQsa0S
-        4RwMBy5Kkmfvtzp/24mgW0YDNq6JSX5Jzw==
-X-Google-Smtp-Source: AMsMyM4r9X/im4Bovuy9Fj/WpKriNFPX2D47xTmO98ajKNR/1ytDR/C0epzDHfXxnbD43H3sSa6JuA==
-X-Received: by 2002:a05:651c:542:b0:277:fb6:b88a with SMTP id q2-20020a05651c054200b002770fb6b88amr20496260ljp.208.1667905772151;
-        Tue, 08 Nov 2022 03:09:32 -0800 (PST)
+        bh=b6jOxeuiN/P01zuIfksPvOeqYmxHvoXJTsaDxoCzoKc=;
+        b=8N8mnlnYm9IWYZSH2lGSMibpExhkT3m6gS+8FK/sGmIZCZTJxTkoB7ylHpWd//l0pd
+         HCP1+fCUP6szpAq2irEwLeIrHTj3o/CfDefDYKgRWL3uQ8cteHeC6xbcO3SYPdOHQlLJ
+         HlkfK6zOe/L3VnaqaajfdSzbCoQmjc7keVtwyEoX9Q52jC2mMqyXAarn1KR5+voWgW3+
+         Li10HRCWQ277ZK87knLab/vKFMSE9VprJ2xkjONOSKmJTrsw6Rg757xMqUT7DAkKYhd6
+         Ldcui1vkZ93Sb0Wr+XzfupT1Ld7Nhbbqr7cojlC0qS79pwCV8dukdOsiGGJx0Q7klYmw
+         sT/Q==
+X-Gm-Message-State: ACrzQf3XBcbd3iLLVvjMsxU9t0Y2VzC435H+C7XgI7kwRJANfHX+SRc1
+        x9S/eNhfOna1HYxB9I61PrygbA==
+X-Google-Smtp-Source: AMsMyM4BamTVwnVRVEzHMxTSWzVqGEy7NnZV4CojHp0kgr4RUINHxdiS3OTFIT2molBMkjMfY86rKg==
+X-Received: by 2002:a2e:9545:0:b0:277:8a06:fda2 with SMTP id t5-20020a2e9545000000b002778a06fda2mr5368558ljh.32.1667906007777;
+        Tue, 08 Nov 2022 03:13:27 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id bp9-20020a056512158900b004b19f766b07sm1745746lfb.91.2022.11.08.03.09.30
+        by smtp.gmail.com with ESMTPSA id p16-20020ac246d0000000b004acd6e441cesm1735642lfo.205.2022.11.08.03.13.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:09:31 -0800 (PST)
-Message-ID: <48988a50-3c3d-7a85-af28-66f7842e5893@linaro.org>
-Date:   Tue, 8 Nov 2022 12:09:30 +0100
+        Tue, 08 Nov 2022 03:13:27 -0800 (PST)
+Message-ID: <f8f83839-2e76-e500-a16e-5fd2985a278d@linaro.org>
+Date:   Tue, 8 Nov 2022 12:13:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/5] dt-bindings: arm: uniphier: Add system controller
- bindings
+Subject: Re: [PATCH v2 5/5] arm64: dts: uniphier: Add NX1 SoC and boards
+ support
+Content-Language: en-US
 To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,10 +65,9 @@ To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
 Cc:     soc@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
- <20221107103410.3443-2-hayashi.kunihiko@socionext.com>
-Content-Language: en-US
+ <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107103410.3443-2-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,128 +80,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/11/2022 11:34, Kunihiko Hayashi wrote:
-> Add DT binding schema for system controller implemented in UniPhier SoCs.
-> This describes that the nodes defined here are treated as "syscon".
+> Initial version of devicetree sources for NX1 SoC and boards.
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../socionext/socionext,uniphier-sysctrl.yaml | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
+> NX1 SoC belongs to the UniPhier armv8 architecture platform, and is
+> designed for IoT and AI/ML application fields.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
-> new file mode 100644
-> index 000000000000..be7cf72c232e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-sysctrl.yaml
-
-arm is only for top-level stuff. System controllers go to soc.
-
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/socionext/socionext,uniphier-sysctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Socionext UniPhier system controller
-> +
-> +maintainers:
-> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> +
-> +description: |+
-> +  This describes the devicetree bindings for system controller
-> +  implemented on Socionext UniPhier SoCs.
-
-Drop "This describes the devicetree bindings for" and instead describe
-the hardware.
 
 > +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-You do not have more than one entry, so no need for oneOf.
-
-> +      - items:
-> +          - enum:
-> +              # sysctrl
-> +              - socionext,uniphier-ld4-sysctrl
-> +              - socionext,uniphier-pro4-sysctrl
-> +              - socionext,uniphier-pro5-sysctrl
-> +              - socionext,uniphier-pxs2-sysctrl
-> +              - socionext,uniphier-ld6b-sysctrl
-> +              - socionext,uniphier-sld8-sysctrl
-> +              - socionext,uniphier-ld11-sysctrl
-> +              - socionext,uniphier-ld20-sysctrl
-> +              - socionext,uniphier-pxs3-sysctrl
-> +              - socionext,uniphier-nx1-sysctrl
-> +              - socionext,uniphier-sysctrl
-> +              # soc-glue
-> +              - socionext,uniphier-ld4-soc-glue
-> +              - socionext,uniphier-pro4-soc-glue
-> +              - socionext,uniphier-pro5-soc-glue
-> +              - socionext,uniphier-pxs2-soc-glue
-> +              - socionext,uniphier-ld6b-soc-glue
-> +              - socionext,uniphier-sld8-soc-glue
-> +              - socionext,uniphier-ld11-soc-glue
-> +              - socionext,uniphier-ld20-soc-glue
-> +              - socionext,uniphier-pxs3-soc-glue
-> +              - socionext,uniphier-nx1-soc-glue
-> +              - socionext,uniphier-soc-glue
-> +              # perictrl
-> +              - socionext,uniphier-ld4-perictrl
-> +              - socionext,uniphier-pro4-perictrl
-> +              - socionext,uniphier-pro5-perictrl
-> +              - socionext,uniphier-pxs2-perictrl
-> +              - socionext,uniphier-ld6b-perictrl
-> +              - socionext,uniphier-sld8-perictrl
-> +              - socionext,uniphier-ld11-perictrl
-> +              - socionext,uniphier-ld20-perictrl
-> +              - socionext,uniphier-pxs3-perictrl
-> +              - socionext,uniphier-nx1-perictrl
-> +              - socionext,uniphier-perictrl
-> +              # sdctrl
-> +              - socionext,uniphier-ld4-sdctrl
-> +              - socionext,uniphier-pro4-sdctrl
-> +              - socionext,uniphier-pro5-sdctrl
-> +              - socionext,uniphier-pxs2-sdctrl
-> +              - socionext,uniphier-ld6b-sdctrl
-> +              - socionext,uniphier-sld8-sdctrl
-> +              - socionext,uniphier-ld11-sdctrl
-> +              - socionext,uniphier-ld20-sdctrl
-> +              - socionext,uniphier-pxs3-sdctrl
-> +              - socionext,uniphier-nx1-sdctrl
-> +              - socionext,uniphier-sdctrl
-> +              # mioctrl
-> +              - socionext,uniphier-ld4-mioctrl
-> +              - socionext,uniphier-pro4-mioctrl
-> +              - socionext,uniphier-sld8-mioctrl
-> +              - socionext,uniphier-ld11-mioctrl
-> +              - socionext,uniphier-mioctrl
-> +              # adamv
-> +              - socionext,uniphier-ld11-adamv
-> +              - socionext,uniphier-ld20-adamv
-> +              - socionext,uniphier-adamv
-> +          - const: simple-mfd
-> +          - const: syscon
+> +		soc_glue: syscon@1f800000 {
+> +			compatible = "socionext,uniphier-nx1-soc-glue",
+> +				     "simple-mfd", "syscon";
+> +			reg = <0x1f800000 0x2000>;
 > +
-> +  reg:
-> +    maxItems: 1
+> +			pinctrl: pinctrl {
+> +				compatible = "socionext,uniphier-nx1-pinctrl";
+
+So instead of documenting the hardware precisily, you have one big bag
+for everything under simple-mfd. This is not how the SoC should be
+described in DTS.
+
+> +			};
+> +		};
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties:
-> +  type: object
+> +		soc-glue@1f900000 {
+> +			compatible = "simple-mfd";
 
-No, instead you should describe the children. This must me
-additionalProperties: false
+No, it is not allowed on its own. You need a specific compatible and
+bindings describing its children.
 
-You also miss example.
-
-Start from example-schema as your template or guidance.
 
 Best regards,
 Krzysztof
