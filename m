@@ -2,61 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A8C620FA6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:59:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 856BB620FB6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 13:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233935AbiKHL7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:59:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54662 "EHLO
+        id S234042AbiKHMDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 07:03:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbiKHL7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:59:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E6012082
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:59:23 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1osNGB-0005Z5-PF; Tue, 08 Nov 2022 12:59:19 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1osNG8-0032oU-5I; Tue, 08 Nov 2022 12:59:17 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1osNG8-00FAop-B0; Tue, 08 Nov 2022 12:59:16 +0100
-Date:   Tue, 8 Nov 2022 12:59:16 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Erwan LE RAY <erwan.leray@foss.st.com>
-Cc:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-kernel@vger.kernel.org,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
-Message-ID: <20221108115916.hlmbvyrnmkxymeed@pengutronix.de>
-References: <20220203171114.10888-1-erwan.leray@foss.st.com>
- <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
- <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
- <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
+        with ESMTP id S233298AbiKHMDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 07:03:00 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BDE01E3E3
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 04:02:59 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id t25-20020a1c7719000000b003cfa34ea516so764990wmi.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 04:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=hIvdpOhjCyNiqJSBAwvQQBj8Uqill7WA0zit53y3ii8=;
+        b=KLTeW1vZJd8TnbnX06b9xU8JdQSiRABXLn7DRR6r2chkTI8Qspl6yxcGULvjrycbDj
+         KoMvgeXfTNdukowYA3AaEh9jW0oO6+6zJjlKlTngjvYFYv93shZ9F/iHLpSnHH7bSnPO
+         UCHAha/D2MeRWssidl0tuII2MaEdeXTAY7gdkV6/1ABZdhoKIDLRJQh/DLVCNAoponJP
+         VlWi/aWNX+/SG3ajPFiYzzgNGqG9owQBFRubPQ6bc7cemTRLLuKb7kAyVKgTs2xV84qR
+         2RYCUVZzSkpU/RppH6otY24vHPt3ioI9FeyCOFQ5taXOrPVzZvI+1SyLCvLdQJADO0gD
+         x2Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hIvdpOhjCyNiqJSBAwvQQBj8Uqill7WA0zit53y3ii8=;
+        b=NP4wUwK4yaF7WmLGwU2q3g9OMdvOXreV4gAepioYmFwy+8TAi6D6duHXI/jTUhzO2x
+         bpvmjm+suseNvjAZX7trx6PMwVERuneRNjxOGm1oJ6zMelmUS2JGLAvmNLraArLF7+sM
+         ntBn6zaHsXOcu79qwRkPS1Z8ohJqOhn3t4exAcZE7JHXGnilxBIHxqoILz7BKXpf+QFp
+         jkwGBuSdF1F9tS/qiVInnYDgDxXfaEvVgSTB8c3zIt6dT7SecDa5ZJlOeHgM1Ro8AcdA
+         /fh8NtB/0Jryq9DSprq7BoI4UzJDkwvb3MkkMwLRvu8hs5rbNsekMxhlpLI6NF9P2ypo
+         +iuw==
+X-Gm-Message-State: ACrzQf0PM3V8tvDqt2p655MbtS1gBAP6PlURDo810rnyXx+ObPPbiD3M
+        W6eR7lQsPx1SLrDZbc4nvrat2g==
+X-Google-Smtp-Source: AMsMyM7UPWEFVXALIjatygYKPCSG4hpLFypCBxStqFtN1IpXPmGg97KLO6VUpK072PDk4houkgRRsw==
+X-Received: by 2002:a05:600c:554b:b0:3cf:84ea:3097 with SMTP id iz11-20020a05600c554b00b003cf84ea3097mr23114193wmb.100.1667908978159;
+        Tue, 08 Nov 2022 04:02:58 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b0023662245d3csm10056034wru.95.2022.11.08.04.02.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Nov 2022 04:02:57 -0800 (PST)
+Subject: [PATCH v5 0/2] arm: qcom: mdm9615: first round of bindings and DT fixes
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="c7xl74gxbk272rwu"
-Content-Disposition: inline
-In-Reply-To: <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAGxFamMC/43Oz2rDMAwG8FcpPk/D/532tPcoO8i20hgSB+wudJS8+8Ruo4flJD7B95OeolMr1M
+ Xl9BSNttLLWjm4t5NIE9YbQcmchZZay7MeYMnL2SsH+Q49TbQgjOVBHbzPNsuUYkhBcDtiJ4gNa5q4
+ X7/mmZdT6fe1ff9e2xSP6//wpkBC9OQNhjwqGj7mUrGt72u7iU9GN30Q0gwNYYwULZJ05gUyByHDkD
+ Mqo3M6GWdfIHsQsgxlTDqPiCnIvx/t+/4D6D5GpZ8BAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Tue, 08 Nov 2022 13:02:52 +0100
+Message-Id: <20220928-mdm9615-dt-schema-fixes-v5-0-bbb120c6766a@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,101 +82,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a first round of trivial bindings & DT fixes for the MDM9615 platform.
 
---c7xl74gxbk272rwu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This first round focuses on trivial changes, the remaining work will
+mainly be .txt to .yaml transition of old qcom pmic & co device bindings.
 
-On Fri, Feb 04, 2022 at 04:41:55PM +0100, Erwan LE RAY wrote:
-> On 2/4/22 2:22 PM, Alexandre TORGUE wrote:
-> > Hi Ahmad
-> >=20
-> > On 2/3/22 18:25, Ahmad Fatoum wrote:
-> > > Hello Erwan,
-> > >=20
-> > > On 03.02.22 18:10, Erwan Le Ray wrote:
-> > > > Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
-> > > > remove it at board level to keep current PIO behavior when needed.
-> > > > For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
-> > > > (no HW flow control pin available) are kept in PIO mode, while USAR=
-T3
-> > > > is now configured in DMA mode.
-> > > > UART4 (console UART) has to be kept in irq mode, as DMA support for
-> > > > console has been removed from the driver by commit e359b4411c28
-> > > > ("serial: stm32: fix threaded interrupt handling").
-> > >=20
-> > > Do I understand correctly that your first patch breaks consoles of
-> > > most/all boards, because they will briefly use DMA, which is refused
-> > > by the stm32-usart driver and then you add a patch for each board
-> > > to fix that breakage?
-> >=20
-> > We have two solutions and both have pro/drawbacks. The first one (Erwan
-> > ones, can break the boot if the patch is taken "alone". Your proposition
-> > avoids this breakage but deletes a non define property (which is a bit
-> > weird). However I prefer to keep a functional behavior, and keep Ahmad
-> > proposition. Ahmad, just one question, dt-bindings check doesn't
-> > complain about it ?
-> >=20
-> > Cheers
-> > Alex
-> >=20
-> > >=20
-> > > Such intermittent breakage makes bisection a hassle. /delete-property/
-> > > is a no-op when the property doesn't exist, so you could move the fir=
-st
-> > > patch to the very end to avoid intermittent breakage.
-> > >=20
-> > > I also think that the driver's behavior is a bit harsh. I think it wo=
-uld
-> > > be better for the UART driver to print a warning and fall back to
-> > > PIO for console instead of outright refusing and rendering the system
-> > > silent. That's not mutually exclusive with your patch series here,
-> > > of course.
-> > >=20
-> > > Cheers,
-> > > Ahmad
-> > >=20
->=20
-> The driver implementation will consider the request to probe the UART
-> console in DMA mode as an error (-ENODEV), and will fallback this UART pr=
-obe
-> in irq mode.
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Satya Priya <quic_c_skakit@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-rtc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Dependencies: None
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v5:
+- Removed applied patches
+- Link to v4: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org
 
-> Whatever the patch ordering, the boot will never be broken. The board dt
-> patches aim to get a "proper" implementation, but from functional
-> perspective the driver will manage a request to probe an UART console in =
-DMA
-> mode as an error and fall it back in irq mode.
+Changes in v4:
+- patch 1: None
+- patch 2: None
+- patch 3: None
+- patch 4: None
+- patch 5: Added reviewed-by tag
+- patch 6: Fix descriptions, Added reviewed-by tags
+- patch 7: None
+- patch 8: None
+- patch 9: Added acked-by tag
+- patch 10: None
+- patch 11: None
+- Link to v3: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v3-0-531da552c354@linaro.org
 
-I didn't debug this further yet, but my machine (with an out-of-tree
-dts) fails to boot 6.1-rc4 without removing the dma properties from the
-console UART. This is a bug isn't it? The same dts created a working
-setup with stm32mp157.dtsi from 5.15 + kernel 5.15.
+Changes in v3:
+- Rebased on v6.1-rc1
+- patch 1: Added reviewed-by tag
+- patch 2: Fixes typo in commit msg and added precision about why MIT was selected
+- patch 3: Added reviewed-by tag
+- patch 4: None
+- patch 5: Drop second example node
+- patch 6: Drop Andy, fix interrupts desc and fix example indentation
+- patch 7: Fix commit msg wrap & add reviewed-by tag
+- patch 8: Reword commit msg & add reviewed-by tag
+- patch 9: Reword commit msg & add reviewed-by tag
+- patch 10: None
+- patch 11: Added reviewed-by tag
+- Link to v2: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v2-0-87fbeb4ae053@linaro.org
 
-I can debug this further, but maybe you know off-hand what the problem
-is?
+Changes in v2:
+- patch 1: switch to move from swir.txt to qcom.yaml
+- patch 2: use MIT licence instead of X11 licence
+- patch 3: move reg after compatible
+- patch 4: added Krzysztof's review
+- patch 5: split into 5 changes:
+  - document qcom,pm8921 as fallback of qcom,pm8018
+  - convert qcom,pm8921-pwrkey to dt-schema
+  - document qcom,pm8921-rtc as fallback of qcom,pm8018-rtc
+  - drop unused PM8018 compatible
+  - drop unused pm8018 RTC compatible
+- patch 6: None
+- patch 7: Reworded commit log based on Dmitry's wording on similar patches
+- Link to v1: https://lore.kernel.org/r/20220928-mdm9615-dt-schema-fixes-v1-0-b6e63a7df1e8@linaro.org
 
-Best regards
-Uwe
+---
+Neil Armstrong (2):
+      dt-bindings: rtc: qcom-pm8xxx: document qcom,pm8921-rtc as fallback of qcom,pm8018-rtc
+      rtc: pm8xxx: drop unused pm8018 compatible
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+ .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 16 ++++++++++------
+ drivers/rtc/rtc-pm8xxx.c                                 |  1 -
+ 2 files changed, 10 insertions(+), 7 deletions(-)
+---
+base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+change-id: 20220928-mdm9615-dt-schema-fixes-66d4d0ccb7c7
 
---c7xl74gxbk272rwu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNqRJEACgkQwfwUeK3K
-7AlviAf/aWq+f5jZ43D9mr3TUb0MZkP1KLvPgtrpBfPs15Bp8S74wsXD2uMZcX82
-CtouQO0Y39ByPVDx1rWTJt5PUIGObQsAuQe9J9jVj2dKecRqa5amu8OueqZX0rMs
-VrLueFarS1+Jj95JwpTXaDMWmD7u7Mzh643Xr1aIQ2RPajOkMtaeGuSwqAHhGPTw
-Du5FdhPlIPpetKNn3L+TLHJ3sXWHyQa/BL/wqHjvg575tSiLFLCXGjnYNs9Wqk4h
-BJcHXwFi0hkE37vCKHT6chnyRwF93xR7ZWCJI49KenTK7AC0tSqVZHdFFFD/wV1m
-/g8RuN7EB/xJFEYSrPbtnhILSKTC/Q==
-=yKut
------END PGP SIGNATURE-----
-
---c7xl74gxbk272rwu--
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
