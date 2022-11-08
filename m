@@ -2,315 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C790620DAF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B9C9620DBE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233732AbiKHKtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 05:49:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37436 "EHLO
+        id S233795AbiKHKu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 05:50:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233998AbiKHKsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:48:50 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2CA43871;
-        Tue,  8 Nov 2022 02:48:41 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A897LnJ024277;
-        Tue, 8 Nov 2022 10:48:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oqCPnuhcclVuBKkKCdVweXH9kYN9fMbcdEPaLydmOz8=;
- b=SKBFWKilnYWXak7J5N9kGRD9TMc7gE8Bu596/p5t5weTLAPVimhxe/n3SwviPUvhEsL0
- 7DHJR/Fy4IdQCcBSFtQYTZjWWTRm1dDvoW4kiHKTVRBB/bvHZv6qIMP/5isIEhQLb3pm
- pJdOL+VG2OrKoIFtCItKXw48KDmJcfmcwqr5tCeNA3rAX9VlW0soZ/Ej3OBcfVbyTf4g
- p7yU5sFogwAR8sZbJ9yYjg17WMEeRJftojG+6kN+23jJMVmK4bfUclbymqedAcGvNNBk
- bnpLcq06mtylCAHc+jDdHx14nScVKOaLPGs0jFIPITAd0Dd/rbXl/hukUi6aYFKeA6Rg kQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kqhkp0k8y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Nov 2022 10:48:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A8AmLuZ007667
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 8 Nov 2022 10:48:21 GMT
-Received: from [10.79.43.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 8 Nov 2022
- 02:48:18 -0800
-Message-ID: <dd4821da-331f-4529-8162-90bfe95aa8f8@quicinc.com>
-Date:   Tue, 8 Nov 2022 16:18:15 +0530
+        with ESMTP id S233952AbiKHKur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:50:47 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B333450AA;
+        Tue,  8 Nov 2022 02:50:46 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id bk15so20269894wrb.13;
+        Tue, 08 Nov 2022 02:50:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9wgDgYd1bcD2X3cXZ1z07yxsiiTFNqx0DuA084H8Mro=;
+        b=eNqLMraTJqOnuy1E2um08aqIiu4kDjD/wkQK8Hbwd75LqGM7kDyh/7lGkWaiVnSP+6
+         GxD4FbleKLkQJ5uCk7Rqyyxs28WZHoXtPdhW8ZxFNXPo3Cbf+419dC3QD4aO/IcxYVbZ
+         cnmQKTB4bgBW4VvU9J1ZQrTjzdohmAJjxnsBtwHmb2fWoub8YdO45fYI6EK9xWlK840X
+         w3HSC2gDQThGrjOY9fYHtDZkK/tCEhSoEvO0gHhYUfP25dBVF6vPyQOPiMXfDoY4zvNE
+         BPRlQjmy5OQWtrrS+/vJgssK3kjmp2rZ3ofKPZZ7SqnwyLEu5SLDZ+bqWT7o3t8STSMN
+         CZ+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9wgDgYd1bcD2X3cXZ1z07yxsiiTFNqx0DuA084H8Mro=;
+        b=2mvfLVuIA1MlwyMi3TIPLJi6aYEFPnY7b9r5KSjJz1dtvQc2n/vd5yDOE2yKJ9IjIX
+         N3kZnPi4NkrFiavl1ofRHq9uQGrLkXt9Tqf7rigrCby6J1RBhwcFGK/psEF/SMgVZ/te
+         zh2Nm5jfyWMb7krxkqNOpyqt52dCwYfDAIZ1F3oxJebghk81t2fqdawPMxkNulFhyupg
+         gfuhCQqLNEbpQ0+hMiyzj8H8xABxExZalmoHMrCXvpNGxrZ6gnvajNW1SNCzgQ9KsIJI
+         uMyrYktk5VUFJ+YJSMBpptasNqKM9Hqpz4aNNfB9dXklf++a2GOZMKJXO6dFC4g+PtlI
+         tFLQ==
+X-Gm-Message-State: ACrzQf0UIIvL/I+Xwaed1Q94LiPRQoElHC6iirzRP1jteOQphsGd7jiI
+        Ch7YG+CX0PQl7cx2UJAYl9M=
+X-Google-Smtp-Source: AMsMyM5+TSi+bPpo6N0WWycEZ1prZ1VLdMLb2TwlKjyi9JBm+vMlGU0+IZ4gEmj4SduIcKn5wUI19Q==
+X-Received: by 2002:adf:e3c1:0:b0:236:6d5d:ffa2 with SMTP id k1-20020adfe3c1000000b002366d5dffa2mr34600529wrm.557.1667904644591;
+        Tue, 08 Nov 2022 02:50:44 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id k4-20020a5d6e84000000b00236722ebe66sm9982506wrz.75.2022.11.08.02.50.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 02:50:42 -0800 (PST)
+Message-ID: <585a9cbb-4df4-1c06-ecfa-3b9442f1a5e2@gmail.com>
+Date:   Tue, 8 Nov 2022 11:50:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [RFC 1/2] dt-bindings: firmware: arm,scmi: Add support for memlat
- vendor protocol
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v5 5/7] dt-bindings: watchdog: mediatek: Convert mtk-wdt
+ to json-schema
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sudeep.holla@arm.com>, <cristian.marussi@arm.com>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>, <quic_avajid@quicinc.com>
-References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
- <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
- <20221104180339.GA2079655-robh@kernel.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <20221104180339.GA2079655-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: c85QPdilenasOBfnSH_12kIYBDxRx3Ng
-X-Proofpoint-ORIG-GUID: c85QPdilenasOBfnSH_12kIYBDxRx3Ng
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_11,2022-11-08_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0
- impostorscore=0 clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211080059
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     nfraprado@collabora.com, angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
+ <20221108033209.22751-6-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221108033209.22751-6-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Rob,
-Thanks for taking time to review the series.
 
-On 11/4/22 23:33, Rob Herring wrote:
-> On Thu, Nov 03, 2022 at 10:28:31AM +0530, Sibi Sankar wrote:
->> Add bindings support for the SCMI QTI memlat (memory latency) vendor
->> protocol. The memlat vendor protocol enables the frequency scaling of
->> various buses (L3/LLCC/DDR) based on the memory latency governor
->> running on the CPUSS Control Processor.
+
+On 08/11/2022 04:32, Allen-KH Cheng wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> I thought the interconnect binding was what provided details for bus
-> scaling.
-
-The bus scaling in this particular case is done by SCP FW and not
-from any kernel client. The SCMI vendor protocol would be used to
-pass on the bandwidth requirements during initialization and SCP FW
-would vote on it independently after it is
-
+> Convert the MediaTek watchdog bindings to schema.
 > 
->>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   .../devicetree/bindings/firmware/arm,scmi.yaml     | 164 +++++++++++++++++++++
->>   1 file changed, 164 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> index 1c0388da6721..efc8a5a8bffe 100644
->> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> @@ -189,6 +189,47 @@ properties:
->>         reg:
->>           const: 0x18
->>   
->> +  protocol@80:
->> +    type: object
->> +    properties:
->> +      reg:
->> +        const: 0x80
->> +
->> +      qcom,bus-type:
->> +        $ref: /schemas/types.yaml#/definitions/uint32-array
->> +        items:
->> +          minItems: 1
->> +        description:
->> +          Identifier of the bus type to be scaled by the memlat protocol.
->> +
->> +      cpu-map:
+> The original binding only had 4 without a fallback but there is a reset
+> controller on the "mediatek,mt7986-wdt", "mediatek,mt8186-wdt",
+> "mediatek,mt8188-wdt" and "mediatek,mt8195-wdt" Since there is no reset
+> controller for the mt6589, we remove "mediatek,mt6589-wdt" as a
+> fallback.
 > 
-> cpu-map only goes under /cpus node.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Co-developed-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-sure will use a qcom specific node instead
+As I'm put as the maintainer:
+Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
 
+Shall I take that through my tree or shall it go through the watchdog tree?
+
+Regards,
+Matthias
+
+> ---
+>   .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 78 +++++++++++++++++++
+>   .../devicetree/bindings/watchdog/mtk-wdt.txt  | 43 ----------
+>   2 files changed, 78 insertions(+), 43 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
 > 
->> +        type: object
->> +        description:
->> +          The list of all cpu cluster configurations to be tracked by the memlat protocol
->> +
->> +        patternProperties:
->> +          '^cluster[0-9]':
->> +            type: object
->> +            description:
->> +              Each cluster node describes the frequency domain associated with the
->> +              CPUFREQ HW engine and bandwidth requirements of the buses to be scaled.
->> +
->> +            properties:
-> 
-> cpu-map nodes don't have properties.
-
-ack
-
-> 
->> +              operating-points-v2: true
->> +
->> +              qcom,freq-domain:
-> 
-> Please don't add new users of this. Use the performance-domains binding
-> instead.
-
-The plan was to re-use the ^^ to determine frequency domain of
-the cpus since they are already present in the dts. I guess using
-performance-domains bindings would require a corresponding change in
-qcom-cpufreq-hw driver as well. Ack.
-
-> 
->> +                $ref: /schemas/types.yaml#/definitions/phandle-array
->> +                description:
->> +                  Reference to the frequency domain of the CPUFREQ HW engine
->> +                items:
->> +                  - items:
->> +                      - description: phandle to CPUFREQ HW engine
->> +                      - description: frequency domain associated with the cluster
->> +
->> +            required:
->> +              - qcom,freq-domain
->> +              - operating-points-v2
->> +
->>   additionalProperties: false
->>   
->>   patternProperties:
->> @@ -429,4 +470,127 @@ examples:
->>           };
->>       };
->>   
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    firmware {
->> +        scmi {
->> +            compatible = "arm,scmi";
->> +
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            mboxes = <&cpucp_mbox>;
->> +            mbox-names = "tx";
->> +            shmem = <&cpu_scp_lpri>;
->> +
->> +            scmi_memlat: protocol@80 {
->> +                reg = <0x80>;
->> +                qcom,bus-type = <0x2>;
->> +
->> +                cpu-map {
->> +                    cluster0 {
->> +                        qcom,freq-domain = <&cpufreq_hw 0>;
->> +                        operating-points-v2 = <&cpu0_opp_table>;
->> +                    };
->> +
->> +                    cluster1 {
->> +                        qcom,freq-domain = <&cpufreq_hw 1>;
->> +                        operating-points-v2 = <&cpu4_opp_table>;
->> +                    };
->> +
->> +                    cluster2 {
->> +                        qcom,freq-domain = <&cpufreq_hw 2>;
->> +                        operating-points-v2 = <&cpu7_opp_table>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        cpu0_opp_table: opp-table-cpu0 {
->> +            compatible = "operating-points-v2";
->> +
->> +            cpu0_opp_300mhz: opp-300000000 {
->> +                opp-hz = /bits/ 64 <300000000>;
->> +                opp-peak-kBps = <9600000>;
->> +            };
->> +
->> +            cpu0_opp_1325mhz: opp-1324800000 {
->> +                opp-hz = /bits/ 64 <1324800000>;
->> +                opp-peak-kBps = <33792000>;
->> +            };
->> +
->> +            cpu0_opp_2016mhz: opp-2016000000 {
->> +                opp-hz = /bits/ 64 <2016000000>;
->> +                opp-peak-kBps = <48537600>;
->> +            };
->> +        };
->> +
->> +        cpu4_opp_table: opp-table-cpu4 {
->> +            compatible = "operating-points-v2";
->> +
->> +            cpu4_opp_691mhz: opp-691200000 {
->> +                opp-hz = /bits/ 64 <691200000>;
->> +                opp-peak-kBps = <9600000>;
->> +            };
->> +
->> +            cpu4_opp_941mhz: opp-940800000 {
->> +                opp-hz = /bits/ 64 <940800000>;
->> +                opp-peak-kBps = <17817600>;
->> +            };
->> +
->> +            cpu4_opp_2611mhz: opp-2611200000 {
->> +                opp-hz = /bits/ 64 <2611200000>;
->> +                opp-peak-kBps = <48537600>;
->> +            };
->> +        };
->> +
->> +        cpu7_opp_table: opp-table-cpu7 {
->> +            compatible = "operating-points-v2";
->> +
->> +            cpu7_opp_806mhz: opp-806400000 {
->> +                opp-hz = /bits/ 64 <806400000>;
->> +                opp-peak-kBps = <9600000>;
->> +            };
->> +
->> +            cpu7_opp_2381mhz: opp-2380800000 {
->> +                opp-hz = /bits/ 64 <2380800000>;
->> +                opp-peak-kBps = <44851200>;
->> +            };
->> +
->> +            cpu7_opp_2515mhz: opp-2515200000 {
->> +                opp-hz = /bits/ 64 <2515200000>;
->> +                opp-peak-kBps = <48537600>;
->> +            };
->> +        };
->> +    };
->> +
->> +
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        cpucp_mbox: mailbox@17400000 {
->> +            compatible = "qcom,cpucp-mbox";
->> +            reg =   <0x0 0x17c00000 0x0 0x10>, <0x0 0x18590300 0x0 0x700>;
->> +            interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
->> +            #mbox-cells = <0>;
->> +        };
->> +
->> +        sram@18509400 {
->> +            compatible = "mmio-sram";
->> +            reg = <0x0 0x18509400 0x0 0x400>;
->> +            no-memory-wc;
->> +
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +            ranges = <0x0 0x0 0x18509400 0x400>;
->> +
->> +            cpu_scp_lpri: scp-sram-section@0 {
->> +                compatible = "arm,scmi-shmem";
->> +                reg = <0x0 0x80>;
->> +            };
->> +        };
->> +    };
->> +
->>   ...
->> -- 
->> 2.7.4
->>
->>
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> new file mode 100644
+> index 000000000000..b3d2273f323b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/mediatek,mtk-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek SoCs Watchdog timer
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +description:
+> +  The watchdog supports a pre-timeout interrupt that fires
+> +  timeout-sec/2 before the expiry.
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2712-wdt
+> +          - mediatek,mt6589-wdt
+> +          - mediatek,mt7986-wdt
+> +          - mediatek,mt8183-wdt
+> +          - mediatek,mt8186-wdt
+> +          - mediatek,mt8188-wdt
+> +          - mediatek,mt8192-wdt
+> +          - mediatek,mt8195-wdt
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2701-wdt
+> +              - mediatek,mt6582-wdt
+> +              - mediatek,mt6797-wdt
+> +              - mediatek,mt7622-wdt
+> +              - mediatek,mt7623-wdt
+> +              - mediatek,mt7629-wdt
+> +              - mediatek,mt8516-wdt
+> +          - const: mediatek,mt6589-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Watchdog pre-timeout (bark) interrupt
+> +
+> +  mediatek,disable-extrst:
+> +    description: Disable sending output reset signal
+> +    type: boolean
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        watchdog@10007000 {
+> +            compatible = "mediatek,mt8183-wdt";
+> +            reg = <0 0x10007000 0 0x100>;
+> +            interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_LOW>;
+> +            mediatek,disable-extrst;
+> +            timeout-sec = <10>;
+> +            #reset-cells = <1>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> deleted file mode 100644
+> index b900c85d4560..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> +++ /dev/null
+> @@ -1,43 +0,0 @@
+> -Mediatek SoCs Watchdog timer
+> -
+> -The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
+> -before the expiry.
+> -
+> -Required properties:
+> -
+> -- compatible should contain:
+> -	"mediatek,mt2701-wdt", "mediatek,mt6589-wdt": for MT2701
+> -	"mediatek,mt2712-wdt": for MT2712
+> -	"mediatek,mt6582-wdt", "mediatek,mt6589-wdt": for MT6582
+> -	"mediatek,mt6589-wdt": for MT6589
+> -	"mediatek,mt6797-wdt", "mediatek,mt6589-wdt": for MT6797
+> -	"mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
+> -	"mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
+> -	"mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
+> -	"mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
+> -	"mediatek,mt8183-wdt": for MT8183
+> -	"mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
+> -	"mediatek,mt8188-wdt", "mediatek,mt6589-wdt": for MT8188
+> -	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+> -	"mediatek,mt8192-wdt": for MT8192
+> -	"mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
+> -
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -- mediatek,disable-extrst: disable send output reset signal
+> -- interrupts: Watchdog pre-timeout (bark) interrupt.
+> -- timeout-sec: contains the watchdog timeout in seconds.
+> -- #reset-cells: Should be 1.
+> -
+> -Example:
+> -
+> -watchdog: watchdog@10007000 {
+> -	compatible = "mediatek,mt8183-wdt",
+> -		     "mediatek,mt6589-wdt";
+> -	mediatek,disable-extrst;
+> -	reg = <0 0x10007000 0 0x100>;
+> -	interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
+> -	timeout-sec = <10>;
+> -	#reset-cells = <1>;
+> -};
