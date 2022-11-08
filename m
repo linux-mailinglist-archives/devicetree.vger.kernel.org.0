@@ -2,77 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 161CA620F56
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2893620F6F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 12:48:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233450AbiKHLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 06:42:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
+        id S233591AbiKHLsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 06:48:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233345AbiKHLm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:42:26 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47E32EF5F;
-        Tue,  8 Nov 2022 03:42:25 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id w14so20517364wru.8;
-        Tue, 08 Nov 2022 03:42:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QKWZw8f3KDA3uN1tbZ06k0BAsz8ZmwlT0FyHTdt1NpE=;
-        b=bbFVf4ehELM6Sf47QyuVf6xwC/JS0r6QsJ2HCw/mb0bmmhjKAQDLzV+8W8KaTmtdaU
-         WlhROl2mLDodTdp8k93NPp0C+tuU9C1p0oSgUftsOydJiR7kiHjx6bIb9aQuOzTd6laf
-         64svrr+CMLf2ylsIPBGZaow3hOQYAIzaKQ0CBFJ1RQrEHYQlje7zUUfRZKm0yu4w98Gn
-         FZlfkRhXLjlBnaG08+d4Te61Gg26jLIfN/jY3V1Q7STY9CNL3VhqP2biRHrms8kbCmWc
-         2V1/swCWsWbdno/JJuso3OkZOXQ9RNC2gTKl7JWM2Z3Y8B0lxar994olPJQz3r5XZgw9
-         7Q5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QKWZw8f3KDA3uN1tbZ06k0BAsz8ZmwlT0FyHTdt1NpE=;
-        b=7y4YYeLFN/CSOd++e921ZDDvso7NKfZuvsmwm8hhV2zvqpYt1M6dCZBRo9+PKbEV7R
-         m2nbtb/z1urayYIOVgAvE3wFSKWmTZgsCWygUEPGIdkdP8MIO5qcGg0gjXh525tfV+LN
-         zxqNZj9sCmXo1mB2HN82trYv4ZwmepG6FYELWjVy1DN6GghuaIcDN2NVO5mUE5WnjorO
-         TzCJjVc0+GBG+FPWZNnafI/cCHot2dWcg+2WOcba4vsqHkwhelYNc/NraZEPRueFCdx6
-         JVAQH4U7OVnUu5xNjqeBazrbunrOjV2dlxf2cQWqMgb71GVL5ZItlUm6TenO5XmHVmSN
-         VE/A==
-X-Gm-Message-State: ACrzQf0+Qf1ZL8ERECGdv+sj4WEXQd6zc7xdJQpn1EKD99/IsWQCZTGG
-        O3kqYuICjeXk1zG1kiGbctU=
-X-Google-Smtp-Source: AMsMyM5nUdlHaDGjmApV1ZGe5XmH3xwHTqd1fvJFnS1APUmgka76olr6JYvnDs2PnV9JeIF2IMEadg==
-X-Received: by 2002:a5d:538c:0:b0:236:a6a5:9cfe with SMTP id d12-20020a5d538c000000b00236a6a59cfemr33267919wrv.121.1667907744110;
-        Tue, 08 Nov 2022 03:42:24 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id k4-20020adfe3c4000000b0022ccae2fa62sm10188253wrm.22.2022.11.08.03.42.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 03:42:22 -0800 (PST)
-Message-ID: <552e9d45-715a-62dc-09bf-58d565b62837@gmail.com>
-Date:   Tue, 8 Nov 2022 12:42:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Content-Language: en-US
-To:     Pierre Gondois <pierre.gondois@arm.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233689AbiKHLsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 06:48:33 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0ACEBF4
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 03:48:29 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osN5c-0004G3-TY; Tue, 08 Nov 2022 12:48:24 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osN5a-0032nL-Gu; Tue, 08 Nov 2022 12:48:23 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osN5a-00FAkq-8O; Tue, 08 Nov 2022 12:48:22 +0100
+Date:   Tue, 8 Nov 2022 12:48:22 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20221107155825.1644604-1-pierre.gondois@arm.com>
- <20221107155825.1644604-13-pierre.gondois@arm.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v2 12/23] arm64: dts: Update cache properties for mediatek
-In-Reply-To: <20221107155825.1644604-13-pierre.gondois@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Greentime Hu <greentime.hu@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [PATCH v6 00/10] Designware PWM driver updates for OF
+Message-ID: <20221108114822.7aktlzgbz7xziudb@pengutronix.de>
+References: <20221020151610.59443-1-ben.dooks@sifive.com>
+ <623284c8-f4bb-1020-2f2e-a475f424c5b5@linux.intel.com>
+ <bcd96d79-71b2-9d6a-6397-a47162e52acc@sifive.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uk7th4v7jksyqa5r"
+Content-Disposition: inline
+In-Reply-To: <bcd96d79-71b2-9d6a-6397-a47162e52acc@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,96 +61,56 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--uk7th4v7jksyqa5r
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 07/11/2022 16:57, Pierre Gondois wrote:
-> The DeviceTree Specification v0.3 specifies that the cache node
-> 'compatible' and 'cache-level' properties are 'required'. Cf.
-> s3.8 Multi-level and Shared Cache Nodes
-> The 'cache-unified' property should be present if one of the
-> properties for unified cache is present ('cache-size', ...).
-> 
-> Update the Device Trees accordingly.
-> 
-> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+On Tue, Nov 08, 2022 at 11:19:44AM +0000, Ben Dooks wrote:
+> On 24/10/2022 09:39, Jarkko Nikula wrote:
+> > Hi
+> >=20
+> > On 10/20/22 18:16, Ben Dooks wrote:
+> > > This is an updated version of the Designware PWM driver updates
+> > > for OF support, which now splits the driver into PCI and OF parts
+> > > as well as tries to sort out the review comments.
+> > >=20
+> > > Hopefully this can now be queued for the next kernel version.
+> > >=20
+> > > v6:
+> > > =A0 - fix removal ordering of DWC_PERIOD_NS
+> >=20
+> > I did a quick test on our HW and PWM was counting as before.
+> >=20
+> > Tested-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+>=20
+> Just to follow up on this, should I post a v7 of this (given
+> I think it is all just updates for review/tested) ?
 
-Applied, thanks,
-Matthias
+Just to add the tags doesn't justify a resend.
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 3 +++
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 3 +++
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 +++
->   3 files changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index 64693c17af9e..c326aeb33a10 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -198,16 +198,19 @@ cluster_off_b: cluster-off-b {
->   
->   		l2_0: l2-cache0 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l2_1: l2-cache1 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l3_0: l3-cache {
->   			compatible = "cache";
-> +			cache-level = <3>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 6b20376191a7..424fc89cc6f7 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -169,16 +169,19 @@ core3 {
->   
->   		l2_0: l2-cache0 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l2_1: l2-cache1 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l3_0: l3-cache {
->   			compatible = "cache";
-> +			cache-level = <3>;
->   		};
->   
->   		idle-states {
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 905d1a90b406..cb74905cfbb8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -213,16 +213,19 @@ cluster_off_b: cluster-off-b {
->   
->   		l2_0: l2-cache0 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l2_1: l2-cache1 {
->   			compatible = "cache";
-> +			cache-level = <2>;
->   			next-level-cache = <&l3_0>;
->   		};
->   
->   		l3_0: l3-cache {
->   			compatible = "cache";
-> +			cache-level = <3>;
->   		};
->   	};
->   
+Reviewing this is in my todo list, I hope to come to it later this week.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--uk7th4v7jksyqa5r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNqQgMACgkQwfwUeK3K
+7AkETQf/RblT34D1zc1x6a69+2ynE5hvgoKtdk6F0NfPyZwUe4GP67DEtg6NMvOw
+mhpqrVNR8LlxZ1RT55YruAJMGDaoCYaw6syw3KOyVU0d9vlDh8wJ7IUsBUADtxzY
+uGhPmqoa2DdghZZj1Pk4fwr9KL52pB0bh8ciUK+899e53nb632fIk0daicYtXrWO
+HiatrZIlxfr/7x5W7IzqnssTOTHP89RigbDfOoG4bYG5yN/++IxzhCYAfUmJ4n4J
+T0BZhL7Qul3YDzdc58pKQ0YxAWeQwjt3IWeluTT+UZdTEflwhOzHCinRiZ5IZYpm
+DU6DBQT/01s8L0lQuqcUUAGIPTV1lw==
+=5KdU
+-----END PGP SIGNATURE-----
+
+--uk7th4v7jksyqa5r--
