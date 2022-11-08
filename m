@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F10A8621B70
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E372D621B73
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 19:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234206AbiKHSIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 13:08:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58386 "EHLO
+        id S234691AbiKHSJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 13:09:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234139AbiKHSIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:08:43 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3F41408B
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:08:42 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id f37so22322014lfv.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:08:42 -0800 (PST)
+        with ESMTP id S234066AbiKHSJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 13:09:14 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A4B38AA
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 10:09:13 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id l8so22303085ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 10:09:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ocux0pp1E+FeRNpO7DTAPUYF97MyHzA2fZ5zmFok8Rc=;
-        b=TMHCOOqAcUzN3uR5F/zXXSbAwfZe7p1vuuhaYPiH66PD/EYb/Oh2mlqn3d6KwNwE2/
-         3IgsCyGEJ5ZLc1iPGgvtLw3gWv9oFQEqgUsu0ElSBVMGjFoDnqGm2y+H44XZaYLvlIHw
-         N+yRPAY60wiBHLRdaXnOPMG0djnnGAx50eqFQ4NQjzLIGeeM9mnFagcGIkFkbodFKppw
-         wh1J4ANE9EBUtEIKl3OiLGIrXB37hhOnf9J4MG0HDH+1mtdvWcbypgCmMYClm60F8RSA
-         E9LWFcJSpwncuzZUK+w3JHHDnKpnq9jw8ay5Vxqred1nXcixIBGO1M7oMWXDeayCWuPo
-         jgSA==
+        bh=dO/s9yP23N552ooQfZFgnhLrk4aAI5UdBTJMKg7XmQ8=;
+        b=dC9KBQED+XttO3S2OUNMahGCou+hVYqpC8zWMLN8tX1BKU9ejmaKf3UqhP5nCZuPq8
+         Y9kJd5UNlG0+p4LXM59AMrI+tJPY4kSa1tbJKg8hsSWdRIhtToFIqlI+YgGIJdQg3BaG
+         +OR8MhiC969fFfeyScRSUpLUpIPK3ANvHfH8Nbls2gsNFKx4g6XY3lnjOi2TjJQ2lxvU
+         s7qPsZJyPymUzznfXKVhXO4m+KJCQHzmWSHvXBst3Vf7Tz7PFIBV45tRgErr2kTRQ+cR
+         7IfyYwoNQm5flTSAxdq69hGAurKeZA8QARzF+2i/ubvCAuzRh4mkLH5BpWFqbMlcgASn
+         t+KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ocux0pp1E+FeRNpO7DTAPUYF97MyHzA2fZ5zmFok8Rc=;
-        b=1ecHwQuLrGPeTaamUHUaYWIGc87o8DtRW4vHndK6uC11ZqABtriVTD8DdjXpfONp4M
-         sV7XlNU9kNhHbarCfGVyUN6zbnhSRvjHFKe3ju57CZyLCh9u57k61JTmiuVn2WI9Ekj7
-         585TNAlDlW3LHxfZq7B+CAeJWiijofh1wTcNKQDXIGgb18Q7OaKoHFiTh91q/7vHUdeB
-         P2JNDIVkaIHgyz67xdcDtgMFLh1+rGwDXv10z3Gm5V3jpPALyml2FA71QT9Y9eJKjIDZ
-         7znOV1x9qLdUndXO7mZI1xRfpk4i7SpEqIpoxMmOYW75fzPe8UmdlwcsHhjEgFr3mmFk
-         wWKQ==
-X-Gm-Message-State: ACrzQf1ufhxe274O7VtK2K9CxZyfL7+6AzwOemOEPw72kQWRBrxIOoau
-        iYds2afyZPJ2fZ6DmuoMStt7Pg==
-X-Google-Smtp-Source: AMsMyM6DPRsbvcl+c7foHNWB2NPljcYmU4yf5sCU5gzjt2FmWq8Bl8Kr8HiQ8Xe/E0FiBDDBlaqtDw==
-X-Received: by 2002:a19:7009:0:b0:4b1:11a3:789e with SMTP id h9-20020a197009000000b004b111a3789emr14342630lfc.39.1667930920698;
-        Tue, 08 Nov 2022 10:08:40 -0800 (PST)
+        bh=dO/s9yP23N552ooQfZFgnhLrk4aAI5UdBTJMKg7XmQ8=;
+        b=KuHY/RsLUAascn0EiEVOjgrOgTgWV7eOV8qIsVQSGyxz7KmBL/xN/l/2arbTsMDV6V
+         aA7Pe15cfM3Qh+j0UmQCRxoirDxbiENFCU9oEd2Rhug2zGajojbFKilH0KhCOYtoQ9K8
+         WUEQQYpahfhIisryjXGcsFre/9eBVAC/PqFYnabXVmXWg0bFoY2EJL5fBHMcTWGaV1/b
+         w7kjUhX4jWL9FrkA8D3+bWXLz0mbWJRAAHC6ZZi0oskAcR6gtHShfTlusDwR7vgqcAzn
+         ORV+nia21naxKDz/sQLJdYTTzVevLcTy4euEdx3OsmbQWDg3J24CZvbQ6KGy5voC7+tC
+         b2Ug==
+X-Gm-Message-State: ACrzQf09dwastT+iiLooRPOQ1Sto9i3LW+0xcX2krSsM3qQqVSQ9+pSB
+        Z1K/1inXmD0F6xpequF+Y9ZSBQ==
+X-Google-Smtp-Source: AMsMyM7XF7PKFMvdGUnfxui1KW1zDPEgDY8JvtMhYGo0GLOQnbv4lLndJGTCvUOf/9/BCF8SOiGeXQ==
+X-Received: by 2002:a05:651c:b9a:b0:277:18f1:195c with SMTP id bg26-20020a05651c0b9a00b0027718f1195cmr20970320ljb.233.1667930951371;
+        Tue, 08 Nov 2022 10:09:11 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id p15-20020ac24ecf000000b0049adf925d00sm1882779lfr.1.2022.11.08.10.08.39
+        by smtp.gmail.com with ESMTPSA id x12-20020a056512078c00b004917a30c82bsm1873162lfr.153.2022.11.08.10.09.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 10:08:40 -0800 (PST)
-Message-ID: <c28e0c1e-3aba-7c80-baa5-7f8925dea7c8@linaro.org>
-Date:   Tue, 8 Nov 2022 19:08:39 +0100
+        Tue, 08 Nov 2022 10:09:10 -0800 (PST)
+Message-ID: <ec1ac04b-8db5-f50b-9d74-72c5e7c0301f@linaro.org>
+Date:   Tue, 8 Nov 2022 19:09:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v6 4/4] dt-bindings: soundwire: Convert text bindings to
- DT Schema
+Subject: Re: [PATCH v7 01/10] dt-bindings: arm: rockchip: Add pmu compatible
+ for rv1126
 Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
-        robh+dt@kernel.org, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
-        konrad.dybcio@somainline.org, mka@chromium.org
-Cc:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
-References: <1667918763-32445-1-git-send-email-quic_srivasam@quicinc.com>
- <1667918763-32445-5-git-send-email-quic_srivasam@quicinc.com>
+To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>
+References: <20221108041400.157052-1-jagan@edgeble.ai>
+ <20221108041400.157052-2-jagan@edgeble.ai>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1667918763-32445-5-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <20221108041400.157052-2-jagan@edgeble.ai>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,20 +78,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 15:46, Srinivasa Rao Mandadapu wrote:
-> Convert soundwire text bindings to DT Schema format.
+On 08/11/2022 05:13, Jagan Teki wrote:
+> Add PMU compatible string for rockchip rv1126.
 > 
-> Update interrupt property items as per device tree, as it is not
-> appropriately described in text file.
-> Update some of the properties description with minimum and maximum range.
-> Update secondary node info which is used to describe slave devices.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
-> Signed-off-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
