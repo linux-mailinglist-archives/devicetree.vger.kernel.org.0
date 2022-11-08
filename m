@@ -2,134 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AB236218D0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:52:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E49666218E4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234498AbiKHPwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 10:52:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40216 "EHLO
+        id S234561AbiKHP5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 10:57:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234472AbiKHPwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:52:11 -0500
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7500D25282;
-        Tue,  8 Nov 2022 07:52:10 -0800 (PST)
-Received: by mail-qt1-f170.google.com with SMTP id h21so8886523qtu.2;
-        Tue, 08 Nov 2022 07:52:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f5KUR+OrhKv8Dk8eQjpB3hNK7Qj5y9AJxP2N44RuaHw=;
-        b=qFdOMwqnR0XnsL9t4EIo3ym98kNuZPBZHvas4Nl4Yl1kdWC1Fbv+43IusIcVA9/Fi5
-         43stopV+fNbKLZ+v+fRIqRrEVom09iKwFUE+bEVlBh6BlliIz7ydDPPtWZ5myj9XZrE/
-         sbUJRvAQKNsumE60Snh3BkIV63bKLOUzwnuGrtYrOldXzI49FImVR4o0UroepG3Fpfb5
-         1QwkrSECnqHGJ8XtkA3gft0b81otT/Lt/97pHi0v0qZYK/jG4KIhBq+939csTxGIUPGp
-         TTwPcGd8BvTyukbh2JA5J0oC8zLolLTAxXNsdyUmGDD9wsCGqs0F7WvZulSIrYz8yhBn
-         iVHQ==
-X-Gm-Message-State: ACrzQf3w5bnReKeNjyVIubHw+MxTRg70AGf1snsZUOd7IBpxbYM7Z5la
-        SM3RAaIQto1+vevrH+HZD9eeqfEdzl3HEiW6
-X-Google-Smtp-Source: AMsMyM5oy2kjssfJJP5u15YPaPDHHpaauCVi5KmTa3avNZRhPEm0N7II3H4C/5QY85e9kvwhUpauzw==
-X-Received: by 2002:ac8:4505:0:b0:3a5:310c:1cd8 with SMTP id q5-20020ac84505000000b003a5310c1cd8mr34186894qtn.540.1667922729511;
-        Tue, 08 Nov 2022 07:52:09 -0800 (PST)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id bm32-20020a05620a19a000b006fa84082b6dsm9737441qkb.128.2022.11.08.07.52.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 07:52:08 -0800 (PST)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-3691e040abaso137389417b3.9;
-        Tue, 08 Nov 2022 07:52:08 -0800 (PST)
-X-Received: by 2002:a81:b80f:0:b0:36b:56d3:71b8 with SMTP id
- v15-20020a81b80f000000b0036b56d371b8mr923825ywe.384.1667922727704; Tue, 08
- Nov 2022 07:52:07 -0800 (PST)
+        with ESMTP id S231576AbiKHP5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:57:23 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3DD9413F62;
+        Tue,  8 Nov 2022 07:57:22 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2F3F81FB;
+        Tue,  8 Nov 2022 07:57:28 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 162973F73D;
+        Tue,  8 Nov 2022 07:57:19 -0800 (PST)
+Date:   Tue, 8 Nov 2022 15:57:17 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] cpufreq: qcom-hw: Add CPU clock provider support
+Message-ID: <20221108155717.srlnabls5ze2resx@bogus>
+References: <20221108154037.111794-1-manivannan.sadhasivam@linaro.org>
+ <20221108154037.111794-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Nov 2022 16:51:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUKVxO24Qgyx37tbs5+m0Us0VF3eTZCC2KV=AC8z2JneQ@mail.gmail.com>
-Message-ID: <CAMuHMdUKVxO24Qgyx37tbs5+m0Us0VF3eTZCC2KV=AC8z2JneQ@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] riscv: configs: defconfig: Enable Renesas RZ/Five SoC
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221108154037.111794-4-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Fri, Oct 28, 2022 at 6:59 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Nov 08, 2022 at 09:10:37PM +0530, Manivannan Sadhasivam wrote:
+> Qcom CPUFreq hardware (EPSS/OSM) controls clock and voltage to the CPU
+> cores. But this relationship is not represented with the clk framework
+> so far.
+> 
+> So, let's make the qcom-cpufreq-hw driver a clock provider. This makes the
+> clock producer/consumer relationship cleaner and is also useful for CPU
+> related frameworks like OPP to know the frequency at which the CPUs are
+> running.
+> 
+> The clock frequency provided by the driver is for each frequency domain.
+> We cannot get the frequency of each CPU core because, not all platforms
+> support per-core DCVS feature.
+> 
+> Also the frequency supplied by the driver is the actual frequency that
+> comes out of the EPSS/OSM block after the DCVS operation. This frequency is
+> not same as what the CPUFreq framework has set but it is the one that gets
+> supplied to the CPUs after throttling by LMh.
 >
-> Enable Renesas RZ/Five SoC config in defconfig. It allows the default
-> upstream kernel to boot on RZ/Five SMARC EVK board.
->
-> Alongside enable SERIAL_SH_SCI config so that the serial driver used by
-> RZ/Five SoC is built-in.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v4 -> v5
-> * No change
->
-> v3 -> v4
-> * Explicitly enabled ARCH_R9A07G043 config (note I have restored the RB
->   tags with this change)
-> * Used riscv instead of RISC-V in subject line
 
-Thanks for the update!
+OK now I see more info here. How different is this value from the one
+returned by qcom_cpufreq_hw_get() ?
 
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -29,6 +29,8 @@ CONFIG_SOC_MICROCHIP_POLARFIRE=y
->  CONFIG_SOC_SIFIVE=y
->  CONFIG_SOC_STARFIVE=y
->  CONFIG_SOC_VIRT=y
-> +CONFIG_ARCH_RENESAS=y
-> +CONFIG_ARCH_R9A07G043=y
-
-You forgot to refresh after moving ARCH_RENESAS in v5 of "riscv:
-Kconfig.socs: Add ARCH_RENESAS kconfig option", and after relying on
-ARCH_R9A07G043 in drivers/soc/renesas/Kconfig.
-
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
->  CONFIG_PM=y
-
-PM and GPIOLIB are auto-selected by ARCH_R9A07G043 (through ARCH_RZG2L)
-resp. SOC_RENESAS, so they can be dropped.  But it's better to do this
-after the release of v6.2-rc1, when all pieces have fallen together.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Regards,
+Sudeep
