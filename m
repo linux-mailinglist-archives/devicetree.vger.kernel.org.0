@@ -2,175 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63E11620C32
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:29:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE6C0620C38
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 10:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233702AbiKHJ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 04:29:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45766 "EHLO
+        id S233379AbiKHJaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 04:30:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233678AbiKHJ3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:29:23 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D67B12AEB;
-        Tue,  8 Nov 2022 01:29:22 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id b1-20020a17090a7ac100b00213fde52d49so12833120pjl.3;
-        Tue, 08 Nov 2022 01:29:22 -0800 (PST)
+        with ESMTP id S233791AbiKHJ3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 04:29:52 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC92B286CE
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 01:29:49 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id h12so20160880ljg.9
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 01:29:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Pnl7ZG08BhjAH6w2uqmjyTgSyZMRz6TVlKCPmOlFFnw=;
-        b=pqyf9Mvi/QB8JnIQTEouecCNDmv6LLuj2YKC0kTdOedBz4uSPyMY751nDpC58LvKLH
-         wEKo8smrgfj38+moOCQ/L9WPD189rxa8Vo7zv6eroS4NHxd7dr1bjf6r5VWOIVpoj4Hf
-         DcKNtGzr2SYSbYATtVp9N4fiZ1Ld3kuGomjX7a5Q8SKPnIAqv/DB7czm897rLbL+5JmH
-         tO4xd2h7AXIIxsv0zgEwaSOW6enGw7ecd//3dAqNR35h0fYBqk8usM72beDm4p+NJYH7
-         ZG2tIj2rkFU2HOHWweBD6wqQAH6O4n8IunFFiB1+7Pc8BAWM8HmSD1obAmggxvyVMaRP
-         4WiQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rOVmsonL+k/0HZVK2nxpFgpQMHWhsli4Q3QlCw0qmsE=;
+        b=tDhHK71PxNsz0WNgtB/w97HLA516yj+UB6dkiAiSfyEHunUfai9u2vudUgCSjnZK4g
+         XI212VYIzT3Z+8kAiNxqL44J0IDz9EM7L3a/5hY3TcY0mCcDlWjy1fKU610hHLUwsIQD
+         fFP+Eh2u7g8oP0fWT2YC+pbmkzlY0bAnFBuEgUa5Ueb5UjR/UQGUMk9TspPhb7/vGvdX
+         4vjAT1iZDFUTnIOncRdoPRk5iPbMhvDc4tkiwBGsF7GV/R7SLGvcmlSeCL8pz6M0YM7T
+         rw9ymsI/bExsNZV4Rxiq7izCA9+5l2J9B5A0HtYIj2ceFX1E3i31FYCC44Ssg9ZrBITd
+         nXeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pnl7ZG08BhjAH6w2uqmjyTgSyZMRz6TVlKCPmOlFFnw=;
-        b=sd1O4kBTIIbChu4/XTgEfVBWjVMlXYV/EnfixIHH4sbZds0HPiMOUeAsquOLS2TnEz
-         Nu/1USfhOmgs9QRA2lFTpcsm4DQTjQR6YBJnEcPDcxeFz2ltfBHm6PLkdXXl+YFHEHGj
-         NlwT5MzRUpcuPkH8b67NkqLPmrlE8SuBj1PNoAtRy3RHX6mW9br/4knvVsjE9OIgnMCk
-         RwYSKHCAr4sxi7jLL84FHMMyr0xsU/wj8bGrngTVJbHFijrtZHAcVDm0wJG+Cpf7jlPm
-         ODPyFBpos/riXsf+6rtygOLGedi8os9poDjkfcrKHgx76jWi/j8mo+lco/O/g2SimWv+
-         BajQ==
-X-Gm-Message-State: ACrzQf21etK5AJiqRwqodIQmnpNDDbr03Jvn2n6oOMJ3gpN0G72KoSak
-        xm0F1ssn4bvOBvHcq8CuPkc=
-X-Google-Smtp-Source: AMsMyM6HPyMpiaGuaVKtcrPc2W9JwIRekSRu91sJCZKaEaBonWxVW4n0J0k/yNpzJLPVHimnB8VH4w==
-X-Received: by 2002:a17:90a:1657:b0:213:7c4d:768a with SMTP id x23-20020a17090a165700b002137c4d768amr65617879pje.199.1667899762087;
-        Tue, 08 Nov 2022 01:29:22 -0800 (PST)
-Received: from localhost.localdomain ([180.217.157.203])
-        by smtp.gmail.com with ESMTPSA id x17-20020a170902ec9100b00186727e5f5csm6467147plg.248.2022.11.08.01.29.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Nov 2022 01:29:21 -0800 (PST)
-From:   Jim Liu <jim.t90615@gmail.com>
-X-Google-Original-From: Jim Liu <JJLIU0@nuvoton.com>
-To:     JJLIU0@nuvoton.com, jim.t90615@gmail.com, KWLIU@nuvoton.com,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
-Subject: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O expansion interface(SGPIO)
-Date:   Tue,  8 Nov 2022 17:28:40 +0800
-Message-Id: <20221108092840.14945-4-JJLIU0@nuvoton.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221108092840.14945-1-JJLIU0@nuvoton.com>
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        bh=rOVmsonL+k/0HZVK2nxpFgpQMHWhsli4Q3QlCw0qmsE=;
+        b=ucJVRN7KBgBhm6dTiwnfiE+8Vc9jff5SRPGkHnv0IBdWBcGl5LT+ttQbOe53RfuhLM
+         zWdDydslT1vhgmpGhq/ZdR7XOdX42rdIWRZOZrfSDbacX96ljt6B85ZXUhVPHIHWrGEH
+         WxMt+GVAlInsk5yBlo/8JixjGZEFpA9CaeuzrUy+r+i4nssApEBeGMsWO6cXBmoYNA7j
+         eBXsgmaRUB+rYYNRPO5AEuE0g+e2Ewd2CMWnyXzW9wwdPlhdhc4PQ810w5ZZblIKKcjh
+         GYIxTT6rLDLc6gRreFKacwRxwMJUD80SBAURa+MAkzKgE35dGeUAuHUxlaOGQZYia7q9
+         Z9jA==
+X-Gm-Message-State: ACrzQf2PBW1sSTzI3DzPzC8tt7BRgUi2Q01K24WrQ6h9PdS+LtyLcUT4
+        rxUbYjD2s6naqamMWOmKnkW74w==
+X-Google-Smtp-Source: AMsMyM40579+zfxIe+Ql7/outiP4k9BXLWi8yzxj8i7/ri53RvHNqLkyvFPwfRVxa4oQ6UqtiowIyw==
+X-Received: by 2002:a2e:a211:0:b0:277:1888:e14b with SMTP id h17-20020a2ea211000000b002771888e14bmr6331047ljm.339.1667899788261;
+        Tue, 08 Nov 2022 01:29:48 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id o4-20020a05651205c400b0048ae518364dsm1721417lfo.148.2022.11.08.01.29.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 01:29:47 -0800 (PST)
+Message-ID: <13d80a37-9202-480c-94ec-13cb1abce305@linaro.org>
+Date:   Tue, 8 Nov 2022 10:29:46 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: add sdm670 and pixel 3a device
+ trees
+Content-Language: en-US
+To:     Richard Acayan <mailingradian@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20221108030411.59409-1-mailingradian@gmail.com>
+ <20221108030411.59409-5-mailingradian@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221108030411.59409-5-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NPCM750 include two SGPIO modules.
-Each module supports up to 64 input and 64 output pins.
-the output pin must be serial to parallel device(such as the hc595)
-the input in must be parallel to serial device(such as the hc165)
+On 08/11/2022 04:04, Richard Acayan wrote:
+> The Qualcomm Snapdragon 670 has been out for a while. Add a device tree
+> for it and the Google Pixel 3a as the first device.
+> 
+> The Pixel 3a has the same bootloader issue as the Pixel 3 and will not work
+> on Android 10 bootloaders or later until it gets fixed for the Pixel 3.
+> 
+> SoC Initial Features:
+>  - power management
+>  - clocks
+>  - pinctrl
+>  - eMMC
+>  - USB 2.0
+>  - GENI I2C
+>  - IOMMU
+>  - RPMh
+>  - interrupts
+> 
+> Device-Specific Initial Features:
+>  - side buttons (keys)
+>  - regulators
+>  - touchscreen
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |    1 +
+>  .../boot/dts/qcom/sdm670-google-sargo.dts     |  533 ++++++++
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi          | 1160 +++++++++++++++++
+>  3 files changed, 1694 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sdm670.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index b0558d3389e5..4eb5d8829efb 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> new file mode 100644
+> index 000000000000..fe3f61f8a348
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> @@ -0,0 +1,533 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device tree for Google Pixel 3a, adapted from google-blueline device tree,
+> + * xiaomi-lavender device tree, and oneplus-common device tree.
+> + *
+> + * Copyright (c) 2022, Richard Acayan. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include "sdm670.dtsi"
+> +#include "pm660.dtsi"
+> +#include "pm660l.dtsi"
+> +
+> +/delete-node/ &mpss_region;
+> +/delete-node/ &venus_mem;
+> +/delete-node/ &wlan_msa_mem;
+> +/delete-node/ &cdsp_mem;
+> +/delete-node/ &mba_region;
+> +/delete-node/ &adsp_mem;
+> +/delete-node/ &ipa_fw_mem;
+> +/delete-node/ &ipa_gsi_mem;
+> +/delete-node/ &gpu_mem;
+> +
+> +/ {
+> +	model = "Google Pixel 3a";
+> +	compatible = "google,sargo", "qcom,sdm670";
+> +	qcom,board-id = <0x00041e05 0>;
+> +	qcom,msm-id = <321 0x20001>;
 
-Signed-off-by: Jim Liu <JJLIU0@nuvoton.com>
----
-Changes for v2:
-   - modify description
----
- .../bindings/gpio/nuvoton,sgpio.yaml          | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+These two are not allowed for your platform. If you tested your DTS, you
+would see:
 
-diff --git a/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
-new file mode 100644
-index 000000000000..331e3cb28b98
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/nuvoton,sgpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton SGPIO controller
-+
-+maintainers:
-+  - Jim LIU <JJLIU0@nuvoton.com>
-+
-+description:
-+  This SGPIO controller is for NUVOTON NPCM7xx and NPCM8xx SoC,
-+  NPCM7xx/NPCM8xx have two sgpio module each module can support up
-+  to 64 output pins,and up to 64 input pin.
-+  Nuvoton NPCM750 SGPIO module is base on serial to parallel IC (HC595)
-+  and parallel to serial IC (HC165).
-+  GPIO pins can be programmed to support the following options
-+  - Support interrupt option for each input port and various interrupt
-+    sensitivity option (level-high, level-low, edge-high, edge-low)
-+  - Directly connected to APB bus and its shift clock is from APB bus clock
-+    divided by a programmable value.
-+  - nin_gpios is number of input GPIO lines
-+  - nout_gpios is number of output GPIO lines
-+  - ngpios is number of nin_gpios GPIO lines and nout_gpios GPIO lines.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,npcm750-sgpio
-+      - nuvoton,npcm845-sgpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  nin_gpios: true
-+
-+  nout_gpios: true
-+
-+  bus-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - interrupts
-+  - nin_gpios
-+  - nout_gpios
-+  - clocks
-+  - bus-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    sgpio1: sgpio@101000 {
-+        compatible = "nuvoton,npcm750-sgpio";
-+        reg = <0x101000 0x200>;
-+        clocks = <&clk NPCM7XX_CLK_APB3>;
-+        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+        bus-frequency = <16000000>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        nin_gpios = <64>;
-+        nout_gpios = <64>;
-+        status = "disabled";
-+    };
--- 
-2.17.1
+ /: qcom,board-id: False schema does not allow [[269829, 0]]
+ /: qcom,msm-id: False schema does not allow [[321, 131073]]
+
+This must be fixed.
+
+Best regards,
+Krzysztof
 
