@@ -2,173 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3E8A621929
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2585362194D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 17:25:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbiKHQMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 11:12:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50412 "EHLO
+        id S234506AbiKHQZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 11:25:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233736AbiKHQMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:12:44 -0500
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8472F1C42D;
-        Tue,  8 Nov 2022 08:12:43 -0800 (PST)
-Received: by mail-qt1-f180.google.com with SMTP id s4so8911219qtx.6;
-        Tue, 08 Nov 2022 08:12:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rgqoDDJ4Y7w9ioCT4WNS5M7fA0vMFFdNn1b0OYSBfYA=;
-        b=GpmBaz0JRAPyED9Z08hosalyp7D2pqsYkfA4GqO4RWTekWGhADRQJaneEOMwEn1BPP
-         FFlrbo3YNCUGA9ADE2h1PNhtlZfIaB9PpV6GQnxV9rpb1jc4YCXsLpT63DpWmiZkqAGJ
-         iI7QueXpdBk7JDWX9OgSlLPxLWAnAykIeGjtfCp3roy7yr0DfqrEjTiuVXqN/quNjR5t
-         x83JOcf2i9c15HPe7P9GBh953OXDODqt1RDUo494gSEQsi2byO9SdYApU8nlU4gri4FX
-         Zm5I6GHC71C3NPrvzcHLqpqLhPXtusVuWgf2Nx0t7aREguYNjdSfC/uQGxJCafuCrleI
-         A76A==
-X-Gm-Message-State: ACrzQf2bCsw3jEVSawyjTAVifzYgyCUHbatsXjircS6gzWkyD8145Gfu
-        lY7lFpydcUEvxmace1TRRAY25JensvhSHpro
-X-Google-Smtp-Source: AMsMyM6leyTglIEwiKZRkfgyd4VRyLIQihgk8m+9roQQtu0NF15Hj/X/tvF3PfsbE06mhhrP5+RqpA==
-X-Received: by 2002:ac8:46d3:0:b0:3a5:5a4a:2d98 with SMTP id h19-20020ac846d3000000b003a55a4a2d98mr20504768qto.50.1667923962258;
-        Tue, 08 Nov 2022 08:12:42 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05622a145400b0035cd6a4ba3csm8562242qtx.39.2022.11.08.08.12.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 08:12:41 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id n85so12311132yba.1;
-        Tue, 08 Nov 2022 08:12:40 -0800 (PST)
-X-Received: by 2002:a25:6b07:0:b0:6cd:3a43:bfe5 with SMTP id
- g7-20020a256b07000000b006cd3a43bfe5mr43205650ybc.89.1667923960599; Tue, 08
- Nov 2022 08:12:40 -0800 (PST)
+        with ESMTP id S233814AbiKHQZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 11:25:33 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB91205E2;
+        Tue,  8 Nov 2022 08:25:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DEC20B81BA9;
+        Tue,  8 Nov 2022 16:25:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85F3AC43470;
+        Tue,  8 Nov 2022 16:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667924729;
+        bh=G5C8vewa6rwRjTQumguODaoFHIR0XcRiyJloc2k0v58=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YDvCNfZAE++VSoSMXo4tFfRN+M7Squ9lo1fAKdJ6Sc3BofusKDvrVPwfNeRwrh3J1
+         xGcNsTn2HEF6arClGp4F2hDprqj2KyvNFQpk7mi+6axr/bbbAdBqh7tDSkk7y8uExr
+         R7SLLKeI5TarnucAc0XKQ4+WKbqDAmdCEB0YIkHGJVmcuVmQ9sqpGvtfiRpdmy3nbM
+         MFBFH4ZVi+v22MYHLfOZUFqvSswpasrp5DntthEkcjERWfAtFKMnjXRVX/WqTeEw8D
+         9quoVRVLvMJ77tchhcWNmbn/qhfNmwnk0202ZSjjXEkP5F3yb11dqm8Z0AhH1g4tgQ
+         Yco5taEowexqg==
+Received: by mail-lj1-f182.google.com with SMTP id c25so21876786ljr.8;
+        Tue, 08 Nov 2022 08:25:29 -0800 (PST)
+X-Gm-Message-State: ACrzQf3HZHw5hLttVa0EY9A5wFuro+V5qIQrON8XfUCRynBmA9+KeZpN
+        u7fnzvcZj/W59ohuiYQH88UVbwLs+3iYQG9bYg==
+X-Google-Smtp-Source: AMsMyM4iXpsQim/WrEqsQekIVlLAJVyM1LSjKUemsBwuFcfOC9oe0pnOfouA+Sw6MXCdIgQeUs5R9dLsb5ojWInStbo=
+X-Received: by 2002:a2e:9a85:0:b0:275:1343:df71 with SMTP id
+ p5-20020a2e9a85000000b002751343df71mr7268096lji.215.1667924727546; Tue, 08
+ Nov 2022 08:25:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdUKVxO24Qgyx37tbs5+m0Us0VF3eTZCC2KV=AC8z2JneQ@mail.gmail.com> <CA+V-a8t5Qah3MNm2m__xnmgK-52=HC9QBPPudnB+1j4-FYJ_NA@mail.gmail.com>
-In-Reply-To: <CA+V-a8t5Qah3MNm2m__xnmgK-52=HC9QBPPudnB+1j4-FYJ_NA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Nov 2022 17:12:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWTJf24XR+KR8yVJOnfpgs-PkUf9b8B=PX9Dd4mfawD5Q@mail.gmail.com>
-Message-ID: <CAMuHMdWTJf24XR+KR8yVJOnfpgs-PkUf9b8B=PX9Dd4mfawD5Q@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] riscv: configs: defconfig: Enable Renesas RZ/Five SoC
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221103133900.1473855-1-thierry.reding@gmail.com>
+ <20221103133900.1473855-3-thierry.reding@gmail.com> <20221107193035.GA1394942-robh@kernel.org>
+ <Y2popxNd2uIdXmlf@orome>
+In-Reply-To: <Y2popxNd2uIdXmlf@orome>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 8 Nov 2022 10:25:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
+Message-ID: <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
+Subject: Re: [PATCH v10 2/5] of: Stop DMA translation at last DMA parent
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Tue, Nov 8, 2022 at 5:07 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Tue, Nov 8, 2022 at 3:52 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Fri, Oct 28, 2022 at 6:59 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Nov 8, 2022 at 8:33 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> On Mon, Nov 07, 2022 at 01:30:35PM -0600, Rob Herring wrote:
+> > On Thu, Nov 03, 2022 at 02:38:57PM +0100, Thierry Reding wrote:
+> > > From: Thierry Reding <treding@nvidia.com>
 > > >
-> > > Enable Renesas RZ/Five SoC config in defconfig. It allows the default
-> > > upstream kernel to boot on RZ/Five SMARC EVK board.
+> > > DMA parent devices can define separate DMA busses via the "dma-ranges"
+> > > and "#address-cells" and "#size-cells" properties. If the DMA bus has
+> > > different cell counts than its parent, this can cause the translation
+> > > of DMA address to fails (e.g. truncation from 2 to 1 address cells).
+> >
+> > My assumption in this case was that the parent cell sizes should be
+> > increased to 2 cells. That tends to be what people want to do anyways
+> > (64-bit everywhere on 64-bit CPUs).
+> >
+> > > Avoid this by stopping to search for DMA parents when a parent without
+> > > a "dma-ranges" property is encountered. Also, since it is the DMA parent
+> > > that defines the DMA bus, use the bus' cell counts instead of its parent
+> > > cell counts.
+> >
+> > We treat no 'dma-ranges' as equivalent to 'dma-ranges;'. IIRC, the spec
+> > even says that because I hit that case.
+> >
+> > Is this going to work for 'dma-device' with something like this?:
+> >
+> >   bus@0 {
+> >     dma-ranges = <...>;
+> >     child-bus@... {
+> >       dma-device@... {
+> >       };
+> >     };
+> >   };
+> >
 > > >
-> > > Alongside enable SERIAL_SH_SCI config so that the serial driver used by
-> > > RZ/Five SoC is built-in.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > > > ---
-> > > v4 -> v5
-> > > * No change
+> > > Changes in v10:
+> > > - new patch to avoid address truncation when traversing a bus hierarchy
+> > >   with mismatching #address-cells properties
 > > >
-> > > v3 -> v4
-> > > * Explicitly enabled ARCH_R9A07G043 config (note I have restored the RB
-> > >   tags with this change)
-> > > * Used riscv instead of RISC-V in subject line
+> > > Example from Tegra194 (redacted for clarity):
+> > >
+> > >     reserved-memory {
+> > >             #address-cells = <2>;
+> > >             #size-cells = <2>;
+> > >             ranges;
+> > >
+> > >             framebuffer@0,0 {
+> > >                     compatible = "framebuffer";
+> > >                     reg = <0x2 0x57320000 0x0 0x00800000>;
+> > >                     iommu-addresses = <&dc0 0x2 0x57320000 0x0 0x00800000>;
+> > >             };
+> > >     };
+> > >
+> > >     bus@0 {
+> > >             /* truncation happens here */
+> > >             #address-cells = <1>;
+> > >             #size-cells = <1>;
+> > >             ranges = <0x0 0x0 0x0 0x40000000>;
+> > >
+> > >             mc: memory-controller@2c00000 {
+> > >                     #address-cells = <2>;
+> > >                     #size-cells = <2>;
 > >
-> > Thanks for the update!
-> >
-> > > --- a/arch/riscv/configs/defconfig
-> > > +++ b/arch/riscv/configs/defconfig
-> > > @@ -29,6 +29,8 @@ CONFIG_SOC_MICROCHIP_POLARFIRE=y
-> > >  CONFIG_SOC_SIFIVE=y
-> > >  CONFIG_SOC_STARFIVE=y
-> > >  CONFIG_SOC_VIRT=y
-> > > +CONFIG_ARCH_RENESAS=y
-> > > +CONFIG_ARCH_R9A07G043=y
-> >
-> > You forgot to refresh after moving ARCH_RENESAS in v5 of "riscv:
-> > Kconfig.socs: Add ARCH_RENESAS kconfig option", and after relying on
-> > ARCH_R9A07G043 in drivers/soc/renesas/Kconfig.
-> >
-> Sorry I missed your point here, could you please elaborate.
+> > I think this is wrong. The parent should have more or equal number of
+> > cells.
+>
+> I was half suspecting that. The reason why I hesitated is that I recall
+> having the opposite discussion a while ago when we were adding bus@0 to
+> 64-bit Tegra devices. We had at some point (probably around Tegra114 or
+> Tegra124, 32-bit ARM chips that support LPAE) started to set #address-
+> cells = <2> precisely because the CPU could address more than 32-bit
+> addresses. We then did the same thing transitioning to 64-bit ARM. When
+> we then started discussing bus@0, someone (might have been you) had
+> argued that all these peripherals could be addressed with a single cell
+> so there'd be no need for #address-cells = <2>, so then we went with
+> that.
 
-I mean that the options have moved, so you should update
-your patch like this:
+I may have not thinking about the DMA side of things.
 
-    --- a/arch/riscv/configs/defconfig
-    +++ b/arch/riscv/configs/defconfig
-    @@ -26,11 +26,10 @@ CONFIG_EXPERT=y
-     # CONFIG_SYSFS_SYSCALL is not set
-     CONFIG_PROFILING=y
-     CONFIG_SOC_MICROCHIP_POLARFIRE=y
-    +CONFIG_ARCH_RENESAS=y
-     CONFIG_SOC_SIFIVE=y
-     CONFIG_SOC_STARFIVE=y
-     CONFIG_SOC_VIRT=y
-    -CONFIG_ARCH_RENESAS=y
-    -CONFIG_ARCH_R9A07G043=y
-     CONFIG_SMP=y
-     CONFIG_HOTPLUG_CPU=y
-     CONFIG_PM=y
-    @@ -163,6 +159,7 @@ CONFIG_MAILBOX=y
-     CONFIG_RPMSG_CHAR=y
-     CONFIG_RPMSG_CTRL=y
-     CONFIG_RPMSG_VIRTIO=y
-    +CONFIG_ARCH_R9A07G043=y
-     CONFIG_EXT4_FS=y
-     CONFIG_EXT4_FS_POSIX_ACL=y
-     CONFIG_EXT4_FS_SECURITY=y
+> Reverting back to #address-cells = <2> is now going to cause quite a bit
+> of churn, but I guess if it's the right thing, so be it.
+>
+> Another possible alternative would be to move the memory-controller node
+> from the bus@0 to the top-level. Not sure if that's any better.
 
-> > >  CONFIG_SMP=y
-> > >  CONFIG_HOTPLUG_CPU=y
-> > >  CONFIG_PM=y
-> >
-> > PM and GPIOLIB are auto-selected by ARCH_R9A07G043 (through ARCH_RZG2L)
-> > resp. SOC_RENESAS, so they can be dropped.  But it's better to do this
-> > after the release of v6.2-rc1, when all pieces have fallen together.
-> >
-> Are you suggesting dropping it from defconfig?
+I stumbled upon 'ibm,#dma-address-cells' and 'ibm,#dma-size-cells'
+while reviewing this. Those seem to be for the same purpose AFAICT. We
+could consider adding those (w/o 'ibm') to handle this situation.
 
-Yes, but not right now, as that would make it depend on my
-renesas-drivers-for-v6.2 branch to keep them enabled.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
