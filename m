@@ -2,88 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBE17621E0B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:52:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53533621E1B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 21:56:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiKHUwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 15:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58204 "EHLO
+        id S229619AbiKHU4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 15:56:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiKHUwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:52:17 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BBC4B9AC
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:52:16 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id d20so22871254ljc.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:52:15 -0800 (PST)
+        with ESMTP id S229496AbiKHU4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 15:56:03 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23909201AA
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 12:56:02 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id l12so11755616lfp.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 12:56:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OGSFwgK3Xru6xCg2uioQoFI439LPe03CP0uz0+rdENc=;
-        b=GLC1ZcJ0YHbvGQPLlsyDO8T3sYfnOrfBlA9PpjqJDYjIAbtM3t2oxb8MKlrgWQMfCI
-         yR2PU0Fp9spXSjEj8rC/KUIzQAFEPuzt3AhtXb75i54X8Op0X9z4fnSbhdwl9A272HHb
-         XWr9Z8dhsmQMpPKhY2rA/E3qTvihCAk/PDTPVT8RlX3c1C2ZQFE5v+LDNuUjtmH6ys+Z
-         YPgczrYlKmO74iUBMpfgKTjqH55S/t4boxzEDqU6m8P1mMWimgW/gJt9MzDJfsfGPOfu
-         sT7BaDdhnuKYheEVJnFeUiORnG+aXyIy9u9P7SFDco0yDJJC4jfCCrjya0DrebL+Fe58
-         IWZg==
+        bh=ZN9uZSDNWvaPFO2rZ2x2Euvj8Fn47RRK/0sBC6DfBoo=;
+        b=CuaG+ej43GV97bUxgLQ9Mm7HA7sNVVPduZA+KOU+AD0jUQpgdK2xLg5+jOzpTkMTkd
+         YRdoqohWEn/klIj6bPC4IgxMSsVVC5svI2BPsorqQfBxwe2o/DohjYx8NEPwa7rt9UKU
+         ZzBGG9pXB6oIJ2M1xF0rDC5J/WyZQlJFOzL436PLSirh6EBvyoOzAwnGoGNKwu+7RWN8
+         GmyflwkKAKtNq2iUMsLJJCxoFxNgINizTJBJ8uNMxS7U19tp/v6cAF224e07LIq/QTo0
+         NSiBRikayAq+us4QpLNdvEfZjYkk1nwrFpBCSb26a3cbqrN+o7ih+b5KtV5C0CaseA0o
+         4K+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OGSFwgK3Xru6xCg2uioQoFI439LPe03CP0uz0+rdENc=;
-        b=rqxHfuSBa1hBQnPOfB2UBN5T4U2j9PycrtpcXEeduP4zewpmHL/5LYpjaRvVx51EdW
-         h4TOmGWoN9gYWBgnDlgf8woWFSxV0BME++/Fxjk8HhQSjRAf4AjpKula9+njQew63kmx
-         Swgp5Xpc78awTvfkniu70U3fl+qlJHP71TDsgFeqZ2s0LjvdcbgkzYXcI/efUsZYNsSf
-         KIII2cAfHV4teUGvfugJsw1G5hvNcR+DB5rpVmryBnCzZfxwFe56Jncg144AHDTRleWn
-         vbR9O/2RwFF7v2i9xGjEVICUYTGHUEinq2ZeQ7LO1XIYQVlV04K8i6KREbxiaZ/JwReQ
-         y3oA==
-X-Gm-Message-State: ACrzQf1rBKhzH35LwiyqDSiu207nbxmwAcNzHNaRb9D8arsT/XbdykAK
-        B3QYCGAyyEodG/9qDpT8hU7r9w==
-X-Google-Smtp-Source: AMsMyM4+Srzcu1J/9xM3Zj4N39hyIqva+7koOAAaEOrOfaiCYynGG2BoCs53NkJ4GzIE+I986Ykwlg==
-X-Received: by 2002:a2e:834b:0:b0:26d:ffb1:dae7 with SMTP id l11-20020a2e834b000000b0026dffb1dae7mr19975488ljh.128.1667940734376;
-        Tue, 08 Nov 2022 12:52:14 -0800 (PST)
+        bh=ZN9uZSDNWvaPFO2rZ2x2Euvj8Fn47RRK/0sBC6DfBoo=;
+        b=pYRslZlYbBb5c0wWy5SazLAuRpZ41i0sFMM0aWM2A/g+4ROxQ6H3zmQf4QI2x6vxTH
+         SdxjX7tEDbmOTjtJ9LdGCZC2KgNiZJDCGU7piOiaji4SOQGKw7RScrU7dz50SjrX3aZL
+         ly2msqCFudZfo3q19NnVDKHZMwY4tGrJuLIdIw09+Eji4pErocZQffVkq9Sw9VMYcNAC
+         1NLMgYod5erLMkCrLlYg5DzGn3VFCbSelrvC/aZPZiOwpvvvAbf/+nh54V1lfO5PBDRf
+         Tst3m+xBCnAjzLPZ6Pg3qVwPyLRQlfizNLtyg9J4bsI87/fcsby/yLU/cvHo0UsRn1vj
+         313g==
+X-Gm-Message-State: ANoB5plrQ8hsXTsa55sTsNirWda1t2L6T63QSFLmadicwnQeVZ0VJhnR
+        zz1SEgJX3fA56XFsWGqAyFXPTA==
+X-Google-Smtp-Source: AA0mqf5bvyq3TmeVB175nUAweelEZ+MjMm8/M3KZoRYAcUcfeLH2drcbccrcU5kqWiR1zP0FQH25kg==
+X-Received: by 2002:ac2:5b8f:0:b0:4b3:e970:693f with SMTP id o15-20020ac25b8f000000b004b3e970693fmr2654998lfn.421.1667940960464;
+        Tue, 08 Nov 2022 12:56:00 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id e4-20020a05651236c400b0049ad2619becsm1921310lfs.131.2022.11.08.12.52.13
+        by smtp.gmail.com with ESMTPSA id g4-20020a056512118400b00497a1f92a72sm1933759lfr.221.2022.11.08.12.55.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 12:52:13 -0800 (PST)
-Message-ID: <cba8a036-2e70-17df-809a-36924899a5b9@linaro.org>
-Date:   Tue, 8 Nov 2022 21:52:12 +0100
+        Tue, 08 Nov 2022 12:55:59 -0800 (PST)
+Message-ID: <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
+Date:   Tue, 8 Nov 2022 21:55:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280-idp: don't modify &ipa twice
-To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, agross@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221108201625.1220919-1-elder@linaro.org>
+Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
 Content-Language: en-US
+To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108201625.1220919-1-elder@linaro.org>
+In-Reply-To: <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 21:16, Alex Elder wrote:
-> In "sc7280-idp.dts", the IPA node is modified after being defined.
-> However that file includes "sc7280-idp.dtsi", which also modifies
-> the IPA node (in the same way).  This only needs to be done in
-> "sc7280-idp.dtsi".
+On 08/11/2022 17:33, Russell King (Oracle) wrote:
+> Add a DT binding for the Apple Mac System Management Controller.
+
+Drop the second, redundant "binding" from subject. It's already in prefix.
+
 > 
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> new file mode 100644
+> index 000000000000..014eba5a1bbc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple Mac System Management Controller
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description:
+> +  Apple Mac System Management Controller implements various functions
+> +  such as GPIO, RTC, power, reboot.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t6000-smc
+> +          - apple,t8103-smc
+> +          - apple,t8112-smc
+> +      - const: apple,smc
+> +
+> +  reg:
+> +    items:
+> +      - description: SMC area
+> +      - description: SRAM area
+> +
+> +  reg-names:
+> +    items:
+> +      - const: smc
+> +      - const: sram
+> +
+> +  mboxes:
+> +    maxItems: 1
+> +
+> +  gpio:
+> +    $ref: /schemas/gpio/gpio-macsmc.yaml
 
+So this depends on other patch, so:
+1. You need mention the dependency in cover letter (nothing there),
+2. Re-order patches.
 
+The GPIO cannot go separate tree and this must be explicitly communicated.
+
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - mboxes
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      smc@23e400000 {
+
+Usually these are called system-controller, to have a generic name (as
+asked by DT spec).
+
+> +        compatible = "apple,t8103-smc", "apple,smc";
+> +        reg = <0x2 0x3e400000 0x0 0x4000>,
+> +               <0x2 0x3fe00000 0x0 0x100000>;
+
+Align the items (opening <).
+
+With three above:
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
