@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E219D620797
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 04:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02681620798
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 04:38:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbiKHDiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 22:38:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56590 "EHLO
+        id S232060AbiKHDiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 22:38:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232060AbiKHDiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 22:38:19 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F2A265C
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 19:38:18 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id j25-20020a056830015900b0066ca2cd96daso4164853otp.10
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 19:38:18 -0800 (PST)
+        with ESMTP id S232420AbiKHDiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 22:38:23 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8339FD1
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 19:38:22 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id h132so6454454oif.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 19:38:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rothemail-net.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bVUIaTm2OcnUOvq/e1AMBLhwaobJk/dHNcseM68nMDE=;
-        b=4OTwbz++S2lFBd7p9YbgqZf0sJToGBdu3t/CABE1wTgwp1vmdIHgZBjZC1HCYKRvao
-         xcry6ozi7giXxKk+OMoO0Oatgyp9OrJ161JlyzB6P6Th9N/uHKR4v1sd+IQ6KX6DuxVM
-         TKFeJ7KcSGyiqL4Z1JouGzRtupDb7OR813DRAGWmz/93p6mkZdax+rKynp/E3IigvAmf
-         e/vSPFzuYkGL7eakdo0Df8ekL+b3cOwyaryMwflVEeqnIYwwTl44Pf0rPd6JPl+ZeQl8
-         NCUweQxw2s+MNpcxXhdmIz3+n9qS67vUGOtZ4jAdl6kK+A5tM7jvEPZIdXt48i6s+Yrl
-         7hPQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o1qE6GC8oXjZ8cmlUaD2BKYBmNdPTSK3HjF9SZnB9kY=;
+        b=vfcDKckaAvB7b3EdRt1FUpkkRMIl1mGXtx+FaEKe/qDMjN9Pajy//6n0TBTkulS7af
+         01DUrw5UKod/DpYjdYGxjlnWIZPM4uBn3H5eB8ByA2G3qTYrY1ULtMOchbK8YS7D5imM
+         Ejx0yWslD9dTzidGqQ7ee7P40wCDumxUsYh/IrtNA32q+I/avZ/iSViJri/Aw+SgG8dz
+         qnEvsNK5t0ny6lnHUfBn8txkXgeGoHSXB4pXZOQPIKKxza6KrgsStkPVMgAUz/+/IrOs
+         Jc5jktzqGCpmjYmgddeKfbCMF1kJisKgOp7klVdohclBssESSF3kxlZqoSldYD3pDggK
+         cz3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bVUIaTm2OcnUOvq/e1AMBLhwaobJk/dHNcseM68nMDE=;
-        b=wjBmV9s5KmE3K/YsTxS48CrSPQ+9Z4WLLBgm47RFpR+bQkoPgTw0pY4eKak7id8hMI
-         sQV3XWDJyTAp+65KwA6pdt+417Mjcc2zBXBauruOSfo+ihphbxpllAWoxh/AV5AYMSGT
-         VGqkye2tSa9JX4Ck1kEVRkf5WDCTr1sFeSNoXoyJAjYsgQSt0/OmDrEZLpbhuNJoLmj2
-         gG/DH3kiaOqvFMPa8CtxuQbGrvtTgt4DTqhuVGqHairA7f4fi6WWFQ7f1yOW0chdRiBr
-         l/IKWq6On+bsmFAaE5RjGVRtylKh1D62tsQFfgpklbEfhEPm0sI8hVDJHQj0MQd3DUFn
-         ITFA==
-X-Gm-Message-State: ACrzQf2r1F4q/ctrQ779/i9JXd0uTSs6cXJkqdp57nUaeAKMV4zTb2d/
-        cUtplUD05RiS7NP2/A6TOR7ktsF+P11r3iE9
-X-Google-Smtp-Source: AMsMyM4XzEeMxXUej/QSXp/FJhqrKoMM4ktFvoe/2G4J0R6hsDQm6srV2qNoy/vSnKsbJ9Mg8JDngw==
-X-Received: by 2002:a05:6830:4411:b0:66c:96fe:a4cf with SMTP id q17-20020a056830441100b0066c96fea4cfmr9586353otv.187.1667878697296;
-        Mon, 07 Nov 2022 19:38:17 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o1qE6GC8oXjZ8cmlUaD2BKYBmNdPTSK3HjF9SZnB9kY=;
+        b=0eABnzsG0xkHN+Uk4AbVvl1IWH7Z/zAtN0A5LdEtitJyrFZTYjp3XhTcEfqhze8+o9
+         62IHP8KXerCvr/Ro5QvuAuns+8wj+aNH+BsTFiJdeR2OtrFwIXRAtNuciYdY0bXC4siV
+         fGOo60M+RaiyfOQ/xnPgdA5j89A+nLkGlqu24NPmAVEGvqzEmXgQdB/YJ2+iMeSrKQxJ
+         Dvrpq3yuyLA5HHbKLkd89ASgbfrKOGY8w8+rcogy8nH+xNDW/5Rv99vM47xEHCSMf/30
+         tBgFOu8y2YUhJ9iQDylKFMF/rfFH9iK40kv6bHgAShkqx6OMtOQjwJfoPoNgiBddw4GS
+         pbkw==
+X-Gm-Message-State: ACrzQf1opzSRdIJRuGy+P6MyX8wlcoSjLR0NdtHWD61JemHPOCnwezgu
+        RBN5Y7Dqm9JtHFCQacjAJZpc3ohITxuSClv3
+X-Google-Smtp-Source: AMsMyM6XUGgoUB6eSWR4mKev5HGO21Y9Xz+8TVNAygZudVwQ0aDaBwIx2co4n7o9WP7h+idgimp/7g==
+X-Received: by 2002:a05:6808:3010:b0:355:23ba:8631 with SMTP id ay16-20020a056808301000b0035523ba8631mr36626492oib.269.1667878700619;
+        Mon, 07 Nov 2022 19:38:20 -0800 (PST)
 Received: from nroth-pc.attlocal.net ([2600:1700:20:20c0:ffe2:ef38:3f9e:dd6d])
-        by smtp.gmail.com with ESMTPSA id k15-20020a056870350f00b0010d5d5c3fc3sm4053672oah.8.2022.11.07.19.38.16
+        by smtp.gmail.com with ESMTPSA id k15-20020a056870350f00b0010d5d5c3fc3sm4053672oah.8.2022.11.07.19.38.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 19:38:16 -0800 (PST)
+        Mon, 07 Nov 2022 19:38:20 -0800 (PST)
 From:   Nicholas Roth <nicholas@rothemail.net>
 To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: ov8858 device tree addition
-Date:   Mon,  7 Nov 2022 21:38:12 -0600
-Message-Id: <20221108033813.16502-1-nicholas@rothemail.net>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Nicholas Roth <nicholas@rothemail.net>
+Subject: [PATCH] dt-bindings: media: Add Omnivision ov8858 binding
+Date:   Mon,  7 Nov 2022 21:38:13 -0600
+Message-Id: <20221108033813.16502-2-nicholas@rothemail.net>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221108033813.16502-1-nicholas@rothemail.net>
+References: <20221108033813.16502-1-nicholas@rothemail.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -66,16 +70,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All,
+Add a device tree binding for the Omnivision OV8858 image sensor.
+The OV8858 is an 8 megapixel image sensor which provides images in RAW
+format over MIPI CSI-2 data bus and is controlled through an
+I2C-compatibile SCCB bus.
 
-I've submitted a patch to linux-media that adds a driver for
-the Omnivision OV8858 image sensor. Jacopo, a reviewer, asked
-me to submit a device tree binding as well.
+Tested on PinePhone Pro with libcamera cam and qcam.
 
-The relevant linux-media patch is entitled:
-media: i2c: ov8858 Add driver for ov8858
+Signed-off-by: Nicholas Roth <nicholas@rothemail.net>
+---
+ .../bindings/i2c/ovti,ov8858-i2c.yaml         | 78 +++++++++++++++++++
+ 1 file changed, 78 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/ovti,ov8858-i2c.yaml
 
-Thanks,
--Nicholas
-
+diff --git a/Documentation/devicetree/bindings/i2c/ovti,ov8858-i2c.yaml b/Documentation/devicetree/bindings/i2c/ovti,ov8858-i2c.yaml
+new file mode 100644
+index 000000000000..1300c1b6fa17
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/ovti,ov8858-i2c.yaml
+@@ -0,0 +1,78 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/i2c-imx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale Inter IC (I2C) and High Speed Inter IC (HS-I2C) for OV8858
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible: ovti,ov8858
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: xvclk
++
++  clock-frequency:
++    minimum: 24000000
++    default: 24000000
++    maximum: 24000000
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c@ff110000 {
++        status = "okay";
++
++        clock-frequency = <400000>;
++        i2c-scl-rising-time-ns = <300>;
++        i2c-scl-falling-time-ns = <15>;
++        
++        pinctrl-0 = <&i2c1_xfer &cif_clkouta>;
++        
++        assigned-clocks = <&cru SCLK_CIF_OUT &cru SCLK_CIF_OUT_SRC>;
++        assigned-clock-parents = <&cru SCLK_CIF_OUT_SRC &cru PLL_GPLL>;
++        assigned-clock-rates = <19200000 0>;
++        ucam: camera@36 {
++            compatible = "ovti,ov8858";
++            reg = <0x36>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&ucam_pdn &ucam_rst>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            clock-names = "xvclk";
++
++            dovdd-supply = <&vcc1v8_dvp>;
++            /*XXX: also depends on vcca1v8_codec for I2C bus power */
++
++            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
++            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
++
++            rotation = <180>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
+-- 
+2.34.1
 
