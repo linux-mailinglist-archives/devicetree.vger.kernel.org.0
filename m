@@ -2,127 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C2C620D7F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFCF1620D80
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 11:38:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233681AbiKHKho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 05:37:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58924 "EHLO
+        id S233656AbiKHKin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 05:38:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233938AbiKHKhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:37:19 -0500
+        with ESMTP id S233601AbiKHKim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 05:38:42 -0500
 Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C62140918
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:37:01 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id c1so18973738lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:37:01 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1C4637F
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 02:38:40 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id be13so20632504lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 02:38:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F1eU2MNzr9lEfofB/L6YKz5jRjvrNUwGoC1RPrJsqIc=;
-        b=qxlKoNOCj8bwEn/unr4ZPcnBCXcdPnwp6/SZBWWeD1f+nNzLQZ17cHnkenX1JoZ+nJ
-         l5mhxoz3baMzHRwcGvuZBeAgFsbmfiw5waqPt908NhhIv4tecxmqQPdV0Dhf9IJm8Dt0
-         k0NtuvI7zoLtlVsm93UDSI5nvXT8giTAEmr04mTtPEhLQpmnA/bd5jRs34pBIxkPVDZp
-         sLD6ufM7RkVvdGhirGvWrEpWffO+PQUzvRoxY2bs+2fNm4Hu8I9+dliDE1l3I0yRMuNK
-         qnErbVUK+0FDLBkKVwWv6dWzXNsnSoy7R0nrBCaZxdKQNiCL0RQeH6J78bt+69PPVLrT
-         Kytw==
+        bh=sIJOCsaQlOWgJQ5ApMxd9tPJK7uAENvlixXq8WQS0q8=;
+        b=P2bJkxBMmJkGflbYsSSEZImEP1kCLNB778vrIN/eLrcdXPHopi3rfLZ/EBDDiMsJl3
+         gNrITOXtBUUuh3VmeWoFUhNFx0EFnYN4xJMhDP8bhMEeNnA9GDtQhgM8T8TsRHX/ihxM
+         AlSxvu0Tk6XyWbt6MTU6sHRlY9rNB8iOokyf2/JUvP/v+DWYZopL+oFt/HjX1rm8dhrj
+         ib4d/NvigsB1RyRb287lD57Zn2rPiua/u5Cr05U+FQxaLUiP/RSR78i5nm+juXOEoKJJ
+         aeFvZ2FIf0cOJM06OudYKzSLf/+jNpB5FlU1Zsi40rZyWtX+lZq6xlUgAKNRo7TDeRo1
+         OEsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F1eU2MNzr9lEfofB/L6YKz5jRjvrNUwGoC1RPrJsqIc=;
-        b=7vvK7ed689VS2huK+TDE4C9X4klNg0k/5ghQ82HL5jQuf04574ZVAmuHfc435iwrit
-         57pHqCWp0hrC16kCwkyXu7mxsgjMoxiFopzeCYi4kx8A/Ezj7CycforzO3axzsV5XctH
-         FcGGUf8iDtieVDqC3viqf8xqtwoOast1OuJm0s3n7AIrtMPu/Ggqq7DCpMIfThmZY2ZD
-         LQvG0eprdPuisXW6wVmSByRwkwFERpg30reov6KrVWWL+GrDrskWsIe/hxsr4KhE88OC
-         aPWxLfznMzjwgv0nvweJGd5cqwjLrTEzeEFBp17npdTuByPKhn2eXL+/A3W88eIm45yX
-         X+6Q==
-X-Gm-Message-State: ACrzQf3qG56JzdK1hUBaMkRwAfXCiTUT1XCuk8Oxc4DtnHGJAPhxnXpO
-        hjSuD6LBx1ItmLX6j3AVBbgoXg==
-X-Google-Smtp-Source: AMsMyM6S9IhbB/K0PCnZCtTSePbIeEuS4EFok4irDdkDhHZDjaoZyjyvFW3wOa0V66uhD+fgmiISkQ==
-X-Received: by 2002:ac2:569c:0:b0:4b1:966f:7a19 with SMTP id 28-20020ac2569c000000b004b1966f7a19mr8890286lfr.587.1667903819567;
-        Tue, 08 Nov 2022 02:36:59 -0800 (PST)
+        bh=sIJOCsaQlOWgJQ5ApMxd9tPJK7uAENvlixXq8WQS0q8=;
+        b=0WRIPJqZKnzaJ+HnDmjIJgiMNRaBbZVJip4o9oiFK+qm8C9RzduuHuc83UKu9U0hKt
+         CmWLboSQvHoVuFj6lFcXDzUj0nBzXQgq5O5GXg7C3XDn84+8ZLahZAxVE/hxDxrjrx6e
+         yzIDNm2XG6+sDXRiQTPIj1Na7LTzP4v7vuYk9mXm8JLswweQgcnSPDmRp3uiTXeN1GNA
+         noCwUtqOBvJ74WBasD26dPAYpBAKvwoSgIyLDUzwD+gBvfcQklU2QZKml7lqm30kmbFU
+         HuRrH615f++NhncvgB4xh/T6KhxpABVfjaQpf8g0esldo05FYhinAbW/Tt50PPIpEeAm
+         UKXg==
+X-Gm-Message-State: ACrzQf0dZ+cKQYR1xDyUYweKHt5iQvBMpw8e4q0s2QrjHPWmFdzOGftL
+        PYad3Rx4JlBPPu7bXenbGiwdMw==
+X-Google-Smtp-Source: AMsMyM6yYZAe4CVDILmz58Ocgj3LvAXbaC1NItWa2Gv2AKnpnp0aSi/Q9Z1oazZlir6CQAvqD2PTwQ==
+X-Received: by 2002:a05:6512:2e9:b0:4ac:5faa:654d with SMTP id m9-20020a05651202e900b004ac5faa654dmr440084lfq.684.1667903919177;
+        Tue, 08 Nov 2022 02:38:39 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id l10-20020a056512110a00b00497b198987bsm1726912lfg.26.2022.11.08.02.36.58
+        by smtp.gmail.com with ESMTPSA id q7-20020ac25107000000b004b40c2fccfdsm207162lfb.59.2022.11.08.02.38.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 02:36:59 -0800 (PST)
-Message-ID: <2ba09d50-229a-25d6-e437-c0b31429eaf0@linaro.org>
-Date:   Tue, 8 Nov 2022 11:36:57 +0100
+        Tue, 08 Nov 2022 02:38:38 -0800 (PST)
+Message-ID: <5604fc7d-5ce4-227c-230c-21480af179a0@linaro.org>
+Date:   Tue, 8 Nov 2022 11:38:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 3/6] dt-bindings: sound: Add sound card bindings for Tesla
- FSD
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        'Rob Herring' <robh@kernel.org>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
- <CGME20221014104901epcas5p1a61ea81c3b1640bd8a064633c0b1e40d@epcas5p1.samsung.com>
- <20221014102151.108539-4-p.rajanbabu@samsung.com>
- <20221014151325.GA1940481-robh@kernel.org>
- <04b901d8e529$573b17e0$05b147a0$@samsung.com>
- <253fc459-c3dc-7710-6f34-0466d5301482@linaro.org>
- <01c101d8f333$b3bc8db0$1b35a910$@samsung.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
+ schemas of Xilinx AXI PCIe Root Port Bridge
 Content-Language: en-US
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
+        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com
+References: <20221108035030.1040202-1-thippeswamy.havalige@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <01c101d8f333$b3bc8db0$1b35a910$@samsung.com>
+In-Reply-To: <20221108035030.1040202-1-thippeswamy.havalige@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 06:33, Padmanabhan Rajanbabu wrote:
->>>
->>> The actual reason for having a custom sound card driver lies in the
->>> fact that the Samsung i2s cpu dai requires configuration of some
->>> Samsung specific properties like rfs, bfs, codec clock direction and
->>> root clock source. We do not have flexibility of configuring the same
->>> in simple card driver (sound/soc/generic/simple-card.c) or audio graph
->>> card driver (sound/soc/generic/audio-graph-card.c). The binding has
->>> been added to support the custom sound card driver.
->>>
->>> I understand from your query that the newly added card has device tree
->>> nodes and properties which are used in simple card as well, but having
->>> a different or new prefixes. I believe to address that, we can
->>> restructure the string names to generic ones.
->>
->> You must use generic, existing properties where applicable.
+On 08/11/2022 04:50, Thippeswamy Havalige wrote:
+> Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
+> dt binding.
 > 
-> Okay
-> 
->>
->>> But I would like to understand, to reuse the simple card or audio
->>> graph card bindings, can we add secondary compatible strings in the
->>> simple card dt-binding for the custom sound card to probe ?
->>
->> If you see other vendor compatibles there, then yes... But there aren't any,
->> right?
-> 
-> Yes you are right, we don't see other vendor compatibles. But, am I allowed
-> to add such secondary compatibles so that we can extend the simple card
-> and its utilities to a large extent?
-> 
-> If no, then I believe we will need a separate binding to extend the generic
-> properties.
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+> Dropped additional blank line before sob.
 
-If you have any custom properties, then yes. But you don't have.
 
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
