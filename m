@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09631621E54
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 22:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AFC8621E57
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 22:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbiKHVNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 16:13:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
+        id S230002AbiKHVNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 16:13:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiKHVND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 16:13:03 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3793C6FF
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 13:12:58 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id d20so22941242ljc.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 13:12:58 -0800 (PST)
+        with ESMTP id S229687AbiKHVNs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 16:13:48 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DDA1EED5
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 13:13:46 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id l8so22963494ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 13:13:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wIdfbTng+tTAaILuDn9NZccChxnc1mAMEr243g5AE5Q=;
-        b=iTjLTbcG99SbapGUPOpT8KcxRneAH8zYd4dQyMRXYtlti+glhDtRyLgvP5+CzzyfRv
-         Fih/uqwNJ1eDGMVCFWx2tx9LCobMHtTd94MqkpcvGko+pS70kYfkZ5uLWF3idV8s7PRG
-         8ArTY6mX7/cnjb50OcQITOrV5KZSXqA8SJW5meeudaev/T54y3GQSjc26MAdnhMxr6go
-         lV4Bltmxy9zViJM0YWctiK9UUHGgSxycoWy2hNdiOVj/qUBqzTIEm0AqWF2J6eRao15n
-         PmieweREvx7OVbDwwuRX6ynqXrpdbyr7uIlGVBQPlL1B+lItiFP1rblnW3Dv1aNKfFyt
-         2qkQ==
+        bh=b+TEdIfIt1XEAkSUPk37PpRaSa+HP3u0XbUt51o/R5Q=;
+        b=hybL/ifLuD7Lq7OrqxEgPb+C3hZe6Zq/o9AmhBC3t26Y3R8MzxahlatCWAkuQxba6s
+         EPuEj4JngMnlo3aeVxau/Z1Qxs+H4hGVSBG+Vb3QnPV5hfRrbg/MhpQmYGnQacNIdzM9
+         Uu6BHThBxpHD7xHsdvES0oRgA+K49VywCjvxSo4gmm3bP+1480sreCSqcgLZBxKvDrJY
+         LM6qrbd3aMdEqxhBvamfi2ZZhgvEXsf2XQ7R8B9S7kurZ6AkdWCrINjDFXXqvaZJcp68
+         em7YdfcJ/kU/5L2Qov073/b188bqObSSwO7qpAa8DbMGNzqeRqKQC2x+LRYKkDk4qxAy
+         2NgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wIdfbTng+tTAaILuDn9NZccChxnc1mAMEr243g5AE5Q=;
-        b=CyyotilX1ErmDBTP/Bpk3cDGfqjaytr7ZJ5zxfLwzuAE+4Lg4FlAk9KtvYbM/g88Ss
-         wK1D0zdXRVMxQANUrI5pWylW6mZ192CoyOz/r77PZjq/c7lTcAM7UJBIvSnLX+sSq5kr
-         SAbIe6KZjxceUt6F4CnpyZ7rTZlGFVgGhz5LggPaINcmW1qhckesZF6LIs2+lqlB3xX1
-         6tHjgiQJB9gXdv8UxJJGnakWxhWg7Z8JO3/UIBmnohEs+7JoN97ftmwBVpUGq2Ehkcnd
-         4USsSkQKLGIsyQbSRAOFnKimq7ili4CQNOdyiWLL3+24pNIyt/IOL0plh3RLs8ENU2K/
-         W/fg==
-X-Gm-Message-State: ACrzQf2MmowRmZs5WBsuFSCq2iDp0PaMkPZ6gkRRtlQy95Qcgc9c0FU0
-        ulnCKpRrFIW31r9u3paqKorv4g==
-X-Google-Smtp-Source: AMsMyM6SgLmkxRFWJTxBTWSWRlGO/aMwDi/n44UGoH2/Rnkq8C6kWntqL+Y/9AfeOxEM2rY1scJwOA==
-X-Received: by 2002:a2e:b94a:0:b0:277:91a:737 with SMTP id 10-20020a2eb94a000000b00277091a0737mr18825127ljs.25.1667941977231;
-        Tue, 08 Nov 2022 13:12:57 -0800 (PST)
+        bh=b+TEdIfIt1XEAkSUPk37PpRaSa+HP3u0XbUt51o/R5Q=;
+        b=bD9/LWX1pOmFeq2jFgedNgVJa5f2cZyl/E0mdHFBnYE0BN36hVwOubnv8pAE5bXhSU
+         9uXGDVRnLvB26rRYP/lWkECEYs+m4YhrAwoJrj7ck/O7xxVwCtFA/bUrnl3bsIByCx+w
+         nfCLFhEcou7NND3zyx+EeDcawGoxYvIaIrES3x/IFx+ciycRiZ0i09OYCY6hzrTCSEkg
+         0m/unY5klQ4UbD8kiNnZH+GjLeQnMJY5rvQs/EsdAbp0u4tsMOKutfeqYTX6sJkVfSaD
+         OiSIE8v+l1WeeVxC+dpIGn4rmXjchyDW1gl/CSTkrBhc9dD7cCYbqaaRHzBoaEdFUFRZ
+         zwRw==
+X-Gm-Message-State: ACrzQf1T6lCZXG3WPjw0VhtWQN7kOEZi20k75Pp3/bhlLvLf21RzaX3M
+        m4LWmOVDka43ezwfWqkz5SRbTQ==
+X-Google-Smtp-Source: AMsMyM704MrNlUBJ/82vwUjFUx934aW7BWfazzzhogmQIqSx2TtM8uSFy20O42NaVeF2kUOmlZ6Pqw==
+X-Received: by 2002:a2e:b626:0:b0:26e:6fb:4845 with SMTP id s6-20020a2eb626000000b0026e06fb4845mr7126546ljn.120.1667942025342;
+        Tue, 08 Nov 2022 13:13:45 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id c16-20020ac25f70000000b00492dba3c85asm1935745lfc.220.2022.11.08.13.12.55
+        by smtp.gmail.com with ESMTPSA id 8-20020ac24d48000000b004998d9ccb62sm1939713lfp.99.2022.11.08.13.13.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 13:12:56 -0800 (PST)
-Message-ID: <6d671b6f-517d-54b5-23ac-49ba62c64701@linaro.org>
-Date:   Tue, 8 Nov 2022 22:12:55 +0100
+        Tue, 08 Nov 2022 13:13:44 -0800 (PST)
+Message-ID: <20aa6301-c576-9221-d084-b11d3e9687e3@linaro.org>
+Date:   Tue, 8 Nov 2022 22:13:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 05/18] dt-bindings: msm: dsi-controller-main: Fix
- description of core clock
+Subject: Re: [PATCH v2 06/18] dt-bindings: msm: dsi-controller-main:
+ Alphanumerically sort compatible enum
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
         quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
@@ -66,14 +66,15 @@ Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
- <20221107235654.1769462-6-bryan.odonoghue@linaro.org>
+ <20221107235654.1769462-7-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107235654.1769462-6-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221107235654.1769462-7-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,12 +82,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/11/2022 00:56, Bryan O'Donoghue wrote:
-> There's a typo in describing the core clock as an 'escape' clock. The
-> accurate description is 'core'.
+> Sort the order of the compatible strings alphanumerically.
 > 
-> Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
 > Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
+I think here you can see how the commit msg looks now... One line of
+message and 13 lines of CC.
+
+With commit msg fixed:
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
