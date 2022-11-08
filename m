@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9281B6217BE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9D46217FA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 16:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234209AbiKHPMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 10:12:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
+        id S232923AbiKHPWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 10:22:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233983AbiKHPMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:12:05 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424AB4D5F2
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 07:12:03 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id l12so10525369lfp.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 07:12:03 -0800 (PST)
+        with ESMTP id S234535AbiKHPWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 10:22:00 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C4E5C5
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 07:21:59 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id bp15so21626645lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 07:21:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yke8ySwFT8yI9hYAW7UzkJ/JFVT+jZWZcHr39eO1G2w=;
-        b=yznuQ4k9GcH2KW7oxpjxJR1K/7uJiGBHPT8KXuTERVcAaUvEdVD8/KnbJvhli6Ohvj
-         MCuhUuInk8vWV+vJSKifas1QsDcOeUhbxkuqxFS0pA40drK7D8WcE3LsGRQq7wLnXKc1
-         jXLo+y34Gu/k3ZsKcyO5MtBFmtzV+EiWzKD55qeqrwNigXyiVlGLOFXYMj5jUwa6TivU
-         03RD4Y+FsglqWVoi/27DS9WxUYWuMxES7tzm50RKYonJ+irbedvPk9hUPhLgn6Y8keES
-         6+Ud4rL8mCGk+jwH5PX0BfqPTlLLPgRBm0MFw71uYZXG3KwX4UEZZ+J1exdxczlzs+WG
-         upFA==
+        bh=jRzyJnxLYzsMC45/a3kz8XZ7TjuhXHr7cvJ/MBHZNkQ=;
+        b=hw0k1LbGg3vqG66OjVuk6oA6tkOW35sqKMUc9v3qxDpYc38pG5DcIuRs4uDv8WIdh/
+         n0viDZMSRpHrbG4xEKiGozYKataNa2sQq63PzMhhk5beUlF9VmRRi6sxUrY7iEoMbgvp
+         InO211+YW8gWfbrolebIPnWhWMGTqfnWnmTC1W8qiFzrCixhtecLuFXGq7+/odpjn12t
+         ElKtJDmuKxrmXsJ0GDiheeRup6S8j26g+R/tljypDNvUR6D1Raz5f1eB1vPickWZM6nZ
+         kmaE48SMjTFnhFX0zxwLCA+Xl+PnEf5m1wYusMrnMpTRof3VUkswo6jjPIV9KPAkLwqu
+         UKSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yke8ySwFT8yI9hYAW7UzkJ/JFVT+jZWZcHr39eO1G2w=;
-        b=BjIwwoW8YSX1cxEcmmAnBoOeVOMIcXIeeYX3aY/GZveHWbXYwshEH/1GHpV0qlXjGF
-         F3M0x36doauLBUnRH1ScI0a7h19J1S1D92IbKvz1J9gfh/TWdDgplSTurhYYrEFMchOj
-         EFMXJcYsxVdSF18J3WvRRWQCUSRBijntVoovd4RyTs0h7i9lfdN0OjGvyPWehB/DDde+
-         hH29RahGhGCNG/twSeWqLRk1qLw6L2L82mGrcv8Yv+KYr6UcyZe+woU0BkJLlTt5hF8d
-         c4EnJwWlAUAQIME8Evtxfj/2ysUJF8TrkghVMsfcEhEATQvHUozVqP3ZR/HNnQJywl7y
-         pL4Q==
-X-Gm-Message-State: ACrzQf0+98hh6/sUfV/5ZAGpjFVSnZUuWCmTlvn3bxCgU/oL11zjYavV
-        S7QXQhtg2RonH1YQJAfdvCPpZg==
-X-Google-Smtp-Source: AMsMyM4Fi4XBlVQ4IJL2tNhKzXZ0y7c1f5CuFDM4E4y+/EYUr9aQPreBzZeARcVapFm76Z2e7MXQ5g==
-X-Received: by 2002:a19:6712:0:b0:4b1:b061:480e with SMTP id b18-20020a196712000000b004b1b061480emr8408066lfc.624.1667920321609;
-        Tue, 08 Nov 2022 07:12:01 -0800 (PST)
+        bh=jRzyJnxLYzsMC45/a3kz8XZ7TjuhXHr7cvJ/MBHZNkQ=;
+        b=nXOHa9mQBhSebvHCzfmcLFGQobcjKtsVLnKrPtqnqQopIPvUKfQ1FOyNQ3GgwKgAie
+         unHq6ECmZRYo2L4SaQ73QPAPlOYteXAd6LubK1V2JtndTMtcVePkn+melh9AeOa+ehQt
+         yfTuGu9R+ZH2F/0Hd4CstVFdI/7OS2Tx8r4Uw8Toq1sz3NHp5Vo21okEn7Xi9AOAW7oq
+         kn3VNermCalM1bXEsmNwzzBCikEvEw8EN5Zx7VXZTj4owukJ1e+Ob8j/prZQl0k6GUU5
+         9jaNVPCW0xQqlS7PhlT7mLNSLuvxoMGroxIqPhsykBW7NGQdgrGbPv4td4Q6VgbHgDEj
+         xyfw==
+X-Gm-Message-State: ACrzQf3f9JlNAr3UfV3GhsQ+RaXH7ti9r0C1FqaeGVN1DJREbtYIpX77
+        m5z/L67t2e6E9wHPyPtTiDbZvQ==
+X-Google-Smtp-Source: AMsMyM6LqizkdTyXcH8v+ZtywydQIDJ44F2qY7ZT1WgOauSJvGVrxZtsUZXbRwfxXqA//0mgPCPi5A==
+X-Received: by 2002:a19:8c46:0:b0:4b1:a5b5:87e6 with SMTP id i6-20020a198c46000000b004b1a5b587e6mr8994696lfj.662.1667920917788;
+        Tue, 08 Nov 2022 07:21:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id p22-20020a2eb7d6000000b002774e7267a7sm1761146ljo.25.2022.11.08.07.12.00
+        by smtp.gmail.com with ESMTPSA id c9-20020a056512324900b004a1e592837esm1830339lfr.140.2022.11.08.07.21.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Nov 2022 07:12:00 -0800 (PST)
-Message-ID: <a1e4a039-3b65-2f2b-2196-340cc754b1c1@linaro.org>
-Date:   Tue, 8 Nov 2022 16:11:59 +0100
+        Tue, 08 Nov 2022 07:21:57 -0800 (PST)
+Message-ID: <9fc4d874-a0d0-6c5c-aeee-61ab817fdd9f@linaro.org>
+Date:   Tue, 8 Nov 2022 16:21:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 5/5] arm64: dts: uniphier: Add NX1 SoC and boards
- support
+Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
+ expansion interface(SGPIO)
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
- <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
- <f8f83839-2e76-e500-a16e-5fd2985a278d@linaro.org>
- <df21cfca-67ed-0c78-7f1e-13e321edabe1@socionext.com>
+To:     Jim Liu <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
+        KWLIU@nuvoton.com, linus.walleij@linaro.org, brgl@bgdev.pl,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
+References: <20221108092840.14945-1-JJLIU0@nuvoton.com>
+ <20221108092840.14945-4-JJLIU0@nuvoton.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <df21cfca-67ed-0c78-7f1e-13e321edabe1@socionext.com>
+In-Reply-To: <20221108092840.14945-4-JJLIU0@nuvoton.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,61 +77,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 15:30, Kunihiko Hayashi wrote:
-> Hi Krzysztof,
+On 08/11/2022 10:28, Jim Liu wrote:
+> NPCM750 include two SGPIO modules.
+> Each module supports up to 64 input and 64 output pins.
+> the output pin must be serial to parallel device(such as the hc595)
+> the input in must be parallel to serial device(such as the hc165)
 > 
-> On 2022/11/08 20:13, Krzysztof Kozlowski wrote:
->> On 07/11/2022 11:34, Kunihiko Hayashi wrote:
->>> Initial version of devicetree sources for NX1 SoC and boards.
->>>
->>> NX1 SoC belongs to the UniPhier armv8 architecture platform, and is
->>> designed for IoT and AI/ML application fields.
->>>
->>
->>> +
->>> +		soc_glue: syscon@1f800000 {
->>> +			compatible = "socionext,uniphier-nx1-soc-glue",
->>> +				     "simple-mfd", "syscon";
->>> +			reg = <0x1f800000 0x2000>;
->>> +
->>> +			pinctrl: pinctrl {
->>> +				compatible = "socionext,uniphier-nx1-pinctrl";
->>
->> So instead of documenting the hardware precisily, you have one big bag
->> for everything under simple-mfd. This is not how the SoC should be
->> described in DTS.
+> Signed-off-by: Jim Liu <JJLIU0@nuvoton.com>
+> ---
+> Changes for v2:
+>    - modify description
+> ---
+>  .../bindings/gpio/nuvoton,sgpio.yaml          | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
 > 
-> Sorry I don't understand. This is inherited from the previous descriptions,
-> but is there some example to express DTS correctly about that?
+> diff --git a/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> new file mode 100644
+> index 000000000000..331e3cb28b98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/nuvoton,sgpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton SGPIO controller
+> +
+> +maintainers:
+> +  - Jim LIU <JJLIU0@nuvoton.com>
+> +
+> +description:
 
-I think yes, although it actually depends what is this hardware.
-Generally speaking, do not use simple-mfd and syscon when these are not
-really simple devices. There are quite many in your DTS, which got my
-attention. Instead - have regular device with or without children.
+description: |
 
-There is no real need to have this a simple-mfd with one children
-without any resources (no address space, no clocks, no interrupts, nothing).
+> +  This SGPIO controller is for NUVOTON NPCM7xx and NPCM8xx SoC,
+> +  NPCM7xx/NPCM8xx have two sgpio module each module can support up
+> +  to 64 output pins,and up to 64 input pin.
+> +  Nuvoton NPCM750 SGPIO module is base on serial to parallel IC (HC595)
+> +  and parallel to serial IC (HC165).
+> +  GPIO pins can be programmed to support the following options
+> +  - Support interrupt option for each input port and various interrupt
+> +    sensitivity option (level-high, level-low, edge-high, edge-low)
+> +  - Directly connected to APB bus and its shift clock is from APB bus clock
+> +    divided by a programmable value.
+> +  - nin_gpios is number of input GPIO lines
+> +  - nout_gpios is number of output GPIO lines
+> +  - ngpios is number of nin_gpios GPIO lines and nout_gpios GPIO lines.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,npcm750-sgpio
+> +      - nuvoton,npcm845-sgpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  nin_gpios: true
+> +
+> +  nout_gpios: true
 
-Why this syscon/mfd and pinctrl is not a regular, one device?
+These have several issues. No underscores, missing type, no description,
+missing maxItems (if these were GPIOs...)
 
-> 
->>
->>> +			};
->>> +		};
->>> +
->>> +		soc-glue@1f900000 {
->>> +			compatible = "simple-mfd";
->>
->> No, it is not allowed on its own. You need a specific compatible and
->> bindings describing its children.
-> 
-> I saw the definition of "simple-mfd" itself is only in mfd/mfd.txt.
-> 
-> Currently there are only efuse devices as children, and this space means
-> nothing. I think it had better define the devices directly.
+> +
+> +  bus-frequency: true
 
-You need to start describe the hardware. efuse is an efuse, not MFD.
-pinctrl is pinctrl not MFD + pinctrl.
+Why? Bus frequency of what? This is a property of bus controllers. You
+need to explain in details in description what is this about.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - interrupts
+> +  - nin_gpios
+> +  - nout_gpios
+> +  - clocks
+> +  - bus-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    sgpio1: sgpio@101000 {
+> +        compatible = "nuvoton,npcm750-sgpio";
+> +        reg = <0x101000 0x200>;
+> +        clocks = <&clk NPCM7XX_CLK_APB3>;
+> +        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> +        bus-frequency = <16000000>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        nin_gpios = <64>;
+> +        nout_gpios = <64>;
+> +        status = "disabled";
+
+Drop
+
 
 Best regards,
 Krzysztof
