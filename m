@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2446D6236DE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 23:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2190F6236E1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 23:57:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbiKIW51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 17:57:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51464 "EHLO
+        id S231800AbiKIW5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 17:57:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiKIW51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 17:57:27 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14FB61EED1;
-        Wed,  9 Nov 2022 14:57:24 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6BDBAFF802;
-        Wed,  9 Nov 2022 22:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668034642;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=4qutKClpaMtj7cgQ2BDKv2YC/ArzsyxTBFqjgebWdeE=;
-        b=Wj1QADdKc4kzuieut1F0r5KxBkYYWxjNrJNQK9hOurYpohcXx3snCxMxmQoMuBlHDO7Usd
-        bAuP4MhygFBfrCrUc222hussBxd4Gw+jKFZezkTx0u0q4dq5TsEbPpSrCJfHsoAwBHfrLC
-        B6cdwRgshTy65gyZ8qh6N9yKmBCxckwyuzvikA1Pwkgn4R1++tcKrvbeCrnOE/staWDqk5
-        GFsE2D0Y4f4iY+mKn1/rHBnnDgYnT+0Ti1f8dUOQgUG4BD21C5VwaX3CYsjR1Hz2ESw3JF
-        tU6xpxAePf4T5DIt/cu4ZSu+e+ivp1Lxz63RNurtq4QE2EXMM5pylre+etBRrg==
-Date:   Wed, 9 Nov 2022 23:57:20 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Message-ID: <Y2wwUOJ0KZdt1tZ6@mail.local>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
- <20221109222916.GA2985917-robh@kernel.org>
+        with ESMTP id S231858AbiKIW5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 17:57:48 -0500
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DD52338E
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 14:57:47 -0800 (PST)
+Received: by mail-qk1-x729.google.com with SMTP id k4so163580qkj.8
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 14:57:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LVWuz823eJSmS7C8/KQV06Oh/hCit6av3FArUtoOCmE=;
+        b=fbRS43DQiunb56OLMrAgAYjSYZDFiDvAizKGFBpia15o9YMMDyBzQ4QktlupA/7KHa
+         9zM/ROU1SV/liLfz/XVUbHPICK92At/wgEN2cCkm6gQlYnHC1u2zveguAlXFSnbtodzG
+         TGyHJCZLjtqiDIBE7eAA47/YUx4ZmMvAWY9Qd/ZisjFAhxk5oJLES7QuuAthPMXAFekS
+         ZKcxjMZCvbDo60XNtWqG9Tk1FbYKAfGKCuGe/fUZHSe/Ms5FEBUWm7MxrVdNOpGRnI6b
+         /8mVcfHH47EzZSeg6F0UalvSAHhj3ozIuLGPsmLPsTWlY7U0KFAllMqe8XJk36eSg1AT
+         FSqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LVWuz823eJSmS7C8/KQV06Oh/hCit6av3FArUtoOCmE=;
+        b=DFbKvnCZFkDkGWFGVhZXL0XrG1IcROQAFSmXcKuTVlOXrtnR4jX+QfV/GcE1qrEgTx
+         LOaIioLjNhr7d8ovxpI5oAqBcYRYAn0BiRWLAkvP1cosXoqtU5SjZX1+nxL71eztdZCd
+         RKTAlQx3WNwLVQpLHazfTmvtF1dta6azs3m7acaZpRLHq+U5WNJKnZ/cTCGQGWKvJUYG
+         ck+6hxJsn79DsyCNnAyHbzpNPWVFlB2jhaLKBhByycOBHddqerYVBpFBLQWMsCOjCs8A
+         wTwdvuMlWYk7Fzk1i4fsXYM9JCOF509log1FVn7kClkx37uKp0Ht9tQu7pK73aswEBUZ
+         Tl0w==
+X-Gm-Message-State: ACrzQf2IPE22yrL02W/7LUwtwx920IksIvyRzW38CQT9JpKs+7cYkix0
+        Pudm1sozfq6VMQk299Q+CGU=
+X-Google-Smtp-Source: AMsMyM5qBu/nvRLbzCaatsp4pITljeZvhT4SMMj5npW+NKf7Ty/xXaqASx4wo4hEgr7fAp9f7ikVRw==
+X-Received: by 2002:a37:2e85:0:b0:6fa:aa59:efbf with SMTP id u127-20020a372e85000000b006faaa59efbfmr17681297qkh.406.1668034667074;
+        Wed, 09 Nov 2022 14:57:47 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id m2-20020a05620a24c200b006ea7f9d8644sm11718272qkn.96.2022.11.09.14.57.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 14:57:46 -0800 (PST)
+Message-ID: <517f2acb-59d5-cdb7-285c-f864b8603864@gmail.com>
+Date:   Wed, 9 Nov 2022 14:57:35 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221109222916.GA2985917-robh@kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 0/2] ARM: dts: bcm283x: Minor clean up
+Content-Language: en-US
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220925164021.3600-1-stefan.wahren@i2se.com>
+ <974b55c8-2b04-2792-fae9-36ac77f7c9d6@i2se.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <974b55c8-2b04-2792-fae9-36ac77f7c9d6@i2se.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,88 +81,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 16:29:16-0600, Rob Herring wrote:
-> On Tue, Nov 08, 2022 at 07:43:37PM +0100, Alexandre Mergnat wrote:
-> > - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
-> > - Add mediatek,mt6357-rtc compatible.
-> > - Add maintainer
-> > - Remove the .txt binding file
-> > 
-> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
-> >  .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 40 ++++++++++++++++++++++
-> >  .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 -----------------
-> >  3 files changed, 41 insertions(+), 32 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> > index 0088442efca1..79aaf21af8e9 100644
-> > --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> > +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> > @@ -33,7 +33,7 @@ Optional subnodes:
-> >  		- compatible: "mediatek,mt6331-rtc"
-> >  		- compatible: "mediatek,mt6358-rtc"
-> >  		- compatible: "mediatek,mt6397-rtc"
-> > -	For details, see ../rtc/rtc-mt6397.txt
-> > +	For details, see ../rtc/mediatek,mt6397-rtc.yaml
-> >  - regulators
-> >  	Required properties:
-> >  		- compatible: "mediatek,mt6323-regulator"
-> > diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> > new file mode 100644
-> > index 000000000000..bb48c0150f95
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> > @@ -0,0 +1,40 @@
-> > + # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek MT6397/MT6366/MT6358/MT6357/MT6323 RTC
-> > +
-> > +maintainers:
-> > +  - Alexandre Mergnat <amergnat@baylibre.com>
-> > +
-> > +description: |
-> > +  MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
-> > +  as a type of multi-function device (MFD). The RTC can be configured and set up
-> > +  with PMIC wrapper bus which is a common resource shared with the other
-> > +  functions found on the same PMIC.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt6323-rtc
-> > +      - mediatek,mt6357-rtc
-> > +      - mediatek,mt6358-rtc
-> > +      - mediatek,mt6366-rtc
-> > +      - mediatek,mt6397-rtc
+On 11/9/22 14:39, Stefan Wahren wrote:
+> Hi Florian,
 > 
-> As this is only a compatible string, just fold this into the MFD schema 
-> doc.
+> Am 25.09.22 um 18:40 schrieb Stefan Wahren:
+>> This series cleans up some minor issues, but this affects most of
+>> the bcm283x DT sources.
+> since you already applied Maximes patches, i want to know if you are 
+> fine with this series?
 
-Actually, it probably also supports the start-year property
+Yes, those patches are fine, just they were not in patchwork because 
+bcm-kernel-feedback-list@broadcom.com was not copied :/
 
-> 
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +examples:
-> > +  - |
-> > +    pmic {
-> > +        compatible = "mediatek,mt6397";
-> > +
-> > +        rtc {
-> > +               compatible = "mediatek,mt6397-rtc";
-> > +        };
-> > +    };
+Patch 1 still applies, but patch 2 failed with:
 
+Apply? [y]es/[n]o/[e]dit/[v]iew patch/[a]ccept all: y
+Applying: ARM: dts: bcm283x: Move ACT LED into separate dtsi
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-a-plus.dts:2
+error: arch/arm/boot/dts/bcm2835-rpi-a-plus.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-a.dts:2
+error: arch/arm/boot/dts/bcm2835-rpi-a.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-b-plus.dts:2
+error: arch/arm/boot/dts/bcm2835-rpi-b-plus.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts:2
+error: arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-b.dts:2
+error: arch/arm/boot/dts/bcm2835-rpi-b.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi:2
+error: arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-zero-w.dts:6
+error: arch/arm/boot/dts/bcm2835-rpi-zero-w.dts: patch does not apply
+error: patch failed: arch/arm/boot/dts/bcm2835-rpi-zero.dts:6
+error: arch/arm/boot/dts/bcm2835-rpi-zero.dts: patch does not apply
+Patch failed at 0001 ARM: dts: bcm283x: Move ACT LED into separate dtsi
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+When you have resolved this problem, run "git am -i --continue".
+If you prefer to skip this patch, run "git am -i --skip" instead.
+To restore the original branch and stop patching, run "git am -i --abort".
+zsh: exit 128   git am -is
+
+Do you mind resending based upon devicetree/next and copying 
+bcm-kernel-feedback-list@broadcom.com so this lands in our patchwork?
+
+Thanks!
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Florian
+
