@@ -2,128 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C500622412
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 07:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BA73622438
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 07:56:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiKIGsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 01:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47742 "EHLO
+        id S229488AbiKIG4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 01:56:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiKIGsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 01:48:03 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F38E1CFE2;
-        Tue,  8 Nov 2022 22:48:02 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A96ltvH032399;
-        Wed, 9 Nov 2022 00:47:55 -0600
+        with ESMTP id S229554AbiKIG4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 01:56:15 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492E81DA4C;
+        Tue,  8 Nov 2022 22:56:14 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A96trZe095390;
+        Wed, 9 Nov 2022 00:55:53 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667976475;
-        bh=1Hn0eSk6OyN5lL5cDqWJi5Os4rxljA5PAuJM4IPMRr8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=v2DHvz6r+V2m8Bco5xP5voIAKT3B48hqPXHouKMqvf8XlHn0MaMi8K7pK+V3Ua+G4
-         KpGhu099kjNwPFZ8BTJFgxFYMonAGOuP4hTAUEx31nSjOR0SY3ENvLD0eUSqmKv3xo
-         QWvLOzNApbiT7rR5JTQWa+Tghndj6sEsEs+GYbVA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A96ltDk022891
+        s=ti-com-17Q1; t=1667976953;
+        bh=tDvioJ6iiI0tv7VoTdxAcDlnVrvRcK7hIBA96PsZ+cs=;
+        h=From:To:CC:Subject:Date;
+        b=KpoirP9im9w7oTlX3cAC7MJlhAzvwUAQ++DSqdMYEuci3UyU6dhVmPgnJ31AtEnH4
+         5C3ODzCEnYjDcHcoXT8I3QZ9bqyPeJp+1Z62VbK3QDgQBw8eyiFsCjlCScMXny41rS
+         oNhaAcei6Iiblg6OBkoaVGDpBI7sgIiIxrijYw/o=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A96trdb091499
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Nov 2022 00:47:55 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Nov 2022 00:55:53 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 9 Nov
- 2022 00:47:55 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 00:55:52 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 9 Nov 2022 00:47:55 -0600
-Received: from [10.250.234.28] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A96lpiL083212;
-        Wed, 9 Nov 2022 00:47:52 -0600
-Subject: Re: [EXTERNAL] Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for
- ADC nodes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
-        <nm@ti.com>, <piyali_g@ti.com>
-References: <20221108073231.35008-1-b-kapoor@ti.com>
- <f70346da-228e-79d2-7284-6c64cda7eda0@linaro.org>
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-Message-ID: <63f0841c-c268-957d-30a1-f1da29125870@ti.com>
-Date:   Wed, 9 Nov 2022 12:17:55 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ Frontend Transport; Wed, 9 Nov 2022 00:55:52 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A96tnsV024888;
+        Wed, 9 Nov 2022 00:55:51 -0600
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <brgl@bgdev.pl>, <lee@kernel.org>, <linus.walleij@linaro.org>,
+        <kristo@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <a.zummo@towertech.it>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh@kernel.org>, <vigneshr@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH v3 0/7] mfd: add tps6594x support for Jacinto platforms
+Date:   Tue, 8 Nov 2022 22:55:39 -0800
+Message-ID: <20221109065546.24912-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.GIT
 MIME-Version: 1.0
-In-Reply-To: <f70346da-228e-79d2-7284-6c64cda7eda0@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/8/22 11:48 PM, Krzysztof Kozlowski wrote:
-> On 08/11/2022 08:32, Bhavya Kapoor wrote:
->> J721S2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
->> for 8 channel ADCs for J721S2.
->>
->> Enable ADCs present on J721S2 soc.
->>
->> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
->> ---
->>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
->>   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
->>   2 files changed, 54 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> index b210cc07c539..de9cb40273be 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->> @@ -429,3 +429,17 @@
->>   &main_mcan17 {
->>   	status = "disabled";
->>   };
->> +
->> +&tscadc0 {
->> +	status = "okay";
->> +	adc {
->> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->> +	};
->> +};
->> +
->> +&tscadc1 {
->> +	status = "okay";
->> +	adc {
->> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->> +	};
->> +};
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> index 4d1bfabd1313..47a7a6b500c2 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> @@ -299,4 +299,44 @@
->>   			ti,cpts-periodic-outputs = <2>;
->>   		};
->>   	};
->> +
->> +	tscadc0: tscadc@40200000 {
-> Node names should be generic, so "adc"
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+This patchset series adds support for the TPS6594x PMIC along with
+initial support for its RTC + GPIO interface, and poweroff sequence.
 
-tscadc is just a wrapper node. The actual adc node is inside of tscadc node.
+Additionally, add usage of the PMIC for the various Jacintor platforms
+devicetree's.
 
->
-> Best regards,
-> Krzysztof
->
-Regards
+Changes from v1:
+* Corrected devicetree documentation issues found with dt-schema
+* Changed MFD references to PMIC reflecting the more valid use of driver
+* Cleaning up variable naming and ordering within functions
+* Adding gpio + regulator cells for upcoming driver support 
+* Switching from .probe to .probe_new API
+* Revising comments within drivers to be more concise
+* Adding device tree nodes for j721s2 and j721e platforms
 
-BK
+Changes from v2:
+* Adding gpio-tps6594x driver support
+* Enabling gpio cell in MFD driver
+* Adding device tree nodes for k3-*dts platforms
+
+Keerthy (3):
+  MFD: TPS6594x: Add new PMIC device driver for TPS6594x chips
+  rtc: rtc-tps6594x: Add support for TPS6594X PMIC RTC
+  arm64: dts: ti: k3-j7200-common-proc-board: Add TPS6594x PMIC node
+
+Matt Ranostay (4):
+  Documentation: tps6594x: Add DT bindings for the TPS6594x PMIC
+  gpio: tps6594x: add GPIO support for TPS6594x PMIC
+  arm64: dts: ti: k3-j721e-common-proc-board: Add TPS6594x PMIC node
+  arm64: dts: ti: k3-j721s2-common-proc-board: Add TPS6594x PMIC node
+
+ .../devicetree/bindings/mfd/ti,tps6594x.yaml  |  67 +++++++
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  17 ++
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  17 ++
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  17 ++
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-tps6594x.c                  | 142 ++++++++++++++
+ drivers/mfd/Kconfig                           |  14 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/tps6594x.c                        | 120 ++++++++++++
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-tps6594x.c                    | 181 ++++++++++++++++++
+ include/linux/mfd/tps6594x.h                  |  90 +++++++++
+ 14 files changed, 685 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594x.yaml
+ create mode 100644 drivers/gpio/gpio-tps6594x.c
+ create mode 100644 drivers/mfd/tps6594x.c
+ create mode 100644 drivers/rtc/rtc-tps6594x.c
+ create mode 100644 include/linux/mfd/tps6594x.h
+
+-- 
+2.38.GIT
 
