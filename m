@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 209976228DD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 11:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D476228F6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 11:48:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbiKIKqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 05:46:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33290 "EHLO
+        id S230505AbiKIKs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 05:48:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231219AbiKIKq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 05:46:28 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D389F24099
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 02:46:26 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id h12so25109928ljg.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 02:46:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SyydfT4fMrnMvYOxyiJE2t1fY7f34HXR/oj1c9VLQPc=;
-        b=qIstpF0aFrE2EjEDM3IJeWQsd12WpA9VyOFsO3iO1CEPR0BQwDCgvTIPf99sM9DpWg
-         Hbm7SA7jwGfjMkBPq3+pgdg7mmuA4c5VBghDG0M8dgc9Sz3i3vPEmJhQ9aEddje0sVHU
-         J2lFN3WvAtesGurVIfUbLzpcOZrRTpeIzCU9bsJkRZsZmlWnCRKT4gW+AUkjQ5QC/SCq
-         vgkoZPXi88U1ljKa8MgMOc2ftpU+5oPUPBmEZhOB5ZQwmYw6/YRdvGzRyyxkhbzez5h+
-         VGxijFtry0YQ/JFjymrnwhEs3vQukF+ec+XGzhWaYsMv+vsRz5HBeGKaLcMb8gA7tPUe
-         rsKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SyydfT4fMrnMvYOxyiJE2t1fY7f34HXR/oj1c9VLQPc=;
-        b=ozN/pNRlvGhIuoiVIXCDblT7ZmE9qUVq/05HBKq5XFI7KPLEY73GMZaDrJQ2oQ2+QJ
-         g5LLzY2TvhXzwe1rQDwp+qUDB3K1N3e8yr+aB3X0tsOFCx+Yfol/JT8csNoF9Jyz7uVb
-         FkyyBO1OiDmzYmu/PxNUnSBTuKGokU0Nbggr1/R2tU2i+eGz/j0NPbkQecZYyW3OLkeO
-         Q+Iz5UZGIfK6ifQL+3zzpSS8ibZ56tErFoOKpBUpiomVOdIYEIVRuq77a18xo+0/Rv0J
-         Gy4rLn7ywAWtQ+6fkwIRnB7pdxG0ndK2RKoGfpqpa1eV3AlltfEb27DMj7K14mqcVXHD
-         efbw==
-X-Gm-Message-State: ACrzQf1hdj3XXEBXa0I27eoOGAJvzl35ghvBcSuOxPCgStyJArQs+dua
-        uez91tw31qJIkMnQ1pgZvK8Msg==
-X-Google-Smtp-Source: AMsMyM5Jipz3tLiBVYGUtjX/K7dv4tEsfxFVL9tH6qCDxKUJgoQaD4lZ7qCmCnaa9061Hlf1pD1+TA==
-X-Received: by 2002:a2e:1f01:0:b0:25f:ea3a:4ef0 with SMTP id f1-20020a2e1f01000000b0025fea3a4ef0mr19802628ljf.330.1667990785259;
-        Wed, 09 Nov 2022 02:46:25 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id q24-20020a056512211800b0048af9576d30sm2166616lfr.83.2022.11.09.02.46.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 02:46:24 -0800 (PST)
-Message-ID: <3389254c-0161-f95c-2996-364cb607c6f3@linaro.org>
-Date:   Wed, 9 Nov 2022 11:46:24 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: align TLMM pin
- configuration with DT schema
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231225AbiKIKsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 05:48:05 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6452648C;
+        Wed,  9 Nov 2022 02:48:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1667990882; x=1699526882;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=OpLpfKgFncaOypu/Y4C5vCxOS6jzJd+feOYi1RLb4lY=;
+  b=ue/pWzw6a8CXhJZ0FZP/EV+LW2hnsHfSUWqqOhbMAV0B6PSNYCwmV2cV
+   +iwzKUg7RdeEmY+ud7IU74XSJAxftAfbK8IeTafo2Cm7ZBiO1UEdti3EM
+   F5KdMeUhJ5kd2WXkss7WAb86syJcvo9RgpU4DcE6Wv+OPnO696BqkjCIj
+   xIWK8EgMAEmVwG5oCIPECX4h9uE1FgL3QQASUnq3cOxz+A0e+zMjsu160
+   MprmkqyL0X4L81DH+yFoRVbCkfgpop9HrCN5oEShn0iqzwVv/a4QbwqTv
+   eiCRizIsFS9rzTuj2jDFO6R2T20Jg1uyJ0gp5mqwPwSuj0eypjVBUBttm
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,150,1665471600"; 
+   d="scan'208";a="186093230"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Nov 2022 03:48:01 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 9 Nov 2022 03:47:58 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 9 Nov 2022 03:47:57 -0700
+Date:   Wed, 9 Nov 2022 10:47:40 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+CC:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221109104402.45592-1-krzysztof.kozlowski@linaro.org>
- <20221109104402.45592-2-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109104402.45592-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v11 4/4] MAINTAINERS: add pwm to PolarFire SoC entry
+Message-ID: <Y2uFTM/O0b39greO@wendy>
+References: <20221007113512.91501-1-conor.dooley@microchip.com>
+ <20221007113512.91501-5-conor.dooley@microchip.com>
+ <20221109093525.kx4tyvha7y3sikxw@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221109093525.kx4tyvha7y3sikxw@pengutronix.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 11:44, Krzysztof Kozlowski wrote:
-> DT schema expects TLMM pin configuration nodes to be named with
-> '-state' suffix and their optional children with '-pins' suffix.
+On Wed, Nov 09, 2022 at 10:35:25AM +0100, Uwe Kleine-König wrote:
+> On Fri, Oct 07, 2022 at 12:35:13PM +0100, Conor Dooley wrote:
+> > Add the newly introduced pwm driver to the existing PolarFire SoC entry.
+> > 
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> 
+> I assume you will rework the series and resend this one with the driver
+> patche. Applying patch #4 alone doesn't make sense, so I'm marking this
+> one as "changes requested", too, in the PWM patchwork instance.
+> 
+> IMHO patches #1 and #2 make sense to be applied already without the
+> driver given the binding is already there. I assume they will go in via
+> the riscv tree, so I will mark these two as "handled elsewhere".
 
-Ignore please.
+Right. Makes sense to me - I'll take the dt-binding & the dt via the
+riscv (or soc, we're changing things up there [a]) tree.
 
-Best regards,
-Krzysztof
+Thanks,
+Conor.
 
+[a] - https://lore.kernel.org/linux-riscv/mhng-e4210f56-fcc3-4db8-abdb-d43b3ebe695d@palmer-ri-x1c9a/
