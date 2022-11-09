@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41F056226FA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:30:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A63C96226FC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:30:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbiKIJad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:30:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35260 "EHLO
+        id S229995AbiKIJae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:30:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbiKIJac (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:30:32 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447591C92C
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:30:31 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id y16so24759471wrt.12
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:30:31 -0800 (PST)
+        with ESMTP id S230304AbiKIJad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:30:33 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D089F11477
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:30:32 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id p16so10388060wmc.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:30:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pLWz/etKkdRYFJ1Qa8OubzwENK5OGCzv8f4RtofetLs=;
-        b=EvIkXa/E3Gylc3MWmsmJcm5pjIg8IJYxwcmfcZjBmnXelQELNkmWdN2Ck0CT6P93Gz
-         8b6+xzBMCCYP47iuKA9LvppbaQPR1by7OUxQFBIQmR0hUbWXzAyxcLa+YhgZsqd9FMy6
-         HccaujjukGZzQKWp01gW+Iio+FzPZg8ed/IySzFMsit7Mdo0uzj9UJ2fGgGyFXCLhY67
-         D046hd0HQ8sVZAPjr4m1QixjjFZVg43ZKR4pnT78MR9FhNDD7CEIINKR+2JkagV8f2iL
-         ISu9wUpfhfuTqKw2GZZFkCNH3zp/30N44bIr/QY4JNh57PR6ups2nGpm0OIgkS7QR2Ub
-         Tbiw==
+        bh=U+oiaRg9ab/55i5+llsM8upTgpALjLL7ge6TbqM64xg=;
+        b=RHhGDNRzwjUu9GvsrF38Zt6cOnKGnXOnmW2bPWtOVMfrRFJF09jZRIOIRmCc0QIfz4
+         7IyK8Y70iYRAOfz9MqySdyrP1aDkQSfrI5KhD7OhkP4tmOVB14h4zumEscz3hRqqEBnt
+         QJ3qVVmlrKvlvWabD6nzjxFq2dn7zwoBFOlmmTKUORVojv4iH71C1yA8QKIdiME71/qn
+         t5MP9FZO5lKz5Wqd61R91SkRLRtbQO1IvR++HKJjbiSEEOUKJ4YxlCwNPrXCKxgQFWB+
+         upDrvG29rcIGIeRe/4OJ9dQPfGnAfcvkerNLkuco0IsxO+Q71E+C4pazqO/NJjlkzfgC
+         ZPFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pLWz/etKkdRYFJ1Qa8OubzwENK5OGCzv8f4RtofetLs=;
-        b=P8gKPf966Sm/8R7ZWZWCrCj2hYU0mUqsouE6GsAY9Qt4odZ6AmpUQQAFIHpjnQ8IhQ
-         S8xz27w8/urtQ8rniO2b9XpeBnYcdHIB82FsDbMlIP2tvpuOGjkMDCCMSwapRsBqk84F
-         6CZ56CWs3uLllulQtsc9VqjULNMRc2QhOy9YiyjNpQZjje8rVUuePx/cfFhxPTOz+TBp
-         HWbMu1m01XL2LT+BooMZ470u9W5TvNQ7O6R+x2t6MOPvP4kiDZsCGg5z3ZCd/I4wzSrM
-         D07ObPtsxOzyKu5w0LRbvBrOVS5lLKa7JetgXTY4oCiQNx8knGWiUWDWALL4jFdb8qCJ
-         2gmw==
-X-Gm-Message-State: ACrzQf3p1/MRLwynn8tYXiGqFHEwzztz/ZBaAS5dRzUfmiMHBmJKBZfS
-        Br6Q+ZB2gmapfg/yrQE7wnIzGA==
-X-Google-Smtp-Source: AMsMyM7JlX0xONPC+nB5MASK0ugjcmZFyvp7x8KuX5+aop6TQfMNPV70vvCP3crg/nSTj56oAtWvkQ==
-X-Received: by 2002:adf:c5c4:0:b0:236:87bc:a8fa with SMTP id v4-20020adfc5c4000000b0023687bca8famr36777687wrg.151.1667986229834;
-        Wed, 09 Nov 2022 01:30:29 -0800 (PST)
+        bh=U+oiaRg9ab/55i5+llsM8upTgpALjLL7ge6TbqM64xg=;
+        b=uafCpBM+1ij+t9+vgrOkdHh+yVzaT0vAjAbGd6hg3gDFOSuqWvFmko+MkGFADmSFRi
+         jqULxpS3r1tPHYGW/DQYHJdVE/isM/IUhMtpGtonibQChB+S8mM8OFbET/DwT/icuGW9
+         vX6REkS7iF+GLamMY2SZHE+7aMq3cSNiUPE8AYhLRezoELGTd0eigZI+YMQYH2lHK/Zx
+         DQLvIgjp9/M8Qb4CAUILCRbtgN+j3q8p+l4orHKIMkUkcEYNsOGSeeEF+XTtwt2Ohkfa
+         jbdF9PraxjIQ1Xc+Vd65elWlhxCk4seXsWN5lbwLFVbKah9CzWrn4bnnU7yXtBSpU3rY
+         wD/w==
+X-Gm-Message-State: ACrzQf25FnisxmGVIX3zy953KNEfvEpWjmVOX0+Vw9DrAFNN0ZMAa5GZ
+        D0R0sY1yqn5tDvUgztjpHkj5RA==
+X-Google-Smtp-Source: AMsMyM5CZJzOBieKuAmEeCCzQQ10GFMLXs4aPyOGSzVfWZwM2kf9IibD/CZi0VB1hLNqteJmscvGcQ==
+X-Received: by 2002:a05:600c:3107:b0:3c6:ff0a:c42 with SMTP id g7-20020a05600c310700b003c6ff0a0c42mr48554390wmo.141.1667986231447;
+        Wed, 09 Nov 2022 01:30:31 -0800 (PST)
 Received: from baylibre-ThinkPad-T14s-Gen-2i.. (254.31.102.84.rev.sfr.net. [84.102.31.254])
-        by smtp.gmail.com with ESMTPSA id g12-20020adffc8c000000b0022cd96b3ba6sm14547919wrr.90.2022.11.09.01.30.28
+        by smtp.gmail.com with ESMTPSA id g12-20020adffc8c000000b0022cd96b3ba6sm14547919wrr.90.2022.11.09.01.30.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 01:30:29 -0800 (PST)
+        Wed, 09 Nov 2022 01:30:30 -0800 (PST)
 From:   Julien Panis <jpanis@baylibre.com>
 To:     nm@ti.com, vigneshr@ti.com, afd@ti.com, kristo@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] arm64: dts: ti: k3-am62: add watchdog nodes
-Date:   Wed,  9 Nov 2022 10:30:25 +0100
-Message-Id: <20221109093026.103790-2-jpanis@baylibre.com>
+Subject: [PATCH v3 2/2] arm64: dts: ti: k3-am625-sk: mark MCU watchdog as reserved
+Date:   Wed,  9 Nov 2022 10:30:26 +0100
+Message-Id: <20221109093026.103790-3-jpanis@baylibre.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221109093026.103790-1-jpanis@baylibre.com>
 References: <20221109093026.103790-1-jpanis@baylibre.com>
@@ -71,111 +71,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for watchdogs :
-- 5 in main domain
-- 1 in MCU domain
-- 1 in wakeup domain
+MCU wdt is typically used by M4F.
 
 Signed-off-by: Julien Panis <jpanis@baylibre.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
- arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 11 ++++++
- 3 files changed, 65 insertions(+)
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 03660476364f..fb8480d7cf76 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -591,6 +591,51 @@ main_mcan0: can@20701000 {
- 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
- 	};
- 
-+	main_rti0: watchdog@e000000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e000000 0x00 0x100>;
-+		clocks = <&k3_clks 125 0>;
-+		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 125 0>;
-+		assigned-clock-parents = <&k3_clks 125 2>;
-+	};
-+
-+	main_rti1: watchdog@e010000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e010000 0x00 0x100>;
-+		clocks = <&k3_clks 126 0>;
-+		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 126 0>;
-+		assigned-clock-parents = <&k3_clks 126 2>;
-+	};
-+
-+	main_rti2: watchdog@e020000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e020000 0x00 0x100>;
-+		clocks = <&k3_clks 127 0>;
-+		power-domains = <&k3_pds 127 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 127 0>;
-+		assigned-clock-parents = <&k3_clks 127 2>;
-+	};
-+
-+	main_rti3: watchdog@e030000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e030000 0x00 0x100>;
-+		clocks = <&k3_clks 128 0>;
-+		power-domains = <&k3_pds 128 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 128 0>;
-+		assigned-clock-parents = <&k3_clks 128 2>;
-+	};
-+
-+	main_rti15: watchdog@e0f0000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x0e0f0000 0x00 0x100>;
-+		clocks = <&k3_clks 130 0>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 130 0>;
-+		assigned-clock-parents = <&k3_clks 130 2>;
-+	};
-+
- 	epwm0: pwm@23000000 {
- 		compatible = "ti,am64-epwm", "ti,am3352-ehrpwm";
- 		#pwm-cells = <3>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index f56c803560f2..f82e94def774 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -81,4 +81,13 @@ mcu_gpio0: gpio@4201000 {
- 		clocks = <&k3_clks 79 0>;
- 		clock-names = "gpio";
- 	};
-+
-+	mcu_rti0: watchdog@4880000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x04880000 0x00 0x100>;
-+		clocks = <&k3_clks 131 0>;
-+		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 131 0>;
-+		assigned-clock-parents = <&k3_clks 131 2>;
-+	};
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+index 93a5f0817efc..089970b304cf 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+@@ -503,6 +503,11 @@ &main_mcan0 {
+ 	status = "disabled";
  };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-index 4090134676cf..7d5bc9dfe51d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-@@ -38,4 +38,15 @@ wkup_i2c0: i2c@2b200000 {
- 		clocks = <&k3_clks 107 4>;
- 		clock-names = "fck";
- 	};
+ 
++&mcu_rti0 {
++	/* MCU RTI0 is used by M4F firmware */
++	status = "reserved";
++};
 +
-+	wkup_rti0: watchdog@2b000000 {
-+		compatible = "ti,j7-rti-wdt";
-+		reg = <0x00 0x2b000000 0x00 0x100>;
-+		clocks = <&k3_clks 132 0>;
-+		power-domains = <&k3_pds 132 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 132 0>;
-+		assigned-clock-parents = <&k3_clks 132 2>;
-+		/* WKUP RTI0 is used by DM firmware */
-+		status = "reserved";
-+	};
+ &epwm0 {
+ 	status = "disabled";
  };
 -- 
 2.37.3
