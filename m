@@ -2,102 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DD1623100
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 18:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 300EE623111
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 18:08:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbiKIRE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 12:04:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S231136AbiKIRIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 12:08:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbiKIREH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 12:04:07 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E8A2C641
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 09:03:15 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id h9so26778606wrt.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 09:03:15 -0800 (PST)
+        with ESMTP id S231245AbiKIRId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 12:08:33 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F94DEBB
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 09:08:28 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id ud5so48520030ejc.4
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 09:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7G92ASLkDEj3WR74LeIL8CkjO77TIo2iLMTmhY7uzIs=;
-        b=cFS+8bUPusCc9rZmvY4wocMkbGyjfdTvKCdg4DhL3Poo5EnbNkUIB9LfBqcOO2khzx
-         oT3Laxk4/u2Go8Oq86ISZsQHo9KLq3LWVTSHP1SSzLSpN3GfvYQheQALxmiPdqhvRxxS
-         xOA0BBvSj/91k3W1HtkbSLS94Aat9IRdJkMfZ4tg+1ebK466lgLjv/+TpRBG66WQKFWO
-         AS9NZJeTWJI0X+nAJrFBCNqPXNZogj9Ss6vSms/w2dvzMM/CWP+zv1OLhM0Gt62GKe1o
-         sF9V3gfZZRl5nNA+EErA0FEwj1iuU/W1lRaFBImU7Bk9mzXULLUdvDlkyDnMIo5UI9nF
-         J5Qg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UGckoAKiL+PDGTYOUgV90XuQ0OsD8munY0lKgBlT8+s=;
+        b=NIOItJRTewEv5DYvzGdBGeSKT4mpKmy1pGwnHstesPtSCqn1tXV6A5AcJGX4WPtN13
+         YR5sM1Zo1yLI+FVdB+gbRVeHkS96fpcisi37Omz0g/e6V8SI9zO27z9Q1WMG8zvJajAc
+         1zmAbfyvQYU1nzXtbsQr0ABbAhJ/q3/iKYVZ4lIvcyQC7/5lwVHMen4OSLPhoAG01Bq8
+         89MrSUpJtPgSmsOhi8DUeTBVirY9VWZFleyPU9cYp2Ivll3eI+SMWS8an0kwCY6auMG8
+         C7stn7GLl2czqLWHeMbia7dGsJPSZVxGeZ3kt1mOKzJoDgK5AKt3S2wpPNBiaFT2Jh3Q
+         3S+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7G92ASLkDEj3WR74LeIL8CkjO77TIo2iLMTmhY7uzIs=;
-        b=xdu7SobvZdhDsOe8otGjVdxfC9D3M4KJfrdBzrudG+/eNvvG3HXtCwCXIOFZu8KIum
-         ho4unvrUc63Y9UAvmnDnZnTZO963l6diuRaC58jVqGV5OmAEgDLg67Gp5bRuqTaxizPU
-         r4bkBu3B8Id4mJuIIP4KyjwXs1NfOJKhLnOrGJMYdIo+YWwhGLF1sP0dxSWxXong1Q42
-         UBQFMXf6SxXR+CDRAW/V+FSy76RB7y/2D/ag6AmFRhco4+dQJPwwjbarb6iRE9L/dbX4
-         i6sX6yFOabDnUHNUKEUVikBnNvM0zcRXMfDAYk0KW2G7JBlddcNLGAZsly2zcudbX6aU
-         6r0A==
-X-Gm-Message-State: ACrzQf032BTZEZjFmdGY7mJMSfrs/ws7D3rrEaDak1NRrIjrOBu5Ip/g
-        7lXqHinS+dDaFIgf1CDtyFVpV46QZPDvooQqWIBCgA==
-X-Google-Smtp-Source: AMsMyM6nxJk2cKpqTddTA8Vw5W4rCmbadnXXSULNgsdBGYhgBjGZcqN5qYrQxlbV5kiC6JJT3UCle1XX7Nky9kCxxik=
-X-Received: by 2002:adf:f88b:0:b0:236:7134:d4ec with SMTP id
- u11-20020adff88b000000b002367134d4ecmr37191544wrp.669.1668013393820; Wed, 09
- Nov 2022 09:03:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20221109160904.183147-1-mpfj@newflow.co.uk> <20221109160904.183147-2-mpfj@newflow.co.uk>
- <3c530543-6d89-bf63-8734-7ccb02aede84@linaro.org> <CAAbcLfjKxZfn8JW6h_k2S42_OHEU366xVm3U=3FWdacGTq6wZA@mail.gmail.com>
- <59ceb2d7-fb46-848e-163e-e0e54c9e6195@linaro.org>
-In-Reply-To: <59ceb2d7-fb46-848e-163e-e0e54c9e6195@linaro.org>
-From:   Mark Jackson <mpfj@newflow.co.uk>
-Date:   Wed, 9 Nov 2022 17:03:02 +0000
-Message-ID: <CAAbcLfgJxAKhWVVZr5Q0A+Z-pHD=RS293mZRqQNyOmaihPv01w@mail.gmail.com>
-Subject: Re: [PATCH 1/5] ARM: dts: nanobone: Fix GPIO settings for RTS/CTS
- pins on UART3 & 4
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        bh=UGckoAKiL+PDGTYOUgV90XuQ0OsD8munY0lKgBlT8+s=;
+        b=ZcGZKQRc6FHkDBCLfO8B7rmYdNbRx5JTBcksnAFXQ3QznreaeZmz0gzeOFBTiIuXvx
+         p58WxoyB0ZI1OMizjI7Pg+kis50bNPK3VByPaAF56NQECPMQ9GHC7GuzCGJPLe1R/YJY
+         f0f+pds9HLrj+YqK8Bq7J0d3NZrKUV7VAWM6aysm5tV3KfezNvHhKF50x/8CNyqTBPAg
+         T3eYMXfqZFsfavaV1jrW+vCe5lU/FMho+9UNAq7AbsDehSuCRrs3Rta2ENKSQf5fajeL
+         Bgph8xli8Xtq2UiutS8Ak8XbvNz5yGvC/E1ncyKXHj4Zj86Pn9my6GcEaISUpCpU53oU
+         8VTw==
+X-Gm-Message-State: ACrzQf061pVG1SeE0sPoedwxwtZoI/TOsrl8PghGE9KOCLUOXMGqp9LX
+        Dwfgv1KKVKXC7ex0pLgsDIJibw==
+X-Google-Smtp-Source: AMsMyM6Fmko3ZwqfkYv4RDk0uzq7sMO+AwhwNSzC3++RWkc09dWpeViELtKxZUiXmPtkvGuE1F9FvA==
+X-Received: by 2002:a17:907:217a:b0:7ae:415:3fb5 with SMTP id rl26-20020a170907217a00b007ae04153fb5mr1136935ejb.255.1668013707262;
+        Wed, 09 Nov 2022 09:08:27 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id w6-20020a056402070600b0046191f5e946sm7207012edx.21.2022.11.09.09.08.25
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 09 Nov 2022 09:08:26 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: [PATCH 1/2] dt-bindings: remoteproc: qcom,adsp: Add SM6375 ADSP and CDSP
+Date:   Wed,  9 Nov 2022 18:08:21 +0100
+Message-Id: <20221109170822.58281-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Nov 2022 at 16:58, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/11/2022 17:57, Mark Jackson wrote:
-> > On Wed, 9 Nov 2022 at 16:22, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 09/11/2022 17:09, Mark Jackson wrote:
-> >>> The NanoBone platform uses GPIO pins for RTS/CTS control.
-> >>> The DTS still uses the hardware RTS/CTS pins so this needs fixing.
-> >>>
-> >>> Signed-off-by: Mark Jackson <mpfj@newflow.co.uk>
-> >>> ---
-> >>>  arch/arm/boot/dts/am335x-nano.dts | 8 ++++----
-> >>
-> >> You still use a bit odd subject prefixes. What did the log tell you for
-> >> am335x files?
-> >
-> > Aha, now I understand ... I need to change "nanobone" in the title to
-> > "am335x-nano" to match our dts file, correct ?
->
-> Yes, I think this is the most popular subject prefix. It allows
-> sub-architecture maintainers to understand what is it about.
+Add entries for SM6375 ADSP and CDSP. They are effectively the same
+as SM6350 ADSP and SM8150 CDSP respectively.
 
-Seems reasonable ... I was almost correct with my first attempt.
-I'll send myself off for re-training ...
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml         | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Cheers
-Mark J.
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+index db9e0f0c2bea..a9219c7c8349 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+@@ -40,6 +40,8 @@ properties:
+       - qcom,sm6350-adsp-pas
+       - qcom,sm6350-cdsp-pas
+       - qcom,sm6350-mpss-pas
++      - qcom,sm6375-adsp-pas
++      - qcom,sm6375-cdsp-pas
+       - qcom,sm8150-adsp-pas
+       - qcom,sm8150-cdsp-pas
+       - qcom,sm8150-mpss-pas
+@@ -197,6 +199,8 @@ allOf:
+               - qcom,sm6350-adsp-pas
+               - qcom,sm6350-cdsp-pas
+               - qcom,sm6350-mpss-pas
++              - qcom,sm6375-adsp-pas
++              - qcom,sm6375-cdsp-pas
+               - qcom,sm8150-adsp-pas
+               - qcom,sm8150-cdsp-pas
+               - qcom,sm8150-mpss-pas
+@@ -315,6 +319,8 @@ allOf:
+               - qcom,sdm845-cdsp-pas
+               - qcom,sm6350-adsp-pas
+               - qcom,sm6350-cdsp-pas
++              - qcom,sm6375-adsp-pas
++              - qcom,sm6375-cdsp-pas
+               - qcom,sm8150-adsp-pas
+               - qcom,sm8150-cdsp-pas
+               - qcom,sm8150-slpi-pas
+@@ -372,6 +378,7 @@ allOf:
+               - qcom,msm8226-adsp-pil
+               - qcom,msm8996-adsp-pil
+               - qcom,msm8998-adsp-pas
++              - qcom,sm6375-cdsp-pas
+               - qcom,sm8150-adsp-pas
+               - qcom,sm8150-cdsp-pas
+     then:
+@@ -468,6 +475,7 @@ allOf:
+               - qcom,sc8180x-cdsp-pas
+               - qcom,sc8280xp-adsp-pas
+               - qcom,sm6350-adsp-pas
++              - qcom,sm6375-adsp-pas
+               - qcom,sm8150-slpi-pas
+               - qcom,sm8250-adsp-pas
+               - qcom,sm8250-slpi-pas
+-- 
+2.38.1
+
