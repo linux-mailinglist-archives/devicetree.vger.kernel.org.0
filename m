@@ -2,119 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2002F62336D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 20:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1156233F4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 20:55:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbiKIT0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 14:26:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
+        id S231904AbiKITz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 14:55:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiKIT0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 14:26:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B97625E87;
-        Wed,  9 Nov 2022 11:26:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8F410B81FFF;
-        Wed,  9 Nov 2022 19:26:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E64CBC433D6;
-        Wed,  9 Nov 2022 19:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668022006;
-        bh=1uX18a8b8mPXxN5TnmlJgYzF03jqyQEV0omJHBCIyXE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OgSLDwZ9WUIAjy8gtH8PDiAZjB2YWerWP2uX+FTQKuzwFcdq1Dts1HsZrLcw+L7Oc
-         X3WmX++VNKxhY8a3BGRd/JY2J57Gj/65zrX4OomoBIhrnSitCsu0c4eMe9SPZCxatX
-         NjW9nLpSu8AO6MiRjW2/T3yhJmQgbA+Qua0yJ3qbIdSfj6xeWzoRxSV1pYTv5Six6m
-         9rknHUiYc4SQm1K9IC1gsTtrgByXrLfUdVHBeR7gQDo/KfFs6L1pcC6ffWJoIcacNL
-         BSHIpMDeneB+3KliAllGpIU/59P0SEprpMGhluttyShFqmBdMpuf4wNKyKE/wL5EWu
-         zyfVCMoyTrCrg==
-Date:   Wed, 9 Nov 2022 20:26:42 +0100
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
-        netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        linux-mediatek@lists.infradead.org, Bo.Jiao@mediatek.com,
-        sujuan.chen@mediatek.com, ryder.Lee@mediatek.com,
-        evelyn.tsai@mediatek.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com, kvalo@kernel.org
-Subject: Re: [PATCH v4 net-next 0/8] introduce WED RX support to MT7986 SoC
-Message-ID: <Y2v+8nhgWq6IfyFS@localhost.localdomain>
-References: <cover.1667687249.git.lorenzo@kernel.org>
- <Y2vBTBUw47sshA+E@localhost.localdomain>
- <20221109110538.431355ba@kernel.org>
- <f1a5c144-1d16-a65e-f629-c9d13946377a@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="S5LjoUW9NbQdQQuu"
-Content-Disposition: inline
-In-Reply-To: <f1a5c144-1d16-a65e-f629-c9d13946377a@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231852AbiKITz2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 14:55:28 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529DD2F00D
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 11:55:26 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id e129so17116462pgc.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 11:55:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lhu0AaXEHpohB57ir2dSQXl6jTPxnwC4FKWIfCDgyuQ=;
+        b=KLrj/KYNV8XkhPS1iVxKu/aPMmyU1eZXY/F92davxqF98lFJkaDajitQpvLL4vIrUZ
+         RU7h9cdLzbmNLn0L1qXfQRwCmi310yFjxach5EiNriUwsj4QY8tSCN87JHeXJyddsuys
+         72M/pHU11niJlVMdwR5BejriAj5tTWIKSL3Zum9Kr5LjGnYIBB+KYcP7u+2Q/hzO4Ovc
+         tU1U6kuUmaW/d49VLzRNA0NrCOBTKDlZUJ48t/FF5HX9jTARqKnEoZUIP0SBy4fffs1f
+         QNQtfiVfaubbqysdwv5B8gG1PQb5SEDi45P+WAnFZXNK62PytNrCB9DDZsJJ9qdrmxMB
+         hRjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Lhu0AaXEHpohB57ir2dSQXl6jTPxnwC4FKWIfCDgyuQ=;
+        b=YbmZ86QapXtJEYeMlh6vG2FTCoW1MpZP898wnsWrn/JZ7MjE4Tv56GYPrZmsvuz2yW
+         OlZl4tkr1nD1tXnkOcEp+3gOqMrbwNNiBlqHqWxJucgZoT/HQssx35I+qTKcMr9BE/ej
+         ozUdeTkS4Tb9h+VEdD0EAMyw5Qz9h7nlh5JBym/Q8io15NdSeugD2qBJHw5RBaUXa2hj
+         etOTyTYO9HADCgjkEm3mBF5RO4kdaO/psevXUStXskKCvxV9/rHVVoJLRNa6xoimhiCI
+         XhRfJGVmrwu8kL/Fqd9UZOJyfMK3+w3cmwOMmrXUtQ96Ce/D2jRIMzII5ytt2PoxcM8I
+         SLxQ==
+X-Gm-Message-State: ACrzQf1esfW0yBvwgC8DjE7lDK46ZNIQKIcsVsGWoYuMs5qTs57m3lxU
+        tKU4VXD0v70DUM8LnLMigUT8HQ==
+X-Google-Smtp-Source: AMsMyM4yxxTSRBnPGND+4E6OHwiGrFVk5cgGXo5F+I0YpXul+RM44cAyB0NLsjogLjCA7A1w6czz7Q==
+X-Received: by 2002:a05:6a00:1482:b0:56c:6a9c:3d7 with SMTP id v2-20020a056a00148200b0056c6a9c03d7mr62529169pfu.0.1668023725592;
+        Wed, 09 Nov 2022 11:55:25 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id d14-20020a170902654e00b00172f6726d8esm9466969pln.277.2022.11.09.11.55.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Nov 2022 11:55:24 -0800 (PST)
+Date:   Wed, 09 Nov 2022 11:55:24 -0800 (PST)
+X-Google-Original-Date: Wed, 09 Nov 2022 11:55:21 PST (-0800)
+Subject:     Re: [PATCH v5 0/7] Add support for Renesas RZ/Five SoC
+In-Reply-To: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
+        geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        Conor Dooley <conor.dooley@microchip.com>, guoren@kernel.org,
+        anup@brainfault.org, Atish Patra <atishp@rivosinc.com>,
+        heinrich.schuchardt@canonical.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, prabhakar.csengg@gmail.com,
+        biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     prabhakar.csengg@gmail.com
+Message-ID: <mhng-563fb6cf-4505-4137-8da1-13f631e1c74f@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 28 Oct 2022 09:59:14 PDT (-0700), prabhakar.csengg@gmail.com wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Hi All,
+>
+> The RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP Single)
+> 1.0 GHz, 16-bit DDR3L/DDR4 interface. And it also has many interfaces such
+> as Gbit-Ether, CAN, and USB 2.0, making it ideal for applications such as
+> entry-class social infrastructure gateway control and industrial gateway
+> control.
+>
+> This patch series adds initial SoC DTSi support for Renesas RZ/Five
+> (R9A07G043) SoC. Below is the list of IP blocks enabled in the initial
+> board DTS which can be used to boot via initramfs on RZ/Five SMARC EVK:
+> - AX45MP CPU
+> - CPG
+> - PINCTRL
+> - PLIC
+> - SCIF0
+> - SYSC
+>
+> Useful links:
+> -------------
+> [0] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
+> [1] http://www.andestech.com/en/products-solutions/andescore-processors/riscv-ax45mp/
+>
+> Patch series depends on the below patches (which are queued in the Renesas tree for v6.2):
+> ------------------------------------------------------------------------------------
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=c27ce08b806d606cd5cd0e8252d1ed2b729b5b55
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=7dd1d57c052e88f98b9e9145461b13bca019d108
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-soc-for-v6.2&id=b3acbca3c80e612478b354e43c1480c3fc15873e
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=49669da644cf000eb79dbede55bd04acf3f2f0a0
+> [4] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=b9a0be2054964026aa58966ce9724b672f210835
+>
+> v4 -> v5:
+> ---------
+> * Rebased patches on -next
+> * Included RB tags
+> * Dropped patches #1 and #4 (form v4) as they are queued up by Renesas trees
+> * Patch #7 from v4 was not needed anymore so dropped it
+> * Patches #4 and #5 are new
+>
+> v4: https://lore.kernel.org/all/20220920184904.90495-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> v3: https://lore.kernel.org/lkml/20220915181558.354737-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> v2: https://lore.kernel.org/all/20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> v1: https://lore.kernel.org/lkml/20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+>
+> Below are the logs from RZ/Five SMARC EVK:
+> ------------------------------------------
+>
+> / # uname -ra;
+> Linux (none) 6.1.0-rc2-00036-gbad82a074f62 #145 SMP Fri Oct 28 17:18:41 BST 2022 riscv64 GNU/Linux
+> / # cat /proc/cpuinfo;
+> processor       : 0
+> hart            : 0
+> isa             : rv64imafdc
+> mmu             : sv39
+> uarch           : andestech,ax45mp
+> mvendorid       : 0x31e
+> marchid         : 0x8000000000008a45
+> mimpid          : 0x500
+>
+> / # for i in machine family soc_id revision; do echo -n "$i: ";cat /sys/devices/
+> soc0/$i; done
+> machine: Renesas SMARC EVK based on r9a07g043f01
+> family: RZ/Five
+> soc_id: r9a07g043
+> revision: 0
+> / #
+> / # cat /proc/interrupts
+>            CPU0
+>   1:          0  SiFive PLIC 412 Level     1004b800.serial:rx err
+>   2:         16  SiFive PLIC 414 Level     1004b800.serial:rx full
+>   3:        402  SiFive PLIC 415 Level     1004b800.serial:tx empty
+>   4:          0  SiFive PLIC 413 Level     1004b800.serial:break
+>   5:      41826  RISC-V INTC   5 Edge      riscv-timer
+>   6:         10  SiFive PLIC 416 Level     1004b800.serial:rx ready
+> IPI0:         0  Rescheduling interrupts
+> IPI1:         0  Function call interrupts
+> IPI2:         0  CPU stop interrupts
+> IPI3:         0  IRQ work interrupts
+> IPI4:         0  Timer broadcast interrupts
+> / #
+> / # cat /proc/meminfo
+> MemTotal:         882252 kB
+> MemFree:          860848 kB
+> MemAvailable:     858608 kB
+> Buffers:               0 kB
+> Cached:             1796 kB
+> SwapCached:            0 kB
+> Active:                0 kB
+> Inactive:             72 kB
+> Active(anon):          0 kB
+> Inactive(anon):       72 kB
+> Active(file):          0 kB
+> Inactive(file):        0 kB
+> Unevictable:        1796 kB
+> Mlocked:               0 kB
+> SwapTotal:             0 kB
+> SwapFree:              0 kB
+> Dirty:                 0 kB
+> Writeback:             0 kB
+> AnonPages:           108 kB
+> Mapped:             1200 kB
+> Shmem:                 0 kB
+> KReclaimable:       6760 kB
+> Slab:              12360 kB
+> SReclaimable:       6760 kB
+> SUnreclaim:         5600 kB
+> KernelStack:         620 kB
+> PageTables:           32 kB
+> SecPageTables:         0 kB
+> NFS_Unstable:          0 kB
+> Bounce:                0 kB
+> WritebackTmp:          0 kB
+> CommitLimit:      441124 kB
+> Committed_AS:        592 kB
+> VmallocTotal:   67108864 kB
+> VmallocUsed:        1132 kB
+> VmallocChunk:          0 kB
+> Percpu:               84 kB
+> HugePages_Total:       0
+> HugePages_Free:        0
+> HugePages_Rsvd:        0
+> HugePages_Surp:        0
+> Hugepagesize:       2048 kB
+> Hugetlb:               0 kB
+> / #
+> / #
+>
+> Cheers,
+> Prabhakar
+>
+> Lad Prabhakar (7):
+>   dt-bindings: riscv: Sort the CPU core list alphabetically
+>   dt-bindings: riscv: Add Andes AX45MP core to the list
+>   riscv: Kconfig.socs: Add ARCH_RENESAS kconfig option
+>   riscv: dts: renesas: Add initial devicetree for Renesas RZ/Five SoC
+>   riscv: dts: renesas: Add minimal DTS for Renesas RZ/Five SMARC EVK
+>   MAINTAINERS: Add entry for Renesas RISC-V
+>   riscv: configs: defconfig: Enable Renesas RZ/Five SoC
+>
+>  .../devicetree/bindings/riscv/cpus.yaml       | 11 ++-
+>  MAINTAINERS                                   |  3 +-
+>  arch/riscv/Kconfig.socs                       |  5 +
+>  arch/riscv/boot/dts/Makefile                  |  1 +
+>  arch/riscv/boot/dts/renesas/Makefile          |  2 +
+>  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   | 57 ++++++++++++
+>  .../boot/dts/renesas/r9a07g043f01-smarc.dts   | 27 ++++++
+>  .../boot/dts/renesas/rzfive-smarc-som.dtsi    | 58 ++++++++++++
+>  arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 91 +++++++++++++++++++
+>  arch/riscv/configs/defconfig                  |  3 +
+>  10 files changed, 252 insertions(+), 6 deletions(-)
+>  create mode 100644 arch/riscv/boot/dts/renesas/Makefile
+>  create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+>  create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dts
+>  create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+>  create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
 
---S5LjoUW9NbQdQQuu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Geert was mentioning taking these though one of his trees, that works 
+for me so
 
-On Nov 09, Matthias Brugger wrote:
->=20
->=20
-> On 09/11/2022 20:05, Jakub Kicinski wrote:
-> > On Wed, 9 Nov 2022 16:03:40 +0100 Lorenzo Bianconi wrote:
-> > > I noticed today the series state is 'Awaiting Upstream'. I am wonderi=
-ng if
-> > > this series is expected to go through a different tree, e.g. wireless=
- one
-> > > (adding Kalle in cc). In this particular case the series changes only
-> > > the mtk ethernet driver and mt76 is built since we modify a common in=
-clude (but
-> > > there are no changes in mt76). My personal opinion is this series is =
-suited to
-> > > go through net-next tree but I would be fine even if it goes through =
-Kalle's
-> > > one. Any opinions?
-> >=20
-> > Works either way, we'll see what Kalle says.
-> > Let me bring it back to Under review in the meantime.
-> >=20
-> > While I have you - no acks for the bindings yet? On previous versions?
->=20
-> Please beware that the first patch should go through my tree. Let me know
-> when things got merged and I'll take it.
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-ack thx, will do.
+Happy to do a shared tag or whatever, but I think we can just skip that 
+here.  The only conflicts would be defconfig and Kconfig.socs, but I 
+don't think anything big is in the works for either -- unless Conor was 
+planning on re-spinning that Kconfig.socs rework?
 
-Regards,
-Lorenzo
-
->=20
-> Regards,
-> Matthias
-
---S5LjoUW9NbQdQQuu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCY2v+7wAKCRA6cBh0uS2t
-rCsyAP9272Hnz5+yaK/90Ld+WMW0zZhHhJNYYB7TKa71vtQtIAEAl5CSBEJjAYbc
-lTOlqm5D7q5UUL4WATo1dBQocBJ+2QI=
-=ONj/
------END PGP SIGNATURE-----
-
---S5LjoUW9NbQdQQuu--
+Thanks!
