@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A65623442
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 21:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C516234CF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 21:45:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231557AbiKIULq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 15:11:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56440 "EHLO
+        id S231666AbiKIUpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 15:45:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbiKIULg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 15:11:36 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503B7DEBB
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 12:11:35 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id k19so26896098lji.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 12:11:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VIP1DwFS0hsPYY2bAhzhl4Z4LxA5mOxnLfIYQbIpN5U=;
-        b=dTH/hcNqzZEfXh1djzlh5il2/x95kYnZ/TDNoBieegHY7OIeBcepVbG7Q6UeSM9EKE
-         cXUYm1RkiCV3BiXLvViqPqz7pNg+a48LSPG40QrnMqRQKvDezVrHgrO0kRydmJSWLytz
-         LGsukT3yr8iwL+VGOx9f5HkWW7tGFl6BjNK51WQrVq8HBx6dEgDf0FZOpbxKSjcuY190
-         /3N7lGSKl0SrNcsI6JtYzJSvmhjQn15JFFU0sVvcZJt4/I4hdk52XHQEjK4U0amQGmst
-         8OIUvS1ipw5sUQy0baHvBzmBEh8oT9OWgqmm4Wx+JOZlkXULLv6/5aghTAMfctS++Z//
-         TnIA==
+        with ESMTP id S231567AbiKIUpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 15:45:06 -0500
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4F914D14;
+        Wed,  9 Nov 2022 12:45:05 -0800 (PST)
+Received: by mail-qk1-f175.google.com with SMTP id x18so11715083qki.4;
+        Wed, 09 Nov 2022 12:45:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VIP1DwFS0hsPYY2bAhzhl4Z4LxA5mOxnLfIYQbIpN5U=;
-        b=XB84ZPiL0X9n8e3n8Z+6AMJtEGPm/Tbqlbkh2EUeHH5L5hfOA30gqdpAJqfjujWh7h
-         n49uXMxrr1p7iXDlhvpzEQAZwuhMfYJEa+tkHJopg42aCXeoxxY5TS/KCTPXSuXQYLBJ
-         /j2Nr82ONRA8imQ/sH3067zqoQY7cgTATLo/Jtb4lQ17tYny7zJRzdEhFoD6xIF7L96/
-         kVx6DsVnDMfIb6f5jhjqHKWtfvUhq/DQjIsYrC/qIQLZb52sCNFmWpHSALEFZZ5IdDbM
-         wOGSgsoxaodVA3QGpruOMzl5ZwjJRU3ySVdptgLdTFx4a0306E8js+lzDsjaGf7FDoBK
-         nDfQ==
-X-Gm-Message-State: ACrzQf3LEd+AeRDSF+iZKnYx/xL8Eaiv47dOyeSZ6docVqXrZJGOu/+f
-        UjbypwYs7ByiYRZLm1bv7GU=
-X-Google-Smtp-Source: AMsMyM49GvJWfLSwJnaCc7mruqYExSc7Fhx/WPiV7yL5QAi4TxDflV0+F1xqhfNhoK0HKCZFtUI9iA==
-X-Received: by 2002:a2e:b0c3:0:b0:26e:58d:e94a with SMTP id g3-20020a2eb0c3000000b0026e058de94amr6985277ljl.252.1668024693477;
-        Wed, 09 Nov 2022 12:11:33 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id t20-20020a2e8e74000000b0027755f52a94sm2308603ljk.80.2022.11.09.12.11.32
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bKBYazOHxtCaO2FguzlHAhQzUkX2fPZcyJSc9EJ/FY8=;
+        b=3xRlWMsgCkcR79jyh3WOgGV76MpIG21ajgHWtQ907kPfAHF/xeCHRpGQ7azcnJyoS4
+         5M/to2goWIkvIMOxnByokm6JCwZI6ixhkILG3PjnzgUq0BVkOMiHr1VlvFZUmt/nLgiw
+         +SQe+w+tkQ3wMMXAkYbur9ue0VIDiBbjhI7g3uKd0Gsj0T8Ol5iCHyg1bSiFzjtm/m92
+         CLOLjsDIImUb+pGpXz/i+xlO7vqXURtal9iKPVfTmFK56F7tRHYkbeln5VjceOFDSlj8
+         HeC+Hzgm/om6Y8nOL3HjMYuch2wB7iAtClnZwSm36fR4PqE1P0aLZpT/zFyazHSmqKVv
+         rtQQ==
+X-Gm-Message-State: ACrzQf38V5ww+Ayp/1aohuSVymz56qwDKLvPodfENXE4gOesB+tY3CpW
+        UqTG5omLND/438ufu6/VXCDBPoeimZhatg==
+X-Google-Smtp-Source: AMsMyM5hwAbiKOLz1InhnM8WYemxE/bsnl52vm/hllaWED6zfxxXUSmwi8WvJORo29NNfF+5FCaDmA==
+X-Received: by 2002:a05:620a:280d:b0:6cf:ab57:a130 with SMTP id f13-20020a05620a280d00b006cfab57a130mr45145181qkp.749.1668026704698;
+        Wed, 09 Nov 2022 12:45:04 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id br7-20020a05620a460700b006bbc09af9f5sm11851997qkb.101.2022.11.09.12.45.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 12:11:33 -0800 (PST)
-Message-ID: <923207f7-387d-2ed8-db64-118db6167669@gmail.com>
-Date:   Wed, 9 Nov 2022 21:11:31 +0100
+        Wed, 09 Nov 2022 12:45:03 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id 131so117413ybl.3;
+        Wed, 09 Nov 2022 12:45:03 -0800 (PST)
+X-Received: by 2002:a05:6902:503:b0:6cf:c510:6a23 with SMTP id
+ x3-20020a056902050300b006cfc5106a23mr41506442ybs.380.1668026703709; Wed, 09
+ Nov 2022 12:45:03 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: drop invalid
- "nand" interrupt name
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20220613131033.10053-1-wsa+renesas@sang-engineering.com>
+ <20220613131033.10053-2-wsa+renesas@sang-engineering.com> <CAMuHMdX-56GZmZJ-JvkFvZ6NsozsamtoKURPzsS-3+AYtZBhFQ@mail.gmail.com>
+ <YqmoWYARVsXos3me@shikoro>
+In-Reply-To: <YqmoWYARVsXos3me@shikoro>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Nov 2022 21:44:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU7foCN873wrwUVgCyuoN6Y52Ds-ENXUSoEH0wKpD_qBQ@mail.gmail.com>
+Message-ID: <CAMuHMdU7foCN873wrwUVgCyuoN6Y52Ds-ENXUSoEH0wKpD_qBQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: spider-cpu: Switch from SCIF3 to HSCIF0
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20221103104152.19502-1-zajec5@gmail.com>
- <78ac1b7d-5f7c-c9d3-118b-5e419a7c20dc@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <78ac1b7d-5f7c-c9d3-118b-5e419a7c20dc@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.11.2022 19:37, Florian Fainelli wrote:
-> On 11/3/22 03:41, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> String "nand" was never a valid interrupt name. It was never documented
->> and never used in Linux or U-Boot driver. This mistake was propagated
->> from the bcm63138.dtsi.
->>
->> The whole "interrupt-names" property is optional and can be skipped.
->>
->> Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Do you still want me to apply this patch, or are we happy with renaming that interrupt to "nand_ctlrdy" instead?
+Hi Wolfram,
 
-I don't have any real preference.
+On Wed, Jun 15, 2022 at 11:37 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > I.e. the U-Boot on the Spider in Magnus' lab has "baudrate=115200"
+> > in its environment, while I can read the output from ICUMXA Loader
+> > to U-Boot, and Linux just fine.
+>
+> Earlier U-Boot may have no HSCIF support. Recent ones have and the
+> installer suggests to set baudrate to highspeed. ICUMXA loaders never
+> worked for me in 115200.
+>
+> I can keep my patch local if you prefer 115200.
 
-Since we already have this patch, we may just apply it. If you think
-having "interrupt-names" with just "nand_ctlrdy" is cleaner, I can send
-V2.
+As all active white-hawk users are now suffering from this,
+I will queue your patch in renesas-devel for v6.2.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
