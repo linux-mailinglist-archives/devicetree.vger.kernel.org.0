@@ -2,157 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C8F622EC6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 16:08:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E196622F1C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 16:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbiKIPIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 10:08:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46162 "EHLO
+        id S230300AbiKIPfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 10:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbiKIPIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 10:08:54 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768A61DA4C;
-        Wed,  9 Nov 2022 07:08:53 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 82A6B320098E;
-        Wed,  9 Nov 2022 10:08:51 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Wed, 09 Nov 2022 10:08:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1668006531; x=1668092931; bh=xhKbAUdZUF
-        42SAnLS5OS6FjCUtELRIPIPopvmrbuffo=; b=jZxEw2dH7lqAdAEu59roSeJ0iT
-        x4iI2YM/yfb9NpS8iK9RypyRZHYVMubnpYkKY2za7ChCY8IGnNscB5oHrUqn7cZa
-        2D422iDXrP+OlJXXMPaCWSHtkjM6xb9j5Rd2WScbCPT76CLg3HMS+NkIahRZ2xIa
-        +I6gBwsEBkNc0/UdKdDHyygwNXwh4QC533bZf5wdnriQMYxirGS9bLNDfTYgLesu
-        eJSqlTPkRZ3YQmsWB89chJvRow9GSU2fvwk9Z5v2nF+aOYJTWk4Bv304kD3gtIuM
-        tO7tdGZ613Yx89xgAty4L58YxUSBJT7u8ex//wbiv21ECL6wwpkYqCBulNYA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1668006531; x=1668092931; bh=xhKbAUdZUF42SAnLS5OS6FjCUtEL
-        RIPIPopvmrbuffo=; b=gix+zTroPb9mqzvFD7LbzD/R+EcCZ8cSEbOE4Fy3nQl8
-        e+5XTD9tf34tUZpK3DwOjpQJbj8iCIyQM49DvIBDQ3wQxXhlC1bmRV579pF1UckT
-        GGsu/NSQn/MaNGzeWhJ9lDBeC1iUIokWuZVVZt7fTkNHWY3YXQx5wylzIroNUodc
-        d7q6L34H1wMvCieYj+olJffLAwze2Znxr68sD5QT/NZ+k8t9bmY0krTi8Y1ZUlVe
-        7NVIHTf3bbAEJ81vPQpdlCaP7LLEnG2wo4BngV/4q4vrKfNg8N5dwE7wlBsbqrKq
-        wtyC0WVoY/ZN0ZwGHu2eH1H5jCuQW/3NWcg0wE2qVQ==
-X-ME-Sender: <xms:gcJrYz3jfaol8sH1JDfYet-IhSLFwEEVSOPnqX1hg80EEx0KnThLVw>
-    <xme:gcJrYyGr9FteB98ko6vkTdHyX0umJXdYCDBD4mWTFYJe6Z7xeOORRUdH_Utg4gv2G
-    wMHTK3hPpDturrlCBo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrfedvgdejvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:gcJrYz7buFArUSYkTa14k3Xe5JnV_DHtt2BgfMw8spWxjJyCDWI3Xg>
-    <xmx:gcJrY415upmSgaEq7A_zB_cYLuUZQFkrpkiMzV1AYgp3-81O4BaHSQ>
-    <xmx:gcJrY2Ez2o0BR8oDZOTWNwirQdLjBGxkydHpjrt6EBCoj_35iog-LQ>
-    <xmx:g8JrYzezjm8kPevIXOo4Z6e6Sk5QdIQIiJ8Gdm8NMZhRuZ6tV405LA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1F5F2B60086; Wed,  9 Nov 2022 10:08:49 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <0b2ca852-61b2-4e88-b389-f102994d5b2d@app.fastmail.com>
-In-Reply-To: <CAAhV-H64s-2gNMd0-F21kUzieh5G-MbBnA0k6J8EP2_7SpevaA@mail.gmail.com>
-References: <20221104024835.3570-1-zhuyinbo@loongson.cn>
- <57c9f565-e75b-0c8f-fdce-9dc8c334d50f@loongson.cn>
- <CACRpkda=-_a+gWQVk1vi4QJ30j-hzeraX-wr86RcQ9xne4-d6Q@mail.gmail.com>
- <574d58b2-0e9a-4fa0-84a8-caf39a9bc37a@app.fastmail.com>
- <CAAhV-H64s-2gNMd0-F21kUzieh5G-MbBnA0k6J8EP2_7SpevaA@mail.gmail.com>
-Date:   Wed, 09 Nov 2022 16:08:28 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Huacai Chen" <chenhuacai@kernel.org>
-Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
-        "Yinbo Zhu" <zhuyinbo@loongson.cn>,
-        "WANG Xuerui" <kernel@xen0n.name>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Lubomir Rintel" <lkundrak@v3.sk>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Brian Norris" <briannorris@chromium.org>,
-        "Sven Peter" <sven@svenpeter.dev>, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org
-Subject: Re: [PATCH v6 1/2] soc: loongson: add GUTS driver for loongson-2 platforms
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230153AbiKIPfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 10:35:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9590BFF7;
+        Wed,  9 Nov 2022 07:35:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F97E61B7A;
+        Wed,  9 Nov 2022 15:35:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD11C433D6;
+        Wed,  9 Nov 2022 15:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668008145;
+        bh=LhZ+WjU7cSTCcqle6TSdTZQmNC7lZrjyrwVVzROOAoE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b3fQ3ICluA9Zcx34dPXCyRlAAVIQNROlvfRQHOH0VmfSD/l3RwoPvXLq76a9KJUAX
+         wCfL829a2E3baedcfG6gzEkrlmvj0y/v1KNkXBLWVCaVvEdpbAMRsXvbry7besDYrv
+         tAqLavWVeFqSKr2A7JqiMCUSNeglwoH+pjXZVO6TlG42t8GA8OtOfnrlDYSsmRMVD8
+         2YHG783DGRAoaNBUCt8i923oPMSfGtW/a/fxMtmtQPw8vIS1xw9xi7MXoXueYuON5A
+         p9Xp6Fms/X0vo8TpFxQqfXTu3pmgHsZoy9vjV5J5KqslKXJ1O5oIKSyzMV+s/PQyMH
+         iGKr8VI8SkAsg==
+Date:   Wed, 9 Nov 2022 21:05:33 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>, lpieralisi@kernel.org,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Jonathan Derrick <jonathan.derrick@linux.dev>,
+        Lukas Wunner <lukas@wunner.de>, bhelgaas@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kw@linux.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        Sergey.Semin@baikalelectronics.ru, jszhang@kernel.org,
+        linux-pci@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [PATCH V1 0/4] GPIO based PCIe Hot-Plug support
+Message-ID: <20221109153533.GA46277@thinkpad>
+References: <2a465222-342a-418b-95af-9948f6ce9065@linux.dev>
+ <20221003180949.GA2104321@bhelgaas>
+ <20221003182147.jp5gn2jpnf4gucdl@pali>
+ <364fc93d-a4b5-59cb-c62a-8e3b32507523@nvidia.com>
+ <9210e81f-15ee-6c54-bfbb-1188da48dd68@nvidia.com>
+ <38c1d688-1488-3ecb-422e-fbc47106c144@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <38c1d688-1488-3ecb-422e-fbc47106c144@nvidia.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 9, 2022, at 14:50, Huacai Chen wrote:
-> On Wed, Nov 9, 2022 at 7:06 PM Arnd Bergmann <arnd@arndb.de> wrote:
->> On Wed, Nov 9, 2022, at 11:15, Linus Walleij wrote:
->> > On Wed, Nov 9, 2022 at 11:03 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->> >
->> >> Hi maintainer,
->> >>
->> >> This patch I had verified that base on mainline 6.1-rc3 tree, it is
->> >> okay, if no other issue, please you help me merge it to upstream.
->> >
->> > Aren't these loongarch maintainers listed in MAINTAINERS able to
->> > merge this? Certainly Huacai can merge stuff to drivers/soc as
->> > need be. drivers/soc is a bit shared between different archs.
->>
->> I'm generally happy to keep an eye on stuff in drivers/soc/ across
->> architectures and merge it through the soc tree, especially for
->> new platforms, but merging this through the loongarch tree works
->> as well.
-> So drivers/soc is similar to drivers/platform that can be merged
-> through corresponding architecture trees?
+On Mon, Oct 17, 2022 at 08:16:06AM +0530, Vidya Sagar wrote:
+> 
+> 
+> On 10/10/2022 11:44 AM, Vidya Sagar wrote:
+> > 
+> > 
+> > On 10/4/2022 9:34 AM, Vidya Sagar wrote:
+> > > 
+> > > 
+> > > On 10/3/2022 11:51 PM, Pali Rohár wrote:
+> > > > External email: Use caution opening links or attachments
+> > > > 
+> > > > 
+> > > > On Monday 03 October 2022 13:09:49 Bjorn Helgaas wrote:
+> > > > > On Sat, Oct 01, 2022 at 05:50:07PM -0600, Jonathan Derrick wrote:
+> > > > > > On 10/1/2022 10:20 AM, Pali Rohár wrote:
+> > > > > > ...
+> > > > > 
+> > > > > > > Would not it better to rather synthesise PCIe Slot
+> > > > > > > Capabilities support
+> > > > > > > in your PCIe Root Port device (e.g. via
+> > > > > > > pci-bridge-emul.c) and then let
+> > > > > > > existing PCI hotplug code to take care for hotplugging? Because it
+> > > > > > > already implements all required stuff for
+> > > > > > > re-scanning, registering and
+> > > > > > > unregistering PCIe devices for Root Ports with Slot
+> > > > > > > Capabilities. And I
+> > > > > > > think that there is no need to have just another (GPIO based)
+> > > > > > > implementation of PCI hotplug.
+> > > > > > 
+> > > > > > I did that a few years ago (rejected), but can attest to
+> > > > > > the robustness of
+> > > > > > the pcie hotplug code on non-hotplug slots.
+> > > > > > https://lwn.net/Articles/811988/
+> > > > > 
+> > > > > I think the thread is here:
+> > > > > https://lore.kernel.org/linux-pci/1581120007-5280-1-git-send-email-jonathan.derrick@intel.com/
+> > > > > 
+> > > > > and I'm sorry that my response came across as "rejected".  I intended
+> > > > > it as "this is good ideas and good work and we should keep going".
+> > > > > 
+> > > > > Bjorn
+> > > > 
+> > > > Nice! So we have consensus that this is a good idea. Anyway, if you need
+> > > > help with designing something here, please let me know as I have good
+> > > > understanding of all (just two) consumers of pci-bridge-emul.c driver.
+> > > > 
+> > > 
+> > > Thanks all for your comments.
+> > > 
+> > > I would like to hear from Bjorn / Lorenzo if the design of the
+> > > current patch series is fine at a high level or I should explore
+> > > emulating the root port's configuration space to fake slot
+> > > config/control registers (which in turn depend on the hotplug GPIO
+> > > interrupt & state to update Presence Detect related bits in Slot
+> > > status register) and use the PCIe native Hot-plug framework itself
+> > > to carry out with enabling the Hot-plug functionality?
+> > 
+> > Bjorn / Lorenzo,
+> > Could you please take time to comment on the discussion happened here
+> > and the right approach to be followed?
+> 
+> I'm really sorry to bug you on this, but would like to hear your comments on
+> the approach to be taken. So, I would really like to hear your take on this.
+> 
 
-Right, I think in both cases, there is no top-level subsystem
-maintainer, but the rules are specific to the second-level
-hierarchy: most parts of drivers/platform/ happen to go
-through the x86 platform maintainer trees, and for drivers/soc
-we merge most stuff through the soc tree, but a few parts
-of each have different maintainers.
+Since Bjorn already expressed his good will about the approach, I think you
+can just proceed with the emulation layer. I don't think there will be any
+controversy.
 
->> Since the driver was already sent to soc@kernel.org, I can
->> simply pick it up through patchwork[1] when I do my next round
->> of merges. I'll leave this up to Huacai Chen and WANG Xuerui,
->> let me know if you prefer to merge it through the loongarch
->> tree.
-> I'm happy that this series be merged through your linux-arch tree, but
-> if it is better (I'm not sure which is better) to go through loongarch
-> tree I can also merge it later. However, I have some comments about
-> this version. :)
+Thanks,
+Mani
 
-I would prefer the soc tree, and will just apply the
-patches from Yinbo Zhu directly this time as I already
-have them in my queue. If there are more than a few
-drivers/soc/loongarch/ patches in the future, maybe you can
-pick them up into a separate branch and forward those
-to soc@kernel.org.
+> Thanks,
+> Vidya Sagar
+> 
+> > 
+> > Thanks,
+> > Vidya Sagar
+> > 
+> > > 
+> > > Thanks,
+> > > Vidya Sagar
+> > > 
+> > > 
 
-Note that I have two separate roles here: I have the
-asm-generic tree that I maintain for patches to
-include/asm-generic as well as the occasional new
-architecture review as I did for loongarch.
-
-The other one is the group maintained soc tree that
-is mainly for Arm device tree files, but also contains
-soc specific code (arch/arm/mach-*), defconfig files,
-drivers (drivers/{soc,firmware,memory,reset}). This is
-now extended to arch/riscv and occasionally other
-architectures as well, so drivers/soc/loongson fits
-well in here.
-
-     Arnd
+-- 
+மணிவண்ணன் சதாசிவம்
