@@ -2,236 +2,494 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F08A622357
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 06:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B743962237B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 06:41:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiKIFKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 00:10:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
+        id S229485AbiKIFls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 00:41:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiKIFKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 00:10:51 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE6018E27;
-        Tue,  8 Nov 2022 21:10:44 -0800 (PST)
-X-UUID: 156b2aeba5824d73a7b753cf896d300a-20221109
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=mw/6ibmRjjmYjWUeT8zl8xHO6ai4APNcSXmMLB4aCY4=;
-        b=oeDDhctYr/Xn368DcKR2Ycvpk4Xq7Rss/gckTGCIzuYQQuwbPMPKJCGxaQ+axXXgvoWLoj6D+O71K/6UnsviLH6wxh53V+hKFparcuETQXLFwGK5a9luzYufvPHQthatpLFFDyECUhnzPSBD/6aTvvBpbUo00Z7iw8aUjPi2a6M=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:a4d92e83-4b9d-4529-a12c-9089f14a1c35,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:e08c0791-1a78-4832-bd08-74b1519dcfbf,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 156b2aeba5824d73a7b753cf896d300a-20221109
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1272921625; Wed, 09 Nov 2022 13:10:42 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 9 Nov 2022 13:10:40 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n1.mediatek.com (172.21.101.34) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 9 Nov 2022 13:10:40 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A4qZ+BZGOoJYTv9sZ7kiCsWWw45M7+89xeQzFZdw5PPn1RiJvCokFSm+Rny9ghCYuvFLZXo6JxlNjLtfoLv01p7OXVhbD4pJuMEzyimKMGVZYd8AwkZk2tYa95EgfnDn5+MDHbBCfNEFxJnpDkr1mZn2oU0sSx1dyMxSHcfTLyyhOv4S6MHvfNrm3cQ4WnTZ6p3vA953Ad7jzfUtsJ5a8//m0C5yXkMxmfm7SVzd6go6YdGtxyqdXvtnbI6EvMLCzuxML+T8RRd/p+sIP0+TbYUp3PcYCZOLnReobvjalPtHzUQ1BLU8fXcB3mhrFqf9073YiQ8xihiX7vZxik+ooA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mw/6ibmRjjmYjWUeT8zl8xHO6ai4APNcSXmMLB4aCY4=;
- b=G+KqSM3IIl7Z0wyoe97feVRJ8fEmvKj2JBDAqnNBSHnwoN/H4c9iIV/n1ZRxIDn/anzwQtwopyWspkl9/9ObBEjIp42PN0QJ1jnBwTkAhw9SNF6/2UW42rxDXPr9fcyPLUjLpNPqDVuxTv8ePyohxCjKlDh/DNrIt0imZosB/xIG68axK68jDnJurMMkfFvXvFtRFu4ti1pFMkWPSJKxd9n02btL11kkdOX292mkmUxsAnW7NIxnIi6SJn8m0Ty7Bo8JVCYq1nxwsTq7E61aABQgtcPCnK5n4KS0cMl03stvCVgNV/FeDP4pOLdmoowEgrc5lMY6CiNDz7ORT5WqJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mw/6ibmRjjmYjWUeT8zl8xHO6ai4APNcSXmMLB4aCY4=;
- b=ZpSj6K2p1OkhouwlutLWwN92e62o2jEdkYhG97mG01IyTiAf3IyotXmoRwiEULUa3eoWYLxHh+0RiF9Sk8jiKtlundiVP2dXerOnWDcPGgZz0bc++/zdR/9/yIp5inMPGUKCGnIsELX/ow6NMZLX6dc8ZnOoTVWGvfoN6bg15/M=
-Received: from PU1PR03MB3062.apcprd03.prod.outlook.com (2603:1096:803:3b::21)
- by TY0PR03MB6243.apcprd03.prod.outlook.com (2603:1096:400:137::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Wed, 9 Nov
- 2022 05:10:38 +0000
-Received: from PU1PR03MB3062.apcprd03.prod.outlook.com
- ([fe80::a3:bcad:7a9b:4104]) by PU1PR03MB3062.apcprd03.prod.outlook.com
- ([fe80::a3:bcad:7a9b:4104%6]) with mapi id 15.20.5791.027; Wed, 9 Nov 2022
- 05:10:38 +0000
-From:   =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?WW9uZ3FpYW5nIE5pdSAo54mb5rC45by6KQ==?= 
-        <yongqiang.niu@mediatek.com>,
-        =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-Subject: Re: [PATCH v28 01/11] dt-bindings: arm: mediatek: mmsys: add vdosys1
- compatible for MT8195
-Thread-Topic: [PATCH v28 01/11] dt-bindings: arm: mediatek: mmsys: add vdosys1
- compatible for MT8195
-Thread-Index: AQHY8nnSLtwxCfJOd0GsnKYuxbwDRK41TzuAgAC/BoA=
-Date:   Wed, 9 Nov 2022 05:10:38 +0000
-Message-ID: <f6d7eaa0b7e2a3ed6567692616ebc1304500806c.camel@mediatek.com>
-References: <20221107072243.15748-1-nancy.lin@mediatek.com>
-         <20221107072243.15748-2-nancy.lin@mediatek.com>
-         <c6297a1c-e282-4a18-f16c-fa2df08b440a@gmail.com>
-In-Reply-To: <c6297a1c-e282-4a18-f16c-fa2df08b440a@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PU1PR03MB3062:EE_|TY0PR03MB6243:EE_
-x-ms-office365-filtering-correlation-id: dbdb951e-888c-4a6c-3611-08dac210bddc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7fCxCY8k8g/y9d0q04LLPM8AKmudMMzQwsRQBWeIh+nlhoY7jD2fUteucAQeGSuu40/nuQ/VWxhlwUKqHNP+Ulb6cFcM4Z6swAifsa0dyoxVlRd+qnxCCTYcc/jWz66Q/cIZhqn4bJIFtoYD1ZqOjnRHkZNZtbhsd2cJq+ryvvXhw2vYzgjz6iICoLx46Z8j1h/0VxboixwOrNV3at3ej2TjDxLNqkOzhRiPlpACYTFghwZShRpuGgjdJ9JXztw/B1b+0QvA7AlYH7LBvmZgwiAhKmO8yEgFVc5j81BIWA0dq3T9InBMTY/3APdH3K4sNx61eajYzHKlhWkxHJuUS8X+v5FBjgh5U++eYI0oMWGGIt1bfyaGtvLUsw2802Bnl894mcvd+W6kyEbOJ7/PlWaG+H8ZpTEhBo5t9NJOat3xTvptLynbVHV+c47++vyYmqhhziUKeLZRHBp60E7Hb/O7bvsV13tfkBf09fg+SBuxjE6P30RTOUMd0G6vSrikXDSI3PlTp7ONzzPrBCH+cTS7GqwfiYfR8XaXMEzZN0TmwBJZYZqiS1tU+MoU1yyBSo7IX0lolBsWuIDU/I9N9yvvw2jVJDVM0kC1kNaS2UWxyy0gbk1bQ1LTWjN3h3QZJ2xiAoOBdU73qz5V0kgdryM9o3JMB7kzUkFVEyEDK/ctPtkrz2Amrz9UlirELK/+T253LSBSCb39hVpL7aqtCj/xl1kagKtu6ANWgcmqC3x2X+0mltD3u4wLfZ5jkyCw5v/bSidgRykhLExQKjKgwjOdgEoKs8peaji/u82NdduT8O/Rytcyf2iIUWbQTn8o8qx/FlXWf7N9bU9z8V0yMi4jNCGWC/C838W3iBHiIUFYgSTzQqilSo66SOVH2Q/FdlXI2e6iXUS0eDVv+aeL4w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PU1PR03MB3062.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(366004)(376002)(451199015)(83380400001)(38100700002)(6512007)(7416002)(41300700001)(38070700005)(36756003)(85182001)(66946007)(8676002)(76116006)(66476007)(66556008)(4326008)(66446008)(64756008)(6506007)(186003)(2616005)(8936002)(5660300002)(53546011)(966005)(6486002)(26005)(71200400001)(91956017)(478600001)(86362001)(316002)(54906003)(122000001)(110136005)(2906002)(66574015);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RGNDQzJaWkJIanU2S0JUVUJEb1dmWTgvanNNbDdUUnVpZkZsdld5YkJENGlu?=
- =?utf-8?B?U0tpL2diaDRnZmNxZk5kQ1I3OGREaC9TY2NOZjhlbGh4dEhtY01qZlFUYkFl?=
- =?utf-8?B?ZHVGQXN4Vzl0UkZ0c0dHcUFldFJYNHllZTVGUEN4SzNwRTVmSU00bEU5cmxH?=
- =?utf-8?B?QnlkLzVQYTU2TXVoanlXNUZxR1BJWjE4Ulc0MG0vb2ZvV3g4OVI2NjRLemJ5?=
- =?utf-8?B?ejRrTzdGUnFEQVJUWmtla2xBdEx5S3c0UWl1dmFQZHlGZk10N3VXdUtXWHBG?=
- =?utf-8?B?WER0SkRlaVQ1SXEwUjV6TklLRUgxNjdrdm5TVjhYeHljMDQ4S0JTazhFU3pj?=
- =?utf-8?B?M0Qrd2NUdjZ2dnVLOHltNXlZOUNlSUNkMFdkRzl0RjJnRGNzYTJDNVdIZE0x?=
- =?utf-8?B?NW8xcGZKdCtOQ1BKY0J5ZXJ3V2lHVGxpSDZFWCtjSlBxU2RYZE9HT2ROWTVK?=
- =?utf-8?B?emh6TzVVK1JGT1c4UW0rNUJyMDZOdEpKRkhVYi8ralZlcjV5WGhxVXd0ZDFB?=
- =?utf-8?B?M3BNWUtteHYrYkZqTmNUV0VxZWU4THZ3SVdwRysveFBweGRxL1ZQTmZvVXhs?=
- =?utf-8?B?L1cyVkcyRlMvTUMwV1NVd1hlbjd2VmZmNXBINTNlS3RLQzJoaGJqZVd0cW41?=
- =?utf-8?B?ck5pdEFqZWFTSnN4WnR6NmM5OTZqaXk0R050UlE1ZnlPR1MxVHJITHJDek1E?=
- =?utf-8?B?U1FvZGtxS3F3a2p2VzcrdWRkVldDdWtGTjVLTTNDVkxldkM4RktQZFRaT0tS?=
- =?utf-8?B?VWZDa3RGcTFUR1dzSHdXaDlyQWgxZGhLU2ZnVW52bmluNUFGOG5yZEJNNzBx?=
- =?utf-8?B?UTk4dHRJK0FlOXRBVjhRRGFZeVVTdXFvdzlPQW9XN3FrMDkvTWw0R1NhVnly?=
- =?utf-8?B?SEdiQ1lIUXNBVU9NNXJKNG1PenlxY0JoMmFyVzlJMnJWS1B1bkNOVGVxSldJ?=
- =?utf-8?B?SGNqajJXcHZlU3c0WGYySG5VLzlOellCK25UNVg2eDAzMHZDakhXVE1OZVZp?=
- =?utf-8?B?cFdJMjVUYXdSL2t2UUMva0VlUksxZ2dyTTZUc0hMeFNtMFV2WFVSbXRPOWNn?=
- =?utf-8?B?MXRJUmtsYnVnelVvdkJWZ0t2OFdHb2xaMXB4Wk1QRXAwR0d5SjluaTlVL3Z3?=
- =?utf-8?B?UXBNZko2MG0xOXdpTHZCblB4dFRzeUw5MnJyaDJ3MzNQRXBuVnh6VEZaeGFZ?=
- =?utf-8?B?TEZBTEJYTnpZQWd5RDk2aVFRL3JMbXBuTXZTWHMrTG1TZHJnMG15REMyWi9Z?=
- =?utf-8?B?bWNabVdFSjQ4ek4rQVNqd0VSSWYzbDZGR1QvNTdEK3hDQTBBcE5KdkFhVnlQ?=
- =?utf-8?B?bm9DMHBhQWhjMkZXdmkxMkdZSjI4VUdrTzZxZWF0SGZvTnpqT0NXemVvWUlI?=
- =?utf-8?B?Yk9uLy9id3hTaThkUGVTczJ3WVd1NnFabjR6NzZJbVlCR1BLZ200QVpQb0gz?=
- =?utf-8?B?UlFiZnVXdlFtRVZxR3FVZEhnd25ZWXdaNDFJaDZaR1lHTUowTmlXZ3piRmcx?=
- =?utf-8?B?eHY5TEhGRmVEU2FXSlRVSnNhK1FKVE0xbTdWSHcrSDVPWUdUdFpTTnkxVXJG?=
- =?utf-8?B?MEx6OXBvRWVQSzd0aWFWN0NaSUdqeXJXZi9WOGlHTDY4ZnRLeEptdGh1RTdM?=
- =?utf-8?B?ajV4UzZwUjVlZXR5aWZOaWJsbm1GekRSSlpBQmloNDJ2aHYveXVZZmVSRnVI?=
- =?utf-8?B?VHIyeDJpMXFRRXlrblUrYmxxV1lyd2lWUDJLemovVDFmS1BjaU5MUlBReEdz?=
- =?utf-8?B?Tk5MZjRHWFNOcTEyTC82Z1lOZ0RGLzBOVG5qc0RtUmc3MUF3MUNaYzNOS3Ri?=
- =?utf-8?B?Q215b1krRkk4UzJwWWw0bEp3RHBKc1NISDZsNjJlSVBpQXFvLzBnZk5yQVlN?=
- =?utf-8?B?dThHYVpKOXF6SmZUM0g1OGFiY1UvZVZlZWlMdy9jOGR1eFRnRS92UUJIM0oz?=
- =?utf-8?B?UzR4NWpMOURkQU1VUUJoQjlCNXZpWUEzbEpnUFFOaDY2MWJ5R2JmVWhNd0RW?=
- =?utf-8?B?dEJpZlBJU1VxRFVYY3RIZ09HYisxRnNMNWhISm1GUUZqbEhUOUd2WDVTZklU?=
- =?utf-8?B?dmRXWm9GVXNGc3FYNUZBS0pxQjRoSjJQRVNCVjFkeDNEaFprU29mWTg2Y1Fa?=
- =?utf-8?B?am9idU4rRTVkTFdYamR0dmNJT2xmZXlYUjNUNWR2ZDJpWDRVTFJRcERnNEcz?=
- =?utf-8?B?aEE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6902A412E9A2D041AF02D0BBCF6E5C50@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229447AbiKIFlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 00:41:47 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5B81AD9C;
+        Tue,  8 Nov 2022 21:41:45 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A95ZQdi032707;
+        Wed, 9 Nov 2022 05:41:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=v9sFM+rjJRANkR2y1Rx7t1Sn/McnCKzb03m3WDCoLE4=;
+ b=KQvC9ksZeBr34CIs2UdxSijtxs1GebFd/GgxvnG18vPiIqTs4fRLhKBfVbxrnA7mDfHP
+ pf9tDvCH6s8qii2GPP37rNh7/iH86HP5etv9oOsU+BTgOlx/lkFx/l7UFKdi2oCLH4Ye
+ Jgmcnxm5IjymY1DopiecXAHfuoq9pD0jbcUPloLAe3hSGvtHXJECYBzh7SnuDOzF8HKz
+ u/jrXXgJCPBToGMA8RB6+PRsNXXDbd8n6Aj2YATkxGgyOERdtRMOi0gYqEhjx+ccVlqW
+ BsBbFOuoV+1MGVMOynio0yy35oe/3bK4Lq/WphcyQy4WBy1cDVk4MCG2ppQLpd31Z01M lw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kr664r095-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Nov 2022 05:41:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A95fPM9026449
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 9 Nov 2022 05:41:25 GMT
+Received: from [10.110.72.148] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 8 Nov 2022
+ 21:41:20 -0800
+Message-ID: <f30d3c14-991a-a9a9-442e-00f01ca95d93@quicinc.com>
+Date:   Wed, 9 Nov 2022 11:10:49 +0530
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PU1PR03MB3062.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbdb951e-888c-4a6c-3611-08dac210bddc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2022 05:10:38.6781
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Oqtn+dgxYpWW0FYG3TVCQjQ8HHvgvsy6AxSCyvFuwtdMeCvgYx33syFUE8QkqgykudWUcGD0iEowRNPJi8AurRJYB0bgzMCBQIq+rhU+kh0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6243
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V17 2/7] soc: qcom: dcc: Add driver support for Data
+ Capture and Compare unit(DCC)
+Content-Language: en-US
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Alex Elder <elder@ieee.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>
+References: <cover.1665549527.git.quic_schowdhu@quicinc.com>
+ <5fee939d0a238344c7db11cf322adcb6baa35724.1665549527.git.quic_schowdhu@quicinc.com>
+ <6693993c-bd81-c974-a903-52a62bfec606@ieee.org>
+ <7f61eba9-30d2-1540-1c2f-6af7a50a4b53@quicinc.com>
+ <461b7484-b244-c66f-7a86-fadc5c7cabca@ieee.org>
+ <a019d6e7-6796-c34f-f9b5-d7d4a4260b14@quicinc.com>
+In-Reply-To: <a019d6e7-6796-c34f-f9b5-d7d4a4260b14@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KRBMUChKs2OMLGKWXpHGjn7NjVUBiY-H
+X-Proofpoint-ORIG-GUID: KRBMUChKs2OMLGKWXpHGjn7NjVUBiY-H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-09_01,2022-11-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ spamscore=0 malwarescore=0 impostorscore=0 adultscore=0 mlxlogscore=999
+ suspectscore=0 phishscore=0 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211090043
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIyLTExLTA4IGF0IDE4OjQ2ICswMTAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
-Og0KPiANCj4gT24gMDcvMTEvMjAyMiAwODoyMiwgTmFuY3kuTGluIHdyb3RlOg0KPiA+IEFkZCB2
-ZG9zeXMxIG1tc3lzIGNvbXBhdGlibGUgZm9yIE1UODE5NSBwbGF0Zm9ybS4NCj4gPiANCj4gPiBG
-b3IgTVQ4MTk1LCBWRE9TWVMwIGFuZCBWRE9TWVMxIGFyZSAyIGRpc3BsYXkgSFcgcGlwZWxpbmVz
-IGJpbmRpbmcNCj4gPiB0bw0KPiA+IDIgZGlmZmVyZW50IHBvd2VyIGRvbWFpbnMsIGRpZmZlcmVu
-dCBjbG9jayBkcml2ZXJzIGFuZCBkaWZmZXJlbnQNCj4gPiBtZWRpYXRlay1kcm0gZHJpdmVycy4N
-Cj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBOYW5jeS5MaW4gPG5hbmN5LmxpbkBtZWRpYXRlay5j
-b20+DQo+ID4gUmV2aWV3ZWQtYnk6IE7DrWNvbGFzIEYuIFIuIEEuIFByYWRvIDxuZnJhcHJhZG9A
-Y29sbGFib3JhLmNvbT4NCj4gPiAtLS0NCj4gPiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Fy
-bS9tZWRpYXRlay9tZWRpYXRlayxtbXN5cy55YW1sICAgICAgfCA0DQo+ID4gKysrLQ0KPiA+ICAg
-MSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiA+
-IGRpZmYgLS1naXQNCj4gPiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0v
-bWVkaWF0ZWsvbWVkaWF0ZWssbW1zeXMueWFtDQo+ID4gbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9tZWRpYXRlay9tZWRpYXRlayxtbXN5cy55YW0NCj4gPiBs
-DQo+ID4gaW5kZXggMDcxMWYxODM0ZmJkLi5hYWFiZTIxOTYxODUgMTAwNjQ0DQo+ID4gLS0tDQo+
-ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL21lZGlhdGVrL21lZGlh
-dGVrLG1tc3lzLnlhbQ0KPiA+IGwNCj4gPiArKysNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9hcm0vbWVkaWF0ZWsvbWVkaWF0ZWssbW1zeXMueWFtDQo+ID4gbA0KPiA+
-IEBAIC00OCw3ICs0OCw5IEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgICAgICAgLSBjb25zdDog
-c3lzY29uDQo+ID4gICANCj4gPiAgICAgICAgIC0gaXRlbXM6DQo+ID4gLSAgICAgICAgICAtIGNv
-bnN0OiBtZWRpYXRlayxtdDgxOTUtdmRvc3lzMA0KPiA+ICsgICAgICAgICAgLSBlbnVtOg0KPiA+
-ICsgICAgICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTk1LXZkb3N5czANCj4gPiArICAgICAgICAg
-ICAgICAtIG1lZGlhdGVrLG10ODE5NS12ZG9zeXMxDQo+ID4gICAgICAgICAgICAgLSBjb25zdDog
-bWVkaWF0ZWssbXQ4MTk1LW1tc3lzDQo+ID4gICAgICAgICAgICAgLSBjb25zdDogc3lzY29uDQo+
-ID4gICANCj4gDQo+IEkgdGhpbmsgd2UgaGFkIHRoYXQgc2V2ZXJhbCB0aW1lcyBhbHJlYWR5Og0K
-PiANCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC82YmJlOTUyNy1hZTQ4LTMwZTAtZmI0NS01
-MTkyMjNhNzQ0ZDdAbGluYXJvLm9yZy8NCj4gDQo+IFdlIHdpbGwgc29tZXRoaW5nIGxpa2UgdGhp
-cywgYnV0IHBsZWFzZSBjaGVjayB0aGF0IHRoaXMgZG9lcyBub3QgZ2l2ZQ0KPiBhbnkgDQo+IGVy
-cm9ycy93YXJuaW5nczoNCj4gDQo+IGRpZmYgLS1naXQNCj4gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvYXJtL21lZGlhdGVrL21lZGlhdGVrLG1tc3lzLnlhbWwgDQo+IGIvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9tZWRpYXRlay9tZWRpYXRlayxtbXN5
-cy55YW1sDQo+IGluZGV4IGViNDUxYmVjMjNkM2QuLjhlOWM0ZjRkN2MzODkgMTAwNjQ0DQo+IC0t
-LQ0KPiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vbWVkaWF0ZWsvbWVk
-aWF0ZWssbW1zeXMueWFtbA0KPiArKysNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvYXJtL21lZGlhdGVrL21lZGlhdGVrLG1tc3lzLnlhbWwNCj4gQEAgLTMyLDEzICszMiwy
-MiBAQCBwcm9wZXJ0aWVzOg0KPiAgICAgICAgICAgICAgICAgLSBtZWRpYXRlayxtdDgxODMtbW1z
-eXMNCj4gICAgICAgICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTg2LW1tc3lzDQo+ICAgICAgICAg
-ICAgICAgICAtIG1lZGlhdGVrLG10ODE5Mi1tbXN5cw0KPiAtICAgICAgICAgICAgICAtIG1lZGlh
-dGVrLG10ODE5NS1tbXN5cw0KPiAgICAgICAgICAgICAgICAgLSBtZWRpYXRlayxtdDgzNjUtbW1z
-eXMNCj4gICAgICAgICAgICAgLSBjb25zdDogc3lzY29uDQo+ICAgICAgICAgLSBpdGVtczoNCj4g
-ICAgICAgICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ3NjIzLW1tc3lzDQo+ICAgICAgICAgICAg
-IC0gY29uc3Q6IG1lZGlhdGVrLG10MjcwMS1tbXN5cw0KPiAgICAgICAgICAgICAtIGNvbnN0OiBz
-eXNjb24NCj4gKyAgICAgIC0gaXRlbXM6DQo+ICsgICAgICAgICAgLSBjb25zdDogbWVkaWF0ZWss
-bXQ4MTk1LXZkb3N5czANCj4gKyAgICAgICAgICAtIGNvbnN0OiBzeXNjb24NCj4gKyAgICAgIC0g
-aXRlbXM6DQo+ICsgICAgICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTk1LXZkb3N5czENCj4g
-KyAgICAgICAgICAtIGNvbnN0OiBzeXNjb24NCj4gKyAgICAgIC0gaXRlbXM6DQo+ICsgICAgICAg
-ICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTk1LW1tc3lzDQo+ICsgICAgICAgICAgLSBjb25zdDog
-c3lzY29uDQo+ICsgICAgICBkZXByZWNhdGVkOiB0cnVlDQo+IA0KPiAgICAgcmVnOg0KPiAgICAg
-ICBtYXhJdGVtczogMQ0KDQpIaSBNYXR0aGlhcywNCg0KQXMgdGhlIHZkb3N5czAgcHJldmlvdXMg
-cmV2aWV3ZWQgcGF0Y2g6DQoNCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9s
-aW51eC1tZWRpYXRlay9wYXRjaC8yMDIyMDkyNzE1MjcwNC4xMjAxOC0yLWphc29uLWpoLmxpbkBt
-ZWRpYXRlay5jb20vDQpTaG91bGQgSSBtb2RpZnkgdGhlIHZkb3N5czAgaXRlbXMgZm9ybWF0IGxp
-a2UgeW91ciBleGFtcGxlPw0KDQpPciBzaG91bGQgdmRvc3lzMSBhZGQgaXRlbXMgZm9ybWF0IGxp
-a2UgdmRvc3lzMCdzIHByZXZpb3VzIHBhdGNoPw0KICAgIC0gaXRlbXM6DQogICAgICAgIC0gY29u
-c3Q6IG1lZGlhdGVrLG10ODE5NS12ZG9zeXMxDQogICAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10
-ODE5NS1tbXN5cw0KICAgICAgICAtIGNvbnN0OiBzeXNjb24NCg0KUmVnYXJkcywNCkphc29uLUpI
-Lkxpbg0KDQoNCg==
+
+
+On 11/7/2022 11:12 AM, Souradeep Chowdhury wrote:
+> 
+> 
+> On 11/1/2022 12:21 AM, Alex Elder wrote:
+>> On 10/21/22 2:14 AM, Souradeep Chowdhury wrote:
+>>>
+>>>
+>>> On 10/21/2022 5:37 AM, Alex Elder wrote:
+>>>> On 10/14/22 1:00 AM, Souradeep Chowdhury wrote:
+>>>>> The DCC is a DMA Engine designed to capture and store data
+>>>>> during system crash or software triggers. The DCC operates
+>>>>> based on user inputs via the debugfs interface. The user gives
+>>>>> addresses as inputs and these addresses are stored in the
+>>>>> dcc sram. In case of a system crash or a manual software
+>>>>> trigger by the user through the debugfs interface,
+>>>>> the dcc captures and stores the values at these addresses.
+>>>>> This patch contains the driver which has all the methods
+>>>>> pertaining to the debugfs interface, auxiliary functions to
+>>>>> support all the four fundamental operations of dcc namely
+>>>>> read, write, read/modify/write and loop. The probe method
+>>>>> here instantiates all the resources necessary for dcc to
+>>>>> operate mainly the dedicated dcc sram where it stores the
+>>>>> values. The DCC driver can be used for debugging purposes
+>>>>> without going for a reboot since it can perform software
+>>>>> triggers as well based on user inputs.
+>>>>>
+>>>>> Also added the documentation for debugfs entries and explained
+>>>>> the functionalities of each debugfs file that has been created
+>>>>> for dcc.
+>>>>>
+>>>>> The following is the justification of using debugfs interface
+>>>>> over the other alternatives like sysfs/ioctls
+>>>>>
+>>>>> i) As can be seen from the debugfs attribute descriptions,
+>>>>> some of the debugfs attribute files here contains multiple
+>>>>> arguments which needs to be accepted from the user. This goes
+>>>>> against the design style of sysfs.
+>>>>>
+>>>>> ii) The user input patterns have been made simple and convenient
+>>>>> in this case with the use of debugfs interface as user doesn't
+>>>>> need to shuffle between different files to execute one instruction
+>>>>> as was the case on using other alternatives.
+>>>>>
+>>>>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>>>>
+>>>> I haven't followed any review feedback you have received
+>>>> since verion 8 (which I reviewed), so if I say something
+>>>> that conflicts with other feedback I apologize.  I know
+>>>> Bjorn had some comments too, so you're already going to
+>>>> send another version.
+>>>>
+>>>> Unfortunately I have some more input, including some things
+>>>> that are basically bugs (because buffers could be overrun).
+>>>> I will plan to review again once you've had a chance to
+>>>> address my comments.
+>>>>
+>>>>                      -Alex
+>>>
+>>> Thanks for the review. Will be sending out the next version 
+>>> implementing Bjorn's and your comments.
+>>
+>> Sorry for my delayed response.  Your message didn't show up
+>> in my "normal" mail box so I'm catching up now.
+>>
+>> . . .
+>>
+>>>>> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+>>>>> index d66604a..b1fe812 100644
+>>>>> --- a/drivers/soc/qcom/Makefile
+>>>>> +++ b/drivers/soc/qcom/Makefile
+>>>>> @@ -4,6 +4,7 @@ obj-$(CONFIG_QCOM_AOSS_QMP) +=    qcom_aoss.o
+>>>>>   obj-$(CONFIG_QCOM_GENI_SE) +=    qcom-geni-se.o
+>>>>>   obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
+>>>>>   obj-$(CONFIG_QCOM_CPR)        += cpr.o
+>>>>> +obj-$(CONFIG_QCOM_DCC) += dcc.o
+>>>>>   obj-$(CONFIG_QCOM_GSBI)    +=    qcom_gsbi.o
+>>>>>   obj-$(CONFIG_QCOM_MDT_LOADER)    += mdt_loader.o
+>>>>>   obj-$(CONFIG_QCOM_OCMEM)    += ocmem.o
+>>>>> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
+>>>>> new file mode 100644
+>>>>> index 0000000..efad225
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/soc/qcom/dcc.c
+>>
+>> . . .
+>>
+>>>> Then you use DCC_ADDR_RANGE_MASK to truncate an address
+>>>> provided down to a multiple of 16 bytes.  Why is that?
+>>>> Is there a hardware limitation that makes 16 byte alignment
+>>>> necessary?  (A little more below, where they're used.)
+>>>
+>>> Yes,this is necessary as per dcc_sram hardware configuraton.
+>>
+>> OK.  I assumed that, but it's worth mentioning that
+>> somewhere (perhaps you already did, and I just missed it).
+> 
+> Ack
+> 
+>>
+>> . . .
+>>
+>>>> I have some questions about the way memory regions
+>>>> are defined here.
+>>>>
+>>>> - You round down the address using DCC_ADDR_RANGE_MASK.
+>>>>    Is that because the address has an alignment requirement?
+>>>> - DCC_ADDR_RANGE_MASK is 0xfffffff0, meaning it's 16-byte
+>>>>    aligned.  Is that the required alignment?  (It is more
+>>>>    strict than the 32-bit word size.)
+>>>> - Is there any requirement on the size (in bytes)?  I.e.,
+>>>>    does it need to be 16-byte aligned?  (You multiply the
+>>>>    count by 4, which I presume is sizeof(u32), the word size.)
+>>>> - If the base address is affected by rounding down like
+>>>>    this, you aren't updating the length, which it seems
+>>>>    could omit a word at the end of the desired range.
+>>>> - You are checking to be sure the word count doesn't exceed
+>>>>    the RAM size.  But you're using DCC_ADDR_OFF_RANGE=8,
+>>>>    even though you said that a "word" is 32 bits.
+>>>
+>>> The check for the DCC_ADDR_OFF_RANGE=8 is to give an arbitrary
+>>> restriction in word length for the dcc configuration but ideally it
+>>> should be 4 as dcc sram word length is 4, will be changing this 
+>>> accordingly.
+>>
+>> I think that will be clearer.  Using the word length avoids
+>> any need to explain why 8 was being used.
+> 
+> Ack
+> 
+>>
+>>> Also the base address alignment requirement is consistent as per the
+>>> DCC hardware specification. The address range has to be 16 byte
+>>> aligned.
+>>
+>> So you're saying the size in bytes also has this requirement?
+>> If so, then it's good you'll enforce it.
+> 
+> Ack
+> 
+>>
+>>>>
+>>>>> +    if (!len || len > drvdata->ram_size / DCC_ADDR_OFF_RANGE) {
+>>>>> +        dev_err(drvdata->dev, "DCC: Invalid length\n");
+>>>>> +        ret = -EINVAL;
+>>>>> +        goto out_unlock;
+>>>>> +    }
+>>>>> +
+>>>>> +    base = addr & DCC_ADDR_RANGE_MASK;
+>>>> Maybe:
+>>>>      base = round_down(addr, DCC_WORD_SIZE);
+>>>>
+>>>> Then you don't even need DCC_ADDR_RANGE_MASK.
+>>>>
+>>>> And then:
+>>>>      len += base - addr;
+>>>> And if necessary:
+>>>>      len = round_up(addr, DCC_WORD_SIZE);
+>>>> And finally:
+>>>>      if (len > drvdata->ram_size / DCC_WORD_SIZE)
+>>>>          return -EINVAL;
+>>>
+>>> Ack
+>>
+>> . . .
+>>
+>>>>> +    if (ret)
+>>>>> +        return -EFAULT;
+>>>>> +    if (count > sizeof(buf) || count == 0)
+>>>>> +        return -EINVAL;
+>>>>> +
+>>>>> +    curr_list = dcc_filp_curr_list(filp);
+>>>>> +    if (curr_list < 0)
+>>>>> +        return curr_list;
+>>>>> +
+>>>>> +    if (buf[count - 1] == '\n')
+>>>>> +        buf[count - 1] = '\0';
+>>>>> +    else
+>>>>> +        return -EINVAL;
+>>>> Why is it important for the input buffer to end in newline?
+>>>
+>>> We are using the newline to convert the input buffer into a string
+>>>
+>>> for strsep operations.
+>>
+>> But strsep() returns the entire string if it finds the '\0'
+>> before finding any of the delimiters.  So the effect should
+>> be the same.  It's possible I'm misunderstanding but I think
+>> there's no need for this check at all.
+> 
+> Ack
+> 
+>>
+>>>>> +    /* EOF check */
+>>>>> +    if (*ppos >= drvdata->ram_size)
+>>>>> +        return 0;
+>>>>> +
+>>>>> +    if ((*ppos + len) > drvdata->ram_size)
+>>>>> +        len = (drvdata->ram_size - *ppos);
+>>>>> +
+>>>>> +    buf = kzalloc(len, GFP_KERNEL);
+>>>>
+>>>> Now that you are using memremap() rather than ioremap()
+>>>> for the ram_base memory, I don't think you have any need
+>>>> to allocate a buffer here anymore.
+>>>
+>>> Ack. As per Bjorn's comments this should be ioremaped.
+>>
+>> OK, sorry, I didn't notice that.
+>>
+>>> Can you please clarify whether this should be mapped to
+>>>
+>>> mem or ioremap?
+>>
+>> The reason I suggested memremap() was that the region you
+>> are mapping is being treated as a block of RAM.  Bjorn
+>> might know something about this that I don't know...
+>>
+>> Here's an early LWN article which (at the end) explains
+>> why/when one might want to use memremap().
+>>    https://lwn.net/Articles/653585/
+>> Where I have used it, I pass MEMREMAP_WC as the flag.
+> 
+> Thanks for sharing this. Will also wait for Bjorn's
+> take on this.
+
+As per discussion with Bjorn, since dcc_sram is an io and not DDR 
+memory, we should ioremap it. Will be sending out the next version 
+accordingly.
+
+> 
+>>
+>>>>
+>>>>> +    if (!buf)
+>>>>> +        return -ENOMEM;
+>>>>> +
+>>>>> +    memcpy(buf, drvdata->ram_base + *ppos, len);
+>>>>
+>>>> That is, you can simply copy_to_user() into the (user)
+>>>> data pointer, from drvdata->ram_base + *ppos.  Maybe
+>>>> something like:
+>>>>
+>>>>      void *src;
+>>>>      /* ... */
+>>>>
+>>>>      src = drvdata->ram_base + *ppos;
+>>>>      if (copy_to_user(data, src, len))
+>>>>          return -EFAULT;
+>>>>
+>>>
+>>> Ack
+>>>
+>>>>> +    if (copy_to_user(data, buf, len)) {
+>>>>> +        kfree(buf);
+>>>>> +        return -EFAULT;
+>>>>> +    }
+>>>>> +
+>>>>> +    *ppos += len;
+>>>>> +
+>>>>> +    kfree(buf);
+>>>>> +
+>>>>> +    return len;
+>>>>> +}
+>>>>> +
+>>>>> +static const struct file_operations dcc_sram_fops = {
+>>>>> +    .owner        = THIS_MODULE,
+>>>>> +    .read        = dcc_sram_read,
+>>>>> +    .llseek        = no_llseek,
+>>>>> +};
+>>>>> +
+>>>>> +static int dcc_sram_dev_init(struct dcc_drvdata *drvdata)
+>>>>> +{
+>>>>> +    drvdata->sram_dev.minor = MISC_DYNAMIC_MINOR;
+>>>>> +    drvdata->sram_dev.name = DCC_SRAM_NODE;
+>>>>> +    drvdata->sram_dev.fops = &dcc_sram_fops;
+>>>>> +
+>>>>> +    return misc_register(&drvdata->sram_dev);
+>>>>> +}
+>>>>> +
+>>>>> +static void dcc_sram_dev_exit(struct dcc_drvdata *drvdata)
+>>>>> +{
+>>>>> +    misc_deregister(&drvdata->sram_dev);
+>>>>> +}
+>>>>> +
+>>>>> +static int dcc_probe(struct platform_device *pdev)
+>>>>> +{
+>>>>> +    u32 val;
+>>>>> +    int ret = 0, i;
+>>>>> +    struct device *dev = &pdev->dev;
+>>>>> +    struct dcc_drvdata *dcc;
+>>>>
+>>>> Why do you use "dcc" here and "drvdata" elsewhere?
+>>>
+>>> This was renamed in probe as per prior review comment.
+>>
+>> I don't know who suggested that (maybe me?), but I guess I
+>> prefer using the same (base) name for variables of a given
+>> type.  So if you call it "dcc" here, then maybe call it
+>> "dcc" everywhere.
+>>
+>> I haven't looked closely at your patch just now, but it's
+>> possible the "struct dcc_drvdata" type could simply be
+>> "struct dcc".  That is, a "dcc" structure represents a
+>> single "dcc" instance, and you happen to store a copy of
+>> that "dcc" pointer as the device's drvdata.
+>>
+>> Something for you to consider, but this isn't as important
+>> a suggestion as a few other comments I've made.
+> 
+> Ack
+> 
+>>
+>>>>> +    struct resource *res;
+>>>>> +
+>>>>> +    dcc = devm_kzalloc(dev, sizeof(*dcc), GFP_KERNEL);
+>>>>> +    if (!dcc)
+>>>>> +        return -ENOMEM;
+>>>>> +
+>>>>> +    dcc->dev = &pdev->dev;
+>>>>> +    platform_set_drvdata(pdev, dcc);
+>>>>> +
+>>>>> +    dcc->base = devm_platform_ioremap_resource(pdev, 0);
+>>>>> +    if (IS_ERR(dcc->base))
+>>>>> +        return PTR_ERR(dcc->base);
+>>>>> +
+>>>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>>>>> +    if (!res)
+>>>>> +        return -ENODEV;
+>>>>> +
+>>>>> +    dcc->ram_base = memremap(res->start, resource_size(res), 
+>>>>> MEMREMAP_WB);
+>>>>> +    if (!dcc->ram_base)
+>>>>> +        return -ENODEV;
+>>
+>> . . .
+>>
+>>>>> +    /* Either set the fixed loop offset or calculate it
+>>>>> +     * from ram_size. Max consecutive addresses the
+>>>>> +     * dcc can loop is equivalent to the ram size
+>>>>> +     */
+>>>>> +    if (val & DCC_LOOP_OFFSET_MASK)
+>>>>> +        dcc->loopoff = DCC_FIX_LOOP_OFFSET;
+>>>>> +    else
+>>>>> +        dcc->loopoff = get_bitmask_order((dcc->ram_size +
+>>>>> +                dcc->ram_offset) / 4 - 1);
+>>>>
+>>>> Here's what I said about the
+>   above last time:
+>>>>
+>>>>    This get_bitmask_order() call to determine the offset of a
+>>>>    register seems overly clever.  I think it warrants a little
+>>>>    explanation why it's determined by the size of SRAM.
+>>>>
+>>>> I think part of what confuses me is why you use the sum
+>>>> of ram_size and ram_offset.  I suppose 4 is DCC_WORD_SIZE
+>>>> but I just don't know.  The comment I was suggesting was
+>>>> something about what loopoff actually represents, and why
+>>>> it's calculated this way.
+>>>
+>>> As mentioned in the comment above, the loopoff stands for the max
+>>>
+>>> consecutive addresses that can be given to the loop instruction. We
+>>>
+>>> are restricting it as per the total words that can be accomodated in
+>>>
+>>> the dcc_sram.
+>>
+>> So you're taking the ram_size + ram_offset, which is the
+>> the address just beyond the end of RAM.  (Right?)
+>>
+>> Then you divide it by 4 (because 4 is the size of a "word"?).
+>> To the result would be the end of RAM expressed as "words".
+>>
+>> Then you subtract 1, which means "last word within RAM".
+>>
+>> I think there are two things I find confusing:
+>> - Why do you use ram_size + ram_offset?  The comment you
+>>    added even says "Max consecutive addresses the dcc can
+>>    loop is equivalent to the ram size", and that sounds
+>>    like the loop_offset calculation should be working
+>>    *only* with ram_size.
+>> - You call get_bitmask_order() on this value, and I just
+>>    don't see how that is related to a loop offset.
+>>
+>> (Again, I'm not looking closely at the code right now, so
+>> maybe I'm just forgetting something about the way this memory
+>> is laid out.)
+> 
+> Yes, this is in conjunction with what is excepted for loop instructions.
+> We are setting the most significant bit based on the number of words 
+> that can be accomodated inside a dcc_sram(the last word), then using 
+> that to compare with the actual loop_cnt that is entered for the loop 
+> instructions. Will add further details to my comment for clarity.
+> 
+> 
+> 
+>>
+>> Thanks.
+>>
+>>                      -Alex
+>>
