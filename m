@@ -2,53 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E9D6227F8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 11:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C22622801
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 11:08:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbiKIKHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 05:07:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35830 "EHLO
+        id S230083AbiKIKIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 05:08:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiKIKHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 05:07:17 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C0A6365
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 02:07:16 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1oshz6-0002ID-MV; Wed, 09 Nov 2022 11:07:04 +0100
-Message-ID: <c8bcec17571a896610f225498655025ffc4b092a.camel@pengutronix.de>
-Subject: Re: [PATCH v10 2/5] of: Stop DMA translation at last DMA parent
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Date:   Wed, 09 Nov 2022 11:07:02 +0100
-In-Reply-To: <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
-References: <20221103133900.1473855-1-thierry.reding@gmail.com>
-         <20221103133900.1473855-3-thierry.reding@gmail.com>
-         <20221107193035.GA1394942-robh@kernel.org> <Y2popxNd2uIdXmlf@orome>
-         <CAL_JsqJ6XS7UZiEdjb2pyq_LmOLWBGcWHKsntTgjVFRi=4JMXw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S230015AbiKIKIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 05:08:19 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B22922BEE;
+        Wed,  9 Nov 2022 02:08:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1667988490; bh=kd8KI0VvTgYS616XjUKkZ7Ghx5h6RnT4rDbBnzCkVnk=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=hv3S7WHUR5IfwXEOq7pdqvjEH2A3PNbF9tOwgT7dBHgTscbhkZf4wjY7wVlswffGO
+         F1izqEspC3ojgZIkERAK1FkK9XXXNx61lpXaK7tznsEzy29t6uC8CD/5CGvoKsUtWt
+         4QvnYZ2OUY4D1Nj7akVe2HvNmM4Z4nMwq/CY9KJpj48mG1gTqA4gHK91W43TnUmaRm
+         QJ6vezOl4LnqcQv/tUvYXjGlcKvcLXTRUy8haGDvY2Htu+uqw1S2PRGl1n8zCBWFnF
+         e3m6YiuZnZi8DUe6Sj89t0Htm171AvscKAUVZfZrpSy2xTYEeQE+38PIN2h4GIc7BU
+         6no8qE7AiwEAQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MS3mz-1oPB450iJX-00TQgw; Wed, 09
+ Nov 2022 11:08:10 +0100
+Date:   Wed, 9 Nov 2022 11:08:09 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 0/8] Nuvoton WPCM450 FIU SPI flash controller
+Message-ID: <Y2t8CYaBfXB0RBkp@probook>
+References: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
+ <CACRpkdaUv0=Q4X3VyN6hDZKTrchKpiA-H-aBSnj+8CWU6=TfXQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CACRpkdaUv0=Q4X3VyN6hDZKTrchKpiA-H-aBSnj+8CWU6=TfXQ@mail.gmail.com>
+X-Provags-ID: V03:K1:/uV95BZUCz/kdf3R+oZrIwHNFn3eUKIPK1T4QVkOSBcbBI0KsjV
+ pCReinysjykzMdIBCqbJvAO/UNY1Bb/vk85bxxC0FGsXb9i95XaLotvXEqswT3Bsl5IOOZ8
+ UDbWMTRUtH+dcZBlmLayitAIyaZsSyqe/QV6ZQJnUpmnPVHlES5X0ZdGLQvumgA4HMKPACR
+ o13WovKkBqBa0+8RPUC7g==
+UI-OutboundReport: notjunk:1;M01:P0:+x4fTq1f/R0=;9QDlaw3XAmZieT+Qnphn3tjxCvx
+ Gbt1+QJfVDuWUr0NYRcIQIXYS9VkbQ2tqjuLqu7BiCZ1ksSOYoQrY+otHODD/gbUDusE8OgXj
+ 9UENzGSWuWwa7dT0nwJwsXYqS6bCDMwyO6iZQ7OSabDR7J6ALuSOEiIMnV1q2qmeiAgOXdqug
+ jiaNGyF4pf4UwPdzf4fHzlLsjXjd6Roh2a3Q/48dLcDBzsXRkJ3EFkzBOiEJeTm9ZH1stZnal
+ T81NgTbOmY0C+tZRtDyYS3ziyfkkCMms9Ql4BArIgPVUoBZsvg95MypLjv1RZpAn2fEr+ym0I
+ YD9plPQuHYhHKZ6L6cIZ3TUpcYnczXLB4eIINxnuNmcRbPtoO2RK2BPaKgnf6zgy1e7ZzZzaF
+ R3AnwnI/nlOzWFeLEQnyj2gpMfY5cpTA4U+LgI1SN951J6jUgfo9cBg8EB2RyeqWWY2jun5Bg
+ QTHiLEv1mHMHCayXkhOMGU9nUzuHJjKzgjWCsANKRzCCY4nWvsYWXoiXMUmsX2kK+ff55fLt9
+ t/JE98/H255T/e4q6E4SAOQMYDsF6cSbM0OPmrR8xoLrDWgSk2cYaB/zve4oiXxHgt9Aqqqfo
+ 2KCkEwtTakOSn4P9SwLLpzQBYJAKUMfmUAEoHQZcGSozn+W56QMdpWAanCvgaglh5xY05fumv
+ gHm15UbQKlUiVs8MAwPgnjymZJFhxZIUKo0zMYpy909WkwFFSZgnc5cZ23EQquiZdZZdW6QHq
+ dyFpihEQAKqFZlZVTGOZx32Ca05rAyj569nSY7XsGjhwtVr1YFIlvPbwK1f2VIeYWVbmKrQZE
+ +vCVYtGToAWTOyUgt4wNkCrBHTelGHdsxlNI7VcfkrwJQxGL92JSSvZmcBNiTczETPdmAVBHT
+ wQEQKI+gtTzb+kXuRJFPxMUYeZFB+qskkJau1H2MFF5fwhJSuuk6zbIhlxekG1E4Cph+gZaqP
+ 0mRT2pQ+C2yskoBXNoalSqx09ts=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,103 +73,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 08.11.2022 um 10:25 -0600 schrieb Rob Herring:
-> On Tue, Nov 8, 2022 at 8:33 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > 
-> > On Mon, Nov 07, 2022 at 01:30:35PM -0600, Rob Herring wrote:
-> > > On Thu, Nov 03, 2022 at 02:38:57PM +0100, Thierry Reding wrote:
-> > > > From: Thierry Reding <treding@nvidia.com>
-> > > > 
-> > > > DMA parent devices can define separate DMA busses via the "dma-ranges"
-> > > > and "#address-cells" and "#size-cells" properties. If the DMA bus has
-> > > > different cell counts than its parent, this can cause the translation
-> > > > of DMA address to fails (e.g. truncation from 2 to 1 address cells).
-> > > 
-> > > My assumption in this case was that the parent cell sizes should be
-> > > increased to 2 cells. That tends to be what people want to do anyways
-> > > (64-bit everywhere on 64-bit CPUs).
-> > > 
-> > > > Avoid this by stopping to search for DMA parents when a parent without
-> > > > a "dma-ranges" property is encountered. Also, since it is the DMA parent
-> > > > that defines the DMA bus, use the bus' cell counts instead of its parent
-> > > > cell counts.
-> > > 
-> > > We treat no 'dma-ranges' as equivalent to 'dma-ranges;'. IIRC, the spec
-> > > even says that because I hit that case.
-> > > 
-> > > Is this going to work for 'dma-device' with something like this?:
-> > > 
-> > >   bus@0 {
-> > >     dma-ranges = <...>;
-> > >     child-bus@... {
-> > >       dma-device@... {
-> > >       };
-> > >     };
-> > >   };
-> > > 
-> > > > 
-> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > > ---
-> > > > Changes in v10:
-> > > > - new patch to avoid address truncation when traversing a bus hierarchy
-> > > >   with mismatching #address-cells properties
-> > > > 
-> > > > Example from Tegra194 (redacted for clarity):
-> > > > 
-> > > >     reserved-memory {
-> > > >             #address-cells = <2>;
-> > > >             #size-cells = <2>;
-> > > >             ranges;
-> > > > 
-> > > >             framebuffer@0,0 {
-> > > >                     compatible = "framebuffer";
-> > > >                     reg = <0x2 0x57320000 0x0 0x00800000>;
-> > > >                     iommu-addresses = <&dc0 0x2 0x57320000 0x0 0x00800000>;
-> > > >             };
-> > > >     };
-> > > > 
-> > > >     bus@0 {
-> > > >             /* truncation happens here */
-> > > >             #address-cells = <1>;
-> > > >             #size-cells = <1>;
-> > > >             ranges = <0x0 0x0 0x0 0x40000000>;
-> > > > 
-> > > >             mc: memory-controller@2c00000 {
-> > > >                     #address-cells = <2>;
-> > > >                     #size-cells = <2>;
-> > > 
-> > > I think this is wrong. The parent should have more or equal number of
-> > > cells.
-> > 
-> > I was half suspecting that. The reason why I hesitated is that I recall
-> > having the opposite discussion a while ago when we were adding bus@0 to
-> > 64-bit Tegra devices. We had at some point (probably around Tegra114 or
-> > Tegra124, 32-bit ARM chips that support LPAE) started to set #address-
-> > cells = <2> precisely because the CPU could address more than 32-bit
-> > addresses. We then did the same thing transitioning to 64-bit ARM. When
-> > we then started discussing bus@0, someone (might have been you) had
-> > argued that all these peripherals could be addressed with a single cell
-> > so there'd be no need for #address-cells = <2>, so then we went with
-> > that.
-> 
-> I may have not thinking about the DMA side of things.
-> 
-> > Reverting back to #address-cells = <2> is now going to cause quite a bit
-> > of churn, but I guess if it's the right thing, so be it.
-> > 
-> > Another possible alternative would be to move the memory-controller node
-> > from the bus@0 to the top-level. Not sure if that's any better.
-> 
-> I stumbled upon 'ibm,#dma-address-cells' and 'ibm,#dma-size-cells'
-> while reviewing this. Those seem to be for the same purpose AFAICT. We
-> could consider adding those (w/o 'ibm') to handle this situation.
+On Wed, Nov 09, 2022 at 09:41:04AM +0100, Linus Walleij wrote:
+> On Sat, Nov 5, 2022 at 7:59 PM Jonathan Neusch=C3=A4fer
+> <j.neuschaefer@gmx.net> wrote:
+>
+> > Jonathan Neusch=C3=A4fer (8):
+> >   pinctrl: nuvoton: wpcm450: Refactor MFSEL setting code
+> >   pinctrl: nuvoton: wpcm450: Fix handling of inverted MFSEL bits
+>
+> I just applied these two patches to the pinctrl tree, it looks like they
+> can be applied independently of the others so I just did.
 
-I would appreciate this. We have the same situation on some of the NXP
-i.MX8 SoCs right now: all the MMIO is addressable with 32bit, so all
-the busses have a single address and size cell right now, but we would
-need to extend the address-cells to 64bit just to properly describe the
-DMA addressing capabilities of the devices.
+Yes, that's the intention.
 
-Regards,
-Lucas
+>
+> So no need to resend these or include me on subsequent patch
+> series.
 
+Thanks!
+Jonathan
