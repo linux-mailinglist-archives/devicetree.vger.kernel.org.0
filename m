@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7092F622CCF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 14:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70A2C622CE2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 14:53:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbiKINu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 08:50:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38878 "EHLO
+        id S230329AbiKINxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 08:53:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiKINun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 08:50:43 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC722B1AD
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 05:50:41 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id u11so25855908ljk.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 05:50:41 -0800 (PST)
+        with ESMTP id S230234AbiKINxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 08:53:12 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1900205F2;
+        Wed,  9 Nov 2022 05:53:09 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id m204so18827720oib.6;
+        Wed, 09 Nov 2022 05:53:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kFZg5Lk0YUDHQefo64cd18AIqjQKEsxBGKbtInmBwT4=;
-        b=CQp544BNM4KqeIyk4UcQJ/HVanH5nN3a/Udqm1aMCWKw5E1PfhQxJdrHExLSGWH+AE
-         XwZraC8hYZ0c/xoPCXATEL/0esYUHjdfvHGfSQiPWZfBZti+ClBzCfj/h0XHSuHBdC5Y
-         eV1TSIWeAURYFdtjrCIzqN8VfcZjb/DyfJSbb0Vx1DDfi3KVKEzDXXuWvv+V7YhMHhu5
-         UVrP13S4HgOvicqkO8ZRXDhGw+90Ixa1C8qwZbCr8pqg3RenDfgejqg1O178CvxeXrBR
-         CdgsydtQW9jKbA4n7GTRYX8qGCsCFImX8ZJBMFlM1Lql+t9fN4i60nTMqfl25LU8URQQ
-         XNDw==
+        bh=IP5GuE55LXSPGOYJX6tyMHFgYaUe2wT0zbakn2aZiKA=;
+        b=IRoPyveQ9oFrAzTF3HHWGRj0bUrCS8UXLDCa9ddqKqECHwdlDrMOiKDSZFD12lTdMl
+         XNBIQOgXzPdtgZPPrv9GafkLQB/QCIIiL+YPya0/Hp1NPKysiaBQGQjOfZI3/fws8WmO
+         IC351Nj8xsn5UopowW+WN6XagzJpYeXF21UXhjDo9EsVVx2/tmOi23Yx33AbvliZBYWZ
+         rjCm3e40+B0iBtSKK9mkxqcUkAjx9wi3fsP9JzExbAkKPOzS1PbKl5D01nmRmZqwArlf
+         c4WRIWu9QxLRLeK41yi7GJb8h2BS48MGKMxNelapj/igM3ozt9vWWbfuoFaITTowNE3m
+         D41w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kFZg5Lk0YUDHQefo64cd18AIqjQKEsxBGKbtInmBwT4=;
-        b=1gUmU/gN1aKzVSjcpJ7zsAxMioQCpW7ZMwB/LTpJywM+WvZVLou8cDK7SopJPMVfFz
-         1SQhbG3SzsIuAFEVmeWGGRGLdpPcJxe86wVSiqtJKl/AghABAAxGgwQJMhR152l5mfDN
-         YbTDntwjj9oDMjrY2VF3YBvoAMV6G34IabgmMQiJp+zfH82auvDcjHioFILY8XQBZ9As
-         VbFq8ptssHUQY1yCTndwsgBuOmGRd4fpifvBxhsHJnLUkzHVLlO4x510BjQGn2pKLd/Z
-         5u5yoKlUO9aMaCcGEL6I9PVObYQ+bW7Xni4NS9EPmUO4OaTRS/bJaxfq25Q7Hutc0xHO
-         uRag==
-X-Gm-Message-State: ACrzQf3Qxbij4h9TQEVflhODrBcEEeUOsDf4JLtXkHvc9SaicR3sSKk3
-        JJW4m3urIZJVtlRdUBX7p5KR/w==
-X-Google-Smtp-Source: AMsMyM6pqepF0MaRpJkl0gk5rhLC0+DZ4vWqAKGf71C706I0FaUBy55Tsir8RAQCIDCtqQm1P5ZHWg==
-X-Received: by 2002:a2e:b529:0:b0:26c:6dce:ce59 with SMTP id z9-20020a2eb529000000b0026c6dcece59mr8208846ljm.130.1668001840272;
-        Wed, 09 Nov 2022 05:50:40 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac258fa000000b00498f871f33fsm2233540lfo.86.2022.11.09.05.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 05:50:39 -0800 (PST)
-Message-ID: <dfbb5a16-04f8-ab50-d54b-f92117d0eb0e@linaro.org>
-Date:   Wed, 9 Nov 2022 14:50:38 +0100
+        bh=IP5GuE55LXSPGOYJX6tyMHFgYaUe2wT0zbakn2aZiKA=;
+        b=FRrIRXX+o4aIfRjgAux1OeF+rXp732Bbku/J1BsB4Bpmw8nNxRuWni5pr7hKmKOfIG
+         1wX5zBV+18cltG/z8hMXkhEPTzx8Un5DBIAGg33cGMpl1foK2k2ParWdm92IdN+zRsao
+         C5DS6c/S2XLQSf9+g71LZ0bTtE8hwNJ5KV6HtL9/XVRm2Rv8K3SyLaMxVnCxQKtRRT2k
+         MW8JuBfMvPPJyJ/zfhVHydxqMidBFvWWDL9q7WfX7lk8mnl8oHWw3FrGOpKF2sCLQoFW
+         K3T7s/F6ioKA6NwaeEWHijZ10gFT/5auSUSMoFFuC9MPwe9JBo6frnKBKJoUT5042KLO
+         WhKw==
+X-Gm-Message-State: ACrzQf1S7RazKyE+7+OavluiX2CMdgFL5q0BGyMQkKsEWY3vMtWwScee
+        KF2xzuNJyyoVA43OsSDMBYE=
+X-Google-Smtp-Source: AMsMyM7yhbw8cdCur7Z/B3HPRG1UyZ5Xhy0cQKinNow41q8SEdCpF9Q0zCPt1dXhUKXdFyWWSxduvw==
+X-Received: by 2002:a05:6808:1b13:b0:35a:57ef:8388 with SMTP id bx19-20020a0568081b1300b0035a57ef8388mr16587593oib.195.1668001989314;
+        Wed, 09 Nov 2022 05:53:09 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f15-20020a056870210f00b0013ae5246449sm6082480oae.22.2022.11.09.05.53.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Nov 2022 05:53:08 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 9 Nov 2022 05:53:06 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com,
+        angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 5/7] dt-bindings: watchdog: mediatek: Convert mtk-wdt
+ to json-schema
+Message-ID: <20221109135306.GA3538893@roeck-us.net>
+References: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
+ <20221108033209.22751-6-allen-kh.cheng@mediatek.com>
+ <585a9cbb-4df4-1c06-ecfa-3b9442f1a5e2@gmail.com>
+ <5758c2af-c2c5-dfbe-c7d8-036bbdaf71c7@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom,smd: Document PMR735a
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221109110846.45789-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109110846.45789-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5758c2af-c2c5-dfbe-c7d8-036bbdaf71c7@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 12:08, Konrad Dybcio wrote:
-> PMR735a also appears to be bundled with some SMD RPM SoCs.
-> Document it.
+On Wed, Nov 09, 2022 at 10:04:09AM +0100, Krzysztof Kozlowski wrote:
+> On 08/11/2022 11:50, Matthias Brugger wrote:
+> > 
+> > 
+> > On 08/11/2022 04:32, Allen-KH Cheng wrote:
+> >> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >>
+> >> Convert the MediaTek watchdog bindings to schema.
+> >>
+> >> The original binding only had 4 without a fallback but there is a reset
+> >> controller on the "mediatek,mt7986-wdt", "mediatek,mt8186-wdt",
+> >> "mediatek,mt8188-wdt" and "mediatek,mt8195-wdt" Since there is no reset
+> >> controller for the mt6589, we remove "mediatek,mt6589-wdt" as a
+> >> fallback.
+> >>
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >> Co-developed-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> >> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> >> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > 
+> > As I'm put as the maintainer:
+> > Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+> > 
+> > Shall I take that through my tree or shall it go through the watchdog tree?
+> > 
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+> In general, bindings should go via subsystem trees (so watchdog), just
+> like drivers. However this got Guenter's review tag, so usually it means
+> also an ack... Dunno... :)
 
+For watchdog patches, if I send a Reviewed-by: tag, I expect Wim to pick
+up the patch through the watchdog tree. If I expect some other tree to
+pick it up, I use Acked-by: and usually add a note saying that I assume
+that the patch will be picked up by someone else.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I usually also add watchdog patches to my own watchdog-next tree as
+reference for Wim. I already have several mediatek devicetree patches
+queued there. Handling some of the patches through watchdog and others
+through some other tree would create a mess. Please don't do that.
 
-Best regards,
-Krzysztof
-
+Guenter
