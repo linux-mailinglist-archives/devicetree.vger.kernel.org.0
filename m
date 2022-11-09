@@ -2,196 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BA01622A28
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC2F622A31
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbiKILSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 06:18:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36202 "EHLO
+        id S231130AbiKILTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 06:19:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbiKILSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:18:20 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396F928704
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:18:17 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id b3so25165010lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:18:17 -0800 (PST)
+        with ESMTP id S231192AbiKILSq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:18:46 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FFA4AE63;
+        Wed,  9 Nov 2022 03:18:37 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id v1so25216620wrt.11;
+        Wed, 09 Nov 2022 03:18:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GxnRxhJDAb9pUXgjx0ze3PK4gBhKnoYZaP+jiMHEIwc=;
-        b=rrdf/2LQbbWL2VazpVcvioRGi2+YVTKcv/7fB9zDmCig/+yB/o4N+i/VBEALmyev/D
-         YWUNg/mor6YQiUBMEMhCrinvixhmmSQn343rtWRFuxGemCJi63NJoVlsBLNNmfSnBTrI
-         Ct3KzCk2GkdneiFrR7QaqaKZq3ljMlfoCyg6vRN3ZECEOw/tL/vWTgKro+RGWqFJzwrU
-         J/58HiRynzLhGystfYbkhdvc4mWo1S+wch/xDppDou/zNTA5Dl9Driwr5iTpeN6btnGt
-         Gu0K7ZqdnrP+mP4t+c4IHoejAxC9zPP4vM/GdgC6Jkd28IjAH2+Io5FjjPt3sxLOd+VU
-         +UuA==
+        bh=AvtdKEg5HPVz3X+JgHtwGowTHYk1pgsNrv53DSwRrFA=;
+        b=dr/5x8PeQugDwz9zS/lRvw1wyHROVXsoNERq/mQA55Cw10aTLyWLE2xDhkrbNtQfQb
+         9U9ZeAtu6osFQScxobESpVYxg9LEmAVE8HEeNV5p0q8b4wIrmlq4NAjb049xmjXOe1z7
+         f6tt9aEucdDBFAC9y9DQzKLxobC2tK3YuO/tXHFlQuO4OttdIbIrcQ7PLQHLWcoTSIX5
+         4LRqPSf5D/ez+6dfzAV/pliSjSzX1x6uV8vwhTnTSb3I9zeOhmnYC+BCqQ/uWSAlyx75
+         ZbaBIF5K4KGAXl2kKxGIGpEx0+rNm7F0+l2rI2FHW6EQ8Uve+1vm+vmcKfayY/uFAjzA
+         mtyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GxnRxhJDAb9pUXgjx0ze3PK4gBhKnoYZaP+jiMHEIwc=;
-        b=Gwn/NQlJM+n3I6HB7HohfS9qlNfFBHTC/RxDxAbDy1b17N9wgxPmPUS2sUDhF2V/7a
-         SRelDWRU9rlCJD5lxpxjTn4OqZ65j8cJrpQCj8YVbykVWzJQ489FMRzwx2I2DgFd28zM
-         Z8DHeQCXbLhRZ/N9Le15cBsheQD+W5qYNaNFBOhxDpOyLLz4I/4I8vTYgw8YvhETAx/p
-         GNzXC4wyx98jpFe5kKSWtLSt7zuyojn4dR/LwkpyddGEPrPKRo3B2ml+17V4jfpxAfFh
-         27vLtv9sBM9EOMRQMlC/Rst6QBHRngSC3RUUnYEVH0BlQci2eCBQSM2ylaWeHHdpg16q
-         t2zg==
-X-Gm-Message-State: ACrzQf26hcxw8uPTPhdGYQdOkf43YlPMmt8XDvYH+fW8v2IzsGN5/AmA
-        Ic9y4E0WyMW4R3iigAJvKQ1gbw==
-X-Google-Smtp-Source: AMsMyM6ZZpdCos9MrILyRLgHX42HfVp77qJ7plzL3OTJoGzg4oaMPAZQl3bqQNUXAAPX0C0VI99plg==
-X-Received: by 2002:ac2:551c:0:b0:4a2:3c32:aff5 with SMTP id j28-20020ac2551c000000b004a23c32aff5mr22829210lfk.31.1667992695455;
-        Wed, 09 Nov 2022 03:18:15 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id h3-20020a197003000000b004b3b7557893sm1637970lfc.259.2022.11.09.03.18.13
+        bh=AvtdKEg5HPVz3X+JgHtwGowTHYk1pgsNrv53DSwRrFA=;
+        b=bF7b9StLjN0InQ2xHr4/LOzkqSJcqXc7SPxeO3rh6r+SYn+eKhYeMiqcV0wEsdyQgT
+         8Wvu11kBkvsvQmVhS0rIxcgD7qvV0NxwAebpzEHtbr3/0Lq0U7TLyx967C3XQb9pw+8n
+         8Q8OtqViaApgOm6Rd+tvauNhPXIm7QKBUAkvV3Iw8tfrdLjVyV0uUFB+qghf2cCEZmaX
+         EvtuBxLbkeVTct6bEuA6SsivK48tN0niSbsVaJraKH/Dsd1RjJ91pPI2FxNWgQuGzZRr
+         OvEYumsmYG6p/0TPbhI4cDXXQnYr+wOy9kdx+DqUaLeVaZHeI7+1qMkyheoSh8mfVRPo
+         2wHg==
+X-Gm-Message-State: ACrzQf0KIHGAQx1e8+s+HFHzuWwSGOJIe8Amv4GlwJicoKspzgT9gChC
+        F/r5ckUszKj+nqdfCZ8yS9s=
+X-Google-Smtp-Source: AMsMyM6WJqLIdMRVHiViy2TilAyD/0aBmIfS1ZkVy/xQ6rNS2kHQtvnt87DvaPbI24ekuh55jHC+Hw==
+X-Received: by 2002:adf:eec6:0:b0:236:aabb:8c90 with SMTP id a6-20020adfeec6000000b00236aabb8c90mr31041409wrp.199.1667992715589;
+        Wed, 09 Nov 2022 03:18:35 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id h4-20020a05600c350400b003c6f426467fsm1333419wmq.40.2022.11.09.03.18.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 03:18:14 -0800 (PST)
-Message-ID: <6868ceb7-a274-7eb4-32b6-9e0e4eb467bf@linaro.org>
-Date:   Wed, 9 Nov 2022 12:18:13 +0100
+        Wed, 09 Nov 2022 03:18:34 -0800 (PST)
+Message-ID: <7eac9be2-a880-8971-117d-ec533eebaf4a@gmail.com>
+Date:   Wed, 9 Nov 2022 12:18:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 4/6] arm64: dts: fsd: Add MCAN device node
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v28 04/11] soc: mediatek: add mtk-mmsys support for mt8195
+ vdosys1
 Content-Language: en-US
-To:     Vivek Yadav <vivek.2311@samsung.com>, rcsekar@samsung.com,
-        krzysztof.kozlowski+dt@linaro.org, wg@grandegger.com,
-        mkl@pengutronix.de, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, alim.akhtar@samsung.com,
-        linux-fsd@tesla.com, robh+dt@kernel.org
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        aswani.reddy@samsung.com, sriranjani.p@samsung.com
-References: <20221109100928.109478-1-vivek.2311@samsung.com>
- <CGME20221109100258epcas5p2966d5e93e00d2a5b4e4a3096dc5a5ec6@epcas5p2.samsung.com>
- <20221109100928.109478-5-vivek.2311@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109100928.109478-5-vivek.2311@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221107072243.15748-1-nancy.lin@mediatek.com>
+ <20221107072243.15748-5-nancy.lin@mediatek.com>
+ <90d8dfb1-2a37-e79a-b912-c77076e493c6@gmail.com>
+ <20221108191008.lsasjskm7tzvpa42@notapiano>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221108191008.lsasjskm7tzvpa42@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 11:09, Vivek Yadav wrote:
-> Add MCAN device node and enable the same for FSD platform.
-> This also adds the required pin configuration for the same.
+
+
+On 08/11/2022 20:10, Nícolas F. R. A. Prado wrote:
+> On Tue, Nov 08, 2022 at 06:46:54PM +0100, Matthias Brugger wrote:
+>> On 07/11/2022 08:22, Nancy.Lin wrote:
+> [..]
+>>> --- a/drivers/soc/mediatek/mtk-mmsys.c
+>>> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+>>> @@ -80,6 +80,12 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
+>>>    	.num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
+>>>    };
+>>> +static const struct mtk_mmsys_driver_data mt8195_vdosys1_driver_data = {
+>>> +	.clk_driver = "clk-mt8195-vdo1",
+>>> +	.routes = mmsys_mt8195_vdo1_routing_table,
+>>> +	.num_routes = ARRAY_SIZE(mmsys_mt8195_vdo1_routing_table),
+>>> +};
+>>> +
+>>>    static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
+>>>    	.clk_driver = "clk-mt8365-mm",
+>>>    	.routes = mt8365_mmsys_routing_table,
+>>> @@ -292,6 +298,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
+>>>    		.compatible = "mediatek,mt8195-vdosys0",
+>>>    		.data = &mt8195_vdosys0_driver_data,
+>>
+>> It seems we are missing a patch in the series. vdosys0 also correct was
+>> never introduced in the driver...
 > 
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
-> ---
->  arch/arm64/boot/dts/tesla/fsd-evb.dts      | 16 +++++
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 28 +++++++++
->  arch/arm64/boot/dts/tesla/fsd.dtsi         | 68 ++++++++++++++++++++++
->  3 files changed, 112 insertions(+)
+> Hi Matthias,
 > 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> index 1db6ddf03f01..af3862e9fe3b 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> @@ -34,6 +34,22 @@
->  	clock-frequency = <24000000>;
->  };
->  
-> +&m_can0 {
-> +	status = "okay";
-> +};
-> +
-> +&m_can1 {
-> +	status = "okay";
-> +};
-> +
-> +&m_can2 {
-> +	status = "okay";
-> +};
-> +
-> +&m_can3 {
-> +	status = "okay";
-> +};
-> +
->  &serial_0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> index d0abb9aa0e9e..bb5289ebfef3 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> @@ -339,6 +339,34 @@
->  		samsung,pin-pud = <FSD_PIN_PULL_UP>;
->  		samsung,pin-drv = <FSD_PIN_DRV_LV1>;
->  	};
-> +
-> +	m_can0_bus: m-can0-bus-pins {
-> +		samsung,pins = "gpd0-0", "gpd0-1";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
-> +
-> +	m_can1_bus: m-can1-bus-pins {
-> +		samsung,pins = "gpd0-2", "gpd0-3";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
-> +
-> +	m_can2_bus: m-can2-bus-pins {
-> +		samsung,pins = "gpd0-4", "gpd0-5";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
-> +
-> +	m_can3_bus: m-can3-bus-pins {
-> +		samsung,pins = "gpd0-6", "gpd0-7";
-> +		samsung,pin-function = <FSD_PIN_FUNC_2>;
-> +		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-> +		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-> +	};
->  };
->  
->  &pinctrl_pmu {
-> diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> index 3d8ebbfc27f4..154fd3fc5895 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> @@ -765,6 +765,74 @@
->  			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		m_can0: can@14088000 {
-> +			compatible = "bosch,m_can";
-> +			reg = <0x0 0x14088000 0x0 0x0200>,
-> +				<0x0 0x14080000 0x0 0x8000>;
+> as mentioned in the cover letter, this series is based on the series "Change
+> mmsys compatible for mt8195 mediatek-drm" [1], which introduces vdosys0. This
+> compatible entry specifically is added on patch 3 of that series [2].
+> 
+> [1] https://lore.kernel.org/all/20220927152704.12018-1-jason-jh.lin@mediatek.com/
 
-Align with < in line before.
+My bad. Thanks for the link. I realized that yesterday but had to leave 
+urgently. I'll have a look on this series now.
 
-> +			reg-names = "m_can", "message_ram";
-> +			interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> +					<GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "int0", "int1";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&m_can0_bus>;
-> +			clocks = <&clock_peric PERIC_MCAN0_IPCLKPORT_PCLK>,
-> +				<&clock_peric PERIC_MCAN0_IPCLKPORT_CCLK>;
+Regards,
+Matthias
 
-The same (unless it's the problem of diff/patch and these are actually
-aligned).
-
-
-Best regards,
-Krzysztof
-
+> [2] https://lore.kernel.org/all/20220927152704.12018-4-jason-jh.lin@mediatek.com/
+> 
+> Thanks,
+> Nícolas
+> 
+>>
+>>>    	},
+>>> +	{
+>>> +		.compatible = "mediatek,mt8195-vdosys1",
+>>> +		.data = &mt8195_vdosys1_driver_data,
+>>> +	},
+>>>    	{
+>>>    		.compatible = "mediatek,mt8365-mmsys",
+>>>    		.data = &mt8365_mmsys_driver_data,
