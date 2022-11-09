@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E9F623276
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 19:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72E37623282
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 19:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbiKIScO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 13:32:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53522 "EHLO
+        id S231326AbiKISeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 13:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbiKIScN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 13:32:13 -0500
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB68B388E
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 10:32:12 -0800 (PST)
-Received: by mail-qk1-x72c.google.com with SMTP id 8so11487833qka.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 10:32:12 -0800 (PST)
+        with ESMTP id S231182AbiKISdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 13:33:50 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1369B13F34;
+        Wed,  9 Nov 2022 10:33:45 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id i9so11454488qki.10;
+        Wed, 09 Nov 2022 10:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OSLH/Ky2WGtp8iLOWX3Y+bun19HcLK+kKc9Poe4RmZM=;
-        b=EfbK/VZa5aiHS3SV3LVG9nTuOCJDu6GWmxc9I60cJu82ps9KQAmsaZEzsEGcPYa1UG
-         imm9JA+wdZzzKz8sED/vgkG4u9gnt9zPNRSVzk5PJAGDBKVZgALMWWPzvJsWTajbYeYN
-         a3HFq5fi4mZhFzFNe9EKu8HWHXW8BQexKrd05B0K/gYPB2Cixgyt1nax8uFm6K/IPHFk
-         BdNfXgs8+7BdwgIXu2lnFlBJin82I4PyYF9cQxs+v1X7sCEJUi915jNf4vJTqQCgoglf
-         45hPQPan2d6Wn9n4lRLv8OELB88JpXV4DsEn0LeMlszS+NVrNLoDxEQlJFvmjkfTkRZH
-         e6QQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9dRNz7Ny5K+jqxnZilH19TOkJ/QT0eJ784jLcqdXod0=;
+        b=TWXroYadorY59nuW+mjreNHZ/MpPTyO7CZoKfqX5fBCHRq7BX+SrcAbJUsxXaZ74Yn
+         bTLZrXdAA54ss3Hmcn3n20icAiMMEkiM/QrtakYRQcyLMIB1i3E7+qJslmjftVGVZo9R
+         Sh4jzSfqpTR9LO/cA9PLpJPQhV9adWWN1DgZQEpzxaAP4xXdgHG/8blAMre83lqxCdcY
+         7pRQVGynsDn8cBVSG19vhsmfcUpxsEvZkKIAtMWS5kg9bDyL24hFumGCqzrJtpywF2/v
+         26u349H1MN8W4+oQAPLirw5T5Jjh2aYYUJitHE1cnyNSAfl2q6fsaPcuMXBe3ribNy1M
+         INMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OSLH/Ky2WGtp8iLOWX3Y+bun19HcLK+kKc9Poe4RmZM=;
-        b=GiIt2Sqlw5CKuKFR4EbpCExF4XHVjKCMyflyRdfBcbVh6XTt3mkDR/Cli22jm67rLb
-         R2b8G48LUWsz9sUtucO6VnLC9tvq0wftX7bpjZoOAbqTae4OUdw8Gr0iKt3buaGMmogU
-         sCoPI0WE54KfjClKfGMzlRDA5BJOFFGKfvoBsJH8Sn01jmjnl1jCxVKOtBeDvU4nFLXC
-         G07RMRsFueBw/Axi/Q18+cV+MY0212MtrKOnOE5AEszPy+KNeyhHF3rWj9vDwn0rUpZ7
-         ujNwo4rMLZzO00CUm9xGXwUZBZk8X2SiCbShlNKJTYtPFzT4vPyUr5elppDoO0uhQJt4
-         oxwg==
-X-Gm-Message-State: ACrzQf10V4V5XY4rgkX7wUcXX8Xqtv4F1kPy79vdRFa1EXyByEgh5/KW
-        BGk32MqejtL1KtisMkMGCmU=
-X-Google-Smtp-Source: AMsMyM4KVPsOITTh7x5/XOWbvhTCpr14Fv2IUV8ZOlYfxO9kPBRJR/Vx5oTGXg7yzt2n4g7OVHn34Q==
-X-Received: by 2002:a37:2cc6:0:b0:6fa:3916:4213 with SMTP id s189-20020a372cc6000000b006fa39164213mr36441448qkh.449.1668018732014;
-        Wed, 09 Nov 2022 10:32:12 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w1-20020a05620a444100b006bbf85cad0fsm11525076qkp.20.2022.11.09.10.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 10:32:11 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Correct description of TP-Link partitions
-Date:   Wed,  9 Nov 2022 10:32:09 -0800
-Message-Id: <20221109183209.880538-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221108110708.13693-1-zajec5@gmail.com>
-References: <20221108110708.13693-1-zajec5@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9dRNz7Ny5K+jqxnZilH19TOkJ/QT0eJ784jLcqdXod0=;
+        b=1dno93po8XB5KLWK+DWpvb+mvM9vSDm5UQgO2vBWsJSJDEv/Ae2Ls+OddCsFWRU5BM
+         CVfSG+0h56i5w6ObHDigWekQ6LY7pOyYj1eP14N6RTqPzsdAwTev1M/WV8VxqBCdzBVp
+         6vw1htr6SnqVMURnq/kP925kcsHv7fGBzra9ZVCDiptVaITruBRKZu8PIkxeojVB5EzV
+         1qUf2Dkqg0Ix0FnREn6a7uzFuFxeZJdBP0sKIEoAkWIUcxD9hr0V3ortG7gYgsPxz0cS
+         bnl3O3m2Kzk6VQX2UFZF2odSS1ZAFoYabJb5iuJLHN9yHcR2w5t+EyHkDq4uF4Wn2vW4
+         8NKA==
+X-Gm-Message-State: ACrzQf1FevJi4a1xwwuu7WbvbghPbst78CQryHu+PwI5VQu6vWXQVvbb
+        eV1vSQUoJV1VPl1P58uwiPjpfc+5xvsyHw==
+X-Google-Smtp-Source: AMsMyM66U2LPPnWfXVhYQRyz6a7ngPAJSOzeMEkS4mvU6vtTDbiIXinZVfTY4ZGJKhpA2DKbhdUIhQ==
+X-Received: by 2002:a05:620a:22e1:b0:6fa:46cc:8d84 with SMTP id p1-20020a05620a22e100b006fa46cc8d84mr34531729qki.10.1668018823298;
+        Wed, 09 Nov 2022 10:33:43 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id x25-20020ac84d59000000b003a4f14378d1sm10022604qtv.33.2022.11.09.10.33.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 10:33:42 -0800 (PST)
+Message-ID: <b91fb605-c421-b80d-07a5-c6b65f99ccf0@gmail.com>
+Date:   Wed, 9 Nov 2022 10:33:36 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] mips: dts: bcm63268: add TWD block timer
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20221103110641.22305-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20221103110641.22305-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,19 +79,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  8 Nov 2022 12:07:08 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+On 11/3/22 04:06, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> TP-Link routers have flash space partitioned according to the partitions
-> table. It may look like fixed partitioning but those partitions can be
-> actually reorganized. New can be added (or some removed), offsets and
-> sizes may change.
-> 
-> Fix DT to use binding for the TP-Link SafeLoader partitioning method.
+> BCM63268 TWD contains block with 3 timers. Add binding for it.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
 Florian
+
