@@ -2,205 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2C95622DDF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 15:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99B8C622DF4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 15:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231410AbiKIO2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 09:28:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40538 "EHLO
+        id S231482AbiKIOaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 09:30:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbiKIO2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 09:28:15 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A8124091
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 06:27:59 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id s24so26015972ljs.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 06:27:59 -0800 (PST)
+        with ESMTP id S231584AbiKIOaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 09:30:19 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7FA3B1C9
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 06:30:15 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id v1so25989462wrt.11
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 06:30:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qCCELem9+mQDtxVmOT5L59PdtIw9jRovY2CaqHIo5Qw=;
-        b=kEFWt4r9tEMxPT+vHVBSBAKa4tLC705OoaysqJn8fCKfLh5G6/IdpgFypIijS3utvV
-         KyQsk4f/d+wHcGrp85NNgWBNl8Y/49bOu8MB2taVgPlKTZl2CEFeXkZxGjiXRIUzJbsS
-         PQ4TAHdtaqPXVAgJOGg+j2QSF08K2L/RgzRr/uvibgtGgYfLTcTRFDyrrlY9ozgPMb+L
-         TZ5tIiMkoiIbczaRI3vf0xJwFwgZY8x2pO+PI2InTlPQB0v5f5QiRFk3cbqZ45u/x5aH
-         gTpeHfqmYA6b0uFLhKmF46UvUhEd7TWt9vTL48G1pi8oqb0tYJ2sj8uSD3Q9daGCJm38
-         z5iQ==
+        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vo11uu4DSeW8ZK4DwYcDKmvR71O5Aat/tdt0OHm+WUA=;
+        b=d52SUfDTiHHWbHkxmrWzeX4EZD0PcIIoihIf+y7uCTLiwCBsDtMxQEHTDRUpAi94Po
+         WPvPgD77JWsZYKH24C6Fd2EYPtI+h0sU4/rflae/S0ObH1Ft7zpspIMiHx9gHYWW0cG1
+         m6Suob3SnMup3jLvtYxNasWZP2wSm0tklHwk2Gw4ivZDoF8lD4bCSSC1YSyAmJR91EeH
+         2QZdNqOle/Z1d15Jm+XeMk/bSlD0oaKXX9W55FIvbqKR8MhamMpUW+pQZ00sM0csXngo
+         em/OaABzCihf3fthX//h55YbLjvhNxVmNXhpF7+VVN+H3VG4Z5FUcsVsO5Uh83Edltcq
+         6/yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qCCELem9+mQDtxVmOT5L59PdtIw9jRovY2CaqHIo5Qw=;
-        b=NWvMdEQ3G4TkuEOieRLJM/Re8fAyim5C5mA1PQW11gI5G1MwSDhmKLrA7Dvsg+ZfaI
-         DY4OUM5xKSTjpbvj+WGldrwM2WJS1GAve4yXYNxtum+UPMjBomW+04y1c7hnXVZND920
-         tOCgTvUXkT93vi3aVA3xMbfVaZ/cs3/PElWreCek3W1cQz/30jPk9DRq0V+YkzdAzfdj
-         TEj5VIyLV/eo+B2vZIdBVSTIBzmWxzrSw55MvxTkupOzrdl6Zbr/UTZ/xNsrv0nHL/VT
-         AYP8mllFYpXk/bQuWMojBecIb94242rPoNOasAVkg/9ADSnTyin+wPj5OGfFuHyz8Rzk
-         cUTQ==
-X-Gm-Message-State: ACrzQf0Ncmm7sYAvQbrF54sOjKkoT5IZ5yYqtJMVqCIFjtkH9Z8k2uLq
-        9+7/snwcWX9cgC9VAD2P6LMtAQ==
-X-Google-Smtp-Source: AMsMyM4dxnW2pb7F6347nlSZY36iTIEXOoos43IkaLCDPPV/eBW8vYQhRdoiS5OHBZu2zuj/g+QXFw==
-X-Received: by 2002:a2e:888a:0:b0:277:eba:937 with SMTP id k10-20020a2e888a000000b002770eba0937mr8349365lji.207.1668004077492;
-        Wed, 09 Nov 2022 06:27:57 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id m6-20020a2e9346000000b002770d8625ffsm2184463ljh.88.2022.11.09.06.27.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 06:27:56 -0800 (PST)
-Message-ID: <df17e456-0267-4771-41e1-c986f710a368@linaro.org>
-Date:   Wed, 9 Nov 2022 15:27:55 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: clock: add QCOM SM6375 display clock
- bindings
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vo11uu4DSeW8ZK4DwYcDKmvR71O5Aat/tdt0OHm+WUA=;
+        b=SGlotniUtzt+EnQjmKwJIo0GlQB4gzzyQip2wf7HeKSmgsEEyXaBS9atJM0SBDUsqY
+         /+xRQIxUTzwMuP1Lb3et7U14DVRBEpQYayjlAIBzoAGsme9yCxN4u8F5i2dapFVU+vXF
+         YvN4f46C8bo8MZHpLdaxFQjr+rg4276P6jnf8VneoijAp4lNDk3f8wATPY5stq1r+NYu
+         eg1dS+10AgPeY+EGjDbxAjkqZ3gz8q71+Iew1oacjbP1vftXzQ7lFGRHGFIslMICS50s
+         PRKFvqfFW7ZZEdr0ppwuDGlBZzudtIIMhaG07OlrAQywUWVGkdnPIprHDeaVMTp7m1ct
+         +LJA==
+X-Gm-Message-State: ACrzQf2NoNy3Ucd6L+d8zgBwBj/fbarFZHr3EdgXF9s/dLp2GbTPowZx
+        lvHtjiPov9gYUX6sv7NL7ZHFBA==
+X-Google-Smtp-Source: AMsMyM4vAXG3tZg7uoEv6z8jskNBZ6CMB6f7jijrMtfuFlz0Yy9pooOeLdagB8aQ9SxLOfW2JriiKA==
+X-Received: by 2002:adf:f411:0:b0:234:f58a:d5f6 with SMTP id g17-20020adff411000000b00234f58ad5f6mr38578377wro.304.1668004214158;
+        Wed, 09 Nov 2022 06:30:14 -0800 (PST)
+Received: from mpfj-unity.. ([94.12.112.226])
+        by smtp.gmail.com with ESMTPSA id v18-20020adfe292000000b00228dbf15072sm13331922wri.62.2022.11.09.06.30.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Nov 2022 06:30:13 -0800 (PST)
+From:   Mark Jackson <mpfj@newflow.co.uk>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Mark Jackson <mpfj@newflow.co.uk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221109141855.52628-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109141855.52628-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: [PATCH] ARM: dts: Update Nanobone DTS
+Date:   Wed,  9 Nov 2022 14:30:03 +0000
+Message-Id: <20221109143003.81463-1-mpfj@newflow.co.uk>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 15:18, Konrad Dybcio wrote:
-> Add device tree bindings for display clock controller for
-> Qualcomm Technology Inc's SM6375 SoC.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Update Nanobone DTS file as follows:-
+- Fix GPIO settings for RTS/CTS pins on UART3 & 4
+- Enable RS485 mode for UART3 & 4
+- Enable LM75 temperature sensor
+- Fix GPIO settings for MMC pins
+- Enable USB
+---
+ arch/arm/boot/dts/am335x-nano.dts | 33 +++++++++++++++++++++++++------
+ 1 file changed, 27 insertions(+), 6 deletions(-)
 
-Cool! Welcome!
-
-> ---
->  .../bindings/clock/qcom,sm6375-dispcc.yaml    | 68 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,sm6375-dispcc.h    | 42 ++++++++++++
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm6375-dispcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
-> new file mode 100644
-> index 000000000000..4f905f0bc1d9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-Dual license, please, unless you include here some stuff which prevents it.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm6375-dispcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display Clock & Reset Controller Binding for SM6375
-
-Adjust it to match style-refactoring:
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=clk-for-6.2&id=ece3c3198182a13825a7f02844894ba6a03d58d1
-
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-> +
-> +description: |
-> +  Qualcomm display clock control module which supports the clocks, resets and
-> +  power domains on SM6375.
-
-Also here
-
-> +
-> +  See also:
-> +  - dt-bindings/clock/qcom,dispcc-sm6375.h
-
-And here
-
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm6375-dispcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: GPLL0 source from GCC
-> +      - description: Byte clock from DSI PHY
-> +      - description: Pixel clock from DSI PHY
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-
-All these look like qcom,gcc.yaml
-
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=clk-for-6.2&id=842b4ca1cb8cf547dc63cfe37342f0704454ac2f
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm6375-gcc.h>
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +
-> +    clock-controller@5f00000 {
-> +      compatible = "qcom,sm6375-dispcc";
-> +      reg = <0x05f00000 0x20000>;
-> +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +               <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-> +               <&dsi_phy 0>,
-> +               <&dsi_phy 1>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,sm6375-dispcc.h b/include/dt-bindings/clock/qcom,sm6375-dispcc.h
-> new file mode 100644
-> index 000000000000..b1de14677a61
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,sm6375-dispcc.h
-> @@ -0,0 +1,42 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual license
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/am335x-nano.dts b/arch/arm/boot/dts/am335x-nano.dts
+index b6f2567bd65a..1f613e879c53 100644
+--- a/arch/arm/boot/dts/am335x-nano.dts
++++ b/arch/arm/boot/dts/am335x-nano.dts
+@@ -120,8 +120,8 @@ AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_OUTPUT, MUX_MODE1)		/* spi0_d0.uart2_txd
+ 
+ 	uart3_pins: uart3_pins {
+ 		pinctrl-single,pins = <
+-			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_INPUT_PULLUP, MUX_MODE6)	/* lcd_data10.uart3_ctsn */
+-			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE6)		/* lcd_data11.uart3_rtsn */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_INPUT_PULLUP, MUX_MODE7)	/* lcd_data10.gpio2[16] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE7)		/* lcd_data11.gpio2[17] */
+ 			AM33XX_PADCONF(AM335X_PIN_SPI0_CS1, PIN_INPUT, MUX_MODE1)		/* spi0_cs1.uart3_rxd */
+ 			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_OUTPUT, MUX_MODE1)		/* ecap0_in_pwm0_out.uart3_txd */
+ 		>;
+@@ -129,8 +129,8 @@ AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_OUTPUT, MUX_MODE1)		/* ecap0_in
+ 
+ 	uart4_pins: uart4_pins {
+ 		pinctrl-single,pins = <
+-			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT_PULLUP, MUX_MODE6)	/* lcd_data12.uart4_ctsn */
+-			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE6)		/* lcd_data13.uart4_rtsn */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT_PULLUP, MUX_MODE7)	/* lcd_data12.gpio0[8] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE7)		/* lcd_data13.gpio0[9] */
+ 			AM33XX_PADCONF(AM335X_PIN_UART0_CTSN, PIN_INPUT, MUX_MODE1)		/* uart0_ctsn.uart4_rxd */
+ 			AM33XX_PADCONF(AM335X_PIN_UART0_RTSN, PIN_OUTPUT, MUX_MODE1)		/* uart0_rtsn.uart4_txd */
+ 		>;
+@@ -188,12 +188,22 @@ &uart3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart3_pins>;
+ 	status = "okay";
++	rts-gpio = <&gpio2 17 GPIO_ACTIVE_HIGH>;
++	rs485-rts-active-high;
++	rs485-rx-during-tx;
++	rs485-rts-delay = <1 1>;
++	linux,rs485-enabled-at-boot-time;
+ };
+ 
+ &uart4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart4_pins>;
+ 	status = "okay";
++	rts-gpio = <&gpio0 9 GPIO_ACTIVE_HIGH>;
++	rs485-rts-active-high;
++	rs485-rx-during-tx;
++	rs485-rts-delay = <1 1>;
++	linux,rs485-enabled-at-boot-time;
+ };
+ 
+ &uart5 {
+@@ -220,6 +230,12 @@ tps: tps@24 {
+ 		reg = <0x24>;
+ 	};
+ 
++	lm75@48 {
++		compatible = "lm75";
++		reg = <0x48>;
++		status = "okay";
++	};
++
+ 	eeprom@53 {
+ 		compatible = "microchip,24c02", "atmel,24c02";
+ 		reg = <0x53>;
+@@ -403,8 +419,13 @@ &mmc1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc1_pins>;
+ 	bus-width = <4>;
+-	cd-gpios = <&gpio3 8 0>;
+-	wp-gpios = <&gpio3 18 0>;
++	cd-debounce-delay-ms = <5>;
++	cd-gpios = <&gpio3 8 GPIO_ACTIVE_LOW>;
++	wp-gpios = <&gpio3 18 GPIO_ACTIVE_HIGH>;
++};
++
++&usb0 {
++	dr_mode = "host";
+ };
+ 
+ #include "tps65217.dtsi"
+-- 
+2.34.1
 
