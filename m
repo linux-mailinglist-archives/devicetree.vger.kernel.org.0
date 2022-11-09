@@ -2,214 +2,372 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4A82622BCB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 13:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7752B622BDC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 13:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbiKIMnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 07:43:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35730 "EHLO
+        id S229842AbiKIMrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 07:47:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiKIMnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 07:43:51 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D0613E3D;
-        Wed,  9 Nov 2022 04:43:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gx3ocCQeuYQ5tofVzP7HnoUiXEqrsdi3bgfO7o/mPVtMby+KTgN2BH/O2QkYQMuy+eiQAOcExp5W/eX80PsCoLJI1k6QTbrcPNXwBB7X/PEV1e9hIEjk5GxzCKVytAKsGrVmU+3ijlUc48+BxhB/IJGY+hXdwEEtfynn/VTskeyne9+EAc7uAT2DEVz5+Vqe0bLIKBZ3Derlvc56krtlN+WNXK89q3XR/1nB+C6U8HxdYiSOP9oN6oPvyH2eJezzVNEOWgVYnFfyLbWW3DISH1Qr/hDqLPMYo9iFY3dt0XW1HDZ6qIkxSBGLkfpuNiLQFLK9Ayvq+cc18iJ/ynxs3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TwoCLpVjxHy/pLOB6tNV5kXU0cpjgSH7dMTzFowmxA4=;
- b=Ex1y/nDamROs0sMwlEs771WdjUYqKbb7Ff74BQNKAOm7lq/tG12jnlC2QUZ8uZQuiRLULgQwf5IrMFoMI3mYSpjsB4mrDHuEup2Mrf+1wuivuuoREJvHJSPLQfzd6CUCX+OTbSj6EeZROZPn/rnXl6EeNtDTOk4MwGrZRHBEEXP4E+IkHaAbIYvJULao55yJwAsqHGwaexRLvSxnzibdA549h6y+GZ2akaw0NS73pGGbbhKhQLc2T1sepGUwUJSoI4b0b8lUYfEL/Vw8R4RM1RMFgEK5efFAfaVwY/rI7p8v/CplrbCxZ9bYF5fqqtr2e3uFN1zzTNuYbvxtFGYoBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TwoCLpVjxHy/pLOB6tNV5kXU0cpjgSH7dMTzFowmxA4=;
- b=FCfExtCgjBSIDw0hZya2Kx+kS0lbz7/gHuzyeWlTinI1TohbriprFsyd6QNYRQKr63QJb2niNEaixYatAMtDX+s37xcVe1+fA3Q5T9KYFKo0fSL8h0GjyszF9vlnkOXWTC7hQ0q38W8z+PWpCqrtsHVNKB0y46LcCcBFjmzp2R0=
-Received: from BL0PR12MB4898.namprd12.prod.outlook.com (2603:10b6:208:1c7::17)
- by MW5PR12MB5623.namprd12.prod.outlook.com (2603:10b6:303:199::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.26; Wed, 9 Nov
- 2022 12:43:44 +0000
-Received: from BL0PR12MB4898.namprd12.prod.outlook.com
- ([fe80::3a2:a680:d084:77dd]) by BL0PR12MB4898.namprd12.prod.outlook.com
- ([fe80::3a2:a680:d084:77dd%9]) with mapi id 15.20.5791.027; Wed, 9 Nov 2022
- 12:43:44 +0000
-From:   "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-To:     Borislav Petkov <bp@alien8.de>
-CC:     "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "rric@kernel.org" <rric@kernel.org>,
-        "james.morse@arm.com" <james.morse@arm.com>,
-        "tony.luck@intel.com" <tony.luck@intel.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH v2 0/2] edac: xilinx: Added EDAC support for Xilinx DDR
- controller
-Thread-Topic: [PATCH v2 0/2] edac: xilinx: Added EDAC support for Xilinx DDR
- controller
-Thread-Index: AQHY8nGrKXLNRFdAhU+vVz82UCbqta41ZeyAgAEdYrA=
-Date:   Wed, 9 Nov 2022 12:43:44 +0000
-Message-ID: <BL0PR12MB489847621BF41F697A1D18F9813E9@BL0PR12MB4898.namprd12.prod.outlook.com>
-References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
- <Y2qpC6sk+1Wpde9h@zn.tnic>
-In-Reply-To: <Y2qpC6sk+1Wpde9h@zn.tnic>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-11-09T12:43:42Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=ca831883-d1ca-4fc1-958b-9f5d41b1b6ec;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL0PR12MB4898:EE_|MW5PR12MB5623:EE_
-x-ms-office365-filtering-correlation-id: 6b5db035-6168-413b-bb28-08dac25009dc
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iNsoxwqCzqDe71yK7Ml7Pqd8XxC9q8W1CyeNrwqVmSQFO18xOkJm10hDRnqbc3r3nJMS1I+cpgJhBrL0aPvTwmslBMSsv+mskbPeJRMygfPvOZoi58AAZexoqwfxGZhhCWhpKexGuM3uplrVTCVzPJ7IpohSqCIs2l1U83BrihsdGeRMc/L2rLt8yZib8/nXSV/2N3YJhCvpKGRnFVB0hHvfwoe3rUJIisGeuq1d6iYde+YVD6M/AW8u/QVfDr3ibfNjT+rxSYYsPU5FkKl5z83yl8lJQpDgM4DNNiE/ELrgUQpPgCBN0imL9WYNUqDcr5aR3MMF9+3KH18v6zN9Uwm3cbaOPKoaWi8jBMRDDdXLreRp1iQHrataegIRpaWh4uWQSv3usHuAVB/aj3jefgpKNb9QulRWsCz7UoYzvYBoR5W5wZfiZRXDXB/9ityIJakW1NtSbE8psFwujaE9AWksaT3EqjSZKo4ovm+xOCD7gzsWkanyHZCmGcSxigBRq0xhi3IO4Q+dlf9zCGe5YOalSPhiCVayvc24W9SLhfW1xkOEsAP/jhQzr1gCgXNAwwhWdx0/hCjfYctI1wwnE+DTxssPlCCMeaxGOSKnaYMY2rA/GtesxCcf3CwUmlacOPamsF3Zr2+V0zoNSabas3411RI9PIdVqNshQvva/6FVw9BCiP+EoOIlZmGX+y4lgeTs0+HpePm/vCC1GWzkXgOeLF4DHeAHuFnzIr1q3fnXuPpz6x7EHB8313wyb+ha3qgK1VC+mN18M4dYrEw0XHJWLuayVHqmLgNHtjnRfoiMr4RCqGT8cIgA3z+Dxs5Ehyfh58HKe4cqJL6MLZzFDg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB4898.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39860400002)(366004)(136003)(396003)(451199015)(86362001)(33656002)(38100700002)(186003)(122000001)(38070700005)(52536014)(55016003)(45080400002)(8936002)(41300700001)(8676002)(83380400001)(966005)(54906003)(316002)(478600001)(71200400001)(76116006)(66556008)(66946007)(2906002)(6506007)(5660300002)(26005)(7416002)(66476007)(9686003)(6916009)(66446008)(53546011)(64756008)(7696005)(4326008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bvPran/+eAMDpwtyjhEM382felCD8Y/WkU9SHEVgKzhDeLB2xaRWW7DjzWUz?=
- =?us-ascii?Q?y1AmnUcmnvoV4Q60p9g3RK8CIO3QgmJNar7nHB6NeLfmr+e6qIwEl/GWgd3e?=
- =?us-ascii?Q?6oFfb+u7fxic6CCcbDVE673FGO40sPqPj1ckPDpdM6fxOmC7KjbvAwUZXN+J?=
- =?us-ascii?Q?T4fXwR5CZBrwZKu+WmG8KeaVMgSzTbwCcAELjL3L8r3eKvRfz6dTN4KkDZp6?=
- =?us-ascii?Q?iku+3JZi4JMTYr8hV9MMXn3W+Z4IXmNxwVg4XUEyp9VUm8YfZ0WSowapoRu3?=
- =?us-ascii?Q?OFWTfaXyH1eXTBcvlzPDzk/1uhhKFDu/MQmnaDBT2qpqWjIAnxUOb2T+RqzC?=
- =?us-ascii?Q?LPY/TnIhbTa4fVoDYi9bhgbRKiBCMkzbWVr5kpExJEN7LmFrRb9XDvBbMdXq?=
- =?us-ascii?Q?gjplj/tm1ZNsAozPmqCnSv1veCk7djbgRrxeQl6MA9LFEHCRU29xiPxh5+QL?=
- =?us-ascii?Q?Y0m9AJ8ShQ7R94yPCjqL6UQN1+m5mEH2Jvn/TeBpjFjN4ciTgjs5hVTjWfPf?=
- =?us-ascii?Q?cQ9qjvHYW8eNQ3Cl/Qvp4fR1TIhIswRBsNU0H0t4+lmksu0DWaqPUbMP/KQK?=
- =?us-ascii?Q?th/lsPf3CPNwHFnKICKXAmZ2Pyl2x7tVKGN9Kd/qiKJ+WBsWFAvHp/UJ6tqS?=
- =?us-ascii?Q?+HTUva8UOchgDxXA8oV3fobX48vBfvdi0GFRQsvs6dVW5RU1Qtl7mMHoNa+p?=
- =?us-ascii?Q?SQfEIDsDs+qFeu9ry2IWTnkSXJTrgXEkzpBU6UjJ3EmNfhbHqYL4pY7Ue6sG?=
- =?us-ascii?Q?YrEEGO0dx0/UZVotbeivn2Xl3xrjYEXfRbQcZKDfcyveelZlE1uIvdPcxA5t?=
- =?us-ascii?Q?IobvoKWECASvgMeGcr9jp//umuj2h0vnQNIkwF74Y3hNvwGYtuQQiMs1YIkX?=
- =?us-ascii?Q?6WJ4hfVG4yCLqzEijhHbBrAyxfOiNatNYtxyEOFeMjOAh8eYKtStEh+x5jSR?=
- =?us-ascii?Q?a7pVrc7b7Rf8PaUSLrdaKPHKuzHauuur2NBoB2G3g6F9diIjpgcnMy6gHADk?=
- =?us-ascii?Q?DAz/Hx/jOiQ6Lqimjkz2VCffbqrNm571Sg34nyjinB1Ne6mCNEsZokGOKymt?=
- =?us-ascii?Q?haPR0Ce0hI0vKQaHtyNw2XO+zME+QMZJDK+WhhaP7NHHKSK54C0+ljshcazT?=
- =?us-ascii?Q?7tHUiMNdna18IUnXPNqlna7BqEfRWbTvhVxc7j9MB9ha1UoIZkUYMRDEtQLo?=
- =?us-ascii?Q?NvB3R0Blb34PbgEA/ebV7+T0RVopcMlQ4/90eJsdsX8xKcQD8klUhWerYLI1?=
- =?us-ascii?Q?8xrfxkx+kRn2lvEkhhMaUYQ+WPyj6dm9inGgOWDL9cPbskj2R0WlPfwb46IM?=
- =?us-ascii?Q?BlgbGZV2LJrgxxFCZXllJxArtvDs6p0/9Io8CrlvjH6q6PUmnMo5FeYQfyAx?=
- =?us-ascii?Q?0rEqJlv84c5v2XqpB3G2gNxD5B8x43ISQ61F4ra/vURyQipJrhVdPLYWiDuc?=
- =?us-ascii?Q?YxR5gDidQlNNoKZ39Hf8t0wwFhVGXPccNxUcuuNQgWHbF+g9Ig6McjVj+e+r?=
- =?us-ascii?Q?nUkQnZkfxkzryPKXXlktjhr7gQ8GcctwzmOYKkHi0Kw69g5VbkV44LXqZFbk?=
- =?us-ascii?Q?bmLKU9j25PYG+8cV2xE=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229802AbiKIMrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 07:47:23 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CA22CDCE
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 04:47:21 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id a15so25580028ljb.7
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 04:47:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qaG7nxdQlrF0Gfd1lgG+gaQR/Ksch3wgDZc+ACCQybs=;
+        b=CV/6BLccRRxz1fMV6d71Hqkm81Jl7O0wkIFeIsSEJeRo/EHa+8kjYzkNNwb4zNAmUJ
+         4478NsYDUQy7czthe8MOb6jPcfE7+3Bbs6x7570GOxw9LWDFqFui/XJ6OdWsjAowYyh2
+         SeocY93xVPpWmV31+275kvGB5UU25EiyAgkcw5dRKqd1jJ+ghJifQD7thdlhVFtN1mrv
+         2a0uZLbU3632/MES59RnuEBi49aYVxnOJDbiTPX0bEvNkNw1uHet3wg/3/GQkJB99GXP
+         kp14Olq41T8FSwMc4ptvZFkH4Y85HoEoIZJFPKtoRdtC/TICmTItdpOOr3GlHw7qGaE9
+         ZjMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qaG7nxdQlrF0Gfd1lgG+gaQR/Ksch3wgDZc+ACCQybs=;
+        b=VYS+OJPHFY9Ju0qRm9GNnS1u6jyXjVmS3+dv05lBO8DHGJx/uumCoYRnSdz5xiiKPd
+         3b3odJ4bLrwyA+hgCO4kpJI2/iCcC43zUMqmzVTgbVwUmPev9T5aah8aA2mJCYDdrEl1
+         d4h408gMO0iE35gWFoWoFYVopPy1g2C9m99SpuH7JqI8T0nA6Aa6blWeCxIkVNiFlQnd
+         lGKvJe7OVdRw2IEVrAKb2VetHi82/C+QOJXxu/QprbgUOe5L3PD2OTm32gjeXWXO4/iQ
+         ZRg9kl54nIJhVhL/mmgB1PQa93E82m0QOfLYiUhKbi5O4E4aAMca1fP18IXywql8TwhY
+         12Cg==
+X-Gm-Message-State: ACrzQf2wXh4AMz1PYy14KFTNGRkRLt4DErr9J14OLSGbdcc2tge3x1Oy
+        19Oq3saGSrHUQTQXG7UCa53e5A==
+X-Google-Smtp-Source: AMsMyM6S/lmxxN+LmAUhn8rewJTmcVirJBnMPoiFJBu/8xfsWqSdmNqS+3DF5PsnXZbnW+5NTUMLxQ==
+X-Received: by 2002:a05:651c:1c3:b0:26f:a855:c415 with SMTP id d3-20020a05651c01c300b0026fa855c415mr7623181ljn.443.1667998039560;
+        Wed, 09 Nov 2022 04:47:19 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id m6-20020a0565120a8600b004b373f61a60sm2101939lfu.96.2022.11.09.04.47.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 04:47:19 -0800 (PST)
+Message-ID: <7fe94a47-83af-b362-47a5-6900a800c3cb@linaro.org>
+Date:   Wed, 9 Nov 2022 15:47:18 +0300
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4898.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b5db035-6168-413b-bb28-08dac25009dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2022 12:43:44.4666
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9vtk2/ENzIaqZ2IsyxWpab9sLEG7vNk8rv9Qvy19djEpR8ufA+No+LpIxRoB7MrIdn7a/atsnO99USZZis5Z7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR12MB5623
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 4/4] drm/msm/disp/dpu1: add color management support for
+ the crtc
+Content-Language: en-GB
+To:     Kalyan Thota <kalyant@qti.qualcomm.com>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@chromium.org" <robdclark@chromium.org>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>
+References: <1667996206-4153-1-git-send-email-quic_kalyant@quicinc.com>
+ <1667996206-4153-4-git-send-email-quic_kalyant@quicinc.com>
+ <7dedd020-179d-ba40-f97e-6560326fc421@linaro.org>
+ <BN0PR02MB81423107545EBE0D19213ACF963E9@BN0PR02MB8142.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <BN0PR02MB81423107545EBE0D19213ACF963E9@BN0PR02MB8142.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[AMD Official Use Only - General]
+On 09/11/2022 15:39, Kalyan Thota wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Sent: Wednesday, November 9, 2022 6:02 PM
+>> To: Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>; dri-
+>> devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
+>> freedreno@lists.freedesktop.org; devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org; robdclark@chromium.org;
+>> dianders@chromium.org; swboyd@chromium.org; Vinod Polimera (QUIC)
+>> <quic_vpolimer@quicinc.com>; Abhinav Kumar (QUIC)
+>> <quic_abhinavk@quicinc.com>
+>> Subject: Re: [PATCH 4/4] drm/msm/disp/dpu1: add color management support
+>> for the crtc
+>>
+>> WARNING: This email originated from outside of Qualcomm. Please be wary of
+>> any links or attachments, and do not enable macros.
+>>
+>> On 09/11/2022 15:16, Kalyan Thota wrote:
+>>> Add color management support for the crtc provided there are enough
+>>> dspps that can be allocated from the catalogue
+>>>
+>>> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+>>> ---
+>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 15 ++++++--
+>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  6 ++++
+>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 11 +++---
+>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 53
+>> +++++++++++++++++++++++++++++
+>>>    4 files changed, 77 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+>>> index 4170fbe..6bd3a64 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+>>> @@ -18,9 +18,11 @@
+>>>    #include <drm/drm_flip_work.h>
+>>>    #include <drm/drm_framebuffer.h>
+>>>    #include <drm/drm_mode.h>
+>>> +#include <drm/drm_mode_object.h>
+>>>    #include <drm/drm_probe_helper.h>
+>>>    #include <drm/drm_rect.h>
+>>>    #include <drm/drm_vblank.h>
+>>> +#include "../../../drm_crtc_internal.h"
+>>
+>> If it's internal, it is not supposed to be used by other parties, including the msm
+>> drm. At least a comment why you are including this file would be helpful.
+>>
+> This header file was included to make use of " drm_mode_obj_find_prop_id" function from DRM framework.
+> Should I add a comment near function definition ?
 
+No, it would have been better to add a comment near the #include 
+directive. However if this is the only user, you don't need it at all. 
+You see, you know whether the CRTC has color management propreties at 
+the time of creation. And this can not change. So, you just add a 
+boolean to dpu_crtc (or dpu_crtc_state, whichever suits better).
 
+>>>
+>>>    #include "dpu_kms.h"
+>>>    #include "dpu_hw_lm.h"
+>>> @@ -553,6 +555,17 @@ static void _dpu_crtc_complete_flip(struct drm_crtc
+>> *crtc)
+>>>        spin_unlock_irqrestore(&dev->event_lock, flags);
+>>>    }
+>>>
+>>> +bool dpu_crtc_has_color_enabled(struct drm_crtc *crtc) {
+>>> +     u32 ctm_id = crtc->dev->mode_config.ctm_property->base.id;
+>>> +     u32 gamma_id = crtc->dev->mode_config.gamma_lut_property->base.id;
+>>> +     u32 degamma_id =
+>>> +crtc->dev->mode_config.degamma_lut_property->base.id;
+>>> +
+>>> +     return !!(drm_mode_obj_find_prop_id(&crtc->base, ctm_id) ||
+>>> +                drm_mode_obj_find_prop_id(&crtc->base, gamma_id) ||
+>>> +                drm_mode_obj_find_prop_id(&crtc->base, degamma_id));
+>>> +}
+>>> +
+>>>    enum dpu_intf_mode dpu_crtc_get_intf_mode(struct drm_crtc *crtc)
+>>>    {
+>>>        struct drm_encoder *encoder;
+>>> @@ -1604,8 +1617,6 @@ struct drm_crtc *dpu_crtc_init(struct drm_device
+>>> *dev, struct drm_plane *plane,
+>>>
+>>>        drm_crtc_helper_add(crtc, &dpu_crtc_helper_funcs);
+>>>
+>>> -     drm_crtc_enable_color_mgmt(crtc, 0, true, 0);
+>>> -
+>>>        /* save user friendly CRTC name for later */
+>>>        snprintf(dpu_crtc->name, DPU_CRTC_NAME_SIZE, "crtc%u",
+>>> crtc->base.id);
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+>>> index 539b68b..8bac395 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
+>>> @@ -300,4 +300,10 @@ static inline enum dpu_crtc_client_type
+>> dpu_crtc_get_client_type(
+>>>        return crtc && crtc->state ? RT_CLIENT : NRT_CLIENT;
+>>>    }
+>>>
+>>> +/**
+>>> + * dpu_crtc_has_color_enabled - check if the crtc has color
+>>> +management enabled
+>>> + * @crtc: Pointer to drm crtc object
+>>> + */
+>>> +bool dpu_crtc_has_color_enabled(struct drm_crtc *crtc);
+>>> +
+>>>    #endif /* _DPU_CRTC_H_ */
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>> index 4c56a16..ebc3f25 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>> @@ -545,7 +545,8 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder
+>> *drm_enc)
+>>>    static struct msm_display_topology dpu_encoder_get_topology(
+>>>                        struct dpu_encoder_virt *dpu_enc,
+>>>                        struct dpu_kms *dpu_kms,
+>>> -                     struct drm_display_mode *mode)
+>>> +                     struct drm_display_mode *mode,
+>>> +                     struct drm_crtc *crtc)
+>>>    {
+>>>        struct msm_display_topology topology = {0};
+>>>        int i, intf_count = 0;
+>>> @@ -573,11 +574,9 @@ static struct msm_display_topology
+>> dpu_encoder_get_topology(
+>>>        else
+>>>                topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT)
+>>> ? 2 : 1;
+>>>
+>>> -     if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
+>>> -             if (dpu_kms->catalog->dspp &&
+>>> -                     (dpu_kms->catalog->dspp_count >= topology.num_lm))
+>>> +     if (dpu_crtc_has_color_enabled(crtc) &&
+>>> +             (dpu_kms->catalog->dspp_count >= topology.num_lm))
+>>
+>> See the comment to the previous patch. It still applies here.
+>>
+>>>                        topology.num_dspp = topology.num_lm;
+>>> -     }
+>>>
+>>>        topology.num_enc = 0;
+>>>        topology.num_intf = intf_count;
+>>> @@ -643,7 +642,7 @@ static int dpu_encoder_virt_atomic_check(
+>>>                }
+>>>        }
+>>>
+>>> -     topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
+>>> +     topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode,
+>>> + crtc_state->crtc);
+>>>
+>>>        /* Reserve dynamic resources now. */
+>>>        if (!ret) {
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>> index 552a89c..47a73fa 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>> @@ -13,6 +13,7 @@
+>>>    #include <linux/dma-buf.h>
+>>>    #include <linux/of_irq.h>
+>>>    #include <linux/pm_opp.h>
+>>> +#include <linux/bitops.h>
+>>>
+>>>    #include <drm/drm_crtc.h>
+>>>    #include <drm/drm_file.h>
+>>> @@ -537,6 +538,44 @@ static void dpu_kms_wait_flush(struct msm_kms
+>> *kms, unsigned crtc_mask)
+>>>                dpu_kms_wait_for_commit_done(kms, crtc);
+>>>    }
+>>>
+>>> +/**
+>>> + * _dpu_kms_possible_dspps - Evaluate how many dspps pairs can be
+>> facilitated
+>>> +                             to enable color features for crtcs.
+>>> + * @dpu_kms:    Pointer to dpu kms structure
+>>> + * Returns:     count of dspp pairs
+>>> + *
+>>> + * Baring single entry, if atleast 2 dspps are available in the
+>>> +catalogue,
+>>> + * then color can be enabled for that crtc  */ static inline u32
+>>> +_dpu_kms_possible_dspps(struct dpu_kms *dpu_kms) {
+>>> +
+>>> +     u32 num_dspps = dpu_kms->catalog->dspp_count;
+>>> +
+>>> +     if (num_dspps > 1)
+>>> +             num_dspps =
+>>> +                     !(num_dspps % 2) ? num_dspps / 2 : (num_dspps -
+>>> + 1) / 2;
+>>
+>> Ugh. No. Please spell this clearly rather than using nice math and ternary
+>> operators:
+>>
+>> if (num_dspps <= 1)
+>>    return num_dspps;
+>> else
+>>    return num_dspps / 2;
+>>
+>> You see, if num_dspps %2 ! =0, then num_dspps / 2 == (num_dspps_2 - 1) / 2.
+>>
+>>
+>>> +
+>>> +     return num_dspps;
+>>> +}
+>>> +
+>>> +static u32 _dpu_kms_attach_color(struct drm_device *dev, u32 enc_mask,
+>>> +                                             u32 num_dspps) {
+>>> +     struct drm_encoder *encoder;
+>>> +     struct drm_crtc *crtc;
+>>> +
+>>> +     drm_for_each_encoder_mask(encoder, dev, enc_mask) {
+>>> +             crtc = drm_crtc_from_index(dev, ffs(encoder->possible_crtcs) - 1);
+>>> +             if (num_dspps && crtc) {
+>>> +                     drm_crtc_enable_color_mgmt(crtc, 0, true, 0);
+>>> +                     num_dspps--;
+>>
+>> Please.  You can do this at the time you create the crtc. It would be much simpler.
+>>
+>>> +             }
+>>> +     }
+>>> +
+>>> +     return num_dspps;
+>>> +}
+>>> +
+>>>    static int _dpu_kms_initialize_dsi(struct drm_device *dev,
+>>>                                    struct msm_drm_private *priv,
+>>>                                    struct dpu_kms *dpu_kms) @@ -747,6
+>>> +786,8 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms *dpu_kms)
+>>>
+>>>        int primary_planes_idx = 0, cursor_planes_idx = 0, i, ret;
+>>>        int max_crtc_count;
+>>> +     u32 num_dspps, primary_enc_mask = 0, external_enc_mask = 0;
+>>> +
+>>>        dev = dpu_kms->dev;
+>>>        priv = dev->dev_private;
+>>>        catalog = dpu_kms->catalog;
+>>> @@ -796,6 +837,7 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms
+>> *dpu_kms)
+>>>        }
+>>>
+>>>        max_crtc_count = min(max_crtc_count, primary_planes_idx);
+>>> +     num_dspps = _dpu_kms_possible_dspps(dpu_kms);
+>>>
+>>>        /* Create one CRTC per encoder */
+>>>        encoder = list_first_entry(&(dev)->mode_config.encoder_list,
+>>> @@ -808,9 +850,20 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms
+>> *dpu_kms)
+>>>                }
+>>>                priv->crtcs[priv->num_crtcs++] = crtc;
+>>>                encoder->possible_crtcs = 1 << drm_crtc_index(crtc);
+>>> +
+>>> +             if (!dpu_encoder_is_external(encoder) &&
+>>> +                     !dpu_encoder_is_virtual(encoder))
+>>
+>> if (dpu_encoder_internal_output(encoder))
+>>
+>>> +                     primary_enc_mask |= drm_encoder_mask(encoder);
+>>> +             else if (dpu_encoder_is_external(encoder))
+>>> +                     external_enc_mask |= drm_encoder_mask(encoder);
+>>> +
+>>>                encoder = list_next_entry(encoder, head);
+>>>        }
+>>>
+>>> +     /* Prefer Primary encoders in registering for color support */
+>>> +     num_dspps = _dpu_kms_attach_color(dev, primary_enc_mask,
+>> num_dspps);
+>>> +     num_dspps = _dpu_kms_attach_color(dev, external_enc_mask,
+>>> + num_dspps);
+>>> +
+>>>        return 0;
+>>>    }
+>>>
+>>
+>> --
+>> With best wishes
+>> Dmitry
+> 
 
-> -----Original Message-----
-> From: Borislav Petkov <bp@alien8.de>
-> Sent: Wednesday, November 9, 2022 12:38 AM
-> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>
-> Cc: linux-edac@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>;
-> devicetree@vger.kernel.org; michal.simek@xilinx.com; rric@kernel.org;
-> james.morse@arm.com; tony.luck@intel.com; mchehab@kernel.org;
-> robh+dt@kernel.org; krzysztof.kozlowski@linaro.org
-> Subject: Re: [PATCH v2 0/2] edac: xilinx: Added EDAC support for Xilinx D=
-DR
-> controller
->=20
-> Caution: This message originated from an External Source. Use proper
-> caution when opening attachments, clicking links, or responding.
->=20
->=20
-> On Mon, Nov 07, 2022 at 11:54:11AM +0530, Shubhrajyoti Datta wrote:
-> >
-> > The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and
-> > LPDDR4/4X memory interfaces. It has four programmable NoC interface
-> > ports and is designed to handle multiple streams of traffic.
-> >
-> > Optional external interface reliability include ECC error
-> > detection/correction and command address parity.
-> >
-> > Adding edac support for DDR Memory controller.
->=20
-> Same question as in
->=20
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flore.
-> kernel.org%2Fr%2FY2qiRoiYepte%2FR4W%40zn.tnic&amp;data=3D05%7C01%7
-> Cshubhrajyoti.datta%40amd.com%7C5caa7f12a7ca4ede4b5e08dac1bc8ea7%
-> 7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C638035312878146800
-> %7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL
-> CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3D3%2B4
-> KXoDza2kloKAWI27LT5VvZqQ5DQQMJm91s%2F5%2FrtQ%3D&amp;reserved
-> =3D0
->=20
-> How many memory controllers are there in Xilinx boards and how many
-> EDAC drivers can potentially be needed to run in parallel?
+-- 
+With best wishes
+Dmitry
 
-
-Platform	| Drivers / Controllers	|
-------------------------------------------------------------=20
- ZynqMP	| Synopsys and OCM	|
-Versal		| DDRMC and OCM	|
-
-
->=20
-> Also, this is an integrated memory controller, ZynqMP OCM is a on-chip
-> controller. Can we have a single xilinx_edac driver which contains suppor=
-t for
-> both memory controller types or are they completely different?
-
-This patch series is for Xilinx Versal platform targeting DDR Memory contro=
-ller.
-
-As they are two different memory controllers (DDRMC and OCM) on different p=
-latforms (Versal and ZynqMP),=20
-so we cannot have a single driver.
-
->=20
-> Thx.
->=20
-> --
-> Regards/Gruss,
->     Boris.
->=20
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpeo
-> ple.kernel.org%2Ftglx%2Fnotes-about-
-> netiquette&amp;data=3D05%7C01%7Cshubhrajyoti.datta%40amd.com%7C5caa
-> 7f12a7ca4ede4b5e08dac1bc8ea7%7C3dd8961fe4884e608e11a82d994e183d%
-> 7C0%7C0%7C638035312878146800%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C300
-> 0%7C%7C%7C&amp;sdata=3DJjvQZVXXAfJPS5tOj87QYzUdFhqzuZ3pO9Q%2BkQ
-> 2IhTU%3D&amp;reserved=3D0
