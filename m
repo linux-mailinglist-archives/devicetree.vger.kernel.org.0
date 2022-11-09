@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 050726225B2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0496225B7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbiKIIpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:45:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
+        id S229982AbiKIIqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:46:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbiKIIpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:45:11 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409A7B55
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:45:07 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id c25so24677261ljr.8
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:45:07 -0800 (PST)
+        with ESMTP id S229952AbiKIIqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:46:31 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E61AFD5
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:46:30 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id h12so24677245ljg.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:46:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qYSVJugP5QBp88lbE8APYh0ugN8Lxwkbgsw4dUaxQJU=;
-        b=DmeBxsBRljAtTGdjJ/IQOkSJOIUISplSTx8rNifCQCGJhmdVBw4CtKsZVb9NIt+Qgf
-         1WaQZGAJnpd72MR0fy682pU42548jgyAM29DV0rHFNUaugHqS3GIZ4WlSgaHXxZH74JK
-         m+81LXzTGn6aAJcIHo2lC7Y3aDp0XyLTGOCtyY+rMBMaGA4Hkaa3yr6fbq72yAzlQs5g
-         HpYlOxI6wpwyR1AKrFL0SSnd+n94UUxQA3OiOMVD+TY1Ji36c68Z6izPpRsKLUVLpL/I
-         hDWH9tgwiHMHO2vcWO70jWNqT5EcVW0nfL2KX64f2dGRJoxZ8u/6Ib8LGUA+iy/keZCR
-         r91Q==
+        bh=nfRa70L7g0nxe8P0BclrazZWpKjrPweL5zf7N3oG2m4=;
+        b=IUY3VD9UK53+OdkIAp16Q6OthrEIBlaCwIS+04/+wqYsufoykWa7ec+XrK0zWZKOLa
+         9Xzj6/zUaGWLu70p+rtSjKWSbi/bwzoMKcO5hMjsnxm2lMp9viboE46t5XqiqmDkBSDJ
+         TX8RdQJKRJ76ggcJk1xc2zFytuyQPXFj6EnpPfWXt2ABSWEUv3gNt+uJQOy97TjkvrU5
+         WeriNZP5okt8MvUGbEyfjT3OZDULrDbRymmqFLkZ1yoCs/gEmG5pdEm3LWFFH4o2FYsK
+         pM50Z+BTo3pPTPnsYb1HvboYRnljbO0UhVIvdG8YTlUwLskYwJ3D54BTgBKfmN/3NEGQ
+         226A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qYSVJugP5QBp88lbE8APYh0ugN8Lxwkbgsw4dUaxQJU=;
-        b=1VHvK4esxKfEByIfcg3siSpyhVzrZbjHZ1mvW3ysOckqrCdLlI2P3oBl7Og8cnTPsV
-         dcLSGTt38ORhV6rIs0RWGCOK7BJpqtT03sb7bKYIHjGLVbut+JWGQ/fVmR/aSLS1LQOZ
-         E2/hvmRM+NBFOvemF3buaErkWD5zZ4tqSTTqR3mdeIANofT7nYSYeSGWw4wx8QiN/nb+
-         L6LpBKkeY5FCT2acI3Q5ATUeWYAbGPN6lGmNSRUkAD0G85QhvQNcTFzaCUAMg3Z7Has/
-         3To0d2A1RI862lbN+o6rPxwjQz/iJHS98q07Ao81J65NmyMMWOBRYgCaZ4pN9M+POP9/
-         XA7g==
-X-Gm-Message-State: ACrzQf2VL8/e2kHa6bRX4sZ3tGCKx02ltkNQkDz45KIYNpymMr9LZm58
-        LqfzKiQ/1BAET/LLgDJ4hLwtFw==
-X-Google-Smtp-Source: AMsMyM7hsRmgRw/0ffw5lBc7tsZ5Jo7edKvW74ztO8PWhiUFChbrr51vyexJmUSEuY21Fz7BdeYnOA==
-X-Received: by 2002:a2e:8884:0:b0:277:693c:83b with SMTP id k4-20020a2e8884000000b00277693c083bmr13414854lji.68.1667983505632;
-        Wed, 09 Nov 2022 00:45:05 -0800 (PST)
+        bh=nfRa70L7g0nxe8P0BclrazZWpKjrPweL5zf7N3oG2m4=;
+        b=f6AADt0VvsW87fa2giapUL4Nm+kCrHCAlZ9sZtpWG/uFAoqBqNU7ko5LVZXGiKgAev
+         J07n/Xc4HFXn9W3FFeHxQctu+xwGIHqYwAPrO/Q7/f9fH8H6fn91+AMHdO7qE6kP1KyI
+         6qcOQ8lPtHzRiEObtkUIElz7SV4GjUPtWFXJ4XabS6lJvRjnE08kH3RIv0D5exueywjm
+         tL90iyne5kq+0C8/RAnn+kFRxlK4rMqznsu48xWXgMLn2CvjdbaD/5R3PBGPBgL4oQiL
+         8OnqOB+uZIvUSKYhvneqXsm25JUaLjQ+25GOBPvy5ErrnKg5pDUDFQhdsKG3ZAHVeTvI
+         B7IQ==
+X-Gm-Message-State: ACrzQf1t1yChO8hKUX7iVyOvnnjtZIRJL1/itKGjxmlBd4wpdJtu7Nbs
+        9VHt7K/iT24Y1jiuqU6S5sBAHg==
+X-Google-Smtp-Source: AMsMyM6fnwCEY5y06IZIpi9DtTIMT7zAe2zw95FGw/UKN9dOcLrqH4A5BEisW1ztQojxGaa3aHSzgA==
+X-Received: by 2002:a2e:92c6:0:b0:277:3ca2:dac6 with SMTP id k6-20020a2e92c6000000b002773ca2dac6mr7337738ljh.143.1667983588862;
+        Wed, 09 Nov 2022 00:46:28 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id p8-20020a2eb988000000b0026dee5476d5sm2074143ljp.113.2022.11.09.00.45.04
+        by smtp.gmail.com with ESMTPSA id d1-20020a2eb041000000b0026a92616cd2sm2026488ljl.35.2022.11.09.00.46.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 00:45:04 -0800 (PST)
-Message-ID: <57f6dfef-5551-d186-4b0c-f4324f6c3350@linaro.org>
-Date:   Wed, 9 Nov 2022 09:45:03 +0100
+        Wed, 09 Nov 2022 00:46:28 -0800 (PST)
+Message-ID: <371d8427-b854-a39b-9d20-6c55018f670f@linaro.org>
+Date:   Wed, 9 Nov 2022 09:46:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v5 3/3] dt-bindings: imx6q-pcie: Handle more resets on
- legacy platforms
+Subject: Re: [PATCH v3 1/7] Documentation: tps6594x: Add DT bindings for the
+ TPS6594x PMIC
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20221109002449.35936-1-marex@denx.de>
- <20221109002449.35936-3-marex@denx.de>
+To:     Matt Ranostay <mranostay@ti.com>, brgl@bgdev.pl, lee@kernel.org,
+        linus.walleij@linaro.org, kristo@kernel.org,
+        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, vigneshr@ti.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20221109065546.24912-1-mranostay@ti.com>
+ <20221109065546.24912-2-mranostay@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109002449.35936-3-marex@denx.de>
+In-Reply-To: <20221109065546.24912-2-mranostay@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,16 +78,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 01:24, Marek Vasut wrote:
-> The i.MX6 and i.MX7D does not use block controller to toggle PCIe
-> reset, hence the PCIe DT description contains three reset entries
-> on these older SoCs. Add this exception into the binding document.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On 09/11/2022 07:55, Matt Ranostay wrote:
+
+Missing commit msg.
+
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 > ---
+>  .../devicetree/bindings/mfd/ti,tps6594x.yaml  | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594x.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594x.yaml
+> new file mode 100644
+> index 000000000000..be87f0037bf9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594x.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,tps6594x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TPS6594x Power Management Integrated Circuit (PMIC)
+> +
+> +maintainers:
+> +  - Keerthy <j-keerthy@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    contains:
 
+Drop contains.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +      enum:
+> +        - ti,tps6594x
+
+No wildcards in compatibles.
+
+> +
+> +  reg:
+> +    const: 0x48
+> +    description: I2C slave address
+
+Drop description.
+
+> +
+> +  ti,system-power-controller:
+> +    type: boolean
+> +    description: PMIC is controlling the system power.
+> +
+> +  rtc:
+> +    type: object
+> +    $ref: /schemas/rtc/rtc.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: ti,tps6594x-rtc
+
+No wildcards in compatibles.
+
+> +
+> +  gpio:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: ti,tps6594x-gpio
+
+No wildcards in compatibles.
+
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+
+> +...
 
 Best regards,
 Krzysztof
