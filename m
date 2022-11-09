@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BC8622615
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEED622618
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:01:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229705AbiKIJBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:01:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
+        id S230177AbiKIJBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:01:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbiKIJB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:01:28 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7161DA76
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:01:27 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id g7so24717623lfv.5
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:01:27 -0800 (PST)
+        with ESMTP id S230171AbiKIJBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:01:33 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7F01E3D5
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:01:31 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id t10so24831653ljj.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:01:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1a1mOukpjZMpytvxM2kXqldwAWWniF6ta8Ydmp7QzLw=;
-        b=IZgM1hh+z0BQ2E3Fqj0VA1ZHvbGxq520EA2WHINZwRQLlqpXD2kX13+/82sX9lFzIW
-         WnXNDmanTYda/Rh0cmt0OrQjkzjhDoC1WLXpXn7mJvQzUU1C0KEe3rztFGKSEle0o5nW
-         03VLg4Wb6MA8D2033+D6r0yIkMD5qMFrgxyWryNux5McAIoe+HgRPlpG/c96N0sfXSxu
-         veTEPxDuDdb1srPLPWdhg86cXdcc1oFXb4KvjsYIZTL2vOsQsFcpIlhap/GdRfSNnL/v
-         QgdnjS/ZxEdqRENARJAUOqLjPuFm6qXdsWW77N/wzjPnS/1vc/A5i3r9MJZj8L5Ywuc6
-         1jrw==
+        bh=koi87UBrY+4VbIvBhOaMl54U0jWmVKM7mhP4eLxgcCM=;
+        b=pYyHtrWUHIUnG+wcIiuyl8Eb4xpHSKWAbbm2UUGW+KAXP1NEZ5VG6w+KCCeVZDMvA6
+         xG0Afks2KDaRV8ZceEPEFN2cR6hlLiyqaBnfwVmfNfAm0mqPCqTf16Bui1CL0AzeI/jl
+         UJrBkDY3mWGCs41//YNt9kXSV1nlSqVf/qU/d1xdI3CDV5Ysz6Ns/LQ2zTF+LAm4cAD3
+         /Kt6hF2qRXx8UuklDBKOVfGgBSUX5aTqm6iE338qmimwzVn3HSyK4MyERUePThBrL95T
+         RSBHm+AvgOeYlCqvCQSudofFWbQfRZ71UE4pZnExgvX9GUlfeqJeBP/uT6sz1rRTtfKh
+         iMJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1a1mOukpjZMpytvxM2kXqldwAWWniF6ta8Ydmp7QzLw=;
-        b=QgoQ3xH9an5GA9lZIgWpHVYw2F7uK+UbM0hxj7LKu9/w7FNKOIvKFhtDAiA79oZmCr
-         JUqeg5UtidDQ1Hwdp1t7Uz88o7u2l7yaWtHKPI5WiHIqYJHmI+mseVT42XJmGIEtr13p
-         ILrRHVcTn1MX2zfgJ5PiCKtOI/KGj5VS+7Fo7tqpteHnqWWR1FD/N8hVVd/AXFPkqBcK
-         2m/2yb0FEcK7Pf9KGExr+e9aTbdYHsaJJlxsCJkCLWV44P+IcgjYt1kGjfmX0E3WuAzj
-         /XAWzwxArvnj8eQZ6/Fy4bskYdzS0aKvJJddKf0wYVwc7oaMyf23PDzX+y6diygKGlaD
-         gA6g==
-X-Gm-Message-State: ANoB5pm8/RlihyPQyFPsNqq5RNVfZhBcdxE3h63J1EWcTEbocp8CWJC8
-        +aDghA7XtcEofQlswnkjRh7wtw==
-X-Google-Smtp-Source: AA0mqf4uoEqA8KNrUAFsRkFyLE2gNKVscNyuAqOjd26cEx666TZUqZQVuCN/Il0PGwxsYSAE3hgL4w==
-X-Received: by 2002:a05:6512:2187:b0:4b3:cf9f:c20 with SMTP id b7-20020a056512218700b004b3cf9f0c20mr4281038lft.3.1667984485925;
-        Wed, 09 Nov 2022 01:01:25 -0800 (PST)
+        bh=koi87UBrY+4VbIvBhOaMl54U0jWmVKM7mhP4eLxgcCM=;
+        b=VyfXb0QUnf6cWY8SDLd9nk7DNpmBVXavIRzY4hYxbPp81Vr4LxglXTbo81/PSZikEH
+         VB+KbpbAtKVpo/J+dsOWzfsr38iTqisKEjAFgQ1notv8x/WXNHKwdbdP+3Lb1Bl866Q9
+         zNjNWX2Cy45k3JM/NEyxmH+mMYFfdLPL5Gn1l7yJZ3XjCkLaDghX4ObiV3VXhwk0uiFJ
+         jJ8zosEMejY8ssHSIt1kDxjqf1FbwFsEVc8aJN++zelAJFjs6mtq9PbuiHg1eE1IwdFs
+         h+SjM6Qssk1p0zJcXCZLN0BkYUCXZhDKlM12G5VcrB/JL0ChLb/9ziBzyjNJrscG3Nrh
+         0fTQ==
+X-Gm-Message-State: ACrzQf3Qdbazzq3Ev8finX8698PQA0hYL0/yVtCazuBJ0thZ7rRJv1GJ
+        7tgnCAt9rShVg0kSNpMNqnlAUA==
+X-Google-Smtp-Source: AMsMyM68gD6nF6Ys++aTB+8/odStmcWWdBR+jCLTj5ELwjEBJoftvdDjO2Ka2/JTTfzis+5UjDtBQg==
+X-Received: by 2002:a2e:9a88:0:b0:26f:c489:883e with SMTP id p8-20020a2e9a88000000b0026fc489883emr7498644lji.281.1667984489818;
+        Wed, 09 Nov 2022 01:01:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id f18-20020a2ea0d2000000b0027776efa48csm2045155ljm.91.2022.11.09.01.01.24
+        by smtp.gmail.com with ESMTPSA id b2-20020a05651c032200b0026bf43a4d72sm2062535ljp.115.2022.11.09.01.01.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 01:01:25 -0800 (PST)
-Message-ID: <10f47cb6-3632-dd1e-23a3-86c4fd5d62c8@linaro.org>
-Date:   Wed, 9 Nov 2022 10:01:24 +0100
+        Wed, 09 Nov 2022 01:01:29 -0800 (PST)
+Message-ID: <5741e444-00b3-16f6-d012-f2b77cf8b0b2@linaro.org>
+Date:   Wed, 9 Nov 2022 10:01:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [Patch v2 3/3] arm: dts: exynos: Rename compatible string
- property from version to SoC specific
+Subject: Re: [Patch v2 1/3] arm: exynos: Add new compatible string for
+ Exynos3250 SoC.
 Content-Language: en-US
 To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
         linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
@@ -69,16 +69,16 @@ Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
         robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
         alim.akhtar@samsung.com, aswani.reddy@samsung.com,
         pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <20221109035507.69086-1-aakarsh.jain@samsung.com>
- <CGME20221109034811epcas5p4ecd94497380c5342258fc1dac7f99956@epcas5p4.samsung.com>
- <20221109035507.69086-3-aakarsh.jain@samsung.com>
+References: <CGME20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8@epcas5p2.samsung.com>
+ <20221109035507.69086-1-aakarsh.jain@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109035507.69086-3-aakarsh.jain@samsung.com>
+In-Reply-To: <20221109035507.69086-1-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,33 +86,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/11/2022 04:55, Aakarsh Jain wrote:
-> commit "752d3a23d1f68de87e3c" which adds MFC codec device node
-> for exynos3250 SoC. Since exynos3250.dtsi and exynos5420.dtsi are
-> using same compatible string as "samsung,mfc-v7" but their
-> node properties are different.As both SoCs have MFC v7 hardware
-> module but with different clock hierarchy and complexity.
-> So renaming compatible string from version specific to SoC based.
+> Since,MFC v7 support was added for Exynos5420 and Exynos
+> 3250 SoC with same compatible string "samsung,mfc-v7".As
+> both SoCs having different hardware properties and having
+> same compatible string for both SoCs doesn't seems to be correct.
+> New compatible is added for Exynos3250 SOC which will
+> differentiate the node properties for both SoCs which
+> support MFC v7.
 > 
 > Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 > Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
 > Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/media/s5p-mfc.txt | 9 +++++----
 
 Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-> ---
->  arch/arm/boot/dts/exynos3250.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-> index 326b9e0ed8d3..98105c64f7d9 100644
-> --- a/arch/arm/boot/dts/exynos3250.dtsi
-> +++ b/arch/arm/boot/dts/exynos3250.dtsi
-> @@ -485,7 +485,7 @@
->  		};
->  
->  		mfc: codec@13400000 {
-> -			compatible = "samsung,mfc-v7";
-> +			compatible = "samsung,exynos3250-mfc";
 
 This is a friendly reminder during the review process.
 
@@ -123,7 +111,6 @@ requested changes or keep discussing them.
 
 Thank you.
 
-Best regards,
 Best regards,
 Krzysztof
 
