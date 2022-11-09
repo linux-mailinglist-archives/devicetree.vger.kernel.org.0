@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EB63622596
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E246225A6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbiKIIiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:38:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
+        id S230022AbiKIIlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:41:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiKIIiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:38:17 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F26913E2D
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:38:16 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id q9so44895668ejd.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:38:16 -0800 (PST)
+        with ESMTP id S229982AbiKIIlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:41:18 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C6B17ABC
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:41:16 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id f27so44798694eje.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:41:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0zbHYyI3ZOuc2iT4mRqGhJVf4w/uy1L6RiWzNixdzw=;
-        b=QrtU63vqfuqIUrQ3kqQMZWDy6vEsvVjHcjlVfUpLrx71617/qp3+ZFH8CMJSjf68RY
-         +RjQ58WQwSFw0FwaLRDMYCnnUNRozzE1/YVI4NobW/pkJwjJrMZQUTeYGBYzcotESyh5
-         Ca08RMViWNc+ira8id0Qjg8IFx0Wt0Dr57vyJg+7TnxtJT+pRkAxFZ2FlfGCgH7M8ZlU
-         ZqnjqMfpGNIudoOGIWluVanbb0krGGvBJjacfqUWHAdhQZinTFyWsu55WLCWb5QTOQ4t
-         RscWB9DKYT8v1QIgs6rT63do3pmbdmfk6+Kpc3Dn4RZWK5wrAkFAdE1L6jq5rmAtS2Ra
-         3Utg==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aD7P+b1uJUWmfha0UC290WbFB/lsLxBpOULEsetw2oY=;
+        b=Wn17EPbLbvZsY5ILrWq0J+sZeBPdyBQs/4D+UZ+7nTpCWqN8Un+9B8xFnza+Aqbw5z
+         nhf9NOhO7ojI4ojvp8zAOouAvJE5vgU/NLvIvSxdA3bn8Fe4cTZXxgEs7uOUjU26rQgK
+         KjtH4YvLA/C/c0MMGxagw+vTPl7ptmwRE1jGgzlEQRW7hPpJXswRpM1WGJmMXWtampCB
+         JMNTWcB0VTdBgsE4WbG6hX7DlylHAFx0z2py/oqCG0pVpqFGlx0Y+Ty58RdmFqIX4NU3
+         3FjTjxjejf1hXJZuN6SY1aAh7zzdqBSf5x6FubRfG02AuwKZb+xxv2iz3LhBpPYyEAo3
+         tqZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d0zbHYyI3ZOuc2iT4mRqGhJVf4w/uy1L6RiWzNixdzw=;
-        b=4xWRoiJ6Jfn7FHvNIQog+fSMXIWdizsKLE0We+oCEBKgi4QH1rf63+g+LBHRj0BQTF
-         fRiydmSAt2MJeKp2hSfccADtFV7BURcjuZAU5s3rRl+szY4+PgcWXOFtlT0eyVy0TFlJ
-         diJhVIcQc7iR742MgS1rnhUn+VeeuS+gB1A0y/HdfVcbLsTCLhZfZeXtE9BKeeaa0VeC
-         18MmKtIIFOvUFqVTtWQ5PJBtVOy3R50omT4fRnNoocr9UTOpNOsMTb9Gbf/1Ps6MQOqU
-         4wgUG0npJn340BZ2EQzhh7tpeCQRnyq8YgyH0cyM3aVfxPicJEL97llWXiX9yVLPVitq
-         OQiw==
-X-Gm-Message-State: ACrzQf0OUa+iY11wKDpD9UfvQRu+qvRupCIIufjGfTx2y3Ja0ORmBWPq
-        yYjxzf4ngc/snUf8qkFw+XD18fpbaH68b5EK7MvufA==
-X-Google-Smtp-Source: AMsMyM791qMulyNHY+wAqFSetNq8SvPUdo/dK2HW5kOtjxO8R3MbKqGDnl96Qe5xE0gDRsx6zbRmaL1YlM970Fgq/bI=
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aD7P+b1uJUWmfha0UC290WbFB/lsLxBpOULEsetw2oY=;
+        b=IJ+9i+Xjevk3tsEjV/wgylc3ueFEBS5/GOSa6NtBHTPd7+8EY/TORl94V6V/D044yb
+         1ViULs2Cm23496L4wGcj8gWyxtFSJ/eo5eB+VR5eCnYsjp6+9GFw5cZSm1LFGClXFe2L
+         3ZlZqXP3utCtlJbCu85z4xyRiU6jKkTOvj8/WUkWRro6ATQ64EVmJjx9b0R7hcloxp55
+         Sh1OS0EyREjnO1X7sBW061gDT3XbXuL+GnpHY8askOH3Dx11MB+Jo/OlDybLS26Fk5TK
+         PWK8eFvWKpLpsoTb+YrOCReD8NK6YG+FoOHEYMuSzbvdt+pZKGS3VS0QUZws7qJxhXqH
+         ew1w==
+X-Gm-Message-State: ACrzQf1Lmh2H/O1aYNl3w7sy+EPNUfQmLo5mdvxAY+ozge1CJ6tZ0hAo
+        gGGWkp3d6/nAH6mJM71O7HyiWyUbeDI1kYCahdLmlg==
+X-Google-Smtp-Source: AMsMyM77dNEurx0K4wYpHOaGDDYKf9s8IrljC312Fyhe5ZOrTX25Qqzgql5RjsUYV6qF2rC8phpcgEBboZwOfgFaKuY=
 X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
- ga30-20020a1709070c1e00b007ae31a0571emr24177907ejc.690.1667983094822; Wed, 09
- Nov 2022 00:38:14 -0800 (PST)
+ ga30-20020a1709070c1e00b007ae31a0571emr24184204ejc.690.1667983275461; Wed, 09
+ Nov 2022 00:41:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20221105084905.9596-1-linux@fw-web.de> <20221105084905.9596-2-linux@fw-web.de>
- <166765939131.4158830.8416727494529058690.robh@kernel.org> <trinity-c732b826-2a12-4ab1-aaac-294ac5524926-1667660774779@3c-app-gmx-bap26>
-In-Reply-To: <trinity-c732b826-2a12-4ab1-aaac-294ac5524926-1667660774779@3c-app-gmx-bap26>
+References: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Nov 2022 09:38:03 +0100
-Message-ID: <CACRpkdZsP-aj6hcD2sOB8ypVqdxwC8dWOo0d52qnDpxppUwNAA@mail.gmail.com>
-Subject: Re: Re: [PATCH v1 1/4] dt-bindings: pinctrl: mt7986: add generic
- bias-pull* support
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Rob Herring <robh@kernel.org>, Frank Wunderlich <linux@fw-web.de>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Date:   Wed, 9 Nov 2022 09:41:04 +0100
+Message-ID: <CACRpkdaUv0=Q4X3VyN6hDZKTrchKpiA-H-aBSnj+8CWU6=TfXQ@mail.gmail.com>
+Subject: Re: [PATCH 0/8] Nuvoton WPCM450 FIU SPI flash controller
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@kernel.org>
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -73,30 +70,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 5, 2022 at 4:06 PM Frank Wunderlich <frank-w@public-files.de> wrote:
+On Sat, Nov 5, 2022 at 7:59 PM Jonathan Neusch=C3=A4fer
+<j.neuschaefer@gmx.net> wrote:
 
-> > Gesendet: Samstag, 05. November 2022 um 15:52 Uhr
-> > Von: "Rob Herring" <robh@kernel.org>
->
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dtb: pinctrl@1001f000: mmc0-pins:mux:groups:0: 'emmc_51' is not one of ['emmc', 'emmc_rst']
-> >       From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
->
-> this is already solved by this Patch:
->
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20221105092500.12145-1-linux@fw-web.de/
->
-> i decided to send a v3 or if instead of including it into this series
+> Jonathan Neusch=C3=A4fer (8):
+>   pinctrl: nuvoton: wpcm450: Refactor MFSEL setting code
+>   pinctrl: nuvoton: wpcm450: Fix handling of inverted MFSEL bits
 
-That patch in turn says it needs another patch first.
+I just applied these two patches to the pinctrl tree, it looks like they
+can be applied independently of the others so I just did.
 
-Now I am utterly confused, it is really hard to follow these trains
-of patches depending on and breaking each other left and right...
-
-Can you please tell me which patches I need to apply and
-in which order?
+So no need to resend these or include me on subsequent patch
+series.
 
 Yours,
 Linus Walleij
