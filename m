@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CD4622501
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DE2622503
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:01:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbiKIIBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:01:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
+        id S229453AbiKIIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:01:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbiKIIBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:01:47 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BB11C429
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:01:44 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id bs21so24513245wrb.4
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:01:44 -0800 (PST)
+        with ESMTP id S229681AbiKIIBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:01:53 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E4C1C905
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:01:51 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5so10254733wmo.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:01:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=J2RysX7TiVCclv2UJBtgXviDFq2/T3mQypqGPEA1b7s=;
-        b=rLHIjz9FNMQu6kj3EmzsWL6AQW1/Kclkk4Uxg4MPje5UhKFoIyb3SY8RtIY9YMh8V9
-         mwfR0H3AS+NIiLUl0M9+H9b5u9DSVOxvxrTZh0ylqtK1gpzttC068Pa0VUDVwPyg3LB6
-         fg9JqDYhW/fUJ1UdFLrf85S2/YlbkMWhUZ/y0QYtmxm5aINYnr0ZpAmWZtKFxDAN2No5
-         CraJCxttPT5Z35xMaPIgY+VsKVV0Ak6RrWg8hQZF7QzPEzLcTMjGvRNODxRTJR7k8NSh
-         44lINyeqbnZXyvyPlnMMPG5ElqhMCRn+4ord8g6ltCX3gF5Ftt7pTzrhHtwgkBn+5XZ0
-         /Iew==
+        bh=cWX3PFtX+iNvvcqKHYXPbN+3ItiEZ3sX7UGhc0uTyP8=;
+        b=YMY82KVHHtrKVPisic7cjXWyZ9YngGsDShFyXwRCVQLB0NnHcPe/C1DoWm94FBPICb
+         Tc2cwOehcP/LsLGQi/GLi0ql8QiEngdNKK1UErsOwZyTg+Dtoqsr2DUSoOqG57iArbKk
+         PqNzaXb1ix0nstzhlh2/Fp4dokJHMO//FX5qvHU6lqXgPiPy/jTFYvWEotad7Rq5DbOK
+         PP4bGK1eTjsvv49f4oLB5ebiu3GSRyO0exGLVwj7ET2FefYy3NxdDlRm1td4TzHHz7yj
+         NWFyrh9eS7QHYudm3pAvTaw7e8CKy8M6vEh/8oFreexp/+u91YYmLMleh4x/UJ0qRXij
+         QZNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=J2RysX7TiVCclv2UJBtgXviDFq2/T3mQypqGPEA1b7s=;
-        b=54GQ4kVjUlJBIRnejMxfRSRRjEk8Xr1Z7AkrSX8Imx5esDGHfLw+nLKnOjMaZqLgR6
-         roI9kZZqPM+CDZ8+rUITVZZ75zhsy7xr8fMhxri13Ya7mRbud+3PH/TRfkpCpBlaW7S7
-         hi6HuXVGnCe7EpE3MdcE1YEKOdM0zff3W6FthM9YwmulDWJjIHloEFIbuHxuYHMDnkkC
-         ddwU4pMDsbW7i2bfJAoGVJPd75qBDuuYLBlg8Xxt++F/aNYWGUNcmCs46YFmGHhVrKza
-         Y9Vu6kH7WMsG5E8kB+bYFCqCvXmW9wlI7u0401rMILfEEGjpOITCwuOD9CYGcE92mER5
-         71IQ==
-X-Gm-Message-State: ACrzQf0oNLFROtuoLUN4kbPrCxC9xngQ/BIgxr7Qj7A/4eLgz3PIaJbk
-        odxX5XKzJmTUAuPmbesvdLf3
-X-Google-Smtp-Source: AMsMyM7UTOQyGFWGy2JBVT7ZAStdo7Sem2exllc5izREtOsumM3pdmJe3XUTGlXqsActy+Frwa8jOw==
-X-Received: by 2002:adf:e491:0:b0:236:5270:7f5e with SMTP id i17-20020adfe491000000b0023652707f5emr37426823wrm.600.1667980902469;
-        Wed, 09 Nov 2022 00:01:42 -0800 (PST)
+        bh=cWX3PFtX+iNvvcqKHYXPbN+3ItiEZ3sX7UGhc0uTyP8=;
+        b=OMgXEKJxiVHvx3Tx9gthHS3AvglL2MZGZDLLddmK87OiXGGIPLeu/vLud5GhKI/wu4
+         sUuiWFreTF+gPM4Y3FX1SqCbIH5Q+e2bHlwOC0sp3xpRvmjk+17IFJoETK29Zk8gIeuh
+         PWQzpxzvtE3gFKm9cOa0SaQ7oKXspKm2cW5ZnIlyoOO+FjRMtCbvP9P1KO38V7/Uqu3t
+         jm4b7LEGUpH/a1lq2wCbNJ87Af0pluOlVRKlPH4vs0gHZR/aME/aVNHzhl2Pj1FnFNnO
+         oY3BABRIpdRprB/eELp3JxuG0MQ5CugRPAtjd3CeKpOf3YX9sxRsNEOtnfzNX6mEwMkn
+         WgoQ==
+X-Gm-Message-State: ACrzQf1BsF+3wbjcshlthCNfD5KlB0BXhJRooBfa0h/vnMe73fnM/CKF
+        cVWoJhPyZbg3FnnDg+ghzp1A
+X-Google-Smtp-Source: AMsMyM7kqiCTE2VnhXroBqFsOZN9mAugt0dDbSIFOwkHLmmwaga0pT9EoQk/dZzvso3xL6JuZIx7bA==
+X-Received: by 2002:a05:600c:1da4:b0:3c6:b656:5b52 with SMTP id p36-20020a05600c1da400b003c6b6565b52mr866689wms.1.1667980909659;
+        Wed, 09 Nov 2022 00:01:49 -0800 (PST)
 Received: from localhost.localdomain ([117.202.189.229])
-        by smtp.gmail.com with ESMTPSA id l26-20020a05600c2cda00b003cf774c31a0sm769427wmc.16.2022.11.09.00.01.35
+        by smtp.gmail.com with ESMTPSA id l26-20020a05600c2cda00b003cf774c31a0sm769427wmc.16.2022.11.09.00.01.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 00:01:41 -0800 (PST)
+        Wed, 09 Nov 2022 00:01:48 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org, viresh.kumar@linaro.org,
         krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
@@ -56,11 +56,10 @@ To:     andersson@kernel.org, viresh.kumar@linaro.org,
 Cc:     johan@kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-pm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 1/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Add cpufreq clock provider
-Date:   Wed,  9 Nov 2022 13:31:18 +0530
-Message-Id: <20221109080120.19078-2-manivannan.sadhasivam@linaro.org>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v6 2/3] arm64: dts: qcom: sm8450: Supply clock from cpufreq node to CPUs
+Date:   Wed,  9 Nov 2022 13:31:19 +0530
+Message-Id: <20221109080120.19078-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221109080120.19078-1-manivannan.sadhasivam@linaro.org>
 References: <20221109080120.19078-1-manivannan.sadhasivam@linaro.org>
@@ -77,106 +76,93 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply clocks
-to the CPU cores. Document the same in the binding to reflect the actual
-implementation.
+to the CPU cores. But this relationship is not represented in DTS so far.
 
-CPUFreq HW will become the clock provider and CPU cores will become the
-clock consumers.
-
-The clock index for each CPU core is based on the frequency domain index.
+So let's make cpufreq node as the clock provider and CPU nodes as the
+consumers. The clock index for each CPU node is based on the frequency
+domain index.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-index e58c55f78aaa..676d369a6fdd 100644
---- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-@@ -56,6 +56,9 @@ properties:
-   '#freq-domain-cells':
-     const: 1
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index d32f08df743d..234d2722a4fa 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -51,6 +51,7 @@ CPU0: cpu@0 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 0>;
+ 			L2_0: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -70,6 +71,7 @@ CPU1: cpu@100 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 0>;
+ 			L2_100: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -86,6 +88,7 @@ CPU2: cpu@200 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 0>;
+ 			L2_200: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -102,6 +105,7 @@ CPU3: cpu@300 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 0>;
+ 			L2_300: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -118,6 +122,7 @@ CPU4: cpu@400 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 1>;
+ 			L2_400: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -134,6 +139,7 @@ CPU5: cpu@500 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 1>;
+ 			L2_500: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -151,6 +157,7 @@ CPU6: cpu@600 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 1>;
+ 			L2_600: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -167,6 +174,7 @@ CPU7: cpu@700 {
+ 			power-domain-names = "psci";
+ 			qcom,freq-domain = <&cpufreq_hw 2>;
+ 			#cooling-cells = <2>;
++			clocks = <&cpufreq_hw 2>;
+ 			L2_700: l2-cache {
+ 			      compatible = "cache";
+ 			      next-level-cache = <&L3_0>;
+@@ -3075,6 +3083,7 @@ cpufreq_hw: cpufreq@17d91000 {
+ 				     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1", "dcvsh-irq-2";
+ 			#freq-domain-cells = <1>;
++			#clock-cells = <1>;
+ 		};
  
-+  '#clock-cells':
-+    const: 1
-+
- required:
-   - compatible
-   - reg
-@@ -83,6 +86,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_0>;
-         qcom,freq-domain = <&cpufreq_hw 0>;
-+        clocks = <&cpufreq_hw 0>;
-         L2_0: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -103,6 +107,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_100>;
-         qcom,freq-domain = <&cpufreq_hw 0>;
-+        clocks = <&cpufreq_hw 0>;
-         L2_100: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -118,6 +123,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_200>;
-         qcom,freq-domain = <&cpufreq_hw 0>;
-+        clocks = <&cpufreq_hw 0>;
-         L2_200: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -133,6 +139,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_300>;
-         qcom,freq-domain = <&cpufreq_hw 0>;
-+        clocks = <&cpufreq_hw 0>;
-         L2_300: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -148,6 +155,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_400>;
-         qcom,freq-domain = <&cpufreq_hw 1>;
-+        clocks = <&cpufreq_hw 1>;
-         L2_400: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -163,6 +171,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_500>;
-         qcom,freq-domain = <&cpufreq_hw 1>;
-+        clocks = <&cpufreq_hw 1>;
-         L2_500: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -178,6 +187,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_600>;
-         qcom,freq-domain = <&cpufreq_hw 1>;
-+        clocks = <&cpufreq_hw 1>;
-         L2_600: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -193,6 +203,7 @@ examples:
-         enable-method = "psci";
-         next-level-cache = <&L2_700>;
-         qcom,freq-domain = <&cpufreq_hw 1>;
-+        clocks = <&cpufreq_hw 1>;
-         L2_700: l2-cache {
-           compatible = "cache";
-           cache-unified;
-@@ -215,6 +226,7 @@ examples:
-         clock-names = "xo", "alternate";
- 
-         #freq-domain-cells = <1>;
-+        #clock-cells = <1>;
-       };
-     };
- ...
+ 		gem_noc: interconnect@19100000 {
 -- 
 2.25.1
 
