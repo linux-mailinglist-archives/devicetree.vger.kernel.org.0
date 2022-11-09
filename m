@@ -2,119 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C03622A6E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D97622A86
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:29:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbiKILZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 06:25:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43842 "EHLO
+        id S229954AbiKIL3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 06:29:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231167AbiKILZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:25:36 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 684451A068;
-        Wed,  9 Nov 2022 03:25:35 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id z14so25281928wrn.7;
-        Wed, 09 Nov 2022 03:25:35 -0800 (PST)
+        with ESMTP id S229877AbiKIL3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:29:40 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB42E1208A
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:29:38 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id j4so25250432lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:29:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yVfcpsRQhZ+K1eDUGm/hT79865gqKPGqp1NWWMzmywA=;
-        b=QYl+yjjJGwob7l4O1fw3+oiBMl/GAN8a/Tzrcirxu+K51wcXU1Tk02WMEgePKIKx2x
-         CRzaFVSCpQYyr4Jr9nO+rr9BltzAyt4y3PhHd3qwidEqPikm8OZGzn+alPWjkYV/Sacz
-         /5/1+eyo4xMg/gr7O/PoXrfZu/DW1a82+xYgZAxBpZ83Y/uG6dLLriPz/Mp28FGuLKpz
-         vhUFGpWrQbxGGa7T9Bk/iD1N2h/QsgMJNEoUrsxioP9kxLQv5WSWMXvvKgSWpbKCkQjz
-         j72DKYn1Zytrw9JrSiS+QdeUQNi16sX8VGrRaX71sCZuaB24lT8gGAGChEOq6FohMZTS
-         qepg==
+        bh=c/eHh0xL7CYIGUWhXivIMtZvb/iQgqEYZzutitDq/uw=;
+        b=skGItY1IwzgEVh/gH9rczDuQsQCD+X2FPOsjkHbDxfuivgxTCL3n0F2lDKH1/ejMoX
+         zcPJJhztokjTBG59HPvjd5dlBg+9LKpDQxnNGzCQOcFJqi8x3DcHyQqOOULoKk5dLoHq
+         VIhdnf+ErS7heItJ/JBl3aW8rtO83vdwOWrA7MSKeJ0lZk7H/9QvF6F5AGuqCa3KrWGz
+         UACakJCtDC/kcENZgXk5QMKkESc4CLDLiR8Lg+Q7kckpaWULXvgMnkSvVg4eN/hW/TZO
+         tUuPLWpiuPqVQudBpkMJT4Z2x4zNmHwDvZ2DKs+jsuuieekme4l0PTf2kTZKXjYkUo8/
+         Pj8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yVfcpsRQhZ+K1eDUGm/hT79865gqKPGqp1NWWMzmywA=;
-        b=6UqsdwNBZTzXg7/qTSpAkXDkT750AUkza7jGaiYqHpuQGVCTDL8c8EgCoBlKXjh8s0
-         tyEC8c+JLN6gTjabxiFJXgRyHycdIuYPL6Nptjf9w+GznIWYEAkm/jEFdL1j17ETF85w
-         XaZi7DzV7AL7dFohBW5XaYElt0t9LDamAcLhauDdHvRMyLk0MfkCjPe3PADo/5AEtS94
-         DrgZPCCQPY+V+oaKvP+4z3gQBEEzqlBAobBtXZ9KNFr+SHhz5gLveVKboRRWMT4hFzQk
-         LkywIhxpFzEt/zoBTr4b7Y5jeQkyI439mj8TAJdZSMeVU9mftWCIHHwEgVz1ZUoKaFFI
-         Axuw==
-X-Gm-Message-State: ACrzQf2YCCAbR69Zn4xaQ8CCgk3IUsMSMCSDHNRV9FJ7EhAMsJzaZsRT
-        yFVBnWcANl3EME6SP597gnZJGOu4364=
-X-Google-Smtp-Source: AMsMyM4iaCUXPelD5JPs3GwdxrrcdP1EVcbyNAKOCSt0mIJomogbed+Y7iZa1JRJyZ3hoqj23+CxWw==
-X-Received: by 2002:a05:6000:1566:b0:236:6a6f:6c27 with SMTP id 6-20020a056000156600b002366a6f6c27mr38530858wrz.553.1667993133963;
-        Wed, 09 Nov 2022 03:25:33 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id u2-20020a5d4342000000b0022eafed36ebsm12791671wrr.73.2022.11.09.03.25.31
+        bh=c/eHh0xL7CYIGUWhXivIMtZvb/iQgqEYZzutitDq/uw=;
+        b=zm5gCx1ppP0YlZB1nuYlX7VcVuB/nYSbleEtLIGKZqZJmbnIwaO24nbaHNP9jcfFo/
+         +oTX5sLIYgHtJB6iNiZgHJaR54bzVxUNaGT3ZzpCFgOmFY1UjzdDQpv7izKIiYHma+JS
+         71iJaS+GOUrE3D5SYsU3KA+3UAVWA7ChboBWG/ZgnlN1191HNHWIg5hWbqy9v2DnSw2r
+         JidPmH4nZX9iqhyVLUCAXp4CwsifHfAoAGsR4m/C1EbpkwLlcUVT7iT7FCNMusXe4Qd1
+         a5nCwsQSliuefp0oI8BL5rxfQKunbi/nuiFSpqqrTQQNfBhjpYH40qSoN++dq5HavqBM
+         tqlQ==
+X-Gm-Message-State: ACrzQf0RIeQjgWbo+3xj3vpEQ4E2wvUH/opPdQZaXcPPum1X0vzfPIkA
+        viVXZaFh9RQ3TQ+wvsFvb+CuGDCUmBg1vw==
+X-Google-Smtp-Source: AMsMyM47GhZ9W4QWXH0F1Vug99kOljw1oLTlABCtgSPJgadLN6kSpqOoyYZftgTYbhANovH9RMQjuQ==
+X-Received: by 2002:a05:6512:b0e:b0:4ae:23c9:1b32 with SMTP id w14-20020a0565120b0e00b004ae23c91b32mr19763685lfu.246.1667993377128;
+        Wed, 09 Nov 2022 03:29:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id e12-20020a19500c000000b004a2cd6d5ad6sm2178537lfb.19.2022.11.09.03.29.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 03:25:32 -0800 (PST)
-Message-ID: <a0b61872-12bb-0ed2-a1b4-75cb5609c1c3@gmail.com>
-Date:   Wed, 9 Nov 2022 12:25:30 +0100
+        Wed, 09 Nov 2022 03:29:36 -0800 (PST)
+Message-ID: <1749c742-5908-2fba-fccd-2e03d83518c8@linaro.org>
+Date:   Wed, 9 Nov 2022 12:29:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v5 3/6] soc: mediatek: add mtk-mmsys support for mt8195
- vdosys0
-Content-Language: en-US
-To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Thunderbird/102.4.2
+Subject: Re: [RESEND PATCH] dt-bindings: PCI: qcom,pcie-ep: correct
+ qcom,perst-regs
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220927152704.12018-1-jason-jh.lin@mediatek.com>
- <20220927152704.12018-4-jason-jh.lin@mediatek.com>
- <0e67041f-a61d-1e34-2ce4-6a199c2c9f8e@collabora.com>
- <ac0a8cadf18291575d5fc798f0d6b99f5c3a4258.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <ac0a8cadf18291575d5fc798f0d6b99f5c3a4258.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20221109105555.49557-1-krzysztof.kozlowski@linaro.org>
+ <1a5b2c83-dad2-3683-d374-d431d2049b67@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1a5b2c83-dad2-3683-d374-d431d2049b67@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 05/10/2022 09:08, Jason-JH.Lin wrote:
-> Hi Matthias,
-> 
-> Do you have any comment for this binding?
-> 
-> Can you help us review the soc/mediatek related patches?
-> 
-
-Patches 1-3 applied now. Sorry for the late answer.
-
-Matthias
-
-> Regards,
-> Jason-JH.Lin
-> 
-> On Wed, 2022-09-28 at 10:14 +0200, AngeloGioacchino Del Regno wrote:
->> Il 27/09/22 17:27, Jason-JH.Lin ha scritto:
->>> 1. Add mt8195 driver data with compatible "mediatek-mt8195-
->>> vdosys0".
->>> 2. Add mt8195 routing table settings of vdosys0.
->>>
->>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+On 09/11/2022 12:06, Dmitry Baryshkov wrote:
+> On 09/11/2022 13:55, Krzysztof Kozlowski wrote:
+>> qcom,perst-regs is an phandle array of one item with a phandle and its
+>> arguments.
 >>
->> Reviewed-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
 >>
->>
->>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> index 977c976ea799..5aa590957ee4 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>> @@ -47,8 +47,10 @@ properties:
+>>                    enable registers
+>>       $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>>       items:
+>> -      minItems: 3
+>> -      maxItems: 3
+>> +      - items:
+>> +          - description: Syscon to TCSR system registers
+>> +          - description: Perst enable offset
+>> +          - description: Perst separateion enable offset
+> 
+> typo: separation.
+> 
+> With that fixed:
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Thanks!
+
+Best regards,
+Krzysztof
+
