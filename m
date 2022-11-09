@@ -2,178 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E404762247B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 08:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C62BA622493
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 08:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbiKIHNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 02:13:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
+        id S229868AbiKIHXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 02:23:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiKIHNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 02:13:15 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF9D1EC5A;
-        Tue,  8 Nov 2022 23:13:12 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A96jRIX010936;
-        Wed, 9 Nov 2022 07:13:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=g8RahjOIHtnUr3YD67XYH2Fp3rXTDCOsyvpeEo9ChQU=;
- b=Hz7G4ESeVxJlvbj6QewqRAYX8vFyygzjdqa4LripMiAIUyfHcvXs4eFpMnR3WgIKhVAz
- GXBap7xWiuEcLmHjLEp3q/XLWkdLDNUoMA0h+tPNT3CXj70qGllE6sSYPQT5W22mWN8L
- i8L3tFVhMPnQMECVt7QNGgvMoRW3YAA8ha2TJvWzxYl2eo6p2cJA6lU5i2ql3UQ0rTpP
- R7YX37JAzOhqNaHl1lqtcs1coLhEAXVjo7bYD5Mez8nqubH3tsx2bk6ooWy0XeJiu9Bs
- U2ARK7tsIZZCY9zCui/0NgXygUOTWp7QlbmDHl5VAzFovIYFKb+9VjLQfBO3UTWNEzTA xQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kr6b4073f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Nov 2022 07:13:01 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A97D0gt003853
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 9 Nov 2022 07:13:00 GMT
-Received: from [10.79.43.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 8 Nov 2022
- 23:12:56 -0800
-Message-ID: <d84bd07e-e243-98a3-bbe0-9a61e326c5d9@quicinc.com>
-Date:   Wed, 9 Nov 2022 12:42:53 +0530
+        with ESMTP id S229870AbiKIHXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 02:23:01 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189D71DA5E
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 23:22:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667978579; x=1699514579;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=r5AS8oIHpyzuOh41/a1bWf+zGuXF46zGbGnB3FikE9Q=;
+  b=nEJaqly9Vi4s+6cmP9dWJCg1Yt/KnMa9ndoZW8kvb9qu0NV/Yu/d725E
+   uE8Tk9bPcCViCOqUwxF0I1tNXgWwtS9D3Cs09Xj/qfWj8g2bQe2/UlT6M
+   CeO2+pc8kQ/25Ubi/y+i3erKDlTqAKYhIn63B/FyKHiomMYZKvOauqaL9
+   3SoC9/FoqOrf9NgVv7qE0+zoAn415rbDoP1icr7tX/xUebbdSIh/a+1XS
+   Y/FrDLJ7SlvnHLd1CIGriB33Y6Qn2gdsqBE+z5E6sXEy4rY3u4XdlLRIE
+   ywU48UFmi9oyPPhokAxD4kXJxg8fOsZI3D5wHzcvMGn9SxiresuZ4ePS7
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,149,1665439200"; 
+   d="scan'208";a="27242576"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Nov 2022 08:22:57 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 09 Nov 2022 08:22:57 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 09 Nov 2022 08:22:57 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667978577; x=1699514577;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=r5AS8oIHpyzuOh41/a1bWf+zGuXF46zGbGnB3FikE9Q=;
+  b=oBPgUrB6HH+7wgJNHLCCDFqsaNza+YgqHg97Nhh/QR6+89zbqpWUh5Qr
+   wbpAho9Dj4wcoEDRrjvBffPrMhAJt/h92CeMJ4mCo3MOuAGwNzJluHLyc
+   7rsup0PfGpvSjMICZOQ+NQ+y9zWfZw2fgXQF2h/BFJWnQzh84prVXroIO
+   bLkVQVNl/sqj0BDlwoeNzsj4c+XAKBMnimyGKDEv/AYX3G/qXthWE2OMd
+   msiiRLosepLY39fnqCuQbDG3H98uh/C4wukFA4ONyQnSPU8VKCU6PmIEb
+   7/tQrB2xfsuuSBSeGFgRk3/ruEkRyOzB1REC8GK+TGnASLadSovenolcd
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,149,1665439200"; 
+   d="scan'208";a="27242575"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Nov 2022 08:22:56 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 633B6280056;
+        Wed,  9 Nov 2022 08:22:56 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: imx6q-pcie: Handle various clock configurations
+Date:   Wed, 09 Nov 2022 08:22:51 +0100
+Message-ID: <21665881.EfDdHjke4D@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221109002449.35936-1-marex@denx.de>
+References: <20221109002449.35936-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [RFC 2/2] firmware: arm_scmi: Add SCMI QTI Memlat vendor protocol
-Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <cristian.marussi@arm.com>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>, <quic_avajid@quicinc.com>,
-        <Souvik.Chakravarty@arm.com>
-References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
- <1667451512-9655-3-git-send-email-quic_sibis@quicinc.com>
- <20221103102444.c5ngcxupohwdzntf@bogus>
- <20221103103726.kdepm7jeb2gnncnb@bogus>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <20221103103726.kdepm7jeb2gnncnb@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O-iIeNTz3GkvzQO7TeYA17dZ8C7PklfW
-X-Proofpoint-ORIG-GUID: O-iIeNTz3GkvzQO7TeYA17dZ8C7PklfW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-09_02,2022-11-08_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- adultscore=0 spamscore=0 clxscore=1015 suspectscore=0 malwarescore=0
- mlxlogscore=999 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211090056
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Sudeep,
+Hi Marek,
 
-Thanks for taking time to review the series.
-
-On 11/3/22 16:07, Sudeep Holla wrote:
-> On Thu, Nov 03, 2022 at 10:24:44AM +0000, Sudeep Holla wrote:
->> On Thu, Nov 03, 2022 at 10:28:32AM +0530, Sibi Sankar wrote:
->>> Add support for the SCMI QTI memlat (memory latency) vendor protocol.
->>> The QTI memlat vendor protocol takes in several tuneables including the
->>> IPM ratio (Instructions Per Miss), bus bandwidth requirements and PMU
->>> maps to enable frequency scaling of various buses (L3/LLCC/DDR) performed
->>> by the memory latency governor running on the CPUSS Control Processor.
->>>
->>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->>> ---
->>>   drivers/firmware/arm_scmi/Kconfig              |  10 +
->>>   drivers/firmware/arm_scmi/Makefile             |   1 +
->>>   drivers/firmware/arm_scmi/qcom_memlat_vendor.c | 269 +++++++++++++++++++++++++
->>>   include/linux/scmi_protocol.h                  |  36 ++++
->>>   4 files changed, 316 insertions(+)
->>>   create mode 100644 drivers/firmware/arm_scmi/qcom_memlat_vendor.c
->>>
->>> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
->>> index a14f65444b35..814a3fc37dc1 100644
->>> --- a/drivers/firmware/arm_scmi/Kconfig
->>> +++ b/drivers/firmware/arm_scmi/Kconfig
->>> @@ -136,6 +136,16 @@ config ARM_SCMI_TRANSPORT_VIRTIO_ATOMIC_ENABLE
->>>   
->>>   endif #ARM_SCMI_PROTOCOL
->>>   
->>> +config QTI_SCMI_MEMLAT_PROTOCOL
->>> +	tristate "Qualcomm Technologies, Inc. SCMI MEMLAT vendor Protocol"
->>> +	depends on ARM_SCMI_PROTOCOL && QCOM_CPUCP_MBOX
->>
->> If you have set the transport correctly, there should be no need for any
->> such dependency.
-
-ack
-
->>
->>> +	help
->>> +	  The SCMI QTI memlat vendor protocol adds support for the frequency
->>> +	  scaling of buses (L3/LLCC/DDR) by the QTI HW memlat governor running
->>> +	  on the CPUSS Control Processor (CPUCP).
->>> +
->>> +	  Say Y here if you want to build this driver.
->>> +
->>
->> I don't think it is scalable to have a config option for each vendor+protocol
->> Kconfig. IMO just one config for all qcom vendor protocol please.
-
-ditto
-
->>
+Am Mittwoch, 9. November 2022, 01:24:47 CET schrieb Marek Vasut:
+> The i.MX SoCs have various clock configurations routed into the PCIe IP,
+> the list of clock is below. Document all those configurations in the DT
+> binding document.
 > 
-> Sorry pressed send too early before I could write the main part :(.
-> Can you please also add the driver using this protocol in the next revision.
-> What framework does that fit in ? Devfreq ? I am very much interested in
-> that as it helps in distributing the responsibility across these correctly.
-> I think that could be one of the reason I don't like all the information
-> dump you have in the DT binding proposed in the provider node. It needs to
-> move out but in order to understand where to, we need full picture here.
-> So please provide the same.
+> All SoCs: pcie, pcie_bus
+> 6QDL, 7D: + pcie_phy
+> 6SX:      + pcie_phy          pcie_inbound_axi
+> 8MQ:      + pcie_phy pcie_aux
+> 8MM, 8MP: +          pcie_aux
 > 
+> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-As of now it would just be a simple SoC platform driver which passes on
-the tuneables and starts the memlat governor on the SCP firmware. I'll
-include it in the next re-spin.
+I just noticed this is a separate series. Please note that there is already 
+another patch doing the same at [1]
 
+Regards,
+Alexander
 
-> Also it doesn't hurt to describe in detail: what theses "several tuneables"
-> are and where are they expected to arrive from or targeted to ?
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/
+20221107204934.32655-2-Sergey.Semin@baikalelectronics.ru/
 
-ack
-
-> Is CPUSS Control Processor responsible for CPU DVFS or not ?
-> Does it just control DVFS of L3/LLCC and DDR or is there a bigger list ?
-
-CPUSS CP is responsible for CPU DVFS but it's not done through
-SCMI (it's done through the qcom-cpufreq-hw driver). Memory latency
-protocol is meant to control the DVFS of memory buses. So it could
-be one or all of them and the supported list for that particular
-SoC was meant to be passed through the qcom,bus-type array as
-described in the bindings.
-
-- Sibi
-
-> All these information matters as your current DT proposal seem to be
-> tightly coupled with only few of these.
+> ---
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> To: devicetree@vger.kernel.org
+> ---
+> V2: - Add AB from Alex
+> V3: - Duplicate clock-names maxItems to mx6sx and mx8mq compatibles
+>     - Flatten the if-else structure
+>     - The validation no longer works and introduces errors like these:
+>       arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb:
+> pcie@33800000: clock-names:2: 'pcie_phy' was expected V4: - Reinstate
+> minItems: for clock-names in main section, turn the last two clock-names
+> items into enums to cover all IP variants. - Add another allOf entry for
+> mx6q/mx6qp/mx7d clock-names list. - Adjust clock maxItems in the allOf
+> section.
+> V5: - No change
+> ---
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 73 +++++++++++++++++--
+>  1 file changed, 68 insertions(+), 5 deletions(-)
 > 
-> --
-> Regards,
-> Sudeep
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+> 376e739bcad40..2df73be0ffbea 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -14,9 +14,6 @@ description: |+
+>    This PCIe host controller is based on the Synopsys DesignWare PCIe IP
+>    and thus inherits all the common properties defined in snps,dw-pcie.yaml.
+> 
+> -allOf:
+> -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -60,8 +57,8 @@ properties:
+>      items:
+>        - const: pcie
+>        - const: pcie_bus
+> -      - const: pcie_phy
+> -      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
+> +      - enum: [ pcie_phy, pcie_aux ]
+> +      - enum: [ pcie_aux, pcie_inbound_axi ]
+> 
+>    num-lanes:
+>      const: 1
+> @@ -177,6 +174,72 @@ required:
+> 
+>  unevaluatedProperties: false
+> 
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx6q-pcie
+> +              - fsl,imx6qp-pcie
+> +              - fsl,imx7d-pcie
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx6sx-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +            - const: pcie_inbound_axi
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8mq-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +            - const: pcie_aux
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8mm-pcie
+> +              - fsl,imx8mp-pcie
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_aux
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/imx6qdl-clock.h>
+
+
+
+
