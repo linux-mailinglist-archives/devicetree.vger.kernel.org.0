@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E246225A6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 050726225B2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:45:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbiKIIlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:41:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
+        id S229909AbiKIIpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:45:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiKIIlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:41:18 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C6B17ABC
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:41:16 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id f27so44798694eje.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:41:16 -0800 (PST)
+        with ESMTP id S230102AbiKIIpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:45:11 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409A7B55
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:45:07 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id c25so24677261ljr.8
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:45:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aD7P+b1uJUWmfha0UC290WbFB/lsLxBpOULEsetw2oY=;
-        b=Wn17EPbLbvZsY5ILrWq0J+sZeBPdyBQs/4D+UZ+7nTpCWqN8Un+9B8xFnza+Aqbw5z
-         nhf9NOhO7ojI4ojvp8zAOouAvJE5vgU/NLvIvSxdA3bn8Fe4cTZXxgEs7uOUjU26rQgK
-         KjtH4YvLA/C/c0MMGxagw+vTPl7ptmwRE1jGgzlEQRW7hPpJXswRpM1WGJmMXWtampCB
-         JMNTWcB0VTdBgsE4WbG6hX7DlylHAFx0z2py/oqCG0pVpqFGlx0Y+Ty58RdmFqIX4NU3
-         3FjTjxjejf1hXJZuN6SY1aAh7zzdqBSf5x6FubRfG02AuwKZb+xxv2iz3LhBpPYyEAo3
-         tqZw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qYSVJugP5QBp88lbE8APYh0ugN8Lxwkbgsw4dUaxQJU=;
+        b=DmeBxsBRljAtTGdjJ/IQOkSJOIUISplSTx8rNifCQCGJhmdVBw4CtKsZVb9NIt+Qgf
+         1WaQZGAJnpd72MR0fy682pU42548jgyAM29DV0rHFNUaugHqS3GIZ4WlSgaHXxZH74JK
+         m+81LXzTGn6aAJcIHo2lC7Y3aDp0XyLTGOCtyY+rMBMaGA4Hkaa3yr6fbq72yAzlQs5g
+         HpYlOxI6wpwyR1AKrFL0SSnd+n94UUxQA3OiOMVD+TY1Ji36c68Z6izPpRsKLUVLpL/I
+         hDWH9tgwiHMHO2vcWO70jWNqT5EcVW0nfL2KX64f2dGRJoxZ8u/6Ib8LGUA+iy/keZCR
+         r91Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aD7P+b1uJUWmfha0UC290WbFB/lsLxBpOULEsetw2oY=;
-        b=IJ+9i+Xjevk3tsEjV/wgylc3ueFEBS5/GOSa6NtBHTPd7+8EY/TORl94V6V/D044yb
-         1ViULs2Cm23496L4wGcj8gWyxtFSJ/eo5eB+VR5eCnYsjp6+9GFw5cZSm1LFGClXFe2L
-         3ZlZqXP3utCtlJbCu85z4xyRiU6jKkTOvj8/WUkWRro6ATQ64EVmJjx9b0R7hcloxp55
-         Sh1OS0EyREjnO1X7sBW061gDT3XbXuL+GnpHY8askOH3Dx11MB+Jo/OlDybLS26Fk5TK
-         PWK8eFvWKpLpsoTb+YrOCReD8NK6YG+FoOHEYMuSzbvdt+pZKGS3VS0QUZws7qJxhXqH
-         ew1w==
-X-Gm-Message-State: ACrzQf1Lmh2H/O1aYNl3w7sy+EPNUfQmLo5mdvxAY+ozge1CJ6tZ0hAo
-        gGGWkp3d6/nAH6mJM71O7HyiWyUbeDI1kYCahdLmlg==
-X-Google-Smtp-Source: AMsMyM77dNEurx0K4wYpHOaGDDYKf9s8IrljC312Fyhe5ZOrTX25Qqzgql5RjsUYV6qF2rC8phpcgEBboZwOfgFaKuY=
-X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
- ga30-20020a1709070c1e00b007ae31a0571emr24184204ejc.690.1667983275461; Wed, 09
- Nov 2022 00:41:15 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qYSVJugP5QBp88lbE8APYh0ugN8Lxwkbgsw4dUaxQJU=;
+        b=1VHvK4esxKfEByIfcg3siSpyhVzrZbjHZ1mvW3ysOckqrCdLlI2P3oBl7Og8cnTPsV
+         dcLSGTt38ORhV6rIs0RWGCOK7BJpqtT03sb7bKYIHjGLVbut+JWGQ/fVmR/aSLS1LQOZ
+         E2/hvmRM+NBFOvemF3buaErkWD5zZ4tqSTTqR3mdeIANofT7nYSYeSGWw4wx8QiN/nb+
+         L6LpBKkeY5FCT2acI3Q5ATUeWYAbGPN6lGmNSRUkAD0G85QhvQNcTFzaCUAMg3Z7Has/
+         3To0d2A1RI862lbN+o6rPxwjQz/iJHS98q07Ao81J65NmyMMWOBRYgCaZ4pN9M+POP9/
+         XA7g==
+X-Gm-Message-State: ACrzQf2VL8/e2kHa6bRX4sZ3tGCKx02ltkNQkDz45KIYNpymMr9LZm58
+        LqfzKiQ/1BAET/LLgDJ4hLwtFw==
+X-Google-Smtp-Source: AMsMyM7hsRmgRw/0ffw5lBc7tsZ5Jo7edKvW74ztO8PWhiUFChbrr51vyexJmUSEuY21Fz7BdeYnOA==
+X-Received: by 2002:a2e:8884:0:b0:277:693c:83b with SMTP id k4-20020a2e8884000000b00277693c083bmr13414854lji.68.1667983505632;
+        Wed, 09 Nov 2022 00:45:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id p8-20020a2eb988000000b0026dee5476d5sm2074143ljp.113.2022.11.09.00.45.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 00:45:04 -0800 (PST)
+Message-ID: <57f6dfef-5551-d186-4b0c-f4324f6c3350@linaro.org>
+Date:   Wed, 9 Nov 2022 09:45:03 +0100
 MIME-Version: 1.0
-References: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
-In-Reply-To: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Nov 2022 09:41:04 +0100
-Message-ID: <CACRpkdaUv0=Q4X3VyN6hDZKTrchKpiA-H-aBSnj+8CWU6=TfXQ@mail.gmail.com>
-Subject: Re: [PATCH 0/8] Nuvoton WPCM450 FIU SPI flash controller
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 3/3] dt-bindings: imx6q-pcie: Handle more resets on
+ legacy platforms
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>
+References: <20221109002449.35936-1-marex@denx.de>
+ <20221109002449.35936-3-marex@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221109002449.35936-3-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,18 +81,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 5, 2022 at 7:59 PM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
+On 09/11/2022 01:24, Marek Vasut wrote:
+> The i.MX6 and i.MX7D does not use block controller to toggle PCIe
+> reset, hence the PCIe DT description contains three reset entries
+> on these older SoCs. Add this exception into the binding document.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
 
-> Jonathan Neusch=C3=A4fer (8):
->   pinctrl: nuvoton: wpcm450: Refactor MFSEL setting code
->   pinctrl: nuvoton: wpcm450: Fix handling of inverted MFSEL bits
 
-I just applied these two patches to the pinctrl tree, it looks like they
-can be applied independently of the others so I just did.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-So no need to resend these or include me on subsequent patch
-series.
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
