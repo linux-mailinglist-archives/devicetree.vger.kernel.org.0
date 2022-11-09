@@ -2,96 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 034F162301F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 17:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD2E623023
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 17:26:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbiKIQZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 11:25:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
+        id S231292AbiKIQ0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 11:26:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbiKIQZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 11:25:44 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D5C1A048;
-        Wed,  9 Nov 2022 08:25:42 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 05DEBC000B;
-        Wed,  9 Nov 2022 16:25:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668011141;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=md+3BvVMOqhbT4Mg1/eofVo42NnM0QIADOtucHcIgg4=;
-        b=gF6sAue/cSpFVYdCzn6XaeoAMUvRAr/BsmC8fZpflEJ6rq4f51Dmw+AsyA3tEdtFLjGgrj
-        tPnOphPVGbtNot0izJb5ZAo1Sf1hW3VhIwbn2e/cZQKg79XWffb6+IGIaejZo/roXifsR2
-        Gjcp0vNbtMLQFSNeprS5gc5f0fD+0+RuzrqzJQn92RUAf30+elKjORYPND6L7fiZz8xNmE
-        iwEFgC5dbi+ZqX6ppxaEOT6gN6skuFspwDI90hy2rGq2TvbFBAOGIpwJ0IxDUIU8yj4WoX
-        U83Zl2D9Gv0tfnRoCaCjtAuSDgllp61yxa8WXAOTDfpRlVrHqOiPCR9CApmHPg==
-Date:   Wed, 9 Nov 2022 17:25:37 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH 23/23] staging: media: tegra-video: add tegra20 variant
-Message-ID: <20221109172537.0c48f66c@booty>
-In-Reply-To: <20221109141852.729246-24-luca.ceresoli@bootlin.com>
-References: <20221109141852.729246-1-luca.ceresoli@bootlin.com>
-        <20221109141852.729246-24-luca.ceresoli@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229865AbiKIQ0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 11:26:18 -0500
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5006F1A238
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 08:26:17 -0800 (PST)
+Received: by mail-il1-x134.google.com with SMTP id r2so9298237ilg.8
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 08:26:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rothemail-net.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zKzyUbavYrwcyYfS4DLyEnVR3vwgpUA85jv/+wflbpI=;
+        b=iUr8/IyvM1GJJVKCcaW9tsn/whFqKtgjr+ndUGglD/WiYfZZ3XHweJ7NLjPaNAikQ7
+         F/AgRQe2RCgmvWByFFbSa1XOjS2e232S5G1lgULkGt1K75N9trMvak4B9lxgfC4zCfZF
+         z0Y8A6kgJD7fD378FKWGrKUBMxDmbKlN5pdQFZlGquFiG085uNdMosGR9Z7YoM33RX2e
+         OJVwmDBUkq6HTUDRygZJNS6t7pev949q+UwbFpvigfmVhTn8TlhL314WyO/RvpZO6Cvb
+         QMounSq7s4CA1Cd8aWqCQGLgiI/jsi8IZmISIr2ZCDLiLJB5916hReg8ZxZ4neS/KWYn
+         LAug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zKzyUbavYrwcyYfS4DLyEnVR3vwgpUA85jv/+wflbpI=;
+        b=3n9YcJm5FhSrbDy1Nz83dJzOq9oZBtvZwcUZtX3qGoacwXSGqIutDkVyXJSToQ9qeS
+         MGdxMvbKRhjjj0KquY6HxJytRHsEODpAxr2FhTVEBtfevNDI6ohBQFbgjdtnMpkeEIF2
+         Q8foOx3UpubAFf0v+cEqmWr80aImBPJKTOei7mDv6rpvmtsvYlF0oFRNqnbg0ZFGkhbi
+         a+kS1miHnJOCzhmmf8hGfaeHHzREj7bqaIJkCiTOnGM8AERflv3JhZWN/1P2K/iB4WhB
+         lJF9SFSZvTq+gLlwMSZM7o+w4qBPzg3vvhpcYO7LZUFOSzl+avkUvUP4EJKVX2x7swDe
+         xPTQ==
+X-Gm-Message-State: ANoB5pm+gtfuyMRi9ttEzDn7Ba9MLEd4fGB/LZUlChDbzUTfzC6bkVoD
+        lmmZp+4M+g8oCA/lVasn45gyFe1Ka8f+5WygY1gR33rj6MBUQ6Wx7H0=
+X-Google-Smtp-Source: AA0mqf71K7TZE1+Cwj6WH9wiugctAAzt3dmFQUuRrGWfnuGpfMFJbGU1G6erbIPahmrlypEk1JiW7WMej2x6fb6q1AM=
+X-Received: by 2002:a05:6e02:1747:b0:302:11f2:8796 with SMTP id
+ y7-20020a056e02174700b0030211f28796mr7545901ill.214.1668011176549; Wed, 09
+ Nov 2022 08:26:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Spam-Score: 400
-X-GND-Status: SPAM
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <c522c639-db0c-c1c4-0281-5dc524a8a86e@linaro.org>
+ <6F5319F3-FDB2-405C-99E1-A9EC64264FD6@rothemail.net> <24ecc077-fc1d-5270-c901-9722ab7b68b1@linaro.org>
+In-Reply-To: <24ecc077-fc1d-5270-c901-9722ab7b68b1@linaro.org>
+From:   Nicholas Roth <nicholas@rothemail.net>
+Date:   Wed, 9 Nov 2022 10:26:05 -0600
+Message-ID: <CAD2rFCqrJyTz1KXXK3WTiih7LTfAW07k8V19yQhA6_LeGiqfRg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: media: Add Omnivision ov8858 binding
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  9 Nov 2022 15:18:52 +0100
-luca.ceresoli@bootlin.com wrote:
+Happy to reply inline next time. I'm still getting used to this format
+:-). Here's the context around my clock frequency question-- I'd
+really like to understand this better:
 
-> +static int tegra20_vi_enable(struct tegra_vi *vi, bool on)
-> +{
-> +	/* from arch/arm/mach-tegra/iomap.h */
-> +	const phys_addr_t TEGRA_APB_MISC_BASE = 0x70000000;
-> +	const unsigned long reg_offset = 0x42c;
-> +	void __iomem *apb_misc;
-> +	u32 val;
-> +
-> +	apb_misc = ioremap(TEGRA_APB_MISC_BASE, PAGE_SIZE);
-> +	if (!apb_misc)
-> +		apb_misc = ERR_PTR(-ENOENT);
-> +	if (IS_ERR(apb_misc))
-> +		return dev_err_probe(vi->dev, PTR_ERR(apb_misc), "cannot access APB_MISC");
-> +
-> +	val = readl(apb_misc + reg_offset);
-> +	writel(val | (!!on), apb_misc + reg_offset);
+> > +  clock-names:
+> > +    description:
+> > +      Input clock for the sensor.
+> > +    items:
+> > +      - const: xvclk
+> > +
+> > +  clock-frequency:
+> > +    description:
+> > +      Frequency of the xvclk clock in Hertz.
+>
+> The frequency of clock should go via common clock framework - you have
+> get_rate and set_rate. Drop entire property.
 
-Sorry, there is a mistake here, the bit should be set to 0 when
-on==false, but this code does not do that. This will be fixed in v2.
+I am trying to be consistent with the ov8856 driver and bindings but
+would be happy to change. I=E2=80=99m not familiar with that framework thou=
+gh.
+Is there somewhere I could read about this, including the driver and
+device-tree changes I need to use this?
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>
+> > +    minimum: 6000000
+> > +    default: 24000000
+> > +    maximum: 27000000
+> > +
+> > +  dovdd-supply:
+> > +    description:
+> > +      Definition of the regulator used as interface power supply.
+
+On Wed, Nov 9, 2022 at 10:19 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/11/2022 16:12, Nicholas Roth wrote:
+> > Hey,
+> >
+> > I=E2=80=99m doing my best to follow along here. Your feedback didn=E2=
+=80=99t get lost and I tried my best to follow it=E2=80=94 I just must not =
+have understood it correctly.
+> >
+> >> 1. There is no driver, no DTS. You received the feedback about it.
+> >
+> > Driver: I submitted the .c files to linux-media, and as part of the rev=
+iew they asked for me to separately submit device tree bindings (https://pa=
+tchwork.kernel.org/project/linux-media/patch/20221106171129.166892-2-nichol=
+as@rothemail.net/). Are you saying that the driver and the bindings should =
+be the same commit after all? Are you saying something else? I=E2=80=99m af=
+raid I still don=E2=80=99t understand what you mean by this, but I want to,=
+ and I=E2=80=99m trying to.
+>
+> They come as one patchset. Separate patches, one patchset. Otherwise you
+> get checkpatch errors, right?
+>
+> >
+> >> 2. Wrong cc list. You were asked to use get_maintainers.pl and still
+> >> decide not to.
+> > I included the people from get_maintainers.pl, but it seems like you wo=
+uld like for me to include all entries, including the multiple mailing list=
+s. Do I understand correctly?
+>
+> Yes. Do not strip some lists based on your preference. Why only some
+> people should receive this, not everyone involved in the subsystem?
+>
+>
+> >>
+> >
+> >> How can you test bindings with libcamera?
+> > I validate the device tree + driver on this setup, but I am happy to dr=
+op the comment about validation.
+>
+> It's not about bindings then.
+>
+> >
+> >>
+> >> Filename still does not match compatible. ovti,ov8858.yaml
+> > I was trying to be consistent with ov8856.yaml, but happy to change the=
+ file name if that=E2=80=99s the convention. Is there a doc I can read with=
+ this information or is it institutional knowledge?
+>
+> All recent submissions follow this, so the best is to take last commits.
+>
+> >>
+> >> The frequency of clock should go via common clock framework - you have
+> >> get_rate and set_rate. Drop entire property.
+> > I am trying to be consistent with the ov8856 driver and bindings but wo=
+uld be happy to change. I=E2=80=99m not familiar with that framework though=
+. Is there somewhere I could read about this, including the driver and devi=
+ce-tree changes I need to use this?
+>
+> This is very difficult to respond. Please use inline comments, I have no
+> clue which part you are now commenting. This is not mailing list style
+> response.
+>
+> >>
+> >> Which driver? In OpenBSD? Which version of OpenBSD? Drop the sentence.
+> > Seems like your point here and in the subsequent comments is to avoid i=
+mplementation specifics. That makes a ton of sense, and I=E2=80=99ll make t=
+hose changes for v3.
+> >
+> > All of your other comments make sense explicitly and I=E2=80=99ll make =
+these changes. Please help me understand what you mean by (1) and (2), corr=
+ect me where I=E2=80=99m wrong or misunderstanding you here, and I=E2=80=99=
+ll submit the v3.
+>
+> Best regards,
+> Krzysztof
+>
