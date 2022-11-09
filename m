@@ -2,125 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B10622594
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EB63622596
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:38:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbiKIIgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:36:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
+        id S229909AbiKIIiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:38:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbiKIIgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:36:16 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391BE13EAC
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:36:15 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id c1so22964111lfi.7
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:36:15 -0800 (PST)
+        with ESMTP id S229593AbiKIIiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:38:17 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F26913E2D
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:38:16 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id q9so44895668ejd.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:38:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vK9IxPdoGJuzbrNJGX/e/RWzrnoujHXpyqaM+pgnBbM=;
-        b=cPeGKQAvMgayPYCiGKtAPK1gPNYzPZwICN8Kp8lpnQbMw9TA24s+JGqbmrtZycyCpx
-         CNZWJCbJ9c7H+M+cpY50NHAPPcmwI8765qLBKDeCMgSKer3NxNYW3ttI7WgZ36oQV/tf
-         0CEqyWg9bMJz023zU2okJTy7TpLk6AsbQh34AMG0cj5gNSqWmg+pHKE3ZSJfvgjZkXYj
-         XrSdLkvtNV5jHrV387kxzUwP45ks+ZttxGdD+vGektVuTDhcDS9N0NZ78+q3uiTv65R4
-         t3eykadFZzIwbGxgi6plsNSTQFAHF3G5Sya6mtEfUF3KXaVo036vRFhZvkXxN828tDiP
-         Zhlg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=d0zbHYyI3ZOuc2iT4mRqGhJVf4w/uy1L6RiWzNixdzw=;
+        b=QrtU63vqfuqIUrQ3kqQMZWDy6vEsvVjHcjlVfUpLrx71617/qp3+ZFH8CMJSjf68RY
+         +RjQ58WQwSFw0FwaLRDMYCnnUNRozzE1/YVI4NobW/pkJwjJrMZQUTeYGBYzcotESyh5
+         Ca08RMViWNc+ira8id0Qjg8IFx0Wt0Dr57vyJg+7TnxtJT+pRkAxFZ2FlfGCgH7M8ZlU
+         ZqnjqMfpGNIudoOGIWluVanbb0krGGvBJjacfqUWHAdhQZinTFyWsu55WLCWb5QTOQ4t
+         RscWB9DKYT8v1QIgs6rT63do3pmbdmfk6+Kpc3Dn4RZWK5wrAkFAdE1L6jq5rmAtS2Ra
+         3Utg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vK9IxPdoGJuzbrNJGX/e/RWzrnoujHXpyqaM+pgnBbM=;
-        b=G2hKIEAE8VA6xxmR/OgbNS0ACfIFTYGsl0okxbIhd60xbAc3wser4o1c2zkkqEefIX
-         q/TMGYXZ9v4VWtkISKkpUvvKrKtc1bEfMxIo3H0Z8kxekFAeuQt615hhlKP0WmmupRua
-         MhAa5+V07Hp+rqVk1yyWPfhS5wbClLU2eahm3mcalLwmPAz8dX2dd4U1uWmndYk/wbde
-         cXtFzB/lfVphP50+X2r+a1N5F7j5zRce9k0aORsKOQ9tusk/S6CC7VyiZ7/IHKWKHKH1
-         6HkCI9+QllxHoqKORoJJoZs/tXO3FuejPSdk+fX5V/rk4LWgnipDN3t6XS7R1h1K641z
-         y2Sw==
-X-Gm-Message-State: ACrzQf2SxUtW+NEZgVGYdoOTkBWw5Q+JVjtyBRd41V6f3zmY+88edNYN
-        zYcTGgZdXIJak+H9BXxrYJCPMg==
-X-Google-Smtp-Source: AMsMyM68uv63wK0EbNnQkmuEMH+CrM4l78TeZm/qeYXZACgfuIZbAJ+torxeLvUDplUslWBZiew3Jg==
-X-Received: by 2002:a19:5015:0:b0:4b0:3544:d4ae with SMTP id e21-20020a195015000000b004b03544d4aemr23039219lfb.475.1667982973491;
-        Wed, 09 Nov 2022 00:36:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id 17-20020ac25f51000000b004abc977ad7fsm2111833lfz.294.2022.11.09.00.36.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 00:36:13 -0800 (PST)
-Message-ID: <aa665829-82db-74de-d802-e01fd52c998d@linaro.org>
-Date:   Wed, 9 Nov 2022 09:36:12 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d0zbHYyI3ZOuc2iT4mRqGhJVf4w/uy1L6RiWzNixdzw=;
+        b=4xWRoiJ6Jfn7FHvNIQog+fSMXIWdizsKLE0We+oCEBKgi4QH1rf63+g+LBHRj0BQTF
+         fRiydmSAt2MJeKp2hSfccADtFV7BURcjuZAU5s3rRl+szY4+PgcWXOFtlT0eyVy0TFlJ
+         diJhVIcQc7iR742MgS1rnhUn+VeeuS+gB1A0y/HdfVcbLsTCLhZfZeXtE9BKeeaa0VeC
+         18MmKtIIFOvUFqVTtWQ5PJBtVOy3R50omT4fRnNoocr9UTOpNOsMTb9Gbf/1Ps6MQOqU
+         4wgUG0npJn340BZ2EQzhh7tpeCQRnyq8YgyH0cyM3aVfxPicJEL97llWXiX9yVLPVitq
+         OQiw==
+X-Gm-Message-State: ACrzQf0OUa+iY11wKDpD9UfvQRu+qvRupCIIufjGfTx2y3Ja0ORmBWPq
+        yYjxzf4ngc/snUf8qkFw+XD18fpbaH68b5EK7MvufA==
+X-Google-Smtp-Source: AMsMyM791qMulyNHY+wAqFSetNq8SvPUdo/dK2HW5kOtjxO8R3MbKqGDnl96Qe5xE0gDRsx6zbRmaL1YlM970Fgq/bI=
+X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
+ ga30-20020a1709070c1e00b007ae31a0571emr24177907ejc.690.1667983094822; Wed, 09
+ Nov 2022 00:38:14 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 6/7] dt-bindings: gpio: add binding for the GPIO block
- for Apple Mac SMC
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
+References: <20221105084905.9596-1-linux@fw-web.de> <20221105084905.9596-2-linux@fw-web.de>
+ <166765939131.4158830.8416727494529058690.robh@kernel.org> <trinity-c732b826-2a12-4ab1-aaac-294ac5524926-1667660774779@3c-app-gmx-bap26>
+In-Reply-To: <trinity-c732b826-2a12-4ab1-aaac-294ac5524926-1667660774779@3c-app-gmx-bap26>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 9 Nov 2022 09:38:03 +0100
+Message-ID: <CACRpkdZsP-aj6hcD2sOB8ypVqdxwC8dWOo0d52qnDpxppUwNAA@mail.gmail.com>
+Subject: Re: Re: [PATCH v1 1/4] dt-bindings: pinctrl: mt7986: add generic
+ bias-pull* support
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Rob Herring <robh@kernel.org>, Frank Wunderlich <linux@fw-web.de>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXi-002mwL-UB@rmk-PC.armlinux.org.uk>
- <3d51c0e2-1e59-5767-4be1-5754ca8dc902@linaro.org>
- <Y2rTmS/gEdtU66b0@shell.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y2rTmS/gEdtU66b0@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 23:09, Russell King (Oracle) wrote:
-> On Tue, Nov 08, 2022 at 09:56:40PM +0100, Krzysztof Kozlowski wrote:
->> On 08/11/2022 17:33, Russell King (Oracle) wrote:
->>> Add the DT binding for the Apple Mac System Management Controller GPIOs.
->>>
->>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->>> ---
->>>  .../bindings/gpio/apple,smc-gpio.yaml         | 37 +++++++++++++++++++
->>>  1 file changed, 37 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
->>> new file mode 100644
->>> index 000000000000..1a415b78760b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
->>> @@ -0,0 +1,37 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
->>
->> Does not look like you tested the bindings. Please run `make
->> dt_binding_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> 
-> Oh ffs. DT bindings are utterly impossible to get correct.
+On Sat, Nov 5, 2022 at 4:06 PM Frank Wunderlich <frank-w@public-files.de> wrote:
 
-Why? You write, you test and then you see the error. Srsly...
+> > Gesendet: Samstag, 05. November 2022 um 15:52 Uhr
+> > Von: "Rob Herring" <robh@kernel.org>
+>
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dtb: pinctrl@1001f000: mmc0-pins:mux:groups:0: 'emmc_51' is not one of ['emmc', 'emmc_rst']
+> >       From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+>
+> this is already solved by this Patch:
+>
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20221105092500.12145-1-linux@fw-web.de/
+>
+> i decided to send a v3 or if instead of including it into this series
 
-Best regards,
-Krzysztof
+That patch in turn says it needs another patch first.
 
+Now I am utterly confused, it is really hard to follow these trains
+of patches depending on and breaking each other left and right...
+
+Can you please tell me which patches I need to apply and
+in which order?
+
+Yours,
+Linus Walleij
