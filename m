@@ -2,114 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEED622618
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27ABE62262F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiKIJBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:01:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S230205AbiKIJEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:04:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbiKIJBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:01:33 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7F01E3D5
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:01:31 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id t10so24831653ljj.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:01:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=koi87UBrY+4VbIvBhOaMl54U0jWmVKM7mhP4eLxgcCM=;
-        b=pYyHtrWUHIUnG+wcIiuyl8Eb4xpHSKWAbbm2UUGW+KAXP1NEZ5VG6w+KCCeVZDMvA6
-         xG0Afks2KDaRV8ZceEPEFN2cR6hlLiyqaBnfwVmfNfAm0mqPCqTf16Bui1CL0AzeI/jl
-         UJrBkDY3mWGCs41//YNt9kXSV1nlSqVf/qU/d1xdI3CDV5Ysz6Ns/LQ2zTF+LAm4cAD3
-         /Kt6hF2qRXx8UuklDBKOVfGgBSUX5aTqm6iE338qmimwzVn3HSyK4MyERUePThBrL95T
-         RSBHm+AvgOeYlCqvCQSudofFWbQfRZ71UE4pZnExgvX9GUlfeqJeBP/uT6sz1rRTtfKh
-         iMJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=koi87UBrY+4VbIvBhOaMl54U0jWmVKM7mhP4eLxgcCM=;
-        b=VyfXb0QUnf6cWY8SDLd9nk7DNpmBVXavIRzY4hYxbPp81Vr4LxglXTbo81/PSZikEH
-         VB+KbpbAtKVpo/J+dsOWzfsr38iTqisKEjAFgQ1notv8x/WXNHKwdbdP+3Lb1Bl866Q9
-         zNjNWX2Cy45k3JM/NEyxmH+mMYFfdLPL5Gn1l7yJZ3XjCkLaDghX4ObiV3VXhwk0uiFJ
-         jJ8zosEMejY8ssHSIt1kDxjqf1FbwFsEVc8aJN++zelAJFjs6mtq9PbuiHg1eE1IwdFs
-         h+SjM6Qssk1p0zJcXCZLN0BkYUCXZhDKlM12G5VcrB/JL0ChLb/9ziBzyjNJrscG3Nrh
-         0fTQ==
-X-Gm-Message-State: ACrzQf3Qdbazzq3Ev8finX8698PQA0hYL0/yVtCazuBJ0thZ7rRJv1GJ
-        7tgnCAt9rShVg0kSNpMNqnlAUA==
-X-Google-Smtp-Source: AMsMyM68gD6nF6Ys++aTB+8/odStmcWWdBR+jCLTj5ELwjEBJoftvdDjO2Ka2/JTTfzis+5UjDtBQg==
-X-Received: by 2002:a2e:9a88:0:b0:26f:c489:883e with SMTP id p8-20020a2e9a88000000b0026fc489883emr7498644lji.281.1667984489818;
-        Wed, 09 Nov 2022 01:01:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id b2-20020a05651c032200b0026bf43a4d72sm2062535ljp.115.2022.11.09.01.01.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 01:01:29 -0800 (PST)
-Message-ID: <5741e444-00b3-16f6-d012-f2b77cf8b0b2@linaro.org>
-Date:   Wed, 9 Nov 2022 10:01:28 +0100
+        with ESMTP id S230212AbiKIJES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:04:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C9DE19C2D;
+        Wed,  9 Nov 2022 01:04:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D2607B81D46;
+        Wed,  9 Nov 2022 09:04:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B212C433D7;
+        Wed,  9 Nov 2022 09:04:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667984655;
+        bh=dH7Ry1CIVTZgyI9KDAD7GwQOyjSCd95V0RbPoon0Nc4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=aX27582WOVXNU1jj0FQfgLz8r3Yp9vvPY4KtxtEXh+a/GDU3sWTVgpeZfpqnW4tdk
+         KOrP4RnySArPB0V2V28mCiKe+K55D28CiZTS89Ip0pGDJRWR9wrJrJ4I1GPclPgmZa
+         JUjxjOPw+yA06lGWQcbEnstdabNQB3x0VKGsKa6wgtYWtx0EmSCeky7MKrUoHXdKq7
+         am7b1p9AnemOG9o/u96or6eQEu2BWfDnD1g3Opk8Dg+TEINLXc93XQBLBJkYVZmouO
+         CPOvHn0hi9wsPA+cd2/k3DsmbcqiDDOLRF54HAoHUjLzM1y+NzizH7lVpGV0ZvKotI
+         AgZW7YTKiy3QA==
+Message-ID: <5758c2af-c2c5-dfbe-c7d8-036bbdaf71c7@kernel.org>
+Date:   Wed, 9 Nov 2022 10:04:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [Patch v2 1/3] arm: exynos: Add new compatible string for
- Exynos3250 SoC.
+Subject: Re: [PATCH v5 5/7] dt-bindings: watchdog: mediatek: Convert mtk-wdt
+ to json-schema
 Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <CGME20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8@epcas5p2.samsung.com>
- <20221109035507.69086-1-aakarsh.jain@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109035507.69086-1-aakarsh.jain@samsung.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     nfraprado@collabora.com, angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
+ <20221108033209.22751-6-allen-kh.cheng@mediatek.com>
+ <585a9cbb-4df4-1c06-ecfa-3b9442f1a5e2@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <585a9cbb-4df4-1c06-ecfa-3b9442f1a5e2@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 04:55, Aakarsh Jain wrote:
-> Since,MFC v7 support was added for Exynos5420 and Exynos
-> 3250 SoC with same compatible string "samsung,mfc-v7".As
-> both SoCs having different hardware properties and having
-> same compatible string for both SoCs doesn't seems to be correct.
-> New compatible is added for Exynos3250 SOC which will
-> differentiate the node properties for both SoCs which
-> support MFC v7.
+On 08/11/2022 11:50, Matthias Brugger wrote:
 > 
-> Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> ---
->  Documentation/devicetree/bindings/media/s5p-mfc.txt | 9 +++++----
+> 
+> On 08/11/2022 04:32, Allen-KH Cheng wrote:
+>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>
+>> Convert the MediaTek watchdog bindings to schema.
+>>
+>> The original binding only had 4 without a fallback but there is a reset
+>> controller on the "mediatek,mt7986-wdt", "mediatek,mt8186-wdt",
+>> "mediatek,mt8188-wdt" and "mediatek,mt8195-wdt" Since there is no reset
+>> controller for the mt6589, we remove "mediatek,mt6589-wdt" as a
+>> fallback.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Co-developed-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+>> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> As I'm put as the maintainer:
+> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+> 
+> Shall I take that through my tree or shall it go through the watchdog tree?
+> 
 
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
+In general, bindings should go via subsystem trees (so watchdog), just
+like drivers. However this got Guenter's review tag, so usually it means
+also an ack... Dunno... :)
 
 Best regards,
 Krzysztof
