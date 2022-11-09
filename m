@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D4AE622751
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E05F6622753
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:42:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbiKIJle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:41:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
+        id S229588AbiKIJmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:42:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiKIJl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:41:26 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 58F1D2BF9;
-        Wed,  9 Nov 2022 01:41:24 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8DxvrfDdWtj2IUFAA--.12900S3;
-        Wed, 09 Nov 2022 17:41:23 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxDuLBdWtjYXwPAA--.42778S2;
-        Wed, 09 Nov 2022 17:41:22 +0800 (CST)
-Subject: Re: [PATCH v8 2/2] dt-bindings: hpet: add loongson-2 hpet
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev
-References: <20221103065351.32603-1-zhuyinbo@loongson.cn>
- <20221103065351.32603-2-zhuyinbo@loongson.cn>
- <b0aed9f8-f82e-3d74-4299-4d77445c2170@loongson.cn>
- <a588a90e-a8ab-7b43-a14b-101bb9f590db@linaro.org>
- <b20098b3-e833-7412-143e-4f39d344ff67@loongson.cn>
-Message-ID: <b0e18583-24d2-73c4-8d80-d06d2cd4824d@loongson.cn>
-Date:   Wed, 9 Nov 2022 17:41:21 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229567AbiKIJmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:42:22 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE99BCE8
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:42:21 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id k2so45200999ejr.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:42:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kpat3oIww6mvasqFsGKc3erLtYdIA8Myxby80VshSDc=;
+        b=Z3vzpzdwRJtcEtnsAnnBlXDZ+OmYMtlSkTAPFnI9B3ULkEOFx+5lllovKGKU1554oK
+         ybjSvuYI4KxT/9wZJyieePHzvAMf7eypU6I8aT+TEDuDJ+oydTRD+PgksLaXBNKDoldo
+         qw2FrMunB8EcnWXyTxLW1Or9TjxcHVYCtqHlkNJIqZH2lXYg7yGDQCcTA/UDgqpS8RfY
+         waNLiemf9Su3+0xxZAfXgr/+8p2HhrP8iiUY/5HEFp02SOmLiS9lWJGScCdEIGrwsdQE
+         E8w0oP9TUc9NpYc+NKMhJIzyO6f4gCar1SWWx5pjW5l0GaaknRHba7ScM2a5kw5wOStA
+         swqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kpat3oIww6mvasqFsGKc3erLtYdIA8Myxby80VshSDc=;
+        b=5ji5DDBPcHpquotC1ec4GHYPdzFw59/eO3ifcecJLZPCZlAQVlkcz67NIaScSUYszm
+         6czkLdmaqKlu3QvA4Kr+hH7yuFByRx/7aJiqIVaH40BJ4eIXNUv7ptFed2uq/CA4aO+9
+         H3RlHy1eBxYqEo2SbF8fBYIDH1xn9Y3rY6vxNril5Hi7Cf6oL2cXBC/94THLQhAL3OEO
+         K19OUNdkQxbSvRTVnAxuZqwQPLFECRQWgSi8Fr5LqC7Nx+hba4tEmSBnMTIgANuF0H+z
+         rBTSaILHsCSk8+uBglu765TAiGSzJAnGLvUwDSmGW39UTZPrUkFW5c4ns6y1iFux0kfA
+         fO3w==
+X-Gm-Message-State: ACrzQf27S2ffqEUXy70qZIk5DsJxcAn3kErYuz0VEGSq12xryYMYArk0
+        SgTdSZOBRNa19O1+bK7+kxdt6i99z99OHGr76BlClQ==
+X-Google-Smtp-Source: AMsMyM4RPx0SajJLvZm8nBbEtLdENd0zhL7riz9dqXWKXlkN9kH7F7qlvwHO/GyvajSzDSceln1gt7uj+vjvlNtUWxY=
+X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
+ d11-20020a1709064c4b00b007ada197b58emr57475332ejw.203.1667986940359; Wed, 09
+ Nov 2022 01:42:20 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <b20098b3-e833-7412-143e-4f39d344ff67@loongson.cn>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxDuLBdWtjYXwPAA--.42778S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7XFy3tw47AF4rGrWftry5urg_yoW3ArX_Xa
-        4qk3s3uF47uFyvqFs7tF9xu3srK3s8Jry8JrWrX3y3Wws0yrWDAws3G34Sv3WYqFWfCFnx
-        Cryqqw4ruFsIgjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        n7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVW8ZVWrXwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26F4j6r4UJwCI42IY6I8E87Iv
-        6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7IU1P8n7UUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221108173120.618312-1-jagan@edgeble.ai> <20221108173120.618312-4-jagan@edgeble.ai>
+In-Reply-To: <20221108173120.618312-4-jagan@edgeble.ai>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 9 Nov 2022 10:42:09 +0100
+Message-ID: <CACRpkda7sWoy8jgaWq+xtbYwDXZx2P19h-BF8GVKpKN7ZxFUFg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sorry, please ignore this ping in v8.
+On Tue, Nov 8, 2022 at 6:31 PM Jagan Teki <jagan@edgeble.ai> wrote:
 
-在 2022/11/9 下午5:38, Yinbo Zhu 写道:
-> 
-> 
-> 在 2022/11/9 下午5:24, Krzysztof Kozlowski 写道:
->> On 09/11/2022 10:19, Yinbo Zhu wrote:
->>> Hi maintainer,
->>>
->>> please help me merge it to upstream.
->>> in addition, this patch need rely on
->>> "https://patchwork.kernel.org/project/linux-clk/list/?series=691497"
->>
->> Why pinging for v8? Didn't you have v9 and v10?
->>
->> Several of your Loongson patches had many build errors, pointed out by
->> lkp. Therefore I have doubts that you test these extensively. This might
->> be the reason why your patches float around...
->>
->> Best regards,
->> Krzysztof
-> Yes, thanks your remind.
-> and I have a compile test and function test about hpet in mainline linux 
-> tree 6.1-rc3.
->>
+> Jadard JD9365DA-H3 is WXGA MIPI DSI panel and it support TFT
+> dot matrix LCD with 800RGBx1280 dots at maximum.
+>
+> Add support for it.
+>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
+> Changes for v4:
+> - add delay explictly
+> - update init sequence
 
+Thanks I really like this version!
+
+Patches applied and pushed to drm-misc-next.
+
+Yours,
+Linus Walleij
