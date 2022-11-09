@@ -2,116 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D023A6229C2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B60736229C8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:11:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229922AbiKILKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 06:10:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
+        id S229938AbiKILLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 06:11:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiKILKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:10:46 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A132413F4B
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:10:45 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id a13so26746477edj.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:10:45 -0800 (PST)
+        with ESMTP id S230146AbiKILLE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:11:04 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C26A28729
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:11:03 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id t10so25309136ljj.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lwHwOq8FsLNoD2aO9ykMtFctZv91WdYSzGZv2yreSuA=;
-        b=D2migdEODR8Q/QlwooR0P45jANQ3w1cPDCzYnfjrn/MvRoGIv9et4/DHrAzuO08uzu
-         NHDdb4QTtHVW/VVU/1adZe7IopgsLtms+1K1aTJiG3QmIkoz/g04fS4WJud7fpo65M9+
-         zY+kk5fouVvJC7AHJrd1TVnYKp9A9/YFRmVGu/kYtpEjcVw87QDx6VRCjygfN+847awZ
-         E6PPRTqvQ/jmTjxJcT9y5um7zDbnr47l/1ARSFMhK9IAcxs0lOHFhdL71PsVLp+g8Wxb
-         BS8xOvAQCWfBc1RyX0hsDdzmQzlqAYByh2qcg/XmCi78t5vJ6OaPnIBURSb3PcKSmRy+
-         2ZQw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RBYC2sQin+8K6ysS38BCoDSJAXb+ifX+8YqSQIM6ZNE=;
+        b=PT7IdvLowfx3KdqSMDXmaDTaWI+owL9r4MbPbtgI8uN1LsJa/SsSKSbfdvPpsFUz+b
+         qrbzfspBUTgop+tdztUoMusYGwyj55hlUTJ5Qicgmz90ixY8sRUQsCtg3EAicRj62vXL
+         GguVtP+Cfc1lmZ/pKjjifXO3oLmYZcauuvtHXOt+SHTkQxNl9mkzI2iemqICbMGk2NjS
+         ZQPAJT4JF9F9vUfhc+GtIkG3vVbJAUFnffwzMeOwSBqRh6rgbcLpNKBF28m4zwd7sgLP
+         I6CG1teRO/3/moE3b3GKMxNDH0HGAkTEwpcPcS4iCpmRRIGzEoww9wZZnTmjcCc3Hl+R
+         t6ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lwHwOq8FsLNoD2aO9ykMtFctZv91WdYSzGZv2yreSuA=;
-        b=SRSMMBdRh818wa+8Dze42GprFLOm5AIxV/TBB8VKiEer4H47OB3LBkbaFBpPXyEEeY
-         UKzHUFzOyfZ+TDpRj9w3pVX4v5WWc3sEwClIe7G4fOCNqdGRx0HABPaY90+zXhKxnjS0
-         9CbwsR3wAC3n6AYy5CUOJd+TZJ5rZUDxvKVD8JMBOtd5ZYJ16xdAwFTUYMibDZm49KjR
-         eYvFUZYqou+NBTKIWqKzcsvmangkv5NFcxdqQ4lZPn5xaqoWYQduN2w0rhKt1aJZPzLF
-         xgWZE61Zzh/5M2Ji381pjF0Y1NnbyHuKcu0HUqnYbJIxBCHudFd6joEHBXw+69DiP3WE
-         5Fhw==
-X-Gm-Message-State: ACrzQf0+sVRuw7xH7SX8QBDEQjmsKNimEL+/aF/Itr+IeHxfos1lNcrp
-        sJo7RtDQQL6d3b6tMsNyNaXMqA==
-X-Google-Smtp-Source: AMsMyM4fWcdacnBHb0ersV1OYLbBfhg8lo1BIBwYnIYYdB7EjZXnMher95VyVJqMztr2KgJ8rQLpzw==
-X-Received: by 2002:a05:6402:360d:b0:459:5f40:5b0a with SMTP id el13-20020a056402360d00b004595f405b0amr57750711edb.168.1667992244215;
-        Wed, 09 Nov 2022 03:10:44 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id eq16-20020a056402299000b004610899742asm6720392edb.13.2022.11.09.03.10.42
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RBYC2sQin+8K6ysS38BCoDSJAXb+ifX+8YqSQIM6ZNE=;
+        b=fzQtIfOuEgj2r1h9cgivYn0FKqteQjJjnMi309ywnsqhYtevzRSyAojukTNJtkeFqF
+         27N8mSjMrcNmqPdZkxHMilAbHHF39CYacn2qtgh6vCavaS0iaO4F3do+bvJd9GfONu1E
+         ziF8bY9mujkTjNGFOE4+bBte/nwDTQ515yJEQ725QrdoVvqbdEKr6fk7vfuczBoYF/fj
+         gEUP1XePQ8ef9H6T2ve5/WoUmVFwHM9MjkCuCmDLSsaYlG67zya+Ej49TzbZWRb5JHtt
+         15jOcbYbMctpMf/eLHc8pTDnfZDE+9cO3GiVsASCFJjTat/N37CQ7JKHHyWtEJ6wZPEg
+         rO+g==
+X-Gm-Message-State: ACrzQf0ij05wTMRANJ+wJyyKw2wITeAO7qSIZsl1AjVsCvmVCK27kdRe
+        ieGd3CYizSQb7furp9FiCabqPw==
+X-Google-Smtp-Source: AMsMyM7UtzPEqp3da7BV+7So92Og/3kSdtsDjfAfnH8rib/01LUvRanVw1xriRs6aLAVUpLm3c/8KA==
+X-Received: by 2002:a05:651c:88b:b0:26e:261:5052 with SMTP id d11-20020a05651c088b00b0026e02615052mr19368472ljq.182.1667992261625;
+        Wed, 09 Nov 2022 03:11:01 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id r26-20020ac25c1a000000b00497a879e552sm2154796lfp.291.2022.11.09.03.11.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 03:10:43 -0800 (PST)
-Message-ID: <7927fa8f-372d-5c34-2d68-a9533b87c1b0@linaro.org>
-Date:   Wed, 9 Nov 2022 12:10:42 +0100
+        Wed, 09 Nov 2022 03:11:01 -0800 (PST)
+Message-ID: <fe9b3e7f-c852-5f5e-1d3b-d30218ee497a@linaro.org>
+Date:   Wed, 9 Nov 2022 12:11:00 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [RESEND PATCH] dt-bindings: PCI: qcom,pcie-ep: correct
- qcom,perst-regs
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-References: <20221109105555.49557-1-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221109105555.49557-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/6] dt-bindings: can: mcan: Add ECC functionality to
+ message ram
+Content-Language: en-US
+To:     Vivek Yadav <vivek.2311@samsung.com>, rcsekar@samsung.com,
+        krzysztof.kozlowski+dt@linaro.org, wg@grandegger.com,
+        mkl@pengutronix.de, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com, alim.akhtar@samsung.com,
+        linux-fsd@tesla.com, robh+dt@kernel.org
+Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        aswani.reddy@samsung.com, sriranjani.p@samsung.com
+References: <20221109100928.109478-1-vivek.2311@samsung.com>
+ <CGME20221109100249epcas5p142a0a9f7e822c466f7ca778cd341e6d9@epcas5p1.samsung.com>
+ <20221109100928.109478-3-vivek.2311@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221109100928.109478-3-vivek.2311@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 09/11/2022 11:55, Krzysztof Kozlowski wrote:
-> qcom,perst-regs is an phandle array of one item with a phandle and its
-> arguments.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On 09/11/2022 11:09, Vivek Yadav wrote:
+> Whenever the data is transferred or stored on message ram, there are
+> inherent risks of it being lost or corruption known as single-bit errors.
+> 
+> ECC constantly scans data as it is processed to the message ram, using a
+> method known as parity checking and raise the error signals for corruption.
+> 
+> Add error correction code config property to enable/disable the
+> error correction code (ECC) functionality for Message RAM used to create
+> valid ECC checksums.
+> 
+> Signed-off-by: Chandrasekar R <rcsekar@samsung.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
 > ---
->   Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index 977c976ea799..5aa590957ee4 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -47,8 +47,10 @@ properties:
->                    enable registers
->       $ref: "/schemas/types.yaml#/definitions/phandle-array"
->       items:
-> -      minItems: 3
-> -      maxItems: 3
-> +      - items:
-> +          - description: Syscon to TCSR system registers
-> +          - description: Perst enable offset
-> +          - description: Perst separateion enable offset
+>  .../bindings/net/can/bosch,m_can.yaml         | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> index 26aa0830eea1..91dc458ec33f 100644
+> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> @@ -50,6 +50,12 @@ properties:
+>        - const: hclk
+>        - const: cclk
+>  
+> +  tesla,mram-ecc-cfg:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      Handle to system control region that contains the ECC INIT register
+> +      and register offset to the ECC INIT register.
 
-separation?
+That's not way to describe syscon phandle. Property name is ok. For the
+rest look at:
+https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+
+Anyway, this looks like SoC-specific hack, so it does not really fit to
+the driver. You have to think of something generic.
 
 
-Konrad
+Best regards,
+Krzysztof
 
->   
->     interrupts:
->       items:
