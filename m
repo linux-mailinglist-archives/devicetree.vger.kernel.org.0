@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 743D3622E08
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 15:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8D0622E0C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 15:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbiKIOfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 09:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48250 "EHLO
+        id S231515AbiKIOf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 09:35:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231589AbiKIOe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 09:34:59 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5A11A206
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 06:34:58 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id u2so26090339ljl.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 06:34:58 -0800 (PST)
+        with ESMTP id S230002AbiKIOf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 09:35:58 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5BEBF63
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 06:35:56 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id h12so26040716ljg.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 06:35:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bZx04SasLwqf9ldsbI3VPQRqwyw8Z+v7jFzXUXT/Qrk=;
-        b=e/YNifEm6OOdJN1uo9vjMAfEYEwXuDqJI1RrWqXrnhUw3evyiKD0XWQvBMzEKnukK9
-         dZsehmTY7c4A2rfwLSJfR7SrRAMTHZLrQwrzhpS5DkJb/CIM+cxzVrUlyI1zWvdYlWni
-         FA+Odi1FWqwTckjIAyfG0Nyyxnhbsm7bTCmRU4U9cnGmJfNiZ0k1OWhO9q/OWwCJQ2cB
-         D1PtgrAC3lqX6LWC0SC6sU/zo0uxnL00CbyTWGqCJLxkdjhIYwk66O/2LFWoiyUJBfS2
-         E/0AExbznOJ/bVZem/EoVeRNPJckFoPY3s8vJ/TSKMteBRPm7S4LrV6UygCGQA/YO23m
-         oKSA==
+        bh=IgNpl8C4iBNYvOOWoX8NPXlg4rH8L8HyQLMoDwL+0HM=;
+        b=NQk8t2AbEPU/qlVt4CMjHppqeR6boJaJmxSIgYmN6jtFUUTm6kHzntU4OU1MKoyhWK
+         HjOhx7KPnv7SSIIDzKJclF0NySbnfmY98Xl4XRKTPzpUmItA9MBIIWN2/7UpRopdIqgT
+         iyAiwllUJbbiLUFyckmx2eJl5584q+uJKcpMxW4PfN4Tms/Uyl77rsdkgMZiTyKkLX1V
+         9qnlThy9Janu6Z4/CHqJLWB977Vcf293JYT3FtB6RxuhaVGjGVpAvDwdG7E+LO7PEaYt
+         sRefkIBhT4UeInmWKKeEJ2tfvgUShHn5qR3Lb3uxP/IeWo7dKfuRFuGnIdpXAW9QP0CN
+         AJ4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZx04SasLwqf9ldsbI3VPQRqwyw8Z+v7jFzXUXT/Qrk=;
-        b=JmIfQphAFjnN+9kw0bLjXmW+0hkopja0U9+xsSAagGV7ngWB2jLf8/5ke3pVuq1nWz
-         6XYNCrT+7f9Fp1GnK1gAVVAdUlVzQEggtElB6++WxVWzMr/u4apkzDEEQwxTCilwDmaD
-         nPwe0x1xkZh03AI/v6389WQjhW6Vo00cE3OCWzdre1rTa4rGma5gxPsPiPL0E+gs4M0R
-         BCTkrtreHbaRkZvX3v8FZ7qe+XVr+iMotjHr46oH3vd/px07fnavWdau01l4cHKB79z3
-         Wq4NTOQLTsHAcfE2QsmFqFGlkWHVMHMKIXREFmiQ+JkB1D2tdNHM6rO19KZJBjktoGZY
-         G9dw==
-X-Gm-Message-State: ACrzQf3YmHF1NfBjWJGXrmJoBrQgG9OiyiNN5H/x1UVhVRiq9gbrlw2t
-        C3mbgseZ1Wh5P2/zdDRtri8Vtg==
-X-Google-Smtp-Source: AMsMyM4AD345kQHxbb29mwZgIXzAJUVPAIIuQlNzTJmQbHVxyVpmlXcw4YovKLJWDOUZOKFrOOfcnQ==
-X-Received: by 2002:a05:651c:1073:b0:277:35ca:5eef with SMTP id y19-20020a05651c107300b0027735ca5eefmr20592048ljm.150.1668004496937;
-        Wed, 09 Nov 2022 06:34:56 -0800 (PST)
+        bh=IgNpl8C4iBNYvOOWoX8NPXlg4rH8L8HyQLMoDwL+0HM=;
+        b=f8diUwsOyqHjdkiwyskjL93MFH/C6dHoMRix5PxCgrx8zgxINajQQ1PiZNF3P7a11z
+         lUCQK5Yn5vvdVWj/jQlVIsFxdQhcjXeBv3ug9pj1XSoz6/N7kyulsNkE0OHAJZbkCFlM
+         EHoqjrPOQ5BuT3XkiwIaCTn07u060+JzrxCnemYbXGXdfk2yZ7jx2hGfX5CfIs9G2Okz
+         zgVaEJUmdur2z6RT9O1cOKTNw0i9APmzp2hv9sK7itilz+X3yr2xH3mlZTmLeGvFzfUB
+         pVYRPDLiK2U+rHkdP03OJV3JW872onak6Pcz6jAs/gWXKb/1dcLUE8l82vRNhhVef/g8
+         uxcQ==
+X-Gm-Message-State: ACrzQf2RXQUw05dFggO6Bj8QC77AlkckhUTxDrKMYw8thn5nILdi/OPO
+        EvVpWmv0OrMgaOLi0NrMfib44g==
+X-Google-Smtp-Source: AMsMyM6dbYGIXJoas0iyFdKUCrjS77dbN7utqs2pCahKT+GiStFnYszVKkXp1V+GsNuYnRXCqF0h8A==
+X-Received: by 2002:a2e:b637:0:b0:277:74dd:1fbd with SMTP id s23-20020a2eb637000000b0027774dd1fbdmr12726026ljn.378.1668004555018;
+        Wed, 09 Nov 2022 06:35:55 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id f14-20020ac2508e000000b0049478cc4eb9sm2246056lfm.230.2022.11.09.06.34.55
+        by smtp.gmail.com with ESMTPSA id b21-20020a056512071500b00494978b0caesm2254240lfs.276.2022.11.09.06.35.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 06:34:56 -0800 (PST)
-Message-ID: <7254aaa7-c235-aa4f-1706-be68e49f2244@linaro.org>
-Date:   Wed, 9 Nov 2022 15:34:55 +0100
+        Wed, 09 Nov 2022 06:35:54 -0800 (PST)
+Message-ID: <805126e9-5e71-c44e-d586-8c687ef02357@linaro.org>
+Date:   Wed, 9 Nov 2022 15:35:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-msm: Document the SM6375
- compatible
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm6375: Add SDHCI2
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
-Cc:     patches@linaro.org, Ulf Hansson <ulf.hansson@linaro.org>,
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221109142623.53052-1-konrad.dybcio@linaro.org>
- <20221109142623.53052-2-konrad.dybcio@linaro.org>
+ <20221109142623.53052-3-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109142623.53052-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20221109142623.53052-3-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,13 +80,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/11/2022 15:26, Konrad Dybcio wrote:
-> Document the compatible for SDHCI on SM6375.
+> Configure the second SDHCI bus controller, which usually the
+> interface used for SD cards.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/sm6375.dtsi | 82 ++++++++++++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+> index 6adffd927a8e..483202e60cd7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+> @@ -540,6 +540,46 @@ tlmm: pinctrl@500000 {
+>  			#interrupt-cells = <2>;
+>  			#gpio-cells = <2>;
+>  
+> +			sdc2_off_state: sdc2-off-state {
+> +				clk-pins {
+> +					pins = "sdc2_clk";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc2_cmd";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc2_data";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +			};
+> +
+> +			sdc2_on_state: sdc2-on-state {
+> +				clk-pins {
+> +					pins = "sdc2_clk";
+> +					drive-strength = <16>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc2_cmd";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc2_data";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +			};
+> +
+>  			qup_i2c0_default: qup-i2c0-default-state {
+>  				pins = "gpio0", "gpio1";
+>  				function = "qup00";
+> @@ -630,6 +670,48 @@ rpm_msg_ram: sram@45f0000 {
+>  			reg = <0 0x045f0000 0 0x7000>;
+>  		};
+>  
+> +		sdhc_2: sdhci@4784000 {
 
+Node name: mmc
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +			compatible = "qcom,sm6375-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x04784000 0 0x1000>;
+> +
 
 Best regards,
 Krzysztof
