@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0D662249F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 08:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6BC06224A8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 08:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiKIHaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 02:30:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38704 "EHLO
+        id S229509AbiKIHb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 02:31:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiKIHaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 02:30:12 -0500
-Received: from gw.atmark-techno.com (gw.atmark-techno.com [13.115.124.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A110119029
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 23:30:10 -0800 (PST)
-Received: from gw.atmark-techno.com (localhost [127.0.0.1])
-        by gw.atmark-techno.com (Postfix) with ESMTP id 0D8936013E
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 16:30:09 +0900 (JST)
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-        by gw.atmark-techno.com (Postfix) with ESMTPS id B7E066013A
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 16:30:06 +0900 (JST)
-Received: by mail-pj1-f69.google.com with SMTP id bt19-20020a17090af01300b00213c7cd1083so7357644pjb.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 23:30:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AkV6CPfdFGVjPpghLvJtNFPDkktXoQm93iA3ev5ef2A=;
-        b=gMWaC5crBMoRCxPhgl3FZrbBJkmm9wVJpJ8M5rU/+JdzHjZMgB8wjX0SDk+nWtoQ2t
-         XmPb3N3aeNkyJocqe1D5E8gBjQN8Pbj2qXHu7beFclIhJiLVdx1/mZ8PuRL/tn8UyiQS
-         go1qDAAScr69X2wnPDOR3V+hdv2t7eynYK4+mOg4M4WyRMoxSA/BxnKNkUh5cJUC122O
-         wun0IWfgxks7KewGmSgFu8gJtXjCH+L4i+odzIFcVVgQRuBsOo3KtZdlNX22+qotmfYx
-         QSrnKJ93FKLe8HQU2hbC0N4GcreV0MwtZGh8OdtMojFmSANyY2/0Hu51bp+WrNs2ifCZ
-         wWhA==
-X-Gm-Message-State: ANoB5pnmeBBWLFRX/yB/4FDsavXPuFkbv1ruMD3yyLrj+Vtdty/typyV
-        hoSyVK1p58ekcGcRN/Kr57Si26Yme37188j14Oe1KsnOpgCWKoNwdPG1CUW7LXWxCDRktg+Nq61
-        wvUL2VXlHcMMzT+XuMr8EmnduCg==
-X-Received: by 2002:a17:902:cf03:b0:179:b7fe:dc90 with SMTP id i3-20020a170902cf0300b00179b7fedc90mr8963561plg.112.1667979004657;
-        Tue, 08 Nov 2022 23:30:04 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf6FLsf7+45mbMx7ILZrcvfGJp5vcQmaIT620Rjw295aA7uZKazLCzKceVCNRsLqHiFhZv0ihw==
-X-Received: by 2002:a17:902:cf03:b0:179:b7fe:dc90 with SMTP id i3-20020a170902cf0300b00179b7fedc90mr8963543plg.112.1667979004304;
-        Tue, 08 Nov 2022 23:30:04 -0800 (PST)
-Received: from pc-zest.atmarktech (35.112.198.104.bc.googleusercontent.com. [104.198.112.35])
-        by smtp.gmail.com with ESMTPSA id i4-20020a056a00004400b0056164b52bd8sm7607836pfk.32.2022.11.08.23.30.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Nov 2022 23:30:03 -0800 (PST)
-Received: from martinet by pc-zest.atmarktech with local (Exim 4.96)
-        (envelope-from <martinet@pc-zest>)
-        id 1osfX8-00EHb8-1s;
-        Wed, 09 Nov 2022 16:30:02 +0900
-Date:   Wed, 9 Nov 2022 16:29:52 +0900
-From:   Dominique Martinet <dominique.martinet@atmark-techno.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Marcel Holtmann <marcel@holtmann.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com
-Subject: Re: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings
- for hci_h4
-Message-ID: <Y2tW8EMmhTpCwitM@atmark-techno.com>
-References: <CAL_JsqKCb2ZA+CLTVnGBMjp6zu0yw-rSFjWRg2S3hA7S6h-XEA@mail.gmail.com>
- <6a4f7104-8b6f-7dcd-a7ac-f866956e31d6@linaro.org>
- <Y2rsQowbtvOdmQO9@atmark-techno.com>
+        with ESMTP id S229575AbiKIHbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 02:31:20 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08CE31EEF6;
+        Tue,  8 Nov 2022 23:31:18 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 1E4A141A42;
+        Wed,  9 Nov 2022 07:31:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1667979076; bh=nWvNg1VPCRK8w6aaa8acSaDwMto5C+mMnVSDnwfo4Ic=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=m7ltRRcdvpiDH+yE9dvAvP4fgJTboKU8BTktrI9Qrsxe5N7qUqvwp2NXOC5KSlVS6
+         1n+7b/PlqzcYgfCdLLhIoklrh/fJtuRW00MlCrtgJJGjdz1qFucY/zqKxnTTAKuKTo
+         H4AiUSA2w+uVw1h3wiW6cNeFqHXBNKaWFMxMYfbQB2Y6TbrP2FSoRDF1JV/2iHO0Eb
+         6sgwaT+OPYdICSYkzVVpd5OB3tSPqenaB6fALru0fyJ6R7PFbIGeZ3j7m/12CTiBdu
+         5nKkUuInkppC+QLTcDNRm5Xy3BUv09Ff06vyGnhLQ0jZ1zptBj/Ia8wRWpZFpuhJA9
+         G8JmzEUmFEcZw==
+Message-ID: <2acc54a3-4fa9-2c93-449a-eed24340a00e@marcan.st>
+Date:   Wed, 9 Nov 2022 16:31:07 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Y2rsQowbtvOdmQO9@atmark-techno.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 6/7] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXi-002mwL-UB@rmk-PC.armlinux.org.uk>
+ <3d51c0e2-1e59-5767-4be1-5754ca8dc902@linaro.org>
+ <Y2rTmS/gEdtU66b0@shell.armlinux.org.uk>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <Y2rTmS/gEdtU66b0@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,47 +71,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dominique Martinet wrote on Wed, Nov 09, 2022 at 08:54:42AM +0900:
-> This is a pretty terrible design, as the Bluetooth side cannot actually
-> know when the device is ready as the initialization takes place, but
-> that means there really aren't any property to give here
+On 09/11/2022 07.09, Russell King (Oracle) wrote:
+> On Tue, Nov 08, 2022 at 09:56:40PM +0100, Krzysztof Kozlowski wrote:
+>> On 08/11/2022 17:33, Russell King (Oracle) wrote:
+>>> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+>>>
+>>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+>>> ---
+>>>  .../bindings/gpio/apple,smc-gpio.yaml         | 37 +++++++++++++++++++
+>>>  1 file changed, 37 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+>>> new file mode 100644
+>>> index 000000000000..1a415b78760b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+>>> @@ -0,0 +1,37 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
+>>
+>> Does not look like you tested the bindings. Please run `make
+>> dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
 > 
-> (I haven't reproduced during normal boot, but in particular if I run
-> bluetoothd before loading the wifi driver, I need to unbind/bind the
-> serial device from the hci_uart_h4 driver to recover bluetooth...
-> With that in mind it might actually be best to try to coordinate this
-> from userspace with btattach after all, and I'd be happy with that if I
-> didn't have to fight our init system so much, but as things stand having
-> it autoloaded by the kernel is more convenient for us... Which is
-> admitedly a weak reason for you all, feel free to tell me this isn't
-> viable)
+> Oh ffs. DT bindings are utterly impossible to get correct.
 
-This actually hasn't taken long to bite us: while the driver does work,
-we get error messages early on before the firmware is loaded.
-(In hindsight, I probably should have waited a few days before sending
-this...)
+I'd be happy to wrap the bindings up in another cycle & take them via
+asahi-soc, if you want. That will also allow us to add the nodes to the
+t6000 DTs which are on that tree for this cycle, and unblock merging the
+driver bits of this series. Bindings updates are not a hard dependency
+for drivers, only for the DTs themselves.
 
+That is:
 
-My current workaround is to return EPROBE_DEFER until we can find a
-netdev with a known name in the init namespace, but that isn't really
-something I'd consider upstreamable for obvious reasons (interfaces can
-be renamed or moved to different namespaces so this is inherently racy
-and it's just out of place in BT code)
+1-2,4 via mfd tree (if Lee agrees to merging the RTKit driver platform
+bits that way)
+3,5-6 via asahi-soc
+7 via GPIO (I think)
 
-That makes these two patches on their own rather useless as well, so
-unless one of you have an idea that's less ugly I'd guess just dropping
-this is the way to go, as much as I dislike the idea of adding more
-non-upstream code than we already have :(
-
-Thank you both for your time, the replies have been very helpful and
-I'll remember for next time I try to submit something!
-
-And if you have a suggestion, I'll be happy to do some legwork to clean
-this mess, so feel free to ask :)
-
-
-Thanks,
--- 
-Dominique
-
-
+- Hector
