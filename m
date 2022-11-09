@@ -2,97 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6AE36225C5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CBBA6225CA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 09:49:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbiKIItJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 03:49:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58282 "EHLO
+        id S229868AbiKIItY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 03:49:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiKIItH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:49:07 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BABB13D32
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:49:06 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id q9so44958150ejd.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:49:06 -0800 (PST)
+        with ESMTP id S230106AbiKIItW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 03:49:22 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 608B31789C
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 00:49:21 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id u11so24709163ljk.6
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 00:49:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=t6EfFhYH21wXCx5kjRB3VR+RjAOXhDuqMYuEWR7pfrc=;
-        b=Nv7TuRYLaRfjIJzC6Ibfw2k09vxMwaZUw45xYAICJVBRgjbKOKg8PUDAQG2g6d8HJi
-         t3pRsguCdxuipvLzx/0kRwuRJ/DG4SSvIuzTQHtUAJTnMywRLHL/PXt8UYYTsOB7ALyg
-         BQZ9ocCaax4iGoUDpLJ6QXNKRZDL7RVGCaBkwgQwePtVY3amGCcBqLVTItoKRHSgpmQB
-         q0PTk8/L3xeNCBKUOFkI3tNolnWCJ7IPG6Drl7RKCIv/3hmqJ9vA5R/rpLgLO6CFazxy
-         REOPyLV2fG236cF/HQWDda+X47ZFZ2W6zCDiJnpJOF41PUgxFx680dNyvZLLT7mM12xA
-         IkBw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7vBkkfZQWcT2BPYsBX069quROkBYsnlhEC9tn5FlJtY=;
+        b=ozMeYcbthVydFqMEaUf3m/kOWrFanjiFpobFaL089YHMZlW2jxw4BLT9lWYY3y1Bqs
+         Sl9ZCkgKygyOnYUxVIeUanR05mhyScLLevs48wNpCdDUfnfyhg72PRuD+pwavp73dSYe
+         QdocdUAfHPUFAgDjebTvxlVkr1zXRSJOUc1iv2F3XeZNcySNZr+PD5kuzrkNXcUr6OUT
+         nvFeYjYmMZUOY91cXf5YlAUYnN01MYBiQvr+twguS1/19xhBK1ecZuBDf1w95Jk8Slw8
+         LCPsKgfJdnUjSRXIcuXv000fCd2FuOjOFaetftqSrJZTNNdRNVulqWGYt3kNDwmqIrjZ
+         TVZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t6EfFhYH21wXCx5kjRB3VR+RjAOXhDuqMYuEWR7pfrc=;
-        b=ZL+cm2o7Q8UH+PZM7G16ZsXuVpdwEECw+UjJSXYfkjzVPIw6Ye31MLkDSmglxUgRs2
-         MmJXs11+lQ4ujvpPrG2E+87zO2vXLHOKuTEQhfArsANchhsDUzD6yZmxBpPySEFcGK3S
-         udOIg7ELa7Hk4mB/vyWSvbjmTynqbDvxdErE9MyW1MlnkXyBvN5xpiVZ8BHELPRv9u/P
-         Mt3EhT+FKP+ZsuZ15IUTphLFz9/RR+gICJIH73gamBlvLO2bS4Ak/xzYkid9rEotrQrC
-         GcjLevvWDzou5WT1hbPoNzN1aW3QFdiBXEJK+yoUFMFqkPe0tbTKI+VlGthkkkE8rQzK
-         OLTw==
-X-Gm-Message-State: ACrzQf1Lng/59fLtiQcM7STe/lDHUF09YCgM4vKfWN+682IVGSBx6fyA
-        UCotW8ptlBO7Mh/MnkzW90allvX1yYffgMFupA3fSw==
-X-Google-Smtp-Source: AMsMyM7nxsdRqbV99dDWXx3gc/r8zrl4uOIAkQi5rHuFSGiwieq/RYyQHXEPHnWl7E/GjBRB/NOZh8cH3d+9Df2IBdQ=
-X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
- ga30-20020a1709070c1e00b007ae31a0571emr24200210ejc.690.1667983745034; Wed, 09
- Nov 2022 00:49:05 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7vBkkfZQWcT2BPYsBX069quROkBYsnlhEC9tn5FlJtY=;
+        b=GSWpUPDjJA4ri3HNXsZIA/rSPTEFHxd9XCNKEfZHyVYe2XrqkSf0vsJ6U+f2vahQUc
+         YBz6OVbY97Es4SU33JA6XCKhkAZCZ+nsEYLNFg23vgxHiOGIW708t4dnNqcgxR92hisv
+         NHrvl4YTw6nw/iQnY56fHiIz25lvZ+o9X1366djbYSL042WX/Y5QJMyVgzs0Mz3QcP05
+         Gjt04LpbMZD3vjoKDTjRP1obAddqhYDHeJZj3ZYREgrVgA31dSgGF4kekVIiK/UG+UsU
+         R1p616TdvyHtXODnv5MeeqlKSiIoypj3iAQXuExfonr14rFaBsWMQNxIRNAg2dmQzqjt
+         cn6w==
+X-Gm-Message-State: ACrzQf2h5HTXAU0FmMPonZh3ZTCg0uI3rM8e0C+fyMl+xOiIZbuQ6PG2
+        SwInwnSWCeDPePZVDg2GJkhZWg==
+X-Google-Smtp-Source: AMsMyM4QTrn7WKvNp/FF7kJKkIOQR2e9NmHjjrrZaLB2cpuG6r0mVHyT23yAuPI4kNeJb/4SbsAOxw==
+X-Received: by 2002:a05:651c:12c2:b0:26c:13b9:a694 with SMTP id 2-20020a05651c12c200b0026c13b9a694mr21557955lje.79.1667983759758;
+        Wed, 09 Nov 2022 00:49:19 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id k4-20020ac257c4000000b004b1793520a0sm2129255lfo.36.2022.11.09.00.49.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 00:49:19 -0800 (PST)
+Message-ID: <0bf46e8b-334d-7a50-ff6f-ef336d6d1a51@linaro.org>
+Date:   Wed, 9 Nov 2022 09:49:18 +0100
 MIME-Version: 1.0
-References: <20221105084905.9596-1-linux@fw-web.de> <20221105084905.9596-2-linux@fw-web.de>
- <166765939131.4158830.8416727494529058690.robh@kernel.org>
- <trinity-c732b826-2a12-4ab1-aaac-294ac5524926-1667660774779@3c-app-gmx-bap26>
- <CACRpkdZsP-aj6hcD2sOB8ypVqdxwC8dWOo0d52qnDpxppUwNAA@mail.gmail.com> <6752A6BE-3750-4195-821A-917205F59258@public-files.de>
-In-Reply-To: <6752A6BE-3750-4195-821A-917205F59258@public-files.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Nov 2022 09:48:53 +0100
-Message-ID: <CACRpkda+yxwUhPSZ1EFHJJRFONKW63caBb_X1qPVVKxSA+QNhg@mail.gmail.com>
-Subject: Re: Re: [PATCH v1 1/4] dt-bindings: pinctrl: mt7986: add generic
- bias-pull* support
-To:     frank-w@public-files.de
-Cc:     Rob Herring <robh@kernel.org>, Frank Wunderlich <linux@fw-web.de>,
-        Sam Shih <sam.shih@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 3/7] rtc: rtc-tps6594x: Add support for TPS6594X PMIC
+ RTC
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, brgl@bgdev.pl, lee@kernel.org,
+        linus.walleij@linaro.org, kristo@kernel.org,
+        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, vigneshr@ti.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Keerthy <j-keerthy@ti.com>
+References: <20221109065546.24912-1-mranostay@ti.com>
+ <20221109065546.24912-4-mranostay@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221109065546.24912-4-mranostay@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 9, 2022 at 9:46 AM Frank Wunderlich <frank-w@public-files.de> wrote:
-> Am 9. November 2022 09:38:03 MEZ schrieb Linus Walleij <linus.walleij@linaro.org>:
-> >On Sat, Nov 5, 2022 at 4:06 PM Frank Wunderlich <frank-w@public-files.de> wrote:
-> >
->
-> >That patch in turn says it needs another patch first.
-> >
-> >Now I am utterly confused, it is really hard to follow these trains
-> >of patches depending on and breaking each other left and right...
-> >
-> >Can you please tell me which patches I need to apply and
-> >in which order?
->
-> Sorry, picked the wrong link. Put all pinctrl patches together into this series to make it easier to follow (but v2 because v1 was for changing only mmc pinctrl and to have no conflicts or "broken" commits):
->
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=692462
+On 09/11/2022 07:55, Matt Ranostay wrote:
+> From: Keerthy <j-keerthy@ti.com>
+> 
+> Add support for TPS6594X PMIC RTC. However, currently only get/set of
+> time + date functionality is supported.
+> 
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  drivers/rtc/Kconfig        |  10 ++
+>  drivers/rtc/Makefile       |   1 +
+>  drivers/rtc/rtc-tps6594x.c | 181 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 192 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-tps6594x.c
+> 
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index 35298c651730..0adb2c2570b8 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -588,6 +588,16 @@ config RTC_DRV_TPS65910
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called rtc-tps65910.
+>  
+> +config RTC_DRV_TPS6594X
+> +	tristate "TI TPS6594X RTC driver"
+> +	depends on MFD_TPS6594X
 
-Thanks I figured it out I think, even managed to apply it now!
+Perhaps: || COMPILE_TEST
+(and test it)
 
-Yours,
-Linus Walleij
+> +	help
+> +	  If you say yes here you get support for the RTC of TI TPS6594X series PMIC
+> +	  chips.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called rtc-tps6594x.
+> +
+
+(...)
+
+> +
+> +static int tps6594x_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct tps6594x *tps6594x = dev_get_drvdata(pdev->dev.parent);
+> +	struct tps6594x_rtc *tps6594x_rtc = NULL;
+> +	int ret;
+> +
+> +	tps6594x_rtc = devm_kzalloc(&pdev->dev, sizeof(struct tps6594x_rtc), GFP_KERNEL);
+
+That's not Linux coding style. Line is too long - wrapping is at 80.
+sizeof(*), not struct.
+
+> +	if (!tps6594x_rtc)
+> +		return -ENOMEM;
+> +
+> +	tps6594x_rtc->dev = &pdev->dev;
+> +	platform_set_drvdata(pdev, tps6594x_rtc);
+> +
+> +	/* Start RTC */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "RTC_CTRL write failed, err = %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	tps6594x_rtc->rtc = devm_rtc_device_register(&pdev->dev, pdev->name,
+> +				&tps6594x_rtc_ops, THIS_MODULE);
+> +	if (IS_ERR(tps6594x_rtc->rtc)) {
+> +		ret = PTR_ERR(tps6594x_rtc->rtc);
+> +		dev_err(&pdev->dev, "RTC register failed, err = %d\n", ret);
+> +		return ret;
+
+return dev_err_probe
+
+
+Best regards,
+Krzysztof
+
