@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4F466229DB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99DB96229DF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 12:13:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiKILMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 06:12:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57844 "EHLO
+        id S229913AbiKILM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 06:12:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbiKILMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:12:49 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A012327CCC
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:12:48 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id a5so26660719edb.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:12:48 -0800 (PST)
+        with ESMTP id S229880AbiKILMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 06:12:51 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70AE227CCC
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 03:12:50 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id k2so45784934ejr.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 03:12:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dw8yiTzUnE0/1jed/kvyGb1dCoZQTp6ZbqhV1sxsfZ0=;
-        b=LgW7dKax1lUQHPezWxwMRSeDeHZcYqMQBQqKjPC55A582VnN+e75uJI772OUM4vS6A
-         zf9WuuxvZUZ9YCXKczzJ4tNiiiZXrkaAjARV7vJfp80FasOdqBIqIRaCLavH07eQGFj9
-         iIlBLdHzhkbGnrHkDVR+fE7/l3m4V+YSkRJdc2QOCip4Wjhf+LlfWEMhCaYqP9tjGL1i
-         Uc57G1u09ZU+8s0WakgNHJ+I9azokFhmdQjx9yqO3yDpiOqT4BbfUp7FzWUvjlRVnjUl
-         uxH55k5Cf7gpVa0/FLQsgx6mFFvxA+gUYTJIvvobMeJEK+H7sXBSWxfkM5IW1WuNzq6p
-         Wncw==
+        bh=Pye56l5tV+PFr5V02s5kVYgOc0gcJFpQaxO9onF9KkY=;
+        b=BxELVLupmY2A2S+cBmejE519foAq8SasAUypsrvZnDtEDtHHOI20RcR9m4UA9rLmZP
+         enRbCsh5HN7NkUzkEx/1cT1RCCs1KrykJTcrq1qERBjRBCi/38STK20E9uCp2+ppOl6h
+         8xUbqguygxnsw+TCvxYtOpFIWKl8BCna/SZBfyyc0X4b1uLzu9tOeBCmUqAya49AAsfK
+         G4BfX6aSX+NLnwTku++NMeO3CWM+jjSuOchkhMGNr+84BPAE447vdBlDrXQ8UStWHTKr
+         o0e5RxgX1hyOitMhsmO6JsXI3Emnbp1XsZE0q5n/LPIVwqf+VZ/9/9jX7+Q0MGrmb11u
+         uAEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dw8yiTzUnE0/1jed/kvyGb1dCoZQTp6ZbqhV1sxsfZ0=;
-        b=VLr/nbYqK6kiW7Qsn+KEHZxpZlJdwzX49+T5JRt1F4U6ei4hjKGwnfujVkBHnGhu4f
-         vKM8uN3aujc+FXWBtSRHqjbsUxU04Y9fbSS7EID9ryY7/ZLOX4YJ5tpI5//2JYohvdON
-         woRfeVHxkoeCYUAczcFtAV+33efkTRjiuIfyolX0Pv2HII7QZNJ2orHTM8NH85ZCPL7o
-         F0yfojIl+oyk07H+1+mmbnDmMP59F/SwJ7WVc6FyZ1lSCb565/hFhm+ep5bV6eFL2hlU
-         1qpaK7Vvx8kYLR5h5KxNL4iX0T7Qfb9c/sNBBdzSZDK7+5cbI9XBLN0oayrVSHgFtt3R
-         s0eA==
-X-Gm-Message-State: ACrzQf1yBXf6+mxqZzE2Qe98nzf0nFq1jFp/ClYqxsZLB+a5Gc7YRq6n
-        obmu4lekcLnOoplK/wMku0IrJw==
-X-Google-Smtp-Source: AMsMyM4AkeeOBGLFE9c17vhZZpE95yA+NmUlhsM0m0/uy0qQjk/oLXIWqskqcLe4+RlXjAkxr4ZVnA==
-X-Received: by 2002:a50:c302:0:b0:463:26d6:25fb with SMTP id a2-20020a50c302000000b0046326d625fbmr55347903edb.204.1667992367157;
-        Wed, 09 Nov 2022 03:12:47 -0800 (PST)
+        bh=Pye56l5tV+PFr5V02s5kVYgOc0gcJFpQaxO9onF9KkY=;
+        b=0DILUQ4pr/Vr0zCGLcMzKzz+41K9pXZKILogYpfdmPEhWVZ8fBZfdL5dkESOUdUnHg
+         Cjukghzgpwm5DnbUyI6FCJ70CDEDq3UoKl/9t6Nxb4nLUychla15U/4Kal50mYd593Mi
+         w0bpbWNXcmZ3lWKYi/tDeqVPW96w+XP9d6bCg/t3s+IeLRRYkcpgRJ5V9mbcg3lz4oe/
+         NZA57gUD7mldse9/8l8M+KR54sDUZ/QLNl3iSEH6eSUxRK8xS2jc60syfWYAFDz+HD/K
+         t7EEXnKBIJI6TVn8q24KIb274mHbXWg/9pD8nRlvbMkGrkTTpQ5b9YF0GLbGz9OeFRnI
+         W7Tg==
+X-Gm-Message-State: ACrzQf1FuZwWYl2eTtMnlU3ww0fIRGxYb3YLCBNHkP+koOHoEFxzTs2v
+        bLv1iP30lxH5nxtmRL7JUKjOow==
+X-Google-Smtp-Source: AMsMyM7N13aLIJJVWBNZ3QN5EuRoAQYQCSQf6HYQ8DgRnlL4IqvtX3Yv6DmDcAMCYFJrzKbHN4OqPg==
+X-Received: by 2002:a17:906:35c9:b0:78d:77b1:a433 with SMTP id p9-20020a17090635c900b0078d77b1a433mr1105891ejb.486.1667992368803;
+        Wed, 09 Nov 2022 03:12:48 -0800 (PST)
 Received: from localhost.localdomain ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id k8-20020a1709062a4800b007ad9c826d75sm5825899eje.61.2022.11.09.03.12.45
+        by smtp.gmail.com with ESMTPSA id k8-20020a1709062a4800b007ad9c826d75sm5825899eje.61.2022.11.09.03.12.47
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 09 Nov 2022 03:12:46 -0800 (PST)
+        Wed, 09 Nov 2022 03:12:48 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -57,9 +57,9 @@ Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 03/10] arm64: dts: qcom: Add a device tree for PMK8350 on SID6
-Date:   Wed,  9 Nov 2022 12:12:28 +0100
-Message-Id: <20221109111236.46003-4-konrad.dybcio@linaro.org>
+Subject: [PATCH 04/10] arm64: dts: qcom: sm6375: Add GPI DMA nodes
+Date:   Wed,  9 Nov 2022 12:12:29 +0100
+Message-Id: <20221109111236.46003-5-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.32.0 (Apple Git-132)
 In-Reply-To: <20221109111236.46003-1-konrad.dybcio@linaro.org>
 References: <20221109111236.46003-1-konrad.dybcio@linaro.org>
@@ -75,99 +75,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PMK8350 is shipped on SID6 with some SoCs, for example with SM6375.
-Add a DT with the SID changed to allow it to work.
-
-Unfortunately, the entire DT needs to be copied even if the diff is
-very little, as the node names are not unique. Including pm6125 and
-pmk8350 together for example, would make pmk8350 overwrite the pm6125
-node, as both are defined as 'pmic@0'.
+Add nodes for GPI DMA hosts on SM6375.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 40 ++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi b/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
-new file mode 100644
-index 000000000000..00390f8b9c97
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus {
-+	pmk8350: pmic@6 {
-+		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
-+		reg = <0x6 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmk8350_pon: pon@1300 {
-+			compatible = "qcom,pm8998-pon";
-+			reg = <0x1300>;
-+
-+			pon_pwrkey: pwrkey {
-+				compatible = "qcom,pmk8350-pwrkey";
-+				interrupts = <0x6 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-+				linux,code = <KEY_POWER>;
-+				status = "disabled";
-+			};
-+
-+			pon_resin: resin {
-+				compatible = "qcom,pmk8350-resin";
-+				interrupts = <0x6 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		pmk8350_vadc: adc@3100 {
-+			compatible = "qcom,spmi-adc7";
-+			reg = <0x3100>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <0x6 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#io-channel-cells = <1>;
-+		};
-+
-+		pmk8350_adc_tm: adc-tm@3400 {
-+			compatible = "qcom,adc-tm7";
-+			reg = <0x3400>;
-+			interrupts = <0x6 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#thermal-sensor-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+index 9b1a497e5ca7..62a64dd731a0 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+@@ -567,6 +567,46 @@ rpm_msg_ram: sram@45f0000 {
+ 			reg = <0 0x045f0000 0 0x7000>;
+ 		};
+ 
++		gpi_dma0: dma-controller@4a00000 {
++			compatible = "qcom,sm6375-gpi-dma", "qcom,sm6350-gpi-dma";
++			reg = <0 0x04a00000 0 0x60000>;
++			interrupts = <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH>;
++			dma-channels = <10>;
++			dma-channel-mask = <0x1f>;
++			iommus = <&apps_smmu 0x16 0x0>;
++			#dma-cells = <3>;
 +			status = "disabled";
 +		};
 +
-+		pmk8350_rtc: rtc@6100 {
-+			compatible = "qcom,pmk8350-rtc";
-+			reg = <0x6100>, <0x6200>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x6 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
++		gpi_dma1: dma-controller@4c00000 {
++			compatible = "qcom,sm6375-gpi-dma", "qcom,sm6350-gpi-dma";
++			reg = <0 0x04c00000 0 0x60000>;
++			interrupts = <GIC_SPI 497 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
++			dma-channels = <10>;
++			dma-channel-mask = <0x1f>;
++			iommus = <&apps_smmu 0xd6 0x0>;
++			#dma-cells = <3>;
 +			status = "disabled";
 +		};
 +
-+		pmk8350_gpios: gpio@b000 {
-+			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
-+			reg = <0xb000>;
-+			gpio-controller;
-+			gpio-ranges = <&pmk8350_gpios 0 0 4>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
+ 		usb_1: usb@4ef8800 {
+ 			compatible = "qcom,sm6375-dwc3", "qcom,dwc3";
+ 			reg = <0 0x04ef8800 0 0x400>;
 -- 
 2.38.1
 
