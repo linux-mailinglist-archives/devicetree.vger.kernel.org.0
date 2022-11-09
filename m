@@ -2,78 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539E36227BC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 527136227D0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiKIJ5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:57:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
+        id S229712AbiKIJ7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:59:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230079AbiKIJ5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:57:10 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36884248FE
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:57:07 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id v7so10456023wmn.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:57:07 -0800 (PST)
+        with ESMTP id S229453AbiKIJ7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:59:22 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAD633D
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:59:21 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id ft34so8907662ejc.12
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:59:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hsfhxs1hYrONLDNG0hq6h1vR8M+W0oashll6Jl8JPxI=;
-        b=lNxoH6I6bNsajHKLUCqLi8yzFj+xh/SJ9Jm0xwLFtM1a4+vh/pKpBOq7bD5zrQ0DWa
-         QDh/od+nbvxdulmA/f4sitrLQ92IZV1lb7P/VhT4qi7IiHf87lmivZBEMlXu6vVP+Q5q
-         MlCpoYKk+XcMfQLU1AZlxaZGU/VSzjTwnGw7OvLPX57pZlGwI4iv3jsk6hIqqd9xvVNV
-         EjQ3EOzaOSKJAd5hRdo1Rnqk6MygyFYIc6VDqROoyLeC2INOy5eiJmUNnrYF3hkuilUf
-         4OKYJqryGmZqNXuy8o55rPxjozhGmlJfhZ/V07cmoaNlrudgORnzGWyE7bysb4y704WW
-         OwbA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=haRlnsqPUakc31S2aOsR1O2bID6Xr0HK7aHvY/cYYYg=;
+        b=B9L06IDFAzoOMMt4abyIsTX72I+IZxglt37hDV0KG10b4bhhlB05msK6qcpSwU30Gb
+         AcfasAtmyLoD6YXDvOlKufYMPLjGNru+xFH1jPwhv0hbUVmrxqRTyByBxdTJXaNgk5Dj
+         QBjzAXrz+aWfn45iiT3Bmfj/636tpxFw5mfAlyjIMd88txUA9x9Lxocu1Nh48R78RayK
+         MonizQTUOyJWlwliTbzbmEe9/ipcLBwzDsMn2pW1NS+AKdDAZHFSM5rFbr0INigPktVO
+         Sx1EqyoeBfwbgLordwHA0OQPJDTnbDUcepomI3yx+ZJ8Bbe/nTS0h/wEK4/pC+walTFi
+         LADg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hsfhxs1hYrONLDNG0hq6h1vR8M+W0oashll6Jl8JPxI=;
-        b=6ebz0frRxW4ml/vwv1t6A8SE/dEw8/0EVunEWiPOImujTrvD9dWccN6+fqed5mEs/b
-         P8Z0R+MrlCzN5+MNfjmv4oW9/21p5oX6ZEgxHm4/0Gqpow6Vwy0RcZ59BKCzC8i/IbSj
-         jW40Z58K3VR+lEP763TG1LP7XOzAFWlAHHWBZfevpkXwabxy8O7FswW4ldq9QX/DlVq+
-         olRxqOWI8CTgXFuww/b9AXXxWb4cHU7aa3wNf7LapmtQtQoqQ1UUleKlgewat6IISq1U
-         LQ4gGrJr/jkcvmKGbBYKlbdLutZTo8mfdorJbJPoNA6W3k7PAVv2Ay8VtlEwgWbu5TMY
-         SX9w==
-X-Gm-Message-State: ACrzQf32PfwN5pTHmG+e6BQjm9SmzsU1EFpmyNXKLB/A2IM9lDBotot8
-        IP1JKqnE6q3icQp8TGNYwmXggw==
-X-Google-Smtp-Source: AMsMyM66qL6/Z5tH6JpI1VqRleHOIsZAYvyin14QrXAPew92l2qjEFHEDpwMfYhbJrYWDZqb4k1TYw==
-X-Received: by 2002:a05:600c:1609:b0:3cf:4dc4:5a99 with SMTP id m9-20020a05600c160900b003cf4dc45a99mr40114474wmn.67.1667987826262;
-        Wed, 09 Nov 2022 01:57:06 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id t17-20020a05600c199100b003b4fdbb6319sm1094033wmq.21.2022.11.09.01.57.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 01:57:05 -0800 (PST)
-Message-ID: <e72c458b-458d-17f7-7c63-a486de0996f1@linaro.org>
-Date:   Wed, 9 Nov 2022 09:57:04 +0000
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=haRlnsqPUakc31S2aOsR1O2bID6Xr0HK7aHvY/cYYYg=;
+        b=YzD/r5ZxRJAhbmdN1JDqWtOqCbJc6siXeGcRwheE+A9MHP+AovgZ5LLwQL3oGmSDcP
+         4nTbz+P8TP7v1zRkfxPTwAX2qLAnw/X+Bu/XB5qFl3ewo7DZ5411jx5LJ/JY0zqfJ2YC
+         pJRyblhQm4SioGl07eppsbz3A6TvL9P3CfGmdsCdiMI3uIJ4h3KB1eCDNwM/Dvmfc5Vg
+         lYcJKrJmR1shm7BM5RE+2Ehh291NDR4g6VVZFaOMdYUqPhUlNH4mk6Tuwa7vCIgZ19+V
+         7OZikF9sgqGNOT9lcChWHRsUl1moZ7rakRN9wTwD5aDCxGjdhzFqPkpkHBA8mlFds1eg
+         neVQ==
+X-Gm-Message-State: ANoB5pnEcQJC9KdZFBJ2jgXMIsQOj2NwUCEYb0ENX583RJ8WZZVrhpJ8
+        o7xRNUtTRWa1Fu6Z3CNXBHipoPPTZBdVG9dmB7A4/A==
+X-Google-Smtp-Source: AA0mqf6p1SQdDOYOnHUtfP9G3pWu+cOV6hlUGUfHgalP+Odim2UVjh4u4+gsf+wkFnBnCFFF0/ZPbBb+f8Eao95ZJ1M=
+X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
+ q12-20020a1709066acc00b007ae658cee45mr14612769ejs.190.1667987960036; Wed, 09
+ Nov 2022 01:59:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v3 1/3] dt-bindings: slimbus: convert bus description to
- DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-References: <20221026164315.39038-1-krzysztof.kozlowski@linaro.org>
- <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20221026164315.39038-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20221109065546.24912-1-mranostay@ti.com> <20221109065546.24912-5-mranostay@ti.com>
+In-Reply-To: <20221109065546.24912-5-mranostay@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 9 Nov 2022 10:59:08 +0100
+Message-ID: <CACRpkdaTV6unVsfNj+M39jLn5FLTnhryjuzF4EB6Ytds9R1nEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 4/7] gpio: tps6594x: add GPIO support for TPS6594x PMIC
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     brgl@bgdev.pl, lee@kernel.org, kristo@kernel.org,
+        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Keerthy <j-keerthy@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,218 +69,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 9, 2022 at 7:56 AM Matt Ranostay <mranostay@ti.com> wrote:
 
+> Add support for TPS6594X PMICs GPIO interface that has 11 that can be
+> configured as input or outputs.
+>
+> Tested-by: Keerthy <j-keerthy@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 
-On 26/10/2022 17:43, Krzysztof Kozlowski wrote:
-> Convert the SLIMbus bus description bindings to DT Schema.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+(...)
+> +config GPIO_TPS6594X
+> +       tristate "TI TPS6594X GPIO driver"
+> +       depends on MFD_TPS6594X
+> +       help
+> +         Select this option to enable GPIO driver for the TPS6954X
+> +         PMIC chip family. There are 11 GPIOs that can be configured.
 
+select GPIO_REGMAP
 
-Applied all thanks,
+This driver is an archetypical example of a driver that can make great
+use of GPIO_REGMAP helpers, so rewrite it to use them.
+Look in drivers/gpio/gpio-sl28cpld.c for an example.
 
---srini
-> ---
->   .../devicetree/bindings/slimbus/bus.txt       | 60 ------------
->   .../bindings/slimbus/slim-ngd-qcom-ctrl.txt   |  2 -
->   .../bindings/slimbus/slim-qcom-ctrl.txt       |  3 -
->   .../devicetree/bindings/slimbus/slimbus.yaml  | 95 +++++++++++++++++++
->   4 files changed, 95 insertions(+), 65 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/slimbus/bus.txt
->   create mode 100644 Documentation/devicetree/bindings/slimbus/slimbus.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/slimbus/bus.txt b/Documentation/devicetree/bindings/slimbus/bus.txt
-> deleted file mode 100644
-> index bbe871f82a8b..000000000000
-> --- a/Documentation/devicetree/bindings/slimbus/bus.txt
-> +++ /dev/null
-> @@ -1,60 +0,0 @@
-> -SLIM(Serial Low Power Interchip Media Bus) bus
-> -
-> -SLIMbus is a 2-wire bus, and is used to communicate with peripheral
-> -components like audio-codec.
-> -
-> -Required property for SLIMbus controller node:
-> -- compatible	- name of SLIMbus controller
-> -
-> -Child nodes:
-> -Every SLIMbus controller node can contain zero or more child nodes
-> -representing slave devices on the bus. Every SLIMbus slave device is
-> -uniquely determined by the enumeration address containing 4 fields:
-> -Manufacturer ID, Product code, Device index, and Instance value for
-> -the device.
-> -If child node is not present and it is instantiated after device
-> -discovery (slave device reporting itself present).
-> -
-> -In some cases it may be necessary to describe non-probeable device
-> -details such as non-standard ways of powering up a device. In
-> -such cases, child nodes for those devices will be present as
-> -slaves of the SLIMbus controller, as detailed below.
-> -
-> -Required property for SLIMbus child node if it is present:
-> -- reg		- Should be ('Device index', 'Instance ID') from SLIMbus
-> -		  Enumeration  Address.
-> -		  Device Index Uniquely identifies multiple Devices within
-> -		  a single Component.
-> -		  Instance ID Is for the cases where multiple Devices of the
-> -		  same type or Class are attached to the bus.
-> -
-> -- compatible	-"slimMID,PID". The textual representation of Manufacturer ID,
-> -	 	  Product Code, shall be in lower case hexadecimal with leading
-> -		  zeroes suppressed
-> -
-> -Optional property for SLIMbus child node if it is present:
-> -- slim-ifc-dev	- Should be phandle to SLIMBus Interface device.
-> -		  Required for devices which deal with streams.
-> -
-> -SLIMbus example for Qualcomm's slimbus manager component:
-> -
-> -	slim@28080000 {
-> -		compatible = "qcom,apq8064-slim", "qcom,slim";
-> -		reg = <0x28080000 0x2000>,
-> -		interrupts = <0 33 0>;
-> -		clocks = <&lcc SLIMBUS_SRC>, <&lcc AUDIO_SLIMBUS_CLK>;
-> -		clock-names = "iface", "core";
-> -		#address-cells = <2>;
-> -		#size-cell = <0>;
-> -
-> -		codec_ifd: ifd@0,0{
-> -			compatible = "slim217,60";
-> -			reg = <0 0>;
-> -		};
-> -
-> -		codec: wcd9310@1,0{
-> -			compatible = "slim217,60";
-> -			reg = <1 0>;
-> -			slim-ifc-dev  = <&codec_ifd>;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt b/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
-> index e94a2ad3a710..7c3d9eb6af5d 100644
-> --- a/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
-> +++ b/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
-> @@ -5,8 +5,6 @@ with SLIMBus slaves directly over the bus using messaging interface and
->   communicating with master component residing on ADSP for bandwidth and
->   data-channel management
->   
-> -Please refer to slimbus/bus.txt for details of the common SLIMBus bindings.
-> -
->   - compatible:
->   	Usage: required
->   	Value type: <stringlist>
-> diff --git a/Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt b/Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt
-> index 922dcb8ff24a..6d955e129f90 100644
-> --- a/Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt
-> +++ b/Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt
-> @@ -4,9 +4,6 @@ master component.
->   
->   Required properties:
->   
-> - - #address-cells - refer to Documentation/devicetree/bindings/slimbus/bus.txt
-> - - #size-cells	- refer to Documentation/devicetree/bindings/slimbus/bus.txt
-> -
->    - reg : Offset and length of the register region(s) for the device
->    - reg-names : Register region name(s) referenced in reg above
->   	 Required register resource entries are:
-> diff --git a/Documentation/devicetree/bindings/slimbus/slimbus.yaml b/Documentation/devicetree/bindings/slimbus/slimbus.yaml
-> new file mode 100644
-> index 000000000000..22513fb7c59a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/slimbus/slimbus.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/slimbus/slimbus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SLIM (Serial Low Power Interchip Media) bus
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description:
-> +  SLIMbus is a 2-wire bus, and is used to communicate with peripheral
-> +  components like audio-codec.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^slim(@.*|-[0-9a-f])*$"
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+,[0-9a-f]+$":
-> +    type: object
-> +    description: |
-> +      Every SLIMbus controller node can contain zero or more child nodes
-> +      representing slave devices on the bus. Every SLIMbus slave device is
-> +      uniquely determined by the enumeration address containing 4 fields::
-> +      Manufacturer ID, Product code, Device index, and Instance value for the
-> +      device.
-> +
-> +      If child node is not present and it is instantiated after device
-> +      discovery (slave device reporting itself present).
-> +
-> +      In some cases it may be necessary to describe non-probeable device
-> +      details such as non-standard ways of powering up a device. In such cases,
-> +      child nodes for those devices will be present as slaves of the SLIMbus
-> +      controller.
-> +
-> +    properties:
-> +      compatible:
-> +        pattern: "^slim[0-9a-f]+,[0-9a-f]+$"
-> +
-> +      reg:
-> +        maxItems: 1
-> +        description: |
-> +          Pair of (device index, instande ID), where::
-> +           - Device index, which uniquely identifies multiple devices within a
-> +             single component.
-> +           - Instance ID, can be used for the cases where multiple devices of
-> +             the same type or class are attached to the bus.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: true
-> +
-> +required:
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-msm8960.h>
-> +    #include <dt-bindings/clock/qcom,lcc-msm8960.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        slim@28080000 {
-> +            compatible = "qcom,apq8064-slim", "qcom,slim";
-> +            reg = <0x28080000 0x2000>, <0x80207c 4>;
-> +            reg-names = "ctrl", "slew";
-> +            interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&lcc SLIMBUS_SRC>, <&lcc AUDIO_SLIMBUS_CLK>;
-> +            clock-names = "iface", "core";
-> +            #address-cells = <2>;
-> +            #size-cells = <0>;
-> +
-> +            audio-codec@1,0 {
-> +                compatible = "slim217,60";
-> +                reg = <1 0>;
-> +            };
-> +        };
-> +    };
+Yours,
+Linus Walleij
