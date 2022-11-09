@@ -2,200 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D78622671
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B06622686
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiKIJNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:13:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44638 "EHLO
+        id S229784AbiKIJOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:14:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiKIJMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:12:44 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3423123BF2;
-        Wed,  9 Nov 2022 01:11:53 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8DxOdjXbmtj6YMFAA--.15961S3;
-        Wed, 09 Nov 2022 17:11:51 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxr+DWbmtje3gPAA--.43114S2;
-        Wed, 09 Nov 2022 17:11:50 +0800 (CST)
-Subject: Re: [PATCH v9 3/3] dt-bindings: clock: add loongson-2 clock
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229885AbiKIJOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:14:14 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6FC222B8;
+        Wed,  9 Nov 2022 01:12:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=7FkDY4oj1rMqWjAFX8ryGroL69XLlGkF+Dk3sIIItkc=; b=jS8KQa6iYyl1mZl9jYXbxIE+f1
+        yDaxqbKVroPuSxw1V06dCavLSTRANfnZAxIBBNdRZ5m/wofYn4D777ru3VpB9ORNMHRM6A0jITtm+
+        2xbh6uA8DrhW0ztoacIrSgAWwTTpFW2fg5iPmJj4kFK4zFsXcfvqrg3jKEBb+Mz/D4bqIGKoHOdN+
+        PY79dV+qctzz6Qt2LNCY4+pzFokF4QLLJHVaupTrJ5pFu+NQpmt0CoIr4acGmhoAejb3ttpE6o/J4
+        BMfDym3GeSAV4cM/KmhuouWiqRhUG1jugfqrVTw+XFl2wXbcjgJZnHdH4/NShTUhJU0yNr3+oowpZ
+        Uh1pkkGQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35188)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1osh8A-0004Gg-2W; Wed, 09 Nov 2022 09:12:23 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1osh82-0005b1-Jp; Wed, 09 Nov 2022 09:12:14 +0000
+Date:   Wed, 9 Nov 2022 09:12:14 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20221103050032.29236-1-zhuyinbo@loongson.cn>
- <20221103050032.29236-3-zhuyinbo@loongson.cn>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <450c73ad-0008-1e32-6081-00ef54072dc1@loongson.cn>
-Date:   Wed, 9 Nov 2022 17:11:49 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 6/7] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
+Message-ID: <Y2tu7ptiYXwB2D79@shell.armlinux.org.uk>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXi-002mwL-UB@rmk-PC.armlinux.org.uk>
+ <3d51c0e2-1e59-5767-4be1-5754ca8dc902@linaro.org>
+ <Y2rTmS/gEdtU66b0@shell.armlinux.org.uk>
+ <aa665829-82db-74de-d802-e01fd52c998d@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20221103050032.29236-3-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dxr+DWbmtje3gPAA--.43114S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxWF4UJrW8AFWxCrW3Ary5Arb_yoW5KF48pF
-        sxCas5JFWIyF17uFsxKa4xtwn5uas7AFyqvw42ka4DAr98Xw1jqF1xKas8Z39xJryxZa9F
-        vF1S9r4UuanrC3DanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jetC7UUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aa665829-82db-74de-d802-e01fd52c998d@linaro.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi maintainer,
-
-Please help me merge this patch to upstream.
-
-thanks,
-Yinbo.
-
-ÔÚ 2022/11/3 ÏÂÎç1:00, Yinbo Zhu Ð´µÀ:
-> Add the Loongson-2 clock binding with DT schema format using
-> json-schema.
+On Wed, Nov 09, 2022 at 09:36:12AM +0100, Krzysztof Kozlowski wrote:
+> On 08/11/2022 23:09, Russell King (Oracle) wrote:
+> > On Tue, Nov 08, 2022 at 09:56:40PM +0100, Krzysztof Kozlowski wrote:
+> >> On 08/11/2022 17:33, Russell King (Oracle) wrote:
+> >>> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+> >>>
+> >>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> >>> ---
+> >>>  .../bindings/gpio/apple,smc-gpio.yaml         | 37 +++++++++++++++++++
+> >>>  1 file changed, 37 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..1a415b78760b
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+> >>> @@ -0,0 +1,37 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
+> >>
+> >> Does not look like you tested the bindings. Please run `make
+> >> dt_binding_check` (see
+> >> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> > 
+> > Oh ffs. DT bindings are utterly impossible to get correct.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Change in v9:
-> 		1. Add all history changlog information.
-> Change in v8:
-> 		1. NO change, but other patch in this series of patches has
-> 		   changes.
-> Change in v7:
-> 		1. NO change, but other patch in this series of patches has
-> 		   changes.
-> Change in v6:
-> 		1. NO change, but other patch in this series of patches has
-> 		   changes.
-> Change in v5:
-> 		1. NO change, but other patch in this series of patches has
-> 		   changes.
-> Change in v4:
-> 		1. NO change, but other patch in this series of patches has
-> 		   changes.
-> Change in v3:
-> 		1. Drop redundant (last) binding from the title.
-> 		2. Drop "- |" between ref_100m node and clk node.
-> Change in v2:
-> 		1. Drop "Binding" string in the title.
-> 		2. Drop entire allOf and move the contents to top level.
-> 		3. Change string "refclk_100m" to "ref_100m".
-> 
->   .../bindings/clock/loongson,ls2k-clk.yaml     | 63 +++++++++++++++++++
->   MAINTAINERS                                   |  1 +
->   2 files changed, 64 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> new file mode 100644
-> index 000000000000..63a59015987e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/loongson,ls2k-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-2 SoC Clock Control Module
-> +
-> +maintainers:
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +description: |
-> +  Loongson-2 SoC clock control module is an integrated clock controller, which
-> +  generates and supplies to all modules.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,ls2k-clk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: 100m ref
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_100m
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-> +      for the full list of Loongson-2 SoC clock IDs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ref_100m: clock-ref-100m {
-> +        compatible = "fixed-clock";
-> +        #clock-cells = <0>;
-> +        clock-frequency = <100000000>;
-> +        clock-output-names = "ref_100m";
-> +    };
-> +
-> +    clk: clock-controller@1fe00480 {
-> +        compatible = "loongson,ls2k-clk";
-> +        reg = <0x1fe00480 0x58>;
-> +        #clock-cells = <1>;
-> +        clocks = <&ref_100m>;
-> +        clock-names = "ref_100m";
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8b3d7bb18350..7afaf6d72800 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12022,6 +12022,7 @@ LOONGSON-2 SOC SERIES CLOCK DRIVER
->   M:	Yinbo Zhu <zhuyinbo@loongson.cn>
->   L:	linux-clk@vger.kernel.org
->   S:	Maintained
-> +F:	Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
->   F:	drivers/clk/clk-loongson2.c
->   F:	include/dt-bindings/clock/loongson,ls2k-clk.h
->   
-> 
+> Why? You write, you test and then you see the error. Srsly...
 
+It's utterly impossible for me to remember the dependencies. It's
+utterly impossible for me to remember the make incantation to test
+this bloody things - especially as I need to limit it otherwise it
+takes a very long time to test.
+
+The whole bloody thing is just too sodding difficult.
+
+I'm not going to bother with this patch set any more. Too frustrated
+with this piecemeal approach and the crappy slow tooling and the
+idiotic incomprehensible error messages it spits out.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
