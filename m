@@ -2,178 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD2E623023
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 17:26:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5743F623060
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 17:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231292AbiKIQ0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 11:26:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39340 "EHLO
+        id S230317AbiKIQpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 11:45:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbiKIQ0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 11:26:18 -0500
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5006F1A238
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 08:26:17 -0800 (PST)
-Received: by mail-il1-x134.google.com with SMTP id r2so9298237ilg.8
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 08:26:17 -0800 (PST)
+        with ESMTP id S230269AbiKIQpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 11:45:24 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC03120191
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 08:45:20 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id cl5so26612657wrb.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 08:45:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rothemail-net.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zKzyUbavYrwcyYfS4DLyEnVR3vwgpUA85jv/+wflbpI=;
-        b=iUr8/IyvM1GJJVKCcaW9tsn/whFqKtgjr+ndUGglD/WiYfZZ3XHweJ7NLjPaNAikQ7
-         F/AgRQe2RCgmvWByFFbSa1XOjS2e232S5G1lgULkGt1K75N9trMvak4B9lxgfC4zCfZF
-         z0Y8A6kgJD7fD378FKWGrKUBMxDmbKlN5pdQFZlGquFiG085uNdMosGR9Z7YoM33RX2e
-         OJVwmDBUkq6HTUDRygZJNS6t7pev949q+UwbFpvigfmVhTn8TlhL314WyO/RvpZO6Cvb
-         QMounSq7s4CA1Cd8aWqCQGLgiI/jsi8IZmISIr2ZCDLiLJB5916hReg8ZxZ4neS/KWYn
-         LAug==
+        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+B/DZlmnUVVmtW1rTqtwhIks9ot8Q7pdnxqrZsgcoHw=;
+        b=wN7RR+Ipb9QwhtmXdPWwHQDEAWfqcYBImB50//FSmYOFHAYfgRAFMwqJ0byJF/EOLj
+         tBnumsbl5i+pyUth2I9NU2rgyR3E+B3YhTB6GTs3a6nMk307dJIUxZ4XsigPtJ/Vbta1
+         2DhO90nhM11+XF547CbVb9tGH/s7zNpdyZhacb35Bzz5SNVNXaYKOzETCkw3RRjfvu2z
+         RWW241F3mSJlcteho07WTdPZEy1tggmcT7G+fUg/8YKLQ/Dsyl8+ltX0sSlcl5wk91Z0
+         TQiy6N6xL3aaewDQt6In9kTB6s7ql89F3ZYkrgba5HBXTdVAhQuqq5eEFWUpuUJYq21P
+         k9QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zKzyUbavYrwcyYfS4DLyEnVR3vwgpUA85jv/+wflbpI=;
-        b=3n9YcJm5FhSrbDy1Nz83dJzOq9oZBtvZwcUZtX3qGoacwXSGqIutDkVyXJSToQ9qeS
-         MGdxMvbKRhjjj0KquY6HxJytRHsEODpAxr2FhTVEBtfevNDI6ohBQFbgjdtnMpkeEIF2
-         Q8foOx3UpubAFf0v+cEqmWr80aImBPJKTOei7mDv6rpvmtsvYlF0oFRNqnbg0ZFGkhbi
-         a+kS1miHnJOCzhmmf8hGfaeHHzREj7bqaIJkCiTOnGM8AERflv3JhZWN/1P2K/iB4WhB
-         lJF9SFSZvTq+gLlwMSZM7o+w4qBPzg3vvhpcYO7LZUFOSzl+avkUvUP4EJKVX2x7swDe
-         xPTQ==
-X-Gm-Message-State: ANoB5pm+gtfuyMRi9ttEzDn7Ba9MLEd4fGB/LZUlChDbzUTfzC6bkVoD
-        lmmZp+4M+g8oCA/lVasn45gyFe1Ka8f+5WygY1gR33rj6MBUQ6Wx7H0=
-X-Google-Smtp-Source: AA0mqf71K7TZE1+Cwj6WH9wiugctAAzt3dmFQUuRrGWfnuGpfMFJbGU1G6erbIPahmrlypEk1JiW7WMej2x6fb6q1AM=
-X-Received: by 2002:a05:6e02:1747:b0:302:11f2:8796 with SMTP id
- y7-20020a056e02174700b0030211f28796mr7545901ill.214.1668011176549; Wed, 09
- Nov 2022 08:26:16 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+B/DZlmnUVVmtW1rTqtwhIks9ot8Q7pdnxqrZsgcoHw=;
+        b=arG4n8tjoZf8Pk8M7tyz9L5Pt15ir9ezRnoB9YlXD7x7DNKs3EDsf7pmnTJBJw340a
+         090F4pA8dIPSIDGKu418ni3y8KG7axBfrC2oNeIBJq7nhrZ2D5CXvPgqn5gMjCl2Ya3G
+         BphYkOvwPIm8QxC/z4N7XX3ou5U/4GIAU5kQdFxgt820JXe8qp1/s9+kf7zJFr2c1/aC
+         j+EltGvqtRL0dmAG0NmTH/toWTm8opLcAgJOnUII7iOfsBZ+n5PSlMnZv6cF0OETQlIK
+         8SI+aQOGhfLaJm72riU9IAJkPWHymmg23LnqtHTyJOvQpy8yRB4IiBCagonSdlP2h/G9
+         oTNg==
+X-Gm-Message-State: ACrzQf1W5TfmRLxvrU5O/lkPQnI31OV1PZ62pkdhG3RmLLxVJGQXDLI2
+        igdDd9n0rVQYtgyPesNbugunkd2yXHKF9xZu63Ng6hdJHtKddY9f
+X-Google-Smtp-Source: AMsMyM51EI3z3+fV13+ZvZRkrHaeThY4Z0deZ+uxqRIEtgCE6TC+ujKo24Us3GLPkbUj/K7KWSKhmWSk+HSlhXTnqao=
+X-Received: by 2002:a05:6000:1c1a:b0:236:8321:d875 with SMTP id
+ ba26-20020a0560001c1a00b002368321d875mr39225435wrb.45.1668012319491; Wed, 09
+ Nov 2022 08:45:19 -0800 (PST)
 MIME-Version: 1.0
-References: <c522c639-db0c-c1c4-0281-5dc524a8a86e@linaro.org>
- <6F5319F3-FDB2-405C-99E1-A9EC64264FD6@rothemail.net> <24ecc077-fc1d-5270-c901-9722ab7b68b1@linaro.org>
-In-Reply-To: <24ecc077-fc1d-5270-c901-9722ab7b68b1@linaro.org>
-From:   Nicholas Roth <nicholas@rothemail.net>
-Date:   Wed, 9 Nov 2022 10:26:05 -0600
-Message-ID: <CAD2rFCqrJyTz1KXXK3WTiih7LTfAW07k8V19yQhA6_LeGiqfRg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: media: Add Omnivision ov8858 binding
+References: <20221109160904.183147-1-mpfj@newflow.co.uk> <20221109160904.183147-4-mpfj@newflow.co.uk>
+ <2af9a47e-acc4-d2f1-8fc9-281385d18d51@linaro.org>
+In-Reply-To: <2af9a47e-acc4-d2f1-8fc9-281385d18d51@linaro.org>
+From:   Mark Jackson <mpfj@newflow.co.uk>
+Date:   Wed, 9 Nov 2022 16:45:08 +0000
+Message-ID: <CAAbcLfjR7JZ_W+JoAJ02_4eiVQPZj--=C1-uLjPvRGQYC1dNGw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] ARM: dts: nanobone: Enable I2C temperature sensor
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
+Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Happy to reply inline next time. I'm still getting used to this format
-:-). Here's the context around my clock frequency question-- I'd
-really like to understand this better:
-
-> > +  clock-names:
-> > +    description:
-> > +      Input clock for the sensor.
-> > +    items:
-> > +      - const: xvclk
-> > +
-> > +  clock-frequency:
-> > +    description:
-> > +      Frequency of the xvclk clock in Hertz.
->
-> The frequency of clock should go via common clock framework - you have
-> get_rate and set_rate. Drop entire property.
-
-I am trying to be consistent with the ov8856 driver and bindings but
-would be happy to change. I=E2=80=99m not familiar with that framework thou=
-gh.
-Is there somewhere I could read about this, including the driver and
-device-tree changes I need to use this?
-
->
-> > +    minimum: 6000000
-> > +    default: 24000000
-> > +    maximum: 27000000
-> > +
-> > +  dovdd-supply:
-> > +    description:
-> > +      Definition of the regulator used as interface power supply.
-
-On Wed, Nov 9, 2022 at 10:19 AM Krzysztof Kozlowski
+On Wed, 9 Nov 2022 at 16:23, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 09/11/2022 16:12, Nicholas Roth wrote:
-> > Hey,
+> On 09/11/2022 17:09, Mark Jackson wrote:
+> > The NanoBone platform supports a temperature sensor on the I2C bus.
 > >
-> > I=E2=80=99m doing my best to follow along here. Your feedback didn=E2=
-=80=99t get lost and I tried my best to follow it=E2=80=94 I just must not =
-have understood it correctly.
+> > Signed-off-by: Mark Jackson <mpfj@newflow.co.uk>
+> > ---
+> >  arch/arm/boot/dts/am335x-nano.dts | 5 +++++
+> >  1 file changed, 5 insertions(+)
 > >
-> >> 1. There is no driver, no DTS. You received the feedback about it.
+> > diff --git a/arch/arm/boot/dts/am335x-nano.dts b/arch/arm/boot/dts/am335x-nano.dts
+> > index cecc2afaeff4..2be831927af6 100644
+> > --- a/arch/arm/boot/dts/am335x-nano.dts
+> > +++ b/arch/arm/boot/dts/am335x-nano.dts
+> > @@ -212,6 +212,11 @@ &uart5 {
+> >       status = "okay";
+> >  };
 > >
-> > Driver: I submitted the .c files to linux-media, and as part of the rev=
-iew they asked for me to separately submit device tree bindings (https://pa=
-tchwork.kernel.org/project/linux-media/patch/20221106171129.166892-2-nichol=
-as@rothemail.net/). Are you saying that the driver and the bindings should =
-be the same commit after all? Are you saying something else? I=E2=80=99m af=
-raid I still don=E2=80=99t understand what you mean by this, but I want to,=
- and I=E2=80=99m trying to.
+> > +temperature-sensor@48 {
+> > +     compatible = "lm75";
+> > +     reg = <0x48>;
+> > +};
 >
-> They come as one patchset. Separate patches, one patchset. Otherwise you
-> get checkpatch errors, right?
->
-> >
-> >> 2. Wrong cc list. You were asked to use get_maintainers.pl and still
-> >> decide not to.
-> > I included the people from get_maintainers.pl, but it seems like you wo=
-uld like for me to include all entries, including the multiple mailing list=
-s. Do I understand correctly?
->
-> Yes. Do not strip some lists based on your preference. Why only some
-> people should receive this, not everyone involved in the subsystem?
->
->
-> >>
-> >
-> >> How can you test bindings with libcamera?
-> > I validate the device tree + driver on this setup, but I am happy to dr=
-op the comment about validation.
->
-> It's not about bindings then.
->
-> >
-> >>
-> >> Filename still does not match compatible. ovti,ov8858.yaml
-> > I was trying to be consistent with ov8856.yaml, but happy to change the=
- file name if that=E2=80=99s the convention. Is there a doc I can read with=
- this information or is it institutional knowledge?
->
-> All recent submissions follow this, so the best is to take last commits.
->
-> >>
-> >> The frequency of clock should go via common clock framework - you have
-> >> get_rate and set_rate. Drop entire property.
-> > I am trying to be consistent with the ov8856 driver and bindings but wo=
-uld be happy to change. I=E2=80=99m not familiar with that framework though=
-. Is there somewhere I could read about this, including the driver and devi=
-ce-tree changes I need to use this?
->
-> This is very difficult to respond. Please use inline comments, I have no
-> clue which part you are now commenting. This is not mailing list style
-> response.
->
-> >>
-> >> Which driver? In OpenBSD? Which version of OpenBSD? Drop the sentence.
-> > Seems like your point here and in the subsequent comments is to avoid i=
-mplementation specifics. That makes a ton of sense, and I=E2=80=99ll make t=
-hose changes for v3.
-> >
-> > All of your other comments make sense explicitly and I=E2=80=99ll make =
-these changes. Please help me understand what you mean by (1) and (2), corr=
-ect me where I=E2=80=99m wrong or misunderstanding you here, and I=E2=80=99=
-ll submit the v3.
->
-> Best regards,
-> Krzysztof
->
+> This should not work - you put the node in some random place.
+
+Ah yes, that should be within the I2C block.
+I'll fix that.
+
+Cheers
+Mark J.
