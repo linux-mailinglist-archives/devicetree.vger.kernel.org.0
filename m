@@ -2,248 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1156233F4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 20:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A65623442
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 21:11:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231904AbiKITz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 14:55:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49676 "EHLO
+        id S231557AbiKIULq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 15:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231852AbiKITz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 14:55:28 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529DD2F00D
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 11:55:26 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id e129so17116462pgc.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 11:55:26 -0800 (PST)
+        with ESMTP id S231384AbiKIULg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 15:11:36 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503B7DEBB
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 12:11:35 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id k19so26896098lji.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 12:11:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lhu0AaXEHpohB57ir2dSQXl6jTPxnwC4FKWIfCDgyuQ=;
-        b=KLrj/KYNV8XkhPS1iVxKu/aPMmyU1eZXY/F92davxqF98lFJkaDajitQpvLL4vIrUZ
-         RU7h9cdLzbmNLn0L1qXfQRwCmi310yFjxach5EiNriUwsj4QY8tSCN87JHeXJyddsuys
-         72M/pHU11niJlVMdwR5BejriAj5tTWIKSL3Zum9Kr5LjGnYIBB+KYcP7u+2Q/hzO4Ovc
-         tU1U6kuUmaW/d49VLzRNA0NrCOBTKDlZUJ48t/FF5HX9jTARqKnEoZUIP0SBy4fffs1f
-         QNQtfiVfaubbqysdwv5B8gG1PQb5SEDi45P+WAnFZXNK62PytNrCB9DDZsJJ9qdrmxMB
-         hRjg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VIP1DwFS0hsPYY2bAhzhl4Z4LxA5mOxnLfIYQbIpN5U=;
+        b=dTH/hcNqzZEfXh1djzlh5il2/x95kYnZ/TDNoBieegHY7OIeBcepVbG7Q6UeSM9EKE
+         cXUYm1RkiCV3BiXLvViqPqz7pNg+a48LSPG40QrnMqRQKvDezVrHgrO0kRydmJSWLytz
+         LGsukT3yr8iwL+VGOx9f5HkWW7tGFl6BjNK51WQrVq8HBx6dEgDf0FZOpbxKSjcuY190
+         /3N7lGSKl0SrNcsI6JtYzJSvmhjQn15JFFU0sVvcZJt4/I4hdk52XHQEjK4U0amQGmst
+         8OIUvS1ipw5sUQy0baHvBzmBEh8oT9OWgqmm4Wx+JOZlkXULLv6/5aghTAMfctS++Z//
+         TnIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lhu0AaXEHpohB57ir2dSQXl6jTPxnwC4FKWIfCDgyuQ=;
-        b=YbmZ86QapXtJEYeMlh6vG2FTCoW1MpZP898wnsWrn/JZ7MjE4Tv56GYPrZmsvuz2yW
-         OlZl4tkr1nD1tXnkOcEp+3gOqMrbwNNiBlqHqWxJucgZoT/HQssx35I+qTKcMr9BE/ej
-         ozUdeTkS4Tb9h+VEdD0EAMyw5Qz9h7nlh5JBym/Q8io15NdSeugD2qBJHw5RBaUXa2hj
-         etOTyTYO9HADCgjkEm3mBF5RO4kdaO/psevXUStXskKCvxV9/rHVVoJLRNa6xoimhiCI
-         XhRfJGVmrwu8kL/Fqd9UZOJyfMK3+w3cmwOMmrXUtQ96Ce/D2jRIMzII5ytt2PoxcM8I
-         SLxQ==
-X-Gm-Message-State: ACrzQf1esfW0yBvwgC8DjE7lDK46ZNIQKIcsVsGWoYuMs5qTs57m3lxU
-        tKU4VXD0v70DUM8LnLMigUT8HQ==
-X-Google-Smtp-Source: AMsMyM4yxxTSRBnPGND+4E6OHwiGrFVk5cgGXo5F+I0YpXul+RM44cAyB0NLsjogLjCA7A1w6czz7Q==
-X-Received: by 2002:a05:6a00:1482:b0:56c:6a9c:3d7 with SMTP id v2-20020a056a00148200b0056c6a9c03d7mr62529169pfu.0.1668023725592;
-        Wed, 09 Nov 2022 11:55:25 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170902654e00b00172f6726d8esm9466969pln.277.2022.11.09.11.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 11:55:24 -0800 (PST)
-Date:   Wed, 09 Nov 2022 11:55:24 -0800 (PST)
-X-Google-Original-Date: Wed, 09 Nov 2022 11:55:21 PST (-0800)
-Subject:     Re: [PATCH v5 0/7] Add support for Renesas RZ/Five SoC
-In-Reply-To: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
-        geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        Conor Dooley <conor.dooley@microchip.com>, guoren@kernel.org,
-        anup@brainfault.org, Atish Patra <atishp@rivosinc.com>,
-        heinrich.schuchardt@canonical.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, prabhakar.csengg@gmail.com,
-        biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     prabhakar.csengg@gmail.com
-Message-ID: <mhng-563fb6cf-4505-4137-8da1-13f631e1c74f@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VIP1DwFS0hsPYY2bAhzhl4Z4LxA5mOxnLfIYQbIpN5U=;
+        b=XB84ZPiL0X9n8e3n8Z+6AMJtEGPm/Tbqlbkh2EUeHH5L5hfOA30gqdpAJqfjujWh7h
+         n49uXMxrr1p7iXDlhvpzEQAZwuhMfYJEa+tkHJopg42aCXeoxxY5TS/KCTPXSuXQYLBJ
+         /j2Nr82ONRA8imQ/sH3067zqoQY7cgTATLo/Jtb4lQ17tYny7zJRzdEhFoD6xIF7L96/
+         kVx6DsVnDMfIb6f5jhjqHKWtfvUhq/DQjIsYrC/qIQLZb52sCNFmWpHSALEFZZ5IdDbM
+         wOGSgsoxaodVA3QGpruOMzl5ZwjJRU3ySVdptgLdTFx4a0306E8js+lzDsjaGf7FDoBK
+         nDfQ==
+X-Gm-Message-State: ACrzQf3LEd+AeRDSF+iZKnYx/xL8Eaiv47dOyeSZ6docVqXrZJGOu/+f
+        UjbypwYs7ByiYRZLm1bv7GU=
+X-Google-Smtp-Source: AMsMyM49GvJWfLSwJnaCc7mruqYExSc7Fhx/WPiV7yL5QAi4TxDflV0+F1xqhfNhoK0HKCZFtUI9iA==
+X-Received: by 2002:a2e:b0c3:0:b0:26e:58d:e94a with SMTP id g3-20020a2eb0c3000000b0026e058de94amr6985277ljl.252.1668024693477;
+        Wed, 09 Nov 2022 12:11:33 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id t20-20020a2e8e74000000b0027755f52a94sm2308603ljk.80.2022.11.09.12.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 12:11:33 -0800 (PST)
+Message-ID: <923207f7-387d-2ed8-db64-118db6167669@gmail.com>
+Date:   Wed, 9 Nov 2022 21:11:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: drop invalid
+ "nand" interrupt name
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20221103104152.19502-1-zajec5@gmail.com>
+ <78ac1b7d-5f7c-c9d3-118b-5e419a7c20dc@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <78ac1b7d-5f7c-c9d3-118b-5e419a7c20dc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 09:59:14 PDT (-0700), prabhakar.csengg@gmail.com wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> The RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP Single)
-> 1.0 GHz, 16-bit DDR3L/DDR4 interface. And it also has many interfaces such
-> as Gbit-Ether, CAN, and USB 2.0, making it ideal for applications such as
-> entry-class social infrastructure gateway control and industrial gateway
-> control.
->
-> This patch series adds initial SoC DTSi support for Renesas RZ/Five
-> (R9A07G043) SoC. Below is the list of IP blocks enabled in the initial
-> board DTS which can be used to boot via initramfs on RZ/Five SMARC EVK:
-> - AX45MP CPU
-> - CPG
-> - PINCTRL
-> - PLIC
-> - SCIF0
-> - SYSC
->
-> Useful links:
-> -------------
-> [0] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
-> [1] http://www.andestech.com/en/products-solutions/andescore-processors/riscv-ax45mp/
->
-> Patch series depends on the below patches (which are queued in the Renesas tree for v6.2):
-> ------------------------------------------------------------------------------------
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=c27ce08b806d606cd5cd0e8252d1ed2b729b5b55
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=7dd1d57c052e88f98b9e9145461b13bca019d108
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-soc-for-v6.2&id=b3acbca3c80e612478b354e43c1480c3fc15873e
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=49669da644cf000eb79dbede55bd04acf3f2f0a0
-> [4] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=b9a0be2054964026aa58966ce9724b672f210835
->
-> v4 -> v5:
-> ---------
-> * Rebased patches on -next
-> * Included RB tags
-> * Dropped patches #1 and #4 (form v4) as they are queued up by Renesas trees
-> * Patch #7 from v4 was not needed anymore so dropped it
-> * Patches #4 and #5 are new
->
-> v4: https://lore.kernel.org/all/20220920184904.90495-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> v3: https://lore.kernel.org/lkml/20220915181558.354737-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> v2: https://lore.kernel.org/all/20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> v1: https://lore.kernel.org/lkml/20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> Below are the logs from RZ/Five SMARC EVK:
-> ------------------------------------------
->
-> / # uname -ra;
-> Linux (none) 6.1.0-rc2-00036-gbad82a074f62 #145 SMP Fri Oct 28 17:18:41 BST 2022 riscv64 GNU/Linux
-> / # cat /proc/cpuinfo;
-> processor       : 0
-> hart            : 0
-> isa             : rv64imafdc
-> mmu             : sv39
-> uarch           : andestech,ax45mp
-> mvendorid       : 0x31e
-> marchid         : 0x8000000000008a45
-> mimpid          : 0x500
->
-> / # for i in machine family soc_id revision; do echo -n "$i: ";cat /sys/devices/
-> soc0/$i; done
-> machine: Renesas SMARC EVK based on r9a07g043f01
-> family: RZ/Five
-> soc_id: r9a07g043
-> revision: 0
-> / #
-> / # cat /proc/interrupts
->            CPU0
->   1:          0  SiFive PLIC 412 Level     1004b800.serial:rx err
->   2:         16  SiFive PLIC 414 Level     1004b800.serial:rx full
->   3:        402  SiFive PLIC 415 Level     1004b800.serial:tx empty
->   4:          0  SiFive PLIC 413 Level     1004b800.serial:break
->   5:      41826  RISC-V INTC   5 Edge      riscv-timer
->   6:         10  SiFive PLIC 416 Level     1004b800.serial:rx ready
-> IPI0:         0  Rescheduling interrupts
-> IPI1:         0  Function call interrupts
-> IPI2:         0  CPU stop interrupts
-> IPI3:         0  IRQ work interrupts
-> IPI4:         0  Timer broadcast interrupts
-> / #
-> / # cat /proc/meminfo
-> MemTotal:         882252 kB
-> MemFree:          860848 kB
-> MemAvailable:     858608 kB
-> Buffers:               0 kB
-> Cached:             1796 kB
-> SwapCached:            0 kB
-> Active:                0 kB
-> Inactive:             72 kB
-> Active(anon):          0 kB
-> Inactive(anon):       72 kB
-> Active(file):          0 kB
-> Inactive(file):        0 kB
-> Unevictable:        1796 kB
-> Mlocked:               0 kB
-> SwapTotal:             0 kB
-> SwapFree:              0 kB
-> Dirty:                 0 kB
-> Writeback:             0 kB
-> AnonPages:           108 kB
-> Mapped:             1200 kB
-> Shmem:                 0 kB
-> KReclaimable:       6760 kB
-> Slab:              12360 kB
-> SReclaimable:       6760 kB
-> SUnreclaim:         5600 kB
-> KernelStack:         620 kB
-> PageTables:           32 kB
-> SecPageTables:         0 kB
-> NFS_Unstable:          0 kB
-> Bounce:                0 kB
-> WritebackTmp:          0 kB
-> CommitLimit:      441124 kB
-> Committed_AS:        592 kB
-> VmallocTotal:   67108864 kB
-> VmallocUsed:        1132 kB
-> VmallocChunk:          0 kB
-> Percpu:               84 kB
-> HugePages_Total:       0
-> HugePages_Free:        0
-> HugePages_Rsvd:        0
-> HugePages_Surp:        0
-> Hugepagesize:       2048 kB
-> Hugetlb:               0 kB
-> / #
-> / #
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (7):
->   dt-bindings: riscv: Sort the CPU core list alphabetically
->   dt-bindings: riscv: Add Andes AX45MP core to the list
->   riscv: Kconfig.socs: Add ARCH_RENESAS kconfig option
->   riscv: dts: renesas: Add initial devicetree for Renesas RZ/Five SoC
->   riscv: dts: renesas: Add minimal DTS for Renesas RZ/Five SMARC EVK
->   MAINTAINERS: Add entry for Renesas RISC-V
->   riscv: configs: defconfig: Enable Renesas RZ/Five SoC
->
->  .../devicetree/bindings/riscv/cpus.yaml       | 11 ++-
->  MAINTAINERS                                   |  3 +-
->  arch/riscv/Kconfig.socs                       |  5 +
->  arch/riscv/boot/dts/Makefile                  |  1 +
->  arch/riscv/boot/dts/renesas/Makefile          |  2 +
->  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   | 57 ++++++++++++
->  .../boot/dts/renesas/r9a07g043f01-smarc.dts   | 27 ++++++
->  .../boot/dts/renesas/rzfive-smarc-som.dtsi    | 58 ++++++++++++
->  arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 91 +++++++++++++++++++
->  arch/riscv/configs/defconfig                  |  3 +
->  10 files changed, 252 insertions(+), 6 deletions(-)
->  create mode 100644 arch/riscv/boot/dts/renesas/Makefile
->  create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
->  create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dts
->  create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
->  create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+On 9.11.2022 19:37, Florian Fainelli wrote:
+> On 11/3/22 03:41, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> String "nand" was never a valid interrupt name. It was never documented
+>> and never used in Linux or U-Boot driver. This mistake was propagated
+>> from the bcm63138.dtsi.
+>>
+>> The whole "interrupt-names" property is optional and can be skipped.
+>>
+>> Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Do you still want me to apply this patch, or are we happy with renaming that interrupt to "nand_ctlrdy" instead?
 
-Geert was mentioning taking these though one of his trees, that works 
-for me so
+I don't have any real preference.
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-
-Happy to do a shared tag or whatever, but I think we can just skip that 
-here.  The only conflicts would be defconfig and Kconfig.socs, but I 
-don't think anything big is in the works for either -- unless Conor was 
-planning on re-spinning that Kconfig.socs rework?
-
-Thanks!
+Since we already have this patch, we may just apply it. If you think
+having "interrupt-names" with just "nand_ctlrdy" is cleaner, I can send
+V2.
