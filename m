@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2585C623692
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 23:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 352BA6236AC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 23:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbiKIW3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 17:29:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
+        id S231846AbiKIWkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 17:40:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231842AbiKIW3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 17:29:23 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD0772A948;
-        Wed,  9 Nov 2022 14:29:22 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-13d9a3bb27aso347268fac.11;
-        Wed, 09 Nov 2022 14:29:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UB7db5XhVLteVue/y4fRr6KOu5yTU0vk8xjG6P+z0hw=;
-        b=cIxrnDmIUPSqknAgZ9JEcnJ+1aY3kxPHifNzZo/ClIYRvJ3TjhSMBZ9ZlEkOBzL2na
-         E5zkyuRAXr2z0scrOs8PuyvvzSjwsLREfWGcXSGG9l26BWK8afSBBh+WS0zlaGj9qoDl
-         6kwCMyipVW4iElYZw3jxsl/62+IiU3hgdpr0huAptPA69qr7SPpD2US8fb18QMaAuun6
-         sP3yQP2mjHsuofoZW8PMQ8u8rp61WGAN4A6gSL5j+otgVhxDGy3GBsVwph2k6QGMLL5b
-         kR9y3ynmKjRy9gkAhOWYOQKXAZQgb5BTg6oAVKe6z25wiaojXjoi6QMOAtRYxhykHcal
-         1jug==
-X-Gm-Message-State: ACrzQf2TNQRYroPT7w6EP0BvbXgd9pminFR4mt4yqHYkuJCD9VpRvaU9
-        3ieoRsHXhmJWzNleaX8kVQ==
-X-Google-Smtp-Source: AMsMyM5XTaVj88TTJ/YSmUbz++qS30jO8NLEsM469GDD8snWToOwoGaV4ijLSqhIbURwc+n/mRCQ+g==
-X-Received: by 2002:a05:6870:41cb:b0:131:9656:cc30 with SMTP id z11-20020a05687041cb00b001319656cc30mr47491998oac.51.1668032955859;
-        Wed, 09 Nov 2022 14:29:15 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m26-20020a0568301e7a00b0066c2e241a4csm5811632otr.20.2022.11.09.14.29.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 14:29:15 -0800 (PST)
-Received: (nullmailer pid 2988684 invoked by uid 1000);
-        Wed, 09 Nov 2022 22:29:16 -0000
-Date:   Wed, 9 Nov 2022 16:29:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Fabien Parent <fabien.parent@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Message-ID: <20221109222916.GA2985917-robh@kernel.org>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
+        with ESMTP id S229835AbiKIWkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 17:40:23 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180C7D13D
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 14:40:21 -0800 (PST)
+Received: from [192.168.1.139] ([37.4.248.71]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MpDRp-1pLKeR0zBX-00qfHz; Wed, 09 Nov 2022 23:39:56 +0100
+Message-ID: <974b55c8-2b04-2792-fae9-36ac77f7c9d6@i2se.com>
+Date:   Wed, 9 Nov 2022 23:39:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 0/2] ARM: dts: bcm283x: Minor clean up
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220925164021.3600-1-stefan.wahren@i2se.com>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220925164021.3600-1-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:yu7rZFXEG6qXjYc3+v3VE4XESQnIXN8KDe0kRWCzv/LduooC8hj
+ FUlMJfvCBHvVEVw82ToqV5cZeC3d0aCeOOdiqSpg2EvDpTIuHKUzfGW1xn47jDXl96Amcj6
+ q4NIVyKkUa0achdJpacI3sKsQBXJPSbzJBuAn+nbkC+jjrhM+udL15oQrz/79npRjdi9MXD
+ UHlbpRqYfYsXHL/zHo6hg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:x7SBWwsXwno=:BBG7XeSDtQ/IwruHNyKnwu
+ S0fzOj55bUd7nXKategw/VTkxPHFYtvgWP4vTceCtN4hx/ltsqE88ZsMrIFWtR4oTxM8dL4Q+
+ 9lT3EvHtz+Bw34OFuZibkKRijoidVUH6mR17HBTs0PzojvgHMwaugwTMDccULOuVFdbZNBhOd
+ Y1ZyIdmeTNbyzyAK4pODWGS5k8ufn3q9jrz/foE6GeesmYT9WA3Xis83UI8/U0CCjgWjeOwvi
+ SxOB8pnvfCOygofQ6Vgnnr6Wp+/tGM4QT1PYSmQEiUJAxxDH4kGpkvq4fM6LRLaqRRlndf5IC
+ +RddPKtJrsismgRisD3p6cw/rjMm1k4rk4nVD8bRTaTUR8qQ7CCyasw6/6ySuHsJajLKHBrrt
+ F/wz+A1Hih57y+9CdAuRy583lsTUrw4yGMd/+9TWJkeSSDzQTzOAy6H3FQjCQ0AieeMv2ahWI
+ zHYwHhBaPgmVPjx82LXAAXnOFbRoxRh2zeKZkLs5BP9YI/v3y6VITBgc7qj7x7F54r/afPwZa
+ d5rhJ3fsvXK+ESFVb5ik88pGgNnGzKGjsQHR1pKDyxP1PieGurqT8LZF4Mp6uQr0uUXsNTwVu
+ WGHxYqWxGNUkwEq609vDMbWIw8kVMohFFl4ukG1k2klXVwX77vGy9qcqZjdI8hbBrf0XJR4b2
+ nlV/VWC6JwXA7yPbTfSmsnoFSJTgpf3tn+BEyL5/FzN17qXyPhOKC0RJLNk0J5Ci6W8NxylTI
+ 9lCy/BGP44X5rc+a3mstKGxRaA6+OW6m5rJEX9inYMg90ZgbFCqwt0mcL1WIja8C/PdvReCXF
+ 5INrx7Y/MwA+zBkg/rzqMnWkyqW9Gyzh5BuNJ6re2KUwaToeC2UYATJLqfjgrbmorZUWnhp4p
+ EgXauiGZRfv9PaQK9p95PYtMa7J1DyX+RFnf8gMWua7h6OR+8ji37IwKAhzI+172Ress6+nd9
+ eabJrDJ+3n5AsTQyPVlEVxUcxiXiKXvhXMSJIY2Mo2A0OsGW74VywKsJroe19R5d418T+dEQ1
+ xo677qe3YRMPda3zDUOEDK3+qdDDGLOeCXOe/q5/Du8qrVFidGNBzSyo74sBIiSq7JYruY8q/
+ JVEy99FPo37jKgYJZOqTAnC2dRMOZZhnM8J/NfTCuyYEE2PU5OJLUgAMB1HZmfQmj/63kd1/u
+ vahjCQR/jjnnd9rd9uadnt0RvtkSofg8I8OB2wZrdDD5TeJNO7LLrYv0IFUD4QIUWrTg/54gv
+ 8hMIq3jc9auW4fVhYFzPC5sgZ3iTypBDnU1MTiIjlKte+YaSTHMz/eCpGdPmo4tAYr/G8mZcG
+ hfhE+jUQwSgI1QX0fiezX08FWcuavw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,79 +71,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 08, 2022 at 07:43:37PM +0100, Alexandre Mergnat wrote:
-> - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
-> - Add mediatek,mt6357-rtc compatible.
-> - Add maintainer
-> - Remove the .txt binding file
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
->  .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 40 ++++++++++++++++++++++
->  .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 -----------------
->  3 files changed, 41 insertions(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 0088442efca1..79aaf21af8e9 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -33,7 +33,7 @@ Optional subnodes:
->  		- compatible: "mediatek,mt6331-rtc"
->  		- compatible: "mediatek,mt6358-rtc"
->  		- compatible: "mediatek,mt6397-rtc"
-> -	For details, see ../rtc/rtc-mt6397.txt
-> +	For details, see ../rtc/mediatek,mt6397-rtc.yaml
->  - regulators
->  	Required properties:
->  		- compatible: "mediatek,mt6323-regulator"
-> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> new file mode 100644
-> index 000000000000..bb48c0150f95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> @@ -0,0 +1,40 @@
-> + # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6397/MT6366/MT6358/MT6357/MT6323 RTC
-> +
-> +maintainers:
-> +  - Alexandre Mergnat <amergnat@baylibre.com>
-> +
-> +description: |
-> +  MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
-> +  as a type of multi-function device (MFD). The RTC can be configured and set up
-> +  with PMIC wrapper bus which is a common resource shared with the other
-> +  functions found on the same PMIC.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6323-rtc
-> +      - mediatek,mt6357-rtc
-> +      - mediatek,mt6358-rtc
-> +      - mediatek,mt6366-rtc
-> +      - mediatek,mt6397-rtc
+Hi Florian,
 
-As this is only a compatible string, just fold this into the MFD schema 
-doc.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +    pmic {
-> +        compatible = "mediatek,mt6397";
-> +
-> +        rtc {
-> +               compatible = "mediatek,mt6397-rtc";
-> +        };
-> +    };
+Am 25.09.22 um 18:40 schrieb Stefan Wahren:
+> This series cleans up some minor issues, but this affects most of
+> the bcm283x DT sources.
+since you already applied Maximes patches, i want to know if you are 
+fine with this series?
+>
+> Stefan Wahren (2):
+>    ARM: dts: bcm283x: Fix underscores in node names
+>    ARM: dts: bcm283x: Move ACT LED into separate dtsi
+>
+>   arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 31 +++---
+>   arch/arm/boot/dts/bcm2711-rpi-400.dts         | 16 ++--
+>   arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts      | 27 +++---
+>   arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi        |  4 +-
+>   arch/arm/boot/dts/bcm2711.dtsi                | 94 +++++++++----------
+>   arch/arm/boot/dts/bcm2835-common.dtsi         | 18 ++--
+>   arch/arm/boot/dts/bcm2835-rpi-a-plus.dts      | 27 +++---
+>   arch/arm/boot/dts/bcm2835-rpi-a.dts           | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi-b-plus.dts      | 27 +++---
+>   arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts      | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi-b.dts           | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi        | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi-zero-w.dts      | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi-zero.dts        | 11 +--
+>   arch/arm/boot/dts/bcm2835-rpi.dtsi            | 10 --
+>   arch/arm/boot/dts/bcm2836-rpi-2-b.dts         | 27 +++---
+>   arch/arm/boot/dts/bcm2836.dtsi                |  2 +-
+>   arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts    | 27 +++---
+>   arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts    | 27 +++---
+>   arch/arm/boot/dts/bcm2837-rpi-3-b.dts         | 11 +--
+>   arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi        |  8 --
+>   arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts    | 11 +--
+>   .../boot/dts/bcm283x-rpi-led-deprecated.dtsi  | 18 ++++
+>   arch/arm/boot/dts/bcm283x.dtsi                | 70 +++++++-------
+>   24 files changed, 260 insertions(+), 261 deletions(-)
+>   create mode 100644 arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
+>
