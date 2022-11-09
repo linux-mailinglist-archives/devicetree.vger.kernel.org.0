@@ -2,165 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 576D2622080
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 00:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2AE6220AE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 01:23:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiKHXzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Nov 2022 18:55:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S229552AbiKIAXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Nov 2022 19:23:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiKHXy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 18:54:59 -0500
-Received: from gw.atmark-techno.com (gw.atmark-techno.com [13.115.124.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A872182C
-        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 15:54:57 -0800 (PST)
-Received: from gw.atmark-techno.com (localhost [127.0.0.1])
-        by gw.atmark-techno.com (Postfix) with ESMTP id C77706013E
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 08:54:56 +0900 (JST)
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-        by gw.atmark-techno.com (Postfix) with ESMTPS id 2B85F6013F
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 08:54:55 +0900 (JST)
-Received: by mail-pf1-f199.google.com with SMTP id s11-20020a056a00178b00b0056cb4545c3fso7857930pfg.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Nov 2022 15:54:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KnksoYaM8c4ehrc9G/4XJM9Rzso4aSMZWSvfC6plin4=;
-        b=W0GtqJYRKSe6ORqf7fwY+ivUUdUlqs9heWuoPfPri0TUs2u309Ww/GogtMmQk9Onys
-         q1cDav6wu3lr4v5k3ry7mEmQcPE0Lg8Zghb8XFJYK/6mgMRv5n46AkPqMc855MUCtSLp
-         XbMvK9ePjOUbMFknkT3rwcA5MYzIlsPPXJMMTd+WgyUn4YMn6a11n9JDhJUUkjNeSQ9d
-         6+E16t8DNS47xmFSuh3m/H166fIiQn3x/N2tqJ1StqdDOK/uqTsAGbh+4trzZ8zcrTfo
-         +R1G5fX4ey7Mm5GDtVH/d7j3i5Ly/UsYhAPoI8XGUmdZcjWSM+DkC5vkrRKhWVpbQEmR
-         85qw==
-X-Gm-Message-State: ANoB5pkb7Y98i0L9++u7mdY1hE6blhKGxlVMYHLXOIp6XYJd3cyMfe65
-        89pShgyUBvBR3E2ucy3OKCluwCmdbbrOn2QPcYG4exf7txEfx/QLuXFQu/ChbetJ6GDC0YgaZmX
-        KLLRpGzX5g2CTdIs11Tj/2aaIAw==
-X-Received: by 2002:a17:90a:49c9:b0:217:c5f6:4092 with SMTP id l9-20020a17090a49c900b00217c5f64092mr17169900pjm.33.1667951694110;
-        Tue, 08 Nov 2022 15:54:54 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf7lkcyT6KvvbkCMvIGHyAcNSvH+64wkGaI4+wTqhrX3TWqblxAynjwlMg46xqVUO1hbqGJEPw==
-X-Received: by 2002:a17:90a:49c9:b0:217:c5f6:4092 with SMTP id l9-20020a17090a49c900b00217c5f64092mr17169877pjm.33.1667951693797;
-        Tue, 08 Nov 2022 15:54:53 -0800 (PST)
-Received: from pc-zest.atmarktech (162.198.187.35.bc.googleusercontent.com. [35.187.198.162])
-        by smtp.gmail.com with ESMTPSA id c1-20020a170902b68100b00186a2444a43sm7469812pls.27.2022.11.08.15.54.53
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Nov 2022 15:54:53 -0800 (PST)
-Received: from martinet by pc-zest.atmarktech with local (Exim 4.96)
-        (envelope-from <martinet@pc-zest>)
-        id 1osYQe-00C2iT-1F;
-        Wed, 09 Nov 2022 08:54:52 +0900
-Date:   Wed, 9 Nov 2022 08:54:42 +0900
-From:   Dominique Martinet <dominique.martinet@atmark-techno.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Marcel Holtmann <marcel@holtmann.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com
-Subject: Re: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings
- for hci_h4
-Message-ID: <Y2rsQowbtvOdmQO9@atmark-techno.com>
+        with ESMTP id S229453AbiKIAXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Nov 2022 19:23:53 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058BAFD15
+        for <devicetree@vger.kernel.org>; Tue,  8 Nov 2022 16:23:51 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B606481F4E;
+        Wed,  9 Nov 2022 01:23:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667953429;
+        bh=5J87DtmZUrTG+SNxfHXwyY4vVTSNw3AyI/a/7tnLa6M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=zePfdsvOlomrJxKa3krhIYLBBXgidrDgJKk50f3MbgXqvrsdNK8FQh/oORFu68jZI
+         WSx8MQl72s1lpGT9ZvWfq9uoJK/N4xh/zBkPb1+IQsTz/JmJmefyr9xyhdGJtEXrc4
+         GknUjBl5G2KmZtdxc4FbQVrgpnkft/rcOX3YHWlwq+1Zp8zxyfvLYTK95OnQUBUyfS
+         RV7f20iRjTgMHFbdkkPdz+NdjOq5pIq6ISDC4SIhg3eYsP8hBwoB3qExlW7tcqwPQG
+         8QsgTGBcnABerTBmda632DqPzVAuII7PtA1bBuq39sDdMUlHI4Q20cT3mLvqYi0SuN
+         NjB4G2fL4+dEA==
+Message-ID: <fcc986d3-d701-f4e5-2b7e-91f24099bc9e@denx.de>
+Date:   Wed, 9 Nov 2022 01:23:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKCb2ZA+CLTVnGBMjp6zu0yw-rSFjWRg2S3hA7S6h-XEA@mail.gmail.com>
- <6a4f7104-8b6f-7dcd-a7ac-f866956e31d6@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 3/3] dt-bindings: imx6q-pcie: Handle more resets on
+ legacy platforms
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>
+References: <20221106222524.223188-1-marex@denx.de>
+ <20221106222524.223188-3-marex@denx.de>
+ <036f8d77-864e-76f5-613f-59b971e4a4ed@linaro.org>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <036f8d77-864e-76f5-613f-59b971e4a4ed@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for all the replies!
-
-All remarks make sense, I'll do my homework and send a v2 once extra
-questions have been answered.
-
-Rob Herring wrote on Tue, Nov 08, 2022 at 07:59:33AM -0600:
-> On Mon, Nov 7, 2022 at 11:56 PM Dominique Martinet
-> <dominique.martinet@atmark-techno.com> wrote:
-> > Add devicetree binding to support defining a bluetooth device using the h4
-> > uart protocol
+On 11/8/22 19:17, Krzysztof Kozlowski wrote:
+> On 06/11/2022 23:25, Marek Vasut wrote:
+>> The i.MX6 and i.MX7D does not use block controller to toggle PCIe
+>> reset, hence the PCIe DT description contains three reset entries
+>> on these older SoCs. Add this exception into the binding document.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Fabio Estevam <festevam@gmail.com>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: Lucas Stach <l.stach@pengutronix.de>
+>> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Shawn Guo <shawnguo@kernel.org>
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>> To: devicetree@vger.kernel.org
+>> ---
+>> V2: - Add mx8mq to 3-reset PCIe core variant
+>>      - Handle the resets in allOf section
+>> V3: - Reinstate reset: maxItems:3 and add minItems:2
+>>      - Move reset-names back to main section
+>>      - The validation no longer works and introduces errors like these:
+>>        arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb: pcie@33800000: reset-names:0: 'pciephy' was expected
+>> V4: - Reinstate reset minItems and maxItems
+>>      - Turn the first two reset-names items into enums to cover all
+>>        the various name combinations, sort the rest in allOf section
+>> ---
+>>   .../bindings/pci/fsl,imx6q-pcie.yaml          | 34 +++++++++++++++++--
+>>   1 file changed, 32 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> index b14c12a47cc1c..46fc29384ed34 100644
+>> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> @@ -84,14 +84,16 @@ properties:
+>>         - const: pcie_phy
+>>   
+>>     resets:
+>> +    minItems: 2
+>>       maxItems: 3
+>>       description: Phandles to PCIe-related reset lines exposed by SRC
+>>         IP block. Additional required by imx7d-pcie and imx8mq-pcie.
+>>   
+>>     reset-names:
+>> +    minItems: 2
+>>       items:
+>> -      - const: pciephy
+>> -      - const: apps
+>> +      - enum: [ pciephy, apps ]
+>> +      - enum: [ apps, turnoff ]
+>>         - const: turnoff
 > 
-> The protocol is mostly irrelevant to the binding. The binding is for a
-> particular device even if the driver is shared.
+> I would expect to remove all these entries. I asked to keep reset-names
+> with minIetms and maxItems. It works fine with your approach, but why
+> having the items in multiple places?
 
-This echoes the point below: I wanted to make this a bit more generic
-for other adapters, question at the end of my first reply to Krzysztof
-below.
-
-> There's now a pending (in linux-next) net/bluetooth/ directory and a
-> bluetooth-controller.yaml schema which you should reference.
-
-Will check it out and add that.
-
-Krzysztof Kozlowski wrote on Tue, Nov 08, 2022 at 12:37:39PM +0100:
-> > diff --git a/Documentation/devicetree/bindings/net/h4-bluetooth.yaml b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-> > new file mode 100644
-> > index 000000000000..5d11b89ca386
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/h4-bluetooth.yaml
-> 
-> If the schema is for one specific device, then filename matching the
-> compatible, so nxp,aw-xm458-bt.yaml... but I understand you want to
-> describe here class of devices using H4 Bluetooth? Won't they need their
-> own specific properties?
-
-H4 bluetooth itself has very little configurable elements, from what I
-can see about the device I'm using the actual configuration is done by
-the wifi driver that uploads a "combo" firmware over the PCI side
-(it's based on mwifiex, so for example mrvl/pcieuart8997_combo_v4.bin
-upstream works the same way afaik)
-
-This is a pretty terrible design, as the Bluetooth side cannot actually
-know when the device is ready as the initialization takes place, but
-that means there really aren't any property to give here
-
-(I haven't reproduced during normal boot, but in particular if I run
-bluetoothd before loading the wifi driver, I need to unbind/bind the
-serial device from the hci_uart_h4 driver to recover bluetooth...
-With that in mind it might actually be best to try to coordinate this
-from userspace with btattach after all, and I'd be happy with that if I
-didn't have to fight our init system so much, but as things stand having
-it autoloaded by the kernel is more convenient for us... Which is
-admitedly a weak reason for you all, feel free to tell me this isn't
-viable)
-
-
-Anyway, there probably would be other devices benefiting from this, at
-the very least other cards in the mwifiex family, but I'm doing this as
-a end user so I'm not comfortable adding devices I cannot test.
-
-So with all of this (sorry for the wall of text), should I try to keep
-this generic, or just give up and make it specific to nxp,aw-xm458-bt
-and let whoever adds the next device rename the file?
-
-
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/clock/imx8mp-clock.h>
-> > +
-> > +    uart {
-> > +        fsl,dte-mode = <1>;
-> > +        fsl,uart-has-rtscts;
-> 
-> Are these two related to this hardware?
-
-I'd say it's related to my soc rather than the Bluetooth adapter; I
-tried to give a full example but it's unrelated and I'll drop this as
-well.
-
--- 
-Dominique Martinet
-
-
+I feel like maybe I'm getting a bit lost in the complexity. I did that ^ 
+and it does seem to work, so V5 is coming.
