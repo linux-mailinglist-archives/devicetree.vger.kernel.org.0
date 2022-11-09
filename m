@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 045C5622745
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F18DF62274F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:41:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbiKIJkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:40:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
+        id S230395AbiKIJla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:41:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbiKIJko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:40:44 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261D8FACC;
-        Wed,  9 Nov 2022 01:40:44 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B14506602905;
-        Wed,  9 Nov 2022 09:40:41 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667986842;
-        bh=5+SECJlEo7BQZC8NrHGOWqaaKAjZ2nnSt35XWUVSojo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=m8CVH8yhd5O27fE9M+b+hAoSLn0wY/5h5thZ5FV8UPovCxAeZQ+5jtr6gPslB4iwx
-         NtS0elb1yU0JrNGd5hdeB6yV/rMkFGDWbTgOcIExtCcrGc8HmUjrAa/KOxtbzC08u5
-         z20f+G969MK/0qw7PAzfVnO0lbhUUPtW2LnnGDUPyjGNH5QPspKvYdNkXq5y/qM0yn
-         +RSNRIhZDLKxQACTEZbOA5FXlELCewvDPqe0ZcFvccwqyUcPXfpPP0TQdyyf3iSPjM
-         F7w91uU1YlabydGsQcuP+NsObKyEJ3UlIbbJEEIeK/v0yVE9YdIbNEi/5mJ1TMbaYP
-         tYaJHd8s9hOSA==
-Message-ID: <ed298a3e-25dd-af19-437c-f27c160788b3@collabora.com>
-Date:   Wed, 9 Nov 2022 10:40:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S230109AbiKIJlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:41:20 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1E920F72
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:41:17 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osha3-0007X8-V5; Wed, 09 Nov 2022 10:41:11 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osha2-003DyK-1x; Wed, 09 Nov 2022 10:41:11 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1osha2-00FOBJ-Bn; Wed, 09 Nov 2022 10:41:10 +0100
+Date:   Wed, 9 Nov 2022 10:41:10 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: renesas,tpu: Add r8a779g0 support
+Message-ID: <20221109094110.5btcckv7t76acidq@pengutronix.de>
+References: <f5ad691051f69f2dbfcb5c5a722960bd9cd41b06.1665156364.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4vbctexf7nhbsgzr"
+Content-Disposition: inline
+In-Reply-To: <f5ad691051f69f2dbfcb5c5a722960bd9cd41b06.1665156364.git.geert+renesas@glider.be>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 08/11/22 19:43, Alexandre Mergnat ha scritto:
-> - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
-> - Add mediatek,mt6357-rtc compatible.
-> - Add maintainer
-> - Remove the .txt binding file
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
->   .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 40 ++++++++++++++++++++++
->   .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 -----------------
->   3 files changed, 41 insertions(+), 32 deletions(-)
-> 
 
-Please split the txt->yaml conversion in one commit and the addition of the
-new mt6357-rtc compatible in another commit.
+--4vbctexf7nhbsgzr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also, isn't the original maintainer of rtc-mt6397 supposed to be...
-Tianping Fang <tianping.fang@mediatek.com> ?
+Hello,
 
-You can add yourself to the list of maintainers, though, unless Tianping
-explicitly says that he doesn't want to maintain this driver anymore?
+On Fri, Oct 07, 2022 at 05:26:37PM +0200, Geert Uytterhoeven wrote:
+> Document support for the 16-Bit Timer Pulse Unit (TPU) in the Renesas
+> R-Car V4H (R8A779G0) SoC.
+>=20
+> Based on a patch in the BSP by CongDang.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Regards,
-Angelo
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
+Same question as for the renesas,pwm-rcar patch: Who will pick this up?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--4vbctexf7nhbsgzr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNrdbMACgkQwfwUeK3K
+7AkNYAf9Grvg0zcs3zy3RJ5sn51EhFGrAIKkZWbhhElOZZ4yNf1H85szMVZMe0vT
+ovuUAGtI2Ol84pSKEoDeIyGxfyObfj2d+vGK1ZTtdgXJtD0CxWc4J+UhBfvx5RIu
+iGAAWR6ir3ae0VnZv1hP58knUInl/UNLXOHTsxs0/OyVwGcsDfD/baVrX2SFxPab
+jgyYER1h0+tmC2PxiECN0hoNug/CznQS+FYxNP0DRTXYBhnvgZrXkgwE7FHP2v8m
+4RLzF7sSivC9zLrXYzHa3GZXumDpqZZskNkNvf38HXY8BkX/i2Wdf9N//ZsNlvWo
+Y1bwa4gTLNh+hfZ5yYWR12FEqLU5Og==
+=I7kE
+-----END PGP SIGNATURE-----
+
+--4vbctexf7nhbsgzr--
