@@ -2,111 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A412062268C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3921462269B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiKIJPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:15:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
+        id S229791AbiKIJQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:16:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230140AbiKIJOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:14:32 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920FB22BF4
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:13:16 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id j4so24797068lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:13:16 -0800 (PST)
+        with ESMTP id S229861AbiKIJQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:16:11 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C2822524
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:14:49 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id f5so44996321ejc.5
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:14:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KMMA/bjgoBoze1LBnX/Nw5JY8Hkox2bSDSTZbz1eJrE=;
-        b=c08bfG0K6FV5WBXfA0i8dHqn3m/UvjcC4mcPpcCpuSlOQkpY/zZ1y8A41xUb2hW8oB
-         7mVKjdcOXyUBBSHVbN5U4RdNXMFhuHdwt/oz4WTw0UiPgfd8LCpdK7INZDR6UpUPBt5u
-         AELkTxjBF3QK32F2zhR2+XXQLGZ5hwJtCPYAlE7zAtXSOhKFQd7/Mo+Ydpu7llA1i7uc
-         /x//WlN5Zp1ptbH3DT37ElmPIq9TCItaCa+XrMDdaEbLKAwqpXKbnMkwqd6wlI+0qVBf
-         2DjE7w+E/qrftf65Ljr/GNtLYACbPggteksGEoP+rm5iuiuWjoEku942u7XwgdqBRGg5
-         BbGw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BII9zpGzB69RugugB6yoflzCcqpd30y/N1Z9Get0kNc=;
+        b=kbovMEF+8HLQIt31/GrcUDBIGre3xrC8pBrRd5oe7sfJkpNpFdzAoEm+XSpeIPn1cM
+         1JdHOaKHVMwjdxmAMHZ8ifz82J5VAnAD+09wU3dIL4/I8o3AImDcRZw55jxwCvpBFlm5
+         Ns7TQ3Q6CC/l8R1UzGv31aRJ5KWYrvrqIsW5y/rQ2ZITwr7o0vqDCJ7YKaOk0FR1RaBh
+         uM0DG4ve29ACq9duIvMGpZlXDXZ+89wNzYdDqvTJSqoTFvLLliy9V6XwXdwYuHFgEIAO
+         boT+SnoFdEU6w4AvkXW/uDcdRpXM82h82QHBix/0qIM7xdI/mFpuG9YS8g7H03LKKw0z
+         RqbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KMMA/bjgoBoze1LBnX/Nw5JY8Hkox2bSDSTZbz1eJrE=;
-        b=p4TCorr5HRTqG7EP58G4BdYV7opNT8CnR/Di7UoD7/aoJam9JAGJnIzdM56O+uZEiU
-         Q0XzQo5usTpBTnEyawqF/D54Ev2ySO4cqGtmnDQTiyqJ7COB+Mq7+JVklopfvBOazOQN
-         YKwXc78rKYrwNtgIg2/1dHjBAf/QJTDVEz9rut6aK8vrHSsyp/nv+Do5MMgy98lUgHwo
-         KW8aofgP9HYxqXJJaWWuo/s29CJAbvSZ9BIzIBL5lZpbehjopVXgDtd+mA8AgF+xeTPQ
-         Pgmy09S/wtn9hcvHQgY16+E6D6tWttyQsn5Qrhys0dAzllCgT+UVPw1btiKaY/9EY4xT
-         U8Rg==
-X-Gm-Message-State: ANoB5pkZx2THpXn22NvYDwY+Z+84eVVDI31Y9jRU+Y0Yrc7BiykqJwcV
-        jEoPLLtcUQfB973PqxVgyVmL8Q==
-X-Google-Smtp-Source: AA0mqf5vhuG4o/ejG+r4xLBj3u2AOMhVSoR0l36Az9u/3vDm1C4FRmFMs6/18+41BqI2RQPGcKo4Gg==
-X-Received: by 2002:ac2:5f1c:0:b0:4b4:11bf:9067 with SMTP id 28-20020ac25f1c000000b004b411bf9067mr1846080lfq.175.1667985194965;
-        Wed, 09 Nov 2022 01:13:14 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id v21-20020a2e9255000000b002776ce08326sm2064318ljg.29.2022.11.09.01.13.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 01:13:14 -0800 (PST)
-Message-ID: <6707abae-39aa-0d1b-dc5e-cee1d87402ec@linaro.org>
-Date:   Wed, 9 Nov 2022 10:13:13 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BII9zpGzB69RugugB6yoflzCcqpd30y/N1Z9Get0kNc=;
+        b=LaKV93k/SJRtOii1yV2CkAlixzAeVtYoy+NC+xqMO6ARTf5FpZuuQWye/RIdrLmpH9
+         zIZGz55z/49JrhQP2HyonwRVwdGj4Y2o3MAWh15EoqrFrPeyg9mXglZdDX1C+dYpeGeU
+         5LeFGETtbBdru6cY34fLXM4aLfNpSyrlkknFpCze61Kgf8zWbivV4A/nPzdUyIq/xi+W
+         dhCleo1UpMBWhBHQqg5KbiA+sMpF0R3f0y1PS9YwOgRTaPWcFJjEHymLkT6LBv19c5Rb
+         Xgb3qvuvzXMCp4ZyHBdglPePp1/8me4pGuD7wD6jZJr+OnXgSaYK5Gt5DB3PKNQuF+Xa
+         235g==
+X-Gm-Message-State: ACrzQf0Cmx1IPQwQIZ+jCpH/Bg0cfS7QROUa7MjIGyC8aaQy0sSo4dN0
+        rcAKQpfFmAZqSMN5JyzXnZsWFEnXFBwI6i5VIAx62g==
+X-Google-Smtp-Source: AMsMyM5ksqUJ8SVIvXrtIwFN5i88+m+DzparWxKXy8NGnIIzbgssm45e6mhLSH/PRjclkP8xuAkTVBww6rMhLGIwxzg=
+X-Received: by 2002:a17:907:c1e:b0:7ae:31a0:571e with SMTP id
+ ga30-20020a1709070c1e00b007ae31a0571emr24270592ejc.690.1667985287893; Wed, 09
+ Nov 2022 01:14:47 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [Patch v2 1/3] arm: exynos: Add new compatible string for
- Exynos3250 SoC.
-Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <CGME20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8@epcas5p2.samsung.com>
- <20221109035507.69086-1-aakarsh.jain@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109035507.69086-1-aakarsh.jain@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-4-JJLIU0@nuvoton.com>
+In-Reply-To: <20221108092840.14945-4-JJLIU0@nuvoton.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 9 Nov 2022 10:14:36 +0100
+Message-ID: <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
+ expansion interface(SGPIO)
+To:     Jim Liu <jim.t90615@gmail.com>
+Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, brgl@bgdev.pl,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 04:55, Aakarsh Jain wrote:
-> Since,MFC v7 support was added for Exynos5420 and Exynos
-> 3250 SoC with same compatible string "samsung,mfc-v7".As
-> both SoCs having different hardware properties and having
-> same compatible string for both SoCs doesn't seems to be correct.
-> New compatible is added for Exynos3250 SOC which will
-> differentiate the node properties for both SoCs which
-> support MFC v7.
-> 
-> Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> ---
->  Documentation/devicetree/bindings/media/s5p-mfc.txt | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
+On Tue, Nov 8, 2022 at 10:29 AM Jim Liu <jim.t90615@gmail.com> wrote:
 
-Beside my previous comment, please include changelog. This is v2, right?
+> +  nin_gpios: true
+> +
+> +  nout_gpios: true
 
-You should consider joining something like:
-https://www.linaro.org/events/member-training-upstream-kernel-development/
+My comment from v1 still holds.
+I'd say just drop these two, it's too much trying to protect
+the users from themselves.
 
-Best regards,
-Krzysztof
+> +  bus-frequency: true
 
+Given that you have clocks already, what does this actually specify?
+Which bus? The one the GPIO is connected to? Why is it different
+from the frequency from the clocks? And what is it used for, why does
+it need to be specified? So many questions.
+
+A description is necessary.
+
+I guess the : true means it is picked up from the core schemas somehow
+but that doesn't make me smarter.
+
+Yours,
+Linus Walleij
