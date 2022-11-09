@@ -2,85 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A9562265A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6C3B622658
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:11:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbiKIJLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:11:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
+        id S230380AbiKIJLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 04:11:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiKIJKZ (ORCPT
+        with ESMTP id S230264AbiKIJKZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:10:25 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E052713CC4
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:10:02 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id v17so26243021edc.8
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:10:02 -0800 (PST)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1490D2252B
+        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:10:01 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id p8so24674800lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:10:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3QUCs5p4x20t+fA3jj3IjRsE5RgZihBpuubDFWuxLPM=;
-        b=X7ZFhj2AXJWPd0iI5w+QPDsWjhrYZiOOtrpIQGvjlC67OqTz/9e3ssa7HsSjPKSZpG
-         WerkuQ3NkDtMacm7+E4/erNkWbH80BVwwYUGXBmMvFuvLXWMwHs4T/qCjxnsrYgW8YKt
-         Bm5rwb6G2jvYUgnQseyrh76DZ0t7ekEfNb4cF/YNcxaBBMfODf6F03oobV3wMGP/ROgO
-         G5xKdB79391xsndcIVCWnRibFlPDkUhEesThSf9ggDwQhMbItRBGpDCEr/3wT0HE2iOq
-         NMo/JZquZYniCu9Necst+YkX5hu5hUOI0ziXUiTi2AbPwmDOOHgsO65Lgb0muVborwQm
-         QAsw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GUlln+ES2ofzMXPrsOfnswoOHDIO3bY22Pgx0Ay6WPk=;
+        b=MV68C3n0GQICSLAwp00AC9yglzAQp1vfaxo/B4ue5Ry1xKj5I31QZ3OTCdwPCovuog
+         yHFAAIvUqcGEyaY93e4482AMThuXynpm5+oooGCu0mO/ElSaPS5HUGNRiNxIwp74zZ62
+         B0yxpDjeS66ucs65FDeHoVu1jrpQAIZtPy7jin4QZ882MNwaIZr+ZIUcfq79+PggXNfp
+         g4sKuDUxO6adM99W7/C/6LAEL74lbZck8V8Pwo3f9u4RUIGMjJ7JpTILJCXSfJrYuXLC
+         sCiBva43F0x3hAa0/b2t7DEDi/OZLP4ghwYcJ7h/YzYm76cUI5xFOmTodewE5Lg5nQFU
+         NeEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3QUCs5p4x20t+fA3jj3IjRsE5RgZihBpuubDFWuxLPM=;
-        b=cdidzLkoPUel9NQQ2cMkrUOqzQLkhKWd7uXkTaMk4A/JYdODt7pUcdJ+QoEyNEvdtB
-         4ewnmQwYJ8uKQFMjwHGHyTBCDwofhbkVewXdJ8JdWUFSMEMJGm6v5CmzQ57wiz0idA23
-         rekkQGjde0Ejl5DhRvcL3yhU2OgPNMAWgrYA3ud0cpp1TfHRVC/ijmU7+Mo36EJwVeTZ
-         A494OIpW66Qeu1KpebWJVze80wBJgawkYNEvlzq1JsUx/q7gVVWNtKVyKL+LIX/y+0EA
-         K33xB5loQDG17/mAsceogAdW8F5D6EOp4gYXgkJPY0H7W98qfww5IUNru3a0BBADe/6J
-         DT2A==
-X-Gm-Message-State: ACrzQf288HSRISw6rnN2Y4eEAiKtWmN16+fbek92oA0D0xuczpAMr62z
-        g1Rg3ZeAfLre4+Ch30jT9fzWjDBXUZybsXM00Ywqfw==
-X-Google-Smtp-Source: AMsMyM5Ms2bgWpyDJeWDMgwaZHZ3U7mXuubQ4gvDoxzd/6h/EDQt+5r7O/Txn907C7Bam5j9KMqfqGhyu2J6efHTrpI=
-X-Received: by 2002:aa7:c718:0:b0:462:ff35:95dc with SMTP id
- i24-20020aa7c718000000b00462ff3595dcmr57980811edq.32.1667985001514; Wed, 09
- Nov 2022 01:10:01 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GUlln+ES2ofzMXPrsOfnswoOHDIO3bY22Pgx0Ay6WPk=;
+        b=2mnVQ/0CUWwbMPtuSYuk9+65UlxazOqI6m35aE4adPzzebJ8l+qaX1tJiqS6nsD6Jq
+         z4zrfPLaRw8eF3aIijuCoAEXQaFHU00EpyTsTZHSBMmL9yFLPRGZNS6Fbp8onFa8UC5y
+         y0GN/RGKBRmytxAqoXVrOz94tB9oWCkY7r51XNmNFhuh2e9uyw6hla38/BGRDNKwZDQ/
+         J5SZjOL59eaxeDg3aUzRLvLuZOH1QArqvxYkcEIjBqrLA6xpMbSnEBwICyEPqy85Yk3F
+         rTwFnhIK3TKhoYIHdP6zxIyHSohAiOKswD+ClgxjoM6FXdhgjKwr5fDNCUhVBY3SeV+y
+         piOg==
+X-Gm-Message-State: ACrzQf0snnWtRcb/zLEx6PBwlcr9mkEvJDaC8ldi3D5y4djZCQ1E4YAt
+        TMD6zKt+wNR27oT7NRZAe9W8OA==
+X-Google-Smtp-Source: AMsMyM6zn9x5eBceIcU5kdwdfaIIlWzZdFcVKfBMxaLydrD0GLJQMJC7mHVFI85gHOXKRtsixil4rA==
+X-Received: by 2002:a05:6512:2391:b0:4a2:8cac:96ab with SMTP id c17-20020a056512239100b004a28cac96abmr543443lfv.415.1667984999434;
+        Wed, 09 Nov 2022 01:09:59 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id t12-20020a195f0c000000b004994117b0fdsm2134927lfb.281.2022.11.09.01.09.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 01:09:58 -0800 (PST)
+Message-ID: <48094cb6-4662-d2ac-f5c8-371dd4cd5917@linaro.org>
+Date:   Wed, 9 Nov 2022 10:09:58 +0100
 MIME-Version: 1.0
-References: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Nov 2022 10:09:50 +0100
-Message-ID: <CACRpkdYTyd4c-pZMmz=bZtgsgfHFMbUNDW=71HqxFtXow5bfkg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom,ipq8074: convert to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML
+ schemas of Xilinx NWL PCIe Root Port Bridge
+Content-Language: en-US
+To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "michals@xilinx.com" <michals@xilinx.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Yeleswarapu, Nagaradhesh" <nagaradhesh.yeleswarapu@amd.com>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
+References: <20221108035030.1040202-1-thippeswamy.havalige@amd.com>
+ <20221108035030.1040202-2-thippeswamy.havalige@amd.com>
+ <d45ea394-5c51-2f95-e5ef-641af663fbb3@linaro.org>
+ <CY4PR1201MB013577DE905AF12D1F5E03BA8B3E9@CY4PR1201MB0135.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CY4PR1201MB013577DE905AF12D1F5E03BA8B3E9@CY4PR1201MB0135.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 8, 2022 at 3:24 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On 09/11/2022 05:33, Havalige, Thippeswamy wrote:
+> Hi,
+> 
+>>> +  dma-coherent:
+>>> +    description: Optional, present if DMA operations are coherent
+>>> +
+>>> +  clocks:
+>>> +    description: Optional, input clock specifier.
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my previous comments were not fully addressed. Maybe my
+>> feedback got lost between the quotes, maybe you just forgot to apply it.
+>> Please go back to the previous discussion and either implement all requested
+>> changes or keep discussing them.
+>>
+>> Hint: same comment as v3.
+> 
+> Sorry I assumed it only for 'Input' and not Optional.
 
-> Convert Qualcomm IPQ8074 pin controller bindings to DT schema.  Keep the
-> parsing of pin configuration subnodes consistent with other Qualcomm
-> schemas (children named with '-state' suffix, their children with
-> '-pins').
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Missed comment was maxItems: 1.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
