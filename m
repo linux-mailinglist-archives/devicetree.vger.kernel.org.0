@@ -2,94 +2,401 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 527136227D0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 10:59:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7F96227E8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 11:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiKIJ7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 04:59:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
+        id S229762AbiKIKDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 05:03:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiKIJ7W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 04:59:22 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAD633D
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 01:59:21 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id ft34so8907662ejc.12
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 01:59:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=haRlnsqPUakc31S2aOsR1O2bID6Xr0HK7aHvY/cYYYg=;
-        b=B9L06IDFAzoOMMt4abyIsTX72I+IZxglt37hDV0KG10b4bhhlB05msK6qcpSwU30Gb
-         AcfasAtmyLoD6YXDvOlKufYMPLjGNru+xFH1jPwhv0hbUVmrxqRTyByBxdTJXaNgk5Dj
-         QBjzAXrz+aWfn45iiT3Bmfj/636tpxFw5mfAlyjIMd88txUA9x9Lxocu1Nh48R78RayK
-         MonizQTUOyJWlwliTbzbmEe9/ipcLBwzDsMn2pW1NS+AKdDAZHFSM5rFbr0INigPktVO
-         Sx1EqyoeBfwbgLordwHA0OQPJDTnbDUcepomI3yx+ZJ8Bbe/nTS0h/wEK4/pC+walTFi
-         LADg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=haRlnsqPUakc31S2aOsR1O2bID6Xr0HK7aHvY/cYYYg=;
-        b=YzD/r5ZxRJAhbmdN1JDqWtOqCbJc6siXeGcRwheE+A9MHP+AovgZ5LLwQL3oGmSDcP
-         4nTbz+P8TP7v1zRkfxPTwAX2qLAnw/X+Bu/XB5qFl3ewo7DZ5411jx5LJ/JY0zqfJ2YC
-         pJRyblhQm4SioGl07eppsbz3A6TvL9P3CfGmdsCdiMI3uIJ4h3KB1eCDNwM/Dvmfc5Vg
-         lYcJKrJmR1shm7BM5RE+2Ehh291NDR4g6VVZFaOMdYUqPhUlNH4mk6Tuwa7vCIgZ19+V
-         7OZikF9sgqGNOT9lcChWHRsUl1moZ7rakRN9wTwD5aDCxGjdhzFqPkpkHBA8mlFds1eg
-         neVQ==
-X-Gm-Message-State: ANoB5pnEcQJC9KdZFBJ2jgXMIsQOj2NwUCEYb0ENX583RJ8WZZVrhpJ8
-        o7xRNUtTRWa1Fu6Z3CNXBHipoPPTZBdVG9dmB7A4/A==
-X-Google-Smtp-Source: AA0mqf6p1SQdDOYOnHUtfP9G3pWu+cOV6hlUGUfHgalP+Odim2UVjh4u4+gsf+wkFnBnCFFF0/ZPbBb+f8Eao95ZJ1M=
-X-Received: by 2002:a17:906:6acc:b0:7ae:658c:ee45 with SMTP id
- q12-20020a1709066acc00b007ae658cee45mr14612769ejs.190.1667987960036; Wed, 09
- Nov 2022 01:59:20 -0800 (PST)
+        with ESMTP id S230086AbiKIKDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 05:03:31 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 681F960FF;
+        Wed,  9 Nov 2022 02:03:29 -0800 (PST)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8Dx_7fuemtjN4cFAA--.16170S3;
+        Wed, 09 Nov 2022 18:03:26 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxNlfqemtjqn8PAA--.24744S2;
+        Wed, 09 Nov 2022 18:03:23 +0800 (CST)
+Subject: Re: [PATCH v6 1/2] soc: loongson: add GUTS driver for loongson-2
+ platforms
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        soc@kernel.org
+References: <20221104024835.3570-1-zhuyinbo@loongson.cn>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <57c9f565-e75b-0c8f-fdce-9dc8c334d50f@loongson.cn>
+Date:   Wed, 9 Nov 2022 18:03:22 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-References: <20221109065546.24912-1-mranostay@ti.com> <20221109065546.24912-5-mranostay@ti.com>
-In-Reply-To: <20221109065546.24912-5-mranostay@ti.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Nov 2022 10:59:08 +0100
-Message-ID: <CACRpkdaTV6unVsfNj+M39jLn5FLTnhryjuzF4EB6Ytds9R1nEQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] gpio: tps6594x: add GPIO support for TPS6594x PMIC
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     brgl@bgdev.pl, lee@kernel.org, kristo@kernel.org,
-        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Keerthy <j-keerthy@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221104024835.3570-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxNlfqemtjqn8PAA--.24744S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3tr4kXrWxJF1UtFy5GryDZFb_yoWDZFy8pa
+        n3CayfCFWUXF47Zrn8Ja4UWFyY9ayxCasrur4xW3s8urykA347XFyxGFyUZrs7ArykA342
+        qF95u3yjkFW7A3DanT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bqAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr1j6F4UJwAm72CE4IkC
+        6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7
+        AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC
+        6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+        026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF
+        0xvE2Ix0cI8IcVAFwI0_Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0x
+        vE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8Jr0_Cr1UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxU4_HUDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 9, 2022 at 7:56 AM Matt Ranostay <mranostay@ti.com> wrote:
+Hi maintainer,
 
-> Add support for TPS6594X PMICs GPIO interface that has 11 that can be
-> configured as input or outputs.
->
-> Tested-by: Keerthy <j-keerthy@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+This patch I had verified that base on mainline 6.1-rc3 tree, it is
+okay, if no other issue, please you help me merge it to upstream.
 
-(...)
-> +config GPIO_TPS6594X
-> +       tristate "TI TPS6594X GPIO driver"
-> +       depends on MFD_TPS6594X
-> +       help
-> +         Select this option to enable GPIO driver for the TPS6954X
-> +         PMIC chip family. There are 11 GPIOs that can be configured.
+Thanks,
+Yinbo.
 
-select GPIO_REGMAP
+ÔÚ 2022/11/4 ÉÏÎç10:48, Yinbo Zhu Ð´µÀ:
+> The global utilities block controls PCIE device enabling, alternate
+> function selection for multiplexed signals, consistency of HDA, USB
+> and PCIE, configuration of memory controller, rtc controller, lio
+> controller, and clock control.
+> 
+> This patch adds a driver to manage and access global utilities block
+> for loongarch architecture Loongson-2 SoCs. Initially only reading SVR
+> and registering soc device are supported. Other guts accesses, such
+> as reading PMON configuration by default, should eventually be added
+> into this driver as well.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> Change in v6:
+> 		1. Add full name spelling about GUTS in Kconfig.
+> 		2. Add reviewed-by information.
+> Change in v5:
+> 		1. Add all history change log information.
+> Change in v4:
+> 		1. Remove menu information in Kconfig.
+> Change in v3:
+> 		1. Replace string loongson2/Loongson2 with Loongson-2/loongson-2
+> 	           in commit message, Kconfig, Makefile file.
+> 		2. Replace string LOONGSON2 with LOONGSON-2.
+> Change in v2:
+> 		1. Add architecture support commit log description.
+> 		2. Add other guts accesses plan commit log description.
+> 		3. Add "depends on LOONGARCH || COMPILE_TEST" for
+> 		   LOONGSON2_GUTS in Kconfig.
+> 		4. Move the scfg_guts to .c file from .h and delete .h.
+> 		5. Remove __packed on scfg_guts.
+> 
+>   MAINTAINERS                           |   6 +
+>   drivers/soc/Kconfig                   |   1 +
+>   drivers/soc/Makefile                  |   1 +
+>   drivers/soc/loongson/Kconfig          |  18 +++
+>   drivers/soc/loongson/Makefile         |   6 +
+>   drivers/soc/loongson/loongson2_guts.c | 189 ++++++++++++++++++++++++++
+>   6 files changed, 221 insertions(+)
+>   create mode 100644 drivers/soc/loongson/Kconfig
+>   create mode 100644 drivers/soc/loongson/Makefile
+>   create mode 100644 drivers/soc/loongson/loongson2_guts.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c9dc5ddbd9fe..20ce056ae207 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12041,6 +12041,12 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+>   F:	drivers/pinctrl/pinctrl-loongson2.c
+>   
+> +LOONGSON-2 SOC SERIES GUTS DRIVER
+> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+> +L:	loongarch@lists.linux.dev
+> +S:	Maintained
+> +F:	drivers/soc/loongson/loongson2_guts.c
+> +
+>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
+>   M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+> diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
+> index e461c071189b..5dbb09f843f7 100644
+> --- a/drivers/soc/Kconfig
+> +++ b/drivers/soc/Kconfig
+> @@ -13,6 +13,7 @@ source "drivers/soc/fujitsu/Kconfig"
+>   source "drivers/soc/imx/Kconfig"
+>   source "drivers/soc/ixp4xx/Kconfig"
+>   source "drivers/soc/litex/Kconfig"
+> +source "drivers/soc/loongson/Kconfig"
+>   source "drivers/soc/mediatek/Kconfig"
+>   source "drivers/soc/microchip/Kconfig"
+>   source "drivers/soc/pxa/Kconfig"
+> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+> index 69ba6508cf2c..fff513bd522d 100644
+> --- a/drivers/soc/Makefile
+> +++ b/drivers/soc/Makefile
+> @@ -18,6 +18,7 @@ obj-y				+= imx/
+>   obj-y				+= ixp4xx/
+>   obj-$(CONFIG_SOC_XWAY)		+= lantiq/
+>   obj-$(CONFIG_LITEX_SOC_CONTROLLER) += litex/
+> +obj-y				+= loongson/
+>   obj-y				+= mediatek/
+>   obj-y				+= microchip/
+>   obj-y				+= pxa/
+> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
+> new file mode 100644
+> index 000000000000..df52599ae87b
+> --- /dev/null
+> +++ b/drivers/soc/loongson/Kconfig
+> @@ -0,0 +1,18 @@
+> +# SPDX-License-Identifier: GPL-2.0+
+> +#
+> +# Loongson-2 series SoC drivers
+> +#
+> +
+> +config LOONGSON2_GUTS
+> +	tristate "Loongson-2 SoC Global UtiliTieS (GUTS) register block"
+> +	depends on LOONGARCH || COMPILE_TEST
+> +	select SOC_BUS
+> +	help
+> +	  The global utilities block controls PCIE device enabling, alternate
+> +	  function selection for multiplexed signals, consistency of HDA, USB
+> +	  and PCIE, configuration of memory controller, rtc controller, lio
+> +	  controller, and clock control. This patch adds a driver to manage
+> +	  and access global utilities block for loongarch architecture Loongson-2
+> +	  SoCs. Initially only reading SVR and registering soc device are
+> +	  supported. Other guts accesses, such as reading PMON configuration by
+> +	  default, should eventually be added into this driver as well.
+> diff --git a/drivers/soc/loongson/Makefile b/drivers/soc/loongson/Makefile
+> new file mode 100644
+> index 000000000000..263c486df638
+> --- /dev/null
+> +++ b/drivers/soc/loongson/Makefile
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0+
+> +#
+> +# Makefile for the Linux Kernel SoC Loongson-2 specific device drivers
+> +#
+> +
+> +obj-$(CONFIG_LOONGSON2_GUTS)		+= loongson2_guts.o
+> diff --git a/drivers/soc/loongson/loongson2_guts.c b/drivers/soc/loongson/loongson2_guts.c
+> new file mode 100644
+> index 000000000000..8f3d5465c7e8
+> --- /dev/null
+> +++ b/drivers/soc/loongson/loongson2_guts.c
+> @@ -0,0 +1,189 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/slab.h>
+> +#include <linux/module.h>
+> +#include <linux/of_fdt.h>
+> +#include <linux/sys_soc.h>
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +
+> +static struct soc_device_attribute soc_dev_attr;
+> +static struct soc_device *soc_dev;
+> +
+> +/*
+> + * Global Utility Registers.
+> + *
+> + * Not all registers defined in this structure are available on all chips, so
+> + * you are expected to know whether a given register actually exists on your
+> + * chip before you access it.
+> + *
+> + * Also, some registers are similar on different chips but have slightly
+> + * different names.  In these cases, one name is chosen to avoid extraneous
+> + * #ifdefs.
+> + */
+> +struct scfg_guts {
+> +	u32     svr;            /* Version Register */
+> +	u8      res0[4];
+> +	u16     feature;        /* Feature Register */
+> +	u32     vendor;         /* Vendor Register */
+> +	u8      res1[6];
+> +	u32     id;
+> +	u8      res2[0x3ff8 - 0x18];
+> +	u32     chip;
+> +};
+> +
+> +static struct guts {
+> +	struct scfg_guts __iomem *regs;
+> +	bool little_endian;
+> +} *guts;
+> +
+> +struct loongson2_soc_die_attr {
+> +	char	*die;
+> +	u32	svr;
+> +	u32	mask;
+> +};
+> +
+> +/* SoC die attribute definition for Loongson-2 platform */
+> +static const struct loongson2_soc_die_attr loongson2_soc_die[] = {
+> +
+> +	/*
+> +	 * LA-based SoCs Loongson-2 Series
+> +	 */
+> +
+> +	/* Die: 2k1000la, SoC: 2k1000la */
+> +	{ .die		= "2K1000LA",
+> +	  .svr		= 0x00000013,
+> +	  .mask		= 0x000000ff,
+> +	},
+> +	{ },
+> +};
+> +
+> +static const struct loongson2_soc_die_attr *loongson2_soc_die_match(
+> +	u32 svr, const struct loongson2_soc_die_attr *matches)
+> +{
+> +	while (matches->svr) {
+> +		if (matches->svr == (svr & matches->mask))
+> +			return matches;
+> +		matches++;
+> +	};
+> +
+> +	return NULL;
+> +}
+> +
+> +static u32 loongson2_guts_get_svr(void)
+> +{
+> +	u32 svr = 0;
+> +
+> +	if (!guts || !guts->regs)
+> +		return svr;
+> +
+> +	if (guts->little_endian)
+> +		svr = ioread32(&guts->regs->svr);
+> +	else
+> +		svr = ioread32be(&guts->regs->svr);
+> +
+> +	return svr;
+> +}
+> +
+> +static int loongson2_guts_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *root, *np = pdev->dev.of_node;
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	const struct loongson2_soc_die_attr *soc_die;
+> +	const char *machine;
+> +	u32 svr;
+> +
+> +	/* Initialize guts */
+> +	guts = devm_kzalloc(dev, sizeof(*guts), GFP_KERNEL);
+> +	if (!guts)
+> +		return -ENOMEM;
+> +
+> +	guts->little_endian = of_property_read_bool(np, "little-endian");
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	guts->regs = ioremap(res->start, res->end - res->start + 1);
+> +	if (IS_ERR(guts->regs))
+> +		return PTR_ERR(guts->regs);
+> +
+> +	/* Register soc device */
+> +	root = of_find_node_by_path("/");
+> +	if (of_property_read_string(root, "model", &machine))
+> +		of_property_read_string_index(root, "compatible", 0, &machine);
+> +	of_node_put(root);
+> +	if (machine)
+> +		soc_dev_attr.machine = devm_kstrdup(dev, machine, GFP_KERNEL);
+> +
+> +	svr = loongson2_guts_get_svr();
+> +	soc_die = loongson2_soc_die_match(svr, loongson2_soc_die);
+> +	if (soc_die) {
+> +		soc_dev_attr.family = devm_kasprintf(dev, GFP_KERNEL,
+> +						     "Loongson %s", soc_die->die);
+> +	} else {
+> +		soc_dev_attr.family = devm_kasprintf(dev, GFP_KERNEL, "Loongson");
+> +	}
+> +	if (!soc_dev_attr.family)
+> +		return -ENOMEM;
+> +	soc_dev_attr.soc_id = devm_kasprintf(dev, GFP_KERNEL,
+> +					     "svr:0x%08x", svr);
+> +	if (!soc_dev_attr.soc_id)
+> +		return -ENOMEM;
+> +	soc_dev_attr.revision = devm_kasprintf(dev, GFP_KERNEL, "%d.%d",
+> +					       (svr >>  4) & 0xf, svr & 0xf);
+> +	if (!soc_dev_attr.revision)
+> +		return -ENOMEM;
+> +
+> +	soc_dev = soc_device_register(&soc_dev_attr);
+> +	if (IS_ERR(soc_dev))
+> +		return PTR_ERR(soc_dev);
+> +
+> +	pr_info("Machine: %s\n", soc_dev_attr.machine);
+> +	pr_info("SoC family: %s\n", soc_dev_attr.family);
+> +	pr_info("SoC ID: %s, Revision: %s\n",
+> +		soc_dev_attr.soc_id, soc_dev_attr.revision);
+> +
+> +	return 0;
+> +}
+> +
+> +static int loongson2_guts_remove(struct platform_device *dev)
+> +{
+> +	soc_device_unregister(soc_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Table for matching compatible strings, for device tree
+> + * guts node, for Loongson-2 SoCs.
+> + */
+> +static const struct of_device_id loongson2_guts_of_match[] = {
+> +	{ .compatible = "loongson,ls2k-chipid", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, loongson2_guts_of_match);
+> +
+> +static struct platform_driver loongson2_guts_driver = {
+> +	.driver = {
+> +		.name = "loongson2-guts",
+> +		.of_match_table = loongson2_guts_of_match,
+> +	},
+> +	.probe = loongson2_guts_probe,
+> +	.remove = loongson2_guts_remove,
+> +};
+> +
+> +static int __init loongson2_guts_init(void)
+> +{
+> +	return platform_driver_register(&loongson2_guts_driver);
+> +}
+> +core_initcall(loongson2_guts_init);
+> +
+> +static void __exit loongson2_guts_exit(void)
+> +{
+> +	platform_driver_unregister(&loongson2_guts_driver);
+> +}
+> +module_exit(loongson2_guts_exit);
+> 
 
-This driver is an archetypical example of a driver that can make great
-use of GPIO_REGMAP helpers, so rewrite it to use them.
-Look in drivers/gpio/gpio-sl28cpld.c for an example.
-
-Yours,
-Linus Walleij
