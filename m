@@ -2,83 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A2C622CE2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 14:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7B2622CEF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Nov 2022 14:55:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbiKINxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 08:53:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S230372AbiKINzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 08:55:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230234AbiKINxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 08:53:12 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1900205F2;
-        Wed,  9 Nov 2022 05:53:09 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id m204so18827720oib.6;
-        Wed, 09 Nov 2022 05:53:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IP5GuE55LXSPGOYJX6tyMHFgYaUe2wT0zbakn2aZiKA=;
-        b=IRoPyveQ9oFrAzTF3HHWGRj0bUrCS8UXLDCa9ddqKqECHwdlDrMOiKDSZFD12lTdMl
-         XNBIQOgXzPdtgZPPrv9GafkLQB/QCIIiL+YPya0/Hp1NPKysiaBQGQjOfZI3/fws8WmO
-         IC351Nj8xsn5UopowW+WN6XagzJpYeXF21UXhjDo9EsVVx2/tmOi23Yx33AbvliZBYWZ
-         rjCm3e40+B0iBtSKK9mkxqcUkAjx9wi3fsP9JzExbAkKPOzS1PbKl5D01nmRmZqwArlf
-         c4WRIWu9QxLRLeK41yi7GJb8h2BS48MGKMxNelapj/igM3ozt9vWWbfuoFaITTowNE3m
-         D41w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IP5GuE55LXSPGOYJX6tyMHFgYaUe2wT0zbakn2aZiKA=;
-        b=FRrIRXX+o4aIfRjgAux1OeF+rXp732Bbku/J1BsB4Bpmw8nNxRuWni5pr7hKmKOfIG
-         1wX5zBV+18cltG/z8hMXkhEPTzx8Un5DBIAGg33cGMpl1foK2k2ParWdm92IdN+zRsao
-         C5DS6c/S2XLQSf9+g71LZ0bTtE8hwNJ5KV6HtL9/XVRm2Rv8K3SyLaMxVnCxQKtRRT2k
-         MW8JuBfMvPPJyJ/zfhVHydxqMidBFvWWDL9q7WfX7lk8mnl8oHWw3FrGOpKF2sCLQoFW
-         K3T7s/F6ioKA6NwaeEWHijZ10gFT/5auSUSMoFFuC9MPwe9JBo6frnKBKJoUT5042KLO
-         WhKw==
-X-Gm-Message-State: ACrzQf1S7RazKyE+7+OavluiX2CMdgFL5q0BGyMQkKsEWY3vMtWwScee
-        KF2xzuNJyyoVA43OsSDMBYE=
-X-Google-Smtp-Source: AMsMyM7yhbw8cdCur7Z/B3HPRG1UyZ5Xhy0cQKinNow41q8SEdCpF9Q0zCPt1dXhUKXdFyWWSxduvw==
-X-Received: by 2002:a05:6808:1b13:b0:35a:57ef:8388 with SMTP id bx19-20020a0568081b1300b0035a57ef8388mr16587593oib.195.1668001989314;
-        Wed, 09 Nov 2022 05:53:09 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f15-20020a056870210f00b0013ae5246449sm6082480oae.22.2022.11.09.05.53.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Nov 2022 05:53:08 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 9 Nov 2022 05:53:06 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com,
-        angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v5 5/7] dt-bindings: watchdog: mediatek: Convert mtk-wdt
- to json-schema
-Message-ID: <20221109135306.GA3538893@roeck-us.net>
-References: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
- <20221108033209.22751-6-allen-kh.cheng@mediatek.com>
- <585a9cbb-4df4-1c06-ecfa-3b9442f1a5e2@gmail.com>
- <5758c2af-c2c5-dfbe-c7d8-036bbdaf71c7@kernel.org>
+        with ESMTP id S230300AbiKINzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 08:55:13 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E13EA5;
+        Wed,  9 Nov 2022 05:55:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B2B861AC4;
+        Wed,  9 Nov 2022 13:55:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E484C433D6;
+        Wed,  9 Nov 2022 13:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668002110;
+        bh=4NwwsEbCbswN53T4UEwwOlgLBEjJU2ohr2t1zlmAODw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=eU/+cyvmee3zNEITLx3DRExwDjKNI1MyQPOiKwJ8pkJiB8+lO6ZdrkPOeyh8qRjo0
+         jasOtJGBm/3IGYdBP0DutC+AUlfxlHPZfOOkaZ+gQ/abdkK8WYRlEFllxKXN3k57m4
+         UHZgropZD6h+fPVrS4G8qpKiNlBEuhWHkujLuEgSiomSHUs+kYwzJya2tLYmJ/dP1c
+         eEPQihYi27GO0jS7PnjMD/buLcTXZ/uBwuUhrq2KbKv0f0SHX77Eg3+4vF/ote9AT9
+         Ekz4UyfTSmSxh9M0OVMaqiOhDIcJngBmktu9pZRuK21eoePTGui18TxaSQYp5mQH0M
+         J7qvg7QO5yIcw==
+Message-ID: <4de6be5d-b23e-5927-515c-233f697d0be1@kernel.org>
+Date:   Wed, 9 Nov 2022 15:55:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5758c2af-c2c5-dfbe-c7d8-036bbdaf71c7@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 0/5] firmware: ti_sci: Introduce system suspend support
+Content-Language: en-US
+To:     Georgi Vlaev <g-vlaev@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Vibhore Vardhan <vibhore@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20221108224527.137179-1-g-vlaev@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221108224527.137179-1-g-vlaev@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,46 +61,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 09, 2022 at 10:04:09AM +0100, Krzysztof Kozlowski wrote:
-> On 08/11/2022 11:50, Matthias Brugger wrote:
-> > 
-> > 
-> > On 08/11/2022 04:32, Allen-KH Cheng wrote:
-> >> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >>
-> >> Convert the MediaTek watchdog bindings to schema.
-> >>
-> >> The original binding only had 4 without a fallback but there is a reset
-> >> controller on the "mediatek,mt7986-wdt", "mediatek,mt8186-wdt",
-> >> "mediatek,mt8188-wdt" and "mediatek,mt8195-wdt" Since there is no reset
-> >> controller for the mt6589, we remove "mediatek,mt6589-wdt" as a
-> >> fallback.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >> Co-developed-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> >> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> >> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> > As I'm put as the maintainer:
-> > Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > 
-> > Shall I take that through my tree or shall it go through the watchdog tree?
-> > 
+
+
+On 09/11/2022 00:45, Georgi Vlaev wrote:
+> This series introduces necessary ti_sci driver functionality in
+> preparation of supporting DeepSleep mode for suspend to mem on TI
+> K3 AM62x. This version is a fixup and rebase of the patch series by
+> Dave Gerlach [1]. It applies on top of v6.1-rc4.
 > 
-> In general, bindings should go via subsystem trees (so watchdog), just
-> like drivers. However this got Guenter's review tag, so usually it means
-> also an ack... Dunno... :)
+> Deep Sleep mode is described in section "5.2.4.4 DeepSleep" of the
+> AM62x Technical Reference Manual [2].
+> 
+> The kernel triggers entry to Deep Sleep mode through the mem suspend
+> transition with the following:
+> 
+> * Use a TF-A binary that supports PSCI_SYSTEM_SUSPEND call. This causes
+>   system to use PSCI system suspend as last step of mem sleep.
+> 
+> * The firmware requires that the OS sends a TISCI_MSG_PREPARE_SLEEP
+>   message in order to provide details about suspend, so we must add the
+>   ability to send this message. We also add TISCI_MSG_LPM_WAKE_REASON
+>   and TISCI_MSG_SET_IO_ISOLATION messages as part of a new PM ops. These
+>   messages are part of the TISCI PM Low Power Mode API [3]. (Patch 2)
+> 
+> * A memory address must be provided to the firmware using the above
+>   message, which is allocated and managed by dma_alloc_coherent()
+>   and friends. (Patch 3)
+> 
+> * System must load firmware to a specific location before Deep Sleep is
+>   entered, and this is accomplished using a memory region in device
+>   tree to indicate where this firmware should be loaded, and also a
+>   "firmware-name" property to indicate the name of the firmware
+>   to load. The ti_sci driver checks in its pm handler to see if
+>   the firmware has been loaded and if not, loads it. (Patch 4)
+> 
+> * Finally, the ti_sci driver must actually send TISCI_MSG_PREPARE_SLEEP
+>   message to firmware with the above information included, which it
+>   does during the driver suspend handler when PM_MEM_SUSPEND is the
+>   determined state being entered. (Patch 5)
+> 
+> This is tested on am625-sk using a limited dts with all devices disabled
+> apart from cpu0, main_uart0, i2c, rtc, mmc/sd, dmsc, and secure_proxy_main.
+> 
+> Testing this sequence requires K3 sdhci suspend/resume support [4],
+> enable the wkup_rtc in the am625-sk.dts, disable devices that don't
+> support system suspend/resume like OSPI and CPSW3G.
+> 
+> In can be tested on the following branch:
+> https://github.com/gvlaev/linux/tree/upstream-v6.2/lpm-ti-sci-v1
+> 
+> Changelog:
+> v2:
+> - Addressed comments received for v1 series [1].
+> - Updated v1 patch 5 to use pm notifier to avoid firmware loading
+>   issues.
+> - Dropped the reserved region requirement and allocate DMA memory
+>   instead. The reserved region binding patch is also removed.
+> - Introduce two more TISCI LPM messages that are supported in SysFW.
+> - Fixes in error handling.
+> 
+> [1] https://lore.kernel.org/lkml/20220421203659.27853-1-d-gerlach@ti.com
+> [2] https://www.ti.com/lit/pdf/spruiv7
+> [3] https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html
+> [4] https://lore.kernel.org/lkml/20220408124338.27090-1-a-govindraju@ti.com
+> 
+> Dave Gerlach (5):
+>   dt-bindings: ti, sci: Add lpm region and firmware-name
+>   firmware: ti_sci: Introduce Power Management Ops
+>   firmware: ti_sci: Allocate memory for the LPM modes
+>   firmware: ti_sci: Use dt provided fw name and address to load at
+>     suspend time
+>   firmware: ti_sci: Introduce prepare system suspend call
+> 
+>  .../bindings/arm/keystone/ti,sci.yaml         |  21 +-
+>  drivers/firmware/ti_sci.c                     | 356 ++++++++++++++++++
+>  drivers/firmware/ti_sci.h                     |  64 +++-
+>  include/linux/soc/ti/ti_sci_protocol.h        |  44 +++
+>  4 files changed, 480 insertions(+), 5 deletions(-)
+> 
+> 
+> base-commit: f0c4d9fc9cc9462659728d168387191387e903cc
 
-For watchdog patches, if I send a Reviewed-by: tag, I expect Wim to pick
-up the patch through the watchdog tree. If I expect some other tree to
-pick it up, I use Acked-by: and usually add a note saying that I assume
-that the patch will be picked up by someone else.
+Tested-by: Roger Quadros <rogerq@kernel.org>
 
-I usually also add watchdog patches to my own watchdog-next tree as
-reference for Wim. I already have several mediatek devicetree patches
-queued there. Handling some of the patches through watchdog and others
-through some other tree would create a mess. Please don't do that.
+Tested this with am65-CPSW suspend/resume patches [1]
+[1] - https://lore.kernel.org/netdev/20221104132310.31577-3-rogerq@kernel.org/T/
 
-Guenter
+-- 
