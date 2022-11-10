@@ -2,178 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5582624397
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:49:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A46436243C4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:00:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbiKJNtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 08:49:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
+        id S229763AbiKJOAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 09:00:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231285AbiKJNtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:49:19 -0500
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534E91F2E1;
-        Thu, 10 Nov 2022 05:49:18 -0800 (PST)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-13c569e5ff5so2191426fac.6;
-        Thu, 10 Nov 2022 05:49:18 -0800 (PST)
+        with ESMTP id S229561AbiKJOAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:00:21 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1511D1DD
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:00:20 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id u2so1224935ljl.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:00:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aakPR3dWnHZ7TJ/BvrMDtVquKUqYTA3FX1Ppr5XxP6E=;
+        b=sQx8rce3EU7mc+tcadjx5gzUT5NEJJbzw9+g4og/Vnby8E/d5Q65slZTjobXMRE849
+         P2OZofC6cY85ViMLNB09JTg+HuSZclCKjYCx/eWf5s95CY5sGiUSMa5SrAuBENjZFzG6
+         rjR6eamNtrFJcyw+/yh0WuX0zAjF/gLiktWKYOQ4VHN5jDf9oVyRFk0ejp8Xk8fqTWJT
+         4Iqb0k+ZskuEdioxuwqfXtHw3v+fIDevnVoU5Bjws9ZZcF2gb7fqcvGIR2CwBTkCfyxL
+         Gpca6YSRbEmtNSJThjtqkq68tLeTBFYe94H9h/xN+OgQD+hRjQp4YkRBovqymtw7Lga7
+         CeiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sNqJFWW1l/RwQMBOBINJbE+k5PGilLqiAp/MdKz97eQ=;
-        b=Elq/D3qJeO5eMpd+0X88AnoPzYiPXvDObGBGLYorYd0n4FgoqzElx71js0raC+9IAA
-         Y5kL5grFiNe5DxAEFf2Dwhib8IXqTMsE5hdbAkl3YvTJcAM3vHC47ZurapKdYXV1n9YJ
-         ybrHBIFLAKD7KkJebH4/7D028Ed5/Lc8kF1McvDHliDzlmYG73vEDDiBnh3tYWaAGRPA
-         XELuQJUgvIjEht0E5wPZvr2073k1LtwZJVwxKnkRHmv1bLqvfhjOlWDyiAtpmufwKzMe
-         QOpen+WuGwnjXTp/dBMFbOGtQ6+QwfG9lpLyaac38HCsq5QaO4T1mkeaP1LrtYTAs4qo
-         MIHQ==
-X-Gm-Message-State: ACrzQf2Diou/Wh8M+eysCnJ2itrSFe6qMOpLVYcrKVD2WsvEMfBWlsco
-        XgXQ9csBJFMtHauljwP9aQ==
-X-Google-Smtp-Source: AMsMyM5uF7ern7BL/3lKtN7O7XEt5ACzXfcdLIxfjhpgOjP+LI8pn3YJSIWJ48iw4kzzXWrQMBh+3Q==
-X-Received: by 2002:a05:6870:3488:b0:12c:19b0:f4bc with SMTP id n8-20020a056870348800b0012c19b0f4bcmr46679794oah.238.1668088157470;
-        Thu, 10 Nov 2022 05:49:17 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x51-20020a9d37b6000000b00666a5b5d20fsm6348482otb.32.2022.11.10.05.49.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 05:49:16 -0800 (PST)
-Received: (nullmailer pid 220983 invoked by uid 1000);
-        Thu, 10 Nov 2022 13:49:18 -0000
-Date:   Thu, 10 Nov 2022 07:49:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Christian Eggers <ceggers@arri.de>,
-        Cory Tusar <cory.tusar@pid1solutions.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: nvmem: add YAML schema for the sl28
- vpd layout
-Message-ID: <20221110134918.GB3436769-robh@kernel.org>
-References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
- <20221104163833.1289857-5-miquel.raynal@bootlin.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aakPR3dWnHZ7TJ/BvrMDtVquKUqYTA3FX1Ppr5XxP6E=;
+        b=kmejsIKX60JArVdL/OOYRpig4CkaybCaqrLvhYWO9n2kdNbCQu1qRFJMz1SkV1WcXi
+         LUGBQv3aVmJMw0efIREl259/st4s9p6OVyclmYY2Fufq8ipu8GbELSA/GjYYqytSNSQ0
+         aDLBBcM0G6x2cAhgcq9rQLu9Efvgjvu0U9DwKU1fJko/3hsahXtWqn9Wqz6+BoAd2Iat
+         EUV9SY6aS7EFdMY11cBnWaaI2VjZu6f81rsKxt3GejKpu5ZWUvx7zcu3dLUkLnIgQhhp
+         QqztjXrqkPeq2RhBm5EHwd9FIVrFtpp/L4pthYT+/loF2rw5k6ht5kDHwA+t3ZbsIRr8
+         X0QA==
+X-Gm-Message-State: ACrzQf2W7qvh4ocRCLT1/vAuG6Gwen98ATFo3P/hKRTklaEkuYnGciiV
+        7ySLw607+fm+VxYh7r9kevxhiw==
+X-Google-Smtp-Source: AMsMyM7pPePktg3CUd0McZdKiuqGEjTHZ0GgmJ3lARf6Sl0KyG3WkpYFRErg4CMKl+Vq5cAsRd2Xgg==
+X-Received: by 2002:a2e:2417:0:b0:277:13a5:806f with SMTP id k23-20020a2e2417000000b0027713a5806fmr8456285ljk.144.1668088818420;
+        Thu, 10 Nov 2022 06:00:18 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id w1-20020a19c501000000b004b177293a8dsm2746429lfe.210.2022.11.10.06.00.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 06:00:17 -0800 (PST)
+Message-ID: <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
+Date:   Thu, 10 Nov 2022 15:00:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221104163833.1289857-5-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
+ <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
+ <Y2rWp4wasbflS/0y@shell.armlinux.org.uk>
+ <20221109221723.GA2948356-robh@kernel.org>
+ <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 05:38:31PM +0100, Miquel Raynal wrote:
-> From: Michael Walle <michael@walle.cc>
+On 10/11/2022 12:48, Russell King (Oracle) wrote:
+> On Wed, Nov 09, 2022 at 04:17:23PM -0600, Rob Herring wrote:
+>> On Tue, Nov 08, 2022 at 10:22:31PM +0000, Russell King (Oracle) wrote:
+>>> On Tue, Nov 08, 2022 at 09:55:58PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 08/11/2022 17:33, Russell King (Oracle) wrote:
+>>>>> Add a DT binding for the Apple Mac System Management Controller.
+>>>>
+>>>> Drop the second, redundant "binding" from subject. It's already in prefix.
+>>>
+>>> Yet another thing that's been there from the start... how many more
+>>> things are you going to pick up in subsequent versions of the patch?
+>>> When does this stop?
+>>>
+>>> In any case, taking your comment literally,
+>>>
+>>> "dt-bindings: mfd: add for Apple Mac System Management Controller"
+>>>
+>>> makes no sense, so presumably you want something more than that.
+>>>
+>>> In any case, I see several recent cases already merged which follow
+>>> the pattern that I've used and that you've reviewed.
+>>>
+>>>>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+>>>>> ---
+>>>>>  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
+>>>>>  1 file changed, 67 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..014eba5a1bbc
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+>>>>> @@ -0,0 +1,67 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Apple Mac System Management Controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Hector Martin <marcan@marcan.st>
+>>>>> +
+>>>>> +description:
+>>>>> +  Apple Mac System Management Controller implements various functions
+>>>>> +  such as GPIO, RTC, power, reboot.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - apple,t6000-smc
+>>>>> +          - apple,t8103-smc
+>>>>> +          - apple,t8112-smc
+>>>>> +      - const: apple,smc
+>>>>> +
+>>>>> +  reg:
+>>>>> +    items:
+>>>>> +      - description: SMC area
+>>>>> +      - description: SRAM area
+>>>>> +
+>>>>> +  reg-names:
+>>>>> +    items:
+>>>>> +      - const: smc
+>>>>> +      - const: sram
+>>>>> +
+>>>>> +  mboxes:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  gpio:
+>>>>> +    $ref: /schemas/gpio/gpio-macsmc.yaml
+>>>>
+>>>> So this depends on other patch, so:
+>>>> 1. You need mention the dependency in cover letter (nothing there),
+>>>> 2. Re-order patches.
+>>>>
+>>>> The GPIO cannot go separate tree and this must be explicitly communicated.
+>>>
+>>> Sigh, getting an order that is sensible is really bloody difficult.
+>>
+>> It's not. Sub-devices before the MFD. The only time that doesn't work is 
+>> when the sub-devices put the parent MFD in their example. The solution 
+>> there is don't do that. Just 1 complete example in the MFD schema and no 
+>> examples in the sub-devices.
 > 
-> Add a schema for the NVMEM layout on Kontron's sl28 boards.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 60 +++++++++++++++++++
->  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
->  2 files changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> new file mode 100644
-> index 000000000000..44088c8b4153
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
-> +
-> +maintainers:
-> +  - Michael Walle <michael@walle.cc>
-> +
-> +description:
-> +  The vital product data (VPD) of the sl28 boards contains a serial
-> +  number and a base MAC address. The actual MAC addresses for the
-> +  on-board ethernet devices are derived from this base MAC address by
-> +  adding an offset.
-> +
-> +properties:
-> +  compatible:
-> +    const: kontron,sl28-vpd
-> +
-> +  serial-number:
-> +    type: object
-> +    description: The board's serial number
-> +
-> +  base-mac-address:
-> +    type: object
-> +    description:
-> +      Base MAC address for all on-module network interfaces. The first
-> +      argument of the phandle will be treated as an offset.
-> +
-> +    properties:
-> +      "#nvmem-cell-cells":
-> +        const: 1
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      otp-1 {
-> +          compatible = "user-otp";
-> +
-> +          nvmem-layout {
-> +              compatible = "kontron,sl28-vpd";
-> +
-> +              serial_number: serial-number {
-> +              };
-> +
-> +              base_mac_address: base-mac-address {
-> +                  #nvmem-cell-cells = <1>;
-> +              };
-> +          };
-> +      };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> index ecc7c37cbc1f..f64ea2fa362d 100644
-> --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> @@ -17,6 +17,9 @@ description: |
->    define and might require dynamic reading of the NVMEM device in order to
->    perform their parsing. The nvmem-layout container is here to describe these.
->  
-> +oneOf:
-> +  - $ref: kontron,sl28-vpd.yaml
+> Meanwhile, I was told by Krzysztof that DT schemas must always have an
+> example. So, different person, different story.
 
-This is the other way around from how we normally structure things. 
-Normally, the specific schema would reference the common/base schema. 
-This works, though you will be applying the schema twice. Once here and 
-then by matching on compatible string. Not a big deal as that happens 
-fairly often, but a 'select: false' in kontron,sl28-vpd.yaml would 
-prevent that. This way does more to enforce the overall structure of 
-nodes.
+Hm, where do you see a message I told you to always have examples? Maybe
+in some discussion I mentioned that examples are desired, but not
+always. There is no point in having example in MFD child device schema
+if it is already part of the parent MFD binding, where it is actually
+required for complete picture.
 
-The one downside I see with it this way is nvmem-layout can't ever have 
-common properties defined without listing them in each layout schema.
+Best regards,
+Krzysztof
 
-In the end, I'm okay with either way.
-
-Rob
