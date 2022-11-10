@@ -2,137 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 719A2623D74
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA9D623D9E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:36:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232943AbiKJIZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 03:25:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
+        id S232768AbiKJIge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 03:36:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232750AbiKJIZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:25:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB401EEEE;
-        Thu, 10 Nov 2022 00:25:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3E7061DCB;
-        Thu, 10 Nov 2022 08:25:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDF0FC433C1;
-        Thu, 10 Nov 2022 08:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668068753;
-        bh=//1Of4vPGHatF3Be5os2F6FZCfBq9FQoStjfPpeDOco=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZBoKSkeQcwCUM/rVT3249YeXYB90uP181eqym7EfGQyFvucZf0M52Rjkwrg2RI99B
-         bDYhVX4juY9eyXNxob0rEUs40DNTSpJGpor8GDhTMHF0kJZA5tEvfMz+8vfxHeq39W
-         2Kvs7Z14ThbnT6Xa/a6VBY1c+zn8m6qQws1JlbQO4uMCyE8nL9ShT9k4MVOy5cFZQo
-         yAaJiYh0S1z1GAlD/hX8Ofl84Z3dZnKs+TWf73pScj6kBdskmPFMm3iO1QYxcc00BC
-         kIVPirPiAxSkHev0lQ/p52YwHpe2Vysbc+aMBu/iuQXbO0k3wXMhvf76xINCpD5t0Q
-         4AyH8yTuhICGw==
-Message-ID: <1126f2ec-10ec-852c-b002-119781b91b58@kernel.org>
-Date:   Thu, 10 Nov 2022 09:25:45 +0100
+        with ESMTP id S232250AbiKJIgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:36:32 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BEA3248EC
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 00:36:31 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g12so1855156lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 00:36:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hD2GoNYEi1bbT2utuBp8JXp3nfUHRD/HO+ATh+zN8jI=;
+        b=VWnZRYB4Ic3R39t6RRUOJTMZg8NhQ4M1fZoco49UJchgGScDVc79R5HysMQmMO9Z1W
+         XPQ6LoDIGU5d7hBqsMBze23ilmldwbF+4M136gMCyPjPeqwsucbesOvZ6JqVsw3I+AJC
+         8wDQkHy5tVCbhrcNSWIXc0yWZkart/kjwTp8XX9eL/buGnqlc9DH0Oi+DqL0SgJI8PUp
+         djzwSAqEMSZGZVPHKJD1U5SQNKL/hK3kzH3njh3Y7BA+UCKva3CqKkS8nf+IkxYYEszc
+         P6qV632e2p4xIyf78n8geDi3E6OeqzulDZjRf2+J/vOYkVk9Sy2OwQBdN/F9cPAsoUj5
+         D/2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hD2GoNYEi1bbT2utuBp8JXp3nfUHRD/HO+ATh+zN8jI=;
+        b=1BOwvTLZBqIwUWpkETu2oRiUodemFoEnnYbNkDdjfYJGuKH0I1hcAZRYyh16gF7nCa
+         pTyLaCmXTxGrmL2m93wNy5Q35dvATdfKvP3trrJQ7DKVxEKw+YWa7QS37hklIfFAjgKb
+         AmYpCd/XEl/KawZnlCME7+2OjTPF+/MK4HmCYXPtxPcGHgJRMLT/fOdwiPziw3N18QJ5
+         YxyPeSGa8Oi3ohp5rQP+f+0SeTvepR5xsE/nV60OZ1NZCnSW3GFdoGLVnuoAO/U/M6iB
+         y1E4Mv2n++jp4EVirBuevBD+br7SBytykqxY4giyXUjFayWdKJGu5rTjijHO5VTyRwAu
+         v0Iw==
+X-Gm-Message-State: ACrzQf0Wzyq+mpu4UE177AxBr7vcx/Rt92Xn2DeP2wMp57rAnT9sD9RI
+        Uj0hvDHh4qXA4WyBMMTicH627hVsr1SULg==
+X-Google-Smtp-Source: AMsMyM5uZe41mYLvUHdybyL0w6T8tKsZm/YD9YzvYx+Pj0L6dqPz4hfII1MXn4OmyrQ7Bk/qNJiF5w==
+X-Received: by 2002:a05:6512:31cd:b0:4a2:69d3:d009 with SMTP id j13-20020a05651231cd00b004a269d3d009mr20859211lfe.68.1668069389861;
+        Thu, 10 Nov 2022 00:36:29 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id u28-20020ac25bdc000000b00497aa190523sm2631214lfn.248.2022.11.10.00.36.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 00:36:29 -0800 (PST)
+Message-ID: <865d6c3e-cc23-bc4d-de91-41d090847843@linaro.org>
+Date:   Thu, 10 Nov 2022 09:36:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [Patch v2 1/3] arm: exynos: Add new compatible string for
- Exynos3250 SoC.
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <CGME20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8@epcas5p2.samsung.com>
- <20221109035507.69086-1-aakarsh.jain@samsung.com>
- <5741e444-00b3-16f6-d012-f2b77cf8b0b2@linaro.org>
- <001101d8f449$c78f8010$56ae8030$@samsung.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: qcom-msm8960-cdp: align TLMM pin
+ configuration with DT schema
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <001101d8f449$c78f8010$56ae8030$@samsung.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20221109105140.48196-1-krzysztof.kozlowski@linaro.org>
+ <20221109105140.48196-3-krzysztof.kozlowski@linaro.org>
+ <20221110033753.oyhl7z2edsrkkepg@builder.lan>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221110033753.oyhl7z2edsrkkepg@builder.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 15:44, Aakarsh Jain wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->> Sent: 09 November 2022 14:31
->> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
->> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; devicetree@vger.kernel.org
->> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
->> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
->> benjamin.gaignard@collabora.com; krzysztof.kozlowski+dt@linaro.org;
->> stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
->> david.plowman@raspberrypi.com; mark.rutland@arm.com;
->> robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
->> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
->> pankaj.dubey@samsung.com; smitha.t@samsung.com
->> Subject: Re: [Patch v2 1/3] arm: exynos: Add new compatible string for
->> Exynos3250 SoC.
+On 10/11/2022 04:37, Bjorn Andersson wrote:
+> On Wed, Nov 09, 2022 at 11:51:40AM +0100, Krzysztof Kozlowski wrote:
+>> DT schema expects TLMM pin configuration nodes to be named with
+>> '-state' suffix and their optional children with '-pins' suffix.
 >>
->> On 09/11/2022 04:55, Aakarsh Jain wrote:
->>> Since,MFC v7 support was added for Exynos5420 and Exynos
->>> 3250 SoC with same compatible string "samsung,mfc-v7".As both SoCs
->>> having different hardware properties and having same compatible string
->>> for both SoCs doesn't seems to be correct.
->>> New compatible is added for Exynos3250 SOC which will differentiate
->>> the node properties for both SoCs which support MFC v7.
->>>
->>> Reviewed-by: Tommaso Merciai
->> <tommaso.merciai@amarulasolutions.com>
->>> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
->>> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
->>> ---
->>>  Documentation/devicetree/bindings/media/s5p-mfc.txt | 9 +++++----
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 >>
->> Use subject prefixes matching the subsystem (git log --oneline -- ...).
+>> ---
 >>
-> As with recent commits on Documentation/devicetree/bindings/media/s5p-mfc.txt with git log --oneline --  ,  subject prefix doesn't seems to be consistent.
+>> Changes since v1:
+>> 1. Add Rb tag
+>> ---
+>>  arch/arm/boot/dts/qcom-msm8960-cdp.dts | 19 +++++++++----------
+>>  1 file changed, 9 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+>> index 3a484ac53917..9a3a510f88ca 100644
+>> --- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+>> +++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+>> @@ -60,33 +60,32 @@ &gsbi5_serial {
+>>  };
+>>  
+>>  &msmgpio {
+>> -	spi1_default: spi1_default {
+>> -		 mux {
+>> -			pins = "gpio6", "gpio7", "gpio9";
+>> -			function = "gsbi1";
+>> -		 };
+>> -
+>> -		 mosi {
+>> +	spi1_default: spi1-default-state {
+>> +		 mosi-pins {
+>>  			pins = "gpio6";
+>> +			function = "gsbi1";
+>>  			drive-strength = <12>;
+>>  			bias-disable;
+>>  		 };
+>>  
+>> -		 miso {
+>> +		 miso-pins {
+>>  			pins = "gpio7";
+>> +			function = "gsbi1";
+>>  			drive-strength = <12>;
+>>  			bias-disable;
+>>  		 };
+>>  
+>> -		 cs {
+>> +		 cs-pins {
+>>  			pins = "gpio8";
+>> +			function = "gpio";
 > 
-> b1394dc151cb media: s5p-mfc: Adding initial support for MFC v10.10
-> 60641e22599a [media] s5p-mfc: Use preallocated block allocator always for MFC v6+
-> 003611334d55 [media] s5p-mfc: Add support for MFC v8 available in Exynos 5433 SoCs
-> 0da658704136 ARM: dts: convert to generic power domain bindings for exynos DT
-> 77634289286a ARM: dts: Update clocks entry in MFC binding documentation
-> 2eae613b95a7 ARM: EXYNOS: Add MFC device tree support
+> I'm changing this to "gsbi1" while applying this patch.
 
-s5p-mfc is not a subsystem.
-
-git log --oneline  -- Documentation/devicetree/bindings/media/
-
-media: dt-bindings: NAME_OF_FILE:
-
-
-> 
-> Closest is ARM: dts.
-
-This is not ARM subsystem and not a DTS file.
-
-> so what is your suggestion on this?
-> 
-> Anyway we are in a process of converting this txt file to yaml . 
-> 
+Thanks Bjorn. This was missing in original DTS, so I assumed intention
+was a GPIO-based CS. I guess SPI-based also makes sense...
 
 Best regards,
 Krzysztof
