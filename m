@@ -2,71 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A980624454
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D94624472
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbiKJObH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 09:31:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
+        id S229829AbiKJOg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 09:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbiKJObG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:31:06 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B121128
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:31:02 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id d3so1295921ljl.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:31:02 -0800 (PST)
+        with ESMTP id S229611AbiKJOgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:36:25 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5881EAE7
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:36:23 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id r12so3651010lfp.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:36:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H3KQSOcmRZRe8eXKkMFLNydGLgOFEzO4/EepRDgpcw4=;
-        b=F6RFNAiUFI04PKGllVPiJbcqwWeE/IjIIgZIK3TXjGlwI57v5KxPPQ4/R5X7Zll+Qv
-         QUqtC/ZY7GQI+o/dDY6RUxOwAk7eMDpRofuKH0f6Gns2W/Qxj85krojoR5AcD41SRyvr
-         YRpyh2qG2tQGeubJ4z8GZtmzN5Uox9JtO2ik2RuKcwsUFD8noKMK4Nkc5oaWle6L7tsZ
-         19HOYYMP1BO3iMqpdFTz3ZFF5AmDj2qdAbkxumKEf/YoPN0Z20qNsF9N81LB9Xgr21vt
-         9efoHaZ8I/cvjuKD3PfXsyOACxwXo6DdiAg+x8FAeep+hqY4l3tDQHSMh2mjmzzhw2lM
-         56nw==
+        bh=A69txW9iggSNkdP/nQ5U6dpUNL+jGVuughye7m5si+I=;
+        b=TzwBwyFSBp6qkaEkfafIvqSCCZPx5YULBwW9S0b3J+5SfWHYxCnTH8VAaxfWnIkchh
+         gT67jqTe4iLpzCjG/AKLmOXon91u5uSHKjC3z57Gf/S5hfoETUMdcfm0Y55Uz7enW7uL
+         TnttORDMbW77Al0vidB2llkLkXhczLLl4dp4YI+vVmlo01D1L1RtuV13NP2m30sOCzZo
+         0rmMoJyeGSdP05w9GvOZvx9ebhTc7m+TfQGXHQq170yprWRSh8X+jguYFvESGPIX40w5
+         MytFPR+/jCEWllShm9nJ4bw4dabv5OdF1puYb4T7ma8aKfUsYdfkv7CpJtb5oDL01OOk
+         hlIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H3KQSOcmRZRe8eXKkMFLNydGLgOFEzO4/EepRDgpcw4=;
-        b=n7734Nvf9EmhXYlFxZ8v+34Tb8Ivb2Foz9OitRfOwbYKVFrN3uniAYE5nTBPdVNmST
-         xjCyzW02QkPQvFPhH5OLF08NNFJmtpvPm2WF/F4DzidBUxBK2ESc/IOq4Rgn97ZBf2t0
-         MvKNiMqHmIOlJSS9phGRX53uwjYisUfdeWks+9u/bo8EACP8RfWG0b3iOXH6pF2rGQzp
-         9DK28p1dl4megtEpHyu3Sy21XGw1dSqkaJn6wS1lam93bZUgnVpBz1MIxqY/YEbXasq3
-         dElZ/55UMEXdEsV0EF72gvgQyMNqwh0QJ/Gc/9swaooluONfRdHHKmmInLtyU1O3m69r
-         x6qg==
-X-Gm-Message-State: ACrzQf0mCEqFAR5Psl5JDoKUCv/9mgmzFzxiHS6ZP4b3Xx6ry/IcDf+d
-        gfIvo6XYrC7FDEbJXZz61L0Bcw==
-X-Google-Smtp-Source: AMsMyM42coPpCBk8BVmbLY03RyN1KzyWjkypbNYRZO56ZnE5ho1sQInRcZeHzatSLf395rZO+pqrPQ==
-X-Received: by 2002:a2e:9f42:0:b0:277:1295:31ca with SMTP id v2-20020a2e9f42000000b00277129531camr8743368ljk.280.1668090660989;
-        Thu, 10 Nov 2022 06:31:00 -0800 (PST)
+        bh=A69txW9iggSNkdP/nQ5U6dpUNL+jGVuughye7m5si+I=;
+        b=T1qvwGQm7S2De3+Rmrj1d/AxCv66GcWEM1FOF7K6WA6GFzvs5bDZTPaTth6RSDKS9r
+         blQ6NZIQfkS9PjFLulfWLJuRof8Q0t0SroYqQpDU1O3R/fe0YxsirmTpuq7gIK8k6IO9
+         qKWGeyDNd/Zd0k3ixwMGYajoqYRc4mdUMKuZe9aU/85Qw8ADcYhJHySDYpqm0N4WdfEg
+         EfQ5UISA1NfBdixgagtFOP4e+H4/xjUIjn6HXFQ5k4GWEknI7euzy1dPcwamOhXPMaDi
+         694+MigDRPUAYhjJy0yq3x9IkqS4pOY77bnIPfwI8MmqncJU+ShmyCubA0Td5fmh4bz4
+         R+Qw==
+X-Gm-Message-State: ACrzQf11uruzgHeV+fmLaYIVaPp7HxY4lqgi/t8wmaauiTjHyBGHGBzH
+        jaNlcwh1iK2uW8vb5t5eYkTzRQ==
+X-Google-Smtp-Source: AMsMyM7KGIkty4xZO/9jQRsXxH0v5rDOnPRRVCHh0SQ4GWyXcX+Zd6lGgflOmMs/QVCB2FziHhNHzw==
+X-Received: by 2002:a05:6512:210b:b0:4a2:361d:da22 with SMTP id q11-20020a056512210b00b004a2361dda22mr20829878lfr.561.1668090981735;
+        Thu, 10 Nov 2022 06:36:21 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512358500b004a27d2ea029sm2768618lfr.172.2022.11.10.06.30.59
+        by smtp.gmail.com with ESMTPSA id i24-20020a2ea238000000b002770d98151dsm2746981ljm.122.2022.11.10.06.36.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 06:31:00 -0800 (PST)
-Message-ID: <2a219c34-b23c-61f0-1833-2f97aa219a4e@linaro.org>
-Date:   Thu, 10 Nov 2022 15:30:58 +0100
+        Thu, 10 Nov 2022 06:36:19 -0800 (PST)
+Message-ID: <392bec2d-c4aa-f87d-5250-c62760f808e2@linaro.org>
+Date:   Thu, 10 Nov 2022 15:36:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] scsi: ufs-unisoc: Add support for Unisoc UFS host
- controller
+Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
 Content-Language: en-US
-To:     Zhe Wang <zhewang116@gmail.com>, martin.petersen@oracle.com,
-        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com
-Cc:     linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com
-References: <20221110133640.30522-1-zhewang116@gmail.com>
- <20221110133640.30522-3-zhewang116@gmail.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
+ <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
+ <Y2rWp4wasbflS/0y@shell.armlinux.org.uk>
+ <20221109221723.GA2948356-robh@kernel.org>
+ <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
+ <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
+ <Y20HOW8t3wfFott1@shell.armlinux.org.uk>
+ <403f372a-6fd1-b5b6-cfd9-b15147bf1caf@linaro.org>
+ <Y20Je7quui2iohNR@shell.armlinux.org.uk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221110133640.30522-3-zhewang116@gmail.com>
+In-Reply-To: <Y20Je7quui2iohNR@shell.armlinux.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,168 +97,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 14:36, Zhe Wang wrote:
-> From: Zhe Wang <zhe.wang1@unisoc.com>
+On 10/11/2022 15:23, Russell King (Oracle) wrote:
+>>>
+>>> Make up your bloody minds and stop pissing me about. This is why I've
+>>> given up trying to get this in.
+>>
+>> I don't think it is constructive to discuss this with you anymore.
+>>
+>>>
+>>> Getting a consistent message would be nice, but it seems impossible.
+>>>
+>>
 > 
-> Add driver code for Unisoc ufs host controller, along with ufs
-> initialization.
+> In which case you CLEARLY didn't read the cover message to that two
+> patch series.
 
-(...)
+I have every day 100-200 new patches, so not every cover letter gets
+enough attention. Your did not say this is part of MFD, just mentioned
+some build dependency.
 
-> +
-> +static struct platform_driver ufs_sprd_pltform = {
-> +	.probe = ufs_sprd_probe,
-> +	.remove = ufs_sprd_remove,
-> +	.shutdown = ufshcd_pltfrm_shutdown,
-> +	.driver = {
-> +		.name = "ufshcd-sprd",
-> +		.pm = &ufs_sprd_pm_ops,
-> +		.of_match_table = of_match_ptr(ufs_sprd_of_match),
+Anyway, job of submitter is to make the patch and its context readable
+to the reviewers.
 
-Drop of_match_ptr
+There is literally nothing about including in parent MFD node in DT.
+Just take a look:
 
-> +	},
-> +};
-> +module_platform_driver(ufs_sprd_pltform);
-> +
-> +MODULE_AUTHOR("Zhe Wang <zhe.wang1@unisoc.com>");
-> +MODULE_DESCRIPTION("Unisoc UFS Host Driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/ufs/host/ufs-sprd.h b/drivers/ufs/host/ufs-sprd.h
-> new file mode 100644
-> index 000000000000..215e7483d1e8
-> --- /dev/null
-> +++ b/drivers/ufs/host/ufs-sprd.h
-> @@ -0,0 +1,125 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * UNISOC UFS Host Controller driver
-> + *
-> + * Copyright (C) 2022 Unisoc, Inc.
-> + * Author: Zhe Wang <zhe.wang1@unisoc.com>
-> + */
-> +
-> +#ifndef _UFS_SPRD_H_
-> +#define _UFS_SPRD_H_
-> +
-> +#define APB_UFSDEV_REG		0xCE8
-> +#define APB_UFSDEV_REFCLK_EN	0x2
-> +#define APB_USB31PLL_CTRL	0xCFC
-> +#define APB_USB31PLLV_REF2MPHY	0x1
-> +
-> +#define SPRD_SIP_SVC_STORAGE_UFS_CRYPTO_ENABLE				\
-> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,				\
-> +			   ARM_SMCCC_SMC_32,				\
-> +			   ARM_SMCCC_OWNER_SIP,				\
-> +			   0x0301)
-> +
-> +enum SPRD_UFS_CLK_INDEX {
-> +	SPRD_UFS_HCLK,
-> +	SPRD_UFS_HCLK_SOURCE,
-> +
-> +	SPRD_UFS_CLK_MAX
-> +};
-> +
-> +enum SPRD_UFS_RST_INDEX {
-> +	SPRD_UFSHCI_SOFT_RST,
-> +	SPRD_UFS_DEV_RST,
-> +
-> +	SPRD_UFS_RST_MAX
-> +};
-> +
-> +enum SPRD_UFS_SYSCON_INDEX {
-> +	SPRD_UFS_ANLG_REG,
-> +	SPRD_UFS_AON_APB,
-> +
-> +	SPRD_UFS_SYSCON_MAX
-> +};
-> +
-> +enum SPRD_UFS_VREG_INDEX {
-> +	SPRD_UFS_VDD_MPHY,
-> +
-> +	SPRD_UFS_VREG_MAX
-> +};
-> +
-> +struct ufs_sprd_clk {
-> +	const char *name;
-> +	struct clk *clk;
-> +};
-> +
-> +struct ufs_sprd_rst {
-> +	const char *name;
-> +	struct reset_control *rc;
-> +};
-> +
-> +struct ufs_sprd_syscon {
-> +	const char *name;
-> +	struct regmap *regmap;
-> +};
-> +
-> +struct ufs_sprd_vreg {
-> +	const char *name;
-> +	struct regulator *vreg;
-> +};
-> +
-> +struct ufs_sprd_priv {
-> +	struct ufs_sprd_clk clki[SPRD_UFS_CLK_MAX];
-> +	struct ufs_sprd_rst rci[SPRD_UFS_RST_MAX];
-> +	struct ufs_sprd_syscon sysci[SPRD_UFS_SYSCON_MAX];
-> +	struct ufs_sprd_vreg vregi[SPRD_UFS_VREG_MAX];
-> +	const struct ufs_hba_variant_ops ufs_hba_sprd_vops;
-> +};
-> +
-> +struct ufs_sprd_host {
-> +	struct ufs_hba *hba;
-> +	struct ufs_sprd_priv *priv;
-> +	void __iomem *ufs_dbg_mmio;
-> +
-> +	enum ufs_unipro_ver unipro_ver;
-> +};
-> +
-> +static inline struct ufs_sprd_priv *ufs_sprd_get_priv_data(struct ufs_hba *hba)
-> +{
-> +	struct ufs_sprd_host *host = ufshcd_get_variant(hba);
-> +
-> +	WARN_ON(!host->priv);
-> +	return host->priv;
-> +}
-> +
-> +static inline void ufs_sprd_regmap_update(struct ufs_sprd_priv *priv, unsigned int index,
-> +		unsigned int reg, unsigned int bits,  unsigned int val)
-> +{
-> +	regmap_update_bits(priv->sysci[index].regmap, reg, bits, val);
-> +}
-> +
-> +static inline void ufs_sprd_regmap_read(struct ufs_sprd_priv *priv, unsigned int index,
-> +		unsigned int reg, unsigned int *val)
-> +{
-> +	regmap_read(priv->sysci[index].regmap, reg, val);
-> +}
-> +
-> +static inline void ufs_sprd_get_unipro_ver(struct ufs_hba *hba)
-> +{
-> +	struct ufs_sprd_host *host = ufshcd_get_variant(hba);
-> +
-> +	if (ufshcd_dme_get(hba, UIC_ARG_MIB(PA_LOCALVERINFO), &host->unipro_ver))
-> +		host->unipro_ver = 0;
-> +}
-> +
-> +static inline void ufs_sprd_ctrl_uic_compl(struct ufs_hba *hba, bool enable)
-> +{
-> +	u32 set = ufshcd_readl(hba, REG_INTERRUPT_ENABLE);
-> +
-> +	if (enable == true)
-> +		set |= UIC_COMMAND_COMPL;
-> +	else
-> +		set &= ~UIC_COMMAND_COMPL;
-> +	ufshcd_writel(hba, set, REG_INTERRUPT_ENABLE);
-> +}
+https://lore.kernel.org/all/Y1q5jW8ff0aUdjPd@shell.armlinux.org.uk/
 
-Drop functions from headers. These are not stubs and your task is not to
-micro-optimize code.
+Or maybe you refer to this:
+"previously posted before the last merge window."
+Yes, so I will go through hundreds of emails from a week or months to
+satisfy you?
 
-> +
-> +#endif /* _UFS_SPRD_H_ */
+"this driver is dependent on the
+Apple SMC driver in order to be buildable and usable."
+
+The only hint... it's about driver, not MFD. Make it obvious for
+readers, not obvious for you.
+
+"It is expected
+that this Apple SMC driver will be merged via Lee's MFD tree."
+
+Maybe there is dependency, maybe not, who the heck knows.
+
+> Again, YOU are giving contradictory information.
 
 Best regards,
 Krzysztof
