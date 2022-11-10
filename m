@@ -2,127 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2E9624204
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 13:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD51D624250
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 13:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbiKJMLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 07:11:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
+        id S229918AbiKJMYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 07:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbiKJMLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 07:11:48 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C605598
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:11:47 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id d6so2800238lfs.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:11:47 -0800 (PST)
+        with ESMTP id S230206AbiKJMXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 07:23:46 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B102679D00
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:22:55 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id h133-20020a1c218b000000b003cf4d389c41so3275173wmh.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:22:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aUr5GXIjetvqmUBwd3OtcqUULVb7fxkMKk71ECylmYw=;
-        b=RzyNMkWzQlNRGMQ957yXWjjTYMYk7hzfCSHU1jaMZgEqtfEqUeKD7s0EqNNelwbla/
-         zLzofOCr1d5Lls5/HC4vMnMmmLeY+f9i+e7wJOJaKrQ2aLSDUh4E8GsXxebYXiNJfc/h
-         2qO+VAxgS21tYwsT+4DmnnVopOvBBJXtjoGdemSeN9paDBtp3q6woONXUXgTIm6vSzcC
-         4rmMFx2BrSQKf44mI+SGjjVAgceQpgFOcnP0cxVfAFnZeh+SWgtX+97s3O8kQ17CKE4C
-         b9GYlRXf6EFpJDv/5HF1D8GYBHt0AN29xspQ5xe5SMfNxU90aCukLPlFilxC1m7wic0x
-         5zcA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q8JY0FOCcQgMEUyu1caxwPYPrYYXqBETXMSNJCvU2z4=;
+        b=ijlYb3+pnoUi+wur248+s4uFs1YmfCCxxvWgsVggA4yRs/5ebSpYLYLzP4u6TxQgYA
+         F6uIIyXD9gHsJAGzgGesKEAAhDtMyDwrzPbGU3VnWciQxy7bJvPnCaV+6Xe3tlKG4nme
+         3z7OtlYP9+0ArnQG3QXHo9YvSJkiQH3BQOMsyJoH7Yebb6NBOdvVbexR1OWpi2VroP8w
+         kgZcKpHUu92PGcz3Og8CqOBd25GtY/YJds3rQ9JExfvR5e2XIpWzH50NXo2HepWCnaq3
+         ehXoBJTECzU+bLUvImbz+Qd4UjB3aVhIxM18B+G9s1myCweHtkhQbGyBnpYBWp+fTcGz
+         QxUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aUr5GXIjetvqmUBwd3OtcqUULVb7fxkMKk71ECylmYw=;
-        b=gHJvLSQdjZjowRkYm/WjKo3zMbrlVz2JENdLAMMx8DfoCAAUyh+x8BOp/3ReP6Whe3
-         NHakOaX3gESsoUeZCQ4VkkCB+kSqEcOyzLa63iC/5om5Wxt/1pmEkDH0BWbpNKIgY/KO
-         gab+M2LCeIl3ruCQbu8/GvgG1olONW70C3drlcXgUBw/CqKUwWstUlBfCRSdXd/L8gsC
-         StaQvjL5+++MV4mJLSqypSzBXopvnujcgV2sMnHiwalygYP4DN8j4AGdVkIgPT8AVVTI
-         RM90ufxPuwtJywGFkmneP3C94TQ4wnxH63Odi142V8YM3t0fjsvx/73evihT9Vi/d+r/
-         ExZw==
-X-Gm-Message-State: ACrzQf3PnNYfTKL7Ys8mDWJ3uAJoEEU1GHe/1i3m5MYGrqzjkkLg37kJ
-        WrczQv1Iwp2T8TmxdCxDxZz6og==
-X-Google-Smtp-Source: AMsMyM4PW+P3N9qX9jt9EOP+3xYgM36df0Ws9nuyGcbcwoI6cdOiJLl8jW4SGeWSSWFhsK9tt/83CQ==
-X-Received: by 2002:ac2:5f88:0:b0:4a7:8afe:b741 with SMTP id r8-20020ac25f88000000b004a78afeb741mr21323207lfe.15.1668082305520;
-        Thu, 10 Nov 2022 04:11:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056512360a00b004ac088fdfd2sm2727049lfs.85.2022.11.10.04.11.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 04:11:44 -0800 (PST)
-Message-ID: <277004ed-3b6b-4ee5-39e4-beb75a272e60@linaro.org>
-Date:   Thu, 10 Nov 2022 13:11:42 +0100
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q8JY0FOCcQgMEUyu1caxwPYPrYYXqBETXMSNJCvU2z4=;
+        b=Aej1QKM6j5mBdWQNLp0U+fGWDWegboNnx7xcaDkTy/73sEZqCmqjcy8NplSUovgow8
+         hUtpD9O3OjYrQVwaCWzEOZKIo5NDMo7mjEoMLLzAdJDE9PnA90Isetu7e3kXbcdmPEzr
+         OgyQYwx0kmXqAJn/DlZDicA2qEINNknRY4hvESkgoTbnUg1fIg3Ih6WWtk9bbmkN191m
+         amPQP6AJSudSyU/NS4g3Mt3kPMgjaFaRdzVOJyPmJaD8JNKf5495b1H8zQMB7MXXFexR
+         wisayaAD0+Kosw6aQGodeagd/ASv28QS0iaid16g9Q1ds9YVCHlns2zRvjOmnD08K5kF
+         B9oA==
+X-Gm-Message-State: ANoB5pkfZ+SWFSQDk/+fRGryAQBkZZoKbUslOKes2Z8/ArH9Q8Fw4F1F
+        SPOf4sBx9AiKaqZ0LwlkBa6BVWFgorM8KKpMZMY=
+X-Google-Smtp-Source: AA0mqf7R052LoKph29Ec9PlI+TKgzoeVdAzxGy1MKnJ1FlwbPCuTIXRg7cZkVqahQJb7/DwQYns06KL1fbZPiI5uvdI=
+X-Received: by 2002:a05:600c:230d:b0:3cf:acc6:ba97 with SMTP id
+ 13-20020a05600c230d00b003cfacc6ba97mr12746789wmo.102.1668082965979; Thu, 10
+ Nov 2022 04:22:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/6] dt-bindings: Document the SYSREG specific
- compatibles found on FSD SoC
-Content-Language: en-US
-To:     Vivek Yadav <vivek.2311@samsung.com>, rcsekar@samsung.com,
-        krzysztof.kozlowski+dt@linaro.org, wg@grandegger.com,
-        mkl@pengutronix.de, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, alim.akhtar@samsung.com,
-        linux-fsd@tesla.com, robh+dt@kernel.org
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        aswani.reddy@samsung.com, sriranjani.p@samsung.com
-References: <20221109100928.109478-1-vivek.2311@samsung.com>
- <CGME20221109100245epcas5p38a01aed025f491d39a09508ebcdcef84@epcas5p3.samsung.com>
- <20221109100928.109478-2-vivek.2311@samsung.com>
- <709daf8b-a58e-9247-c5d8-f3be3e60fe70@linaro.org>
- <000001d8f4f6$1c7e96e0$557bc4a0$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <000001d8f4f6$1c7e96e0$557bc4a0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Sender: onyangobarack19@gmail.com
+Received: by 2002:a5d:464b:0:0:0:0:0 with HTTP; Thu, 10 Nov 2022 04:22:45
+ -0800 (PST)
+From:   Richard Wahl <richardwahls16@gmail.com>
+Date:   Thu, 10 Nov 2022 04:22:45 -0800
+X-Google-Sender-Auth: AfADJX0yS0ycoFOMNcwZIFeHYbU
+Message-ID: <CAALik=rufP2kRxjDstjXgAGRmLE4EopGCQA84w85bgXu7fWQxg@mail.gmail.com>
+Subject: 1.200.000 Euro werden Ihnen zugesprochen
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        UNDISC_MONEY autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 12:18, Vivek Yadav wrote:
->>> +maintainers:
->>> +  - Alim Akhtar <alim.akhtar@samsung.com>
->>> +
->>> +description: |
->>> +  This is a system control registers block, providing multiple low
->>> +level
->>> +  platform functions like board detection and identification,
->>> +software
->>> +  interrupt generation.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>
->> No need for oneOf.
->>
-> Removing this results into dt_binding_check error, so this is required.
+--=20
+Gute Nachrichten,
 
-No, this is not required. You do not have more than one condition for oneOf.
+Es wird erwartet, dass Sie Ihren Preis in K=C3=BCrze einl=C3=B6sen. Ich bin
+"Herr Richard Wahl". Ich habe in der Power Ball-Lotterie ein Verm=C3=B6gen
+gewonnen und spende einen Teil davon an zehn
+Wohlt=C3=A4tigkeitsorganisationen und zehn gl=C3=BCckliche Menschen. Zum Gl=
+=C3=BCck
+stehen Sie auf meiner Liste, um dieses freiwillige Spendenangebot zu
+erhalten. Antworten Sie jetzt, um weitere Informationen zu erhalten
 
->>> +      - items:
->>> +          - enum:
->>> +              - tesla,sysreg_fsys0
->>> +              - tesla,sysreg_peric
->>
->> From where did you get underscores in compatibles?
->>
-> I have seen in MCAN Driver <drivers/net/can/m_can/m_can_platform.c> and also too many other yaml files.
-> Do you have any ref standard guideline of compatible which says underscore is not allowed.
-
-git grep compatible arch/arm64/boot/dts/exynos/ | grep _
-git grep compatible arch/arm/boot/dts/exynos* | grep _
-
-Both give 0 results. For few other SoCs there such cases but that's
-really, really exception. Drop underscores.
-
-
-Best regards,
-Krzysztof
-
+Das ist kein Witz
