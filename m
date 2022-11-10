@@ -2,111 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C83624147
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A87CA62417B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiKJLWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 06:22:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
+        id S229606AbiKJLeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 06:34:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230167AbiKJLWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:22:39 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26EC701A4;
-        Thu, 10 Nov 2022 03:22:38 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AA9FLHi004698;
-        Thu, 10 Nov 2022 05:22:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=04hU+ISPUch+ZRCv1Q+3n72ZEEiUP6vT4o1xW8JdjnU=;
- b=SUaY1jm+sVK6BkEOlWU3D3VH0U9/7lNDlbBOvsEYO5LnA1S4mLKhL/rSyRTkv9hNFGOP
- +QGBlmNB1T+B6HeHCuIZhzJuGu/jPRgjStB5KTjfsi3vzjScBZp1AHd+p7eaGRLawSdo
- liMwGW3nDdlal0tsvcVlzfjE8g2gMSFgZzrMx4bubtG50XCK75hjw6M2UkF+iV1LEjBB
- yIE0veU2i8spbFLHlDOZ5dNYCbjIKqfgh3mnzlo5YAQQb4rfLDrWhUGf73Suklhx+p4U
- 78+hKeIsRcLxJou07Ct6sykUBhkAESkSQC4yNa+Elzo5H9AfySn6JIn3QZzvQ3b1fLxS fA== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3knm8pek27-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Nov 2022 05:22:28 -0600
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Thu, 10 Nov
- 2022 05:22:26 -0600
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.15 via Frontend
- Transport; Thu, 10 Nov 2022 05:22:27 -0600
-Received: from [198.90.251.111] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.111])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0C8C3476;
-        Thu, 10 Nov 2022 11:22:27 +0000 (UTC)
-Message-ID: <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
-Date:   Thu, 10 Nov 2022 11:22:26 +0000
+        with ESMTP id S229518AbiKJLeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:34:00 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A4D2914D17;
+        Thu, 10 Nov 2022 03:33:58 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 18A031FB;
+        Thu, 10 Nov 2022 03:34:04 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87C283F534;
+        Thu, 10 Nov 2022 03:33:56 -0800 (PST)
+Date:   Thu, 10 Nov 2022 11:33:52 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [RFC PATCH 0/2] pinctrl: sunxi: Introduce DT-based pinctrl
+ builder
+Message-ID: <20221110113352.32daa5c6@donnerap.cambridge.arm.com>
+In-Reply-To: <CACRpkdb=5mobcWBJYtXd=nC7A+Uo__itk0F9oZBeTjWHBkBU1w@mail.gmail.com>
+References: <20221110014255.20711-1-andre.przywara@arm.com>
+        <CACRpkdb=5mobcWBJYtXd=nC7A+Uo__itk0F9oZBeTjWHBkBU1w@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
- CS48L31/32/33 codecs
-Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>
-CC:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
-        <broonie@kernel.org>, <tglx@linutronix.de>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-References: <20221109165331.29332-1-rf@opensource.cirrus.com>
- <20221109165331.29332-10-rf@opensource.cirrus.com>
- <87mt8zutib.wl-maz@kernel.org>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-In-Reply-To: <87mt8zutib.wl-maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 8S_O80bx2UQ4PY8ndGbnWR4MbPtL4s5G
-X-Proofpoint-GUID: 8S_O80bx2UQ4PY8ndGbnWR4MbPtL4s5G
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 08:02, Marc Zyngier wrote:
-> On Wed, 09 Nov 2022 16:53:28 +0000,
-> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
->>
->> The Cirrus Logic CS48L31/32/33 audio codecs contain a programmable
->> interrupt controller with a variety of interrupt sources, including
->> GPIOs that can be used as interrupt inputs.
->>
->> This driver provides the handling for the interrupt controller. As the
->> codec is accessed via regmap, the generic regmap_irq functionality
->> is used to do most of the work.
->>
+On Thu, 10 Nov 2022 11:21:02 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
+
+Hi Linus,
+
+thanks for having a look!
+
+> On Thu, Nov 10, 2022 at 2:44 AM Andre Przywara <andre.przywara@arm.com> wrote:
 > 
-> I cannot spot a shred of interrupt controller code in there. This
-
-It is providing support for handling an interrupt controller so that
-other drivers can bind to those interrupts. It's just that regmap
-provides a lot of generic implementation for SPI-connected interrupt
-controllers so we don't need to open-code all that in the
-irqchip driver.
-
-> belongs IMO to the MFD code.
-
-We did once put interrupt support in MFD for an older product line but
-the MFD maintainer doesn't like the MFD being a dumping-ground for
-random other functionality that have their own subsystems.
-
->  It is also a direct copy of the existing
-> irq-madera.c code, duplicated for no obvious reason.
-
-It's not a duplicate. The register map of this device is different
-(different addressing, 32-bit registers not 16-bit)
-
+> > Compared to my previous effort almost exactly five years ago [1], this
+> > new version drops the idea of describing the pinctrl data entirely in
+> > the DT, instead it still relies on driver provided information for that.  
+> (...)
+> > On the DT side all that would be needed is *one* extra property per
+> > pin group to announce the mux value:
+> >
+> >         uart0_pb_pins: uart0-pb-pins {
+> >                 pins = "PB9", "PB10";
+> >                 function = "uart0";
+> >                 pinmux = <2>;
+> >         };  
 > 
-> 	M.
+> So what you need to do is to convince the device tree people that this
+> is a good idea.
 > 
+> For me as linux maintainer it's no big deal, it's fine either way. The new
+> code looks elegant.
+> 
+> But from a DT point of view this needs to make sense also for Windows
+> and BSD, so that is who you have to convince. If it is possible to derive
+> the same information from the compatible string (like today) that will
+> need an extended argument why all operating systems will benefit from
+> this.
+
+This is actually an argument in favour of it: at the moment *every* OS
+(or DT user) has to carry some form of this table[1]. For U-Boot this is a
+major pain, for instance, and we came up with some minimal and
+simplified version of that (assuming one pinmux per function name,
+ignoring different mappings in different ports: [2]), but we are already
+touching its limits.
+And I don't think this DT argument counts anyway: we already store a much
+bigger chunk of "information" in the DT, namely the function name. This has
+no technical meaning, really, other than to map this to a 4-bit value
+internally. I don't know why we have an information like "UART0 is using
+the 'uart0' pin group" in the DT, but refuse to put the actual
+hardware information in there. We could possibly even get rid of the
+string, and derive this from the node name, if we need some human readable
+identifier.
+
+And just to make sure: I don't propose to change this for existing DTs,
+it's just for new SoCs going forward. Allwinner at the moment spins out
+many SoCs with only little differences, but all require this largish
+table, since the pin assignments are the ones that differ.
+
+Cheers,
+Andre
+
+[1]
+https://github.com/freebsd/freebsd-src/blob/main/sys/arm/allwinner/a64/a64_padconf.c
+[2]
+https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/pinctrl/sunxi/pinctrl-sunxi.c#L587-605
