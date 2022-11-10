@@ -2,208 +2,410 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 565B1623B07
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 05:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF01623A68
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 04:27:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiKJEmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 23:42:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40132 "EHLO
+        id S232627AbiKJD1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 22:27:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232167AbiKJEmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 23:42:52 -0500
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0CE26486
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 20:42:46 -0800 (PST)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221110044240epoutp02f4e0577cceac659728db47011b114541~mH4NFuTca2722127221epoutp025
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:42:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221110044240epoutp02f4e0577cceac659728db47011b114541~mH4NFuTca2722127221epoutp025
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1668055360;
-        bh=0iuTAljZ4MdMyzBRe+jAGF2xaM1v4OcplEZ7HOuz478=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=JUgEMZtkrB4z8zjZXFo0c/18BR6fpACzYpNZedPC8CO1gPsum+PaNIZkMugnrmzEA
-         TgpeiYRiAtt6vsfy6A1wCxH9RhbkWkADhBwbtgz7IdIoE+QJbeL/0jGTEKaxv6+V0c
-         8g+KAk4Rl5Uuqvhmmy3kiVfAP+rwLHkaiMnX9SQ4=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20221110044239epcas5p25b14d6b9ccc336e503ae2781ef045eee~mH4MBEr8A0567805678epcas5p23;
-        Thu, 10 Nov 2022 04:42:39 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.178]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4N78Mb3CLTz4x9Q9; Thu, 10 Nov
-        2022 04:42:35 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F9.6C.01710.B318C636; Thu, 10 Nov 2022 13:42:35 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20221109144433epcas5p3f2186f4dfc528612f75ff068a951758e~l8cbGAYIv2781627816epcas5p3V;
-        Wed,  9 Nov 2022 14:44:33 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221109144433epsmtrp2b75dce1a4b0995efdf10e6003d867bb1~l8cbEsLdp1757517575epsmtrp2d;
-        Wed,  9 Nov 2022 14:44:33 +0000 (GMT)
-X-AuditID: b6c32a49-a41ff700000006ae-c5-636c813bc755
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        84.68.18644.0DCBB636; Wed,  9 Nov 2022 23:44:32 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20221109144429epsmtip2387935d49e8a485fe7673123bad7cdc6~l8cX3GWr41983819838epsmtip2X;
-        Wed,  9 Nov 2022 14:44:29 +0000 (GMT)
-From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
-        <benjamin.gaignard@collabora.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
-        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
-        <alim.akhtar@samsung.com>, <aswani.reddy@samsung.com>,
-        <pankaj.dubey@samsung.com>, <smitha.t@samsung.com>
-In-Reply-To: <5741e444-00b3-16f6-d012-f2b77cf8b0b2@linaro.org>
-Subject: RE: [Patch v2 1/3] arm: exynos: Add new compatible string for
- Exynos3250 SoC.
-Date:   Wed, 9 Nov 2022 20:14:28 +0530
-Message-ID: <001101d8f449$c78f8010$56ae8030$@samsung.com>
+        with ESMTP id S232624AbiKJD1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 22:27:45 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE3E28728;
+        Wed,  9 Nov 2022 19:27:42 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D79A61D62;
+        Thu, 10 Nov 2022 03:27:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B034AC43470;
+        Thu, 10 Nov 2022 03:27:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668050861;
+        bh=FGC5r9hkOMujXFEau65cl+2ooaMgbcgKE5/ije1zdRI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pEnPGJR8945KDDyvZJCjIBl5lirmdubu60BO/Q7jwEU5Tl4oSG7JMJrYT03Uxvtzt
+         dGIUO2Fhrz0F69tVtip+dN5JTeshkYaAfCqHCnHyAjhp5iBuLJwMg5D/3Mz52+0zC4
+         5lYewBlhW5StdCg7KR0lCKQ9hSHXOX0WKQUJUKB/eK2HTxUyI3TxZsHqnNm0/lmfHh
+         GnX6ql4iFsp71NKfPhfVP/lZoOy7NyZUCzoKPq2GzJHHe45OkMOVNyZnbNHouzJMLJ
+         Dt4EbskcBhiRROtfvK7wBPitG8QnC/QxvDYTe/ks5lToynDiQF+PxdN6c/FFgVBFQ1
+         49gfBVKuXC9Ag==
+Date:   Wed, 9 Nov 2022 21:27:38 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom,ipq8074: convert to
+ dtschema
+Message-ID: <20221110032738.dx3yqgabzsprjvjw@builder.lan>
+References: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQH93wRx5mB7au8KVEFSf1YZqxrmqQIInJ4oAoPuhXGtyGyWoA==
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02TaVBbVRTH5+a95CVo6mOTa6SYvjoqIEuQ4MWytIVpH+oHZopMy9ShmfAk
-        DCGJWWqro4ZibUWk6rRKwiaF4kArtSmEpcECZRE6hTIiWEpCSuiwaa3EOlD6wYRHlW+/c87/
-        3LPcOXzM7zQh4uep9IxWJVNSPB/cei30xYgdhUp59PWqQOSssvJQ7cocB03XunHUc7mFQM1j
-        5Rj6fqCLi6p7h7motXsGR5fmPdFRkx1Hc9VNAC2YHTxUOn8HQ51LngyLa5yLfumo4KGSH1u4
-        6IdeO4HOTYxyUL3lEQedbfmbQMc7ewlkt1kB+uTTXs5OSF+ougDoNnsdoCfqljG63Wwn6Frb
-        Aoe2NH7Go6fGbTz6ct3H9PG+hzhd2twI6OLeCR7ttoTQQw/cRLowKz9BwchyGK2YUcnVOXmq
-        3ETqjX3ZKdnSuGhJhCQevUqJVbICJpFKfTM9Yk+e0rMCSnxYpjR4XOkynY6KSkrQqg16RqxQ
-        6/SJFKPJUWpiNZE6WYHOoMqNVDH61yTR0TFSj/BQvuL8rQmgqQg6Ypy3YEYw5l8M+HxIxsKW
-        svxi4MP3I68AaLvhwlljGcDV1eUNww1gU7kLFAPBesbY8AzhZT+yA8CqvrdZ0RyAN+8Vrot4
-        ZBScHirhegMBZB+AzuY7mNfAyGocjh+7z/MWF5BJ0OhO9qI/uR+WrD3tRZx8Hj4a9vE+IyTj
-        oWOyicuyLxw0zeJexshwWF+zhLH9iOHq3fp1TQC5Gx5rXyNYTRDsWy3Z0AwJ4NIsYjkVVjrb
-        uCz7w8WBZoJlEXTf6+SxLIeuswsbuUp40XYaZzkZdo1V4N42MTIUXuyIYt1b4ZmhJg5bdgv8
-        Ym2Ww/qFsK3qMb8AK6ZWNsoGw2vnz4EvAWXeNJl502TmTROY/6/2HcAbwTOMRleQy+ikGomK
-        ee+/35arCyxg/TzC0tqA3Xk/sgdw+KAHQD5GBQifeClf7ifMkR19n9Gqs7UGJaPrAVLPtr/C
-        RIFytee+VPpsSWx8dGxcXFxs/CtxEipIWFsWJvcjc2V6Jp9hNIz2cR6HLxAZOU0PZaceTNu2
-        mYq0qG7fYGt3ZgB1OLv5z5+NQ1YfZ9mem5HhDaaQ/m9PfZD2+d6qwqSJW8/6xyhv12Qq/kgJ
-        cQb3E+JE48iHJ98pnS66DWNCfwroDiN3DQZd5+3cflCQqljcMTtgC6+ZOeGKPvCP4SnXcw57
-        +zS/sjb5dzeqmw9K23/yRnuGNMU0YNo64kgZPdBl+K2/bvuVSr7ApXWVdaRwJ79ejLprPEFz
-        ieKxt8oydid8VP/r3BaNz2rXkP/Rv7JEUZIiSUarLWkqeIpKDRFZ91pf3zZydVHaRvtmSd59
-        UqpoKBf5XsKXD5Zc7Zr8ZteRxAZyxXEmM7BjOGLFcehlC4XrFDJJGKbVyf4FDEmUYacEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsWy7bCSvO6FPdnJBlu2mVo8mLeNzWLxj+dM
-        FvcXf2axOLR5K7vFliuzmS2WHz/AajH/yDlWi+0HH7FYbHwBlL048y6LxfP56xgtXs66x2bR
-        9+Ihs8Xe10Admx5fY7W4vGsOm0XPhq2sFmuP3GW3WHr9IpPFsk1/mCwWbf3CbtG69wi7xd09
-        2xgtWtqOMDlIeKyZt4bRY8fdJYwe15d8YvbYOesuu8fiPS+ZPDat6mTzuHNtD5vH5iX1Hq1H
-        f7F49G1ZxejRdeQ6m8fnTXIep75+Zg/gjeKySUnNySxLLdK3S+DKWP/gGFvBFbGK6atlGhg7
-        hLsYOTkkBEwkrpx7xN7FyMUhJLCDUeLigRWsEAkZif9tx9ghbGGJlf+eQxU9ZZRY93c+C0iC
-        TUBf4v6pHlaQhIjASUaJ/jMtYA6zwGYWibWte1ggWg4ySpw/tZ6xi5GDg1PATqLhsz1It7BA
-        mMSzn91gYRYBFYk/57hAwrwClhL3bq1jhbAFJU7OfAK2jFlAW+Lpzadw9rKFr5khrlOQ+Pl0
-        GVi9iICTRNPO3+wQNeISR3/2ME9gFJ6FZNQsJKNmIRk1C0nLAkaWVYySqQXFuem5xYYFRnmp
-        5XrFibnFpXnpesn5uZsYwWlES2sH455VH/QOMTJxMB5ilOBgVhLh5dbIThbiTUmsrEotyo8v
-        Ks1JLT7EKM3BoiTOe6HrZLyQQHpiSWp2ampBahFMlomDU6qBybrzj+yBnwmFmssCP156YMx8
-        1rPKt9i+LCNbm7v70syGD9dXqu1YPnNrA+v5Lxy6xdcLPz72OdjeeUZg+pI8lYYPmQ8uu9V3
-        M7XPLJ0vK1Yiwy+SwNW1d/vbRgae+TdVXbdOSUqL2z2N8/iFqrSYw3z+Ty7tCyqP95NOYz24
-        fH3M3oboP+taXurGqUd99z7pZj3hrVNVwQpFxe2rAm/wPmgS/6jLL5b8deWJj1aKb1s+6KU4
-        TJ+5v/h3QUB3LKNgyNtttY/P1WUXfmd4p7xng7lWv/s5L7GOTwvPzfuyvbPU+yX/3QaJ9pen
-        K7jnlQTs3Md82NFJ55Z3REVFacKuybxLTFgObti/1DrtJf8OJZbijERDLeai4kQAhMsipZID
-        AAA=
-X-CMS-MailID: 20221109144433epcas5p3f2186f4dfc528612f75ff068a951758e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8
-References: <CGME20221109034803epcas5p26644fa402ff1837754b61c1a307b2bb8@epcas5p2.samsung.com>
-        <20221109035507.69086-1-aakarsh.jain@samsung.com>
-        <5741e444-00b3-16f6-d012-f2b77cf8b0b2@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221108142357.67202-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 08, 2022 at 03:23:56PM +0100, Krzysztof Kozlowski wrote:
+> Convert Qualcomm IPQ8074 pin controller bindings to DT schema.  Keep the
+> parsing of pin configuration subnodes consistent with other Qualcomm
+> schemas (children named with '-state' suffix, their children with
+> '-pins').
+> 
 
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
-> Sent: 09 November 2022 14:31
-> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
-> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
-> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org;
-> stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
-> david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
-> robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
-> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
-> pankaj.dubey=40samsung.com; smitha.t=40samsung.com
-> Subject: Re: =5BPatch v2 1/3=5D arm: exynos: Add new compatible string fo=
-r
-> Exynos3250 SoC.
->=20
-> On 09/11/2022 04:55, Aakarsh Jain wrote:
-> > Since,MFC v7 support was added for Exynos5420 and Exynos
-> > 3250 SoC with same compatible string =22samsung,mfc-v7=22.As both SoCs
-> > having different hardware properties and having same compatible string
-> > for both SoCs doesn't seems to be correct.
-> > New compatible is added for Exynos3250 SOC which will differentiate
-> > the node properties for both SoCs which support MFC v7.
-> >
-> > Reviewed-by: Tommaso Merciai
-> <tommaso.merciai=40amarulasolutions.com>
-> > Suggested-by: Alim Akhtar <alim.akhtar=40samsung.com>
-> > Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
-> > ---
-> >  Documentation/devicetree/bindings/media/s5p-mfc.txt =7C 9 +++++----
->=20
-> Use subject prefixes matching the subsystem (git log --oneline -- ...).
->=20
-As with recent commits on Documentation/devicetree/bindings/media/s5p-mfc.t=
-xt with git log --oneline --  ,  subject prefix doesn't seems to be consist=
-ent.
+Regards,
+Bjorn
 
-b1394dc151cb media: s5p-mfc: Adding initial support for MFC v10.10
-60641e22599a =5Bmedia=5D s5p-mfc: Use preallocated block allocator always f=
-or MFC v6+
-003611334d55 =5Bmedia=5D s5p-mfc: Add support for MFC v8 available in Exyno=
-s 5433 SoCs
-0da658704136 ARM: dts: convert to generic power domain bindings for exynos =
-DT
-77634289286a ARM: dts: Update clocks entry in MFC binding documentation
-2eae613b95a7 ARM: EXYNOS: Add MFC device tree support
-
-Closest is ARM: dts.
-so what is your suggestion on this?
-
-Anyway we are in a process of converting this txt file to yaml .=20
-
-
-> This is a friendly reminder during the review process.
->=20
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all reques=
-ted
-> changes or keep discussing them.
->=20
-> Thank you.
->=20
-> Best regards,
-> Krzysztof
-
-Thanks for the review.
-
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/pinctrl/qcom,ipq8074-pinctrl.txt | 181 ------------------
+>  .../pinctrl/qcom,ipq8074-pinctrl.yaml         | 135 +++++++++++++
+>  2 files changed, 135 insertions(+), 181 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.txt
+> deleted file mode 100644
+> index 7b151894f5a0..000000000000
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.txt
+> +++ /dev/null
+> @@ -1,181 +0,0 @@
+> -Qualcomm Technologies, Inc. IPQ8074 TLMM block
+> -
+> -This binding describes the Top Level Mode Multiplexer block found in the
+> -IPQ8074 platform.
+> -
+> -- compatible:
+> -	Usage: required
+> -	Value type: <string>
+> -	Definition: must be "qcom,ipq8074-pinctrl"
+> -
+> -- reg:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition: the base address and size of the TLMM register space.
+> -
+> -- interrupts:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition: should specify the TLMM summary IRQ.
+> -
+> -- interrupt-controller:
+> -	Usage: required
+> -	Value type: <none>
+> -	Definition: identifies this node as an interrupt controller
+> -
+> -- #interrupt-cells:
+> -	Usage: required
+> -	Value type: <u32>
+> -	Definition: must be 2. Specifying the pin number and flags, as defined
+> -		    in <dt-bindings/interrupt-controller/irq.h>
+> -
+> -- gpio-controller:
+> -	Usage: required
+> -	Value type: <none>
+> -	Definition: identifies this node as a gpio controller
+> -
+> -- #gpio-cells:
+> -	Usage: required
+> -	Value type: <u32>
+> -	Definition: must be 2. Specifying the pin number and flags, as defined
+> -		    in <dt-bindings/gpio/gpio.h>
+> -
+> -- gpio-ranges:
+> -	Usage: required
+> -	Definition:  see ../gpio/gpio.txt
+> -
+> -- gpio-reserved-ranges:
+> -	Usage: optional
+> -	Definition: see ../gpio/gpio.txt
+> -
+> -Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
+> -a general description of GPIO and interrupt bindings.
+> -
+> -Please refer to pinctrl-bindings.txt in this directory for details of the
+> -common pinctrl bindings used by client devices, including the meaning of the
+> -phrase "pin configuration node".
+> -
+> -The pin configuration nodes act as a container for an arbitrary number of
+> -subnodes. Each of these subnodes represents some desired configuration for a
+> -pin, a group, or a list of pins or groups. This configuration can include the
+> -mux function to select on those pin(s)/group(s), and various pin configuration
+> -parameters, such as pull-up, drive strength, etc.
+> -
+> -
+> -PIN CONFIGURATION NODES:
+> -
+> -The name of each subnode is not important; all subnodes should be enumerated
+> -and processed purely based on their content.
+> -
+> -Each subnode only affects those parameters that are explicitly listed. In
+> -other words, a subnode that lists a mux function but no pin configuration
+> -parameters implies no information about any pin configuration parameters.
+> -Similarly, a pin subnode that describes a pullup parameter implies no
+> -information about e.g. the mux function.
+> -
+> -
+> -The following generic properties as defined in pinctrl-bindings.txt are valid
+> -to specify in a pin configuration subnode:
+> -
+> -- pins:
+> -	Usage: required
+> -	Value type: <string-array>
+> -	Definition: List of gpio pins affected by the properties specified in
+> -		    this subnode.  Valid pins are:
+> -		    gpio0-gpio69
+> -
+> -- function:
+> -	Usage: required
+> -	Value type: <string>
+> -	Definition: Specify the alternative function to be configured for the
+> -		    specified pins. Functions are only valid for gpio pins.
+> -		    Valid values are:
+> -		    atest_char, atest_char0, atest_char1, atest_char2,
+> -		    atest_char3, audio_rxbclk, audio_rxd, audio_rxfsync,
+> -		    audio_rxmclk, audio_txbclk, audio_txd, audio_txfsync,
+> -		    audio_txmclk, blsp0_i2c, blsp0_spi, blsp0_uart, blsp1_i2c,
+> -		    blsp1_spi, blsp1_uart, blsp2_i2c, blsp2_spi, blsp2_uart,
+> -		    blsp3_i2c, blsp3_spi, blsp3_spi0, blsp3_spi1, blsp3_spi2,
+> -		    blsp3_spi3, blsp3_uart, blsp4_i2c0, blsp4_i2c1, blsp4_spi0,
+> -		    blsp4_spi1, blsp4_uart0, blsp4_uart1, blsp5_i2c, blsp5_spi,
+> -		    blsp5_uart, burn0, burn1, cri_trng, cri_trng0, cri_trng1,
+> -		    cxc0, cxc1, dbg_out, gcc_plltest, gcc_tlmm, gpio, ldo_en,
+> -		    ldo_update, led0, led1, led2, mac0_sa0, mac0_sa1, mac1_sa0,
+> -		    mac1_sa1, mac1_sa2, mac1_sa3, mac2_sa0, mac2_sa1, mdc,
+> -		    mdio, pcie0_clk, pcie0_rst, pcie0_wake, pcie1_clk,
+> -		    pcie1_rst, pcie1_wake, pcm_drx, pcm_dtx, pcm_fsync,
+> -		    pcm_pclk, pcm_zsi0, pcm_zsi1, prng_rosc, pta1_0, pta1_1,
+> -		    pta1_2, pta2_0, pta2_1, pta2_2, pwm0, pwm1, pwm2, pwm3,
+> -		    qdss_cti_trig_in_a0, qdss_cti_trig_in_a1,
+> -		    qdss_cti_trig_in_b0, qdss_cti_trig_in_b1,
+> -		    qdss_cti_trig_out_a0, qdss_cti_trig_out_a1,
+> -		    qdss_cti_trig_out_b0, qdss_cti_trig_out_b1,
+> -		    qdss_traceclk_a, qdss_traceclk_b, qdss_tracectl_a,
+> -		    qdss_tracectl_b, qdss_tracedata_a, qdss_tracedata_b,
+> -		    qpic, rx0, rx1, rx2, sd_card, sd_write, tsens_max, wci2a,
+> -		    wci2b, wci2c, wci2d
+> -
+> -- bias-disable:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configured as no pull.
+> -
+> -- bias-pull-down:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configured as pull down.
+> -
+> -- bias-pull-up:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins should be configured as pull up.
+> -
+> -- output-high:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins are configured in output mode, driven
+> -		    high.
+> -
+> -- output-low:
+> -	Usage: optional
+> -	Value type: <none>
+> -	Definition: The specified pins are configured in output mode, driven
+> -		    low.
+> -
+> -- drive-strength:
+> -	Usage: optional
+> -	Value type: <u32>
+> -	Definition: Selects the drive strength for the specified pins, in mA.
+> -		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
+> -
+> -Example:
+> -
+> -	tlmm: pinctrl@1000000 {
+> -		compatible = "qcom,ipq8074-pinctrl";
+> -		reg = <0x1000000 0x300000>;
+> -		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		gpio-ranges = <&tlmm 0 0 70>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -
+> -		uart2: uart2-default {
+> -			mux {
+> -				pins = "gpio23", "gpio24";
+> -				function = "blsp4_uart1";
+> -			};
+> -
+> -			rx {
+> -				pins = "gpio23";
+> -				drive-strength = <4>;
+> -				bias-disable;
+> -			};
+> -
+> -			tx {
+> -				pins = "gpio24";
+> -				drive-strength = <2>;
+> -				bias-pull-up;
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..c02dd2ad9b31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,ipq8074-pinctrl.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,ipq8074-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm IPQ8074 TLMM pin controller
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +description:
+> +  Top Level Mode Multiplexer pin controller in Qualcomm IPQ8074 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,ipq8074-pinctrl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  "#interrupt-cells": true
+> +  gpio-controller: true
+> +  "#gpio-cells": true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +  gpio-reserved-ranges:
+> +    minItems: 1
+> +    maxItems: 35
+> +
+> +  gpio-line-names:
+> +    maxItems: 70
+> +
+> +patternProperties:
+> +  "-state$":
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-ipq8074-tlmm-state"
+> +      - patternProperties:
+> +          "-pins$":
+> +            $ref: "#/$defs/qcom-ipq8074-tlmm-state"
+> +        additionalProperties: false
+> +
+> +$defs:
+> +  qcom-ipq8074-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          pattern: "^gpio([0-9]|[1-6][0-9]|70)$"
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +        enum: [ gpio, atest_char, atest_char0, atest_char1, atest_char2,
+> +                atest_char3, audio_rxbclk, audio_rxd, audio_rxfsync,
+> +                audio_rxmclk, audio_txbclk, audio_txd, audio_txfsync,
+> +                audio_txmclk, blsp0_i2c, blsp0_spi, blsp0_uart, blsp1_i2c,
+> +                blsp1_spi, blsp1_uart, blsp2_i2c, blsp2_spi, blsp2_uart,
+> +                blsp3_i2c, blsp3_spi, blsp3_spi0, blsp3_spi1, blsp3_spi2,
+> +                blsp3_spi3, blsp3_uart, blsp4_i2c0, blsp4_i2c1, blsp4_spi0,
+> +                blsp4_spi1, blsp4_uart0, blsp4_uart1, blsp5_i2c, blsp5_spi,
+> +                blsp5_uart, burn0, burn1, cri_trng, cri_trng0, cri_trng1, cxc0,
+> +                cxc1, dbg_out, gcc_plltest, gcc_tlmm, ldo_en, ldo_update, led0,
+> +                led1, led2, mac0_sa0, mac0_sa1, mac1_sa0, mac1_sa1, mac1_sa2,
+> +                mac1_sa3, mac2_sa0, mac2_sa1, mdc, mdio, pcie0_clk, pcie0_rst,
+> +                pcie0_wake, pcie1_clk, pcie1_rst, pcie1_wake, pcm_drx, pcm_dtx,
+> +                pcm_fsync, pcm_pclk, pcm_zsi0, pcm_zsi1, prng_rosc, pta1_0,
+> +                pta1_1, pta1_2, pta2_0, pta2_1, pta2_2, pwm0, pwm1, pwm2, pwm3,
+> +                qdss_cti_trig_in_a0, qdss_cti_trig_in_a1, qdss_cti_trig_in_b0,
+> +                qdss_cti_trig_in_b1, qdss_cti_trig_out_a0,
+> +                qdss_cti_trig_out_a1, qdss_cti_trig_out_b0,
+> +                qdss_cti_trig_out_b1, qdss_traceclk_a, qdss_traceclk_b,
+> +                qdss_tracectl_a, qdss_tracectl_b, qdss_tracedata_a,
+> +                qdss_tracedata_b, qpic, rx0, rx1, rx2, sd_card, sd_write,
+> +                tsens_max, wci2a, wci2b, wci2c, wci2d ]
+> +
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      bias-disable: true
+> +      drive-strength: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +
+> +    additionalProperties: false
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    tlmm: pinctrl@1000000 {
+> +        compatible = "qcom,ipq8074-pinctrl";
+> +        reg = <0x01000000 0x300000>;
+> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +        gpio-controller;
+> +        gpio-ranges = <&tlmm 0 0 70>;
+> +        #gpio-cells = <0x2>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <0x2>;
+> +
+> +        serial4-state {
+> +            pins = "gpio23", "gpio24";
+> +            function = "blsp4_uart1";
+> +            drive-strength = <8>;
+> +            bias-disable;
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
