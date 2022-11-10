@@ -2,121 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D336246F4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 17:29:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DED1624709
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 17:31:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231765AbiKJQ3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 11:29:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57240 "EHLO
+        id S231383AbiKJQbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 11:31:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231760AbiKJQ3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 11:29:46 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E8931EF4
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 08:29:45 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id l14so3062711wrw.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 08:29:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KfC4NHpLNHNhyzTRF08RCCNRW08u9pH3N3PQO7wb+1M=;
-        b=V2jTfLGxiiq84cKzlumki7lFSEFp7dsN8FYPyooBltSUNqqmalNRDy5W1gF/Aa3DWC
-         l/ZbX3t99QrB1zfuhkQx8fraZ1E9vDcyEVCCIAwxBZYPH9BbJkaAgN2tQV5ElE5rIPS/
-         OBkdViYmfecftzkRXHmSOWFDlvMQm89tJbSiCTa/fgcI0EPRdZlSi0POgvwuBTT9oh1M
-         kuTaHPenNQg6+n+59LCw9J00OUR2/18ThvBPr4JhxWFvaUK12TumvLwtRZXwn4VeYvfW
-         yE8R+pGQBIPXBQXzSyCG1XIZFnB99NhcxOzwCKgqA6sQilfhGjFMoAAywOw1394z07Gk
-         LZ3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KfC4NHpLNHNhyzTRF08RCCNRW08u9pH3N3PQO7wb+1M=;
-        b=zRn9NU5Yaxy3L7cUmq63DwgTAEQBgNXQD2hYgaqpzkzC7/1CyHXDCSics1rERtRLCm
-         eIrIDSE/TGrtP+xgv5ElMSaXPaTK+KtJlD6AtySE3HQVLZ345eT7K52TrMmRY+dASC+a
-         v4/Y6JoheMSOLrjJUkb2o4ovv8HMXFAJD4uY8ty26dtoC5eLO2Vwut+7ZvDCkkKkeJb8
-         ySCX5dTxXevvHSevO3pADykFidnK6H10P+6iKSVYH/mWCrH7k72hkoLV9EvNGNnTu7jU
-         07QJ8i7QIMDPI+ua6OmvuovGIqKja1QERyPjElQDa64RQVqruV8qEmMvzIxVNTId5uI0
-         7EIQ==
-X-Gm-Message-State: ACrzQf2efoa9cdxj07GrYsJluujMJWfRDgp3xZ8pahb8Fb6+f4tZ9Igo
-        blyLXzKxnC1WPYTrN+x6CaU1ew==
-X-Google-Smtp-Source: AMsMyM7XA08kW6jyaU7dizex1ODQIaRk//DoX+x3pvH2goOLsg+1/TkGbzKzNU1gDR1iidfE2EdzRQ==
-X-Received: by 2002:adf:de8d:0:b0:236:6087:e07e with SMTP id w13-20020adfde8d000000b002366087e07emr41926568wrl.533.1668097783813;
-        Thu, 10 Nov 2022 08:29:43 -0800 (PST)
-Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
-        by smtp.gmail.com with ESMTPSA id n19-20020a05600c4f9300b003a83ca67f73sm93592wmq.3.2022.11.10.08.29.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 08:29:43 -0800 (PST)
-Message-ID: <9600a696-c3dd-acc5-3489-569c1590f224@sifive.com>
-Date:   Thu, 10 Nov 2022 16:29:42 +0000
+        with ESMTP id S231811AbiKJQb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 11:31:29 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1AD326C8;
+        Thu, 10 Nov 2022 08:31:27 -0800 (PST)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AACffYQ021705;
+        Thu, 10 Nov 2022 10:31:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=G1k1KLyGMwxozZNLgQY9XUSivrmWdqX+jg/q/VREfJQ=;
+ b=NAiim7PGQLdTnUxXyyryjfybkJIs1146lYP1fVx1EbnRXJKv5/E3RTDxo1f47TfSRoS3
+ of8nH9BOQSU6aBZeARROBxY7NUfTLqIREdqGed8GCmIgERL2OJT2GsyanQXaueJSpCVn
+ VJV61rI9+MIm91tLdWiQ0iKZmKdRqvCnufWlkveTDTA2vPobcR1N4EV3yjwqMvkhISSk
+ XoP4sV8zdhjnpJMuYTLIDYiZAKfO0436DLnlkG8uPr3FERreK22vJd+cPWtjybF/e+jC
+ WAEjPjm8Fv1LZ18kYX1InhSvQnhT3126GAhf/KUmwCJs07iTjyIa8lETo9pcORJJeDaZ WA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3knn81qf0k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Nov 2022 10:31:09 -0600
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Thu, 10 Nov
+ 2022 10:31:07 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.15 via Frontend Transport; Thu, 10 Nov 2022 10:31:07 -0600
+Received: from [198.90.251.111] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.111])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3C0E046B;
+        Thu, 10 Nov 2022 16:31:07 +0000 (UTC)
+Message-ID: <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+Date:   Thu, 10 Nov 2022 16:31:06 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v6 10/10] pwm: dwc: use clock rate in hz to avoid rounding
- issues
-Content-Language: en-GB
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20221020151610.59443-1-ben.dooks@sifive.com>
- <20221020151610.59443-11-ben.dooks@sifive.com>
- <20221110154214.pnv7rqsftomhqvmk@pengutronix.de>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <20221110154214.pnv7rqsftomhqvmk@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
+ CS48L31/32/33 codecs
+Content-Language: en-US
+To:     Marc Zyngier <maz@kernel.org>
+CC:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <broonie@kernel.org>, <tglx@linutronix.de>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+ <20221109165331.29332-10-rf@opensource.cirrus.com>
+ <87mt8zutib.wl-maz@kernel.org>
+ <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+ <86pmdvow5y.wl-maz@kernel.org>
+ <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+ <86k042q1uc.wl-maz@kernel.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <86k042q1uc.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 9jVJuRIJp_kAT78zvrXKtjtfM9LpjTM4
+X-Proofpoint-GUID: 9jVJuRIJp_kAT78zvrXKtjtfM9LpjTM4
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 15:42, Uwe Kleine-König wrote:
-> Hello Ben,
-> 
-> On Thu, Oct 20, 2022 at 04:16:10PM +0100, Ben Dooks wrote:
->> As noted, the clock-rate when not a nice multiple of ns is probably
->> going to end up with inacurate caculations, as well as on a non pci
->> system the rate may change (although we've not put a clock rate
->> change notifier in this code yet) so we also add some quick checks
->> of the rate when we do any calculations with it.
+On 10/11/2022 15:13, Marc Zyngier wrote:
+> On Thu, 10 Nov 2022 13:00:50 +0000,
+> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
 >>
->> Signed-off-by; Ben Dooks <ben.dooks@sifive.com>
->> Reported-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->> ---
->>   drivers/pwm/pwm-dwc-of.c |  2 +-
->>   drivers/pwm/pwm-dwc.c    | 29 ++++++++++++++++++++---------
->>   drivers/pwm/pwm-dwc.h    |  2 +-
->>   3 files changed, 22 insertions(+), 11 deletions(-)
+>> On 10/11/2022 12:01, Marc Zyngier wrote:
+>>> On Thu, 10 Nov 2022 11:22:26 +0000,
+>>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+>>>>
+>>>> On 10/11/2022 08:02, Marc Zyngier wrote:
+>>>>> On Wed, 09 Nov 2022 16:53:28 +0000,
+>>>>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+>>>>>>
+>>>>>> The Cirrus Logic CS48L31/32/33 audio codecs contain a programmable
+>>>>>> interrupt controller with a variety of interrupt sources, including
+>>>>>> GPIOs that can be used as interrupt inputs.
+>>>>>>
+>>>>>> This driver provides the handling for the interrupt controller. As the
+>>>>>> codec is accessed via regmap, the generic regmap_irq functionality
+>>>>>> is used to do most of the work.
+>>>>>>
+>>>>>
+>>>>> I cannot spot a shred of interrupt controller code in there. This
+>>>>
+>>>> It is providing support for handling an interrupt controller so that
+>>>> other drivers can bind to those interrupts. It's just that regmap
+>>>> provides a lot of generic implementation for SPI-connected interrupt
+>>>> controllers so we don't need to open-code all that in the
+>>>> irqchip driver.
+>>>
+>>> And thus none of that code needs to live in drivers/irqchip.
+>>>
+>>>>
+>>>>> belongs IMO to the MFD code.
+>>>>
+>>>> We did once put interrupt support in MFD for an older product line but
+>>>> the MFD maintainer doesn't like the MFD being a dumping-ground for
+>>>> random other functionality that have their own subsystems.
+>>>
+>>> I don't like this stuff either. All this code is a glorified set of
+>>> interrupt handlers and #defines that only hide the lack of a proper DT
+>>> binding to express the interrupt routing (it feels like looking at
+>>> board files from 10 years ago).
+>>>
 >>
->> diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
->> index c5b4351cc7b0..5f7f066859d4 100644
->> --- a/drivers/pwm/pwm-dwc-of.c
->> +++ b/drivers/pwm/pwm-dwc-of.c
->> @@ -50,7 +50,7 @@ static int dwc_pwm_plat_probe(struct platform_device *pdev)
->>   		return dev_err_probe(dev, PTR_ERR(dwc->clk),
->>   				     "failed to get timer clock\n");
->>   
->> -	dwc->clk_ns = NSEC_PER_SEC / clk_get_rate(dwc->clk);
->> +	dwc->clk_rate = clk_get_rate(dwc->clk);
+>> I didn't understand this. The whole purpose of this is to instantiate
+>> Linux interrupts for the PIC interrupt sources so that other drivers
+>> that want to use the interrupts from the CS48L32 PIC can use standard
+>> kernel APIs or DT to bind against them.
 > 
-> Given that clk_ns is introduced only in this series, I suggest to make
-> it right from the start.
+> There is zero standard APIs in this patch. Does cs48l32_request_irq()
+> look standard to you? This whole thing makes a mockery of the
+> interrupt model and of firmware-based interrupt description which we
+> spent years to build.
+> 
+>>
+>> The four handlers registered within the driver are done here simply
+>> because they don't belong to any particular child driver. Since they
+>> are a fixed feature of the chip that we know we want to handle we may as
+>> well just register them.
+> 
+> Again, they have no purpose in an interrupt controller driver.
+> 
+>> If we put them in the MFD with DT definitions it would make a
+>> circular dependency between MFD and its child, which is not a great
+>> situation. If it's these handlers that are bothering you, we could move
+>> them to the audio driver.
+> 
+> And what's left? Nothing.
 
-I was trying to keep the splitting of the driver and the clock changes
-separate to make any possible bisection easier.
+Ah, I see. You've missed that the bulk of the implementation re-uses
+existing library code from regmap. It does say this in the commit
+message.
 
--- 
-Ben
+   "the generic regmap_irq functionality is used to do most of the work."
 
+and I've also said this in previous replies.
+
+This is no way driver that does nothing. There's over 1000 lines of code
+handling the PIC and dispatching its interrupts to other drivers that
+want to bind to them. It's just that it makes no sense to duplicate 1300
+lines of interrupt handling code from elsewhere when we can re-use that
+by calling regmap_add_irq_chip(). That gives us all the interrupt-
+controller-handling code in drivers/base/regmap/regmap-irq.c
+
+Perhaps you could re-review this taking into account that
+regmap_add_irq_chip() is significant.
