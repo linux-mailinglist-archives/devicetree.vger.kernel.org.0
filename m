@@ -2,184 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AABA6242FE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82224624303
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbiKJNMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 08:12:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38670 "EHLO
+        id S229648AbiKJNOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 08:14:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiKJNMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:12:07 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C422AD;
-        Thu, 10 Nov 2022 05:12:06 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id v7so1128845wmn.0;
-        Thu, 10 Nov 2022 05:12:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VpyhbGYLbgqQGq84zDVWwGbjefm7SUvj9DOXzK2A1TU=;
-        b=GHpriBMOXDvxvsugPbxR5FDEgGCUeAbYXuJ84U68kvkH74Cel95enwLZfFymDlsBaa
-         zqqULN8YDsOhxTxoGbSM1Z+noOnr9D/oABkpXkxLHwMZyqnq6c00QKTjk3n3Ndu7l9XA
-         ccw4xcfiBWQGR1Cbm1JULkcCG6VN6ESFbltpm8/2XvB2cxZikH8bJc2vZSf1fDHkpQF+
-         XsVOD63wVvX5JElC7bwKyd57nkpmhNG8sBsU9Lli43eOU29NQVU2sbMoKR/sAUj7BBsH
-         Md7T/Njj4G34P8GBPFZnYNfBgh87isM3RC+Tp6Ad11DZHkyuu4q4FubblOaZSFKs2Kf7
-         bOzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VpyhbGYLbgqQGq84zDVWwGbjefm7SUvj9DOXzK2A1TU=;
-        b=rGMmaUxK/vLoQMndDR6Z7nPdWPzzVV3mOLbxMKlXGiW2mjP9zFRXz88aAxXD66mpe6
-         y2KV90MKPHf40Nac4u1UbIw7KjT9dVC+6vaLlmslESHpB/N48kToS0bJgXhAmtgKbbDQ
-         W8d2fpNQjzgJIJZWmxQv56wHqOrspg8eeHP7VDVftpHbsXPatU1EuVk88W3rQ5XIq3v5
-         +qblm1p4Z1qc+nTgU+XjnXalTVpfFsYSvYFPgHANAgiy/y2bHSzx8b143q4jQo6Oth7f
-         WRF1dviZjjKHxSE0nNYL7WtNZx+Gc53yKPZy499gR6z2kwVCtg9CP2rCDhiuj3YcaEzo
-         DRfg==
-X-Gm-Message-State: ACrzQf1lxZWNG65REgrrU4KZJxBk+q1z/JQkE+fM/TrVdSTurivJLDm/
-        srldtQksNTd3ByEOXj+GkvM=
-X-Google-Smtp-Source: AMsMyM51TiWHud25bbxeDq7lKiBIwAVbUfDhjw64VUwKMxy4sQuEHhWs+GPnR0/ficWwxEYJhbBqwQ==
-X-Received: by 2002:a7b:c455:0:b0:3cf:6817:297d with SMTP id l21-20020a7bc455000000b003cf6817297dmr42433341wmi.152.1668085924859;
-        Thu, 10 Nov 2022 05:12:04 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id j13-20020adfea4d000000b0023bb7e4b8b1sm16058508wrn.82.2022.11.10.05.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 05:12:03 -0800 (PST)
-Message-ID: <aa7cab9c-8fe2-b42e-84ba-1aeb79d50190@gmail.com>
-Date:   Thu, 10 Nov 2022 14:12:01 +0100
+        with ESMTP id S229547AbiKJNOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:14:44 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40CF432073;
+        Thu, 10 Nov 2022 05:14:43 -0800 (PST)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AACjddP028494;
+        Thu, 10 Nov 2022 07:14:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=kD1m6VCRlQYW+ijK5eEXwbmuUugkbgmTtw/FTowKXZ8=;
+ b=UPG+Z2qpQ4+qji+mMslS35OZfNbBY3sJ85P1nQ4DDx7m1pKLxNmtS6agP9EtVXAhY/dN
+ a1eOaipQph2487rbwzIXRV4d0s35eK9yK7me+v9zjTGevOKUdDr6k93bkLYPDTlYc8Fj
+ gxBBks0+8F2rKflsIQhluJjUkFzewxIOXMGMA+8TRQ9jbvly+7BfgrcyYnIwXDvqlWGR
+ zflM9j0xjhdPEyy+XG++0wnFWvrNcwFNOhM2HJIL9+pzhrKKqCm6Esf3ExtTGe6Aa+8a
+ 1S2DVoVKrqlfOUV/nQv1iwiqXNV+dyWkzQW2sS1xiLyiCcJAfM+JQ4yU9BH16/XVavFu Zg== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3knn81q224-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Nov 2022 07:14:32 -0600
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Thu, 10 Nov
+ 2022 07:14:30 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.15 via Frontend
+ Transport; Thu, 10 Nov 2022 07:14:30 -0600
+Received: from [198.90.251.111] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.111])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3F55946B;
+        Thu, 10 Nov 2022 13:14:30 +0000 (UTC)
+Message-ID: <4d50faae-7eea-bc5a-9def-935c2063a7b3@opensource.cirrus.com>
+Date:   Thu, 10 Nov 2022 13:14:30 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v28 05/11] soc: mediatek: refine code to use
- mtk_mmsys_update_bits API
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
+ CS48L31/32/33 codecs
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
-        singo.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221107072243.15748-1-nancy.lin@mediatek.com>
- <20221107072243.15748-6-nancy.lin@mediatek.com>
- <58d55016-afc7-e560-32cf-8228794b5752@gmail.com>
- <20221108194351.u63k4mqzq3bkhpl7@notapiano>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221108194351.u63k4mqzq3bkhpl7@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Marc Zyngier <maz@kernel.org>
+CC:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <broonie@kernel.org>, <tglx@linutronix.de>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+ <20221109165331.29332-10-rf@opensource.cirrus.com>
+ <87mt8zutib.wl-maz@kernel.org>
+ <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+ <86pmdvow5y.wl-maz@kernel.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <86pmdvow5y.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: aQX-5YRNzgLfR64UzVEJh_O4ywOPGPrg
+X-Proofpoint-GUID: aQX-5YRNzgLfR64UzVEJh_O4ywOPGPrg
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/11/2022 20:43, Nícolas F. R. A. Prado wrote:
-> On Tue, Nov 08, 2022 at 06:37:19PM +0100, Matthias Brugger wrote:
+On 10/11/2022 12:01, Marc Zyngier wrote:
+> On Thu, 10 Nov 2022 11:22:26 +0000,
+> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
 >>
->>
->> On 07/11/2022 08:22, Nancy.Lin wrote:
->>> Simplify code for update  mmsys reg.
+>> On 10/11/2022 08:02, Marc Zyngier wrote:
+>>> On Wed, 09 Nov 2022 16:53:28 +0000,
+>>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+>>>>
+>>>> The Cirrus Logic CS48L31/32/33 audio codecs contain a programmable
+>>>> interrupt controller with a variety of interrupt sources, including
+>>>> GPIOs that can be used as interrupt inputs.
+>>>>
+>>>> This driver provides the handling for the interrupt controller. As the
+>>>> codec is accessed via regmap, the generic regmap_irq functionality
+>>>> is used to do most of the work.
+>>>>
 >>>
->>> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
->>> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
->>> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>> ---
->>>    drivers/soc/mediatek/mtk-mmsys.c | 45 ++++++++++++--------------------
->>>    1 file changed, 16 insertions(+), 29 deletions(-)
->>>
->>> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
->>> index 9a327eb5d9d7..73c8bd27e6ae 100644
->>> --- a/drivers/soc/mediatek/mtk-mmsys.c
->>> +++ b/drivers/soc/mediatek/mtk-mmsys.c
->>> @@ -99,22 +99,27 @@ struct mtk_mmsys {
->>>    	struct reset_controller_dev rcdev;
->>>    };
->>> +static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, u32 mask, u32 val)
->>> +{
->>> +	u32 tmp;
->>> +
->>> +	tmp = readl_relaxed(mmsys->regs + offset);
->>> +	tmp = (tmp & ~mask) | (val & mask);
+>>> I cannot spot a shred of interrupt controller code in there. This
 >>
->> I'm not sure about the change in the implementation of
->> mtk_mmsys_update_bits(). Nicolas tried to explain it to me on IRC but I
->> wasn't totally convincing. As we have to go for at least another round of
->> this patches, I'd like to get a clear understanding while it is needed that
->> val bits are set to 1 in the mask.
+>> It is providing support for handling an interrupt controller so that
+>> other drivers can bind to those interrupts. It's just that regmap
+>> provides a lot of generic implementation for SPI-connected interrupt
+>> controllers so we don't need to open-code all that in the
+>> irqchip driver.
 > 
-> The point here was to make sure that mtk_mmsys_update_bits() didn't allow
-> setting bits outside of the mask, since that's never what you want: the entire
-> point of having a mask is to specify the bits that should be updated (and the
-> ones that should be kept unchanged). So for example if you had
-> 
-> mask = 0x0ff0
-> val  = 0x00ff
-> 
-> the previous implementation would happily overwrite the 4 least significant bits
-> on the destination register, despite them not being present in the mask, which
-> is wrong.
-> 
-> This wrong behavior could easily lead to hard to trace bugs as soon as a badly
-> formatted/wrong val is passed and an unrelated bit updated due to the mask being
-> ignored.
-> 
-> For reference, _regmap_update_bits() does the same masking of the value [1].
-> 
-> That said, given that this function already existed and was just being moved,
-> it would've been cleaner to make this change in a separate commit.
-> 
-
-Would have been better, but we can leave it as it.
-
-Regards,
-Matthias
-
-> [1] https://elixir.bootlin.com/linux/latest/source/drivers/base/regmap/regmap.c#L3122
-> 
-> Thanks,
-> Nícolas
+> And thus none of that code needs to live in drivers/irqchip.
 > 
 >>
->> Regards,
->> Matthias
+>>> belongs IMO to the MFD code.
 >>
->>> +	writel_relaxed(tmp, mmsys->regs + offset);
->>> +}
-> [..]
->>> -static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, u32 mask, u32 val)
->>> -{
->>> -	u32 tmp;
->>> -
->>> -	tmp = readl_relaxed(mmsys->regs + offset);
->>> -	tmp = (tmp & ~mask) | val;
->>> -	writel_relaxed(tmp, mmsys->regs + offset);
->>> -}
->>> -
-> [..]
+>> We did once put interrupt support in MFD for an older product line but
+>> the MFD maintainer doesn't like the MFD being a dumping-ground for
+>> random other functionality that have their own subsystems.
+> 
+> I don't like this stuff either. All this code is a glorified set of
+> interrupt handlers and #defines that only hide the lack of a proper DT
+> binding to express the interrupt routing (it feels like looking at
+> board files from 10 years ago).
+> 
+> None of that belongs in the irqchip code.
+> 
+>>
+>>>   It is also a direct copy of the existing
+>>> irq-madera.c code, duplicated for no obvious reason.
+>>
+>> It's not a duplicate. The register map of this device is different
+>> (different addressing, 32-bit registers not 16-bit)
+> 
+> And? How hard is it to implement an indirection containing the
+> register map and the relevant callbacks? /roll-eyes
+> 
+
+I note your accusation that we were too lazy (or too stupid?)
+to think of this.
+
+> 	M.
+> 
