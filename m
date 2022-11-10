@@ -2,132 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D874623DE7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F20FD623DE8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbiKJIul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 03:50:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56862 "EHLO
+        id S229551AbiKJIun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 03:50:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiKJIuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:50:40 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D5FE64C5
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 00:50:40 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id l11so2035677edb.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 00:50:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+/0zI2jI6FYsEnOqb22IvUzFOZdF0rtkWAEWPsANlNE=;
-        b=RbiH0RwK0PSQtei4cjoWTFlrWi3WyDlTAl/SM43otykv3VeUYmJLKxqQSBDbg6EqRa
-         hEFVUQehvwcHFhlmBsOI0PGFw28JPIZfFR66W8M4g1+ob8xi2dyTeOxwUiuaL8p42apu
-         kcmNVoQIzRaShYt82Nc4ZNKaA0rRo1/N8Gx5oOHRU0dhGXLwv3qgundaHOuLfrl7PG1f
-         u/QdcGj2dhiLP53j9euIAMgvbsBbvuq7jHh5+ssyeFiyur7ZbLDuzNrWRKU+6X6xRdNe
-         F/1kjshAdLmxcJYqeg9j7fz8t+KtyRwrvM5tyDSIl+VYlevC84zxFAgbvihm64libFLc
-         GHpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+/0zI2jI6FYsEnOqb22IvUzFOZdF0rtkWAEWPsANlNE=;
-        b=3oIB5u45J6ih5P95GWvpt2FPYdi3ckwUhp6/YCHXySlQos7CL8ZI/3KQURG3ObzZx8
-         p0dhy6ZK2NzggzW+dJEGaD8jzoE0hF9PIKM05Sv73JQ3323fBNVGwiv7oDtiAc8LY8yv
-         PdoStVWQG0xWRs19SMqe03quzRlAjPpj+QTjujKsKkzMImRHtSI5ppIGatkTWQhReKtF
-         MVwZ5dgvHY8Mqh37f/nsWQwc86c0rDmHntQs/ccCe1wxH+ygZ9zOtwbbqRTOqkqPc0bQ
-         RAbmVoEGyo2FwHz0aW9FR5/Ke/C51KuQdzvZu4gv1zMjMEkOMFUa1i3QwNZ9zYrD8Tp8
-         evgw==
-X-Gm-Message-State: ACrzQf3UNzdVkkOh3bIKh2nyNtUr7Uj7cr9fJYdSUShvzdsmQBNfgkqS
-        m4QNr0+3otKhRXeR/h+SKuZ5b+WE8Nt0bScsTgkqzQ==
-X-Google-Smtp-Source: AMsMyM5EvvqS8SaVjeVz+ADM4dzJk//5A5i2I8oIYOAoumJBV2yvSDCTByjZRSlFG9pcCtT3nFyEpRrX58so41S/h0I=
-X-Received: by 2002:a05:6402:659:b0:463:a83c:e0af with SMTP id
- u25-20020a056402065900b00463a83ce0afmr1824173edx.158.1668070238553; Thu, 10
- Nov 2022 00:50:38 -0800 (PST)
+        with ESMTP id S232509AbiKJIum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:50:42 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39616582;
+        Thu, 10 Nov 2022 00:50:40 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EFCE3C000D;
+        Thu, 10 Nov 2022 08:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668070239;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=y6R3bK3NsSGu68vXayq2WfqZZ9Uy4g07o50EORmeW7Q=;
+        b=iQD5zYRBxcME416I7SmtNcFWEd2Ph4AghuwHTrsvEXUIAUpSlSg63+vZgiqmM5hNxMR8kD
+        0hGaOe8ipcYTw7ZniV3/kObGtOMjBvfNC/quDAMx+xCK4oZyYMQBZ4W9Qy2WBQTOgzrdHo
+        bYkyH/TzoV9rKMm7Oz7Fa7JR5Cc5Q88I3f9LXEcfJimb+SXfZrAcB0z/4Cai3tmmh5MuVL
+        ibz6Pnh4/tidD4DXjMba6iidUVQ20l6pjDRF+q1BE7rzNUJPY43kbKyR+i6myw49N0Q1mo
+        ccgF5HnUdvNBVomT2QmPjhzobhX7WZyHqIm4CpZPr56IHXBv5/LXCfkGROnVCg==
+Date:   Thu, 10 Nov 2022 09:50:34 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Christian Eggers <ceggers@arri.de>,
+        Cory Tusar <cory.tusar@pid1solutions.com>
+Subject: Re: [PATCH v3 6/6] dt-bindings: nvmem: add YAML schema for the ONIE
+ tlv layout
+Message-ID: <20221110095034.7a80163a@xps-13>
+In-Reply-To: <20221110040055.GA3436769-robh@kernel.org>
+References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
+        <20221104163833.1289857-7-miquel.raynal@bootlin.com>
+        <20221110040055.GA3436769-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221028205009.15105-1-macroalpha82@gmail.com> <20221028205009.15105-4-macroalpha82@gmail.com>
-In-Reply-To: <20221028205009.15105-4-macroalpha82@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 10 Nov 2022 09:50:27 +0100
-Message-ID: <CACRpkdZ5q8y2iH7ZhfLUGXyxuVePE6Lz-_=TKYTbAqxZZMQTAw@mail.gmail.com>
-Subject: Re: [PATCH V4 3/3] drm/panel: Add NewVision NV3051D MIPI-DSI LCD panel
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        Chris Morgan <macromorgan@hotmail.com>, robh+dt@kernel.org,
-        thierry.reding@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+Hi Rob,
 
-thanks for your patch!
+robh@kernel.org wrote on Wed, 9 Nov 2022 22:00:55 -0600:
 
-On Fri, Oct 28, 2022 at 10:50 PM Chris Morgan <macroalpha82@gmail.com> wrote:
+> On Fri, Nov 04, 2022 at 05:38:33PM +0100, Miquel Raynal wrote:
+> > Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
+> > compatible networking device.
+> >=20
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../bindings/nvmem/layouts/nvmem-layout.yaml  |   1 +
+> >  .../nvmem/layouts/onie,tlv-layout.yaml        | 115 ++++++++++++++++++
+> >  2 files changed, 116 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/oni=
+e,tlv-layout.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layo=
+ut.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> > index f64ea2fa362d..8512ee538c4c 100644
+> > --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> > @@ -19,6 +19,7 @@ description: |
+> > =20
+> >  oneOf:
+> >    - $ref: kontron,sl28-vpd.yaml
+> > +  - $ref: onie,tlv-layout.yaml
+> > =20
+> >  properties:
+> >    compatible: true
+> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-l=
+ayout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layou=
+t.yaml
+> > new file mode 100644
+> > index 000000000000..1d91277324ac
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.y=
+aml
+> > @@ -0,0 +1,115 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/nvmem/layouts/onie,tlv-layout.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVMEM layout of the ONIE tlv table
+> > +
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > +
+> > +description:
+> > +  Modern networking hardware implementing the Open Compute Project ONIE
+> > +  infrastructure shall provide a non-volatile memory with a table whos=
+e the
+> > +  content is well specified and gives many information about the manuf=
+acturer
+> > +  (name, country of manufacture, etc) as well as device caracteristics=
+ (serial
+> > +  number, hardware version, mac addresses, etc). The underlaying devic=
+e type
+> > +  (flash, EEPROM,...) is not specified. The exact location of each val=
+ue is also
+> > +  dynamic and should be discovered at run time because it depends on t=
+he
+> > +  parameters the manufacturer decided to embed.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: onie,tlv-layout
+> > +
+> > +  product-name: true =20
+>=20
+> This is a node? If so, you need:
+>=20
+> type: object
+> additionalProperties: false
 
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Support NewVision NV3051D panels as found on the Anbernic RG353P and
-> RG353V. The underlying LCD part number for the RG353x devices is
-> unknown, so the device name and a fallback for the driver IC is
-> used instead.
->
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+I thought referencing a schema under a property would be enough?
 
-(...)
-> +struct panel_nv3051d {
-> +       struct device *dev;
-> +       struct drm_panel panel;
-> +       struct gpio_desc *reset_gpio;
-> +       const struct nv3051d_panel_info *panel_info;
-> +       struct regulator *vdd;
-> +       bool prepared;
+Indeed in nvmem.yaml we create the property nvmem-layout and make it
+reference nvmem-layout.yaml. Then, in nvmem-layout.yaml:
 
-I think you want to get rid of prepared. The framework keeps track of state.
+	 oneOf:
+	  - $ref: kontron,sl28-vpd.yaml
+	  - $ref: onie,tlv-layout.yaml
 
-> +#define dsi_dcs_write_seq(dsi, cmd, seq...) do {                       \
-> +               static const u8 b[] = { cmd, seq };                     \
-> +               int ret;                                                \
-> +               ret = mipi_dsi_dcs_write_buffer(dsi, b, ARRAY_SIZE(b)); \
-> +               if (ret < 0)                                            \
-> +                       return ret;                                     \
-> +       } while (0)
+we reference the different layouts that may apply (very much like what
+you proposed to list the mtd partition parsers, if I got it right).
 
-This is a reimplementation of mipi_dsi_dcs_write_seq() so use that
-instead. (Found in include/drm/drm_mipi_dsi.h)
+Isn't it enough?
 
-> +       /*
-> +        * Init sequence was supplied by device vendor with no
-> +        * documentation.
-> +        */
+Then if you look below there is an "additionalProperties: false"
+defined.
 
-Grrrr but not your fault. What *can* work is to look in related
-datasheets and infer some of the magic variables from there.
-Anyways best effort is best effort and as long as it's working
-that's OK.
+> > +
+> > +  part-number: true
+> > +
 
-An experiment you can do if you have time is to see if you can read out
-MTP ID from the panel (3 bytes, check how other drivers do it)
-and use that to figure out who manufactured the actual display
-controller. It's a bit of sleuthing.
+[...]
 
-> +       ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> +       if (IS_ERR(ctx->reset_gpio)) {
-> +               dev_err(dev, "cannot get reset gpio\n");
-> +               return PTR_ERR(ctx->reset_gpio);
-> +       }
+> > +  service-tag: true
+> > +
+> > +  vendor-extension: true
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
 
-I usually get it with GPIOD_OUT_HIGH so that reset i asserted at probe().
+(here)
 
-You do have active low flagged in your DTS do you not?
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        eeprom@56 {
+> > +            compatible =3D "atmel,24c64";
+> > +            read-only;
+> > +            reg =3D <0x56>;
+> > +
+> > +            nvmem-layout {
+> > +                compatible =3D "onie,tlv-layout";
+> > +
+> > +                serial-number {
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +  - |
+> > +    spi {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        flash@0 {
+> > +            compatible =3D "m25p80", "jedec,spi-nor";
+> > +            reg =3D <0>;
+> > +
+> > +            otp {
+> > +                compatible =3D "user-otp";
+> > +
+> > +                nvmem-layout {
+> > +                    compatible =3D "onie,tlv-layout";
+> > +
+> > +                    mac-address {
+> > +                        #nvmem-cell-cells =3D <1>;
+> > +                    };
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +...
+> > --=20
+> > 2.34.1
+> >=20
+> >  =20
 
-Yours,
-Linus Walleij
+
+Thanks,
+Miqu=C3=A8l
