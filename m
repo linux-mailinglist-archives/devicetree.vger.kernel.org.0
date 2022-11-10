@@ -2,155 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D7A623C79
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C66F2623C7D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:16:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232698AbiKJHPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 02:15:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
+        id S232858AbiKJHQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 02:16:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiKJHNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:13:19 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19F131EF9
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 23:12:47 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id a14so931760wru.5
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 23:12:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JZHBIAsduIpLZAGr957MixGoNnkjIIF3w+4h6AJbGtg=;
-        b=uronP4ZRqhYXYsRo6aUos+70AxdqTrzphzLe3xHiGZ9cVcvroNyDdeUDYy8fO7cJTX
-         /C4GCST9lJDlea09kVl/gBH8Vybcip1ugS6RdAKj/R7kee2FJvqRdM25UE+p8v/F2hc5
-         NIsFlmtkj1w4Y7eQilGrslxCwkP7f/CbHcKYi1LzEFARhpF0PORaoQbro8xJJ+2YFXis
-         E5alciTtUse37488fd+M9q7TRUvzcuTPmIsucmYhb3dj86TwEATCZGCIkFGiimHcgO+X
-         yPwHIbZ1fWq1h0mfBy9nwHr6JCl80Xu2ivqmOb8tYMbMumD95YRFrKav+WxZPM9oZld5
-         PQUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZHBIAsduIpLZAGr957MixGoNnkjIIF3w+4h6AJbGtg=;
-        b=d4rzxFG9DKP6TdP8q90WEOvjr0jCBWR+be1n/2zne9xZPqwnV3aTMuFyycNDo70lQH
-         FAJfig5Ivd0okP4qFb0YOFXWUIUuf2JGLLVasqYegdwYIZdvOuRpELGs+k5QO4McG7Hh
-         2YmAcNbIXKaBKrW9ZdUFT7XD31rZQGbS7YoLvWk1q3pIaKuQY1fARs2KigpELvEa6V8K
-         jRFhlK8u24RdZZ5L0nvQ6nHINBRfLyO7/Uy8d1SDRuMpqaM5fu7FnDN4VnrSStI8aA7x
-         3qREsPQRyo98HDD3zxUGsB9vHXn5eFZbV86QNPV35Pc7PYltonUfTt8gX/ncP5Mf3q2J
-         wx3w==
-X-Gm-Message-State: ACrzQf0iig0/bTNroAXcV9E80IQ7MeSyKoedDj9Kq95iBQ2SowSDj1WJ
-        DWc3oBwoaRVQlQLRQIbmFOwrEg==
-X-Google-Smtp-Source: AMsMyM61VRTRaEX3VIu4ke6jRK4GkClgTxznoQx/Os1ZBw3Wbtkf7K1hL6m+rFXCxUEKiMM4k9xewg==
-X-Received: by 2002:adf:f04e:0:b0:236:5d8d:8a1e with SMTP id t14-20020adff04e000000b002365d8d8a1emr40711618wro.392.1668064366300;
-        Wed, 09 Nov 2022 23:12:46 -0800 (PST)
-Received: from [10.101.1.4] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id iw2-20020a05600c54c200b003cf77e6091bsm3901962wmb.11.2022.11.09.23.12.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Nov 2022 23:12:45 -0800 (PST)
-Message-ID: <1267bf43-618c-7347-be3a-2792c656d9b6@baylibre.com>
-Date:   Thu, 10 Nov 2022 08:12:40 +0100
+        with ESMTP id S232793AbiKJHPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:15:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FE2326DB;
+        Wed,  9 Nov 2022 23:15:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 71C67B82089;
+        Thu, 10 Nov 2022 07:15:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE5F7C433C1;
+        Thu, 10 Nov 2022 07:15:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668064524;
+        bh=FMlXsITEC3snOIBttDp0EAQyetj/yxbZhJt/Rk5EDxY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tz23sUAjvevM4LmlgxcCobtWnG1sYGF509oU8KAWaRIaF73/7BRuex1Cf+rAQ5CTv
+         ec52UF4vz4vd8xkY/PV+2HQCoxK4bjDrqGbllylaVZMbDE1H0S7kVCjn7MRzxKOqg0
+         TgKbn3abQiXdKTIZzq0YMwbkJkYLbONPLrsnGqyzhNkldpecdyTJXu8O5HX+S29OoO
+         mSYO1FZOmAWv3TxxfmNThq7gIwbIEvF81UOXyUP1UODWGdqh68mHsXuIdbMWqm6mUG
+         77r9EGIlbztS/ib+Veym3EuVr5jR5jCQYhk/omC/6Hyq964iy14tnWe5lnZsypKdl8
+         iPMlyYbqKzr/w==
+Date:   Thu, 10 Nov 2022 15:15:15 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Richard Zhu <hongxing.zhu@nxp.com>, marex@denx.de,
+        tharvey@gateworks.com, vkoul@kernel.org, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, alexander.stein@ew.tq-group.com,
+        richard.leitner@linux.dev, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v1] soc: imx: imx8mp-blk-ctrl: Add PCIe SYSPLL
+ configurations
+Message-ID: <20221110071515.GC125525@dragon>
+References: <1666590189-1364-1-git-send-email-hongxing.zhu@nxp.com>
+ <20221029084514.GT125525@dragon>
+ <ae0fd778eb31416eedb248e2cd4faef576174937.camel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Kevin Hilman <khilman@baylibre.com>,
-        Nishanth Menon <nm@ti.com>
-Cc:     Lee Jones <lee@kernel.org>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, kristo@kernel.org,
-        dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, tony@atomide.com,
-        vigneshr@ti.com, bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-5-jneanne@baylibre.com> <Y1+q2Usm9ecicXqp@google.com>
- <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
- <20221105000104.rtj3r6ufqwqmepon@keenly> <7heduewjp0.fsf@baylibre.com>
- <5418ac3b-04d7-5e77-7612-c8f168e24621@ti.com>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <5418ac3b-04d7-5e77-7612-c8f168e24621@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae0fd778eb31416eedb248e2cd4faef576174937.camel@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 09/11/2022 22:59, Andrew Davis wrote:
-> On 11/7/22 3:14 PM, Kevin Hilman wrote:
->> Nishanth Menon <nm@ti.com> writes:
->>
->>> On 13:58-20221104, jerome Neanne wrote:
->>>>
->>> [...]
->>>
->>>>
->>>>>
->>>>> Can you try an compile with W=1 please.
->>>> This raise one warning on mfd:
->>>> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’ 
->>>> defined but
->>>> not used [-Wunused-function]
->>>>     28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
->>>>        |            ^~~~~~~~~~~~~~~~~~~~~~
->>>> soft_shutdown has been validated and is used in TI baseline even if not
->>>> hooked in upstream version further to this review:
->>>> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
->>>>
->>>> It was a TI requirement to implement it...
->>>> Let me know if you want me to remove this function or if we can keep 
->>>> it like
->>>> this.
->>>
->>> There are platforms without psci, correct? I think the comment was to
->>> drop the force override with system-power-controller property,
->>>
->>> if (!pm_power_off) {
->>>     tps65219_i2c_client = client;
->>>     pm_power_off = &tps65219_pm_power_off;
->>> }
->>>
->>> Could still be valid for such platforms, no? I do see that the
->>> capability that the PMIC has - which is software shutdown is a valid
->>> feature that we support in many different PMIC drivers. Is'nt the job of
->>> the driver to introduce the functionality in a manner that is
->>> appropriate to the OS framework?
->>
->> Yeah, I think Nishanth is right here.
->>
->> We should probably keep the `if (!pm_power_off)` part so the PMIC will
->> be used if PSCI is not, but it also allows an easy way to test/use the 
->> PMIC
->> shutdown functionality downstream if needed.
->>
+On Tue, Nov 01, 2022 at 09:44:41AM +0100, Lucas Stach wrote:
+> Hi Shawn, Richard,
 > 
-> Then should be using the sys-off handler API[0] so it doesn't block PSCI
-> which is also switching over[1].
+> Am Samstag, dem 29.10.2022 um 16:45 +0800 schrieb Shawn Guo:
+> > On Mon, Oct 24, 2022 at 01:43:09PM +0800, Richard Zhu wrote:
+> > > Add PCIe SYSPLL configurations, thus the internal SYSPLL can be used as
+> > > i.MX8MP PCIe reference clock.
+> > > 
+> > > The following properties of PHY dts node should be changed accordingly.
+> > >   - Set 'fsl,refclk-pad-mode' as '<IMX8_PCIE_REFCLK_PAD_OUTPUT>'.
+> > >   - Change 'clocks' to '<&clk IMX8MP_CLK_HSIO_ROOT>'.
+> > > 
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > 
+> > Applied, thanks!
 > 
-> Andrew
+> Sorry for the late reply, but I'm not really happy with the fact that
+> the PLL is now unconditionally enabled, even though it is only needed
+> when there is no external reference clock source.
+> I fear that this will be hard to correct later on as the DT abstraction
+> is wrong, as IMX8MP_CLK_HSIO_ROOT is NOT the reference clock for the
+> PHY, but the PLL generated clock, which isn't properly exposed with
+> this series.
 > 
-> [0] https://lwn.net/Articles/894511/
-> [1] https://www.spinics.net/lists/arm-kernel/msg1024127.html
-Can we go for upstream with v7 without tps65219_soft_shutdown. Then if 
-everyone agrees with Andrew proposal, I'll submit a separate patch which 
-adds implementation of tps65219_soft_shutdown support through sys-off 
-handler.
+> I'm not happy to see this going in in the current state and if not too
+> late would like to ask Shawn to remove it from the tree again.
 
-So that we are not blocking upstream in case further 
-discussions/alignment are required.
+Removed.
 
-Jerome
+Shawn
