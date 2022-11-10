@@ -2,59 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA436623C51
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:06:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57AFD623C65
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:08:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232699AbiKJHGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 02:06:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34310 "EHLO
+        id S232760AbiKJHIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 02:08:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231387AbiKJHGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:06:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28B32CE15;
-        Wed,  9 Nov 2022 23:06:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A22BDB820E3;
-        Thu, 10 Nov 2022 07:06:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB825C433C1;
-        Thu, 10 Nov 2022 07:06:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668063998;
-        bh=JILYWmRHeQlrFq3PO1cP1RJjbl5/5CrcYkqjDHCWjWM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OvfqSv4r75YqGPVAWeAToKYtQyQHg+n+KTDxH/3plnKdhLUGzxYO/n2shTUdfeyIk
-         dX0l5eY8w8A12HUS5pTskACnnAE5WSipi+7K8nQDnbhvlDqGYEgMT4bjG0MsQAdZal
-         o0hDOkZ/hEJbovax1KCOTMfD+M0QIMg+c73VXdJIoKwPmxeknXizqNHX81dgy+so1N
-         5ia/jXhV94zCopqmhxRG87vvC6/gHFjy12+ni80KISw1dSyD3RiYp94NB612NNWSv2
-         3JvzUpsZNc6Z8Tv/wyBL3LmF+pThWNqGdMIkW1VHNLLW6Xle8rcMzncpxY4hz9SS9k
-         4yj2zqnrEaQUQ==
-Date:   Thu, 10 Nov 2022 12:36:32 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "kishon@kernel.org" <kishon@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [RESEND PATCH v3 2/2] phy: renesas: Add Renesas Ethernet SERDES
- driver for R-Car S4-8
-Message-ID: <Y2yi+PRyupPGCB9k@matsya>
-References: <20221027134006.2343164-1-yoshihiro.shimoda.uh@renesas.com>
- <20221027134006.2343164-3-yoshihiro.shimoda.uh@renesas.com>
- <Y2ZzowD2eAxBFcwR@matsya>
- <TYBPR01MB5341DC696FCF3B7D4E139006D83C9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S232766AbiKJHIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:08:44 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD4531376;
+        Wed,  9 Nov 2022 23:08:43 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AA6SVCw018102;
+        Thu, 10 Nov 2022 07:08:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=jsDth2khnliRLU44iQ7XLuDUNqjpD61W0t0bVnckekM=;
+ b=AHOQxljvzWYfdsfpHgSeXVmdfr0vLfYay2Kk//HLM8sCY3128wpsNBNU+17eUvcvrknF
+ 8HRjChGb3cSc9BzmkIYHwxBRW5jnH11p7z0lVMpEXLHdf3xhLDufLCAfIa3VHik8QW9w
+ kyGHzpoYAWB9fVJv00/B8248zv8z2hv5+Qjr1SOsv5SH8Bcz9cIhQQHfaCMxtrrn9idK
+ BCCy4jQop+TxuX8/w1Uhye6YnkDZYcJtiOnPaPFa0XpZbgcrnuavx4khGsLXoNPWRBCl
+ QckoEZPaP7730OAf9nv3qeOnjuloQUgQw8tVNmNH0N+ODBzOj8dujBzAiVZLjXQdKRsu OQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kruprg3h5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Nov 2022 07:08:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AA78XeL010583
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Nov 2022 07:08:33 GMT
+Received: from blr-ubuntu-311.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Wed, 9 Nov 2022 23:08:29 -0800
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+To:     <andersson@kernel.org>, <dianders@chromium.org>,
+        <jinghung.chen3@hotmail.com>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [PATCH V4 1/2] arm64: dts: qcom: sc7280: Mark all Qualcomm reference boards as LTE
+Date:   Thu, 10 Nov 2022 12:38:12 +0530
+Message-ID: <20221110070813.1777-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB5341DC696FCF3B7D4E139006D83C9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: y4L8UBUCOUF_cWCU4jrCyMGRKqanlpTI
+X-Proofpoint-GUID: y4L8UBUCOUF_cWCU4jrCyMGRKqanlpTI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-09_06,2022-11-09_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
+ adultscore=0 clxscore=1011 priorityscore=1501 impostorscore=0 mlxscore=0
+ suspectscore=0 mlxlogscore=752 lowpriorityscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211100053
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,55 +74,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-11-22, 01:50, Yoshihiro Shimoda wrote:
-> Hi Vinod,
-> 
-> > From: Vinod Koul, Sent: Saturday, November 5, 2022 11:31 PM
-> > 
-> > On 27-10-22, 22:40, Yoshihiro Shimoda wrote:
-> > > Add Renesas Ethernet SERDES driver for R-Car S4-8 (r8a779f0).
-> > > The datasheet describes initialization procedure without any information
-> > > about registers' name/bits. So, this is all black magic to initialize
-> > > the hardware. Especially, all channels should be initialized at once.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > ---
-> > >  drivers/phy/renesas/Kconfig                 |   7 +
-> > >  drivers/phy/renesas/Makefile                |   1 +
-> > >  drivers/phy/renesas/r8a779f0-ether-serdes.c | 416 ++++++++++++++++++++
-> > >  3 files changed, 424 insertions(+)
-> > >  create mode 100644 drivers/phy/renesas/r8a779f0-ether-serdes.c
-> > >
-> > > diff --git a/drivers/phy/renesas/Kconfig b/drivers/phy/renesas/Kconfig
-> > > index 111bdcae775c..68f160b0e8ef 100644
-> > > --- a/drivers/phy/renesas/Kconfig
-> > > +++ b/drivers/phy/renesas/Kconfig
-> > > @@ -32,3 +32,10 @@ config PHY_RCAR_GEN3_USB3
-> > >  	select GENERIC_PHY
-> > >  	help
-> > >  	  Support for USB 3.0 PHY found on Renesas R-Car generation 3 SoCs.
-> > > +
-> > > +config PHY_R8A779F0_ETHERNET_SERDES
-> > > +	tristate "Renesas R-Car S4-8 Ethernet SERDES driver"
-> > > +	depends on ARCH_RENESAS || COMPILE_TEST
-> > > +	select GENERIC_PHY
-> > > +	help
-> > > +	  Support for Ethernet SERDES found on Renesas R-Car S4-8 SoCs.
-> > 
-> > Sorted alphabetically please and not at the end
-> 
-> I intended to sort alphabetically about the prompt strings:
-> 
-> <snip>
-> "Renesas R-Car generation 3 USB 2.0 PHY driver"
-> "Renesas R-Car generation 3 USB 3.0 PHY driver"
-> "Renesas R-Car S4-8 Ethernet SERDES driver"
-> 
-> However, IIUC, should we sort alphabetically about the config strings like below?
-> 
-> config PHY_R8A779F0_ETHERNET_SERDES
-> config PHY_RCAR_GEN3_PCIE
+When the modem node was re-located to a separate LTE source file
+"sc7280-herobrine-lte-sku.dtsi", some of the previous LTE users
+weren't marked appropriately. Fix this by marking all Qualcomm
+reference devices as LTE.
 
-We sort them based on config symbol and not the prompt string
+Suggested-by: Douglas Anderson <dianders@chromium.org>
+Fixes: d42fae738f3a ("arm64: dts: qcom: Add LTE SKUs for sc7280-villager family")
+Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+---
+
+v4:
+ * Remove duplicate lte source file [Doug]
+
+v3:
+ * Fix incorrect tag usage [Krzysztof]
+
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts  | 1 -
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 1 +
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 9ddfdfdd354e..ba64316b4427 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -10,7 +10,6 @@
+ #include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
+ #include "sc7280-idp.dtsi"
+ #include "pmr735a.dtsi"
+-#include "sc7280-herobrine-lte-sku.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform";
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 1ac7c091e03f..8ca228111681 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -13,6 +13,7 @@
+ #include "pmk8350.dtsi"
+ 
+ #include "sc7280-chrome-common.dtsi"
++#include "sc7280-herobrine-lte-sku.dtsi"
+ 
+ / {
+ 	aliases {
 -- 
-~Vinod
+2.17.1
+
