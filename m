@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B97623F9A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB489623FA7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiKJKPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 05:15:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50524 "EHLO
+        id S229730AbiKJKVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 05:21:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbiKJKPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:15:38 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CE165E78
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:15:36 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id ft34so3639960ejc.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:15:36 -0800 (PST)
+        with ESMTP id S229739AbiKJKVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:21:17 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7518B19C26
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:21:15 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id ud5so3794035ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:21:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=E8Cf67Csj4VD7OjeDad04YWXxh2H8/Tism91fe0AaI4=;
-        b=fOBQm/pV8/DGgVvHGlPfc1mJ29brRXVHnGHjUjMWlUg2UzidttxHcpiMJ2HE6NjkzA
-         Jrdfoie3b2P8WvxJdwOaXX9+SSbmrVjx9KbOBBHrgtmsO4Xxy4oV7yfgzpF4+H9ez4Ch
-         /ZxTqmghUoeMwGNdNuCkRgQ8sY7o8FiURl635xYRjy7NSY1d94FTxU5+67rlS7KvRcr6
-         Khy8R35UWeqn3W+rJOvfmIsRxnj5UO9YF+NpibEaOukUgfG51JSphray/tPYJBpZ61G9
-         T6E2IXXuYZS3BfL7Gtu3xh5kCxrdojb+VHgj9Xej52p4dpEyadkIvlcmKl0PxjU+UPMD
-         56rg==
+        bh=DzVccqK8r10+eJcWFau+z76oVshVdUbajb+fpILwHo4=;
+        b=ZjAWG299WEYD3yhWLaSEkxdPYu/zU0l6XzZeRRxVMF/TbyNqO4VjpXuAtPmN3OE7BL
+         WU2ayYqvlurEI4IIqWefXARXvKodyhMPCIxUPeJu0Wh1rxfXBmsmxAsZ9rwxvpm+n3Hi
+         VgYa3tKEmTetYUmFNPmOiQYDc29IZE9tv0tikOdFijyjoI+j6hQTy9qfLlku3jA1HkLs
+         f6W5V2yQgG0zE/u+0ciDWzq/kYEuk9KoylB+bifB34zPgkF0WRaaUUizmpqThuzbGiJ6
+         llmCosDcSRBA0zcQPfvGKeH2F3JPCtozxm+ClTMVSYwHlZXroAQwhFCO6W2IuHWUSg3X
+         gZHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=E8Cf67Csj4VD7OjeDad04YWXxh2H8/Tism91fe0AaI4=;
-        b=uBf8i48RdMDU5HZf/Dk82mtWxhIKIe5/nKJRUfGNZVoZXhK1jLt2j/1XOCAEkBpoA5
-         oRoh0pa9gzjFZBrGFqfwZtBp6Ls/etcmvHy6TOjobBJGyuv5Ob2E8d+v3jrx/GdmfUbv
-         5rRWX3MIOcBNqP/Es2XdwAryb6JP6cIiKh+akbEOGz1fCl7pGBgCNoY461nD7pgAkGgI
-         nfVu3EOQ9jz+FNAv7Yml1fb86I4z6xdxEpX3lOJYdt8rv7k94zoRSI6vHNLr5HRf5uFg
-         v/lpJ0zEgOfzfDJcfy20hMAryPG8B0CK3Ag+8oJbsIQh3i4DeJ08xqHrw/Z/VfAcgC6R
-         oQ4Q==
-X-Gm-Message-State: ACrzQf0Chck+yWOgEdRpeiP4aXzjagRctImoO0YdUqnxw/z3J21erRXv
-        P1L8lTaFy52BKV+hwEHvcE2VMiOCKcycIzvN9r4DPw==
-X-Google-Smtp-Source: AMsMyM4D0d+Hokf7UrAn5sIPHLSXdHQLYX9QQgnGs4iKs4ZA+COquSO+v27PLn+KIJj7g+TgvuEl9Xa1sTphUe/n8Q8=
-X-Received: by 2002:a17:906:3394:b0:78e:11ea:8528 with SMTP id
- v20-20020a170906339400b0078e11ea8528mr2559173eja.190.1668075334783; Thu, 10
- Nov 2022 02:15:34 -0800 (PST)
+        bh=DzVccqK8r10+eJcWFau+z76oVshVdUbajb+fpILwHo4=;
+        b=5V078k963j+f+DXJrUHkI4BQhRAAacl2t4JK+zCsshPaLV3ecFD5ORrgD8Du7IMt+S
+         EfZ0VjGEqrksDDvRtWfUzDF1smHJxDG1iPjdkljNJg69XD2U2LhMY4WRZDSwmF3bLWJD
+         QZk1b0z/sq4Gb4etPa8GNjyuRrrfpVeo4j33B6dofAh1ZyrKDM4QEYi47WEbdyRqU0qu
+         XxEmXmAeFSmqbP8N0UJVnDJGs6YFyaGfGVs5q63jUHVldtq3WoneqYaN+NFiUp8WM8DD
+         umlgq0XeIcEbOW8zUzb+AbFp6aaSq7Z6P5zSdDUeUEBveYj63rH1RJ/Z9vfdgfNDpFAK
+         bJkA==
+X-Gm-Message-State: ACrzQf1hKnl+NT2inThPvJsXrXsNWUQCQb39T4u0w+sYatI7EcuZTmlk
+        ToLeU8r8EVEojcJp/cFirA1F+U1taJ75QOTrVANpIg==
+X-Google-Smtp-Source: AMsMyM7gTYta/+pVULXdP/rsWKEEJRTzX78HLJvZMbTb+bGDejI9yp4s7ufQUVVK7iJ/aB5J8JreNEBML0pwIRci4UA=
+X-Received: by 2002:a17:906:4c4b:b0:7ad:a197:b58e with SMTP id
+ d11-20020a1709064c4b00b007ada197b58emr60349152ejw.203.1668075673995; Thu, 10
+ Nov 2022 02:21:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20221109065546.24912-1-mranostay@ti.com> <20221109065546.24912-5-mranostay@ti.com>
- <CACRpkdaTV6unVsfNj+M39jLn5FLTnhryjuzF4EB6Ytds9R1nEQ@mail.gmail.com> <Y2zOhf8lqVLyLn+A@ubuntu>
-In-Reply-To: <Y2zOhf8lqVLyLn+A@ubuntu>
+References: <20221110014255.20711-1-andre.przywara@arm.com>
+In-Reply-To: <20221110014255.20711-1-andre.przywara@arm.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 10 Nov 2022 11:15:22 +0100
-Message-ID: <CACRpkdZOR4Hcyv=bO7=rJERJK7JbCoS0_dvWj0K=YZC6Nsozdw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] gpio: tps6594x: add GPIO support for TPS6594x PMIC
-To:     Matt Ranostay <mranostay@ti.com>, Michael Walle <michael@walle.cc>
-Cc:     brgl@bgdev.pl, lee@kernel.org, kristo@kernel.org,
-        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Keerthy <j-keerthy@ti.com>
+Date:   Thu, 10 Nov 2022 11:21:02 +0100
+Message-ID: <CACRpkdb=5mobcWBJYtXd=nC7A+Uo__itk0F9oZBeTjWHBkBU1w@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/2] pinctrl: sunxi: Introduce DT-based pinctrl builder
+To:     Andre Przywara <andre.przywara@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <uwu@icenowy.me>, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -71,43 +72,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 11:12 AM Matt Ranostay <mranostay@ti.com> wrote:
-> On Wed, Nov 09, 2022 at 10:59:08AM +0100, Linus Walleij wrote:
-> > On Wed, Nov 9, 2022 at 7:56 AM Matt Ranostay <mranostay@ti.com> wrote:
-> >
-> > > Add support for TPS6594X PMICs GPIO interface that has 11 that can be
-> > > configured as input or outputs.
-> > >
-> > > Tested-by: Keerthy <j-keerthy@ti.com>
-> > > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> >
-> > (...)
-> > > +config GPIO_TPS6594X
-> > > +       tristate "TI TPS6594X GPIO driver"
-> > > +       depends on MFD_TPS6594X
-> > > +       help
-> > > +         Select this option to enable GPIO driver for the TPS6954X
-> > > +         PMIC chip family. There are 11 GPIOs that can be configured.
-> >
-> > select GPIO_REGMAP
-> >
-> > This driver is an archetypical example of a driver that can make great
-> > use of GPIO_REGMAP helpers, so rewrite it to use them.
-> > Look in drivers/gpio/gpio-sl28cpld.c for an example.
->
-> Linus,
->
-> Those helpers look great for this usecase on the surface but however I think there could be some issues.
-> For GPIO direction it isn't configured by a bitmap on a register(s) but by a bit on a range of
-> registers (with a register for each GPIOx).
->
-> For set/get values the gpio helper would work though.
+On Thu, Nov 10, 2022 at 2:44 AM Andre Przywara <andre.przywara@arm.com> wrote:
 
-Isn't is possible to just use parts of the GPIO_REGMAP
-helpers? I thought it's designed like such.
+> Compared to my previous effort almost exactly five years ago [1], this
+> new version drops the idea of describing the pinctrl data entirely in
+> the DT, instead it still relies on driver provided information for that.
+(...)
+> On the DT side all that would be needed is *one* extra property per
+> pin group to announce the mux value:
+>
+>         uart0_pb_pins: uart0-pb-pins {
+>                 pins = "PB9", "PB10";
+>                 function = "uart0";
+>                 pinmux = <2>;
+>         };
 
-Michael Walle will know what to do with your usecase, and
-whether to use it or not, let's page him!
+So what you need to do is to convince the device tree people that this
+is a good idea.
+
+For me as linux maintainer it's no big deal, it's fine either way. The new
+code looks elegant.
+
+But from a DT point of view this needs to make sense also for Windows
+and BSD, so that is who you have to convince. If it is possible to derive
+the same information from the compatible string (like today) that will
+need an extended argument why all operating systems will benefit from
+this.
 
 Yours,
 Linus Walleij
