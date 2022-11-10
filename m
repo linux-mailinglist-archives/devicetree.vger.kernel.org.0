@@ -2,135 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA1A62436E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5582624397
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:49:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231161AbiKJNmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 08:42:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56830 "EHLO
+        id S231261AbiKJNtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 08:49:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbiKJNmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:42:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2101269DC1;
-        Thu, 10 Nov 2022 05:42:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AEE69616C9;
-        Thu, 10 Nov 2022 13:42:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C29CC4314D;
-        Thu, 10 Nov 2022 13:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668087758;
-        bh=4U7C9niDGrmfi8IMDATi6BtcBIfDiuOKvkxBiJpdV3w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SX98KqeYKns7KGfDa8dTp6G5wayF8iiATI9dVap4Wgzf6d34aTkI97ttMf366XE+1
-         R2U/r9UCn8XAghsEFSpznVYcqr8O4mENHj6OsaLq+Fq6HN0VtBRF5F87Flp3fz7U9W
-         nvj7W8/tSmA7L4xJk7dnUI98uInsIF93sAvIZzyrmOw4EtrC/VyKLAoiFVV/YaO0TE
-         juhdMKkkNBetHZgQdRAht04cUd+m9+wVS6uPEhlXh6VGR8enutToxoBG4kAhDSNlp5
-         DlWpLWUfxIYQqAAL+Tvyjtd7LpIsGuKzn/xSnrb8o9O8thutGRnRZK09gfgNgN9+Eq
-         peEprHo4LiCow==
-Received: by mail-ot1-f41.google.com with SMTP id w26-20020a056830061a00b0066c320f5b49so1118986oti.5;
-        Thu, 10 Nov 2022 05:42:38 -0800 (PST)
-X-Gm-Message-State: ANoB5pnWBy9BAXxk20tFsEN0BY67gjVYDapT6gIM593tu48kJBuI7gk4
-        OuMo+lFTvPK3Y89J5tQEN928W1r5MFyLCw97qQ==
-X-Google-Smtp-Source: AA0mqf4gARCZUERKvwgaAfgdC1LEqRRi5pu66mk1Uqd2ev+ik8AG7xmvItT3O8MQpM0VXWbeKoELJNlYq11nhVFHllU=
-X-Received: by 2002:a9d:58c3:0:b0:66d:2f7d:2a68 with SMTP id
- s3-20020a9d58c3000000b0066d2f7d2a68mr4817252oth.40.1668087757150; Thu, 10 Nov
- 2022 05:42:37 -0800 (PST)
+        with ESMTP id S231285AbiKJNtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:49:19 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534E91F2E1;
+        Thu, 10 Nov 2022 05:49:18 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-13c569e5ff5so2191426fac.6;
+        Thu, 10 Nov 2022 05:49:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sNqJFWW1l/RwQMBOBINJbE+k5PGilLqiAp/MdKz97eQ=;
+        b=Elq/D3qJeO5eMpd+0X88AnoPzYiPXvDObGBGLYorYd0n4FgoqzElx71js0raC+9IAA
+         Y5kL5grFiNe5DxAEFf2Dwhib8IXqTMsE5hdbAkl3YvTJcAM3vHC47ZurapKdYXV1n9YJ
+         ybrHBIFLAKD7KkJebH4/7D028Ed5/Lc8kF1McvDHliDzlmYG73vEDDiBnh3tYWaAGRPA
+         XELuQJUgvIjEht0E5wPZvr2073k1LtwZJVwxKnkRHmv1bLqvfhjOlWDyiAtpmufwKzMe
+         QOpen+WuGwnjXTp/dBMFbOGtQ6+QwfG9lpLyaac38HCsq5QaO4T1mkeaP1LrtYTAs4qo
+         MIHQ==
+X-Gm-Message-State: ACrzQf2Diou/Wh8M+eysCnJ2itrSFe6qMOpLVYcrKVD2WsvEMfBWlsco
+        XgXQ9csBJFMtHauljwP9aQ==
+X-Google-Smtp-Source: AMsMyM5uF7ern7BL/3lKtN7O7XEt5ACzXfcdLIxfjhpgOjP+LI8pn3YJSIWJ48iw4kzzXWrQMBh+3Q==
+X-Received: by 2002:a05:6870:3488:b0:12c:19b0:f4bc with SMTP id n8-20020a056870348800b0012c19b0f4bcmr46679794oah.238.1668088157470;
+        Thu, 10 Nov 2022 05:49:17 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x51-20020a9d37b6000000b00666a5b5d20fsm6348482otb.32.2022.11.10.05.49.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 05:49:16 -0800 (PST)
+Received: (nullmailer pid 220983 invoked by uid 1000);
+        Thu, 10 Nov 2022 13:49:18 -0000
+Date:   Thu, 10 Nov 2022 07:49:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Christian Eggers <ceggers@arri.de>,
+        Cory Tusar <cory.tusar@pid1solutions.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: nvmem: add YAML schema for the sl28
+ vpd layout
+Message-ID: <20221110134918.GB3436769-robh@kernel.org>
+References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
+ <20221104163833.1289857-5-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-References: <20220927152704.12018-1-jason-jh.lin@mediatek.com>
- <20220927152704.12018-7-jason-jh.lin@mediatek.com> <30278e0f-88ec-069b-3469-56b3fb795702@gmail.com>
-In-Reply-To: <30278e0f-88ec-069b-3469-56b3fb795702@gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 10 Nov 2022 21:42:25 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__vvjKASUJAGOvL=-WnAq-ji7sfyEEY7j49ty0P7Svvdw@mail.gmail.com>
-Message-ID: <CAAOTY__vvjKASUJAGOvL=-WnAq-ji7sfyEEY7j49ty0P7Svvdw@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] soc: mediatek: remove DDP_DOMPONENT_DITHER from enum
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221104163833.1289857-5-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Matthias Brugger <matthias.bgg@gmail.com> =E6=96=BC 2022=E5=B9=B411=E6=9C=
-=889=E6=97=A5 =E9=80=B1=E4=B8=89 =E6=99=9A=E4=B8=8A7:25=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
->
->
-> On 27/09/2022 17:27, Jason-JH.Lin wrote:
-> > After mmsys and drm change DITHER enum to DDP_COMPONENT_DITHER0,
-> > mmsys header can remove the useless DDP_COMPONENT_DITHER enum.
-> >
-> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> > Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
->
-> Chun-Kuan, I understand you will take this patch through your tree as it =
-depends
-> on DRM changes. We can also sync so that I take it once you merged the re=
-st of
-> the series. Having vdosys1 series around maybe that's better to avoid mer=
-ge
-> problems.
+On Fri, Nov 04, 2022 at 05:38:31PM +0100, Miquel Raynal wrote:
+> From: Michael Walle <michael@walle.cc>
+> 
+> Add a schema for the NVMEM layout on Kontron's sl28 boards.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 60 +++++++++++++++++++
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> new file mode 100644
+> index 000000000000..44088c8b4153
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
+> +
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description:
+> +  The vital product data (VPD) of the sl28 boards contains a serial
+> +  number and a base MAC address. The actual MAC addresses for the
+> +  on-board ethernet devices are derived from this base MAC address by
+> +  adding an offset.
+> +
+> +properties:
+> +  compatible:
+> +    const: kontron,sl28-vpd
+> +
+> +  serial-number:
+> +    type: object
+> +    description: The board's serial number
+> +
+> +  base-mac-address:
+> +    type: object
+> +    description:
+> +      Base MAC address for all on-module network interfaces. The first
+> +      argument of the phandle will be treated as an offset.
+> +
+> +    properties:
+> +      "#nvmem-cell-cells":
+> +        const: 1
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      otp-1 {
+> +          compatible = "user-otp";
+> +
+> +          nvmem-layout {
+> +              compatible = "kontron,sl28-vpd";
+> +
+> +              serial_number: serial-number {
+> +              };
+> +
+> +              base_mac_address: base-mac-address {
+> +                  #nvmem-cell-cells = <1>;
+> +              };
+> +          };
+> +      };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> index ecc7c37cbc1f..f64ea2fa362d 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> @@ -17,6 +17,9 @@ description: |
+>    define and might require dynamic reading of the NVMEM device in order to
+>    perform their parsing. The nvmem-layout container is here to describe these.
+>  
+> +oneOf:
+> +  - $ref: kontron,sl28-vpd.yaml
 
-Hi, Matthias:
+This is the other way around from how we normally structure things. 
+Normally, the specific schema would reference the common/base schema. 
+This works, though you will be applying the schema twice. Once here and 
+then by matching on compatible string. Not a big deal as that happens 
+fairly often, but a 'select: false' in kontron,sl28-vpd.yaml would 
+prevent that. This way does more to enforce the overall structure of 
+nodes.
 
-I do not hurry to merge patches. To prevent merge conflict, let's
-merge step by step.
-The drm patches depend on binding document patch, so I would wait for
-binding document merged.
-After drm patch merged, you could merge this patch.
+The one downside I see with it this way is nvmem-layout can't ever have 
+common properties defined without listing them in each layout schema.
 
-vdosys1 patches depend on vdosys0 patches, so just let it around.
+In the end, I'm okay with either way.
 
-Regards,
-Chun-Kuang.
-
->
-> Regards,
-> Matthias
->
-> > ---
-> >   include/linux/soc/mediatek/mtk-mmsys.h | 3 +--
-> >   1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc=
-/mediatek/mtk-mmsys.h
-> > index d2b02bb43768..16ac0e5847f0 100644
-> > --- a/include/linux/soc/mediatek/mtk-mmsys.h
-> > +++ b/include/linux/soc/mediatek/mtk-mmsys.h
-> > @@ -16,8 +16,7 @@ enum mtk_ddp_comp_id {
-> >       DDP_COMPONENT_CCORR,
-> >       DDP_COMPONENT_COLOR0,
-> >       DDP_COMPONENT_COLOR1,
-> > -     DDP_COMPONENT_DITHER,
-> > -     DDP_COMPONENT_DITHER0 =3D DDP_COMPONENT_DITHER,
-> > +     DDP_COMPONENT_DITHER0,
-> >       DDP_COMPONENT_DITHER1,
-> >       DDP_COMPONENT_DP_INTF0,
-> >       DDP_COMPONENT_DP_INTF1,
+Rob
