@@ -2,102 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56F24624078
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:56:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD5662407C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbiKJK4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 05:56:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47704 "EHLO
+        id S229956AbiKJK5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 05:57:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbiKJK4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:56:20 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0919968AE3;
-        Thu, 10 Nov 2022 02:56:19 -0800 (PST)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AA6HkCI013421;
-        Thu, 10 Nov 2022 04:56:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=LXs6Llt9Vh2y94hkOvFyZNRZkCDLDTeAl26usvz8sik=;
- b=dEqUJkKrLzJcGnwb4ICm6Ne5AYlc5scUFP7nrGGJ2IldUHssWoYBbufGxUhcO8Tphold
- nJPqO7KytDuNE22ys+Em8lTlDXqLRGTXbsbgwZrsg89oBWKGjFH7qQJZy/2rpxYx0Yaj
- 9/bxaQSdIhYvE8X8rZI32n7x29vF36KGSuqpNvecJr/8T7jU8RL4vqJx61tGJXt5l2j3
- /Nw8G/2UyiCR8R6hHL/PumN+JTWpoZc8Eh0GtHwmZbL2GAxOrqmMohyIccwdxLYVc6r2
- 2PfOGYLBK/HhI/V9L4VQZYwYAuOvCOUCQ04+qP4LaTG6MDvdxx78JICb6BVLpKwLyDkZ 8A== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3knn81pse1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Nov 2022 04:56:06 -0600
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Thu, 10 Nov
- 2022 04:55:57 -0600
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.15 via Frontend Transport; Thu, 10 Nov 2022 04:55:57 -0600
-Received: from [198.90.251.111] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.111])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0A35D476;
-        Thu, 10 Nov 2022 10:55:57 +0000 (UTC)
-Message-ID: <43a6c801-e76f-7a03-af18-194cad14cbe0@opensource.cirrus.com>
-Date:   Thu, 10 Nov 2022 10:55:56 +0000
+        with ESMTP id S229708AbiKJK5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:57:15 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A09768C58
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:57:14 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id z24so895202ljn.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:57:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bHPM2i7K3k3L90f+QEXIGR519m1X/vy+ZwEgYGXrDwU=;
+        b=W8VDIqO93VmgP15x80i2BODzF68QO6b9O1vVWA7fIi0a7umKK08QsSnoGxFmSFCpMR
+         GIC3bnckwRq7BGM2zFdaBCCs4Z99GN0at3FgXgm24NytJZv2lg43HVBXCRE34ILb+gNy
+         GgcsIeERm1wBhLnrRpwDS7/CYirW71juHJN2qOsUfJYyAamzndmjaWFzvHFWEsiaVePi
+         lDXZb9zwPO6QJaQZw+K02Wo1GkRksx/MJ7bGX1zM4qY/EhFXkae70m5jCWl2xzKr0LA4
+         cw7euzs+Hfzicd4/ABFWMJClFuOzNLDUKzA3C+IaJOXecLvr5ixSJToRTc15c/dCOm/V
+         bD9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bHPM2i7K3k3L90f+QEXIGR519m1X/vy+ZwEgYGXrDwU=;
+        b=SLG4ncEJOGnowT+p/t7UZQuf4Yh0gszjt5ykWNRblBRosHnrq3PzhqhQCWmr8PqeKk
+         AhKX7W9DxuG4DZ40oYMMMy4wzJc4yKw/gvRSq7//nQf3n7NtzjWvsCanDOWz/p0/Z1HV
+         pC37JkGXHmuaoSDCaImFko75gM8Cdxtf7fnjTvn9KSXOLUtlIyplLy3DywC6TUOsljfl
+         8EVcXZaG8TdaLUZRPix7DVdPI4lCpcHv1b5pzv2iHpnLzFXXdA4895RYKAW7kDiZEz0o
+         GDXELJy/J0nm5UxVTkaZYJzEy2kWiAVeYcN/9t8eEh7rfAfISmiYDjtnPVxU05zqqjqj
+         jj9Q==
+X-Gm-Message-State: ACrzQf0zOUcWU3V9604K9BlJP/qCCxihVetLxINY6Ukwqlm89YQ2XnK4
+        aXdpIlUdvHcqll1K9bwC27jjwSYo1LUdJg==
+X-Google-Smtp-Source: AMsMyM5wckZz18t79KKJ38NNmINYSRSk5rJP7+/sWzVBy85LFl9nShC95LyNpaT+XxoAPd/iMPxtIQ==
+X-Received: by 2002:a2e:87cd:0:b0:277:37a8:ba87 with SMTP id v13-20020a2e87cd000000b0027737a8ba87mr8064253ljj.14.1668077832686;
+        Thu, 10 Nov 2022 02:57:12 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id c20-20020a056512075400b0048a9e18ae67sm2686771lfs.84.2022.11.10.02.57.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 02:57:12 -0800 (PST)
+Message-ID: <490d26ce-a09c-db16-93b1-8f468a5c3f87@linaro.org>
+Date:   Thu, 10 Nov 2022 11:57:11 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 05/12] pinctrl: cirrus: Add support for CS48L31/32/33
- codecs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: edac: Add bindings for
+ Xilinx Versal EDAC for DDRMC
 Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <broonie@kernel.org>,
-        <tglx@linutronix.de>, <maz@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-References: <20221109165331.29332-1-rf@opensource.cirrus.com>
- <20221109165331.29332-6-rf@opensource.cirrus.com>
- <CACRpkdbY7W2rDZ4knkrRHBSTn7MKYV3LYh_r8Wkn1Hh=j+oL5A@mail.gmail.com>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-In-Reply-To: <CACRpkdbY7W2rDZ4knkrRHBSTn7MKYV3LYh_r8Wkn1Hh=j+oL5A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     linux-edac@vger.kernel.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org, tony.luck@intel.com,
+        mchehab@kernel.org, michal.simek@xilinx.com, git@amd.com,
+        robh+dt@kernel.org, james.morse@arm.com, rric@kernel.org
+References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
+ <20221107062413.9642-2-shubhrajyoti.datta@amd.com>
+ <166807145377.16822.15787804198836912482.b4-ty@linaro.org>
+ <Y2zL3OXBNfR/VNPK@zn.tnic> <207ae5bd-dbc2-9c4b-2acc-bda480da711e@linaro.org>
+ <Y2zYqetP6IhG01Bg@zn.tnic>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y2zYqetP6IhG01Bg@zn.tnic>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: tZ_GrKpiLWxf-mqAUCAcqZgSBPBr6Fbv
-X-Proofpoint-GUID: tZ_GrKpiLWxf-mqAUCAcqZgSBPBr6Fbv
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 10:02, Linus Walleij wrote:
-> On Wed, Nov 9, 2022 at 5:53 PM Richard Fitzgerald
-> <rf@opensource.cirrus.com> wrote:
+On 10/11/2022 11:55, Borislav Petkov wrote:
+> On Thu, Nov 10, 2022 at 11:03:43AM +0100, Krzysztof Kozlowski wrote:
+>> Unless you mean some EDAC-tree Patchwork tests, what's in the next
+>> matters. Both patches will be in next, so no warnings.
 > 
->> From: Piotr Stankiewicz <piotrs@opensource.cirrus.com>
->>
->> Codecs in this family have multiple digital I/O functions for audio,
->> DSP subsystem, GPIO and various special functions. All muxable pins
->> are selectable as either a GPIO or an alternate function.
->>
->> Signed-off-by: Piotr Stankiewicz <piotrs@opensource.cirrus.com>
->> Signed-off-by: Qi Zhou <qi.zhou@cirrus.com>
->> Signed-off-by: Stuart Henderson <stuarth@opensource.cirrus.com>
->> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> Yeah, that is correct.
 > 
-> This looks OK.
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>> If you take it, then all other patches touching these files in this
+>> cycle must go via your tree.
 > 
-> Does this patch have compile-time dependencies on the other
-> patches or is it something I can just merge separately?
+> Do you expect that happening this cycle?
 > 
+> If so, then we can do them this way and I'll ignore those warnings.
+> 
+>> Sure, I'll provide feedback and drop the patches.
+> 
+> Right, in the past devicetree and driver patches for EDAC drivers have
+> gone together through my tree but if you anticipate conflicts then sure,
+> let's split them.
 
-It has compile-time dependencies on the MFD at least.
-I should have said that in the cover letter.
+I don't anticipate more work for current cycle... but I also did not
+anticipate such in other occasions (e.g. recently Tegra binding
+headers), so my anticipation is not accurate. :)
 
-> Yours,
-> Linus Walleij
+Best regards,
+Krzysztof
+
