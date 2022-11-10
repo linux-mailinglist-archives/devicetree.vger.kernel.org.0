@@ -2,82 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BA6624AF2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 20:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE99624B09
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 20:56:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231234AbiKJTv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 14:51:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        id S231277AbiKJT40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 14:56:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbiKJTv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 14:51:26 -0500
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262E04875F;
-        Thu, 10 Nov 2022 11:51:25 -0800 (PST)
-Received: by mail-oo1-f43.google.com with SMTP id r76-20020a4a374f000000b004988a70de2eso397338oor.2;
-        Thu, 10 Nov 2022 11:51:25 -0800 (PST)
+        with ESMTP id S230043AbiKJT4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 14:56:25 -0500
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0ECF65CD
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 11:56:24 -0800 (PST)
+Received: by mail-il1-x136.google.com with SMTP id e19so1559898ili.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 11:56:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Twz3HFkY0DUZdHars31wPyhZ+a4OgI/3MwirkEIRfE=;
+        b=vxpf/dup7yqM+TS7ew3fZE8UbuXbFiiYGNa8BGH+IzAiZBLqSl1QJLOuXYZRk49Opr
+         ccW91uwM5gFfypHAIoBbufnMkMmezn7sWyodKkrBdHU7kpkMobtlVHgTUudN0C+ysZ9q
+         1iarSJhxzZCZU6Y0QPoFYYG5HB6d9OSNlP5zH4OqkAvmM+ilrTv34BZkCP+6SgF5yJV3
+         PgHd8l7u2Rtp1r5uB/5s8oNtOzvq8D54+bA3evTfLkfrIPUICLjjp38yeOQvniEyRmAq
+         KmN9aWAUEegVjnuLZ3v7f3jFhOepPvkPAA++9deziJXntMU6FKIWFBZBfp3OJoHv/+0y
+         sY/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NHDl1k+IjjiluFcAgubPN6Bxc9jMrBAyPXl0OSR6rYM=;
-        b=VtpCCu+QWuUOU7sr/u3PZnILHzEYcWNZ3eQCHupFAMk7M9YioHsj04/MkluO6uaHca
-         cpt01/7DGcxlCqRNAOJCJA4u/W3Ukxawsy2g5/vcbj4VfSI94DAlRM6zQ5eGvUHbcozp
-         PXvNwiinoi6Kf33v28XTdYmhneN9dy5UUrFJp5mhIot4Dz82EZWWDNjYqafWWOfg26bR
-         w+v14NYhsEgYcIEbXbNnxxPpM56EBfGZZWyuDBlJ0jeZuGbCcDU7o5Fj9GrBqcrJ5I5X
-         QqVDe6rZDMqUWc+D0X94EQdrcvUj0Ojj4an6+oOyotepaCSTY1c30CTvYCdOC98yvzvA
-         xdKQ==
-X-Gm-Message-State: ACrzQf0ZFimj2e62nNPfljJU/bQWGjznfTAJa9A8JgzlulIZVkHPWk2q
-        LADotISDXxgQr8xv+LylZQ==
-X-Google-Smtp-Source: AMsMyM42TMLEWT5X00LepXMJ6bck7ezJKFStYZUnzpZw+gjBVLGQJz6I7y6kxftZhYYaUO3TCmuiiQ==
-X-Received: by 2002:a4a:d129:0:b0:49e:1b6a:3c57 with SMTP id n9-20020a4ad129000000b0049e1b6a3c57mr1706373oor.32.1668109884380;
-        Thu, 10 Nov 2022 11:51:24 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t25-20020a4adbd9000000b0049427725e62sm132430oou.19.2022.11.10.11.51.23
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Twz3HFkY0DUZdHars31wPyhZ+a4OgI/3MwirkEIRfE=;
+        b=BEWQ3TcSfppfvodaxPPTEtP2y8IZFDeBAx+jVx2JsXmKOYGPhu9XKZAXU06+uTjtPE
+         WgDtivwaQh8tWr6o9lelJvKgxjTNl3BD9PQVKO8WEMULOVAPTxxjhA8a35VzK7W3SCBv
+         WpYXfsUy+JZsyTVYBxAAmQPj4DlB/x40sxxqYK12TVsi+kj6PMKRfi3s/32AETL52968
+         7oxgMXC6V7T0kc8bhjEzxdbZ3qt33rx3jAmNoMH1agYoj8IVjhFRYcgSVCLUqjVaRu/W
+         +YMtrZetmlthg/VnDd6IhQcCeeghsLZYyQJG+3YuzdVdkuiREdGGn9WOKolG8gs8hyEY
+         /sEA==
+X-Gm-Message-State: ANoB5pk97KKMg/j96C46fIuazPtmVgCHaF+Y9jGFT9fYGkhp9KRacx17
+        Sjk0so2cohwu/eas9LnhZBE/ZA==
+X-Google-Smtp-Source: AA0mqf77lvAH0WGbBO1SwQ3eSIi5lR1A16iRQkE39Azljgg7ogvSEytDdx/46q62XhE4Yjow3m4A2Q==
+X-Received: by 2002:a92:c80f:0:b0:302:391a:f67b with SMTP id v15-20020a92c80f000000b00302391af67bmr455658iln.265.1668110184008;
+        Thu, 10 Nov 2022 11:56:24 -0800 (PST)
+Received: from presto.localdomain ([98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id l2-20020a6b3e02000000b006bbddd49984sm28602ioa.9.2022.11.10.11.56.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 11:51:23 -0800 (PST)
-Received: (nullmailer pid 884033 invoked by uid 1000);
-        Thu, 10 Nov 2022 19:51:25 -0000
-Date:   Thu, 10 Nov 2022 13:51:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andy Yan <andyshrk@163.com>
-Cc:     linux-arm-kernel@lists.infradead.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, pgwipeout@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: rockchip: Add Rockchip rk3566 box
- demo board
-Message-ID: <166810988279.883926.4699648145983985104.robh@kernel.org>
-References: <20221105095935.958144-1-andyshrk@163.com>
+        Thu, 10 Nov 2022 11:56:23 -0800 (PST)
+From:   Alex Elder <elder@linaro.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 0/2] dt-bindings: net: qcom,ipa: relax some restrictions
+Date:   Thu, 10 Nov 2022 13:56:16 -0600
+Message-Id: <20221110195619.1276302-1-elder@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221105095935.958144-1-andyshrk@163.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The first patch in this series simply removes an unnecessary
+requirement in the IPA binding.  Previously, if the modem was doing
+GSI firmware loading, the firmware name property was required to
+*not* be present.  There is no harm in having the firmware name be
+specified, so this restriction isn't needed.
 
-On Sat, 05 Nov 2022 17:59:35 +0800, Andy Yan wrote:
-> Add device tree binding for Rockchip rk3566 box demo board.
-> 
-> Signed-off-by: Andy Yan <andyshrk@163.com>
-> 
-> ---
-> 
-> Changes in v2:
-> - Move it before rk3568 evb
-> 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+The second patch restates a requirement on the "memory-region"
+property more accurately.
 
-Acked-by: Rob Herring <robh@kernel.org>
+These binding changes have no impact on existing code or DTS files.
+These aren't really bug fixes, so no need to back-port.
+
+David et al, to be clear, I intend for this to be taken through the
+netdev tree.  Thanks.
+
+					-Alex
+
+Alex Elder (2):
+  dt-bindings: net: qcom,ipa: remove an unnecessary restriction
+  dt-bindings: net: qcom,ipa: restate a requirement
+
+ .../devicetree/bindings/net/qcom,ipa.yaml     | 19 ++++++-------------
+ 1 file changed, 6 insertions(+), 13 deletions(-)
+
+-- 
+2.34.1
+
