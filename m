@@ -2,112 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ECC16248F7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E149462492F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230392AbiKJSCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 13:02:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44636 "EHLO
+        id S229932AbiKJSQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 13:16:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbiKJSCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:02:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAE051C1F;
-        Thu, 10 Nov 2022 10:02:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B5B3961535;
-        Thu, 10 Nov 2022 18:01:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 997D2C43470;
-        Thu, 10 Nov 2022 18:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1668103319;
-        bh=M5rLoXR2mfR5eibPRb489KjTPMmgEjz5/iycQIHsWR4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pGzEw2+yOnxRsIIVA0+iBwtr3LOMH7Q83xpdEZPvMwb1jfwyh4KKnez8yDjPMqQMh
-         +pmbSydihJ6VKMiHhcG64h8pLMZbNwXY8I+3SPhUg2hdNOY1mbAFyZZk2dIcphSIFZ
-         ATfk2JhyEXa7bauWGczy1IMALyOiyacgtPz86sIg=
-Date:   Thu, 10 Nov 2022 19:01:56 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, saravanak@google.com, geert+renesas@glider.be,
-        krzysztof.kozlowski@linaro.org, robh@kernel.org
-Subject: Re: [PATCH RESEND v4 0/2] drivers: bus: Add Freescale i.MX8qxp pixel
- link MSI bus support
-Message-ID: <Y208lGQ7aFXsRDO6@kroah.com>
-References: <20221017074039.4181843-1-victor.liu@nxp.com>
- <55b3aaac5085761c2ac274f9faabd252acdd8418.camel@nxp.com>
+        with ESMTP id S231381AbiKJSQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:16:45 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB563FB9E;
+        Thu, 10 Nov 2022 10:16:45 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id z6so1400324qtv.5;
+        Thu, 10 Nov 2022 10:16:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3Z58AeNmEAdanH7tqm9VK4MJyz0UdkwvRESSSnvfEpM=;
+        b=KAXLSE5a4V5UyLE5YM6SIkQBfZn/oVuUzWW2uhj5M57quPU28CfiN7PES3b5ZE1kVf
+         QcGHBhKhRGGdGEo1R9P1o0oMD5NrRsqGZDGgdZhhaDmBa/BZFmODrAMz3WIds/eFGlhF
+         jsB3VTddkTpROmNy9nQv88M3yVJ4HrITu4UJt+AlZYsZ/bWD0NP28/+3JvAkaB8pKEEi
+         ddG8pykKIGcDat4d+1+qvvEi3s86NM7QeY0qRt/Xwy2I2h3e//PJ4FVBnTEjIUjmx3x8
+         JOWPHrSm7l16JBMEfUUY4zmDkNBXeDY4lp4TPVu7mMl50dT4QIHqvYaPIM18mHAq2+fu
+         sjbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Z58AeNmEAdanH7tqm9VK4MJyz0UdkwvRESSSnvfEpM=;
+        b=7DBwdOxqrNxSXrDjz5ikTED53hj/qUoe4vxkFuZaAYMqCwETV18BN2uv0fyHs6IwXU
+         JjQrb4sfmJ+NtXsbjI6MJwxuoSFhfEaIUdgdgJl2IbDtFT+RC4TDgesyEZcJ7/b5AKbz
+         VGtOZzHIFRCqKx3HVESfFFB5KKts58IMb4880taUkRFjZ4PdUr5uC+d8OYH7LhUxc6Q3
+         Ig9OqurOAEnKIMm6fhHiZB//cpIfZh85lxt8R4s9wr56G8Rsz6jOOnyunTS3UdpMzoE7
+         Iw3FiOFaoTKPorWlXO0ZgxOCKqYOhpNvU2gGSrreEZ/cj2DTbUu7djhyV0zdhsCMQqwy
+         a2oQ==
+X-Gm-Message-State: ACrzQf309rxZhdHxQ7lclqi5Vj2YxtVdHlhw4PHf7pbbZ0OblzmTYIpm
+        c8/co5SoCdsmbTLfAQ6Til8=
+X-Google-Smtp-Source: AMsMyM6VS+5W7e6THCwLUKPHdeenKMZPByMDE7O71Tc9hZGg65Rp02R9T30RbYbmZ1D+AONQnKkiYA==
+X-Received: by 2002:ac8:5d8a:0:b0:39c:d3a8:3f91 with SMTP id d10-20020ac85d8a000000b0039cd3a83f91mr52653557qtx.324.1668104204297;
+        Thu, 10 Nov 2022 10:16:44 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id fd7-20020a05622a4d0700b0039a372fbaa5sm11586504qtb.69.2022.11.10.10.16.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 10:16:43 -0800 (PST)
+Message-ID: <a843cb62-ea72-74b6-589b-9db98477f169@gmail.com>
+Date:   Thu, 10 Nov 2022 10:16:39 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55b3aaac5085761c2ac274f9faabd252acdd8418.camel@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 0/2] ARM: dts: bcm283x: Switch to firmware clocks for
+ Pi0-3
+To:     maxime@cerno.tech, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-rpi-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-kernel@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>
+References: <20221026-rpi-display-fw-clk-v1-0-5c29b7a3d8b0@cerno.tech>
+Content-Language: en-US
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20221026-rpi-display-fw-clk-v1-0-5c29b7a3d8b0@cerno.tech>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 04:30:57PM +0800, Liu Ying wrote:
-> On Mon, 2022-10-17 at 15:40 +0800, Liu Ying wrote:
-> > Hi,
-> > 
-> > This series aims to add Freescale i.MX8qxp pixel link MSI bus support
-> > by using the existing simple-pm-bus driver. A power domain and two input
-> > clocks need to be enabled before the MSI bus accesses it's child devices,
-> > which matches what a simple power-managed bus is(See simple-pm-bus.yaml).
-> > 
-> > Patch 1 enables/disables functional clock(s) as a bulk in the
-> > simple-pm-bus driver when the simple-pm-bus is being power managed,
-> > since the MSI bus takes the two input clocks as functional clocks.
-> > 
-> > Patch 2 adds dt-bindings for the MSI bus.
-> > 
-> > v3->v4:
-> > * Drop patch 1 in v3, because simple-bus/simple-mfd devices probed by the
-> >   simple-pm-bus driver should not be child nodes of simple-pm-bus at all,
-> >   as simple-bus/simple-mfd's child devices PM operations cannot be propagated
-> >   to simple-pm-bus. Those simple-bus/simple-mfd devices needs dedicated drivers.
-> > * Drop unnecessary 'bus == NULL' check from simple_pm_bus_runtime_{suspend,resume}.
-> >   for patch 1 in v4. (Geert)
-> > * Add Geert's R-b tag on patch 1 in v4.
-> > * Add child nodes in the example MSI bus node of the MSI bus dt-binding. (Krzysztof)
-> > * Resend v4 to imply this series is based on v6.0-rc1 so that there are not any
-> >   dependencies for the MSI bus dt-binding. (Rob)
-> > * Resend v4 based on v6.1-rc1. (Greg)
-> > * Add Rob's R-b tag on patch 2 in v4.
-> > 
-> > v2->v3:
-> > * Add a pattern property to allow child nodes in the MSI bus dt-binding. (Rob)
-> > 
-> > v1->v2:
-> > Address Krzysztof's comments on patch 3:
-> > * Add a select to explicitly select the MSI bus dt-binding.
-> > * List 'simple-pm-bus' explicitly as one item of compatible strings.
-> > * Require compatible and reg properties.
-> > * Put reg property just after compatible property in example.
-> > 
-> > Liu Ying (2):
-> >   drivers: bus: simple-pm-bus: Use clocks
-> >   dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding
-> > 
-> >  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 232 ++++++++++++++++++
-> >  drivers/bus/simple-pm-bus.c                   |  48 ++++
-> >  2 files changed, 280 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+On 10/26/22 06:17, maxime@cerno.tech wrote:
+> Hi,
 > 
-> Gentle ping...
+> Over the years, the differences between the Pi0-3 and the Pi4 created a bunch
+> of issues in the KMS driver that trace back to the policy differences between
+> the clk-bcm2835 and clk-raspberrypi drivers.
 > 
-> If there is no more comments on this series, can someone pick it up
-> please?
+> Instead of piling hacks over hacks to work around those differences, let's just
+> follow what downstream is doing and use the clk-raspberrypi for all the KMS
+> related devices.
+> 
+> Let me know what you think,
 
-I'll take it, thanks.
+Maxime, please fix your git configuration such that the author of the 
+patches is:
 
-greg k-h
+Maxime Ripard <maxime@cerno.tech>
+
+and not:
+
+maxime@cerno.tech
+
+which git am then translates into maxime@cerno.tech <maxime@cerno.tech>
+
+causing the email vs. author checks to fail on my end (and then in 
+linux-next).
+
+Thanks!
+-- 
+Florian
+
