@@ -2,166 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9BAD623AAD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 04:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 216EF623ABF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 05:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbiKJDw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Nov 2022 22:52:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52142 "EHLO
+        id S230093AbiKJEBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Nov 2022 23:01:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiKJDwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 22:52:25 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A42CF20BE4;
-        Wed,  9 Nov 2022 19:52:24 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5454DB8208A;
-        Thu, 10 Nov 2022 03:52:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32AB8C433C1;
-        Thu, 10 Nov 2022 03:52:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668052342;
-        bh=lFcBZSotaNJJMeV7gZx5otDWIzaZmFElYU6GelPw+R4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YG1JQQSlFj1ALTWAd/W1wBPEPZKk3YznzwB66Dpfe+S7ntBwly3kuG0Dlu8ZC4wO2
-         MrZl2dcmdecLIweeV1i4NqHUHlm+vwU3vAKw6UgCbXvAlIGd3fFPa3ZuzxuCzT157N
-         c2li8g27beZpdedYQQ7DVjnORyKLwuxy1rtCE40l5lDET9sEhpUqvPctVrqi7XidaR
-         +QlTgVLMvn477qZSDeWY2r4yZtkLhuoifn+/Mo+ImfUdWiw9lrO6DTfzGt9y6nhSvt
-         uu3ncsHMtPtG0wkDOd3I4fK7joRn83hfx3kWsPbHz/559Nwct/tyw74lh2P9xeBhc8
-         qw4nI5IBCTPqw==
-Date:   Wed, 9 Nov 2022 21:52:19 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, patches@linaro.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add a device tree for PMK8350 on
- SID6
-Message-ID: <20221110035219.3ohl2637fou6427t@builder.lan>
-References: <20221109111236.46003-1-konrad.dybcio@linaro.org>
- <20221109111236.46003-4-konrad.dybcio@linaro.org>
+        with ESMTP id S232487AbiKJEA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Nov 2022 23:00:57 -0500
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9402B3134F;
+        Wed,  9 Nov 2022 20:00:54 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so1021906fac.1;
+        Wed, 09 Nov 2022 20:00:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6cl67aM0A8kGCsNU3bcMg/7JOPhSo1g2SCxTElIolKU=;
+        b=O5dQhExP2QXj1aJlV0DJ1PDLJOXFST30H74vaf/EojhI0TF2h4By2tAYw5AFdymYfW
+         JVw5ChI6NjiTUSU3oiREx3BR1i9PsC6CL2rbANiB2BJL0VcPPsSmSkfNXWHCCHbgs+tm
+         LSGjZShNcqb33FNwOijfWz4SaN1eb2TeHF18G9I8j9OPLQvzUa1UCIM702yHKmxs6KIE
+         tJE2R3VIaSjucxqN3ZEBooTeBXvxURp3z0i2Nkz3wA/AiKSsg8PQRzrUgbnZCR4168JF
+         UnSo5wqRmYit6Nk78e7wI4MbF0bF/OfEI+yMifsuzqDN8BzigdRvyFr9ZNxAEmHivB81
+         Z/aw==
+X-Gm-Message-State: ACrzQf2TIwt4CDeJGRfrd9fr45inXKLPAg8K1n7jfqL/A7IxmUrTkNrj
+        7iVw7k9xesnU/zGF3xhHDBVqu05G1A==
+X-Google-Smtp-Source: AMsMyM4XoNOIKGVSS0bQjbFxmDKYAfgcx2uRNlK04pww5KVRKRTVn3dv2hl11PBsH0G7DwvoWgs5nw==
+X-Received: by 2002:a05:6870:4188:b0:12d:484a:2592 with SMTP id y8-20020a056870418800b0012d484a2592mr46671854oac.5.1668052853778;
+        Wed, 09 Nov 2022 20:00:53 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id er33-20020a056870c8a100b00131c3d4d38fsm7002740oab.39.2022.11.09.20.00.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Nov 2022 20:00:53 -0800 (PST)
+Received: (nullmailer pid 3448323 invoked by uid 1000);
+        Thu, 10 Nov 2022 04:00:55 -0000
+Date:   Wed, 9 Nov 2022 22:00:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Christian Eggers <ceggers@arri.de>,
+        Cory Tusar <cory.tusar@pid1solutions.com>
+Subject: Re: [PATCH v3 6/6] dt-bindings: nvmem: add YAML schema for the ONIE
+ tlv layout
+Message-ID: <20221110040055.GA3436769-robh@kernel.org>
+References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
+ <20221104163833.1289857-7-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221109111236.46003-4-konrad.dybcio@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221104163833.1289857-7-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 09, 2022 at 12:12:28PM +0100, Konrad Dybcio wrote:
-> PMK8350 is shipped on SID6 with some SoCs, for example with SM6375.
-> Add a DT with the SID changed to allow it to work.
+On Fri, Nov 04, 2022 at 05:38:33PM +0100, Miquel Raynal wrote:
+> Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
+> compatible networking device.
 > 
-> Unfortunately, the entire DT needs to be copied even if the diff is
-> very little, as the node names are not unique. Including pm6125 and
-> pmk8350 together for example, would make pmk8350 overwrite the pm6125
-> node, as both are defined as 'pmic@0'.
-> 
-
-This seems to work in this case, but we have the same situation in other
-places where the labels just don't add up with the schematics.
-
-That's why I ended up just defining all the pmics in sc8280xp-pmics.dtsi
-and then the separate set in sa8295p-adp.dts.
-
-Regards,
-Bjorn
-
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi | 73 ++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |   1 +
+>  .../nvmem/layouts/onie,tlv-layout.yaml        | 115 ++++++++++++++++++
+>  2 files changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi b/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> index f64ea2fa362d..8512ee538c4c 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> @@ -19,6 +19,7 @@ description: |
+>  
+>  oneOf:
+>    - $ref: kontron,sl28-vpd.yaml
+> +  - $ref: onie,tlv-layout.yaml
+>  
+>  properties:
+>    compatible: true
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
 > new file mode 100644
-> index 000000000000..00390f8b9c97
+> index 000000000000..1d91277324ac
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
-> @@ -0,0 +1,73 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Linaro Limited
-> + */
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/layouts/onie,tlv-layout.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
+> +title: NVMEM layout of the ONIE tlv table
 > +
-> +&spmi_bus {
-> +	pmk8350: pmic@6 {
-> +		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
-> +		reg = <0x6 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
 > +
-> +		pmk8350_pon: pon@1300 {
-> +			compatible = "qcom,pm8998-pon";
-> +			reg = <0x1300>;
+> +description:
+> +  Modern networking hardware implementing the Open Compute Project ONIE
+> +  infrastructure shall provide a non-volatile memory with a table whose the
+> +  content is well specified and gives many information about the manufacturer
+> +  (name, country of manufacture, etc) as well as device caracteristics (serial
+> +  number, hardware version, mac addresses, etc). The underlaying device type
+> +  (flash, EEPROM,...) is not specified. The exact location of each value is also
+> +  dynamic and should be discovered at run time because it depends on the
+> +  parameters the manufacturer decided to embed.
 > +
-> +			pon_pwrkey: pwrkey {
-> +				compatible = "qcom,pmk8350-pwrkey";
-> +				interrupts = <0x6 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-> +				linux,code = <KEY_POWER>;
-> +				status = "disabled";
-> +			};
+> +properties:
+> +  compatible:
+> +    const: onie,tlv-layout
 > +
-> +			pon_resin: resin {
-> +				compatible = "qcom,pmk8350-resin";
-> +				interrupts = <0x6 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-> +				status = "disabled";
-> +			};
-> +		};
+> +  product-name: true
+
+This is a node? If so, you need:
+
+type: object
+additionalProperties: false
+
 > +
-> +		pmk8350_vadc: adc@3100 {
-> +			compatible = "qcom,spmi-adc7";
-> +			reg = <0x3100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			interrupts = <0x6 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#io-channel-cells = <1>;
-> +		};
+> +  part-number: true
 > +
-> +		pmk8350_adc_tm: adc-tm@3400 {
-> +			compatible = "qcom,adc-tm7";
-> +			reg = <0x3400>;
-> +			interrupts = <0x6 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#thermal-sensor-cells = <1>;
-> +			status = "disabled";
-> +		};
+> +  serial-number: true
 > +
-> +		pmk8350_rtc: rtc@6100 {
-> +			compatible = "qcom,pmk8350-rtc";
-> +			reg = <0x6100>, <0x6200>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x6 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> +			status = "disabled";
-> +		};
+> +  mac-address:
+> +    type: object
+> +    description:
+> +      Base MAC address for all on-module network interfaces. The first
+> +      argument of the phandle will be treated as an offset.
 > +
-> +		pmk8350_gpios: gpio@b000 {
-> +			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
-> +			reg = <0xb000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmk8350_gpios 0 0 4>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
+> +    properties:
+> +      "#nvmem-cell-cells":
+> +        const: 1
+> +
+> +    additionalProperties: false
+> +
+> +  manufacture-date: true
+> +
+> +  device-version: true
+> +
+> +  label-revision: true
+> +
+> +  platforn-name: true
+> +
+> +  onie-version: true
+> +
+> +  num-macs: true
+> +
+> +  manufacturer: true
+> +
+> +  country-code: true
+> +
+> +  vendor: true
+> +
+> +  diag-version: true
+> +
+> +  service-tag: true
+> +
+> +  vendor-extension: true
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        eeprom@56 {
+> +            compatible = "atmel,24c64";
+> +            read-only;
+> +            reg = <0x56>;
+> +
+> +            nvmem-layout {
+> +                compatible = "onie,tlv-layout";
+> +
+> +                serial-number {
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        flash@0 {
+> +            compatible = "m25p80", "jedec,spi-nor";
+> +            reg = <0>;
+> +
+> +            otp {
+> +                compatible = "user-otp";
+> +
+> +                nvmem-layout {
+> +                    compatible = "onie,tlv-layout";
+> +
+> +                    mac-address {
+> +                        #nvmem-cell-cells = <1>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
 > -- 
-> 2.38.1
+> 2.34.1
+> 
 > 
