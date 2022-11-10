@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC72624982
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 325106249E5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:47:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232029AbiKJScN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 13:32:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S229724AbiKJSr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 13:47:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbiKJScL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:32:11 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906134C27D
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 10:32:08 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id d20so1888133ljc.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 10:32:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3kQxK8NfNtnZoSTX7rrGRiciyplegH3K6ehkOZtQW+E=;
-        b=U01PAeiPFS2Y7qDuxW3DbYZwvOQbpCSH81D+jkRN+hP1m8aTXsoFg80zLwh3olKH19
-         qVUOzA6MFwPkHBk9Am05Z7hZ7uisPOePQ+XqK1t5HIVOm/6eS3E8GTgt5Lkk3z1WWxOx
-         mv5317Ln6OdSRcq4xa2i+RLNT+o9BkBPGNKN9r9PHeSB88Ev4GilLSEj3o/8VJXq+hGc
-         iJaq2UZoPFfDq+viKewhOqbECPmn62tdVRZlwPfYLY8laIqnZyOYGMqZqD6XLxWlAf9B
-         lPPbW3vPmQkHx8ukyb1Ed9gVoODT+HMX05AgqPs6qGeyxez+LZ2Rx+1JWXcWUDHQK67X
-         1HoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3kQxK8NfNtnZoSTX7rrGRiciyplegH3K6ehkOZtQW+E=;
-        b=mAeYZSVlOzhkW0pLf66dqFmn41JOX7TxATo3hCmWW4ZrolrXxK1sJfA6PvZ7lHfpkP
-         hY5r4i1bALxq7a7Y3FYkGmJQxPD2kYxFWTy26R3jBTnLYI6cbOYsi9J72zB6NCYqks1l
-         9IAESUvbn2gc9E/+r+mR5foE/eFTWb5PYlZ81afYwMlqH91COe13xDxJ6OoD4HNLUT8D
-         uUvUK1o95BHtSanvnAb9l35c343FgYawEz9MAwqaXpJmS9AV8ChMGx/CS+2IBZp/IdKp
-         BvsrNUnsoE3ORffBPTD1h2PL0jG7aSWhwv0PXVTD/yvMhaEIGVhpmVMp1kG1Q7oIqbtP
-         Rzxg==
-X-Gm-Message-State: ACrzQf0leo2iVXaXKhdTRKDa0Ix70FdHvjJ1V41HaxloHoFCqRB/f3uH
-        +MPCQbr/D3fcr1JCO+NH/ZyNSg==
-X-Google-Smtp-Source: AMsMyM5rV/gc33ltXWx966I4qPP19/94ZPZJtbpnZndyWoBe5Acmf9klXeJeH9USXuGsf/v4d90nEQ==
-X-Received: by 2002:a2e:9057:0:b0:26f:bda0:cf0d with SMTP id n23-20020a2e9057000000b0026fbda0cf0dmr8727991ljg.227.1668105125517;
-        Thu, 10 Nov 2022 10:32:05 -0800 (PST)
-Received: from eriador.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id m18-20020a197112000000b004a2550db9ddsm2837087lfc.245.2022.11.10.10.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 10:32:05 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 8/8] arm64: dts: qcom: sm8350-hdk: enable PCIe devices
-Date:   Thu, 10 Nov 2022 21:31:58 +0300
-Message-Id: <20221110183158.856242-9-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221110183158.856242-1-dmitry.baryshkov@linaro.org>
-References: <20221110183158.856242-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S230496AbiKJSrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:47:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2257E4B98C;
+        Thu, 10 Nov 2022 10:47:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BC4D661D70;
+        Thu, 10 Nov 2022 18:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E04DC433C1;
+        Thu, 10 Nov 2022 18:47:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668106069;
+        bh=Eb8pRz09JxZ+CgnpKwL02Ekng+XHb16ZA97L7PgePj0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rZrKGXf6VQAFdx7pZgdPTpJ7nfnCp6H/aZpbRWLpLqt5XKRMq+2KhxK2jHcyhwKZh
+         cX3rlSHWgKYfJLst6ABHXZdnIrIbDEVdUTA42yMXskWLlw0IOGPYcDOevnJzyP0bKI
+         f2mdMin+Pcf8JlrbhMJDvc7wWS0tEB5mE8cv7KWTfgBXEen1SyEgx4pI20nenZddTr
+         2BeSAQoZ/60di9DXhB92s2Im1ezzWIUjXSQolYUJP+YwC7pkSWlWafQ6vIQENbqRLk
+         llStIQswB7/fR6NtkKfnerHcV8t6uhRRCagQEqxMBOJYZIQ6dR+S9HP90eU6QtbWAv
+         D14jR138div4w==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1otCaY-005EAY-OI;
+        Thu, 10 Nov 2022 18:47:46 +0000
+Date:   Thu, 10 Nov 2022 18:47:20 +0000
+Message-ID: <87iljmve87.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <broonie@kernel.org>, <tglx@linutronix.de>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic CS48L31/32/33 codecs
+In-Reply-To: <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+        <20221109165331.29332-10-rf@opensource.cirrus.com>
+        <87mt8zutib.wl-maz@kernel.org>
+        <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+        <86pmdvow5y.wl-maz@kernel.org>
+        <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+        <86k042q1uc.wl-maz@kernel.org>
+        <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: rf@opensource.cirrus.com, lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, broonie@kernel.org, tglx@linutronix.de, alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,44 +75,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PCIe0 and PCIe1 hosts found on SM8350 HDK board.
+On Thu, 10 Nov 2022 16:31:06 +0000,
+Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> 
+> On 10/11/2022 15:13, Marc Zyngier wrote:
+> > On Thu, 10 Nov 2022 13:00:50 +0000,
+> > Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> >> 
+> >> On 10/11/2022 12:01, Marc Zyngier wrote:
+> >>> On Thu, 10 Nov 2022 11:22:26 +0000,
+> >>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> >>>> 
+> >>>> On 10/11/2022 08:02, Marc Zyngier wrote:
+> >>>>> On Wed, 09 Nov 2022 16:53:28 +0000,
+> >>>>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> >>>>>> 
+> >>>>>> The Cirrus Logic CS48L31/32/33 audio codecs contain a programmable
+> >>>>>> interrupt controller with a variety of interrupt sources, including
+> >>>>>> GPIOs that can be used as interrupt inputs.
+> >>>>>> 
+> >>>>>> This driver provides the handling for the interrupt controller. As the
+> >>>>>> codec is accessed via regmap, the generic regmap_irq functionality
+> >>>>>> is used to do most of the work.
+> >>>>>> 
+> >>>>> 
+> >>>>> I cannot spot a shred of interrupt controller code in there. This
+> >>>> 
+> >>>> It is providing support for handling an interrupt controller so that
+> >>>> other drivers can bind to those interrupts. It's just that regmap
+> >>>> provides a lot of generic implementation for SPI-connected interrupt
+> >>>> controllers so we don't need to open-code all that in the
+> >>>> irqchip driver.
+> >>> 
+> >>> And thus none of that code needs to live in drivers/irqchip.
+> >>> 
+> >>>> 
+> >>>>> belongs IMO to the MFD code.
+> >>>> 
+> >>>> We did once put interrupt support in MFD for an older product line but
+> >>>> the MFD maintainer doesn't like the MFD being a dumping-ground for
+> >>>> random other functionality that have their own subsystems.
+> >>> 
+> >>> I don't like this stuff either. All this code is a glorified set of
+> >>> interrupt handlers and #defines that only hide the lack of a proper DT
+> >>> binding to express the interrupt routing (it feels like looking at
+> >>> board files from 10 years ago).
+> >>> 
+> >> 
+> >> I didn't understand this. The whole purpose of this is to instantiate
+> >> Linux interrupts for the PIC interrupt sources so that other drivers
+> >> that want to use the interrupts from the CS48L32 PIC can use standard
+> >> kernel APIs or DT to bind against them.
+> > 
+> > There is zero standard APIs in this patch. Does cs48l32_request_irq()
+> > look standard to you? This whole thing makes a mockery of the
+> > interrupt model and of firmware-based interrupt description which we
+> > spent years to build.
+> > 
+> >> 
+> >> The four handlers registered within the driver are done here simply
+> >> because they don't belong to any particular child driver. Since they
+> >> are a fixed feature of the chip that we know we want to handle we may as
+> >> well just register them.
+> > 
+> > Again, they have no purpose in an interrupt controller driver.
+> > 
+> >> If we put them in the MFD with DT definitions it would make a
+> >> circular dependency between MFD and its child, which is not a great
+> >> situation. If it's these handlers that are bothering you, we could move
+> >> them to the audio driver.
+> > 
+> > And what's left? Nothing.
+> 
+> Ah, I see. You've missed that the bulk of the implementation re-uses
+> existing library code from regmap. It does say this in the commit
+> message.
+> 
+>   "the generic regmap_irq functionality is used to do most of the work."
+> 
+> and I've also said this in previous replies.
+> 
+> This is no way driver that does nothing. There's over 1000 lines of code
+> handling the PIC and dispatching its interrupts to other drivers that
+> want to bind to them. It's just that it makes no sense to duplicate 1300
+> lines of interrupt handling code from elsewhere when we can re-use that
+> by calling regmap_add_irq_chip(). That gives us all the interrupt-
+> controller-handling code in drivers/base/regmap/regmap-irq.c
+> 
+> Perhaps you could re-review this taking into account that
+> regmap_add_irq_chip() is significant.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Read again what I have written. Having to expose a device-specific API
+for endpoint drivers to obtain their interrupts, and requiring them to
+know about some magic values that describe the interrupts source are
+not a acceptable constructs.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 0fcf5bd88fc7..d3c851ec3501 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -222,6 +222,26 @@ &mpss {
- 	firmware-name = "qcom/sm8350/modem.mbn";
- };
- 
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	status = "okay";
-+	vdda-phy-supply = <&vreg_l5b_0p88>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+	vdda-phy-supply = <&vreg_l5b_0p88>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+We have firmware descriptions to expose interrupt linkages, and your
+HW is not special enough to deserve its own top level API. Yes, we
+accepted such drivers in the past, but it has to stop.
+
+Either you describe the internal structure of your device in DT or
+ACPI, and make all client drivers use the standard API, or you make
+this a codec library, purely specific to your device and only used by
+it. But the current shape is not something I'm prepared to accept.
+
+	M.
+
 -- 
-2.35.1
-
+Without deviation from the norm, progress is not possible.
