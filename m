@@ -2,63 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20FD623DE8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B83623DEC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 09:51:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbiKJIun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 03:50:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56868 "EHLO
+        id S232509AbiKJIvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 03:51:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232509AbiKJIum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:50:42 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39616582;
-        Thu, 10 Nov 2022 00:50:40 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id EFCE3C000D;
-        Thu, 10 Nov 2022 08:50:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668070239;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=y6R3bK3NsSGu68vXayq2WfqZZ9Uy4g07o50EORmeW7Q=;
-        b=iQD5zYRBxcME416I7SmtNcFWEd2Ph4AghuwHTrsvEXUIAUpSlSg63+vZgiqmM5hNxMR8kD
-        0hGaOe8ipcYTw7ZniV3/kObGtOMjBvfNC/quDAMx+xCK4oZyYMQBZ4W9Qy2WBQTOgzrdHo
-        bYkyH/TzoV9rKMm7Oz7Fa7JR5Cc5Q88I3f9LXEcfJimb+SXfZrAcB0z/4Cai3tmmh5MuVL
-        ibz6Pnh4/tidD4DXjMba6iidUVQ20l6pjDRF+q1BE7rzNUJPY43kbKyR+i6myw49N0Q1mo
-        ccgF5HnUdvNBVomT2QmPjhzobhX7WZyHqIm4CpZPr56IHXBv5/LXCfkGROnVCg==
-Date:   Thu, 10 Nov 2022 09:50:34 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Christian Eggers <ceggers@arri.de>,
-        Cory Tusar <cory.tusar@pid1solutions.com>
-Subject: Re: [PATCH v3 6/6] dt-bindings: nvmem: add YAML schema for the ONIE
- tlv layout
-Message-ID: <20221110095034.7a80163a@xps-13>
-In-Reply-To: <20221110040055.GA3436769-robh@kernel.org>
-References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
-        <20221104163833.1289857-7-miquel.raynal@bootlin.com>
-        <20221110040055.GA3436769-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S229796AbiKJIvr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 03:51:47 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2052.outbound.protection.outlook.com [40.107.22.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F3964C5;
+        Thu, 10 Nov 2022 00:51:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e5ThLcWVY3JhO+Ua0+wB1QBmO7KrNtNKnYluE6Fg2PBhhuTbu+biOnJc6SSUMfVYOdyLhDl9BDk1Fqj50kFj8nY7dW1q9ryjUBhmlt0snsYccdhf+QwniEhy9iNsrL0vi20ljfJ3prd+P8QhdSJuql4itSVj2ykgdQBwiaVW0PDvrQ74EoXV36M9/Q+xkpcrFXmB2vwUTpklarHIwfAdILlIhC16T5PtVdt7h3IXR9Qzbbp9xohV+PKQouK8OjoLPaMjuBLNzrgXYkSkJ3pSI3MLdPGuMXPAlODerB7f3GEuVnQXbh3vm+kFhVXXBP8JABjUxMrsii1Z6GVfQx0c4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=W4iJYHOBtB/4200F+5GNYNN0VShPXkOYdtuppTjdI+g=;
+ b=l+RFwId0Z+BxKK3lHvnuhIdmC1+9AFsneZufUd84fHcMVDAxgSSixlZbT5iaN6N3ORbBEbRgd/QVNRQSntbSOAUjZVwDE+gCO/lDXUeBcm7GgONDkeP3L4nGZ2ImWi6Wyq3/wiFwZJvWF6qqYP8AGPn6JnzT54j2l9dHt0mHT2rat1cCi6mC2VDuNif2gZvj6r+S31jU5U05Okz9UvsJbkcWP6xwaAn/DvlLJJE8uJlrND/T6oVgqT7WoldpKNCjv5n4kx+8ND+fekEZaoDuz6YgUeE+G1foLq1PCnG7V8EwTaQHRLjEhqX1HSoog8bZdkajbsUQ8/a/q9tqgHAE9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W4iJYHOBtB/4200F+5GNYNN0VShPXkOYdtuppTjdI+g=;
+ b=LUVk4jyeXLRjHKJoKlJAyGW1TM1slmttQjg0vOksZzDs+g/pLiezsBbeoMiOx235H6ikT5M63cJgntFVACqIFpLgGsEB9soVYY6kttwzGtgVFHtex8WCOX0e23IjswcT+S2HrMavXKcnhOQOQlcc+PC6Ilu/vxeC4yzEw5EPWeg=
+Received: from AM9PR04MB8506.eurprd04.prod.outlook.com (2603:10a6:20b:431::16)
+ by AM8PR04MB7313.eurprd04.prod.outlook.com (2603:10a6:20b:1c5::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Thu, 10 Nov
+ 2022 08:51:44 +0000
+Received: from AM9PR04MB8506.eurprd04.prod.outlook.com
+ ([fe80::5ff6:2440:a56:6b45]) by AM9PR04MB8506.eurprd04.prod.outlook.com
+ ([fe80::5ff6:2440:a56:6b45%5]) with mapi id 15.20.5791.027; Thu, 10 Nov 2022
+ 08:51:44 +0000
+From:   Jan Petrous <jan.petrous@nxp.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Chester Lin <clin@suse.com>,
+        =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        dl-S32 <S32@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Matthias Brugger <mbrugger@suse.com>
+Subject: RE: [EXT] Re: [PATCH 2/5] dt-bindings: net: add schema for NXP S32CC
+ dwmac glue driver
+Thread-Topic: [EXT] Re: [PATCH 2/5] dt-bindings: net: add schema for NXP S32CC
+ dwmac glue driver
+Thread-Index: AQHY7tOAA/zZjStEYkyi6JcYkhk32q4r3zqAgAHj5ACAAON+gIAIlgXQgAAD14CAAJKUkA==
+Date:   Thu, 10 Nov 2022 08:51:43 +0000
+Message-ID: <AM9PR04MB8506F52B7E88ED1FE64554A1E2019@AM9PR04MB8506.eurprd04.prod.outlook.com>
+References: <20221031101052.14956-1-clin@suse.com>
+ <20221031101052.14956-3-clin@suse.com>
+ <20221102155515.GA3959603-robh@kernel.org>
+ <2a7ebef4-77cc-1c26-ec6d-86db5ee5a94b@suse.de> <Y2Q7KtYkvpRz76tn@lunn.ch>
+ <Y2T5/w8CvZH5ZlE2@linux-8mug>
+ <AM9PR04MB85066636DE2D99C8F2A9F4CDE23E9@AM9PR04MB8506.eurprd04.prod.outlook.com>
+ <Y2wxDc8i4cspaFnx@lunn.ch>
+In-Reply-To: <Y2wxDc8i4cspaFnx@lunn.ch>
+Accept-Language: cs-CZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8506:EE_|AM8PR04MB7313:EE_
+x-ms-office365-filtering-correlation-id: 9916c540-0972-4916-c407-08dac2f8cb08
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4hP4tRDURYkugcQlu1UG1OhubA6DWkToveFKusgDrRbc2j2K0eqQc0i4VJAViwd2DP9wVhaEKx7BILWTjC/MMuy0wD04lrKI0A4/AG5/KxlAinsshV6uoTjH4mHwTkWK+Z1oN4YLJlcv12BXH/AECgzHr3TZ4S86KUanFEU6TvgtPpqD/klPAlFQNmkCRqYpMBBgOVQHzUSB4qSPBmEASZFL9pobt5z4jOhPqD5nuBdgplMTSN4+ypoO15fNKou8rmHpPI6qP6N+fPsmGSSoaFSr8YkPLUDW3xaXx+FMWnlrYZDQuFMsKXOIDdWEBYIGV44yNToO6wfeR/l3VPNGH8a4Rn/bZa187BkTk+E4VsnidLQSA/t9+rwwQrUWMQowcjnVA6AsR50KrpFsH2nkhd8tdTMKx9bmUclqX73jCTO1/+THYeC1VUVa7GwaT2NYjY2GnTNWHyGK6QqXxej4O/FvCaoZgrXBpOjleEknNAxGyMEZCBb4ZKDhn522T6b5y6RCubqQw++x/wZVg7bk9MgCO0MsSUBIpNK6rtjW4QtAF3E0RNQU6+IEhSVYYW8iTXAomc6v6NgGzRgMwQ/Ms/Vtf6Ldd0xBwznPu4y5Yj1A5qSAo3e+WWJ5Uar+o1xZlaet/7RgPxupBxddMYLgm7N9z+EHjV9EH3gAlbTgp92ISCap8ZMKLmkaleM8paLiF1iwHLqchaQyi5ZHj3DBuxNapcLtd1SFrn0GhCVJn/EkeDOnyULIxDRgB2N7aKTLxIleAhV6hU8Xv+6Bg2APsw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8506.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(366004)(376002)(136003)(346002)(39860400002)(451199015)(186003)(83380400001)(86362001)(122000001)(38100700002)(38070700005)(2906002)(44832011)(52536014)(41300700001)(5660300002)(7416002)(8936002)(55016003)(478600001)(6506007)(9686003)(55236004)(8676002)(26005)(76116006)(66446008)(66946007)(4326008)(64756008)(66476007)(66556008)(316002)(7696005)(6916009)(71200400001)(54906003)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?kt340XFzflQhINFY0O+tvIuiWumFVycjcRKdIQrcceAJYcLRF8DlskNtsG?=
+ =?iso-8859-1?Q?7rHjF4QmQzB0TezVPxSJ4XWld5UEgVHVHXJpml+JLdODvWa3kmz/F+wl5k?=
+ =?iso-8859-1?Q?pOmLc6N6zUYSRLffhPaE/R4T6O3XMsKnvr2b2BMnIf1ritS4rv8C6Midbs?=
+ =?iso-8859-1?Q?vvu4l1lHPJU7v49yr9xOcGSMD0M8fyPmOc4KuZZqHsWaUyJ3DwDtlwz0+a?=
+ =?iso-8859-1?Q?xQU8QBnoYURSiUzdu8bbquN7bw7Xy+SxZ/ruqkEHyt4hP4XL7vpkNQ0G4S?=
+ =?iso-8859-1?Q?dT1Hy2reDzMg2bA+LB19RVFYsxnguivEu5x+30DulKscFW0FcziBnkacan?=
+ =?iso-8859-1?Q?ERn2r10eogTDMGPhG6SqQYKh1byEuqKdNKwxWJ2zpIxJpix/s5L9jUj4fV?=
+ =?iso-8859-1?Q?4FmHUzXNmqQRnEMkfqZX5Zaszt7Or2EpHNmue/7LdVm6plqu10xHYIfim6?=
+ =?iso-8859-1?Q?+L9kcSjjYIW1kidT4ST9tkevFMRKr2iT9WLqO4PI19nYo7WGSF8dWLqp0B?=
+ =?iso-8859-1?Q?lbhgzD4LUk55AuSocx4GF+Kiq+zYOsimgdxFovfDkcI6xIh5ogvPfwe6d2?=
+ =?iso-8859-1?Q?R9OexoLQc9s+J1rBCke+LFGT4lMJJq9CPduZAIOIH5hjqwrCeis/mG0qJ/?=
+ =?iso-8859-1?Q?nxhTT/jAo+/jzK2CVg5dmX0hkTlE8QY4KkLRgqtIUFRHhOUhv/h+fLYVR2?=
+ =?iso-8859-1?Q?Ckc/S+5A0GirHdtUNrX/MxrpWK68pU7SUUet+6rYFFcEUcAs1LhwScPfD+?=
+ =?iso-8859-1?Q?+hAG87b6/yBTDNCIrtJkLiGciGGEn1yKGld6AdL/nBzq1Ewc30zsWRgS2A?=
+ =?iso-8859-1?Q?OdUB+hQU/zEH1jEOPXdaeQeLd9+9o+CFf24W8L6McH359SWkLIvpGmC95Y?=
+ =?iso-8859-1?Q?xqFme4TBrac0n6yVMB5FFrmLbJoEaPWD+OsvY2kgbU+VNu76BFPWTF8wtJ?=
+ =?iso-8859-1?Q?kscCanGpuDedtV1Mi+kWQ6uE0jXKm1PzbEc2biuJMmnsScGYysQrGxfCS5?=
+ =?iso-8859-1?Q?evNEkdxw+jaV7Z5F/XoHKyL+m6y6wysf7LStHiSZVXv9ZCpl6KgU8qv4yA?=
+ =?iso-8859-1?Q?j3jyDfEoQTIvghSFNWZOJuhRzePA978KdgCJNeCyCWXG9KeyStgCvo/Lbc?=
+ =?iso-8859-1?Q?ytJmrEEy1SlQ+4grZIhGde06yjihyc1J0co7Eoqkb/p+tiImA+Ajghjd4r?=
+ =?iso-8859-1?Q?KHkDFpGhcDBSht1tQdDw8NmMQySf5DdVoSl5Bb0QcuBK1FGCJVCT34D9YJ?=
+ =?iso-8859-1?Q?5RyZZQiQT8Mp2yukF9Gt0Sz4r7SytKjvbcCI2Bb9Qh1+Jf8C/R7Xj3tdCA?=
+ =?iso-8859-1?Q?a35+6Fnu6p1zcRQXj5hmVW5dT6TtYagu7rZutkv0bR396lUQbtl1tLmBlx?=
+ =?iso-8859-1?Q?/TNyLd1et8F5dnFnqHpQH0Hhcd1iu41BEkqcShReDSt73hkaWlFSAHouQF?=
+ =?iso-8859-1?Q?tXqAfSoYmONlrtLwLQEWQUwPgEcefYDdjdSx9qlqfE8wENBAGM5T2KOkqM?=
+ =?iso-8859-1?Q?Xo/TwyTYdR01g1FKqal0R8ra3uPjVp32v8nUTsFPdUJskHSMEPaZxZltdP?=
+ =?iso-8859-1?Q?XfDcEjlt+rWWI1T7b3pPKZ+GZvi0GyUIpONEDJdeRaTdD0BLoXL8gYI5uO?=
+ =?iso-8859-1?Q?YBfX+5QHgNpc5h/mMlxl3Wyb2wIO45kzWK?=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8506.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9916c540-0972-4916-c407-08dac2f8cb08
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2022 08:51:43.9905
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3iJYPnn/E+eyVhBiUyDEkwOK1thxPfgUApP5IbLenX/xG9l0ZXY11o8FLMEwkFCsMeQsuMCRYy1ZjR/VhfJyHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7313
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,165 +136,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Andrew,
 
-robh@kernel.org wrote on Wed, 9 Nov 2022 22:00:55 -0600:
-
-> On Fri, Nov 04, 2022 at 05:38:33PM +0100, Miquel Raynal wrote:
-> > Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
-> > compatible networking device.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../bindings/nvmem/layouts/nvmem-layout.yaml  |   1 +
-> >  .../nvmem/layouts/onie,tlv-layout.yaml        | 115 ++++++++++++++++++
-> >  2 files changed, 116 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/oni=
-e,tlv-layout.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layo=
-ut.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > index f64ea2fa362d..8512ee538c4c 100644
-> > --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > @@ -19,6 +19,7 @@ description: |
-> > =20
-> >  oneOf:
-> >    - $ref: kontron,sl28-vpd.yaml
-> > +  - $ref: onie,tlv-layout.yaml
-> > =20
-> >  properties:
-> >    compatible: true
-> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-l=
-ayout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layou=
-t.yaml
-> > new file mode 100644
-> > index 000000000000..1d91277324ac
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.y=
-aml
-> > @@ -0,0 +1,115 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/nvmem/layouts/onie,tlv-layout.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NVMEM layout of the ONIE tlv table
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > +
-> > +description:
-> > +  Modern networking hardware implementing the Open Compute Project ONIE
-> > +  infrastructure shall provide a non-volatile memory with a table whos=
-e the
-> > +  content is well specified and gives many information about the manuf=
-acturer
-> > +  (name, country of manufacture, etc) as well as device caracteristics=
- (serial
-> > +  number, hardware version, mac addresses, etc). The underlaying devic=
-e type
-> > +  (flash, EEPROM,...) is not specified. The exact location of each val=
-ue is also
-> > +  dynamic and should be discovered at run time because it depends on t=
+> > > Here I just focus on GMAC since there are other LAN interfaces that S=
+32
+> > > family
+> > > uses [e.g. PFE]. According to the public GMACSUBSYS ref manual rev2[1=
+]
+> > > provided
+> > > on NXP website, theoretically GMAC can run SGMII in 1000Mbps and
+> > > 2500Mbps so I
+> > > assume that supporting 1000BASE-X could be achievable. I'm not sure i=
+f
+> any
+> > > S32
+> > > board variant might have SFP ports but RJ-45 [1000BASE-T] should be t=
 he
-> > +  parameters the manufacturer decided to embed.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: onie,tlv-layout
-> > +
-> > +  product-name: true =20
+> > > major
+> > > type used on S32G-EVB and S32G-RDB2.
+> > >
+> > > @NXP, please feel free to correct me if anything wrong.
+> > >
+> >
+> > NXP eval boards (EVB or RDB) have also 2.5G PHYs, so together with SerD=
+es
+> > driver we support 100M/1G/2.5G on such copper PHYs.
 >=20
-> This is a node? If so, you need:
+> Hi Jan
 >=20
-> type: object
-> additionalProperties: false
+> Does the SERDES clock need to change when going between 1000BaseX and
+> 2500BaseX?
+>=20
+> If so, it sounds like Linux not having control of that clock is going
+> to limit what can be supported.
 
-I thought referencing a schema under a property would be enough?
+No, the SerDes clock remains the same, the change is done internally, witho=
+ut
+any necessity of clock change intervention by GMAC driver.
 
-Indeed in nvmem.yaml we create the property nvmem-layout and make it
-reference nvmem-layout.yaml. Then, in nvmem-layout.yaml:
-
-	 oneOf:
-	  - $ref: kontron,sl28-vpd.yaml
-	  - $ref: onie,tlv-layout.yaml
-
-we reference the different layouts that may apply (very much like what
-you proposed to list the mtd partition parsers, if I got it right).
-
-Isn't it enough?
-
-Then if you look below there is an "additionalProperties: false"
-defined.
-
-> > +
-> > +  part-number: true
-> > +
-
-[...]
-
-> > +  service-tag: true
-> > +
-> > +  vendor-extension: true
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-
-(here)
-
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        eeprom@56 {
-> > +            compatible =3D "atmel,24c64";
-> > +            read-only;
-> > +            reg =3D <0x56>;
-> > +
-> > +            nvmem-layout {
-> > +                compatible =3D "onie,tlv-layout";
-> > +
-> > +                serial-number {
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +  - |
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        flash@0 {
-> > +            compatible =3D "m25p80", "jedec,spi-nor";
-> > +            reg =3D <0>;
-> > +
-> > +            otp {
-> > +                compatible =3D "user-otp";
-> > +
-> > +                nvmem-layout {
-> > +                    compatible =3D "onie,tlv-layout";
-> > +
-> > +                    mac-address {
-> > +                        #nvmem-cell-cells =3D <1>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
-> > --=20
-> > 2.34.1
-> >=20
-> >  =20
-
-
-Thanks,
-Miqu=C3=A8l
+/Jan
