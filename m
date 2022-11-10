@@ -2,71 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B106D6243D9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:09:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11396243F7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:14:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiKJOJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 09:09:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
+        id S231388AbiKJOOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 09:14:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiKJOJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:09:35 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC93E31
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:09:32 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id j4so3542151lfk.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:09:32 -0800 (PST)
+        with ESMTP id S231364AbiKJOOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:14:23 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C43B78300
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:14:05 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id f37so3474307lfv.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:14:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TSp9RRKoGBDuhWqH3ceG3jo0hwUm2X40WFiaDa/p1G0=;
-        b=zt/AT5jD0PJ5GNvaI3hHJFtrPy9FGmDWD83X1tgNTXR2wKBD6E8/OJvMjdyPR286Gh
-         A91NLtnqIocBIodw8kaZx1++Fa3n/0RD4b7RWlfdGrATc5JRo/fwVU1FyIQ9KIM7GN1V
-         LSA+Em6D3wubATg0/DwYCenOVsdbGXaFNW+pNX4jOkVjjTjiPEJ9M2Y8VTEElEMWdfGu
-         V37FD945yHjDOUALHAt4Y0YtJK8Ze96WqqRfTFVe+emsr0PHkSxxPkxHwDi7VayCiBw1
-         WwTbg4FucG+BVVqThxj/CUOY5jCfk6rrqst9n1gRew55l694Jsus9UUMw5clAIWgvtX6
-         bo+w==
+        bh=3Bnc98wbgCB157XtXlJ5NroBNxycOACeQVxm/1SPVs4=;
+        b=Rc8RZYG1UdjHBqHXSpcw7c7Fl3OJIs+mgExR8ZEe+5iDezQTN7XCfKOzGLV02/GFzS
+         f/trH0orM0q51kSUF73Jh+5teXTHMGgop3zKei6pVMxbmjbWjTYs9lq2vQs2RnjphnQ3
+         LgSP8Bc4k/E3y8YRK+/mnx8OBi+H+tM54YOVRgKfdccfzllR8qzxjpbYGQH0mCZgOhUe
+         UhMDSyIlPoNcKmkFND1CIVA6MF+tt9bS735B5d2iMMgsDtOchwiUlt5TpwtcsjOobjzs
+         HDfDXm+QzsaftiReSvZqrCYSwatcVOQ01Beaep3NFZlgzJJJpUKFonaZqqpxfM3s9B+V
+         yfig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TSp9RRKoGBDuhWqH3ceG3jo0hwUm2X40WFiaDa/p1G0=;
-        b=TAqUKJbjg+chb+vcP+zsW+Jtx7dhAZhuWBR7G9mhXxqFUIAiBYd/PURYKbF35c6362
-         VLw/aGlDJTYNvZrv/1yrE4zL5rtsV+3mtePDxNS+npYZKlF0HMb4kwiX78PeWvIj9/jp
-         eV30JkpC0MnaIdjwTNhOFm2Eg5Z4lNBJOgEDAf534g4ipkWglb0Km1SnMHs5pL1BrFYv
-         J29uwqCBqbVj6Tzwdt/RDhvtItIuMDMCKuJCAeLD2erx3Xwg0HfkTShtfVfjBOVxgg+k
-         3POR3ZOo7dAVILFzVGeI4cY2PEKBA5kvOdA5yjSZZB58LXy+fUmGjFuuDbJPhr2qmjCR
-         Emnw==
-X-Gm-Message-State: ACrzQf02Gq7FwXCqA/4gtdQAba4QoGzy0MqncxaapsqkhV5+++C8VWa0
-        Y/k4v5uc3VKtkpdHz90aT3QOTRRnoHVENQ==
-X-Google-Smtp-Source: AMsMyM7go7vn2LsLsVWb0hJ5g/0WoyiU66YXUPE9X1FusIO49Ox/bMvhAfWga9RFiYZW9dqyxDxdbg==
-X-Received: by 2002:ac2:52a9:0:b0:4a2:2f2f:449b with SMTP id r9-20020ac252a9000000b004a22f2f449bmr1561097lfm.235.1668089370868;
-        Thu, 10 Nov 2022 06:09:30 -0800 (PST)
+        bh=3Bnc98wbgCB157XtXlJ5NroBNxycOACeQVxm/1SPVs4=;
+        b=NYRcgjfo1FmbAiLSafeKNNCedwVcw0d1ES3dOIT6SxWc/6B3IpIdTnUXY7j7TdZfIo
+         k0+SR9H1QXo86uMUhiOR05fvCzWTUlqJT4xGr4FtXlmo3/E6OJE+gb2wh4LOdwgFFthP
+         ca6lzsrIN5kWZHk7eEY17JeorE9ru3fkcMMxzWXSyqtFQcZAVKGn8zz3954iMNc6fYAe
+         C24jIvIFgE7ByCeZNxTrmDbkvBT8bEieBgU//2r5Z8wGPn6xbpjOVI6n+GTcrL7lcadM
+         oFJCNHGQj5Hl3oqAgxTyf6Ocwobjzhzpk8dj+p01c8iEEm38xMgnv/LfNo0uhKkdER5K
+         9C5Q==
+X-Gm-Message-State: ACrzQf1tBlLI45JrEYR315UCTfFOQwO5vCJAwV6+qa2i6mDXTSdb7/1w
+        NSTipmarZheVJVwV0lrZHrZ1IQ==
+X-Google-Smtp-Source: AMsMyM4Zc2mDjlY+RRgIUEdLQhsv+UxcTsSgJuQjuIQHS1FrmkKKXs/oNCb5HFgDi7jqXQw2KQ4odg==
+X-Received: by 2002:a05:6512:32b7:b0:4aa:8d5a:2f53 with SMTP id q23-20020a05651232b700b004aa8d5a2f53mr21028085lfe.362.1668089643827;
+        Thu, 10 Nov 2022 06:14:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b004a2c447598fsm2775264lfr.159.2022.11.10.06.09.29
+        by smtp.gmail.com with ESMTPSA id r26-20020ac25c1a000000b00499aefcf68esm2746842lfp.292.2022.11.10.06.14.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 06:09:30 -0800 (PST)
-Message-ID: <8d8b2d1c-617f-43dc-8629-b74ac954fa07@linaro.org>
-Date:   Thu, 10 Nov 2022 15:09:28 +0100
+        Thu, 10 Nov 2022 06:14:02 -0800 (PST)
+Message-ID: <adf8bc44-4cbc-af2a-4ec8-1859a98146d7@linaro.org>
+Date:   Thu, 10 Nov 2022 15:14:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm6375: Add SDHCI2
+Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
+ documentation
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221109144153.53630-1-konrad.dybcio@linaro.org>
- <20221109144153.53630-3-konrad.dybcio@linaro.org>
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Pavel Machek <pavel@ucw.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>
+References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
+ <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
+ <20221109222916.GA2985917-robh@kernel.org> <Y2wwUOJ0KZdt1tZ6@mail.local>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109144153.53630-3-konrad.dybcio@linaro.org>
+In-Reply-To: <Y2wwUOJ0KZdt1tZ6@mail.local>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,17 +96,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 15:41, Konrad Dybcio wrote:
-> Configure the second SDHCI bus controller, which usually the
-> interface used for SD cards.
+On 09/11/2022 23:57, Alexandre Belloni wrote:
+> On 09/11/2022 16:29:16-0600, Rob Herring wrote:
+>> On Tue, Nov 08, 2022 at 07:43:37PM +0100, Alexandre Mergnat wrote:
+>>> - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
+>>> - Add mediatek,mt6357-rtc compatible.
+>>> - Add maintainer
+>>> - Remove the .txt binding file
+>>>
+>>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
+>>>  .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 40 ++++++++++++++++++++++
+>>>  .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 -----------------
+>>>  3 files changed, 41 insertions(+), 32 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
+>>> index 0088442efca1..79aaf21af8e9 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
+>>> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
+>>> @@ -33,7 +33,7 @@ Optional subnodes:
+>>>  		- compatible: "mediatek,mt6331-rtc"
+>>>  		- compatible: "mediatek,mt6358-rtc"
+>>>  		- compatible: "mediatek,mt6397-rtc"
+>>> -	For details, see ../rtc/rtc-mt6397.txt
+>>> +	For details, see ../rtc/mediatek,mt6397-rtc.yaml
+>>>  - regulators
+>>>  	Required properties:
+>>>  		- compatible: "mediatek,mt6323-regulator"
+>>> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
+>>> new file mode 100644
+>>> index 000000000000..bb48c0150f95
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
+>>> @@ -0,0 +1,40 @@
+>>> + # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek MT6397/MT6366/MT6358/MT6357/MT6323 RTC
+>>> +
+>>> +maintainers:
+>>> +  - Alexandre Mergnat <amergnat@baylibre.com>
+>>> +
+>>> +description: |
+>>> +  MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
+>>> +  as a type of multi-function device (MFD). The RTC can be configured and set up
+>>> +  with PMIC wrapper bus which is a common resource shared with the other
+>>> +  functions found on the same PMIC.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - mediatek,mt6323-rtc
+>>> +      - mediatek,mt6357-rtc
+>>> +      - mediatek,mt6358-rtc
+>>> +      - mediatek,mt6366-rtc
+>>> +      - mediatek,mt6397-rtc
+>>
+>> As this is only a compatible string, just fold this into the MFD schema 
+>> doc.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Changes since v1:
-> - use mmc@ node name instead of sdhci@
+> Actually, it probably also supports the start-year property
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What about rest of rtc.yaml schema?
 
 Best regards,
 Krzysztof
