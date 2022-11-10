@@ -2,84 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C926247CD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 710806247E1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:04:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiKJRAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 12:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
+        id S232837AbiKJREB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 12:04:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232237AbiKJRAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:00:51 -0500
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5469A2791D
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 09:00:49 -0800 (PST)
-Received: by mail-pg1-x529.google.com with SMTP id r18so2350436pgr.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 09:00:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XC+lREAOJlgLAcs2t3gy8jxyqE4WrBSZDVI49YPP4fc=;
-        b=S5R1Gt3RrGgwgt3s/LT2AXQscV4vOG8upTFNo8MgkAl6O7TApdBoYKAwbHsq7jss1p
-         bG/1mPBWn+VPwUtsRejiM4X3U98qiWE5klSog/7MfLZuH/9HP+UwwS2hxJE7uDccNNdP
-         FT65CeXjtLAn/QIN+HhC4VLynXa2rAlqaiYOh6IspOGP0tDKiJPlYaG5t1D0nhPqLL9o
-         YH3Trd0yj2i18Gwqmq8cxj7gGJywTwaJz6SXuYMNE+M2W2FTGeAudnBgYZDVqwCoKbD2
-         P4ciY9DDWaPFHRxiy2sSnrgNg4O1xXbxj9mBd4jxF5gMg7HmK8DdPpsp5Pt8KZ68P/vN
-         RIfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XC+lREAOJlgLAcs2t3gy8jxyqE4WrBSZDVI49YPP4fc=;
-        b=Hv7sRceEvzGnOzgw+yyFVQg66lM73bdrAGy1rlS8aQRAOcKy2wsFqWtHO9Im6+7Qb5
-         Q4+jrLCnhOrYgboxAnwQjkDIxzp0R8b+ZVXuoIcVDw2YlbkmXbXf7TMEwJVS6CVvEa0T
-         Jy5NaTBjOYcPlKvMApqE99oVIuTeHdzEl//FTlw/f/mMIL10nktK6jpDNLy/1IjwTT+b
-         87nZ3W04Hcs485hDfwMAVVwKwFHDFyLscybUJXWx6y0GtQykdJWaPZPP10+97ria6Rzn
-         zMo5v/Go5geNmpL3y8lXhVi34hVuDiLZwtOM9gEet8AAGM4XRrJVyWqj8m03rmbKePS8
-         S2JQ==
-X-Gm-Message-State: ACrzQf2uXVdyBCjfhUi34y0FyGaxBNO2dy7hjnAjg2LV17ey/ibYHQ/S
-        goZkDrT62yzi2BQYMR2NETLjZg==
-X-Google-Smtp-Source: AMsMyM40/tH7wKNr79mtqwVgiRRQXZbl5E1ywpoLKjNAapv719barK355ow9dO35ObkfeKmQbjVrnw==
-X-Received: by 2002:a05:6a00:794:b0:56c:318a:f808 with SMTP id g20-20020a056a00079400b0056c318af808mr3005893pfu.11.1668099648683;
-        Thu, 10 Nov 2022 09:00:48 -0800 (PST)
-Received: from localhost ([75.172.139.56])
-        by smtp.gmail.com with ESMTPSA id u15-20020a170903124f00b0017e64da44c5sm11529104plh.203.2022.11.10.09.00.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 09:00:47 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     jerome Neanne <jneanne@baylibre.com>, Andrew Davis <afd@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Cc:     Lee Jones <lee@kernel.org>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, kristo@kernel.org,
-        dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, tony@atomide.com,
-        vigneshr@ti.com, bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-In-Reply-To: <1267bf43-618c-7347-be3a-2792c656d9b6@baylibre.com>
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-5-jneanne@baylibre.com>
- <Y1+q2Usm9ecicXqp@google.com>
- <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
- <20221105000104.rtj3r6ufqwqmepon@keenly> <7heduewjp0.fsf@baylibre.com>
- <5418ac3b-04d7-5e77-7612-c8f168e24621@ti.com>
- <1267bf43-618c-7347-be3a-2792c656d9b6@baylibre.com>
-Date:   Thu, 10 Nov 2022 09:00:47 -0800
-Message-ID: <7hk042agn4.fsf@baylibre.com>
+        with ESMTP id S232823AbiKJRD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:03:58 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CEA642F;
+        Thu, 10 Nov 2022 09:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1668099812;
+        bh=x2t1WEHSv/Xobd4JFvIWEfFa5FRwPCsm+v8kpN8OtL4=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=qbQJb8LsfyFmehWDtMO3aS428gTw8gO+ub3zsckAX0LZpPX4f29zVXvCbI6svFrtG
+         m/fVu6hF3CvPJXllPP0f1E3j8IRCHy8PolvTDLRJ52nMM59l948+36TjORgeDMvhZA
+         rVp/wLJz8HOFiikqJh9qAye8dg/oUDtQrZBoNnEpI49QAhUs6Oit9muRBmPfz0sxpe
+         IYxb0rVZn/Nxwp4ON1MZnYbaizbP69DqUrv6ZzIwaBTeXHgsqh3FDpkbheXPyjXAV+
+         qLtM6SxkZDFeMM8MmMWyBbKOmFmlLTZ7RS9ADqXnfCciKgIxTpRsuPaDpu4xMJ1Rn1
+         Uc8GAVPPQmOwA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [80.245.79.199] ([80.245.79.199]) by web-mail.gmx.net
+ (3c-app-gmx-bs29.server.lan [172.19.170.81]) (via HTTP); Thu, 10 Nov 2022
+ 18:03:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Message-ID: <trinity-e9c6aa94-6656-4d9c-9d9b-90ede6c8e6fc-1668099812662@3c-app-gmx-bs29>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Frank Wunderlich <linux@fw-web.de>
+Subject: Aw: [RFC v3 00/11] Add BananaPi R3
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 10 Nov 2022 18:03:32 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20221106085034.12582-1-linux@fw-web.de>
+References: <20221106085034.12582-1-linux@fw-web.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:VQN4MP4prAKaeyQLdo2F1bcNtu4aIBSNXUEd5DaVlqlo7iiDfD3e/MRde1CxmvKyslJ01
+ irslpCjv+U51lb0D6pDTYdwkEr9/Vi0BMF+t21Y+02yh83JcDo+32werxADltPtMgbeZV/J/ymQO
+ lcvuVTh3t2XadeBpqIsfdCSrZ+sqsWmiLgSk6JhLfcUX6a2iNIcblbRMNynXCNQa2zRdgtphq876
+ FC+xZJlSQVAdlVY/jZ7QDMa+soZRCtQWFHm6ZEdXCpgtzXXBTWyrzVYeReiQQAqpm9AFETsGq9hS
+ L8=
+UI-OutboundReport: notjunk:1;M01:P0:d/Krjwy8YxE=;BwTpPoAIASDm2UbdYKTFs+Zjp6R
+ H9PD04o8pce8Sm0YsxBjQBLgwa9Y3sorQIw+8Zi75ZiWntaG24sLVoH8HA7bbotlgFVs3jtbI
+ lm5+fbMVAKYVgXVxg+q3WM6+sS4ZBuoD1P7Hh36cW3Ey9kQ/FLVxCE+EEesTcTt5kHGskdhkM
+ GVg6Ys1LfcRGpXw6RegvoAiSvBezHlTI9wi2lejCG9jeGhGRVOuSje/tBQIzns9WlMwkYN6gB
+ Tq6YTOH9VM9iuy1tMAVF/q2Yb2iCGr4vvbKk+W5+6sGpr8amSuVfY9ZyoGTr72gybnqmTr0qI
+ cDKJwX2mRE2cnfqYBj9oIKO9CUu6ZrBO7p/Ap/16LpTHM53v2YDn2kjKZB+oYhTqyWQLL96zj
+ kwoNTA3P4s2ehnDfQYdsCQ4pVS3tP7Z6OV87b8V12k3EpoboCK3Kr68xW+/SQDv7RhOoyj+kS
+ TaV5b58TkeGUZkjQ0jbVmxUzRhAcPyuWyvMV6YxUA9h+jhFZlIIt2O/lXaUb6e54asJsEOtYQ
+ m2RtVqIPqWWsHbfjPqQapzAhrgREZ9lQrTZWggF1qSOULrVbJpnXKFWdiEsRhkcCNM8XUF2Ak
+ s0R9g3ycbbigNtx9pQsFDflI0lm9M7674Vv1ALmGVmsQDdLYMm/TkrJL4RPmGQD7RlTXg+l/G
+ 2hUH9MrnscaIgGer3JyOkYQxAUV/GDomqQpnArQPDlDIxCbpieDHi8uoe1pwsHkTiepTq2a2Y
+ 7oCc8zlLKIFNLdq8fwvyKiCjE+uf6d+5I6GnOCH3q6hwnqlsqLeftP9qJr81nOCbIMJ0jVJBn
+ lfBG7EVBlRZOJi147aR6osCXt9SGxqsJ3YcGwuEBmMCxk=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,82 +74,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-jerome Neanne <jneanne@baylibre.com> writes:
+Hi Rob,
 
-> On 09/11/2022 22:59, Andrew Davis wrote:
->> On 11/7/22 3:14 PM, Kevin Hilman wrote:
->>> Nishanth Menon <nm@ti.com> writes:
->>>
->>>> On 13:58-20221104, jerome Neanne wrote:
->>>>>
->>>> [...]
->>>>
->>>>>
->>>>>>
->>>>>> Can you try an compile with W=3D1 please.
->>>>> This raise one warning on mfd:
->>>>> drivers/mfd/tps65219.c:28:12: warning: =E2=80=98tps65219_soft_shutdow=
-n=E2=80=99=20
->>>>> defined but
->>>>> not used [-Wunused-function]
->>>>> =C2=A0=C2=A0=C2=A0 28 | static int tps65219_soft_shutdown(struct tps6=
-5219 *tps)
->>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~~~~~~~~~~~~
->>>>> soft_shutdown has been validated and is used in TI baseline even if n=
-ot
->>>>> hooked in upstream version further to this review:
->>>>> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
->>>>>
->>>>> It was a TI requirement to implement it...
->>>>> Let me know if you want me to remove this function or if we can keep=
-=20
->>>>> it like
->>>>> this.
->>>>
->>>> There are platforms without psci, correct? I think the comment was to
->>>> drop the force override with system-power-controller property,
->>>>
->>>> if (!pm_power_off) {
->>>> =C2=A0=C2=A0=C2=A0=C2=A0tps65219_i2c_client =3D client;
->>>> =C2=A0=C2=A0=C2=A0=C2=A0pm_power_off =3D &tps65219_pm_power_off;
->>>> }
->>>>
->>>> Could still be valid for such platforms, no? I do see that the
->>>> capability that the PMIC has - which is software shutdown is a valid
->>>> feature that we support in many different PMIC drivers. Is'nt the job =
-of
->>>> the driver to introduce the functionality in a manner that is
->>>> appropriate to the OS framework?
->>>
->>> Yeah, I think Nishanth is right here.
->>>
->>> We should probably keep the `if (!pm_power_off)` part so the PMIC will
->>> be used if PSCI is not, but it also allows an easy way to test/use the=
-=20
->>> PMIC
->>> shutdown functionality downstream if needed.
->>>
->>=20
->> Then should be using the sys-off handler API[0] so it doesn't block PSCI
->> which is also switching over[1].
->>=20
->> Andrew
->>=20
->> [0] https://lwn.net/Articles/894511/
->> [1] https://www.spinics.net/lists/arm-kernel/msg1024127.html
-> Can we go for upstream with v7 without tps65219_soft_shutdown. Then if=20
-> everyone agrees with Andrew proposal, I'll submit a separate patch which=
-=20
-> adds implementation of tps65219_soft_shutdown support through sys-off=20
-> handler.
->
-> So that we are not blocking upstream in case further=20
-> discussions/alignment are required.
+can you please take Patches 1+3 of v1 into your tree?
+due to reordering in my tree i missed them in this version
 
-Seems OK to me.  Nishanth?  Andrew?
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=685798
 
-But I think you'll need to at least submit a v8 without the unused
-code/dead code that Lee pointed out.
+pcie-bindings are here:
 
-Kevin
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=690172
+
+i found 1 error in bpi-r3 dts (properties from sfp1 not plural) which i will fix in next version and will drop
+the compile comment in dt overlays.
+
+also i've found this commit:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=363547d2191cbc32ca954ba75d72908712398ff2
+
+so maybe i need to rename my overlay dts files to dtso?
+
+maybe the others can be applied (at least the mt7986 nodes)?
+
+regards Frank
