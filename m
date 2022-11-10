@@ -2,182 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC37F624B7E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 21:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FB26624BA3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 21:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231510AbiKJUQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 15:16:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59108 "EHLO
+        id S231681AbiKJUTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 15:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbiKJUQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 15:16:30 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54F143841
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:16:28 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id b21so2451985plc.9
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:16:28 -0800 (PST)
+        with ESMTP id S231938AbiKJUTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 15:19:35 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F366FE8
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:19:18 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id u2so2237871ljl.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:19:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6TElCG4eFIdf6STksjddJrggUNxP/AlOjbuXBcSw0mM=;
-        b=sfzP9GkS2N8sV3ZFlaibrEoEWCHxFt3EUEMFqZbOnqQ8cnYcdfZ9ooaPucSaV9CcYt
-         cEzu6kJyyn1csUNE8WY7Uqbk7bCr+BpjdH9bG5A9bgf9E8jI+3GSs5zyLT4whRZiMUIz
-         JSnePOQn60uFry3wLpyfIcBN5dF7HodqQcTWKLTkpFZlSxHzHCZTjXI9qQEX+xQEVw8l
-         N0BFXZdCdCT1a9N9u/UvWInBVNt54VW1JCtSmuqZ754zU5wksCz5D5Xr8krsAlIQny/d
-         QuG8R5DaZuP2ZdfFJl5LAw+PuqbNGAOPN4B4SJofHM7UFzQDAsGSuJQcYcShSzcrEecG
-         Jdng==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OS7XyVksmzpOUyGa1jMZ/h64iPb1v90uhSS96NI+hnc=;
+        b=AyjI1s8wkcqvZki+gAQw0dHrM7EdydF05RbKxMfiF56rroBE6j+5b5jbS0ciLKzm7x
+         cXXYFApXEkBbPa0l7LdiFs54GOgJiAZmg0MbJ6S/XlZojbW5Z+IqMT2mSud0ldOxeyar
+         WJg3G6OTTDlZw8H+Vbo5xYgyKrys+4xJFFPcS1o18t6Q1lXSev94/UaVWGvY188ZsXcj
+         Fqecq03rVXjB+9D9GOPocw/URAMUjmWfhvhgBLTEqTzOd8hxW2F+GvAGTD27TRXF7Rma
+         yKCRF+Ly5Ui/L+9QmopH9zLidhSM22McxX5rNUK2/KiHwh5Nl+Jp+J3N7wn6Srtu1bmL
+         FNLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6TElCG4eFIdf6STksjddJrggUNxP/AlOjbuXBcSw0mM=;
-        b=ZKiss/JDrOq1mEilkUqxeJRr2lrhM7U0cyrJBJId7Q8doZHX82Z60SPHym/P6zDamR
-         lEIeEPP59wGhWL+7kGOQZyh4SW6M2O0jYZGl47NQI/aWIWf6xvqngV3iMDrmyNdgJK23
-         0QNSIGkHs6f2Un+4fvykCWSxEl7T7AQHoQ5BSP8bu2N3nzxzpHolUiLlDdNTMNoZReJ/
-         6TvZW+xOOCI+WQbxNjaefpD0rUOSGiPPUD6y8xhCBG4A/wMu7F7iubGfv/FnGxs2egY2
-         HGZbNm+SjrtNwmoMdv6J5GbI0zQh1aFVH/g83EYrGafMm7vkF3Qeg+f4dFUTKtNlAVoS
-         GLhA==
-X-Gm-Message-State: ACrzQf2H61XGQrH3rqLUidKr6va7gqY3btJvNk0U1kvIv8RI9FspCl7R
-        hzONo3HvyJdGJ4rTFf9+FF5KWA==
-X-Google-Smtp-Source: AMsMyM668jd6+A/ewh9nZvDze5l7U6DAYz/tHcvu9BcXLhffErJqbrIv11eqIx4lwO+6RsL5KqCg1A==
-X-Received: by 2002:a17:90a:68cd:b0:212:ca89:41c9 with SMTP id q13-20020a17090a68cd00b00212ca8941c9mr1913900pjj.244.1668111388236;
-        Thu, 10 Nov 2022 12:16:28 -0800 (PST)
-Received: from localhost ([75.172.139.56])
-        by smtp.gmail.com with ESMTPSA id z1-20020aa79901000000b005360da6b26bsm50380pff.159.2022.11.10.12.16.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 12:16:27 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Andrew Davis <afd@ti.com>, jerome Neanne <jneanne@baylibre.com>,
-        Nishanth Menon <nm@ti.com>
-Cc:     Lee Jones <lee@kernel.org>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, kristo@kernel.org,
-        dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, tony@atomide.com,
-        vigneshr@ti.com, bjorn.andersson@linaro.org, shawnguo@kernel.org,
-        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-In-Reply-To: <1231f3e6-61a7-ca3c-2fbb-679b583e0df1@ti.com>
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-5-jneanne@baylibre.com>
- <Y1+q2Usm9ecicXqp@google.com>
- <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
- <20221105000104.rtj3r6ufqwqmepon@keenly> <7heduewjp0.fsf@baylibre.com>
- <5418ac3b-04d7-5e77-7612-c8f168e24621@ti.com>
- <1267bf43-618c-7347-be3a-2792c656d9b6@baylibre.com>
- <7hk042agn4.fsf@baylibre.com>
- <1231f3e6-61a7-ca3c-2fbb-679b583e0df1@ti.com>
-Date:   Thu, 10 Nov 2022 12:16:27 -0800
-Message-ID: <7hfseqa7l0.fsf@baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OS7XyVksmzpOUyGa1jMZ/h64iPb1v90uhSS96NI+hnc=;
+        b=Bp5fLBzVo7lJT9YVcnLogru8COUgfdmGrkfeUVGxhx+PVWwg6+xfkOpu8Tw7hAXh1y
+         JNtyByWzBri5k1Ca4J81rLeC0iYBdSJET0KhvK27Ni7H65TWFMbK6Wm8EIMUBhHOM167
+         8TcFfq8W1pNCWl4BUnHdX9Tx2Swi3ECo0FP3OzFZ/gWryaTFxqDwJrQpSvqtNw8nlPhy
+         wDNYFjx9xNdyXlyCdm8J+biSYXQAQEHAeQtzV3cfM82W+Yt0nb0qkZ825TxD0TD2G2hX
+         F0n3psQjoXtOoiwPHaR1oAsLB+Ic2Opttj0HY1GfsObOPeXZzJljrw2B4ot8RyNb69BC
+         eo5Q==
+X-Gm-Message-State: ACrzQf0n+7BnYehXtQNNxn6o0v+cT/+F5DuqfGGyrQ1k801Vwp2no2Po
+        WLZkr6UA1ey8K6avLJJHpH7vOg==
+X-Google-Smtp-Source: AMsMyM5S+ddzaFFtds21QOVZIP9rP/fgoTUCdxiCOScazXTBOHhsmOcY5bl4KsrkL7CUttPgs4zQcA==
+X-Received: by 2002:a05:651c:2382:b0:26c:4c27:a478 with SMTP id bk2-20020a05651c238200b0026c4c27a478mr8713424ljb.92.1668111556787;
+        Thu, 10 Nov 2022 12:19:16 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id v2-20020a056512348200b0049485e2cb91sm2732lfr.231.2022.11.10.12.19.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 12:19:16 -0800 (PST)
+Message-ID: <5c791922-1371-c9e7-4bdc-e1909956633f@linaro.org>
+Date:   Thu, 10 Nov 2022 23:19:15 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
+ <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
+ <b222a21c-a00f-8806-179c-f97bcb45c303@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <b222a21c-a00f-8806-179c-f97bcb45c303@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andrew Davis <afd@ti.com> writes:
+On 04/11/2022 16:58, Konrad Dybcio wrote:
+> 
+> On 04/11/2022 14:03, Dmitry Baryshkov wrote:
+>> On sm8450 a register block was removed from MDP TOP. Accessing it during
+>> snapshotting results in NoC errors / immediate reboot. Skip accessing
+>> these registers during snapshot.
+> 
+> Must have been fun to debug..
+> 
+> 
+>>
+>> Tested-by: Vinod Koul <vkoul@kernel.org>
+>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
+>>   2 files changed, 10 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
+>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> index 38aa38ab1568..4730f8268f2a 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> @@ -92,6 +92,7 @@ enum {
+>>       DPU_MDP_UBWC_1_0,
+>>       DPU_MDP_UBWC_1_5,
+>>       DPU_MDP_AUDIO_SELECT,
+>> +    DPU_MDP_PERIPH_0_REMOVED,
+>>       DPU_MDP_MAX
+>>   };
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
+>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> index f3660cd14f4f..95d8765c1c53 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
+>> msm_disp_state *disp_state, struct msm_k
+>>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
+>>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
+>> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>> -            dpu_kms->mmio + cat->mdp[0].base, "top");
+>> +    if (dpu_kms->hw_mdp->caps->features & 
+>> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
+>> +        msm_disp_snapshot_add_block(disp_state, 0x380,
+>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 0x3a8,
+>> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
+> 
+> Are these values expected to stay the same on different new-gen SoCs? 
+> Maybe it would
+> 
+> be worth making it dynamic.
 
-> On 11/10/22 11:00 AM, Kevin Hilman wrote:
->> jerome Neanne <jneanne@baylibre.com> writes:
->>=20
->>> On 09/11/2022 22:59, Andrew Davis wrote:
->>>> On 11/7/22 3:14 PM, Kevin Hilman wrote:
->>>>> Nishanth Menon <nm@ti.com> writes:
->>>>>
->>>>>> On 13:58-20221104, jerome Neanne wrote:
->>>>>>>
->>>>>> [...]
->>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>> Can you try an compile with W=3D1 please.
->>>>>>> This raise one warning on mfd:
->>>>>>> drivers/mfd/tps65219.c:28:12: warning: =E2=80=98tps65219_soft_shutd=
-own=E2=80=99
->>>>>>> defined but
->>>>>>> not used [-Wunused-function]
->>>>>>>  =C2=A0=C2=A0=C2=A0 28 | static int tps65219_soft_shutdown(struct t=
-ps65219 *tps)
->>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~~~~~~~~~~~~~~
->>>>>>> soft_shutdown has been validated and is used in TI baseline even if=
- not
->>>>>>> hooked in upstream version further to this review:
->>>>>>> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.c=
-om/
->>>>>>>
->>>>>>> It was a TI requirement to implement it...
->>>>>>> Let me know if you want me to remove this function or if we can keep
->>>>>>> it like
->>>>>>> this.
->>>>>>
->>>>>> There are platforms without psci, correct? I think the comment was to
->>>>>> drop the force override with system-power-controller property,
->>>>>>
->>>>>> if (!pm_power_off) {
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0tps65219_i2c_client =3D client;
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0pm_power_off =3D &tps65219_pm_power_off;
->>>>>> }
->>>>>>
->>>>>> Could still be valid for such platforms, no? I do see that the
->>>>>> capability that the PMIC has - which is software shutdown is a valid
->>>>>> feature that we support in many different PMIC drivers. Is'nt the jo=
-b of
->>>>>> the driver to introduce the functionality in a manner that is
->>>>>> appropriate to the OS framework?
->>>>>
->>>>> Yeah, I think Nishanth is right here.
->>>>>
->>>>> We should probably keep the `if (!pm_power_off)` part so the PMIC will
->>>>> be used if PSCI is not, but it also allows an easy way to test/use the
->>>>> PMIC
->>>>> shutdown functionality downstream if needed.
->>>>>
->>>>
->>>> Then should be using the sys-off handler API[0] so it doesn't block PS=
-CI
->>>> which is also switching over[1].
->>>>
->>>> Andrew
->>>>
->>>> [0] https://lwn.net/Articles/894511/
->>>> [1] https://www.spinics.net/lists/arm-kernel/msg1024127.html
->>> Can we go for upstream with v7 without tps65219_soft_shutdown. Then if
->>> everyone agrees with Andrew proposal, I'll submit a separate patch which
->>> adds implementation of tps65219_soft_shutdown support through sys-off
->>> handler.
->>>
->>> So that we are not blocking upstream in case further
->>> discussions/alignment are required.
->>=20
->> Seems OK to me.  Nishanth?  Andrew?
->>=20
->> But I think you'll need to at least submit a v8 without the unused
->> code/dead code that Lee pointed out.
->>=20
->
-> If you need the v8 anyway, then add support through sys-off in
-> that spin, should only be a couple lines of change.
+I do not want to overcomplicate this. Let's make it dynamic once there 
+is need for that. For now I expect this will be static.
 
-Oops, my mistake.  I see v7 already has the dead code removed.  I got
-confused because this thread is on v6.
+> 
+> 
+> Konrad
+> 
+>> +    } else {
+>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>> +    }
+>>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>>   }
 
-IMO, I think v7 should be merged v7 (mfd part is already ack'd by Lee)
-and then Jerome will follow up with the support for sys-off as an
-additional series.
+-- 
+With best wishes
+Dmitry
 
-Kevin
