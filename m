@@ -2,98 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 272D4624090
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0526240A0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:02:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbiKJLAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 06:00:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50056 "EHLO
+        id S230426AbiKJLCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 06:02:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiKJLAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:00:38 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1AB2BED
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:00:37 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id x21so883053ljg.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:00:37 -0800 (PST)
+        with ESMTP id S230444AbiKJLCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:02:23 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5750C6DCEE
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:02:19 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id k2so4074941ejr.2
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:02:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2wAFtEClsVPoiOCl0FiiHDut23153asSp/I7TrSrg1M=;
-        b=Zsl72Zc1ntixRLP/pk0w3BZtYflbMuQXE9BrMWfJ+0+4GgJNjtieqn8vi/FnBpU2r2
-         oZQQJzaPrEPXUrrV57ymMTaKCvlBQ8sjzUSzVcOqq8NQwGJ6zr8YI3TPWUZ3/SyJuKYJ
-         rSuY258I3J/4Lh08d6Wp3dbd4i8tbKbgD0zBLWSMlu6RDSNTLckivjgqLksHQ3lrtQH1
-         dHgMBKwWUhS+BGrSMYhinArutQhtuf/0WVSXc5gWcWZUeBtcBiSw/UckKZiViwVOW0AH
-         0GXl49f7SVuEGAIDn48LRH/X6yAKZdRpihBfw/qDCMezNdZkn7Y1JM8hus+r/vdBktxa
-         TtdQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L0kPvLa286AkbDNXKbVvuHvXORMmCyLOgPXXU67P4LE=;
+        b=PHYzcSvS5Cg+0YumNw0/zyCi6KbcdAz8iyrHoBxvgLqGUYBNRUnc1WrXPJmaWEpL3i
+         hGnVhaAVckFbEIYT9wOyJ5RSEiwgzzdl4kDJSAEu21lrddYdV5FWf9W880mjMwAz6BZr
+         e1H0ipusQX91xQmYYPpi8cq2d3QYG7R09fSNMAw3/+D9iNB8ih0QUDtMSA1b5ADA3Elt
+         Ej9sd1t4sdaJPxZcmbXU00fBIkE8HXWedbysX5BRBSabYClBzYXxx2Vm4461nL6UYvAu
+         ZnATUNr59HdihMAAv2fovqhUa+nLfxa3PRH2nG0AgF+3iYU0ee+PkdEKmcHL14peOhh4
+         DoYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2wAFtEClsVPoiOCl0FiiHDut23153asSp/I7TrSrg1M=;
-        b=2eAE1oNgWExYVAEOVxHYjoGZUtLmdaTl37gsuzHFSGIwYvut5ouTbGO00WhCpeQ7yO
-         4K3rPQ8cdLW+oLRlrxNu1gKwh+rYM3xe+zzink40bhfd2ENdODhHafydreAAxTWKdPXk
-         GsvDNO7uqpzdNvA5iRjawoiWoAV/GT+BeyhCjCVGpMr5zL88fXOqCpZXVpQG1Q6w1zoQ
-         1fcDc+cmrexraHKiUkJIjvsn5HhXDGwcvWekFmeNJ4dzs0Avta8PVKlVSUfFEanxuSs7
-         H9rES+BZi7ruFav+VJ3qEjaL4YeHaPCsN44W5VHMmMMg2Qd0Ctn+OTQ94bSmU6jj03UN
-         y79Q==
-X-Gm-Message-State: ACrzQf32pOwbpO0NUY+l+v5lUWqEsRJ96mlieRtccIDkPzwVBeW7BNui
-        dCfesQrlWZPDSCcAgtTkQQ32zQ==
-X-Google-Smtp-Source: AMsMyM6KhkSh3LyMNf5GknzSMODEs3/ILC9uPSqjBI/QcJMcKMtEa/rQElw0Is3tZKnKDY5kkvrY+A==
-X-Received: by 2002:a2e:8092:0:b0:26f:bd61:ac4f with SMTP id i18-20020a2e8092000000b0026fbd61ac4fmr8958423ljg.396.1668078035832;
-        Thu, 10 Nov 2022 03:00:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id 17-20020ac25f51000000b004abc977ad7fsm2677067lfz.294.2022.11.10.03.00.34
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=L0kPvLa286AkbDNXKbVvuHvXORMmCyLOgPXXU67P4LE=;
+        b=bB4HMPt1v0UV0yD0MHSq0gUg3ZLf9GamwKUAq5pdPKePxLzkKvBiJGZrmU7f4weYz0
+         AGp+VfxASuLh8GaKNzSj20jfQCgUZq2sW+dctZqibm+rrFzrGOt0D1WmK8Tzefk4P+Xp
+         DXlBzAFMpM0OsaDShuJyrS62rJlyWWEpogNpVzhPgnrmuGsL39QdCylqIXXtltUaDJGv
+         EtNdCZHrPY9mOAMRENCbYyTWmKTAxb/Xi96dgB4O7dz7VXU6H6kQJwjV+G5dR8hjZGrV
+         v/NOMztvza8xXdUjhcCnTv6cJgAy3zosNMONrGM2/UIcKPW8UHDoj37Z8ysP6CuLDYP+
+         V3rA==
+X-Gm-Message-State: ACrzQf1GB1fOlIkov6ge16LPl8cvGf++Bt2rCYNtih5PGD/fDh7hsFzh
+        k33fQ7CdPXZ7EQQN94O2BpMw5A==
+X-Google-Smtp-Source: AMsMyM4eoIcB1m6CVRlycwyz47fsHzxOyh/cX46U03mvjMK3MHFI9FrnDPjDwAbTgGFH2BeKjf+TtA==
+X-Received: by 2002:a17:907:7b93:b0:770:1d4f:4de9 with SMTP id ne19-20020a1709077b9300b007701d4f4de9mr59897802ejc.201.1668078138469;
+        Thu, 10 Nov 2022 03:02:18 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id w16-20020a170906481000b007a9a56e2a07sm7041267ejq.49.2022.11.10.03.02.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 03:00:35 -0800 (PST)
-Message-ID: <2d1cddd6-448b-4a3c-72e1-2ce3cfb44268@linaro.org>
-Date:   Thu, 10 Nov 2022 12:00:34 +0100
+        Thu, 10 Nov 2022 03:02:18 -0800 (PST)
+Message-ID: <517cde25-83b3-e9be-a56b-e08c4e84b660@linaro.org>
+Date:   Thu, 10 Nov 2022 12:02:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: edac: Add bindings for
- Xilinx Versal EDAC for DDRMC
-Content-Language: en-US
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     linux-edac@vger.kernel.org,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org, tony.luck@intel.com,
-        mchehab@kernel.org, michal.simek@xilinx.com, git@amd.com,
-        robh+dt@kernel.org, james.morse@arm.com, rric@kernel.org
-References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
- <20221107062413.9642-2-shubhrajyoti.datta@amd.com>
- <166807145377.16822.15787804198836912482.b4-ty@linaro.org>
- <Y2zL3OXBNfR/VNPK@zn.tnic> <207ae5bd-dbc2-9c4b-2acc-bda480da711e@linaro.org>
- <Y2zYqetP6IhG01Bg@zn.tnic> <490d26ce-a09c-db16-93b1-8f468a5c3f87@linaro.org>
- <Y2zZj69EEZlqRfBd@zn.tnic>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y2zZj69EEZlqRfBd@zn.tnic>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 2/9] arm64: dts: qcom: sa8295p-adp: enable PCIe
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221110103558.12690-1-johan+linaro@kernel.org>
+ <20221110103558.12690-3-johan+linaro@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221110103558.12690-3-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 11:59, Borislav Petkov wrote:
-> On Thu, Nov 10, 2022 at 11:57:11AM +0100, Krzysztof Kozlowski wrote:
->> I don't anticipate more work for current cycle... but I also did not
->> anticipate such in other occasions (e.g. recently Tegra binding
->> headers), so my anticipation is not accurate. :)
-> 
-> Ok, let's try them your way - you take care of the dtree patches pls and
-> I do the EDAC ones and then we'll see where this goes.
 
-I already dropped them from my tree, so let's wait for respin and then
-you can take entire set.
+On 10/11/2022 11:35, Johan Hovold wrote:
+> The SA8295P-ADP has up to four PCIe interfaces implemented by three or
+> four controllers: PCIe2A, PCIe3A/PCIe3B and PCIe4.
+>
+> PCIe2 is used in x4 mode, while PCIe3 can be used in either x2 or x4
+> mode. Enable both PCIe3A and PCI3B in x2 mode for now.
+>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
 
-Best regards,
-Krzysztof
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+
+Konrad
+
+>   arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 171 +++++++++++++++++++++++
+>   1 file changed, 171 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index b608b82dff03..ff1e6a674913 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -57,6 +57,13 @@ vreg_l13a: ldo13 {
+>   			regulator-max-microvolt = <3072000>;
+>   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>   		};
+> +
+> +		vreg_l11a: ldo11 {
+> +			regulator-name = "vreg_l11a";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <880000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+>   	};
+>   
+>   	pmm8540-c-regulators {
+> @@ -151,6 +158,76 @@ vreg_l8g: ldo8 {
+>   	};
+>   };
+>   
+> +&pcie2a {
+> +	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie2a_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie2a_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie3a {
+> +	num-lanes = <2>;
+> +
+> +	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 56 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie3a_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie3a_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie3b {
+> +	perst-gpios = <&tlmm 153 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 130 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie3b_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie3b_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie4 {
+> +	perst-gpios = <&tlmm 141 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 139 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie4_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie4_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+>   &qup2 {
+>   	status = "okay";
+>   };
+> @@ -380,3 +457,97 @@ &xo_board_clk {
+>   };
+>   
+>   /* PINCTRL */
+> +
+> +&tlmm {
+> +	pcie2a_default: pcie2a-default-state {
+> +		clkreq-n-pins {
+> +			pins = "gpio142";
+> +			function = "pcie2a_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio143";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		wake-n-pins {
+> +			pins = "gpio145";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pcie3a_default: pcie3a-default-state {
+> +		clkreq-n-pins {
+> +			pins = "gpio150";
+> +			function = "pcie3a_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio151";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		wake-n-pins {
+> +			pins = "gpio56";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pcie3b_default: pcie3b-default-state {
+> +		clkreq-n-pins {
+> +			pins = "gpio152";
+> +			function = "pcie3b_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio153";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		wake-n-pins {
+> +			pins = "gpio130";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	pcie4_default: pcie4-default-state {
+> +		clkreq-n-pins {
+> +			pins = "gpio140";
+> +			function = "pcie4_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio141";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		wake-n-pins {
+> +			pins = "gpio139";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
