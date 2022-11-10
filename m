@@ -2,181 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F293624C47
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 21:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E284C624C4C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbiKJU7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 15:59:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54330 "EHLO
+        id S231157AbiKJVBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 16:01:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230266AbiKJU7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 15:59:48 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59DCF2B26A
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:59:46 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id be13so5425985lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:59:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NPzwJ0PuXiUbKvsrJ06WJ6xmWxUxN1THnWmmp4034WE=;
-        b=yG6nHVpQuzzFVz6yvEV3w/69bkIvo52BB/na+saBklbvjhNtuO02r0GyEbN8D7bcow
-         d06VDwPpbFl6HKu8NCmP0CUrTa8L+iRRoqMNX9qfhXkjhjGATLNssvzfBz1XPmIBIWeV
-         zVcHWF09XhIyhJiAwVQnMOYqoOiTyezHDTcXnhel+Puho2O18q7xa+bXnuisG4bCDMH3
-         8/v5aBGeDzSgFJMjL7Qz7Ytm9Qt7ACZQArGZVOT/HcX5Mcn+DpuNAzYhoda4uBYoOBUo
-         cSbPi4brWxNlDIlUHHn05srt6A3VJgdQwDRqx3B+Dm8NdSJJMNotXKWnGZvUX+k9ixYb
-         uPtw==
+        with ESMTP id S229961AbiKJVBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:01:05 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B155610E4;
+        Thu, 10 Nov 2022 13:01:04 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id l127so3123793oia.8;
+        Thu, 10 Nov 2022 13:01:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NPzwJ0PuXiUbKvsrJ06WJ6xmWxUxN1THnWmmp4034WE=;
-        b=OdVcvcJFtQmUF61yfkmuvMBl2SEZ4l7tvje1Z5PZZ1mrZ8boeGWmamGKBU37tnp97C
-         jIo5c0QkY/qon6UX4H3gJ+2jsaX0mqtRC3RKji4zMcZD25ISEY7pjmKgnEZn1zByaDhK
-         92w2w7mot67CLIYouI+kopbyeeZMSuZukrB1E+cN0KDQ5r8+a52LbDjwbLIY3qbYc0tE
-         dbk8RPb1H3jWTO1Ki12ybtrSJxWWddy8uAZlu/zHDsCDqhngd4ZBITiIZKlw5fHEECHg
-         1mAmlq7//xBcISF5Lz5g1nOUbIa5Z1HKvQ+OW3ggyys69kv7k+/ODqCYX8wjrPtcqzb7
-         zKnA==
-X-Gm-Message-State: ACrzQf3IbxyKTpI9CC3/7AAQ1o9pioBjQaKg/HCbh+we7yK0SdmVaqJp
-        xZhL12WRO0/OOLRxrrPmY4nI/g==
-X-Google-Smtp-Source: AMsMyM6cudTLCzjmTVK3yyobzbr2fXsgVAgsu+g4SGinMovjzgJLyG7TkECfmdT/3hOD83nxJvWqNQ==
-X-Received: by 2002:a05:6512:782:b0:4a2:70de:3546 with SMTP id x2-20020a056512078200b004a270de3546mr1752602lfr.420.1668113984700;
-        Thu, 10 Nov 2022 12:59:44 -0800 (PST)
-Received: from [192.168.1.112] (95.49.32.193.neoplus.adsl.tpnet.pl. [95.49.32.193])
-        by smtp.gmail.com with ESMTPSA id o14-20020ac24e8e000000b004a93b8508edsm19683lfr.181.2022.11.10.12.59.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 12:59:44 -0800 (PST)
-Message-ID: <5af3bed1-aa2e-3dc7-08f1-eeb39f03903a@linaro.org>
-Date:   Thu, 10 Nov 2022 21:59:31 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IDqn8BDU2tLIVGpP/7JbZcQ8NuPGFYgE6/tTyJvpJB8=;
+        b=CCWjmICdl7mpNZ4sAYxuhzGImSJXo86/z7jNU8gXJ1yoaG8maQYNI6pajt+yADZUlE
+         z30NhFGt/lO1AAVdSBusR/3BgPCVAkjY6mznrL0cgXVGUAgzhPc6p89w86ezc0WupJuK
+         vdHTsvSep+laQZkkfQQyBt50ijJXe/jAeEjmn3OS002hgJY3rytRf2C2cC7zGILNUxZq
+         Y81vQDdGa7NIjVRVNrW+6InhE8SuUjmjQ8TD0IFnslqyyBX/RN80avW5W6JO1Xha+Ag8
+         dQ+gwr45gMtRg0dbZC3YIyHRWeyG3BYpLyzzOiI/B6ko/ht4u+GLlcfHUbnMUAb8aHqZ
+         HarQ==
+X-Gm-Message-State: ACrzQf3HfDGCrLoP9XQKaKxd5WtEcl6ARMOd4/mtB5z8YzXXPUTK51qv
+        ExJQR57CCteEP6x+kf2Mmw==
+X-Google-Smtp-Source: AMsMyM5YKvFMdUbdZPYOAHkKC93jpUw2ItMlN+pxG+7jwvZl9DyN0X7pMLBe9clIzRPUHibvryVqZw==
+X-Received: by 2002:aca:2105:0:b0:359:e9f6:e37d with SMTP id 5-20020aca2105000000b00359e9f6e37dmr2191361oiz.76.1668114063885;
+        Thu, 10 Nov 2022 13:01:03 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j18-20020a9d7392000000b0066c34486aa7sm243697otk.73.2022.11.10.13.01.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 13:01:03 -0800 (PST)
+Received: (nullmailer pid 975802 invoked by uid 1000);
+        Thu, 10 Nov 2022 21:01:04 -0000
+Date:   Thu, 10 Nov 2022 15:01:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 01/20] dt-bindings: imx6q-pcie: Fix clock names for
+ imx6sx and imx8mq
+Message-ID: <20221110210104.GA963064-robh@kernel.org>
+References: <20221107204934.32655-1-Sergey.Semin@baikalelectronics.ru>
+ <20221107204934.32655-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH v3 7/8] drm/msm/dpu: add support for SM8450
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
-References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-8-dmitry.baryshkov@linaro.org>
- <d171b737-0d46-df31-05ad-c35593d8dbf5@somainline.org>
- <fc7a4a61-75e2-2111-39f5-7c7103f1c6dd@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <fc7a4a61-75e2-2111-39f5-7c7103f1c6dd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221107204934.32655-2-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/11/2022 21:28, Dmitry Baryshkov wrote:
-> On 04/11/2022 17:12, Konrad Dybcio wrote:
->>
->> On 04/11/2022 14:03, Dmitry Baryshkov wrote:
->>> Add definitions for the display hardware used on Qualcomm SM8450
->>> platform.
->>>
->>> Tested-by: Vinod Koul <vkoul@kernel.org>
->>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>
->>
->> Konrad
->>
->>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 224 ++++++++++++++++++
->>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |   3 +
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
->>>   4 files changed, 229 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>> index 1ce237e18506..3934d8976833 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>> @@ -124,6 +124,15 @@
->>>                 BIT(MDP_AD4_0_INTR) | \
->>>                 BIT(MDP_AD4_1_INTR))
->>> +#define IRQ_SM8450_MASK (BIT(MDP_SSPP_TOP0_INTR) | \
->>> +             BIT(MDP_SSPP_TOP0_INTR2) | \
->>> +             BIT(MDP_SSPP_TOP0_HIST_INTR) | \
->>> +             BIT(MDP_INTF0_7xxx_INTR) | \
->>> +             BIT(MDP_INTF1_7xxx_INTR) | \
->>> +             BIT(MDP_INTF2_7xxx_INTR) | \
->>> +             BIT(MDP_INTF3_7xxx_INTR) | \
->>> +             0)
->>> +
->>>   #define WB_SM8250_MASK (BIT(DPU_WB_LINE_MODE) | \
->>>                BIT(DPU_WB_UBWC) | \
->>>                BIT(DPU_WB_YUV_CONFIG) | \
->>> @@ -367,6 +376,20 @@ static const struct dpu_caps sm8250_dpu_caps = {
->>>       .pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
->>>   };
->>> +static const struct dpu_caps sm8450_dpu_caps = {
->>> +    .max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->>> +    .max_mixer_blendstages = 0xb,
->>> +    .qseed_type = DPU_SSPP_SCALER_QSEED4,
->>> +    .smart_dma_rev = DPU_SSPP_SMART_DMA_V2, /* TODO: v2.5 */
->>> +    .ubwc_version = DPU_HW_UBWC_VER_40,
->>> +    .has_src_split = true,
->>> +    .has_dim_layer = true,
->>> +    .has_idle_pc = true,
->>> +    .has_3d_merge = true,
->>> +    .max_linewidth = 5120,
->>> +    .pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
->>> +};
->>> +
->>>   static const struct dpu_caps sc7280_dpu_caps = {
->>>       .max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->>>       .max_mixer_blendstages = 0x7,
->>> @@ -504,6 +527,33 @@ static const struct dpu_mdp_cfg sm8250_mdp[] = {
->>>       },
->>>   };
->>> +static const struct dpu_mdp_cfg sm8450_mdp[] = {
->>> +    {
->>> +    .name = "top_0", .id = MDP_TOP,
->>> +    .base = 0x0, .len = 0x494,
->>> +    .features = BIT(DPU_MDP_PERIPH_0_REMOVED),
->>> +    .highest_bank_bit = 0x3, /* TODO: 2 for LP_DDR4 */
->>
->> I think it's about time we handle the two-memory-configs situation..
->>
->> In my opinion, a dt property would be sane (just like downstream does 
->> it), as it's
->>
->> *really really really* unlikely that the same SKU would be shipped 
->> with 2 different memory gens.
+On Mon, Nov 07, 2022 at 11:49:15PM +0300, Serge Semin wrote:
+> Originally as it was defined the legacy bindings the pcie_inbound_axi and
+> pcie_aux clock names were supposed to be used in the fsl,imx6sx-pcie and
+> fsl,imx8mq-pcie devices respectively. But the bindings conversion has been
+> incorrectly so now the fourth clock name is defined as "pcie_inbound_axi
+> for imx6sx-pcie, pcie_aux for imx8mq-pcie", which is completely wrong.
+> Let's fix that by conditionally apply the clock-names constraints based on
+> the compatible string content.
 > 
-> As it's really unlikely, I think we can drop the TODO comment completely 
-> until we phase a device with different memory type. WDYT?
-It's really unlikely that the same device model (for example Xperia 1 
-III) is shipped in 2 memory configurations that would have to be 
-discerned dynamically somehow.
-
-It is however very likely that, for example Xiaomi releases a 888 phone 
-with LPDDR4X and Sony releases one with LPDDR5. So it's a per-device 
-thing, not exactly per-SoC.
-
-Konrad
+> Fixes: 751ca492f131 ("dt-bindings: PCI: imx6: convert the imx pcie controller to dtschema")
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > 
+> ---
+> 
+> Changelog v5:
+> - This is a new patch added on the v5 release of the patchset.
+> ---
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 47 +++++++++++++++++--
+>  1 file changed, 42 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> index 376e739bcad4..ebfe75f1576e 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -16,6 +16,47 @@ description: |+
+>  
+>  allOf:
+>    - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx6sx-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +            - const: pcie_inbound_axi
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8mq-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +            - const: pcie_aux
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              enum:
+> +                - fsl,imx6sx-pcie
+> +                - fsl,imx8mq-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+>  
+>  properties:
+>    compatible:
+> @@ -57,11 +98,7 @@ properties:
+>  
+>    clock-names:
+>      minItems: 3
+> -    items:
+> -      - const: pcie
+> -      - const: pcie_bus
+> -      - const: pcie_phy
+> -      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
+
+This should have been just 'enum: [ pcie_inbound_axi, pcie_aux ]'
+
+And then do:
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: fsl,imx8mq-pcie
+    then:
+      properties:
+        clock-names:
+          items:
+            - {}
+            - {}
+            - {}
+            - const: pcie_aux
+
+
+And then another if/then with 'maxItems: 3'
