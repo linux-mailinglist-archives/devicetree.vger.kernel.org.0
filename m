@@ -2,99 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F81624D19
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:36:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1A6624D30
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:42:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232365AbiKJVgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 16:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
+        id S229601AbiKJVmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 16:42:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232351AbiKJVgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:36:18 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506871902A
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:36:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C9B8661E43
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 21:36:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98ABFC433D6;
-        Thu, 10 Nov 2022 21:36:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668116177;
-        bh=FlOYPoOq6odOEjov8ah/a4Kw3+KSVXlv9br0h1BIjW0=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=UWitsBdukrJZZFVm7PRVSJ34QdvnyVSIyWRuMr4xH7gO7CevFnj48WPgsOJ+kSaOz
-         jIEgWnZWvM97AexFBg7NvIdHjBAJLpLCLK7gmeBJ12ytvow/jtM1SYsV3beBJsNYvJ
-         aR+FG4r038tZNI0htK/vgJ+0Wr59RWKqt77e5pajgCkTEuOUd5vx/wUt1sgWWDXB/b
-         bdEtrjLU5F1uadV86XS9h+FkVODrLxXmTHSIH5r0q2yLMuu6LFODSNAW81u3ZssMIr
-         zz4GvZ1gRYDJ2Qpy4xWYxXY4oqrAomQOLTo9mpCBm6CL9nN4BALQtyyVXTGWnZvwE2
-         HKARagaS+x/ew==
-From:   Mark Brown <broonie@kernel.org>
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Nicolin Chen <nicoleotsuka@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-In-Reply-To: <20221104160315.213836-1-marex@denx.de>
-References: <20221104160315.213836-1-marex@denx.de>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl-sai: Fix mx6ul and mx7d compatible strings
-Message-Id: <166811617433.1093199.4726126273479929969.b4-ty@kernel.org>
-Date:   Thu, 10 Nov 2022 21:36:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232397AbiKJVmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:42:06 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEB056562
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:42:05 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id k5so2813895pjo.5
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:42:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PSztxiJ5t6Iqa7j7QbwzknRhLr5EexaRl2lcq/yDKSw=;
+        b=KoYGu5IIzOXGeXG4drNc1+CwdElhVuLMlSIl6h6O12ydrJyf4jnKTAAci0FKmlc3cD
+         CFCqcSI0IR7sH97Be4G+724cCVPmUfuq1IklP/Mz0HAAQ/JGHC9E1jsHFAeNk9ap5iPH
+         X8l0a8cDym+nzieJUbb0ErbioV8gI6DBsGAFtq9H+cXkpokKRbBw7dcWyCArFgJmuhmA
+         pYIgByRnuTiDERvOvF0+ce6QtYY+nqszISkaZMWKuoiD+K36o/uo8MkgoNl+JjQDiOPK
+         YHCcVp21lBiA2iqU1ltMC/EL2irkVChKb6Rko/vFgodMMth36AQZKJv+o/0xT9snWr9i
+         Dn/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PSztxiJ5t6Iqa7j7QbwzknRhLr5EexaRl2lcq/yDKSw=;
+        b=aHkAFhn1OcpznrX5XAn065jF8Zh+yHmerACoIpqFaNHszsTVjVlM9m0+jpBHvQMIJ1
+         yPzztCvqrKEOCpLaU14nhhDdfwPKhT1v5BeKY0LzWUxbvB6YF/kMc2ijX+0Ozy0rqstP
+         gw5T9rUnXdOPUuWNV1xErH/5OvUWX/JL38NCoihGYrZQJ0iA9WddvMVW0xLrRp1t6B1T
+         zMEpwgNjOywllo+hTnkB34htH0bJ8Lprt7uKy6A7uLmIGgLSm2+kRvE92fTZg4ZdHRAr
+         HK9+WV7GzHJxFdSO3OAKX4tQDDEgcyEUHTVIl8xPFsOEqWnS4vpoc0oJ25eVmIfzE2vy
+         sUcA==
+X-Gm-Message-State: ACrzQf0fwgso1lSAeCePNwbmqBgqXMefFEy2zMiUuBn18BGc5YBQfhm6
+        VvM2tzG8MTrlAETA6UHTVLHnjQ==
+X-Google-Smtp-Source: AMsMyM5Ko/0Xxdd0D4wfqneZtZye8DqKSLgy8+nDpiPvljrSklrs8pt0ztzdCwt6DpTGEU0urkT+5g==
+X-Received: by 2002:a17:90b:3102:b0:213:b853:5e45 with SMTP id gc2-20020a17090b310200b00213b8535e45mr2178800pjb.97.1668116524759;
+        Thu, 10 Nov 2022 13:42:04 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id p10-20020a170902bd0a00b00186c5e8b1d0sm145934pls.149.2022.11.10.13.42.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 13:42:03 -0800 (PST)
+Date:   Thu, 10 Nov 2022 13:42:03 -0800 (PST)
+X-Google-Original-Date: Thu, 10 Nov 2022 13:42:00 PST (-0800)
+Subject:     Re: [PATCH] RISC-V: Do not issue remote fences until smp is available
+In-Reply-To: <CAOnJCUK5Z6i39f5MJaRFhorGjcmBR=p_MapY_TDcR1e274wtpA@mail.gmail.com>
+CC:     Conor Dooley <conor@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        anup@brainfault.org, damien.lemoal@wdc.com,
+        devicetree@vger.kernel.org, jszhang@kernel.org,
+        krzysztof.kozlowski@canonical.com, linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     atishp@atishpatra.org
+Message-ID: <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Nov 2022 17:03:13 +0100, Marek Vasut wrote:
-> Describe existing used combinations of compatible strings on MX6UL
-> and MX7D, which are backward compatible with MX6SX. Add the missing
-> imx7d-sai compatible string which is used on i.MX7 .
-> 
-> 
+On Mon, 31 Oct 2022 12:26:05 PDT (-0700), atishp@atishpatra.org wrote:
+> On Mon, Oct 31, 2022 at 12:12 PM Conor Dooley <conor@kernel.org> wrote:
+>>
+>> On Fri, Oct 28, 2022 at 04:19:29PM -0700, Atish Patra wrote:
+>> > It is useless to issue remote fences if there is a single core
+>> > available. It becomes a bottleneck for sbi based rfences where
+>> > we will be making those ECALLs for no reason. Early code patching
+>> > because of static calls end up in this path.
+>> >
+>> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+>>
+>> Hey Atish,
+>> This doesn't apply for me to either fixes or for-next. What branch does
+>> it apply to?
+>> Thanks,
+>> Conor.
+>>
+>> > ---
+>> >  arch/riscv/mm/cacheflush.c | 4 ++++
+>> >  1 file changed, 4 insertions(+)
+>> >
+>> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+>> > index f10cb47eac3a..7fafc8c26505 100644
+>> > --- a/arch/riscv/mm/cacheflush.c
+>> > +++ b/arch/riscv/mm/cacheflush.c
+>> > @@ -19,6 +19,10 @@ void flush_icache_all(void)
+>> >  {
+>> >       local_flush_icache_all();
+>> >
+>> > +     /* No need to issue remote fence if only 1 cpu is online */
+>> > +     if (num_online_cpus() == 1)
+>> > +             return;
+>> > +
+>> >       if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
+>> >               sbi_remote_fence_i(NULL);
+>> >       else
+>> > --
+>> > 2.34.1
+>> >
+>
+> Sorry I forgot to specify the dependencies for this patch. This patch
+> is based on Anup's IPI series [1] as
+> I assumed the IPI series would go first. I can rebase on top of the
+> master if required.
+> However, the issue will manifest only after Jisheng's patch[2] which
+> moved the sbi_init to earlier and introduced the
+> static key in the paging_init path.
+>
+> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20220820065446.389788-8-apatel@ventanamicro.com/
+> [2] https://lore.kernel.org/lkml/20220716115059.3509-1-jszhang@kernel.org/
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/3] ASoC: dt-bindings: fsl-sai: Fix mx6ul and mx7d compatible strings
-      commit: 81b6c043e7ba41e5a585f0d33213a32308d484ca
-[2/3] ASoC: dt-bindings: fsl-sai: Use minItems 5 for i.MX8MN clock and similar
-      commit: ef55595548e13a5d61695bdf92e03df88c45994f
-[3/3] ASoC: dt-bindings: fsl-sai: Sort main section properties
-      commit: 3e4f964ddd1a9ab962cb524cbea750030de6acd0
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+IMO we should just stop issuing the SBI remote fences at all, with the 
+code to do IPI-based fences we're just adding complexity for the slow 
+case.
