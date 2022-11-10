@@ -2,146 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B997C623CBF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:38:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33071623CC9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232887AbiKJHiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 02:38:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51344 "EHLO
+        id S232584AbiKJHjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 02:39:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232832AbiKJHiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:38:05 -0500
-Received: from gw.atmark-techno.com (gw.atmark-techno.com [13.115.124.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F503134C
-        for <devicetree@vger.kernel.org>; Wed,  9 Nov 2022 23:38:03 -0800 (PST)
-Received: from gw.atmark-techno.com (localhost [127.0.0.1])
-        by gw.atmark-techno.com (Postfix) with ESMTP id 6BD2B60105
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 16:38:02 +0900 (JST)
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-        by gw.atmark-techno.com (Postfix) with ESMTPS id EFC29600E7
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 16:38:00 +0900 (JST)
-Received: by mail-pj1-f72.google.com with SMTP id om10-20020a17090b3a8a00b002108b078ab1so2943512pjb.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Nov 2022 23:38:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hCjb7yV/CvXMOFsUMLrHBUd25VG/nQ2JHyjPko2pBBA=;
-        b=57sJeweqvT9ALMG0Ssfx1kgaInHCut0jAp1bbGGYw2sU54VkMyIWGOeRMltiX8DU9G
-         zzNbbIrB3r9Xb/2LMVFaGhXO5Z7IZmZc349S27BG5qVbhyn1wBatYZ32DAwyDj0bg03I
-         S7qX0yYadNtZCqn22SFpxuZUGNw+m71zD8c2PznZ4cJRROHiNw54QAz2tPIeF6JLtUye
-         x/hkorV7uiLpDo6udrL9cjU7Rjuyp0TolYpnemUdJDz+j59spyMCzU2A726YzyV9iuiT
-         BuaR5iWfeXSpxyW4twJkXPqbR/GuyglTrtqcemu5kXvN4tzu1RGy4/T7/gfGdSx2XV2y
-         56GQ==
-X-Gm-Message-State: ACrzQf23kqHR0OT9jDw6mn12fknsGljGpDTlk1lEPJGDQ7Y+p0vKJEUN
-        7L7m5+0GvyV4kyRNkZXN3wictyXPjiPFbcN7G9hiGiDpXonEcwR6DG/eVdJN+Br+mN3cTI2szso
-        HVR5XIqsTqbxOOBzx4TCjsNWR9w==
-X-Received: by 2002:aa7:83c8:0:b0:56d:8e07:4618 with SMTP id j8-20020aa783c8000000b0056d8e074618mr51964648pfn.33.1668065880054;
-        Wed, 09 Nov 2022 23:38:00 -0800 (PST)
-X-Google-Smtp-Source: AMsMyM5Lb2t86EbMFW9ZQ3kwu22IuMxG74UdO/YAYM+jzqoI78XZoQm20kFTU/Woblan8jqfRmomqA==
-X-Received: by 2002:aa7:83c8:0:b0:56d:8e07:4618 with SMTP id j8-20020aa783c8000000b0056d8e074618mr51964632pfn.33.1668065879804;
-        Wed, 09 Nov 2022 23:37:59 -0800 (PST)
-Received: from pc-zest.atmarktech (76.125.194.35.bc.googleusercontent.com. [35.194.125.76])
-        by smtp.gmail.com with ESMTPSA id p18-20020a170902ebd200b00176b63535adsm10381193plg.260.2022.11.09.23.37.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Nov 2022 23:37:59 -0800 (PST)
-Received: from martinet by pc-zest.atmarktech with local (Exim 4.96)
-        (envelope-from <martinet@pc-zest>)
-        id 1ot28M-001gKL-0J;
-        Thu, 10 Nov 2022 16:37:58 +0900
-Date:   Thu, 10 Nov 2022 16:37:47 +0900
-From:   Dominique Martinet <dominique.martinet@atmark-techno.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>, mizo@atmark-techno.com
-Subject: Re: [RFC PATCH 1/2] dt-bindings: net: h4-bluetooth: add new bindings
- for hci_h4
-Message-ID: <Y2yqSxldXPdmkCpW@atmark-techno.com>
-References: <CAL_JsqKCb2ZA+CLTVnGBMjp6zu0yw-rSFjWRg2S3hA7S6h-XEA@mail.gmail.com>
- <6a4f7104-8b6f-7dcd-a7ac-f866956e31d6@linaro.org>
- <Y2rsQowbtvOdmQO9@atmark-techno.com>
- <Y2tW8EMmhTpCwitM@atmark-techno.com>
- <20221109220005.GA2930253-robh@kernel.org>
+        with ESMTP id S232913AbiKJHi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:38:56 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9694CE04;
+        Wed,  9 Nov 2022 23:38:55 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C62161DB0;
+        Thu, 10 Nov 2022 07:38:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5653C433D6;
+        Thu, 10 Nov 2022 07:38:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668065934;
+        bh=6Hb2huiH9obJz8hEtiwK2CxoxvD5BS2sJQTW/SKbV94=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fNROmp4QzpH/0wd7m2KVyaEQkF1PH1v9rBx/33WDmatJhUyBU72xBYfXXGn3Q+lbb
+         PuzzAUOqpzUu83xcd8+xdXrsjlOXINvMaisx+X8VjON/B7A5UqNNm2cSuOft/1oQwI
+         CWMUQdH0gfeOTSwjANuZ7QfAmapqZ6MwiUNW9X6SFJTmurHlxOZDXyUBJ9QBnZ9IXs
+         1tXI7rgxHo+eynssNYel1i2UQduMABsE/TtLtnYp8oJecVnJw86NbPoAJx+GIEjalV
+         XOydKfjQqyjAszjwoPAo4r1noj5hc0taTYOIi1FhRz2vyMXlhhCf4itl4yzuFTlhpZ
+         pHMyC1byEwuuQ==
+Date:   Thu, 10 Nov 2022 13:08:50 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sandor Yu <Sandor.yu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, robert.foss@linaro.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
+        tzimmermann@suse.de, lyude@redhat.com, javierm@redhat.com,
+        ville.syrjala@linux.intel.com, sam@ravnborg.org,
+        jani.nikula@intel.com, maxime@cerno.tech,
+        penguin-kernel@i-love.sakura.ne.jp, oliver.brown@nxp.com
+Subject: Re: [PATCH v3 04/10] phy: Add HDMI configuration options
+Message-ID: <Y2yqiuk13Jjbokum@matsya>
+References: <cover.1667911321.git.Sandor.yu@nxp.com>
+ <3edf9db8261e7f59dcd84a61a492d2483b1e9970.1667911321.git.Sandor.yu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221109220005.GA2930253-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <3edf9db8261e7f59dcd84a61a492d2483b1e9970.1667911321.git.Sandor.yu@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring wrote on Wed, Nov 09, 2022 at 04:00:05PM -0600:
-> Punting the issue to userspace is not a great solution...
-
-I can definitely agree with that :)
-
-Userspace has the advantage of being easy to shove ugly things under the
-rug, whereas I still have faint hope of keeping down the divergences we
-have with upstream kernel... But that's about it.
-
-If we can work out a solution here I'll be very happy.
-
-
-Rob Herring wrote on Wed, Nov 09, 2022 at 04:00:05PM -0600:
-> > This actually hasn't taken long to bite us: while the driver does work,
-> > we get error messages early on before the firmware is loaded.
-> > (In hindsight, I probably should have waited a few days before sending
-> > this...)
-> > 
-> > 
-> > My current workaround is to return EPROBE_DEFER until we can find a
-> > netdev with a known name in the init namespace, but that isn't really
-> > something I'd consider upstreamable for obvious reasons (interfaces can
-> > be renamed or moved to different namespaces so this is inherently racy
-> > and it's just out of place in BT code)
+On 08-11-22, 21:00, Sandor Yu wrote:
+> Allow HDMI PHYs to be configured through the generic
+> functions through a custom structure added to the generic union.
 > 
-> Can't you just try to access the BT h/w in some way and defer when that 
-> fails?
+> The parameters added here are based on HDMI PHY
+> implementation practices.  The current set of parameters
+> should cover the potential users.
 
-This is just a serial link; I've tried poking at it a bit before the
-firmware is loaded but mostly never got any reply, or while the driver
-sometimes got garbage back at some point (baudrate not matching with
-fresh boot default?)
-Either way, no reply isn't great -- just waiting a few ms for reply or
-not is not my idea of good design...
+Is there any dpendency b/w phy and hdmi, I dont see anything in cover..
 
-> Or perhaps use fw_devlink to create a dependency on the wifi node. I'm 
-> not sure offhand how exactly you do that with a custom property.
+Pls consider splitting the phy series ..
 
-That sounds great if we can figure how to do that!
-From what I can see this doesn't look possible to express in pure
-devicetree, but I see some code initializing a fwnode manually in a
-constructor function with fwnode_init and a fwnode_operations vector
-that has .add_links, which in turn could add a link.
-... My problem at this point would be that I currently load the wireless
-driver as a module as it's vendor provided out of tree... (it's loaded
-through its pci alias, I guess it's udev checking depmod infos? not
-familiar how that part of autoloading really works...)
+> 
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> ---
+>  include/linux/phy/phy-hdmi.h | 33 +++++++++++++++++++++++++++++++++
+>  include/linux/phy/phy.h      |  7 ++++++-
+>  2 files changed, 39 insertions(+), 1 deletion(-)
+>  create mode 100644 include/linux/phy/phy-hdmi.h
+> 
+> diff --git a/include/linux/phy/phy-hdmi.h b/include/linux/phy/phy-hdmi.h
+> new file mode 100644
+> index 000000000000..73a32eb535b0
+> --- /dev/null
+> +++ b/include/linux/phy/phy-hdmi.h
+> @@ -0,0 +1,33 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2022 NXP
+> + */
+> +
+> +#ifndef __PHY_HDMI_H_
+> +#define __PHY_HDMI_H_
+> +
+> +enum hdmi_phy_colorspace {
+> +	HDMI_PHY_COLORSPACE_RGB,
+> +	HDMI_PHY_COLORSPACE_YUV422,
+> +	HDMI_PHY_COLORSPACE_YUV444,
+> +	HDMI_PHY_COLORSPACE_YUV420,
+> +	HDMI_PHY_COLORSPACE_RESERVED4,
+> +	HDMI_PHY_COLORSPACE_RESERVED5,
+> +	HDMI_PHY_COLORSPACE_RESERVED6,
+> +};
 
-But that makes me think that rather than defining the bluetooth serdev
-in dts early, I could try to have the wireless driver create it once
-it's ready? hmm...
+kernel-doc style comments here too please
 
-Let me sleep on that a bit and have another look at both fwnode
-(fw_devlink) and dynamic device creation.
+> +
+> +/**
+> + * struct phy_configure_opts_hdmi - HDMI configuration set
+> + * @pixel_clk_rate:	Pixel clock of video modes in KHz.
+> + * @bpc: Maximum bits per color channel.
+> + * @color_space: Colorspace in enum hdmi_phy_colorspace.
+> + *
+> + * This structure is used to represent the configuration state of a HDMI phy.
+> + */
+> +struct phy_configure_opts_hdmi {
+> +	unsigned int pixel_clk_rate;
+> +	unsigned int bpc;
+> +	enum hdmi_phy_colorspace color_space;
+> +};
+> +
+> +#endif /* __PHY_HDMI_H_ */
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index b1413757fcc3..6f6873ea7270 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -17,6 +17,7 @@
+>  #include <linux/regulator/consumer.h>
+>  
+>  #include <linux/phy/phy-dp.h>
+> +#include <linux/phy/phy-hdmi.h>
+>  #include <linux/phy/phy-lvds.h>
+>  #include <linux/phy/phy-mipi-dphy.h>
+>  
+> @@ -42,7 +43,8 @@ enum phy_mode {
+>  	PHY_MODE_MIPI_DPHY,
+>  	PHY_MODE_SATA,
+>  	PHY_MODE_LVDS,
+> -	PHY_MODE_DP
+> +	PHY_MODE_DP,
+> +	PHY_MODE_HDMI,
+>  };
+>  
+>  enum phy_media {
+> @@ -60,11 +62,14 @@ enum phy_media {
+>   *		the DisplayPort protocol.
+>   * @lvds:	Configuration set applicable for phys supporting
+>   *		the LVDS phy mode.
+> + * @hdmi:	Configuration set applicable for phys supporting
+> + *		the HDMI phy mode.
+>   */
+>  union phy_configure_opts {
+>  	struct phy_configure_opts_mipi_dphy	mipi_dphy;
+>  	struct phy_configure_opts_dp		dp;
+>  	struct phy_configure_opts_lvds		lvds;
+> +	struct phy_configure_opts_hdmi		hdmi;
+>  };
+>  
+>  /**
+> -- 
+> 2.34.1
 
-
-Cheers,
 -- 
-Dominique
-
-
+~Vinod
