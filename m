@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7951E624566
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:18:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D382A624563
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbiKJPSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 10:18:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34824 "EHLO
+        id S231356AbiKJPSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 10:18:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbiKJPR5 (ORCPT
+        with ESMTP id S231376AbiKJPR5 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 10:17:57 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0651D31345
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F5531342
         for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 07:17:52 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id a29so3833687lfj.9
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 07:17:51 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id j4so3944960lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 07:17:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y93JMbDS7TCZqUPnYPX61/7g1utQYXApLn3dq22TrxU=;
-        b=wRWhes+i45FVWkaP2RbQOZfAtoSXGa+d4hSoAgTqHq++rLCP4AleTXnOs9rzRTcSEg
-         9KTxfcVofTUJRlw4o9izwZlC43VmLxhzwz5J5PNPmk2lOwB54rsS5tF4N5D4mVBeCvwy
-         muZlRGR/h9XRq+I8mysPxP0yufdne+8WePMhHUsNSUcMJwqy/WOyPimQB9xafZRc01A+
-         r8gVRtifBPhbVGEvFFd6KZuxgbQRZzFciRwAyBWAz6zmwQzboXljkKTXS6ouLUNztdzk
-         axbFUuuyuIjkvfYyBszJ6dI7zB4gSZ7NE6yJQSCc9z95ztuB7rZ2X5BGIfeIosSUNs5Z
-         zqIA==
+        bh=PDlxhalLaPohTMht0sA6QtRq47J10Uk/KVFrQ+ly9+c=;
+        b=ye+2+N3oa1WOQLv1C3P3U+LuFkPW9IVUm4owQLVVQk6s9yIFUNwUHvRl0l6yEJrEB8
+         LAa6gfo1NnyQmqS0fcn5zQqHhAU9HIgXDy+5jEnvfg7OXnSz5pVIUKT4jbbI3auQOzkz
+         MAJlJWn3PomljlYbC59xJfsz3D30fITK09lAP0xXbWfWQWUL7weEPCRYamMqsphay4nq
+         uXAJXvfgK3VU/PNwQW65lkDl+upbpKyfps+gBuQaLaShY+bXLSudEj7m20sBWme/6JrX
+         9TsubmYZJeG0YbIuDSBIzX9Lg3+mZTjiFfTtCjE3cArz/W3O1ThcLXyJ9CCnb++MlxM8
+         +mfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y93JMbDS7TCZqUPnYPX61/7g1utQYXApLn3dq22TrxU=;
-        b=tqtRSS5MwL783CPtOzmbaKFd9HQGvGIZ8A2XdiaJFKjHyLwugMj7ek2f6zdAeYmy5r
-         kYQn1Y7r3JftX/fZv3dcv0wJE1JrAbG3L+r4/JEwtXeOKe5hI3aK9cgzmaYocdsjU+e5
-         RfznwpdFmm7qUDSDYNRf6LYUYDptdethPfGNShbR+r4j5JcyhHBB6Fzl+qiFN2DjJvYJ
-         +ApSq8gGXF073ouhcOrfwi7TshSqUIYkVSjL8/WtbLmUX2QAQbZq7UAh6pPG6akkA/vG
-         Kr3Wms+3kc23s2RvQc84f3sqp7WEm5IOa5NyWgp9LSohYD7v8JyCoUoXNh/Rwx3rxiAM
-         JM4A==
-X-Gm-Message-State: ACrzQf0eNYla3USU1oRB2dzDHCKlYauq1SyrItbPZwlqouIEaMrodBtI
-        BeeDROUzrKSK+w6F8MpOFzSVAQ==
-X-Google-Smtp-Source: AMsMyM51NCYdPzeJ0DVLsUbB7vzCw6INOY5T/UVzT15xYcYCb+lXPZgmdsCXgopNWuX/aWQ6uOQShw==
-X-Received: by 2002:a05:6512:4021:b0:4a2:4f21:5070 with SMTP id br33-20020a056512402100b004a24f215070mr1651074lfb.270.1668093470375;
-        Thu, 10 Nov 2022 07:17:50 -0800 (PST)
+        bh=PDlxhalLaPohTMht0sA6QtRq47J10Uk/KVFrQ+ly9+c=;
+        b=ZeMNkLA9Ytn2KtmcuOINIgXPYAAONJHv6pW7OXX/XtLi6mqzGp49RQaVSDWhz/4LF5
+         UUmb4dTf4sjOTCMcwAI98WLoLU+B+cfrJC0v2zGwCW9I2h/5w+KLD/hhaaIRO1TEkF9b
+         S7Q1xXpXJBJOETQgh3N0nWUFZfFMki7YxOFDzQGU0RpnTG/Nm1d1RgWinEw/Gaxi+yP7
+         acR5IA7uZLBv/I6rFABHxVy94Evt4UNXlS9jXeC/2zrzqGVJBsZsPiYBBJouCx2iW4As
+         w0u8rZaWHzSK/1V8A8R8mfz8kuhzTM3S+71HsrcIyMgYrC5G5Afz6KI87L3CBHps4NXk
+         ExVw==
+X-Gm-Message-State: ACrzQf0S36dznwc6579WryAcqyfJHuoS+18oXgHclKJ7tF7/OLhdkakj
+        HT6IZy6aNEEzYMATSQhM2/CaMg==
+X-Google-Smtp-Source: AMsMyM5gF9sOQzOK81pQsLi3deVaccBBNhqAi5ATkXpxk3J6Auyv6jEzOjHQv1qFh9txKIHKdMtPNQ==
+X-Received: by 2002:a19:f006:0:b0:4ab:faae:693b with SMTP id p6-20020a19f006000000b004abfaae693bmr1692441lfc.597.1668093471171;
+        Thu, 10 Nov 2022 07:17:51 -0800 (PST)
 Received: from eriador.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id p22-20020a2eb7d6000000b002774e7267a7sm2719591ljo.25.2022.11.10.07.17.49
+        by smtp.gmail.com with ESMTPSA id p22-20020a2eb7d6000000b002774e7267a7sm2719591ljo.25.2022.11.10.07.17.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 10 Nov 2022 07:17:50 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v7 2/4] phy: qcom-qmp-ufs: provide symbol clocks
-Date:   Thu, 10 Nov 2022 18:17:46 +0300
-Message-Id: <20221110151748.795767-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v7 3/4] arm64: dts: qcom: sm8450: fix gcc clocks order to follow the schema
+Date:   Thu, 10 Nov 2022 18:17:47 +0300
+Message-Id: <20221110151748.795767-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221110151748.795767-1-dmitry.baryshkov@linaro.org>
 References: <20221110151748.795767-1-dmitry.baryshkov@linaro.org>
@@ -78,97 +78,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register three UFS symbol clocks (ufs_rx_symbol_0_clk_src,
-ufs_rx_symbol_1_clk_src ufs_tx_symbol_0_clk_src). Register OF clock
-provider to let other devices link these clocks through the DT.
+Move the sleep_clk to make sure the gcc device node follows the schema.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 64 +++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-index 189103d1bd18..78d7daf34667 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-@@ -1023,6 +1023,66 @@ static int qmp_ufs_clk_init(struct qmp_ufs *qmp)
- 	return devm_clk_bulk_get(dev, num, qmp->clks);
- }
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index d32f08df743d..efb01fefe9c7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -720,13 +720,13 @@ gcc: clock-controller@100000 {
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
++				 <&sleep_clk>,
+ 				 <&pcie0_lane>,
+-				 <&pcie1_lane>,
+-				 <&sleep_clk>;
++				 <&pcie1_lane>;
+ 			clock-names = "bi_tcxo",
++				      "sleep_clk",
+ 				      "pcie_0_pipe_clk",
+-				      "pcie_1_pipe_clk",
+-				      "sleep_clk";
++				      "pcie_1_pipe_clk";
+ 		};
  
-+static void phy_clk_release_provider(void *res)
-+{
-+	of_clk_del_provider(res);
-+}
-+
-+#define UFS_SYMBOL_CLOCKS 3
-+
-+static int phy_symbols_clk_register(struct qmp_ufs *qmp, struct device_node *np)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	struct clk_hw *hw;
-+	char name[64];
-+	int ret;
-+
-+	clk_data = devm_kzalloc(qmp->dev,
-+				struct_size(clk_data, hws, UFS_SYMBOL_CLOCKS),
-+				GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	clk_data->num = UFS_SYMBOL_CLOCKS;
-+
-+	snprintf(name, sizeof(name), "%s::rx_symbol_0", dev_name(qmp->dev));
-+	hw = devm_clk_hw_register_fixed_rate(qmp->dev, name, NULL, 0, 0);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	clk_data->hws[0] = hw;
-+
-+	snprintf(name, sizeof(name), "%s::rx_symbol_1", dev_name(qmp->dev));
-+	hw = devm_clk_hw_register_fixed_rate(qmp->dev, name, NULL, 0, 0);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	clk_data->hws[1] = hw;
-+
-+	snprintf(name, sizeof(name), "%s::tx_symbol_0", dev_name(qmp->dev));
-+	hw = devm_clk_hw_register_fixed_rate(qmp->dev, name, NULL, 0, 0);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	clk_data->hws[2] = hw;
-+
-+	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, clk_data);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Roll a devm action because the clock provider is the child node, but
-+	 * the child node is not actually a device.
-+	 */
-+	return devm_add_action_or_reset(qmp->dev, phy_clk_release_provider, np);
-+}
-+
-+static const struct phy_ops qcom_qmp_ufs_ops = {
-+	.power_on	= qmp_ufs_enable,
-+	.power_off	= qmp_ufs_disable,
-+	.owner		= THIS_MODULE,
-+};
-+
- static int qmp_ufs_parse_dt_legacy(struct qmp_ufs *qmp, struct device_node *np)
- {
- 	struct platform_device *pdev = to_platform_device(qmp->dev);
-@@ -1135,6 +1195,10 @@ static int qmp_ufs_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_node_put;
- 
-+	ret = phy_symbols_clk_register(qmp, np);
-+	if (ret)
-+		goto err_node_put;
-+
- 	qmp->phy = devm_phy_create(dev, np, &qcom_qmp_ufs_phy_ops);
- 	if (IS_ERR(qmp->phy)) {
- 		ret = PTR_ERR(qmp->phy);
+ 		gpi_dma2: dma-controller@800000 {
 -- 
 2.35.1
 
