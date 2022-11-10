@@ -2,83 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B51BD62452B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4485624547
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:14:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiKJPIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 10:08:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56552 "EHLO
+        id S229874AbiKJPN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 10:13:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbiKJPIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 10:08:42 -0500
-Received: from mx.msync.work (mx.msync.work [185.250.0.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9991823157;
-        Thu, 10 Nov 2022 07:08:38 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F14AD123169;
-        Thu, 10 Nov 2022 15:01:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1668092469; h=from:subject:date:message-id:to:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=dONz83S/sl0lvYKGXEj7vcvWK71sD2+ztpm57yFpufg=;
-        b=OTavFoQLMbkEqY41c8FhiUtigQYo9tCEen8cj5clEkrfIdSs/a2eaDQC69VZY0uoB2otoN
-        ++qyL00LAa2ymvVaLaAGYwr8PD0HNk97Qd40oz/Wl1PGUx/mTFQYYzZNFsM+UkwvhUlrPU
-        b59Au0227AfMxPCq0qq0vaLAwxlBWdoCxPooBnfsCwmAIjkZdp0SmUoosZ8e3TL2eAIvEx
-        ScisEvn3ghRTbEUg/EeAHFm1B9EHSvfiMT2mvvWYbLnEUc4EJitW3mJ6kCZPjRdFiVyV5x
-        lZmA9Y/zZoI+PQDDl0JNUuLKyemTzhFLZe/AfNsqGhBY8ukXMVPAJBg3rvGmPQ==
-From:   Vyacheslav Bocharov <adeep@lexina.in>
-To:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: docs: Update mmc meson-gx documentation for new config option amlogic,mmc-phase
-Date:   Thu, 10 Nov 2022 18:00:35 +0300
-Message-Id: <20221110150035.2824580-5-adeep@lexina.in>
-In-Reply-To: <20221110150035.2824580-1-adeep@lexina.in>
-References: <20221110150035.2824580-1-adeep@lexina.in>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229541AbiKJPNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 10:13:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8968B1144D;
+        Thu, 10 Nov 2022 07:13:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 34B0AB82192;
+        Thu, 10 Nov 2022 15:13:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C584DC433D6;
+        Thu, 10 Nov 2022 15:13:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668093230;
+        bh=MbJwL/xbNtWgUF6Zd3do7MReo/iqoBtgzj/J3KIlx90=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VPmAypvfdQ/EYxpZBz4FGtjyhZwtFHwHCL4hvvmLLxNjovB5hH2aK2kq/WBds/xW2
+         QFiTiocP3roVTIZj9ni53QY2JaOeviGrLdFuhgue8gGfwoVF1M3sYvSKug/xWEEXzF
+         9VoGVymQ2G/tSlmCLhn4P+XcPa1LIOpoFEKbNg28NltEXKzhY53GxDnmih5H+9kguF
+         K49ct7+wmEOpd1v3vShnQlvR01FUYyZGJCK3dsFgGyrL2lPnLIzttP8MpuNvsUcYW7
+         gxjR0GcI4I3NH0URtM5xJXD0RI7XwRP1Wm3FxBBoy6aLNVIYAYjTtWtfRlhYTxKDdQ
+         P8LFOj/iYKhbA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1ot9FT-005BUm-Ds;
+        Thu, 10 Nov 2022 15:13:47 +0000
+Date:   Thu, 10 Nov 2022 15:13:47 +0000
+Message-ID: <86k042q1uc.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <broonie@kernel.org>, <tglx@linutronix.de>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic CS48L31/32/33 codecs
+In-Reply-To: <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+        <20221109165331.29332-10-rf@opensource.cirrus.com>
+        <87mt8zutib.wl-maz@kernel.org>
+        <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+        <86pmdvow5y.wl-maz@kernel.org>
+        <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: rf@opensource.cirrus.com, lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, broonie@kernel.org, tglx@linutronix.de, alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx
-clock with values:
-	0: CLK_PHASE_0 - 0 phase
-	1: CLK_PHASE_90 - 90 phase
-	2: CLK_PHASE_180 - 180 phase
-	3: CLK_PHASE_270 - 270 phase
-By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
+On Thu, 10 Nov 2022 13:00:50 +0000,
+Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> 
+> On 10/11/2022 12:01, Marc Zyngier wrote:
+> > On Thu, 10 Nov 2022 11:22:26 +0000,
+> > Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> >> 
+> >> On 10/11/2022 08:02, Marc Zyngier wrote:
+> >>> On Wed, 09 Nov 2022 16:53:28 +0000,
+> >>> Richard Fitzgerald <rf@opensource.cirrus.com> wrote:
+> >>>> 
+> >>>> The Cirrus Logic CS48L31/32/33 audio codecs contain a programmable
+> >>>> interrupt controller with a variety of interrupt sources, including
+> >>>> GPIOs that can be used as interrupt inputs.
+> >>>> 
+> >>>> This driver provides the handling for the interrupt controller. As the
+> >>>> codec is accessed via regmap, the generic regmap_irq functionality
+> >>>> is used to do most of the work.
+> >>>> 
+> >>> 
+> >>> I cannot spot a shred of interrupt controller code in there. This
+> >> 
+> >> It is providing support for handling an interrupt controller so that
+> >> other drivers can bind to those interrupts. It's just that regmap
+> >> provides a lot of generic implementation for SPI-connected interrupt
+> >> controllers so we don't need to open-code all that in the
+> >> irqchip driver.
+> > 
+> > And thus none of that code needs to live in drivers/irqchip.
+> > 
+> >> 
+> >>> belongs IMO to the MFD code.
+> >> 
+> >> We did once put interrupt support in MFD for an older product line but
+> >> the MFD maintainer doesn't like the MFD being a dumping-ground for
+> >> random other functionality that have their own subsystems.
+> > 
+> > I don't like this stuff either. All this code is a glorified set of
+> > interrupt handlers and #defines that only hide the lack of a proper DT
+> > binding to express the interrupt routing (it feels like looking at
+> > board files from 10 years ago).
+> > 
+> 
+> I didn't understand this. The whole purpose of this is to instantiate
+> Linux interrupts for the PIC interrupt sources so that other drivers
+> that want to use the interrupts from the CS48L32 PIC can use standard
+> kernel APIs or DT to bind against them.
 
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+There is zero standard APIs in this patch. Does cs48l32_request_irq()
+look standard to you? This whole thing makes a mockery of the
+interrupt model and of firmware-based interrupt description which we
+spent years to build.
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-index ccc5358db131..98c89c5b3455 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-@@ -25,6 +25,12 @@ Required properties:
- Optional properties:
- - amlogic,dram-access-quirk: set when controller's internal DMA engine cannot access the
-   DRAM memory, like on the G12A dedicated SDIO controller.
-+- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx clock with values:
-+	0: CLK_PHASE_0 - 0 phase
-+	1: CLK_PHASE_90 - 90 phase
-+	2: CLK_PHASE_180 - 180 phase
-+	3: CLK_PHASE_270 - 270 phase
-+  By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
- 
- Example:
- 
-@@ -36,4 +42,5 @@ Example:
- 		clock-names = "core", "clkin0", "clkin1";
- 		pinctrl-0 = <&emmc_pins>;
- 		resets = <&reset RESET_SD_EMMC_A>;
-+		amlogic,mmc-phases = <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0>;
- 	};
+> 
+> The four handlers registered within the driver are done here simply
+> because they don't belong to any particular child driver. Since they
+> are a fixed feature of the chip that we know we want to handle we may as
+> well just register them.
+
+Again, they have no purpose in an interrupt controller driver.
+
+> If we put them in the MFD with DT definitions it would make a
+> circular dependency between MFD and its child, which is not a great
+> situation. If it's these handlers that are bothering you, we could move
+> them to the audio driver.
+
+And what's left? Nothing.
+
+> 
+> > None of that belongs in the irqchip code.
+> > 
+> 
+> I don't really understand here what the criteria is that makes this not
+> a irqchip driver but it was ok for madera. We have a PIC and we need to
+> handle that and export those interrupts so other drivers can bind
+> against them. Is the problem that the PIC is on a SPI bus and irqchip is
+> only for memory-mapped PICs? Or is it that we have re-used existing
+> library code instead of open-coding it, so you aren't seeing the actual
+> handling code?
+
+An irqchip driver uses the irq_chip structure, uses irq domains to
+abstract the device-specific interrupt numbering from clients, and
+doesn't force the use of an esoteric API on these clients.
+
+What I see here is the exact opposite.
+
+Was it OK for madera? No. A moment of weakness, I presume. Do I want
+to repeat the same mistake? Neither.
+
+> As Lee has already objected in the past to having the interrupt
+> controller implementation in MFD I don't want to move it there without
+> Lee's agreement that it's ok to put the PIC IRQ implementation in MFD
+> for CS48L32.
+
+If you were implementing an actual interrupt controller driver, I'd
+take it without any question. The fact that this code mandates the use
+of its own homegrown API rules it out.
+
+Thanks,
+
+	M.
+
 -- 
-2.30.2
-
+Without deviation from the norm, progress is not possible.
