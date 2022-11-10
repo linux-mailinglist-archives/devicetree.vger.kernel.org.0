@@ -2,75 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 695ED6240BA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA156240D6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:09:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbiKJLHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 06:07:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55568 "EHLO
+        id S229628AbiKJLJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 06:09:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230433AbiKJLHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:07:25 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4466F348;
-        Thu, 10 Nov 2022 03:07:22 -0800 (PST)
-Received: from zn.tnic (p200300ea9733e7bc329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e7bc:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E662B1EC0723;
-        Thu, 10 Nov 2022 12:07:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1668078441;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=48k0S2al7uQS4UVvtuNjthpDtQOt/nuPQzF+86DA2Ps=;
-        b=DFoOaUXj/CbbgpHanTnyKZlUJJAoa4nQCXQWFsy6Q9xDvGTet9bHtRLJ1XDPRLrgokw38/
-        34PVWjHWG7JqD6gPs5acjn+6mt08AiN/6RVtLESrmhuaKsWbpGD0TVXWJLUHYV2Q4XdWZI
-        p/Q54mrcsxw9sYLA/AkSRLtLZa1KRa0=
-Date:   Thu, 10 Nov 2022 12:07:20 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-edac@vger.kernel.org,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org, tony.luck@intel.com,
-        mchehab@kernel.org, michal.simek@xilinx.com, git@amd.com,
-        robh+dt@kernel.org, james.morse@arm.com, rric@kernel.org
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: edac: Add bindings for
- Xilinx Versal EDAC for DDRMC
-Message-ID: <Y2zbaI+2Thq0t6dv@zn.tnic>
-References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
- <20221107062413.9642-2-shubhrajyoti.datta@amd.com>
- <166807145377.16822.15787804198836912482.b4-ty@linaro.org>
- <Y2zL3OXBNfR/VNPK@zn.tnic>
- <207ae5bd-dbc2-9c4b-2acc-bda480da711e@linaro.org>
- <Y2zYqetP6IhG01Bg@zn.tnic>
- <490d26ce-a09c-db16-93b1-8f468a5c3f87@linaro.org>
- <Y2zZj69EEZlqRfBd@zn.tnic>
- <2d1cddd6-448b-4a3c-72e1-2ce3cfb44268@linaro.org>
+        with ESMTP id S229579AbiKJLJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:09:15 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E826B201
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:09:14 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id u24so2490423edd.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 03:09:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z+zj47CxDazv5n5Weo6oSJ5S2zaBuccDAxOqSC3Ye4E=;
+        b=rLIZgsq79GQmr376cwc8RVovgmgoNwJ1K1r4jQhv/hMxNnCjlRBN9GGoVZoMv2MQ8W
+         Dx+7yV9A1P8d6/bNLjSZi2Mjgk7wmHr2CI8a6UWIlQ6pPKjTYLfV3l49ix5G+XNheQsg
+         06rYnGdpVYHIEbIGGKSRhspas2h42odmKUfAtLwG8Y/AqQZSMOMn8XU33r1SENhFNzqf
+         tS2iY2RZKUsM2ydNa1fTBdWlnR06AzMJpjo3iv7JMFlDFB3qKOyKgqGttK6oGxdfzkdq
+         zsYROGlQuJfzltdIbdryGkO/mDDjJY6QbNMKt9h+wmpXcUlMbu8t4YCXSpfLOqeoTfqI
+         zWAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z+zj47CxDazv5n5Weo6oSJ5S2zaBuccDAxOqSC3Ye4E=;
+        b=gAwbrr1unwvz32UOcC/dWhZUaSM6R6rz6aDkLKUSZ8AjGPaaIas9iQEkCu8En3yi5p
+         SRh6yuZKJb1qgSnnZuWue8Si6Skxo+CYTsEXazlzOfYyZWxLqNK0XFnibVP+Jz5Ic6rO
+         CjLeRDtKNBmRNufkV5zgrW8+akS9pCgYxIofY+E4VKmJc4hzLT2u8sN6VfWoGWCz+DYv
+         AAxVTcbR+iiqZLjUbs+tQ4QSXejFXpqPPADHLVh+vrcNYKLqzJs7RBeANAjn/hNXFAIp
+         5FYOO5myMZK5g0OgN7e8pQwonNHb+ZtfGLpYnyERKVxRZKbsLQ+HkCyUPiPB3kxj9jtb
+         NV9w==
+X-Gm-Message-State: ANoB5pmhj24QFqYG4sRDGKdvKvdwwPJpRH2COWZ5BMaT/XzDYZDpTKid
+        0jlnubiUZrpX1ZVzEfm1PbgsVQ==
+X-Google-Smtp-Source: AA0mqf489JZ/W0OQS+ENK70ZqqTJfxAYOeGzJw0uwG/5NFavrLZIO/1J+m/WtaYIWKtWSS99ljo/tA==
+X-Received: by 2002:aa7:d385:0:b0:461:8cd3:b38b with SMTP id x5-20020aa7d385000000b004618cd3b38bmr24091150edq.172.1668078553506;
+        Thu, 10 Nov 2022 03:09:13 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id x6-20020a05640225c600b00463a83ce063sm8372518edb.96.2022.11.10.03.09.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 03:09:13 -0800 (PST)
+Message-ID: <bf3e5725-8cf7-3a0e-aa9b-0b05a4507868@linaro.org>
+Date:   Thu, 10 Nov 2022 12:09:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2d1cddd6-448b-4a3c-72e1-2ce3cfb44268@linaro.org>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom,smd: Document PMR735a
+To:     Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, andersson@kernel.org,
+        linux-arm-msm@vger.kernel.org, krzysztof.kozlowski@linaro.org,
+        agross@kernel.org
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, patches@linaro.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20221109110846.45789-1-konrad.dybcio@linaro.org>
+ <166807822235.115312.17138185226634439165.b4-ty@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <166807822235.115312.17138185226634439165.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 12:00:34PM +0100, Krzysztof Kozlowski wrote:
-> I already dropped them from my tree, so let's wait for respin and then
-> you can take entire set.
 
-Or that. Ok, will wait for your Reviewed-by tag then.
 
-Thx.
+On 10/11/2022 12:03, Mark Brown wrote:
+> On Wed, 9 Nov 2022 12:08:45 +0100, Konrad Dybcio wrote:
+>> PMR735a also appears to be bundled with some SMD RPM SoCs.
+>> Document it.
+>>
+>>
+> 
+> Applied to
+> 
+>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> 
+> Thanks!
+Please apply v2 instead:
 
--- 
-Regards/Gruss,
-    Boris.
+https://lore.kernel.org/linux-arm-msm/20221110091736.3344-2-konrad.dybcio@linaro.org/T/#u
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Konrad
+> 
+> [1/2] dt-bindings: regulator: qcom,smd: Document PMR735a
+>        commit: 9263c69696c8c75ef97ebf57cb4f308c4c2420ea
+> [2/2] regulator: qcom_smd: Add PMR735a regulators
+>        commit: 0cda8c43aa2477b7a9f9bed0adff2f34d3afc143
+> 
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+> 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> Thanks,
+> Mark
