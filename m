@@ -2,161 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 325D1624889
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:45:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ECC16248F7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:02:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiKJRpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 12:45:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58760 "EHLO
+        id S230392AbiKJSCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 13:02:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiKJRpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:45:32 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15CE62DAA4;
-        Thu, 10 Nov 2022 09:45:29 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AAHikMB018321;
-        Thu, 10 Nov 2022 11:44:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668102286;
-        bh=yW1uO952OcBO2fElaCf2Q7WipVJKTPj/Dc1SJmpKnwQ=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=jmWpEZtBQjS+jkYmlQnMGGEGS3FoSgizdYC4mDmAC9EuKZcIWv9APoor5v+zti9VA
-         2Ok1cqJCcekDc4R5Zv49W+RIYyJMHulx4Oz/6EPnRwe6eiBEsO37Rnv5oDFD4GmSCV
-         kG3QiELaUFr3RkwjhRlSUU99+fHUNDOfYdi/24G8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AAHik26061482
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Nov 2022 11:44:46 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 10
- Nov 2022 11:44:46 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 10 Nov 2022 11:44:45 -0600
-Received: from [128.247.81.39] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AAHijVL130696;
-        Thu, 10 Nov 2022 11:44:45 -0600
-Message-ID: <1231f3e6-61a7-ca3c-2fbb-679b583e0df1@ti.com>
-Date:   Thu, 10 Nov 2022 11:44:45 -0600
+        with ESMTP id S230462AbiKJSCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:02:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAE051C1F;
+        Thu, 10 Nov 2022 10:02:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B5B3961535;
+        Thu, 10 Nov 2022 18:01:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 997D2C43470;
+        Thu, 10 Nov 2022 18:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1668103319;
+        bh=M5rLoXR2mfR5eibPRb489KjTPMmgEjz5/iycQIHsWR4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pGzEw2+yOnxRsIIVA0+iBwtr3LOMH7Q83xpdEZPvMwb1jfwyh4KKnez8yDjPMqQMh
+         +pmbSydihJ6VKMiHhcG64h8pLMZbNwXY8I+3SPhUg2hdNOY1mbAFyZZk2dIcphSIFZ
+         ATfk2JhyEXa7bauWGczy1IMALyOiyacgtPz86sIg=
+Date:   Thu, 10 Nov 2022 19:01:56 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, saravanak@google.com, geert+renesas@glider.be,
+        krzysztof.kozlowski@linaro.org, robh@kernel.org
+Subject: Re: [PATCH RESEND v4 0/2] drivers: bus: Add Freescale i.MX8qxp pixel
+ link MSI bus support
+Message-ID: <Y208lGQ7aFXsRDO6@kroah.com>
+References: <20221017074039.4181843-1-victor.liu@nxp.com>
+ <55b3aaac5085761c2ac274f9faabd252acdd8418.camel@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-To:     Kevin Hilman <khilman@baylibre.com>,
-        jerome Neanne <jneanne@baylibre.com>,
-        Nishanth Menon <nm@ti.com>
-CC:     Lee Jones <lee@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <kristo@kernel.org>,
-        <dmitry.torokhov@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <tony@atomide.com>,
-        <vigneshr@ti.com>, <bjorn.andersson@linaro.org>,
-        <shawnguo@kernel.org>, <geert+renesas@glider.be>,
-        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
-        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>, <arnd@arndb.de>,
-        <jeff@labundy.com>, <narmstrong@baylibre.com>, <msp@baylibre.com>,
-        <j-keerthy@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-input@vger.kernel.org>, <linux-omap@vger.kernel.org>
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-5-jneanne@baylibre.com> <Y1+q2Usm9ecicXqp@google.com>
- <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
- <20221105000104.rtj3r6ufqwqmepon@keenly> <7heduewjp0.fsf@baylibre.com>
- <5418ac3b-04d7-5e77-7612-c8f168e24621@ti.com>
- <1267bf43-618c-7347-be3a-2792c656d9b6@baylibre.com>
- <7hk042agn4.fsf@baylibre.com>
-Content-Language: en-US
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <7hk042agn4.fsf@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <55b3aaac5085761c2ac274f9faabd252acdd8418.camel@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/22 11:00 AM, Kevin Hilman wrote:
-> jerome Neanne <jneanne@baylibre.com> writes:
+On Mon, Oct 31, 2022 at 04:30:57PM +0800, Liu Ying wrote:
+> On Mon, 2022-10-17 at 15:40 +0800, Liu Ying wrote:
+> > Hi,
+> > 
+> > This series aims to add Freescale i.MX8qxp pixel link MSI bus support
+> > by using the existing simple-pm-bus driver. A power domain and two input
+> > clocks need to be enabled before the MSI bus accesses it's child devices,
+> > which matches what a simple power-managed bus is(See simple-pm-bus.yaml).
+> > 
+> > Patch 1 enables/disables functional clock(s) as a bulk in the
+> > simple-pm-bus driver when the simple-pm-bus is being power managed,
+> > since the MSI bus takes the two input clocks as functional clocks.
+> > 
+> > Patch 2 adds dt-bindings for the MSI bus.
+> > 
+> > v3->v4:
+> > * Drop patch 1 in v3, because simple-bus/simple-mfd devices probed by the
+> >   simple-pm-bus driver should not be child nodes of simple-pm-bus at all,
+> >   as simple-bus/simple-mfd's child devices PM operations cannot be propagated
+> >   to simple-pm-bus. Those simple-bus/simple-mfd devices needs dedicated drivers.
+> > * Drop unnecessary 'bus == NULL' check from simple_pm_bus_runtime_{suspend,resume}.
+> >   for patch 1 in v4. (Geert)
+> > * Add Geert's R-b tag on patch 1 in v4.
+> > * Add child nodes in the example MSI bus node of the MSI bus dt-binding. (Krzysztof)
+> > * Resend v4 to imply this series is based on v6.0-rc1 so that there are not any
+> >   dependencies for the MSI bus dt-binding. (Rob)
+> > * Resend v4 based on v6.1-rc1. (Greg)
+> > * Add Rob's R-b tag on patch 2 in v4.
+> > 
+> > v2->v3:
+> > * Add a pattern property to allow child nodes in the MSI bus dt-binding. (Rob)
+> > 
+> > v1->v2:
+> > Address Krzysztof's comments on patch 3:
+> > * Add a select to explicitly select the MSI bus dt-binding.
+> > * List 'simple-pm-bus' explicitly as one item of compatible strings.
+> > * Require compatible and reg properties.
+> > * Put reg property just after compatible property in example.
+> > 
+> > Liu Ying (2):
+> >   drivers: bus: simple-pm-bus: Use clocks
+> >   dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding
+> > 
+> >  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 232 ++++++++++++++++++
+> >  drivers/bus/simple-pm-bus.c                   |  48 ++++
+> >  2 files changed, 280 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
 > 
->> On 09/11/2022 22:59, Andrew Davis wrote:
->>> On 11/7/22 3:14 PM, Kevin Hilman wrote:
->>>> Nishanth Menon <nm@ti.com> writes:
->>>>
->>>>> On 13:58-20221104, jerome Neanne wrote:
->>>>>>
->>>>> [...]
->>>>>
->>>>>>
->>>>>>>
->>>>>>> Can you try an compile with W=1 please.
->>>>>> This raise one warning on mfd:
->>>>>> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’
->>>>>> defined but
->>>>>> not used [-Wunused-function]
->>>>>>      28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
->>>>>>         |            ^~~~~~~~~~~~~~~~~~~~~~
->>>>>> soft_shutdown has been validated and is used in TI baseline even if not
->>>>>> hooked in upstream version further to this review:
->>>>>> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
->>>>>>
->>>>>> It was a TI requirement to implement it...
->>>>>> Let me know if you want me to remove this function or if we can keep
->>>>>> it like
->>>>>> this.
->>>>>
->>>>> There are platforms without psci, correct? I think the comment was to
->>>>> drop the force override with system-power-controller property,
->>>>>
->>>>> if (!pm_power_off) {
->>>>>      tps65219_i2c_client = client;
->>>>>      pm_power_off = &tps65219_pm_power_off;
->>>>> }
->>>>>
->>>>> Could still be valid for such platforms, no? I do see that the
->>>>> capability that the PMIC has - which is software shutdown is a valid
->>>>> feature that we support in many different PMIC drivers. Is'nt the job of
->>>>> the driver to introduce the functionality in a manner that is
->>>>> appropriate to the OS framework?
->>>>
->>>> Yeah, I think Nishanth is right here.
->>>>
->>>> We should probably keep the `if (!pm_power_off)` part so the PMIC will
->>>> be used if PSCI is not, but it also allows an easy way to test/use the
->>>> PMIC
->>>> shutdown functionality downstream if needed.
->>>>
->>>
->>> Then should be using the sys-off handler API[0] so it doesn't block PSCI
->>> which is also switching over[1].
->>>
->>> Andrew
->>>
->>> [0] https://lwn.net/Articles/894511/
->>> [1] https://www.spinics.net/lists/arm-kernel/msg1024127.html
->> Can we go for upstream with v7 without tps65219_soft_shutdown. Then if
->> everyone agrees with Andrew proposal, I'll submit a separate patch which
->> adds implementation of tps65219_soft_shutdown support through sys-off
->> handler.
->>
->> So that we are not blocking upstream in case further
->> discussions/alignment are required.
+> Gentle ping...
 > 
-> Seems OK to me.  Nishanth?  Andrew?
-> 
-> But I think you'll need to at least submit a v8 without the unused
-> code/dead code that Lee pointed out.
-> 
+> If there is no more comments on this series, can someone pick it up
+> please?
 
-If you need the v8 anyway, then add support through sys-off in
-that spin, should only be a couple lines of change.
+I'll take it, thanks.
 
-Andrew
+greg k-h
