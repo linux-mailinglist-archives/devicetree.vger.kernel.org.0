@@ -2,551 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B8B2624C9B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79DBC624CC3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:18:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231221AbiKJVJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 16:09:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33070 "EHLO
+        id S231126AbiKJVSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 16:18:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbiKJVJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:09:04 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F59A1;
-        Thu, 10 Nov 2022 13:09:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1668114537; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mLRygKirSBoogtusAo9If0UlsP82kbcNW5DJvTB2yjI=;
-        b=0nensPtFnH97lP55247EoOgXArEFvPu95xwsuDRfAUz/l/Frms0Zh+PCIzo+Uyx8fLSq0v
-        lqGVxl0ovE2nNP6zFuHvkC+fxLM5UUTOgm879j/gC7ywh3g5IPlXluhl5k7lYOLhSoD/B5
-        DwOUlgfVSru9g9ccpI1axf+nxZhmuk8=
-Date:   Thu, 10 Nov 2022 21:08:47 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2] dt-bindings: Convert active-semi PMIC docs to YAML
- schemas
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229962AbiKJVSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:18:40 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3EB18362;
+        Thu, 10 Nov 2022 13:18:39 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so1831230otb.8;
+        Thu, 10 Nov 2022 13:18:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FQYEV0yuvAFKXfXfXPWLe2h/Dtk7ZrvGn4iuEOi+yK4=;
+        b=qJ3vxkfEjKoN5+Ke1toOxv7oILl4xI8yVf7U1oTLC3rk2Re3kgd17n7VarYLnMHlUZ
+         RiioeOBID/jLZaWoouaJahqav3HIwxhAyov14wSG2St//FsAHymgYqDDT12RXJ3aW0BT
+         J/kZpZQ7PSdD/Fd7hbMDzRspQOQghygyT+ZciyZWaygf7FUqro9WUzISLc07bEa2Q9st
+         tPjDJWIRTElqlInW4Zqtmi/UxBs01IATs8nJkiktZ9lUKaGNlbK4s1hPcLDLWNvI49ln
+         1AI4ygcMatvTkZibysqGaqmFUqi+n4gP4DEKl3k8o2DaFZnW0kp81qFXOzulaNZBbFtO
+         giHg==
+X-Gm-Message-State: ACrzQf2IYGhWr9F5m5oQ+FkHIsmiiLJCzn4+AQMZ8DhCgabSHCS8WiqE
+        ejXWH11G+cGvVzD7XYqYGg==
+X-Google-Smtp-Source: AMsMyM7oQ4Ol1gBBxJonigdAuxDwjy/LR46XN4ccCYBY1im4NIoAy/a29peGtg/WLuJLCh8oS9VdPg==
+X-Received: by 2002:a9d:730c:0:b0:661:ab16:3623 with SMTP id e12-20020a9d730c000000b00661ab163623mr2151184otk.91.1668115118340;
+        Thu, 10 Nov 2022 13:18:38 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ek24-20020a056870f61800b0013b1301ce42sm329233oab.47.2022.11.10.13.18.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 13:18:37 -0800 (PST)
+Received: (nullmailer pid 1062808 invoked by uid 1000);
+        Thu, 10 Nov 2022 21:18:39 -0000
+Date:   Thu, 10 Nov 2022 15:18:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>, linux-pci@vger.kernel.org,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        linux-kernel@vger.kernel.org,
+        Serge Semin <fancer.lancer@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        caihuoqing <caihuoqing@baidu.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        list@opendingux.net
-Message-Id: <NEH5LR.URZKYH8VLESF1@crapouillou.net>
-In-Reply-To: <02c45ae9-61a4-9fc5-4daf-8c4c9df9a4a0@linaro.org>
-References: <20221105225803.39197-1-paul@crapouillou.net>
-        <02c45ae9-61a4-9fc5-4daf-8c4c9df9a4a0@linaro.org>
+        Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v6 09/20] dt-bindings: PCI: dwc: Add
+ interrupts/interrupt-names common properties
+Message-ID: <166811511627.1062682.15955440634711266362.robh@kernel.org>
+References: <20221107204934.32655-1-Sergey.Semin@baikalelectronics.ru>
+ <20221107204934.32655-10-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221107204934.32655-10-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_FILL_THIS_FORM_SHORT
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-Le dim. 6 nov. 2022 =E0 10:55:11 +0100, Krzysztof Kozlowski=20
-<krzysztof.kozlowski@linaro.org> a =E9crit :
-> On 05/11/2022 23:58, Paul Cercueil wrote:
->>  Create YAML bindings for the Active-semi PMICs and remove the old=20
->> text
->>  files.
->>=20
->>  The bindings aren't perfect, for instance I couldn't find good
->>  descriptions for the vendor properties in the "charger" node of the
->>  ACT8945A because I am not familiar with the hardware and these
->>  properties were not documented anywhere.
->>=20
->>  The YAML schemas are a bit different than what is described in the=20
->> old
->>  text files, because these were sometimes wrong or had missing
->>  information. This is the case for the ACT8600 documentation, which
->>  specified the valid node names for the regulators, while the driver=20
->> was
->>  expecting different names. This led to the current situation where=20
->> we
->>  have two different boards using different names for the regulators:
->>  - arch/mips/boot/dts/ingenic/ci20.dts uses the names documented in=20
->> the
->>    text file,
->>  - arch/mips/boot/dts/ingenic/gcw0.dts uses the names that the driver
->>    expects.
->>  In theory, the driver should be fixed to follow the documentation,=20
->> and
->>  accept both naming schemes. In practice though, when the PMIC node=20
->> was
->>  added to the ci20.dts board file, the names were already wrong in
->>  regards to what the driver expected, so it never really worked
->>  correctly and wasn't tested properly. Furthermore, in that board the
->>  consumers of the regulators aren't working for various other reasons
->>  (invalid GPIOs, etc.).
->>=20
->>  For that reason, for the ACT8600 bindings I decided to only use the=20
->> node
->>  names that the driver expects (and that gcw0.dts uses), instead of
->>  accepting both old and new names. A follow-up patch will update the=20
->> CI20
->>  board to use the new regulator names.
->>=20
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->>=20
->>  Notes:
->>      v2:
->>      - Avoid | character in descriptions that can be single-line
->>      - Remove unevaluatedProperties when additionalProperties is=20
->> also present
->>      - Remove useless inner parentheses in regular expressions
->>      - Rename I2C nodes to just... i2c
->>      - Remove node handles
->>=20
->>      Note:
->>      I set Liam Girdwood and Mark Brown as the maintainers by=20
->> default, since
->>      it doesn't appear that anybody is managing the Active-semi=20
->> drivers, but
->>      if anybody steps up I can update it.
->=20
-> It should not be Liam and Mark, but someone having/knowing this
-> particular hardware.
+On Mon, 07 Nov 2022 23:49:23 +0300, Serge Semin wrote:
+> Currently the 'interrupts' and 'interrupt-names' properties are defined
+> being too generic to really describe any actual IRQ interface. Moreover
+> the DW PCIe End-point devices are left with no IRQ signals. All of that
+> can be fixed by adding the IRQ-related properties to the common DW PCIe
+> DT-schemas in accordance with the hardware reference manual. The DW PCIe
+> common DT-schema will contain the generic properties definitions with just
+> a number of entries per property, while the DW PCIe RP/EP-specific schemas
+> will have the particular number of items and the generic resource names
+> listed.
+> 
+> Note since there are DW PCI-based vendor-specific DT-bindings with the
+> custom names assigned to the same IRQ resources we have no much choice but
+> to add them to the generic DT-schemas in order to have the schemas being
+> applicable for such devices. These names are marked as vendor-specific and
+> should be avoided being used in new bindings in favor of the generic
+> names.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Note without the next dtschema tool fix
+> 
+> --- a/lib.py 2022-09-29 15:17:13.100033810 +0300
+> +++ b/lib.py     2022-09-29 15:19:54.886172794 +0300
+> @@ -1307,7 +1307,7 @@
+>  def format_error(filename, error, prefix="", nodename=None, verbose=False):
+>      src = prefix + os.path.abspath(filename) + ':'
+> 
+> -    if error.linecol[0] >= 0:
+> +    if hasattr(error, 'linecol') and error.linecol[0] >= 0:
+>          src = src + '%i:%i: ' % (error.linecol[0]+1, error.linecol[1]+1)
+>      else:
+>          src += ' '
+> @@ -1342,10 +1342,10 @@
+>      else:
+>          msg = error.message
+> 
+> -    if error.note:
+> +    if hasattr(error, 'note') and error.note:
+>          msg += '\n\t' + prefix + 'hint: ' + error.note
+> 
+> -    if error.schema_file:
+> +    if hasattr(error, 'schema_file') and error.schema_file:
+>          msg += '\n\t' + prefix + 'from schema $id: ' + error.schema_file
+> 
+>      return src + msg
+> 
+> any DT-bindings error will cause the dt-schema script crash:
+> 
+> Traceback (most recent call last):
+>   File "/home/fancer/.local/bin/dt-validate", line 175, in <module>
+>     sg.check_trees(filename, testtree)
+>   File "/home/fancer/.local/bin/dt-validate", line 122, in check_trees
+>     self.check_subtree(dt, subtree, False, "/", "/", filename)
+>   File "/home/fancer/.local/bin/dt-validate", line 111, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>   File "/home/fancer/.local/bin/dt-validate", line 111, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>   File "/home/fancer/.local/bin/dt-validate", line 106, in check_subtree
+>     self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+>   File "/home/fancer/.local/bin/dt-validate", line 84, in check_node
+>     print(dtschema.format_error(filename, error, nodename=nodename, verbose=verbose) +
+>   File "/home/fancer/.local/lib/python3.8/site-packages/dtschema/lib.py", line 1332, in format_error
+>     msg += '\n' + format_error(filename, suberror, prefix=prefix+"\t", nodename=nodename, verbose=verbose)
+>   File "/home/fancer/.local/lib/python3.8/site-packages/dtschema/lib.py", line 1310, in format_error
+>     if error.linecol[0] >= 0:
+> AttributeError: 'ValidationError' object has no attribute 'linecol'
+> 
+> Changelog v3:
+> - This is a new patch unpinned from the next one:
+>   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+>   by the Rob' request. (@Rob)
+> 
+> Changelog v5:
+> - Add platform-specific interrupt names, but mark them as deprecated.
+> 
+> Changelog v6:
+> - Move the common interrupt-names definitions to the RP/EP schemas.
+>   Thus drop the 'definitions' property. (@Rob)
+> - Drop the 'deprecated' keywords from the vendor-specific names. (@Rob)
+> ---
+>  .../bindings/pci/snps,dw-pcie-common.yaml     | 19 ++++
+>  .../bindings/pci/snps,dw-pcie-ep.yaml         | 52 +++++++++++
+>  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 90 ++++++++++++++++++-
+>  3 files changed, 158 insertions(+), 3 deletions(-)
+> 
 
-Well, who would that be?
-
-I do have a board with the ACT8600, but that's about it.
-
--Paul
-
->>=20
->>   .../bindings/regulator/act8865-regulator.txt  | 117 --------
->>   .../bindings/regulator/act8945a-regulator.txt | 113 --------
->>   .../regulator/active-semi,act8600.yaml        | 141 ++++++++++
->>   .../regulator/active-semi,act8846.yaml        | 207 ++++++++++++++
->>   .../regulator/active-semi,act8865.yaml        | 162 +++++++++++
->>   .../regulator/active-semi,act8945a.yaml       | 261=20
->> ++++++++++++++++++
->>   6 files changed, 771 insertions(+), 230 deletions(-)
->>   delete mode 100644=20
->> Documentation/devicetree/bindings/regulator/act8865-regulator.txt
->>   delete mode 100644=20
->> Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
->>   create mode 100644=20
->> Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
->>   create mode 100644=20
->> Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml
->>   create mode 100644=20
->> Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml
->>   create mode 100644=20
->> Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml
->>=20
->>  diff --git=20
->> a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt=20
->> b/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
->>  deleted file mode 100644
->>  index b9f58e480349..000000000000
->>  ---=20
->> a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
->>  +++ /dev/null
->>  @@ -1,117 +0,0 @@
->>  -ACT88xx regulators
->>  --------------------
->>  -
->>  -Required properties:
->>  -- compatible: "active-semi,act8846" or "active-semi,act8865" or=20
->> "active-semi,act8600"
->>  -- reg: I2C slave address
->>  -
->>  -Optional properties:
->>  -- system-power-controller: Telling whether or not this pmic is=20
->> controlling
->>  -  the system power. See=20
->> Documentation/devicetree/bindings/power/power-controller.txt .
->>  -- active-semi,vsel-high: Indicates the VSEL pin is high.
->>  -  If this property is missing, assume the VSEL pin is low(0).
->>  -
->>  -Optional input supply properties:
->>  -- for act8600:
->>  -  - vp1-supply: The input supply for DCDC_REG1
->>  -  - vp2-supply: The input supply for DCDC_REG2
->>  -  - vp3-supply: The input supply for DCDC_REG3
->>  -  - inl-supply: The input supply for LDO_REG5, LDO_REG6, LDO_REG7=20
->> and LDO_REG8
->>  -  SUDCDC_REG4, LDO_REG9 and LDO_REG10 do not have separate=20
->> supplies.
->>  -- for act8846:
->>  -  - vp1-supply: The input supply for REG1
->>  -  - vp2-supply: The input supply for REG2
->>  -  - vp3-supply: The input supply for REG3
->>  -  - vp4-supply: The input supply for REG4
->>  -  - inl1-supply: The input supply for REG5, REG6 and REG7
->>  -  - inl2-supply: The input supply for REG8 and LDO_REG9
->>  -  - inl3-supply: The input supply for REG10, REG11 and REG12
->>  -- for act8865:
->>  -  - vp1-supply: The input supply for DCDC_REG1
->>  -  - vp2-supply: The input supply for DCDC_REG2
->>  -  - vp3-supply: The input supply for DCDC_REG3
->>  -  - inl45-supply: The input supply for LDO_REG1 and LDO_REG2
->>  -  - inl67-supply: The input supply for LDO_REG3 and LDO_REG4
->>  -
->>  -Any standard regulator properties can be used to configure the=20
->> single regulator.
->>  -regulator-initial-mode, regulator-allowed-modes and regulator-mode=20
->> could be specified
->>  -for act8865 using mode values from=20
->> dt-bindings/regulator/active-semi,8865-regulator.h
->>  -file.
->>  -
->>  -The valid names for regulators are:
->>  -	- for act8846:
->>  -	REG1, REG2, REG3, REG4, REG5, REG6, REG7, REG8, REG9, REG10,=20
->> REG11, REG12
->>  -	- for act8865:
->>  -	DCDC_REG1, DCDC_REG2, DCDC_REG3, LDO_REG1, LDO_REG2, LDO_REG3,=20
->> LDO_REG4.
->>  -	- for act8600:
->>  -	DCDC_REG1, DCDC_REG2, DCDC_REG3, SUDCDC_REG4, LDO_REG5, LDO_REG6,=20
->> LDO_REG7,
->>  -	LDO_REG8, LDO_REG9, LDO_REG10,
->>  -
->>  -Example:
->>  ---------
->>  -
->>  -#include <dt-bindings/regulator/active-semi,8865-regulator.h>
->>  -
->>  -		i2c1: i2c@f0018000 {
->>  -			pmic: act8865@5b {
->>  -				compatible =3D "active-semi,act8865";
->>  -				reg =3D <0x5b>;
->>  -				active-semi,vsel-high;
->>  -
->>  -				regulators {
->>  -					vcc_1v8_reg: DCDC_REG1 {
->>  -						regulator-name =3D "VCC_1V8";
->>  -						regulator-min-microvolt =3D <1800000>;
->>  -						regulator-max-microvolt =3D <1800000>;
->>  -						regulator-always-on;
->>  -					};
->>  -
->>  -					vcc_1v2_reg: DCDC_REG2 {
->>  -						regulator-name =3D "VCC_1V2";
->>  -						regulator-min-microvolt =3D <1100000>;
->>  -						regulator-max-microvolt =3D <1300000>;
->>  -						regulator-always-on;
->>  -
->>  -						regulator-allowed-modes =3D <ACT8865_REGULATOR_MODE_FIXED>,
->>  -									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
->>  -						regulator-initial-mode =3D <ACT8865_REGULATOR_MODE_FIXED>;
->>  -
->>  -						regulator-state-mem {
->>  -							regulator-on-in-suspend;
->>  -							regulator-suspend-min-microvolt =3D <1150000>;
->>  -							regulator-suspend-max-microvolt =3D <1150000>;
->>  -							regulator-changeable-in-suspend;
->>  -							regulator-mode =3D <ACT8865_REGULATOR_MODE_LOWPOWER>;
->>  -						};
->>  -					};
->>  -
->>  -					vcc_3v3_reg: DCDC_REG3 {
->>  -						regulator-name =3D "VCC_3V3";
->>  -						regulator-min-microvolt =3D <3300000>;
->>  -						regulator-max-microvolt =3D <3300000>;
->>  -						regulator-always-on;
->>  -					};
->>  -
->>  -					vddana_reg: LDO_REG1 {
->>  -						regulator-name =3D "VDDANA";
->>  -						regulator-min-microvolt =3D <3300000>;
->>  -						regulator-max-microvolt =3D <3300000>;
->>  -						regulator-always-on;
->>  -
->>  -						regulator-allowed-modes =3D <ACT8865_REGULATOR_MODE_NORMAL>,
->>  -									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
->>  -						regulator-initial-mode =3D <ACT8865_REGULATOR_MODE_NORMAL>;
->>  -
->>  -						regulator-state-mem {
->>  -							regulator-off-in-suspend;
->>  -						};
->>  -					};
->>  -
->>  -					vddfuse_reg: LDO_REG2 {
->>  -						regulator-name =3D "FUSE_2V5";
->>  -						regulator-min-microvolt =3D <2500000>;
->>  -						regulator-max-microvolt =3D <2500000>;
->>  -					};
->>  -				};
->>  -			};
->>  -		};
->>  diff --git=20
->> a/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt=20
->> b/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
->>  deleted file mode 100644
->>  index 4017527619ab..000000000000
->>  ---=20
->> a/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
->>  +++ /dev/null
->>  @@ -1,113 +0,0 @@
->>  -Device-Tree bindings for regulators of Active-semi ACT8945A=20
->> Multi-Function Device
->>  -
->>  -Required properties:
->>  - - compatible: "active-semi,act8945a", please refer to=20
->> ../mfd/act8945a.txt.
->>  -
->>  -Optional properties:
->>  -- active-semi,vsel-high: Indicates if the VSEL pin is set to=20
->> logic-high.
->>  -  If this property is missing, assume the VSEL pin is set to=20
->> logic-low.
->>  -
->>  -Optional input supply properties:
->>  -  - vp1-supply: The input supply for REG_DCDC1
->>  -  - vp2-supply: The input supply for REG_DCDC2
->>  -  - vp3-supply: The input supply for REG_DCDC3
->>  -  - inl45-supply: The input supply for REG_LDO1 and REG_LDO2
->>  -  - inl67-supply: The input supply for REG_LDO3 and REG_LDO4
->>  -
->>  -Any standard regulator properties can be used to configure the=20
->> single regulator.
->>  -regulator-initial-mode, regulator-allowed-modes and regulator-mode=20
->> could be
->>  -specified using mode values from=20
->> dt-bindings/regulator/active-semi,8945a-regulator.h
->>  -file.
->>  -
->>  -The valid names for regulators are:
->>  -	REG_DCDC1, REG_DCDC2, REG_DCDC3, REG_LDO1, REG_LDO2, REG_LDO3,=20
->> REG_LDO4.
->>  -
->>  -Example:
->>  -
->>  -#include <dt-bindings/regulator/active-semi,8945a-regulator.h>
->>  -
->>  -	pmic@5b {
->>  -		compatible =3D "active-semi,act8945a";
->>  -		reg =3D <0x5b>;
->>  -
->>  -		active-semi,vsel-high;
->>  -
->>  -		regulators {
->>  -			vdd_1v35_reg: REG_DCDC1 {
->>  -				regulator-name =3D "VDD_1V35";
->>  -				regulator-min-microvolt =3D <1350000>;
->>  -				regulator-max-microvolt =3D <1350000>;
->>  -				regulator-always-on;
->>  -
->>  -				regulator-allowed-modes =3D <ACT8945A_REGULATOR_MODE_FIXED>,
->>  -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
->>  -				regulator-initial-mode =3D <ACT8945A_REGULATOR_MODE_FIXED>;
->>  -
->>  -				regulator-state-mem {
->>  -					regulator-on-in-suspend;
->>  -					regulator-suspend-min-microvolt=3D<1400000>;
->>  -					regulator-suspend-max-microvolt=3D<1400000>;
->>  -					regulator-changeable-in-suspend;
->>  -					regulator-mode=3D<ACT8945A_REGULATOR_MODE_LOWPOWER>;
->>  -				};
->>  -			};
->>  -
->>  -			vdd_1v2_reg: REG_DCDC2 {
->>  -				regulator-name =3D "VDD_1V2";
->>  -				regulator-min-microvolt =3D <1100000>;
->>  -				regulator-max-microvolt =3D <1300000>;
->>  -				regulator-always-on;
->>  -
->>  -				regulator-allowed-modes =3D <ACT8945A_REGULATOR_MODE_FIXED>,
->>  -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
->>  -				regulator-initial-mode =3D <ACT8945A_REGULATOR_MODE_FIXED>;
->>  -
->>  -				regulator-state-mem {
->>  -					regulator-off-in-suspend;
->>  -				};
->>  -			};
->>  -
->>  -			vdd_3v3_reg: REG_DCDC3 {
->>  -				regulator-name =3D "VDD_3V3";
->>  -				regulator-min-microvolt =3D <3300000>;
->>  -				regulator-max-microvolt =3D <3300000>;
->>  -				regulator-always-on;
->>  -			};
->>  -
->>  -			vdd_fuse_reg: REG_LDO1 {
->>  -				regulator-name =3D "VDD_FUSE";
->>  -				regulator-min-microvolt =3D <2500000>;
->>  -				regulator-max-microvolt =3D <2500000>;
->>  -				regulator-always-on;
->>  -
->>  -				regulator-allowed-modes =3D <ACT8945A_REGULATOR_MODE_NORMAL>,
->>  -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
->>  -				regulator-initial-mode =3D <ACT8945A_REGULATOR_MODE_NORMAL>;
->>  -
->>  -				regulator-state-mem {
->>  -					regulator-off-in-suspend;
->>  -				};
->>  -			};
->>  -
->>  -			vdd_3v3_lp_reg: REG_LDO2 {
->>  -				regulator-name =3D "VDD_3V3_LP";
->>  -				regulator-min-microvolt =3D <3300000>;
->>  -				regulator-max-microvolt =3D <3300000>;
->>  -				regulator-always-on;
->>  -			};
->>  -
->>  -			vdd_led_reg: REG_LDO3 {
->>  -				regulator-name =3D "VDD_LED";
->>  -				regulator-min-microvolt =3D <3300000>;
->>  -				regulator-max-microvolt =3D <3300000>;
->>  -				regulator-always-on;
->>  -			};
->>  -
->>  -			vdd_sdhc_1v8_reg: REG_LDO4 {
->>  -				regulator-name =3D "VDD_SDHC_1V8";
->>  -				regulator-min-microvolt =3D <1800000>;
->>  -				regulator-max-microvolt =3D <1800000>;
->>  -				regulator-always-on;
->>  -			};
->>  -		};
->>  -	};
->>  diff --git=20
->> a/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml=20
->> b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
->>  new file mode 100644
->>  index 000000000000..ca0ac316dff2
->>  --- /dev/null
->>  +++=20
->> b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
->>  @@ -0,0 +1,141 @@
->>  +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id:=20
->> http://devicetree.org/schemas/regulator/active-semi,act8600.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +
->>  +title: Active-semi ACT8600 regulator
->>  +
->>  +maintainers:
->>  +  - Liam Girdwood <lgirdwood@gmail.com>
->>  +  - Mark Brown <broonie@kernel.org>
->>  +
->>  +properties:
->>  +  compatible:
->>  +    const: active-semi,act8600
->>  +
->>  +  reg:
->>  +    description: I2C address
->=20
-> Drop description, it's obvious. The same in other files.
->=20
->>  +    maxItems: 1
->>  +
->>  +  system-power-controller:
->>  +    description:
->>  +      Indicates that the ACT8600 is responsible for powering OFF
->>  +      the system.
->>  +    type: boolean
->>  +
->=20
-> (...)
->=20
->>  +examples:
->>  +  - |
->>  +    #include <dt-bindings/regulator/active-semi,8865-regulator.h>
->>  +
->>  +    i2c1 {
->>  +      #address-cells =3D <1>;
->>  +      #size-cells =3D <0>;
->>  +
->>  +      pmic: act8865@5b {
->>  +        compatible =3D "active-semi,act8865";
->>  +        reg =3D <0x5b>;
->>  +        active-semi,vsel-high;
->>  +
->>  +        regulators {
->>  +          vcc_1v8_reg: DCDC_REG1 {
->>  +            regulator-name =3D "VCC_1V8";
->>  +            regulator-min-microvolt =3D <1800000>;
->>  +            regulator-max-microvolt =3D <1800000>;
->>  +            regulator-always-on;
->>  +          };
->>  +
->>  +          vcc_1v2_reg: DCDC_REG2 {
->>  +            regulator-name =3D "VCC_1V2";
->>  +            regulator-min-microvolt =3D <1100000>;
->>  +            regulator-max-microvolt =3D <1300000>;
->>  +            regulator-always-on;
->>  +
->>  +            regulator-allowed-modes =3D=20
->> <ACT8865_REGULATOR_MODE_FIXED>,
->>  +                                     =20
->> <ACT8865_REGULATOR_MODE_LOWPOWER>;
->>  +            regulator-initial-mode =3D=20
->> <ACT8865_REGULATOR_MODE_FIXED>;
->>  +
->>  +            regulator-state-mem {
->>  +              regulator-on-in-suspend;
->>  +              regulator-suspend-min-microvolt =3D <1150000>;
->>  +              regulator-suspend-max-microvolt =3D <1150000>;
->>  +              regulator-changeable-in-suspend;
->>  +              regulator-mode =3D <ACT8865_REGULATOR_MODE_LOWPOWER>;
->>  +            };
->>  +          };
->>  +
->>  +          vcc_3v3_reg: DCDC_REG3 {
->>  +            regulator-name =3D "VCC_3V3";
->>  +            regulator-min-microvolt =3D <3300000>;
->>  +            regulator-max-microvolt =3D <3300000>;
->>  +            regulator-always-on;
->>  +          };
->>  +
->>  +          vddana_reg: LDO_REG1 {
->>  +            regulator-name =3D "VDDANA";
->>  +            regulator-min-microvolt =3D <3300000>;
->>  +            regulator-max-microvolt =3D <3300000>;
->>  +            regulator-always-on;
->>  +
->>  +            regulator-allowed-modes =3D=20
->> <ACT8865_REGULATOR_MODE_NORMAL>,
->>  +            <ACT8865_REGULATOR_MODE_LOWPOWER>;
->=20
-> Align it with previous <.
->=20
->>  +            regulator-initial-mode =3D=20
->> <ACT8865_REGULATOR_MODE_NORMAL>;
->=20
->=20
-> (...)
->=20
->>  +
->>  +        charger {
->>  +          compatible =3D "active-semi,act8945a-charger";
->>  +          pinctrl-names =3D "default";
->>  +          pinctrl-0 =3D <&pinctrl_charger_chglev=20
->> &pinctrl_charger_lbo &pinctrl_charger_irq>;
->>  +          interrupt-parent =3D <&pioA>;
->>  +          interrupts =3D <45 IRQ_TYPE_EDGE_RISING>;
->>  +
->>  +          active-semi,chglev-gpios =3D <&pioA 12 GPIO_ACTIVE_HIGH>;
->>  +          active-semi,lbo-gpios =3D <&pioA 72 GPIO_ACTIVE_LOW>;
->>  +          active-semi,input-voltage-threshold-microvolt =3D <6600>;
->>  +          active-semi,precondition-timeout =3D <40>;
->>  +          active-semi,total-timeout =3D <3>;
->>  +          status =3D "okay";
->=20
-> Drop status
->=20
->>  +        };
->>  +      };
->>  +    };
->=20
-> Best regards,
-> Krzysztof
->=20
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
