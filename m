@@ -2,111 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C126242D1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:05:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E95A46242E1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiKJNFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 08:05:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
+        id S230193AbiKJNII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 08:08:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230156AbiKJNFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:05:32 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8471A388;
-        Thu, 10 Nov 2022 05:05:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=M3EWxCFBGMPsU5MZUwlkMDxDdNXjGbuI2esV7j5ms8c=; b=vjF838VlxZ+w3ICZR0366s/hYy
-        HeabKdkwiUMKyHoIeFEaZXY0u+KqrKOLvO+tJTLbE11Ksu/Rk8WdcfmIvYemdgU/u87FHmIAfYFmm
-        gixo3WPYvQFs962T68SUC31ExIqnqVU0uOkv21av5TtZZBbOdAj+to/805wqutXVlTpo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ot7E1-002220-2k; Thu, 10 Nov 2022 14:04:09 +0100
-Date:   Thu, 10 Nov 2022 14:04:09 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Jan Petrous <jan.petrous@nxp.com>
-Cc:     Chester Lin <clin@suse.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        dl-S32 <S32@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [EXT] Re: [PATCH 2/5] dt-bindings: net: add schema for NXP S32CC
- dwmac glue driver
-Message-ID: <Y2z2yeQpMQV4y+4H@lunn.ch>
-References: <20221031101052.14956-1-clin@suse.com>
- <20221031101052.14956-3-clin@suse.com>
- <20221102155515.GA3959603-robh@kernel.org>
- <2a7ebef4-77cc-1c26-ec6d-86db5ee5a94b@suse.de>
- <Y2Q7KtYkvpRz76tn@lunn.ch>
- <Y2T5/w8CvZH5ZlE2@linux-8mug>
- <AM9PR04MB85066636DE2D99C8F2A9F4CDE23E9@AM9PR04MB8506.eurprd04.prod.outlook.com>
- <Y2wxDc8i4cspaFnx@lunn.ch>
- <AM9PR04MB8506F52B7E88ED1FE64554A1E2019@AM9PR04MB8506.eurprd04.prod.outlook.com>
+        with ESMTP id S230224AbiKJNIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:08:06 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A721C42F
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 05:07:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1668085624;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8zMAudJpmdEKZtCKUy+05rwV5mHOrkDZJoA0XJ15CQ4=;
+        b=TRNF16fIQg+6rv+ss24naYjUwi8Ge9/bk1EP0EyBLmbMXJPVyKWUaEZBjJ6mw+6GFweXJy
+        Vo50vZSIY+LTYSXnLOWMeJamBmEcH3mod/u0eBh8eoqjeuxb3CA3RQfw7Xy5U/wnJTHyw1
+        KkYBDxPyKpzZXxksetqQIT95nmmHNLY=
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
+ [209.85.210.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-67-z8CImxfyPo6leU4mJI23Yg-1; Thu, 10 Nov 2022 08:07:03 -0500
+X-MC-Unique: z8CImxfyPo6leU4mJI23Yg-1
+Received: by mail-pf1-f199.google.com with SMTP id cj8-20020a056a00298800b0056cee8a0cf8so1016640pfb.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 05:07:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8zMAudJpmdEKZtCKUy+05rwV5mHOrkDZJoA0XJ15CQ4=;
+        b=zeizRCZFnk9VZ9T5iXmZnMEuvAlgdhplwRLAovy7LUzKsAuZ/TErm2gvzo0El4H3q5
+         K0Xp3txFrTal7wdoXoqdeSc0hd/QeTp6llc7uYXlfOpG+qv2XwoaTQ/BBJ9GLUPg+E5p
+         UqeCTjZX7f+j4UMdRhjPuvrad847ep82gcapylPL3gP7eE8vLFwsXGX6BWtNEQMgNmAx
+         6n2gBMs+1wAem0azwFgsGaGgnSx7BuPjCnzwfDhtumaMYUo10+eUHlNrr85k4/dQqmKR
+         CXWXVGeQgRv3DpQQJ9FuYiyeIIkZkC03nPEnkwz19MChii8BMyJT9coJS4kLuinJnQd9
+         MMgw==
+X-Gm-Message-State: ACrzQf3CFfnnTBxBJu3yHSwD9BH7DoGpLtSYrxMQB7A8hG0mcGzpbwm/
+        nqeQrJMZOx9uA8orRpbJ7D0gVUxh6buu6QPyh7cktxvnlEoxJZL+qWEe0rT63+QioQ5tcmL0awG
+        tVde+ycqpbsvXnpCvpbNTbQ==
+X-Received: by 2002:a63:155b:0:b0:470:1a0b:ce3d with SMTP id 27-20020a63155b000000b004701a0bce3dmr34429941pgv.597.1668085621962;
+        Thu, 10 Nov 2022 05:07:01 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM4/ry76eNdJLG8wkw95+ZE+UZX4fN3mjnXvdaEyH+JPEN9B5VVng2ZratTCNQe1UctwEEQHtQ==
+X-Received: by 2002:a63:155b:0:b0:470:1a0b:ce3d with SMTP id 27-20020a63155b000000b004701a0bce3dmr34429912pgv.597.1668085621657;
+        Thu, 10 Nov 2022 05:07:01 -0800 (PST)
+Received: from gerbillo.redhat.com (146-241-120-203.dyn.eolo.it. [146.241.120.203])
+        by smtp.gmail.com with ESMTPSA id lw5-20020a17090b180500b0020af2bab83fsm3081270pjb.23.2022.11.10.05.06.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 05:07:01 -0800 (PST)
+Message-ID: <d5f0dea1b9ce5f8d2187875adb1d73e747e21916.camel@redhat.com>
+Subject: Re: [PATCH net-next v5 3/3] net: ethernet: ti: am65-cpsw: Add
+ support for SERDES configuration
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux@armlinux.org.uk, vladimir.oltean@nxp.com, vigneshr@ti.com,
+        nsekhar@ti.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+Date:   Thu, 10 Nov 2022 14:06:47 +0100
+In-Reply-To: <20221109042203.375042-4-s-vadapalli@ti.com>
+References: <20221109042203.375042-1-s-vadapalli@ti.com>
+         <20221109042203.375042-4-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8506F52B7E88ED1FE64554A1E2019@AM9PR04MB8506.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 08:51:43AM +0000, Jan Petrous wrote:
-> Hi Andrew,
-> 
-> > > > Here I just focus on GMAC since there are other LAN interfaces that S32
-> > > > family
-> > > > uses [e.g. PFE]. According to the public GMACSUBSYS ref manual rev2[1]
-> > > > provided
-> > > > on NXP website, theoretically GMAC can run SGMII in 1000Mbps and
-> > > > 2500Mbps so I
-> > > > assume that supporting 1000BASE-X could be achievable. I'm not sure if
-> > any
-> > > > S32
-> > > > board variant might have SFP ports but RJ-45 [1000BASE-T] should be the
-> > > > major
-> > > > type used on S32G-EVB and S32G-RDB2.
-> > > >
-> > > > @NXP, please feel free to correct me if anything wrong.
-> > > >
-> > >
-> > > NXP eval boards (EVB or RDB) have also 2.5G PHYs, so together with SerDes
-> > > driver we support 100M/1G/2.5G on such copper PHYs.
-> > 
-> > Hi Jan
-> > 
-> > Does the SERDES clock need to change when going between 1000BaseX and
-> > 2500BaseX?
-> > 
-> > If so, it sounds like Linux not having control of that clock is going
-> > to limit what can be supported.
-> 
-> No, the SerDes clock remains the same, the change is done internally, without
-> any necessity of clock change intervention by GMAC driver.
+hello,
 
-Hi Jan
+On Wed, 2022-11-09 at 09:52 +0530, Siddharth Vadapalli wrote:
+[...]
 
-Thanks for the information. So this binding should work.
+> +static void am65_cpsw_disable_serdes_phy(struct am65_cpsw_common *common)
+> +{
+> +	struct device_node *node, *port_np;
+> +	struct device *dev = common->dev;
+> +	const char *name = "serdes-phy";
+> +	struct phy *phy;
+> +
+> +	node = of_get_child_by_name(dev->of_node, "ethernet-ports");
+> +
+> +	for_each_child_of_node(node, port_np) {
+> +		phy = devm_of_phy_get(dev, port_np, name);
 
-The only suggestion i have is that the binding does not call is SGMII
-clock, because it is used for more than SGMII, also 1000base-X, and
-2500Base-X. So PCS clock might be better.
+The above will try to allocate some memory and can fail. Even if the
+the following code will handle a NULL ptr, the phy will not be
+disabled.
 
-	Andrew	    
+I think it's better if you cache the serdes phy ptr in
+am65_cpsw_init_serdes_phy() and you use such reference here, without
+resorting to devm_of_phy_get().
+
+Cheers,
+
+Paolo
+
