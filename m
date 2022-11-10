@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADA4624BB8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 21:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71202624BC2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 21:28:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbiKJUVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 15:21:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
+        id S229862AbiKJU2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 15:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231883AbiKJUVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 15:21:16 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5001B19C22
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:21:10 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id x21so2220159ljg.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:21:10 -0800 (PST)
+        with ESMTP id S229719AbiKJU2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 15:28:23 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497FB1C91F
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:28:21 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u2so2261604ljl.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 12:28:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RE1ZPfOOMkFTJRsPaLh2a/8p9Ky7brLI2mjtWUnhvIU=;
-        b=ZLbRJjSDhoU17vkT0JEuuvPOmTbk4IoXMGZIvXZ8p8FHI55PUrqBVTmkTfbYJ6+7Rz
-         2pXIRKfXZtYrUgDDp1mxDGiyYxOQRt6Dov61UIrPUYGHB2WwEUAO+i8NSYkDFzOQu7hz
-         aTLCom2m2CxW5qSWrP30eIz/U6tvb07lw/WUlQXV1/Gy7iSXKiHhZoSp3U5RuqZx2Odv
-         zK8v5+SEKj1Qrl5QHN7H0jJ/Sx2g0u7ZWyP2Y1gpAb8AmsD7/CwCNWVj6/tykv8WbH3B
-         12zzuXeWM6PR+YVJf/KkAmBkEk7Xyc9OLUCndyvvbwc+Iq+PO/6Vj6GvHK1owWOF68D3
-         AiNA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Sd9YOa98jTIDGnNoAp2N24NxIMGU6LQKL4kGMhofZN8=;
+        b=aJz+sgQqS/24bjUmgjwjEKfkanziTrN8PgcLoslW40Mt9RT3dOdGlM3s7i7BQjOBur
+         YFn4PQLjQckQ6rOfkKmDeGcMg/WjE82ABnKJSEvGyWrWrLWh36bm23CwGmS6Z7pEB2GP
+         e4Pg64fwB/7efulqWTZVqbp9F/tM0kKklj0+WMiL20gUG+d1ku0RLkJeuTbBdSyPvf+4
+         H9qS2UTmJ4+huBuxI5F/cX2+s2f6mHTeI68kF3oogjobF9G70NhzI5WbtEQzPRONFTHs
+         SYa/41jKKT7t6pgUjOu66mGCfY4BgChGCaTugRoFpbPbMXTiQUCBzpKnwy9hw1MhJUQX
+         GS/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RE1ZPfOOMkFTJRsPaLh2a/8p9Ky7brLI2mjtWUnhvIU=;
-        b=omlhhIBBFD88ExJPguFYDfEjN3rJ1Z9cXGhdPUKBn69BT0ogqJHH3eN60Y3XE93iGL
-         hKFsE4h1Y6EMvxujjq4P/NendZWLfPrVCmY010lF5dJZyuSMki+m4+nsPmyry1vETqZY
-         k83nIi2uHwnnk4VhRGAW/eU517F1vpUDzTBlYwTwkC2rgdlWu15w9R0WUtlTwwU6vnKQ
-         U7pk+M7PdA9q4Xwd7nVdPqtJPbQ0arCPEMNVoUVbsDXLAAm/2fdFraZ9Y46B/KvjWnvy
-         igWcWER7xFIH/9w3Bp42O6EO8qwHB79ydejPT6SbVoPfpzLikQke2x5nMz0iVZMIcvXK
-         nfeg==
-X-Gm-Message-State: ACrzQf0AT3K+OLp71vDkPZHuftsBocQBYs3c3qrNEylOBTuo50YDSY/2
-        XcVRJO5rkJFm1U0eqpDRRUwL0Q==
-X-Google-Smtp-Source: AMsMyM4sMRnEHSTwff8SGR2Q6I/T5vMDqoKpIMchh+5/G9OopKUdfo2OKHM9bAkUgMEiwowd3KUpsg==
-X-Received: by 2002:a2e:9899:0:b0:277:8144:2eb6 with SMTP id b25-20020a2e9899000000b0027781442eb6mr8265779ljj.45.1668111668640;
-        Thu, 10 Nov 2022 12:21:08 -0800 (PST)
-Received: from [192.168.1.112] (95.49.32.193.neoplus.adsl.tpnet.pl. [95.49.32.193])
-        by smtp.gmail.com with ESMTPSA id q21-20020a056512211500b004b3c505a71dsm10679lfr.92.2022.11.10.12.21.06
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sd9YOa98jTIDGnNoAp2N24NxIMGU6LQKL4kGMhofZN8=;
+        b=EvWl5C8cZJ3Ct13SHbFh0HMKqRllE8WRgPu13p9xOmbNGJLwQAimZbKbDNTUkQdEgk
+         KJ5XcRl0woxSVnJ58zOAypGhi1QBCxXFqsKTs3F3ARMHD+kwk/4Yd6gpDi+9unzGNK71
+         Lhqmx7GRg5aY0b4/us23dP1anzls2XFE+RBgYjc1yH3K/LqcU2jB0vneVNQppjJgWp3L
+         InbioJdJAOBHn0ZKM+fr55AEgrb8JQIhXlCLOeEJQieMD4OLFkJVo6jXBg4399YL7EfP
+         QTa9b7I40eltQYNeqMpFcUEOP6BsfZYa2OuEjxEUhZqbbjurx+jkJZUv0tAEf39+zreh
+         wEmw==
+X-Gm-Message-State: ACrzQf3pmGFL619+ZhVRx5XsSVCr9D22CjuUDy4bNqV9BBzR/nKdi5Jz
+        pPeKrk7/q2wLkOjVEnpXinAN9g==
+X-Google-Smtp-Source: AMsMyM7T6B7QKw+xW4apR9Cn3zi9ueQCGkpBoppy+5oFE8mV3RD0E+wT+JQTCbqK8ade+2Du8t8xPw==
+X-Received: by 2002:a2e:80c4:0:b0:277:fa0:d500 with SMTP id r4-20020a2e80c4000000b002770fa0d500mr9170257ljg.51.1668112099609;
+        Thu, 10 Nov 2022 12:28:19 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id u2-20020a05651220c200b00499bf7605afsm10183lfr.143.2022.11.10.12.28.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 12:21:08 -0800 (PST)
-Message-ID: <52fa0ebd-e431-7159-ef1e-a2cde7c7a4e2@linaro.org>
-Date:   Thu, 10 Nov 2022 21:21:05 +0100
+        Thu, 10 Nov 2022 12:28:19 -0800 (PST)
+Message-ID: <fc7a4a61-75e2-2111-39f5-7c7103f1c6dd@linaro.org>
+Date:   Thu, 10 Nov 2022 23:28:18 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 7/8] drm/msm/dpu: add support for SM8450
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
@@ -68,97 +69,105 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
 References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
- <b222a21c-a00f-8806-179c-f97bcb45c303@somainline.org>
- <5c791922-1371-c9e7-4bdc-e1909956633f@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <5c791922-1371-c9e7-4bdc-e1909956633f@linaro.org>
+ <20221104130324.1024242-8-dmitry.baryshkov@linaro.org>
+ <d171b737-0d46-df31-05ad-c35593d8dbf5@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d171b737-0d46-df31-05ad-c35593d8dbf5@somainline.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/11/2022 21:19, Dmitry Baryshkov wrote:
-> On 04/11/2022 16:58, Konrad Dybcio wrote:
->>
->> On 04/11/2022 14:03, Dmitry Baryshkov wrote:
->>> On sm8450 a register block was removed from MDP TOP. Accessing it during
->>> snapshotting results in NoC errors / immediate reboot. Skip accessing
->>> these registers during snapshot.
->>
->> Must have been fun to debug..
->>
->>
->>>
->>> Tested-by: Vinod Koul <vkoul@kernel.org>
->>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
->>>   2 files changed, 10 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> index 38aa38ab1568..4730f8268f2a 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> @@ -92,6 +92,7 @@ enum {
->>>       DPU_MDP_UBWC_1_0,
->>>       DPU_MDP_UBWC_1_5,
->>>       DPU_MDP_AUDIO_SELECT,
->>> +    DPU_MDP_PERIPH_0_REMOVED,
->>>       DPU_MDP_MAX
->>>   };
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> index f3660cd14f4f..95d8765c1c53 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
->>> msm_disp_state *disp_state, struct msm_k
->>>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
->>>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
->>> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->>> -            dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +    if (dpu_kms->hw_mdp->caps->features & 
->>> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
->>> +        msm_disp_snapshot_add_block(disp_state, 0x380,
->>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 
->>> 0x3a8,
->>> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
->>
->> Are these values expected to stay the same on different new-gen SoCs? 
->> Maybe it would
->>
->> be worth making it dynamic.
+On 04/11/2022 17:12, Konrad Dybcio wrote:
 > 
-> I do not want to overcomplicate this. Let's make it dynamic once there 
-> is need for that. For now I expect this will be static.
-Let's roll with that.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+> On 04/11/2022 14:03, Dmitry Baryshkov wrote:
+>> Add definitions for the display hardware used on Qualcomm SM8450
+>> platform.
+>>
+>> Tested-by: Vinod Koul <vkoul@kernel.org>
+>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
 > 
->>
->>
->> Konrad
->>
->>> +    } else {
->>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +    }
->>>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
->>>   }
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > 
+> 
+> Konrad
+> 
+>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 224 ++++++++++++++++++
+>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |   3 +
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+>>   4 files changed, 229 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c 
+>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> index 1ce237e18506..3934d8976833 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> @@ -124,6 +124,15 @@
+>>                 BIT(MDP_AD4_0_INTR) | \
+>>                 BIT(MDP_AD4_1_INTR))
+>> +#define IRQ_SM8450_MASK (BIT(MDP_SSPP_TOP0_INTR) | \
+>> +             BIT(MDP_SSPP_TOP0_INTR2) | \
+>> +             BIT(MDP_SSPP_TOP0_HIST_INTR) | \
+>> +             BIT(MDP_INTF0_7xxx_INTR) | \
+>> +             BIT(MDP_INTF1_7xxx_INTR) | \
+>> +             BIT(MDP_INTF2_7xxx_INTR) | \
+>> +             BIT(MDP_INTF3_7xxx_INTR) | \
+>> +             0)
+>> +
+>>   #define WB_SM8250_MASK (BIT(DPU_WB_LINE_MODE) | \
+>>                BIT(DPU_WB_UBWC) | \
+>>                BIT(DPU_WB_YUV_CONFIG) | \
+>> @@ -367,6 +376,20 @@ static const struct dpu_caps sm8250_dpu_caps = {
+>>       .pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+>>   };
+>> +static const struct dpu_caps sm8450_dpu_caps = {
+>> +    .max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
+>> +    .max_mixer_blendstages = 0xb,
+>> +    .qseed_type = DPU_SSPP_SCALER_QSEED4,
+>> +    .smart_dma_rev = DPU_SSPP_SMART_DMA_V2, /* TODO: v2.5 */
+>> +    .ubwc_version = DPU_HW_UBWC_VER_40,
+>> +    .has_src_split = true,
+>> +    .has_dim_layer = true,
+>> +    .has_idle_pc = true,
+>> +    .has_3d_merge = true,
+>> +    .max_linewidth = 5120,
+>> +    .pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+>> +};
+>> +
+>>   static const struct dpu_caps sc7280_dpu_caps = {
+>>       .max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
+>>       .max_mixer_blendstages = 0x7,
+>> @@ -504,6 +527,33 @@ static const struct dpu_mdp_cfg sm8250_mdp[] = {
+>>       },
+>>   };
+>> +static const struct dpu_mdp_cfg sm8450_mdp[] = {
+>> +    {
+>> +    .name = "top_0", .id = MDP_TOP,
+>> +    .base = 0x0, .len = 0x494,
+>> +    .features = BIT(DPU_MDP_PERIPH_0_REMOVED),
+>> +    .highest_bank_bit = 0x3, /* TODO: 2 for LP_DDR4 */
+> 
+> I think it's about time we handle the two-memory-configs situation..
+> 
+> In my opinion, a dt property would be sane (just like downstream does 
+> it), as it's
+> 
+> *really really really* unlikely that the same SKU would be shipped with 
+> 2 different memory gens.
+
+As it's really unlikely, I think we can drop the TODO comment completely 
+until we phase a device with different memory type. WDYT?
+
+-- 
+With best wishes
+Dmitry
+
