@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C66F2623C7D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EFD8623C83
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 08:18:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbiKJHQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 02:16:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38432 "EHLO
+        id S231975AbiKJHSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 02:18:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232793AbiKJHPb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:15:31 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FE2326DB;
-        Wed,  9 Nov 2022 23:15:26 -0800 (PST)
+        with ESMTP id S230021AbiKJHSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 02:18:40 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377032A251;
+        Wed,  9 Nov 2022 23:18:39 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 71C67B82089;
-        Thu, 10 Nov 2022 07:15:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE5F7C433C1;
-        Thu, 10 Nov 2022 07:15:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D0E9DB820DF;
+        Thu, 10 Nov 2022 07:18:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B128C433D6;
+        Thu, 10 Nov 2022 07:18:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668064524;
-        bh=FMlXsITEC3snOIBttDp0EAQyetj/yxbZhJt/Rk5EDxY=;
+        s=k20201202; t=1668064716;
+        bh=+mje26SHntEM/1VqQyYcgj+5RQdpwiHgDT41ahrofKY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tz23sUAjvevM4LmlgxcCobtWnG1sYGF509oU8KAWaRIaF73/7BRuex1Cf+rAQ5CTv
-         ec52UF4vz4vd8xkY/PV+2HQCoxK4bjDrqGbllylaVZMbDE1H0S7kVCjn7MRzxKOqg0
-         TgKbn3abQiXdKTIZzq0YMwbkJkYLbONPLrsnGqyzhNkldpecdyTJXu8O5HX+S29OoO
-         mSYO1FZOmAWv3TxxfmNThq7gIwbIEvF81UOXyUP1UODWGdqh68mHsXuIdbMWqm6mUG
-         77r9EGIlbztS/ib+Veym3EuVr5jR5jCQYhk/omC/6Hyq964iy14tnWe5lnZsypKdl8
-         iPMlyYbqKzr/w==
-Date:   Thu, 10 Nov 2022 15:15:15 +0800
+        b=HNEAJWM1/6DAN46RYDPjAlRcfr4IawN1EUhI7ZTCAIus5sylAbiqkD8bs1/RwTXiW
+         pQCct+YWDPkXpTljyP2MRAs7HbJgAeoEEE484tzuR/Kc0IvPF9FJcBhmBRCEnlUkJJ
+         02/ET2RJOe7KxdpDM/EUzykIq4Goc4LgDnDmhe+75iXWe7ntkIU8Yw26v3q3R0VbCR
+         RP3HI8X4tmrGCQUE6Mu+zohmZAiP9AJTzDQM0VZ/NfJT3neuQ2iDenlPQCWt62kNtu
+         xH1bxMqw5M6qnJ+9/njqHa7UvwwJa614Hu7H+lDaptOX2RXGpNRfezqTx5rC9vMI0a
+         xUUUbr0jfGEkQ==
+Date:   Thu, 10 Nov 2022 15:18:28 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Richard Zhu <hongxing.zhu@nxp.com>, marex@denx.de,
-        tharvey@gateworks.com, vkoul@kernel.org, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, alexander.stein@ew.tq-group.com,
-        richard.leitner@linux.dev, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v1] soc: imx: imx8mp-blk-ctrl: Add PCIe SYSPLL
- configurations
-Message-ID: <20221110071515.GC125525@dragon>
-References: <1666590189-1364-1-git-send-email-hongxing.zhu@nxp.com>
- <20221029084514.GT125525@dragon>
- <ae0fd778eb31416eedb248e2cd4faef576174937.camel@pengutronix.de>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com, rydberg@bitmath.org,
+        alistair23@gmail.com, s.hauer@pengutronix.de, andreas@kemnade.info
+Subject: Re: [PATCH v10 3/4] ARM: imx_v6_v7_defconfig: Enable the cyttsp5
+ touchscreen
+Message-ID: <20221110071828.GD125525@dragon>
+References: <20221026114908.191472-1-alistair@alistair23.me>
+ <20221026114908.191472-4-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ae0fd778eb31416eedb248e2cd4faef576174937.camel@pengutronix.de>
+In-Reply-To: <20221026114908.191472-4-alistair@alistair23.me>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,33 +57,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 01, 2022 at 09:44:41AM +0100, Lucas Stach wrote:
-> Hi Shawn, Richard,
+On Wed, Oct 26, 2022 at 09:49:07PM +1000, Alistair Francis wrote:
+> The imx6/7 based devices Remarkable 2, Kobo Clara HD, Kobo Libra H2O,
+> Tolino Shine 3, Tolino Vision 5 all contain a Cypress TT2100
+> touchscreen so enable the corresponding driver.
 > 
-> Am Samstag, dem 29.10.2022 um 16:45 +0800 schrieb Shawn Guo:
-> > On Mon, Oct 24, 2022 at 01:43:09PM +0800, Richard Zhu wrote:
-> > > Add PCIe SYSPLL configurations, thus the internal SYSPLL can be used as
-> > > i.MX8MP PCIe reference clock.
-> > > 
-> > > The following properties of PHY dts node should be changed accordingly.
-> > >   - Set 'fsl,refclk-pad-mode' as '<IMX8_PCIE_REFCLK_PAD_OUTPUT>'.
-> > >   - Change 'clocks' to '<&clk IMX8MP_CLK_HSIO_ROOT>'.
-> > > 
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > 
-> > Applied, thanks!
-> 
-> Sorry for the late reply, but I'm not really happy with the fact that
-> the PLL is now unconditionally enabled, even though it is only needed
-> when there is no external reference clock source.
-> I fear that this will be hard to correct later on as the DT abstraction
-> is wrong, as IMX8MP_CLK_HSIO_ROOT is NOT the reference clock for the
-> PHY, but the PLL generated clock, which isn't properly exposed with
-> this series.
-> 
-> I'm not happy to see this going in in the current state and if not too
-> late would like to ask Shawn to remove it from the tree again.
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 
-Removed.
-
-Shawn
+Applied, thanks!
