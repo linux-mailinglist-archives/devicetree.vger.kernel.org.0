@@ -2,129 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1A6624D30
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDE92624D3E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 22:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiKJVmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 16:42:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51924 "EHLO
+        id S229520AbiKJVpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 16:45:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232397AbiKJVmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:42:06 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEB056562
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:42:05 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id k5so2813895pjo.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:42:05 -0800 (PST)
+        with ESMTP id S231849AbiKJVpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 16:45:08 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EE545ED4
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:45:07 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id t10so2487809ljj.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 13:45:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PSztxiJ5t6Iqa7j7QbwzknRhLr5EexaRl2lcq/yDKSw=;
-        b=KoYGu5IIzOXGeXG4drNc1+CwdElhVuLMlSIl6h6O12ydrJyf4jnKTAAci0FKmlc3cD
-         CFCqcSI0IR7sH97Be4G+724cCVPmUfuq1IklP/Mz0HAAQ/JGHC9E1jsHFAeNk9ap5iPH
-         X8l0a8cDym+nzieJUbb0ErbioV8gI6DBsGAFtq9H+cXkpokKRbBw7dcWyCArFgJmuhmA
-         pYIgByRnuTiDERvOvF0+ce6QtYY+nqszISkaZMWKuoiD+K36o/uo8MkgoNl+JjQDiOPK
-         YHCcVp21lBiA2iqU1ltMC/EL2irkVChKb6Rko/vFgodMMth36AQZKJv+o/0xT9snWr9i
-         Dn/Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2Ycm4yI7Fjm7qLhACsZB89mJNY3y5LzgYSf1XQcN9Y4=;
+        b=Q4bUJgTwdovmX1vqvVMapo117LNmOIzvO0a281XV/F3WwAHILMwd03RHWEq7tlhPDy
+         XIVG7SryDYCP6zgWHaO3g9DFIcU235EUJ0uaAYxp5hRpQgYBhu7OUZQBLt0csz+xO1Fv
+         vfWuAuMx/h4fIWfkGDciHM7vgG+pTlkikLp0aqPnQu1Qjy3efcr2IhroSpsWrkDiuYAF
+         gbcEjP4H7mVo/fkmrf+X1Fyvap2jlyvb8Rubq7o7JKZ9PXGIh1yR8EAw0Ymenu+TGP8k
+         fu4eyNFYGzy3qpSOYrNMRals6Rok32PmjtqisdWGueuoWzjFXi0hNAlz3UD+oFHr2DPo
+         JVfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PSztxiJ5t6Iqa7j7QbwzknRhLr5EexaRl2lcq/yDKSw=;
-        b=aHkAFhn1OcpznrX5XAn065jF8Zh+yHmerACoIpqFaNHszsTVjVlM9m0+jpBHvQMIJ1
-         yPzztCvqrKEOCpLaU14nhhDdfwPKhT1v5BeKY0LzWUxbvB6YF/kMc2ijX+0Ozy0rqstP
-         gw5T9rUnXdOPUuWNV1xErH/5OvUWX/JL38NCoihGYrZQJ0iA9WddvMVW0xLrRp1t6B1T
-         zMEpwgNjOywllo+hTnkB34htH0bJ8Lprt7uKy6A7uLmIGgLSm2+kRvE92fTZg4ZdHRAr
-         HK9+WV7GzHJxFdSO3OAKX4tQDDEgcyEUHTVIl8xPFsOEqWnS4vpoc0oJ25eVmIfzE2vy
-         sUcA==
-X-Gm-Message-State: ACrzQf0fwgso1lSAeCePNwbmqBgqXMefFEy2zMiUuBn18BGc5YBQfhm6
-        VvM2tzG8MTrlAETA6UHTVLHnjQ==
-X-Google-Smtp-Source: AMsMyM5Ko/0Xxdd0D4wfqneZtZye8DqKSLgy8+nDpiPvljrSklrs8pt0ztzdCwt6DpTGEU0urkT+5g==
-X-Received: by 2002:a17:90b:3102:b0:213:b853:5e45 with SMTP id gc2-20020a17090b310200b00213b8535e45mr2178800pjb.97.1668116524759;
-        Thu, 10 Nov 2022 13:42:04 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id p10-20020a170902bd0a00b00186c5e8b1d0sm145934pls.149.2022.11.10.13.42.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 13:42:03 -0800 (PST)
-Date:   Thu, 10 Nov 2022 13:42:03 -0800 (PST)
-X-Google-Original-Date: Thu, 10 Nov 2022 13:42:00 PST (-0800)
-Subject:     Re: [PATCH] RISC-V: Do not issue remote fences until smp is available
-In-Reply-To: <CAOnJCUK5Z6i39f5MJaRFhorGjcmBR=p_MapY_TDcR1e274wtpA@mail.gmail.com>
-CC:     Conor Dooley <conor@kernel.org>, Atish Patra <atishp@rivosinc.com>,
-        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
-        anup@brainfault.org, damien.lemoal@wdc.com,
-        devicetree@vger.kernel.org, jszhang@kernel.org,
-        krzysztof.kozlowski@canonical.com, linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     atishp@atishpatra.org
-Message-ID: <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Ycm4yI7Fjm7qLhACsZB89mJNY3y5LzgYSf1XQcN9Y4=;
+        b=LEjyI6lYXt7O0Rdcl5EL+8IYnrUVHmPb/pl73xC8ViKKhrM+88yVxln6TdLiBTNSih
+         IjQRk6AslKmg1vBFHHgrN2BnasTUBNUk1ApMuhtiauI33EUi2xa78M1aO4FlmdzGPzTm
+         Ud1PJj4nndHZgNFG7WIRBEVozyC8jknkXKSnUBBVx9jPWS5mIteX6zNw3Y9a/VVU0D6c
+         0cT7X98yrs1Ag3aruD3WpGaUyERaoVhJNVDbOB9pruNsG6/ya0hp4VS+RODflP/ukECA
+         vhlo5HsxFbXenwvUqCgESFRKyigvp9tc/jj2385MadsO5UaAK0SRjpEjfmSsd8uwYnQ9
+         uQXw==
+X-Gm-Message-State: ACrzQf3lXUvfz6D50VvN86sU82KoWpg8OZwlWixsVDRTNo+bhrErB1lV
+        LZjDd++98SUxJuK1LmpNOA9gIQ==
+X-Google-Smtp-Source: AMsMyM5Yl3UNkJaH9rgIXunnY/WAMaQL8CpcD1fuGcZGK75QSChlvq2RNL7B4AkfY67/O7rs7SCNQw==
+X-Received: by 2002:a05:651c:1113:b0:277:515b:3dae with SMTP id e19-20020a05651c111300b00277515b3daemr9577709ljo.487.1668116705580;
+        Thu, 10 Nov 2022 13:45:05 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id d16-20020ac24c90000000b004949a8df775sm39905lfl.33.2022.11.10.13.45.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 13:45:05 -0800 (PST)
+Message-ID: <b62e7239-0fef-e19c-5653-96f72b7b89b5@linaro.org>
+Date:   Fri, 11 Nov 2022 00:45:04 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v9 05/12] dt-bindings: display/msm: move common MDSS
+ properties to mdss-common.yaml
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Rob Herring <robh@kernel.org>
+References: <20221024164225.3236654-1-dmitry.baryshkov@linaro.org>
+ <20221024164225.3236654-6-dmitry.baryshkov@linaro.org>
+ <f72aeaa0-0c0a-86d9-0b9b-db3810c35fad@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <f72aeaa0-0c0a-86d9-0b9b-db3810c35fad@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Oct 2022 12:26:05 PDT (-0700), atishp@atishpatra.org wrote:
-> On Mon, Oct 31, 2022 at 12:12 PM Conor Dooley <conor@kernel.org> wrote:
+On 08/11/2022 14:05, Krzysztof Kozlowski wrote:
+> On 24/10/2022 18:42, Dmitry Baryshkov wrote:
+>> Move properties common to all MDSS DT nodes to the mdss-common.yaml.
 >>
->> On Fri, Oct 28, 2022 at 04:19:29PM -0700, Atish Patra wrote:
->> > It is useless to issue remote fences if there is a single core
->> > available. It becomes a bottleneck for sbi based rfences where
->> > we will be making those ECALLs for no reason. Early code patching
->> > because of static calls end up in this path.
->> >
->> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
->>
->> Hey Atish,
->> This doesn't apply for me to either fixes or for-next. What branch does
->> it apply to?
->> Thanks,
->> Conor.
->>
->> > ---
->> >  arch/riscv/mm/cacheflush.c | 4 ++++
->> >  1 file changed, 4 insertions(+)
->> >
->> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
->> > index f10cb47eac3a..7fafc8c26505 100644
->> > --- a/arch/riscv/mm/cacheflush.c
->> > +++ b/arch/riscv/mm/cacheflush.c
->> > @@ -19,6 +19,10 @@ void flush_icache_all(void)
->> >  {
->> >       local_flush_icache_all();
->> >
->> > +     /* No need to issue remote fence if only 1 cpu is online */
->> > +     if (num_online_cpus() == 1)
->> > +             return;
->> > +
->> >       if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
->> >               sbi_remote_fence_i(NULL);
->> >       else
->> > --
->> > 2.34.1
->> >
->
-> Sorry I forgot to specify the dependencies for this patch. This patch
-> is based on Anup's IPI series [1] as
-> I assumed the IPI series would go first. I can rebase on top of the
-> master if required.
-> However, the issue will manifest only after Jisheng's patch[2] which
-> moved the sbi_init to earlier and introduced the
-> static key in the paging_init path.
->
-> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20220820065446.389788-8-apatel@ventanamicro.com/
-> [2] https://lore.kernel.org/lkml/20220716115059.3509-1-jszhang@kernel.org/
+>> This extends qcom,msm8998-mdss schema to allow interconnect nodes, which
+>> will be added later, once msm8998 gains interconnect support.
+> 
+> 
+> (...)
+> 
+>> +    minItems: 1
+>> +    items:
+>> +      - description: Interconnect path from mdp0 (or a single mdp) port to the data bus
+>> +      - description: Interconnect path from mdp1 port to the data bus
+>> +
+>> +  interconnect-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: mdp0-mem
+>> +      - const: mdp1-mem
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: MDSS_CORE reset
+>> +
+>> +required:
+>> +  - compatible
+> 
+> For consistency this should not be required here, but in schema actually
+> defining it.
+> 
+>> +  - reg
+>> +  - reg-names
+>> +  - power-domains
+>> +  - clocks
+>> +  - interrupts
+>> +  - interrupt-controller
+>> +  - iommus
+>> +  - ranges
+> 
+> Keep the same order as in list of top-level properties.
 
-IMO we should just stop issuing the SBI remote fences at all, with the 
-code to do IPI-based fences we're just adding complexity for the slow 
-case.
+But the order is the same.
+
+Compare:
+   reg:
+   reg-names:
+   power-domains:
+   clocks:
+   clock-names:
+   interrupts:
+   interrupt-controller: true
+   iommus:
+   ranges: true
+   interconnects:
+   interconnect-names:
+   resets:
+
+I'll add clock-names, but the rest is correct (interconnects and resets 
+are optional).
+
+> 
+>> +
+>> +additionalProperties: true
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+With best wishes
+Dmitry
+
