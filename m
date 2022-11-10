@@ -2,91 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D94623F44
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19047623F4D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:02:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbiKJKCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 05:02:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
+        id S230045AbiKJKCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 05:02:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbiKJKCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:02:18 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC71C6B226
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:02:17 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id a67so2242929edf.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:02:17 -0800 (PST)
+        with ESMTP id S230081AbiKJKCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:02:32 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F7F6B395
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:02:30 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id d6so2183220lfs.10
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:02:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VU3oEISNUYg+d9wlGb/h98JkMGsEQ9ti4i8WQ+4TZ8Y=;
-        b=l+2q3EoEkmW8KGxjLUAosaPRqu2QuiS97YcetdfBswNY2l1mTPG41tKL/97tNx2aqd
-         7mSqpF6EUPeU2jC3TP48/iKnJqPBF5FE2P6AjYJZGIu56KfW7qJL3cmD08aTmnBO9lVE
-         07dTococsvCklATL4SyE1b/aEr4+0J06VUIQYMJyDglGDouF0LJI4htyQq8QwuxsUsyo
-         w7oHSV75DAvKrCuBRg1V+HMXwXlBMcPYYy1GwTQXuMfSt+qEFbOJz2ST/Akt2O71n796
-         mpvHe1TqQ2cvW+5JN36H8uHw/pkQ/k8tQPO/FF9mBxquofw6+JXnXMMGJ3aOa1/7hOxc
-         aV0w==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n/6SrizfTmUVEtJIffAUGFwzONi39uLHSNRwhX0sifc=;
+        b=MorZi0LfuylaZSi8INxPDy4Q6asBHC9zP7jPOfm5P7jgT0tXI7S2vZdJih3EPrUTwO
+         +cI3Gr1YY9qYHkss0jSWazs2Ab8eNw0uuKATKUpnPXE0WqTdokmbbH/tQvT+jn9wdt2n
+         d75xioRlw65Ok6CSR7b6c/Y8xxq/Rw2qSNM/JyEzofu31cU0Bg7Eh1cAn79KMq2UpK/a
+         DRtz36Bc3zy3K6TsZCQdszGp/DToTWLXhaIqdyuQjLIa+YetpSpL949aa6qr44yY9P+3
+         3aspK5EafgXhAgjgnLrtTBNKHjVBKT3rkA6mmjdFtszg1618YSSiKU55DHnCW9nlkjNO
+         cXxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VU3oEISNUYg+d9wlGb/h98JkMGsEQ9ti4i8WQ+4TZ8Y=;
-        b=yDGPlpy1Imt8y7sE9NnhimYEAmsYFDeC0GX10I+gvh+NzagXqjoCtHveI2c9zUfAPq
-         n1F54MBFzaQ46ctOv2bsE2xvmZp7ArpJAesDriGnUb82hyx+pNLJ5S5YGGAF2EDa2MgU
-         taAXXPhIqOYu0Ptdb0xUuUETGbFfqsK5piRZbJ6dAOU2OAJRr/AcQvs9R5Z7diCEUO/c
-         aXi68FVMMpwkycfks8/N8jkFxxGL/FLuLCjM4PXnexU258Y/tC/WGz6w6Y5zt5A/eUfx
-         kHvMAdMkLZ5Lzs0FYF2A6vdFYwGSFN1Qww3GP3xUwxW6hqDRO0j7Bo19VFiOxXN75owy
-         zo8g==
-X-Gm-Message-State: ACrzQf0oXD5c8UPxRok8ZqRqNFT7dnc3ov5qsKPLvs5S3fiMT7Nm+WMO
-        qOiY3uHdSqhgB7+8OACQl2saQBWoGvLvc+zhJm55hw==
-X-Google-Smtp-Source: AMsMyM7KfumBAxq1O0Hu284/fJyh87E4kMzRSpVWatlLqnsWvCWqK/Oe0aeHJFcUG6KvsBG6hLjUYXOuJ/9EBvQNA3A=
-X-Received: by 2002:a05:6402:659:b0:463:a83c:e0af with SMTP id
- u25-20020a056402065900b00463a83ce0afmr1914987edx.158.1668074536441; Thu, 10
- Nov 2022 02:02:16 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n/6SrizfTmUVEtJIffAUGFwzONi39uLHSNRwhX0sifc=;
+        b=Zz4Epofvn1pVP3wNbnO90PzseY32suYDzcBUvepvK01FTw5gienQeKy9WvmBPYnSQu
+         bd0v3vjSGpqaZNxkeIytiuFIIEv+jpdz6ZAkS8fXFw5JA8UCJcMNYxYXTUi5+WT1fq5U
+         M/3aPUFelGVx3W7FwQVFmgewOy6YoXHxR2hg3omM8K3kEs+Uk8NhZBtO54AoYQkpuhPY
+         yqFuQcF44D7AEfXbrTFS3ifR+IrDS9eUEKzdkfrIRN1+GbLu4GX63K/cHsYFI8Wd+5cf
+         uWSJdAt5cfUixDXSYmWqOPsAcTqQ/h+yQfbrzFxVGkjIfTwk9pjm3nQJ+/Fhg5F/T4Ea
+         b2hw==
+X-Gm-Message-State: ACrzQf24BiJiMzR/+vYLrmDufWFxg1rY6VgRpa8FYaBxyiDa5J7ufW5H
+        MO52CuAb74QuF0bLF0wsLnpOlQ==
+X-Google-Smtp-Source: AMsMyM4obFX0u1CtxFRrJsqzbZXm9vc1VDTaOMa2c+zVOh/77kMGvTAQg1lneODWqpLf74et2+SAww==
+X-Received: by 2002:a05:6512:3089:b0:4a2:586a:e77a with SMTP id z9-20020a056512308900b004a2586ae77amr20583426lfd.286.1668074548549;
+        Thu, 10 Nov 2022 02:02:28 -0800 (PST)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id x2-20020a2e9c82000000b00276ff51649csm2619295lji.43.2022.11.10.02.02.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 02:02:28 -0800 (PST)
+Message-ID: <c7cc5afb-ec58-9c76-13c1-a1d519285898@linaro.org>
+Date:   Thu, 10 Nov 2022 13:02:26 +0300
 MIME-Version: 1.0
-References: <20221109165331.29332-1-rf@opensource.cirrus.com> <20221109165331.29332-6-rf@opensource.cirrus.com>
-In-Reply-To: <20221109165331.29332-6-rf@opensource.cirrus.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 10 Nov 2022 11:02:05 +0100
-Message-ID: <CACRpkdbY7W2rDZ4knkrRHBSTn7MKYV3LYh_r8Wkn1Hh=j+oL5A@mail.gmail.com>
-Subject: Re: [PATCH 05/12] pinctrl: cirrus: Add support for CS48L31/32/33 codecs
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v1 1/7] dt-bindings: PCI: qcom: Add sm8350 to bindings
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20221029211312.929862-1-dmitry.baryshkov@linaro.org>
+ <20221029211312.929862-2-dmitry.baryshkov@linaro.org>
+ <20221031214055.GA3613285-robh@kernel.org>
+ <CAA8EJpqt+UvWHwd90Cdm3iCi2sbxbwbC3ADY6PW053Tw8r94VA@mail.gmail.com>
+ <CAL_JsqLVzPawSFh9e6b3nVfn+dNDFooVgOa7B_iTGU13tzXTRQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <CAL_JsqLVzPawSFh9e6b3nVfn+dNDFooVgOa7B_iTGU13tzXTRQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 9, 2022 at 5:53 PM Richard Fitzgerald
-<rf@opensource.cirrus.com> wrote:
+On 01/11/2022 20:22, Rob Herring wrote:
+> On Mon, Oct 31, 2022 at 4:47 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>>
+>> On Tue, 1 Nov 2022 at 00:40, Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Sun, Oct 30, 2022 at 12:13:06AM +0300, Dmitry Baryshkov wrote:
+>>>> Add bindings for two PCIe hosts on SM8350 platform. The only difference
+>>>> between them is in the aggre0 clock, which warrants the oneOf clause for
+>>>> the clocks properties.
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 54 +++++++++++++++++++
+>>>>   1 file changed, 54 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> index 54f07852d279..55bf5958ef79 100644
+>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> @@ -32,6 +32,7 @@ properties:
+>>>>         - qcom,pcie-sdm845
+>>>>         - qcom,pcie-sm8150
+>>>>         - qcom,pcie-sm8250
+>>>> +      - qcom,pcie-sm8350
+>>>>         - qcom,pcie-sm8450-pcie0
+>>>>         - qcom,pcie-sm8450-pcie1
+>>>>         - qcom,pcie-ipq6018
+>>>> @@ -185,6 +186,7 @@ allOf:
+>>>>                 - qcom,pcie-sc8180x
+>>>>                 - qcom,pcie-sc8280xp
+>>>>                 - qcom,pcie-sm8250
+>>>> +              - qcom,pcie-sm8350
+>>>>                 - qcom,pcie-sm8450-pcie0
+>>>>                 - qcom,pcie-sm8450-pcie1
+>>>>       then:
+>>>> @@ -540,6 +542,57 @@ allOf:
+>>>>             items:
+>>>>               - const: pci # PCIe core reset
+>>>>
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - qcom,pcie-sm8350
+>>>> +    then:
+>>>> +      oneOf:
+>>>> +          # Unfortunately the "optional" ref clock is used in the middle of the list
+>>>> +        - properties:
+>>>> +            clocks:
+>>>> +              maxItems: 13
+>>>> +            clock-names:
+>>>> +              items:
+>>>> +                - const: pipe # PIPE clock
+>>>> +                - const: pipe_mux # PIPE MUX
+>>>> +                - const: phy_pipe # PIPE output clock
+>>>> +                - const: ref # REFERENCE clock
+>>>> +                - const: aux # Auxiliary clock
+>>>> +                - const: cfg # Configuration clock
+>>>> +                - const: bus_master # Master AXI clock
+>>>> +                - const: bus_slave # Slave AXI clock
+>>>> +                - const: slave_q2a # Slave Q2A clock
+>>>> +                - const: tbu # PCIe TBU clock
+>>>> +                - const: ddrss_sf_tbu # PCIe SF TBU clock
+>>>> +                - const: aggre0 # Aggre NoC PCIe0 AXI clock
+>>>
+>>> 'enum: [ aggre0, aggre1 ]' and 'minItems: 12' would eliminate the 2nd
+>>> case. There's a implicit requirement that string names are unique (by
+>>> default).
+>>
+>> Wouldn't it also allow a single 'aggre0' string?
+> 
+> No, because it's only for the 12th entry in the list.
 
-> From: Piotr Stankiewicz <piotrs@opensource.cirrus.com>
->
-> Codecs in this family have multiple digital I/O functions for audio,
-> DSP subsystem, GPIO and various special functions. All muxable pins
-> are selectable as either a GPIO or an alternate function.
->
-> Signed-off-by: Piotr Stankiewicz <piotrs@opensource.cirrus.com>
-> Signed-off-by: Qi Zhou <qi.zhou@cirrus.com>
-> Signed-off-by: Stuart Henderson <stuarth@opensource.cirrus.com>
-> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+If I got your suggestion right, it would be:
+clock-names:
+   minItems: 12
+   items:
+     ..... 11 names
+     - enum: [ aggre0, aggre1 ]
+     - const: aggre1
 
-This looks OK.
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Having 11 clocks + aggre0 would pass this schema (incorrectly) because 
+there will be no duplicate to fail the check.
 
-Does this patch have compile-time dependencies on the other
-patches or is it something I can just merge separately?
+We have two cases here:
+  - 11 common clocks + aggre0 + aggre1
+  - 11 common clocks + aggre1
 
-Yours,
-Linus Walleij
+I think I'll keep the oneOf in v2. Please tell me if I got your 
+suggestion incorrectly or if there is any other way to express my case.
+
+-- 
+With best wishes
+Dmitry
+
