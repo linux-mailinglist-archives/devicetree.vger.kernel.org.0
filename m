@@ -2,116 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E149462492F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA1C624955
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 19:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbiKJSQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 13:16:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
+        id S231806AbiKJSY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 13:24:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231381AbiKJSQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:16:45 -0500
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB563FB9E;
-        Thu, 10 Nov 2022 10:16:45 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id z6so1400324qtv.5;
-        Thu, 10 Nov 2022 10:16:45 -0800 (PST)
+        with ESMTP id S229591AbiKJSY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 13:24:58 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D574411451
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 10:24:56 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id b9so1893532ljr.5
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 10:24:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Z58AeNmEAdanH7tqm9VK4MJyz0UdkwvRESSSnvfEpM=;
-        b=KAXLSE5a4V5UyLE5YM6SIkQBfZn/oVuUzWW2uhj5M57quPU28CfiN7PES3b5ZE1kVf
-         QcGHBhKhRGGdGEo1R9P1o0oMD5NrRsqGZDGgdZhhaDmBa/BZFmODrAMz3WIds/eFGlhF
-         jsB3VTddkTpROmNy9nQv88M3yVJ4HrITu4UJt+AlZYsZ/bWD0NP28/+3JvAkaB8pKEEi
-         ddG8pykKIGcDat4d+1+qvvEi3s86NM7QeY0qRt/Xwy2I2h3e//PJ4FVBnTEjIUjmx3x8
-         JOWPHrSm7l16JBMEfUUY4zmDkNBXeDY4lp4TPVu7mMl50dT4QIHqvYaPIM18mHAq2+fu
-         sjbA==
+        bh=oTCljyMcfKbw9XuCwVZ96+0GS37u6vdCB1YXTkk2DbY=;
+        b=vgY5Suhil67GTfIoiXw9WZ7OJAiXbWsB4vAomJN5mRDzZhxWWYIGtG4xXlaRZBVa+Q
+         3IX5M7+4kBtM8jmo5CaVSSckv6h0t/XEkpMYp6mPOrv+r8oMX41YEhUQaqJErBaKFUTC
+         xVZiSUmc0YTowc2kBjowNF9AG3gMLSqq9RblZW125yG00f3P7eidSvxx+AN30nETvTBd
+         ycMuObSamOfl5KDXJEPcDNSBfEk6QWCPlk7YF5pXh68FC2sNYFv8YMvoKLbNgInue0py
+         9upgXDIuRj3mFqML8LMsFOvnpsjreizn8WUFZ6oGrorR6AUhcQwjQXrmr+ZkjdefjHtS
+         ea0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Z58AeNmEAdanH7tqm9VK4MJyz0UdkwvRESSSnvfEpM=;
-        b=7DBwdOxqrNxSXrDjz5ikTED53hj/qUoe4vxkFuZaAYMqCwETV18BN2uv0fyHs6IwXU
-         JjQrb4sfmJ+NtXsbjI6MJwxuoSFhfEaIUdgdgJl2IbDtFT+RC4TDgesyEZcJ7/b5AKbz
-         VGtOZzHIFRCqKx3HVESfFFB5KKts58IMb4880taUkRFjZ4PdUr5uC+d8OYH7LhUxc6Q3
-         Ig9OqurOAEnKIMm6fhHiZB//cpIfZh85lxt8R4s9wr56G8Rsz6jOOnyunTS3UdpMzoE7
-         Iw3FiOFaoTKPorWlXO0ZgxOCKqYOhpNvU2gGSrreEZ/cj2DTbUu7djhyV0zdhsCMQqwy
-         a2oQ==
-X-Gm-Message-State: ACrzQf309rxZhdHxQ7lclqi5Vj2YxtVdHlhw4PHf7pbbZ0OblzmTYIpm
-        c8/co5SoCdsmbTLfAQ6Til8=
-X-Google-Smtp-Source: AMsMyM6VS+5W7e6THCwLUKPHdeenKMZPByMDE7O71Tc9hZGg65Rp02R9T30RbYbmZ1D+AONQnKkiYA==
-X-Received: by 2002:ac8:5d8a:0:b0:39c:d3a8:3f91 with SMTP id d10-20020ac85d8a000000b0039cd3a83f91mr52653557qtx.324.1668104204297;
-        Thu, 10 Nov 2022 10:16:44 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id fd7-20020a05622a4d0700b0039a372fbaa5sm11586504qtb.69.2022.11.10.10.16.42
+        bh=oTCljyMcfKbw9XuCwVZ96+0GS37u6vdCB1YXTkk2DbY=;
+        b=YeUWgHlWXt5qi0T2g1iYVCC1m34M5Xt6GTqJwYhO0oz6QrZO8ZUagWRThSf9+cYcm6
+         PNNyDXvIs55AWNaNf5HKUCvC3XJusvHSjTAAz2v7r2vEEugZUJe1/GbQ3yyoa7VmsK36
+         v+8jU0uPo6xLltkZgC6IcaHqaoxbPLserndg+uIbVRIerMJiIDeqNuxPsYqKKQmESPSS
+         lZZGlIxurLwlf11ThmSWFlXQR8n+UBZWZ3tnGZVJKDKrYzbzqW2xdBKAV1pRuSU1ltWI
+         A7B3X0/ZXqyTejB3s8bXu+qAZDSKBWA3p6O5ywTuLFDXgcPpFTUlnXsw0VqK+9DNQ1g3
+         duJA==
+X-Gm-Message-State: ACrzQf2GDY57XqJV8qjIgYyvAJ1h0hoa1c+ZDDApyhcBDfkpS2W+qMLo
+        wElKFbjJojqUTVuF1SO+R37faQ==
+X-Google-Smtp-Source: AMsMyM76w/nQzUSHmnb3AL1cENN8yfaY5B4sedrM44S2hCEC45mvyP0EBMTkqxR882LvtfQBzQJtdA==
+X-Received: by 2002:a2e:9110:0:b0:277:aed:be6b with SMTP id m16-20020a2e9110000000b002770aedbe6bmr9330937ljg.322.1668104693699;
+        Thu, 10 Nov 2022 10:24:53 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id h8-20020a05651c124800b0027758f0619fsm21005ljh.132.2022.11.10.10.24.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 10:16:43 -0800 (PST)
-Message-ID: <a843cb62-ea72-74b6-589b-9db98477f169@gmail.com>
-Date:   Thu, 10 Nov 2022 10:16:39 -0800
+        Thu, 10 Nov 2022 10:24:53 -0800 (PST)
+Message-ID: <a480bc4a-7088-dfed-7cd7-a14665022d15@linaro.org>
+Date:   Thu, 10 Nov 2022 21:24:52 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 0/2] ARM: dts: bcm283x: Switch to firmware clocks for
- Pi0-3
-To:     maxime@cerno.tech, Rob Herring <robh+dt@kernel.org>,
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 6/8] phy: qcom-qmp-pcie: add support for sm8350
+ platform
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-rpi-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-kernel@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>
-References: <20221026-rpi-display-fw-clk-v1-0-5c29b7a3d8b0@cerno.tech>
-Content-Language: en-US
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20221026-rpi-display-fw-clk-v1-0-5c29b7a3d8b0@cerno.tech>
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
+ <20221110103345.729018-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221110103345.729018-7-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/26/22 06:17, maxime@cerno.tech wrote:
-> Hi,
+On 10/11/2022 13:33, Dmitry Baryshkov wrote:
+> Add support for a single-lane and two-lane PCIe PHYs found on Qualcomm
+> SM8350 platform.
 > 
-> Over the years, the differences between the Pi0-3 and the Pi4 created a bunch
-> of issues in the KMS driver that trace back to the policy differences between
-> the clk-bcm2835 and clk-raspberrypi drivers.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 120 ++++++++++++++++++++++-
+>   1 file changed, 119 insertions(+), 1 deletion(-)
+
+Argh, this will not compile against the current phy/next. I'll have to 
+send v3.
+
 > 
-> Instead of piling hacks over hacks to work around those differences, let's just
-> follow what downstream is doing and use the clk-raspberrypi for all the KMS
-> related devices.
-> 
-> Let me know what you think,
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index 4a55b2439952..a1f5d31d161b 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
 
-Maxime, please fix your git configuration such that the author of the 
-patches is:
-
-Maxime Ripard <maxime@cerno.tech>
-
-and not:
-
-maxime@cerno.tech
-
-which git am then translates into maxime@cerno.tech <maxime@cerno.tech>
-
-causing the email vs. author checks to fail on my end (and then in 
-linux-next).
-
-Thanks!
 -- 
-Florian
+With best wishes
+Dmitry
 
