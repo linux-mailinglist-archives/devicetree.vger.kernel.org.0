@@ -2,82 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823FB623E56
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 10:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4EB1623E59
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 10:12:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbiKJJMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 04:12:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43050 "EHLO
+        id S229750AbiKJJMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 04:12:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbiKJJMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 04:12:20 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D1C68C6E
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 01:12:15 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id g7so1997013lfv.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 01:12:15 -0800 (PST)
+        with ESMTP id S229758AbiKJJMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 04:12:34 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB6669DCF
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 01:12:32 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id b131so922627yba.11
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 01:12:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ohHp1eb6I/UQdWWcqp55BKGGvWKwCgIcCW0FoTVSsZI=;
-        b=I56bDON7JfWAKthaugOMMoQ2jimBBZr8i9c6Hu0ywMq5QJNELV60lCgabal3qMA/9k
-         +cjfMffl9Ttv5Ha0dHf3v93QXPde1kXRGwWUGtLiC7BnKd/L84sF0+u00D2BaLzKdQDo
-         AdrZzsxvN3yPmtwSKSnhhuCSw+4/nmjYGdKRmAFeotLWygDcHWhDlMlZjMHyN4zOeuyR
-         by710N82UZhE5ySURJ84sH/XHdjV2X1kwdpPaWjwDnritU6d1KJ3TmhB2+zaaJDSgZc1
-         lg+J45KctN2I5d3M/OgmnxAbaqu4ABNKwH1dNKD/GI1RQdeWcJM2mSwb56ewCGR1noCV
-         sQYw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RQ0zoYzFDslrILFuWLllOLpBV7AGCbxKTB4yqbkqbTU=;
+        b=tWIDsNsPLPVHZEUozYnvLCa4EWhx/j6ljw3pP3nqoGByY+EaOfGp7EoZdND0d8M7M/
+         9PAV7GXHe8oYHkowL8cFpBAazx+t2vwrFAPeRDlPzUJIB4nrYogvIxSrYPueSfuTXCmI
+         Y4UHd8Un3UcEW7awvppHlmmGY7bu4y+hpBIh2STn7wKoK+6CPblfqlR7+RvWUyNuo5IT
+         ZjEXwNI3z03e8LGKrfHOnQBRr7osVT/7R1h1RsLwlNpH+kNitVT0XyDUthSbMLLRJeAQ
+         BAk0MsCR1qh3Cz5rHauXJfYmuNYIRhi0QX53mruVuXWKXKyE0rIAbg0ixr12RyaPTVD0
+         jyoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ohHp1eb6I/UQdWWcqp55BKGGvWKwCgIcCW0FoTVSsZI=;
-        b=qHl3WeA8uJXPz124t3o3wvFLSzGh0QIDdp63U+GvdxybTXYOwQEDodm9gTaWgJuAy3
-         /rQF+Kj+/9lT4NdQgEWbeGLric4ZqtM4Pf6Raf4Xl7J6qQzE+Fv9+MNMpQij7C83uLKr
-         8pmbhZR3B+Ipb107EomB0OX5BOmeiMAHjb+tQgRXcFWUF7ecJx0IplG2vWpzB3sh2VJ5
-         4ubfYEVUhy3sdY4CKb/wJG9Xvm1a78bkqT2larckvaXncRYIzOyudR0nviyB3oo7axY5
-         xgl8kKJllt/H9NXag9JiqglV4/2Qu7oJyzshj3edf4q6zEuv34U1WARMpWgemRb4s+KY
-         0Uwg==
-X-Gm-Message-State: ACrzQf0bH+HTYo9SAL2UTmiOSt+DiAKygvn/e/SMq+QZaFSHRJeBzRBK
-        GiUZ/xIh2eJ2CuIVxLfTx9yG0Q==
-X-Google-Smtp-Source: AMsMyM7Y3V2v2/8mRxV5yR+nSEYp8DzIvDBrJBylIEh3eldYvYvEe0EA+GcwH9LW3shJJNeLRjE+zA==
-X-Received: by 2002:a05:6512:10d0:b0:4b0:2675:110d with SMTP id k16-20020a05651210d000b004b02675110dmr1328387lfg.295.1668071533700;
-        Thu, 10 Nov 2022 01:12:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id o13-20020ac24e8d000000b0048aa9d67483sm2644769lfr.160.2022.11.10.01.12.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 01:12:13 -0800 (PST)
-Message-ID: <121da3f7-a39b-fda5-49ef-3a165ad6d4e0@linaro.org>
-Date:   Thu, 10 Nov 2022 10:12:12 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RQ0zoYzFDslrILFuWLllOLpBV7AGCbxKTB4yqbkqbTU=;
+        b=0KkU78J/li3BPIm5KfDSETtjqhodlJ7fIMC1quB/tD4nww6DbIuGcHHDY1fGIpAsZH
+         BGg/4dT1Plwu0GMTMU0pUoJD/IrhlGphwZ1HCfJGSusiXmT48V1rLygez/Gq6pLzS1Rk
+         4kCQOgHB2hgwY/7LXDDYJHpPQ0DxVZhSWhuCavngwXEmvxZ26GMr9RzGlCVw60IcxBl1
+         v1lmaW68RQTVRZ65yzHZPyS23D0POYMR3VT30xgfUPnxRvCol4WfjfSsr+udSMlKG9an
+         iBEnaMZKmVoRQh3TtUD3MSr5hJeySR4s7l6MCNqu28MUQyuJ76FpuJtS/BM3bJ9qtYlv
+         Zjbg==
+X-Gm-Message-State: ACrzQf3R/4xrcyY/3w9G8BB4KG6uhhnPUkQ0+4U+4RyoVoyRPHlCKQ+1
+        DBk+LgCvvHvCYS/NZZGhJQYuvPvObMiSeAaHuZFi4Q==
+X-Google-Smtp-Source: AMsMyM7nhmyQ8LtPmvjO9u+KJIVYQkWp4KWCkKOaEBMIJ0/1qUWLH5LMFNwWkp/Q+6XpbcqRvPc1/EfNcwjtdSpjP7g=
+X-Received: by 2002:a25:8a0f:0:b0:6c2:4ea4:69e5 with SMTP id
+ g15-20020a258a0f000000b006c24ea469e5mr62811315ybl.153.1668071550711; Thu, 10
+ Nov 2022 01:12:30 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 1/2] dt-bindings: edac: Add bindings for Xilinx ZynqMP
- OCM
-Content-Language: en-US
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+References: <20221109111236.46003-1-konrad.dybcio@linaro.org> <20221109111236.46003-4-konrad.dybcio@linaro.org>
+In-Reply-To: <20221109111236.46003-4-konrad.dybcio@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 10 Nov 2022 12:12:19 +0300
+Message-ID: <CAA8EJprNszfyyN9HLYoRK2Y-yUU-NuGd0QacqJ3UhkDjpvokdg@mail.gmail.com>
+Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add a device tree for PMK8350 on SID6
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        saikrishna12468@gmail.com, git@amd.com,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-References: <20221102070655.247511-1-sai.krishna.potthuri@amd.com>
- <20221102070655.247511-2-sai.krishna.potthuri@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102070655.247511-2-sai.krishna.potthuri@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,16 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 08:06, Sai Krishna Potthuri wrote:
-> From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> 
-> Add bindings for Xilinx ZynqMP OCM controller.
-> 
+On Wed, 9 Nov 2022 at 14:12, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> PMK8350 is shipped on SID6 with some SoCs, for example with SM6375.
+> Add a DT with the SID changed to allow it to work.
+>
+> Unfortunately, the entire DT needs to be copied even if the diff is
+> very little, as the node names are not unique. Including pm6125 and
+> pmk8350 together for example, would make pmk8350 overwrite the pm6125
+> node, as both are defined as 'pmic@0'.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
 
-Applied with fixes in subject - please use prefixes matching the
-subsystem (memory-controllers) and do not put twice "bindings" (one is
-enough).
+Just to throw my 2c. If I was doing this myself, I'd allow pmk8350 to
+receive external SID using the cpp #define (And to default to 0 if one
+didn't use it).
 
-Best regards,
-Krzysztof
 
+
+
+-- 
+With best wishes
+Dmitry
