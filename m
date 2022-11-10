@@ -2,109 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37393624068
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86ED4624076
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230167AbiKJKxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 05:53:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45948 "EHLO
+        id S230343AbiKJKzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 05:55:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbiKJKxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:53:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B33520F47;
-        Thu, 10 Nov 2022 02:53:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S230342AbiKJKzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:55:40 -0500
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD076A69F;
+        Thu, 10 Nov 2022 02:55:39 -0800 (PST)
+Received: from zn.tnic (p200300ea9733e7bc329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e7bc:329c:23ff:fea6:a903])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DDD546118D;
-        Thu, 10 Nov 2022 10:53:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 371B4C433C1;
-        Thu, 10 Nov 2022 10:53:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668077624;
-        bh=NIkFOvlY2E8XiQDmpV5S1/Wj5B+wkYmLdAyQTN8UlYI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OLBkQY41+ePvBdmK4e0Q2MjEFJxdWo4JJMDCuSJoFiLEhOdPNrprENFxufqyr+N3e
-         RZ7PfTJy1PkCDXTIQFV+QMDQHKgZRmW8EwM4vjFKGsPOZqx52vWhaMfmU7zSeVuVEu
-         tHus/nKEKLx5EFgSuFzxqucndhOn9+uv+h4ohX49EMhUjhzPQrq9i9S7H/JzfulRcG
-         2LuN54h1UvNZam/QqfjxsUqA1dL3to/KoUpbQMc1KJgAweC7adbPQ2LuywA3B3A4Cn
-         jx53s0ighWRcFzi0jhSpR3PcVet2Bj8xHfRlgusQ8n22/HyIv1bA2ilFxB28sYBflY
-         ZimwosnMTGyXA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ot5BM-0003Yf-S0; Thu, 10 Nov 2022 11:53:16 +0100
-Date:   Thu, 10 Nov 2022 11:53:16 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8350: add PCIe devices
-Message-ID: <Y2zYHEZDbNoGumTl@hovoldconsulting.com>
-References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
- <20221110103345.729018-8-dmitry.baryshkov@linaro.org>
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C17A51EC071E;
+        Thu, 10 Nov 2022 11:55:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1668077737;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=lo/knD/NryTKKgBVaHAosVdrDkprBTdeYqpy5wL/8HI=;
+        b=nis3F0Czgrh1Hr8HYwsMXKsfZwulIuKODDGalE3WVipf+4Y+EvuRfyd6zyK7ZgxIn8Tmce
+        XTEhPV3bpWLS8X3TFw/H1NY4012czxyQxRdT14ZgLym1CyvuLxg4dHvQyCjjH02+lpXRFM
+        FWzrxaSi2F/XkpezBk0U2YzKCpLkBc0=
+Date:   Thu, 10 Nov 2022 11:55:37 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-edac@vger.kernel.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org, tony.luck@intel.com,
+        mchehab@kernel.org, michal.simek@xilinx.com, git@amd.com,
+        robh+dt@kernel.org, james.morse@arm.com, rric@kernel.org
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: edac: Add bindings for
+ Xilinx Versal EDAC for DDRMC
+Message-ID: <Y2zYqetP6IhG01Bg@zn.tnic>
+References: <20221107062413.9642-1-shubhrajyoti.datta@amd.com>
+ <20221107062413.9642-2-shubhrajyoti.datta@amd.com>
+ <166807145377.16822.15787804198836912482.b4-ty@linaro.org>
+ <Y2zL3OXBNfR/VNPK@zn.tnic>
+ <207ae5bd-dbc2-9c4b-2acc-bda480da711e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221110103345.729018-8-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <207ae5bd-dbc2-9c4b-2acc-bda480da711e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 01:33:44PM +0300, Dmitry Baryshkov wrote:
-> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
-> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
->  1 file changed, 244 insertions(+), 2 deletions(-)
+On Thu, Nov 10, 2022 at 11:03:43AM +0100, Krzysztof Kozlowski wrote:
+> Unless you mean some EDAC-tree Patchwork tests, what's in the next
+> matters. Both patches will be in next, so no warnings.
 
-> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
->  			gpio-ranges = <&tlmm 0 0 204>;
->  			wakeup-parent = <&pdc>;
->  
-> +			pcie0_default_state: pcie0-default-state {
-> +				perst-pins {
-> +					pins = "gpio94";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				clkreq-pins {
-> +					pins = "gpio95";
-> +					function = "pcie0_clkreqn";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +
-> +				wake-pins {
-> +					pins = "gpio96";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +			};
+Yeah, that is correct.
 
-The pinconfig should go in the board file.
+> If you take it, then all other patches touching these files in this
+> cycle must go via your tree.
 
-Johan
+Do you expect that happening this cycle?
+
+If so, then we can do them this way and I'll ignore those warnings.
+
+> Sure, I'll provide feedback and drop the patches.
+
+Right, in the past devicetree and driver patches for EDAC drivers have
+gone together through my tree but if you anticipate conflicts then sure,
+let's split them.
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
