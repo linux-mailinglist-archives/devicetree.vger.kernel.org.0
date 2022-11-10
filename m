@@ -2,195 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8744D624407
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:15:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A779F62441C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:20:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbiKJOPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 09:15:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S229470AbiKJOUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 09:20:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiKJOOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:14:47 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953BEFD3F;
-        Thu, 10 Nov 2022 06:14:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=/UUmUYw0sYdCPPlbtaNPjw6NAnPNJqCMa+TeidAlxTc=; b=jiZdQN60nA5lItR4t6I2jQH0VH
-        XW7UTD3nIJ5tOXxg4UKZ0KtLbzJ9TMqwzy6K9BZHYqu0DJPbPGVF2YMPaKGwTtuGCej4gtDE6POyG
-        rcfRJTYGBW+ohh8aGcZMg7JSqQ667INwRfyJZwGagHY/SuAxqQyqBvxeGS9WlW0AvsXQco33J8tKf
-        R8DpmSZd7ukckVb7VBjTM+hMUL2knzsUO4jSdTxyPRcGmFNMahnvidlDMgLfmRINxkK8lUYEMp8gH
-        zIbKgonVWz7EOrvA/g0QEp2XAma9v7agSeMDVRYaYVh0utC1g4/VInumPJGQd8lz7yNjFlDCtjtDJ
-        BW7lGXHA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35202)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1ot8Jy-0005i1-A0; Thu, 10 Nov 2022 14:14:22 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1ot8Jt-0006hv-FB; Thu, 10 Nov 2022 14:14:17 +0000
-Date:   Thu, 10 Nov 2022 14:14:17 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac
- System Management Controller
-Message-ID: <Y20HOW8t3wfFott1@shell.armlinux.org.uk>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
- <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
- <Y2rWp4wasbflS/0y@shell.armlinux.org.uk>
- <20221109221723.GA2948356-robh@kernel.org>
- <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
- <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
+        with ESMTP id S230470AbiKJOUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:20:15 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5016B1C11C
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:20:14 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id c1so3517198lfi.7
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:20:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GKIM7k+YSkhSJchQG59Vcw7ysRCT3D7i5Em2qQX+ntk=;
+        b=gOf/GguwT/ZqoSTDal1pRPsRe+sI+lt0qA65Q11J6hdecTXMqYYSNEwDEGH1ODv8ZZ
+         NOqAIQtICm+O4yp5H1Xn6MAJoBmzgWxC09D/4yQh8VKBr9Ivs2HEuHXRQD7hf+fDJQt2
+         7EOvBqo84G1TWsDEEpFCxMmKOKk2mBEYXPzPjvDpDzpQxbVkx1SxB2ae4AJDLHB1aHaM
+         2gSIrNUyjCRw8BjEgwey6qGlKFpdBOlwFu4Dfo7qUqwvSJpoTANoGsI+52JT9kTPsX8J
+         ogO+RK+maF8sXinpSDDMQ2/zK3XlSSGGSKARBVUTqnQxrj82a0X7Ke0wHg3qXZAUaLUA
+         SIzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GKIM7k+YSkhSJchQG59Vcw7ysRCT3D7i5Em2qQX+ntk=;
+        b=fc6Mz3aJgeEUZarkbypZfVYOe1YfkdUo/wCT+jOA9KYxZMvGDl+qU26CjE5F2YM1n+
+         Xr//R97asff09JKXWTXwFFtErJkp+wuA4qDwLdbKXevpIdWMqj28hB7M96GyhR743+u3
+         3rjWITAcc8igklwUvEfWhijOP8K8WSqPVYEXb+t61ZqRmi6EfYd0KZx7n44uCigrEfB4
+         ov8Hwq//7jrITGUjXN0Lw5s4i5wmvQNhKZnh0OLelDYHXABW1zPACZ7GNv2l/AiL8TxH
+         qVHMP4VzKOd123JTa7aD5C8nZzhPlGqRYd2q857f1Ia7gcFbmL/6kXvNz9sD2952LZqx
+         AOsQ==
+X-Gm-Message-State: ANoB5pkyzL6m5I4nTuu9sbvbnr+SmsLVYHECWDpB+LaYcehqjQ05uHiN
+        kcsNz71N2haQL6VmP1xOxTzzAA==
+X-Google-Smtp-Source: AA0mqf6UHa2taM8UHFO2M6pHk/KOhKDjydLDTxwianehLxR0LBkkmXjWc7S9lghiT8p+wT4pPK35JQ==
+X-Received: by 2002:a05:6512:3b0f:b0:4b3:b6db:8ca7 with SMTP id f15-20020a0565123b0f00b004b3b6db8ca7mr1217969lfv.590.1668090012679;
+        Thu, 10 Nov 2022 06:20:12 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id u28-20020a2eb81c000000b0026dc7b59d8esm2700050ljo.22.2022.11.10.06.20.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 06:20:12 -0800 (PST)
+Message-ID: <37fe9a22-7ca0-e4e5-ebff-4eb56dbb74eb@linaro.org>
+Date:   Thu, 10 Nov 2022 17:20:11 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8350: add PCIe devices
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
+ <20221110103345.729018-8-dmitry.baryshkov@linaro.org>
+ <Y2zYHEZDbNoGumTl@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y2zYHEZDbNoGumTl@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 03:00:16PM +0100, Krzysztof Kozlowski wrote:
-> On 10/11/2022 12:48, Russell King (Oracle) wrote:
-> > On Wed, Nov 09, 2022 at 04:17:23PM -0600, Rob Herring wrote:
-> >> On Tue, Nov 08, 2022 at 10:22:31PM +0000, Russell King (Oracle) wrote:
-> >>> On Tue, Nov 08, 2022 at 09:55:58PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 08/11/2022 17:33, Russell King (Oracle) wrote:
-> >>>>> Add a DT binding for the Apple Mac System Management Controller.
-> >>>>
-> >>>> Drop the second, redundant "binding" from subject. It's already in prefix.
-> >>>
-> >>> Yet another thing that's been there from the start... how many more
-> >>> things are you going to pick up in subsequent versions of the patch?
-> >>> When does this stop?
-> >>>
-> >>> In any case, taking your comment literally,
-> >>>
-> >>> "dt-bindings: mfd: add for Apple Mac System Management Controller"
-> >>>
-> >>> makes no sense, so presumably you want something more than that.
-> >>>
-> >>> In any case, I see several recent cases already merged which follow
-> >>> the pattern that I've used and that you've reviewed.
-> >>>
-> >>>>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> >>>>> ---
-> >>>>>  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
-> >>>>>  1 file changed, 67 insertions(+)
-> >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..014eba5a1bbc
-> >>>>> --- /dev/null
-> >>>>> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> >>>>> @@ -0,0 +1,67 @@
-> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>> +%YAML 1.2
-> >>>>> +---
-> >>>>> +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
-> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>> +
-> >>>>> +title: Apple Mac System Management Controller
-> >>>>> +
-> >>>>> +maintainers:
-> >>>>> +  - Hector Martin <marcan@marcan.st>
-> >>>>> +
-> >>>>> +description:
-> >>>>> +  Apple Mac System Management Controller implements various functions
-> >>>>> +  such as GPIO, RTC, power, reboot.
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    items:
-> >>>>> +      - enum:
-> >>>>> +          - apple,t6000-smc
-> >>>>> +          - apple,t8103-smc
-> >>>>> +          - apple,t8112-smc
-> >>>>> +      - const: apple,smc
-> >>>>> +
-> >>>>> +  reg:
-> >>>>> +    items:
-> >>>>> +      - description: SMC area
-> >>>>> +      - description: SRAM area
-> >>>>> +
-> >>>>> +  reg-names:
-> >>>>> +    items:
-> >>>>> +      - const: smc
-> >>>>> +      - const: sram
-> >>>>> +
-> >>>>> +  mboxes:
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  gpio:
-> >>>>> +    $ref: /schemas/gpio/gpio-macsmc.yaml
-> >>>>
-> >>>> So this depends on other patch, so:
-> >>>> 1. You need mention the dependency in cover letter (nothing there),
-> >>>> 2. Re-order patches.
-> >>>>
-> >>>> The GPIO cannot go separate tree and this must be explicitly communicated.
-> >>>
-> >>> Sigh, getting an order that is sensible is really bloody difficult.
-> >>
-> >> It's not. Sub-devices before the MFD. The only time that doesn't work is 
-> >> when the sub-devices put the parent MFD in their example. The solution 
-> >> there is don't do that. Just 1 complete example in the MFD schema and no 
-> >> examples in the sub-devices.
-> > 
-> > Meanwhile, I was told by Krzysztof that DT schemas must always have an
-> > example. So, different person, different story.
+On 10/11/2022 13:53, Johan Hovold wrote:
+> On Thu, Nov 10, 2022 at 01:33:44PM +0300, Dmitry Baryshkov wrote:
+>> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
+>> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
+>>   1 file changed, 244 insertions(+), 2 deletions(-)
 > 
-> Hm, where do you see a message I told you to always have examples? Maybe
-> in some discussion I mentioned that examples are desired, but not
-> always. There is no point in having example in MFD child device schema
-> if it is already part of the parent MFD binding, where it is actually
-> required for complete picture.
+>> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
+>>   			gpio-ranges = <&tlmm 0 0 204>;
+>>   			wakeup-parent = <&pdc>;
+>>   
+>> +			pcie0_default_state: pcie0-default-state {
+>> +				perst-pins {
+>> +					pins = "gpio94";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-down;
+>> +				};
+>> +
+>> +				clkreq-pins {
+>> +					pins = "gpio95";
+>> +					function = "pcie0_clkreqn";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +
+>> +				wake-pins {
+>> +					pins = "gpio96";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +			};
+> 
+> The pinconfig should go in the board file.
 
-35ed6e48-40e6-eb14-72de-9a0a4f5b38f8@linaro.org
-
-and
-
-2e2356f2-ded1-3cbf-4456-20054a8defda@linaro.org
-
-For the GPIO macsec binding. So I'm getting contradictory information.
-First you say that I need an example in the gpio macsec DT binding
-yaml document.
-
-Now I'm told it should go in the parent.
-
-Make up your bloody minds and stop pissing me about. This is why I've
-given up trying to get this in.
-
-Getting a consistent message would be nice, but it seems impossible.
+Usually yes. However for the PCIe we usually put them into the main 
+.dtsi. See sm8[124]50.dtsi.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+With best wishes
+Dmitry
+
