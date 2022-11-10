@@ -2,336 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138916241EE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 13:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5336241F1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 13:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiKJMH1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Nov 2022 07:07:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56652 "EHLO
+        id S229651AbiKJMIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 07:08:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiKJMH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 07:07:26 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5EEB365E72;
-        Thu, 10 Nov 2022 04:07:25 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D71F1FB;
-        Thu, 10 Nov 2022 04:07:31 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3EC553F534;
-        Thu, 10 Nov 2022 04:07:23 -0800 (PST)
-Date:   Thu, 10 Nov 2022 12:07:20 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Icenowy Zheng <uwu@icenowy.me>
-Cc:     Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v3 10/11] phy: sun4i-usb: Replace types with explicit
- quirk flags
-Message-ID: <20221110120720.7fe272b2@donnerap.cambridge.arm.com>
-In-Reply-To: <bab3f8068d3ac26fc38048d0d540261d8e94053a.camel@icenowy.me>
-References: <20221106154826.6687-1-andre.przywara@arm.com>
-        <20221106154826.6687-11-andre.przywara@arm.com>
-        <D8382138-8943-46F7-B6A6-F83DF98E26AE@icenowy.me>
-        <Y2ype6fU6nKyIH1w@matsya>
-        <bab3f8068d3ac26fc38048d0d540261d8e94053a.camel@icenowy.me>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S229517AbiKJMH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 07:07:59 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C710A65E72
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:07:58 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id be13so2819374lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 04:07:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wTZeoUecrKlOpac1f+l+tkMwOwFXx8RW3xq7DuV+DMM=;
+        b=OtYSVx109vXNxZR6GezrRVsY0MmmZtoobU4DmFkpd1Ns/JbNXoL923ZWlTehmQ/Gpf
+         GTvhutOnU9np1mi0Nbe6XMkBt4IVwB6F4GhrY3X8Tj6u8SlIjXLdS0KlybmYbPqs7sMs
+         rHLruuC6Gff6OvM0r+Bziqp/0OzwnEcnX52me9rqCd8FGDxtYxKZU7GKf56ef3EVOJaf
+         CrFEd8pOrgmPBuyu397MsrOUiNNfjQTIQ7OViY3RMaIKH3WWer9XbbI15Y4fdXNOM1Bt
+         AXOvD07WywGP+SD6TwhX1wAh1G9/fQHDTsIo7bYvmMgaNMh6iBE0iAbqwqvcu4upMys3
+         rbig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=wTZeoUecrKlOpac1f+l+tkMwOwFXx8RW3xq7DuV+DMM=;
+        b=mviYcF020oOnXpSU2PwERyJ0wajQ0QIFEp9Ly28S3DQPACMP+uPRCi9UaH5qCRa44Z
+         A7OuWXPN6IEdgzRaax/SiHEmZZtxzNc5O+Us5pfGSpnpyAfFeHKKcYtIXcW5bnhd/oa1
+         W0WrZlRDOn36qzaZJJRLhFPs4nbpcsUJyP4qNi8ighBUg7aXgPyZWCFSh23i3KRtKe3S
+         2HBMJW46XLg3CD3l/WY+P3Uk5X1I/8ZY1LDDSlbowutrZf9XSDmvv4xl/OA9SunFLQ69
+         lYKoDrwv1jlTlZfkRLTnnD+JXubH4tgb1rWa+pVomQ3l5bLGR2z06l55qIMNVALNf+yY
+         ZUew==
+X-Gm-Message-State: ACrzQf0V7MkuiyJtO2j1V8EArx2nRZW/haVeg5vvIVT/DEBpoozhSjoW
+        BSeAApzMODN9HZsqRIDXkqxlYg==
+X-Google-Smtp-Source: AMsMyM5Fy2ozvGSmP1vbjydCPG2UhS0gqPhZr248VdsYUlWeNBm//9YGxeKM10fZPGnjA3WXzapXsQ==
+X-Received: by 2002:a19:790d:0:b0:4a2:3d87:8d14 with SMTP id u13-20020a19790d000000b004a23d878d14mr1548113lfc.161.1668082077160;
+        Thu, 10 Nov 2022 04:07:57 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b004979db5aa5bsm2727460lfg.223.2022.11.10.04.07.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 04:07:56 -0800 (PST)
+Message-ID: <ae1ba550-4bee-4b3b-ba5e-716f4dba9917@linaro.org>
+Date:   Thu, 10 Nov 2022 13:07:54 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add a device tree for PMK8350 on
+ SID6
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221109111236.46003-1-konrad.dybcio@linaro.org>
+ <20221109111236.46003-4-konrad.dybcio@linaro.org>
+ <CAA8EJprNszfyyN9HLYoRK2Y-yUU-NuGd0QacqJ3UhkDjpvokdg@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAA8EJprNszfyyN9HLYoRK2Y-yUU-NuGd0QacqJ3UhkDjpvokdg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Nov 2022 19:40:58 +0800
-Icenowy Zheng <uwu@icenowy.me> wrote:
 
-Hi,
 
-> 在 2022-11-10星期四的 13:04 +0530，Vinod Koul写道：
-> > On 06-11-22, 23:54, Icenowy Zheng wrote:  
-> > > 
-> > > 
-> > > 于 2022年11月6日 GMT+08:00 下午11:48:25, Andre Przywara
-> > > <andre.przywara@arm.com> 写到:  
-> > > > So far we were assigning some crude "type" (SoC name, really) to
-> > > > each
-> > > > Allwinner USB PHY model, then guarding certain quirks based on
-> > > > this.
-> > > > This does not only look weird, but gets more or more cumbersome
-> > > > to
-> > > > maintain.
-> > > > 
-> > > > Remove the bogus type names altogether, instead introduce flags
-> > > > for each
-> > > > quirk, and explicitly check for them.
-> > > > This improves readability, and simplifies future extensions.
-> > > > 
-> > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > > ---
-> > > > drivers/phy/allwinner/phy-sun4i-usb.c | 50 ++++++++--------------
-> > > > -----
-> > > > 1 file changed, 15 insertions(+), 35 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > > b/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > > index 51fb24c6dcb3..422129c66282 100644
-> > > > --- a/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > > +++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-> > > > @@ -99,27 +99,17 @@
-> > > > #define DEBOUNCE_TIME                   msecs_to_jiffies(50)
-> > > > #define POLL_TIME                       msecs_to_jiffies(250)
-> > > > 
-> > > > -enum sun4i_usb_phy_type {
-> > > > -       sun4i_a10_phy,
-> > > > -       sun6i_a31_phy,
-> > > > -       sun8i_a33_phy,
-> > > > -       sun8i_a83t_phy,
-> > > > -       sun8i_h3_phy,
-> > > > -       sun8i_r40_phy,
-> > > > -       sun8i_v3s_phy,
-> > > > -       sun50i_a64_phy,
-> > > > -       sun50i_h6_phy,
-> > > > -};
-> > > > -
-> > > > struct sun4i_usb_phy_cfg {
-> > > >         int num_phys;
-> > > >         int hsic_index;
-> > > > -       enum sun4i_usb_phy_type type;
-> > > >         u32 disc_thresh;
-> > > >         u32 hci_phy_ctl_clear;
-> > > >         u8 phyctl_offset;
-> > > >         bool dedicated_clocks;
-> > > >         bool phy0_dual_route;
-> > > > +       bool phy2_is_hsic;  
-> > > 
-> > > Maybe use a `int hsic_phy` instead? But the problem is this
-> > > practice is
-> > > assuming USB0 could not be HSIC -- although USB0 is usually OTG.  
-> > 
-> > why should it be int.. dont think hsic_phy is improvement over
-> > phy2_is_hsic?  
+On 10/11/2022 10:12, Dmitry Baryshkov wrote:
+> On Wed, 9 Nov 2022 at 14:12, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>
+>> PMK8350 is shipped on SID6 with some SoCs, for example with SM6375.
+>> Add a DT with the SID changed to allow it to work.
+>>
+>> Unfortunately, the entire DT needs to be copied even if the diff is
+>> very little, as the node names are not unique. Including pm6125 and
+>> pmk8350 together for example, would make pmk8350 overwrite the pm6125
+>> node, as both are defined as 'pmic@0'.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi | 73 ++++++++++++++++++++++
+>>   1 file changed, 73 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/pmk8350_sid6.dtsi
 > 
-> Yes because it may express phy1_is_hsic, etc (although this kind of
-> thing hadn't happened yet).
+> Just to throw my 2c. If I was doing this myself, I'd allow pmk8350 to
+> receive external SID using the cpp #define (And to default to 0 if one
+> didn't use it).
+Hmm.. that's probably the least duplicative approach, but I'm not sure I
+want to see #ifdefs in DTs..
 
-Yeah, I tried to not interpret too much into this, instead just named it
-as it is used today. I don't have any insight into the A83T PHY or in
-Allwinner's plans regarding this. So far this seems like a one-off hack
-that is needed for this particular PHY on this particular SoC.
-It it code-internal anyway, so we can change it at any time later should
-the need arise.
-
-If people like another name better, I am of course happy to use that.
-
-Cheers,
-Andre
-
+Konrad
 > 
-> >   
-> > >   
-> > > > +       bool siddq_in_base;
-> > > > +       bool poll_vbusen;
-> > > >         int missing_phys;
-> > > > };
-> > > > 
-> > > > @@ -251,7 +241,7 @@ static void sun4i_usb_phy_passby(struct
-> > > > sun4i_usb_phy *phy, int enable)
-> > > >                 SUNXI_AHB_INCRX_ALIGN_EN | SUNXI_ULPI_BYPASS_EN;
-> > > > 
-> > > >         /* A83T USB2 is HSIC */
-> > > > -       if (phy_data->cfg->type == sun8i_a83t_phy && phy->index
-> > > > == 2)
-> > > > +       if (phy_data->cfg->phy2_is_hsic && phy->index == 2)
-> > > >                 bits |= SUNXI_EHCI_HS_FORCE |
-> > > > SUNXI_HSIC_CONNECT_INT |
-> > > >                         SUNXI_HSIC;
-> > > > 
-> > > > @@ -295,8 +285,7 @@ static int sun4i_usb_phy_init(struct phy
-> > > > *_phy)
-> > > >                 writel(val, phy->pmu + REG_HCI_PHY_CTL);
-> > > >         }
-> > > > 
-> > > > -       if (data->cfg->type == sun8i_a83t_phy ||
-> > > > -           data->cfg->type == sun50i_h6_phy) {
-> > > > +       if (data->cfg->siddq_in_base) {
-> > > >                 if (phy->index == 0) {
-> > > >                         val = readl(data->base + data->cfg-  
-> > > > >phyctl_offset);  
-> > > >                         val |= PHY_CTL_VBUSVLDEXT;
-> > > > @@ -340,8 +329,7 @@ static int sun4i_usb_phy_exit(struct phy
-> > > > *_phy)
-> > > >         struct sun4i_usb_phy_data *data =
-> > > > to_sun4i_usb_phy_data(phy);
-> > > > 
-> > > >         if (phy->index == 0) {
-> > > > -               if (data->cfg->type == sun8i_a83t_phy ||
-> > > > -                   data->cfg->type == sun50i_h6_phy) {
-> > > > +               if (data->cfg->siddq_in_base) {
-> > > >                         void __iomem *phyctl = data->base +
-> > > >                                 data->cfg->phyctl_offset;
-> > > > 
-> > > > @@ -414,9 +402,8 @@ static bool sun4i_usb_phy0_poll(struct
-> > > > sun4i_usb_phy_data *data)
-> > > >          * vbus using the N_VBUSEN pin on the pmic, so we must
-> > > > poll
-> > > >          * when using the pmic for vbus-det _and_ we're driving
-> > > > vbus.
-> > > >          */
-> > > > -       if ((data->cfg->type == sun6i_a31_phy ||
-> > > > -            data->cfg->type == sun8i_a33_phy) &&
-> > > > -           data->vbus_power_supply && data-  
-> > > > >phys[0].regulator_on)  
-> > > > +       if (data->cfg->poll_vbusen && data->vbus_power_supply &&
-> > > > +           data->phys[0].regulator_on)
-> > > >                 return true;
-> > > > 
-> > > >         return false;
-> > > > @@ -861,7 +848,6 @@ static int sun4i_usb_phy_probe(struct
-> > > > platform_device *pdev)
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg suniv_f1c100s_cfg = {
-> > > >         .num_phys = 1,
-> > > > -       .type = sun4i_a10_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = true,
-> > > > @@ -869,7 +855,6 @@ static const struct sun4i_usb_phy_cfg
-> > > > suniv_f1c100s_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun4i_a10_cfg = {
-> > > >         .num_phys = 3,
-> > > > -       .type = sun4i_a10_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = false,
-> > > > @@ -877,7 +862,6 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun4i_a10_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun5i_a13_cfg = {
-> > > >         .num_phys = 2,
-> > > > -       .type = sun4i_a10_phy,
-> > > >         .disc_thresh = 2,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = false,
-> > > > @@ -885,15 +869,14 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun5i_a13_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun6i_a31_cfg = {
-> > > >         .num_phys = 3,
-> > > > -       .type = sun6i_a31_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = true,
-> > > > +       .poll_vbusen = true,
-> > > > };
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun7i_a20_cfg = {
-> > > >         .num_phys = 3,
-> > > > -       .type = sun4i_a10_phy,
-> > > >         .disc_thresh = 2,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = false,
-> > > > @@ -901,31 +884,31 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun7i_a20_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_a23_cfg = {
-> > > >         .num_phys = 2,
-> > > > -       .type = sun6i_a31_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A10,
-> > > >         .dedicated_clocks = true,
-> > > > +       .poll_vbusen = true,
-> > > > };
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_a33_cfg = {
-> > > >         .num_phys = 2,
-> > > > -       .type = sun8i_a33_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > +       .poll_vbusen = true,
-> > > > };
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_a83t_cfg = {
-> > > >         .num_phys = 3,
-> > > >         .hsic_index = 2,
-> > > > -       .type = sun8i_a83t_phy,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > +       .siddq_in_base = true,
-> > > > +       .phy2_is_hsic = true,
-> > > > };
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_h3_cfg = {
-> > > >         .num_phys = 4,
-> > > > -       .type = sun8i_h3_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > @@ -935,7 +918,6 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun8i_h3_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_r40_cfg = {
-> > > >         .num_phys = 3,
-> > > > -       .type = sun8i_r40_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > @@ -945,7 +927,6 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun8i_r40_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun8i_v3s_cfg = {
-> > > >         .num_phys = 1,
-> > > > -       .type = sun8i_v3s_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > @@ -955,16 +936,15 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun8i_v3s_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun20i_d1_cfg = {
-> > > >         .num_phys = 2,
-> > > > -       .type = sun50i_h6_phy,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > >         .hci_phy_ctl_clear = PHY_CTL_SIDDQ,
-> > > >         .phy0_dual_route = true,
-> > > > +       .siddq_in_base = true,
-> > > > };
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun50i_a64_cfg = {
-> > > >         .num_phys = 2,
-> > > > -       .type = sun50i_a64_phy,
-> > > >         .disc_thresh = 3,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > > @@ -974,11 +954,11 @@ static const struct sun4i_usb_phy_cfg
-> > > > sun50i_a64_cfg = {
-> > > > 
-> > > > static const struct sun4i_usb_phy_cfg sun50i_h6_cfg = {
-> > > >         .num_phys = 4,
-> > > > -       .type = sun50i_h6_phy,
-> > > >         .phyctl_offset = REG_PHYCTL_A33,
-> > > >         .dedicated_clocks = true,
-> > > >         .phy0_dual_route = true,
-> > > >         .missing_phys = BIT(1) | BIT(2),
-> > > > +       .siddq_in_base = true,
-> > > > };
-> > > > 
-> > > > static const struct of_device_id sun4i_usb_phy_of_match[] = {  
-> >   
 > 
-
+> 
+> 
