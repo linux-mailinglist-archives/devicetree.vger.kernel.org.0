@@ -2,164 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30706623FC5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B28623FD4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 11:33:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiKJK26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 05:28:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56520 "EHLO
+        id S229675AbiKJKdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 05:33:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbiKJK25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:28:57 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528D717597;
-        Thu, 10 Nov 2022 02:28:56 -0800 (PST)
-X-UUID: 7a7447f8e655480c87afb969c20a1141-20221110
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=HqkJPympux788neVKo6gezW3XXH9EtJEN5xJj7k/X/8=;
-        b=gGLl2wKkFzuPbDAeqH5UDgwnWHMjEUxOVE/wbFUk0e+OMh/FIOeBM0iHgKshu8OvXahQqEVQYQLYtSfvRb297C6HxdPOxGr4AeClPlp1NQg+2YfnQiEKFAzR5e1pd0ZsqkZCBVTd1lxWliol3Kyuq6zQ4wm5cEEt4lCLSZQaPCE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:7f457f67-4551-4138-bb2b-032acf819926,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:62cd327,CLOUDID:bb692e5d-100c-4555-952b-a62c895efded,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 7a7447f8e655480c87afb969c20a1141-20221110
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2012159869; Thu, 10 Nov 2022 18:28:53 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 10 Nov 2022 18:28:51 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 10 Nov 2022 18:28:50 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2,3/3] arm64: dts: mt8195: Add video decoder node
-Date:   Thu, 10 Nov 2022 18:28:34 +0800
-Message-ID: <20221110102834.8946-3-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221110102834.8946-1-yunfei.dong@mediatek.com>
-References: <20221110102834.8946-1-yunfei.dong@mediatek.com>
+        with ESMTP id S229553AbiKJKdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 05:33:50 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1233326139
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:33:49 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id b3so2380757lfv.2
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 02:33:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PmHaFFuqPlWBZ7a9hnHHjYy0tkKVCkmXGUK6hn+sk4k=;
+        b=epDRvrPaps44f/b/JtYIpWhtSLsnBTf+X6LbmqrGi1rP+Cmw1SbFXewNjGAZkhLzLl
+         TIoSGS9kU0R78tc1bd4MOiTcj0eIUN/4ukQjVSjAzbLE6zByIhuQJiP8MN8qnN+Tu8zf
+         JUZ0egxSpeIH5vRcgSILKh/3QpYV+yD0s71KpLi584u9kDDXm0DG2jTqbMeAs/h6DxkX
+         wlqXfB/qAc4TPJqed4HzvYLa5tiJ8jwRjYPHtFCbY1l1hMqjc4FBYNSCLJiWyQsWdhbw
+         N633tazgUv9tScmtoHap3gowuZ9EM57tW9uxaQmq9tKJw1oZPzng+OyBA4md6TWL2JfY
+         YL1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PmHaFFuqPlWBZ7a9hnHHjYy0tkKVCkmXGUK6hn+sk4k=;
+        b=hX34rB7XXjaka2swXA/f8tbl4PPr+8qtSN2Cip21FKUceZX/uEnCsAaDMfMSs5+okp
+         p7DcdCGFB74avYxBOxjsvwJizv6puDxqijP7qJAOk5BKJK60kuBq9h48nBSJWQPXujtc
+         k7IGCijMyX/VqVmAAke+8wqk97O1StMY1OOjUvSAXChdtyRrvhANBWaW6snU/KLukLe3
+         gx8xrAgSjd4knNgTJZLhKg1hcIrlhjwDqRPQ5V+rtcn9tmAcfKR4cb3IqChuAKUbdS/K
+         nN2EE+hFhKdg70A12zzBpHQEd3XDFMmGs/FTXCtEpJ44RvTXn8F7gp91VSdFzJZcmpha
+         uqCA==
+X-Gm-Message-State: ACrzQf0oQENP/omvKjz3JKhir7IoPIA8QG3SBrp1z0nobvzJ98byrg1S
+        t20hvS8c8Rhi8e64nO+MWiqUJg==
+X-Google-Smtp-Source: AMsMyM6BNtMBJ8+iIxA3EIgwGLU1L5ewA1cPO1EOjClZjd/YBgY3L5NySoSxVl/s1h8z1BjL2RSeMQ==
+X-Received: by 2002:a19:5048:0:b0:4b1:3856:e422 with SMTP id z8-20020a195048000000b004b13856e422mr13624125lfj.368.1668076427405;
+        Thu, 10 Nov 2022 02:33:47 -0800 (PST)
+Received: from localhost.localdomain ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id p22-20020ac246d6000000b00498f32ae907sm2687837lfo.95.2022.11.10.02.33.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 02:33:47 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/8] PCI/phy: Add support for PCI on sm8350 platform
+Date:   Thu, 10 Nov 2022 13:33:37 +0300
+Message-Id: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add video decoder node to mt8195 device tree.
+SM8350 is one of the recent Qualcomm platforms which lacks PCIe support.
+Use sm8450 PHY tables to add support for the PCIe hosts on Qualcomm SM8350 platform.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
-Compared with v1:
-- add description in yaml, and remove /* ... */ for each reg.
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 63 ++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+Note: the PCIe0 table is based on the lahaina-v2.1.dtsi file, so it
+might work incorrectly on earlier SoC revisions.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 905d1a90b406..3ef7eef02415 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1874,6 +1874,69 @@
- 			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
- 		};
- 
-+		video-codec@18000000 {
-+			compatible = "mediatek,mt8195-vcodec-dec";
-+			mediatek,scp = <&scp>;
-+			iommus = <&iommu_vdo M4U_PORT_L21_VDEC_MC_EXT>;
-+			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			reg = <0 0x18000000 0 0x1000>,
-+			      <0 0x18004000 0 0x1000>;
-+			ranges = <0 0 0 0x18000000 0 0x26000>;
-+			clocks = <&topckgen CLK_TOP_VDEC>,
-+			         <&topckgen CLK_TOP_UNIVPLL_D4>;
-+			clock-names = "vdec-sel", "top";
-+			assigned-clocks = <&topckgen CLK_TOP_VDEC>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D4>;
-+
-+			vcodec-lat-soc@2000 {
-+				compatible = "mediatek,mtk-vcodec-lat-soc";
-+				reg = <0 0x2000 0 0x800>;
-+				iommus = <&iommu_vpp M4U_PORT_L23_VDEC_UFO_ENC_EXT>,
-+					 <&iommu_vpp M4U_PORT_L23_VDEC_RDMA_EXT>;
-+				clocks = <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-+					 <&vdecsys_soc CLK_VDEC_SOC_LAT>;
-+				clock-names = "vdec-soc-vdec", "vdec-soc-lat";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+			};
-+
-+			vcodec-lat@10000 {
-+				compatible = "mediatek,mtk-vcodec-lat";
-+				reg = <0 0x10000 0 0x800>;
-+				interrupts = <GIC_SPI 708 IRQ_TYPE_LEVEL_HIGH 0>;
-+				iommus = <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_VLD_EXT>,
-+					 <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_VLD2_EXT>,
-+					 <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_AVC_MC_EXT>,
-+					 <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_PRED_RD_EXT>,
-+					 <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_TILE_EXT>,
-+					 <&iommu_vdo M4U_PORT_L24_VDEC_LAT0_WDMA_EXT>;
-+				clocks = <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-+					 <&vdecsys_soc CLK_VDEC_SOC_LAT>;
-+				clock-names = "vdec-soc-vdec", "vdec-soc-lat";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+			};
-+
-+			vcodec-core@25000 {
-+				compatible = "mediatek,mtk-vcodec-core";
-+				reg = <0 0x25000 0 0x1000>;
-+				interrupts = <GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH 0>;
-+				iommus = <&iommu_vdo M4U_PORT_L21_VDEC_MC_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_UFO_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_PP_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_PRED_RD_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_PRED_WR_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_PPWRAP_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_TILE_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_VLD_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_VLD2_EXT>,
-+					 <&iommu_vdo M4U_PORT_L21_VDEC_AVC_MV_EXT>;
-+				clocks = <&vdecsys CLK_VDEC_VDEC>, <&vdecsys CLK_VDEC_LAT>;
-+				clock-names = "vdec-vdec", "vdec-lat";
-+				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
-+			};
-+		};
-+
- 		larb24: larb@1800d000 {
- 			compatible = "mediatek,mt8195-smi-larb";
- 			reg = <0 0x1800d000 0 0x1000>;
+Dependencies:
+- phy/next (for PHY patches only)
+
+Changes since v1:
+ - removed pipe/ref clocks from the PCI schema, they are unused now
+ - split the sm8450 tables commit into separate split & rename (Bjorn)
+ - cleaned up the dtsi file, removing 'power-domain-names' and fixing
+   gpio proprety names.
+
+Dmitry Baryshkov (8):
+  dt-bindings: PCI: qcom: Add sm8350 to bindings
+  dt-bindings: phy: qcom,qmp-pcie: add sm8350 bindings
+  PCI: qcom: Add support for SM8350
+  phy: qcom-qmp-pcie: split sm8450 gen3 PHY config tables
+  phy: qcom-qmp-pcie: rename the sm8450 gen3 PHY config tables
+  phy: qcom-qmp-pcie: add support for sm8350 platform
+  arm64: dts: qcom: sm8350: add PCIe devices
+  arm64: dts: qcom: sm8350-hdk: enable PCIe devices
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  46 ++++
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  22 ++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |  16 ++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 246 +++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 164 ++++++++++--
+ 6 files changed, 477 insertions(+), 18 deletions(-)
+
 -- 
-2.18.0
+2.35.1
 
