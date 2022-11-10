@@ -2,167 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A11396243F7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:14:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8744D624407
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 15:15:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbiKJOOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 09:14:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46868 "EHLO
+        id S230150AbiKJOPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 09:15:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbiKJOOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:14:23 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C43B78300
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:14:05 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f37so3474307lfv.8
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 06:14:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Bnc98wbgCB157XtXlJ5NroBNxycOACeQVxm/1SPVs4=;
-        b=Rc8RZYG1UdjHBqHXSpcw7c7Fl3OJIs+mgExR8ZEe+5iDezQTN7XCfKOzGLV02/GFzS
-         f/trH0orM0q51kSUF73Jh+5teXTHMGgop3zKei6pVMxbmjbWjTYs9lq2vQs2RnjphnQ3
-         LgSP8Bc4k/E3y8YRK+/mnx8OBi+H+tM54YOVRgKfdccfzllR8qzxjpbYGQH0mCZgOhUe
-         UhMDSyIlPoNcKmkFND1CIVA6MF+tt9bS735B5d2iMMgsDtOchwiUlt5TpwtcsjOobjzs
-         HDfDXm+QzsaftiReSvZqrCYSwatcVOQ01Beaep3NFZlgzJJJpUKFonaZqqpxfM3s9B+V
-         yfig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Bnc98wbgCB157XtXlJ5NroBNxycOACeQVxm/1SPVs4=;
-        b=NYRcgjfo1FmbAiLSafeKNNCedwVcw0d1ES3dOIT6SxWc/6B3IpIdTnUXY7j7TdZfIo
-         k0+SR9H1QXo86uMUhiOR05fvCzWTUlqJT4xGr4FtXlmo3/E6OJE+gb2wh4LOdwgFFthP
-         ca6lzsrIN5kWZHk7eEY17JeorE9ru3fkcMMxzWXSyqtFQcZAVKGn8zz3954iMNc6fYAe
-         C24jIvIFgE7ByCeZNxTrmDbkvBT8bEieBgU//2r5Z8wGPn6xbpjOVI6n+GTcrL7lcadM
-         oFJCNHGQj5Hl3oqAgxTyf6Ocwobjzhzpk8dj+p01c8iEEm38xMgnv/LfNo0uhKkdER5K
-         9C5Q==
-X-Gm-Message-State: ACrzQf1tBlLI45JrEYR315UCTfFOQwO5vCJAwV6+qa2i6mDXTSdb7/1w
-        NSTipmarZheVJVwV0lrZHrZ1IQ==
-X-Google-Smtp-Source: AMsMyM4Zc2mDjlY+RRgIUEdLQhsv+UxcTsSgJuQjuIQHS1FrmkKKXs/oNCb5HFgDi7jqXQw2KQ4odg==
-X-Received: by 2002:a05:6512:32b7:b0:4aa:8d5a:2f53 with SMTP id q23-20020a05651232b700b004aa8d5a2f53mr21028085lfe.362.1668089643827;
-        Thu, 10 Nov 2022 06:14:03 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id r26-20020ac25c1a000000b00499aefcf68esm2746842lfp.292.2022.11.10.06.14.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 06:14:02 -0800 (PST)
-Message-ID: <adf8bc44-4cbc-af2a-4ec8-1859a98146d7@linaro.org>
-Date:   Thu, 10 Nov 2022 15:14:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S229533AbiKJOOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 09:14:47 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953BEFD3F;
+        Thu, 10 Nov 2022 06:14:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=/UUmUYw0sYdCPPlbtaNPjw6NAnPNJqCMa+TeidAlxTc=; b=jiZdQN60nA5lItR4t6I2jQH0VH
+        XW7UTD3nIJ5tOXxg4UKZ0KtLbzJ9TMqwzy6K9BZHYqu0DJPbPGVF2YMPaKGwTtuGCej4gtDE6POyG
+        rcfRJTYGBW+ohh8aGcZMg7JSqQ667INwRfyJZwGagHY/SuAxqQyqBvxeGS9WlW0AvsXQco33J8tKf
+        R8DpmSZd7ukckVb7VBjTM+hMUL2knzsUO4jSdTxyPRcGmFNMahnvidlDMgLfmRINxkK8lUYEMp8gH
+        zIbKgonVWz7EOrvA/g0QEp2XAma9v7agSeMDVRYaYVh0utC1g4/VInumPJGQd8lz7yNjFlDCtjtDJ
+        BW7lGXHA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35202)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ot8Jy-0005i1-A0; Thu, 10 Nov 2022 14:14:22 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ot8Jt-0006hv-FB; Thu, 10 Nov 2022 14:14:17 +0000
+Date:   Thu, 10 Nov 2022 14:14:17 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
- <20221109222916.GA2985917-robh@kernel.org> <Y2wwUOJ0KZdt1tZ6@mail.local>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y2wwUOJ0KZdt1tZ6@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac
+ System Management Controller
+Message-ID: <Y20HOW8t3wfFott1@shell.armlinux.org.uk>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
+ <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
+ <Y2rWp4wasbflS/0y@shell.armlinux.org.uk>
+ <20221109221723.GA2948356-robh@kernel.org>
+ <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
+ <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bb77e12a-b218-461b-6aa8-10f2b9a67347@linaro.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 23:57, Alexandre Belloni wrote:
-> On 09/11/2022 16:29:16-0600, Rob Herring wrote:
->> On Tue, Nov 08, 2022 at 07:43:37PM +0100, Alexandre Mergnat wrote:
->>> - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
->>> - Add mediatek,mt6357-rtc compatible.
->>> - Add maintainer
->>> - Remove the .txt binding file
->>>
->>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->>> ---
->>>  Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
->>>  .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 40 ++++++++++++++++++++++
->>>  .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 -----------------
->>>  3 files changed, 41 insertions(+), 32 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
->>> index 0088442efca1..79aaf21af8e9 100644
->>> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
->>> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
->>> @@ -33,7 +33,7 @@ Optional subnodes:
->>>  		- compatible: "mediatek,mt6331-rtc"
->>>  		- compatible: "mediatek,mt6358-rtc"
->>>  		- compatible: "mediatek,mt6397-rtc"
->>> -	For details, see ../rtc/rtc-mt6397.txt
->>> +	For details, see ../rtc/mediatek,mt6397-rtc.yaml
->>>  - regulators
->>>  	Required properties:
->>>  		- compatible: "mediatek,mt6323-regulator"
->>> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
->>> new file mode 100644
->>> index 000000000000..bb48c0150f95
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
->>> @@ -0,0 +1,40 @@
->>> + # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek MT6397/MT6366/MT6358/MT6357/MT6323 RTC
->>> +
->>> +maintainers:
->>> +  - Alexandre Mergnat <amergnat@baylibre.com>
->>> +
->>> +description: |
->>> +  MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
->>> +  as a type of multi-function device (MFD). The RTC can be configured and set up
->>> +  with PMIC wrapper bus which is a common resource shared with the other
->>> +  functions found on the same PMIC.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - mediatek,mt6323-rtc
->>> +      - mediatek,mt6357-rtc
->>> +      - mediatek,mt6358-rtc
->>> +      - mediatek,mt6366-rtc
->>> +      - mediatek,mt6397-rtc
->>
->> As this is only a compatible string, just fold this into the MFD schema 
->> doc.
+On Thu, Nov 10, 2022 at 03:00:16PM +0100, Krzysztof Kozlowski wrote:
+> On 10/11/2022 12:48, Russell King (Oracle) wrote:
+> > On Wed, Nov 09, 2022 at 04:17:23PM -0600, Rob Herring wrote:
+> >> On Tue, Nov 08, 2022 at 10:22:31PM +0000, Russell King (Oracle) wrote:
+> >>> On Tue, Nov 08, 2022 at 09:55:58PM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 08/11/2022 17:33, Russell King (Oracle) wrote:
+> >>>>> Add a DT binding for the Apple Mac System Management Controller.
+> >>>>
+> >>>> Drop the second, redundant "binding" from subject. It's already in prefix.
+> >>>
+> >>> Yet another thing that's been there from the start... how many more
+> >>> things are you going to pick up in subsequent versions of the patch?
+> >>> When does this stop?
+> >>>
+> >>> In any case, taking your comment literally,
+> >>>
+> >>> "dt-bindings: mfd: add for Apple Mac System Management Controller"
+> >>>
+> >>> makes no sense, so presumably you want something more than that.
+> >>>
+> >>> In any case, I see several recent cases already merged which follow
+> >>> the pattern that I've used and that you've reviewed.
+> >>>
+> >>>>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> >>>>> ---
+> >>>>>  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
+> >>>>>  1 file changed, 67 insertions(+)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..014eba5a1bbc
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> >>>>> @@ -0,0 +1,67 @@
+> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>> +
+> >>>>> +title: Apple Mac System Management Controller
+> >>>>> +
+> >>>>> +maintainers:
+> >>>>> +  - Hector Martin <marcan@marcan.st>
+> >>>>> +
+> >>>>> +description:
+> >>>>> +  Apple Mac System Management Controller implements various functions
+> >>>>> +  such as GPIO, RTC, power, reboot.
+> >>>>> +
+> >>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    items:
+> >>>>> +      - enum:
+> >>>>> +          - apple,t6000-smc
+> >>>>> +          - apple,t8103-smc
+> >>>>> +          - apple,t8112-smc
+> >>>>> +      - const: apple,smc
+> >>>>> +
+> >>>>> +  reg:
+> >>>>> +    items:
+> >>>>> +      - description: SMC area
+> >>>>> +      - description: SRAM area
+> >>>>> +
+> >>>>> +  reg-names:
+> >>>>> +    items:
+> >>>>> +      - const: smc
+> >>>>> +      - const: sram
+> >>>>> +
+> >>>>> +  mboxes:
+> >>>>> +    maxItems: 1
+> >>>>> +
+> >>>>> +  gpio:
+> >>>>> +    $ref: /schemas/gpio/gpio-macsmc.yaml
+> >>>>
+> >>>> So this depends on other patch, so:
+> >>>> 1. You need mention the dependency in cover letter (nothing there),
+> >>>> 2. Re-order patches.
+> >>>>
+> >>>> The GPIO cannot go separate tree and this must be explicitly communicated.
+> >>>
+> >>> Sigh, getting an order that is sensible is really bloody difficult.
+> >>
+> >> It's not. Sub-devices before the MFD. The only time that doesn't work is 
+> >> when the sub-devices put the parent MFD in their example. The solution 
+> >> there is don't do that. Just 1 complete example in the MFD schema and no 
+> >> examples in the sub-devices.
+> > 
+> > Meanwhile, I was told by Krzysztof that DT schemas must always have an
+> > example. So, different person, different story.
 > 
-> Actually, it probably also supports the start-year property
+> Hm, where do you see a message I told you to always have examples? Maybe
+> in some discussion I mentioned that examples are desired, but not
+> always. There is no point in having example in MFD child device schema
+> if it is already part of the parent MFD binding, where it is actually
+> required for complete picture.
 
-What about rest of rtc.yaml schema?
+35ed6e48-40e6-eb14-72de-9a0a4f5b38f8@linaro.org
 
-Best regards,
-Krzysztof
+and
 
+2e2356f2-ded1-3cbf-4456-20054a8defda@linaro.org
+
+For the GPIO macsec binding. So I'm getting contradictory information.
+First you say that I need an example in the gpio macsec DT binding
+yaml document.
+
+Now I'm told it should go in the parent.
+
+Make up your bloody minds and stop pissing me about. This is why I've
+given up trying to get this in.
+
+Getting a consistent message would be nice, but it seems impossible.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
