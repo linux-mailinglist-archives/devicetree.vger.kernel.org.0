@@ -2,111 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D134B62485E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:29:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2B4624865
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:31:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbiKJR3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 12:29:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51550 "EHLO
+        id S231203AbiKJRb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 12:31:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231284AbiKJR26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:28:58 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37125FD1;
-        Thu, 10 Nov 2022 09:28:52 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7597960004;
-        Thu, 10 Nov 2022 17:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668101331;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=14K4vkigpc+r6ifepskjAS5nboNCAI5rkQqWrxZ4Kk4=;
-        b=Nch2Lks2ASc+gcIGppOjqGRMldcSbvpuknlEY5fSStadYxm83tItBCL7GZd5OhSmPthfBI
-        9kOsD73/MAttirUbNSLg1CnPnINrWyF350weJQrjSRuHBGhy5a99LKRoMJF3ia2bLbI8L5
-        qcPShugX1vcYVz5l5LkTilgkNvZSnYGTjJJ8rOB0Kij/6dtlM/LGURVi2Y6hPvIlqbSsAJ
-        euFWoMT4ywWmPO2VY+yGzUNO59I/OpHp3ehrcm7JjxJwSbCl76uPspXNkcrYmCZzvGq9rV
-        C/zbmU349Z+6vcXWt0/9FetXgSHRG/ukAafFTKFNSNbbjha3XKBjuunQyn/Xqg==
-Date:   Thu, 10 Nov 2022 18:28:48 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 13/17] dt-bindings: mtd: nvmem-cells: Fix example
-Message-ID: <20221110182848.492e4a6f@xps-13>
-In-Reply-To: <20221110165906.GA241353-robh@kernel.org>
-References: <20221104164718.1290859-1-miquel.raynal@bootlin.com>
-        <20221104164718.1290859-14-miquel.raynal@bootlin.com>
-        <20221110165906.GA241353-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229547AbiKJRbw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:31:52 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32EE10056
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 09:31:51 -0800 (PST)
+Received: from stefanw-SCHENKER ([37.4.248.71]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mg6i8-1pU9qC1Fl8-00hiI8; Thu, 10 Nov 2022 18:31:34 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V3 0/2] ARM: dts: bcm283x: Minor clean up
+Date:   Thu, 10 Nov 2022 18:31:03 +0100
+Message-Id: <20221110173105.6633-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:WYLdpI9erfJhqBO5efgyraiXcuu34nI2AdIKiUtUYYF1jWcvRX1
+ /Qa7ZKYpTkZclaA4ReH5Qkd+RU3Gj6TJbzwU2n3fzqUuip4SKcaiprJcobUt+653WCtRzym
+ h42HfPVcMv13F40J0+g63blGw9IL6SG3cihJxzrgqLFgQhA3z1EciFnj9ZWkuvG3nJhKKc2
+ CNtkbJu0WqJ6AZK1+U8Dw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nm242IoxMgI=:ALxayYHuCIsqHKzMweMt9o
+ Te5aH/Muh8m34uCXDG0ShHVUWWbChtJrTbof083EMq2GDlqRVsIhwnUedaNHp1XPX6Jjy2pn9
+ Dh4/cCWTWtzG4TFnWN7N11zMZsbyzavWUfpUF/+VspJ9JzCVSSVCTFZKipmy0D/gLAbvVk2JC
+ 3F1D5f5SNalPffnZtOWEB8GlcZZfsCypcw6GSl6wN8JloceM76fQu4DW1432ldu5opfqQlm5v
+ MK1M2kc4EfPJZ5Z206F+mT/aPWj2Qn6v6V0JMdeEI0hZAVAYNt5R7GXYNrNubQBnznkUGwEWd
+ GtVsa4fHi1SH7elEwKphsXJYTfxabiUqkZfee73glEY0DaQDmNesf1F8Z615mprXvTmYUiJAI
+ Nmg6OlJ+mDFt/6IABcQsCdGrnjobCRnuxHiqtUzyCOlMbpZtg3oUPPiwE1cxWQC0DcZudGArA
+ 8UAlWiezsTEvmhxUMytiWxOBtuP3vq1LY8ySkp1Ne5wD/hHn2g51u3R/lNMMJEU4sOxmVD9Mo
+ fIcY0P8H7Sh5n4Pi8u3moHZHQYABp985pTPtXOdbx3X/Nx4AlMFZqjC51M4rOSYLZpep+9+Cb
+ 8Lhk303Hv6sY45r0XJmkOs5W7T09clmKE7fhEmk0gfIu/DK8H4kGdpYkkW/q62kKE7f+fob0W
+ G12d7ozXI8g7JH75GP+3ChL1h43bZEb6OMAybdHuQdyTo2ow191J2qXuo83KSAz0rdlbaeUnl
+ 7lvZm9bOD3+owjnbxcr34476nwJZt91g4X8tvtoQ9ix40T4qkmuyz3ZVtMYAYzd4kWzdC43nk
+ zId8qs9
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This series cleans up some minor issues, but this affects most of
+the bcm283x DT sources.
 
-robh@kernel.org wrote on Thu, 10 Nov 2022 10:59:06 -0600:
+Changes in V3:
+- Fix sender address
 
-> On Fri, Nov 04, 2022 at 05:47:14PM +0100, Miquel Raynal wrote:
-> > There is no such thing as a "ranges" property within an nvmem-cells
-> > node. There is no use of it, it is anyway not pictured anywhere that
-> > this is valid, so drop it from the example. =20
->=20
-> For a memory mapped device such as parallel NOR flash. It would be=20
-> perfectly fine to translate a nvmem cell 'reg' address to a CPU address.=
-=20
-> If the partitions are not memory mapped, then it's a gray area. Whether=20
-> it makes sense to translate just to just the absolute offset of the=20
-> flash device, maybe or maybe not. At a minimum, 'ranges' just means=20
-> can translate to the parent address space. The Linux DT translate code=20
-> only supports the full translation to CPU addresses, but then it mainly=20
-> just supports creating resources.
+Changes in V2:
+- rebase on current stblinux/devicetree/next
+- add Krzysztof's Reviewed-By
 
-Ah ok, I missed this possibility indeed, thanks for the explanation.
+Stefan Wahren (2):
+  ARM: dts: bcm283x: Fix underscores in node names
+  ARM: dts: bcm283x: Move ACT LED into separate dtsi
 
-So I agree the commit log is wrong, but I guess the change itself
-is fine because the property should be declared/authorized in the
-schema. So here we have two options:
-1- Document the property
-2- Drop the property from the example
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 31 +++---
+ arch/arm/boot/dts/bcm2711-rpi-400.dts         | 16 ++--
+ arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts      | 27 +++---
+ arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi        |  4 +-
+ arch/arm/boot/dts/bcm2711.dtsi                | 94 +++++++++----------
+ arch/arm/boot/dts/bcm2835-common.dtsi         | 18 ++--
+ arch/arm/boot/dts/bcm2835-rpi-a-plus.dts      | 27 +++---
+ arch/arm/boot/dts/bcm2835-rpi-a.dts           | 11 +--
+ arch/arm/boot/dts/bcm2835-rpi-b-plus.dts      | 27 +++---
+ arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts      | 11 +--
+ arch/arm/boot/dts/bcm2835-rpi-b.dts           | 11 +--
+ arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi        |  5 +
+ arch/arm/boot/dts/bcm2835-rpi-zero-w.dts      | 11 +--
+ arch/arm/boot/dts/bcm2835-rpi-zero.dts        | 11 +--
+ arch/arm/boot/dts/bcm2835-rpi.dtsi            | 10 --
+ arch/arm/boot/dts/bcm2836-rpi-2-b.dts         | 27 +++---
+ arch/arm/boot/dts/bcm2836.dtsi                |  2 +-
+ arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts    | 27 +++---
+ arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts    | 27 +++---
+ arch/arm/boot/dts/bcm2837-rpi-3-b.dts         | 11 +--
+ arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi        |  8 --
+ arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts    | 11 +--
+ .../boot/dts/bcm283x-rpi-led-deprecated.dtsi  | 18 ++++
+ arch/arm/boot/dts/bcm283x.dtsi                | 70 +++++++-------
+ 24 files changed, 260 insertions(+), 255 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
 
-As we currently have no user upstream of this property I would argue we
-can keep dropping 'ranges' from the example, knowing of course that
-someone might come up some day and document it properly if it is
-needed. In this case I would update the commit message to:
+-- 
+2.34.1
 
-	dt-bindings: mtd: nvmem-cells: Drop range property from example
-
-	Memory mapped devices such as parallel NOR flash could make use
-	of the 'ranges' property to translate a nvmem 'reg' cell
-	address to a CPU address but in practice there is no upstream
-	user nor any declaration of this property being valid in this
-	case.
-
-	In order to avoid warnings when constraining a bit more the
-	schema, let's drop the property from the example, knowing that
-	someone might actually properly define it some day.
-
-Would you agree with this change?
-
-Thanks,
-Miqu=C3=A8l
