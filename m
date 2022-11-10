@@ -2,113 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1810062430E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC5EC624343
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 14:31:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbiKJNRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 08:17:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
+        id S229575AbiKJNbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 08:31:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiKJNRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:17:30 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28F731DCC;
-        Thu, 10 Nov 2022 05:17:29 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id k8so2238891wrh.1;
-        Thu, 10 Nov 2022 05:17:29 -0800 (PST)
+        with ESMTP id S229697AbiKJNbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 08:31:37 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86D3646F
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 05:31:34 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id a29so3215441lfj.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 05:31:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3AuGOL+RtsyjgtlhQ1twOTD3QDsCayIE+ZhoLatVnh8=;
-        b=RV5fqXf/02xSU+of/wRNHSNDfokXIgvuEIDtcu2kKeQXudcWKZP7riIIAQARrusvVh
-         Lkq1O6makjoEtKWWLpH1hPAcpXDsKZB+UvgoZRacC+SDPk0Xil24mAG+ydEyT5jp6XUa
-         mhIR1h+1GF9Ms/9qw9vu/rgLJ7G6JVZxmyncSJUiUnKJ9+jNcscqpvoMhAhilt9hp6YQ
-         ED2C03XV/n45iW+2+TFaMrPtEpbW5pxd3OtVcrc5/4Q/SEEqJdpbI5IuMiHdv8ZuDOBG
-         HdM9FM9X0fkSZOdhZIEM8Vxx4dfH5iVq5dgJd4zL90MLpcDGOWmm55pqsy1VPIyUXZmV
-         Vnpg==
+        bh=ketLUUnsoyWouN0UzoicqQ1D0NB9EarJManqsfm6JHs=;
+        b=EjoWG9qGZdA+cmM8l/whsRkqiI78AsL7dXW9Xf/o7LX+FJdxLRPybfO0gVPCemmzkr
+         T7tSYRP1qpfy0gXEF3zbqegSztbMZkJI3GFEqLDUUG6XyO6OpU1m/IN4BB1GzVCUGyMW
+         0ZknYwKnEsBCIgNyHKpUozqwX1hkP5S1MLZqQSnJXQBZ+3XUw8p/23jeTCNDrJDAV9vX
+         uRAd9gYF9CuwNmiK0jqqD/+jPYh7LrkU2jugQEitlXp0Bv+UHAD324Hlw+YKEgCUjGp8
+         OJI9n2AqdWTmoiZ5g1SnNl+mZTOxjMZ7t1OTFgUhtvzRIi5Ath2VcJsdPNYZdJ7h9vLC
+         esuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3AuGOL+RtsyjgtlhQ1twOTD3QDsCayIE+ZhoLatVnh8=;
-        b=cf6hMEG95ER7by9T1o/V7KqhDfkSqIAz9ckk0z7NpMkbls8CRsn46I4uGnRTEIBQNz
-         6qlThvOpfF5mTXaWvt+1ymVm3jgvs5cX98dcDTyXOOkdy6W7FomcLr9u0zHOsdgApszb
-         113y6io+vgJez4VG0NbOBFZKNrtJA/BznIWDGlgeaISs4+Ub13AIh2TW097I+YCub+Tz
-         LrS2UsushgIqOd6cOGBDgSR03HSQzXcYoSHYo5aaiRGVfCdSe3tlT4LmjdV5S533rVOo
-         y7T8eM7jrP0siOsLi25uSvXqmGCae5Gj92eM7t27co8QN8F3Rj7fdQ2YN9p7VT0AHOkW
-         xU6w==
-X-Gm-Message-State: ACrzQf2TG2kYqesfLy0tsdR6nCLhCMuXREH9MtwZXSPdrNSEBw2GFI3d
-        QQy0KTdNtBqrqq+zVqKH1u4=
-X-Google-Smtp-Source: AMsMyM5u8zbufjcwPB7JaqlJrtf4ezpLmiDlsEYr4/cyk2dW/70P5nxD22butpKFtIHBptJAMs4Xxw==
-X-Received: by 2002:a5d:4b11:0:b0:236:4e3c:7720 with SMTP id v17-20020a5d4b11000000b002364e3c7720mr1020738wrq.674.1668086248134;
-        Thu, 10 Nov 2022 05:17:28 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id z3-20020a05600c0a0300b003c83465ccbfsm5916631wmp.35.2022.11.10.05.17.26
+        bh=ketLUUnsoyWouN0UzoicqQ1D0NB9EarJManqsfm6JHs=;
+        b=bfS6Vcql8Wl3QIeF9kRexr63y+3uVtJS4wdDmrh/59LtWgExioAYsAa5l1LFuEgGMX
+         Jj4ydHYx27W3TzvgkEaYS7BV0tKf2iba2d+SL9lv8Rs/oe2IZu8KHqHG0phCmBxiUOzb
+         JboNJyR+OcZmd+Vi//NWwF6wG8UmXcTUyx1u+HIsS9MfB/MM0212Dz/GOm5SCCco6Ie7
+         TTp6GiOO2zo39YCu2yYgpthwv/yy9391KLgPABiy81npjhhRlQy4s4nsY5GFJzYwlzWq
+         ElipzwoY25SuemCMSu15MRn72mG76G0WPOXC6GNo7z8f638aQ7xL4H94PCx4Rsje0nZL
+         tBfQ==
+X-Gm-Message-State: ACrzQf3Gy+6M3TgC/Ha6G/byHWwda6SBnIEPTK08b+tTLBWTfYSsxKAr
+        1NuLsDgvl3WjnzFXqRiFCVKAMw==
+X-Google-Smtp-Source: AMsMyM7dOA2ttjDI/ntgk+yGw8ab+rV2SYqP0CO+1QoY+yr6MNKkHeIG5DVm5U7jcfrHOI0lFfjHyA==
+X-Received: by 2002:a05:6512:1108:b0:4a2:504f:b3f with SMTP id l8-20020a056512110800b004a2504f0b3fmr21697510lfg.169.1668087093172;
+        Thu, 10 Nov 2022 05:31:33 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id a21-20020ac25e75000000b004991437990esm2752373lfr.11.2022.11.10.05.31.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 05:17:26 -0800 (PST)
-Message-ID: <6def7161-d428-a822-59c4-d6012310379e@gmail.com>
-Date:   Thu, 10 Nov 2022 14:17:26 +0100
+        Thu, 10 Nov 2022 05:31:32 -0800 (PST)
+Message-ID: <0f7afb71-dc60-59f4-0708-ab54a0f6f4af@linaro.org>
+Date:   Thu, 10 Nov 2022 16:31:32 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2] arm64: dts: mt7986: fix trng node name
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
+Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: sm8350-hdk: enable PCIe devices
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Shih <sam.shih@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20221027151022.5541-1-linux@fw-web.de>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221027151022.5541-1-linux@fw-web.de>
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
+ <20221110103345.729018-9-dmitry.baryshkov@linaro.org>
+ <Y2zXmv8d9PIkO2/7@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y2zXmv8d9PIkO2/7@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 27/10/2022 17:10, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 10/11/2022 13:51, Johan Hovold wrote:
+> On Thu, Nov 10, 2022 at 01:33:45PM +0300, Dmitry Baryshkov wrote:
+>> Enable PCIe0 and PCIe1 hosts found on SM8350 HDK board.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> index 0fcf5bd88fc7..58a9dc7705a5 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+>> @@ -222,6 +222,22 @@ &mpss {
+>>   	firmware-name = "qcom/sm8350/modem.mbn";
+>>   };
+>>   
+>> +&pcie0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie0_phy {
+>> +	status = "okay";
+>> +};
 > 
-> Binding requires node name to be rng not trng:
-> 
-> trng@1020f000: $nodename:0: 'trng@1020f000' does not match '^rng@[0-9a-f]+$'
-> 
-> Fixes: 50137c150f5f ("arm64: dts: mediatek: add basic mt7986 support")
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Looks like the required regulators are missing from the PHY nodes.
 
-Applied, thanks
+Ack, nice catch!
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 72e0d9722e07..226648f48df2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -168,7 +168,7 @@ sgmiisys1: syscon@10070000 {
->   			#clock-cells = <1>;
->   		};
->   
-> -		trng: trng@1020f000 {
-> +		trng: rng@1020f000 {
->   			compatible = "mediatek,mt7986-rng",
->   				     "mediatek,mt7623-rng";
->   			reg = <0 0x1020f000 0 0x100>;
+> Johan
+
+-- 
+With best wishes
+Dmitry
+
