@@ -2,125 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C58C3624649
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12373624652
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 16:50:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbiKJPqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 10:46:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60640 "EHLO
+        id S230128AbiKJPuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 10:50:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231617AbiKJPqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 10:46:42 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFBD2CDFF;
-        Thu, 10 Nov 2022 07:46:41 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AAFbJkN000805;
-        Thu, 10 Nov 2022 16:46:19 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=mloTfjScbE+KvHcb3ds6SBjdWfKRWzgGZsYJkOZEgeQ=;
- b=b+chlpkhuPZ91bOcrI6Lcb+thXsZ1rgfj+XgCBdmuFWrU9vnnN6D1ZrO0bcDkOi7s9mC
- gWc2wuW8q9/svQGKVTRGEwVDx70vGIhfsV6RGHhLPxvqczzvzpzxUbngbpnHHdGrWvCB
- XWrNil8Vnhf27lkrtcqjqsmF1HcJkVIKrFj7Cz5cNJoDdMmcr358x7VpqgTSNVXM7oxM
- DCY5+JA8z+VH+uG/Q1UtB/C45aroIo263c0YZgTI+2dBrv5eeqNsNXH02VCQtX3VtHR6
- HJ/sDImndSf6UvGj3M/V/aumo1L0Ojf2Dq9Rgm5ncW13pkwOr3atLIZNzUPi6sUKfx6X 1g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ks43u01mh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Nov 2022 16:46:19 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D5788100034;
-        Thu, 10 Nov 2022 16:46:14 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CCD9F22AFED;
-        Thu, 10 Nov 2022 16:46:14 +0100 (CET)
-Received: from localhost (10.252.15.206) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.32; Thu, 10 Nov
- 2022 16:46:14 +0100
-From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     Fabrice GASNIER <fabrice.gasnier@foss.st.com>,
-        Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH v2 1/3] ARM: dts: stm32mp13: fix compatible for BSEC
-Date:   Thu, 10 Nov 2022 16:45:47 +0100
-Message-ID: <20221110164329.v2.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221110154550.3220800-1-patrick.delaunay@foss.st.com>
-References: <20221110154550.3220800-1-patrick.delaunay@foss.st.com>
+        with ESMTP id S231124AbiKJPug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 10:50:36 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1BC1F3;
+        Thu, 10 Nov 2022 07:50:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B9836B8222F;
+        Thu, 10 Nov 2022 15:50:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B148BC433D6;
+        Thu, 10 Nov 2022 15:50:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668095432;
+        bh=AVIbJAj0HZBSpbVNW3OVQzARVaxH+jV65cAFA+y5sMU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=YHuIzmyYRlYUEBWTTxN2t8Q1wDHyxNQgAhkMJHvo5eQt7sAfP67S+haQ2h9PXOXl6
+         S84pNH9I2qvIxUHGpc7373FuC68b2U4WNeKdsCJY6RenWzOiXBXq3srne1aRRSmHt0
+         vnsKo/i5scDZP4VLgdsyDz8edSXkkq6XyfT1VV5IzG4JCMXPZjRBfHEnnFMZZtOJxa
+         CLJ2xZJ3PctSEptrfu8Pk0KU+hivYO5q/s1GndMFrMASJS3OIc2tMwR6hLUrWIZ6Kw
+         gg+A958GKVYll2UD91MOj5fecQs89gtrf668wNFFdSr32g1kgHWEFxrYLbh8q2w6pQ
+         aI9b5OGix0riA==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     robh+dt@kernel.org, bhelgaas@google.com,
+        Matt Ranostay <mranostay@ti.com>,
+        krzysztof.kozlowski+dt@linaro.org, nm@ti.com
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        linux-pci@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: Add host mode device-id for j721s2 platform
+Date:   Thu, 10 Nov 2022 16:50:25 +0100
+Message-Id: <166809540787.145264.10097289668370435175.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221028091716.21414-1-mranostay@ti.com>
+References: <20221028091716.21414-1-mranostay@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.252.15.206]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-10_10,2022-11-09_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the correct compatible for stm32mp13 support.
+On Fri, 28 Oct 2022 02:17:16 -0700, Matt Ranostay wrote:
+> Add unique device-id of 0xb013 for j721s2 platform to oneOf field.
+> 
+> 
 
-The BSEC driver for STM32MP15x is not compatible with STM32MP13x. For
-example the proprietary's smc STM32_SMC_BSEC is not supported in
-STM32MP13x OP-TEE, it is replaced by SM32MP BSEC Pseudo Trusted
-Application in OP-TEE to access to the secured IP BSEC on STM32MP13X SoC.
+Applied to pci/dt, thanks!
 
-The correct compatible is already used in U-Boot and in upstream is in
-progress for OP-TEE device tree.
+[1/1] dt-bindings: PCI: Add host mode device-id for j721s2 platform
+      https://git.kernel.org/lpieralisi/pci/c/72f542ac4f39
 
-As the SoC STM32MP13X is not yet official and it is not available
-outside STMicroelectronics, it is the good time to break the DTS
-compatibility and to correct the error done in the introduction of
-STM32MP131.
-
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
----
-This patch is already sent separately in:
-https://lore.kernel.org/all/20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid/
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685815
-
-I create a serie for more efficient review.
-
-Patrick.
-
-(no changes since v1)
-
-Changes in v1:
-- update commit message to indicate DTS break reason.
-
- arch/arm/boot/dts/stm32mp131.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index 2a9b3a5bba83..f034cbe0d5b2 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -522,7 +522,7 @@ rtc: rtc@5c004000 {
- 		};
- 
- 		bsec: efuse@5c005000 {
--			compatible = "st,stm32mp15-bsec";
-+			compatible = "st,stm32mp13-bsec";
- 			reg = <0x5c005000 0x400>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-2.25.1
-
+Thanks,
+Lorenzo
