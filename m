@@ -2,194 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6866241BB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:47:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC356241C0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 12:48:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbiKJLrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 06:47:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48576 "EHLO
+        id S230193AbiKJLsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 06:48:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230459AbiKJLq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:46:57 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3AB2CE2E;
-        Thu, 10 Nov 2022 03:46:54 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 04A38C0003;
-        Thu, 10 Nov 2022 11:46:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668080813;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xiAAdHYzbPaEDUFu+7SLegTpQrvPsJnBynesNdlRAi4=;
-        b=Ut2WXe4mh9+0Aw40DQLRV1z7aqSkaAQZKgB/bxsSuoBJ2VuNjm9EItmXqVrXzCWs7rqhNH
-        bHkxbrsbbtCB8t6WsARNZfqP2B8iBIC/ZqYCzljP80jdqDwSDJSX6mlCH3OBDk+mYpRVOg
-        Cit3Z3zEVwv8+b3UiHDIChUDg3HSSOaWmvmxlGj5Y4ue8jfdRAx55FDlAyslcMI5/B0wMy
-        FxffFMIbPC6vLRzvsAkRcOZbOD8w2XFxcfIRNmwGLNqcdrBNtv6Kxa2iThtDRWmQ5Hk/qv
-        bGrY/bLV2UaoanZ4AAUMOxeNpKTTtUfn7Wbn+zuVhcTqqW3vrMCYCN4A8N61Ow==
-Date:   Thu, 10 Nov 2022 12:46:42 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229553AbiKJLsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 06:48:39 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD67225DD;
+        Thu, 10 Nov 2022 03:48:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=yICizhPaPAd6Anz2X8tzuaaxbrcs/SbK9IONa0om9nk=; b=gSqx6CLUDvVcRMfUg6c4zh7xV2
+        espdRU6Vp+vyqM1801RhQc6guUO7pxmgfw/etSRjp2yEGeuwdTGHauTquQ2KEjoFrUR3CTBZdsvy9
+        ta2DgiWYE1YEGrRTUHHu0YJ8GJGhik5VAxygWrHbJumPKjYY3VKKX+EzVkQKmG4Sy0jp//jMzSnD2
+        tp08Fme6jlriV9llNihpKQO6ww3TYm22Ho5TUKEZuDLXvnCIlNuUY+GiqOLwrY1ugn1rhe1mj7jgx
+        Q1IUsCtyYrknptv0/rwtOpigIircVPUHqjVqhG4fAWqQMdhAFW5dpB//7AUedLXYlfSd4OFcRR+lk
+        KShPLqdg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35198)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ot62j-0005ZJ-4F; Thu, 10 Nov 2022 11:48:25 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ot62d-0006cL-MZ; Thu, 10 Nov 2022 11:48:19 +0000
+Date:   Thu, 10 Nov 2022 11:48:19 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 4/7] dt-bindings: usb: add the Renesas USBF controller
- binding
-Message-ID: <20221110124642.38bf5edf@bootlin.com>
-In-Reply-To: <c10df12c-ccb9-03b7-96be-1aac5feee1aa@linaro.org>
-References: <20221107135825.583877-1-herve.codina@bootlin.com>
-        <20221107135825.583877-5-herve.codina@bootlin.com>
-        <c10df12c-ccb9-03b7-96be-1aac5feee1aa@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: add binding for Apple Mac
+ System Management Controller
+Message-ID: <Y2zlA8RpOqD/7TrM@shell.armlinux.org.uk>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXT-002mw3-JR@rmk-PC.armlinux.org.uk>
+ <531d88b8-75db-1d8f-1384-b8d05594e7b3@linaro.org>
+ <Y2rWp4wasbflS/0y@shell.armlinux.org.uk>
+ <20221109221723.GA2948356-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221109221723.GA2948356-robh@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Wed, Nov 09, 2022 at 04:17:23PM -0600, Rob Herring wrote:
+> On Tue, Nov 08, 2022 at 10:22:31PM +0000, Russell King (Oracle) wrote:
+> > On Tue, Nov 08, 2022 at 09:55:58PM +0100, Krzysztof Kozlowski wrote:
+> > > On 08/11/2022 17:33, Russell King (Oracle) wrote:
+> > > > Add a DT binding for the Apple Mac System Management Controller.
+> > > 
+> > > Drop the second, redundant "binding" from subject. It's already in prefix.
+> > 
+> > Yet another thing that's been there from the start... how many more
+> > things are you going to pick up in subsequent versions of the patch?
+> > When does this stop?
+> > 
+> > In any case, taking your comment literally,
+> > 
+> > "dt-bindings: mfd: add for Apple Mac System Management Controller"
+> > 
+> > makes no sense, so presumably you want something more than that.
+> > 
+> > In any case, I see several recent cases already merged which follow
+> > the pattern that I've used and that you've reviewed.
+> > 
+> > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > > > ---
+> > > >  .../devicetree/bindings/mfd/apple,smc.yaml    | 67 +++++++++++++++++++
+> > > >  1 file changed, 67 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..014eba5a1bbc
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> > > > @@ -0,0 +1,67 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Apple Mac System Management Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Hector Martin <marcan@marcan.st>
+> > > > +
+> > > > +description:
+> > > > +  Apple Mac System Management Controller implements various functions
+> > > > +  such as GPIO, RTC, power, reboot.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - enum:
+> > > > +          - apple,t6000-smc
+> > > > +          - apple,t8103-smc
+> > > > +          - apple,t8112-smc
+> > > > +      - const: apple,smc
+> > > > +
+> > > > +  reg:
+> > > > +    items:
+> > > > +      - description: SMC area
+> > > > +      - description: SRAM area
+> > > > +
+> > > > +  reg-names:
+> > > > +    items:
+> > > > +      - const: smc
+> > > > +      - const: sram
+> > > > +
+> > > > +  mboxes:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  gpio:
+> > > > +    $ref: /schemas/gpio/gpio-macsmc.yaml
+> > > 
+> > > So this depends on other patch, so:
+> > > 1. You need mention the dependency in cover letter (nothing there),
+> > > 2. Re-order patches.
+> > > 
+> > > The GPIO cannot go separate tree and this must be explicitly communicated.
+> > 
+> > Sigh, getting an order that is sensible is really bloody difficult.
+> 
+> It's not. Sub-devices before the MFD. The only time that doesn't work is 
+> when the sub-devices put the parent MFD in their example. The solution 
+> there is don't do that. Just 1 complete example in the MFD schema and no 
+> examples in the sub-devices.
 
-On Mon, 7 Nov 2022 19:24:01 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Meanwhile, I was told by Krzysztof that DT schemas must always have an
+example. So, different person, different story.
 
-> On 07/11/2022 14:58, Herve Codina wrote:
-> > The Renesas USBF controller is an USB2.0 device controller
-> > (UDC) available in Renesas r9a06g032 SoC (RZ/N1 family).
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/usb/renesas,usbf.yaml | 64 +++++++++++++++++++
-> >  1 file changed, 64 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/renesas,usbf.=
-yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/usb/renesas,usbf.yaml b/=
-Documentation/devicetree/bindings/usb/renesas,usbf.yaml
-> > new file mode 100644
-> > index 000000000000..f2b146d9d37b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/renesas,usbf.yaml
-> > @@ -0,0 +1,64 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/renesas,usbf.yaml# =20
->=20
-> Filename based on compatible, so renesas,rzn1-usbf.yaml.
+Anyway, I've washed my hands of this farce with this series. I'm not
+planning to post another version of it. I've had enough of this crap.
 
-Will be fixed in the v2 series.
-
->=20
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas USBF (USB Function) controller binding
-> > +
-> > +description: |
-> > +   The Renesas USBF controller is an USB2.0 device
-> > +   controller (UDC).
-> > +
-> > +maintainers:
-> > +  - Herve Codina <herve.codina@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf: =20
->=20
-> You have only one possibility, so oneOf is not needed. Unless you
-> already predict it will grow with new incompatible lists?
-
-No new compatible planned right now. So, oneOf will be removed
-in the v2 series.
-
->=20
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,r9a06g032-usbf
-> > +          - const: renesas,rzn1-usbf
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Internal bus clock (AHB) for Function
-> > +      - description: Internal bus clock (AHB) for Power Management =20
->=20
-> Blank line
-
-Will be fixed in the v2 series
-
->=20
-> > +  clock-names:
-> > +    items:
-> > +      - const: hclkf
-> > +      - const: hclkpm
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: The USBF EPC interrupt
-> > +      - description: The USBF AHB-EPC interrupt
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-> > +
-> > +    usb@4001e000 {
-> > +        compatible =3D "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
-> > +        reg =3D <0x4001e000 0x2000>;
-> > +        interrupts =3D =20
->=20
-> No need for line break. It's not helping in readability.
-
-Will be fixed in the v2 series
-
->=20
->=20
-> > +            <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-> > +            <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&sysctrl R9A06G032_HCLK_USBF>,
-> > +                 <&sysctrl R9A06G032_HCLK_USBPM>;
-> > +        clock-names =3D "hclkf", "hclkpm";
-> > +    }; =20
->=20
-> Best regards,
-> Krzysztof
->=20
-
-Thanks for the review,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
