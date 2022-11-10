@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F29BB624874
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:39:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1A4624882
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 18:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbiKJRjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 12:39:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55956 "EHLO
+        id S229461AbiKJRnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 12:43:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbiKJRjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:39:02 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71ED01C41C;
-        Thu, 10 Nov 2022 09:38:59 -0800 (PST)
+        with ESMTP id S229701AbiKJRnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 12:43:41 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AD32D76D;
+        Thu, 10 Nov 2022 09:43:38 -0800 (PST)
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DCCEDFF803;
-        Thu, 10 Nov 2022 17:38:56 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id 59E57240007;
+        Thu, 10 Nov 2022 17:43:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668101938;
+        t=1668102217;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=taYCXNFd+UiIpmW+eb3Zv5Y5gg+95S3hG+y0f/PVm30=;
-        b=SeZZmHT+1ssN7wFu8Mkj9HXnbwJ7K5E/H6QeEtmceca6C/QeRVuYi4DZXxFk2cWek0d9m5
-        ReKoUbroGhCYQwUZeTXZTHQqrxeyxQVgRgugqG+NtuBN35VLaRWjaOw53va2RNFi9K4tG8
-        sggqYR9eWBQ+0eLtGYU2g6t82Dki7yxL/mBNcEDNE4ep87vTNglFqhHNFQ2ueAMiku0+yW
-        THu5WDRMD88lW2OmfT4W3WP4hYcwKPblvfXk9q/Du36rpbt/Scn6vNmAZxMu6JmOHnTeY9
-        NUVJXzpCIu5Cs6psieyMktxnxPehudcG/O0JAfUMmg0atJvmdq+BPMVniPb7+g==
-Date:   Thu, 10 Nov 2022 18:38:55 +0100
+        bh=uvDrMn2Uu/kHy2JQHhfB4c2SUZYxwuUXOR78mUDTGB0=;
+        b=FteiV1EecPiLO/9aQedbolmycxbn9ZZLYDNbM+TZ+/Jq+YC1yWLGYpLt+mZUsFyTZGSYdo
+        blXS/hgS0j1CKXUdFiFd3v9FnUdCwgMKrX4GxBuzok+QN8V/boNVhE6DIrx8JYnfTWHQRB
+        lKQ34bS7Cu9GVIeqLBYJsQql1RAN3QLmCbhPu3izr0DqMA9I9C3FqHsF4zZv0mGgN3a7/k
+        Y91cgpd6PRiLmow40vOvLAj6GYBVWa7vLCWFYjg/Pz87YdAIHTjthSb+TykLP5HZsv/kdB
+        kHUJlkk0ZWjS/tG3eJAeIceg9J7GVshq3M0jWZhnQn7Qjs3cL7IoA+lQr3WPCA==
+Date:   Thu, 10 Nov 2022 18:43:34 +0100
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh@kernel.org>
 Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -44,13 +44,15 @@ Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Bartosz Golaszewski <brgl@bgdev.pl>,
         Christian Eggers <ceggers@arri.de>,
         Cory Tusar <cory.tusar@pid1solutions.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: nvmem: add YAML schema for the sl28
- vpd layout
-Message-ID: <20221110183855.05ced2a0@xps-13>
-In-Reply-To: <20221110134918.GB3436769-robh@kernel.org>
+Subject: Re: [PATCH v3 6/6] dt-bindings: nvmem: add YAML schema for the ONIE
+ tlv layout
+Message-ID: <20221110184334.1cb531f6@xps-13>
+In-Reply-To: <20221110140545.GA221642-robh@kernel.org>
 References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
- <20221104163833.1289857-5-miquel.raynal@bootlin.com>
- <20221110134918.GB3436769-robh@kernel.org>
+        <20221104163833.1289857-7-miquel.raynal@bootlin.com>
+        <20221110040055.GA3436769-robh@kernel.org>
+        <20221110095034.7a80163a@xps-13>
+        <20221110140545.GA221642-robh@kernel.org>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -67,135 +69,132 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Rob,
 
-robh@kernel.org wrote on Thu, 10 Nov 2022 07:49:18 -0600:
+robh@kernel.org wrote on Thu, 10 Nov 2022 08:05:45 -0600:
 
-> On Fri, Nov 04, 2022 at 05:38:31PM +0100, Miquel Raynal wrote:
-> > From: Michael Walle <michael@walle.cc>
+> On Thu, Nov 10, 2022 at 09:50:34AM +0100, Miquel Raynal wrote:
+> > Hi Rob,
 > >=20
-> > Add a schema for the NVMEM layout on Kontron's sl28 boards.
-> >=20
-> > Signed-off-by: Michael Walle <michael@walle.cc>
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 60 +++++++++++++++++++
-> >  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
-> >  2 files changed, 63 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kon=
-tron,sl28-vpd.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl=
-28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-=
-vpd.yaml
-> > new file mode 100644
-> > index 000000000000..44088c8b4153
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.=
+> > robh@kernel.org wrote on Wed, 9 Nov 2022 22:00:55 -0600:
+> >  =20
+> > > On Fri, Nov 04, 2022 at 05:38:33PM +0100, Miquel Raynal wrote: =20
+> > > > Add a schema for the ONIE tlv NVMEM layout that can be found on any=
+ ONIE
+> > > > compatible networking device.
+> > > >=20
+> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > > ---
+> > > >  .../bindings/nvmem/layouts/nvmem-layout.yaml  |   1 +
+> > > >  .../nvmem/layouts/onie,tlv-layout.yaml        | 115 ++++++++++++++=
+++++
+> > > >  2 files changed, 116 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts=
+/onie,tlv-layout.yaml
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-=
+layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.=
 yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
-> > +
-> > +maintainers:
-> > +  - Michael Walle <michael@walle.cc>
-> > +
-> > +description:
-> > +  The vital product data (VPD) of the sl28 boards contains a serial
-> > +  number and a base MAC address. The actual MAC addresses for the
-> > +  on-board ethernet devices are derived from this base MAC address by
-> > +  adding an offset.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: kontron,sl28-vpd
-> > +
-> > +  serial-number:
-> > +    type: object
-> > +    description: The board's serial number
-> > +
-> > +  base-mac-address:
-> > +    type: object
-> > +    description:
-> > +      Base MAC address for all on-module network interfaces. The first
-> > +      argument of the phandle will be treated as an offset.
-> > +
-> > +    properties:
-> > +      "#nvmem-cell-cells":
-> > +        const: 1
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +      otp-1 {
-> > +          compatible =3D "user-otp";
-> > +
-> > +          nvmem-layout {
-> > +              compatible =3D "kontron,sl28-vpd";
-> > +
-> > +              serial_number: serial-number {
-> > +              };
-> > +
-> > +              base_mac_address: base-mac-address {
-> > +                  #nvmem-cell-cells =3D <1>;
-> > +              };
-> > +          };
-> > +      };
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layo=
-ut.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > index ecc7c37cbc1f..f64ea2fa362d 100644
-> > --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-> > @@ -17,6 +17,9 @@ description: |
-> >    define and might require dynamic reading of the NVMEM device in orde=
-r to
-> >    perform their parsing. The nvmem-layout container is here to describ=
-e these.
-> > =20
-> > +oneOf:
-> > +  - $ref: kontron,sl28-vpd.yaml =20
+> > > > index f64ea2fa362d..8512ee538c4c 100644
+> > > > --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.=
+yaml
+> > > > +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.=
+yaml
+> > > > @@ -19,6 +19,7 @@ description: |
+> > > > =20
+> > > >  oneOf:
+> > > >    - $ref: kontron,sl28-vpd.yaml
+> > > > +  - $ref: onie,tlv-layout.yaml
+> > > > =20
+> > > >  properties:
+> > > >    compatible: true
+> > > > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,t=
+lv-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-l=
+ayout.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..1d91277324ac
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layo=
+ut.yaml
+> > > > @@ -0,0 +1,115 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/nvmem/layouts/onie,tlv-layout.y=
+aml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: NVMEM layout of the ONIE tlv table
+> > > > +
+> > > > +maintainers:
+> > > > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > > > +
+> > > > +description:
+> > > > +  Modern networking hardware implementing the Open Compute Project=
+ ONIE
+> > > > +  infrastructure shall provide a non-volatile memory with a table =
+whose the
+> > > > +  content is well specified and gives many information about the m=
+anufacturer
+> > > > +  (name, country of manufacture, etc) as well as device caracteris=
+tics (serial
+> > > > +  number, hardware version, mac addresses, etc). The underlaying d=
+evice type
+> > > > +  (flash, EEPROM,...) is not specified. The exact location of each=
+ value is also
+> > > > +  dynamic and should be discovered at run time because it depends =
+on the
+> > > > +  parameters the manufacturer decided to embed.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: onie,tlv-layout
+> > > > +
+> > > > +  product-name: true   =20
+> > >=20
+> > > This is a node? If so, you need:
+> > >=20
+> > > type: object
+> > > additionalProperties: false =20
+> >=20
+> > I thought referencing a schema under a property would be enough?
+> >=20
+> > Indeed in nvmem.yaml we create the property nvmem-layout and make it
+> > reference nvmem-layout.yaml. Then, in nvmem-layout.yaml:
+> >=20
+> > 	 oneOf:
+> > 	  - $ref: kontron,sl28-vpd.yaml
+> > 	  - $ref: onie,tlv-layout.yaml
+> >=20
+> > we reference the different layouts that may apply (very much like what
+> > you proposed to list the mtd partition parsers, if I got it right).
+> >=20
+> > Isn't it enough? =20
 >=20
-> This is the other way around from how we normally structure things.=20
-> Normally, the specific schema would reference the common/base schema.=20
-> This works, though you will be applying the schema twice. Once here and=20
-> then by matching on compatible string. Not a big deal as that happens=20
-> fairly often, but a 'select: false' in kontron,sl28-vpd.yaml would=20
-> prevent that. This way does more to enforce the overall structure of=20
-> nodes.
+> No. It is enough to allow the property, but nothing defines what it must=
+=20
+> be (a node) and what the node contains in the case of empty nodes. Try=20
+> adding 'product-name =3D "foo";' and it won't warn.
 
-Oh right, I knew about the "select: false" thing, but I forgot it in
-the two layouts.
+There was a misunderstanding on my side. I thought your comment was
+about the nvmem-layout node. Actually you were commenting about all the
+sub-nodes defining nvmem-cells inside, so I'm fully aligned with your
+response.
 
-> The one downside I see with it this way is nvmem-layout can't ever have=20
-> common properties defined without listing them in each layout schema.
+However, if I understood it correctly, you basically said that:
 
-Oh that's right, actually I solved it in the mtd dt-binding series with:
+	property:
+	  $ref: foo.yaml
 
-partitions.yaml:
+is not the same as:
 
-	oneOf:
-	  - $ref: <parser>.yaml
+	property:
+	  type: object
+	  $ref: foo.yaml
 
-	generic-property:
-	  $ref: something
-	  min/max...: foo
+If that's the case, then should we consider dropping this patch (which
+you agreed with in the first place)?
 
-<parser>.yaml:
-	generic-property: true
-
-But in this case, are the constraints provided by partitions.yaml on
-"generic-property" actually still enforced?
+https://lore.kernel.org/linux-mtd/20221104164718.1290859-17-miquel.raynal@b=
+ootlin.com/T/#u=20
 
 Thanks,
 Miqu=C3=A8l
