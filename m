@@ -2,146 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DEA9624731
-	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 17:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7CA6247A9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Nov 2022 17:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbiKJQjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 11:39:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37176 "EHLO
+        id S232229AbiKJQzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 11:55:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231956AbiKJQjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 11:39:11 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1517740933;
-        Thu, 10 Nov 2022 08:39:08 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 187-20020a1c02c4000000b003cf9c3f3b80so3868808wmc.0;
-        Thu, 10 Nov 2022 08:39:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CEuLsZijDHIURQmlzbVFcv2ePl7fzXP5XewpwaGNPfE=;
-        b=q8Ednjpo9n4TB285iTt/y7Cr9qrUvZrfph6i5UnrSFU1JBMkI8ZZ62kTmvTdzGCA5o
-         KUnQLtCliqx1pKKF/IFta57PlH5bqgf7Ci41DxCYvxDbQIsAe48epCExiISbbCpPhYtN
-         nTMaYpeDKaXFrKT+kcaU4iGUh1u8XZ6lfyRB7T32aN/cNvQ2307zKg84gZ6EmzXBop9X
-         9JuD0VxRA+TrU2/3/9LrU4Fj5+77VoYPUfKqSEXRuE9kM/nJOR3JyIK/apsir0rVrEJ0
-         Nia7yc1wdO0G7Hc2rV9Y7kOooFVjKYxtCEwnRp4ImCPkbZSf0/9OKE/QFkRWM1Eez4qS
-         qTnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CEuLsZijDHIURQmlzbVFcv2ePl7fzXP5XewpwaGNPfE=;
-        b=m9K8Th7KEQfGDM0xbDCrBsAeVEOc7tJuJGjWBy/6bxxTvewvXt+tonY8Xey/+Q022H
-         FtU8W4zhlkY3h1PGhRtD+X9/nGhVTFqau2heLsxU/bQes9Ku+b6LPOzn889DCbD8CaJe
-         AwFA/9BWwcQg7GO59mC+aP8KiLKQhmoZKhz3pLe0h+a4nk5HI1oZCITgKaYF23BQefR3
-         pBrCJZz2zs2s3w6YbWf/fBkE0lGS2DJ25VSlPsSfugYf3lvqLFySYGPLGimRETVPud4B
-         JHBqaFyvnHBy/iO8bUqzEaG4GlG+n6n35Zk1CwDtnz41dSwNzf2fX00Bfpa9ncSPtE4v
-         sohg==
-X-Gm-Message-State: ACrzQf07hxdrPGRISbYACiMYny/pS1tWpe6HN5/PSaVkL/jp8aJQ0X1O
-        /RDgyCMOJxaRKNABuvYHK3M=
-X-Google-Smtp-Source: AMsMyM4vbGUsEHG0NKAE1xRIufXiEPYkN4XR+5oplPtvpQud17nl4IG9F6CmaQ8t+Feh+F01nsHssw==
-X-Received: by 2002:a05:600c:21c9:b0:3cf:7833:2940 with SMTP id x9-20020a05600c21c900b003cf78332940mr36973681wmj.35.1668098346718;
-        Thu, 10 Nov 2022 08:39:06 -0800 (PST)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id f24-20020a1cc918000000b003b4935f04a4sm128730wmb.5.2022.11.10.08.39.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 08:39:06 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: rockchip: Enable PCIe 2 on SOQuartz CM4IO
-Date:   Thu, 10 Nov 2022 17:38:45 +0100
-Message-Id: <20221110163845.42309-5-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221110163845.42309-1-frattaroli.nicolas@gmail.com>
-References: <20221110163845.42309-1-frattaroli.nicolas@gmail.com>
+        with ESMTP id S231829AbiKJQzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 11:55:16 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECEC1C924;
+        Thu, 10 Nov 2022 08:55:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E2FDBB8225B;
+        Thu, 10 Nov 2022 16:55:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D424AC433C1;
+        Thu, 10 Nov 2022 16:55:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668099312;
+        bh=qGC1ASd6YLdkSOCo/KqD1UYwY3TeafFhoJvfxCxFnCM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dQfDlf5BK4dJHrVFk7IehyY8tj2sKalFuTIQ8MsSJm8HyNTdGinzsLiF+ZNP2OafM
+         Bcit/JIOEkqOIWCdSyRlXpJylL/LDBbIv9cBuokUY+24W+uKmh1w2upF3C9i3waZ8L
+         3nFD3Wl6lWqALhoqL8XXbwqEb45+WrkCOxxUUII/Cuwe4luzs2ynwwMD2dL6a6zemQ
+         wTKxrwwHnQABWCeRHtBKDECDTmandtAh16d3/l4uditCnXFRu4wvitEIS1/CN1/Qa7
+         cw0pvWYlau2dq+CUvxgtQsj356diXO0Vn46GN8P6qUGxXm2h2S4hxSjYiOr+cfzKMh
+         o9tXfEdLYOGyA==
+Date:   Thu, 10 Nov 2022 16:55:05 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Marc Zyngier <maz@kernel.org>, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        tglx@linutronix.de, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
+ CS48L31/32/33 codecs
+Message-ID: <Y20s6UCsYyB+/nfK@sirena.org.uk>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+ <20221109165331.29332-10-rf@opensource.cirrus.com>
+ <87mt8zutib.wl-maz@kernel.org>
+ <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+ <86pmdvow5y.wl-maz@kernel.org>
+ <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+ <86k042q1uc.wl-maz@kernel.org>
+ <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IpzSAZ/C+hH7f6Oc"
+Content-Disposition: inline
+In-Reply-To: <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+X-Cookie: Torque is cheap.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the PCIe2 on the CM4IO board when paired with
-a SOQuartz CM4 System-on-Module board. combphy2 also needs to be
-enabled in this case to make the PHY work for this.
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 10 ++++++++++
- arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi    | 12 ++++++++++++
- 2 files changed, 22 insertions(+)
+--IpzSAZ/C+hH7f6Oc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-index e00568a6be5c..4cf60be267ed 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-@@ -30,6 +30,11 @@ vcc_5v: vcc-5v-regulator {
- 	};
- };
- 
-+/* phy for pcie */
-+&combphy2 {
-+	status = "okay";
-+};
-+
- &gmac1 {
- 	status = "okay";
- };
-@@ -105,6 +110,11 @@ &led_work {
- 	status = "okay";
- };
- 
-+&pcie2x1 {
-+	vpcie3v3-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
- &rgmii_phy1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-index 1b975822effa..294354e95336 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-@@ -487,6 +487,12 @@ rgmii_phy1: ethernet-phy@0 {
- 	};
- };
- 
-+&pcie2x1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_reset_h>;
-+	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
-+};
-+
- &pinctrl {
- 	bt {
- 		bt_enable_h: bt-enable-h {
-@@ -512,6 +518,12 @@ diy_led_enable_h: diy-led-enable-h {
- 		};
- 	};
- 
-+	pcie {
-+		pcie_reset_h: pcie-reset-h {
-+			rockchip,pins = <1 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
--- 
-2.38.1
+On Thu, Nov 10, 2022 at 04:31:06PM +0000, Richard Fitzgerald wrote:
+> On 10/11/2022 15:13, Marc Zyngier wrote:
 
+> > > If we put them in the MFD with DT definitions it would make a
+> > > circular dependency between MFD and its child, which is not a great
+> > > situation. If it's these handlers that are bothering you, we could move
+> > > them to the audio driver.
+
+> > And what's left? Nothing.
+
+> Ah, I see. You've missed that the bulk of the implementation re-uses
+> existing library code from regmap. It does say this in the commit
+> message.
+
+>   "the generic regmap_irq functionality is used to do most of the work."
+
+> and I've also said this in previous replies.
+
+The thread prompted me to have a look at regmap-irq earlier today and
+see what it's still doing that peers into the regmap core internals and
+it seems it's just getting the register stride which has had an external
+API added already and getting the device for the regmap.  It should be
+straightforward to repaint it and move it into the irqchip subsystem
+which would be a much more sensible home for a library for implementing
+irqchips in this day and age.  I started looking at the code changes for
+that a bit.
+
+> This is no way driver that does nothing. There's over 1000 lines of code
+> handling the PIC and dispatching its interrupts to other drivers that
+> want to bind to them. It's just that it makes no sense to duplicate 1300
+> lines of interrupt handling code from elsewhere when we can re-use that
+> by calling regmap_add_irq_chip(). That gives us all the interrupt-
+> controller-handling code in drivers/base/regmap/regmap-irq.c
+
+TBF that's 1000 lines of overly generic code, a bunch of it is
+conditional stuff and it's unlikely that any individual driver would
+want all of it.  Equally it does mean that all the users are just
+providing data rather than writing any code which generally makes things
+easier to maintain and was the main goal.
+
+--IpzSAZ/C+hH7f6Oc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNtLOkACgkQJNaLcl1U
+h9Czzgf+MDPNrKaCh6tGeXTVbFjlxx2mex0I6klShYbJTgtJXdJl+8Yqy82h0XI8
+TZOB30riAERaTu61UvhbFFKADZfg6KSSLqRY9F0aloY7KWA+Lo6tCPZ4VrDCKxvs
+yAk5rWlbfN2QUS0Sd0+1N8E/8IQql3OPCUx4/2OXN1h0hnppTwkFsY5Zbres+PJO
+Aw/PhihEP74ddp7mp6W85hTn6+rol8pluzJJCTVBC70myEG2hppTcMKzN0r9cNqR
+z2/+nz3aIO0BE65HI7/yB+fNegixinMAiZRGoiYfHj4ubdrYnbw5O1WBWAVG7gSq
+DZoqpARh4bX8hFAkkjbUsBh9pQP9gA==
+=zQ3R
+-----END PGP SIGNATURE-----
+
+--IpzSAZ/C+hH7f6Oc--
