@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C1862638A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:28:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E44062638F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233320AbiKKV2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 16:28:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
+        id S233439AbiKKV3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 16:29:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232943AbiKKV2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:28:46 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0ED10B5C;
-        Fri, 11 Nov 2022 13:28:42 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13d9a3bb27aso6683626fac.11;
-        Fri, 11 Nov 2022 13:28:42 -0800 (PST)
+        with ESMTP id S234055AbiKKV3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:29:00 -0500
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A455F14D23;
+        Fri, 11 Nov 2022 13:28:52 -0800 (PST)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-13bef14ea06so6734648fac.3;
+        Fri, 11 Nov 2022 13:28:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a9IWXVJO7FCfYbdDLeNc5y7EDDRr0wMjZ75A9nG5cpU=;
-        b=zk9iDq4DRkff3JSjfKAxYmgG+ul2MoD2OevOaqoJ+jGaGW4AomCRh5CixCMBxptHB1
-         gvgVetrBQPmagMTdYDH/RjUfFbmHfSMKp3vBY/pvgPanV+tkplucARzkAfao3XQQEGpK
-         hVNJe2d6byVFEHWuSU6nvZ/7sLtOuo+9PY7SyRxiL1gDfhwlLG7EJ5F9ixYwWbj7eVGJ
-         Wv/lu2m5NnTASx5CPWN2dFpui9b/FJWTN00dRAwRCG5d4Ckm1VZtWHVpxH9rV+jAi4j4
-         wfaGQztcyq4Aa5tGOfeaXMf1j3/s5mO52dTOVznFrB0nsaGQ4S5Td4cy6oeyfTRKh6yt
-         px2g==
-X-Gm-Message-State: ANoB5pnR4Bq1xhK/JzAjbEL1ZYFDGQLr8zxe+Hy7izNUrFINSdnRJFh/
-        N5xOP8OfMpN3iMbMeEd6oO/cMFHLrQ==
-X-Google-Smtp-Source: AA0mqf7qza00MxfRDpxW6kAteViq0Xda0ZdehJkcfO/3K+a/O01/4Wv8KeSIDtxEH1rNIHYOfRtLsg==
-X-Received: by 2002:a05:6870:ac88:b0:13b:29b7:e1a5 with SMTP id ns8-20020a056870ac8800b0013b29b7e1a5mr2017586oab.100.1668202121401;
-        Fri, 11 Nov 2022 13:28:41 -0800 (PST)
+        bh=0bHkUTUyhnUWblPSY7Vk1oCHAcUZEF1ZecefasIeWrk=;
+        b=vAH+upY4i5CloFUaJeof0FZLJe93FW4qtln1NCqNU0fszppmtTl2aBptQ/Mpjg1+kG
+         aSyJ23Kb6nyO34Xt3MUdAjzDejLL69n84//rxTbjBsvdj2/L3Z/ZmIsonT4+ppabfkBD
+         f1KDDNW8gBLzJ4EYYl/qIsL9V1ouBeR//D+p7TmPUNrAnSZJcvloS6bg+Qxmr6+eknXH
+         X+a6F2CYPCG1hLkRLChPksufnIpGQd/kJjhxGkhPTrWxC3xVC1tfTQrijU/aTlfT2IMV
+         HOCOImzIs3SnCgyQpbwZDq7XnbfcWr78XGNGhMj9ktKvOXH5flaQR9sNQRCfdtd8oDoH
+         UQuA==
+X-Gm-Message-State: ANoB5pk15whrH/fIocE1FBSuoIiuITaqx+TkN5LbPdyhxgIMJycBRwMM
+        YnOqZzAxBcvkFXn7cI/7mHohLGRauA==
+X-Google-Smtp-Source: AA0mqf7oOrVOnnJdeIvis7NmPa3kpHLUadgHo2lC5hsNZhiwHV9ekfCzvBUWLKJ1W0pgYxxZQ1s3eA==
+X-Received: by 2002:a05:6870:a111:b0:13d:9bde:b315 with SMTP id m17-20020a056870a11100b0013d9bdeb315mr2057022oae.141.1668202131886;
+        Fri, 11 Nov 2022 13:28:51 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g4-20020a9d6a04000000b00637032a39a3sm1433579otn.6.2022.11.11.13.28.40
+        by smtp.gmail.com with ESMTPSA id c15-20020a056808138f00b0035173c2fddasm1232714oiw.51.2022.11.11.13.28.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 13:28:40 -0800 (PST)
-Received: (nullmailer pid 4103969 invoked by uid 1000);
-        Fri, 11 Nov 2022 21:28:42 -0000
+        Fri, 11 Nov 2022 13:28:51 -0800 (PST)
+Received: (nullmailer pid 4104218 invoked by uid 1000);
+        Fri, 11 Nov 2022 21:28:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Korsgaard <jacmet@sunsite.dk>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: xlnx,opb-uartlite: Drop 'contains' from 'xlnx,use-parity'
-Date:   Fri, 11 Nov 2022 15:28:38 -0600
-Message-Id: <20221111212838.4103828-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: iio: dac: adi,ad5758: Drop 'contains' from 'adi,dc-dc-mode'
+Date:   Fri, 11 Nov 2022 15:28:46 -0600
+Message-Id: <20221111212846.4104059-1-robh@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,28 +63,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'contains' applies to arrays, but 'xlnx,use-parity' is a scalar. So drop
+'contains' applies to arrays, but 'adi,dc-dc-mode' is a scalar. So drop
 'contains' from the 'if' schema.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/serial/xlnx,opb-uartlite.yaml          | 3 +--
+ Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-index f7617b88c7c3..2f4390e8d4e8 100644
---- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-+++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-@@ -67,8 +67,7 @@ allOf:
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
+index e49e7556175d..4e508bfcc9d8 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5758.yaml
+@@ -102,8 +102,7 @@ allOf:
    - if:
        properties:
-         xlnx,use-parity:
+         adi,dc-dc-mode:
 -          contains:
--            const: 1
-+          const: 1
+-            enum: [1, 3]
++          enum: [1, 3]
      then:
-       required:
-         - xlnx,odd-parity
+       properties:
+         adi,range-microvolt: false
 -- 
 2.35.1
 
