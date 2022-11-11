@@ -2,107 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3AE6259F4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 13:00:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781116259F9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 13:02:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233675AbiKKMAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 07:00:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
+        id S233708AbiKKMCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 07:02:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbiKKMAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 07:00:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9416665862;
-        Fri, 11 Nov 2022 04:00:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233653AbiKKMCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 07:02:06 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6547C8F7;
+        Fri, 11 Nov 2022 04:02:04 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 33F4A61F48;
-        Fri, 11 Nov 2022 12:00:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8602C433D6;
-        Fri, 11 Nov 2022 12:00:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668168044;
-        bh=s3z2wj2Bw1bcimUZuVqCXmXtg1REFMatJH32Ha72MX8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HDyjjhEBRpUyEGmOm2vfi832Rqr1t7+qsA16JvJtx4Ft5krUAppWOioN9grwShsvM
-         /sEx/iARNY6trDH0pSBEuANEwozmNSVHx05zqYqNgb/oCCqiUNc+QuEPkERMd5difq
-         q0hcm6Fgh5Ky26/KoB3WtrG7mt7fMH1DCwA5IdTfsIHbIKv0zZH7htDqQ5JgrJGkZJ
-         d/nRL197X1KncpxFPa7C6RONOUx3ZzM5YJSkhrjAzC09IiUeZZIYoa39y5BsgSV+l7
-         ERjwjEoXeSQOSqbKiZ9g+oTvgY6jMzsdtjObdtA7WUeyfDFx/GL+VarPnXz+pSsV74
-         +yBvUHJ5c6GrA==
-Date:   Fri, 11 Nov 2022 13:00:38 +0100
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        kishon@kernel.org
-Cc:     robh+dt@kernel.org, kw@linux.com, bhelgaas@google.com,
-        krzk+dt@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 05/10] PCI: designware-ep: Add ep_pre_init() callback
- to dw_pcie_ep_ops
-Message-ID: <Y245ZtqqqelXif+Y@lpieralisi>
-References: <20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com>
- <20220922080647.3489791-6-yoshihiro.shimoda.uh@renesas.com>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B36476602A58;
+        Fri, 11 Nov 2022 12:02:00 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668168122;
+        bh=6sm7RpVkIvUIpbMZQhVAr1igZdcFWx2OWANx/W4c5y8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=n7HigNHbgCVZCADC6QcYiymCcuHH8bFZLUOXYYb+QLVpYJj/HbLKMTAEs3tNdGuV6
+         FLxeFZhQLh2U4+MPwz/+j5BNDCUUlfs+d/Tqpy8/1uUAwJylk8xKiHe9ZnHGafuLcl
+         h3lHy9NSlOCWPyhBhS7iI1iuRU45/KF/eAC4Ju34nRXWJaaT5id5Q+vEKyA3JnYcE6
+         2rIXWwrh1kGgOFzghfCwXoZhj4DkUaYyjWdeTpvIgjE1Dd5WGYK3TH8VOupbwEFObJ
+         Pdog4zszM6x7FUxqde/Ya2QwdwoKR/YLh9IqdHsFO4/H6FJxnWKn4E+HoQpdPWGRpf
+         HNjZr/PEZpfgA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
+        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        evgreen@chromium.org, gregkh@linuxfoundation.org,
+        a39.skl@gmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-hardening@vger.kernel.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        luca@z3ntu.xyz,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 00/11] MSM8956/76 and Sony Xperia X / X Compact support
+Date:   Fri, 11 Nov 2022 13:01:45 +0100
+Message-Id: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220922080647.3489791-6-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+Kishon]
+This series adds basic support for MSM8976 and its lower spec variant
+MSM8956, along with two devices: the Sony Xperia X and X Compact.
 
-On Thu, Sep 22, 2022 at 05:06:42PM +0900, Yoshihiro Shimoda wrote:
-> Some PCIe endpoint controllers need vendor-specific initialization
-> before the common code initialization. Add a new callback function
-> ep_pre_init() for it.
+For now, even though I do have a tree in which these two devices are
+fully booting, only a basic console boot is provided as the rest is
+awaiting cleanup and some more dependencies.
+Especially every device requiring IOMMU support, like MDSS, MDP and
+Adreno GPU cannot work with the current qcom_iommu driver, as it
+needs some code to get the ASIDs right for MSM8956/76.
 
-It would be better to add code where it is used.
+This series depends on [1].
 
-Kishon, please review if/when possible.
+Tested on both Xperia X and X Compact.
 
-Thanks,
-Lorenzo
+[1]: https://patchwork.kernel.org/project/linux-arm-msm/list/?series=690889
 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 3 +++
->  drivers/pci/controller/dwc/pcie-designware.h    | 1 +
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index ca8f1804ee10..1b7e9e1b8d52 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -709,6 +709,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  
->  	dw_pcie_version_detect(pci);
->  
-> +	if (ep->ops->ep_pre_init)
-> +		ep->ops->ep_pre_init(ep);
-> +
->  	dw_pcie_iatu_detect(pci);
->  
->  	ep->ib_window_map = devm_bitmap_zalloc(dev, pci->num_ib_windows,
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index b541f653c209..9ed9621a12e4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -317,6 +317,7 @@ struct dw_pcie_rp {
->  };
->  
->  struct dw_pcie_ep_ops {
-> +	void	(*ep_pre_init)(struct dw_pcie_ep *ep);
->  	void	(*ep_init)(struct dw_pcie_ep *ep);
->  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
->  			     enum pci_epc_irq_type type, u16 interrupt_num);
-> -- 
-> 2.25.1
-> 
+
+Changes in v2:
+ - Removed commits from v1 that were picked already
+ - Added MSM8976 to socinfo and qcom,ids
+ - Added a commit to fix ordering in qfprom yaml
+ - Fix KPSS mailbox documentation to allow syscon on 8976
+ - Various fixes from series v1 feedback (thanks!)
+
+AngeloGioacchino Del Regno (9):
+  dt-bindings: iio: qcom-spmi-vadc: Add definitions for USB DP/DM VADCs
+  dt-bindings: nvmem: Fix qcom,qfprom compatibles enum ordering
+  dt-bindings: sram: qcom,imem: Document MSM8976
+  dt-bindings: mailbox: qcom: Allow syscon on
+    qcom,msm8976-apcs-kpss-global
+  dt-bindings: arm: qcom,ids: Add SoC IDs for MSM8956 and MSM8976
+  soc: qcom: socinfo: Add MSM8956/76 SoC IDs to the soc_id table
+  arm64: dts: qcom: Add configuration for PM8950 peripheral
+  arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs
+  arm64: dts: qcom: Add support for SONY Xperia X/X Compact
+
+Marijn Suijten (2):
+  dt-bindings: nvmem: Add compatible for MSM8976
+  dt-bindings: arm: qcom: Document msm8956 and msm8976 SoC and devices
+
+ .../devicetree/bindings/arm/qcom.yaml         |   10 +
+ .../mailbox/qcom,apcs-kpss-global.yaml        |    2 +-
+ .../bindings/nvmem/qcom,qfprom.yaml           |    3 +-
+ .../devicetree/bindings/sram/qcom,imem.yaml   |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ .../qcom/msm8956-sony-xperia-loire-kugo.dts   |   35 +
+ .../qcom/msm8956-sony-xperia-loire-suzu.dts   |   17 +
+ .../dts/qcom/msm8956-sony-xperia-loire.dtsi   |  282 ++++
+ arch/arm64/boot/dts/qcom/msm8956.dtsi         |   18 +
+ arch/arm64/boot/dts/qcom/msm8976.dtsi         | 1198 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8950.dtsi          |  165 +++
+ drivers/soc/qcom/socinfo.c                    |    2 +
+ include/dt-bindings/arm/qcom,ids.h            |    2 +
+ include/dt-bindings/iio/qcom,spmi-vadc.h      |    3 +
+ 14 files changed, 1738 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8976.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8950.dtsi
+
+-- 
+2.38.1
+
