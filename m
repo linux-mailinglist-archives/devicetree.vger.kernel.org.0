@@ -2,143 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B91C6625CE7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14C4E625D19
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234068AbiKKOXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:23:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37136 "EHLO
+        id S232506AbiKKOde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:33:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234248AbiKKOWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:22:52 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0272391EC
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:21:52 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id u2so4690584ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:21:52 -0800 (PST)
+        with ESMTP id S234531AbiKKOdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:33:15 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2241856EF8
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:33:14 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id be13so8599192lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:33:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lizn4t8CzEeOAb2NOrW1eGO8GRE54jSk5eHBfoX7CCY=;
-        b=qir1itbo7SLIojVnuniP/lKKgJq9TuBceKLm30rtveqOll+AEFS4SYwDX4QIuW3shO
-         x4jQasyhXZxNK8ihBC5IaSbf1Ljx3yzyW5V162Usc7AqfrOVidzgLPtuuHT02iGN3JkO
-         vvkE6cs+a0r7VD5AT09LEk61y6Up0KR2+zspM0mhnP086VsRZyE3XDwbUvD4ia/CFMmA
-         fV5iRUzLSUPA2brZROmg3t+gbc2j1NQ1IgzLyAac+9ZqqHiib1IkNQYRWoUvfOq8Ge/G
-         fTDiT39cOrORSMM2/4utHqkBzg1eAAalO/kxDP/rXWYe3+htkHUkE0rXs7201C+LoVdb
-         ATdQ==
+        bh=JZCkL39tKR5ttW+qJKB2t3gyWuB8VcBN7GauxzyOgrI=;
+        b=lHZh8n8x55B+MzDCbf2ins/MECWR60E/rKGiejeepH0pN88FyN8fHkxVTrJxJ8yJHM
+         THuEk4207LGGUNZtQuiVxSzPt1cV4QKnFht4q/VcPgJGxXskMUdmPVy1cMVfpbdOXXMD
+         +urR1Qdlbs5RFmiuNZdCVxYlTYimLtJgw/xIJ2wzbLNmH3VTGzAgLm43CfNYLHNByxdi
+         W4kDlknlDAwTicdt2b0bEo0K3R5SJ8qXw8RH78yv9YGPGBdd9JtyQ1jX0lsQjgMv82sD
+         uUpS27x1/VfBKy0yT21pNyygyL2kOTEQi2t+s3Uz8CVsazG/7o8oNRWM+J3ASMuLAAjI
+         NTfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lizn4t8CzEeOAb2NOrW1eGO8GRE54jSk5eHBfoX7CCY=;
-        b=4u62Mv+Yz6NA8y6xR3s891g4B3dMutbqPuFUo9241dDU3empfEFRVa6/V5BbheY+rC
-         X50UOzjmIjz45YMEuvMw3KaygyQkum1DZdgKuKEXwsSQa9JXW3cUf+1nJsLfmjgO8Kxa
-         qvT2D6Oe8UNtorgfsvgR3eVYQ9XgsLjh94hLfG7EL1D118KSwNDGjRMcad+WwBpwKyEa
-         8CWzPITWMFJ/pbzb+dkjWUwYUyXpAeD9dfetCzYZ2hJ+AlVZ7OP+WSjAqru+Ua4G21k4
-         mnP5SGxKkgRDITW7EDTY4+z+ZAzhE601DzwLOjBTLzE141byVviDS2rtgSoOquaPKOnv
-         KOgw==
-X-Gm-Message-State: ANoB5pl3Tj+lkRvliHS9A7UQpK9waHjPB7mVXfnoJfKy7x1cjpqhEQeB
-        SYZSOfj4k4FcknBnsVy5NW9g0Q==
-X-Google-Smtp-Source: AA0mqf4u3FCA6Q7ZvIrElwMeHaK0OuMQqzCJGs2cKMdDsSQw3WGaxaJ6fIuzSGrVM7neb1mCUweWPw==
-X-Received: by 2002:a2e:9d51:0:b0:277:1e3e:fa60 with SMTP id y17-20020a2e9d51000000b002771e3efa60mr675393ljj.496.1668176510760;
-        Fri, 11 Nov 2022 06:21:50 -0800 (PST)
+        bh=JZCkL39tKR5ttW+qJKB2t3gyWuB8VcBN7GauxzyOgrI=;
+        b=1ozQ4exDH0Qym/gejEShXey1BSpDE3ZoDRx5dWZXIA+B7vuOFJ7fmo6A8y0n0jeMO5
+         sEhEeS3IHkjc45AR2/sCG1uugl/q86XPR7WmP0ApkvJ41QRAQGmB00GFoE+tvr6azjZq
+         shcAxlkEsswZIXxXY3ZNOj/fBrTkxGJsJAokrTEpUGSrIJP7RFlYJ7Q6hP7NA3wBptzo
+         EXDTHcqeRrlbt4zqv6AgxNDLbujQTaau4S4UVGH6mHxKjP2GLxj4xPhYt19CzBloSYso
+         k0MGmEoRncU3y2x63U6SkM2/9ERgdRUnHFmvTCG7ff3mdq8dGHrEbO0/RU0JKpCMrZ3v
+         Cr4Q==
+X-Gm-Message-State: ANoB5pm3fWZ1A/s4gjoms69HEMU8EbyNELpwmU5aHkWqdaLNGW3jiBx+
+        U1DeN3Pa2rRyfN8lqeXsC4Skug==
+X-Google-Smtp-Source: AA0mqf6/tmoTby061FizYgM0U//KfujjSuy0T07o4ZCbezgv/mR+qfC2CRHGEa+Wtd41eGEj+SQQQg==
+X-Received: by 2002:ac2:5095:0:b0:4a2:ec0:c4bf with SMTP id f21-20020ac25095000000b004a20ec0c4bfmr856566lfm.164.1668177192404;
+        Fri, 11 Nov 2022 06:33:12 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b0048a8c907fe9sm347374lfo.167.2022.11.11.06.21.49
+        by smtp.gmail.com with ESMTPSA id x5-20020a056512046500b004a2386b8cf4sm351025lfd.258.2022.11.11.06.33.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 06:21:50 -0800 (PST)
-Message-ID: <f7be60a6-ea1d-838a-ef50-d324d918db86@linaro.org>
-Date:   Fri, 11 Nov 2022 15:21:49 +0100
+        Fri, 11 Nov 2022 06:33:11 -0800 (PST)
+Message-ID: <29620da4-fda7-eb71-d9de-599e3bbd2de7@linaro.org>
+Date:   Fri, 11 Nov 2022 15:33:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 02/10] ASoC: dt-bindings: qcom,apr: Split services to
- shared schema
+Subject: Re: [PATCH] ASoC: dt-bindings: qcom,wsa883x: Add sound-name-prefix
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Patrick Lai <plai@qti.qualcomm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org
-References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
- <20221111113547.100442-3-krzysztof.kozlowski@linaro.org>
- <166817308876.3060199.17933327732327950670.robh@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111091738.34290-1-krzysztof.kozlowski@linaro.org>
+ <Y246wC8zEGJp9SmC@sirena.org.uk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <166817308876.3060199.17933327732327950670.robh@kernel.org>
+In-Reply-To: <Y246wC8zEGJp9SmC@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 14:30, Rob Herring wrote:
+On 11/11/2022 13:06, Mark Brown wrote:
+> On Fri, Nov 11, 2022 at 10:17:38AM +0100, Krzysztof Kozlowski wrote:
 > 
-> On Fri, 11 Nov 2022 12:35:39 +0100, Krzysztof Kozlowski wrote:
->> The APR/GPR nodes are organized like:
->>
->>   apr-or-gpr-device-node <- qcom,apr.yaml
->>     apr-gpr-service@[0-9] <- qcom,apr.yaml
->>       service-specific-components <- /schemas/sound/qcom,q6*.yaml
->>
->> The schema for services (apr-gpr-service@[0-9]) already grows
->> considerably and is still quite not specific.  It allows several
->> incorrect combinations, like adding a clock-controller to a APM device.
->> Restricting it would complicate the schema even more.  Bringing new
->> support for sound on Qualcomm SM8450 and SC8280XP SoC would grow it as
->> well.
->>
->> Simplify the qcom,apr.yaml by splitting the services to a shared file
->> which will be:
->> 1. Referenced by qcom,apr.yaml with additionalProperties:true,
->> 2. Referenced by specific bindings for services with
->>    additionalProperties:false (not yet in this commit).
->>
->> While moving the code, add also required 'reg' and
->> 'qcom,protection-domain' to further constrain the bindings.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/soc/qcom/qcom,apr-services.yaml  |  54 +++++++++
->>  .../bindings/soc/qcom/qcom,apr.yaml           | 108 +-----------------
->>  MAINTAINERS                                   |   2 +-
->>  3 files changed, 58 insertions(+), 106 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr-services.yaml
->>
+>> For multiple speakers attached, it's useful to give them some name.
+>> Sound core already supports this, so reference name-prefix.yaml.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@3: failed to match any schema with compatible: ['qcom,q6core']
-> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@4: failed to match any schema with compatible: ['qcom,q6afe']
-> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@7: failed to match any schema with compatible: ['qcom,q6asm']
-> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@8: failed to match any schema with compatible: ['qcom,q6adm']
+> If we need to manually extend the schema like this it should probably be
+> done for all the CODEC devices.
 
-This is expected. I should have mention maybe in commit msg that these
-compatibles are being removed in this commit and re-added in further
-commits. Change is therefore not entirely bisectable, but should be
-easier for review.
+Several files already do it:
 
-If desired, I can squash these commits.
+  git grep name-prefix.yaml
+
+The trouble for me would be here to identify which devices qualify from
+bindings/sound.... everything having #sound-dai-cells?
 
 Best regards,
 Krzysztof
