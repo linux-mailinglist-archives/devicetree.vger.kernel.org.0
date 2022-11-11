@@ -2,110 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9053625793
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:05:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C86625798
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:05:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233057AbiKKKFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 05:05:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46900 "EHLO
+        id S233404AbiKKKFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 05:05:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232177AbiKKKFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:05:12 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472BEE08A;
-        Fri, 11 Nov 2022 02:05:10 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6F77E6602A43;
-        Fri, 11 Nov 2022 10:05:08 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668161109;
-        bh=5adrvkaSXXPCJ7a9QDrifMUAtUL+l677DLpywUrMHVo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LhQcL1b2N1D2r4SwayJjDj2OZOCkqbQdXHs6OR83QYo7eutY7CJD5jG2X7SQjam1f
-         yPTsiUEuS0mDWQ+gtFWFHnZKnqCCyspl8r55XN+XWmMpxu5hfrE9DnyM3Z4ZENOJtE
-         rqAVeLbzKghEX5PErg5+oSWYLMfPnprAY0jZXb91Qixv93WNWxvKQXXjg0x4kNc30X
-         pQL73aqlntOSUDVZ1bUh7SOTMkVCBKY1cfgX2ytI0ls2kyQO0kmBDsc7s2Ewp2WODF
-         AT5Vrk51MVNyMdbu34wvPfmEBQVELjl7tx7OHwmgvn+tBqqCl/NlyCMdZ+zEaLoo5k
-         bMlRz2w0wAZ/Q==
-Message-ID: <160cb3fc-176e-bc0e-1bff-9334478af8ec@collabora.com>
-Date:   Fri, 11 Nov 2022 11:05:06 +0100
+        with ESMTP id S232177AbiKKKFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:05:41 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CD67D133;
+        Fri, 11 Nov 2022 02:05:38 -0800 (PST)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8BxbbZwHm5j2BcGAA--.7373S3;
+        Fri, 11 Nov 2022 18:05:36 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxBlduHm5j1tYQAA--.27998S2;
+        Fri, 11 Nov 2022 18:05:36 +0800 (CST)
+Subject: Re: [PATCH v10 1/2] thermal: loongson-2: add thermal management
+ support
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
+References: <20221103083407.4039-1-zhuyinbo@loongson.cn>
+ <d634c8db-3036-08eb-24d2-568771b0e104@loongson.cn>
+ <d975ae16-58b8-a844-7ffd-7fa06159311c@wanadoo.fr>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <ef7a6f77-9f18-e68d-a6a7-61186346c768@loongson.cn>
+Date:   Fri, 11 Nov 2022 18:05:34 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: Add bindings for Qualcomm
- Ramp Controller
+In-Reply-To: <d975ae16-58b8-a844-7ffd-7fa06159311c@wanadoo.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
-        kernel@collabora.com, andersson@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org
-References: <20221104142204.156333-1-angelogioacchino.delregno@collabora.com>
- <20221104142204.156333-2-angelogioacchino.delregno@collabora.com>
- <166758411781.2066027.6365889663189109123.robh@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <166758411781.2066027.6365889663189109123.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxBlduHm5j1tYQAA--.27998S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvdXoW7GF1kKw4fXFy7Ar4xCw45KFg_yoWfGrgE93
+        yjkrZrGw48JFWxZrW2yr4rX3s7Jayvq34xAr40qa17KryUKa10v397ArnxXw1xC3y8Gr43
+        uryDZ34fZ34qgjkaLaAFLSUrUUUU1b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
+        17CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84
+        ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8I
+        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
+        WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Y
+        z7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxV
+        WUAVWUtwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Y
+        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
+        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
+        2Ix0cI8IcVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42
+        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY
+        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8YsjUUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/11/22 18:54, Rob Herring ha scritto:
-> 
-> On Fri, 04 Nov 2022 15:22:03 +0100, AngeloGioacchino Del Regno wrote:
->> Document bindings for the Qualcomm Ramp Controller, found on various
->> legacy Qualcomm SoCs.
+
+
+在 2022/11/10 下午2:01, Christophe JAILLET 写道:
+> Le 09/11/2022 à 09:09, Yinbo Zhu a écrit :
+>> Hi Rafael J.Wysocki,
 >>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../qcom/qcom,msm8976-ramp-controller.yaml    | 37 +++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,msm8976-ramp-controller.yaml
+>> I just have a verified on your tree about my patch again, it is okay,
+>> if no other proplems, please help merge it to your tree and sync it to 
+>> linux mainline tree.
+>>
+>> Thanks,
+>> Yinbo.
 >>
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Hi,
 > 
-> yamllint warnings/errors:
+> I've sent a few nits on v10, that you are obviously free to take into 
+> account or not.
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,msm8976-ramp-controller.example.dtb: power-controller@b014000: '#power-domain-cells' is a required property
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/power-domain.yaml
+> However, one of these comments is about thermal_add_hwmon_sysfs() vs 
+> devm_thermal_add_hwmon_sysfs() in loongson2_thermal_probe().
 > 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+> IMHO, if I'm correct, at least this comment should be fixed.
+Hi Christophe JAILLET,
 
-I'm unsure about what I should do about this one.
-This is a power-controller, but does *not* need any #power-domain-cells, as it is
-standalone and doesn't require being attached to anything.
+Thanks your addvice, I had send v11 that following your advice,
+but some it is different. e.g.  devm_request_threaded_irq return value 
+is integer and use IS_ERR(integer) that isn't appropriate.
 
-Any hints?
+Tks,
+Yinbo
+> 
+> CJ
 
-Thanks,
-Angelo
