@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EC76252BC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 05:43:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF186252BE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 05:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232933AbiKKEn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 23:43:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
+        id S232077AbiKKEnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 23:43:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232866AbiKKEnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 23:43:16 -0500
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB066B230
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:42:56 -0800 (PST)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so4407808fac.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:42:56 -0800 (PST)
+        with ESMTP id S232805AbiKKEnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 23:43:23 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C256CA2F
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:43:01 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id db10-20020a0568306b0a00b0066d43e80118so2093077otb.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:43:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qSr+LP3yV4OOZhD9NcYiTnkoNf9zOkOMx7sbT8NwJMQ=;
-        b=EszwmvSgBsLo5au5Ol02Ed/IoaPq7iPdKrytiZj6Ucn91sWHFOpGKMYlMzshaC+j6q
-         Z9WICNiRQGeucG6yMpxx3M3g4rv2BAkABuTIy/v+XePpDw9+4TCbk5RUQ6QipZ2DbzGK
-         /zDyLPTVmlB8N0czRKK67hO0Z5O3iYLbOm7/eAldssQQhnFtSLcI/N3lnItLTvWeeY1I
-         dnZJq/hr6IppN3IQGySZ0LKh9DREEX52BfvxeKwWgwsr4FaAIQlhfeOFmKQjZJE2jXuc
-         6RkcJ5yVHUfdb6RKlTTB2y0S4NPJzkkOCiNKPDon7R0Ky6uZUE7tBVuBd5omdYndpxCN
-         g/Tg==
+        bh=t0whY6CuX4CjDJzLdZou1ftrY3RLAFDBaqvIT3+qCC0=;
+        b=ex4g+HVmPtKwUsgRtgBGZc6dEnU40ikO5oUN+/xbjTgKAsQ4AmcA8indPUodHr5bW+
+         H/iwZxP/S29A8whf7W6sj+wo/kEJs5SUnXHo7x6EMz0jVaxnuuz+DS0hloWJ1J1FvCO1
+         sfAKi08Zhl0viCznsZrsgns2XLwc46Yo92WHpoeAV2SvfqD/K6pEKLlTKGa2RFE/qW5Z
+         PlrCBNqwzqyhq6XpEOHfHhpbMCjUFL18t4rKIFiXb9W3y3hrwl0tMhCrYdNBlr3wvmaJ
+         ODZV7/7SbguEDMCD2rP9+jJ2/+moHsuMBhEqs3aaKAGc6e0PWSZzJAUC3FJ1R7ntoKZN
+         iMvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qSr+LP3yV4OOZhD9NcYiTnkoNf9zOkOMx7sbT8NwJMQ=;
-        b=gRPLUSX9XrIjfZe42H87yr5OpEcvlUgyLuRs/j+Em2XXZtDuDtA+ntA+E2VPMAZf5B
-         WBKpjDtuohs6Zhq/hngWmy6ZsZLH8Vy3VooOmaskyG0Q63lRC0bfrGB9SBMuyG7/NcIs
-         2/1HV0hhBL6Ii+OirmB8DL1cw10L01kIoWOteyKFxS2uE9MOEfWa7skCwKpoqxYYLWJl
-         ZAw+s0hqfV8QBMCjstbVQaaWdGZ+dJCYAUcJmkPlbuRI33Cz+CLZamREZ+4wRRgXEZjW
-         RZEffT4uEdb15kTpUI8qMTVy17kAfy4YLLfoTRHIStttS3Ral4GweoF3tW3o27E1PwP9
-         Ed9g==
-X-Gm-Message-State: ACrzQf1toIIrT4cGM5ZkmhVpvKf0h46mqZwRu/FFm7Tctin8Djm9BDfx
-        iaN6ujqTQwOfTKNSmhSypp4nyw==
-X-Google-Smtp-Source: AMsMyM7E/xFTeC7gRif0vGIlVkquafuqvQbuudYs11qdAfCksU0FyfFcA4mFdJB7FuPEyGVzV2Z1vA==
-X-Received: by 2002:a05:6870:be03:b0:13b:5fff:1d84 with SMTP id ny3-20020a056870be0300b0013b5fff1d84mr2906288oab.190.1668141774762;
-        Thu, 10 Nov 2022 20:42:54 -0800 (PST)
+        bh=t0whY6CuX4CjDJzLdZou1ftrY3RLAFDBaqvIT3+qCC0=;
+        b=F7DDtZeBA7qTuDmIASDKQl/SgA1WqrxgFlUw5ZJ2IaB3X8SyV6BfewgPRjxmIjGXD2
+         xWsyUH7ZnoQsiO12MnalnHP+YGQuqgX26Sm5jkQKoqqf++e0Sxlwy+2EBOCp8bQE8Dvx
+         cWE9rxwyHRUbKyuROzojBjYTf/z0cFcV1Vxc6tFpugGiHGvLXUh2trMcSqLzW0kUraUY
+         /RI5mV6latLI1AisnOeIBaI6due7xoHwT1/XOrd9cCw2TjjgTQGpqlVYvKQ42kOZW4GN
+         V3GtXG9/RgcmxJPc7j8CQfKZhVI+jKZjiAsjyKrxXfn9ijoFsMyTqf7lE8xmgMpofIA5
+         sP8A==
+X-Gm-Message-State: ANoB5plhLLkL96ol0d7MGURu6bV2sQ/stTmhvcn9Tm6LEIOKD7tFdXlh
+        ot2BWL2B5PHv4PHmV/vMm2nMYw==
+X-Google-Smtp-Source: AA0mqf5MndJeJfOoAMW4mJ9r4EwnrWkrc/tZWwYMozRKaabuYjW3ZiXnwST3SGNkMyE30OTKRoJnew==
+X-Received: by 2002:a05:6830:20ca:b0:66c:4f87:fd14 with SMTP id z10-20020a05683020ca00b0066c4f87fd14mr454372otq.159.1668141780427;
+        Thu, 10 Nov 2022 20:43:00 -0800 (PST)
 Received: from anup-ubuntu64-vm.. ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id k14-20020a056870350e00b0013d9bd4ad2esm787353oah.12.2022.11.10.20.42.49
+        by smtp.gmail.com with ESMTPSA id k14-20020a056870350e00b0013d9bd4ad2esm787353oah.12.2022.11.10.20.42.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 20:42:54 -0800 (PST)
+        Thu, 10 Nov 2022 20:43:00 -0800 (PST)
 From:   Anup Patel <apatel@ventanamicro.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -61,9 +61,9 @@ Cc:     Atish Patra <atishp@atishpatra.org>,
         Anup Patel <anup@brainfault.org>,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH 2/9] RISC-V: Detect AIA CSRs from ISA string
-Date:   Fri, 11 Nov 2022 10:12:00 +0530
-Message-Id: <20221111044207.1478350-3-apatel@ventanamicro.com>
+Subject: [PATCH 3/9] irqchip/riscv-intc: Add support for RISC-V AIA
+Date:   Fri, 11 Nov 2022 10:12:01 +0530
+Message-Id: <20221111044207.1478350-4-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221111044207.1478350-1-apatel@ventanamicro.com>
 References: <20221111044207.1478350-1-apatel@ventanamicro.com>
@@ -78,66 +78,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have two extension names for AIA ISA support: Smaia (M-mode AIA CSRs)
-and Ssaia (S-mode AIA CSRs).
+The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+local interrupts in following ways:
+1. Minimum 64 local interrupts for both RV32 and RV64
+2. Ability to process multiple pending local interrupts in same
+   interrupt handler
+3. Priority configuration for each local interrupts
+4. Special CSRs to configure/access the per-HART MSI controller
 
-We extend the ISA string parsing to detect Smaia and Ssaia extensions.
+This patch adds support for RISC-V AIA in the RISC-V intc driver.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- arch/riscv/include/asm/hwcap.h | 8 ++++++++
- arch/riscv/kernel/cpu.c        | 2 ++
- arch/riscv/kernel/cpufeature.c | 2 ++
- 3 files changed, 12 insertions(+)
+ drivers/irqchip/irq-riscv-intc.c | 37 ++++++++++++++++++++++++++------
+ 1 file changed, 31 insertions(+), 6 deletions(-)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index b22525290073..06314220284f 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -59,9 +59,17 @@ enum riscv_isa_ext_id {
- 	RISCV_ISA_EXT_ZIHINTPAUSE,
- 	RISCV_ISA_EXT_SSTC,
- 	RISCV_ISA_EXT_SVINVAL,
-+	RISCV_ISA_EXT_SSAIA,
-+	RISCV_ISA_EXT_SMAIA,
- 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
- };
+diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+index 784d25645704..e72969295241 100644
+--- a/drivers/irqchip/irq-riscv-intc.c
++++ b/drivers/irqchip/irq-riscv-intc.c
+@@ -16,6 +16,7 @@
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/smp.h>
++#include <asm/hwcap.h>
  
-+#ifdef CONFIG_RISCV_M_MODE
-+#define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SMAIA
-+#else
-+#define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SSAIA
-+#endif
+ static struct irq_domain *intc_domain;
+ 
+@@ -29,6 +30,15 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 	generic_handle_domain_irq(intc_domain, cause);
+ }
+ 
++static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
++{
++	unsigned long topi;
++
++	while ((topi = csr_read(CSR_TOPI)))
++		generic_handle_domain_irq(intc_domain,
++					  topi >> TOPI_IID_SHIFT);
++}
 +
  /*
-  * This enum represents the logical ID for each RISC-V ISA extension static
-  * keys. We can use static key to optimize code path if some ISA extensions
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 852ecccd8920..3c84680c2289 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -138,6 +138,8 @@ device_initcall(riscv_cpuinfo_init);
-  *    extensions by an underscore.
-  */
- static struct riscv_isa_ext_data isa_ext_arr[] = {
-+	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-+	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
- 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
- 	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
- 	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 694267d1fe81..e6d750d088ab 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -205,6 +205,8 @@ void __init riscv_fill_hwcap(void)
- 				SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_EXT_ZIHINTPAUSE);
- 				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
- 				SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_SVINVAL);
-+				SET_ISA_EXT_MAP("smaia", RISCV_ISA_EXT_SMAIA);
-+				SET_ISA_EXT_MAP("ssaia", RISCV_ISA_EXT_SSAIA);
- 			}
- #undef SET_ISA_EXT_MAP
- 		}
+  * On RISC-V systems local interrupts are masked or unmasked by writing
+  * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
+@@ -38,12 +48,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+ 
+ static void riscv_intc_irq_mask(struct irq_data *d)
+ {
+-	csr_clear(CSR_IE, BIT(d->hwirq));
++	if (d->hwirq < BITS_PER_LONG)
++		csr_clear(CSR_IE, BIT(d->hwirq));
++	else
++		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+ }
+ 
+ static void riscv_intc_irq_unmask(struct irq_data *d)
+ {
+-	csr_set(CSR_IE, BIT(d->hwirq));
++	if (d->hwirq < BITS_PER_LONG)
++		csr_set(CSR_IE, BIT(d->hwirq));
++	else
++		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+ }
+ 
+ static struct irq_chip riscv_intc_chip = {
+@@ -98,7 +114,7 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+ static int __init riscv_intc_init(struct device_node *node,
+ 				  struct device_node *parent)
+ {
+-	int rc;
++	int rc, nr_irqs;
+ 	unsigned long hartid;
+ 
+ 	rc = riscv_of_parent_hartid(node, &hartid);
+@@ -116,14 +132,21 @@ static int __init riscv_intc_init(struct device_node *node,
+ 	if (riscv_hartid_to_cpuid(hartid) != smp_processor_id())
+ 		return 0;
+ 
+-	intc_domain = irq_domain_add_linear(node, BITS_PER_LONG,
++	nr_irqs = BITS_PER_LONG;
++	if (riscv_isa_extension_available(NULL, SxAIA) && BITS_PER_LONG == 32)
++		nr_irqs = nr_irqs * 2;
++
++	intc_domain = irq_domain_add_linear(node, nr_irqs,
+ 					    &riscv_intc_domain_ops, NULL);
+ 	if (!intc_domain) {
+ 		pr_err("unable to add IRQ domain\n");
+ 		return -ENXIO;
+ 	}
+ 
+-	rc = set_handle_irq(&riscv_intc_irq);
++	if (riscv_isa_extension_available(NULL, SxAIA))
++		rc = set_handle_irq(&riscv_intc_aia_irq);
++	else
++		rc = set_handle_irq(&riscv_intc_irq);
+ 	if (rc) {
+ 		pr_err("failed to set irq handler\n");
+ 		return rc;
+@@ -131,7 +154,9 @@ static int __init riscv_intc_init(struct device_node *node,
+ 
+ 	riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+ 
+-	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
++	pr_info("%d local interrupts mapped%s\n",
++		nr_irqs, (riscv_isa_extension_available(NULL, SxAIA)) ?
++			 " using AIA" : "");
+ 
+ 	return 0;
+ }
 -- 
 2.34.1
 
