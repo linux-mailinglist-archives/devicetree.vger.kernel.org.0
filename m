@@ -2,129 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A7E625303
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC879625312
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:30:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbiKKFRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 00:17:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
+        id S231478AbiKKFaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 00:30:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbiKKFRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:17:32 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA26E6B383;
-        Thu, 10 Nov 2022 21:17:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A0CDDB81E60;
-        Fri, 11 Nov 2022 05:17:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BC44C433C1;
-        Fri, 11 Nov 2022 05:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668143849;
-        bh=n+aNotBQFKuFcOYsREI/VGTiSdZhVRAVtpMX5N+QlU0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Xf3V/jkVqHQegrpSr0Xg4J7SVOGlmG0XblfaVvPyDP45FLlyTZlCRO4vCl4QWZzcc
-         KKkXVtDO8r9wBZIAoHXZiN9YxB9mJu5l6bQyAZcirrnsx6zfZ+j3CvlqW06ByoC/kJ
-         meBkKTi41p+cihQnTdk+LqnIXY74RpXEQLORj15YvivVG9y89svujZS8WVbZcK1BmM
-         2HC1GJTgRINZEq11uLJHAfPUfTSA2/t9Keyy4LXBr22uSnfqwCsC62kzhUyAtMQUat
-         WnkumBt55C1euGOi9hGaXrmzF0h2Uw3Hd8AQSA+Y9X9v9njwJeZYWGUQCOHNu2RKMB
-         EM7JFrWdlq3Qw==
-Date:   Fri, 11 Nov 2022 13:17:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Philippe Schenker <dev@pschenker.ch>
-Subject: Re: [PATCH] ARM: dts: colibri-imx6ull: Enable dual-role switching
-Message-ID: <20221111051721.GD2649582@dragon>
-References: <20221102155226.51587-1-dev@pschenker.ch>
- <4964263.31r3eYUQgx@steina-w>
- <Y2N2JYGvmzLjpGUq@francesco-nb.int.toradex.com>
+        with ESMTP id S232182AbiKKFaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:30:12 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55BF13D23;
+        Thu, 10 Nov 2022 21:30:11 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id bj12so10156307ejb.13;
+        Thu, 10 Nov 2022 21:30:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gl2gTD6fyiyvGBtgAIjqdtNWW0efyP30sJQ9sWjlCnc=;
+        b=jvJH8r5f6/8wx7qVxyeAvkPZK9h+c5JyGMFc/aTuqN1r6s79kQfYLEK4XZDUH5TD4K
+         CADwyHNpLViOz0cjscCq0kcTL3732SfDfVRBf4/pXoHd1sXtFzh95ujDQflyXh2i8Y4f
+         Z/fPLAxgTJiCkIKnEY7rjdDzLJLMEJiuIrYAhf0Vu3XquWnyqbug1sCtcmA6XMvurc9G
+         eavW2HGlKGBsnkW++mWh+bb+t2pwsOiRopmudCqGSfYabYWrobfLYHDbEglX+0cBVuW4
+         CjO6eZuLcefrYCuzKEICnFY4ZTKt1Lu3f7n9e6C+HvRpN8tTSbVu7wELX6X1tN79ZZxH
+         eeqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gl2gTD6fyiyvGBtgAIjqdtNWW0efyP30sJQ9sWjlCnc=;
+        b=gysdRVtC0/kEuXfAY7RzGnq+lQMoBMVQCQq1PpwwFh2xpuJpkOHN9WBhIAHvyvdaTn
+         oybblS78X9yIM9c/5mIiOYPdlOz+pwOF5XDB0lDz6oWDTGkg/Q+Ky+LckbjHZzFHrjpo
+         +/1WB3TUpeppS8EbkS4EWdSr3aCi+rrCyNxKBnasl1HzxH7JWL5eo4ofLOYI7HkpBhVS
+         W2Dfa3JanAELndnu2m0SCrKm7dtVRFixi7wPK+E1nRB7qUdEvuEn5DhiJGS81riMvTpP
+         vcyxfZOWv03LJdC5ZNN4Z8cqufmCuKinsC4M3PdDzF8Ik0IXq2yjM260Lu/2xK0L8tv0
+         nuiw==
+X-Gm-Message-State: ANoB5pmv3FEU1mX3lqD8tRimx5dkBAvpOTPKoBUYO2J7UcLLS9FIPaUU
+        KmYYCadUNLOWzGW3oyfVnw605bjPSTKEpldbZNU=
+X-Google-Smtp-Source: AA0mqf6MN6hD361DOq8oM0uQvWfql6CIlg1yzGXGzljbtsZbZ6hJvoZtoNNrKnqcoTdFdiMm8Zw4HVgCaNtHgXKdenA=
+X-Received: by 2002:a17:906:1d08:b0:7a9:ecc1:2bd2 with SMTP id
+ n8-20020a1709061d0800b007a9ecc12bd2mr607068ejh.545.1668144610414; Thu, 10 Nov
+ 2022 21:30:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y2N2JYGvmzLjpGUq@francesco-nb.int.toradex.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221110133640.30522-1-zhewang116@gmail.com> <20221110133640.30522-3-zhewang116@gmail.com>
+ <2a219c34-b23c-61f0-1833-2f97aa219a4e@linaro.org>
+In-Reply-To: <2a219c34-b23c-61f0-1833-2f97aa219a4e@linaro.org>
+From:   Zhe Wang <zhewang116@gmail.com>
+Date:   Fri, 11 Nov 2022 13:29:59 +0800
+Message-ID: <CAJxzgGoHQjJKvNwC3+R66GOn0cM3bDx5Dy0PmQGmSdTTZ18XSQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] scsi: ufs-unisoc: Add support for Unisoc UFS host controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com, avri.altman@wdc.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 09:04:53AM +0100, Francesco Dolcini wrote:
-> On Thu, Nov 03, 2022 at 08:46:58AM +0100, Alexander Stein wrote:
-> > Hi Philippe,
-> > 
-> > Am Mittwoch, 2. November 2022, 16:52:26 CET schrieb Philippe Schenker:
-> > > From: Philippe Schenker <philippe.schenker@toradex.com>
-> > > 
-> > > The Colibri standard provides a GPIO called USBC_DET to switch from
-> > > USB Host to USB Device and back. The Colibri iMX6ULL does have the SoC
-> > > ball USB_OTG1_VBUS connected in series with a capacitor to ground.
-> > > 
-> > > This means that we need to provide to the extcon framework VBUS and ID
-> > > events using the single GPIO we have. The Extcon USB GPIO driver does
-> > > use id-gpio also for VBUS event, as in our case where vbus-gpio is
-> > > absent.
-> > > 
-> > > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> > > 
-> > > ---
-> > > 
-> > >  arch/arm/boot/dts/imx6ull-colibri.dtsi | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > > b/arch/arm/boot/dts/imx6ull-colibri.dtsi index 577a424b0e1d..feb1fcd9a684
-> > > 100644
-> > > --- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > > +++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > > @@ -24,6 +24,13 @@ backlight: backlight {
-> > >  		status = "okay";
-> > >  	};
-> > > 
-> > > +	extcon_usbc_det: usbc-det {
-> > > +		compatible = "linux,extcon-usb-gpio";
-> > > +		id-gpio = <&gpio5 2 GPIO_ACTIVE_HIGH>; /* SODIMM 137 / 
-> > USBC_DET */
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&pinctrl_snvs_usbc_det>;
-> > > +	};
-> > > +
-> > >  	gpio-keys {
-> > >  		compatible = "gpio-keys";
-> > >  		pinctrl-names = "default";
-> > > @@ -275,6 +282,7 @@ &uart5 {
-> > >  /* Colibri USBC */
-> > >  &usbotg1 {
-> > >  	dr_mode = "otg";
-> > > +	extcon = <&extcon_usbc_det>, <&extcon_usbc_det>;
-> > 
-> > How came you up with this double entries? Is there some documentation you need 
-> > two phandles?
-> 
-> extcon-usb-gpio provides both vbus/otg_id with a single handle, however
-> the integration in chipidea is somehow weird, the first entry is supposed to be
-> used to read the vbus, the second one to read the otg_id.
-> 
-> So if you need to read both you really need to have the handle twice ...
+Hi Krzysztof,
 
-Thanks for the input, Francesco!
+Thank you for your review!
 
-Philippe,
+On Thu, Nov 10, 2022 at 10:31 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/11/2022 14:36, Zhe Wang wrote:
+> > From: Zhe Wang <zhe.wang1@unisoc.com>
+> >
+> > Add driver code for Unisoc ufs host controller, along with ufs
+> > initialization.
+>
+> (...)
+>
+> > +
+> > +static struct platform_driver ufs_sprd_pltform = {
+> > +     .probe = ufs_sprd_probe,
+> > +     .remove = ufs_sprd_remove,
+> > +     .shutdown = ufshcd_pltfrm_shutdown,
+> > +     .driver = {
+> > +             .name = "ufshcd-sprd",
+> > +             .pm = &ufs_sprd_pm_ops,
+> > +             .of_match_table = of_match_ptr(ufs_sprd_of_match),
+>
+> Drop of_match_ptr
+>
 
-Do you consider to use usb-role-switch as suggested by Alexander,
-considering the weirdness of how chipidea driver supports extcon-usb-gpio?
+I'll drop this.
 
-Shawn
+> > +     },
+> > +};
+> > +module_platform_driver(ufs_sprd_pltform);
+> > +
+> > +MODULE_AUTHOR("Zhe Wang <zhe.wang1@unisoc.com>");
+> > +MODULE_DESCRIPTION("Unisoc UFS Host Driver");
+> > +MODULE_LICENSE("GPL v2");
+> > diff --git a/drivers/ufs/host/ufs-sprd.h b/drivers/ufs/host/ufs-sprd.h
+> > new file mode 100644
+> > index 000000000000..215e7483d1e8
+> > --- /dev/null
+> > +++ b/drivers/ufs/host/ufs-sprd.h
+> > @@ -0,0 +1,125 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * UNISOC UFS Host Controller driver
+> > + *
+> > + * Copyright (C) 2022 Unisoc, Inc.
+> > + * Author: Zhe Wang <zhe.wang1@unisoc.com>
+> > + */
+> > +
+> > +#ifndef _UFS_SPRD_H_
+> > +#define _UFS_SPRD_H_
+> > +
+> > +#define APB_UFSDEV_REG               0xCE8
+> > +#define APB_UFSDEV_REFCLK_EN 0x2
+> > +#define APB_USB31PLL_CTRL    0xCFC
+> > +#define APB_USB31PLLV_REF2MPHY       0x1
+> > +
+> > +#define SPRD_SIP_SVC_STORAGE_UFS_CRYPTO_ENABLE                               \
+> > +     ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,                         \
+> > +                        ARM_SMCCC_SMC_32,                            \
+> > +                        ARM_SMCCC_OWNER_SIP,                         \
+> > +                        0x0301)
+> > +
+> > +enum SPRD_UFS_CLK_INDEX {
+> > +     SPRD_UFS_HCLK,
+> > +     SPRD_UFS_HCLK_SOURCE,
+> > +
+> > +     SPRD_UFS_CLK_MAX
+> > +};
+> > +
+> > +enum SPRD_UFS_RST_INDEX {
+> > +     SPRD_UFSHCI_SOFT_RST,
+> > +     SPRD_UFS_DEV_RST,
+> > +
+> > +     SPRD_UFS_RST_MAX
+> > +};
+> > +
+> > +enum SPRD_UFS_SYSCON_INDEX {
+> > +     SPRD_UFS_ANLG_REG,
+> > +     SPRD_UFS_AON_APB,
+> > +
+> > +     SPRD_UFS_SYSCON_MAX
+> > +};
+> > +
+> > +enum SPRD_UFS_VREG_INDEX {
+> > +     SPRD_UFS_VDD_MPHY,
+> > +
+> > +     SPRD_UFS_VREG_MAX
+> > +};
+> > +
+> > +struct ufs_sprd_clk {
+> > +     const char *name;
+> > +     struct clk *clk;
+> > +};
+> > +
+> > +struct ufs_sprd_rst {
+> > +     const char *name;
+> > +     struct reset_control *rc;
+> > +};
+> > +
+> > +struct ufs_sprd_syscon {
+> > +     const char *name;
+> > +     struct regmap *regmap;
+> > +};
+> > +
+> > +struct ufs_sprd_vreg {
+> > +     const char *name;
+> > +     struct regulator *vreg;
+> > +};
+> > +
+> > +struct ufs_sprd_priv {
+> > +     struct ufs_sprd_clk clki[SPRD_UFS_CLK_MAX];
+> > +     struct ufs_sprd_rst rci[SPRD_UFS_RST_MAX];
+> > +     struct ufs_sprd_syscon sysci[SPRD_UFS_SYSCON_MAX];
+> > +     struct ufs_sprd_vreg vregi[SPRD_UFS_VREG_MAX];
+> > +     const struct ufs_hba_variant_ops ufs_hba_sprd_vops;
+> > +};
+> > +
+> > +struct ufs_sprd_host {
+> > +     struct ufs_hba *hba;
+> > +     struct ufs_sprd_priv *priv;
+> > +     void __iomem *ufs_dbg_mmio;
+> > +
+> > +     enum ufs_unipro_ver unipro_ver;
+> > +};
+> > +
+> > +static inline struct ufs_sprd_priv *ufs_sprd_get_priv_data(struct ufs_hba *hba)
+> > +{
+> > +     struct ufs_sprd_host *host = ufshcd_get_variant(hba);
+> > +
+> > +     WARN_ON(!host->priv);
+> > +     return host->priv;
+> > +}
+> > +
+> > +static inline void ufs_sprd_regmap_update(struct ufs_sprd_priv *priv, unsigned int index,
+> > +             unsigned int reg, unsigned int bits,  unsigned int val)
+> > +{
+> > +     regmap_update_bits(priv->sysci[index].regmap, reg, bits, val);
+> > +}
+> > +
+> > +static inline void ufs_sprd_regmap_read(struct ufs_sprd_priv *priv, unsigned int index,
+> > +             unsigned int reg, unsigned int *val)
+> > +{
+> > +     regmap_read(priv->sysci[index].regmap, reg, val);
+> > +}
+> > +
+> > +static inline void ufs_sprd_get_unipro_ver(struct ufs_hba *hba)
+> > +{
+> > +     struct ufs_sprd_host *host = ufshcd_get_variant(hba);
+> > +
+> > +     if (ufshcd_dme_get(hba, UIC_ARG_MIB(PA_LOCALVERINFO), &host->unipro_ver))
+> > +             host->unipro_ver = 0;
+> > +}
+> > +
+> > +static inline void ufs_sprd_ctrl_uic_compl(struct ufs_hba *hba, bool enable)
+> > +{
+> > +     u32 set = ufshcd_readl(hba, REG_INTERRUPT_ENABLE);
+> > +
+> > +     if (enable == true)
+> > +             set |= UIC_COMMAND_COMPL;
+> > +     else
+> > +             set &= ~UIC_COMMAND_COMPL;
+> > +     ufshcd_writel(hba, set, REG_INTERRUPT_ENABLE);
+> > +}
+>
+> Drop functions from headers. These are not stubs and your task is not to
+> micro-optimize code.
+>
+
+Will move these functions to c file.
+
+Best regards,
+Zhe Wang
+
+> > +
+> > +#endif /* _UFS_SPRD_H_ */
+>
+> Best regards,
+> Krzysztof
+>
