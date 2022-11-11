@@ -2,118 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D32DA625AC3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 13:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4227F625AD2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 14:00:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbiKKM57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 07:57:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59966 "EHLO
+        id S233256AbiKKNAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 08:00:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232851AbiKKM56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 07:57:58 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C457C8F0;
-        Fri, 11 Nov 2022 04:57:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCEF461FB0;
-        Fri, 11 Nov 2022 12:57:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E697C433D6;
-        Fri, 11 Nov 2022 12:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668171475;
-        bh=zwR2CVETYVKkhlVS2uKhYwwfZN8Fws7SwH+daDdD7Q0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o6Hc3y/dSgnkCRu5sF+3+R1DG4UiTP6y1TS1S68pMerhilYcO9WRKyr16tCVpYuqm
-         RZpKJPWmk122BX/lVxLXQVHKMCjXydkTJL/OvUDyA7PiFwUnKSiDbAO8GPfc7iFCP6
-         DyVe29q/MGMMF5WoUjXD10vdjxrdPc/lMfe8j7vuWmr+pSWyw5DeDaOd+WK+a/MT1G
-         I6RAXsZLwmL5rF1tzlPNAhCeG0unjbPPKMySl+Prn7OLvQ5U1QVB07LtvPT25xV8bB
-         2V21njP6uSaGbZLZgi4zzIDhq2TUDDgIHIO+1ve2TDfBC2ebu9uZ3g9PMoY+cizfgh
-         7vZPk5K+MTNcA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1otTb5-00012W-8l; Fri, 11 Nov 2022 13:57:27 +0100
-Date:   Fri, 11 Nov 2022 13:57:27 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/4] soc: qcom: pmic_glink: Introduce base PMIC GLINK
- driver
-Message-ID: <Y25Gtwaws9wDU4a+@hovoldconsulting.com>
-References: <20220818031512.319310-1-bjorn.andersson@linaro.org>
- <20220818031512.319310-3-bjorn.andersson@linaro.org>
+        with ESMTP id S230270AbiKKNAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 08:00:19 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CBC2E9FC;
+        Fri, 11 Nov 2022 05:00:18 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ABAb9V2005866;
+        Fri, 11 Nov 2022 07:00:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=/60KnAr5FUsJ8zQZvJ+hZGIs6XC9AeBNG9RBS6yfGWg=;
+ b=WCHkpjpJnoqnfiNP/terOoASQ98PNJon0nbCrOLvU8XUg7XM//n0PXYPzLmKs0Mpwk27
+ s3SmZzrU5lEp7IhYG2SJexDy+6GoIPA4Ogjw/r5Gs8bBnpenuNy4kvbC519uI/kQJ+B+
+ ut0+7fck4Ph5oYJDR8twZQILQ573kNJcgDMHm3O1Qbtna+VoquXffOgfNLb2bgc6ni2t
+ kM7vyljPbMHgLba4ugWqKshNzCtewT9t88S3/NPfVIZP1kiMUnWH1bFnixsuZQJtSHfQ
+ UoKQHNjPv0Q2dCEs258NPa69RAG8wi1qfv++1bKixP14t7Yaw6nt/6tr1bcSCjXA9G/e uA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3knm8pgh6g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 07:00:02 -0600
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Fri, 11 Nov
+ 2022 07:00:01 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.15 via Frontend
+ Transport; Fri, 11 Nov 2022 07:00:01 -0600
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E97BE46B;
+        Fri, 11 Nov 2022 13:00:00 +0000 (UTC)
+Date:   Fri, 11 Nov 2022 13:00:00 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <tglx@linutronix.de>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
+ CS48L31/32/33 codecs
+Message-ID: <20221111130000.GI10437@ediswmail.ad.cirrus.com>
+References: <87mt8zutib.wl-maz@kernel.org>
+ <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+ <86pmdvow5y.wl-maz@kernel.org>
+ <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+ <86k042q1uc.wl-maz@kernel.org>
+ <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+ <87iljmve87.wl-maz@kernel.org>
+ <Y21gwGDb5CFft0kp@sirena.org.uk>
+ <87h6z5vs39.wl-maz@kernel.org>
+ <20221111111611.GH10437@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220818031512.319310-3-bjorn.andersson@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221111111611.GH10437@ediswmail.ad.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: FJ2KJtnO5BhYskYK5Gg9AMPrnOAunrsX
+X-Proofpoint-GUID: FJ2KJtnO5BhYskYK5Gg9AMPrnOAunrsX
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[ Resending to Bjorn's current address. ]
-
-On Wed, Aug 17, 2022 at 08:15:10PM -0700, Bjorn Andersson wrote:
-> The PMIC GLINK service runs on one of the co-processors of some modern
-> Qualcomm platforms and implements USB-C and battery managements. It uses
-> a message based protocol over GLINK for communication with the OS, hence
-> the name.
+On Fri, Nov 11, 2022 at 11:16:11AM +0000, Charles Keepax wrote:
+> On Fri, Nov 11, 2022 at 08:00:10AM +0000, Marc Zyngier wrote:
+> > On Thu, 10 Nov 2022 20:36:16 +0000,
+> > Mark Brown <broonie@kernel.org> wrote:
+> > > On Thu, Nov 10, 2022 at 06:47:20PM +0000, Marc Zyngier wrote:
+> The interrupt-parent points at who our IRQ is connected to, and
+> we are an interrupt-controller so people can use our IRQs. I
+> think it is not currently supported to have more than a single
+> interrupt-parent for a device so with the current binding is it
+> actually possible for the device to refer to its own IRQs in DT?
 > 
-> The driver implemented provides the rpmsg device for communication and
-> uses auxilirary bus to spawn off individual devices in respsective
-> subsystem. The auxilirary devices are spawned off from a
-> platform_device, so that the drm_bridge is available early, to allow the
-> DisplayPort driver to probe even before the remoteproc has spun up.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  drivers/soc/qcom/Kconfig            |  14 ++
->  drivers/soc/qcom/Makefile           |   1 +
->  drivers/soc/qcom/pmic_glink.c       | 336 ++++++++++++++++++++++++++++
->  include/linux/soc/qcom/pmic_glink.h |  32 +++
->  4 files changed, 383 insertions(+)
->  create mode 100644 drivers/soc/qcom/pmic_glink.c
->  create mode 100644 include/linux/soc/qcom/pmic_glink.h
-> 
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index e0d7a5459562..2289f5e0d5ad 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -91,6 +91,20 @@ config QCOM_PDR_HELPERS
->  	tristate
->  	select QCOM_QMI_HELPERS
->  
-> +config QCOM_PMIC_GLINK
-> +	tristate "Qualcomm PMIC GLINK driver"
-> +	depends on RPMSG
-> +	depends on TYPEC
-> +	depends on DRM
 
-You should add
+I see there is actually interrupts-extended which would let us
+refer to ourselves although its a little unclear to be if that
+would actually work but might be worth a look.
 
-	select AUXILIARY_BUS
-
-here as this driver will not compile without it. Then you can drop the
-corresponding select from the battery driver.
-
-> +	select QCOM_PDR_HELPERS
-> +	help
-> +	  The Qualcomm PMIC GLINK driver provides access, over GLINK, to the
-> +	  USB and battery firmware running on one of the coprocessors in
-> +	  several modern Qualcomm platforms.
-> +
-> +	  Say yes here to support USB-C and battery status on modern Qualcomm
-> +	  platforms.
-
-Johan
+Thanks,
+Charles
