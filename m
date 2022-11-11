@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51586625654
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E17362565E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:14:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232749AbiKKJNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:13:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
+        id S233572AbiKKJOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:14:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232983AbiKKJNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:13:19 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D42E45A02
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:13:18 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id a7-20020a056830008700b0066c82848060so2503861oto.4
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:13:18 -0800 (PST)
+        with ESMTP id S233269AbiKKJOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:14:11 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1532B1CB02
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:14:09 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id v28so4381165pfi.12
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:14:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gN/X/8unuOrS65rHtD9rXGPdXOWlaw7ZGFhl7nDfsaw=;
-        b=iXHKpQeohrBzj7iM8elosui4nYc9mvXc3NFJbiMJ1Y3SEjN9IQXdpPN9e5JY5sz+Cg
-         CTrelxxMAs3/TkoBdb8dxI1z9CrGELc+eiSmSZqFte9O/da5o/fF20LU/mNo8cGylitp
-         gpA6rsVoxXYNLx1UxnqK/5UW2RAg7T478AcJk=
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XMc8vI7zPupIH5NMouyK7zEwaRdl05YzFkjBeaTXwAs=;
+        b=VkaY5AsLYXMb0wlAaHJROmjkzOY/qJyXntdM8NFQHne3OqOCHMXf8Ck14YxHvNwelP
+         +SZUeVCXmP9iw9UhVt84mkTdOu5fCwFeh5B7ql5O47uH9WykeAdERScFSO32M0RgGEkT
+         dyAjDwc+/03BRSZjsfTj1jXYulzXq2v+boQqmmhvXY9p6zCH2ejmlmU08nAO0fZL1jk5
+         gO3WR2eN8+9vUh9t7zCfNjhqfC08+XHPLoeo4Q1DwrWrtZohPICOWHPSXTZrnsD7DEom
+         Q922u4jLiFBHyxJmVi33aJGrFMw6tA1WcT3A3+nFCLzLokQoYUifJMHpyQbfUktXGRbE
+         bsrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gN/X/8unuOrS65rHtD9rXGPdXOWlaw7ZGFhl7nDfsaw=;
-        b=tEBAFw2GvQo0s+DMpkF1zwxbr/q3wKwuNoBxCFDbNxUcLTt9tCsuKYzilRSm9Y9Kg6
-         g5sl9Uocy+LiQD+DP8hH5iB9ZJEKfDsx8TDUWtH9BWFOT4iMcIpDa5hWafC4eD+A3KSQ
-         lQgPsD3p68niocIb1yXDdH/b2l3yB9pLG4392ix2TlppUxk69Xm8SvU6rsrL5CbFlxkt
-         1yrcHQFCnz3sHgrD+FgHfDBON/uadKFYgDPnr+BfHAh8zw3LJ6MPxi4A91S7CG3Xf6mV
-         646PHuGs5ue5U3ffITJieaTDbdT4xzRVOIcL2BlHqeyZDCkN0LNp3egQfPBjqBZWaT8o
-         LiqA==
-X-Gm-Message-State: ANoB5pnMW9KPlXHTHgtNwCNY3oqtRhkMuxlBio+M/fhWWFh/0nnFimaI
-        8Lq2afQ7Abwmi5HtuU5wg2eSKHdIayuYp2FoCoA7
-X-Google-Smtp-Source: AA0mqf6cgeirpbChUYorXOIKtG0SM+++yMgeoakP+SJLtNyRb1F2xHcc1V/xgRbQGUYVk3cOX0KMX0vkFY492Y2PcFk=
-X-Received: by 2002:a05:6830:1443:b0:66d:1e19:684b with SMTP id
- w3-20020a056830144300b0066d1e19684bmr809251otp.44.1668157997464; Fri, 11 Nov
- 2022 01:13:17 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XMc8vI7zPupIH5NMouyK7zEwaRdl05YzFkjBeaTXwAs=;
+        b=YGpLhK13A0sj5huDctNzOwOXBaeNRDFim+oasGh53r293hEaWgAYYpiq6I9bFsUtUf
+         n5MpeFXS5mb0Me659dQ139XFHonsKSWQyeckVLMM+9eO6S+gma1NW5DAgsOvhdnHC/C4
+         Z5v05ofNBw6pZkpfRnNdvnLp32Y7hYffoZj4PJrM7ya0x83UM6ESMVTTFWYik7RHRqoO
+         MrDZZn1ZKZPV202C0I2Q6XQjmp9jYrHm2mHWl5xE53M+TPJ+A286QDSpMP9TtUmS+Gyi
+         GzgWrSKsYIuzZ3DVxTOMk8Zu++MYV5Wh9YDznbg33P1fz4gEIUOzXPLajYrn4iqgK4F8
+         ZUDA==
+X-Gm-Message-State: ANoB5pnYWpy3VvSoNulvP6D2lmPh1kfVvOgS7gTfLK1DyrCW2j9s5fgY
+        nzGNassXAfr+WIxrrrW05CYu3ldb+dWL+Q==
+X-Google-Smtp-Source: AA0mqf4j//T+50H849o2X6we+9B/8/KWeod28ayuSO03WgwbyHOZw13Kw4IT7cxaJhSSzSXUPhU4Nw==
+X-Received: by 2002:a63:4759:0:b0:46e:ca75:a5f1 with SMTP id w25-20020a634759000000b0046eca75a5f1mr891201pgk.161.1668158048484;
+        Fri, 11 Nov 2022 01:14:08 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
+        by smtp.gmail.com with ESMTPSA id x21-20020a170902ea9500b001753654d9c5sm1175501plb.95.2022.11.11.01.14.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 01:14:07 -0800 (PST)
+Message-ID: <f5e5a2d3-d985-f351-78e0-8a479a6d896a@9elements.com>
+Date:   Fri, 11 Nov 2022 14:44:06 +0530
 MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com> <CAOnJCULbRSSjYvQP_2bysj1jd0_ywNjQ+gH7eteU7uJWZZ2KiQ@mail.gmail.com>
-In-Reply-To: <CAOnJCULbRSSjYvQP_2bysj1jd0_ywNjQ+gH7eteU7uJWZZ2KiQ@mail.gmail.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Fri, 11 Nov 2022 01:13:06 -0800
-Message-ID: <CAOnJCUL-FzBuaZmTT+1ybmj_PgZ_8AwD-eCX76X56YAuTH1gBQ@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Linux RISC-V AIA Support
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v8 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221103213425.2474772-1-Naresh.Solanki@9elements.com>
+ <20221103213425.2474772-3-Naresh.Solanki@9elements.com>
+ <Y2jRm2J4tvK5ET1e@google.com>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <Y2jRm2J4tvK5ET1e@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,154 +76,360 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 1:07 AM Atish Patra <atishp@atishpatra.org> wrote:
->
-> On Thu, Nov 10, 2022 at 8:42 PM Anup Patel <apatel@ventanamicro.com> wrote:
-> >
-> > The RISC-V AIA specification is now frozen as-per the RISC-V international
-> > process. The latest frozen specifcation can be found at:
-> > https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interrupts-1.0-RC1.pdf
-> >
-> > At a high-level, the AIA specification adds three things:
-> > 1) AIA CSRs
-> >    - Improved local interrupt support
-> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
-> >    - Per-HART MSI controller
-> >    - Support MSI virtualization
-> >    - Support IPI along with virtualization
-> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
-> >    - Wired interrupt controller
-> >    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
-> >    - In Direct-mode, injects external interrupts directly into HARTs
-> >
-> > For an overview of the AIA specification, refer the recent AIA virtualization
-> > talk at KVM Forum 2022:
-> > https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
-> > https://www.youtube.com/watch?v=r071dL8Z0yo
-> >
-> > This series adds required Linux irqchip drivers for AIA and it depends on
-> > the recent "RISC-V IPI Improvements".
-> > (Refer, https://lore.kernel.org/lkml/20221101143400.690000-1-apatel@ventanamicro.com/t/)
-> >
-> > To test this series, use QEMU v7.1 (or higher) and OpenSBI v1.1 (or higher).
-> >
-> > These patches can also be found in the riscv_aia_v1 branch at:
-> > https://github.com/avpatel/linux.git
-> >
-> > Anup Patel (9):
-> >   RISC-V: Add AIA related CSR defines
-> >   RISC-V: Detect AIA CSRs from ISA string
-> >   irqchip/riscv-intc: Add support for RISC-V AIA
-> >   dt-bindings: Add RISC-V incoming MSI controller bindings
-> >   irqchip: Add RISC-V incoming MSI controller driver
-> >   dt-bindings: Add RISC-V advanced PLIC bindings
-> >   irqchip: Add RISC-V advanced PLIC driver
-> >   RISC-V: Select APLIC and IMSIC drivers for QEMU virt machine
-> >   MAINTAINERS: Add entry for RISC-V AIA drivers
-> >
-> >  .../interrupt-controller/riscv,aplic.yaml     |  136 ++
-> >  .../interrupt-controller/riscv,imsic.yaml     |  174 +++
-> >  MAINTAINERS                                   |   12 +
-> >  arch/riscv/Kconfig.socs                       |    2 +
-> >  arch/riscv/include/asm/csr.h                  |   92 ++
-> >  arch/riscv/include/asm/hwcap.h                |    8 +
-> >  arch/riscv/kernel/cpu.c                       |    2 +
-> >  arch/riscv/kernel/cpufeature.c                |    2 +
-> >  drivers/irqchip/Kconfig                       |   32 +-
-> >  drivers/irqchip/Makefile                      |    2 +
-> >  drivers/irqchip/irq-riscv-aplic.c             |  656 +++++++++
-> >  drivers/irqchip/irq-riscv-imsic.c             | 1207 +++++++++++++++++
-> >  drivers/irqchip/irq-riscv-intc.c              |   37 +-
-> >  include/linux/irqchip/riscv-aplic.h           |  117 ++
-> >  include/linux/irqchip/riscv-imsic.h           |   92 ++
-> >  15 files changed, 2564 insertions(+), 7 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> >  create mode 100644 drivers/irqchip/irq-riscv-aplic.c
-> >  create mode 100644 drivers/irqchip/irq-riscv-imsic.c
-> >  create mode 100644 include/linux/irqchip/riscv-aplic.h
-> >  create mode 100644 include/linux/irqchip/riscv-imsic.h
-> >
-> > --
-> > 2.34.1
-> >
->
-> I am seeing the following boot failure with your branch and upstream
-> qemu (tag: v7.2.0-rc0).
-> It seems IPIs are probably not getting delivered after a point. I saw
-> that IPIs are delivered in the same path earlier (via gdb).
->
-> [    0.990152] NET: Registered PF_INET6 protocol family
-> [    1.004885] Segment Routing with IPv6
-> [    1.005385] In-situ OAM (IOAM) with IPv6
-> [    1.006371] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
-> [    1.011609] NET: Registered PF_PACKET protocol family
-> [    1.014877] 9pnet: Installing 9P2000 support
-> [    1.015603] Key type dns_resolver registered
-> [    1.026396] debug_vm_pgtable: [debug_vm_pgtable         ]:
-> Validating architecture page table helpers
-> [    1.144097] EXT4-fs (vda2): recovery complete
-> [    1.146345] EXT4-fs (vda2): mounted filesystem with ordered data
-> mode. Quota mode: disabled.
-> [    1.147020] VFS: Mounted root (ext4 filesystem) on device 254:2.
-> [    1.152238] devtmpfs: mounted
-> [    1.183914] Freeing unused kernel image (initmem) memory: 2176K
-> [    1.185898] Run /sbin/init as init process
-> [   29.412287] rcu: INFO: rcu_sched self-detected stall on CPU
-> [   29.412992] rcu:     3-....: (5250 ticks this GP)
-> idle=fc3c/1/0x4000000000000002 softirq=78/78 fqs=2230
-> [   29.413427]  (t=5251 jiffies g=-1047 q=3 ncpus=8)
-> [   29.414199] CPU: 3 PID: 1 Comm: init Not tainted
-> 6.1.0-rc4-00024-g5b711f2d7b91 #198
-> [   29.414578] Hardware name: riscv-virtio,qemu (DT)
-> [   29.414896] epc : smp_call_function_many_cond+0x138/0x372
-> [   29.415157]  ra : smp_call_function_many_cond+0x154/0x372
-> [   29.415318] epc : ffffffff8008d2e6 ra : ffffffff8008d302 sp :
-> ff2000000004bb40
-> [   29.415512]  gp : ffffffff812e9eb0 tp : ff600000016d8000 t0 :
-> ff6000007ed88610
-> [   29.415686]  t1 : 00000000000000ff t2 : 0000000000000002 s0 :
-> ff2000000004bc00
-> [   29.415837]  s1 : ff6000007ed85448 a0 : 0000000000000007 a1 :
-> 00000000000000f7
-> [   29.416008]  a2 : 0000000000000000 a3 : 0000000000000000 a4 :
-> ff6000007edd1780
-> [   29.416188]  a5 : 0000000000000001 a6 : ffffffff812eb1c0 a7 :
-> ff600000016d8000
-> [   29.416613]  s2 : ffffffff81323c30 s3 : ffffffff812e9964 s4 :
-> 0000000000000000
-> [   29.416810]  s5 : 0000000000000000 s6 : ff6000007ed85440 s7 :
-> 0000000000000038
-> [   29.416997]  s8 : 0000000000000003 s9 : ffffffff81323c30 s10:
-> ff6000007ed85448
-> [   29.417159]  s11: 0000000000000008 t3 : 00ffffffad08a000 t4 :
-> ff60000001613e0c
-> [   29.417331]  t5 : 0000000000000000 t6 : 00ffffffad177fff
-> [   29.417482] status: 0000000200000120 badaddr: 0000000000000000
-> cause: 8000000000000005
-> [   29.417939] [<ffffffff8008d590>] on_each_cpu_cond_mask+0x20/0x32
-> [   29.418179] [<ffffffff80008d32>] flush_icache_all+0x38/0x40
-> [   29.418324] [<ffffffff80008eb2>] flush_icache_pte+0x4a/0x7a
-> [   29.418442] [<ffffffff80139e00>] do_set_pte+0x132/0x192
-> [   29.418594] [<ffffffff8010b42e>] filemap_map_pages+0x178/0x3a0
-> [   29.418738] [<ffffffff8013ad00>] __handle_mm_fault+0x992/0xbac
-> [   29.418876] [<ffffffff8013afde>] handle_mm_fault+0xc4/0x1d4
-> [   29.419010] [<ffffffff80008372>] do_page_fault+0x120/0x326
-> [   29.419145] [<ffffffff800033e6>] ret_from_exception+0x0/0xc
->
->
+Hi Lee
 
-Sorry. I forgot to mention that this happens while booting Fedora on
-an 8 cpu virt machine.
-I am yet to reproduce this issue for 4 or 2 cpus.
-
->
-> --
-> Regards,
-> Atish
-
-
-
--- 
-Regards,
-Atish
+On 07-11-2022 03:06 pm, Lee Jones wrote:
+> On Thu, 03 Nov 2022, Naresh Solanki wrote:
+> 
+>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>
+>> Implement a regulator driver with IRQ support for fault management.
+> 
+> This is not a "regulator driver".
+> 
+>> Written against documentation [1] and [2] and tested on real hardware.
+>>
+>> Every channel has its own regulator supplies nammed 'vss1-supply' and
+>> 'vss2-supply'. The regulator supply is used to determine the output
+>> voltage, as the smart switch provides no output regulation.
+>> The driver requires the 'shunt-resistor-micro-ohms' property to be
+>> present in Device Tree to properly calculate current related
+>> values.
+>>
+>> Datasheet links:
+>> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+>> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+>>
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> 
+> Can you explain these tags to me please?
+> 
+> Patrick wrote it.  Then what happened?
+> 
+Yes Its written by Patrick & Marcello.
+>> ---
+>>   drivers/mfd/Kconfig         |  12 +++++
+>>   drivers/mfd/Makefile        |   1 +
+>>   drivers/mfd/max597x.c       |  92 ++++++++++++++++++++++++++++++++
+>>   include/linux/mfd/max597x.h | 103 ++++++++++++++++++++++++++++++++++++
+>>   4 files changed, 208 insertions(+)
+>>   create mode 100644 drivers/mfd/max597x.c
+>>   create mode 100644 include/linux/mfd/max597x.h
+>>
+>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+>> index 8b93856de432..416fe7986b7b 100644
+>> --- a/drivers/mfd/Kconfig
+>> +++ b/drivers/mfd/Kconfig
+>> @@ -253,6 +253,18 @@ config MFD_MADERA_SPI
+>>   	  Support for the Cirrus Logic Madera platform audio SoC
+>>   	  core functionality controlled via SPI.
+>>   
+>> +config MFD_MAX597X
+>> +	tristate "Maxim 597x Power Switch and Monitor"
+>> +	depends on I2C
+>> +	depends on OF
+>> +	select MFD_CORE
+>> +	select REGMAP_I2C
+>> +	help
+>> +	  This driver controls a Maxim 5970/5978 switch via I2C bus.
+>> +	  The MAX5970/5978 is a smart switch with no output regulation, but
+>> +	  fault protection and voltage and current monitoring capabilities.
+>> +	  Also it supports upto 4 indication LEDs.
+>> +
+>>   config MFD_CS47L15
+>>   	bool "Cirrus Logic CS47L15"
+>>   	select PINCTRL_CS47L15
+>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+>> index 7ed3ef4a698c..819d711fa748 100644
+>> --- a/drivers/mfd/Makefile
+>> +++ b/drivers/mfd/Makefile
+>> @@ -161,6 +161,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
+>>   obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
+>>   
+>>   obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
+>> +obj-$(CONFIG_MFD_MAX597X)	+= max597x.o
+>>   obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
+>>   obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
+>>   obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
+>> diff --git a/drivers/mfd/max597x.c b/drivers/mfd/max597x.c
+>> new file mode 100644
+>> index 000000000000..2c64edb6b6dd
+>> --- /dev/null
+>> +++ b/drivers/mfd/max597x.c
+>> @@ -0,0 +1,92 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Maxim MAX5970/MAX5978 MFD Driver
+> 
+> Please drop "MFD Driver" and replace it with what it does.
+> 
+> "Power Switch and Monitor"?
+> 
+Yes. that makes more sense. sure.
+>> + * Copyright (c) 2022 9elements GmbH
+>> + *
+>> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/mfd/core.h>
+>> +#include <linux/mfd/max597x.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +static const struct regmap_config max597x_regmap_config = {
+>> +	.reg_bits = 8,
+>> +	.val_bits = 8,
+>> +	.max_register = MAX_REGISTERS,
+>> +};
+>> +
+>> +static const struct mfd_cell max597x_cells[] = {
+>> +	{ .name = "max597x-regulator", },
+>> +	{ .name = "max597x-iio", },
+>> +	{ .name = "max597x-led", },
+>> +};
+>> +
+>> +static int max597x_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+>> +{
+>> +	struct max597x_data *ddata;
+>> +	enum max597x_chip_type chip = id->driver_data;
+>> +
+>> +	ddata = devm_kzalloc(&i2c->dev, sizeof(*ddata),	GFP_KERNEL);
+>> +	if (!ddata)
+>> +		return -ENOMEM;
+>> +
+>> +	/* Initialize num of switch based on chip type for later use by regulator
+>> +	 * & iio cells
+>> +	 */
+> 
+> Please use proper multi-line comment structure.
+> 
+> Also use proper words, unlike 'num'.
+> 
+> In fact, it looks like this whole comment could do with some love.
+> 
+Done.
+>> +	switch (chip) {
+>> +	case MAX597x_TYPE_MAX5970:
+>> +		ddata->num_switches = MAX5970_NUM_SWITCHES;
+>> +		break;
+>> +	case MAX597x_TYPE_MAX5978:
+>> +		ddata->num_switches = MAX5978_NUM_SWITCHES;
+>> +		break;
+>> +	}
+>> +
+>> +	ddata->regmap = devm_regmap_init_i2c(i2c, &max597x_regmap_config);
+>> +	if (IS_ERR(ddata->regmap)) {
+>> +		dev_err(&i2c->dev, "Failed to initialise regmap");
+> 
+> Are you using American spelling or English?
+> 
+> Please make up your mind and be consistent.
+> 
+Sure
+>> +		return -EINVAL;
+> 
+> Shouldn't you be propagating the error you received?
+> 
+Yes. Will update in next version.
+>> +	}
+>> +
+>> +	/* IRQ used by regulator cell */
+> 
+> What IRQ is this?  Does it have a name?
+>Its is VR fault status update related irq.
+> If it's only used in Regulator, why not fetch it there?
+> >> +	ddata->irq = i2c->irq;
+>> +	ddata->dev = &i2c->dev;
+> 
+> You should already have access to the Driver, else how are you going
+> to fetch the data back in the first place?
+> 
+>> +	i2c_set_clientdata(i2c, ddata);
+>> +
+>> +	return devm_mfd_add_devices(ddata->dev, PLATFORM_DEVID_AUTO,
+>> +				    max597x_cells, ARRAY_SIZE(max597x_cells),
+>> +				    NULL, 0, NULL);
+>> +}
+>> +
+>> +static const struct i2c_device_id max597x_table[] = {
+>> +	{ .name = "max5970", MAX597x_TYPE_MAX5970 },
+>> +	{ .name = "max5978", MAX597x_TYPE_MAX5978 },
+> 
+> You don't need ".name = ".
+> 
+>> +};
+>> +
+>> +MODULE_DEVICE_TABLE(i2c, max597x_table);
+>> +
+>> +static const struct of_device_id max597x_of_match[] = {
+>> +	{ .compatible = "maxim,max5970", .data = (void *)MAX597x_TYPE_MAX5970 },
+>> +	{ .compatible = "maxim,max5978", .data = (void *)MAX597x_TYPE_MAX5978 },
+> 
+> Where is .data used?
+The .data isn't used.
+> 
+>> +	{ /* sentinel */ }
+> > Drop the comment.  We know what a NULL entry means.
+Sure.
+> 
+>> +};
+>> +
+>> +MODULE_DEVICE_TABLE(of, max597x_of_match);
+>> +
+>> +static struct i2c_driver max597x_driver = {
+>> +	.id_table = max597x_table,
+>> +	.driver = {
+>> +		.name = "max597x",
+>> +		.of_match_table = of_match_ptr(max597x_of_match),
+>> +		},
+> 
+> Tabbing error.
+Fixed Will be in next version.
+> 
+>> +	.probe = max597x_probe,
+>> +};
+>> +
+> 
+> Remove this line.
+Sure.
+> 
+>> +module_i2c_driver(max597x_driver);
+>> +
+>> +MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
+>> +MODULE_DESCRIPTION("MAX597X Power Switch and Monitor");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/include/linux/mfd/max597x.h b/include/linux/mfd/max597x.h
+>> new file mode 100644
+>> index 000000000000..f88a57f0e4f2
+>> --- /dev/null
+>> +++ b/include/linux/mfd/max597x.h
+>> @@ -0,0 +1,103 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Maxim MAX5970/MAX5978 MFD Driver
+> 
+> Same here.
+> 
+>> + * Copyright (c) 2022 9elements GmbH
+>> + *
+>> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> + */
+>> +
+>> +#ifndef MFD_MAX597X_H
+>> +#define MFD_MAX597X_H
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +/* Number of switch based on chip variant */
+> 
+> This comment is superfluous.
+You mean this comment should be removed ?
+> 
+>> +#define MAX5970_NUM_SWITCHES 2
+>> +#define MAX5978_NUM_SWITCHES 1
+>> +/* Both chip variant have 4 indication LEDs used by LED cell */
+> 
+> Here too I think.
+> 
+>> +#define MAX597X_NUM_LEDS     4
+>> +
+>> +enum max597x_chip_type {
+>> +	MAX597x_TYPE_MAX5978 = 1,
+> 
+> Why 1?
+MAX5978 & single power switch wheres MAX5970 has two.
+> 
+>> +	MAX597x_TYPE_MAX5970,
+>> +};
+>> +
+>> +#define MAX5970_REG_CURRENT_L(ch)		(0x01 + (ch) * 4)
+>> +#define MAX5970_REG_CURRENT_H(ch)		(0x00 + (ch) * 4)
+>> +#define MAX5970_REG_VOLTAGE_L(ch)		(0x03 + (ch) * 4)
+>> +#define MAX5970_REG_VOLTAGE_H(ch)		(0x02 + (ch) * 4)
+>> +#define MAX5970_REG_MON_RANGE			0x18
+>> +#define  MAX5970_MON_MASK				0x3
+>> +#define  MAX5970_MON(reg, ch)		(((reg) >> ((ch) * 2)) & MAX5970_MON_MASK)
+>> +#define  MAX5970_MON_MAX_RANGE_UV		16000000
+>> +
+>> +#define MAX5970_REG_CH_UV_WARN_H(ch)	(0x1A + (ch) * 10)
+>> +#define MAX5970_REG_CH_UV_WARN_L(ch)	(0x1B + (ch) * 10)
+>> +#define MAX5970_REG_CH_UV_CRIT_H(ch)	(0x1C + (ch) * 10)
+>> +#define MAX5970_REG_CH_UV_CRIT_L(ch)	(0x1D + (ch) * 10)
+>> +#define MAX5970_REG_CH_OV_WARN_H(ch)	(0x1E + (ch) * 10)
+>> +#define MAX5970_REG_CH_OV_WARN_L(ch)	(0x1F + (ch) * 10)
+>> +#define MAX5970_REG_CH_OV_CRIT_H(ch)	(0x20 + (ch) * 10)
+>> +#define MAX5970_REG_CH_OV_CRIT_L(ch)	(0x21 + (ch) * 10)
+>> +
+>> +#define  MAX5970_VAL2REG_H(x)			(((x) >> 2) & 0xFF)
+>> +#define  MAX5970_VAL2REG_L(x)			((x) & 0x3)
+>> +
+>> +#define MAX5970_REG_DAC_FAST(ch)		(0x2E + (ch))
+>> +
+>> +#define MAX5970_FAST2SLOW_RATIO			200
+>> +
+>> +#define MAX5970_REG_STATUS0				0x31
+>> +#define  MAX5970_CB_IFAULTF(ch)			(1 << (ch))
+>> +#define  MAX5970_CB_IFAULTS(ch)			(1 << ((ch) + 4))
+>> +
+>> +#define MAX5970_REG_STATUS1				0x32
+>> +#define  STATUS1_PROT_MASK				0x3
+>> +#define  STATUS1_PROT(reg) \
+>> +	(((reg) >> 6) & STATUS1_PROT_MASK)
+>> +#define  STATUS1_PROT_SHUTDOWN			0
+>> +#define  STATUS1_PROT_CLEAR_PG			1
+>> +#define  STATUS1_PROT_ALERT_ONLY		2
+>> +
+>> +#define MAX5970_REG_STATUS2				0x33
+>> +#define  MAX5970_IRNG_MASK				0x3
+>> +#define  MAX5970_IRNG(reg, ch)	\
+>> +						(((reg) >> ((ch) * 2)) & MAX5970_IRNG_MASK)
+>> +
+>> +#define MAX5970_REG_STATUS3				0x34
+>> +#define  MAX5970_STATUS3_ALERT			BIT(4)
+>> +#define  MAX5970_STATUS3_PG(ch)			BIT(ch)
+>> +
+>> +#define MAX5970_REG_FAULT0				0x35
+>> +#define  UV_STATUS_WARN(ch)				BIT(ch)
+>> +#define  UV_STATUS_CRIT(ch)				BIT(ch + 4)
+>> +
+>> +#define MAX5970_REG_FAULT1				0x36
+>> +#define  OV_STATUS_WARN(ch)				BIT(ch)
+>> +#define  OV_STATUS_CRIT(ch)				BIT(ch + 4)
+>> +
+>> +#define MAX5970_REG_FAULT2				0x37
+>> +#define  OC_STATUS_WARN(ch)				BIT(ch)
+>> +
+>> +#define MAX5970_REG_CHXEN				0x3b
+>> +#define  CHXEN(ch)						(3 << (ch * 2))
+>> +
+>> +#define MAX5970_REG_LED_FLASH			0x43
+> 
+> Do these all need to be shared?
+> 
+> Or can they be isolated into, say, the Regulator driver?
+> 
+Shared reg.
+>> +#define MAX_REGISTERS					0x49
+>> +#define ADC_MASK						0x3FF
+>> +
+>> +struct max597x_data {
+>> +	struct device *dev;
+>> +	int irq;
+>> +	int num_switches;
+>> +	struct regmap *regmap;
+>> +	/* Chip specific parameters needed by regulator & iio cells */
+>> +	u32 irng[MAX5970_NUM_SWITCHES];
+>> +	u32 mon_rng[MAX5970_NUM_SWITCHES];
+>> +	u32 shunt_micro_ohms[MAX5970_NUM_SWITCHES];
+>> +};
+>> +
+>> +#endif				/* _MAX597X_H */
+> 
+>                                         This is incorrect and doesn't
+> 				       need to be tabbed out over
+> 				       here.
+> 
+Will update in next version.
