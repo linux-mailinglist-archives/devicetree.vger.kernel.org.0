@@ -2,164 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D5E625329
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F1F625333
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbiKKFmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 00:42:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60730 "EHLO
+        id S232287AbiKKFtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 00:49:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiKKFmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:42:15 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3747742996;
-        Thu, 10 Nov 2022 21:42:12 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8BxGdi04G1jVwUGAA--.17281S3;
-        Fri, 11 Nov 2022 13:42:12 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeCs4G1jrq4QAA--.45491S3;
-        Fri, 11 Nov 2022 13:42:09 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232343AbiKKFtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:49:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68F26F371;
+        Thu, 10 Nov 2022 21:49:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 77F1CB823DD;
+        Fri, 11 Nov 2022 05:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE34C433D6;
+        Fri, 11 Nov 2022 05:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668145745;
+        bh=hU/Yy4eYDYCYpklieod8to4COUTLVXdAA92+1J4XZdk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RX3ISyfDwYghXa2w6ZY0mI9y7mP1oMuySJIeaBAXMyk/zLEu//JlGKeLMpRZ4lUE6
+         NKanGTyVmZS3GQUZ+3JDHEHth++ffOZeoFRENHcNYAkLwa3MFhjTRE24HT9j7B2RHO
+         w3dY7hNEhEMFdTbmQdZvVh0aLfaN/GAokkk+1TqQK/uWj0Qksk2t1IScB7Vv2o5lPT
+         0io3tse8ivqlQIZN6u0aIeiakgTH8GsxdDgCCNrarpZ2ELCD+teKau6USNbfHJnQDC
+         d6auBUrJ4NjqhvJTlMUUtYRvYw5xNfOxuJOlcm4mAlBcqjjxe8gYUDPglc3oTJeDgP
+         jmxiBCr9yD8+w==
+Date:   Fri, 11 Nov 2022 13:48:56 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Peter Chen <peter.chen@kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hector Martin <marcan@marcan.st>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Brian Norris <briannorris@chromium.org>,
-        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 2/2] dt-bindings: soc: add loongson-2 chipid
-Date:   Fri, 11 Nov 2022 13:42:01 +0800
-Message-Id: <20221111054201.18528-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221111054201.18528-1-zhuyinbo@loongson.cn>
-References: <20221111054201.18528-1-zhuyinbo@loongson.cn>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/6] arm64: dts: verdin-imx8mp: usb dual-role
+ switching et. al.
+Message-ID: <20221111054856.GE2649582@dragon>
+References: <20221102131203.35648-1-marcel@ziswiler.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxLeCs4G1jrq4QAA--.45491S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4kJw17CF4UtF4xZwb_yoW5XFyrpa
-        17Cr95GF4Iq3W7uFsxKa4Ik3WFvF93Aa9FqFW2yw15KrWqgw1Fqw1fK3WDuanxur17Jay7
-        uFyS9rW5WF4UCr7anT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Xr0_
-        Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
-        CTnIWIevJa73UjIFyTuYvjxUIdWrDUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221102131203.35648-1-marcel@ziswiler.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 SoC chipid binding with DT schema format using
-json-schema.
+On Wed, Nov 02, 2022 at 02:11:57PM +0100, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> 
+> This series is an assortment of USB dual-role specific commits as
+> follows:
+> 
+> Improvement of pinctrl for vbus-supplies:
+> As we are using two fixed regulators for Verdin USB_1_EN (SODIMM 155)
+> and Verdin USB_2_EN (SODIMM 185), those should be muxed as GPIOs rather
+> than OTG_PWR.
+> 
+> Removal of USB_2 over-current detection disabling:
+> The disable-over-current property is only applicable for the
+> ci-hdrc-usb2 and dwc2 drivers while the i.MX 8M Plus integrates dwc3
+> IP. Therefore remove this property which does not really serve any
+> purpose here.
+> 
+> Addition of USB_1 over-current detection:
+> Add Verdin USB_1 over-current detection functionality via Verdin
+> USB_1_OC# (SODIMM 157) being active-low and removing its previous
+> gpio_hog3 mapping.
+> 
+> Disabling of USB port power controls:
+> Disable port power control on Verdin USB_1/2 as we use regular
+> fixed-regulators with Verdin USB_1/2_EN as enable GPIOs.
+> 
+> Addition of GPIO USB-B connector:
+> Add GPIO USB-B connector (gpio-usb-b-connector) functionality using
+> Verdin USB_1_ID.
+> 
+> Marking USB_2 as permanently attached:
+> As both Dahlia and the Verdin Development Board have on-carrier
+> permanently attached USB hubs mark Verdin USB_2 as such.
+> 
+> Note:
+> Currently, I am still seeing a rare race condition of sorts when booting
+> the system with Verdin USB_1 as a host port with a USB memory stick
+> plugged in. This exact patch series applied on top of NXP's latest
+> downstream 5.15.52_2.1.0 release (together with backporting a few more
+> dwc3-specific patches) actually makes this same use case work very
+> reliably. However, NXP also keeps further downstream-only patches which
+> I plan to further investigate and hopefully upstream a proper fix for
+> soon.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Change in v7:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
-Change in v6:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
-Change in v5:
-		1. Add all history change log information.
-		2. Add reviewed-by information.
-Change in v4:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
-Change in v3:
-		1. Drop "driver" and describe instead what is GUTS, including
-		   its acronym.
-		2. Add desciption about the SoC register.
-		3. Fixup dts node name.
-		4. Replace string loongson2/Loongson2 with loongson-2/Loongson-2
-                   in binding file and commit message.
-Change in v2:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
+Thanks for the noting!
 
- .../bindings/hwinfo/loongson,ls2k-chipid.yaml | 38 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
+> 
+> 
+> Marcel Ziswiler (6):
+>   arm64: dts: verdin-imx8mp: improve pinctrl for vbus-supplies
+>   arm64: dts: verdin-imx8mp: remove usb_2 over-current detection
+>     disabling
+>   arm64: dts: verdin-imx8mp: add usb_1 over-current detection
+>   arm64: dts: verdin-imx8mp: disable usb port power control
+>   arm64: dts: verdin-imx8mp: add gpio usb-b connector
+>   arm64: dts: verdin-imx8mp: dahlia: mark usb_2 permanently attached
 
-diff --git a/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-new file mode 100644
-index 000000000000..9d0c36ec1982
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwinfo/loongson,ls2k-chipid.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC ChipID
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson-2 SoC contains many groups of global utilities register
-+  blocks, of which the ChipID group registers record SoC version,
-+  feature, vendor and id information.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-chipid
-+
-+  reg:
-+    maxItems: 1
-+
-+  little-endian: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    chipid: chipid@1fe00000 {
-+        compatible = "loongson,ls2k-chipid";
-+        reg = <0x1fe00000 0x3ffc>;
-+        little-endian;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 99aa2cb9c80a..0f32f2a614ae 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12048,6 +12048,7 @@ LOONGSON-2 SOC SERIES GUTS DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	loongarch@lists.linux.dev
- S:	Maintained
-+F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
- F:	drivers/soc/loongson/loongson2_guts.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.20.1
-
+Applied all, thanks!
