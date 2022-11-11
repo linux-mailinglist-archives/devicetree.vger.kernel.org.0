@@ -2,135 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD1E6256EC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4746256FC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:40:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233656AbiKKJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52478 "EHLO
+        id S233641AbiKKJkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:40:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233594AbiKKJeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:34:31 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57156327;
-        Fri, 11 Nov 2022 01:34:30 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id y14so11303876ejd.9;
-        Fri, 11 Nov 2022 01:34:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F1O3bjY9wxlNEQJspWtcqXuaUIVH313lCfswZjOyFmo=;
-        b=D91gVRv5exPZsksiOEYOMFtgEfz1NyipCKYsdyceerwR/yXY9cBUgnmyouUsIwkEQD
-         DabMAHBFaR+EqiHrORdmQAlnza7bi6tJnK4Q7z42yVs5kZdP5Uo/DOJyAFUpqMTNwBrz
-         Gl47UZurBbQmZgTVvXm51bIRcgpkI6HPiD3VzGW3tPMKTkBFS28/ZkrNSFsEiQ1XcsxQ
-         wTgkjlmN9HL4nhpjT8wd3JJWaTOvegvPGGu+S8KYT9kzwGS1L35DFDPaQ7dD9T0XM93s
-         QVqkuzGL6R2Nc8QyzHSBZB+rKTD3S86AVQdjTzXu2zw9BXZ6Sc1v2ZuIi6A46CvWRrK9
-         bt7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F1O3bjY9wxlNEQJspWtcqXuaUIVH313lCfswZjOyFmo=;
-        b=zssD7MegXoWN0+2wyriun++vDnlMWCa58BKIKbaW7KDDFox23mF+qVDjGUUQTq4xqe
-         mBLBwWp6YME0zSSMljrY7QJSvEXJheREA3fatblkVK+lCQ6tsbIGB9T/V5xejiz408Dc
-         xzvIbJnOjCyOVo3RgsscSEtZM3eqqdF9Iy2ldWTn5mEVkQ6yhvvgCeByeiHeK3edWfT5
-         lGptvTglXkZYUvbANxA0Ztxo+2TZkQlwzllP0nbtDkKy2RA5ccGxvfO3PLk8arKu8hTi
-         +dR9x9KFrY9ETWTgLQmcyNXuO2dbEWKZKaQT2tJlpeAEsz37xKAKA8IGAChAlk9bWQCP
-         +8Gw==
-X-Gm-Message-State: ANoB5plkjszCCERNVsBNX/X6JQ30Es4YCFflfSz9DjAPAS+qdFXFHkft
-        jDvCIwXsnZI4cfFKGwGDi4rP1hg8FkWx8DLD+MU=
-X-Google-Smtp-Source: AA0mqf5CBblMANBc8SQhkX+jNWhqxIdyXunf3jIQpJ9nbjPPlFLNQocbX8s018JvNDdPkmeuo49lsPGxVIXjM+ajIcc=
-X-Received: by 2002:a17:906:1d08:b0:7a9:ecc1:2bd2 with SMTP id
- n8-20020a1709061d0800b007a9ecc12bd2mr1176222ejh.545.1668159269254; Fri, 11
- Nov 2022 01:34:29 -0800 (PST)
+        with ESMTP id S231167AbiKKJkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:40:13 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 598A0654C9;
+        Fri, 11 Nov 2022 01:40:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0099A61F26;
+        Fri, 11 Nov 2022 09:40:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482D8C433C1;
+        Fri, 11 Nov 2022 09:40:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668159611;
+        bh=oyTBZ13gV8eABN+USBSLXLHgr9cRq7vSHs8d2NKvDGQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bZp7H0gZzw5hdzr3QZX3lql2VyV6mhRI2h5Bm1xk6oYrjL0DU/JUUzA5AyHW1FZ9K
+         +Lzg9yDF0QfHwu/6uO/ZUdJOeDQRaTq/4+bTY5OwQsxwkOZ4s3NP07iCyZTC/VE20X
+         zS0cQQmpiScFpC8tbKwKVHyuby5a63jDjRlQSpf1jqHIO72dyKCi0oMVHK/sPb8aFQ
+         WSWWifHgu+A4VhKZZwZPx/6dTajKlMwK6yFnTMxMXFXNKwSifTnq2Mnm9Kv/5SNVRb
+         fGOomulrS7lsM5TwxHfnlpF5QrqbF03Ouw1lFmukygUJDVSHGevD9J2+OEbEYHXIzh
+         HAwm4bPKPO5dQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1otQVi-0002xf-E9; Fri, 11 Nov 2022 10:39:43 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/3] phy: qcom-qmp-usb: drop sc8280xp reference-clock source
+Date:   Fri, 11 Nov 2022 10:38:54 +0100
+Message-Id: <20221111093857.11360-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-References: <20221110133640.30522-1-zhewang116@gmail.com> <20221110133640.30522-2-zhewang116@gmail.com>
- <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org> <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
- <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
-In-Reply-To: <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
-From:   Zhe Wang <zhewang116@gmail.com>
-Date:   Fri, 11 Nov 2022 17:34:17 +0800
-Message-ID: <CAJxzgGpKATsfjnD7ksc_UXdzwW76trkONDzRR2UpKHW1Buxxew@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alim.akhtar@samsung.com, avri.altman@wdc.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The source clock for the reference clock is not used by the PHY directly
+and should not have been included in the devicetree binding.
 
-On Fri, Nov 11, 2022 at 3:48 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/11/2022 06:34, Zhe Wang wrote:
-> >>
-> >
-> > I'll fix it.
-> >
-> >>> +        clocks =3D <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_CF=
-G_EB>,
-> >>> +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
-> >>> +        freq-table-hz =3D <0 0>, <0 0>, <0 0>, <0 0>;
-> >>
-> >> Why this is empty? What's the use of empty table?
-> >>
-> >
-> > freq-table-hz is used to configure the maximum frequency and minimum
-> > frequency of clk, and an empty table means that no scaling up\down
-> > operation is requiredfor the frequency of these clks.
->
-> No, to indicate lack of scaling you skip freq-table-hz entirely, not
-> provide empty one.
->
->
+As the new SC8280XP binding has been merged for 6.2, we should get this
+fixed as soon as possible.
 
-In the ufshcd-pltfrm.c file, the clock information is parsed by
-executing the function ufshcd_parse_clock_info, if the number of
-"freq-table-hz" is zero or if the number of "clock-names" and
-"freq-table-hz" does not match, the UFS CLK information in dts will
-not be obtained. Although we don't need to scaling freq, we also need
-the CLK information for the CLK GATE operations. So we cannot delete
-this freq-table here.
+Johan
 
-> Best regards,
-> Krzysztof
->
 
-According to the local test results just now, I would like to ask a
-question about the previous revisions.
-> > +
-> > +  sprd,ufs-anly-reg-syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of syscon used to control ufs analog reg.
->
-> It's a reg? Then such syntax is expected:
-> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetre=
-e/bindings/soc/samsung/exynos-usi.yaml#L42
->
+Johan Hovold (3):
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: drop reference-clock
+    source
+  phy: qcom-qmp-usb: drop sc8280xp reference-clock source
+  arm64: dts: qcom: sc8280xp: drop reference-clock source
 
-In the syntax of this example, reg is represented by phandle and
-offset, but I only need the information of phandle in this place=EF=BC=8CSo=
- in
-this scenario, whether my original syntax is fine=EF=BC=9F just describe th=
-e
-pandlle.
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  7 ++-----
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  8 ++------
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 20 +++++++++++--------
+ 3 files changed, 16 insertions(+), 19 deletions(-)
 
-Best regards,
-Zhe Wang
+-- 
+2.37.4
+
