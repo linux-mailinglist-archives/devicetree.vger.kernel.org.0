@@ -2,52 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A41625B31
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 14:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 580D4625B3D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 14:30:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233943AbiKKNaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 08:30:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46234 "EHLO
+        id S234024AbiKKNag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 08:30:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbiKKNaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 08:30:04 -0500
-X-Greylist: delayed 65 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Nov 2022 05:30:01 PST
-Received: from aer-iport-2.cisco.com (aer-iport-2.cisco.com [173.38.203.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD1560359;
-        Fri, 11 Nov 2022 05:30:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1727; q=dns/txt; s=iport;
-  t=1668173401; x=1669383001;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=fpoaqd45mwZJZyz8x5faOds/9H7dtWgFFewbkC5tH00=;
-  b=BudeHa+3beCisGeeCokRGzGkb2wlPjVWuaV4h7LcRDPrPGvLx+EIgccQ
-   kDgyLzrIcAzCML+D93hK5q2/OLjsVdkl9je4hyt1dobFXlOTC/Jyv46Li
-   JQ6XgvzREruiuKLDyYAYFGH0u9ecPt0oLyb4cwOub+v8NcaPc1QLlriTz
-   A=;
-X-IronPort-AV: E=Sophos;i="5.96,156,1665446400"; 
-   d="scan'208";a="4893680"
-Received: from aer-iport-nat.cisco.com (HELO aer-core-1.cisco.com) ([173.38.203.22])
-  by aer-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 11 Nov 2022 13:28:55 +0000
-Received: from office-260.rd.cisco.com ([10.47.79.110])
-        by aer-core-1.cisco.com (8.15.2/8.15.2) with ESMTP id 2ABDSsVQ020236;
-        Fri, 11 Nov 2022 13:28:55 GMT
-From:   Erling Ljunggren <hljunggr@cisco.com>
-To:     linux-media@vger.kernel.org
-Cc:     Erling Ljunggren <hljunggr@cisco.com>, devicetree@vger.kernel.org
-Subject: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
-Date:   Fri, 11 Nov 2022 14:29:04 +0100
-Message-Id: <20221111132906.2212662-4-hljunggr@cisco.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221111132906.2212662-1-hljunggr@cisco.com>
-References: <20221111132906.2212662-1-hljunggr@cisco.com>
+        with ESMTP id S233989AbiKKNa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 08:30:28 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E6D6035E;
+        Fri, 11 Nov 2022 05:30:27 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id j25-20020a056830015900b0066ca2cd96daso2781936otp.10;
+        Fri, 11 Nov 2022 05:30:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+H4vFKcVhdT5utr9Kqit7Ee08fhFyoKnskQwRap40i4=;
+        b=t/njWBcXTa8Dr+fhkIyziRfPcs94khjPZeqZpD/0IwIOarofKfEBKVLV7kW1EBVIGR
+         Lu5zJ1tG+soMxGaMzNdDKQLWSFDkQM5lxg2tQ3crX2hEHWIgcl2QySh1k9htjAQeAWXp
+         Khv3h3tc0hwkHviXpkOXExXEIKzhWaH8HyTFpFISusGxcRlmTfhzmpHcgRWrPDbrAEMK
+         pwaVEn9HMaARs+g3xeYxb6WajXVtm5QmgRhffFpI+L6qbxn34kp82F8UyEDLY8/mae3i
+         /r524jTMvqXYh7kMSwnmXBjBD+sKvu1lozc16obcmdgxD8H8NLqmRGSTlt6aHVedmacq
+         42/g==
+X-Gm-Message-State: ANoB5pnGvFUVgRCQ+ATsmrC/WJyE/foJdaMseSdafI1UWtCbdRWU7Tp3
+        /EXn6aGLlYFSYOLd5+0joQ==
+X-Google-Smtp-Source: AA0mqf5Qj3/GbhqnO2Nl2v5FMmObS8qqaAWio4R7QoQud1x66XkXmTZ4UJUHtqj+lywkDe6kiB/IQA==
+X-Received: by 2002:a05:6830:4122:b0:66c:2b2c:e7aa with SMTP id w34-20020a056830412200b0066c2b2ce7aamr1162463ott.303.1668173426609;
+        Fri, 11 Nov 2022 05:30:26 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 124-20020a4a1582000000b0047f72b6988fsm766425oon.45.2022.11.11.05.30.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 05:30:26 -0800 (PST)
+Received: (nullmailer pid 3073768 invoked by uid 1000);
+        Fri, 11 Nov 2022 13:30:24 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Outbound-SMTP-Client: 10.47.79.110, [10.47.79.110]
-X-Outbound-Node: aer-core-1.cisco.com
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Wayne Chang <waynec@nvidia.com>
+Cc:     mathias.nyman@intel.com, p.zabel@pengutronix.de,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-tegra@vger.kernel.org, singhanc@nvidia.com, balbi@kernel.org,
+        linux-phy@lists.infradead.org, vkoul@kernel.org,
+        thierry.reding@gmail.com, ajayg@nvidia.com,
+        heikki.krogerus@linux.intel.com, linux-usb@vger.kernel.org,
+        treding@nvidia.com, jckuo@nvidia.com, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-i2c@vger.kernel.org
+In-Reply-To: <20221111101509.999589-3-waynec@nvidia.com>
+References: <20221111101509.999589-1-waynec@nvidia.com>
+ <20221111101509.999589-3-waynec@nvidia.com>
+Message-Id: <166817308790.3060162.14990231448404857914.robh@kernel.org>
+Subject: Re: [PATCH v2 02/13] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
+ controller binding
+Date:   Fri, 11 Nov 2022 07:30:24 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,66 +71,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for new cat24c208 EDID EEPROM driver.
 
-Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
----
- .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+On Fri, 11 Nov 2022 18:14:58 +0800, Wayne Chang wrote:
+> Add device-tree binding documentation for the XUSB host controller present
+> on Tegra234 SoC. This controller supports the USB 3.1 specification.
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> ---
+> V1 -> V2: new change for adding nvidia,tegra234-xusb.yaml
+>  .../bindings/usb/nvidia,tegra234-xusb.yaml    | 159 ++++++++++++++++++
+>  1 file changed, 159 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-new file mode 100644
-index 000000000000..492eecb3ab7c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor CAT24C208 EDID EEPROM driver
-+
-+maintainers:
-+  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
-+
-+description: |
-+  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
-+
-+properties:
-+  compatible:
-+    const: onnn,cat24c208
-+
-+  reg:
-+    maxItems: 1
-+
-+  input-connector:
-+    description: |
-+      Phandle to the video input connector, used to find
-+      the HPD gpio and the connector label, both optional.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - input-connector
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cat24c208@31 {
-+            compatible = "onnn,cat24c208";
-+            reg = <0x31>;
-+            input-connector = <&hdmi_connector_in>;
-+        };
-+    };
--- 
-2.38.0
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.example.dts:36.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
