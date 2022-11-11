@@ -2,94 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5310625B20
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 14:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97A41625B31
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 14:30:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231778AbiKKNZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 08:25:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
+        id S233943AbiKKNaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 08:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiKKNZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 08:25:25 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC55360F3;
-        Fri, 11 Nov 2022 05:25:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id F28F9CE27F5;
-        Fri, 11 Nov 2022 13:25:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2E68C433D6;
-        Fri, 11 Nov 2022 13:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668173120;
-        bh=JDnKZnPRFmzbZ0lpblhuGLALZBaT+iTrH+vhkxNzNWU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cKi5TGDoA5I580Ru9rfiNwIkbrfqG/d+kuYbLlKkB0C3wGK9wzo3Xsl1I1wAaj06c
-         0hMXTHdLHdh0+rWNG9FWp/b3bJs8xDKtRDFmj1GSXOJnQUxuIyKXCemk/xgE5eoE+k
-         sexiCSu56uOqsm+Z2mm79iJoKp9QjeJiVHXShC2iJLmTkp4wNonCle9uMGJHl/Ff5j
-         TNm4YQxQlP0WLx94M09TzNKtlfJqLsRrZurpZCW+mCpsYKa9KJ1l4LRqevTNRmV1UZ
-         M6V0Rfhd3cH62rig6zxbaYw5CM56THmsKYhM0px6vpj4UiSu3hO2Tjq0WhRmxEg1dV
-         0wQLk6Cd/3pNg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1otU1b-0002RN-DU; Fri, 11 Nov 2022 14:24:52 +0100
-Date:   Fri, 11 Nov 2022 14:24:51 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y25NI2nsE6L5kCsy@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
+        with ESMTP id S233869AbiKKNaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 08:30:04 -0500
+X-Greylist: delayed 65 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Nov 2022 05:30:01 PST
+Received: from aer-iport-2.cisco.com (aer-iport-2.cisco.com [173.38.203.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD1560359;
+        Fri, 11 Nov 2022 05:30:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1727; q=dns/txt; s=iport;
+  t=1668173401; x=1669383001;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fpoaqd45mwZJZyz8x5faOds/9H7dtWgFFewbkC5tH00=;
+  b=BudeHa+3beCisGeeCokRGzGkb2wlPjVWuaV4h7LcRDPrPGvLx+EIgccQ
+   kDgyLzrIcAzCML+D93hK5q2/OLjsVdkl9je4hyt1dobFXlOTC/Jyv46Li
+   JQ6XgvzREruiuKLDyYAYFGH0u9ecPt0oLyb4cwOub+v8NcaPc1QLlriTz
+   A=;
+X-IronPort-AV: E=Sophos;i="5.96,156,1665446400"; 
+   d="scan'208";a="4893680"
+Received: from aer-iport-nat.cisco.com (HELO aer-core-1.cisco.com) ([173.38.203.22])
+  by aer-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 11 Nov 2022 13:28:55 +0000
+Received: from office-260.rd.cisco.com ([10.47.79.110])
+        by aer-core-1.cisco.com (8.15.2/8.15.2) with ESMTP id 2ABDSsVQ020236;
+        Fri, 11 Nov 2022 13:28:55 GMT
+From:   Erling Ljunggren <hljunggr@cisco.com>
+To:     linux-media@vger.kernel.org
+Cc:     Erling Ljunggren <hljunggr@cisco.com>, devicetree@vger.kernel.org
+Subject: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
+Date:   Fri, 11 Nov 2022 14:29:04 +0100
+Message-Id: <20221111132906.2212662-4-hljunggr@cisco.com>
+X-Mailer: git-send-email 2.38.0
+In-Reply-To: <20221111132906.2212662-1-hljunggr@cisco.com>
+References: <20221111132906.2212662-1-hljunggr@cisco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221111092457.10546-3-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Outbound-SMTP-Client: 10.47.79.110, [10.47.79.110]
+X-Outbound-Node: aer-core-1.cisco.com
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 10:24:45AM +0100, Johan Hovold wrote:
+Add devicetree bindings for new cat24c208 EDID EEPROM driver.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QMP USB4-USB3-DP PHY controller (SC8280XP)
-> +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-> +
-> +description:
-> +  The QMP PHY controller supports physical layer functionality for a number of
-> +  controllers on Qualcomm chipsets, such as, PCIe, UFS and USB.
-> +
-> +  See also:
-> +    - include/dt-bindings/dt-bindings/phy/phy.h
+Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+---
+ .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
 
-This trips up the binding checker which I failed to rerun after adding
-this reference.
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+new file mode 100644
+index 000000000000..492eecb3ab7c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ON Semiconductor CAT24C208 EDID EEPROM driver
++
++maintainers:
++  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
++
++description: |
++  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
++
++properties:
++  compatible:
++    const: onnn,cat24c208
++
++  reg:
++    maxItems: 1
++
++  input-connector:
++    description: |
++      Phandle to the video input connector, used to find
++      the HPD gpio and the connector label, both optional.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - reg
++  - input-connector
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cat24c208@31 {
++            compatible = "onnn,cat24c208";
++            reg = <0x31>;
++            input-connector = <&hdmi_connector_in>;
++        };
++    };
+-- 
+2.38.0
 
-Apparently I missed adding a literal block marker '|' to the
-description. Will add in v2.
-
-Johan
