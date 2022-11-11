@@ -2,94 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 258CA625A4F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 13:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF74E625A60
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 13:19:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233015AbiKKMM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 07:12:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41948 "EHLO
+        id S233153AbiKKMTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 07:19:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232968AbiKKMM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 07:12:27 -0500
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2471FFFA;
-        Fri, 11 Nov 2022 04:12:26 -0800 (PST)
-Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2ABBdDBb033785;
-        Fri, 11 Nov 2022 12:12:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=5fxO2XXG1q6EgEfIA4PG3xVu5GvIdI6fwOZa3jvSFnc=;
- b=IU4iKNhqdmpAUJR059GJX0JdkNrQXK2Kb3UEl7baBEkidDTL4ZhZpfZdKktEDaLZs0sn
- lwpnoEnaiT5uCOk/G8tdkUTI8RtMPP/1vwnal6+2XulE+dtXIOa0TGbPTLUHvQja4sIH
- GlJVuSXiBsTSCneO9E+iQsBTDb3Hi/WQKsUH6buf3kRIPsbsOHK3al1bqMVmKi01A2gi
- exuziGvcOpivWzcjA6/Kuu2hiftk8OlgvcNJn+vK8gnA+GfGNYwyMJ3fv1i7BgIEef5z
- yIvxTU7T2CLJBsc1NtnQAtPzIz/J+k6hBJ5ID9jgDhmboMvxaNop6TMG7fij7QYQRDtc JA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ksnd512nh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 12:12:09 +0000
-Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2ABBetEM038546;
-        Fri, 11 Nov 2022 12:12:09 GMT
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3ksnd512mu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 12:12:09 +0000
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2ABC6afx009588;
-        Fri, 11 Nov 2022 12:12:07 GMT
-Received: from b03cxnp07029.gho.boulder.ibm.com (b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
-        by ppma05wdc.us.ibm.com with ESMTP id 3kngpmje7m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 12:12:07 +0000
-Received: from smtpav01.dal12v.mail.ibm.com ([9.208.128.133])
-        by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 2ABCC5t926935552
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 11 Nov 2022 12:12:05 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 1D3B658061;
-        Fri, 11 Nov 2022 12:12:06 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7F65B58059;
-        Fri, 11 Nov 2022 12:12:05 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-        by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-        Fri, 11 Nov 2022 12:12:05 +0000 (GMT)
-Message-ID: <569c30f7-5dda-4ce2-e2c9-ce4041a74c8e@linux.ibm.com>
-Date:   Fri, 11 Nov 2022 07:12:05 -0500
+        with ESMTP id S231564AbiKKMTS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 07:19:18 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74566315A;
+        Fri, 11 Nov 2022 04:19:15 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ABCJ5UQ037678;
+        Fri, 11 Nov 2022 06:19:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668169145;
+        bh=RxZQqT7CzYYwrQOggpseJOaSexhZund2j84t2+jgt3w=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=GFpCfZBtN6aDbq76Nb3f7OCZw3YsieoeejIFp9pQFAKbxK/1E0pgqr8gfBhM6BQ0/
+         zEzbi6gr3NGLnYHf+pnJlPgbkrBMvlPDHuzUw3vOCyPgkYw9jtXkD/DS5WVqDjOWlV
+         d0Xbgw4bjeZuVUTPiKV0aDp7qgLUM+hyDFRRBpmg=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ABCJ5V3061190
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Nov 2022 06:19:05 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 11
+ Nov 2022 06:19:04 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 11 Nov 2022 06:19:04 -0600
+Received: from [10.250.233.43] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ABCIwSQ010732;
+        Fri, 11 Nov 2022 06:18:59 -0600
+Message-ID: <581d0735-8294-5805-9a44-ed4ec3e9ae54@ti.com>
+Date:   Fri, 11 Nov 2022 17:48:57 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v8 0/4] tpm: Preserve TPM measurement log across kexec
- (ppc64)
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hari Nagalla <hnagalla@ti.com>
+References: <20221014082314.118361-1-a-nandan@ti.com>
+ <20221014082314.118361-5-a-nandan@ti.com>
+ <cd5dbbb0-2d9f-8d7d-b051-f8d01d710c62@ti.com>
 Content-Language: en-US
-To:     Coiby Xu <coxu@redhat.com>, Michael Ellerman <mpe@ellerman.id.au>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, Baoquan He <bhe@redhat.com>
-References: <20220901214610.768645-1-stefanb@linux.ibm.com>
- <20221111022143.xvpi3pfwwrw4qda2@Rk>
-From:   Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <20221111022143.xvpi3pfwwrw4qda2@Rk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 7XaGLry-dChDSYeNDXy6AbCJBpJEBkVY
-X-Proofpoint-GUID: TFAPSigYsZEZ_FQvINgy1j1zHKOjnma1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-11_06,2022-11-11_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- spamscore=0 mlxscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- lowpriorityscore=0 phishscore=0 clxscore=1011 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211110081
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Apurva Nandan <a-nandan@ti.com>
+In-Reply-To: <cd5dbbb0-2d9f-8d7d-b051-f8d01d710c62@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -97,73 +75,279 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 19/10/22 23:01, Andrew Davis wrote:
+> On 10/14/22 3:23 AM, Apurva Nandan wrote:
+>> J784S4 EVM board is designed for TI J784S4 SoC. It supports the following
+>> interfaces:
+>> * 32 GB DDR4 RAM
+>> * x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
+>> * x1 Input Audio Jack, x1 Output Audio Jack
+>> * x1 USB2.0 Hub with two Type A host and x1 USB 3.1 Type-C Port
+>> * x2 4L PCIe connector
+>> * x1 UHS-1 capable micro-SD card slot
+>> * 512 Mbit OSPI flash, 1 Gbit Octal NAND flash, 512 Mbit QSPI flash,
+>>     UFS flash.
+>> * x6 UART through UART-USB bridge
+>> * XDS110 for onboard JTAG debug using USB
+>> * Temperature sensors, user push buttons and LEDs
+>> * 40-pin User Expansion Connector
+>> * x2 ENET Expansion Connector, x1 GESI expander, x2 Display connector
+>> * x1 15-pin CSI header
+>> * x6 MCAN instances
+>>
+>> Add basic support for J784S4-EVM.
+>>
+>> Schematics: https://www.ti.com/lit/zip/sprr458
+>>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+>> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>    arch/arm64/boot/dts/ti/Makefile          |   2 +
+>>    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 199 +++++++++++++++++++++++
+>>    2 files changed, 201 insertions(+)
+>>    create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 02e5d80344d0..6381c458738a 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>>    
+>>    dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+>>    
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>> +
+>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>>    
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> new file mode 100644
+>> index 000000000000..bf2f2dfb7658
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> @@ -0,0 +1,199 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>> + *
+>> + * Common Processor Board: https://www.ti.com/tool/J721EXCPXEVM
+> This doesn't seem to be the right EVM, I'd just drop this link.
+>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/net/ti-dp83867.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include "k3-j784s4.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "ti,j784s4-evm", "ti,j784s4";
+>> +	model = "Texas Instruments J784S4 EVM";
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial2:115200n8";
+>> +	};
+>> +
+>> +	aliases {
+>> +		serial2 = &main_uart8;
+>> +		mmc1 = &main_sdhci1;
+>> +		i2c0 = &main_i2c0;
+>> +	};
+>> +
+>> +	memory@80000000 {
+>> +		device_type = "memory";
+>> +		/* 32G RAM */
+>> +		reg = <0x00 0x80000000 0x00 0x80000000>,
+>> +		      <0x08 0x80000000 0x07 0x80000000>;
+>> +	};
+>> +
+>> +	/* Reserving memory regions still pending */
+> Comment not needed.
+>
+>> +	reserved_memory: reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		secure_ddr: optee@9e800000 {
+>> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
+>> +			alignment = <0x1000>;
+> Is alignment needed here?
+Okay, will drop this alignment property.
+>
+>> +			no-map;
+>> +		};
+>> +	};
+>> +
+>> +	evm_12v0: regulator-evm12v0 {
+>> +		/* main supply */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "evm_12v0";
+>> +		regulator-min-microvolt = <12000000>;
+>> +		regulator-max-microvolt = <12000000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vsys_3v3: regulator-vsys3v3 {
+>> +		/* Output of LM5140 */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vsys_3v3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		vin-supply = <&evm_12v0>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vsys_5v0: regulator-vsys5v0 {
+>> +		/* Output of LM5140 */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vsys_5v0";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		vin-supply = <&evm_12v0>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vdd_mmc1: regulator-sd {
+>> +		/* Output of TPS22918 */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vdd_mmc1";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +		enable-active-high;
+>> +		vin-supply = <&vsys_3v3>;
+>> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
+>> +	};
+>> +
+>> +	vdd_sd_dv: regulator-TLV71033 {
+>> +		/* Output of TLV71033 */
+>> +		compatible = "regulator-gpio";
+>> +		regulator-name = "tlv71033";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +		vin-supply = <&vsys_5v0>;
+>> +		gpios = <&main_gpio0 8 GPIO_ACTIVE_HIGH>;
+>> +		states = <1800000 0x0>,
+>> +			 <3300000 0x1>;
+>> +	};
+>> +};
+>> +
+>> +&main_pmx0 {
+>> +	main_uart8_pins_default: main-uart8-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J784S4_IOPAD(0x040, PIN_INPUT, 14) /* (AF37) MCASP0_AXR0.UART8_CTSn */
+>> +			J784S4_IOPAD(0x044, PIN_OUTPUT, 14) /* (AG37) MCASP0_AXR1.UART8_RTSn */
+>> +			J784S4_IOPAD(0x0d0, PIN_INPUT, 11) /* (AP38) SPI0_CS1.UART8_RXD */
+>> +			J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
+>> +		>;
+>> +	};
+>> +
+>> +	main_i2c0_pins_default: main-i2c0-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
+>> +			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
+>> +		>;
+>> +	};
+>> +
+>> +	main_mmc1_pins_default: main-mmc1-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J784S4_IOPAD(0x104, PIN_INPUT, 0) /* (AB38) MMC1_CLK */
+>> +			J784S4_IOPAD(0x108, PIN_INPUT, 0) /* (AB36) MMC1_CMD */
+>> +			J784S4_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
+> Pin ###?
+This pin is not brought out physically, but needs to be muxed correctly 
+internally.
+Hence, there is no external pin/ball name.
+>
+> Andrew
+>
+>> +			J784S4_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA33) MMC1_DAT0 */
+>> +			J784S4_IOPAD(0x0f8, PIN_INPUT, 0) /* (AB34) MMC1_DAT1 */
+>> +			J784S4_IOPAD(0x0f4, PIN_INPUT, 0) /* (AA32) MMC1_DAT2 */
+>> +			J784S4_IOPAD(0x0f0, PIN_INPUT, 0) /* (AC38) MMC1_DAT3 */
+>> +			J784S4_IOPAD(0x0e8, PIN_INPUT, 8) /* (AR38) TIMER_IO0.MMC1_SDCD */
+>> +		>;
+>> +	};
+>> +
+>> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>> +		>;
+>> +	};
+>> +};
+>> +
+>> +&main_uart8 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&main_uart8_pins_default>;
+>> +};
+>> +
+>> +&main_i2c0 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&main_i2c0_pins_default>;
+>> +
+>> +	clock-frequency = <400000>;
+>> +
+>> +	exp1: gpio@20 {
+>> +		compatible = "ti,tca6416";
+>> +		reg = <0x20>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		gpio-line-names = "PCIE1_2L_MODE_SEL", "PCIE1_4L_PERSTZ", "PCIE1_2L_RC_RSTZ",
+>> +				  "PCIE1_2L_EP_RST_EN", "PCIE0_4L_MODE_SEL", "PCIE0_4L_PERSTZ",
+>> +				  "PCIE0_4L_RC_RSTZ", "PCIE0_4L_EP_RST_EN", "PCIE1_4L_PRSNT#",
+>> +				  "PCIE0_4L_PRSNT#", "CDCI1_OE1/OE4", "CDCI1_OE2/OE3",
+>> +				  "AUDIO_MUX_SEL", "EXP_MUX2", "EXP_MUX3", "GESI_EXP_PHY_RSTZ";
+>> +	};
+>> +
+>> +	exp2: gpio@22 {
+>> +		compatible = "ti,tca6424";
+>> +		reg = <0x22>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		gpio-line-names = "R_GPIO_RGMII1_RST", "ENET2_I2CMUX_SEL", "GPIO_USD_PWR_EN",
+>> +				  "USBC_PWR_EN", "USBC_MODE_SEL1", "USBC_MODE_SEL0",
+>> +				  "GPIO_LIN_EN", "R_CAN_STB", "CTRL_PM_I2C_OE#",
+>> +				  "ENET2_EXP_PWRDN", "ENET2_EXP_SPARE2", "CDCI2_RSTZ",
+>> +				  "USB2.0_MUX_SEL", "CANUART_MUX_SEL0", "CANUART_MUX2_SEL1",
+>> +				  "CANUART_MUX1_SEL1", "ENET1_EXP_PWRDN", "ENET1_EXP_RESETZ",
+>> +				  "ENET1_I2CMUX_SEL", "ENET1_EXP_SPARE2", "ENET2_EXP_RESETZ",
+>> +				  "USER_INPUT1", "USER_LED1", "USER_LED2";
+>> +	};
+>> +};
+>> +
+>> +&main_sdhci1 {
+>> +	/* SD card */
+>> +	status = "okay";
+>> +	pinctrl-0 = <&main_mmc1_pins_default>;
+>> +	pinctrl-names = "default";
+>> +	disable-wp;
+>> +	vmmc-supply = <&vdd_mmc1>;
+>> +	vqmmc-supply = <&vdd_sd_dv>;
+>> +};
+>> +
+>> +&main_gpio0 {
+>> +	status = "okay";
+>> +};
+>> +
 
-On 11/10/22 21:21, Coiby Xu wrote:
-> Hi Michael,
-> 
-> Could the PowerPC tree take this patch set which resolves a
-> PowerVM/KVM-specific issue?
+-- 
+Thanks and regards,
+Apurva Nandan,
+Texas Instruments India.
 
-Michael has (shown me) an alternative approach that protects the already allocated memory to carry it across the kexec. This seems like a good and potentially better alternative, also from the perspective of the changes need, which is a lot less , and it's already used for other stuff as well.
-
-    Stefan
-
-> 
-> On Thu, Sep 01, 2022 at 05:46:06PM -0400, Stefan Berger wrote:
->> The of-tree subsystem does not currently preserve the IBM vTPM 1.2 and
->> vTPM 2.0 measurement logs across a kexec on PowerVM and PowerKVM. This
->> series fixes this for the kexec_file_load() syscall using the flattened
->> device tree (fdt) to carry the TPM measurement log's buffer across kexec.
->>
->>   Stefan
->>
->> v8:
->> - Added Jarkko's, Coiby's, and Rob's tags
->> - Rebase on v6.0-rc3 that absorbed 2 already upstreamed patches
->>
->> v7:
->> - Added Nageswara's Tested-by tags
->> - Added back original comment to inline function and removed Jarkko's R-b tag
->>
->> v6:
->> - Add __init to get_kexec_buffer as suggested by Jonathan
->> - Fixed issue detected by kernel test robot
->>
->> v5:
->> - Rebased on 1 more patch that would otherwise create merge conflicts
->>
->> v4:
->> - Rebased on 2 patches that would otherwise create merge conflicts;
->>   posting these patches in this series with several tags removed so
->>   krobot can test the series already
->> - Changes to individual patches documented in patch descripitons
->>
->> v3:
->> - Moved TPM Open Firmware related function to drivers/char/tpm/eventlog/tpm_of.c
->>
->> v2:
->> - rearranged patches
->> - fixed compilation issues for x86
->>
->> Palmer Dabbelt (1):
->>  drivers: of: kexec ima: Support 32-bit platforms
->>
->> Stefan Berger (3):
->>  tpm: of: Make of-tree specific function commonly available
->>  of: kexec: Refactor IMA buffer related functions to make them reusable
->>  tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
->>
->> drivers/char/tpm/eventlog/of.c |  31 +--
->> drivers/of/kexec.c             | 336 ++++++++++++++++++++++++++++-----
->> include/linux/kexec.h          |   6 +
->> include/linux/of.h             |   9 +-
->> include/linux/tpm.h            |  36 ++++
->> kernel/kexec_file.c            |   6 +
->> 6 files changed, 346 insertions(+), 78 deletions(-)
->>
->>
->> base-commit: b90cb1053190353cc30f0fef0ef1f378ccc063c5
->> -- 
->> 2.35.1
->>
-> 
