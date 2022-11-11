@@ -2,60 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A3F62611E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 19:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4CD62613D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 19:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232574AbiKKS3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 13:29:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33218 "EHLO
+        id S234067AbiKKSgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 13:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbiKKS3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 13:29:06 -0500
+        with ESMTP id S234096AbiKKSfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 13:35:53 -0500
 Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D8305CD21;
-        Fri, 11 Nov 2022 10:29:04 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id cn2-20020a056830658200b0066c74617e3dso3255268otb.2;
-        Fri, 11 Nov 2022 10:29:04 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0E5833BB;
+        Fri, 11 Nov 2022 10:35:37 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso3261721otb.6;
+        Fri, 11 Nov 2022 10:35:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kn6cAuYLHXjup8F+hSWw66Gou+VIIUB2Qhp5H7Bh0Tg=;
-        b=WDNOUSpMqQl/fxfudEl62wBJeUyiczXnbDCbYSXhuJO5OVqgsAEpEWui4nGpmhL0xA
-         8pb+nrHWgv7nuRIe40GwTjfcs020HIQ5bUbdt8zs7c0xn7c/dcY6ZWeysp+hD+0FaZQ7
-         qGWOfl1AAtB4I8v0hKyNt0SHtl7HcYv2rClQeomkcwf3q0CnbsP4hdSrTS4feVDbtB/i
-         ZyITpfBddHvx1gsk96rwOuoPTjXW0DeY1G/KFH23ra5l0qriLV/M2XL/3Ei+bmGEaBxe
-         Acf3DvT7pe0jeLMJNj57T4KZhFueo4nKvgwIy4PYN18Fe8GILa9PJc2k4eSwd4G7nari
-         ffVA==
-X-Gm-Message-State: ANoB5pnbi4g2fxRp/AHGuWPcuwi6WNP2cY+tXt35Dl0Y8OeOk+XNSoMG
-        631drFWYEwQvyXZvMF72Ww==
-X-Google-Smtp-Source: AA0mqf4vvOwpMmuZbUoSfNP/tvj1KV5ImhkBMZ+xV6rlZ9oL/EWWI+dPEitu0oRTvnzovddFX5JKhw==
-X-Received: by 2002:a9d:3e4:0:b0:662:2458:3ef7 with SMTP id f91-20020a9d03e4000000b0066224583ef7mr1880568otf.150.1668191344118;
-        Fri, 11 Nov 2022 10:29:04 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7tPZgreKLHqA+8JChabIylqFxb3MA62t4HFVqoO5PnA=;
+        b=tifDhfZ6J6gCT54gDoyA5ht+7wGAZ5RYqunBRpsKmid1ew/kS99OzaLtxYguBeC4rd
+         u2aID7dpb/d3vTcjE5BWxM8SG57S7QDcbj0ooRJPotPwhwKeUVrRfzi5RjbJiLpA9684
+         kpFikEzGmAG3eweQ8GHl9cQwzooGFBI9I1cJoqJyoHMvT1zmlSolMkhsmCKcZ5nYUqc/
+         OvLXcQJ1uIOp7l8Orbr/DZ47q7iUhoiQmC8TYOOWDxakG0Gm4+TLiflw2MyvZFmUkDoA
+         i+eXdRSiPoJZ+olyKLRabMYkPQDOHyiUdj28uHq28zfDoCBMspDHR8sJK2+BDVmEpOUo
+         Gfog==
+X-Gm-Message-State: ANoB5pkgjJKsYjtxgfbez6afu3tp0pAHkkGB3SZ31NS/kxkr/ps0fMoe
+        mY3e+sV8XzqgcEIp850b3SU6hMsZdA==
+X-Google-Smtp-Source: AA0mqf4L5Pg3bnyUHyrkiO2ViAuRilDzV5j/Od1eYmvDjSbcyUpGOIyHSzRjCLy27CNNWoYs/RNvLA==
+X-Received: by 2002:a05:6830:1e09:b0:66a:9b95:b23a with SMTP id s9-20020a0568301e0900b0066a9b95b23amr1823767otr.302.1668191736564;
+        Fri, 11 Nov 2022 10:35:36 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v13-20020a05683011cd00b00661b5e95173sm1249469otq.35.2022.11.11.10.29.03
+        by smtp.gmail.com with ESMTPSA id j103-20020a9d17f0000000b0066c2d80c753sm1295055otj.22.2022.11.11.10.35.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 10:29:03 -0800 (PST)
-Received: (nullmailer pid 3650938 invoked by uid 1000);
-        Fri, 11 Nov 2022 18:29:05 -0000
-Date:   Fri, 11 Nov 2022 12:29:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc:     krzysztof.kozlowski@linaro.org, michals@xilinx.com,
-        linux-pci@vger.kernel.org, bhelgaas@google.com,
-        bharat.kumar.gogada@amd.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        nagaradhesh.yeleswarapu@amd.com
-Subject: Re: [PATCH v6 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML
- schemas of Xilinx NWL PCIe Root Port Bridge
-Message-ID: <166819134102.3650802.6455003560050534177.robh@kernel.org>
-References: <20221111053709.1474323-1-thippeswamy.havalige@amd.com>
- <20221111053709.1474323-2-thippeswamy.havalige@amd.com>
+        Fri, 11 Nov 2022 10:35:36 -0800 (PST)
+Received: (nullmailer pid 3660055 invoked by uid 1000);
+        Fri, 11 Nov 2022 18:35:37 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221111053709.1474323-2-thippeswamy.havalige@amd.com>
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org
+In-Reply-To: <20221111152843.627286-1-thierry.reding@gmail.com>
+References: <20221111152843.627286-1-thierry.reding@gmail.com>
+Message-Id: <166819171068.3659211.4965449596446863079.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: tegra124-dfll: Convert to json-schema
+Date:   Fri, 11 Nov 2022 12:35:37 -0600
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,20 +64,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 11 Nov 2022 11:07:09 +0530, Thippeswamy Havalige wrote:
-> Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
-> dt binding.
+On Fri, 11 Nov 2022 16:28:42 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Convert the Tegra124 (and later) DFLL bindings from the free-form text
+> format to json-schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
-> changes in v6:
-> Added maxItems to clocks property.
-> 
->  .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ---------
->  .../bindings/pci/xlnx,nwl-pcie.yaml           | 149 ++++++++++++++++++
->  2 files changed, 149 insertions(+), 73 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+>  .../bindings/clock/nvidia,tegra124-dfll.txt   | 155 ----------
+>  .../bindings/clock/nvidia,tegra124-dfll.yaml  | 277 ++++++++++++++++++
+>  2 files changed, 277 insertions(+), 155 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
 > 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.example.dtb:0:0: /example-1/pinmux@700008d4: failed to match any schema with compatible: ['nvidia,tegra210-pinmux']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
