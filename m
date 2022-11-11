@@ -2,123 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1B6625615
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2814F62562D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233653AbiKKJCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:02:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47962 "EHLO
+        id S233546AbiKKJGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:06:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233654AbiKKJCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:02:31 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4AD7878E;
-        Fri, 11 Nov 2022 00:59:15 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AB8wk4g130327;
-        Fri, 11 Nov 2022 02:58:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668157126;
-        bh=MzK939t1bZHhF1XE9KfYy0hyr4NI9NAbtTrJALGKJDc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=XKoVv8/0jagy2y4ztuHR9d7Mdq95BiFUEsp5OvI+hbXBFiNPgJE0CBo/J+u2Cwnj6
-         HqSSjOTRIhqEQETPrvJjDWXP0I/f2xSM/2b07edh7+txQ/jvWS7uIAL53lk7FoKmVQ
-         WrKUajDG1Hc4ycifOILf8jpGzNPc93eSCsmTZWS8=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AB8wkUv028572
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Nov 2022 02:58:46 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 11
- Nov 2022 02:58:45 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 11 Nov 2022 02:58:45 -0600
-Received: from ubuntu (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with SMTP id 2AB8wXWR105891;
-        Fri, 11 Nov 2022 02:58:35 -0600
-Date:   Fri, 11 Nov 2022 00:58:32 -0800
-From:   Matt Ranostay <mranostay@ti.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Michael Walle <michael@walle.cc>, <brgl@bgdev.pl>,
-        <lee@kernel.org>, <kristo@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <a.zummo@towertech.it>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh@kernel.org>,
-        <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Keerthy <j-keerthy@ti.com>
-Subject: Re: [PATCH v3 4/7] gpio: tps6594x: add GPIO support for TPS6594x PMIC
-Message-ID: <Y24OuHmXCV/5HuEY@ubuntu>
-References: <20221109065546.24912-1-mranostay@ti.com>
- <20221109065546.24912-5-mranostay@ti.com>
- <CACRpkdaTV6unVsfNj+M39jLn5FLTnhryjuzF4EB6Ytds9R1nEQ@mail.gmail.com>
- <Y2zOhf8lqVLyLn+A@ubuntu>
- <CACRpkdZOR4Hcyv=bO7=rJERJK7JbCoS0_dvWj0K=YZC6Nsozdw@mail.gmail.com>
+        with ESMTP id S233571AbiKKJFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:05:43 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68951122;
+        Fri, 11 Nov 2022 01:05:41 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id j15so5637932wrq.3;
+        Fri, 11 Nov 2022 01:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1QviO7g0X9TaU2BPfKXn+/uDSwn9+ZcxkSHMkagSvBQ=;
+        b=XH7/0SMYFxcygZBP/lXF+7e071JADn9twF2Wzsu12Te92AbupuMte1rSifd+asp7zY
+         m7ZZ2eKEOK8HhQYGiAIqYQXpyRljjlMXVfstuvWKERhG3gJnDgdSPB0K8JXrnxD7Kk+2
+         0uvQRV5C4MFPOSgA3jhqSBPaS6l98ohw1nHuLHRipMSzEGVI1B4c58RM9TlM7AoMx4k3
+         ZXbg1AUUduuFtWLNmWmPNDUVr4kUejMwnwFQbbRq05nZf+zu49I/dY+T8ZITK51DPGYk
+         f2IFeKYc/YOR4Q7vTpztl13WvEtiOCY5uInpO9olCCpTD7yIboP4gupAqNBm1IvPUfbk
+         lxcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1QviO7g0X9TaU2BPfKXn+/uDSwn9+ZcxkSHMkagSvBQ=;
+        b=J0FT3CbVSjIkDQGtskRBtJiRgvlFHSYy/SQ2G5D4uMKJCOawgCdA4q0cVqBoqXP2jL
+         hT8C6XUu3hH1tFt3Jtvj8xw1th5ys1uMePUkZJTtfxqbRuMHZ15At1AKiZmDrFeZFa04
+         5IsgBNLEVV6Sgkr0mcHN42vC4XmudVJ0xtQ6MkWOUOAoUpNyCKhbdVJkyOgGiHT+7nsm
+         z4dt2PDDDPN8JXlFJSshISGJaLDVDQYSh905OVh5BWoo3zl4R1vLPnj1T0hrUIWyiQv3
+         XYJxkg/IroJAmCr7Wvqno65flGBJbNvH9QYiUR2XeUipJE34bXoGzPoCWhIV/DVXJAjH
+         gL2Q==
+X-Gm-Message-State: ANoB5pnE8rYmy9BUth+/O8JLMV2klXUv4qeD/y9nYKCJQOcZ0FtEExV+
+        qQf9nT59pAksfidypXLVadc=
+X-Google-Smtp-Source: AA0mqf63UJilBtZakUaPTB0dgbaIiRLdllAsQExluAwwAkE1d1Fc1dH/wnYZ/0v9nOHk7xNr/uBT4g==
+X-Received: by 2002:a5d:4841:0:b0:22e:38b:95ff with SMTP id n1-20020a5d4841000000b0022e038b95ffmr610851wrs.202.1668157540379;
+        Fri, 11 Nov 2022 01:05:40 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id p25-20020a05600c1d9900b003c64c186206sm2203693wms.16.2022.11.11.01.05.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 01:05:38 -0800 (PST)
+Message-ID: <a9273083-eb34-6415-132a-621ec7703d92@gmail.com>
+Date:   Fri, 11 Nov 2022 10:05:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZOR4Hcyv=bO7=rJERJK7JbCoS0_dvWj0K=YZC6Nsozdw@mail.gmail.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [RFC v3 01/11] arm64: dts: mt7986: harmonize device node order
+Content-Language: en-US
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sam Shih <sam.shih@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20221106085034.12582-1-linux@fw-web.de>
+ <20221106085034.12582-2-linux@fw-web.de>
+ <d38f8b81-b62e-18c5-1bd3-d1bc1f2b98d9@gmail.com>
+In-Reply-To: <d38f8b81-b62e-18c5-1bd3-d1bc1f2b98d9@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 11:15:22AM +0100, Linus Walleij wrote:
-> On Thu, Nov 10, 2022 at 11:12 AM Matt Ranostay <mranostay@ti.com> wrote:
-> > On Wed, Nov 09, 2022 at 10:59:08AM +0100, Linus Walleij wrote:
-> > > On Wed, Nov 9, 2022 at 7:56 AM Matt Ranostay <mranostay@ti.com> wrote:
-> > >
-> > > > Add support for TPS6594X PMICs GPIO interface that has 11 that can be
-> > > > configured as input or outputs.
-> > > >
-> > > > Tested-by: Keerthy <j-keerthy@ti.com>
-> > > > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> > >
-> > > (...)
-> > > > +config GPIO_TPS6594X
-> > > > +       tristate "TI TPS6594X GPIO driver"
-> > > > +       depends on MFD_TPS6594X
-> > > > +       help
-> > > > +         Select this option to enable GPIO driver for the TPS6954X
-> > > > +         PMIC chip family. There are 11 GPIOs that can be configured.
-> > >
-> > > select GPIO_REGMAP
-> > >
-> > > This driver is an archetypical example of a driver that can make great
-> > > use of GPIO_REGMAP helpers, so rewrite it to use them.
-> > > Look in drivers/gpio/gpio-sl28cpld.c for an example.
-> >
-> > Linus,
-> >
-> > Those helpers look great for this usecase on the surface but however I think there could be some issues.
-> > For GPIO direction it isn't configured by a bitmap on a register(s) but by a bit on a range of
-> > registers (with a register for each GPIOx).
-> >
-> > For set/get values the gpio helper would work though.
+
+
+On 11/11/2022 09:55, Matthias Brugger wrote:
 > 
-> Isn't is possible to just use parts of the GPIO_REGMAP
-> helpers? I thought it's designed like such.
 > 
-> Michael Walle will know what to do with your usecase, and
-> whether to use it or not, let's page him!
->
+> On 06/11/2022 09:50, Frank Wunderlich wrote:
+>> From: Sam Shih <sam.shih@mediatek.com>
+>>
+>> This arrange device tree nodes in alphabetical order.
+>>
+>> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Applied, thanks!
+> 
 
-So after looking around a bit and digging into the helper code I found this
-drivers/pinctrl/bcm/pinctrl-bcm63xx.c which has a example on how to override
-the reg_mask_xlate function which could be used for changing the stride, and mask
-based on the base address.
+I realized that
+wed_pcie: wed-pcie@10003000
+is'nt ordered correctly. Please send a follow-up patch to fix that.
 
-Currently have coded up using the gpio regmap helper. Will run through some testing
-first and then submit for review.
+Regards,
+Matthias
 
-- Matt
-
-> Yours,
-> Linus Walleij
+>> ---
+>> i modified sams patch
+>>
+>> https://patchwork.kernel.org/project/linux-mediatek/patch/20220427124741.18245-2-sam.shih@mediatek.com/
+>>
+>> by moving pio-node up instead of moving uarts down to ensure alphabetical
+>> order for switch-/wifi-node.
+>>
+>> And moved uart0 and wifi in mt7986b-rfb too.
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 94 ++++++++++----------
+>>   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 22 ++---
+>>   2 files changed, 58 insertions(+), 58 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> index afe37b702eef..6189436fe31d 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> @@ -54,6 +54,53 @@ switch: switch@0 {
+>>       };
+>>   };
+>> +&pio {
+>> +    uart1_pins: uart1-pins {
+>> +        mux {
+>> +            function = "uart";
+>> +            groups = "uart1";
+>> +        };
+>> +    };
+>> +
+>> +    uart2_pins: uart2-pins {
+>> +        mux {
+>> +            function = "uart";
+>> +            groups = "uart2";
+>> +        };
+>> +    };
+>> +
+>> +    wf_2g_5g_pins: wf-2g-5g-pins {
+>> +        mux {
+>> +            function = "wifi";
+>> +            groups = "wf_2g", "wf_5g";
+>> +        };
+>> +        conf {
+>> +            pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+>> +                   "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+>> +                   "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+>> +                   "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
+>> +                   "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
+>> +                   "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
+>> +                   "WF1_TOP_CLK", "WF1_TOP_DATA";
+>> +            drive-strength = <4>;
+>> +        };
+>> +    };
+>> +
+>> +    wf_dbdc_pins: wf-dbdc-pins {
+>> +        mux {
+>> +            function = "wifi";
+>> +            groups = "wf_dbdc";
+>> +        };
+>> +        conf {
+>> +            pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+>> +                   "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+>> +                   "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+>> +                   "WF0_TOP_CLK", "WF0_TOP_DATA";
+>> +            drive-strength = <4>;
+>> +        };
+>> +    };
+>> +};
+>> +
+>>   &switch {
+>>       ports {
+>>           #address-cells = <1>;
+>> @@ -121,50 +168,3 @@ &wifi {
+>>       pinctrl-0 = <&wf_2g_5g_pins>;
+>>       pinctrl-1 = <&wf_dbdc_pins>;
+>>   };
+>> -
+>> -&pio {
+>> -    uart1_pins: uart1-pins {
+>> -        mux {
+>> -            function = "uart";
+>> -            groups = "uart1";
+>> -        };
+>> -    };
+>> -
+>> -    uart2_pins: uart2-pins {
+>> -        mux {
+>> -            function = "uart";
+>> -            groups = "uart2";
+>> -        };
+>> -    };
+>> -
+>> -    wf_2g_5g_pins: wf-2g-5g-pins {
+>> -        mux {
+>> -            function = "wifi";
+>> -            groups = "wf_2g", "wf_5g";
+>> -        };
+>> -        conf {
+>> -            pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+>> -                   "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+>> -                   "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+>> -                   "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
+>> -                   "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
+>> -                   "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
+>> -                   "WF1_TOP_CLK", "WF1_TOP_DATA";
+>> -            drive-strength = <4>;
+>> -        };
+>> -    };
+>> -
+>> -    wf_dbdc_pins: wf-dbdc-pins {
+>> -        mux {
+>> -            function = "wifi";
+>> -            groups = "wf_dbdc";
+>> -        };
+>> -        conf {
+>> -            pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+>> -                   "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+>> -                   "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+>> -                   "WF0_TOP_CLK", "WF0_TOP_DATA";
+>> -            drive-strength = <4>;
+>> -        };
+>> -    };
+>> -};
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> index 3443013b5971..7459ddb6b6f0 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> @@ -25,10 +25,6 @@ memory@40000000 {
+>>       };
+>>   };
+>> -&uart0 {
+>> -    status = "okay";
+>> -};
+>> -
+>>   &eth {
+>>       status = "okay";
+>> @@ -99,13 +95,6 @@ fixed-link {
+>>       };
+>>   };
+>> -&wifi {
+>> -    status = "okay";
+>> -    pinctrl-names = "default", "dbdc";
+>> -    pinctrl-0 = <&wf_2g_5g_pins>;
+>> -    pinctrl-1 = <&wf_dbdc_pins>;
+>> -};
+>> -
+>>   &pio {
+>>       wf_2g_5g_pins: wf-2g-5g-pins {
+>>           mux {
+>> @@ -138,3 +127,14 @@ conf {
+>>           };
+>>       };
+>>   };
+>> +
+>> +&uart0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&wifi {
+>> +    status = "okay";
+>> +    pinctrl-names = "default", "dbdc";
+>> +    pinctrl-0 = <&wf_2g_5g_pins>;
+>> +    pinctrl-1 = <&wf_dbdc_pins>;
+>> +};
