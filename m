@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36FE9625D48
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A34E625D57
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:41:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234688AbiKKOj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:39:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48740 "EHLO
+        id S234756AbiKKOlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:41:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234649AbiKKOju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:39:50 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35A65BD79
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:31 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id t25so12971407ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:31 -0800 (PST)
+        with ESMTP id S234656AbiKKOkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:40:16 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F0E6C710
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:40:06 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g7so8625824lfv.5
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:40:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JAMGBaW4DNgnbxHPENr1NAw38Yk5iEpRnIys3RSCUnE=;
-        b=DVseHuqQ+fdeqFq/cg5i/yOGTG4qIR6mwKQlbApHL7hGPLZtwKD+3PuBn6DEtxZjzU
-         SCj3NzZbHwsYr6cAIdX0AtIDt+EioB8psnFybSyTkN0Os88giBjtV7Je58ZV2J9NqiGM
-         BK8t6Pl/+wsQ9rzJbLDdqP2UxZQGL4OEuiVos=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ps6+CrFrf1G8yxoOGed9ZXoVR3hjv0NG/3mQJo+Ut9Q=;
+        b=oGx3VkoPSO2ZKYabYiWWOTYN53Hpr4zaQMnkzolc249rz0cPeC88yNt1bYNVrAPS8r
+         AIYiVqED1zrsePxKZtPycqKpNFePYaKpXnSxy7apkC0UMcNcV9kEAmATmWglnJ9JEOtJ
+         3AXJYOGv9d3kY1Nl65rE1djkxjc6pv3eWx3WdwMXLOBXxLfcJrtr4cGmIvi10Xehpk5K
+         VLSvq/8EIoiY85GIPy77R273rffBqeBLLvAcayCqMI3BB7LMofgPHCOV0JfV6I8Stkuj
+         fvyf8gQvjW1oPqSZigjRZ4+bezCnTO/Yw9d+ZehIDA/GLuF33PzcLyyOorc3e3VKo8uu
+         vZbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JAMGBaW4DNgnbxHPENr1NAw38Yk5iEpRnIys3RSCUnE=;
-        b=EKZsIx3h5+I4feLYyuYB6cW2/clzqTZz0tx15Wr5Ovw98r0xavgLzWFgH8I0Bgk5mE
-         E5RsQzjH8kg0zs3Bk12IaK9K3BGcbUrnBKVzZcqWUCdml0X0068QXaTRRlUpXoBBNdsb
-         TBP1BauOBrk6JacUi9c4TWcYu/U10T6CbeIR2zCcreVBMwr3DTTysWqVCAPQOk73+4Sb
-         GWLcQhLMVCrmIbH6rTJiM5E+L7IfSp2Zl8MUsdS31h0f2kVCTvKTUBAt5MqOvfnCk02G
-         iqmC9xGT2cRFOB9Ukdh/+cg8QLjuhtYeO/+vsxRFegCfgKhUZp/BX8bDAcCUOPbEXjYH
-         JvrA==
-X-Gm-Message-State: ANoB5pnmiY9whAwaGcO8P7/OBQciDNsqMze314zCDSgbe0r4/qaOWNCX
-        31b6C6p8+M+NiPiWeBTscKLEpQ==
-X-Google-Smtp-Source: AA0mqf6uSSRRx4Q/XNl8iM4CFB+rpwgzG4zqyxc1Y93PWapbVBiCTtJEFTV0LfFQL7WkrlvtCR5YjA==
-X-Received: by 2002:a17:906:f113:b0:78d:addf:67c1 with SMTP id gv19-20020a170906f11300b0078daddf67c1mr2043542ejb.272.1668177569930;
-        Fri, 11 Nov 2022 06:39:29 -0800 (PST)
-Received: from prevas-ravi.tritech.se ([80.208.71.65])
-        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b007a1d4944d45sm945886ejc.142.2022.11.11.06.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 06:39:29 -0800 (PST)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] iio: addac: ad74413r: add support for reset-gpio
-Date:   Fri, 11 Nov 2022 15:39:21 +0100
-Message-Id: <20221111143921.742194-6-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ps6+CrFrf1G8yxoOGed9ZXoVR3hjv0NG/3mQJo+Ut9Q=;
+        b=Ztn0pPiJ01x7AR7V6Wvs3iGpOOsr/ldyPviod9QZbxkMFRQ0VSGcxRrDlNsQE7LTD0
+         kUV96OAVBUcyDCCpYg3TpVDnGVTijfHWUbvpCbP3+pkRcmxRV025Afd/OM607fUdZSJj
+         ia8kbvS8ccPY7z+XrOB8Yi6kZ7jax4rvCkd0zoEaPBxo3P7QhYOWeGa658GHP407y7w2
+         jIVGSbfTpjzw+mQ+m/rBo7y1OM0z6PCseXviQBbd3JR/eVVwOcbKoLlMLxfO5rs44DTt
+         p+xJARjyHvD3ri4EZMGoMwPadbEWo9MqfMg5XKVV7FeuvFKufvMBoHe2LD93UT5Qv4gN
+         Si2g==
+X-Gm-Message-State: ANoB5pk9c0oBdHb2jUsuxD5zcSdXaO5qFYe96BBVoY4fFoe6TlC53mzO
+        Vlev2MZ+cnvCBN4uLkvSIHECWg==
+X-Google-Smtp-Source: AA0mqf70IVc17pOFBXcRbcVopq4rQFE6Z5pSqKrcFJi6790TOHWOmuJf3IppF3ixjppkrhD1p+EB9Q==
+X-Received: by 2002:a05:6512:3581:b0:4a8:41b8:5cb7 with SMTP id m1-20020a056512358100b004a841b85cb7mr777625lfr.61.1668177604331;
+        Fri, 11 Nov 2022 06:40:04 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id q28-20020ac2515c000000b004a8f824466bsm358339lfd.188.2022.11.11.06.40.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 06:40:03 -0800 (PST)
+Message-ID: <36680a5e-7b0c-4d7e-f039-734e9304dc18@linaro.org>
+Date:   Fri, 11 Nov 2022 15:40:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 5/5] arm64: dts: uniphier: Add NX1 SoC and boards
+ support
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
+ <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
+ <f8f83839-2e76-e500-a16e-5fd2985a278d@linaro.org>
+ <df21cfca-67ed-0c78-7f1e-13e321edabe1@socionext.com>
+ <a1e4a039-3b65-2f2b-2196-340cc754b1c1@linaro.org>
+ <afdb63d2-217b-1ed5-3398-3e610bce8ecb@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <afdb63d2-217b-1ed5-3398-3e610bce8ecb@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,57 +84,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have a board where the reset pin of the ad74412 is connected to a
-gpio, but also pulled low by default. Hence to get the chip out of
-reset, the driver needs to know about that gpio and set it high before
-attempting to communicate with it.
+On 11/11/2022 09:48, Kunihiko Hayashi wrote:
+> Hi Krzysztof,
+> 
+> On 2022/11/09 0:11, Krzysztof Kozlowski wrote:
+>> On 08/11/2022 15:30, Kunihiko Hayashi wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 2022/11/08 20:13, Krzysztof Kozlowski wrote:
+>>>> On 07/11/2022 11:34, Kunihiko Hayashi wrote:
+>>>>> Initial version of devicetree sources for NX1 SoC and boards.
+>>>>>
+>>>>> NX1 SoC belongs to the UniPhier armv8 architecture platform, and is
+>>>>> designed for IoT and AI/ML application fields.
+>>>>>
+>>>>
+>>>>> +
+>>>>> +		soc_glue: syscon@1f800000 {
+>>>>> +			compatible = "socionext,uniphier-nx1-soc-glue",
+>>>>> +				     "simple-mfd", "syscon";
+>>>>> +			reg = <0x1f800000 0x2000>;
+>>>>> +
+>>>>> +			pinctrl: pinctrl {
+>>>>> +				compatible = "socionext,uniphier-nx1-pinctrl";
+>>>>
+>>>> So instead of documenting the hardware precisily, you have one big bag
+>>>> for everything under simple-mfd. This is not how the SoC should be
+>>>> described in DTS.
+>>>
+>>> Sorry I don't understand. This is inherited from the previous
+>>> descriptions,
+>>> but is there some example to express DTS correctly about that?
+>>
+>> I think yes, although it actually depends what is this hardware.
+>> Generally speaking, do not use simple-mfd and syscon when these are not
+>> really simple devices. There are quite many in your DTS, which got my
+>> attention. Instead - have regular device with or without children.
+>>
+>> There is no real need to have this a simple-mfd with one children
+>> without any resources (no address space, no clocks, no interrupts, nothing).
+>>
+>> Why this syscon/mfd and pinctrl is not a regular, one device?
+> 
+> The mfd/syscon.yaml says:
+>    System controller node represents a register region containing a set
+>    of miscellaneous registers.
+> 
+> The "soc-glue" is exactly this, it contains various register functions
+> and might be referred to the drivers.
+> 
+> For example in this NX1 dts, ethernet node points to "soc-glue" node.
+> 
+>      eth: ethernet@15000000 {
+>          compatible = "socionext,uniphier-nx1-ave4";
+>          ...
+>          socionext,syscon-phy-mode = <&soc_glue 0>;
+>      };
+> 
+> Since such register region is not often systematically designed,
+> it is tough to cut out as specific memory region for "pinctrl".
 
-When a reset-gpio is given in device tree, use that instead of the
-software reset. According to the data sheet, the two methods are
-functionally equivalent.
+So your choice is instead use entire address space as pinctrl - as a
+child device without IO address space. That's also not a good solution.
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/iio/addac/ad74413r.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> 
+> And more, the existing pinctrl driver uses of_get_parent() and
+> syscon_node_to_regmap(), so this change breaks compatibility.
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index 9f77d2f514de..af09d43f921c 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -71,6 +71,7 @@ struct ad74413r_state {
- 	struct regmap			*regmap;
- 	struct device			*dev;
- 	struct iio_trigger		*trig;
-+	struct gpio_desc		*reset_gpio;
- 
- 	size_t			adc_active_channels;
- 	struct spi_message	adc_samples_msg;
-@@ -393,6 +394,13 @@ static int ad74413r_reset(struct ad74413r_state *st)
- {
- 	int ret;
- 
-+	if (st->reset_gpio) {
-+		gpiod_set_value_cansleep(st->reset_gpio, 1);
-+		fsleep(50);
-+		gpiod_set_value_cansleep(st->reset_gpio, 0);
-+		return 0;
-+	}
-+
- 	ret = regmap_write(st->regmap, AD74413R_REG_CMD_KEY,
- 			   AD74413R_CMD_KEY_RESET1);
- 	if (ret)
-@@ -1316,6 +1324,10 @@ static int ad74413r_probe(struct spi_device *spi)
- 	if (IS_ERR(st->regmap))
- 		return PTR_ERR(st->regmap);
- 
-+	st->reset_gpio = devm_gpiod_get_optional(st->dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->reset_gpio))
-+		return PTR_ERR(st->reset_gpio);
-+
- 	st->refin_reg = devm_regulator_get_optional(st->dev, "refin");
- 	if (IS_ERR(st->refin_reg)) {
- 		ret = PTR_ERR(st->refin_reg);
--- 
-2.37.2
+This is a new DTS, so what compatibility is broken? With old kernel?
+There was no compatibility with this Devicetree. Anyway using driver
+implementation as reason for specific hardware description (DTS) is also
+not correct.
+
+> 
+>>>>> +			};
+>>>>> +		};
+>>>>> +
+>>>>> +		soc-glue@1f900000 {
+>>>>> +			compatible = "simple-mfd";
+>>>>
+>>>> No, it is not allowed on its own. You need a specific compatible and
+>>>> bindings describing its children.
+>>>
+>>> I saw the definition of "simple-mfd" itself is only in mfd/mfd.txt.
+>>>
+>>> Currently there are only efuse devices as children, and this space means
+>>> nothing. I think it had better define the devices directly.
+>>
+>> You need to start describe the hardware. efuse is an efuse, not MFD.
+>> pinctrl is pinctrl not MFD + pinctrl.
+> 
+> This region also has multiple functions, though, the efuse might be
+> cut out as specific region without "simple-mfd", unlike pinctrl.
+
+simple-mfd itself does not mean region has multiple functions, but that
+children do not depend on anything from the parent device.
+
+You over-use syscon and simple-mfd in multiple places. of course some of
+them will be reasonable, but now it does not.
+
+
+Best regards,
+Krzysztof
 
