@@ -2,55 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECEA4625450
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 08:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD81762549A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 08:48:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbiKKHKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 02:10:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49168 "EHLO
+        id S229675AbiKKHsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 02:48:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiKKHKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 02:10:52 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA8ABF5A;
-        Thu, 10 Nov 2022 23:10:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C22BF61EB2;
-        Fri, 11 Nov 2022 07:10:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 239ADC433D6;
-        Fri, 11 Nov 2022 07:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668150651;
-        bh=44w+Fl51DHOavbg54OA+rUmVXD6RmtykGkZJuEnzcRs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Lfn389LsSaZIIFb6vDyCicz/Y7tqEhtcG15ht7ywC1xXXMH5G+Ek7ZVZN85AOrBpR
-         5WJJyY8W9PZ7/loeHgwjpim5tpZQsCCZs9JzN1rJz9bH+Nhd3yUkJXF6LlLswjDN35
-         bZjiXIhDBTqoMrlcHVSZ4JPP9TgJAzlfRRMzFyjQOvluLC3F3I67rlRgStFifWq9FP
-         UD1AhC9LAqNJ4JRcBxztwzUBhBi0rOR0NIVJ+EvNOi1urFM/Y/qelGum9z15tdV3uJ
-         Odvj86Pi9jtbVOCAoipLf19B5uWGElpSdEiq2AVdMC+61U1vVG2dyyZrmoumGmhaxB
-         wUWWKi4lhkm6w==
-Date:   Fri, 11 Nov 2022 15:10:44 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8m{m,n}-venice-gw7902: add gpio pins for
- new board revision
-Message-ID: <20221111071044.GQ2649582@dragon>
-References: <20221107181754.218158-1-tharvey@gateworks.com>
+        with ESMTP id S230043AbiKKHsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 02:48:33 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE69B1DA
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 23:48:29 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id d3so3658712ljl.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 23:48:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n8HWN8A3iYhniaZRN6US8O1FOalwIEln+CVfm1ET2ro=;
+        b=yEQ6xZWyC6zPKtmwj/7f4PzXdz3JaMwx6eePw2BVjS49meJzD4tuA8YD1sCPWmk0dv
+         l7rWHK2VZqXEiLi8Ku+Jp2CdguvAcJPmLjPaQ1L5VbZOrjzdSpS96Srw+UXHdA6Og87V
+         YbD1CnOtHgbiMD75ycTQAWZ4TOXa4HZnuJBZvf6rLq/HCM7apkC4A8YOgkrqy/3RuH1b
+         wjwlNEcriCinTsxsnWjok2awk4PeZVp9Tp7mTgZpuaiUN0p5peNJIE+toGyM93koLBEH
+         IMBQGdClyd8Rk9tBAXseH+Hve1TYOd6nD8GRDrrJVPtu9VDstEiXHLFbk4e3jhuxu4+b
+         JtPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n8HWN8A3iYhniaZRN6US8O1FOalwIEln+CVfm1ET2ro=;
+        b=oPs56CBi+HymWzTsvB0djxYrqRpHRUSdVo+cTwRlJKhGFfYgjTxRvxBUaeUMhHbKNf
+         t9xgxz2Ua9mp265hD/d1CjWs4413vxM8yvkH4zMNhkPIcFXZKA62w6c+jxGyILgIupj3
+         biM+YDjdzOuIziSIXcVERI4ikJl0c18lQFj5JLWMCr7Dd5ugcu2Mxi6UmoR1vv3h8Dzh
+         e4f62xQ+lFpD9T0uUZas3LBcf8N0nwUsZLpNTs1uXOQTo7+zvzj+d9hk5zni0rx9i7ow
+         Sxwa9AZYMRELFxpTuO7AcDVhW92C9a0z/Pr6aIRoWK86IK8mQuQNHDgvvf8FWfV2XJD9
+         u3mw==
+X-Gm-Message-State: ANoB5pm1Tmg5GlrwnjIuzranvE4+0mg+Xsqq+/g9hSxUDZuFdNO2R6jQ
+        pp40ap70eDlYCRBnyrtvvPs+TA==
+X-Google-Smtp-Source: AA0mqf5U9q5mzlpqnEPgk6WXgBU7V0i1SQ/kzdHy5cQj+qbQM8/zxTM4SS3KdIbTcr9+RNCSzzxzJQ==
+X-Received: by 2002:a05:651c:194d:b0:276:b154:9bd8 with SMTP id bs13-20020a05651c194d00b00276b1549bd8mr269717ljb.76.1668152908128;
+        Thu, 10 Nov 2022 23:48:28 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id z6-20020ac25de6000000b00492f0f66956sm195574lfq.284.2022.11.10.23.48.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Nov 2022 23:48:27 -0800 (PST)
+Message-ID: <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
+Date:   Fri, 11 Nov 2022 08:48:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221107181754.218158-1-tharvey@gateworks.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host
+ controller
+To:     Zhe Wang <zhewang116@gmail.com>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com, avri.altman@wdc.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com
+References: <20221110133640.30522-1-zhewang116@gmail.com>
+ <20221110133640.30522-2-zhewang116@gmail.com>
+ <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org>
+ <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,17 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 10:17:54AM -0800, Tim Harvey wrote:
-> Add gpio pins present on new board revision:
->  * LTE modem support (imx8mm-gw7902 only)
->   - lte_pwr#
->   - lte_rst
->   - lte_int
->  * M2 power enable
->   - m2_pwr_en
->  * off-board 4.0V supply
->   - vdd_4p0_en
+On 11/11/2022 06:34, Zhe Wang wrote:
+>>
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> I'll fix it.
+> 
+>>> +        clocks = <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_CFG_EB>,
+>>> +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
+>>> +        freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>;
+>>
+>> Why this is empty? What's the use of empty table?
+>>
+> 
+> freq-table-hz is used to configure the maximum frequency and minimum
+> frequency of clk, and an empty table means that no scaling up\down
+> operation is requiredfor the frequency of these clks.
 
-Applied, thanks!
+No, to indicate lack of scaling you skip freq-table-hz entirely, not
+provide empty one.
+
+
+Best regards,
+Krzysztof
+
