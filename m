@@ -2,165 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DF4625861
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 626CB62586C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:33:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233842AbiKKKcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 05:32:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        id S233884AbiKKKc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 05:32:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233944AbiKKKbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:31:13 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8805D9;
-        Fri, 11 Nov 2022 02:30:47 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id n12so11548097eja.11;
-        Fri, 11 Nov 2022 02:30:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z/MLaZuJc8g+AT4gB5E2V8JlD6AZPsEIIWsJYtNaRZo=;
-        b=kk9z8kZmME4Z7wPSusouaXVtJgIOWe+yUyyzVaM/XbJ/k9VMJquwChaS74L/IfAnM2
-         nj3mu+qSnZKJtBKluAS35XGsmQmpIRm52WfDJFfxTCRrIdLQ80DC7iIkrL9tu6qayCOY
-         QqbEA2P46R4O6q7D8oaajyWe4k/3YqPI9NNje01AZDlT+uiXvE4zT42ZzCjr7LwhJxUz
-         UlIc7KkPk8zUehpznKcWBFCD0iudiA3XGQA/iMJvp5gf+mDVBvkOtL4YSfgeR9C1Sc8U
-         71oB5g+ZAq4IX73OqxmJNuc+uIOzODwfUQs4XFh1u7byIn+2LKfbQhLeX9OZga5i1osX
-         TkQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z/MLaZuJc8g+AT4gB5E2V8JlD6AZPsEIIWsJYtNaRZo=;
-        b=heJ22CYHnI/mv/Nxg1/Kg5fRQu7mLIIyp7vMMTBQa7Q5v7b+tzg+WiVkfdc2SDYNCz
-         XgXQChEw4WoFRvP1VtLIC8nizQgN4EPp+5sJl+cCMOXtl+B0wAFxGzgVqFBmvuZXktVJ
-         pfLYL8twrRszMBiMCBPr/4mARJ/UHMQXFtHlDpCugHfAZHOnnR56UTHZLhCvXiaVF1Ju
-         ygZZMN59sYISVOp/qd+QOHFlvgLNmmowEcVw5428juSYwlz0Pat6+hAt4piow6NEVxxb
-         NEA6JCFSsQ0gsc8wufclroDDG6LS/l1sgHhVc043VjIww/rfg1lxjn0eJO5FE1/QnN1/
-         Ja6Q==
-X-Gm-Message-State: ANoB5pmKL6RNkyREgGdVQi6clVII+/1CuDzt0lhOcGl4EGNTU2nUQIcx
-        75FrY6eBKEQWaDGClveGl/yA6LmQLgE6eECNh0dh7XF4ey4=
-X-Google-Smtp-Source: AA0mqf5QKx/OfYD6GDE1ldzATKe073cIe4ClKLKpvP61eI25cZ5+uumqPk8KO8C0wkO/4KvUWvwopSoHmG54SZbuAP0=
-X-Received: by 2002:a17:906:35d7:b0:7ad:eb81:c6c7 with SMTP id
- p23-20020a17090635d700b007adeb81c6c7mr1290890ejb.91.1668162646376; Fri, 11
- Nov 2022 02:30:46 -0800 (PST)
+        with ESMTP id S233860AbiKKKc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:32:57 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6929129;
+        Fri, 11 Nov 2022 02:32:56 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AB6gTTg017248;
+        Fri, 11 Nov 2022 10:32:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=UVW83uNwLIz1Mi4pSF9epFsA/KL1JmbnVhQWU6UQZSE=;
+ b=ka0ha5nLJZVDXOaT49rcK0nRdLmdj9qXsTkLqEzVYxSiA5pytfvZCTMmz67ZMJMlYEVB
+ XDGxnMR616ebT6uwwfy28DKWR29BLAIWlQ7I1MPcRpH0la/yzVJ1XdX6AcnKO+JD3o/R
+ v+oUOtJJTD0Zaj0SghDqBp7j/mNc4ttACspInI4C8BeI3SqDFgkw7V8JzJ0HDJ28NfCS
+ zgsLLW9cl/EBgQ4ragnWl6Y/3gIp8uJ3+K+lp1ZYyqjKbwH6Qr1xcZpadVvkueAYyW6u
+ d2BGPBmj+q5nKVZ83Xklzy4INxDD+GuxMnHc0acKX2kGl/xPqwogYB+cJYmRk/BtBhGq nw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kshc1grrh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:32:50 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ABAWnB3031323
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:32:49 GMT
+Received: from [10.79.43.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 11 Nov
+ 2022 02:32:45 -0800
+Message-ID: <d738cdd8-1963-78d4-2c6f-6597b3b02d0f@quicinc.com>
+Date:   Fri, 11 Nov 2022 16:02:42 +0530
 MIME-Version: 1.0
-References: <20221110133640.30522-1-zhewang116@gmail.com> <20221110133640.30522-2-zhewang116@gmail.com>
- <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org> <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
- <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org> <CAJxzgGpKATsfjnD7ksc_UXdzwW76trkONDzRR2UpKHW1Buxxew@mail.gmail.com>
- <af83da3a-11e1-f53d-6b69-5c3387b61cf8@linaro.org>
-In-Reply-To: <af83da3a-11e1-f53d-6b69-5c3387b61cf8@linaro.org>
-From:   Zhe Wang <zhewang116@gmail.com>
-Date:   Fri, 11 Nov 2022 18:30:35 +0800
-Message-ID: <CAJxzgGodv1MsgtGB2WS3NgKiWVxBEf1VWp2vbPOrkPmi6VTVFA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alim.akhtar@samsung.com, avri.altman@wdc.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 05/10] dt-bindings: interconnect: Add sm8350, sc8280xp
+ and generic OSM L3 compatibles
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+ <20221111032515.3460-6-quic_bjorande@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <20221111032515.3460-6-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -xfTtZ6u85J9IdOvGTXHvvI4SVBHI_H9
+X-Proofpoint-ORIG-GUID: -xfTtZ6u85J9IdOvGTXHvvI4SVBHI_H9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-11_05,2022-11-11_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 clxscore=1015
+ mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2210170000 definitions=main-2211110069
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Fri, Nov 11, 2022 at 5:51 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/11/2022 10:34, Zhe Wang wrote:
-> > Hi Krzysztof,
-> >
-> > On Fri, Nov 11, 2022 at 3:48 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/11/2022 06:34, Zhe Wang wrote:
-> >>>>
-> >>>
-> >>> I'll fix it.
-> >>>
-> >>>>> +        clocks =3D <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_=
-CFG_EB>,
-> >>>>> +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
-> >>>>> +        freq-table-hz =3D <0 0>, <0 0>, <0 0>, <0 0>;
-> >>>>
-> >>>> Why this is empty? What's the use of empty table?
-> >>>>
-> >>>
-> >>> freq-table-hz is used to configure the maximum frequency and minimum
-> >>> frequency of clk, and an empty table means that no scaling up\down
-> >>> operation is requiredfor the frequency of these clks.
-> >>
-> >> No, to indicate lack of scaling you skip freq-table-hz entirely, not
-> >> provide empty one.
-> >>
-> >>
-> >
-> > In the ufshcd-pltfrm.c file, the clock information is parsed by
-> > executing the function ufshcd_parse_clock_info, if the number of
-> > "freq-table-hz" is zero or if the number of "clock-names" and
-> > "freq-table-hz" does not match, the UFS CLK information in dts will
-> > not be obtained. Although we don't need to scaling freq, we also need
-> > the CLK information for the CLK GATE operations. So we cannot delete
-> > this freq-table here.
->
-> I did not check the driver implementation, but if that's the case it
-> does not match bindings. Before adding empty useless tables, please
-> either fix bindings or driver. I think the latter - the driver - becasue
-> clocks are not depending logically on freq-table-hz.
->
 
-OK, I will think about how to solve this problem.
+On 11/11/22 08:55, Bjorn Andersson wrote:
+> Add EPSS L3 compatibles for sm8350 and sc8280xp, but while at it also
+> introduce generic compatible for both qcom,osm-l3 and qcom,epss-l3.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Tested-by: Steev Klimaszewski <steev@kali.org>
+> ---
+> 
+> Changes since v1:
+> - Fixed oneOf to be valid schema
+> - Fixed example to follow schema
+> 
+>   .../bindings/interconnect/qcom,osm-l3.yaml    | 24 ++++++++++++-------
+>   1 file changed, 16 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> index bf538c0c5a81..aadae4424ba9 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> @@ -16,13 +16,21 @@ description:
+>   
+>   properties:
+>     compatible:
+> -    enum:
+> -      - qcom,sc7180-osm-l3
+> -      - qcom,sc7280-epss-l3
+> -      - qcom,sc8180x-osm-l3
+> -      - qcom,sdm845-osm-l3
+> -      - qcom,sm8150-osm-l3
+> -      - qcom,sm8250-epss-l3
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,sc7180-osm-l3
+> +              - qcom,sc8180x-osm-l3
+> +              - qcom,sdm845-osm-l3
+> +              - qcom,sm8150-osm-l3
+> +          - const: qcom,osm-l3
+> +      - items:
+> +          - enum:
+> +              - qcom,sc7280-epss-l3
+> +              - qcom,sc8280xp-epss-l3
+> +              - qcom,sm8250-epss-l3
+> +              - qcom,sm8350-epss-l3
+> +          - const: qcom,epss-l3
 
-> >
-> >> Best regards,
-> >> Krzysztof
-> >>
-> >
-> > According to the local test results just now, I would like to ask a
-> > question about the previous revisions.
-> >>> +
-> >>> +  sprd,ufs-anly-reg-syscon:
-> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>> +    description: phandle of syscon used to control ufs analog reg.
-> >>
-> >> It's a reg? Then such syntax is expected:
-> >> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/device=
-tree/bindings/soc/samsung/exynos-usi.yaml#L42
-> >>
-> >
-> > In the syntax of this example, reg is represented by phandle and
-> > offset, but I only need the information of phandle in this place=EF=BC=
-=8C
->
-> No. You wrote "analog reg". So one reg. Not regs.
->
-> > So in
-> > this scenario, whether my original syntax is fine=EF=BC=9F just describ=
-e the
-> > pandlle.
->
-> No, because your description said one reg.
->
+isn't it incorrect to describe qcom,epss-l3 as a working
+backup compatible for sc7280-epss-l3 and sm8250-epss-l3?
+Shouldn't we just add another items list with those 2 as
+enums?
 
-This is my mistake, the description is wrong, it's regs.
-Thank you for your review!
-
-Best regards,
-Zhe Wang
-
-> Best regards,
-> Krzysztof
->
+>   
+>     reg:
+>       maxItems: 1
+> @@ -56,7 +64,7 @@ examples:
+>       #define RPMH_CXO_CLK        0
+>   
+>       osm_l3: interconnect@17d41000 {
+> -      compatible = "qcom,sdm845-osm-l3";
+> +      compatible = "qcom,sdm845-osm-l3", "qcom,osm-l3";
+>         reg = <0x17d41000 0x1400>;
+>   
+>         clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
