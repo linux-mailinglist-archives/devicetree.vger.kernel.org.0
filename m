@@ -2,107 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A0D626314
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 21:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB38A62635E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234502AbiKKUk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 15:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34480 "EHLO
+        id S234025AbiKKVGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 16:06:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231840AbiKKUk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 15:40:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3A183BBA;
-        Fri, 11 Nov 2022 12:40:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 288EF620EA;
-        Fri, 11 Nov 2022 20:40:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8BC8C433C1;
-        Fri, 11 Nov 2022 20:40:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668199224;
-        bh=7WEo0XEdF37ad3EKSE0JnRvIRzSv8as0e854gPjKdVs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gS9iygnD8njjdMi9uvK01Y9cMjjVNQSpj3WQldG5XseUPMgMhAmebjMBmKPe1bvn7
-         Xw4ZmqaUPhBUpRgFsrHJfzAlTh9t62zJ88V8D+2Knp5VDYD/MZ9kraYoMixooNXB50
-         7r+q0ano1GSTBnsUJTPLF8T2Cta/I71/yNqdTIQQaMTsbPRL7tn/SrMjL5C9PpOJBK
-         0dYCN/LBqIgyacmGf8HzQ4mU5A+hzCDxBx6ObVVrry2usrGXsgAe2kzZR337bBgd4c
-         he1HYE6jo+YIYwsw07r0cnGw4FFx40dFKsgbPzgTGmFcCBaGRU7lF3fFTHf6eGt2UU
-         g8O3Y7EET5Tgg==
-Date:   Fri, 11 Nov 2022 14:40:21 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/9] arm64: dts: qcom: sc8280xp-crd: enable WiFi
- controller
-Message-ID: <20221111204021.myjms5c2rntu4a76@builder.lan>
-References: <20221110103558.12690-1-johan+linaro@kernel.org>
- <20221110103558.12690-7-johan+linaro@kernel.org>
- <20221110113513.GA18247@thinkpad>
- <Y254AvMKyDQ+tY0q@hovoldconsulting.com>
+        with ESMTP id S233842AbiKKVGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:06:10 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA55783B94;
+        Fri, 11 Nov 2022 13:06:09 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ABL5L2W124440;
+        Fri, 11 Nov 2022 15:05:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668200721;
+        bh=qZUp0LgToCdeKTOa83YyPSwidLhs3SutcFlXMmeJ5+g=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Nk8BC8B1RQkKSHbYNSEtNECGVu6W9yYKEsbJ5eKqzvUZUtARwYEG5mLRuPbdqrKdC
+         uXMqSarIdMkG6TVr2dRZER9MRDGmXwVVXOLlAsKiIzX31SKCg0VyOpheMf7fW6U0s4
+         hoYQs4/YNUoKusjtgFgBMYtuHQB50mat3wigoFbE=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ABL5Lv2092391
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Nov 2022 15:05:21 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 11
+ Nov 2022 15:05:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 11 Nov 2022 15:05:20 -0600
+Received: from [128.247.81.39] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ABL5K5I066401;
+        Fri, 11 Nov 2022 15:05:20 -0600
+Message-ID: <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
+Date:   Fri, 11 Nov 2022 15:05:20 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y254AvMKyDQ+tY0q@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221024173434.32518-1-afd@ti.com>
+ <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
+ <Y26lDEtiG4KFzc91@smile.fi.intel.com>
+Content-Language: en-US
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <Y26lDEtiG4KFzc91@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 05:27:46PM +0100, Johan Hovold wrote:
-> On Thu, Nov 10, 2022 at 05:05:13PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Nov 10, 2022 at 11:35:55AM +0100, Johan Hovold wrote:
-> > > Enable the Qualcomm QCNFA765 Wireless Network Adapter connected to
-> > > PCIe4.
-> > > 
-> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 65 +++++++++++++++++++++++
-> > >  1 file changed, 65 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> > > index 5b9e37a16f9f..ab5b0aadeead 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> > > @@ -81,6 +81,22 @@ vreg_misc_3p3: regulator-misc-3p3 {
-> > >  		regulator-always-on;
-> > >  	};
-> > >  
-> > > +	vreg_wlan: regulator-wlan {
-> > > +		compatible = "regulator-fixed";
-> > > +
-> > > +		regulator-name = "VCC_WLAN_3R9";
-> > > +		regulator-min-microvolt = <3900000>;
-> > > +		regulator-max-microvolt = <3900000>;
-> > > +
-> > > +		gpio = <&pmr735a_gpios 1 GPIO_ACTIVE_HIGH>;
-> > > +		enable-active-high;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&hastings_reg_en>;
-> > 
-> > Hastings is the family name of QCA639x WLAN chipsets. I don't think it would be
-> > applicable here. Please use "wlan_reg_en" as that matches the convention used
-> > throughout this file.
+On 11/11/22 1:39 PM, Andy Shevchenko wrote:
+> On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
+>> On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
+>>>
+>>> Hello all,
+>>>
+>>> This is a series based on my patch here[0]. As suggested by Rob
+>>> I've resurrected Frank's patch and appended it to mine as a series.
+>>>
+>>> First patch here is my original patch, 3rd is Frank's patch but with
+>>> the unittest changes pulled out into the 2nd patch. That was re-worked
+>>> moving the source building macro into scripts/Makefile.lib.
+>>>
+>>> Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
+>>> overlays. Split out by platform so they could be taken by platform
+>>> maintainers or if easier ACK'd here and taken all together.
+>>>
+>>> This should cover all the DTB overlays so we can remove the old .dts
+>>> rule for overlays and make .dtso the only supported way, let me know
+>>> if we want that this cycle and I can post that too.
+>>>
+>>> Thanks,
+>>> Andrew
+>>>
+>>> Changes from v1[1]:
+>>>   - Added patch to rename pi433 overlay.
+>>>   - Cleaned wording on patch 4-6.
+>>>   - Collected some ACKs
+>>>
+>>> [0] https://www.spinics.net/lists/kernel/msg4548509.html
+>>> [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
+>>>
+>>> Andrew Davis (6):
+>>>    kbuild: Allow DTB overlays to built from .dtso named source files
+>>>    kbuild: Allow DTB overlays to built into .dtso.S files
+>>>    arm64: dts: freescale: Rename DTB overlay source files from .dts to
+>>>      .dtso
+>>>    arm64: dts: renesas: Rename DTB overlay source files from .dts to
+>>>      .dtso
+>>>    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
+>>>    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
+>>>
+>>> Frank Rowand (1):
+>>>    of: overlay: rename overlay source files from .dts to .dtso
+>>
+>> I've applied patches 1-3 and 7. I'll send a PR for the branch to the
+>> platform maintainers after a few days in linux-next.
 > 
-> The pin name here comes from the schematics, which is what we should use
-> for naming when we can.
+> The patch
+> 
+> commit 941214a512d8c80d47e720c17ec17e8539175e93
+> Author: Andrew Davis <afd@ti.com>
+> Date:   Mon Oct 24 12:34:29 2022 -0500
+> 
+>      kbuild: Allow DTB overlays to built into .dtbo.S files
+> 
+> broke the build reproducibility / no-op builds.
+> 
+> Before:
+>    2+ execution of `make` on non-changed tree did nothing
+> 
+> Now:
+>    Each run of `make` (even without a single bit changed) restarts vmlinux
+>    rebuild.
+> 
+> Please, revert or fix.
 > 
 
-Following the naming in the schematics is the right thing to do.
+I do not see this behavior. What config are you using?
 
-Regards,
-Bjorn
+Not sure how this patch could be the root cause, it only adds
+a build target/rule, but doesn't actually use it anywhere yet..
+
+Andrew
