@@ -2,255 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3743F62553B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ABF162554E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233213AbiKKI2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 03:28:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51316 "EHLO
+        id S233220AbiKKIao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 03:30:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233186AbiKKI14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:27:56 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D04A87C8DA
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:27:50 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id 78so3852905pgb.13
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:27:50 -0800 (PST)
+        with ESMTP id S230181AbiKKIan (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:30:43 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D583773744
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:30:42 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id l12so7315598lfp.6
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:30:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c6/R+5coguWTvlN/9lIu/MDWB5I1C/01DprdHlXRTcs=;
-        b=bgqJ3zVA74hTY+s4RsbU6C18De2j1JIywbWX1Ss18nyD2bRwxSm7Lp3zZvW68dPa+8
-         daYIkPUd+N4zE+PKa0obS66HhMK3xI3ThhtrC9o/WA+zertEgXgSCNY5AgbEHucDAlKP
-         PpSTL3wjhiBpcoluBVIF2kBw9vxUx1jTJgQ/BJQ3PspWw555Umw9QP0QUJK2yddA6SG1
-         GucewfQCDhnyi8c0YQ/5x1sGy73QNcxnnstgN91LSUenlNDit8yeJE3ToKTXALdSs9E6
-         CjsojxK2wHpXpLjmdfQ1FSMd0jx5o9XRubpSJvA1YsCkAAEhox436gZBljw5XvW0rz8R
-         IueA==
+        bh=hrnI1MMknS51ZDdp7gq4JuxX4S3fw0/B9/ygHLoG+Gc=;
+        b=mpuPULLEet7biTYrB7NHYa6DedN1VB3nlS8l2m/zyWnAvnFRpMxlO4HkR2WNDFnzR/
+         pBCG3HAR4S+qnjkskeZ6EakD+VABTquYZqnfV1SCcQWOGi7VGDSjyXudDlSbzuW4MrIb
+         vzha6MT03hIgC/dGq6jTl56uzC+ED9tGPYMo+JtsDFsj6uNiS8sFFCQa2wSsBFnV4mT/
+         LzAmJsmJUSQnkOaeoSvkxZV/+2UEIy2nGCWWEBeKBsBwQXXQryygi/gOn6n6l2cSSfMe
+         XRp1zaFpDB1EVQoGGgrpBm6VDcutbkqn9s7A72IQTHLZ4DKIeXAeesJIL1nDP/J/Xux3
+         ExDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c6/R+5coguWTvlN/9lIu/MDWB5I1C/01DprdHlXRTcs=;
-        b=Yr5DfyVXI1AuoCD48TWYzAcYU9pVVG+VAas+U3tPpkQY6SGirbGPSr6XvKSa5BHSyC
-         D1kDbsoWUVp9JZVfvJVI7C1MWWyxNP2UJ+kE8scdHDk15HbDfuLgtmpuGlmKBKPRgi2z
-         zgAjwYnIoEUMnDRX4y+xrD2adz4Wv6KOoCYCXuWywHye387YAhdT174VCWzLKfHFwxPq
-         YnEQb89kyao6vd0Yp5+gJmgo3jXGtDehucXIzBdWLWl22jK4AVe77p64+yUFCfpie5R8
-         O2Sc3VDs3JXQhOYKUIKpI3IZVrX/dLGrXadg7vC1Fxdex9BxpW5Y3zOcuYw/zByvJGqY
-         i3iA==
-X-Gm-Message-State: ANoB5pk7hTaix+Qip8sZIjly+g212wBMLsNdA5T1gvu0t1YNILMpitgU
-        yELWECR7bmZ/aDEFit7MBaNXZg==
-X-Google-Smtp-Source: AA0mqf4jUVqD9Wu04JHELKbmEPSzlH4gptMgu8vyDZhjKTf1kZdd1R0eL+j44mKUsA9p5eVPgEseXw==
-X-Received: by 2002:a63:5115:0:b0:46f:a989:ad72 with SMTP id f21-20020a635115000000b0046fa989ad72mr726477pgb.430.1668155270258;
-        Fri, 11 Nov 2022 00:27:50 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id n8-20020aa79848000000b005627868e27esm984075pfq.127.2022.11.11.00.27.47
+        bh=hrnI1MMknS51ZDdp7gq4JuxX4S3fw0/B9/ygHLoG+Gc=;
+        b=57zPrD7lYjHvbt8Sa4/58DrSByHHf9TOvHdDpPkfCuR8yfoFbSt0aqYRxRFCmIm9x1
+         f5Xfox96JQgkLsnXf6DhlZzNCh9FMHf9HFMxpKyOMsUlKBTYajgrv1DI1fhpsRs4p3Si
+         LTcA4AZyyfcpqtLXSBG93FtDVIw3sMivjfle/aoW1HQANIrYO8rj6NvsZH75k0bcepVu
+         dpnJmI+nlvNgYRj6flIA5TK8y+dedFH9LFfi6mXi6ll4Jg5A76Hl2ywYYcFuZNi7O7py
+         h2fSRkyTRhTMyi1cvQYI1MVMEgBwdvKMbnkNQ5PL1S2Lxwg13JxTrLu55iU4Vac4qcWe
+         ccXA==
+X-Gm-Message-State: ANoB5plJQZsxp+tiKfZXUNR8cc2Jxzynm+a0HFc+s1b7gYA/VSLJsGLH
+        bh29PwDfNJygvUinJFl73+WHtw==
+X-Google-Smtp-Source: AA0mqf7c+RlYfpF8xEXHp48mDlPI+cGjAyFcyWDabKp9R6pOqfNE3GDhhGpOZMMpvoAagMn7dABTww==
+X-Received: by 2002:ac2:5461:0:b0:4a2:8cac:96ab with SMTP id e1-20020ac25461000000b004a28cac96abmr378149lfn.415.1668155441159;
+        Fri, 11 Nov 2022 00:30:41 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id s11-20020a2eb62b000000b00277050abd55sm277444ljn.130.2022.11.11.00.30.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 00:27:49 -0800 (PST)
-Message-ID: <d857ba1c-4248-5542-580c-ab814ef4124d@9elements.com>
-Date:   Fri, 11 Nov 2022 13:57:46 +0530
+        Fri, 11 Nov 2022 00:30:40 -0800 (PST)
+Message-ID: <81890fa5-5793-1ee4-14a4-78c08024f3fb@linaro.org>
+Date:   Fri, 11 Nov 2022 09:30:39 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v8 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103213425.2474772-1-Naresh.Solanki@9elements.com>
- <20221103213425.2474772-2-Naresh.Solanki@9elements.com>
- <9396ee97-d6f3-f13b-8929-56c3920ee395@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 2/2] dt-bindings: net: qcom,ipa: restate a
+ requirement
 Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <9396ee97-d6f3-f13b-8929-56c3920ee395@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221110195619.1276302-1-elder@linaro.org>
+ <20221110195619.1276302-3-elder@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221110195619.1276302-3-elder@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 10/11/2022 20:56, Alex Elder wrote:
+> Either the AP or modem loads GSI firmware.  If the modem-init
+> property is present, the modem loads it.  Otherwise, the AP loads
+> it, and in that case the memory-region property must be defined.
+> 
+> Currently this requirement is expressed as one or the other of the
+> modem-init or the memory-region property being required.  But it's
+> harmless for the memory-region to be present if the modem is loading
+> firmware (it'll just be ignored).
+> 
+> Restate the requirement so that the memory-region property is
+> required only if modem-init is not present.
+> 
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 13 ++++++++-----
 
-On 04-11-2022 03:19 am, Krzysztof Kozlowski wrote:
-> On 03/11/2022 17:34, Naresh Solanki wrote:
->> From: Marcello Sylvester Bauer <sylv@sylv.io>
->>
-> 
-> Subject: drop redundant (second) word "bindings"
-> 
->> The MAX597x is a hot swap controller with configurable fault protection.
->> It also has 10bit ADC for current & voltage measurements.
->>
->> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> 
-> Isn't this third version per day? That's too many. Please keep it one
-> per day (usually).
-> 
-> 
->> ---
->>   .../bindings/mfd/maxim,max5970.yaml           | 170 ++++++++++++++++++
->>   1 file changed, 170 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->> new file mode 100644
->> index 000000000000..25079c518f68
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->> @@ -0,0 +1,170 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
->> +
->> +maintainers:
->> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
->> +
->> +description: |
->> +  The smart switch provides no output regulation, but independent fault protection
->> +  and voltage and current sensing.
->> +  Programming is done through I2C bus.
->> +
->> +  Datasheets:
->> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
->> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - maxim,max5970
->> +      - maxim,max5978
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  leds:
->> +    type: object
->> +    description:
->> +      Properties for single channel.
-> 
-> This description seems odd. You have here several leds, so what is the
-> single channel?
-> 
-There are four leds. Will update in next revision.
->> +
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^led@[0-3]$":
->> +        $ref: /schemas/leds/common.yaml#
->> +        type: object
->> +
->> +    additionalProperties: false
->> +
->> +  vss1-supply:
->> +    description: Supply of the first channel.
->> +
->> +  vss2-supply:
->> +    description: Supply of the first channel.
->> +
->> +  "#io-channel-cells":
->> +    const: 1
->> +
->> +  regulators:
->> +    type: object
->> +    description:
->> +      Properties for single channel.
-> 
-> That's another odd description.
-> 
-Update. Willbe part of next version.
->> +
->> +    patternProperties:
->> +      "^(SW[0-1])$":
-> 
-> This should be lowercase. You also do not need ().
-> 
-Done.
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +        type: object
->> +
->> +      shunt-resistor-micro-ohms:
->> +        description: |
->> +          The value of curent sense resistor in microohms.
->> +          Must be specified for each channel.
-> 
-> Drop last sentence and instead add "required:" with proper indent.
-> 
-Fixed. Will be part of next version.
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - regulators
->> +  - vss1-supply
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - maxim,max5970
->> +    then:
->> +      properties:
->> +        io-channels:
->> +          items:
->> +            - description: voltage first channel
->> +            - description: current first channel
->> +            - description: voltage second channel
->> +            - description: current second channel
->> +          description: |
->> +            Voltage and current for first and second channel.
-> 
-> I do not understand the description.
-> 
-> Also, add it in the existing example.
-> 
-Have removed them because not being used by the driver.
 
->> +      required:
->> +        - vss2-supply
->> +    else:
->> +      properties:
->> +        io-channels:
->> +          items:
->> +            - description: voltage first channel
->> +            - description: current first channel
->> +          description: |
->> +            Voltage and current for first channel.
-> 
-> Same question for the description.
-> 
->> +
->> +additionalProperties: false
->> +
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
