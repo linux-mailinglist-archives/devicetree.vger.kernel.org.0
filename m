@@ -2,60 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99873625517
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CE0625519
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:20:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231564AbiKKIUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 03:20:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48180 "EHLO
+        id S232608AbiKKIUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 03:20:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbiKKIUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:20:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA7213CE7;
-        Fri, 11 Nov 2022 00:20:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 417F561E80;
-        Fri, 11 Nov 2022 08:20:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 89E42C433D7;
-        Fri, 11 Nov 2022 08:20:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668154816;
-        bh=H0z/gyJf8Kdl7Ragj8yN9726qsQnh7OwQ4laCsBomPA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=cYO3UeuNtcn8uUAEtwLchU82CVyKc4fat54bFG0CWqLX1oah7554Tpg8dSmhhmram
-         M518saSIfdtoHA5nXxDxXQCF6t+oQBbFyV+crogdLPbDb8H8o/evwxLogRhsPfCMNi
-         tHArM5BbZyFQ18x5Hgqs436sphkrOelsYArvXEbCscooWANDrlkvUjuNz7vFbdqiHv
-         OLT5uZlJaALPwzfxZJuhiWeRhthgjnRPGn/69BgTPVLWQRiAfde1GBtVYeu93x779w
-         kmka2amA51crkMnXcN189RAqL2hY7krT8Gw7FEpbYOYb6q0HBrBbjXZwn7OokRyrRp
-         i+W/nsUiR8L4g==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 65710E270C4;
-        Fri, 11 Nov 2022 08:20:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231478AbiKKIUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:20:41 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6CA41980
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:20:40 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id b3so7301333lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:20:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m7Ka71WJnUiAb9fvGY9CNSs9KdiUBfWOURrQspmYDMA=;
+        b=tD8dVfVTwQei5KACu20o0XLwgAARP34M1YmWgCtHFXL2eE04ultRTvyqqPIEbl41XH
+         3h9a3UlXK9oGLr42gNN2P3fWJQ1FRbQdint+WleKKg+6kfwRimn6bhJ9fQeu8zDSkFIF
+         GYS+MKs2cjHVRJC9+MYoXX30JxfzHFy9ogsdLBUC4gqH6WIDj130tROm195MPYGyL1eO
+         UP1GG6IiIjJ14ky5R6VVvs/nronUHKiknMBsof5jL7IPDw48/ln5ahTjg/met3l+p8FO
+         dIW6XXi7hMAncrN4+oDeeo4LQ/7l8d+RPx4gpXzt8LrVbD06aeQDIQEBVJhDvj/Zxas6
+         s/5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m7Ka71WJnUiAb9fvGY9CNSs9KdiUBfWOURrQspmYDMA=;
+        b=x6KbZg/u28hThn+rIyhf4xfsDhzXjkMLlED8nZFJ/rUfqOxEvC/kihWK4AxawnZGRt
+         ClsSEKp9VLToW5F2ACS899lhikg14Iu8NgcfMEDPpPs4bDNdM+ASju64P3WiUp4QLeWH
+         R4XsdNN5rJ6nQ8/SsgEUSBbc50JWGQdeivHC4MbPUHFeeFF/9T2vQUbIFSYDmQyMWsMN
+         YxgXPeLAA29S1YDrFVsrP5R8069gWXDSSF1VX00tStpY1ILSLGVHArfK4CwwPj4BOEbT
+         yeQY2rR8kLbQuuH4Ur1hJ5ErGnrVp9VvsD1Id3mGCLdXu6MYRi/S08KFFzHp/2Lchx/v
+         Dlzg==
+X-Gm-Message-State: ANoB5pkUwMKGchikFqwuBSkNeB+/+79/r1bpDlJAAtw0SyGzq3u+V2cF
+        wcd7IXCPkmlDKfb4rbaxHMlODw==
+X-Google-Smtp-Source: AA0mqf6oEBYq1lUaIJv8EvmNwB7aw0DrLt6oIirmfX4VsIKPBfkQ6dfRACGvX4/i69yzydm/945ajA==
+X-Received: by 2002:ac2:4ecf:0:b0:4a2:741f:1909 with SMTP id p15-20020ac24ecf000000b004a2741f1909mr428635lfr.484.1668154838719;
+        Fri, 11 Nov 2022 00:20:38 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id v2-20020ac25922000000b004946a1e045fsm208768lfi.197.2022.11.11.00.20.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 00:20:38 -0800 (PST)
+Message-ID: <8931d67d-6f4a-913e-8873-995703dbb97f@linaro.org>
+Date:   Fri, 11 Nov 2022 09:20:37 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 2/7] dt-bindings: usb: hpe,gxp-udc: Add binding for gxp
+ gadget
+Content-Language: en-US
+To:     "Yu, Richard" <richard.yu@hpe.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Chang, Clay" <clayc@hpe.com>
+References: <20221103160625.15574-1-richard.yu@hpe.com>
+ <20221103160625.15574-3-richard.yu@hpe.com>
+ <b85230d4-8fce-ba49-0d6b-8c4d20132cda@linaro.org>
+ <SJ0PR84MB2085E6B922DAF1070DC802EF8D3C9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+ <c199600a-aad9-5639-ea57-a4d59d719ade@linaro.org>
+ <SJ0PR84MB20853F3B0FCCF2A9583524B48D3E9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SJ0PR84MB20853F3B0FCCF2A9583524B48D3E9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 net-next 0/8] introduce WED RX support to MT7986 SoC
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166815481641.32563.14048666303133746703.git-patchwork-notify@kernel.org>
-Date:   Fri, 11 Nov 2022 08:20:16 +0000
-References: <cover.1667687249.git.lorenzo@kernel.org>
-In-Reply-To: <cover.1667687249.git.lorenzo@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,47 +91,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Sat,  5 Nov 2022 23:36:15 +0100 you wrote:
-> Similar to TX counterpart available on MT7622 and MT7986, introduce
-> RX Wireless Ethernet Dispatch available on MT7986 SoC in order to
-> offload traffic received by wlan nic to the wired interfaces (lan/wan).
+On 09/11/2022 04:37, Yu, Richard wrote:
+> Hi Mr. Kozlowski,
 > 
-> Changes since v3:
-> - remove reset property in ethsys dts node
-> - rely on readx_poll_timeout in wo mcu code
-> - fix typos
-> - move wo-ccif binding in soc folder
-> - use reserved-memory for wo-dlm
-> - improve wo-ccif binding
+> Thank you very much for inputs.
 > 
-> [...]
+>>>>> +
+>>>>> +  vdevnum:
+>>>>> +    description:
+>>>>> +      virtual device number.
+>>
+>>>> That's unusual property... Why numbering devices is part of DT (hardware description)?
+>>
+>>>  In HPE GXP virtual EHCI controller chipset, it can support up to 8  
+>>> virtual devices(gadgets). Each device/gadget will be represented  by 
+>>> a bit in 8 bits register. For example, the interrupt register bit 0  
+>>> indicates the interrupt from device 0, bit 1 for device 1 ... so on.
+>>> When a user defines a device/gadget, he/she can define the device 
+>>> number as between 0 and 7. Thus, the driver can look up to the bit 
+>>> position. That is why we have numbering devices as part of DT.
+> 
+>> Wrap your lines properly, it's impossible to reply in-line to such messages.
+> 
+> Sorry for the improper wrapping. Hope the above fixed the problem.
+> 
+>> Then how do you specify two devices? You allow here only one, right?
+> 
+> In our current design, to specify two devices, we added the gadget 
+> structure into the device tree, such as  gadget0:udc@80401000{}; gadget1:udc@80402000{};....
+> 
+> No, we can allow up to 8 devices by adding the gadget structure,
+> such as gadget0:udc@80401000{}; gadget1:udc@80402000{};....gadget8:udc@80408000{};
+> 
+>> Which bit in which register? Your devices have separate address space, so why they cannot poke the same register, right? Then just always set it to 0...
+> 
+> In HPE GXP vEHCI controller, there are three register groups: standard USB EHCI registers, 
+> virtual device global registers, and virtual device registers.
+> 
+> Standard USB EHCI registers ---- We defined as "hpe,gxp-vudc" in the device tree (vuhc0) 
+> Virtual device global registers --- We defined as "hpe,gxp-udcg" 
+> Virtual device registers -- We defined as "hpe,gxp-udc"
+> 
+> Each virtual device will have its own separate address space. 
+> There is only single address space for the virtual device global registers. 
+> 
+> The virtual device global registers are including vDevice Global Interrupt Status register(EVGISTAT), 
+> vDevice Global Interrupt Enable register(EVGIEN), vEHCI FlexEndpoint Mapping register (EVFEMAP) ....
+> We need the vdevnum for the bit position in EVGISTAT and EVGIEN for each device.  
+> We write vdevnum into the EVFEMAP register to assign an EP to a specific device. 
+> 
+>> I might miss here something but so far it looks to me like some hacky description matching the driver, not hardware, not existing bindings.
+> 
+> We create "vdevnum" as device configuration parameter due to our hardware need.
 
-Here is the summary with links:
-  - [v4,net-next,1/8] arm64: dts: mediatek: mt7986: add support for RX Wireless Ethernet Dispatch
-    https://git.kernel.org/netdev/net-next/c/eed4f1ddad8c
-  - [v4,net-next,2/8] dt-bindings: net: mediatek: add WED RX binding for MT7986 eth driver
-    https://git.kernel.org/netdev/net-next/c/ceb82ac2e745
-  - [v4,net-next,3/8] net: ethernet: mtk_wed: introduce wed mcu support
-    https://git.kernel.org/netdev/net-next/c/cc514101a97e
-  - [v4,net-next,4/8] net: ethernet: mtk_wed: introduce wed wo support
-    https://git.kernel.org/netdev/net-next/c/799684448e3e
-  - [v4,net-next,5/8] net: ethernet: mtk_wed: rename tx_wdma array in rx_wdma
-    https://git.kernel.org/netdev/net-next/c/084d60ce0c6c
-  - [v4,net-next,6/8] net: ethernet: mtk_wed: add configure wed wo support
-    https://git.kernel.org/netdev/net-next/c/4c5de09eb0d0
-  - [v4,net-next,7/8] net: ethernet: mtk_wed: add rx mib counters
-    https://git.kernel.org/netdev/net-next/c/51ef685584e2
-  - [v4,net-next,8/8] MAINTAINERS: update MEDIATEK ETHERNET entry
-    https://git.kernel.org/netdev/net-next/c/90050f80509c
+That's not an argument... everything can be a "hardware need".
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> 
+>>>>> +
+>>>>> +  fepnum:
+>>>>> +    description:
+>>>>> +      number of the flexible end-points this device is needed.
+>>>
+>>>> Similar question.
+>>>
+>>> In HPE GXP virtual EHCI Controller chipset, there is a flexible End-Point(EP) pool. 
+>>> Each flexible EP has its own mapping register. The mapping register 
+>>> bit 0 to 3 is for device number (vdevnum) and bit 4 to 7 is for EP number inside the device.
+>>> The device driver configures the mapping register to assign a flexible 
+>>> EP to a specific device.  Here, "fepnum" is the input letting the 
+>>> driver know how many EPs are needed for this device/gadget.
+> 
+>> Nope. So you create here some weird IDs to poke into syscon register.
+>> First, syscon has offset if you need. You could treat it maybe as bits?
+>> I don't know... but even then your design is poor - two devices 
+>> changing the same register. Even though it is sunchronized by regmap, it is conflicting, obfuscated access.
+> 
+> The "fepnum" is the input parameter to define how many end-points (EPs) is needed
+> for the device.
+> 
+> You are correct that all devices need to access the virtual 
+> device global registers during the runtime. 
+> Thus, we create " hpe,syscon-phandle = <&udc_system_controller>;'
+> for the driver getting the vDevice Global registers address.
 
+And how do you solve poking into the same register by two devices? Who
+owns it? You don't...
+
+> 
+> In our current chip registers layout with the vDevice Global registers, I don’t see
+> a way to avoid "two devices changing the same register".
+
+I see at least an idea - create proper hierarchy, where parent device
+instantiates its children (thus knows and increments the IDs) and is
+responsible for proper handling of shared register (thus the parent owns
+the register).
+
+I understand why you created vdevnum/fepnum properties but the reason is
+not matching DT bindings. These are not additional hardware properties
+which deserve their own DT properties - they are already part of unit
+address and/or just incremented ID based on device number managed by a
+parent.
+
+Best regards,
+Krzysztof
 
