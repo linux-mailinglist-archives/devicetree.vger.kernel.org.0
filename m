@@ -2,356 +2,394 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A331862531D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95DBE62532A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231778AbiKKFh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 00:37:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S231979AbiKKFmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 00:42:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbiKKFh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:37:26 -0500
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2065.outbound.protection.outlook.com [40.107.101.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC01864A2B;
-        Thu, 10 Nov 2022 21:37:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aPL9G6eY8bx1ZIL/f2TP2Kn1CzDw1jQ/7uhRqYbhjFx3CmizR/Keq+wH8hUfW3RtOyE0MgesypQ/XVg9Oima8aXoLToz6jRFvqqfVprNInxg444xeq0mLNT3SkLjpVU5GGEZdTHLrdUvKM+voOwJsmrmLufV3VnDIoeGKLK/l1sCKo1qYMYLA+moSyvGSvaHlfq7gG2gKq0sGCE/csrmHY7/3KSmxnVSR/aVE0Ni0XhRsqiFdu9KVF8vRWQIuwXOe+QNtr5/wqzKE3RtybHScDiunVK/kB95mq+54Kqyv4QLr6jRzt0zX3t7lBI3tVoVyFLJpipAAtL4uWlRzeQL7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=taz/J4gZ722glgLXRIimXriPXeEAZv1K5B1ajraYkf4=;
- b=h2R8oK8/wP56gDZVnlRxKR3PcmthVqL54KDQJ4is6IHJGLljz3Di4A4kKDm7AjH7IZKk4/8Bff97GlikqdneRcVWWgWhweiX1Dz6ROceu2t7HC2UEPJl6D8mjNs0a9n5miFcKa7RdMkp2kO3tVpS2JGWRRtNG53qdaaB4bxGgVciOuP9Seaq52t4hJ+Ryg7l1U5ht58PxLXgJnrLgwGvOO5VhDW5mKB5Sur/SULM4ozkWl9VWwdG+eTopNj8zNa9xVurp/oFlezKVGLB0lb+dOh3BoVc/4e/TkePArnZs8iTiGzDyez20DtMo+Oqb8Wf7YE8Dv5elVtfr+pRleLnaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=taz/J4gZ722glgLXRIimXriPXeEAZv1K5B1ajraYkf4=;
- b=msp68y0o6Z+bSvXzs2OSlG04xeUJWBHVqqMsu0fs0XGXRHMpgRt00P+bjZvoL8p8+/xFYi6Nng4oJ0G4TRstkT0tuMGuug0YJ/bv35RM6FxawQKOXZPdILbzRr/DsgPrWo0rY3jqhmGFaePHDwZ+OCzkH4Y2OvY7ZrGuYE1mt/c=
-Received: from DM5PR07CA0092.namprd07.prod.outlook.com (2603:10b6:4:ae::21) by
- PH7PR12MB5904.namprd12.prod.outlook.com (2603:10b6:510:1d8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Fri, 11 Nov
- 2022 05:37:22 +0000
-Received: from DM6NAM11FT089.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ae:cafe::7) by DM5PR07CA0092.outlook.office365.com
- (2603:10b6:4:ae::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24 via Frontend
- Transport; Fri, 11 Nov 2022 05:37:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT089.mail.protection.outlook.com (10.13.173.82) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5813.12 via Frontend Transport; Fri, 11 Nov 2022 05:37:21 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 10 Nov
- 2022 23:37:21 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 10 Nov
- 2022 21:37:20 -0800
-Received: from xhdarjunv40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Thu, 10 Nov 2022 23:37:18 -0600
-From:   Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
-CC:     <bhelgaas@google.com>, <michals@xilinx.com>, <robh+dt@kernel.org>,
-        <nagaradhesh.yeleswarapu@amd.com>, <bharat.kumar.gogada@amd.com>,
-        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Subject: [PATCH v6 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML schemas of Xilinx NWL PCIe Root Port Bridge
-Date:   Fri, 11 Nov 2022 11:07:09 +0530
-Message-ID: <20221111053709.1474323-2-thippeswamy.havalige@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221111053709.1474323-1-thippeswamy.havalige@amd.com>
-References: <20221111053709.1474323-1-thippeswamy.havalige@amd.com>
+        with ESMTP id S230181AbiKKFmP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:42:15 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3F10D682AC;
+        Thu, 10 Nov 2022 21:42:13 -0800 (PST)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8AxDdmz4G1jSwUGAA--.18633S3;
+        Fri, 11 Nov 2022 13:42:11 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeCs4G1jrq4QAA--.45491S2;
+        Fri, 11 Nov 2022 13:42:08 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        soc@kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v7 1/2] soc: loongson: add GUTS driver for loongson-2 platforms
+Date:   Fri, 11 Nov 2022 13:42:00 +0800
+Message-Id: <20221111054201.18528-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT089:EE_|PH7PR12MB5904:EE_
-X-MS-Office365-Filtering-Correlation-Id: 044035c6-9f35-4a6b-302d-08dac3a6ce53
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nyuJHZtf5eub8/f+WXaXpgHTXPoFn2ft+V8xQOL1Z226WLw4Cilk+24+wAbd21w9R0Y8zMC2l01pNcVO/10qAYgMfhuI+ANl1KyujtC1qq173xpOSYlejyNz3TuaAU/4mb+E7ms+/N8SDzNO2kCRGyQALCkrdo4qsTkwAqTt2Kr+6y113XbsucL0sikahOY2A0h8IHJAiZwlEHPiMSdMUsNNJ+ubSPoTy9kEMYtvkXrTum7OJatEM35H5NWuDcVUwWk4X3jko1r6+nl3GA7IxO47jMyslKUs301cdkpOj9xW2EVMlVApbTse/ggTbdTFbWxMAeg8yWkxXSllz3uFsJ1gn/bDLzD3wXiSABuRanc+h2XFbuLguaMVGn2U73Wg88u8V1vh3kgsr+FlNV9zA5bGf8GzWulNux81XjZnRoytFWNRuiNRk2mX+CzWyC1AS6SepUFUHJsd1FUAaYzhzK7bhc/hOSz98sEpFroWiyHtPgz2rKlO7Q9euqUlKpg8hbMXCh0w3YsZOB3qPWY8kKDPUO4umBzDBrCkUrgWVinJ+92AxZvKyCk1XB0Up3F15wHhAOEylnWm4WAZgOLokj2cdALfm6KsICWiQ8+6o9D4PHwgqOURndwGPLXRgR21SyKa4P/fgl4hZKhYXOfps3QVvz7ikeLpOSW+ondFyW8EcMZilHOtiXdNvjM8QEFnAr6D6i5rNZvxyWoRTpx3ERkH6AtQJp5Cc1YZKySiFch5KMpwlHGNJNJ9RkTkweJhiTJWfD+x00f9/dUs51DfoPygGHK0CoWyb5rw28OAZmYjkzQ/j5MoFF6fmlEI9EhMVCmC6jKG4ta22c9xDsXZupnXgrXlkBZFh9SRYHUTs0hht+Q3XbFRcWTQdZ57veIJ
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(39860400002)(346002)(136003)(451199015)(46966006)(40470700004)(36840700001)(86362001)(36756003)(36860700001)(5660300002)(8936002)(44832011)(2906002)(47076005)(2616005)(1076003)(336012)(426003)(186003)(83380400001)(82740400003)(356005)(81166007)(54906003)(4326008)(110136005)(316002)(82310400005)(478600001)(40480700001)(40460700003)(8676002)(41300700001)(70586007)(70206006)(966005)(26005)(6666004)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 05:37:21.9111
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 044035c6-9f35-4a6b-302d-08dac3a6ce53
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT089.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5904
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8DxLeCs4G1jrq4QAA--.45491S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWfJFW5tFW5KF4rur1xuryDJrb_yoWDWw15pa
+        1fCa4rGrWUJF45urs8Ja48WFyY9as7Ca9xZF4Igwn8urykA34UXasrJFyUZrs7AryDA342
+        qF95C3yjkFWUA3DanT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
+        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
+        xVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
+        C2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_
+        Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
+        CTnIWIevJa73UjIFyTuYvjxUIdWrDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
-dt binding.
+The global utilities block controls PCIE device enabling, alternate
+function selection for multiplexed signals, consistency of HDA, USB
+and PCIE, configuration of memory controller, rtc controller, lio
+controller, and clock control.
 
-Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+This patch adds a driver to manage and access global utilities block
+for LoongArch architecture Loongson-2 SoCs. Initially only reading SVR
+and registering soc device are supported. Other guts accesses, such
+as reading firmware configuration by default, should eventually be
+added into this driver as well.
+
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 ---
-changes in v6:
-Added maxItems to clocks property.
+Change in v7:
+		1. Replace LA/loongarch with LoongArch.
+		2. Replace PMON with firmware.
+		3. Add MODULE_LICENSE and MODULE_DESCRIPTION in driver ending.
+Change in v6:
+		1. Add full name spelling about GUTS in Kconfig.
+		2. Add reviewed-by information.
+Change in v5:
+		1. Add all history change log information.
+Change in v4:
+		1. Remove menu information in Kconfig.
+Change in v3:
+		1. Replace string loongson2/Loongson2 with Loongson-2/loongson-2
+	           in commit message, Kconfig, Makefile file.
+		2. Replace string LOONGSON2 with LOONGSON-2.
+Change in v2:
+		1. Add architecture support commit log description.
+		2. Add other guts accesses plan commit log description.
+		3. Add "depends on LOONGARCH || COMPILE_TEST" for
+		   LOONGSON2_GUTS in Kconfig.
+		4. Move the scfg_guts to .c file from .h and delete .h.
+		5. Remove __packed on scfg_guts.
 
- .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ---------
- .../bindings/pci/xlnx,nwl-pcie.yaml           | 149 ++++++++++++++++++
- 2 files changed, 149 insertions(+), 73 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+ MAINTAINERS                           |   6 +
+ drivers/soc/Kconfig                   |   1 +
+ drivers/soc/Makefile                  |   1 +
+ drivers/soc/loongson/Kconfig          |  18 +++
+ drivers/soc/loongson/Makefile         |   6 +
+ drivers/soc/loongson/loongson2_guts.c | 192 ++++++++++++++++++++++++++
+ 6 files changed, 224 insertions(+)
+ create mode 100644 drivers/soc/loongson/Kconfig
+ create mode 100644 drivers/soc/loongson/Makefile
+ create mode 100644 drivers/soc/loongson/loongson2_guts.c
 
-diff --git a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
-deleted file mode 100644
-index f56f8c58c5d9..000000000000
---- a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Xilinx NWL PCIe Root Port Bridge DT description
--
--Required properties:
--- compatible: Should contain "xlnx,nwl-pcie-2.11"
--- #address-cells: Address representation for root ports, set to <3>
--- #size-cells: Size representation for root ports, set to <2>
--- #interrupt-cells: specifies the number of cells needed to encode an
--	interrupt source. The value must be 1.
--- reg: Should contain Bridge, PCIe Controller registers location,
--	configuration space, and length
--- reg-names: Must include the following entries:
--	"breg": bridge registers
--	"pcireg": PCIe controller registers
--	"cfg": configuration space region
--- device_type: must be "pci"
--- interrupts: Should contain NWL PCIe interrupt
--- interrupt-names: Must include the following entries:
--	"msi1, msi0": interrupt asserted when an MSI is received
--	"intx": interrupt asserted when a legacy interrupt is received
--	"misc": interrupt asserted when miscellaneous interrupt is received
--- interrupt-map-mask and interrupt-map: standard PCI properties to define the
--	mapping of the PCI interface to interrupt numbers.
--- ranges: ranges for the PCI memory regions (I/O space region is not
--	supported by hardware)
--	Please refer to the standard PCI bus binding document for a more
--	detailed explanation
--- msi-controller: indicates that this is MSI controller node
--- msi-parent:  MSI parent of the root complex itself
--- legacy-interrupt-controller: Interrupt controller device node for Legacy
--	interrupts
--	- interrupt-controller: identifies the node as an interrupt controller
--	- #interrupt-cells: should be set to 1
--	- #address-cells: specifies the number of cells needed to encode an
--		address. The value must be 0.
--
--Optional properties:
--- dma-coherent: present if DMA operations are coherent
--- clocks: Input clock specifier. Refer to common clock bindings
--
--Example:
--++++++++
--
--nwl_pcie: pcie@fd0e0000 {
--	#address-cells = <3>;
--	#size-cells = <2>;
--	compatible = "xlnx,nwl-pcie-2.11";
--	#interrupt-cells = <1>;
--	msi-controller;
--	device_type = "pci";
--	interrupt-parent = <&gic>;
--	interrupts = <0 114 4>, <0 115 4>, <0 116 4>, <0 117 4>, <0 118 4>;
--	interrupt-names = "msi0", "msi1", "intx", "dummy", "misc";
--	interrupt-map-mask = <0x0 0x0 0x0 0x7>;
--	interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
--			<0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
--			<0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
--			<0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
--
--	msi-parent = <&nwl_pcie>;
--	reg = <0x0 0xfd0e0000 0x0 0x1000>,
--	      <0x0 0xfd480000 0x0 0x1000>,
--	      <0x80 0x00000000 0x0 0x1000000>;
--	reg-names = "breg", "pcireg", "cfg";
--	ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000  /* non-prefetchable memory */
--		  0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
--
--	pcie_intc: legacy-interrupt-controller {
--		interrupt-controller;
--		#address-cells = <0>;
--		#interrupt-cells = <1>;
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c4fc50eb260b..99aa2cb9c80a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12044,6 +12044,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+ F:	drivers/pinctrl/pinctrl-loongson2.c
+ 
++LOONGSON-2 SOC SERIES GUTS DRIVER
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	loongarch@lists.linux.dev
++S:	Maintained
++F:	drivers/soc/loongson/loongson2_guts.c
++
+ LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+ M:	Sathya Prakash <sathya.prakash@broadcom.com>
+ M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
+index e461c071189b..5dbb09f843f7 100644
+--- a/drivers/soc/Kconfig
++++ b/drivers/soc/Kconfig
+@@ -13,6 +13,7 @@ source "drivers/soc/fujitsu/Kconfig"
+ source "drivers/soc/imx/Kconfig"
+ source "drivers/soc/ixp4xx/Kconfig"
+ source "drivers/soc/litex/Kconfig"
++source "drivers/soc/loongson/Kconfig"
+ source "drivers/soc/mediatek/Kconfig"
+ source "drivers/soc/microchip/Kconfig"
+ source "drivers/soc/pxa/Kconfig"
+diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+index 69ba6508cf2c..fff513bd522d 100644
+--- a/drivers/soc/Makefile
++++ b/drivers/soc/Makefile
+@@ -18,6 +18,7 @@ obj-y				+= imx/
+ obj-y				+= ixp4xx/
+ obj-$(CONFIG_SOC_XWAY)		+= lantiq/
+ obj-$(CONFIG_LITEX_SOC_CONTROLLER) += litex/
++obj-y				+= loongson/
+ obj-y				+= mediatek/
+ obj-y				+= microchip/
+ obj-y				+= pxa/
+diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
 new file mode 100644
-index 000000000000..897602559b37
+index 000000000000..707f56358dc4
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-@@ -0,0 +1,149 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/xlnx,nwl-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/soc/loongson/Kconfig
+@@ -0,0 +1,18 @@
++# SPDX-License-Identifier: GPL-2.0+
++#
++# Loongson-2 series SoC drivers
++#
 +
-+title: Xilinx NWL PCIe Root Port Bridge
++config LOONGSON2_GUTS
++	tristate "Loongson-2 SoC Global UtiliTieS (GUTS) register block"
++	depends on LOONGARCH || COMPILE_TEST
++	select SOC_BUS
++	help
++	 The global utilities block controls PCIE device enabling, alternate
++	 function selection for multiplexed signals, consistency of HDA, USB
++	 and PCIE, configuration of memory controller, rtc controller, lio
++	 controller, and clock control. This patch adds a driver to manage
++	 and access global utilities block for LoongArch architecture Loongson-2
++	 SoCs. Initially only reading SVR and registering soc device are
++	 supported. Other guts accesses, such as reading firmware configuration
++	 by default, should eventually be added into this driver as well.
+diff --git a/drivers/soc/loongson/Makefile b/drivers/soc/loongson/Makefile
+new file mode 100644
+index 000000000000..263c486df638
+--- /dev/null
++++ b/drivers/soc/loongson/Makefile
+@@ -0,0 +1,6 @@
++# SPDX-License-Identifier: GPL-2.0+
++#
++# Makefile for the Linux Kernel SoC Loongson-2 specific device drivers
++#
 +
-+maintainers:
-+  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
++obj-$(CONFIG_LOONGSON2_GUTS)		+= loongson2_guts.o
+diff --git a/drivers/soc/loongson/loongson2_guts.c b/drivers/soc/loongson/loongson2_guts.c
+new file mode 100644
+index 000000000000..bace4bc8e03b
+--- /dev/null
++++ b/drivers/soc/loongson/loongson2_guts.c
+@@ -0,0 +1,192 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
 +
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
++#include <linux/io.h>
++#include <linux/slab.h>
++#include <linux/module.h>
++#include <linux/of_fdt.h>
++#include <linux/sys_soc.h>
++#include <linux/of_address.h>
++#include <linux/platform_device.h>
 +
-+properties:
-+  compatible:
-+    const: xlnx,nwl-pcie-2.11
++static struct soc_device_attribute soc_dev_attr;
++static struct soc_device *soc_dev;
 +
-+  reg:
-+    items:
-+      - description: PCIe bridge registers location.
-+      - description: PCIe Controller registers location.
-+      - description: PCIe Configuration space region.
++/*
++ * Global Utility Registers.
++ *
++ * Not all registers defined in this structure are available on all chips, so
++ * you are expected to know whether a given register actually exists on your
++ * chip before you access it.
++ *
++ * Also, some registers are similar on different chips but have slightly
++ * different names.  In these cases, one name is chosen to avoid extraneous
++ * #ifdefs.
++ */
++struct scfg_guts {
++	u32     svr;            /* Version Register */
++	u8      res0[4];
++	u16     feature;        /* Feature Register */
++	u32     vendor;         /* Vendor Register */
++	u8      res1[6];
++	u32     id;
++	u8      res2[0x3ff8 - 0x18];
++	u32     chip;
++};
 +
-+  reg-names:
-+    items:
-+      - const: breg
-+      - const: pcireg
-+      - const: cfg
++static struct guts {
++	struct scfg_guts __iomem *regs;
++	bool little_endian;
++} *guts;
 +
-+  interrupts:
-+    items:
-+      - description: interrupt asserted when miscellaneous interrupt is received
-+      - description: unused interrupt(dummy)
-+      - description: interrupt asserted when a legacy interrupt is received
-+      - description: msi1 interrupt asserted when an MSI is received
-+      - description: msi0 interrupt asserted when an MSI is received
++struct loongson2_soc_die_attr {
++	char	*die;
++	u32	svr;
++	u32	mask;
++};
 +
-+  interrupt-names:
-+    items:
-+      - const: misc
-+      - const: dummy
-+      - const: intx
-+      - const: msi1
-+      - const: msi0
++/* SoC die attribute definition for Loongson-2 platform */
++static const struct loongson2_soc_die_attr loongson2_soc_die[] = {
 +
-+  interrupt-map-mask:
-+    items:
-+      - const: 0
-+      - const: 0
-+      - const: 0
-+      - const: 7
++	/*
++	 * LoongArch-based SoCs Loongson-2 Series
++	 */
 +
-+  "#interrupt-cells":
-+    const: 1
++	/* Die: 2k1000, SoC: 2k1000 */
++	{ .die		= "2K1000",
++	  .svr		= 0x00000013,
++	  .mask		= 0x000000ff,
++	},
++	{ },
++};
 +
-+  msi-parent:
-+    description: MSI controller the device is capable of using.
++static const struct loongson2_soc_die_attr *loongson2_soc_die_match(
++	u32 svr, const struct loongson2_soc_die_attr *matches)
++{
++	while (matches->svr) {
++		if (matches->svr == (svr & matches->mask))
++			return matches;
++		matches++;
++	};
 +
-+  interrupt-map:
-+    maxItems: 4
++	return NULL;
++}
 +
-+  power-domains:
-+    maxItems: 1
++static u32 loongson2_guts_get_svr(void)
++{
++	u32 svr = 0;
 +
-+  iommus:
-+    maxItems: 1
++	if (!guts || !guts->regs)
++		return svr;
 +
-+  dma-coherent:
-+    description: optional, only needed if DMA operations are coherent.
++	if (guts->little_endian)
++		svr = ioread32(&guts->regs->svr);
++	else
++		svr = ioread32be(&guts->regs->svr);
 +
-+  clocks:
-+    maxItems: 1
-+    description: optional, input clock specifier.
++	return svr;
++}
 +
-+  legacy-interrupt-controller:
-+    description: Interrupt controller node for handling legacy PCI interrupts.
-+    type: object
-+    properties:
-+      "#address-cells":
-+        const: 0
++static int loongson2_guts_probe(struct platform_device *pdev)
++{
++	struct device_node *root, *np = pdev->dev.of_node;
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	const struct loongson2_soc_die_attr *soc_die;
++	const char *machine;
++	u32 svr;
 +
-+      "#interrupt-cells":
-+        const: 1
++	/* Initialize guts */
++	guts = devm_kzalloc(dev, sizeof(*guts), GFP_KERNEL);
++	if (!guts)
++		return -ENOMEM;
 +
-+      "interrupt-controller": true
++	guts->little_endian = of_property_read_bool(np, "little-endian");
 +
-+    required:
-+      - "#address-cells"
-+      - "#interrupt-cells"
-+      - interrupt-controller
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	guts->regs = ioremap(res->start, res->end - res->start + 1);
++	if (IS_ERR(guts->regs))
++		return PTR_ERR(guts->regs);
 +
-+    additionalProperties: false
++	/* Register soc device */
++	root = of_find_node_by_path("/");
++	if (of_property_read_string(root, "model", &machine))
++		of_property_read_string_index(root, "compatible", 0, &machine);
++	of_node_put(root);
++	if (machine)
++		soc_dev_attr.machine = devm_kstrdup(dev, machine, GFP_KERNEL);
 +
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - "#interrupt-cells"
-+  - interrupt-map
-+  - interrupt-map-mask
-+  - msi-controller
-+  - power-domains
++	svr = loongson2_guts_get_svr();
++	soc_die = loongson2_soc_die_match(svr, loongson2_soc_die);
++	if (soc_die) {
++		soc_dev_attr.family = devm_kasprintf(dev, GFP_KERNEL,
++						     "Loongson %s", soc_die->die);
++	} else {
++		soc_dev_attr.family = devm_kasprintf(dev, GFP_KERNEL, "Loongson");
++	}
++	if (!soc_dev_attr.family)
++		return -ENOMEM;
++	soc_dev_attr.soc_id = devm_kasprintf(dev, GFP_KERNEL,
++					     "svr:0x%08x", svr);
++	if (!soc_dev_attr.soc_id)
++		return -ENOMEM;
++	soc_dev_attr.revision = devm_kasprintf(dev, GFP_KERNEL, "%d.%d",
++					       (svr >>  4) & 0xf, svr & 0xf);
++	if (!soc_dev_attr.revision)
++		return -ENOMEM;
 +
-+unevaluatedProperties: false
++	soc_dev = soc_device_register(&soc_dev_attr);
++	if (IS_ERR(soc_dev))
++		return PTR_ERR(soc_dev);
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/xlnx-zynqmp-power.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        nwl_pcie: pcie@fd0e0000 {
-+            compatible = "xlnx,nwl-pcie-2.11";
-+            reg = <0x0 0xfd0e0000 0x0 0x1000>,
-+                  <0x0 0xfd480000 0x0 0x1000>,
-+                  <0x80 0x00000000 0x0 0x1000000>;
-+            reg-names = "breg", "pcireg", "cfg";
-+            ranges = <0x02000000 0x0 0xe0000000 0x0 0xe0000000 0x0 0x10000000>,
-+                     <0x43000000 0x00000006 0x0 0x00000006 0x0 0x00000002 0x0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            #interrupt-cells = <1>;
-+            msi-controller;
-+            device_type = "pci";
-+            interrupt-parent = <&gic>;
-+            interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 116 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 115 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "misc", "dummy", "intx", "msi1", "msi0";
-+            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+            interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
-+                            <0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
-+                            <0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
-+                            <0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
-+            msi-parent = <&nwl_pcie>;
-+            power-domains = <&zynqmp_firmware PD_PCIE>;
-+            iommus = <&smmu 0x4d0>;
-+            pcie_intc: legacy-interrupt-controller {
-+                interrupt-controller;
-+                #address-cells = <0>;
-+                #interrupt-cells = <1>;
-+            };
-+        };
-+    };
++	pr_info("Machine: %s\n", soc_dev_attr.machine);
++	pr_info("SoC family: %s\n", soc_dev_attr.family);
++	pr_info("SoC ID: %s, Revision: %s\n",
++		soc_dev_attr.soc_id, soc_dev_attr.revision);
++
++	return 0;
++}
++
++static int loongson2_guts_remove(struct platform_device *dev)
++{
++	soc_device_unregister(soc_dev);
++
++	return 0;
++}
++
++/*
++ * Table for matching compatible strings, for device tree
++ * guts node, for Loongson-2 SoCs.
++ */
++static const struct of_device_id loongson2_guts_of_match[] = {
++	{ .compatible = "loongson,ls2k-chipid", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, loongson2_guts_of_match);
++
++static struct platform_driver loongson2_guts_driver = {
++	.driver = {
++		.name = "loongson2-guts",
++		.of_match_table = loongson2_guts_of_match,
++	},
++	.probe = loongson2_guts_probe,
++	.remove = loongson2_guts_remove,
++};
++
++static int __init loongson2_guts_init(void)
++{
++	return platform_driver_register(&loongson2_guts_driver);
++}
++core_initcall(loongson2_guts_init);
++
++static void __exit loongson2_guts_exit(void)
++{
++	platform_driver_unregister(&loongson2_guts_driver);
++}
++module_exit(loongson2_guts_exit);
++
++MODULE_DESCRIPTION("Loongson2 GUTS driver");
++MODULE_LICENSE("GPL");
 -- 
-2.25.1
+2.20.1
 
