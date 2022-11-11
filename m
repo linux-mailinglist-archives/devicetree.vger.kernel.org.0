@@ -2,84 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B3C6259A7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 12:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E76D86259C8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 12:49:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232749AbiKKLmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 06:42:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48080 "EHLO
+        id S233355AbiKKLtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 06:49:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232907AbiKKLmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 06:42:14 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C4DFD39;
-        Fri, 11 Nov 2022 03:42:07 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id fn7-20020a05600c688700b003b4fb113b86so3008077wmb.0;
-        Fri, 11 Nov 2022 03:42:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZiZPd5oULqd/tLgR6S0NEVvIvyE2JnjYEORmvK53qK4=;
-        b=GL+mJx3NYkYn7I7HcehCjjKhqePjdtGJlqcr7ZgBtejSn55iOB5ypZBvJF/JTqfdo7
-         bc+e9eaefSDEmtdRDf2lrVm0Ojz/G5n/fE36CsrdBoKSstWOnNtJxkmXowvLe8EFo3cT
-         U60GvjpGA1NcE0/Z00FozBdV/VSflcs30mMscT0pWC+egWSCmq9vxJyxbNghCGEjTqlX
-         zKUSdm4/AnQBAKvn1H6vtIeNvwpBtB6CAswrdkR6EC4ajmoF2JGNaBMDls5i/nhm7btN
-         sfJJx07OYwA2GSHqXPZZxCeKti/sQaApeWIu3sUwnGNekA2Hhk4lZafAMPaJ3hMUzHFV
-         nWpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZiZPd5oULqd/tLgR6S0NEVvIvyE2JnjYEORmvK53qK4=;
-        b=rX/Ss9NuKpth/du1NAY8GisnAIZqmI0DwscnZnM9Pe65lxuHsN8Q+X1K6js3xILSMD
-         YJglplSDhYONNgpfFwO1CQsTwVpSSa87/5hMbSlMTWPNMgDNCiLduf2tITxn/EOB/Zdb
-         GqIi8Qm9Y/EwX4/ohmHjEKKmDJCofxGBNdFOGwNxGvb2p3q7X4ST5bVz9V34eOsY+Mu+
-         0L22ZlbRqQ5MOp1MPD8wLVl4hZTxAiEUdLDkbhGzqb7YT8Y/V/eiNaZD+an1UMAiu1gK
-         q+dPgAFm6sxWkjFWskNFHW8R7ZaY8ma3NIVivCOrAU0P2EaxEeEcQqPjM3GCRcSB35Or
-         l39Q==
-X-Gm-Message-State: ANoB5pkauhasZ72p4UzScHUWOZ6B0TleslMD1e2TUhF3A34w+LU8FYS5
-        VuOsyj9Fedq1Bic8ENSvkco=
-X-Google-Smtp-Source: AA0mqf6IgJ8vpxxZ6Jw7iq2LCaNjOG4CLjxbRyEOr2ygr+qxAFn1apb5f3P5YIELTnZyVYnu18S3+w==
-X-Received: by 2002:a05:600c:1614:b0:3cf:615f:54fb with SMTP id m20-20020a05600c161400b003cf615f54fbmr945615wmn.76.1668166925622;
-        Fri, 11 Nov 2022 03:42:05 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id z3-20020a05600c0a0300b003c83465ccbfsm9569651wmp.35.2022.11.11.03.42.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 03:42:04 -0800 (PST)
-Message-ID: <c3c7396c-de5b-1853-e914-9d8eabd31099@gmail.com>
-Date:   Fri, 11 Nov 2022 12:42:03 +0100
+        with ESMTP id S233445AbiKKLtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 06:49:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9F427DFE;
+        Fri, 11 Nov 2022 03:49:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D35761F9F;
+        Fri, 11 Nov 2022 11:49:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3279C433D6;
+        Fri, 11 Nov 2022 11:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668167371;
+        bh=qSBF/ECZfbRTbQB9J8HIoNk5t+QvNMgL7PClSWUYqHg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bDIzMdHf8JocXoaBMAdhZfvVkDbL8LWt55WECcKB2Aj7sGpoJ/Z1nK1+s6BvDOyxP
+         6ljjxNPHydGcoROQ7RP4oeTNKFHeQQfWsssQGZS54zMriSX9rojgnr3Lpj6+1c8Bxg
+         Lzw09yIadbQo7BWkA2+H08Vkwtl37yId4GXoZisap5zw5SIpoW11AEJ9s595Ztqa/J
+         FdvOI9s06XauojJxWqftvcjCaZInONfEh6jwSH9CEfSXzCxiGWH51iSpnbo/8NVPGI
+         lbaKylLSc8P/Czb+YHXPh70zYtCVVq1j5SN6QFSOVMLHqpRwq/BEJotuYV1/cB/9F+
+         DRC1QAsO/0jWQ==
+Date:   Fri, 11 Nov 2022 11:49:25 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>, lee@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, tglx@linutronix.de,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
+ CS48L31/32/33 codecs
+Message-ID: <Y242xYJQMC2JlMtH@sirena.org.uk>
+References: <87mt8zutib.wl-maz@kernel.org>
+ <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+ <86pmdvow5y.wl-maz@kernel.org>
+ <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+ <86k042q1uc.wl-maz@kernel.org>
+ <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+ <87iljmve87.wl-maz@kernel.org>
+ <Y21gwGDb5CFft0kp@sirena.org.uk>
+ <87h6z5vs39.wl-maz@kernel.org>
+ <20221111111611.GH10437@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v5 5/6] drm/mediatek: add mediatek-drm of vdosys0 support
- for mt8195
-Content-Language: en-US
-To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220927152704.12018-1-jason-jh.lin@mediatek.com>
- <20220927152704.12018-6-jason-jh.lin@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220927152704.12018-6-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="GX9PH0gqSEqgaksu"
+Content-Disposition: inline
+In-Reply-To: <20221111111611.GH10437@ediswmail.ad.cirrus.com>
+X-Cookie: Should I do my BOBBIE VINTON medley?
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,128 +70,58 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--GX9PH0gqSEqgaksu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27/09/2022 17:27, Jason-JH.Lin wrote:
-> Add driver data of mt8195 vdosys0 to mediatek-drm and the sub driver.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->   drivers/gpu/drm/mediatek/mtk_disp_rdma.c |  6 +++++
->   drivers/gpu/drm/mediatek/mtk_drm_drv.c   | 28 ++++++++++++++++++++++++
->   2 files changed, 34 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> index 2cb90466798c..66cdd0bc1311 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> @@ -374,6 +374,10 @@ static const struct mtk_disp_rdma_data mt8192_rdma_driver_data = {
->   	.fifo_size = 5 * SZ_1K,
->   };
->   
-> +static const struct mtk_disp_rdma_data mt8195_rdma_driver_data = {
-> +	.fifo_size = 1920,
-> +};
-> +
->   static const struct of_device_id mtk_disp_rdma_driver_dt_match[] = {
->   	{ .compatible = "mediatek,mt2701-disp-rdma",
->   	  .data = &mt2701_rdma_driver_data},
-> @@ -383,6 +387,8 @@ static const struct of_device_id mtk_disp_rdma_driver_dt_match[] = {
->   	  .data = &mt8183_rdma_driver_data},
->   	{ .compatible = "mediatek,mt8192-disp-rdma",
->   	  .data = &mt8192_rdma_driver_data},
-> +	{ .compatible = "mediatek,mt8195-disp-rdma",
-> +	  .data = &mt8195_rdma_driver_data},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, mtk_disp_rdma_driver_dt_match);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> index adc9a4f4085b..9b5a7a7ddde0 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -195,6 +195,19 @@ static const enum mtk_ddp_comp_id mt8192_mtk_ddp_ext[] = {
->   	DDP_COMPONENT_DPI0,
->   };
->   
-> +static const enum mtk_ddp_comp_id mt8195_mtk_ddp_main[] = {
-> +	DDP_COMPONENT_OVL0,
-> +	DDP_COMPONENT_RDMA0,
-> +	DDP_COMPONENT_COLOR0,
-> +	DDP_COMPONENT_CCORR,
-> +	DDP_COMPONENT_AAL0,
-> +	DDP_COMPONENT_GAMMA,
-> +	DDP_COMPONENT_DITHER0,
-> +	DDP_COMPONENT_DSC0,
-> +	DDP_COMPONENT_MERGE0,
-> +	DDP_COMPONENT_DP_INTF0,
-> +};
-> +
->   static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
->   	.main_path = mt2701_mtk_ddp_main,
->   	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-> @@ -253,6 +266,11 @@ static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
->   	.ext_len = ARRAY_SIZE(mt8192_mtk_ddp_ext),
->   };
->   
-> +static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
-> +	.main_path = mt8195_mtk_ddp_main,
-> +	.main_len = ARRAY_SIZE(mt8195_mtk_ddp_main),
-> +};
-> +
->   static int mtk_drm_kms_init(struct drm_device *drm)
->   {
->   	struct mtk_drm_private *private = drm->dev_private;
-> @@ -470,12 +488,16 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->   	  .data = (void *)MTK_DISP_DITHER },
->   	{ .compatible = "mediatek,mt8183-disp-dither",
->   	  .data = (void *)MTK_DISP_DITHER },
-> +	{ .compatible = "mediatek,mt8195-disp-dsc",
-> +	  .data = (void *)MTK_DISP_DSC },
->   	{ .compatible = "mediatek,mt8167-disp-gamma",
->   	  .data = (void *)MTK_DISP_GAMMA, },
->   	{ .compatible = "mediatek,mt8173-disp-gamma",
->   	  .data = (void *)MTK_DISP_GAMMA, },
->   	{ .compatible = "mediatek,mt8183-disp-gamma",
->   	  .data = (void *)MTK_DISP_GAMMA, },
-> +	{ .compatible = "mediatek,mt8195-disp-merge",
-> +	  .data = (void *)MTK_DISP_MERGE },
->   	{ .compatible = "mediatek,mt2701-disp-mutex",
->   	  .data = (void *)MTK_DISP_MUTEX },
->   	{ .compatible = "mediatek,mt2712-disp-mutex",
-> @@ -490,6 +512,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->   	  .data = (void *)MTK_DISP_MUTEX },
->   	{ .compatible = "mediatek,mt8192-disp-mutex",
->   	  .data = (void *)MTK_DISP_MUTEX },
-> +	{ .compatible = "mediatek,mt8195-disp-mutex",
-> +	  .data = (void *)MTK_DISP_MUTEX },
->   	{ .compatible = "mediatek,mt8173-disp-od",
->   	  .data = (void *)MTK_DISP_OD },
->   	{ .compatible = "mediatek,mt2701-disp-ovl",
-> @@ -524,6 +548,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->   	  .data = (void *)MTK_DISP_RDMA },
->   	{ .compatible = "mediatek,mt8192-disp-rdma",
->   	  .data = (void *)MTK_DISP_RDMA },
-> +	{ .compatible = "mediatek,mt8195-disp-rdma",
-> +	  .data = (void *)MTK_DISP_RDMA },
->   	{ .compatible = "mediatek,mt8173-disp-ufoe",
->   	  .data = (void *)MTK_DISP_UFOE },
->   	{ .compatible = "mediatek,mt8173-disp-wdma",
-> @@ -568,6 +594,8 @@ static const struct of_device_id mtk_drm_of_ids[] = {
->   	  .data = &mt8186_mmsys_driver_data},
->   	{ .compatible = "mediatek,mt8192-mmsys",
->   	  .data = &mt8192_mmsys_driver_data},
-> +	{ .compatible = "mediatek,mt8195-vdosys0",
-> +	  .data = &mt8195_vdosys0_driver_data},
+On Fri, Nov 11, 2022 at 11:16:11AM +0000, Charles Keepax wrote:
+> On Fri, Nov 11, 2022 at 08:00:10AM +0000, Marc Zyngier wrote:
+>=20
+> > > ACPI gets to be a lot of fun here, it's just not idiomatic to describe
+> > > the internals of these devices in firmware there and a lot of the
+> > > systems shipping this stuff are targeted at other OSs and system
+> > > integrators are therefore not in the least worried about Linux
+> > > preferences.
 
-To make this work with older device tree, we will need to provide the same 
-driver data to the old compatible:
+> I would echo Mark's statement that going the way of moving this
+> into DT/ACPI will actually likely necessitate the addition of a
+> lot of "board file" stuff in the future. If the part gets used in
+> any ACPI systems (granted support is not in yet but this is not a
+> super unlikely addition in the future for cs48l32) we will need to
+> support the laptops containing the part in Linux and the vendors are
+> extremely unlikely to put internal CODEC IRQs into the ACPI tables.
 
-+	{ .compatible = "mediatek,,mt8195-mmsys",
-+	  .data = &mt8195_vdosys0_driver_data},
-+       }
+It's a bit of a stronger issue than that in that it's not how ACPI is
+usually expected to work (it draws more from the PCI model where you
+just get a top level ID from the device and have to figure the rest out
+yourself).
 
-Regards,
-Matthias
+> An alternative approach would be to actually represent the MFD in
+> device tree, I think this would allow things to work and look
+> something like (totally not tested just for discussion):
 
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
+That's what Marc's pushing for - there is an idea to do that which works
+well enough for cases (like this irqchip for the most part, modulo how
+to handle the top level interrupts for the chip) where the way Linux
+wants to model the device maps clearly onto the hardware but like I was
+mentioning with the audio/clocking split it gets tricky where things are
+more up in the air and potentially changable since it's much harder to
+define a suitable ABI.
+
+--GX9PH0gqSEqgaksu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNuNsQACgkQJNaLcl1U
+h9DtIAf/aeBQQ3Lh5zmka+uBR54WcnQfWacUGj+JM5RC6CDwQ1Prz7UJd1YrZzbz
+NA5etQWvjvbCh/1Y+cn8KSpiNiKrNJmhVZOkqNehoPWPcyKFBbVKLhL8mRY5tk2f
+xPJkQ/MxrOFacsGRpkStfSZPew2Xt+cdIBOIN7vhww9+NHMsnGmx4xLjZc5tltpA
+BA9WFjV/yzMxgE2UiJYIX8QMZ8i3CftDNOIUS9KN2cXAqNa3S/+Nuxon5Qrc5Rmd
+07eq77gLTHoy0syRlbyDOjD24wVosKRomLl/B+koqEy5ZUJxjZz0W9IDllZ9fIKo
+B2IEu3AcIwLVXpeU0pwDN7OY6FCdFA==
+=Ljlu
+-----END PGP SIGNATURE-----
+
+--GX9PH0gqSEqgaksu--
