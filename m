@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A16F625F4B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:18:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 439AF625F5C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233950AbiKKQSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 11:18:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
+        id S234145AbiKKQXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 11:23:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233998AbiKKQSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:18:22 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25E4470185;
-        Fri, 11 Nov 2022 08:18:21 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id g12so7065893wrs.10;
-        Fri, 11 Nov 2022 08:18:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=M52kVvCdx0HRD9z9mO1F8e0fzsb2XcgwgybCoobS1hQT8sGGISqPnVCB3+/jzIwjbM
-         IcmfSIghOi9oaXPVGtN4FLLVY6yX9AYrfidV5karpgA/1hVM5luKnWGH+vitU2uYCWd6
-         5eAIUc99r1DKRSyiUg31h5/pevHaGtpvNrjq4uXCccfWhFGyUeBMHxBg1wEaSS15kwtQ
-         Dzol1yom695mWpOamueMBlsyP2In7gaLsfsBFKiI/6d24mt+muHy8ezDFlmhwUnpWJCh
-         vswyh+nwYf/nr9Wmg27iqKW1iSuHN8yPfjtTNDldDE1hWCg4Kx68TrM+VQxAwiaLC08E
-         0MhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=TpRrrBXlTUCGv5dWrk6d4d7ahp8uBVppIGBI3IfuI27VvDDKjhZrUCiSrWEtJSjDpx
-         3AOOcV4Isr/bFK8zONnFE2MNRuUlVk979J39flfK7jFOiNx2jEJoFiPAyPO1d+6zX51j
-         HsT/ixKBtKcTrOa6Eq+39beSD3wryj36AvfE9hzegb0quOTQ9WXJBgbsZQSljT7BUVCi
-         oraotS443VUc4VzQTX1pO4PGFLvPsQMfWcljcJhkUTr+dqFOmgO/WnNKfStu8D+ntBXI
-         kieYN4a1Zzuo5aP1EYwmBTbvLMEMQ0e4Wr7v6SfYG2OMASRQcJzqMhI5nPr3MD6JPddW
-         sdaA==
-X-Gm-Message-State: ANoB5pkzyk6JNV//JHaouJjwWvpglaOPoqCVfixo8J9ylc0FnfOgYjEr
-        MP+uVLb0Z3qMmv0U1S0Q9MA=
-X-Google-Smtp-Source: AA0mqf66bmefffZKNUwzzvTsT6THe6UE9dqH+ghD/eURunUNMVYZYLIi7Xzlg12UKZcN7BG/l8mFVA==
-X-Received: by 2002:adf:f0c2:0:b0:236:7c38:147b with SMTP id x2-20020adff0c2000000b002367c38147bmr1621819wro.569.1668183499650;
-        Fri, 11 Nov 2022 08:18:19 -0800 (PST)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id s13-20020adfea8d000000b00228d67db06esm2308030wrm.21.2022.11.11.08.18.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 08:18:18 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v11 5/5] iommu: dma: Use of_iommu_get_resv_regions()
-Date:   Fri, 11 Nov 2022 17:18:06 +0100
-Message-Id: <20221111161806.630527-6-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221111161806.630527-1-thierry.reding@gmail.com>
-References: <20221111161806.630527-1-thierry.reding@gmail.com>
+        with ESMTP id S234153AbiKKQX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:23:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA7B2AC5;
+        Fri, 11 Nov 2022 08:23:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ACE5162046;
+        Fri, 11 Nov 2022 16:23:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF7FC433D6;
+        Fri, 11 Nov 2022 16:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668183805;
+        bh=/tPA7ws0rLIZu0fygMvLYm3y96ea/yW/c/ek6jeQqb4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MsFyIBzSZF1YnRUxRIJTc8+CwEyDSgbWFO8jpkHQvrFY8xJnJWQ/rvtEnsYE18jKl
+         R1IWfFyyyJ/bo5UEENCKFMpbUQafQqPvvU0uyjRBX3LCXd7TkXnAlTWNWjTupwvFjQ
+         DCMLeW0yIeQaVycvKi+uuUsE4uYJNgBrMXu/QN1E1YVvtmB1H3HE8XQu43ely22Ozt
+         cB1HtuHK0cW0FKLbsJNO4cgVJKR8Sb+LFrDKC/XPFgzUkow90lI3/fky5Ts2P+aeJ7
+         jcYD5mn2KsE0661bYGwEPIEVvGE4mzw/RDZUObzNu8YnxuLxEljw18ezSEmK2RCFbb
+         S2ytULmDZk3sw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1otWnw-0003he-Jq; Fri, 11 Nov 2022 17:22:57 +0100
+Date:   Fri, 11 Nov 2022 17:22:56 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/9] arm64: dts: qcom: sc8280xp-crd: enable NVMe SSD
+Message-ID: <Y2524KFw1izDx3pG@hovoldconsulting.com>
+References: <20221110103558.12690-1-johan+linaro@kernel.org>
+ <20221110103558.12690-5-johan+linaro@kernel.org>
+ <d3aead5b-413a-e929-1b33-7956fa117d4d@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3aead5b-413a-e929-1b33-7956fa117d4d@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Thu, Nov 10, 2022 at 12:06:45PM +0100, Konrad Dybcio wrote:
+> On 10/11/2022 11:35, Johan Hovold wrote:
+> > Enable the NVMe SSD connected to PCIe2.
+> >
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 63 +++++++++++++++++++++++
+> >   1 file changed, 63 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > +	pcie2a_default: pcie2a-default-state {
+> 
+> Aren't they going to be identical for all boards anyway? Maybe there
+> could be some commonization..
 
-For device tree nodes, use the standard of_iommu_get_resv_regions()
-implementation to obtain the reserved memory regions associated with a
-device.
+We had that discussion and decided that keeping the pinconfig in the dts
+is the right thing to do.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/iommu/dma-iommu.c | 3 +++
- 1 file changed, 3 insertions(+)
+And even if the clkreq pin will be the same for all boards that's not
+necessarily the case for the other two.
 
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 9297b741f5e8..709b05d3aad2 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -23,6 +23,7 @@
- #include <linux/memremap.h>
- #include <linux/mm.h>
- #include <linux/mutex.h>
-+#include <linux/of_iommu.h>
- #include <linux/pci.h>
- #include <linux/scatterlist.h>
- #include <linux/spinlock.h>
-@@ -391,6 +392,8 @@ void iommu_dma_get_resv_regions(struct device *dev, struct list_head *list)
- 	if (!is_of_node(dev_iommu_fwspec_get(dev)->iommu_fwnode))
- 		iort_iommu_get_resv_regions(dev, list);
- 
-+	if (dev->of_node)
-+		of_iommu_get_resv_regions(dev, list);
- }
- EXPORT_SYMBOL(iommu_dma_get_resv_regions);
- 
--- 
-2.38.1
+> > +		clkreq-n-pins {
+> > +			pins = "gpio142";
+> > +			function = "pcie2a_clkreq";
+> > +			drive-strength = <2>;
+> > +			bias-pull-up;
+> > +		};
+> > +
+> > +		perst-n-pins {
+> > +			pins = "gpio143";
+> > +			function = "gpio";
+> > +			drive-strength = <2>;
+> > +			bias-pull-down;
+> > +		};
+> > +
+> > +		wake-n-pins {
+> > +		       pins = "gpio145";
+> > +		       function = "gpio";
+> > +		       drive-strength = <2>;
+> > +		       bias-pull-up;
+> > +	       };
+> > +	};
+> > +
+> >   	qup0_i2c4_default: qup0-i2c4-default-state {
+> >   		pins = "gpio171", "gpio172";
+> >   		function = "qup4";
 
+Johan
