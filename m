@@ -2,109 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 866586256F9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42996625711
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:43:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233374AbiKKJkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:40:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
+        id S233098AbiKKJnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:43:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233116AbiKKJkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:40:13 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7C7654DD;
-        Fri, 11 Nov 2022 01:40:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0F23E61F1F;
-        Fri, 11 Nov 2022 09:40:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AC53C433B5;
-        Fri, 11 Nov 2022 09:40:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668159611;
-        bh=pwJld/NDv6EFSXj/8bGWt2JYworcFl8ayZrNG0RBYVg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BvB545SeJo3aPXhqnDqx0vrS5nZIUtHJdsgjeJ/QP+3YW3m4h9CpN9abDWqpFNTk0
-         HrR9sY3Z4gLQFP76NW/irY5vUP/YPJRd3UPBcRxSxor/L/Cu0x7OYotvUjkxNIVddj
-         d9PZ2na8SyjAzvqzL/WJn/kxv7Nxzeo7sZPwynAlfC9Uewpa0lRuKPes76SB9+ho/e
-         jy6pZa6GKjL5OQAFiBDMERdvzvqJTk4I4m+p9KV8q48pwvc/yyudz2Sk3M4x4mdzNI
-         NmGnmVlNyPgWiqVhXOOos6J4Y3dyNn1wqsvmgbpcfNZ1G9h6XVFU3BFKIOc0WNjxmM
-         LL7tGhslsAjpQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1otQVj-0002xl-D6; Fri, 11 Nov 2022 10:39:43 +0100
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231235AbiKKJnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:43:03 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE02654E3;
+        Fri, 11 Nov 2022 01:43:02 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id v4-20020a17090a088400b00212cb0ed97eso4254438pjc.5;
+        Fri, 11 Nov 2022 01:43:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zy9kRwEDKOwzUuzNDwbNK6Ls9wmAWU8wrTb8CY1ASBM=;
+        b=UrYniHryQrt1oClRFAxO4NM+NTyxw9xTdQt/tkBzCt0JXKQGCjW0kEvDc+g/dhWFxA
+         kTju6QYgbkEEWUEXYgQ4ASkeuc+fcO/hG8ZLC8HfcQka1+ymUzo8avwj5iUAU6UFlTBZ
+         SSG9U27np35cWvCXoFcrJIrIFlLmwdf9qTSmPTL1vnD3ZSN0LDFxJuD8GUz/+d0+IYN0
+         qBgLo1yxsMiSAqS4gh06lPjWLswAlUjSSHP8oxMWb+lkBXfna77cBoSED+JUk9gUQWsG
+         2220ENr9ojjkMaxJlcRDFuTNaMvyu5jCO61MBbmrkF7vbu5sU8/OVXNoxH5KWGI1sm6w
+         ZnOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zy9kRwEDKOwzUuzNDwbNK6Ls9wmAWU8wrTb8CY1ASBM=;
+        b=p6QeYZi04IZrpIx3QzWBro2kUqruG/iC8Q3sV+zosIpz8n9Do/d5Da7wVPid89Plqm
+         82GbDwfGp3OhJHXMvRXFZEuDFAgOWmjnKS3RBcsyXSjI9B2sLbMjP1wQva/xppRcF3bg
+         1KA+Y5+NvwjLIG0QZOf+d7d4vBn/ynrhd8js2zG19mCGiTYyWeL91yqL8h1vcZnR0s5l
+         SMSKG/MTDe+fq79ATuNwbyDTPj7x+pme9IhFnxdw06uQqEzsTsW2J81QfWpT0mk1DzaC
+         pblCCbQt6Ox+WWWul8CaPnKaflU4Y6fhR4ll8iebgn0ggZN0siINiWZ1wjeXJSaf3zfX
+         f+2A==
+X-Gm-Message-State: ANoB5pkBxuTWI+iawC2JfvG6IIekQHhyX4pZiQQPOlBB7hS6psnTBHPB
+        SPt8bbJdoF70aDZOGPGOShA=
+X-Google-Smtp-Source: AA0mqf5h6rFIEUsgsGftthsKMgAP7sfBcKl6GMZWDSIXy4cjabS77++RvLmXzawJJwNT6veT27xS/g==
+X-Received: by 2002:a17:902:d18b:b0:186:8568:be82 with SMTP id m11-20020a170902d18b00b001868568be82mr1510898plb.110.1668159782097;
+        Fri, 11 Nov 2022 01:43:02 -0800 (PST)
+Received: from localhost.localdomain ([103.51.72.74])
+        by smtp.gmail.com with ESMTPSA id fa13-20020a17090af0cd00b002086ac07041sm1188450pjb.44.2022.11.11.01.42.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 01:43:01 -0800 (PST)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sc8280xp: drop reference-clock source
-Date:   Fri, 11 Nov 2022 10:38:57 +0100
-Message-Id: <20221111093857.11360-4-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221111093857.11360-1-johan+linaro@kernel.org>
-References: <20221111093857.11360-1-johan+linaro@kernel.org>
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Chukun Pan <amadeus@jmu.edu.cn>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [linux-next-v1 1/3] arm64: dts: rockchip: Fix gmac phy mode to rgmii on Rock 3A sbc
+Date:   Fri, 11 Nov 2022 09:42:33 +0000
+Message-Id: <20221111094238.1640-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The source clock for the reference clock should not be described by the
-devicetree binding and instead this relationship should be modelled in
-the clock driver.
+On rk356x ethernet phy support reduced media independent interface (RMII)
+and reduced gigabit media independent interface (RGMII).
+So set the phy mode to rgmii.
 
-Update the USB PHY nodes to match the fixed binding.
-
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 985138b6adac..531cd68a80ea 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1595,12 +1595,10 @@ usb_2_qmpphy0: phy@88ef000 {
- 			reg = <0 0x088ef000 0 0x2000>;
- 
- 			clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_MP0_CLKREF_CLK>,
- 				 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
- 				 <&gcc GCC_USB3_MP_PHY_PIPE_0_CLK>;
--			clock-names = "aux", "ref_clk_src", "ref", "com_aux",
--				      "pipe";
-+			clock-names = "aux", "ref", "com_aux", "pipe";
- 
- 			resets = <&gcc GCC_USB3_UNIPHY_MP0_BCR>,
- 				 <&gcc GCC_USB3UNIPHY_PHY_MP0_BCR>;
-@@ -1621,12 +1619,10 @@ usb_2_qmpphy1: phy@88f1000 {
- 			reg = <0 0x088f1000 0 0x2000>;
- 
- 			clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_MP1_CLKREF_CLK>,
- 				 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
- 				 <&gcc GCC_USB3_MP_PHY_PIPE_1_CLK>;
--			clock-names = "aux", "ref_clk_src", "ref", "com_aux",
--				      "pipe";
-+			clock-names = "aux", "ref", "com_aux", "pipe";
- 
- 			resets = <&gcc GCC_USB3_UNIPHY_MP1_BCR>,
- 				 <&gcc GCC_USB3UNIPHY_PHY_MP1_BCR>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+index ea74ba32fbbd..72e410e3aca8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+@@ -253,7 +253,7 @@ &gmac1 {
+ 	assigned-clock-rates = <0>, <125000000>;
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy1>;
+-	phy-mode = "rgmii-id";
++	phy-mode = "rgmii";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac1m1_miim
+ 		     &gmac1m1_tx_bus2
 -- 
-2.37.4
+2.38.1
 
