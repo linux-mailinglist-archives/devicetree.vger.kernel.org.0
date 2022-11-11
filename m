@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A1F625775
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:58:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9053625793
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:05:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233057AbiKKJ6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:58:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41980 "EHLO
+        id S233057AbiKKKFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 05:05:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbiKKJ6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:58:38 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2507B2602;
-        Fri, 11 Nov 2022 01:58:34 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8BxfdrJHG5jZhcGAA--.19552S3;
-        Fri, 11 Nov 2022 17:58:33 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxiFfBHG5jbdUQAA--.27979S3;
-        Fri, 11 Nov 2022 17:58:32 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v11 2/2] dt-bindings: thermal: add loongson-2 thermal
-Date:   Fri, 11 Nov 2022 17:58:24 +0800
-Message-Id: <20221111095824.26898-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221111095824.26898-1-zhuyinbo@loongson.cn>
-References: <20221111095824.26898-1-zhuyinbo@loongson.cn>
+        with ESMTP id S232177AbiKKKFM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:05:12 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472BEE08A;
+        Fri, 11 Nov 2022 02:05:10 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6F77E6602A43;
+        Fri, 11 Nov 2022 10:05:08 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668161109;
+        bh=5adrvkaSXXPCJ7a9QDrifMUAtUL+l677DLpywUrMHVo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LhQcL1b2N1D2r4SwayJjDj2OZOCkqbQdXHs6OR83QYo7eutY7CJD5jG2X7SQjam1f
+         yPTsiUEuS0mDWQ+gtFWFHnZKnqCCyspl8r55XN+XWmMpxu5hfrE9DnyM3Z4ZENOJtE
+         rqAVeLbzKghEX5PErg5+oSWYLMfPnprAY0jZXb91Qixv93WNWxvKQXXjg0x4kNc30X
+         pQL73aqlntOSUDVZ1bUh7SOTMkVCBKY1cfgX2ytI0ls2kyQO0kmBDsc7s2Ewp2WODF
+         AT5Vrk51MVNyMdbu34wvPfmEBQVELjl7tx7OHwmgvn+tBqqCl/NlyCMdZ+zEaLoo5k
+         bMlRz2w0wAZ/Q==
+Message-ID: <160cb3fc-176e-bc0e-1bff-9334478af8ec@collabora.com>
+Date:   Fri, 11 Nov 2022 11:05:06 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxiFfBHG5jbdUQAA--.27979S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4rWr1DJr47trW5ZFb_yoW5Zr1fpF
-        47C3WDJr4vvF17uanIkFyIyrsYvFnYyFZrZr4xKw15Kr98X34aq3y7K3WDu393Wr1jgFWU
-        uFySkr4UCF1DArJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0ow
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_
-        Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUv
-        cSsGvfC2KfnxnUUI43ZEXa7IU88nY7UUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: Add bindings for Qualcomm
+ Ramp Controller
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
+        kernel@collabora.com, andersson@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org
+References: <20221104142204.156333-1-angelogioacchino.delregno@collabora.com>
+ <20221104142204.156333-2-angelogioacchino.delregno@collabora.com>
+ <166758411781.2066027.6365889663189109123.robh@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <166758411781.2066027.6365889663189109123.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,108 +63,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 thermal binding with DT schema format using
-json-schema.
+Il 04/11/22 18:54, Rob Herring ha scritto:
+> 
+> On Fri, 04 Nov 2022 15:22:03 +0100, AngeloGioacchino Del Regno wrote:
+>> Document bindings for the Qualcomm Ramp Controller, found on various
+>> legacy Qualcomm SoCs.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../qcom/qcom,msm8976-ramp-controller.yaml    | 37 +++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,msm8976-ramp-controller.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,msm8976-ramp-controller.example.dtb: power-controller@b014000: '#power-domain-cells' is a required property
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/power-domain.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v11:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v10:
-		1. Add all history change log information.
-Change in v9:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v8:
-                1. Replace string Loongson2/loongson2 with Loongson-2/loongson-2.
-Change in v7:
-		1. Split the modification of patch 3 and merge it into this patch.
-Change in v6:
-		1. Fix the warning "reg: [[0, 534779136], [0, 48]] is too long"
-		   when compile the yaml.
-Change in v5:
-		1. Keep use same quotes "'" in all places. 
-Change in v4:
-		1. Fixup the compatible.
-		2. Update the binding file name.
-		3. Include irq.h to fix compile issue.
-Change in v3:
-		1. Remove the sensor id.
-		2. Remove the interrupt-parent in thermal required property.
-		3. Update the thermal binding file name.
-		4. Fixup the commit log information.
-Change in v2:
-		1. Add description and type about the "id".	
-		2. Make the filename was based on compatible.
+I'm unsure about what I should do about this one.
+This is a power-controller, but does *not* need any #power-domain-cells, as it is
+standalone and doesn't require being attached to anything.
 
- .../thermal/loongson,ls2k-thermal.yaml        | 43 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+Any hints?
 
-diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-new file mode 100644
-index 000000000000..c0637e2d6d57
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/loongson,ls2k-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Thermal sensors on Loongson-2 SoCs
-+
-+maintainers:
-+  - zhanghongchen <zhanghongchen@loongson.cn>
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#thermal-sensor-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    thermal: thermal-sensor@1fe01500 {
-+        compatible = "loongson,ls2k-thermal";
-+        reg = <0x1fe01500 0x30>;
-+        interrupt-parent = <&liointc0>;
-+        interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+        #thermal-sensor-cells = <1>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0d867573fe4c..182129c73ed5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12018,6 +12018,7 @@ M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
- F:	drivers/thermal/loongson2_thermal.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.31.1
-
+Thanks,
+Angelo
