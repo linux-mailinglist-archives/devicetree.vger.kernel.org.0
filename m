@@ -2,58 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B50762628B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 21:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B876262DA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 21:27:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234380AbiKKUJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 15:09:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51476 "EHLO
+        id S233980AbiKKU1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 15:27:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233511AbiKKUJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 15:09:46 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D8A11816;
-        Fri, 11 Nov 2022 12:09:45 -0800 (PST)
+        with ESMTP id S233172AbiKKU1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 15:27:02 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 687A07340F;
+        Fri, 11 Nov 2022 12:27:01 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 73CC5B8260F;
-        Fri, 11 Nov 2022 20:09:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB719C433D6;
-        Fri, 11 Nov 2022 20:09:39 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F3737620CA;
+        Fri, 11 Nov 2022 20:27:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8460FC433C1;
+        Fri, 11 Nov 2022 20:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668197383;
-        bh=PzS0md/R98teTQLOBivBEycYuxdpDjm/Kz1yZeYFP0w=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=K7mRA65GuShqGApRUfNyO8lLj7vIUm1koqrsswCYzunKzBv4G/Xd9JscPC7nBekHg
-         HGVCYXuxkPilExhHSueartS805yFmWZo/bZkw7N0cHWHCzh0JCJDrWbahiiH2ht26o
-         SqcDC2PouciYEyI4wypEuihkci4f/Z4J82SVQbSGEePLHtDpxyXFg8OKcNgYNo5Bnx
-         16OUSZhkdjcmpvIPU5vDYxGHysV6ppYMZfO8W4MnqC6ZkyG+pYO5ho4B8z7rs/oDYQ
-         uKQd0NtYR0G+cli5T07r9y+nzr766Rsqwb4Y0OGav+i2nEWhGNmpQBPqaq9j1piNbE
-         bTIATgHzkfuvQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        alsa-devel@alsa-project.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        s=k20201202; t=1668198420;
+        bh=VFFbMfX4/o+UWM2oq92Ps0TnAJRnovYTG4dVRRwNmek=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JIhYqyP+xZ8S6v1nHiz0+ojoNRzBDYw041MuMpA5sNeXdEipWJ381RiqGr0JdJelE
+         A5aW0fJyWXVMCdrX9PaCBhIVNLxoKs3QJ3+pKxHskMbAxJwGkufUo+7DcYcwV33I0n
+         GMqfFJfA+Hb2UJ4H6ETvOiLX73z5UizuxnO6cSh0dsPywRHearwcPNbbe/eUUAFL8D
+         Rgz60jqhL9AAkhtvJOuOBSXITR1nFvBirmi175OqEYzfrjQVtq+HMmCAoCyZeMpmoH
+         xbu41uPww5uLQN8KgpavD+4AZjFYe9Rm1Bds+iquI82tcZju/JV65Ews7LVJ0xsiNK
+         ByvyNIJzDjd6Q==
+Date:   Fri, 11 Nov 2022 14:26:57 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20221110133512.478831-1-krzysztof.kozlowski@linaro.org>
-References: <20221110133512.478831-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: qcom,wsa883x: Use correct SD_N polarity
-Message-Id: <166819737928.635730.17163192130637526976.b4-ty@kernel.org>
-Date:   Fri, 11 Nov 2022 20:09:39 +0000
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: drop
+ reference-clock source
+Message-ID: <20221111202657.kyzay7oy4yojp4xo@builder.lan>
+References: <20221111093857.11360-1-johan+linaro@kernel.org>
+ <20221111093857.11360-2-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111093857.11360-2-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -63,37 +59,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Nov 2022 14:35:11 +0100, Krzysztof Kozlowski wrote:
-> Use correct polarity in example and powerdown-gpios description.
+On Fri, Nov 11, 2022 at 10:38:55AM +0100, Johan Hovold wrote:
+> The source clock for the reference clock is not used by the PHY directly
+> and should not be included in the devicetree binding.
 > 
+> Fixes: e8e58e29a0c9 ("dt-bindings: phy: qcom,qmp-usb: fix sc8280xp binding")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+> ---
+>  .../bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml       | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 > 
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] ASoC: dt-bindings: qcom,wsa883x: Use correct SD_N polarity
-      commit: 817e981736d27731adb9d7ca11eb8069d1ee569d
-[2/2] ASoC: codecs: wsa883x: Use proper shutdown GPIO polarity
-      commit: ec5dba73f7ba10797904cf18092d2e6975a22147
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> index ef080509747a..16fce1038285 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+> @@ -22,12 +22,11 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 5
+> +    maxItems: 4
+>  
+>    clock-names:
+>      items:
+>        - const: aux
+> -      - const: ref_clk_src
+>        - const: ref
+>        - const: com_aux
+>        - const: pipe
+> @@ -82,12 +81,10 @@ examples:
+>        reg = <0x088ef000 0x2000>;
+>  
+>        clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
+> -               <&rpmhcc RPMH_CXO_CLK>,
+>                 <&gcc GCC_USB3_MP0_CLKREF_CLK>,
+>                 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
+>                 <&gcc GCC_USB3_MP_PHY_PIPE_0_CLK>;
+> -      clock-names = "aux", "ref_clk_src", "ref", "com_aux",
+> -                    "pipe";
+> +      clock-names = "aux", "ref", "com_aux", "pipe";
+>  
+>        power-domains = <&gcc USB30_MP_GDSC>;
+>  
+> -- 
+> 2.37.4
+> 
