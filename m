@@ -2,167 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51152625E34
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:20:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62092625E3C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:22:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbiKKPUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 10:20:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42350 "EHLO
+        id S232177AbiKKPWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 10:22:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234768AbiKKPTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:19:46 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785217F564;
-        Fri, 11 Nov 2022 07:19:34 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id q9so13402757ejd.0;
-        Fri, 11 Nov 2022 07:19:34 -0800 (PST)
+        with ESMTP id S234121AbiKKPVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:21:37 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56327DF9C
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:20:53 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id 13so13331102ejn.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:20:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Avc73Wd5uy7Skwld22VvbpjyFk8ZE6ZJMl2WUws4Lc=;
-        b=VcgNLkQQBUoBcvJQba3AuaBnr9vBwzCaLsiJDg3vfO1i8jz04RZ8M9boGBXr+aqJ13
-         F4AwNu0vWhu2dwG6IQVLIiX+hcnUYylAqdCtNNGzdKo60Xy8FoC4znTaestAX1avwze7
-         uu0UJAHVi+bWnIZ++aj0uIe38aNuOejmSORQUHK6kuWBrspzO/+wxOUE1RITCn8u2+U5
-         sPvvqxnF4g6B1WCGvZ/PggiGtnEGrbSNJDnWg8QNfHQ94lFqfU7IN+Bedt1mGF9GDCn/
-         7EnSfj85WSPoHT+nGsxN35AdLPVa4aBsITm6h1vqkqEZqelUFBwzpUB/yCNHmbvPxF0O
-         VJ+w==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8E9Cs3yaXWgz5mOChIlIQoUDfwsWjoZPtNVw+9K0m3M=;
+        b=mmcX345GCDy3+LQ6q+Pzy0ZCoNRRPkcF3ifoBsQAl68YLYZ10/NiQVgutItk1xYMaL
+         7IpvVyhFokDN+fcDLMgYYQQvESiT1V94tZbiKwBnIwhS5k7dciPLhbow33wC0dcD1Hse
+         g1yCT9x2epWf+2mHnesm6kOmE5FS0XjWFyzeqBNezQPZijMZLOh5LBRB2mr5qzqMyKkT
+         Zc7VZjiPmDYc60LEcsLoRmTX71rq7dzSQziWDaMazdAaLxHE8bm0EvGaiARlfQnCs+sG
+         TLD2wzWUqo4dnNQ2byCnVQEndzseTqwfeKlho10WOkqYgpJ0hHVFAdrwaABZFsnrm2ON
+         qbIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1Avc73Wd5uy7Skwld22VvbpjyFk8ZE6ZJMl2WUws4Lc=;
-        b=dshVNXp8FayAYmyBkVqSJbQ/mGPoKPazX7nlhuZ+R3Vlu4TSFMzE1ZbpIxulhamPgF
-         zVz6pG9x8GIzVn1BhTgGBuW8Q0ShRANLtOxhT6/LuboyXHuRPKtTQY8u6SwDsp966nEm
-         FeWCdhQLrzZ5DQ40KjqX02xcXIBmBDthSXH2o3jjCPVX6M/bfyLkBgpTw5HdyHOa94DK
-         SJ/Adzlc5fwBtbrAKgpGg36Yj32fPv4FrqcqwsPbC1W2N+GLTCr9jdmHp7a2vKPxnRuL
-         zQ0qw6gfAPoeHlNliQDMZ/pXxGHFl0DLr4iycp3fkoGJGJjVCEJnjtMfupYobyI0mCXq
-         8qkA==
-X-Gm-Message-State: ANoB5pmJoYwj1kCXi43SHdI4U5FHo0wSiLd+oxhas4lFjoRfN202CGRD
-        +h7n3fgTWOIb6MO4c4rEfWM=
-X-Google-Smtp-Source: AA0mqf7jcjvvCajWEZf/4tzH9aqqjB2lGEVAh0GleCi1WbBbEayX+c7poMtqgc5jYCdKUUnpl2KrMg==
-X-Received: by 2002:a17:906:4dc2:b0:7ae:50c6:fd0a with SMTP id f2-20020a1709064dc200b007ae50c6fd0amr2184833ejw.184.1668179973013;
-        Fri, 11 Nov 2022 07:19:33 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id b19-20020a056402139300b004637489cf08sm1168773edv.88.2022.11.11.07.19.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 07:19:32 -0800 (PST)
-Date:   Fri, 11 Nov 2022 16:19:30 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] pinctrl: tegra: Separate Tegra194 instances
-Message-ID: <Y25oAmZMcfBOCat3@orome>
-References: <20221104142345.1562750-1-thierry.reding@gmail.com>
- <CACRpkdYT0X09bWYg9za8x+3YkcbVmBm8Prb0Fyk2nfi_eanDyw@mail.gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8E9Cs3yaXWgz5mOChIlIQoUDfwsWjoZPtNVw+9K0m3M=;
+        b=7aj1X/P8/X0swscs47jo5SRgAsSVOwOewaY2VR+f9ptfy0T6NPrFdhwQAafNmkYcIC
+         BeQGD2+ozgRhQYGbyy6FnoP6/bIaIj4Sl3iiTWCOtpC+B41r2mYcleio3I4Q5YKfdNc5
+         cVBnlsBX4CiLTkWzF2JLozty0tcWT99jF+BOL6H1abZ30sMoZxfJPHRLPYtGWGqDlRpO
+         xrtTmQ5wNYLKgdFiLTSDXfly025iSXzErn9J30qEWDw6k7UbUfCYdmawswKqSZQLRTOY
+         0SJP6V5BmS8eb4VWSMlq6UcEsDk+aRRxRXLt7Zg/k0wUXBo729NqOmEOCQrvuCLXcKZb
+         1bLg==
+X-Gm-Message-State: ANoB5pmD0CdwYZQ8VPXFoVAlAhsFj2P6DrtaRuBqQBuhiCzabB/YoKA4
+        McMnaXUb0il517+JGmSoRg5d3vOTz+xAJKVd/38RYw==
+X-Google-Smtp-Source: AA0mqf5F1dF3oI4lEMZel6lUNLdl92gcf9qtQZbBA0ZEZW8n4zJvZRo9IKm7wRimlZusvKqtya6WCuvYLzPh4/aStTM=
+X-Received: by 2002:a17:906:2ecf:b0:778:f9b6:6fc with SMTP id
+ s15-20020a1709062ecf00b00778f9b606fcmr2245177eji.580.1668180051848; Fri, 11
+ Nov 2022 07:20:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HZeBpEYEJWldW/UB"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYT0X09bWYg9za8x+3YkcbVmBm8Prb0Fyk2nfi_eanDyw@mail.gmail.com>
-User-Agent: Mutt/2.2.8 (2022-11-05)
+References: <20221028120812.339100-1-robert.foss@linaro.org>
+ <20221028120812.339100-10-robert.foss@linaro.org> <408b7b0c-ce30-134e-9b1f-f77c1f03f5c9@linaro.org>
+In-Reply-To: <408b7b0c-ce30-134e-9b1f-f77c1f03f5c9@linaro.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Fri, 11 Nov 2022 16:20:40 +0100
+Message-ID: <CAG3jFytHzSNohr85R_uOHqn6eeour37c4=MXkaS=0JzKK4-z9Q@mail.gmail.com>
+Subject: Re: [PATCH v1 9/9] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc
+ dsi-hdmi bridge
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        quic_kalyant@quicinc.com, swboyd@chromium.org,
+        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
+        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
+        quic_jesszhan@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---HZeBpEYEJWldW/UB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 08, 2022 at 03:10:01PM +0100, Linus Walleij wrote:
-> On Fri, Nov 4, 2022 at 3:23 PM Thierry Reding <thierry.reding@gmail.com> =
-wrote:
->=20
-> > From: Thierry Reding <treding@nvidia.com>
+On Sat, 29 Oct 2022 at 00:06, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/10/2022 08:08, Robert Foss wrote:
+> > The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
 > >
-> > This patch series changes the pin controller DT description on Tegra194
-> > in order to properly describe how the hardware works. Currently a
-> > simplified description is used that merges two pin controller instances
-> > (called AON and main) into a single DT node. This has some disadvantages
-> > such as creating a complicated mapping between the pins in those pin
-> > controllers and the corresponding GPIO controllers (which are already
-> > separated).
+> > In order to toggle the board to enable the HDMI output,
+> > switch #7 & #8 on the rightmost multi-switch package have
+> > to be toggled to On.
 > >
-> > As a prerequisite, the first patch in this series converts the device
-> > tree bindings to json-schema. A second patch then adds an additional
-> > compatible string for the AON instance (along with more details about
-> > each controller's pins) and finally patch 3 converts the driver to
-> > cope with these changes. A fourth patch makes the corresponding
-> > changes in the Tegra194 DTS file.
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 106 ++++++++++++++++++++++++
+> >  1 file changed, 106 insertions(+)
 > >
-> > Note that while this changes the DT node in an incompatible way, this
-> > doesn't have any practical implications for backwards-compatibility. The
-> > reason for this is that device trees have only reconfigured a very
-> > narrow subset of pins of the main controller, so the new driver will
-> > remain backwards-compatible with old device trees.
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> > index 6e07feb4b3b2..6666b38b58f8 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> > @@ -20,6 +20,17 @@ chosen {
+> >               stdout-path = "serial0:115200n8";
+> >       };
 > >
-> > Changes in v3:
-> > - address more review comments by Rob Herring and make validation work
->=20
-> This looks good to me!
->=20
-> I tried to apply them to the pinctrl devel branch but this happens:
->=20
-> $ git am --signoff
-> ./v3_20221104_thierry_reding_pinctrl_tegra_separate_tegra194_instances.mbx
-> Applying: dt-bindings: pinctrl: tegra: Convert to json-schema
-> error: Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml:
-> does not exist in index
-> Patch failed at 0001 dt-bindings: pinctrl: tegra: Convert to json-schema
->=20
-> I guess there are some prerequisites?
+> > +     hdmi-out {
+>
+> Generic node names, so hdmi-connector or just connector.
 
-Yeah, I noticed the same thing as I was just testing to cherry-pick just
-the first three patches to a vanilla upstream branch. So yes, that pre-
-requisite is another json-schema conversion that I have in my tree but
-which hasn't been merged yet.
+Ack.
 
-The good news is that my testing confirms what I recollect about the DT
-backwards-compatibility not being an issue. In practice the only pins
-=66rom this that are being used are in the first controller, so if we
-change the driver to only take control of one of them, the second will
-be ignored and that's really a no-op.
+>
+> > +             compatible = "hdmi-connector";
+> > +             type = "a";
+> > +
+> > +             port {
+> > +                     hdmi_con: endpoint {
+> > +                             remote-endpoint = <&lt9611_out>;
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> >       vph_pwr: vph-pwr-regulator {
+> >               compatible = "regulator-fixed";
+> >               regulator-name = "vph_pwr";
+> > @@ -29,6 +40,32 @@ vph_pwr: vph-pwr-regulator {
+> >               regulator-always-on;
+> >               regulator-boot-on;
+> >       };
+> > +
+> > +     lt9611_1v2: lt9611-1v2 {
+>
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-What that also implies is that the pinctrl driver patch is completely
-standalone, so you can apply that whenever you want and I can apply the
-DT patch to the Tegra tree. I can then also pick up the DT bindings
-patches and resolve the conflict there. That is, if you don't mind.
+Ack.
 
-Thierry
+>
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "LT9611_1V2";
+> > +
+> > +             vin-supply = <&vph_pwr>;
+> > +             regulator-min-microvolt = <1200000>;
+> > +             regulator-max-microvolt = <1200000>;
+> > +             gpio = <&tlmm 49 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +             regulator-boot-on;
+> > +             regulator-always-on;
+> > +     };
+> > +
+> > +     lt9611_3v3: lt9611-3v3 {
+>
+> Ditto
 
---HZeBpEYEJWldW/UB
-Content-Type: application/pgp-signature; name="signature.asc"
+Ack.
 
------BEGIN PGP SIGNATURE-----
+>
+>
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "LT9611_3V3";
+> > +
+> > +             vin-supply = <&vreg_bob>;
+> > +             gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             enable-active-high;
+> > +             regulator-boot-on;
+> > +             regulator-always-on;
+> > +     };
+> >  };
+> >
+> >  &adsp {
+> > @@ -220,6 +257,15 @@ &dispcc {
+> >  &dsi0 {
+> >       status = "okay";
+> >       vdda-supply = <&vreg_l6b_1p2>;
+> > +
+> > +     ports {
+> > +             port@1 {
+> > +                     endpoint {
+> > +                             remote-endpoint = <&lt9611_a>;
+> > +                             data-lanes = <0 1 2 3>;
+> > +                     };
+> > +             };
+> > +     };
+> >  };
+> >
+> >  &dsi0_phy  {
+> > @@ -231,6 +277,48 @@ &gpi_dma1 {
+> >       status = "okay";
+> >  };
+> >
+> > +&i2c15 {
+> > +     status = "okay";
+>
+> status is the last property
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNuaAIACgkQ3SOs138+
-s6G7PQ/+KgZZbOu4GM2OFplp4E42IdyUdN9zgYBdFRY+OLIjG6gMmY8sfY9Rj47w
-w6Ugi/LiEJKpBbfos6tXqnrgE/A3fK+G8RTWLYHiD0zr8XhytBRZ1+9bTE3OjDwO
-2p8K+YSWpQCVOP0DIZ8nf/w3EXTyQ2Wday+0EJPg6ro8XL4o3mCYzryDYRwMJRvn
-8eIKl9gZPJUXCCYJ2yphwzJ2SH6VL5aR396mK/waEBwYR4XkJQiZJJEVddrDEq4k
-q+DwOv8SuMIDc45Vwc1J+aDOYSM+ICsh/qb5K8St7fHzFnFBKep0B1s60tfEs2ke
-+fdBxl0MDa0febtuKxQqJNSeSoOhb8Q2HQCpSOBvnGsRPnqGXNBCfFU//0bZ1Z1P
-r46j1j5HUMhKip9elA5BPI+B0MowevGRSeT/sw1xnX+csbwqfvGH7tf/T3q+Te+A
-oT8Zss5kirkvRdb16igoux0zEfzbNwQnOO7CFsLIfyKBaChFv4zDdUJ6ydx9dUCe
-CPSXEO2ZeaM47vR3hyyYl3uq6BWD9vNNLIZ8WUQUD2zHOgGA8fDWqKXNAIZ53Y7b
-Zi7HISh2csDV6ETiEHI1fx60MfowlTJnjl7cWyX0g47Ts8+KR7PvBMjtLEhOEi8M
-vuLP5mdFIIUg2peOSEyzqe6VwMmQm1Uerd/6jT70FwwvbgKUCU0=
-=70p8
------END PGP SIGNATURE-----
+Ack.
 
---HZeBpEYEJWldW/UB--
+>
+> > +     clock-frequency = <400000>;
+> > +
+> > +     lt9611_codec: hdmi-bridge@2b {
+> > +             compatible = "lontium,lt9611uxc";
+> > +             reg = <0x2b>;
+> > +             status = "okay";
+>
+> Why status?
+
+It should be removed. Fixing in v2.
+
+>
+> > +
+> > +             interrupts-extended = <&tlmm 50 IRQ_TYPE_EDGE_FALLING>;
+> > +             reset-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
+> > +
+> > +             vdd-supply = <&lt9611_1v2>;
+> > +             vcc-supply = <&lt9611_3v3>;
+> > +
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
+> > +
+> > +             ports {
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg = <0>;
+> > +
+> > +                             lt9611_a: endpoint {
+> > +                                     remote-endpoint = <&dsi0_out>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@2 {
+> > +                             reg = <2>;
+> > +
+> > +                             lt9611_out: endpoint {
+> > +                                     remote-endpoint = <&hdmi_con>;
+> > +                             };
+> > +                     };
+> > +
+>
+> No need for blank line
+
+Ack
+
+>
+> > +             };
+> > +     };
+> > +};
+> > +
+> >  &mdss {
+> >       status = "okay";
+> >  };
+> > @@ -248,6 +336,10 @@ &qupv3_id_0 {
+> >       status = "okay";
+> >  };
+> >
+> > +&qupv3_id_2 {
+> > +     status = "okay";
+> > +};
+> > +
+> >  &slpi {
+> >       status = "okay";
+> >       firmware-name = "qcom/sm8350/slpi.mbn";
+> > @@ -544,4 +636,18 @@ usb_hub_enabled_state: usb-hub-enabled-state {
+> >               drive-strength = <2>;
+> >               output-low;
+> >       };
+> > +
+> > +     lt9611_rst_pin: lt9611-rst-state {
+> > +             pins = "gpio48";
+> > +             function = "normal";
+> > +
+> > +             output-high;
+> > +             input-disable;
+> > +     };
+> > +
+> > +     lt9611_irq_pin: lt9611-irq {
+>
+> Missing suffix 'state'.
+
+Ack.
+
+>
+> Does not look like you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions).
+
+v1 was missing the bindings, v2 will include bindings for there parts.
+
+>
+> Rebase your changes on last linux-next.
+
+Ack.
+
+>
+> Best regards,
+> Krzysztof
+>
