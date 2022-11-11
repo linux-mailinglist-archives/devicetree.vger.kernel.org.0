@@ -2,80 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10FF06258C8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:52:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E9B6258D9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:54:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233676AbiKKKwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 05:52:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51002 "EHLO
+        id S230270AbiKKKyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 05:54:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233630AbiKKKvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:51:53 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675A964A02
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 02:51:52 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id g12so7797521lfh.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 02:51:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r+mBWPeWSsJqcJ3QokQFaX83tJCFJAVRvj60JzLY2zc=;
-        b=NcLSjiHTMoYOxW6LiVEjxugA/YIeMalt5sZf6w3a+u8YScwWPYm0vk7k9ck/cqO7aS
-         uND2VXAmFSVRFDWF2JsoJ4qf0myZXH/RM0eSrYQxv4klSH84F/OWmt1VPmP5dJRTjIUv
-         0A2aYBOFry/KXNCsnRiUin8nZ8TY4NUX/8yX8BViBa7kGomUwMsYvx4olDqE6eDKG3nw
-         wqu9gbHA2ZHy1oW1SUWIkVGtPdfByVYshnsQz2XD6gXWmYoj8ngRu06TDq4apig2df3d
-         FQdi8L2lcB0jDLn0PoZfZvqOkHyc0XxRhmqSk8bWy2YxiksSjuKk/3d5TmpDeL5QNUPL
-         16Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r+mBWPeWSsJqcJ3QokQFaX83tJCFJAVRvj60JzLY2zc=;
-        b=0dMFkHcDNXPCYjgtMo/Xs5DPMZn6v6W3C3XUo7qdnupDk7Fwd1DecxADkVBzxHJrWV
-         czlFO74VzGONSTsA9rqnVFlQBUQODfLv580mvq1M8uXeuedgWGypTJJAu780QMDU2Hqx
-         71/U1zhZBVDivJxL1sFaNiQyCFUTfSBKjDZeY7cv8b31UruCcPAt0Pi7T8qWIrjRVtsK
-         arR7GPn5GzwH87Y/WVD3dAgtkw63d56K2cuehoE/QJXQeV9j6u+bIHwz5tsXGSudwbtl
-         Vcj+m2r2CMkal2/Gz/iWGRsnHEHVroU1JH4hMmjpw6RaNoF1rnRfIpRYe5fwQlaxRJJz
-         3Yjw==
-X-Gm-Message-State: ANoB5pmHBu5rsWuwyXObSULhCs2X5W8QFhzL/oBQ0yG8rBRlPEsWnOcU
-        nJ01zy3SfIlpt+EW3DYmggtwjw==
-X-Google-Smtp-Source: AA0mqf7D2GKcMgFH5iAYIaHS0Y/DYeu2kRAEDuShm5lGkdiUNVN1TP2o5nDGw83gn5ass2+0L9V85A==
-X-Received: by 2002:ac2:54b1:0:b0:499:af06:a77b with SMTP id w17-20020ac254b1000000b00499af06a77bmr511328lfk.202.1668163910778;
-        Fri, 11 Nov 2022 02:51:50 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id q6-20020a05651232a600b0049fb08e91cesm261509lfe.214.2022.11.11.02.51.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 02:51:50 -0800 (PST)
-Message-ID: <a7bbfdd1-1abd-2ee5-1d32-47d0bcb7e1f2@linaro.org>
-Date:   Fri, 11 Nov 2022 11:51:49 +0100
+        with ESMTP id S233233AbiKKKxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:53:50 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C7E77237;
+        Fri, 11 Nov 2022 02:53:30 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AB6bJYX010577;
+        Fri, 11 Nov 2022 10:53:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=VJRNnl6+/1qotuJJiHC0WcxX2r102v5SDUBExsAakS4=;
+ b=cil7wKp4wgaDiNrp8EvEZc4u/42OHllByXBWO0Elod1FSRN5LVM9zobUnSP7yea20b9C
+ nm65gop78zJN0xZTY6qkvRDk6s8m32Z60CvAVFR8yAN7+Oll0sQkMT2Ry4vuZ9D/cD7G
+ rNIPDMB08JSeSdryKsrXquXvno+zYPcDeymqz+FIlm65aWMkAodqSFEzD7B740Sncmfk
+ AqWUiVjkzNb6sqT/RLDXUHoDhy8ybYUcprMkrATrS3QDBU3GdT0tlkhu2uJBpox1debZ
+ QRuSpI3+EjvSqh8sioZHSkak+I99p/8NfczAOmCj/4VZ3xTYcdNfaubc0VedC77BwqyE Qw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ksh9q0ug2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:53:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ABArLBk005989
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:53:21 GMT
+Received: from [10.79.43.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 11 Nov
+ 2022 02:53:17 -0800
+Message-ID: <c9c51981-227a-e97d-137d-eb2d8d7df2a8@quicinc.com>
+Date:   Fri, 11 Nov 2022 16:23:14 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
- System Configuration
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 09/10] dt-bindings: interconnect: qcom,msm8998-bwmon:
+ Add sc8280xp bwmon instances
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-References: <20221110162126.103437-1-biju.das.jz@bp.renesas.com>
- <20221110162126.103437-2-biju.das.jz@bp.renesas.com>
- <ae35fd75-64d3-3ab9-8cc0-3cbcc9c34b78@linaro.org>
- <OS0PR01MB59229179DE3D3D00C4963F3186009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB59229179DE3D3D00C4963F3186009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+ <20221111032515.3460-10-quic_bjorande@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <20221111032515.3460-10-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3hacMDek1z53puU-zxf4-NXY4oGAjs5q
+X-Proofpoint-ORIG-GUID: 3hacMDek1z53puU-zxf4-NXY4oGAjs5q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-11_06,2022-11-11_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ phishscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 mlxscore=0 clxscore=1015 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211110072
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -85,128 +86,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 10:06, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 11 November 2022 08:34
->> To: Biju Das <biju.das.jz@bp.renesas.com>; Rob Herring <robh+dt@kernel.org>;
->> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Phil Edworthy <phil.edworthy@renesas.com>; Geert Uytterhoeven
->> <geert+renesas@glider.be>; Magnus Damm <magnus.damm@gmail.com>; linux-
->> renesas-soc@vger.kernel.org; devicetree@vger.kernel.org; Chris Paterson
->> <Chris.Paterson2@renesas.com>; Fabrizio Castro
->> <fabrizio.castro.jz@renesas.com>
->> Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas
->> RZ/V2M System Configuration
->>
->> On 10/11/2022 17:21, Biju Das wrote:
->>> From: Phil Edworthy <phil.edworthy@renesas.com>
->>>
->>> Add DT binding documentation for System Configuration (SYS) found on
->>> RZ/V2M SoC's.
->>>
->>> SYS block contains the SYS_VERSION register which can be used to
->>> retrieve SoC version information.
->>>
->>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
->>> [biju: Updated the example ]
->>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->>> ---
->>> v1->v2:
->>>  * Moved the file from arm->soc/renesas
->>>  * Updated the path for binding file
->>>  * Updated the example
->>> ---
->>>  .../soc/renesas/renesas,rzv2m-sys.yaml        | 39 +++++++++++++++++++
->>>  1 file changed, 39 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.yaml
->>> b/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.yaml
->>> new file mode 100644
->>> index 000000000000..cc41747798e2
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.
->>> +++ yaml
->>
->> Filename should be based on the compatible. Pretty often some common parts of
->> both are fine (e.g. when file contains multiple compatibles), but this very
->> different then what I see below.
-> 
-> We plan to upstream another similar SoC, RZ/V2MA which has similar IP, so we may
-> need to add generic compatible rzv2m-sys. I am checking with HW people to get
-> more info about RZ/V2MA.
-> 
->>
->>> @@ -0,0 +1,39 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id:
->> "
-> "
->>> +$schema:
->> "
-> "
->>
->> Drop quotes from both.
-> 
-> OK.
-> 
->>
->>> +
->>> +title: Renesas RZ/V2M System Configuration (SYS)
->>> +
->>> +maintainers:
->>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
->>> +
->>> +description:
->>> +  The RZ/V2M System Configuration (SYS) performs system control of
->>> +the LSI
->>> +  and supports the following functions,
->>> +  - LSI version
->>> +  - 34-bit address space access function
->>> +  - PCIe related settings
->>> +  - WDT stop control
->>> +  - Temperature sensor (TSU) monitor
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: renesas,r9a09g011-sys
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    sysc: system-configuration@a3f03000 {
->>
->> If I get properly the purpose of the device, usually this is called "system-
->> controller". Use that as device node.
-> 
-> The hardware manual mentions the below. So want to consistent with HW manual.
 
-If the hardware manual said this is called "foo-whatever-name" or
-"rz85736dfnx2", you would use it as well?
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
+On 11/11/22 08:55, Bjorn Andersson wrote:
+> The sc8280xp platform has two BWMON instances, one v4 and one v5. Extend
+> the existing qcom,msm8998-bwmon and qcom,sc7280-llcc-bwmon to describe
+> these.
 > 
-> Section 38 System Configuration (SYS)
-> This section describes the functions of the system configuration (SYS).
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Tested-by: Steev Klimaszewski <steev@kali.org>
 
-So NAK.
+Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
 
-Best regards,
-Krzysztof
-
+> ---
+> 
+> Changes since v1:
+> - Added "cpu" to compatible
+> 
+>   .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> index be29e0b80995..0c720dbde36e 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+> @@ -25,9 +25,14 @@ properties:
+>         - items:
+>             - enum:
+>                 - qcom,sc7280-cpu-bwmon
+> +              - qcom,sc8280xp-cpu-bwmon
+>                 - qcom,sdm845-bwmon
+>             - const: qcom,msm8998-bwmon
+>         - const: qcom,msm8998-bwmon       # BWMON v4
+> +      - items:
+> +          - enum:
+> +              - qcom,sc8280xp-llcc-bwmon
+> +          - const: qcom,sc7280-llcc-bwmon
+>         - const: qcom,sc7280-llcc-bwmon   # BWMON v5
+>         - const: qcom,sdm845-llcc-bwmon   # BWMON v5
+>   
