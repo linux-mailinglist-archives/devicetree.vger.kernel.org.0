@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A61162596B
+	by mail.lfdr.de (Postfix) with ESMTP id 71EFD62596C
 	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 12:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233394AbiKKLgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 06:36:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
+        id S233414AbiKKLgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 06:36:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232341AbiKKLgM (ORCPT
+        with ESMTP id S232746AbiKKLgM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 06:36:12 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C02F2D1CF
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:10 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id z24so4221646ljn.4
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:10 -0800 (PST)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767D251C00
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:11 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id be13so7937914lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8+lo+EYchQIrutfVK7r/d71O1gZIvEmM22KyAmAwjKs=;
-        b=zqzPwf0VhpEKqnCJQeB0cnMdP0hokvV0Xjbk46zcHBaH/WGMkK0ilcn5ZTjIoEjERy
-         R+fU8Ifo5B5st2HNnfBFhjhkdVUcahN9cnzJaFzXWQZ/qBD8erQsfNDYiuZv2infQ/2N
-         FFWRDmTX+5xIafMQpS5yIKM0Iw0zBUF4U62f5eLnlkO6HaT18V2lBXUNRJ9miqTJUcf/
-         JBakGu05Diiy1F6bjHIS2+PSoa4zRdL6a3idwVYdgF4wIhrzSHpuz/Hy5XI6wkR+rLC+
-         WwFppQTw8eTdo7P5I4hysvzkWWWwzXLvyXaajXneXiGLptSWzl47/ZerTddPm+9fFVz1
-         WYRA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DfDjuOFKuz/+4/FzdYKlkZ69vw3btOLkFXgVYX8IZ2M=;
+        b=ZKPSdCvUfQ+4rklV7ZSQx16ScC7V9kumpSo9BjsV6LnyloCLaVJ0dngjVBxr2Hrsi9
+         CGxOF33E70rP/rRnCRF3ajRGc+9YR3Awm3keIdj2ZgASSdkXf+xl8sNp37DQVJoiI8tG
+         ap1SPP0dszpnLauFUhO8RNiJK4/ulw1xjyuVcsit+/mIRq61CS3VhBuM5IN3jvBqacXC
+         gBYEnGamrMtxDAvrv9u1+auXJglZnqICiRf2Od33ETCZf1X7eYyDmv29e1KWnUvteexq
+         oUdS7E9y7s61aYxZX+VxcgW8PTnTjgh9oUe7om7qXU/acYbauoEfdzIdPE9sv0XiR7QM
+         Jjgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8+lo+EYchQIrutfVK7r/d71O1gZIvEmM22KyAmAwjKs=;
-        b=MSMBit9KegnwXiGCGJx+RGNBd+lCp8AVdTPOiKfn9VT5hGYTiKW9nVzzRCRPjGTH2f
-         DMtkymhxzj+/04yIRwOCo0hDZM2VbP6Uyf2GH5lwpZ6IHg/SWXmQ7QiFRb0U/eBqOlTp
-         j7dklSQMmxTtIHMQkfUhEdSbzEHwQKMilfELJDsxF8p2OjSoVOVmPPpCl94g2M/Mjfk7
-         r0EkTeofcHO8lUHAEilS88o1MQvU4yiMeHfbTsA7CrzbuYXSge4fVyWISQsJl9U5GPPu
-         zCq/0oB+pXCucuudeBuuHc7UYcob1oFpSonlR7ax97V9zcG9Kd5LCATJEpvb86RbrDlW
-         y1Iw==
-X-Gm-Message-State: ANoB5pnxmqKhA7nJFstRYu9Nb6p5e6AKRNX0tjUn+FlepZbxK42h1JeO
-        jp6xtUv/92OrLknniMjgaS8vfw==
-X-Google-Smtp-Source: AA0mqf7Af5u4htDHYrs+2hewvDJau4fu8DLkLCe3TaU8xXrl/EP9cN9v5Txbclnj1xYPEGYOF2lwPA==
-X-Received: by 2002:a2e:960c:0:b0:278:eab6:7542 with SMTP id v12-20020a2e960c000000b00278eab67542mr300253ljh.400.1668166568655;
-        Fri, 11 Nov 2022 03:36:08 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DfDjuOFKuz/+4/FzdYKlkZ69vw3btOLkFXgVYX8IZ2M=;
+        b=Hs2rMBGF2gZ99IXGTrIEuxPUsY0gWsjKpg4MNO8DTN2k8qf/2fEE2wvHwhO/eeP4f6
+         pNTj7X0hKJEQMzP3TSRCbtCfOicHf3U4ojiscYrW0c5vGRzzUt9wtPlaJR4O1voKYEvA
+         AMeaWipswh4jCrdmRqu2mgOi63CApgfpzhDZTEjxpCxwPe6V+ry4YSrSuRiI69zkF+yJ
+         37XyJRzcgQoIy7Brx16afOXeseQ+D0kz5+3upGTFg8PTvi2uRjYNbWdpR78QR2Ifnh3y
+         LFoj9vLMiR2A26J5Chq7GNCUNlRSEWCRRerYavIWkOa/i4VFKmHyjUNEFJyD41VSXZBy
+         BA3A==
+X-Gm-Message-State: ANoB5pl+DIUb9P/8LGxhuHMAc6QPlya29hj4/3vhuoOKBeUPq+E2YXmn
+        Kmd0qm14/wZehDn3H4ouAS815w==
+X-Google-Smtp-Source: AA0mqf7GsQcfMEHOYwYQHodGjXvbjYjvJ5JL9FA5oZ6eESNpG+IMCWd0C8dHIroXSuERvZiHyVxWaQ==
+X-Received: by 2002:ac2:5b5b:0:b0:4aa:148d:5168 with SMTP id i27-20020ac25b5b000000b004aa148d5168mr545004lfp.561.1668166569837;
+        Fri, 11 Nov 2022 03:36:09 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id bi30-20020a0565120e9e00b004acb2adfa1fsm274970lfb.307.2022.11.11.03.36.07
+        by smtp.gmail.com with ESMTPSA id bi30-20020a0565120e9e00b004acb2adfa1fsm274970lfb.307.2022.11.11.03.36.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 03:36:08 -0800 (PST)
+        Fri, 11 Nov 2022 03:36:09 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Banajit Goswami <bgoswami@quicinc.com>,
@@ -63,78 +64,61 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 Cc:     Patrick Lai <plai@qti.qualcomm.com>,
         Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 00/10] ASoC: dt-bindings: Rework Qualcomm APR/GPR Sound nodes for SM8450
-Date:   Fri, 11 Nov 2022 12:35:37 +0100
-Message-Id: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/10] ASoC: dt-bindings: qcom,apr: Add GLINK channel name for SM8450
+Date:   Fri, 11 Nov 2022 12:35:38 +0100
+Message-Id: <20221111113547.100442-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
+References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding sound support for Qualcomm SM8450 SoC (and later for SC8280XP) brought
-some changes to APR/GPR services bindings.  These bindings are part of
-qcom,apr.yaml:
+On SM8450 and SC8280XP with Qualcomm GPR, the GLINK channel name
+(qcom,glink-channels) for ADSP is "adsp_apps".
 
-  apr-or-gpr-device-node <- qcom,apr.yaml
-    apr-gpr-service@[0-9] <- qcom,apr.yaml
-      service-specific-components <- /schemas/sound/qcom,q6*.yaml
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/soc/qcom/qcom,apr.yaml        | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-The schema for services (apr-gpr-service@[0-9]) already grows considerably and
-is still quite not specific.  It allows several incorrect combinations, like
-adding a clock-controller to a APM device.  Restricting it would complicate the
-schema even more.  Bringing new support for sound on Qualcomm SM8450 and
-SC8280XP SoC would grow it as well.
-
-Refactor the bindings before extending them for Qualcomm SM8450 SoC.
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (10):
-  ASoC: dt-bindings: qcom,apr: Add GLINK channel name for SM8450
-  ASoC: dt-bindings: qcom,apr: Split services to shared schema
-  ASoC: dt-bindings: qcom,q6afe: Split to separate schema
-  ASoC: dt-bindings: qcom,q6apm: Split to separate schema
-  ASoC: dt-bindings: qcom,q6adm: Split to separate schema
-  ASoC: dt-bindings: qcom,q6asm: Split to separate schema
-  ASoC: dt-bindings: qcom,q6prm: Split to separate schema
-  ASoC: dt-bindings: qcom,q6core: Split to separate schema
-  ASoC: dt-bindings: qcom,q6apm-lpass-dais: Split to separate schema
-  ASoC: dt-bindings: qcom,q6apm: Add SM8450 bedais node
-
- .../bindings/soc/qcom/qcom,apr-services.yaml  |  54 ++++++++
- .../bindings/soc/qcom/qcom,apr.yaml           | 119 ++----------------
- .../bindings/sound/qcom,q6adm-routing.yaml    |  22 +---
- .../devicetree/bindings/sound/qcom,q6adm.yaml |  51 ++++++++
- .../devicetree/bindings/sound/qcom,q6afe.yaml |  69 ++++++++++
- .../bindings/sound/qcom,q6apm-dai.yaml        |  19 +--
- .../bindings/sound/qcom,q6apm-lpass-dais.yaml |  32 +++++
- .../devicetree/bindings/sound/qcom,q6apm.yaml |  67 ++++++++++
- .../bindings/sound/qcom,q6asm-dais.yaml       |  48 +++----
- .../devicetree/bindings/sound/qcom,q6asm.yaml |  68 ++++++++++
- .../bindings/sound/qcom,q6core.yaml           |  39 ++++++
- .../sound/qcom,q6dsp-lpass-clocks.yaml        |  40 +-----
- .../sound/qcom,q6dsp-lpass-ports.yaml         |  57 ++-------
- .../devicetree/bindings/sound/qcom,q6prm.yaml |  50 ++++++++
- MAINTAINERS                                   |   2 +-
- 15 files changed, 477 insertions(+), 260 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr-services.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6adm.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-lpass-dais.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6core.yaml
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6prm.yaml
-
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+index f47491aab3b1..0a7a34cb2497 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+@@ -58,8 +58,7 @@ properties:
+   qcom,glink-channels:
+     $ref: /schemas/types.yaml#/definitions/string-array
+     description: Channel name used for the communication
+-    items:
+-      - const: apr_audio_svc
++    maxItems: 1
+ 
+   qcom,intents:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+@@ -203,7 +202,15 @@ allOf:
+             - qcom,gpr
+     then:
+       properties:
++        qcom,glink-channels:
++          items:
++            - const: adsp_apps
+         power-domains: false
++    else:
++      properties:
++        qcom,glink-channels:
++          items:
++            - const: apr_audio_svc
+ 
+   - if:
+       required:
 -- 
 2.34.1
 
