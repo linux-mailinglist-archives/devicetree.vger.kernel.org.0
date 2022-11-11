@@ -2,126 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E151A625F99
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:35:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F81C625FB3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234234AbiKKQfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 11:35:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59524 "EHLO
+        id S233886AbiKKQmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 11:42:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234248AbiKKQfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:35:43 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FBE0836B4;
-        Fri, 11 Nov 2022 08:35:33 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4DE86240004;
-        Fri, 11 Nov 2022 16:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668184532;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cXHM9CjrggCk9/n6DDFxqg1bnzAgIfeSnFV0or9U1F4=;
-        b=GUqhcjqkC5SRV3hw3kkmO7MUd7nqU6fM3hwUCBEDTDscLkw1UMFV9JY+Bv2xh7DZMSf0T/
-        WnIcy/QbtwqZ7su5TENhxPSikpcZgFH/qYryl3shiizqhS/Q0LR/iRHl+VelA4JmH7/BaC
-        czlL8+77+Ox3ejATPR3aCTc8URxDpYV58vNfhg4yZVdEAgnYWu4+/wnOoKNojLKPqucCG4
-        CMW3rbS+aqXDT/vGB/OwewRkr0eioybcNzNp/gjpTakuWR5vqMvbIeGT2jbvmvCjCGZt/L
-        BeoBrsqC0Ow6MQGQmdCIMtXKbA5mnjL7qmVompB/h5KaKc22ZTLOJe/Ih8X4rQ==
-Date:   Fri, 11 Nov 2022 17:35:27 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        satish.nagireddy@getcruise.com
-Subject: Re: [PATCH v4 3/8] dt-bindings: media: add bindings for TI
- DS90UB960
-Message-ID: <20221111173527.44e2d2e9@booty>
-In-Reply-To: <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
-References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
-        <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S234041AbiKKQmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:42:07 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9F360E93
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:42:05 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id h9so7211902wrt.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:42:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KRDq3YvWP3xlx40agy7LwTpV95X9uRpVaWN3hJZiIrE=;
+        b=CVsNX79HlQ0xGOF1Z1TKcpj8NMOVjQOldIQpoV1xWeKqERQAHxdQfwaVlfzXCpjA/0
+         QFuj9ImG3K0oOKY+xgpIvc06pSuEnvTxfITNulGEfv/Q+VluUGXs6XGbLS7JHWMk8Ncq
+         62Y5wSWP1JUVMzcXLtKhZ5cpoQgqkj+DhD6oU4rIn/YOvky3+//LewKDXNxVSSFQt2gB
+         rgBq/8DDq74p0bOp0yWsSzJl6ppvhItIllWn3wG8hxANEprfRGg0FryKrHFr9vUVn5Jb
+         RAj0NVLpco40QSCw2A/B+Zftk81f26r3BkkCM3vzoEUTJKZffoczl1c1+ycdSvbxYt/C
+         OGmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KRDq3YvWP3xlx40agy7LwTpV95X9uRpVaWN3hJZiIrE=;
+        b=2/aNkng5dpnxV9sV7XJdSzhAfZT16mZlgVOb9QBOR+UsuB7QCRq7dX5ZSRLOaaHczh
+         QPWPqBoIGNtGeJeGEooZfUe6CdFFryY3qMH/VEDENwox5mkKQ7NTItC4tCOWK9XIjqar
+         CZ620yVdI76VFwZniIQuJNfYmCFKzLq9zUNAIrpfPqrRk+Vd9IMtQHpUTag6t11LBkk+
+         SXgRjY+Ppb2DtU5dWBwxspmjm98YCYLs7/TDIUzb4uZ07JmTm+k1SIRYD62TARjsk/EU
+         eVwMDxKxdzJ/V3PvcCBFzL+SfgawueRPBsznPclMa5ZoQpuPB7UdXxgxTY6zKI9LBcUM
+         6pIQ==
+X-Gm-Message-State: ANoB5pnFPxR6cRoEZn2yIfrWlwTOoyN4vpPtazj4TsYT/qtpTwmGpvYb
+        S1XAQGSVBjZM+x1zDbWzruI4Tw==
+X-Google-Smtp-Source: AA0mqf4CB8B5ldRLG2ZTP+StIEXMyDGoczXmUgfdXQ4MPh8CPep7VpfwIc0MBXZUi8VEgrQHfbasnQ==
+X-Received: by 2002:adf:f08a:0:b0:22e:37d1:b598 with SMTP id n10-20020adff08a000000b0022e37d1b598mr1796487wro.377.1668184924029;
+        Fri, 11 Nov 2022 08:42:04 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id r15-20020a05600c35cf00b003a84375d0d1sm10299100wmq.44.2022.11.11.08.42.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 08:42:03 -0800 (PST)
+Message-ID: <7cdb914a-df88-ca11-45d3-d370d5c94bcd@linaro.org>
+Date:   Fri, 11 Nov 2022 16:42:02 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 2/2] ASoC: codecs: wsa883x: Use proper shutdown GPIO
+ polarity
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221110133512.478831-1-krzysztof.kozlowski@linaro.org>
+ <20221110133512.478831-2-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221110133512.478831-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
 
-On Tue,  1 Nov 2022 15:20:27 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
 
-> Add DT bindings for TI DS90UB960 FPDLink-3 Deserializer.
+On 10/11/2022 13:35, Krzysztof Kozlowski wrote:
+> The shutdown GPIO is active low (SD_N), but this depends on actual board
+> layout.  Linux drivers should only care about logical state, where high
+> (1) means shutdown and low (0) means do not shutdown.
 > 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Invert the GPIO to match logical value.
+> 
+> Fixes: 43b8c7dc85a1 ("ASoC: codecs: add wsa883x amplifier support")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
 
-...
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      clock-frequency = <400000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      deser@3d {
-> +        compatible = "ti,ds90ub960-q1";
-> +
-> +        reg-names = "main";
-> +        reg       = <0x3d>;
-> +
-> +        clock-names = "refclk";
-> +        clocks = <&fixed_clock>;
-> +
-> +        powerdown-gpios = <&pca9555 7 GPIO_ACTIVE_LOW>;
-> +
-> +        i2c-alias-pool = /bits/ 16 <0x4a 0x4b 0x4c 0x4d 0x4e 0x4f>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* Port 0, Camera 0 */
-> +          port@0 {
-> +            reg = <0>;
-> +
-> +            ub960_fpd3_1_in: endpoint {
-> +              remote-endpoint = <&ub953_1_out>;
-> +
-> +              rx-mode = <0>;
-> +            };
-> +          };
-> +
-> +          /* Port 0, Camera 1 */
-
-I guess you mean "Port 1" here.
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> Changes since v1:
+> 1. None.
+> ---
+>   sound/soc/codecs/wsa883x.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/sound/soc/codecs/wsa883x.c b/sound/soc/codecs/wsa883x.c
+> index c7b10bbfba7e..77a7dd3cf495 100644
+> --- a/sound/soc/codecs/wsa883x.c
+> +++ b/sound/soc/codecs/wsa883x.c
+> @@ -1392,7 +1392,7 @@ static int wsa883x_probe(struct sdw_slave *pdev,
+>   	}
+>   
+>   	wsa883x->sd_n = devm_gpiod_get_optional(&pdev->dev, "powerdown",
+> -						GPIOD_FLAGS_BIT_NONEXCLUSIVE);
+> +						GPIOD_FLAGS_BIT_NONEXCLUSIVE | GPIOD_OUT_HIGH);
+>   	if (IS_ERR(wsa883x->sd_n)) {
+>   		dev_err(&pdev->dev, "Shutdown Control GPIO not found\n");
+>   		ret = PTR_ERR(wsa883x->sd_n);
+> @@ -1411,7 +1411,7 @@ static int wsa883x_probe(struct sdw_slave *pdev,
+>   	pdev->prop.simple_clk_stop_capable = true;
+>   	pdev->prop.sink_dpn_prop = wsa_sink_dpn_prop;
+>   	pdev->prop.scp_int1_mask = SDW_SCP_INT1_BUS_CLASH | SDW_SCP_INT1_PARITY;
+> -	gpiod_direction_output(wsa883x->sd_n, 1);
+> +	gpiod_direction_output(wsa883x->sd_n, 0);
+>   
+>   	wsa883x->regmap = devm_regmap_init_sdw(pdev, &wsa883x_regmap_config);
+>   	if (IS_ERR(wsa883x->regmap)) {
