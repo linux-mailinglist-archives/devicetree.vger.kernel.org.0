@@ -2,107 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B759626024
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 18:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD11626044
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 18:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234108AbiKKRJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 12:09:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
+        id S234335AbiKKRSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 12:18:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234161AbiKKRJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 12:09:11 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A271A3B1;
-        Fri, 11 Nov 2022 09:08:58 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ABG8uCs017312;
-        Fri, 11 Nov 2022 17:08:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=03eezIBJKpj7j/9qQicis47eqBl7PzCBbko9n8Odntw=;
- b=kOOadAQhlY4zwHKiYPvrmOmjtKiym8vFfjo0fkSROG0rUkDtQG4/T8aLV1abIUNRRNzs
- KVhdJqh2dFX7UKzXv1Ox/GY2tQdSvd1eLiSUv/XOYkCMu6Fo6daP4RF0JQQKLjVpn5Z3
- 06TNBkvWXum/MG27j2DpecykoQL5mMYLh3IUR+bzHL8EUDvFQLN+JDFitQNkj6AOYhgN
- pA8yFevS7PrJeUOhqLzVkPq7gFFkkp+v1wKMsovkKAcETJeBRbzRtdFZAK2LAMbVJ+Uq
- 8S5+X6FKRDaOjLZ3FzR6w01rGp1hSkOQSN1huXcCXnz2Gc7HtQM7MVZ2qKUKs3+AkMgk 9w== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kshkdhqaw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 17:08:42 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ABH8fDq023857
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 17:08:41 GMT
-Received: from [10.110.50.128] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 11 Nov
- 2022 09:08:40 -0800
-Message-ID: <e10ca37a-5d02-ce00-423d-18f9a9e6fe0d@quicinc.com>
-Date:   Fri, 11 Nov 2022 09:08:40 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 13/21] gunyah: vm_mgr: Introduce basic VM Manager
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Trilok Soni <quic_tsoni@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Bjorn Andersson" <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S234306AbiKKRSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 12:18:03 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6F53F077;
+        Fri, 11 Nov 2022 09:18:01 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ABHHokh079454;
+        Fri, 11 Nov 2022 11:17:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668187070;
+        bh=yyoNJRT9+sRkSyBtz2H+CMlPQ7h0N1T+j7lp3IM8q4k=;
+        h=From:To:CC:Subject:Date;
+        b=s/iRlNiOo2JkCS09lTOXx2SGfewFrAza+Xh4n8+KCfPCY64xixThG10A99XedQBUE
+         L0Zyx0Sa/zDQlwV25NIPtW4+71sRDrzwzVwIzxk2qIhTU1bzv+Howu1o3zcGRQ3EcX
+         WzyaD+OVqQeJsJd+gVlqJbqMjnlMtJt13n8t55Gs=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ABHHoFO091819
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Nov 2022 11:17:50 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 11
+ Nov 2022 11:17:49 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 11 Nov 2022 11:17:49 -0600
+Received: from jti.ent.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ABHHewX028454;
+        Fri, 11 Nov 2022 11:17:42 -0600
+From:   Georgi Vlaev <g-vlaev@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-14-quic_eberman@quicinc.com>
- <Y2H8oh7AvYDiMqKs@kroah.com>
- <722b05a1-4bf5-0837-baea-b1d0a9cc1e43@quicinc.com>
- <Y2MKWOihjAPxfl6v@kroah.com>
- <96238455-73b6-bead-0fdb-55ca68e5bf0b@quicinc.com>
- <9dd597d9-a3f3-48f2-8416-b5b097a230d5@app.fastmail.com>
- <980db147-794e-ecd9-9626-64ff81109bab@quicinc.com>
- <95a9f253-984a-14e0-7e01-f168452576c4@quicinc.com>
- <543d95f8-be31-7553-4700-5dc04872e8ea@quicinc.com>
- <Y23qjcMmerVuKFdj@kroah.com>
-Content-Language: en-US
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y23qjcMmerVuKFdj@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9nZnTzysHz-yQwmjXf_a3mkpW5qatf5E
-X-Proofpoint-ORIG-GUID: 9nZnTzysHz-yQwmjXf_a3mkpW5qatf5E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-11_08,2022-11-11_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 impostorscore=0 adultscore=0 phishscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 malwarescore=0 mlxscore=0 suspectscore=0
- mlxlogscore=550 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211110115
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vibhore Vardhan <vibhore@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v3 0/5] firmware: ti_sci: Introduce system suspend support
+Date:   Fri, 11 Nov 2022 19:17:34 +0200
+Message-ID: <20221111171739.160693-1-g-vlaev@ti.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -110,25 +66,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces necessary ti_sci driver functionality in
+preparation of supporting DeepSleep mode for suspend to mem on TI
+K3 AM62x. This version is a fixup and rebase of the patch series by
+Dave Gerlach [1]. It applies on top of v6.1-rc4.
+
+Deep Sleep mode is described in section "5.2.4.4 DeepSleep" of the
+AM62x Technical Reference Manual [2].
+
+The kernel triggers entry to Deep Sleep mode through the mem suspend
+transition with the following:
+
+* Use a TF-A binary that supports PSCI_SYSTEM_SUSPEND call. This causes
+  system to use PSCI system suspend as last step of mem sleep.
+
+* The firmware requires that the OS sends a TISCI_MSG_PREPARE_SLEEP
+  message in order to provide details about suspend, so we must add the
+  ability to send this message. We also add TISCI_MSG_LPM_WAKE_REASON
+  and TISCI_MSG_SET_IO_ISOLATION messages as part of a new PM ops. These
+  messages are part of the TISCI PM Low Power Mode API [3]. (Patch 2)
+
+* A memory address must be provided to the firmware using the above
+  message, which is allocated and managed by dma_alloc_coherent()
+  and friends. (Patch 3)
+
+* System must load firmware to a specific location before Deep Sleep is
+  entered, and this is accomplished using a memory region in device
+  tree to indicate where this firmware should be loaded, and also a
+  "firmware-name" property to indicate the name of the firmware
+  to load. The ti_sci driver checks in its pm handler to see if
+  the firmware has been loaded and if not, loads it. (Patch 4)
+
+* Finally, the ti_sci driver must actually send TISCI_MSG_PREPARE_SLEEP
+  message to firmware with the above information included, which it
+  does during the driver suspend handler when PM_MEM_SUSPEND is the
+  determined state being entered. (Patch 5)
+
+This is tested on am625-sk using a limited dts with all devices disabled
+apart from cpu0, main_uart0, i2c, rtc, mmc/sd, dmsc, and secure_proxy_main.
+
+Testing this sequence requires K3 sdhci suspend/resume support [4],
+enable the wkup_rtc in the am625-sk.dts, disable devices that don't
+support system suspend/resume like OSPI and CPSW3G.
+
+In can be tested on the following branch:
+https://github.com/gvlaev/linux/tree/upstream-v6.2/lpm-ti-sci-v2
+
+Changelog:
+v3:
+- Fix the compile warnings on 32-bit platforms reported by the kernel
+  test robot in patches (3,5).
+- Pick up Roger's "Tested-by" tags.
+
+v2:
+- Addressed comments received for v1 series [1].
+- Updated v1 patch 5 to use pm notifier to avoid firmware loading
+  issues.
+- Dropped the reserved region requirement and allocate DMA memory
+  instead. The reserved region binding patch is also removed.
+- Introduce two more TISCI LPM messages that are supported in SysFW.
+- Fixes in error handling.
+
+[1] https://lore.kernel.org/lkml/20220421203659.27853-1-d-gerlach@ti.com
+[2] https://www.ti.com/lit/pdf/spruiv7
+[3] https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html
+[4] https://lore.kernel.org/lkml/20220408124338.27090-1-a-govindraju@ti.com
+
+Georgi Vlaev (5):
+  dt-bindings: ti, sci: Add lpm region and firmware-name
+  firmware: ti_sci: Introduce Power Management Ops
+  firmware: ti_sci: Allocate memory for the LPM modes
+  firmware: ti_sci: Use dt provided fw name and address to load at
+    suspend time
+  firmware: ti_sci: Introduce prepare system suspend call
+
+ .../bindings/arm/keystone/ti,sci.yaml         |  21 +-
+ drivers/firmware/ti_sci.c                     | 356 ++++++++++++++++++
+ drivers/firmware/ti_sci.h                     |  64 +++-
+ include/linux/soc/ti/ti_sci_protocol.h        |  44 +++
+ 4 files changed, 480 insertions(+), 5 deletions(-)
 
 
-On 11/10/2022 10:24 PM, Greg Kroah-Hartman wrote:
-> On Thu, Nov 10, 2022 at 04:03:10PM -0800, Elliot Berman wrote:
->>> Agree, tools can be updated and that is the easy part as we grow the s/w
->>> stack around Gunyah in userspace, like we already do w/ CrosVM (Virtual
->>> Machine Manager) and QEMU will be next followed by rust-vmm. All of them
->>> can be done without Gunyah ioctls relying anything on the KVM ioctls.
->>> Elliot has also explained very well that we don't to go to KVM
->>> maintainers for any of our additions and we also don't want them to come
->>> to us, since there is no interoperability testing. It is best that both
->>> Hypervisors and their Linux interfaces evolve independently.
->>
->> Are above explanations reasonable to not re-use KVM ioctl numbers?
-> 
-> Try getting close at least, where possible please.  As your ioctl
-> numbers didn't even start at 0, it's a bit odd...
+base-commit: f0c4d9fc9cc9462659728d168387191387e903cc
+-- 
+2.30.2
 
-Ack, will do.
-
-Thanks,
-Elliot
