@@ -2,196 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A01625949
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 12:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A61162596B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 12:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232779AbiKKLZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 06:25:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38562 "EHLO
+        id S233394AbiKKLgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 06:36:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbiKKLZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 06:25:27 -0500
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2125.outbound.protection.outlook.com [40.107.114.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F8A60EBB;
-        Fri, 11 Nov 2022 03:25:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LzyANz3hfxgDLfrxHWrBgzTpXp1I5HspHrf6j3OGD8dPlsCU0BsMOEGjQrMaPRdZC1rl+kU3hbwidioXcGkplAhT24CjCJwhr+TbogQ92oi4e83aGVy27SMuvxP8v2Hm5su2JTyGji7hIc4JWz7GhUfWB0mknyblh6lWl2AfQVCktLtEm09bNYj19ytR4sDVvJR/hR/PINdXDgdWsslD3aPfKTmA5o8F1iCPRv7Lzr+EWDR1hKu/phgGNr8w82wXqk9cuPFXNhCYLGscymNvJGKGl31fGhxyhXw7K4HAEFYa/n/epRnSxsa0118XcaKZeE31FsUlviJdhXLAPseWXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t2GNyuA7vV/RKnk2SRKW1zz0gv2AhQNHu8cTxULpShk=;
- b=YbqH2wZkqjKBHieluCaES2RY8dz9NmTLelFvE+zHbCsVxOMFsYKdWep3SztL5sSVFz4+vEN8S6IT7Am4x8uX48N/8yWmiu7m6x0xhLIaSVNTScqqOa4BKBue1nM2EKf7nsh3cHP0OtTFXIOhvxQtyVx6jlQprCJVTOgQ33J2RCc6VEQgZWvTKGSfjCbqCW1xIvrpHtkyTiuaGGCTCdRI1hZPUpq/zgGIjXQkC9Hmz3hAwRwPM5hS+nHb2LiK3FxX3pVfzc3ecZhlgWBo+Be3phE4MEdHrDgdYjI9RfexPd633LJ7zqxLcok8tM5ZvxSJdREpmjElR9vqICVZy5jphw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t2GNyuA7vV/RKnk2SRKW1zz0gv2AhQNHu8cTxULpShk=;
- b=lbof99zKbzJPNh9689AfsjVFK310yrgyLw1xgRkOEG2AiIOz41T09Hodd+fnVGYoy4+haA+PGGULXwwiqguaLRvzOCm0kbPLJ23sx6zmVK6+nSAFAvNH4osSoxq6xyhLg/g6NHXfVRHzHKt1aKU07PIWZWXClooRLpXoIh5fy8g=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB8365.jpnprd01.prod.outlook.com (2603:1096:604:190::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.14; Fri, 11 Nov
- 2022 11:25:23 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2%3]) with mapi id 15.20.5813.014; Fri, 11 Nov 2022
- 11:25:23 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S232341AbiKKLgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 06:36:12 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C02F2D1CF
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:10 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id z24so4221646ljn.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 03:36:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8+lo+EYchQIrutfVK7r/d71O1gZIvEmM22KyAmAwjKs=;
+        b=zqzPwf0VhpEKqnCJQeB0cnMdP0hokvV0Xjbk46zcHBaH/WGMkK0ilcn5ZTjIoEjERy
+         R+fU8Ifo5B5st2HNnfBFhjhkdVUcahN9cnzJaFzXWQZ/qBD8erQsfNDYiuZv2infQ/2N
+         FFWRDmTX+5xIafMQpS5yIKM0Iw0zBUF4U62f5eLnlkO6HaT18V2lBXUNRJ9miqTJUcf/
+         JBakGu05Diiy1F6bjHIS2+PSoa4zRdL6a3idwVYdgF4wIhrzSHpuz/Hy5XI6wkR+rLC+
+         WwFppQTw8eTdo7P5I4hysvzkWWWwzXLvyXaajXneXiGLptSWzl47/ZerTddPm+9fFVz1
+         WYRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8+lo+EYchQIrutfVK7r/d71O1gZIvEmM22KyAmAwjKs=;
+        b=MSMBit9KegnwXiGCGJx+RGNBd+lCp8AVdTPOiKfn9VT5hGYTiKW9nVzzRCRPjGTH2f
+         DMtkymhxzj+/04yIRwOCo0hDZM2VbP6Uyf2GH5lwpZ6IHg/SWXmQ7QiFRb0U/eBqOlTp
+         j7dklSQMmxTtIHMQkfUhEdSbzEHwQKMilfELJDsxF8p2OjSoVOVmPPpCl94g2M/Mjfk7
+         r0EkTeofcHO8lUHAEilS88o1MQvU4yiMeHfbTsA7CrzbuYXSge4fVyWISQsJl9U5GPPu
+         zCq/0oB+pXCucuudeBuuHc7UYcob1oFpSonlR7ax97V9zcG9Kd5LCATJEpvb86RbrDlW
+         y1Iw==
+X-Gm-Message-State: ANoB5pnxmqKhA7nJFstRYu9Nb6p5e6AKRNX0tjUn+FlepZbxK42h1JeO
+        jp6xtUv/92OrLknniMjgaS8vfw==
+X-Google-Smtp-Source: AA0mqf7Af5u4htDHYrs+2hewvDJau4fu8DLkLCe3TaU8xXrl/EP9cN9v5Txbclnj1xYPEGYOF2lwPA==
+X-Received: by 2002:a2e:960c:0:b0:278:eab6:7542 with SMTP id v12-20020a2e960c000000b00278eab67542mr300253ljh.400.1668166568655;
+        Fri, 11 Nov 2022 03:36:08 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id bi30-20020a0565120e9e00b004acb2adfa1fsm274970lfb.307.2022.11.11.03.36.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 03:36:08 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH v2 3/3] arm64: dts: renesas: r9a09g011: Add system
- configuration node
-Thread-Topic: [PATCH v2 3/3] arm64: dts: renesas: r9a09g011: Add system
- configuration node
-Thread-Index: AQHY9SCF6b1SNCs8dkO8lRnBdWXNLK45ZqwAgAAJIcCAABzNAIAACSkw
-Date:   Fri, 11 Nov 2022 11:25:23 +0000
-Message-ID: <OS0PR01MB5922237A4E12EDADFDF76FAB86009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20221110162126.103437-1-biju.das.jz@bp.renesas.com>
- <20221110162126.103437-4-biju.das.jz@bp.renesas.com>
- <b28c469b-f0f0-47c0-dd07-bf2dcde55824@linaro.org>
- <OS0PR01MB5922ADB9F181E6745FE46EE986009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <b4e54a00-cc37-8c3a-8f72-289fdff5f1d2@linaro.org>
-In-Reply-To: <b4e54a00-cc37-8c3a-8f72-289fdff5f1d2@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB8365:EE_
-x-ms-office365-filtering-correlation-id: b7264c94-8e45-4422-f30f-08dac3d76c95
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MU1Hvw+NmwQG6XXbisolna8cxC6kxkPkeSKfX/BLIguHbym4QVtK8c5RftALLVAQnJw0pdxKjCOwyPOp44BP7T6wSncHKWxtCbYLu6Xu6MGUPBL/Y9kVKSig7VPQgVvakzqOFxmwljLhD28km0/tJFtGs1lBZxUOZMEASRww6fCbynM2bNHf7esEerO72plso7n0LrQYhO8AmEBWzfkzEIaHdeM8aO4LlnGim5Dj235bK2CPPPhhxnYl6BRbIKzH52tXjd1Tr4jv+IOcohw98ZvpOPnLL3a2ArMwRXza+ZQ+9ELpxG83S61W3GePbHqE3WB82qynUlgmWz13XcP2DS4uZIj31yURhPmynu6oUOIxacz5L0JVASnuSclF17IomG8cRpwwYO0OixUih/o+uvRha0wFqtG+aAOXngv7EiIhCCsUvGW1h6tFsH0zuUmA+LgvU8pSynWGVQfsFSqG2aAk+Hj6U8ArBBGYEZvn8foWfqNXpl0L2JLTc/YSJXPvuYR6uYmS8JWPFVkUkJHZp34/a4kq1AlkSQ7azWGnZFUxzKdzHPzdHKJMRAKqqlJrHSDfjvhGoN8atFhBOlPeULyJN/J9w/EhTg4mz2qMpA7YJNUoryjTucTKcFz5HRzGI/GhmtVerE/dSCAVzf3belrENpyIRzxatdaLee2mqxIdNJEcwQ6h+uYD9wwtsd2qmN22ppkqZe409gCZSCFWP884ydzWjuVe1FDeHfqdkXV7kJg1PiWwL2007uQ9UTv1PJohwZy0bev5lgaISC163ZtTMjVAY7fAMA8nmzsim5U=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(376002)(396003)(366004)(451199015)(55016003)(316002)(107886003)(71200400001)(478600001)(966005)(8936002)(186003)(52536014)(38070700005)(110136005)(54906003)(7696005)(6506007)(2906002)(122000001)(83380400001)(8676002)(5660300002)(4326008)(53546011)(38100700002)(76116006)(66946007)(66556008)(66446008)(64756008)(86362001)(66476007)(41300700001)(26005)(9686003)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y1BDR2RTcXd2aXI4TlFtVlNaZTR3MGZoZzB1OE9oWHNqZnZyM05vZUJiOTlQ?=
- =?utf-8?B?akM4WlRwblZaQlF5ejNualJ2ODduazJGdWZtUE1vTk50Y0c5MmxaZEc0U1kw?=
- =?utf-8?B?K1d3ZVlPMWIyQUg4d1VWZFU0elM3ZUxIdU5UZndsWW5UbENhaGg2Q2lJYlA0?=
- =?utf-8?B?SnFYQ0w1QW5oN29tazBTaVlTMHRRRk9WdElwdTIyY0hoYVBSWlV0RHlERXh1?=
- =?utf-8?B?akpveVpRbGtOMXp4VDdVSlM3bUxsNUh3c3lDVkNsN3czeEM1ZFdwRms5SENV?=
- =?utf-8?B?Wmt0WnlaK3JNR3FBRVVkaXZqQ3I0SjFSVkYrZ3B2ZVA0Ym5UY3NMcVFqcUpl?=
- =?utf-8?B?T3FUUm9HWkR5VVFacGNXREhLWURybWUyQjFhRnBBMldlaVEyMjkrNEs4aWEx?=
- =?utf-8?B?NmZRdW1SWmhGVjhiVDJJc1djaGlwdXV6VzFrc3lJSVRiZFJEODVlSlgrU0Iz?=
- =?utf-8?B?dGpMcjZ6OEgvdjFGRUlPL241Uld5VFQ3bllwTlliTHJoSnlQTFhLQUYzTytk?=
- =?utf-8?B?aWhGV0pBYVJ5VjNrQTlNV0F4cXQ4QUFnd2IzbXlNQUlFSHRCb2M3VG1rM2c5?=
- =?utf-8?B?TVk5OHlGMCtJamR2QVg4ZUkxR0p6ZU1IdWRKOGFCVFM1U0pxV3FQRTRZY2NK?=
- =?utf-8?B?V0F5SWNvQVhMamFMeURjVVh1V1J1ZEJYNCtiNG9TMkhiWkxudThiVDFyelpV?=
- =?utf-8?B?M2NvS1VmTkpDZGJJVSsxVlQvLzZPbjk0emdldGE2NXQxeFRrcGpsSnNza2ZI?=
- =?utf-8?B?TEpqeUtxTHo2d2J6SXlrV1htdEM2a2pzM2lOYlBiVDd3cXhkRzZPVUs0dGhG?=
- =?utf-8?B?elowaFBDL28wYUM2Zmw3dWRjMkVpdytnYWxyRU94dHpnY2E5K2x2QkNWc0hF?=
- =?utf-8?B?dHNrSkl2amdSK2tkUHJhTU1wYWhscmFkTEU2ZCt6RjJjWmdyTTlDTjFHRTA2?=
- =?utf-8?B?VU8wbGxNbkY1QVU5Sm95eTgvbjhsKy9aVTFYKzZhYzFRQlp2T3pxcnZhZ0g4?=
- =?utf-8?B?UVRickF6YSt5OGcvWGxCQk9YNFRnTXNwVmFPR3I0Ymg4VldvN204dDY0ZW02?=
- =?utf-8?B?eHhBZjByUlh0Nm5TZkE0VWd5OW9NZFd2VXVyNzcvWGhqS1FhY3Z6Y3ZNbG1r?=
- =?utf-8?B?eVY5c0RkejZYV2xOMmFLT1pURURRYldjemJJNllrd3VZUi9LY1NJblRNWUdt?=
- =?utf-8?B?QkNXcEF3ZnVWLysveGhVbFhOelJvNkZKNEpIZXc0dCtKRDgzb3lNTzJtQmJJ?=
- =?utf-8?B?WlJ1VUtKS1FDSzZLWFJLNFVJMjhySGxvcHRKUHMyVEJGSkU0NjNRVGVLbVkr?=
- =?utf-8?B?d0IxdmorZUpWa014ZGMwNVRpMzRWR3A4K0hrRVFmZ3ZkL3h2THdBQzkyTUEv?=
- =?utf-8?B?dElGMnZHQ2U1UElDMldSZlhVTEFmb21zZVIwbGNCZGtVdkJBcWJxSlRYWVBJ?=
- =?utf-8?B?SE1aSDk1VmJCaU45dkpIUVcyeTI2VSsrWEVDNnNlNG8zaUZZNm01bkdhTGYw?=
- =?utf-8?B?emZnYmhqY0ovdm0zN1ZMWVNkdXU1d3NEM0p6eDJTSGdod1FIdGNmY3E5VWty?=
- =?utf-8?B?MXhVMngvaHFUcFV4WVJWU2tuQ08vLzd0S2pyWVVrQzE5bFphTk44U3czbHV5?=
- =?utf-8?B?ek5aN3Z6ZG9Ia2RrMVM2Nmp1dlpGdHBwYWRhZjNjL1gwWkJ1MVFnaFUyMUdF?=
- =?utf-8?B?djMvVVF3VW9XVlVhRkRxaUI1NnNydDFQcktLb2hxWWtGU1NXVDArYXhzcU9F?=
- =?utf-8?B?ZVZjVzJvL3ZKeFVISUt1cDh4aDlROEo2bXdYdjR2K1pmcFU2MTg1ZUZvY3pZ?=
- =?utf-8?B?OGhNRVRlNUhJMFRCMEdYT3grY0hnVTFtV1RvNUx0SXo5OVFrOTlIczVjY3BN?=
- =?utf-8?B?Q1JYUVpxNG5OWmNvZi92YXBLODhpcS9QVVJmK3c3bEpnUnN3aHpFc25uT1F1?=
- =?utf-8?B?eFl4NWlJNklpTXdib1pVOEdiVlI4RUZDamNPa3U4Q295SUN0bFc0dlc3eVM4?=
- =?utf-8?B?VVNDajdGUll4Q3lnQzd3SWFVRUxEM2NSWmtxZ3RRMDBnL3l2bklpc2NpUVVa?=
- =?utf-8?B?bllZekI2bHFiN1pTMi85dStkWDdxYTZ2TDhzdjQ0eTJpSWZXbmhyRFo5R2oz?=
- =?utf-8?B?S29VZUhmVXZ2WmJ4eDg5SEcxaHloOVZyTlpCSEg1K0s1MzVrNXFYUnVzaFZi?=
- =?utf-8?B?MkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Patrick Lai <plai@qti.qualcomm.com>,
+        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/10] ASoC: dt-bindings: Rework Qualcomm APR/GPR Sound nodes for SM8450
+Date:   Fri, 11 Nov 2022 12:35:37 +0100
+Message-Id: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7264c94-8e45-4422-f30f-08dac3d76c95
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2022 11:25:23.3029
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j1D7y8wmY6yQhKvl92yyk73161GlEsHLNo51GYXI6CyQyOaCbi4XijzslcwLFnIin8O7rQIqQVGBTePUTWNMaT49QSALtQaktZz5PuL/mDg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8365
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
-cmc+DQo+IFNlbnQ6IDExIE5vdmVtYmVyIDIwMjIgMTA6NTENCj4gVG86IEJpanUgRGFzIDxiaWp1
-LmRhcy5qekBicC5yZW5lc2FzLmNvbT47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+
-Ow0KPiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5v
-cmc+DQo+IENjOiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPjsg
-TWFnbnVzIERhbW0NCj4gPG1hZ251cy5kYW1tQGdtYWlsLmNvbT47IGxpbnV4LXJlbmVzYXMtc29j
-QHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IENocmlzIFBh
-dGVyc29uIDxDaHJpcy5QYXRlcnNvbjJAcmVuZXNhcy5jb20+Ow0KPiBGYWJyaXppbyBDYXN0cm8g
-PGZhYnJpemlvLmNhc3Ryby5qekByZW5lc2FzLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2
-MiAzLzNdIGFybTY0OiBkdHM6IHJlbmVzYXM6IHI5YTA5ZzAxMTogQWRkIHN5c3RlbQ0KPiBjb25m
-aWd1cmF0aW9uIG5vZGUNCj4gDQo+IE9uIDExLzExLzIwMjIgMTA6MTAsIEJpanUgRGFzIHdyb3Rl
-Og0KPiA+IEhpIEtyenlzenRvZiBLb3psb3dza2ksDQo+ID4NCj4gPiBUaGFua3MgZm9yIHRoZSAg
-ZmVlZGJhY2suDQo+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJv
-bTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0K
-PiA+PiBTZW50OiAxMSBOb3ZlbWJlciAyMDIyIDA4OjM1DQo+ID4+IFRvOiBCaWp1IERhcyA8Ymlq
-dS5kYXMuanpAYnAucmVuZXNhcy5jb20+OyBSb2IgSGVycmluZw0KPiA+PiA8cm9iaCtkdEBrZXJu
-ZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraQ0KPiA+PiA8a3J6eXN6dG9mLmtvemxvd3NraStk
-dEBsaW5hcm8ub3JnPg0KPiA+PiBDYzogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2Fz
-QGdsaWRlci5iZT47IE1hZ251cyBEYW1tDQo+ID4+IDxtYWdudXMuZGFtbUBnbWFpbC5jb20+OyBs
-aW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtlcm5lbC5vcmc7DQo+ID4+IGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnOyBDaHJpcyBQYXRlcnNvbg0KPiA+PiA8Q2hyaXMuUGF0ZXJzb24yQHJlbmVzYXMu
-Y29tPjsgRmFicml6aW8gQ2FzdHJvDQo+ID4+IDxmYWJyaXppby5jYXN0cm8uanpAcmVuZXNhcy5j
-b20+DQo+ID4+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjIgMy8zXSBhcm02NDogZHRzOiByZW5lc2Fz
-OiByOWEwOWcwMTE6IEFkZA0KPiA+PiBzeXN0ZW0gY29uZmlndXJhdGlvbiBub2RlDQo+ID4+DQo+
-ID4+IE9uIDEwLzExLzIwMjIgMTc6MjEsIEJpanUgRGFzIHdyb3RlOg0KPiA+Pj4gQWRkIHN5c3Rl
-bSBjb25maWd1cmF0aW9uIG5vZGUgdG8gUlovVjJNIFNvQyBkdHNpLg0KPiA+Pj4NCj4gPj4+IFNp
-Z25lZC1vZmYtYnk6IEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gPj4+
-IC0tLQ0KPiA+Pj4gdjI6DQo+ID4+PiAgKiBOZXcgcGF0Y2gNCj4gPj4+IC0tLQ0KPiA+Pj4gIGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yOWEwOWcwMTEuZHRzaSB8IDYgKysrKysrDQo+ID4+
-PiAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQ0KPiA+Pj4NCj4gPj4+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcjlhMDlnMDExLmR0c2kNCj4gPj4gYi9h
-cmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcjlhMDlnMDExLmR0c2kNCj4gPj4+IGluZGV4IDdi
-OTQ5ZTQwNzQ1YS4uMDcxNjRkOWU0YTBmIDEwMDY0NA0KPiA+Pj4gLS0tIGEvYXJjaC9hcm02NC9i
-b290L2R0cy9yZW5lc2FzL3I5YTA5ZzAxMS5kdHNpDQo+ID4+PiArKysgYi9hcmNoL2FybTY0L2Jv
-b3QvZHRzL3JlbmVzYXMvcjlhMDlnMDExLmR0c2kNCj4gPj4+IEBAIC0xMzAsNiArMTMwLDEyIEBA
-IGNwZzogY2xvY2stY29udHJvbGxlckBhMzUwMDAwMCB7DQo+ID4+PiAgCQkJI3Bvd2VyLWRvbWFp
-bi1jZWxscyA9IDwwPjsNCj4gPj4+ICAJCX07DQo+ID4+Pg0KPiA+Pj4gKwkJc3lzYzogc3lzdGVt
-LWNvbmZpZ3VyYXRpb25AYTNmMDMwMDAgew0KPiA+Pj4gKwkJCWNvbXBhdGlibGUgPSAicmVuZXNh
-cyxyOWEwOWcwMTEtc3lzIjsNCj4gPj4+ICsJCQlyZWcgPSA8MCAweGEzZjAzMDAwIDAgMHg0MDA+
-Ow0KPiA+Pj4gKwkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ID4+DQo+ID4+IFdoeSBkaXNhYmxl
-ZD8gWW91IGRvIG5vdCBoYXZlIGFueSBvdGhlciByZXNvdXJjZXMgbmVlZGVkLiBUaGlzIGlzIG9k
-ZC4NCj4gPg0KPiA+IE9LLCB3aWxsIGVuYWJsZSBieSBkZWZhdWx0LiBDdXJyZW50bHkgdGhlIGRy
-aXZlciBjb21wYXRpYmxlIGlzIHVzZWQNCj4gPiBmb3IgZ2V0dGluZyBTb0MgTWFqb3IgYW5kIE1p
-bm9yIHZlcnNpb25zLiBCdXQgbGF0ZXIgd2lsbCBlbmhhbmNlIHRvIHN1cHBvcnQNCj4gbW9yZSBm
-ZWF0dXJlcy4NCj4gDQo+IFdoYXRldmVyIHlvdXIgZHJpdmVyIGlzIGRvaW5nLCBzaG91bGQgYmUg
-cmF0aGVyIGluZGVwZW5kZW50IG9mDQo+IGVuYWJsaW5nL2Rpc2FibGluZyBub2RlcyBpbiBEVFMu
-IEdlbmVyaWMgcnVsZSBpcyB0aGF0IGFsbCBTb0MgY29tcG9uZW50cywNCj4gd2hpY2ggZG8gbm90
-IG5lZWQgZXh0ZXJuYWwgcmVzb3VyY2VzIGZyb20gYm9hcmQsIHNob3VsZCBiZSBlbmFibGVkIGJ5
-DQo+IGRlZmF1bHQuIE9mIGNvdXJzZSB0aGVyZSBhcmUgZXhjZXB0aW9ucyB0byB0aGlzIHJ1bGUu
-IERUUyBpcyBhbnl3YXkNCj4gZGVzY3JpcHRpb24gb2YgaGFyZHdhcmUsIHNvICJkcml2ZXIgY29t
-cGF0aWJsZSIgaXMgbm90IGFwcHJvcHJpYXRlIGFyZ3VtZW50DQo+IGZvciB0aGlzIChvciBJIG1p
-c3MgdGhlIG1lYW5pbmcgYmVoaW5kIHRoaXMpLg0KDQpPSywgYWdyZWVkLiBUaGFua3MgZm9yIHRo
-ZSBkZXRhaWxlZCBkZXNjcmlwdGlvbi4gDQoNClByZXZpb3VzbHksIEkganVzdCByZWZlcnJlZCBb
-MV0gZm9yIGNvbnNpc3RlbmN5DQpbMV0gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xp
-bnV4L2tlcm5lbC9naXQvdG9ydmFsZHMvbGludXguZ2l0L3RyZWUvYXJjaC9hcm02NC9ib290L2R0
-cy9yZW5lc2FzL3I5YTA3ZzA1NC5kdHNpP2g9djYuMS1yYzQjbjYzNQ0KDQoNCkNoZWVycywNCkJp
-anUNCg==
+Adding sound support for Qualcomm SM8450 SoC (and later for SC8280XP) brought
+some changes to APR/GPR services bindings.  These bindings are part of
+qcom,apr.yaml:
+
+  apr-or-gpr-device-node <- qcom,apr.yaml
+    apr-gpr-service@[0-9] <- qcom,apr.yaml
+      service-specific-components <- /schemas/sound/qcom,q6*.yaml
+
+The schema for services (apr-gpr-service@[0-9]) already grows considerably and
+is still quite not specific.  It allows several incorrect combinations, like
+adding a clock-controller to a APM device.  Restricting it would complicate the
+schema even more.  Bringing new support for sound on Qualcomm SM8450 and
+SC8280XP SoC would grow it as well.
+
+Refactor the bindings before extending them for Qualcomm SM8450 SoC.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (10):
+  ASoC: dt-bindings: qcom,apr: Add GLINK channel name for SM8450
+  ASoC: dt-bindings: qcom,apr: Split services to shared schema
+  ASoC: dt-bindings: qcom,q6afe: Split to separate schema
+  ASoC: dt-bindings: qcom,q6apm: Split to separate schema
+  ASoC: dt-bindings: qcom,q6adm: Split to separate schema
+  ASoC: dt-bindings: qcom,q6asm: Split to separate schema
+  ASoC: dt-bindings: qcom,q6prm: Split to separate schema
+  ASoC: dt-bindings: qcom,q6core: Split to separate schema
+  ASoC: dt-bindings: qcom,q6apm-lpass-dais: Split to separate schema
+  ASoC: dt-bindings: qcom,q6apm: Add SM8450 bedais node
+
+ .../bindings/soc/qcom/qcom,apr-services.yaml  |  54 ++++++++
+ .../bindings/soc/qcom/qcom,apr.yaml           | 119 ++----------------
+ .../bindings/sound/qcom,q6adm-routing.yaml    |  22 +---
+ .../devicetree/bindings/sound/qcom,q6adm.yaml |  51 ++++++++
+ .../devicetree/bindings/sound/qcom,q6afe.yaml |  69 ++++++++++
+ .../bindings/sound/qcom,q6apm-dai.yaml        |  19 +--
+ .../bindings/sound/qcom,q6apm-lpass-dais.yaml |  32 +++++
+ .../devicetree/bindings/sound/qcom,q6apm.yaml |  67 ++++++++++
+ .../bindings/sound/qcom,q6asm-dais.yaml       |  48 +++----
+ .../devicetree/bindings/sound/qcom,q6asm.yaml |  68 ++++++++++
+ .../bindings/sound/qcom,q6core.yaml           |  39 ++++++
+ .../sound/qcom,q6dsp-lpass-clocks.yaml        |  40 +-----
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |  57 ++-------
+ .../devicetree/bindings/sound/qcom,q6prm.yaml |  50 ++++++++
+ MAINTAINERS                                   |   2 +-
+ 15 files changed, 477 insertions(+), 260 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr-services.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6adm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-lpass-dais.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6core.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6prm.yaml
+
+-- 
+2.34.1
+
