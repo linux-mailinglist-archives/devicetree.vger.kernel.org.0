@@ -2,66 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10600625CE2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B91C6625CE7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234074AbiKKOXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:23:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
+        id S234068AbiKKOXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:23:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234015AbiKKOWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:22:48 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD8C391E8
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:20:15 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id f5so12897683ejc.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:20:15 -0800 (PST)
+        with ESMTP id S234248AbiKKOWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:22:52 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0272391EC
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:21:52 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id u2so4690584ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:21:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8XnWoqHqROPGOcHnPLYRMUbIWz7bYGAQqwcf2qs2Ipc=;
-        b=PeZS2Cec6kqzUIH/C6si5K5+55feIDD54TJPB19WX4Zcoql/RyX4YgLOpYMHgn4XHh
-         9yRdI++voSchETEZQNwseFKrJo6xkO2WVjPYcY71RIeYBEL38KmwtXSPYUaF+aD7PfZ2
-         s70iFz5H6e+Rd60Nvywe33lLde8Vra+pmA7Va1+doOoTIjkR9sh5eywJ2JL+lJFMPDuM
-         zjXwP+wdJwrBp/qXzd6hXHMkW8yW8ZGdKRD7B2cmd4rYhtZMYnPQkq3Ywgg5tFhuQZd+
-         QCL9HXsVCJcDPrMW2dY3UJHGOylAgruM448ZhHeUV/hllLejfdj/bmM+Va1eTVtXV7ig
-         Jptg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lizn4t8CzEeOAb2NOrW1eGO8GRE54jSk5eHBfoX7CCY=;
+        b=qir1itbo7SLIojVnuniP/lKKgJq9TuBceKLm30rtveqOll+AEFS4SYwDX4QIuW3shO
+         x4jQasyhXZxNK8ihBC5IaSbf1Ljx3yzyW5V162Usc7AqfrOVidzgLPtuuHT02iGN3JkO
+         vvkE6cs+a0r7VD5AT09LEk61y6Up0KR2+zspM0mhnP086VsRZyE3XDwbUvD4ia/CFMmA
+         fV5iRUzLSUPA2brZROmg3t+gbc2j1NQ1IgzLyAac+9ZqqHiib1IkNQYRWoUvfOq8Ge/G
+         fTDiT39cOrORSMM2/4utHqkBzg1eAAalO/kxDP/rXWYe3+htkHUkE0rXs7201C+LoVdb
+         ATdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8XnWoqHqROPGOcHnPLYRMUbIWz7bYGAQqwcf2qs2Ipc=;
-        b=yl2DMHbLlAsriU4ZIkyypcvvmJhxA4ZXOoJswHZMj0VwULIr7Hxt36icNJ9VZTcs4T
-         RilJeRkoHABDoqyd1CcfBodLjUP2MH4HGQldC5cjroRxgbE7yhyFHOfohA/NrTS+oT/c
-         5/lSkogwDRSg7KrH/xlUxCTl1BZeqUo9Nn9fZID+xX+xTD5FZXLtJeeW6gQ+N78bBX2D
-         hLNPOtAXe2GSBIe0JWLw0f4vtBBB4HfItPRpKXTlYClBH7TBPQ115I/PjfJh6PGTlcer
-         Ous3hvyAh+qIjUhodqza5X3nCZYXMm/9Un9qk9zq6XB+YGcsZAfn6y83jnEf4VGUfIEi
-         mcSA==
-X-Gm-Message-State: ANoB5pnd2OP1PM7qRYCDpO4thriHuGiO3+0mfNNL2zIOSa7g72GUzbN7
-        r7yJiq7dn1z8FrazWs9tk6RHX/Bll//bCo5EBlRP4Q==
-X-Google-Smtp-Source: AA0mqf4RBAVXKNecwLciDe0WJIDDV+587AIbknjYLqIA0UyJubGVzkQkzChS6pa5mn54/eWVP8ecSisCZ6otgHH5YbU=
-X-Received: by 2002:a17:906:b44:b0:7ad:b8c0:3057 with SMTP id
- v4-20020a1709060b4400b007adb8c03057mr1992303ejg.440.1668176414026; Fri, 11
- Nov 2022 06:20:14 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lizn4t8CzEeOAb2NOrW1eGO8GRE54jSk5eHBfoX7CCY=;
+        b=4u62Mv+Yz6NA8y6xR3s891g4B3dMutbqPuFUo9241dDU3empfEFRVa6/V5BbheY+rC
+         X50UOzjmIjz45YMEuvMw3KaygyQkum1DZdgKuKEXwsSQa9JXW3cUf+1nJsLfmjgO8Kxa
+         qvT2D6Oe8UNtorgfsvgR3eVYQ9XgsLjh94hLfG7EL1D118KSwNDGjRMcad+WwBpwKyEa
+         8CWzPITWMFJ/pbzb+dkjWUwYUyXpAeD9dfetCzYZ2hJ+AlVZ7OP+WSjAqru+Ua4G21k4
+         mnP5SGxKkgRDITW7EDTY4+z+ZAzhE601DzwLOjBTLzE141byVviDS2rtgSoOquaPKOnv
+         KOgw==
+X-Gm-Message-State: ANoB5pl3Tj+lkRvliHS9A7UQpK9waHjPB7mVXfnoJfKy7x1cjpqhEQeB
+        SYZSOfj4k4FcknBnsVy5NW9g0Q==
+X-Google-Smtp-Source: AA0mqf4u3FCA6Q7ZvIrElwMeHaK0OuMQqzCJGs2cKMdDsSQw3WGaxaJ6fIuzSGrVM7neb1mCUweWPw==
+X-Received: by 2002:a2e:9d51:0:b0:277:1e3e:fa60 with SMTP id y17-20020a2e9d51000000b002771e3efa60mr675393ljj.496.1668176510760;
+        Fri, 11 Nov 2022 06:21:50 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b0048a8c907fe9sm347374lfo.167.2022.11.11.06.21.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 06:21:50 -0800 (PST)
+Message-ID: <f7be60a6-ea1d-838a-ef50-d324d918db86@linaro.org>
+Date:   Fri, 11 Nov 2022 15:21:49 +0100
 MIME-Version: 1.0
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-4-JJLIU0@nuvoton.com>
- <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com> <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
-In-Reply-To: <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 11 Nov 2022 15:20:02 +0100
-Message-ID: <CACRpkdYW0P8gqtGdiRX_frP32WF2W=NVg1JTu1fVMBXxEL0-WA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
- expansion interface(SGPIO)
-To:     Jim Liu <jim.t90615@gmail.com>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 02/10] ASoC: dt-bindings: qcom,apr: Split services to
+ shared schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Patrick Lai <plai@qti.qualcomm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>,
+        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org
+References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
+ <20221111113547.100442-3-krzysztof.kozlowski@linaro.org>
+ <166817308876.3060199.17933327732327950670.robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <166817308876.3060199.17933327732327950670.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,30 +88,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 10:30 AM Jim Liu <jim.t90615@gmail.com> wrote:
+On 11/11/2022 14:30, Rob Herring wrote:
+> 
+> On Fri, 11 Nov 2022 12:35:39 +0100, Krzysztof Kozlowski wrote:
+>> The APR/GPR nodes are organized like:
+>>
+>>   apr-or-gpr-device-node <- qcom,apr.yaml
+>>     apr-gpr-service@[0-9] <- qcom,apr.yaml
+>>       service-specific-components <- /schemas/sound/qcom,q6*.yaml
+>>
+>> The schema for services (apr-gpr-service@[0-9]) already grows
+>> considerably and is still quite not specific.  It allows several
+>> incorrect combinations, like adding a clock-controller to a APM device.
+>> Restricting it would complicate the schema even more.  Bringing new
+>> support for sound on Qualcomm SM8450 and SC8280XP SoC would grow it as
+>> well.
+>>
+>> Simplify the qcom,apr.yaml by splitting the services to a shared file
+>> which will be:
+>> 1. Referenced by qcom,apr.yaml with additionalProperties:true,
+>> 2. Referenced by specific bindings for services with
+>>    additionalProperties:false (not yet in this commit).
+>>
+>> While moving the code, add also required 'reg' and
+>> 'qcom,protection-domain' to further constrain the bindings.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/soc/qcom/qcom,apr-services.yaml  |  54 +++++++++
+>>  .../bindings/soc/qcom/qcom,apr.yaml           | 108 +-----------------
+>>  MAINTAINERS                                   |   2 +-
+>>  3 files changed, 58 insertions(+), 106 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr-services.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@3: failed to match any schema with compatible: ['qcom,q6core']
+> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@4: failed to match any schema with compatible: ['qcom,q6afe']
+> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@7: failed to match any schema with compatible: ['qcom,q6asm']
+> Documentation/devicetree/bindings/soc/qcom/qcom,apr.example.dtb:0:0: /example-0/apr/service@8: failed to match any schema with compatible: ['qcom,q6adm']
 
-> -D_out:
-> the output data is the serial data needed to connect to hc595 and the
-> data will output to hc595 parallel pins.
-> you can use dts nout_gpios to create the number of pins.
->
-> -D_in
-> this pin need to connect to hc165 and get the serial data from hc165.
-> you can use dts nin_gpios to create the number of pins.
+This is expected. I should have mention maybe in commit msg that these
+compatibles are being removed in this commit and re-added in further
+commits. Change is therefore not entirely bisectable, but should be
+easier for review.
 
-In the example it seems you enable d_out and d_in for *all* 64
-pins, correct? So they are all either input or output.
+If desired, I can squash these commits.
 
-That in effect turns them into GPIOs, so I don't see the problem
-with simply always doing this?
+Best regards,
+Krzysztof
 
-Just that things are configurable doesn't mean we always need
-to provide means to configure them.
-
-If you have a use case where the user wants to control this, then
-that is another thing. Otherwise just make all pins input and output
-and wait for a usecase that needs more control, maybe it will
-never appear.
-
-Yours,
-Linus Walleij
