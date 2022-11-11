@@ -2,148 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A18C62501E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 03:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CCE625024
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 03:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232132AbiKKC0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 21:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43796 "EHLO
+        id S232190AbiKKC3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 21:29:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231343AbiKKC03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 21:26:29 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E77623A3
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 18:25:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1668133532;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=WaG6D9NPul5lwMcNCuIe3sGhugQZUKvnrKFJmGoro3c=;
-        b=PWTZZynKGvfUR+JqAZVPOYCA2ZWbXYR3k49Prqqfk4ZoNFNUmD+lz54BXhMMCezCS6Cb69
-        pBcffh+pcDKt1wpNpRgvUns8fT7jSGgCdRZDHhfJNBa34AhNJEAvmPp6ytexH0GSEsgVxa
-        qeTLvdloFXhwus9Nks8QNylQy/L0bGk=
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
- [209.85.215.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-440-cWLaq9kzN8-IMj7nl41DEQ-1; Thu, 10 Nov 2022 21:25:30 -0500
-X-MC-Unique: cWLaq9kzN8-IMj7nl41DEQ-1
-Received: by mail-pg1-f199.google.com with SMTP id r126-20020a632b84000000b004393806c06eso1912760pgr.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 18:25:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WaG6D9NPul5lwMcNCuIe3sGhugQZUKvnrKFJmGoro3c=;
-        b=jaD+wQDZyt5TEhRr4wIVC+grT19LSCZLSg5LWTVbgK10ybGqZPTtAudrBYZ5VgVqG5
-         RU7Gb96Ig7dMWe6OIMoMJyMyTFPoPfnP9FdHXJTycGex8hIhj9ZP9Be6waMoyfqtQv++
-         9XuuoEwP9v0kjbIX662qcqQ0MlYDwqfOwYAXZVHKr8EdWLz+ai9j8BiojkLmMCsz4A9z
-         kLc5wyExbpZU0TKGieIdiNaRKg9gzWx8vkb+G1mtG9rsFUKiC1AVC1nPt+WnVn3XyjL0
-         q8HhxuKKKg6BxJ/wiUumsx8EGL1PzsadZkpQKCKfJpSXMOQeTDXh3Hk984KfArQ1tZf1
-         fK/Q==
-X-Gm-Message-State: ANoB5pkBJe7AustFEsZ1cqmwVapi1cmlILU0uMXQdwWhUN11jFEtxAKw
-        Dq2Of0KIbHahnQ5tDfCqxT1evpTtF6lKYwsRXN1bg8pvkwn23FgRAhlrfIePcnl83x/b1Zbw3mi
-        or2Qye+062YcXB2xvMNLx4Q==
-X-Received: by 2002:a17:902:f811:b0:187:19c4:373a with SMTP id ix17-20020a170902f81100b0018719c4373amr321317plb.163.1668133529853;
-        Thu, 10 Nov 2022 18:25:29 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5JE5CicYQ2l/VDcgKu1A3Opx/g/1lm/7vpkfRaW5I/+bVsxwi+MrsKOPNQCArSCBYFvx9qNQ==
-X-Received: by 2002:a17:902:f811:b0:187:19c4:373a with SMTP id ix17-20020a170902f81100b0018719c4373amr321304plb.163.1668133529575;
-        Thu, 10 Nov 2022 18:25:29 -0800 (PST)
-Received: from localhost ([43.228.180.230])
-        by smtp.gmail.com with ESMTPSA id w8-20020a1709026f0800b0018544ad1e8esm358845plk.238.2022.11.10.18.25.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Nov 2022 18:25:28 -0800 (PST)
-Date:   Fri, 11 Nov 2022 10:21:43 +0800
-From:   Coiby Xu <coxu@redhat.com>
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        nayna@linux.ibm.com, nasastry@in.ibm.com,
-        Baoquan He <bhe@redhat.com>
-Subject: Re: [PATCH v8 0/4] tpm: Preserve TPM measurement log across kexec
- (ppc64)
-Message-ID: <20221111022143.xvpi3pfwwrw4qda2@Rk>
-References: <20220901214610.768645-1-stefanb@linux.ibm.com>
+        with ESMTP id S231235AbiKKC3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 21:29:21 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07599101CF;
+        Thu, 10 Nov 2022 18:29:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9215D61E64;
+        Fri, 11 Nov 2022 02:29:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F344C433C1;
+        Fri, 11 Nov 2022 02:29:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668133760;
+        bh=vYIHNd0LLF5q0Hnjxkc0hp3WrnEuBycva2XaWrIrDuE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mtUqLF5MXRsJx3lyExUx21dXbRa/UTWY5oHU9Q3f1tCxAsmFiullpVaA3Ram5nt0L
+         S8ishdYkKhTgnqEjF7bJXafOZRFhA13Gu0vLGBAyrja/DY3xNA7spo1zxKhYEPM1Ko
+         7uvivvZE9QtKfCU+MX8hCYOZoKtlxXvwamSECEEg/b9FP6qCloIkMK/ixlTyLEsD4P
+         nQZ8vQ7Un+RplU87AxxIH2U3S1Yz67n+3YY6tdDWVezoziucMZhO8UK2USWuIdD6qz
+         0JIiWqPFBLPttvV1rbUv0Hn4x/bjXrik4ylcWMGCYZAGNIsQRpQrxLQbuX9TsJPaLS
+         WhR965MHIEKHw==
+Date:   Fri, 11 Nov 2022 10:29:08 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com, rydberg@bitmath.org,
+        alistair23@gmail.com, s.hauer@pengutronix.de, andreas@kemnade.info
+Subject: Re: [PATCH v10 4/4] ARM: dts: imx7d-remarkable2: Enable the cyttsp5
+Message-ID: <20221111022908.GE125525@dragon>
+References: <20221026114908.191472-1-alistair@alistair23.me>
+ <20221026114908.191472-5-alistair@alistair23.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220901214610.768645-1-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221026114908.191472-5-alistair@alistair23.me>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On Wed, Oct 26, 2022 at 09:49:08PM +1000, Alistair Francis wrote:
+> Add support for the cyttsp5 touchscreen controller for the reMarkable 2.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  arch/arm/boot/dts/imx7d-remarkable2.dts | 100 ++++++++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> index a2a91bfdd98e..fea480af8e48 100644
+> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>  
+>  #include "imx7d.dtsi"
+> +#include <dt-bindings/input/linux-event-codes.h>
+>  
+>  / {
+>  	model = "reMarkable 2.0";
+> @@ -47,6 +48,18 @@ reg_digitizer: regulator-digitizer {
+>  		startup-delay-us = <100000>; /* 100 ms */
+>  	};
+>  
+> +	reg_touch: regulator-touch {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDD_3V3_TOUCH";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&pinctrl_touch_reg>;
+> +		pinctrl-1 = <&pinctrl_touch_reg>;
+> +		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+>  	wifi_pwrseq: wifi_pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		pinctrl-names = "default";
+> @@ -84,6 +97,70 @@ wacom_digitizer: digitizer@9 {
+>  	};
+>  };
+>  
+> +&i2c3 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	tsc@24 {
 
-Could the PowerPC tree take this patch set which resolves a
-PowerVM/KVM-specific issue?
+`touchscreen` for node name?
 
-On Thu, Sep 01, 2022 at 05:46:06PM -0400, Stefan Berger wrote:
->The of-tree subsystem does not currently preserve the IBM vTPM 1.2 and
->vTPM 2.0 measurement logs across a kexec on PowerVM and PowerKVM. This
->series fixes this for the kexec_file_load() syscall using the flattened
->device tree (fdt) to carry the TPM measurement log's buffer across kexec.
->
->   Stefan
->
->v8:
-> - Added Jarkko's, Coiby's, and Rob's tags
-> - Rebase on v6.0-rc3 that absorbed 2 already upstreamed patches
->
->v7:
-> - Added Nageswara's Tested-by tags
-> - Added back original comment to inline function and removed Jarkko's R-b tag
->
->v6:
-> - Add __init to get_kexec_buffer as suggested by Jonathan
-> - Fixed issue detected by kernel test robot
->
->v5:
-> - Rebased on 1 more patch that would otherwise create merge conflicts
->
->v4:
-> - Rebased on 2 patches that would otherwise create merge conflicts;
->   posting these patches in this series with several tags removed so
->   krobot can test the series already
-> - Changes to individual patches documented in patch descripitons
->
->v3:
-> - Moved TPM Open Firmware related function to drivers/char/tpm/eventlog/tpm_of.c
->
->v2:
-> - rearranged patches
-> - fixed compilation issues for x86
->
->Palmer Dabbelt (1):
->  drivers: of: kexec ima: Support 32-bit platforms
->
->Stefan Berger (3):
->  tpm: of: Make of-tree specific function commonly available
->  of: kexec: Refactor IMA buffer related functions to make them reusable
->  tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
->
-> drivers/char/tpm/eventlog/of.c |  31 +--
-> drivers/of/kexec.c             | 336 ++++++++++++++++++++++++++++-----
-> include/linux/kexec.h          |   6 +
-> include/linux/of.h             |   9 +-
-> include/linux/tpm.h            |  36 ++++
-> kernel/kexec_file.c            |   6 +
-> 6 files changed, 346 insertions(+), 78 deletions(-)
->
->
->base-commit: b90cb1053190353cc30f0fef0ef1f378ccc063c5
->-- 
->2.35.1
->
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
 
--- 
-Best regards,
-Coiby
+Unnecessary newline.
 
+> +		compatible = "cypress,tt21000";
+
+We idiomatically begin property list with compatible.
+
+> +		reg = <0x24>;
+> +
+
+Unnecessary newline.
+
+Shawn
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_touch>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&reg_touch>;
+> +		touchscreen-size-x = <880>;
+> +		touchscreen-size-y = <1280>;
+> +
+> +		button@0 {
+> +			reg = <0>;
+> +			linux,keycodes = <KEY_HOMEPAGE>;
+> +		};
+> +
+> +		button@1 {
+> +			reg = <1>;
+> +			linux,keycodes = <KEY_MENU>;
+> +		};
+> +
+> +		button@2 {
+> +			reg = <2>;
+> +			linux,keycodes = <KEY_BACK>;
+> +		};
+> +
+> +		button@3 {
+> +			reg = <3>;
+> +			linux,keycodes = <KEY_SEARCH>;
+> +		};
+> +
+> +		button@4 {
+> +			reg = <4>;
+> +			linux,keycodes = <KEY_VOLUMEDOWN>;
+> +		};
+> +
+> +		button@5 {
+> +			reg = <5>;
+> +			linux,keycodes = <KEY_VOLUMEUP>;
+> +		};
+> +
+> +		button@6 {
+> +			reg = <6>;
+> +			linux,keycodes = <KEY_CAMERA>;
+> +		};
+> +
+> +		button@7 {
+> +			reg = <7>;
+> +			linux,keycodes = <KEY_POWER>;
+> +		};
+> +	};
+> +};
+> +
+>  &snvs_pwrkey {
+>  	status = "okay";
+>  };
+> @@ -177,6 +254,15 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
+>  		>;
+>  	};
+>  
+> +	pinctrl_touch: touchgrp {
+> +		fsl,pins = <
+> +			/* CYTTSP interrupt */
+> +			MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x54
+> +			/* CYTTSP reset */
+> +			MX7D_PAD_GPIO1_IO13__GPIO1_IO13		0x04
+> +		>;
+> +	};
+> +
+>  	pinctrl_i2c1: i2c1grp {
+>  		fsl,pins = <
+>  			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
+> @@ -184,6 +270,20 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
+>  		>;
+>  	};
+>  
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
+> +			MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
+> +		>;
+> +	};
+> +
+> +	pinctrl_touch_reg: touchreggrp {
+> +		fsl,pins = <
+> +			/* TOUCH_PWR_EN */
+> +			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x14
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
+> -- 
+> 2.37.3
+> 
