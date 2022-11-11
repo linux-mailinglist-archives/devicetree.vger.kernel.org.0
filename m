@@ -2,166 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E14625737
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7849962574F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232182AbiKKJsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:48:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33922 "EHLO
+        id S233641AbiKKJvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:51:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230181AbiKKJsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:48:00 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 935162A3;
-        Fri, 11 Nov 2022 01:47:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DEC261F2E;
-        Fri, 11 Nov 2022 09:47:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BFC7C433D6;
-        Fri, 11 Nov 2022 09:47:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668160077;
-        bh=sHcrZjyD+JKPHYpCaB3NT+zMVU6VwkQS6kFBMLp1NZ8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=K1w2QIluPgNeqJDrivt/bqZr1+V48gXgZI+F4ykU9y3kuwA/jjREPKUn/7w6oQ7Xs
-         Ni9KCTF2TV65gcmYq/lq5soTc70rUrpsG+Lyj+v/csenAA6VJFwQN9Gkuo19NkCgOj
-         ULAlE/M5orZNDN93AbffEmyWSnYzxcD1hs9Oqeew7HVv39erJgwBbyJ848wvuJBdxn
-         Esqg9lRwCPQDf5dZNrlC40JXXHYXRhFSGWNYNhXGXBqj/PBHNadt/ujhxCt9IU6Bej
-         95AKTa8X92zqXJSfdM3t3u374iaT1poJSpVZdtJrmfkEvSYh02Avl2feDE1QQFaD9r
-         7iGXuVw/wDfSA==
-Message-ID: <e5451506-586d-9724-5455-59dafabae7ec@kernel.org>
-Date:   Fri, 11 Nov 2022 10:47:49 +0100
+        with ESMTP id S232182AbiKKJvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:51:39 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2204B40
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:51:37 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id a29so7549566lfj.9
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 01:51:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UBAuXo/JH39usAqNS9LpYMJ2qkzWZjIsVla8cj9Lu1U=;
+        b=RWlNT8X+c/6umKwADgRwNXk6wtdTLfkdNvb8p720+7n24ICD4zY7ByR49GnmdVtx77
+         NSGJh7gekNTpVvCdASxHoqGfRn74GI8LSAaaSmta1si6kWczPj2m6BUji1sbkySYaA71
+         l86lRS4z+E0uRyswkkzntCdOAtoEmqX0wbqlWJJt77ELEUaMIogkRnT7kUyOE7cBStXI
+         BVhkWB58YZwUD+4BB3/C5lmQrfxGqlpGFqvkQiEYXZ/uGmoDDMYPvQOIz9+qKm53jx0X
+         Of0+1gX7stiBGOIHHPq+Tl+euYCU0nhc8M4wO0wym8FHZBfKfxn4Oa+TDqRKeOcLpu19
+         AZqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UBAuXo/JH39usAqNS9LpYMJ2qkzWZjIsVla8cj9Lu1U=;
+        b=cfgDq2QvUNoUtBW85AHWBrYN93gdHRW+P1V6E5E5sAsBmcOefCd1Nu/pldMU8uSvsa
+         /1+KqYH5v6JRBANroK+znYx2VCQCLIOp3ghu8K+Y4k1zw8l9nAsc9jxM6dTO0J5187Jt
+         TD/FoRnAkbs2e3izcSlcugsEfpszuITVD2TDRyUyKRT/4KmhqPY631Z7IZ7d29pTxELh
+         9/3sLDEHZl5txjSjH9LJvvaYi3+ue9uFN4pVqAmJp7cQin+FzzbxxXxxWHeEonovKHbv
+         q9Rmv1Bl06L9odO59sfEK2JwHT/TiKybrHoxyJqACsCD6R+ZdL2upEnd0ROECKvZHJoU
+         S+ZA==
+X-Gm-Message-State: ANoB5plferK9UOg09NmIrVrAPX13jsAnHwpRgE+viHfgf1FAvOK0B0kS
+        k5JlTI6zJqZ6N2hEs3vKlUEnEg==
+X-Google-Smtp-Source: AA0mqf67Av2ZPSbVocV6fSZ7EUxU4KpuNAmS9QqR4LGcufRNaGoBIvnBqqSxLgrRrLDPR8beEWcqKQ==
+X-Received: by 2002:ac2:4bd2:0:b0:4a2:9706:7bf6 with SMTP id o18-20020ac24bd2000000b004a297067bf6mr456548lfq.542.1668160296381;
+        Fri, 11 Nov 2022 01:51:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id n22-20020a05651203f600b004ab98cd5644sm239895lfq.182.2022.11.11.01.51.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 01:51:35 -0800 (PST)
+Message-ID: <af83da3a-11e1-f53d-6b69-5c3387b61cf8@linaro.org>
+Date:   Fri, 11 Nov 2022 10:51:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [Patch v3 3/3] ARM: dts: exynos: Rename compatible string
- property from version to SoC specific
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host
+ controller
 Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <20221111032337.79219-1-aakarsh.jain@samsung.com>
- <CGME20221111031718epcas5p3df130145b4bb99424fd5aa4addf77ba5@epcas5p3.samsung.com>
- <20221111032337.79219-4-aakarsh.jain@samsung.com>
- <b766bd0b-aecc-3b9d-27df-2615d648d9bd@linaro.org>
- <010e01d8f5af$340c1a80$9c244f80$@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <010e01d8f5af$340c1a80$9c244f80$@samsung.com>
+To:     Zhe Wang <zhewang116@gmail.com>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com, avri.altman@wdc.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
+References: <20221110133640.30522-1-zhewang116@gmail.com>
+ <20221110133640.30522-2-zhewang116@gmail.com>
+ <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org>
+ <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
+ <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
+ <CAJxzgGpKATsfjnD7ksc_UXdzwW76trkONDzRR2UpKHW1Buxxew@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJxzgGpKATsfjnD7ksc_UXdzwW76trkONDzRR2UpKHW1Buxxew@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 10:22, Aakarsh Jain wrote:
+On 11/11/2022 10:34, Zhe Wang wrote:
 > Hi Krzysztof,
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->> Sent: 11 November 2022 13:41
->> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
->> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; devicetree@vger.kernel.org
->> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
->> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
->> benjamin.gaignard@collabora.com; krzysztof.kozlowski+dt@linaro.org;
->> stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
->> david.plowman@raspberrypi.com; mark.rutland@arm.com;
->> robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
->> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
->> pankaj.dubey@samsung.com; smitha.t@samsung.com
->> Subject: Re: [Patch v3 3/3] ARM: dts: exynos: Rename compatible string
->> property from version to SoC specific
+> On Fri, Nov 11, 2022 at 3:48 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> On 11/11/2022 04:23, Aakarsh Jain wrote:
->>> commit "752d3a23d1f68de87e3c" which adds MFC codec device node for
->>> exynos3250 SoC. Since exynos3250.dtsi and exynos5420.dtsi are using
->>> same compatible string as "samsung,mfc-v7" but their node properties
->>> are different.As both SoCs have MFC v7 hardware module but with
->>> different clock hierarchy and complexity.
->>> So renaming compatible string from version specific to SoC based.
+>> On 11/11/2022 06:34, Zhe Wang wrote:
+>>>>
 >>>
->>> Reviewed-by: Tommaso Merciai
->> <tommaso.merciai@amarulasolutions.com>
->>> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
->>> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
->>> ---
->>>  arch/arm/boot/dts/exynos3250.dtsi | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>> I'll fix it.
 >>>
->>> diff --git a/arch/arm/boot/dts/exynos3250.dtsi
->>> b/arch/arm/boot/dts/exynos3250.dtsi
->>> index 326b9e0ed8d3..98105c64f7d9 100644
->>> --- a/arch/arm/boot/dts/exynos3250.dtsi
->>> +++ b/arch/arm/boot/dts/exynos3250.dtsi
->>> @@ -485,7 +485,7 @@
->>>  		};
+>>>>> +        clocks = <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_CFG_EB>,
+>>>>> +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
+>>>>> +        freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>;
+>>>>
+>>>> Why this is empty? What's the use of empty table?
+>>>>
 >>>
->>>  		mfc: codec@13400000 {
->>> -			compatible = "samsung,mfc-v7";
->>> +			compatible = "samsung,exynos3250-mfc";
+>>> freq-table-hz is used to configure the maximum frequency and minimum
+>>> frequency of clk, and an empty table means that no scaling up\down
+>>> operation is requiredfor the frequency of these clks.
 >>
->> No improvements. Changeset is non-bisectable. I said it in v1, then in v2. So
->> now third time... Don't send a new version if you are not going to fix it or
->> resolve discussion.
+>> No, to indicate lack of scaling you skip freq-table-hz entirely, not
+>> provide empty one.
 >>
-> My bad, misunderstood, now I understood your concerns around bisectability.
+>>
 > 
-> I hope you mean the below:
-> ------
-> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> index cb166654fa81..734e53445eb5 100644
-> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> @@ -10,7 +10,8 @@ Required properties:
->    - compatible : value should be either one among the following
->         (a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
->         (b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
-> -       (c) "samsung,exynos3250-mfc" for MFC v7 present in Exynos3250 SoC
-> +       (c) "samsung,exynos3250-mfc","samsung,mfc-v7" for MFC v7
-> +            variant present in Exynos3250 SoC.
->         (d) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
->         (e) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
->         (f) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
-> diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-> index 98105c64f7d9..a2d6ee7fff08 100644
-> --- a/arch/arm/boot/dts/exynos3250.dtsi
-> +++ b/arch/arm/boot/dts/exynos3250.dtsi
-> @@ -485,7 +485,7 @@
->                 };
-> 
->                 mfc: codec@13400000 {
-> -                       compatible = "samsung,exynos3250-mfc";
-> +                       compatible = "samsung,exynos3250-mfc", "samsung,mfc-v7";
->                         reg = <0x13400000 0x10000>;
->                         interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
->                         clock-names = "mfc", "sclk_mfc";
-> -----
-> 
-> Where mfc-v7 will be used as fallback for the older kernel which might use new dtb.
-> 
-> Let me know if this is not what you meant or am I still missing something?
+> In the ufshcd-pltfrm.c file, the clock information is parsed by
+> executing the function ufshcd_parse_clock_info, if the number of
+> "freq-table-hz" is zero or if the number of "clock-names" and
+> "freq-table-hz" does not match, the UFS CLK information in dts will
+> not be obtained. Although we don't need to scaling freq, we also need
+> the CLK information for the CLK GATE operations. So we cannot delete
+> this freq-table here.
 
-Yes, this is what I meant. Thanks.
+I did not check the driver implementation, but if that's the case it
+does not match bindings. Before adding empty useless tables, please
+either fix bindings or driver. I think the latter - the driver - becasue
+clocks are not depending logically on freq-table-hz.
+
+> 
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> According to the local test results just now, I would like to ask a
+> question about the previous revisions.
+>>> +
+>>> +  sprd,ufs-anly-reg-syscon:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: phandle of syscon used to control ufs analog reg.
+>>
+>> It's a reg? Then such syntax is expected:
+>> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+>>
+> 
+> In the syntax of this example, reg is represented by phandle and
+> offset, but I only need the information of phandle in this place，
+
+No. You wrote "analog reg". So one reg. Not regs.
+
+> So in
+> this scenario, whether my original syntax is fine？ just describe the
+> pandlle.
+
+No, because your description said one reg.
 
 Best regards,
 Krzysztof
