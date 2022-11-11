@@ -2,155 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB38A62635E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E7B626362
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:07:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234025AbiKKVGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 16:06:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
+        id S233963AbiKKVHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 16:07:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233842AbiKKVGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:06:10 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA55783B94;
-        Fri, 11 Nov 2022 13:06:09 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ABL5L2W124440;
-        Fri, 11 Nov 2022 15:05:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668200721;
-        bh=qZUp0LgToCdeKTOa83YyPSwidLhs3SutcFlXMmeJ5+g=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Nk8BC8B1RQkKSHbYNSEtNECGVu6W9yYKEsbJ5eKqzvUZUtARwYEG5mLRuPbdqrKdC
-         uXMqSarIdMkG6TVr2dRZER9MRDGmXwVVXOLlAsKiIzX31SKCg0VyOpheMf7fW6U0s4
-         hoYQs4/YNUoKusjtgFgBMYtuHQB50mat3wigoFbE=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ABL5Lv2092391
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Nov 2022 15:05:21 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 11
- Nov 2022 15:05:20 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 11 Nov 2022 15:05:20 -0600
-Received: from [128.247.81.39] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ABL5K5I066401;
-        Fri, 11 Nov 2022 15:05:20 -0600
-Message-ID: <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
-Date:   Fri, 11 Nov 2022 15:05:20 -0600
+        with ESMTP id S230303AbiKKVHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:07:44 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA4F836BD
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 13:07:43 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id k5so5391951pjo.5
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 13:07:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1UbHOqnPNCOilnpyC/Gk6owDbQr/DghKe/AIdJFL7OA=;
+        b=dcqjaS5Sm4AFaJ7A8iLje/A4mP/MuV/4c61ZgTQZyLFNnGrZZ/BGiUXI09P1InJiFR
+         KW0Xm6rz6GpThAC0xv5uqffYho4bvpSMBTuoqW4KOh+mOUlEix0p7YZhkV11KlQpoy2K
+         ifVskTSrHPisCc47y4ok1EkR0YbtEILMfy3CUr4+Vq96T+6aW8FAhac7YsiRUa+QXhSr
+         2NqNbVwfSo1HAyTd+JW/g0EGjO4M2C5GBeM5jHLMYMnPNGEFR+1iD82/tlFjKeQrUrs7
+         AJrohjKqYCTrhGr4OhyQ5sX+/jGoVvKvgX/9DGz7ua8UbvT3qQhq74wWw4l0Xl0wNmYf
+         69jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1UbHOqnPNCOilnpyC/Gk6owDbQr/DghKe/AIdJFL7OA=;
+        b=S0daCtn6ORnNhdVsxhZiAwRgChry5neIbrbUyGAtCEdnJOubhcwOyz97rSKiW0G2ZU
+         zBre23wuViMY4lWb0LysMKSxuYjDz2I27X77LI6FUFjMErg+va8UOoSaI0v/doCREcFU
+         qd0Z13vaMPWSzhPoNd3eUkbA0S27FhubUjbA8pqt0auc84cW7LHLeC8r373nVYk2N3t0
+         BpEZettPmHaCRi5Jv/jCPDmxm+RMBOIjx9V0DjSkTnWwwpLWnaQtxM7uAOEs+0k1fDaX
+         o94RMvt+QaMvay0FkY7mifyrNKPKd38C4SY4RZlo05XTWXdv5WxFECFGQPUw+KgjuTqw
+         GzrQ==
+X-Gm-Message-State: ANoB5pm8GS1R2UR3wEBv5Qj7lxW+pv0qyKyO+JXA0tt3fz/knI1XiDkb
+        IufADUWhEBuJuBgP9hf38yjPdA==
+X-Google-Smtp-Source: AA0mqf6A3RRROpoZCJbd2mFTNzmTgQE6WZbH93Czcwbm8bITJSEMnmyIrjCwAdplvykKwvdBjqBreQ==
+X-Received: by 2002:a17:90b:4fce:b0:203:6932:1d5f with SMTP id qa14-20020a17090b4fce00b0020369321d5fmr3813947pjb.112.1668200862943;
+        Fri, 11 Nov 2022 13:07:42 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
+        by smtp.gmail.com with ESMTPSA id w125-20020a623083000000b00571bdf45885sm980169pfw.196.2022.11.11.13.07.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Nov 2022 13:07:42 -0800 (PST)
+Message-ID: <cc62e433-83c4-f285-edc2-a2d808163074@9elements.com>
+Date:   Sat, 12 Nov 2022 02:37:38 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221024173434.32518-1-afd@ti.com>
- <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
- <Y26lDEtiG4KFzc91@smile.fi.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
 Content-Language: en-US
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <Y26lDEtiG4KFzc91@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
+ <20221013094838.1529153-2-Naresh.Solanki@9elements.com>
+ <20221024161806.GA1855651-robh@kernel.org>
+ <dcd22f70-e51c-290e-c11f-9a5ce32748c1@9elements.com>
+ <CAL_JsqKT52ULEZjKo9emEAt74nH2OpMO8ymLLKM_T-NzAwqGog@mail.gmail.com>
+ <3152c290-8aca-b91a-df20-335c33395835@9elements.com>
+ <20221101184402.GA1884153-robh@kernel.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <20221101184402.GA1884153-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/22 1:39 PM, Andy Shevchenko wrote:
-> On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
->> On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
->>>
->>> Hello all,
->>>
->>> This is a series based on my patch here[0]. As suggested by Rob
->>> I've resurrected Frank's patch and appended it to mine as a series.
->>>
->>> First patch here is my original patch, 3rd is Frank's patch but with
->>> the unittest changes pulled out into the 2nd patch. That was re-worked
->>> moving the source building macro into scripts/Makefile.lib.
->>>
->>> Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
->>> overlays. Split out by platform so they could be taken by platform
->>> maintainers or if easier ACK'd here and taken all together.
->>>
->>> This should cover all the DTB overlays so we can remove the old .dts
->>> rule for overlays and make .dtso the only supported way, let me know
->>> if we want that this cycle and I can post that too.
->>>
->>> Thanks,
->>> Andrew
->>>
->>> Changes from v1[1]:
->>>   - Added patch to rename pi433 overlay.
->>>   - Cleaned wording on patch 4-6.
->>>   - Collected some ACKs
->>>
->>> [0] https://www.spinics.net/lists/kernel/msg4548509.html
->>> [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
->>>
->>> Andrew Davis (6):
->>>    kbuild: Allow DTB overlays to built from .dtso named source files
->>>    kbuild: Allow DTB overlays to built into .dtso.S files
->>>    arm64: dts: freescale: Rename DTB overlay source files from .dts to
->>>      .dtso
->>>    arm64: dts: renesas: Rename DTB overlay source files from .dts to
->>>      .dtso
->>>    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
->>>    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
->>>
->>> Frank Rowand (1):
->>>    of: overlay: rename overlay source files from .dts to .dtso
+Hi Rob,
+
+On 02-11-2022 12:14 am, Rob Herring wrote:
+> On Mon, Oct 31, 2022 at 01:35:09PM +0530, Naresh Solanki wrote:
+>> Hi Rob,
 >>
->> I've applied patches 1-3 and 7. I'll send a PR for the branch to the
->> platform maintainers after a few days in linux-next.
+>> On 26-10-2022 07:07 pm, Rob Herring wrote:
+>>> fanc: fan-controller {
+>>>     #pwm-cells = <3>;
+>>>     ...
+>>>
+>>>     fan {
+>>>       pwms = <&fanc 0 500000  PWM_POLARITY_INVERTED>;
+>>>       ...
+>>>     };
+>>> };
+>>>
+>>> 0 is PWM number and 500000 is the PWM frequency. The 3rd cell are per
+>>> consumer flags. See pwm.txt for more details.
+>>
+>> Did the implementation & while testing getting the below err:
+>> [63.626505] max6639 166-002e: failed to create device link to 166-002e
 > 
-> The patch
-> 
-> commit 941214a512d8c80d47e720c17ec17e8539175e93
-> Author: Andrew Davis <afd@ti.com>
-> Date:   Mon Oct 24 12:34:29 2022 -0500
-> 
->      kbuild: Allow DTB overlays to built into .dtbo.S files
-> 
-> broke the build reproducibility / no-op builds.
-> 
-> Before:
->    2+ execution of `make` on non-changed tree did nothing
-> 
-> Now:
->    Each run of `make` (even without a single bit changed) restarts vmlinux
->    rebuild.
-> 
-> Please, revert or fix.
-> 
+> Does turning off fw_devlink help (fw_devlink=off)?
 
-I do not see this behavior. What config are you using?
+Will supplier == consumer, device link creation fails.
+Not sure what is best approach but not creating device link in this 
+scenario help & for that below additional changes needed in pwm core.
 
-Not sure how this patch could be the root cause, it only adds
-a build target/rule, but doesn't actually use it anywhere yet..
+diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
+index 4527f09a5c50..afea51c49138 100644
+--- a/drivers/pwm/core.c
++++ b/drivers/pwm/core.c
+@@ -730,6 +730,12 @@ static struct device_link 
+*pwm_device_link_add(struct device *dev,
+  		return NULL;
+  	}
 
-Andrew
++	/*
++	 * Do not attempt to create link if consumer itself is supplier.
++	 */
++	if (dev == pwm->chip->dev)
++		return 0;
++
+  	dl = device_link_add(dev, pwm->chip->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
+  	if (!dl) {
+  		dev_err(dev, "failed to create device link to %s\n",
+
+
+
+Regards,
+Naresh
