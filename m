@@ -2,64 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FB96256E0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD1E6256EC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:34:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233594AbiKKJa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 04:30:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
+        id S233656AbiKKJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:34:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233449AbiKKJa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:30:28 -0500
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6967AD48;
-        Fri, 11 Nov 2022 01:30:27 -0800 (PST)
-Received: by mail-qt1-x82b.google.com with SMTP id c15so2402399qtw.8;
-        Fri, 11 Nov 2022 01:30:27 -0800 (PST)
+        with ESMTP id S233594AbiKKJeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:34:31 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57156327;
+        Fri, 11 Nov 2022 01:34:30 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id y14so11303876ejd.9;
+        Fri, 11 Nov 2022 01:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VcplOxG0knUnUxNr+LPhGG5rifvaq3v/b4kjjm7Hk9U=;
-        b=gMWqAgtlwha7T0RuWBUIAhI8hmWUr58eKaXkF867nIpBNQBPjol+/ErwjP9ZEiZDS5
-         OxkyhvY64ZJt5QGK4qGoF0r1Bnol5QeE0dpZJ0xA5soNX8RacKIVeQXfZuB7/vx80fLb
-         ylGeQv7DAMBFa8EfYdlk/yrwHIe+NRU02Rrykj/bFOkr0/D6LHT+17C2abxOmttGhsrW
-         zeqtIBo8xm5MTPznLqui3aL8/fthEGYH+FR434zi3D9/E0JDssTjODasKNwrLcnBmEtT
-         M87E/kPleNKORbDL5ADhi2VlHUBvuO9wg95K7/LrgDcdm4Jk0MVOwyg0t9c7lHCyfso3
-         RM5A==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F1O3bjY9wxlNEQJspWtcqXuaUIVH313lCfswZjOyFmo=;
+        b=D91gVRv5exPZsksiOEYOMFtgEfz1NyipCKYsdyceerwR/yXY9cBUgnmyouUsIwkEQD
+         DabMAHBFaR+EqiHrORdmQAlnza7bi6tJnK4Q7z42yVs5kZdP5Uo/DOJyAFUpqMTNwBrz
+         Gl47UZurBbQmZgTVvXm51bIRcgpkI6HPiD3VzGW3tPMKTkBFS28/ZkrNSFsEiQ1XcsxQ
+         wTgkjlmN9HL4nhpjT8wd3JJWaTOvegvPGGu+S8KYT9kzwGS1L35DFDPaQ7dD9T0XM93s
+         QVqkuzGL6R2Nc8QyzHSBZB+rKTD3S86AVQdjTzXu2zw9BXZ6Sc1v2ZuIi6A46CvWRrK9
+         bt7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VcplOxG0knUnUxNr+LPhGG5rifvaq3v/b4kjjm7Hk9U=;
-        b=bVuB1rrQdl8v9IJr4cWwxgnAn38gOWD2qs4i9jVC8Vo1xGGLm5c3BvJdhArY4t0O9i
-         bZ1B/Ihvi1sCFsXd7O/7gfqFHzQWemeUpFwUenIp6RMRwOtOa1Pl2sCNfL4RvPkovFMY
-         oCVuV/hD2hgmUmp1e8Dn33OBXBjZiV6MlAEAHtRMrPlDSEy2VMzBolBXfAw7PADtfCIe
-         kTCwnd39jcYpG3ZisA146O4zBZRlvx7+MNJEj4d2aTgyLYkN8troxEbP+eu39wOlt3Ch
-         UxJaURGPgzsTAwIIrZAltfvyrirZ+T9MbFQ6fNQtVbqS2C31nhflMU55L2s7RvskH/aT
-         4xEA==
-X-Gm-Message-State: ANoB5pkowfLd8HBQ05k1V7SG6KUKaiP82sb/nXJK9p7+uPxh1Qn50Szi
-        1Wvt+UlvKoTSvaQBGWeFEftRQMPaUh0pdMtbZYk=
-X-Google-Smtp-Source: AA0mqf5jxCXN/bBnVjpOV5BnLl7pV/IC9HKZa6r7vr9BndNgoNaCs/7sPZwrN/elijNNi1COkOeNsjtKkOZtUXUn2vs=
-X-Received: by 2002:ac8:6905:0:b0:3a5:8423:ebb7 with SMTP id
- bt5-20020ac86905000000b003a58423ebb7mr508480qtb.593.1668159026522; Fri, 11
- Nov 2022 01:30:26 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F1O3bjY9wxlNEQJspWtcqXuaUIVH313lCfswZjOyFmo=;
+        b=zssD7MegXoWN0+2wyriun++vDnlMWCa58BKIKbaW7KDDFox23mF+qVDjGUUQTq4xqe
+         mBLBwWp6YME0zSSMljrY7QJSvEXJheREA3fatblkVK+lCQ6tsbIGB9T/V5xejiz408Dc
+         xzvIbJnOjCyOVo3RgsscSEtZM3eqqdF9Iy2ldWTn5mEVkQ6yhvvgCeByeiHeK3edWfT5
+         lGptvTglXkZYUvbANxA0Ztxo+2TZkQlwzllP0nbtDkKy2RA5ccGxvfO3PLk8arKu8hTi
+         +dR9x9KFrY9ETWTgLQmcyNXuO2dbEWKZKaQT2tJlpeAEsz37xKAKA8IGAChAlk9bWQCP
+         +8Gw==
+X-Gm-Message-State: ANoB5plkjszCCERNVsBNX/X6JQ30Es4YCFflfSz9DjAPAS+qdFXFHkft
+        jDvCIwXsnZI4cfFKGwGDi4rP1hg8FkWx8DLD+MU=
+X-Google-Smtp-Source: AA0mqf5CBblMANBc8SQhkX+jNWhqxIdyXunf3jIQpJ9nbjPPlFLNQocbX8s018JvNDdPkmeuo49lsPGxVIXjM+ajIcc=
+X-Received: by 2002:a17:906:1d08:b0:7a9:ecc1:2bd2 with SMTP id
+ n8-20020a1709061d0800b007a9ecc12bd2mr1176222ejh.545.1668159269254; Fri, 11
+ Nov 2022 01:34:29 -0800 (PST)
 MIME-Version: 1.0
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-4-JJLIU0@nuvoton.com>
- <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
-In-Reply-To: <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
-From:   Jim Liu <jim.t90615@gmail.com>
-Date:   Fri, 11 Nov 2022 17:30:15 +0800
-Message-ID: <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
- expansion interface(SGPIO)
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
+References: <20221110133640.30522-1-zhewang116@gmail.com> <20221110133640.30522-2-zhewang116@gmail.com>
+ <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org> <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
+ <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
+In-Reply-To: <be044e4c-b9dc-1214-5f7d-4a4d1c2669fe@linaro.org>
+From:   Zhe Wang <zhewang116@gmail.com>
+Date:   Fri, 11 Nov 2022 17:34:17 +0800
+Message-ID: <CAJxzgGpKATsfjnD7ksc_UXdzwW76trkONDzRR2UpKHW1Buxxew@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com, avri.altman@wdc.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -70,74 +74,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus and Krzysztof
+Hi Krzysztof,
 
-This is a special feature of npcm750.
-it's not a normal gpio.
-It's similar to aspeed sgpio.
+On Fri, Nov 11, 2022 at 3:48 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/11/2022 06:34, Zhe Wang wrote:
+> >>
+> >
+> > I'll fix it.
+> >
+> >>> +        clocks =3D <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_CF=
+G_EB>,
+> >>> +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
+> >>> +        freq-table-hz =3D <0 0>, <0 0>, <0 0>, <0 0>;
+> >>
+> >> Why this is empty? What's the use of empty table?
+> >>
+> >
+> > freq-table-hz is used to configure the maximum frequency and minimum
+> > frequency of clk, and an empty table means that no scaling up\down
+> > operation is requiredfor the frequency of these clks.
+>
+> No, to indicate lack of scaling you skip freq-table-hz entirely, not
+> provide empty one.
+>
+>
 
-The spec as below:
+In the ufshcd-pltfrm.c file, the clock information is parsed by
+executing the function ufshcd_parse_clock_info, if the number of
+"freq-table-hz" is zero or if the number of "clock-names" and
+"freq-table-hz" does not match, the UFS CLK information in dts will
+not be obtained. Although we don't need to scaling freq, we also need
+the CLK information for the CLK GATE operations. So we cannot delete
+this freq-table here.
 
-The full name is "serial I/O expansion"  interface.
-The NPCM7xx and NPCM8xx include two SGPIO modules.
-This interface has 4 pins  (D_out , D_in, S_CLK, LDSH).
-Each module includes eight input ports and eight output ports.
-Each port can control eight pins.
-Input ports only can be input ,output is so on.
-So support up to 64 input pins and 64 output pins.
+> Best regards,
+> Krzysztof
+>
 
--S_CLK:
-The clock is generated by APB3, so users can set the bus frequency and
-the driver will set the spgio divided reg to
-generate a similar clock to sgpio bus.
+According to the local test results just now, I would like to ask a
+question about the previous revisions.
+> > +
+> > +  sprd,ufs-anly-reg-syscon:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle of syscon used to control ufs analog reg.
+>
+> It's a reg? Then such syntax is expected:
+> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetre=
+e/bindings/soc/samsung/exynos-usi.yaml#L42
+>
 
--D_out:
-the output data is the serial data needed to connect to hc595 and the
-data will output to hc595 parallel pins.
-you can use dts nout_gpios to create the number of pins.
-
--D_in
-this pin need to connect to hc165 and get the serial data from hc165.
-you can use dts nin_gpios to create the number of pins.
-
-LDSH:
-this pin is used to get input data or send output data.
-the user can't control this pin.
-one operation cycle is include input and output
-beginning the signal, the  LDSH is low and now will send output serial data ,
-after finished output serial data the LDSH will be high and get serial
-input data.
-
-If you have any questions or are confused please let me know.
-Your comments are most welcome.
+In the syntax of this example, reg is represented by phandle and
+offset, but I only need the information of phandle in this place=EF=BC=8CSo=
+ in
+this scenario, whether my original syntax is fine=EF=BC=9F just describe th=
+e
+pandlle.
 
 Best regards,
-Jim
-
-
-On Wed, Nov 9, 2022 at 5:14 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Tue, Nov 8, 2022 at 10:29 AM Jim Liu <jim.t90615@gmail.com> wrote:
->
-> > +  nin_gpios: true
-> > +
-> > +  nout_gpios: true
->
-> My comment from v1 still holds.
-> I'd say just drop these two, it's too much trying to protect
-> the users from themselves.
->
-> > +  bus-frequency: true
->
-> Given that you have clocks already, what does this actually specify?
-> Which bus? The one the GPIO is connected to? Why is it different
-> from the frequency from the clocks? And what is it used for, why does
-> it need to be specified? So many questions.
->
-> A description is necessary.
->
-> I guess the : true means it is picked up from the core schemas somehow
-> but that doesn't make me smarter.
->
-> Yours,
-> Linus Walleij
+Zhe Wang
