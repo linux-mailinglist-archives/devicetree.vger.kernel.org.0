@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BDD625D4D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2C9625D4B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:40:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbiKKOkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:40:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48788 "EHLO
+        id S234651AbiKKOkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:40:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234665AbiKKOjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:39:44 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF91657DF
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:29 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id a13so7954232edj.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:29 -0800 (PST)
+        with ESMTP id S234676AbiKKOjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:39:48 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0660D63BBB
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:30 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id y14so12986041ejd.9
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NMEYouN33VXJnGj1szjoBs9S5kXWzk4pLlmEmqoZFno=;
-        b=aYLheQpYSAA+nvIa8jyxXle6dr+WMfHP/Q3Xc7+2lnehrlu5Uxzb2AighHNYmghKXh
-         XCQvPKImeoie67r83OOlpg4Jg4N7ZI4I9oCgVyQ/O2crwjrallGtflR058/P8LymOWzZ
-         e+vsF5mXlwN57u+OUIx04kLjRfdzkol9U6gDM=
+        bh=8nUDZC72vgUX/+mjOceon1Lp8omkXG06DLgI5cBosnQ=;
+        b=iFvwZclfbIiKwXP++pqGCXBltsjAlYxG6Eg2T2fA6LMnFCV5dUD1qVPwaeCSWErf33
+         ekEzJFjqde0fdpIQCgmDy2gvE8PG82AcoO12V0spWo0LUtjPIH7vdyx9dsRZoPmkZNYf
+         604eIeEENYz2NPWEJYYEBCQKKihY8U4xDLRDE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NMEYouN33VXJnGj1szjoBs9S5kXWzk4pLlmEmqoZFno=;
-        b=HhpHN3ejwQX7/q5g5YIKuEefYdtAIUK8qXgBh+BKtARL7Y/UusQPJshrsHedM7chvp
-         Iw2jRYEUNmo2tNFZZ5fjDw0lVZ+o++N2dpBC+Php8TR1l+EwlLS8G3+pZvAl6DbdOi4o
-         yQ3XtOiJnH8EvnGK5Ib7BOqyF74NP+LIckV/M1jOOqSQUU5EcK/eTcLhVjzuoCQU4m0e
-         wgUZ9ShkIlNHKQl+WFaW7TkCHQCqlUDLL5GfIlIRo52pfwTjbTthXx2/unm6kx//jFGy
-         jJkB6lXGBzQq6VEEvUz1Xjqpo1q2shM7KXgPBYVElYUKXe2UzvdKj5eqw5ufoTyytxjl
-         GZnQ==
-X-Gm-Message-State: ANoB5pnSWsUzjQg+fcOBPHrzkh3TG/MUJZ3pDx6kqE2hWTAmwrrevvng
-        AQgZfiOy5MXqs1W+UY+j/m3wwX2u/w3JF5RXiX0=
-X-Google-Smtp-Source: AA0mqf6EZrJe3b/AEPYKxhBsDWFd7mBnEEhN5/HmA8x0PqIa8X/7blYSPJPVgjhCfuRbdElYD/vX3A==
-X-Received: by 2002:a05:6402:158c:b0:463:19ca:a573 with SMTP id c12-20020a056402158c00b0046319caa573mr1727365edv.31.1668177567955;
-        Fri, 11 Nov 2022 06:39:27 -0800 (PST)
+        bh=8nUDZC72vgUX/+mjOceon1Lp8omkXG06DLgI5cBosnQ=;
+        b=CACO/uCrFf2SQu8jBCZ8DtA9vVn2xajZ09OuTcPJBO6j1Ew3289L1lAQOviDWZOGZd
+         PFEyolDz0wAOs6lDLkEoPrBxcEbgxSScj1v6KeiFr7+05yDxsTMybvbdJIPpvu/gEjuD
+         lxE7L9zyYKJMfWWncxbNC3QSc/jzU+2DudsyX3J+qZoMV5fa9H02oDYg1CJIIm/bMP6c
+         nfhirzzz/Czl4k21sSnDs4ksiqdWjXKsYizo4/2H/9BtMJgqKFS6ZbVmkzneVRs/NjH2
+         GDKZcM184pcSoEDecLndwSMRWXbCL9NA/lyl66xQAUzHZlpAq+XHo1QADBbiwu5r0qNE
+         QDxA==
+X-Gm-Message-State: ANoB5pnG6BUFQuZZbv0ohctYjldVkRRQFbggu59lx3u5VD3ogATQnIGF
+        5pTaBIO4zHvQXndBAAQs3atgoA==
+X-Google-Smtp-Source: AA0mqf5iH//Tm204ldnCOaAvtZbOZb56fKbSpew5u5OxZ4DlhaeYDYvvxEZ6X1G7mx9HpGdqjUNu1A==
+X-Received: by 2002:a17:906:3d52:b0:7ae:44b2:cb7f with SMTP id q18-20020a1709063d5200b007ae44b2cb7fmr1982156ejf.437.1668177568980;
+        Fri, 11 Nov 2022 06:39:28 -0800 (PST)
 Received: from prevas-ravi.tritech.se ([80.208.71.65])
-        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b007a1d4944d45sm945886ejc.142.2022.11.11.06.39.27
+        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b007a1d4944d45sm945886ejc.142.2022.11.11.06.39.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 06:39:27 -0800 (PST)
+        Fri, 11 Nov 2022 06:39:28 -0800 (PST)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -54,9 +54,9 @@ To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
 Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Rasmus Villemoes <linux@rasmusvillemoes.dk>,
         linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/5] iio: addac: ad74413r: implement support for optional refin-supply
-Date:   Fri, 11 Nov 2022 15:39:19 +0100
-Message-Id: <20221111143921.742194-4-linux@rasmusvillemoes.dk>
+Subject: [PATCH 4/5] dt-bindings: iio: ad74413r: add optional reset-gpios
+Date:   Fri, 11 Nov 2022 15:39:20 +0100
+Message-Id: <20221111143921.742194-5-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
 References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
@@ -72,80 +72,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ad74412r/ad74413r has an internal 2.5V reference output, which (by
-tying the REFOUT pin to the REFIN pin) can be used in lieu of an
-external 2.5V input reference.
-
-Support that case by using devm_regulator_get_optional(), and simply
-hardcode the 2500000 uV in ad74413r_get_output_current_scale().
-
-I'm not sure this is completely correct, but it's certainly better
-than the current behaviour, where when refin-supply is not defined in
-device tree, the regulator framework helpfully does its
-
-  supply refin not found, using dummy regulator
-
-thing. When we then do the regulator_get_voltage(), that dummy
-regulator of course doesn't support that operation and thus returns
--22 (-EINVAL) which is used without being checked.
+The ad74412 and ad74413 devices have an active-low reset pin. Add a
+binding allowing one to specify a gpio tied to that.
 
 Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 ---
- drivers/iio/addac/ad74413r.c | 31 ++++++++++++++++++++-----------
- 1 file changed, 20 insertions(+), 11 deletions(-)
+ Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index 37485be88a63..9f77d2f514de 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -608,7 +608,10 @@ static int ad74413r_get_output_voltage_scale(struct ad74413r_state *st,
- static int ad74413r_get_output_current_scale(struct ad74413r_state *st,
- 					     int *val, int *val2)
- {
--	*val = regulator_get_voltage(st->refin_reg);
-+	if (st->refin_reg)
-+		*val = regulator_get_voltage(st->refin_reg);
-+	else
-+		*val = 2500000;
- 	*val2 = st->sense_resistor_ohms * AD74413R_DAC_CODE_MAX * 1000;
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+index e954d5ae4f4f..70f82cc716ae 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+@@ -51,6 +51,9 @@ properties:
+       Shunt (sense) resistor value in micro-Ohms.
+     default: 100000000
  
- 	return IIO_VAL_FRACTIONAL;
-@@ -1313,19 +1316,25 @@ static int ad74413r_probe(struct spi_device *spi)
- 	if (IS_ERR(st->regmap))
- 		return PTR_ERR(st->regmap);
- 
--	st->refin_reg = devm_regulator_get(st->dev, "refin");
--	if (IS_ERR(st->refin_reg))
--		return dev_err_probe(st->dev, PTR_ERR(st->refin_reg),
--				     "Failed to get refin regulator\n");
-+	st->refin_reg = devm_regulator_get_optional(st->dev, "refin");
-+	if (IS_ERR(st->refin_reg)) {
-+		ret = PTR_ERR(st->refin_reg);
-+		if (ret != -ENODEV)
-+			return dev_err_probe(st->dev, ret,
-+					     "Failed to get refin regulator\n");
-+		st->refin_reg = NULL;
-+	}
- 
--	ret = regulator_enable(st->refin_reg);
--	if (ret)
--		return ret;
-+	if (st->refin_reg) {
-+		ret = regulator_enable(st->refin_reg);
-+		if (ret)
-+			return ret;
- 
--	ret = devm_add_action_or_reset(st->dev, ad74413r_regulator_disable,
-+		ret = devm_add_action_or_reset(st->dev, ad74413r_regulator_disable,
- 				       st->refin_reg);
--	if (ret)
--		return ret;
-+		if (ret)
-+			return ret;
-+	}
- 
- 	st->sense_resistor_ohms = 100000000;
- 	device_property_read_u32(st->dev, "shunt-resistor-micro-ohms",
++  reset-gpios:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
 -- 
 2.37.2
 
