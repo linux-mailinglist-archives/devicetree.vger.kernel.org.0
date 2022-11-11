@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF62E625D40
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:39:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D565625D4C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234685AbiKKOju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:39:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48616 "EHLO
+        id S234652AbiKKOkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:40:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234650AbiKKOjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:39:36 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6AF5B5BD
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:27 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id m22so12949127eji.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:27 -0800 (PST)
+        with ESMTP id S234663AbiKKOjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:39:44 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1315E3F4
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:28 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id ud5so13020324ejc.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:39:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3BpIqKmaepR1SpUgklkTdQKDocBg8CsmOhHMlVS5EHA=;
-        b=DrM+gnHh97vdiwSHvs4Vlne0TO7c7w6abdslmDlScfvk00Y2RXCkV1/198Pr+SVcbm
-         n84m7ML0SQY10/bU7IEnnEcKIHqkZ20R7/yCuFd2+jYTc3uRCe18o/7sh7Ix2V05Gdge
-         f0lgC7FK/NGYosoVXQ1uY9SHIUGtr4TPm7JrI=
+        bh=2lxqynGN1zb3SeT8QyXA1+0ZwfAUv0vy1HULeEAsp+0=;
+        b=BY47XsVmK51QERSuv9y2eWZAjkN5DPflYrv9P/kAP1nvo563DsVXnrBG2y65QznhVM
+         SJJXYc3oBd5budwHsKVFz1tIAxtTFQHFuRjvG2Qow3zmfnhU4p6vdjvcEJwBKzhZFQac
+         supnDkrsavwNMIaDcwLsbcfXTXa6D3sSBou3Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3BpIqKmaepR1SpUgklkTdQKDocBg8CsmOhHMlVS5EHA=;
-        b=BTd9aC+/AYrPDaUKbOWXze5BRBYUYwUO8UcnkYrGaWknzO4Pc9xWWhsVly+jMmKKbB
-         CZkhse5LmhDQCBj2rXzMrrs1/1mVpRB6D95lqmHQi2gLa94KF675wG2FSzDrlrAa6lDH
-         OqVMJJp0IaFNoKRsaLfKFbhIDHYL0eYe1TJsKjpvIpq3H9vUbbufU4fuMLSJlMrTzhFy
-         dUiC33FUuCJWyLb7bI7e43ET5u9+5m9UyIPKag+VqnlqXeRyf+X9y8MW+Cq74oRp5Agh
-         AF3hhoStCuGT0mG6Iw6OnpRqJO3MGE4BTHiKmj04FTmhs+kYwWQ5lXYsIcK3/lpQ4mb5
-         jwtg==
-X-Gm-Message-State: ANoB5pnHOPC/xQZHklH05t/EWdYdt+xS7xv1Wp016rlZ8xGY99I1XENl
-        auc5FiCQxUkfDbRfrII5OmBQ1w==
-X-Google-Smtp-Source: AA0mqf7L3DlioxGxsRAlHlmZuxIAKfkei/P6adHOCk7nBRhv6rfyvwNL24gmqVIp5PiVy6hCz3zUyw==
-X-Received: by 2002:a17:906:388c:b0:7aa:97c7:2c04 with SMTP id q12-20020a170906388c00b007aa97c72c04mr2100956ejd.191.1668177566016;
-        Fri, 11 Nov 2022 06:39:26 -0800 (PST)
+        bh=2lxqynGN1zb3SeT8QyXA1+0ZwfAUv0vy1HULeEAsp+0=;
+        b=cHYymSjeTHiHdIsbnWMwE47lwyTXIrFuAtzmixFtZCEXGqbNgMKcIJ9BDE+A+Zo9oq
+         GWST9DTPTMLJiAj15vY0LSYYV7lpcTLTjKs11DtyNHYw31w+ARAOpahQGIHEpDFz0ujd
+         2m9qeezujXU7CXlFnoj8YvcqGq/rlT7yzmzZ7VVLvIrX0JyfAEa6qsZDYAf1kPYfvPpd
+         RR6ntYVzQQhDHWvav6b1pkwYPYQcAENuM84/n3R5PSVYz4z+xqitEy8soyGRYHULx+It
+         fvnxwD+1rnp3Yhj+TJEPSX7ea8XiNyesWKr0gSVqi+U0A/qXHjZUfLiaKPFDvX/J9HV2
+         y9lA==
+X-Gm-Message-State: ANoB5pnnkfD7PAtdPWOKk6vdhIhkING3JSfpRBOv8BSDrXoe8FCtkaM3
+        jtVs1zquIlp4zU3vdvm2euWmTg==
+X-Google-Smtp-Source: AA0mqf4T+udwGoWTudovo/FSHJ7IAR9wOH9fTJtKpCchExVGoh2RGDgoSsgTqibYqqdzi4ULw93B0w==
+X-Received: by 2002:a17:906:8cf:b0:7ae:59dd:e3f4 with SMTP id o15-20020a17090608cf00b007ae59dde3f4mr2017438eje.755.1668177567004;
+        Fri, 11 Nov 2022 06:39:27 -0800 (PST)
 Received: from prevas-ravi.tritech.se ([80.208.71.65])
-        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b007a1d4944d45sm945886ejc.142.2022.11.11.06.39.25
+        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b007a1d4944d45sm945886ejc.142.2022.11.11.06.39.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Nov 2022 06:39:25 -0800 (PST)
+        Fri, 11 Nov 2022 06:39:26 -0800 (PST)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -54,9 +54,9 @@ To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
 Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Rasmus Villemoes <linux@rasmusvillemoes.dk>,
         linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] iio: addac: ad74413r: add spi_device_id table
-Date:   Fri, 11 Nov 2022 15:39:17 +0100
-Message-Id: <20221111143921.742194-2-linux@rasmusvillemoes.dk>
+Subject: [PATCH 2/5] dt-bindings: iio: ad74413r: make refin-supply optional
+Date:   Fri, 11 Nov 2022 15:39:18 +0100
+Message-Id: <20221111143921.742194-3-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
 References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
@@ -64,47 +64,36 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Silence the run-time warning
-
-  SPI driver ad74413r has no spi_device_id for adi,ad74412r
+The ad74412r/ad74413r has an internal 2.5V reference output, which (by
+tying the REFOUT pin to the REFIN pin) can be used in lieu of an
+external 2.5V input reference. So stop marking refin-supply as
+required.
 
 Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 ---
- drivers/iio/addac/ad74413r.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index 899bcd83f40b..37485be88a63 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -1457,12 +1457,20 @@ static const struct of_device_id ad74413r_dt_id[] = {
- };
- MODULE_DEVICE_TABLE(of, ad74413r_dt_id);
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+index 03bb90a7f4f8..e954d5ae4f4f 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+@@ -56,7 +56,6 @@ required:
+   - reg
+   - spi-max-frequency
+   - spi-cpol
+-  - refin-supply
  
-+static const struct spi_device_id ad74413r_spi_id[] = {
-+	{ .name = "ad74412r", .driver_data = (kernel_ulong_t)&ad74412r_chip_info_data },
-+	{ .name = "ad74413r", .driver_data = (kernel_ulong_t)&ad74413r_chip_info_data },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(spi, ad74413r_spi_id);
-+
- static struct spi_driver ad74413r_driver = {
- 	.driver = {
- 		   .name = "ad74413r",
- 		   .of_match_table = ad74413r_dt_id,
- 	},
- 	.probe = ad74413r_probe,
-+	.id_table = ad74413r_spi_id,
- };
+ additionalProperties: false
  
- module_driver(ad74413r_driver,
 -- 
 2.37.2
 
