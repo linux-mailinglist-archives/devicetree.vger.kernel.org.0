@@ -2,108 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA50B6261E9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 20:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3488A626217
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 20:35:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233805AbiKKT37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 14:29:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33774 "EHLO
+        id S234083AbiKKTfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 14:35:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233878AbiKKT37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 14:29:59 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 428CF6CA2C;
-        Fri, 11 Nov 2022 11:29:57 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,157,1665414000"; 
-   d="scan'208";a="139759888"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 12 Nov 2022 04:29:57 +0900
-Received: from localhost.localdomain (unknown [10.226.92.47])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B3F1540E226C;
-        Sat, 12 Nov 2022 04:29:53 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 2/3] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date:   Fri, 11 Nov 2022 19:29:41 +0000
-Message-Id: <20221111192942.717137-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221111192942.717137-1-biju.das.jz@bp.renesas.com>
-References: <20221111192942.717137-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S233965AbiKKTfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 14:35:45 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CFA11707F;
+        Fri, 11 Nov 2022 11:35:45 -0800 (PST)
+Received: from falcon9.localnet (mtl.collabora.ca [66.171.169.34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7A13F6602A5B;
+        Fri, 11 Nov 2022 19:35:42 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668195343;
+        bh=LQzpqS6J1Op21IKDCU38ivvE8csL7oU4+93+9hQJ7JM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lBhMusJD3eXPpaiQORUMMm6FWJ4sGr65O/8ctweD+b8qcNdigavJM06VuNtKqJIhZ
+         jb7cLd0kJgsuewxrzwKOV1UBwfAhVS48V0j0dH17voi3cGUZsgiX3yEMhtUQMUGKCz
+         ORHLn2/AQrpW5RbjYTk9NEK13BDKbLyW3I8OUyImne45b0WA8vcux1oXp1K+3tIFA/
+         5L2UmWY3YRz6ylBakGxCzfq2svE6bO/hx7uxBEVBKpIOC1tKsQa4T+ADjIOJO/4WqI
+         KF4vqwnEhwGmJQYZdWcS++LYojVjSmXTw7wtrUzquw9uNsr9bleUI5TEgSNzLe2M0+
+         UxUp8Prd+y4fw==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-sabre: Add mmc aliases
+Date:   Fri, 11 Nov 2022 14:35:36 -0500
+Message-ID: <2868543.tdWV9SEqCh@falcon9>
+In-Reply-To: <20221111025232.GI125525@dragon>
+References: <20221028141811.101122-1-detlev.casanova@collabora.com> <20221111025232.GI125525@dragon>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+On Thursday, November 10, 2022 9:52:32 P.M. EST Shawn Guo wrote:
+> On Fri, Oct 28, 2022 at 10:18:11AM -0400, Detlev Casanova wrote:
+> > If not specified, the mmc0 and mmc1 devices will be the devices
+> > mmc@2190000 and mmc@2194000, which are in disabled state on the iMX.6
+> > Sabrelite devices.
+> > 
+> > The actual SD card reader devices are the ones at mmc@2198000 and
+> > mmc@219c000.
+> > 
+> > Set aliases to use the correct mmc devices order.
+> 
+> Is this something never worked or a regression?  For the latter, we may
+> need a Fixes tag?
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+These were apparently never set in the kernel device-tree and added manually 
+in u-boot when dts are synced.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Because most distributions use UUIDs in fstab, it is not a big problem in 
+Linux, just that the SD card is called /dev/mmcblk2. I would say that this has 
+always been an issue in Linux.
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index 620d5ae4ae30..5219032c60ee 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      maxItems: 8
-+      minItems: 1
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.25.1
+> Shawn
+> 
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+> > b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi index
+> > 22f8e2783cdf..12573e1f917c 100644
+> > --- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+> > +++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+> > @@ -14,6 +14,11 @@ chosen {
+> > 
+> >  		stdout-path = &uart2;
+> >  	
+> >  	};
+> > 
+> > +	aliases {
+> > +		mmc0 = &usdhc3;
+> > +		mmc1 = &usdhc4;
+> > +	};
+> > +
+> > 
+> >  	memory@10000000 {
+> >  	
+> >  		device_type = "memory";
+> >  		reg = <0x10000000 0x40000000>;
+
+
+
 
