@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D383362551F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB91E62552C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232471AbiKKIV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 03:21:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
+        id S232540AbiKKI0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 03:26:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231615AbiKKIV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:21:56 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A4F41980
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:21:54 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p8so7254740lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:21:54 -0800 (PST)
+        with ESMTP id S231778AbiKKI0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:26:09 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C214AF58
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:26:08 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id k19so3738437lji.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 00:26:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RaXB6dN6ptekdk24JrkBO1mYR3sj0qJtXHnyugR9QHo=;
-        b=a2g3SnvKK+xz2sLTjlgXMio5mgQbURrE6LawvamLerfbL6eLSdhUDPCIPevb/dnFbr
-         Y7KnjrOgYh045wITt8Nkot3LveepWYCFC1txDsXBhLNne7ZzGdeis9E8I34Ewl1/Vcew
-         no/tiezkwXS2HfLR2LlsPQJ2Qvr7G51IBgTLiby61DPCqjJAArYtq2rKDsfaNGudOK8g
-         bU0F6sNXDijc0TkplafA4wvsztaKnz2VaVxYfw7aD+B7oicKI0RAiuv6hSwaKYkSl98V
-         GiQN13fkkCQmatFEj9c4In6eToZO6ms+imQp3PmeQWnX4YSSAKlk1UnACGawwB9Sc9m+
-         L3Pw==
+        bh=kUHoLnVuberQNZ4w03ayKoSTheEu76ftgtJi7L4SomA=;
+        b=kSAm0g06yTtpEELeBirbzehpTDuXCKBCZ6U9b0odXiyvNTaea+UoVungIJDNPgaJ/n
+         b31jck24DeqQEc37ZrB/r6J6a5Y83d2+WzSGjQjRTuOiQcFjqemFQIswQvGYUzZXrUJ2
+         AC+zDRQuIFMKpfrdw7jSFY0/QG5mIsuAzkqd/Ocq+hQbNzJ9n4SpSt4FG0y4lzwFYAfq
+         FILkm4KnfGanqpQEjiQNhV4vHzQd8yjSSMfvyUCRcXrV5ZlydeGhQAUv5aiSoCnXHYzO
+         c62uuKKQ00JnQXDtnu6CMTllxwxMTju5z+6Ja8qw0lTwMT5KUIMlyZVsbd4f3aKRJFZS
+         N/Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RaXB6dN6ptekdk24JrkBO1mYR3sj0qJtXHnyugR9QHo=;
-        b=jvZnPcMMX5HrLxmS8p5gwzNogojp+FjPM1MUI/0RfC9l6aUx9WWWJjLC8q0J644dDY
-         4GmzavCoDcf+/IgCgoDk21QesLDtniLJquo+ZjP0PnKUQbAfzRKAiU2CiUhdTH0yQPij
-         DKvz46tHUNKuNrodLhKnej1tlC2+RwgrQCZWT6HgIhIH9NvrY2hcl8b4bkWhoqFCCmIZ
-         6zeeHjVAyKkNST0CZFQeQv6u1dB7ANoVDhmnzn6FXKBUqQRRD0BeJaJIe4jQB9FYdjlZ
-         0ywcWNw3/+lWrhQILwj5zDnoQVTEXKwin1+wzbK5xBxo7doKij0RkzmurQKi5XmUl8P5
-         F1aQ==
-X-Gm-Message-State: ANoB5pkrqGpIrbJqgJaLLIy2dkR+00jV8Bf7yFZcvlIW5CC3cbrrB8IK
-        Wj/B4CLcEUJorL9VvqZ5hFUt3Bs3j9ZTlQ==
-X-Google-Smtp-Source: AA0mqf5H8FEamvhBHsnS1Kb+wkjKZTuntz658YH1Sdaz0Lniv1d8nAxLjpLbjbvtqRkJtkzrb4z2ew==
-X-Received: by 2002:a19:6553:0:b0:4b0:fbfe:84fb with SMTP id c19-20020a196553000000b004b0fbfe84fbmr367750lfj.417.1668154913117;
-        Fri, 11 Nov 2022 00:21:53 -0800 (PST)
+        bh=kUHoLnVuberQNZ4w03ayKoSTheEu76ftgtJi7L4SomA=;
+        b=3rLuFKR/xwEH3toOAIkrpEt6rTDR1ZyDjTVC/Aum66RZ9NqSUFG04hDi6aRiXfOoOf
+         dYqdDizeXIBpyaehPo+vUY4RGok9QcC+jeYGLrFfCLl3NN6hb+CWN5excV3oWdbaC4A/
+         7K6V/PwzgEIsTT2EqlrAgnv8Qd+JivUvWvk17WkLWdxNFvu2WSFF/PSpb9jMN8Dr6SlR
+         kZmf+uVbmQ4ZmAzMYU7SEI2kERtUCTTfbohgTLoINdOs6TwcrWyvFeo8nZBeTrTT4pIQ
+         Vq2Spw2Un2cu2Cl68LtV8ak9Z9XmFx9HUIF308zrwLIuGcXpEmjpzNDJl1fs8uH6PzrT
+         o+XA==
+X-Gm-Message-State: ANoB5pmaCuY2JQp3k0/4kBrJFz284G2Ga2kJnS2dZfNtmYVP7hatI49O
+        6dOT7uQZRzrG8sVDng0cgPmZEQ==
+X-Google-Smtp-Source: AA0mqf5LWxhOH0nHdL7MHPc6ZR3hYH9MKC6VDlHgpC52RBpDBlhKAez5qZ/Kz90OTufFLzIPSf5pPQ==
+X-Received: by 2002:a2e:9397:0:b0:277:eba:937 with SMTP id g23-20020a2e9397000000b002770eba0937mr323773ljh.207.1668155167116;
+        Fri, 11 Nov 2022 00:26:07 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id f29-20020a05651c03dd00b0026e897e3236sm282161ljp.6.2022.11.11.00.21.52
+        by smtp.gmail.com with ESMTPSA id d19-20020a194f13000000b004a044928923sm207347lfb.293.2022.11.11.00.26.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 00:21:52 -0800 (PST)
-Message-ID: <affc49a4-ecbc-23c7-3d24-25cec1c302c7@linaro.org>
-Date:   Fri, 11 Nov 2022 09:21:51 +0100
+        Fri, 11 Nov 2022 00:26:06 -0800 (PST)
+Message-ID: <69c02b2c-1870-43dd-87f4-0fda8cb1eef7@linaro.org>
+Date:   Fri, 11 Nov 2022 09:26:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: add Facebook Greatlakes
- board
+Subject: Re: [PATCH] dt-bindings: arm: sunxi: add Pine64 SoPine Clusterboard
 Content-Language: en-US
-To:     Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Renze Nicolai <renze@rnplus.nl>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     garnermic@fb.com, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
- <20221111034828.2377-2-Delphine_CC_Chiu@Wiwynn.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Conley Lee <conleylee@foxmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     devicetree@vger.kernel.org
+References: <2335500.ElGaqSPkdT@werkpc>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111034828.2377-2-Delphine_CC_Chiu@Wiwynn.com>
+In-Reply-To: <2335500.ElGaqSPkdT@werkpc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +80,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 04:48, Delphine CC Chiu wrote:
-> Document the new compatibles used on Facebook Greatlakes
+On 10/11/2022 21:57, Renze Nicolai wrote:
+> Add device tree bindings for the Pine64 SoPine Clusterboard.
 > 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where is the DTS? Are you documenting existing compatible from linux-next?
 
 Best regards,
 Krzysztof
