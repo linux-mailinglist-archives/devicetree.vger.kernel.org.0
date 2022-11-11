@@ -2,369 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4F9B6251E0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 04:49:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF8C6252AB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 05:35:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232269AbiKKDtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 22:49:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44228 "EHLO
+        id S233020AbiKKEfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 23:35:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiKKDtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 22:49:04 -0500
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2052.outbound.protection.outlook.com [40.107.117.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0E932048;
-        Thu, 10 Nov 2022 19:49:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NNRj1xIDWCCgl3mTmqJLUb2p7IPdmbuUI1E2scyFhGlIuGwG7CZxLcixcgAYxmwLBWubtIde/O42nf9Nio+7cTR49GcdEBH2NBK0XulIz1gHWgXeX367WVyMnWrNyYOMHCqyu/CMMH/08qx7hzEp2Z4MA+mudtVqWGqsaZf9d8AM4oFz5PyNQqPBzd2aqYzF1USEJaSneekDrVuPVCu14XKKQm7xSgzyXb6Vzj6eLrx9evm3pGKqhHCBpRJGhtbW+L+JJpiPz5T+oNaxfSVQeutXKFUWvwEGkHP62f+6/MV99kWeHofmm+Y0VmTu4dJygFZ0ornxVhw8P2ZUzNE3wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3B1DDayC2iYO3nHKpEHJeCQ9S60BqBEkQrVGtKdSfVM=;
- b=Y1+FweePytCVQjvTLacNNaip7Vgjt7PdvTN7eXd2lEXUnoKLDeswZ6pudFf2MEZj1s35KoaCperbr6Fb7QFzfEiIWqzlZ8WpXzkbdlG4uOHxO0kVQfUvsUKxTami1k+KXSM/o7v5dyiwdjWN2yiBoRHtn5jPqt1T1JpRP8RsMvYMox1zQS/t3a16lerlYaeaaUPiT3nhm1mxDqlLPwWiy2331Hes+2OItW+2q8W3oa66osRPmI41d4yaijTyD3W055w4IeGiPqbWYENl2dVY6n9KMDu/XpOJSrIJRgFqpXkBlVb7Ce1amYJkssbnv2Jennp/pvzC0NIwN/RlDve0jg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3B1DDayC2iYO3nHKpEHJeCQ9S60BqBEkQrVGtKdSfVM=;
- b=HfkFBDESSNylPZGnXLDJlb+N63oaaZDCcGe5MkGKsxfXOfLst/lRYpDqPc/blwQC/tdMAVyTyfLl8FglgPwh0eDTZkdq0I3WjLzf4Ar5XJPBq7ALXRK3CP2ZiC5jq8JrUeqwd2JEdDBan1rJvgul1lMLpj+t7c+B/X4jlOYCsSwIRjQdkl0fZ/1DbzRRgbdSmJktqx6qZpGgl2mFuQNj+LWFRPeZHCwKQ6lHmVB8qFbnwPfivVRAFcWrmVjH05vmN3PNR6twlnqLPq47Ksnyq6E3Mgjbwn0Dl7ycqr5cdo3i8ecWYa0GX1MA6TrlE5PjHfqn5V9FgxSYXGaO8gz1dQ==
-Received: from TYCP286CA0052.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2b5::13)
- by TYZPR04MB4127.apcprd04.prod.outlook.com (2603:1096:400:2d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Fri, 11 Nov
- 2022 03:49:01 +0000
-Received: from TYZAPC01FT041.eop-APC01.prod.protection.outlook.com
- (2603:1096:400:2b5:cafe::4b) by TYCP286CA0052.outlook.office365.com
- (2603:1096:400:2b5::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13 via Frontend
- Transport; Fri, 11 Nov 2022 03:49:01 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- TYZAPC01FT041.mail.protection.outlook.com (10.118.152.116) with Microsoft
- SMTP Server id 15.20.5813.12 via Frontend Transport; Fri, 11 Nov 2022
- 03:49:01 +0000
-From:   Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-To:     patrick@stwcx.xyz, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     garnermic@fb.com, Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] ARM: dts: aspeed: greatlakes: Add Facebook greatlakes (AST2600) BMC
-Date:   Fri, 11 Nov 2022 11:48:26 +0800
-Message-Id: <20221111034828.2377-3-Delphine_CC_Chiu@Wiwynn.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
-References: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZAPC01FT041:EE_|TYZPR04MB4127:EE_
+        with ESMTP id S232888AbiKKEfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 23:35:32 -0500
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7546B212
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:35:09 -0800 (PST)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221111043508epoutp04fc1dd1fee3f1e40fabaae08ba0696614~mba6ECWqc2673926739epoutp04B
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 04:35:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221111043508epoutp04fc1dd1fee3f1e40fabaae08ba0696614~mba6ECWqc2673926739epoutp04B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1668141308;
+        bh=6h15vmBu1KlWANEt8q88z1t98BduIhW5b68r16XTLlI=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=On8UyeehhKTm5fH5JVYlilXF3E2zV+l1LfSi8JknthHcRERyH8/UsLvOqhOz0eHJ3
+         Xet8m/VPgAoMqP2UgzjUAhSaHDfd49kaZty5H4aypdpPzPNVwZUS49YtZlfI78bQHV
+         6K2PUf81tFxpTZ26RdQNSLN5NnZp+Vfq0/Jv3HPc=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20221111043507epcas5p453119b36e9f1aec4f81573152195b725~mba5YPp_p0129601296epcas5p4h;
+        Fri, 11 Nov 2022 04:35:07 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.179]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4N7m8S6qwTz4x9Q6; Fri, 11 Nov
+        2022 04:35:04 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0D.88.01710.8F0DD636; Fri, 11 Nov 2022 13:35:04 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221111040651epcas5p25baa64cda35ccabdc28081ed50b40a9f~mbCNxl-oa1633416334epcas5p2D;
+        Fri, 11 Nov 2022 04:06:51 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221111040651epsmtrp279291d471f5194e1af3257e224072880~mbCNwjDcu1387513875epsmtrp2Y;
+        Fri, 11 Nov 2022 04:06:51 +0000 (GMT)
+X-AuditID: b6c32a49-a41ff700000006ae-7b-636dd0f86efa
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C8.A0.18644.B5ACD636; Fri, 11 Nov 2022 13:06:51 +0900 (KST)
+Received: from FDSFTE314 (unknown [107.122.81.85]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221111040648epsmtip14a368cde17f779d482923804ba92d3bf~mbCKylUd32425424254epsmtip1v;
+        Fri, 11 Nov 2022 04:06:48 +0000 (GMT)
+From:   "Vivek Yadav" <vivek.2311@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <rcsekar@samsung.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>,
+        <alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
+        <robh+dt@kernel.org>
+Cc:     <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <aswani.reddy@samsung.com>, <sriranjani.p@samsung.com>
+In-Reply-To: <277004ed-3b6b-4ee5-39e4-beb75a272e60@linaro.org>
+Subject: RE: [PATCH v2 1/6] dt-bindings: Document the SYSREG specific
+ compatibles found on FSD SoC
+Date:   Fri, 11 Nov 2022 09:36:46 +0530
+Message-ID: <001601d8f583$06d01250$147036f0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 13854d0a-b2c5-421e-5f1b-08dac397abea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gSKsd2hpP0qyu6J01K6gk1KmjHDL0kgieRxwGtRPCO+17EGc+2b/7/dCg2/Kj2Y47uO2DHEwU4dGPv53X2W/EBL3WM7zPhAbeQo6XdznRCKmuEkpZctb5VDsHZ7Hps573bTnQeBWknSI3cJ1a9JgtAyge5rh13vlAPA+d5zOV7J4vU+Oy+uhVbLOXtOm4q36XwUHXyJCNbGDwhzmYG0LGFlpBptHeDB/ctaPQN0gtkamIPO9Qge29GIPfdq03f8Hb2jDLH1Y4ChgdeZBvaLLe3QkbgT4jADXV48u7Of1+avCffRqb+p3Z9tTQDLoU4chNTrT5eMmWa0GWBRmDuAzdvYJh4Th4JWIj10IjbIc9TEoFjNFiCxRqbPYX7ihN83CtHXS0Va+2gbi+Rfg2MHRkSBa6Ih+uG4EI8vUFckIlTgVQvb2NzkvscuhOYLq2zc2R75iPPN1qV2N5UWWzL6DVF8VJ/ghjXHbaDnelxWQBza4C8aCjZPZbjCC9HKfe5ugm5xIJLV1mZpZ3thxsKsCzJSF4LyBNxe3NN/abVcXAOCF3y/qOIsUAfRX/cu1a82/rMtcxcYtd7St042jmOimWBGaM0zmcka9lIA09pJtO8JN2tre8htN9KuphDjLEdL0SBvrsR4W/uNhqOmPiANwOc1f9kwQtDSfbIbCGUk+IyvnXidzg0hOh9Y9QGWFZB7Juhf7VrCwxW/Q6SsQoqba6MFj0lGmPqQMnXsHJ1fUsl4klbQ7SKxw8L/rT4YWiTlr
-X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230022)(6069001)(4636009)(136003)(396003)(39850400004)(346002)(376002)(47680400002)(451199015)(46966006)(36840700001)(336012)(82740400003)(2616005)(956004)(1076003)(186003)(26005)(110136005)(47076005)(356005)(81166007)(6512007)(36860700001)(316002)(2906002)(7416002)(8936002)(5660300002)(40480700001)(4326008)(82310400005)(9316004)(478600001)(6486002)(6506007)(6666004)(41300700001)(70206006)(36906005)(36736006)(8676002)(70586007)(36756003)(86362001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 03:49:01.2620
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13854d0a-b2c5-421e-5f1b-08dac397abea
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT041.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB4127
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFejcOECimRbNc2gYBlewkpfd/ZqQHz7ogqAVwjo3kCSHwOhwGfuKaeAOJGcdCu7RURAA==
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xTZxjGc3p6Tlugy+Ey+SDRdEWjIpd2lu6rATXBLGdRlM0MdZKw5nBC
+        ETitbdkYJo6iU2GAMGQ4hojXYZmwtFAql+o6QBgdkLG5EJhyFQM4KiXbnAIrPbLx3+/93ufJ
+        e/ny8lE/Ay+Yn8roaS2jTBfjXlzLD1s3h//dn0FJLF0yOFJlwaHd3MiDlX2nufByey8GJzvH
+        eLDoySgK22bciX5LEQZN4w8waPyrDIWj04fgQHMlDi/22Tiw/uoFLuysXgf/7JlF4NXGBR4c
+        dbbyYEW/FYOftbXz4NBsHQZvPLyD7V5HNtwa5JDVpkzy2c9DCGky5uHk8INWnDRf/5Q8vygh
+        52y/4mRRgxEhl3Iv8UiXaUO89wdp0SpamUxrRTRDqZNTmZQY8d6DSbFJUXKJNFyqgG+JRYwy
+        g44R79kXH/52arp7VLHoI2V6pvspXqnTiSN3RmvVmXpapFLr9DFiWpOcrpFpInTKDF0mkxLB
+        0PodUonkzSi38MM0leHpIE9TH5BVdcqA5yAOIh8R8AEhA8tnzVg+4sX3I1oQ4Dj3PZcN5hEw
+        bptE2MCFgBvncjmrlvsTDpxNNCNgeOQlygZTCPjt+nmPCifCwKnSRY89gDCgoHy+0xOgRC4H
+        2Gbs+IpKQOwEVoPLw/5EMmi8O46uMJfYBO6YnNgKCwkFGK6p5rLsC7q/mvAwSmwDN6/MoGxP
+        IvB88qZHH0AkgIVbNozVBIKO5wWe9gDxjQDcttfgrGEPKCxq4LHsD6bvr3IwcP3R9kpDAetS
+        HsayClSXtCIs7wL3fql0N8F3F9gK6psj2ef1oOzHOg5b9zVQ+GLi1b6EwFq1yhvBE1cxtmJd
+        KVXY61+MiCvWTFaxZrKKNRNU/F+sGuEakSBao8tIoXVRGilDf/zfl1PqDBPiuYXQd6zI7yPO
+        CDvC4SN2BPBRcYDQe0sa5SdMVn6STWvVSdrMdFpnR6Lc6y5Bg1+n1O5jYvRJUplCIpPL5TLF
+        drlUHCi8djGU8iNSlHo6jaY1tHbVx+ELgnM4TWfGaG2O8dpLIQh9eERQddjoelell37eHUK9
+        mEwR1fo8CgqaEzjIkLwSX4PZljjQc9bh21vguvfT3ekz24/si7PFHO6w7vf1OdYEc9q/PL4c
+        Ep7QHDc157XlDfPj7EZLgb53KC9htmCsPGwoNneqL8vnRITr0tMdFNPe+O2xWl+ftubx7xbL
+        9nt/0ZnYYexynaCoAVVLmbOt9Gip+Sj/wKOw+vnjTQHFrvK8C4m76ycsPdPETPbGg93TuyKX
+        5e8bahVBXiIndG7qPhl35fQzRaxkQ83mvdFkYFbXIXowiz45B1vq4qoWohvWlziZ0ELH0j9f
+        b+Pll77XhDV0Rjy+LebqVEppKKrVKf8FSw7RWZQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sb0zMcRzH973fvyvKr6vVVyZ2EkqnzJ9vW2vmAT8siU0WVqf7LdRd566Q
+        B0RanFSU6KTumlp3U3Iq4bpxJU50pbljNaRupz+U9cdohevGevbaXu/3e58HHy7GG8B9uUck
+        qaxMIkzmk654QzPfL3j/S3FCSKXVA30qbSCR8X49hUrM53FU1tJOIFvrZwrlfunFUNPQX9HR
+        kEsgXZ+FQNof1zDUOxiDuh6VkOiG2cBBd8sLcdSq8kaTbcMAldePU6h3VE8hZUcjgbKaWijU
+        PVxDoIoPD4lN3kyd5j2HUenSmO9vugGj014kmR6LnmTu3z7D5E2HMCOGtySTW6cFzMy5WxQz
+        pvPbNS/WNVzEJh85zsrWRMS7Hv71sY+QDnueHDcUUxkgm1YAFy6k18Hn/a9IBXDl8uhGACeG
+        moFT+MLCVwO4kz2hZsZOOUM2ACerOjGHIOnVMLNgerbgRV/BYFP5UkcIoxUc+PrdDO5sdHJg
+        bcXgbMqFjoCNZ8dIB3vSh2Br5xPKwTi9HD7UjRIOdqPDYE+VCneyBzQV988yRgdB23vbf65U
+        D2HO85bCn7ZKwnnFXjiuMRDOjA989jMHyweeyjlTyjlTyjlTyjkVFcC1YCErlYsTxfJQ6VoJ
+        e0IgF4rlaZJEQUKKWAdmvyEwsBHotaMCI+BwgRFALsb3cpu3MimB5yYSpp9iZSlxsrRkVm4E
+        i7g438etQ2GK49GJwlQ2iWWlrOyf5XBdfDM4Qmv3SMG2M83d4vSr509MtNU2qHyEBwt/LT52
+        KSr89LrJ6tMBY5rV7QX9puO7LwZN01G71E2hl3SRWz+IHijUC3rdf5tqLNuDlr0wzPQnmRX6
+        JTEZVw2CgRHRzj0T+qgydzIl9Y51Ijh6c25OQHzX07r8b8u6jkrI7VnW6Bq/FE2QVnCz2KPI
+        N3hPtnxK/fjL67zSIllP2qB/n/llhS0yyb4vtseUZd8RYr95IdPCSM1GbXrWqo8B1rAVnC3X
+        Wza2l+TFWoxhiaVX5t+LyikcLNZdXu+tjmOnEjYFU/5ft3Vkb3A/kP/cpbXarzl2zeO3pXZe
+        ZM3tA9XRp6putHiJBG18XH5YGBqIyeTCPwwyymt8AwAA
+X-CMS-MailID: 20221111040651epcas5p25baa64cda35ccabdc28081ed50b40a9f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221109100245epcas5p38a01aed025f491d39a09508ebcdcef84
+References: <20221109100928.109478-1-vivek.2311@samsung.com>
+        <CGME20221109100245epcas5p38a01aed025f491d39a09508ebcdcef84@epcas5p3.samsung.com>
+        <20221109100928.109478-2-vivek.2311@samsung.com>
+        <709daf8b-a58e-9247-c5d8-f3be3e60fe70@linaro.org>
+        <000001d8f4f6$1c7e96e0$557bc4a0$@samsung.com>
+        <277004ed-3b6b-4ee5-39e4-beb75a272e60@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add linux device tree entry related to
-greatlakes specific devices connected to BMC SoC.
 
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/aspeed-bmc-facebook-greatlakes.dts    | 241 ++++++++++++++++++
- 2 files changed, 242 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 6aa7dc4db2fc..d18605aa783d 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1594,6 +1594,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-elbert.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
-+	aspeed-bmc-facebook-greatlakes.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
- 	aspeed-bmc-facebook-wedge40.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-new file mode 100644
-index 000000000000..8c05bd56ce1e
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2022 Facebook Inc.
-+
-+/dts-v1/;
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/leds-pca955x.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Greatlakes BMC";
-+	compatible = "facebook,greatlakes-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+				<&adc1 0>, <&adc1 2>, <&adc1 3>, <&adc1 4>,
-+				<&adc1 5>, <&adc1 6>;
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc2";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+	temperature-sensor@1f {
-+		compatible = "ti,tmp421";
-+		reg = <0x1f>;
-+	};
-+	// NIC EEPROM
-+	eeprom@50 {
-+		compatible = "st,24c32";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+	multi-master;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	eeprom@51 {
-+		compatible = "atmel,24c128";
-+		reg = <0x51>;
-+	};
-+	eeprom@54 {
-+		compatible = "atmel,24c128";
-+		reg = <0x54>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	temperature-sensor@4f {
-+		compatible = "lm75";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+			&pinctrl_adc2_default &pinctrl_adc3_default
-+			&pinctrl_adc4_default &pinctrl_adc5_default
-+			&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc10_default
-+			&pinctrl_adc11_default &pinctrl_adc12_default
-+			&pinctrl_adc13_default &pinctrl_adc14_default>;
-+};
-+
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
-+};
--- 
-2.17.1
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> Sent: 10 November 2022 17:42
+> To: Vivek Yadav <vivek.2311=40samsung.com>; rcsekar=40samsung.com;
+> krzysztof.kozlowski+dt=40linaro.org; wg=40grandegger.com;
+> mkl=40pengutronix.de; davem=40davemloft.net; edumazet=40google.com;
+> kuba=40kernel.org; pabeni=40redhat.com; pankaj.dubey=40samsung.com;
+> ravi.patel=40samsung.com; alim.akhtar=40samsung.com; linux-fsd=40tesla.co=
+m;
+> robh+dt=40kernel.org
+> Cc: linux-can=40vger.kernel.org; netdev=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
+> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org;
+> aswani.reddy=40samsung.com; sriranjani.p=40samsung.com
+> Subject: Re: =5BPATCH v2 1/6=5D dt-bindings: Document the SYSREG specific
+> compatibles found on FSD SoC
+>=20
+> On 10/11/2022 12:18, Vivek Yadav wrote:
+> >>> +maintainers:
+> >>> +  - Alim Akhtar <alim.akhtar=40samsung.com>
+> >>> +
+> >>> +description: =7C
+> >>> +  This is a system control registers block, providing multiple low
+> >>> +level
+> >>> +  platform functions like board detection and identification,
+> >>> +software
+> >>> +  interrupt generation.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>
+> >> No need for oneOf.
+> >>
+> > Removing this results into dt_binding_check error, so this is required.
+>=20
+> No, this is not required. You do not have more than one condition for one=
+Of.
+>=20
+Oh, ok I got it. I was not removing =22-=22 before items, which is resultin=
+g an error. I will update this in next patch series. Sorry for confusion.
+> >>> +      - items:
+> >>> +          - enum:
+> >>> +              - tesla,sysreg_fsys0
+> >>> +              - tesla,sysreg_peric
+> >>
+> >> From where did you get underscores in compatibles?
+> >>
+> > I have seen in MCAN Driver <drivers/net/can/m_can/m_can_platform.c>
+> and also too many other yaml files.
+> > Do you have any ref standard guideline of compatible which says
+> underscore is not allowed.
+>=20
+> git grep compatible arch/arm64/boot/dts/exynos/ =7C grep _ git grep
+> compatible arch/arm/boot/dts/exynos* =7C grep _
+>=20
+> Both give 0 results. For few other SoCs there such cases but that's reall=
+y,
+> really exception. Drop underscores.
+>=20
+git grep compatible arch/arm64/boot/dts/ =7C grep _ =7C wc -l=20
+This gives me 456 location, am I missing anything here ?
+Anyway I will replace with =22-=22 in next patch series.
+>=20
+> Best regards,
+> Krzysztof
+Thanks for review the patches.
+
 
