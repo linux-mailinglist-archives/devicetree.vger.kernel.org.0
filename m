@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 787116255D8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7414A625611
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 10:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233429AbiKKI5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 03:57:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44584 "EHLO
+        id S233525AbiKKJCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 04:02:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231167AbiKKI5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:57:05 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE929F5AA;
-        Fri, 11 Nov 2022 00:57:01 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id h9so5646951wrt.0;
-        Fri, 11 Nov 2022 00:57:01 -0800 (PST)
+        with ESMTP id S233567AbiKKJB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 04:01:28 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E048D7FC;
+        Fri, 11 Nov 2022 00:58:53 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id j15so5614843wrq.3;
+        Fri, 11 Nov 2022 00:58:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KaMcBLsoVyqtu03uWUf8qFf/NtXFui3YcFfaHhghhcg=;
-        b=dcUIec17fXShU0D22Ke0SSuSdFN+k+3iWRH8dz53i8WclFqju4JkG3PwJpCH+pnNrb
-         IEvbY0q8xwL2Vys7UlnRa+zXwyy+63UIkmfmd26FAdfebzmAmc5bRO+6FKjwvBJaH/0u
-         Xr3R2QNGt+JAQnqQajFyZU6jJOdDYf1Q+dty4/dlksaSHmm18+5Tks5yGne3Gc0z3KYY
-         N+1V4sZsWV+V3TJ4M8LMG8UTDcr5JLk2gHdCmREptMv28bLEkustBhNA4qofg5wUwaKz
-         VW+sgXmPESSIR9EwbeEpAC6aNinw8pcBx3j7Y88H+3DuZaoMXx0fKzJrMSiB+fg1S/ja
-         zp/A==
+        bh=mhPdRtC5P9el746wpRaUn88cJ5QQDfecOo6k2qO/YRw=;
+        b=ODGS5/N8z37QTHKd5wbq4rm9UfLrcVtAuaFYHP7eg1RmB60fM6AbAEWq7/1Gp0P4uw
+         YXxXdjEgcOWEnJR16XgxwN3t+Hxp7N4ob7EgqVR2tGxOjP8bhvyO90i78jwlF1f7ZIBF
+         CnhBcXg5/dag8qOYkgsMD5lm3xbkFYbApk+XFYTzVjSoF6w0LX9NPRMw4Phfbgk2rg1X
+         3KM92AqpV5pzv2vAuaWVl621EA3vNJvQD1V8jfIu4Non1oiNsEP97cxAilSxgWTp9kDh
+         KPjURzRoOe4nASGRYWUqrLCwAq+E6G7PWCTtMPiC0vVf5IYS53//UqhZKcvhiMIUsRyv
+         W4lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KaMcBLsoVyqtu03uWUf8qFf/NtXFui3YcFfaHhghhcg=;
-        b=A6kABpa4DOusCqULcTf0b2VdPsv5kZmvSZHs1aNprhjGsHkGFlhtTgmUKpvJnj6yhe
-         McI797r/JS9dmlSsgSHFRW+7bVth7+/r5bPNXS5+I1zSsWhFvpxtYJXfSWQswSkiZ1VM
-         VGJOSi0m+2c96tWdI2JQTyy3bEhvBL+wLxaLMlu5Rq++PLVbQaRL3QyCMBHztITcQm74
-         ikrY4o8NlsgflfK0b/tyYUAGqCJ9XYPeNZ4rM3lOtWoUDLteJdDWiYErk1r0+OexlVdE
-         Uvn5tuGDo1h8IDot2YCFE4yKoUhC/FeOU3jB0wugxxytuWEHw8q4Ps9JEL4M7HFWAw0i
-         Hy6A==
-X-Gm-Message-State: ANoB5pnkbdTJhzBOGdHwPFx+5srXIq1qeb4wA/guZEejDoUhWanHk7gi
-        Q4z2TgWacRMYfYDIxFh43dA=
-X-Google-Smtp-Source: AA0mqf4N7yuM8IdQE3lXSfvVQUBKrjMvD2Eg5wiPoWiejd00raH0z2svf3porYC6FthSfggv3GyuAg==
-X-Received: by 2002:a5d:558b:0:b0:236:7670:68b5 with SMTP id i11-20020a5d558b000000b00236767068b5mr605179wrv.149.1668157020392;
-        Fri, 11 Nov 2022 00:57:00 -0800 (PST)
+        bh=mhPdRtC5P9el746wpRaUn88cJ5QQDfecOo6k2qO/YRw=;
+        b=vIdcwojdI+r6DwTTcQV+ff05m/Ib7bfDAR7/f++tnzvtDc4UXxPRIwFlg97CUzgDYG
+         YHcfcnIboLRQjch9nBRAJeDb5JdT3K5jXjUIDmfiqk6wro1EU/u/DKJJ1wkwFU+irVzq
+         sIKOEEb3sbCj8TF2wBOsD21WQ33ke2W+t6XotQ0xmhTQL0scoFUASLBmHDNaBBLqKyW0
+         Ch5iiLmddam4s//2T6oEs2TpQFTXRQoekASVLNxqAbUyNV2uTJZ25wVVSzdcGfQwmXeF
+         YcZf/cbQi+ak898rZamO6E7Es9ym3x76QvbsehAen32f3Ub8KPaz6osjB/qFo+PlrKVj
+         CjgQ==
+X-Gm-Message-State: ANoB5pltW954eF8KHT3HqPda3sEPH5am9u9vQMcABICKonnkXayUnYXP
+        HZgJ5J8vv3s97OMiXTLWZkw=
+X-Google-Smtp-Source: AA0mqf6gSWwlgp9C2vWz+Si18kl9g/4RJgfoUqSd0qYNeAadlvvMv6N2lPtTR6po77IdmggQlHlK1Q==
+X-Received: by 2002:adf:ea0c:0:b0:236:60e8:3cca with SMTP id q12-20020adfea0c000000b0023660e83ccamr621581wrm.471.1668157131624;
+        Fri, 11 Nov 2022 00:58:51 -0800 (PST)
 Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id d8-20020a1c7308000000b003cf7928e731sm2223476wmb.9.2022.11.11.00.56.58
+        by smtp.gmail.com with ESMTPSA id j5-20020a5d5645000000b0022da3977ec5sm1283001wrw.113.2022.11.11.00.58.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 00:56:58 -0800 (PST)
-Message-ID: <1925e515-1a0b-f1bf-0f99-47a45de10d06@gmail.com>
-Date:   Fri, 11 Nov 2022 09:56:57 +0100
+        Fri, 11 Nov 2022 00:58:49 -0800 (PST)
+Message-ID: <9955078b-72cd-4260-0cc2-ba1b9e0a0bdd@gmail.com>
+Date:   Fri, 11 Nov 2022 09:58:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [RFC v3 04/11] arm64: dts: mt7986: add crypto related device
- nodes
+Subject: Re: [RFC v3 05/11] arm64: dts: mt7986: add mmc related device nodes
 Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
         linux-mediatek@lists.infradead.org
@@ -63,12 +62,11 @@ Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sam Shih <sam.shih@mediatek.com>,
-        Vic Wu <vic.wu@mediatek.com>
+        linux-kernel@vger.kernel.org, Sam Shih <sam.shih@mediatek.com>
 References: <20221106085034.12582-1-linux@fw-web.de>
- <20221106085034.12582-5-linux@fw-web.de>
+ <20221106085034.12582-6-linux@fw-web.de>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221106085034.12582-5-linux@fw-web.de>
+In-Reply-To: <20221106085034.12582-6-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,73 +84,165 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 06/11/2022 09:50, Frank Wunderlich wrote:
 > From: Sam Shih <sam.shih@mediatek.com>
 > 
-> This patch adds crypto engine support for MT7986.
+> This patch adds mmc support for MT7986.
 > 
-> Signed-off-by: Vic Wu <vic.wu@mediatek.com>
 > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-
-Applied, thanks!
-
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  4 ++++
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 15 +++++++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts |  4 ++++
->   3 files changed, 23 insertions(+)
+> v3:
+> - fix pullups/pulldowns for mt7986a-rfb to have generic bias-pull-*
+> 
+> v2:
+> - update mmc-node because clocks changed
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 87 ++++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 15 ++++
+>   2 files changed, 102 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> index de5d771e5251..2b5d7ea31b4d 100644
+> index 2b5d7ea31b4d..e1a0331aaa5f 100644
 > --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
 > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> @@ -43,6 +43,10 @@ reg_5v: regulator-5v {
+> @@ -5,6 +5,8 @@
+>    */
+>   
+>   /dts-v1/;
+> +#include <dt-bindings/pinctrl/mt65xx.h>
+> +
+>   #include "mt7986a.dtsi"
+>   
+>   / {
+> @@ -24,6 +26,15 @@ memory@40000000 {
+>   		reg = <0 0x40000000 0 0x40000000>;
+>   	};
+>   
+> +	reg_1p8v: regulator-1p8v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fixed-1.8V";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+>   	reg_3p3v: regulator-3p3v {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "fixed-3.3V";
+> @@ -76,7 +87,83 @@ switch: switch@0 {
 >   	};
 >   };
 >   
-> +&crypto {
+> +&mmc0 {
+> +	pinctrl-names = "default", "state_uhs";
+> +	pinctrl-0 = <&mmc0_pins_default>;
+> +	pinctrl-1 = <&mmc0_pins_uhs>;
+> +	bus-width = <8>;
+> +	max-frequency = <200000000>;
+> +	cap-mmc-highspeed;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	hs400-ds-delay = <0x14014>;
+> +	vmmc-supply = <&reg_3p3v>;
+> +	vqmmc-supply = <&reg_1p8v>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
 > +	status = "okay";
 > +};
 > +
->   &eth {
->   	status = "okay";
->   
+>   &pio {
+> +	mmc0_pins_default: mmc0-pins {
+> +		mux {
+> +			function = "emmc";
+> +			groups = "emmc_51";
+
+Waiting on
+https://patchwork.kernel.org/project/linux-mediatek/patch/20221106080114.7426-3-linux@fw-web.de/
+
+Please correct me if I'm wrong.
+
+Matthias
+
+> +		};
+> +		conf-cmd-dat {
+> +			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
+> +			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
+> +			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
+> +			input-enable;
+> +			drive-strength = <4>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
+> +		};
+> +		conf-clk {
+> +			pins = "EMMC_CK";
+> +			drive-strength = <6>;
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
+> +		};
+> +		conf-ds {
+> +			pins = "EMMC_DSL";
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
+> +		};
+> +		conf-rst {
+> +			pins = "EMMC_RSTB";
+> +			drive-strength = <4>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
+> +		};
+> +	};
+> +
+> +	mmc0_pins_uhs: mmc0-uhs-pins {
+> +		mux {
+> +			function = "emmc";
+> +			groups = "emmc_51";
+> +		};
+> +		conf-cmd-dat {
+> +			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
+> +			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
+> +			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
+> +			input-enable;
+> +			drive-strength = <4>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
+> +		};
+> +		conf-clk {
+> +			pins = "EMMC_CK";
+> +			drive-strength = <6>;
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
+> +		};
+> +		conf-ds {
+> +			pins = "EMMC_DSL";
+> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
+> +		};
+> +		conf-rst {
+> +			pins = "EMMC_RSTB";
+> +			drive-strength = <4>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
+> +		};
+> +	};
+> +
+>   	spi_flash_pins: spi-flash-pins {
+>   		mux {
+>   			function = "spi";
 > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 58bbecfbab98..1c7a973c28ca 100644
+> index 1c7a973c28ca..32c26b239ae6 100644
 > --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
 > +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -205,6 +205,21 @@ trng: rng@1020f000 {
+> @@ -284,6 +284,21 @@ ssusb: usb@11200000 {
 >   			status = "disabled";
 >   		};
 >   
-> +		crypto: crypto@10320000 {
-> +			compatible = "inside-secure,safexcel-eip97";
-> +			reg = <0 0x10320000 0 0x40000>;
-> +			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "ring0", "ring1", "ring2", "ring3";
-> +			clocks = <&infracfg CLK_INFRA_EIP97_CK>;
-> +			clock-names = "infra_eip97_ck";
-> +			assigned-clocks = <&topckgen CLK_TOP_EIP_B_SEL>;
-> +			assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>;
+> +		mmc0: mmc@11230000 {
+> +			compatible = "mediatek,mt7986-mmc";
+> +			reg = <0 0x11230000 0 0x1000>,
+> +			      <0 0x11c20000 0 0x1000>;
+> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&topckgen CLK_TOP_EMMC_416M_SEL>,
+> +				 <&infracfg CLK_INFRA_MSDC_HCK_CK>,
+> +				 <&infracfg CLK_INFRA_MSDC_CK>,
+> +				 <&infracfg CLK_INFRA_MSDC_133M_CK>,
+> +				 <&infracfg CLK_INFRA_MSDC_66M_CK>;
+> +			clock-names = "source", "hclk", "source_cg", "bus_clk",
+> +				      "sys_cg";
 > +			status = "disabled";
 > +		};
 > +
->   		uart0: serial@11002000 {
->   			compatible = "mediatek,mt7986-uart",
->   				     "mediatek,mt6577-uart";
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> index cd1763fa7f19..a98025112b5a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> @@ -43,6 +43,10 @@ reg_5v: regulator-5v {
->   	};
->   };
->   
-> +&crypto {
-> +	status = "okay";
-> +};
-> +
->   &eth {
->   	status = "okay";
->   
+>   		usb_phy: t-phy@11e10000 {
+>   			compatible = "mediatek,mt7986-tphy",
+>   				     "mediatek,generic-tphy-v2";
