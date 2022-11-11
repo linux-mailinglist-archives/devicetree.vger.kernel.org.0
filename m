@@ -2,154 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CE29625F36
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3FA625F41
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:18:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbiKKQPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 11:15:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47762 "EHLO
+        id S233015AbiKKQSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 11:18:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233015AbiKKQPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:15:33 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0111F2CA
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:15:32 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id l14so7084940wrw.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:15:32 -0800 (PST)
+        with ESMTP id S232841AbiKKQSO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:18:14 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C053865E57;
+        Fri, 11 Nov 2022 08:18:12 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id z14so7068156wrn.7;
+        Fri, 11 Nov 2022 08:18:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+g7U9kSnqY5Btf1Uczn6Yzb9ePFiuOCe7hrx3U2q9eg=;
-        b=dXV1z/nLCtHcsGAbmd4/sx14M+hs3Ax/nNV5scN6gizbeIVexySlOyS5zUoS3OPt/p
-         o+zw1LKg3h2Q6D5yNE/TV7M1kr/AEnFQwoIl9pu0WrtUbTRqnMs5IAQfkSYZP8cINSSB
-         uORi5kmGGzyosszvsx/vS+4dd+HrBMnNxkwCR3yPzStI/daNQ2eWf7IvtB4dCGcWJNBR
-         LPyfGjOKIHeBUjFyiC+HdZspFxlmUEcdVi2AVVNwIx2NWWEr9B16FyGLKPiiJUZHBU9e
-         9p7Lb46FAK2V8ddFLF+FXU7BuouHtvHiH2pe/7nA6jS/yjN2c09MZ7lFM5XqOJxIsfwe
-         6Mig==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ekBaJphyqfmOYkytyrR3z1wogeXER5E+SCF5H0rXjtI=;
+        b=TbEzvWNDq7YvXvBvGpFQPOG7x8z9bpqnVDb5936JHGIWYmtbx8AdbCwbHKlaqAylpy
+         RbQAqXNASJE2JT76nlngJsXZIzOQy8rjttLJXVfcAlU6EbdpKYF7aVucyVu1EUS610EX
+         Qm9G7Lo7576Uzn9zRJ3gDXqTRZnHaDiWbCC57HvlJxnnwasjfZgGXl4QY6RDyeh6lDDm
+         odN79gkC1XexHDnWCT059yCqgHsnD8o003HlgezN2cXARbGXbeHjiMLUcrVoIYLSPXPj
+         yAT/bG3KcW829rKbJrLkA3O9Idgpji055MPijDF/lc3cMLseXE48JkNrn2ao/nbHUebi
+         xk6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+g7U9kSnqY5Btf1Uczn6Yzb9ePFiuOCe7hrx3U2q9eg=;
-        b=FhyZV3BYjYKEP/DWUAxsQKXC/dvZwTQkBoElykqiCbuW1IPPkamlFLY6IZf8GrIjmp
-         bASKmaa7swpQ16TbTAdFYBZYZeMV4k7Ti42jlIbgsiw11sws/kOd1IKNmrtmQ9/6XR4+
-         NsbZym7d+BflgM6lyjVPfcXbMqsugoUFBwunWOV8ZvuzRbty1cHUv/Y1i6nGvAb2fXKV
-         tQ1cv8SWmUbE75hKI7fbvxsX4Efngo7pc7Sd38F/NADQ24Bs8j+gT1CeEY3ZjdVEztBz
-         PvvEx3OTAN6g1YwmdIMcMy2q5t9ZUszbQ6lyHcxDeY9dReUpRtlHjfVaUPXLMHZ8oLxU
-         8PYQ==
-X-Gm-Message-State: ANoB5plsIsvsiAsNC0tklm31uJYWQ/ZHZ6hyxEtiwTEljok5kntokSU5
-        sEAWsFz80RPZxHYuOA4Ob0LBuw==
-X-Google-Smtp-Source: AA0mqf4GeNbz9JHTSJP5g9TLotxo4pCO0oLfJto+zxfuG6Q4IekcenT2awtAK2VZVBbh8+rY2WluwQ==
-X-Received: by 2002:a5d:5913:0:b0:236:e0d:9ad with SMTP id v19-20020a5d5913000000b002360e0d09admr1751304wrd.692.1668183330925;
-        Fri, 11 Nov 2022 08:15:30 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id j5-20020a5d5645000000b0022da3977ec5sm2183279wrw.113.2022.11.11.08.15.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 08:15:30 -0800 (PST)
-Message-ID: <06da072c-8cf0-8181-3c32-4592fe41f9c2@linaro.org>
-Date:   Fri, 11 Nov 2022 16:15:28 +0000
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ekBaJphyqfmOYkytyrR3z1wogeXER5E+SCF5H0rXjtI=;
+        b=BKby/jYCGuLKdTaMBwfQL6e0yBz5qMqhMYjHuK1Pczqf/deqY3w3wQhT5aeE9pkcBW
+         /953hiRBSv91ABbVBv0kLLew3oTFuHsAjdaHG83hUuAvvRK8I+1XMno+gv+s8gHv6k9j
+         76R0ZOw6aAB35c+Lkc14+5S/ATLc3+s4L/nb1UIdLwy2gGTGhzGioTfAPlhzGO8aUTKw
+         6GA9rnnMAR0VIAgo2CfB6gukgWSplveu7X6wVFNwFN2G9O2yxWEuz8APK3clzTpvyzQ+
+         zJ1j5zmf78kl1J9Jk5yWFfMMqWc+oOjS0PV5z/7dL+xoAUHzmrJqCTaUUFKED/12RCFe
+         1mAg==
+X-Gm-Message-State: ANoB5pmgwyMRleznzFIyLVP/pM3Y5Wp4F7Feq6GTS4DCelxgmuTnG1ea
+        w3LdoZsQaLMs+CjN7KegSKk=
+X-Google-Smtp-Source: AA0mqf4MFQD8mRau9KVl7w6CUOifOCeWfzO7+r7u17yFoZi3DwpKM5KMzzdzYXXu8hWApMpLxrzkwQ==
+X-Received: by 2002:a5d:458c:0:b0:236:7005:7e4f with SMTP id p12-20020a5d458c000000b0023670057e4fmr1810831wrq.337.1668183491250;
+        Fri, 11 Nov 2022 08:18:11 -0800 (PST)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f20-20020a05600c155400b003c6f3e5ba42sm10971340wmg.46.2022.11.11.08.18.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 08:18:10 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: [PATCH v11 0/5] iommu: Support mappings/reservations in reserved-memory regions
+Date:   Fri, 11 Nov 2022 17:18:01 +0100
+Message-Id: <20221111161806.630527-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 00/10] ASoC: dt-bindings: Rework Qualcomm APR/GPR Sound
- nodes for SM8450
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Patrick Lai <plai@qti.qualcomm.com>,
-        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
+
+Hi,
+
+This version has several fixes over the previous v10, which can be found
+here:
+
+  https://lore.kernel.org/all/20221103133900.1473855-1-thierry.reding@gmail.com/
+
+Most notably this introduces a better mechanism to deal with DMA address
+translation issues caused by a mismatch of #address-cells in child and
+DMA parent nodes. This now introduces #dma-address-cells and #dma-size-
+cells, which can be used to override #address-cells and #size-cells and
+define a DMA bus that can be wider than the control bus.
+
+An example is included in the DT bindings, but here is an extract of
+what I've used to test this:
+
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
+
+                /*
+                 * Creates an identity mapping for the framebuffer that
+                 * the firmware has setup to scan out a bootsplash from.
+                 */
+                fb: framebuffer@92cb2000 {
+                        reg = <0x0 0x92cb2000 0x0 0x00800000>;
+                        iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+                };
+
+                /*
+                 * Creates a reservation in the IOVA space to prevent
+                 * any buffers from being mapped to that region. Note
+                 * that on Tegra the range is actually quite different
+                 * from this, but it would conflict with the display
+                 * driver that I tested this against, so this is just
+                 * a dummy region for testing.
+                 */
+                adsp: reservation-adsp {
+                        iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+                };
+        };
+
+        host1x@50000000 {
+                dc@54200000 {
+                        memory-region = <&fb>, <&adsp>;
+                };
+        };
+
+This is abbreviated a little to focus on the essentials. Note also that
+the ADSP reservation is not actually used on this device and the driver
+for this doesn't exist yet, but I wanted to include this variant for
+testing, because we'll want to use these bindings for the reservation
+use-case as well at some point.
+
+I've also been able to make use of this binding and the IOMMU code in
+conjunction with the simple-framebuffer driver to hand over a display
+configuration set up by UEFI to the Linux kernel.
+
+Janne has confirmed[0] this to be suitable for indirect mappings as
+well, though these patches don't implement that feature yet. Potential
+extensions to this have been discussed but are not yet included at this
+time to not further complicate things.
+
+Thierry
+
+[0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
 
 
-On 11/11/2022 11:35, Krzysztof Kozlowski wrote:
-> Adding sound support for Qualcomm SM8450 SoC (and later for SC8280XP) brought
-> some changes to APR/GPR services bindings.  These bindings are part of
-> qcom,apr.yaml:
-> 
->    apr-or-gpr-device-node <- qcom,apr.yaml
->      apr-gpr-service@[0-9] <- qcom,apr.yaml
->        service-specific-components <- /schemas/sound/qcom,q6*.yaml
-> 
-> The schema for services (apr-gpr-service@[0-9]) already grows considerably and
-> is still quite not specific.  It allows several incorrect combinations, like
-> adding a clock-controller to a APM device.  Restricting it would complicate the
-> schema even more.  Bringing new support for sound on Qualcomm SM8450 and
-> SC8280XP SoC would grow it as well.
 
-Why would this grow? All the dsp services are static and they will not 
-change per SoC unless there is a total firmware change in DSP.
+Thierry Reding (5):
+  of: Introduce support for #dma-{address,size}-cells
+  of: Introduce of_translate_dma_region()
+  dt-bindings: reserved-memory: Document iommu-addresses
+  iommu: Implement of_iommu_get_resv_regions()
+  iommu: dma: Use of_iommu_get_resv_regions()
 
-> 
-> Refactor the bindings before extending them for Qualcomm SM8450 SoC.
+ .../reserved-memory/reserved-memory.yaml      | 73 ++++++++++++++
+ drivers/iommu/dma-iommu.c                     |  3 +
+ drivers/iommu/of_iommu.c                      | 94 +++++++++++++++++++
+ drivers/of/address.c                          | 84 +++++++++++++----
+ drivers/of/base.c                             | 70 +++++++++++---
+ drivers/of/of_private.h                       | 14 ++-
+ include/linux/of.h                            | 17 +++-
+ include/linux/of_address.h                    |  4 +-
+ include/linux/of_iommu.h                      |  8 ++
+ 9 files changed, 329 insertions(+), 38 deletions(-)
 
-I dont understand this bit, what is SoC audio support to do with DSP 
-bindings. DSP bindings should be totally independent of this.
-> 
+-- 
+2.38.1
 
---srini
-
-> Best regards,
-> Krzysztof
-> 
-> Krzysztof Kozlowski (10):
->    ASoC: dt-bindings: qcom,apr: Add GLINK channel name for SM8450
->    ASoC: dt-bindings: qcom,apr: Split services to shared schema
->    ASoC: dt-bindings: qcom,q6afe: Split to separate schema
->    ASoC: dt-bindings: qcom,q6apm: Split to separate schema
->    ASoC: dt-bindings: qcom,q6adm: Split to separate schema
->    ASoC: dt-bindings: qcom,q6asm: Split to separate schema
->    ASoC: dt-bindings: qcom,q6prm: Split to separate schema
->    ASoC: dt-bindings: qcom,q6core: Split to separate schema
->    ASoC: dt-bindings: qcom,q6apm-lpass-dais: Split to separate schema
->    ASoC: dt-bindings: qcom,q6apm: Add SM8450 bedais node
-> 
->   .../bindings/soc/qcom/qcom,apr-services.yaml  |  54 ++++++++
->   .../bindings/soc/qcom/qcom,apr.yaml           | 119 ++----------------
->   .../bindings/sound/qcom,q6adm-routing.yaml    |  22 +---
->   .../devicetree/bindings/sound/qcom,q6adm.yaml |  51 ++++++++
->   .../devicetree/bindings/sound/qcom,q6afe.yaml |  69 ++++++++++
->   .../bindings/sound/qcom,q6apm-dai.yaml        |  19 +--
->   .../bindings/sound/qcom,q6apm-lpass-dais.yaml |  32 +++++
->   .../devicetree/bindings/sound/qcom,q6apm.yaml |  67 ++++++++++
->   .../bindings/sound/qcom,q6asm-dais.yaml       |  48 +++----
->   .../devicetree/bindings/sound/qcom,q6asm.yaml |  68 ++++++++++
->   .../bindings/sound/qcom,q6core.yaml           |  39 ++++++
->   .../sound/qcom,q6dsp-lpass-clocks.yaml        |  40 +-----
->   .../sound/qcom,q6dsp-lpass-ports.yaml         |  57 ++-------
->   .../devicetree/bindings/sound/qcom,q6prm.yaml |  50 ++++++++
->   MAINTAINERS                                   |   2 +-
->   15 files changed, 477 insertions(+), 260 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr-services.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6adm.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-lpass-dais.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6core.yaml
->   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6prm.yaml
-> 
