@@ -2,201 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEEA0625194
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 04:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E22C36251DE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 04:49:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233033AbiKKDZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 22:25:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
+        id S229579AbiKKDtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 22:49:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbiKKDZi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 22:25:38 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6324059867;
-        Thu, 10 Nov 2022 19:25:37 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AB2pi4c017396;
-        Fri, 11 Nov 2022 03:25:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=lD86X0OQ5dCB6O6o1/+iPAtT36dAVPEgdmKBPA9o/3w=;
- b=Dpvs6HDN2w0rzcCJiepfxs560b/+lSwRdbLQecVL7Zvr5N7Ak0tpjTbrG10papF6Oc5G
- xLx27F5eJzw4qgmnB1adDr3QtqnAtPOgw4P0sv6ODIdP7nlTrTSadE7bpWZhqJyFUmCU
- kBM/3lDxmkuMH/GAkxePO1pg4tR/8B/8EMCx4h21QxPvDUjc0YpmqH2m+cVdGCfzFcc0
- GnnWm9WiPWQG7O1l6BvG9xt0jQJ8QJIm9cV6tICRRCZYDIGa/DrSN3gLJwP260gp4n8l
- fwBdjZdOoNcRmuqFXuSddEVFuYtLS+mg8m1+hDtjP8unv7Su95J1W9uSIai4ep4Ok1qp Sg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ksa89rg6u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 03:25:26 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AB3PQFV027175
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 11 Nov 2022 03:25:26 GMT
-Received: from th-lint-050.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 10 Nov 2022 19:25:25 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S231397AbiKKDs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 22:48:57 -0500
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2081.outbound.protection.outlook.com [40.107.215.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C282B623;
+        Thu, 10 Nov 2022 19:48:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aRjAtyu/mqemQLKkxU6cp+RPit6OLRTIBbDc6jnq7JOhEqXLmQJnxQJ/wplqOS4RFCSYpVXPotyhJMgPLy5WKHqA7EO38KMOgXGO8wkLwAbzarqOe1fRJWIPd1rFVLFXr2M3GBVG7VfBfAcYxokaOK1WuDf1JV4DVjRfcUYuaQ05w7cNe9UA5TNW5wJP28sSn1CEvXWJCpBH7M6PpBeogeQDnivFVeQOscIX2jZ7XOUHTsGIZNlU4Qk8YowHPPtfrB3zPZmcNU2EMxb/8Du/hoW1JWazOjrIHudPKc40iIOdRXylu3Deu5X3rgB+E4t4YwE49/inAblIsPlgy8DgJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GbFOAF/z/H2cUHCmDyx1Pdcm9NeWSc3KGu/noURcKrU=;
+ b=Zn138/Zb+0XfMl8U7loSwpGZ8Zj/T3HxBq7NZ/+UM6HwWvyOo5PtH8D9NwvF3pwuxHOmu0o7StRRgoZC/J7retLAbLLRUuwB97diHQu2RTYYFygjI63VeNRM18BtE/nQ9km3RHoc9CE+VYVdPg98fXIWxoU2ECCh/Gz1R6k99035o/4pQ1X5zy66RQqmtxlmphPbbKWjGZ0EQgH7UgHYh8Y/Fps6Q+8uXhVaYli0wOxw0nrS7wse0leJFt0ryXEaqv/m9L7ULTrpd33chKZ6IliE9Dfd1lHR0Vvy9hsc+jjZ2hyIoBbyyVt2ErOU4hfk6JJTzKjbxbb2bYpl3XCL8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GbFOAF/z/H2cUHCmDyx1Pdcm9NeWSc3KGu/noURcKrU=;
+ b=hc9dDsk7AxAXyek6+tGaYOYCFKLFOuuJBfNvLV8wuR598YRzcVY54MA1LMRrRP2Fb7GpKE3dl/FukZcFdSl8ve5ZynBP9basREvKGqySmSEVWQ2hm8spE+LY9VruPNseFnre32iIEn9OZGI5CGX/2Nf8tEDLt3MIi6zW6zcigVxvIwaspv/mzwvXf8De4NNareFy62Ql8r0pW37rY4OMJMSp/WSCZ2ksffY9UAXFjuCz34jejNGgp+Lx/OmUF5WN9y7v+VUZJJHcyivA/7zCM7+C7e8Dkl0dxDZR57164TAM01GCyAJcCV9hl0QnNVGA7YfDulZYs9vpFHk+VbYThQ==
+Received: from TYCP286CA0054.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2b5::19)
+ by PUZPR04MB6365.apcprd04.prod.outlook.com (2603:1096:301:ed::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.11; Fri, 11 Nov
+ 2022 03:48:50 +0000
+Received: from TYZAPC01FT041.eop-APC01.prod.protection.outlook.com
+ (2603:1096:400:2b5:cafe::43) by TYCP286CA0054.outlook.office365.com
+ (2603:1096:400:2b5::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13 via Frontend
+ Transport; Fri, 11 Nov 2022 03:48:49 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ TYZAPC01FT041.mail.protection.outlook.com (10.118.152.116) with Microsoft
+ SMTP Server id 15.20.5813.12 via Frontend Transport; Fri, 11 Nov 2022
+ 03:48:48 +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To:     patrick@stwcx.xyz
+Cc:     garnermic@fb.com, Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 10/10] arm64: dts: qcom: sc8280xp: Add bwmon instances
-Date:   Thu, 10 Nov 2022 19:25:15 -0800
-Message-ID: <20221111032515.3460-11-quic_bjorande@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] ARM: dts: Facebook Greatlakes platform
+Date:   Fri, 11 Nov 2022 11:48:24 +0800
+Message-Id: <20221111034828.2377-1-Delphine_CC_Chiu@Wiwynn.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221111032515.3460-1-quic_bjorande@quicinc.com>
-References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
+References: <20221007055346.3484180-1-Delphine_CC_Chiu@Wiwynn.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZAPC01FT041:EE_|PUZPR04MB6365:EE_
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wMUIszZGM2dNCQetFurm7Nnz8up4nFKa
-X-Proofpoint-GUID: wMUIszZGM2dNCQetFurm7Nnz8up4nFKa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-10_14,2022-11-09_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 bulkscore=0 mlxscore=0 suspectscore=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2210170000 definitions=main-2211110021
+X-MS-Office365-Filtering-Correlation-Id: dbd26e29-932d-405f-6421-08dac397a477
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dqjvnKjAYa5yCE8Qpuiagjw9x/U5qZrr4bhmZ3z9etOPiy83ePmfxaA8ZCABCh853mng5XczL/eE29opTPryNgt3isgHUZ/cBWn15m79EP4cITT+ARNKp6Cm7ir9kR3EwjotbQjjD+3waRQ+JdrJoG91zG+fJ3vV6F2GSXuzBMMjmv9keMZOfhFhokDX6ld9kTm/PKXq8fXVLzpxb7chzwtWkBWjbVPZbb9tY7ixQ99a+Bh46/ihMX8Z+a2XJJTx8D/7bVZq06Nif76mK5bflsbzpog7DakK/plPOk5Iv/3prFcVGJWJOEfyvNlU2IZAmJfMsxCXJg9DjeYIwXHll1b10LdUJmppPs4RCQw6+fbFEmKbk9FSAh0gLho7hs/DyvBY++NuHPKw4M6Ox0+yzYIgvqqos0xwiDcCf5lPlHSBF0dCdoLt3HEGiSN0mLGD4Rfyrshd4Cxl3vvv5nt+4kYVF6QHtFihoAkGf+zUpAK31jv7C3dSMxQXBEt4hSGLUKwze8h1CoM92dWQrNsoc0msNHCkxzOQ6oA0EYzjJBhqHX4u3SDiUjXyPXXJOphukURhJePTeC0WQDgoYoXbsZM0koGp8gAUcgkEs1DP59c9NWd4RCsFn432m6GkA3naZ7WrA3V+yr2XmDwlWa+jCzCFchGvqMWTtfwajxGeX33YsWQo5oOP4Nn7wY3m5PcUewSEEHU8mI8Vrgb01a66g889tV5xPt2ThUaRlenBINNh1gTVuTjvx0iRaiRRVEDw
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230022)(6069001)(4636009)(376002)(39860400002)(346002)(136003)(396003)(47680400002)(451199015)(46966006)(36840700001)(6486002)(36756003)(81166007)(82740400003)(356005)(956004)(40480700001)(4744005)(2906002)(9316004)(336012)(186003)(26005)(47076005)(6506007)(6666004)(6916009)(36860700001)(2616005)(4326008)(8676002)(82310400005)(6512007)(70586007)(478600001)(86362001)(7416002)(1076003)(36736006)(316002)(54906003)(70206006)(8936002)(5660300002)(36906005)(41300700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 03:48:48.7645
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbd26e29-932d-405f-6421-08dac397a477
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT041.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR04MB6365
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the two bwmon instances and define votes for CPU -> LLCC and LLCC ->
-DDR, with bandwidth values based on the downstream DeviceTree.
+Add linux device tree entry related to
+greatlakes specific devices connected to BMC SoC.
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Tested-by: Steev Klimaszewski <steev@kali.org>
----
+v4 - Resend as series
+v3 - Add documentation of board compatible (bindings)
+   - Add board compatible
+   - Remove the bootargs
+   - Revise the DTS node name
+v2 - Add binding document
+v1 - Initial draft
 
-Changes since v1:
-- Added "cpu" to compatible for the CPU-subsystem bwmon instance
+Delphine CC Chiu (2):
+  dt-bindings: arm: aspeed: add Facebook Greatlakes board
+  ARM: dts: aspeed: greatlakes: Add Facebook greatlakes (AST2600) BMC
 
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 91 ++++++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/aspeed-bmc-facebook-greatlakes.dts    | 241 ++++++++++++++++++
+ 3 files changed, 243 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 2ac8f5204905..62e9dd8a2f07 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1287,6 +1287,97 @@
- 			};
- 		};
- 
-+		pmu@9091000 {
-+			compatible = "qcom,sc8280xp-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
-+			reg = <0 0x9091000 0 0x1000>;
-+
-+			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interconnects = <&mc_virt MASTER_LLCC 3 &mc_virt SLAVE_EBI1 3>;
-+
-+			operating-points-v2 = <&llcc_bwmon_opp_table>;
-+
-+			llcc_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <762000>;
-+				};
-+				opp-1 {
-+					opp-peak-kBps = <1720000>;
-+				};
-+				opp-2 {
-+					opp-peak-kBps = <2086000>;
-+				};
-+				opp-3 {
-+					opp-peak-kBps = <2597000>;
-+				};
-+				opp-4 {
-+					opp-peak-kBps = <2929000>;
-+				};
-+				opp-5 {
-+					opp-peak-kBps = <3879000>;
-+				};
-+				opp-6 {
-+					opp-peak-kBps = <5161000>;
-+				};
-+				opp-7 {
-+					opp-peak-kBps = <5931000>;
-+				};
-+				opp-8 {
-+					opp-peak-kBps = <6515000>;
-+				};
-+				opp-9 {
-+					opp-peak-kBps = <7980000>;
-+				};
-+				opp-10 {
-+					opp-peak-kBps = <8136000>;
-+				};
-+				opp-11 {
-+					opp-peak-kBps = <10437000>;
-+				};
-+				opp-12 {
-+					opp-peak-kBps = <12191000>;
-+				};
-+			};
-+		};
-+
-+		pmu@90b6400 {
-+			compatible = "qcom,sc8280xp-cpu-bwmon", "qcom,msm8998-bwmon";
-+			reg = <0 0x090b6400 0 0x600>;
-+
-+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3>;
-+			operating-points-v2 = <&cpu_bwmon_opp_table>;
-+
-+			cpu_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <2288000>;
-+				};
-+				opp-1 {
-+					opp-peak-kBps = <4577000>;
-+				};
-+				opp-2 {
-+					opp-peak-kBps = <7110000>;
-+				};
-+				opp-3 {
-+					opp-peak-kBps = <9155000>;
-+				};
-+				opp-4 {
-+					opp-peak-kBps = <12298000>;
-+				};
-+				opp-5 {
-+					opp-peak-kBps = <14236000>;
-+				};
-+				opp-6 {
-+					opp-peak-kBps = <15258001>;
-+				};
-+			};
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sc8280xp-llcc";
- 			reg = <0 0x09200000 0 0x58000>, <0 0x09600000 0 0x58000>;
 -- 
 2.17.1
 
