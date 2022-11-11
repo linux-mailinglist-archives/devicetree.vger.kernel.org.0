@@ -2,135 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E7B626362
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C32AC626387
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 22:28:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233963AbiKKVHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 16:07:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44958 "EHLO
+        id S230043AbiKKV2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 16:28:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230303AbiKKVHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:07:44 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA4F836BD
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 13:07:43 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id k5so5391951pjo.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 13:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1UbHOqnPNCOilnpyC/Gk6owDbQr/DghKe/AIdJFL7OA=;
-        b=dcqjaS5Sm4AFaJ7A8iLje/A4mP/MuV/4c61ZgTQZyLFNnGrZZ/BGiUXI09P1InJiFR
-         KW0Xm6rz6GpThAC0xv5uqffYho4bvpSMBTuoqW4KOh+mOUlEix0p7YZhkV11KlQpoy2K
-         ifVskTSrHPisCc47y4ok1EkR0YbtEILMfy3CUr4+Vq96T+6aW8FAhac7YsiRUa+QXhSr
-         2NqNbVwfSo1HAyTd+JW/g0EGjO4M2C5GBeM5jHLMYMnPNGEFR+1iD82/tlFjKeQrUrs7
-         AJrohjKqYCTrhGr4OhyQ5sX+/jGoVvKvgX/9DGz7ua8UbvT3qQhq74wWw4l0Xl0wNmYf
-         69jA==
+        with ESMTP id S231911AbiKKV2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 16:28:38 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D49B65B1;
+        Fri, 11 Nov 2022 13:28:37 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id s206so6061017oie.3;
+        Fri, 11 Nov 2022 13:28:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1UbHOqnPNCOilnpyC/Gk6owDbQr/DghKe/AIdJFL7OA=;
-        b=S0daCtn6ORnNhdVsxhZiAwRgChry5neIbrbUyGAtCEdnJOubhcwOyz97rSKiW0G2ZU
-         zBre23wuViMY4lWb0LysMKSxuYjDz2I27X77LI6FUFjMErg+va8UOoSaI0v/doCREcFU
-         qd0Z13vaMPWSzhPoNd3eUkbA0S27FhubUjbA8pqt0auc84cW7LHLeC8r373nVYk2N3t0
-         BpEZettPmHaCRi5Jv/jCPDmxm+RMBOIjx9V0DjSkTnWwwpLWnaQtxM7uAOEs+0k1fDaX
-         o94RMvt+QaMvay0FkY7mifyrNKPKd38C4SY4RZlo05XTWXdv5WxFECFGQPUw+KgjuTqw
-         GzrQ==
-X-Gm-Message-State: ANoB5pm8GS1R2UR3wEBv5Qj7lxW+pv0qyKyO+JXA0tt3fz/knI1XiDkb
-        IufADUWhEBuJuBgP9hf38yjPdA==
-X-Google-Smtp-Source: AA0mqf6A3RRROpoZCJbd2mFTNzmTgQE6WZbH93Czcwbm8bITJSEMnmyIrjCwAdplvykKwvdBjqBreQ==
-X-Received: by 2002:a17:90b:4fce:b0:203:6932:1d5f with SMTP id qa14-20020a17090b4fce00b0020369321d5fmr3813947pjb.112.1668200862943;
-        Fri, 11 Nov 2022 13:07:42 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id w125-20020a623083000000b00571bdf45885sm980169pfw.196.2022.11.11.13.07.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 13:07:42 -0800 (PST)
-Message-ID: <cc62e433-83c4-f285-edc2-a2d808163074@9elements.com>
-Date:   Sat, 12 Nov 2022 02:37:38 +0530
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yofEEgISmTkFd8KNSd67teL9O9R9Xx2fbkwmtcfVezs=;
+        b=WYQkfBxq8EZwV+i0hjBrh62vkf8DjdRN92Vg3SdEnQkLhEROs1MeawGc/otL+08M+p
+         XHcUoCd2i99JrTwLTp8F8o+VHm17VrpUpCpdVtHDFYdYNDefwqhI5Liczvgk473msud6
+         nAAtnUzQCVqPTpHwVIbCjxy4Mb2WIT2VJWgTdvrvgh9M2ARZFWRPUt900lgWly2rxAcq
+         gHuVX68Z3Naip2fz+SdFbgZ+1SN33SaAVT8ly/eqibqhDADSB8MDaTUdqhWgJcCqCiwc
+         6lsbgPb6imle8pqF3FbHFCOmDZUqwrr3cOxCa7eTbgyzfYjBJ/w5XFK8UE4UA5XH4IGx
+         e25A==
+X-Gm-Message-State: ANoB5pnOgX1vTOx4UJxQIC4rJMOs0U+C0lapHRMdata4Hxkbn2noRaie
+        4vLTLokov3eFdxCv4HiaRw==
+X-Google-Smtp-Source: AA0mqf790Zmp5a1ld1rmeQNI84Xp4grv4h7heGc1cG9c8BZByd09XHvvxMJ3yRdHJgda9B+Ui/VlLg==
+X-Received: by 2002:aca:210d:0:b0:342:ff90:1867 with SMTP id 13-20020aca210d000000b00342ff901867mr1692144oiz.297.1668202114153;
+        Fri, 11 Nov 2022 13:28:34 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f7-20020a9d2c07000000b00660e833baddsm1432403otb.29.2022.11.11.13.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 13:28:33 -0800 (PST)
+Received: (nullmailer pid 4103770 invoked by uid 1000);
+        Fri, 11 Nov 2022 21:28:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mtd: fixed-partitions: Fix 'sercomm,scpart-id' schema
+Date:   Fri, 11 Nov 2022 15:28:24 -0600
+Message-Id: <20221111212824.4103514-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
- <20221013094838.1529153-2-Naresh.Solanki@9elements.com>
- <20221024161806.GA1855651-robh@kernel.org>
- <dcd22f70-e51c-290e-c11f-9a5ce32748c1@9elements.com>
- <CAL_JsqKT52ULEZjKo9emEAt74nH2OpMO8ymLLKM_T-NzAwqGog@mail.gmail.com>
- <3152c290-8aca-b91a-df20-335c33395835@9elements.com>
- <20221101184402.GA1884153-robh@kernel.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <20221101184402.GA1884153-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The schema for 'sercomm,scpart-id' is broken. The 'if' condition is
+never true because 'compatible' is in the parent node, not the child
+node the sub-schema applies to. The example passes as there are no
+constraints on additional/unevaluated properties. That's a secondary
+issue which is complicated due to nested partitions.
 
-On 02-11-2022 12:14 am, Rob Herring wrote:
-> On Mon, Oct 31, 2022 at 01:35:09PM +0530, Naresh Solanki wrote:
->> Hi Rob,
->>
->> On 26-10-2022 07:07 pm, Rob Herring wrote:
->>> fanc: fan-controller {
->>>     #pwm-cells = <3>;
->>>     ...
->>>
->>>     fan {
->>>       pwms = <&fanc 0 500000  PWM_POLARITY_INVERTED>;
->>>       ...
->>>     };
->>> };
->>>
->>> 0 is PWM number and 500000 is the PWM frequency. The 3rd cell are per
->>> consumer flags. See pwm.txt for more details.
->>
->> Did the implementation & while testing getting the below err:
->> [63.626505] max6639 166-002e: failed to create device link to 166-002e
-> 
-> Does turning off fw_devlink help (fw_devlink=off)?
+Drop the if/then schema and the unnecessary 'allOf' so that the
+'sercomm,scpart-id' property is at least defined.
 
-Will supplier == consumer, device link creation fails.
-Not sure what is best approach but not creating device link in this 
-scenario help & for that below additional changes needed in pwm core.
+Cc: Mikhail Zhilkin <csharper2005@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../mtd/partitions/fixed-partitions.yaml      | 29 +++++++------------
+ 1 file changed, 11 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
-index 4527f09a5c50..afea51c49138 100644
---- a/drivers/pwm/core.c
-+++ b/drivers/pwm/core.c
-@@ -730,6 +730,12 @@ static struct device_link 
-*pwm_device_link_add(struct device *dev,
-  		return NULL;
-  	}
-
-+	/*
-+	 * Do not attempt to create link if consumer itself is supplier.
-+	 */
-+	if (dev == pwm->chip->dev)
-+		return 0;
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index ad3ccd250802..39b715aad2dc 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -31,24 +31,17 @@ properties:
+ 
+ patternProperties:
+   "@[0-9a-f]+$":
+-    allOf:
+-      - $ref: "partition.yaml#"
+-      - if:
+-          properties:
+-            compatible:
+-              contains:
+-                const: sercomm,sc-partitions
+-        then:
+-          properties:
+-            sercomm,scpart-id:
+-              description: Partition id in Sercomm partition map. Mtd
+-                parser uses this id to find a record in the partition map
+-                containing offset and size of the current partition. The
+-                values from partition map overrides partition offset and
+-                size defined in reg property of the dts. Frequently these
+-                values are the same, but may differ if device has bad
+-                eraseblocks on a flash.
+-              $ref: /schemas/types.yaml#/definitions/uint32
++    $ref: partition.yaml#
 +
-  	dl = device_link_add(dev, pwm->chip->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
-  	if (!dl) {
-  		dev_err(dev, "failed to create device link to %s\n",
++    properties:
++      sercomm,scpart-id:
++        description: Partition id in Sercomm partition map. Mtd parser
++          uses this id to find a record in the partition map containing
++          offset and size of the current partition. The values from
++          partition map overrides partition offset and size defined in
++          reg property of the dts. Frequently these values are the same,
++          but may differ if device has bad eraseblocks on a flash.
++        $ref: /schemas/types.yaml#/definitions/uint32
+ 
+ required:
+   - "#address-cells"
+-- 
+2.35.1
 
-
-
-Regards,
-Naresh
