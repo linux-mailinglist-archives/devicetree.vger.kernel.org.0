@@ -2,172 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B3B625F6F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A52625F7B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:28:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233217AbiKKQ0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 11:26:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53556 "EHLO
+        id S233067AbiKKQ2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 11:28:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232841AbiKKQ0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:26:41 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A297E77E4A;
-        Fri, 11 Nov 2022 08:26:38 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2D6C440002;
-        Fri, 11 Nov 2022 16:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668183995;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=EpAKRFgC1HpttC3/LcMYOPznsj7JDQ8LUkzH9QduPeY=;
-        b=jAgZhVWK4cbOPjrZcENscWveacxgbb03TdxWROKpkYrzqQLO8M+8B6ZnT4nLGd/YM9978w
-        pReLNo3DYr7HvyljOPAQndrhF+/FKr1MSPLrIOBrhizaMXtn4ILiLRXQdHJFNqZ9Uiyudw
-        3bkElvxLqbVdTrgFRaNFX7pnUErKQUkIITkZbtguzlg5OlbB6mhg9bZVm0NXxrAfbr8dcN
-        8jXxXHY57zBS3d2v5ODlOhkBIyRwfw94CXRoRvn8YNlDNd7GPdpPvC7EhzUWKgC67DJ/Qf
-        i6pJZm+p8l5Zk+Lk2vJjqgTdXhj/Hqe5VUhjmfnHeA9M6jmuXQCG2Y2lnfaLJA==
-Date:   Fri, 11 Nov 2022 17:26:31 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Wolfram Sang <wsa@the-dreams.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        "satish.nagireddy@getcruise.com" <satish.nagireddy@getcruise.com>
-Subject: Re: [PATCH v4 3/8] dt-bindings: media: add bindings for TI
- DS90UB960
-Message-ID: <20221111172631.2832ae6c@booty>
-In-Reply-To: <8360ac8f-64aa-9edd-a110-903e734739f3@ideasonboard.com>
-References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
-        <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
-        <20221102172630.GA4140587-robh@kernel.org>
-        <6c254d5f-9fa1-b06a-4edb-7e58e4b33101@ideasonboard.com>
-        <fb9e9d5e-9c8b-1ce2-5723-efa498d1ba93@fi.rohmeurope.com>
-        <8360ac8f-64aa-9edd-a110-903e734739f3@ideasonboard.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S234255AbiKKQ2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:28:35 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C66FD26;
+        Fri, 11 Nov 2022 08:28:34 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id m204so5341992oib.6;
+        Fri, 11 Nov 2022 08:28:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WlWKqilQvfT4UpBgWLtBIrqId5drbsn0GWpy9R/E6MM=;
+        b=dL6gAhqUYdsj8+aUkemkN4Ol9grQl2VfX/NHPM9H8/7E1hFY4YFcTg3vL/viPqW2Aa
+         U7D/txLVw0N930vQahXbHmq3tV+77F7j1plUNb+h41oTE0QseSf7nfrKhpr4qJiR2TTz
+         Jh54uEcWG/SzuOFJfHnNOKR0BzFysZ2WSKCR0+JSmOD1PZlj7y1asgm83ttq4M6TBgUI
+         AfS1nDzu/PUUmxqlIlu6b615zQjhcgCzH1Yj0QabMD/lSy0g0rDwveUZ+cmq69h2mchj
+         +4g0ZSiEwta3Yhv9TAF8yb+EGN8zBRq5kmHUfvONABaVWT5kUcivZfTR4TC8H6mMleDl
+         w2tQ==
+X-Gm-Message-State: ANoB5plCpfq2SlsbiLG7ht5Y4KvoJtVkh3hvPwQypeUNHw9NjFrjP3Iu
+        JiO/KyY4U3H9seP0m3yS1m0oEoW6Dw==
+X-Google-Smtp-Source: AA0mqf4GhyWvktF5Cl6SZWd3YSGG1Wt6QGNqW22NrXhzSOMRuw7mgEK0rV6rDOLgLcKJXrrMvLL79w==
+X-Received: by 2002:a05:6808:1813:b0:35a:7300:7208 with SMTP id bh19-20020a056808181300b0035a73007208mr1182508oib.75.1668184113206;
+        Fri, 11 Nov 2022 08:28:33 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fo20-20020a0568709a1400b0013b8b3710bfsm1467802oab.13.2022.11.11.08.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 08:28:32 -0800 (PST)
+Received: (nullmailer pid 3383310 invoked by uid 1000);
+        Fri, 11 Nov 2022 16:28:34 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: thermal-idle: Fix example paths
+Date:   Fri, 11 Nov 2022 10:27:29 -0600
+Message-Id: <20221111162729.3381835-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tomi, Matti, Wolfram,
+The reference by path (&{/cpus/cpu@101/thermal-idle}) in the example causes
+an error with new version of dtc:
 
-On Thu, 3 Nov 2022 14:32:02 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+FATAL ERROR: Can't generate fixup for reference to path &{/cpus/cpu@100/thermal-idle}
 
-> On 03/11/2022 14:13, Vaittinen, Matti wrote:
-> > On 11/3/22 13:50, Tomi Valkeinen wrote: =20
-> >> Hi Rob,
-> >>
-> >> On 02/11/2022 19:26, Rob Herring wrote: =20
-> >>> On Tue, Nov 01, 2022 at 03:20:27PM +0200, Tomi Valkeinen wrote: =20
-> >>>> +
-> >>>> +=C2=A0 i2c-alias-pool: =20
-> >>>
-> >>> Something common or could be? If not, then needs a vendor prefix. =20
-> >>
-> >> I'll have to think about this. It is related to the i2c-atr, so I think
-> >> it might be a common thing. =20
-> >=20
-> > I'd say this should be common. Where the i2c-atr properties should live
-> > is another question though. If the I2C-atr stays as a genericly usable
-> > component - then these bindings should be in a file that can be
-> > referenced by other I2C-atr users (like the UB960 here). =20
->=20
-> Yep. All the links, link, serializer and alias nodes/properties are new=20
-> things here, and I guess these could be used by other deser-ser systems.=
-=20
-> That said, I don't have any experience with other systems.
+This is because the examples are built as an overlay and absolute paths
+are not valid as references must be by label. The path was also not
+resolvable because, by default, examples are placed under 'example-N'
+nodes.
 
-The i2c-alias-pool was discussed during the RFC,v2 review [1] and it
-was agreed that it should be generic. The same principle should apply
-to the other ATR properties.
+As the example contains top-level nodes, the root node must be explicit for
+the example to be extracted as-is. This changes the indentation for the
+whole example, but the existing indentation is a mess of of random amounts.
+Clean this up to be 4 spaces everywhere.
 
-That said, at some point it was also decided that the alias pool should
-just be ditched in favor of an automatic selection of an unused address
-by the i2c core [2] [3]. Maybe that idea has changed, definitely some
-i2c core things needed to be omdified for it to happen, but overall I'm
-still convinced automatic assignment without a pool was a good idea.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+The dtc update is in my tree, so I'd prefer to take this via the DT 
+tree.
 
-> >>>> +
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-alias: =
-=20
-> >>>
-> >>> Vendor prefix.
-> >>> =20
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-description: |
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 The i2c address used for the serializer. Transactions
-> >>>> to this
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 address on the i2c bus where the deserializer resides are
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 forwarded to the serializer.
-> >>>> +
-> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rx-mode: =20
-> >>>
-> >>> Vendor prefix. And so on... > =20
-> >> Yes, I totally missed these. =20
-> >=20
-> >=20
-> > I think the i2c-alias might need to be common as well? =20
->=20
-> Perhaps...
->=20
-> I was also thinking that the serializer addresses could be taken from=20
-> the i2c-alias-pool. But maybe that's not a good idea, as the=20
-> serializer-access and remote-peripheral-access are a bit different (e.g.=
-=20
-> no ATR when accessing the serializer).
->=20
-> And I was thinking that, at least here, the alias addresses can be=20
-> "anything", so they could be reserved dynamically at runtime, without=20
-> any predefined aliases. But that might be a bit confusing to the user.
+ .../bindings/thermal/thermal-idle.yaml        | 154 +++++++++---------
+ 1 file changed, 80 insertions(+), 74 deletions(-)
 
-I think the serialized alias selection is in an intermediate situation
-between the deser and the remove chips. For the deser there is a
-physical address, nothing strange. For the remote chips, lots of things
-could happen, including having several chips. The serializer is in
-known quantity (one per connector) and the fact that it is "on the
-remote bus" is also somewhat false as it does create the remote bus
-itself. Thus for me it would make sense to keep the current structure
-(which is quite simple) but mine in not a strong position.
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+index cc938d7ad1f3..72d85eb64247 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+@@ -48,99 +48,105 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/thermal/thermal.h>
++    /{
++        #include <dt-bindings/thermal/thermal.h>
+ 
+-    // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
+-    cpus {
++        compatible = "foo";
++        model = "foo";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
++        cpus {
+             #address-cells = <2>;
+             #size-cells = <0>;
+ 
+             /* ... */
+ 
+-                 cpu_b0: cpu@100 {
+-                         device_type = "cpu";
+-                         compatible = "arm,cortex-a72";
+-                         reg = <0x0 0x100>;
+-                         enable-method = "psci";
+-                         capacity-dmips-mhz = <1024>;
+-                         dynamic-power-coefficient = <436>;
+-                         #cooling-cells = <2>; /* min followed by max */
+-                         cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+-                         thermal-idle {
+-                                 #cooling-cells = <2>;
+-                                 duration-us = <10000>;
+-                                 exit-latency-us = <500>;
+-                         };
++            cpu_b0: cpu@100 {
++                device_type = "cpu";
++                compatible = "arm,cortex-a72";
++                reg = <0x0 0x100>;
++                enable-method = "psci";
++                capacity-dmips-mhz = <1024>;
++                dynamic-power-coefficient = <436>;
++                #cooling-cells = <2>; /* min followed by max */
++                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
++                thermal-idle {
++                    #cooling-cells = <2>;
++                    duration-us = <10000>;
++                    exit-latency-us = <500>;
++                };
++            };
++
++            cpu_b1: cpu@101 {
++                device_type = "cpu";
++                compatible = "arm,cortex-a72";
++                reg = <0x0 0x101>;
++                enable-method = "psci";
++                capacity-dmips-mhz = <1024>;
++                dynamic-power-coefficient = <436>;
++                #cooling-cells = <2>; /* min followed by max */
++                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
++                thermal-idle {
++                    #cooling-cells = <2>;
++                    duration-us = <10000>;
++                    exit-latency-us = <500>;
+                 };
++            };
+ 
+-                cpu_b1: cpu@101 {
+-                        device_type = "cpu";
+-                        compatible = "arm,cortex-a72";
+-                        reg = <0x0 0x101>;
+-                        enable-method = "psci";
+-                        capacity-dmips-mhz = <1024>;
+-                        dynamic-power-coefficient = <436>;
+-                        #cooling-cells = <2>; /* min followed by max */
+-                        cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+-                        thermal-idle {
+-                                #cooling-cells = <2>;
+-                                duration-us = <10000>;
+-                                exit-latency-us = <500>;
+-                        };
+-                 };
+-
+-          /* ... */
++            /* ... */
+ 
+-    };
++        };
+ 
+-    /* ... */
++        /* ... */
+ 
+-    thermal_zones {
+-         cpu_thermal: cpu {
++        thermal_zones {
++            cpu_thermal: cpu {
+                 polling-delay-passive = <100>;
+                 polling-delay = <1000>;
+ 
+                 /* ... */
+ 
+                 trips {
+-                        cpu_alert0: cpu_alert0 {
+-                                    temperature = <65000>;
+-                                    hysteresis = <2000>;
+-                                    type = "passive";
+-                        };
+-
+-                        cpu_alert1: cpu_alert1 {
+-                                    temperature = <70000>;
+-                                    hysteresis = <2000>;
+-                                    type = "passive";
+-                        };
+-
+-                        cpu_alert2: cpu_alert2 {
+-                                    temperature = <75000>;
+-                                    hysteresis = <2000>;
+-                                    type = "passive";
+-                        };
+-
+-                        cpu_crit: cpu_crit {
+-                                    temperature = <95000>;
+-                                    hysteresis = <2000>;
+-                                    type = "critical";
+-                        };
++                    cpu_alert0: cpu_alert0 {
++                        temperature = <65000>;
++                        hysteresis = <2000>;
++                        type = "passive";
++                    };
++
++                    cpu_alert1: cpu_alert1 {
++                        temperature = <70000>;
++                        hysteresis = <2000>;
++                        type = "passive";
++                    };
++
++                    cpu_alert2: cpu_alert2 {
++                        temperature = <75000>;
++                        hysteresis = <2000>;
++                        type = "passive";
++                    };
++
++                    cpu_crit: cpu_crit {
++                        temperature = <95000>;
++                        hysteresis = <2000>;
++                        type = "critical";
++                    };
+                 };
+ 
+                 cooling-maps {
+-                        map0 {
+-                             trip = <&cpu_alert1>;
+-                             cooling-device = <&{/cpus/cpu@100/thermal-idle} 0 15 >,
+-                                              <&{/cpus/cpu@101/thermal-idle} 0 15>;
+-                        };
+-
+-                        map1 {
+-                             trip = <&cpu_alert2>;
+-                             cooling-device =
+-                                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-                                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+-                       };
++                    map0 {
++                        trip = <&cpu_alert1>;
++                        cooling-device = <&cpu_b0 0 15 >,
++                                         <&cpu_b1 0 15>;
++                    };
++
++                    map1 {
++                        trip = <&cpu_alert2>;
++                        cooling-device = <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++                                         <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++                    };
+                 };
+-          };
++            };
++        };
+     };
+-- 
+2.35.1
 
-[1]
-https://lore.kernel.org/lkml/CAL_JsqKDkixeDJJVxbzWebD6nqMHyk6QqDGSKrQho0THj=
-LdmKQ@mail.gmail.com/
-
-[2] https://lore.kernel.org/lkml/20190903093455.GD1020@kunai/
-
-[3] https://lucaceresoli.net/plumbers-i2c-bof/
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
