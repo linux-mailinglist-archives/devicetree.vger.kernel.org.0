@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA6C9625FCE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C98625FDA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 17:54:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233277AbiKKQsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 11:48:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
+        id S234113AbiKKQyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 11:54:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233172AbiKKQsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:48:00 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0BA7B229
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:47:59 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id t4so3236665wmj.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 08:47:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tzIj0FbLWchm5YW+Ojb+mjYmHVpc0ognIOdlvY0jJmc=;
-        b=ORhWQXVLVCj32JAAdbD6We+SlO95hOo3Z4kePacUi0Y4dFJNCDHuu8Or4jGVP5syl/
-         tv0XO4ztzdwyoOGsjdOHi2kp9D12+rOGHjXiiCm/ytEKdvPXsJsAXhr7h/kicaYCeKfY
-         Ey8pwYYntRtXa9S7Oyd5k1u6h4KpNdVJeY5TGI6VA1JWDyPNUxU1WUwGr+F+iDr7IuKg
-         FLaWLRPXpqWBk3LRuVQF7Bi5OoZMGySUSndVWQiCAy9W5FuJQDgdK7hxa4vA463AJbOI
-         QPp9YBXHbZMTJVnPpDOGseekGWa9esEzo/3aZew/HbQBRzZIreOMoFHelwsCG8phCF7C
-         oxYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tzIj0FbLWchm5YW+Ojb+mjYmHVpc0ognIOdlvY0jJmc=;
-        b=g7RQOh9RXs7NBH9ZLWd3l0WuGIS/5xu0wHRiajs84uy1rXzNdbknOJhXKHIHKmTvI0
-         Gcvh15g2SL/Avoi+kU74Z24ERm5qcnfNB40BNJpFrJAYwSaLCqodhpv01FcXg44u2uIM
-         plTmCB7JJLrtLoOGIp4V3949mxzxQPu+stgmlWXiF53KK7NABapXOMyXewk+XCzOw5fL
-         r8NvzKiabX1+e+3L0ak4M1Kc4VzxPv9bbjr34HxfYXcEr7ZdF8GSZhwVogb5xRFvnrsf
-         h20sazSUzofPk9z3zM0ZxsdkP0mftt5xN2RkcOJcIKsnLtba04mBacjsG5JRG8s1SELg
-         ORog==
-X-Gm-Message-State: ANoB5pmu62+tVsP7YTQrcpfGyzpfMS1aIPp/iTFS7JLg3rBUaHD2N620
-        bpOV77viAN96p6vX1/rLItDGyA==
-X-Google-Smtp-Source: AA0mqf4lxHD2VhR2gUmwYJipW4ys4Uden0b2CxCOUYSldiDwhdTomovtUeokqfW6glhyz46sxexSFA==
-X-Received: by 2002:a7b:cd12:0:b0:3cf:5080:412c with SMTP id f18-20020a7bcd12000000b003cf5080412cmr1821930wmj.99.1668185278322;
-        Fri, 11 Nov 2022 08:47:58 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id q12-20020a05600c46cc00b003b4ac05a8a4sm12135959wmo.27.2022.11.11.08.47.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 08:47:57 -0800 (PST)
-Message-ID: <c17ec8e0-a0c9-dc18-dbbe-3844b4147437@linaro.org>
-Date:   Fri, 11 Nov 2022 16:47:56 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v3 1/6] dt-bindings: nvmem: Fix example
-Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        with ESMTP id S232004AbiKKQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 11:54:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D142EAE45;
+        Fri, 11 Nov 2022 08:54:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 27A7FB82671;
+        Fri, 11 Nov 2022 16:54:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58E4BC433D6;
+        Fri, 11 Nov 2022 16:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668185645;
+        bh=3ZBAlgtON0ymrWeudCaliLCw3wN7/KDetEApQzKhBus=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mSIxpPGkRWTY21vxX4Q4efNcchfQ5g4HiQd8TW0fLjJmGLBCOBc6h2R1z5MYDZ4Dt
+         vvyVb00bxE9atOze3gWSAZnBrB30/fAFvqLHrtimYkO+g7h78v/pw9wr+ZMU4JClJn
+         +AR+0t4I17fN22rCNKJaHuEB3avhzDF9z1sDRDLsy5TutymMGum1ruI4Sw6RI+4MFt
+         Vyl53hudwi4NIQu52b+sG/5GbBwIDKudTos7Q5qAZ8xxJh+d0O56t90s6XJ8VDIzId
+         UNfgabgbxdp3rNEPrSZPBY3MEwGkROxQPRryBErB2SlenOma2HIHv/WW2+Tt96BxJz
+         auEBwhvWpaC8A==
+Received: by pali.im (Postfix)
+        id 870C2818; Fri, 11 Nov 2022 17:54:02 +0100 (CET)
+Date:   Fri, 11 Nov 2022 17:54:02 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Christian Eggers <ceggers@arri.de>,
-        Cory Tusar <cory.tusar@pid1solutions.com>
-References: <20221104163833.1289857-1-miquel.raynal@bootlin.com>
- <20221104163833.1289857-2-miquel.raynal@bootlin.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20221104163833.1289857-2-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Mauri Sandberg <maukka@ext.kapsi.fi>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/7] PCI: mvebu: add support for orion soc
+Message-ID: <20221111165402.42p5xmz5ibf63kvh@pali>
+References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
+ <20220905192310.22786-1-pali@kernel.org>
+ <Y1qRaBowB2EBS6Sg@lpieralisi>
+ <20221106232824.du4uou6pf77rqu45@pali>
+ <Y25E9e2JnKPWlrFT@lpieralisi>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y25E9e2JnKPWlrFT@lpieralisi>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,39 +70,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 04/11/2022 16:38, Miquel Raynal wrote:
-> Despite not being listed nor required within the top level nvmem yaml
-> file, the "compatible" property is mandatory and is actually enforced by
-> all the nvmem provider bindings.
+On Friday 11 November 2022 13:49:57 Lorenzo Pieralisi wrote:
+> On Mon, Nov 07, 2022 at 12:28:24AM +0100, Pali Rohár wrote:
+> > On Thursday 27 October 2022 16:10:48 Lorenzo Pieralisi wrote:
+> > > On Mon, Sep 05, 2022 at 09:23:03PM +0200, Pali Rohár wrote:
+> > > > Hello! This patch series add support for Orion PCIe controller into
+> > > > pci-mvebu.c driver. V3 version has completely rewritten pci-mvebu.c code
+> > > > to parse all physical addresses from device tree files according to
+> > > > mvebu-pci.txt documentation, allow access to all extended PCIe config
+> > > > space registers and use modern kernel API pci_remap_cfgspace() and
+> > > > mvebu_mbus_add_window_by_id() fir mapping PCIe config space.
+> > > > 
+> > > > Most of Marvell device tree code in pci-mvebu.c is giant magic, but it was
+> > > > there because this change and it is de-facto API between dts files and
+> > > > kernel used for a long time. Note that it is misused according to PCI
+> > > > device tree bindings, but we have to follow this Marvell bindings to do
+> > > > not introduce backward incompatibility issues for other non-Orion
+> > > > platforms.
+> > > > 
+> > > > Mauri tested these changes on DNS323 board with both DT and non-DT builds.
+> > > > PCIe AER is working too (one of the feature which proved that access to
+> > > > extended PCIe config registers is working fine).
+> > > > 
+> > > > After this patch is accepted we are planning to look at existing Orion
+> > > > arch specific code and covert it to use this new DT based pci-mvebu.c
+> > > > code. Later this would allow to kill arch specific Orion PCIe code,
+> > > > which is in arch/arm/plat-orion/pcie.c and parts also in file
+> > > > arch/arm/mach-orion5x/pci.c (shared with old-PCI bus code).
+> > > > 
+> > > > This patch series depends on another patches:
+> > > > https://lore.kernel.org/linux-pci/20220524122817.7199-1-pali@kernel.org/
+> > > > https://lore.kernel.org/linux-pci/20220817230036.817-3-pali@kernel.org/
+> > > 
+> > > Can this series be rebased please on top of v6.1-rc1 so that we can merge it ?
+> > 
+> > IIRC above two dependent patches still applies on master branch and this
+> > patch series applies on above two dependent patches.
 > 
-> Unfortunately, the lack of compatible in the nvmem.yaml to level
-> description file lead to the example not matching anything and thus not
-> being checked at all.
+> Which I can't merge for reasons you are aware of already.
 > 
-> Let's pick a compatible almost randomly (one which is already used with
-> the qfprom label) to make the example at least valid on a semantic
-> point of view and getting it checked.
+> So, does this series _really_ depend on the two patches above ?
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> I don't think so but let me ask again.
+> 
+> Lorenzo
 
-Applied thanks
+Yes, this patch series depends on above tow patches. Kirkwood and older
+platforms (including the oldest one Orion) needs fixes for registering
+and handling of shared interrupts.
 
---srini
-> ---
->   Documentation/devicetree/bindings/nvmem/nvmem.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> index 1eb22dba364c..0455506fc30f 100644
-> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> @@ -67,6 +67,7 @@ examples:
->         #include <dt-bindings/gpio/gpio.h>
->   
->         qfprom: eeprom@700000 {
-> +          compatible = "qcom,msm8974-qfprom", "qcom,qfprom";
->             #address-cells = <1>;
->             #size-cells = <1>;
->             reg = <0x00700000 0x100000>;
+> > > Thanks,
+> > > Lorenzo
+> > > 
+> > > > Mauri Sandberg (2):
+> > > >   bus: mvebu-mbus: add configuration space aperture
+> > > >   dt-bindings: PCI: mvebu: Add orion5x compatible
+> > > > 
+> > > > Pali Rohár (5):
+> > > >   ARM: orion: Move PCIe mbus window mapping from orion5x_setup_wins() to
+> > > >     pcie_setup()
+> > > >   PCI: mvebu: Remove unused busn member
+> > > >   PCI: mvebu: Cleanup error handling in mvebu_pcie_probe()
+> > > >   PCI: mvebu: Add support for Orion PCIe controller
+> > > >   ARM: dts: orion5x: Add PCIe node
+> > > > 
+> > > >  .../devicetree/bindings/pci/mvebu-pci.txt     |   4 +-
+> > > >  arch/arm/boot/dts/orion5x.dtsi                |  51 +++++
+> > > >  arch/arm/mach-orion5x/common.c                |  13 --
+> > > >  arch/arm/mach-orion5x/pci.c                   |  14 ++
+> > > >  drivers/bus/mvebu-mbus.c                      |  26 ++-
+> > > >  drivers/pci/controller/Kconfig                |   4 +-
+> > > >  drivers/pci/controller/pci-mvebu.c            | 202 ++++++++++++++----
+> > > >  include/linux/mbus.h                          |   1 +
+> > > >  8 files changed, 256 insertions(+), 59 deletions(-)
+> > > > 
+> > > > -- 
+> > > > 2.20.1
+> > > > 
+> > > > 
+> > > > _______________________________________________
+> > > > linux-arm-kernel mailing list
+> > > > linux-arm-kernel@lists.infradead.org
+> > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > 
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
