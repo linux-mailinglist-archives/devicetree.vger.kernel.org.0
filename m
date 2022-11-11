@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B0BC625DCE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76808625DD9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:07:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234824AbiKKPEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 10:04:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        id S234728AbiKKPHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 10:07:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234902AbiKKPDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:03:55 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04064787A7
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:01:36 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id c1so8693286lfi.7
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:01:36 -0800 (PST)
+        with ESMTP id S234879AbiKKPGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:06:18 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA6263B8F
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:02:59 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id f37so8688022lfv.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:02:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XylCHjoZ7BbZOYRF4NNLct0GNll1nDPpxJnFN+swT08=;
-        b=pV15QTO2bq+nyEEes3guagA1BSoa0cGtoCex9VwWuIvj7JV/EFcjO7RDHX2r2W0Hl5
-         0jYS5ZM0HNWLEfwvrrxfSkJaRO7sT4mNLSUv2/OlRPLabpAr1aMQ8JSXHJPurEvOG6bO
-         3U5cRvquXfc4H2wZplV+grc9W2yxnNDWgXDE+obw12p7OuY7c0YsA+JagDk+8Asyoc6h
-         6qNZZ8DpurMQxPDzqlAj84U22lwmr4/V3UcwAXy6gfKvI+3QbzU4jmLR1AZ5lHRR8S7J
-         64eawYNrHp13dzAHGdKcKZHZm2laGXtAb9E1KBwLZxc4wmeShRAUU8lklj1RXeGRP/9G
-         b9pQ==
+        bh=8IDbrEeNh/TbThuT4XpNap8e1dUDmVMx+XMzxzqnSSA=;
+        b=hygw+8iLwbB0q+6Nm2nUVjSzmZb2IJlCMC7CYDRHle/pNSKT9xH/abjiNy2w1FzrKM
+         d3Mt0WJllhrLlRpRjVmmVSrW0ZiZF39Flfbfo74TGwnqBm05Tp3ErxlMC4fmIm046CWU
+         X5ZxdhVjIMwM6ZvSYurHX01uSF4d5LfN3xfO4GxnWQiklasehkYx23cSVhsSf8FjiNGL
+         SXcZDSvEITKbOzKQ8ukLkA8KI+6L7PEE0FUXy1gonxzHV3/WO4i+LUaqUPTv2ckqCUTt
+         sH7OyzyscHngt8YssbfUngJYdReVfCVyFNT0Y5cDyrAYjYB/xziMj5Z112OteA/RYSxt
+         SmSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XylCHjoZ7BbZOYRF4NNLct0GNll1nDPpxJnFN+swT08=;
-        b=78sglldsNP+8YTLS96oyQg3ffIjgrJEMInAQQDRk64Bx3DcWiCZGZgT6OPWYG3Vz1g
-         HubxZc31s0BkFfwYjAwtDe0Lk0iSzbSzTP/8TqdAj8YGhjgt8UlLNP94lwXPuXRvUZ6S
-         XtlCsWcvPV+3fmoP5bL93nrV3BU6zJx95vVnKN8ht2Zomk+9zYkA3rcJDf5otIPzynmU
-         IvQSYjZPlQb0pr0iPpYDXfC6U3Gy7944ylkwo7wKJfhlT2S7tLMwVINBNiYa4LjwzLOO
-         v99Z/l8R2L7V9MIVCf5rxFmK89eKmvttOCScpYTHzrQEN2nZDxBSa5zfYEYY84B/eX72
-         l6bQ==
-X-Gm-Message-State: ANoB5pmqrXTXbIy3phX0id4lIhpWqLTkCUP8bFe2l5imLgd6PXZK7GvN
-        qtwhW96xVj3yDhChSkKcSkEM5w==
-X-Google-Smtp-Source: AA0mqf6V0Ryay+OOI9OxMnDhdsWaV5XDsXDqL5mWkQZ/WJZlYHJ9xHhR5mpN98c7L/InCaD+uwLybg==
-X-Received: by 2002:a05:6512:1398:b0:497:456d:890 with SMTP id p24-20020a056512139800b00497456d0890mr767011lfa.687.1668178882622;
-        Fri, 11 Nov 2022 07:01:22 -0800 (PST)
+        bh=8IDbrEeNh/TbThuT4XpNap8e1dUDmVMx+XMzxzqnSSA=;
+        b=Z8fq2Ul5tPwgR0DKwSSn8RihcttvCfjtXgoHwGoDnBfk5cq5CaLaAbMOSC06CfMbxT
+         tSD/iXCIrKEQ1A4mioJznFR8vLYy0G/5dNSIaekc1hCxXtAQMpzu1b23IqHuojYyh+Un
+         pOOwrJ/o5bUCRMibgGu96BorWHA/j5QYTyTg8Yj7HsHKk5vNNZ9y72npfsboppvjYHh/
+         jhTH9GgXDY+1Om0SiM7xBLloSG/NVm+B4ANwLjMiFMIROsmLwIMyLI/HTUWLeHKX9get
+         fQmJcKdZeoeg69/SXe9COVkIlOUL6F0LAjje4NEvFXAZSWhXngCkDmDk+l88fg/NazcM
+         16mA==
+X-Gm-Message-State: ANoB5plxtLgzstxx/AtlS0HFKRCsrKoCJ+c9Kv+U4AlU0hVDO7wwJz8j
+        QxtzFQY7KEUKPlpG77gR7xJBgQ==
+X-Google-Smtp-Source: AA0mqf42b4kvDiZpLvHSgqYN73z75vsx9adgnee/kAeEHRiXzrEycGZlXDDvd3Zni04Nw4TmGX1fYw==
+X-Received: by 2002:a05:6512:131c:b0:4b4:1177:a64c with SMTP id x28-20020a056512131c00b004b41177a64cmr957999lfu.647.1668178975951;
+        Fri, 11 Nov 2022 07:02:55 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id u19-20020a05651220d300b0049462af8614sm364442lfr.145.2022.11.11.07.01.21
+        by smtp.gmail.com with ESMTPSA id y1-20020ac24201000000b004a44ffb1023sm371686lfh.57.2022.11.11.07.02.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 07:01:22 -0800 (PST)
-Message-ID: <21f2dc7b-5fd6-4f28-0a66-5b044a12dd0c@linaro.org>
-Date:   Fri, 11 Nov 2022 16:01:21 +0100
+        Fri, 11 Nov 2022 07:02:54 -0800 (PST)
+Message-ID: <bd2e3b45-850c-1d95-b62c-06024b85a473@linaro.org>
+Date:   Fri, 11 Nov 2022 16:02:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 02/10] dt-bindings: dmaengine: qcom: gpi: add compatible
- for SM6375
+Subject: Re: [PATCH 01/10] dt-bindings: arm-smmu: Allow up to 3 power-domains
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
+Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221109111236.46003-1-konrad.dybcio@linaro.org>
- <20221109111236.46003-3-konrad.dybcio@linaro.org>
+ <20221109111236.46003-2-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109111236.46003-3-konrad.dybcio@linaro.org>
+In-Reply-To: <20221109111236.46003-2-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,14 +83,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/11/2022 12:12, Konrad Dybcio wrote:
-> Document the compatible for GPI DMA controller on SM6375 SoC.
+> Some SMMUs require that a vote is held on as much as 3 separate PDs
+> (hello Qualcomm). Allow it in bindings.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 9066e6df1ba1..1897d0d4d820 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -159,7 +159,7 @@ properties:
+>            through the TCU's programming interface.
+>  
+>    power-domains:
+> -    maxItems: 1
+> +    maxItems: 3
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is not correct - you now require 3 power domains everywhere. If you
+test the DTS you will notice it.
+
+You need min and max items, plus provably allOf:if:then restricting it
+per some variants (if it makes sense... depends which SMMUs need it).
 
 Best regards,
 Krzysztof
