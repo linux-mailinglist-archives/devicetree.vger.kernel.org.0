@@ -2,77 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D36C6254C7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 08:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B58A6254D2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 09:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231625AbiKKH6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 02:58:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
+        id S232080AbiKKIAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 03:00:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230303AbiKKH6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 02:58:52 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC6E47301
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 23:58:51 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id be13so7228150lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 23:58:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KwU5CkjoRIEtbAhM41+6jkxe2GJWOzFr6ZG3QP2ECFg=;
-        b=ZaSv/KRfXBtxkGUSgji6I7GnV9tr2AB9YForlVDX5XFX6IR3erR2a1qmlIrpvxkUYj
-         i3hyWfIpzIWcI+Kq3vmbpOTVnsxd+HJLwV8+NALZ0Lxz9b9hGPZ9Gp++JIr+YOgt5VL1
-         raGG3kk0h2+gCCfZD7YOrHpjkw6SF0I8Ya2k3q0dSyXiHlIfUxbg2WmCbUpTwH67JFo7
-         pTBjIYjYffG0o2U+5Pkkf7pLKPRicVhZnL49LIfTlet+92BuI8MvbYaEk8L2wMN573O1
-         eM2YItr/iN5Gpd38qPIlTs2i59ZVUMNFqlEM+QMpcTcKplFbHiLss68f/a2jd2Hrw93c
-         513A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KwU5CkjoRIEtbAhM41+6jkxe2GJWOzFr6ZG3QP2ECFg=;
-        b=xA/rB4nNF3h5Nn3j6LnvbIywih7vkk+ZPdo2WMVXFd/cvUyhzO5/67NfTO6EVGpg5G
-         gA90vjVEHIcXCxKJIgmYYXQ5j7tqe30TRDelmgT2w4mljZ//wLz0rsm8JKTruWDLTbxe
-         Z54rVpE2V1X8qFR7UzAoLZydJ4KEqk7zPFkUhZ5JIJtgzm4xbcm24hYDkHRioRyJmmRS
-         tq/V3+1sJuUUwitm/bt4bAdwf70HM1cNx6brRHBOgip4I8wht2n7GfzPoGVtNtOtJvYC
-         0BeEdlVQNpSBgQQHRB/VZwai7eCPylU1jAfl6KkIwxoLpuGXvLSC6zExnOTPcZj808Iz
-         leZg==
-X-Gm-Message-State: ANoB5pk4GmscC8YCCdsiuzY2Tak2QGJIcxFP+sLzdkyUq4NCuWV9TWil
-        bXf1L/sE8Ia+Z9VGKFTdI0qBOA==
-X-Google-Smtp-Source: AA0mqf6p3rZ6O0OVw4hUrGNozzgAitQ9QVJ9blTJGAml+eH1lWfauMEDnESpyUls6Sygn0NkeUXOEw==
-X-Received: by 2002:a05:6512:456:b0:4b1:5bf0:df51 with SMTP id y22-20020a056512045600b004b15bf0df51mr419009lfk.674.1668153529875;
-        Thu, 10 Nov 2022 23:58:49 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id a18-20020a056512391200b004b097f2c73dsm199930lfu.253.2022.11.10.23.58.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Nov 2022 23:58:49 -0800 (PST)
-Message-ID: <ca66fe57-33c8-a98e-b6c7-cf1c94473a64@linaro.org>
-Date:   Fri, 11 Nov 2022 08:58:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2] dt-bindings: Convert active-semi PMIC docs to YAML
- schemas
-Content-Language: en-US
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        list@opendingux.net
-References: <20221105225803.39197-1-paul@crapouillou.net>
- <02c45ae9-61a4-9fc5-4daf-8c4c9df9a4a0@linaro.org>
- <NEH5LR.URZKYH8VLESF1@crapouillou.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <NEH5LR.URZKYH8VLESF1@crapouillou.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S232987AbiKKIAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 03:00:42 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D0E748E8;
+        Fri, 11 Nov 2022 00:00:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4505FB82405;
+        Fri, 11 Nov 2022 08:00:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCA15C433C1;
+        Fri, 11 Nov 2022 08:00:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668153637;
+        bh=/JhKtSplEXWQW83/PgxO5BdmEweOLgZbpN75oFE0iQE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bXKbxgj2UCTHUgeiGA+vW+Pc06m+20eJOo+npKH0T0z6xBvXwNBmy/nWBbAo7HJ2f
+         HDxHRP5biJytHOqONg5WlAPFBBWqfCjz5e3YiQH27oEZP2hW5wi5rQfPY2z7DIM6NL
+         cKst6mvMt3HKjZZK5fmNA593a2Xi9uIkxppyVXIy3bijpGj+R+aZx526NQQ678BB8o
+         YWDAG5KrCQBYMlyJsKUO3ItrixysfwtSnk+EKwWyBPKH7fU+yX1eernRm+A7Hjn//6
+         62ngoqWbRW6nzjTl+Tj2llrao/t4SaOFSa2hh7wR1eMQtrVyq86bnTJyVrFjpcQvtV
+         dnrWszvKuSCoA==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1otOxn-005LMf-A2;
+        Fri, 11 Nov 2022 08:00:35 +0000
+Date:   Fri, 11 Nov 2022 08:00:10 +0000
+Message-ID: <87h6z5vs39.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Richard Fitzgerald <rf@opensource.cirrus.com>, lee@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, tglx@linutronix.de,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com
+Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic CS48L31/32/33 codecs
+In-Reply-To: <Y21gwGDb5CFft0kp@sirena.org.uk>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+        <20221109165331.29332-10-rf@opensource.cirrus.com>
+        <87mt8zutib.wl-maz@kernel.org>
+        <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
+        <86pmdvow5y.wl-maz@kernel.org>
+        <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
+        <86k042q1uc.wl-maz@kernel.org>
+        <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
+        <87iljmve87.wl-maz@kernel.org>
+        <Y21gwGDb5CFft0kp@sirena.org.uk>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: broonie@kernel.org, rf@opensource.cirrus.com, lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, tglx@linutronix.de, alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,80 +77,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 22:08, Paul Cercueil wrote:
-> Hi Krzysztof,
+On Thu, 10 Nov 2022 20:36:16 +0000,
+Mark Brown <broonie@kernel.org> wrote:
 > 
-> Le dim. 6 nov. 2022 à 10:55:11 +0100, Krzysztof Kozlowski 
-> <krzysztof.kozlowski@linaro.org> a écrit :
->> On 05/11/2022 23:58, Paul Cercueil wrote:
->>>  Create YAML bindings for the Active-semi PMICs and remove the old 
->>> text
->>>  files.
->>>
->>>  The bindings aren't perfect, for instance I couldn't find good
->>>  descriptions for the vendor properties in the "charger" node of the
->>>  ACT8945A because I am not familiar with the hardware and these
->>>  properties were not documented anywhere.
->>>
->>>  The YAML schemas are a bit different than what is described in the 
->>> old
->>>  text files, because these were sometimes wrong or had missing
->>>  information. This is the case for the ACT8600 documentation, which
->>>  specified the valid node names for the regulators, while the driver 
->>> was
->>>  expecting different names. This led to the current situation where 
->>> we
->>>  have two different boards using different names for the regulators:
->>>  - arch/mips/boot/dts/ingenic/ci20.dts uses the names documented in 
->>> the
->>>    text file,
->>>  - arch/mips/boot/dts/ingenic/gcw0.dts uses the names that the driver
->>>    expects.
->>>  In theory, the driver should be fixed to follow the documentation, 
->>> and
->>>  accept both naming schemes. In practice though, when the PMIC node 
->>> was
->>>  added to the ci20.dts board file, the names were already wrong in
->>>  regards to what the driver expected, so it never really worked
->>>  correctly and wasn't tested properly. Furthermore, in that board the
->>>  consumers of the regulators aren't working for various other reasons
->>>  (invalid GPIOs, etc.).
->>>
->>>  For that reason, for the ACT8600 bindings I decided to only use the 
->>> node
->>>  names that the driver expects (and that gcw0.dts uses), instead of
->>>  accepting both old and new names. A follow-up patch will update the 
->>> CI20
->>>  board to use the new regulator names.
->>>
->>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>>  ---
->>>
->>>  Notes:
->>>      v2:
->>>      - Avoid | character in descriptions that can be single-line
->>>      - Remove unevaluatedProperties when additionalProperties is 
->>> also present
->>>      - Remove useless inner parentheses in regular expressions
->>>      - Rename I2C nodes to just... i2c
->>>      - Remove node handles
->>>
->>>      Note:
->>>      I set Liam Girdwood and Mark Brown as the maintainers by 
->>> default, since
->>>      it doesn't appear that anybody is managing the Active-semi 
->>> drivers, but
->>>      if anybody steps up I can update it.
->>
->> It should not be Liam and Mark, but someone having/knowing this
->> particular hardware.
+> On Thu, Nov 10, 2022 at 06:47:20PM +0000, Marc Zyngier wrote:
 > 
-> Well, who would that be?
+> > Read again what I have written. Having to expose a device-specific API
+> > for endpoint drivers to obtain their interrupts, and requiring them to
+> > know about some magic values that describe the interrupts source are
+> > not a acceptable constructs.
 > 
-> I do have a board with the ACT8600, but that's about it.
+> > We have firmware descriptions to expose interrupt linkages, and your
+> > HW is not special enough to deserve its own top level API. Yes, we
+> > accepted such drivers in the past, but it has to stop.
+> 
+> > Either you describe the internal structure of your device in DT or
+> > ACPI, and make all client drivers use the standard API, or you make
+> > this a codec library, purely specific to your device and only used by
+> > it. But the current shape is not something I'm prepared to accept.
+> 
+> ACPI gets to be a lot of fun here, it's just not idiomatic to describe
+> the internals of these devices in firmware there and a lot of the
+> systems shipping this stuff are targeted at other OSs and system
+> integrators are therefore not in the least worried about Linux
+> preferences.
 
-You or driver maintainer or recent contributors.
+Let me reassure the vendors that I do not care about them either. By
+this standard, we'd all run Windows on x86.
 
-Best regards,
-Krzysztof
+> You'd need to look at having the MFD add additional
+> description via swnode or something to try to get things going.  MFD
+> does have support for that, though it's currently mainly used with
+> devices that only have ACPI use (axp20x looks like the only potentially
+> DT user, from the git history the swnode bits are apparently for use on
+> ACPI systems).  That might get fragile in the DT case since you could
+> have multiple sources for description of the same thing unless you do
+> something like suppress the swnode stuff on DT systems.
+> 
+> Given that swnode is basically DT written out in C code I'm not actually
+> convinced it's that much of a win, unless someone writes some tooling to
+> generate swnode data from DT files you're not getting the benefit of any
+> of the schema validation work that's being done.  We'd also need to do
+> some work for regulators to make sure that if we are parsing DT
+> properties on ACPI systems we don't do so from _DSD since ACPI has
+> strong ideas about how power works and we don't want to end up with
+> systems with firmware providing mixed ACPI/DT models without a clear
+> understanding of what we're geting into.
+> 
+> I do also have other concerns in the purely DT case, especially with
+> chip functions like the CODEC where there's a very poor mapping between
+> physical IPs and how Linux is tending to describe things internally at
+> the minute.  In particular these devices often have a clock tree
+> portions of which can be visible and useful off chip but which tends to
+> get lumped in with the audio IPs in our current code.  Ideally we'd
+> describe that as a clock subdevice (or subdevices if that fits the
+> hardware) using the clock bindings but then that has a bunch of knock on
+> effects the way the code currently is which probably it's probably
+> disproportionate to force an individual driver author to work through.
+> OTOH the DT bindings should be OS neutral ABI so...
 
+I don't think this is a reason to continue on the current path that
+pretends to have something generic, but instead is literally a board
+file fragment with baked-in magic numbers.
+
+An irqchip is supposed to offer services to arbitrary clients
+(endpoint drivers) that are oblivious of the irqchip itself, of the
+hwirq mapping, and use the standard APIs to obtain a virtual interrupt
+number. None of that here. This is a monolithic driver, only split
+across multiple subsystem to satisfy a "not in my backyard"
+requirement.
+
+If the vendors/authors want to keep the shape of the code as is, they
+can do it outside of the irqchip code and have some library code with
+an internal API. At least they will stop pretending that this is a
+general purpose driver. And the existing madera code can also go in
+the process.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
