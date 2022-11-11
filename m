@@ -2,143 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4526262E4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 21:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B156262F2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 21:31:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233911AbiKKU15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 15:27:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
+        id S231625AbiKKUbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 15:31:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233844AbiKKU14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 15:27:56 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D9276F80;
-        Fri, 11 Nov 2022 12:27:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A31C5620E0;
-        Fri, 11 Nov 2022 20:27:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E1F3C433C1;
-        Fri, 11 Nov 2022 20:27:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668198475;
-        bh=Y5Dw/OOyI6sYBlM0cZs0xJ8i4Ulq91X+S48irGu3LUA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VnrQAizhs2WWMYfybXQ6nVwA7jJG9M0+Z8/Fot/G1aJVbjTSWyGULYrfAqmOGCQa3
-         5ubmZZu/5J0hE7aHgW9uHwSM1jOG7rwLjHtEV7UDVWBlBopNewIgBJfjRgMmcX4hER
-         mjB2yjHKFx31u4XIa+GIzsqGl4pZIztfvJyLMqYscnYDdFxu2yP/GBOmlKlc/9zVit
-         U5Bpdx0bBYk37xnmLbHMsJW4QxGDSLpdmfYjt47I9w2YO1iAKMC+OXu4LqldPwpqnK
-         aTB9696SJWs+x62UnaDWH1+3Vg4Eq9GoTyG2Px+pmvH2iEzJlEm79gIYgZNQGsIh4u
-         X/lo+tXVm+57A==
-Date:   Fri, 11 Nov 2022 14:27:52 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] phy: qcom-qmp-usb: drop sc8280xp reference-clock
- source
-Message-ID: <20221111202752.s2ob3fft5ndh7elj@builder.lan>
-References: <20221111093857.11360-1-johan+linaro@kernel.org>
- <20221111093857.11360-3-johan+linaro@kernel.org>
+        with ESMTP id S232574AbiKKUbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 15:31:43 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C31D14083
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 12:31:43 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id t62so5895859oib.12
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 12:31:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v7JwfC7BEwyt54CAoazqwqKahwlz5HCeFfo9y8OXV5k=;
+        b=k3oySDP5db+EE32UB1u/TB7IpnJn27W/D9qVljMLqGFJrIH8lPrAxiNL2jsOZRs0y4
+         YsfNzg/AlYfvnfZnFjnbxEMzx4iFHx3b9WVME1gCmXZeAzNgSltGxgKu8ouPOv6VUrh8
+         59JcCc4t6GlVa3nN44Oc3JHHDdyu0kspaigCHISBlamDABUl5XyPe887RomfP23SJ7Zs
+         NOR9PyVDSy5M0AsMt+48LJROH2r2PUTePj8rEy84S8WZPm3kKAWI9aDnWboeFUeB30ru
+         VL3GxRZrQy5Do2ge0zpWSYT5SU2rx3ORojUwK4n58WWq92b8jWwi7lVHh7pHykpAZcKA
+         SYOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v7JwfC7BEwyt54CAoazqwqKahwlz5HCeFfo9y8OXV5k=;
+        b=2//+/+EHN0ltMu90/7vJtKbqZ371DlesGyHFyOvH7+mF1Mz6iuekW95GS92x9SJUpm
+         2w0UXaqiqwOjavEjy/do83osp0Iu9SlH8b66UWlQXulagyCN3Af8WM/zhflDOxbzOYO+
+         KyHDx4lNAIuXoQgrpRZrO1hwFu/nC9CaVBR4f8mJa7r8hB9pnNhBoOkaplr+vq3L/kUO
+         iwHUqukMK6X5kIRCtH1/DnvjMELNZ1OEi/BYX0L4V0YsDaJFzJ5izrQb3wdpsMXKv6Y0
+         Bauh3sFWNgcTsXaN27GtjeYsOMc04z0sSyVBu4cXu0xafG6IbJsz08r6kXNx1lUOD9U9
+         929A==
+X-Gm-Message-State: ANoB5plwQmahag4zbeWFuc+GNBPmkS4BV5RyM5QECdAwhrnre6Mr8ZJ3
+        CtQUo3GtvJudA7vykJvhj4E=
+X-Google-Smtp-Source: AA0mqf5Vq1+0doXCD67im0+BQVjVWFV6lIbFaFqNY/dqYYYZJ/Yip6++mjRgm4RxCsPSnF4EPVcOiA==
+X-Received: by 2002:a05:6808:22a5:b0:354:8922:4a1a with SMTP id bo37-20020a05680822a500b0035489224a1amr1583008oib.181.1668198702340;
+        Fri, 11 Nov 2022 12:31:42 -0800 (PST)
+Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id n10-20020a056870558a00b00132f141ef2dsm1734054oao.56.2022.11.11.12.31.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 12:31:41 -0800 (PST)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V5 0/3] drm/panel: Add NewVision NV3051D Panels
+Date:   Fri, 11 Nov 2022 14:31:27 -0600
+Message-Id: <20221111203130.9615-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221111093857.11360-3-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 10:38:56AM +0100, Johan Hovold wrote:
-> The source clock for the reference clock is not used by the PHY directly
-> and should not be described by the devicetree (instead this relationship
-> should be modelled in the clock driver).
-> 
-> Drop the driver management of the reference-clock source for SC8280XP.
-> 
-> Once the other clock drivers have been updated, the corresponding change
-> can be done also for the other QMP v4 platforms.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Add the NewVision NV3051D panel as found on the Anbernic RG353P and
+RG353V. The underlying LCD panel itself is unknown (the NV3051D is
+the controller), so the device name is used for the panel with a
+fallback to the driver IC.
 
-Regards,
-Bjorn
+Changes from V4:
+ - Removed "prepared" as its tracked by the framework.
+ - Use mipi_dsi_dcs_write_seq instead of custom implementation.
+ - Changed devm_gpiod_get_optional to assert GPIO as high at probe so
+   it is held in reset on suggestion from maintainer.
+ - Removed requirement for vdd-supply in documentation.
+ - Added description in documentation for reset gpio to note it should
+   be active low.
 
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> index 372f9853c749..9b1f8c9d0eb8 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> @@ -1523,6 +1523,10 @@ static const char * const qmp_v3_phy_clk_l[] = {
->  };
->  
->  static const char * const qmp_v4_phy_clk_l[] = {
-> +	"aux", "ref", "com_aux",
-> +};
-> +
-> +static const char * const qmp_v4_ref_phy_clk_l[] = {
->  	"aux", "ref_clk_src", "ref", "com_aux",
->  };
->  
-> @@ -1729,8 +1733,8 @@ static const struct qmp_phy_cfg sm8150_usb3phy_cfg = {
->  	.pcs_tbl_num		= ARRAY_SIZE(sm8150_usb3_pcs_tbl),
->  	.pcs_usb_tbl		= sm8150_usb3_pcs_usb_tbl,
->  	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8150_usb3_pcs_usb_tbl),
-> -	.clk_list		= qmp_v4_phy_clk_l,
-> -	.num_clks		= ARRAY_SIZE(qmp_v4_phy_clk_l),
-> +	.clk_list		= qmp_v4_ref_phy_clk_l,
-> +	.num_clks		= ARRAY_SIZE(qmp_v4_ref_phy_clk_l),
->  	.reset_list		= msm8996_usb3phy_reset_l,
->  	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
->  	.vreg_list		= qmp_phy_vreg_l,
-> @@ -1755,8 +1759,8 @@ static const struct qmp_phy_cfg sm8150_usb3_uniphy_cfg = {
->  	.pcs_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_pcs_tbl),
->  	.pcs_usb_tbl		= sm8150_usb3_uniphy_pcs_usb_tbl,
->  	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8150_usb3_uniphy_pcs_usb_tbl),
-> -	.clk_list		= qmp_v4_phy_clk_l,
-> -	.num_clks		= ARRAY_SIZE(qmp_v4_phy_clk_l),
-> +	.clk_list		= qmp_v4_ref_phy_clk_l,
-> +	.num_clks		= ARRAY_SIZE(qmp_v4_ref_phy_clk_l),
->  	.reset_list		= msm8996_usb3phy_reset_l,
->  	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
->  	.vreg_list		= qmp_phy_vreg_l,
-> @@ -1806,8 +1810,8 @@ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
->  	.pcs_tbl_num		= ARRAY_SIZE(sm8250_usb3_uniphy_pcs_tbl),
->  	.pcs_usb_tbl		= sm8250_usb3_uniphy_pcs_usb_tbl,
->  	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8250_usb3_uniphy_pcs_usb_tbl),
-> -	.clk_list		= qmp_v4_phy_clk_l,
-> -	.num_clks		= ARRAY_SIZE(qmp_v4_phy_clk_l),
-> +	.clk_list		= qmp_v4_ref_phy_clk_l,
-> +	.num_clks		= ARRAY_SIZE(qmp_v4_ref_phy_clk_l),
->  	.reset_list		= msm8996_usb3phy_reset_l,
->  	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
->  	.vreg_list		= qmp_phy_vreg_l,
-> @@ -1907,8 +1911,8 @@ static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
->  	.pcs_tbl_num		= ARRAY_SIZE(sm8350_usb3_uniphy_pcs_tbl),
->  	.pcs_usb_tbl		= sm8350_usb3_uniphy_pcs_usb_tbl,
->  	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8350_usb3_uniphy_pcs_usb_tbl),
-> -	.clk_list		= qmp_v4_phy_clk_l,
-> -	.num_clks		= ARRAY_SIZE(qmp_v4_phy_clk_l),
-> +	.clk_list		= qmp_v4_ref_phy_clk_l,
-> +	.num_clks		= ARRAY_SIZE(qmp_v4_ref_phy_clk_l),
->  	.reset_list		= msm8996_usb3phy_reset_l,
->  	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
->  	.vreg_list		= qmp_phy_vreg_l,
-> -- 
-> 2.37.4
-> 
+Changes from V3:
+ - Changed driver remove function from int to void to match change
+   made to mipi_dsi_driver struct.
+
+Changes from V2:
+ - Ensured dt_binding_check and dtbs_check successfully passed.
+ - Corrected some minor formatting issues in documentation.
+ - Added another mode per userspace request for 100hz. I was unable
+   to find a supported 50hz mode that would also work, so for now
+   only 60hz, 100hz, and 120hz are supported.
+
+Changes from V1:
+ - Changed compatible string to the driver IC.
+ - Updated documentation to use new compatible string with board
+   name.
+ - Refactored somewhat to make it easier to support other LCD panels
+   with this kernel module.
+ - Added support for 60hz mode. Adjusted pixel clock to ensure proper
+   60hz and 120hz (previously was running at 124hz).
+ - Added vendor prefix for NewVision. Anbernic vendor prefix added in
+   https://lore.kernel.org/linux-devicetree/20220906210324.28986-2-macroalpha82@gmail.com
+
+Chris Morgan (3):
+  dt-bindings: vendor-prefixes: add NewVision vendor prefix
+  dt-bindings: display: panel: Add NewVision NV3051D  bindings
+  drm/panel: Add NewVision NV3051D MIPI-DSI LCD panel
+
+ .../display/panel/newvision,nv3051d.yaml      |  63 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-newvision-nv3051d.c   | 504 ++++++++++++++++++
+ 5 files changed, 579 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+
+-- 
+2.25.1
+
