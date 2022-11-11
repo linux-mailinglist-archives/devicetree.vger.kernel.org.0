@@ -2,100 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9416625E2F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:20:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51152625E34
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 16:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234328AbiKKPUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 10:20:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45270 "EHLO
+        id S231261AbiKKPUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 10:20:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233925AbiKKPTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:19:44 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899668339C
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:19:22 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id d6so8737778lfs.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 07:19:22 -0800 (PST)
+        with ESMTP id S234768AbiKKPTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 10:19:46 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785217F564;
+        Fri, 11 Nov 2022 07:19:34 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id q9so13402757ejd.0;
+        Fri, 11 Nov 2022 07:19:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z1mqXwvWmPhab1TlCcop37vPKl3pWguvjIJOUMn4sIY=;
-        b=lRFSJ+iixZbdJTxYfczKSrJhBl2gDGcJWujaHoQ0IW/UjhTXhA8AHsZ4tfrNCHxxvp
-         U5JqMIxcToRCENRVI61YoGvCs09aJHlCB8jmaK3DtrAfay5L/7T4z/et8f0NXlu5Er+E
-         ZCRID4XUVYtiTfiABSenvlvb+tGe79Ulh3SNzxtUvEMztKtE+NjAk/ceVs9BfF6k8Pyw
-         A8wvTh9yyr4y9TFFOnWyHLQzT7bQwYIaK7F3XE5+5Uuyqp6vPxxSsjs6APKc110S6xud
-         Y10yCUy+tQ9OfsNsj98I+awvK/ky6JwsQ4xBXqnx+ZovZAVZhUTojtdFCkVj89Q1TTUq
-         H7fA==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1Avc73Wd5uy7Skwld22VvbpjyFk8ZE6ZJMl2WUws4Lc=;
+        b=VcgNLkQQBUoBcvJQba3AuaBnr9vBwzCaLsiJDg3vfO1i8jz04RZ8M9boGBXr+aqJ13
+         F4AwNu0vWhu2dwG6IQVLIiX+hcnUYylAqdCtNNGzdKo60Xy8FoC4znTaestAX1avwze7
+         uu0UJAHVi+bWnIZ++aj0uIe38aNuOejmSORQUHK6kuWBrspzO/+wxOUE1RITCn8u2+U5
+         sPvvqxnF4g6B1WCGvZ/PggiGtnEGrbSNJDnWg8QNfHQ94lFqfU7IN+Bedt1mGF9GDCn/
+         7EnSfj85WSPoHT+nGsxN35AdLPVa4aBsITm6h1vqkqEZqelUFBwzpUB/yCNHmbvPxF0O
+         VJ+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1mqXwvWmPhab1TlCcop37vPKl3pWguvjIJOUMn4sIY=;
-        b=cSEjT07aNXOJmhtGL97uYD6B31QXhn2JV1m0fQ9nz/TJDoPIEoglwKvHF+HoJmCwXi
-         yNJH+gI5wZvdzg8X09cHlDEECzY7BRIqvMz6z9f/Zx2WALfQGZ7wHQgPAmt0YyAsZu+y
-         Tm0swF2DXuqw+vfOCvyIq+ZLZ1/45fi20xOs2l25yRfa2c5GZ03DDtB2HSHFabnNabpm
-         9Y8QdmUpL9h934sL20uWvoKc7MmBocDv7jAWPgsxHrIG/gVAjPPoKu7tzeUasgsmTIeJ
-         3pW0hGbixt6VRYKjMfOjbCMk9qTFNmHZs/2t4r5zkl2j7bPPKmxtankZu+4T0VEAcj9b
-         ad1A==
-X-Gm-Message-State: ANoB5pmx0a1IQx7cODkNc/dT8OrZiFxoCk4hoBpQEvndWD4T8ejtOP3y
-        +5G1I+hPSyp40CldT9FePJUvxQ==
-X-Google-Smtp-Source: AA0mqf4MLBY3EOROYH2BI548oGHzi0oPD+Q4xK3FHZtfNMFWB5iNosXtssjHoXmiFaInj3oNg8aGBg==
-X-Received: by 2002:a05:6512:3c8e:b0:4a0:5393:3749 with SMTP id h14-20020a0565123c8e00b004a053933749mr889517lfv.494.1668179961701;
-        Fri, 11 Nov 2022 07:19:21 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id s8-20020ac25fe8000000b00492b0d23d24sm367101lfg.247.2022.11.11.07.19.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 07:19:19 -0800 (PST)
-Message-ID: <76e9ddb4-b33d-5e86-4ee8-c6b164236bf4@linaro.org>
-Date:   Fri, 11 Nov 2022 16:19:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 04/14] phy: qcom-qmp-combo: restructure PHY creation
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1Avc73Wd5uy7Skwld22VvbpjyFk8ZE6ZJMl2WUws4Lc=;
+        b=dshVNXp8FayAYmyBkVqSJbQ/mGPoKPazX7nlhuZ+R3Vlu4TSFMzE1ZbpIxulhamPgF
+         zVz6pG9x8GIzVn1BhTgGBuW8Q0ShRANLtOxhT6/LuboyXHuRPKtTQY8u6SwDsp966nEm
+         FeWCdhQLrzZ5DQ40KjqX02xcXIBmBDthSXH2o3jjCPVX6M/bfyLkBgpTw5HdyHOa94DK
+         SJ/Adzlc5fwBtbrAKgpGg36Yj32fPv4FrqcqwsPbC1W2N+GLTCr9jdmHp7a2vKPxnRuL
+         zQ0qw6gfAPoeHlNliQDMZ/pXxGHFl0DLr4iycp3fkoGJGJjVCEJnjtMfupYobyI0mCXq
+         8qkA==
+X-Gm-Message-State: ANoB5pmJoYwj1kCXi43SHdI4U5FHo0wSiLd+oxhas4lFjoRfN202CGRD
+        +h7n3fgTWOIb6MO4c4rEfWM=
+X-Google-Smtp-Source: AA0mqf7jcjvvCajWEZf/4tzH9aqqjB2lGEVAh0GleCi1WbBbEayX+c7poMtqgc5jYCdKUUnpl2KrMg==
+X-Received: by 2002:a17:906:4dc2:b0:7ae:50c6:fd0a with SMTP id f2-20020a1709064dc200b007ae50c6fd0amr2184833ejw.184.1668179973013;
+        Fri, 11 Nov 2022 07:19:33 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id b19-20020a056402139300b004637489cf08sm1168773edv.88.2022.11.11.07.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Nov 2022 07:19:32 -0800 (PST)
+Date:   Fri, 11 Nov 2022 16:19:30 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-5-johan+linaro@kernel.org>
- <Y24Vyn8o1VkUecKY@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y24Vyn8o1VkUecKY@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Jon Hunter <jonathanh@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>,
+        Vidya Sagar <vidyas@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] pinctrl: tegra: Separate Tegra194 instances
+Message-ID: <Y25oAmZMcfBOCat3@orome>
+References: <20221104142345.1562750-1-thierry.reding@gmail.com>
+ <CACRpkdYT0X09bWYg9za8x+3YkcbVmBm8Prb0Fyk2nfi_eanDyw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HZeBpEYEJWldW/UB"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYT0X09bWYg9za8x+3YkcbVmBm8Prb0Fyk2nfi_eanDyw@mail.gmail.com>
+User-Agent: Mutt/2.2.8 (2022-11-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 10:28, Johan Hovold wrote:
-> On Fri, Nov 11, 2022 at 10:24:47AM +0100, Johan Hovold wrote:
->> In preparation for supporting devicetree bindings which do not use child
->> nodes, move the PHY creation to probe() proper and parse the serdes,
->> dp_com and dp_serdes resources in a dedicated legacy devicetree helper.
->>
->> Signed-off-by: Johan Hovold <johan@kernel.org>
-> 
-> Please drop this first stray SoB line when applying (or I'll remove it
-> for v2).
 
-You need to send a v2 anyway to have a clear check by Rob's bot, so drop
-it then.
+--HZeBpEYEJWldW/UB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Tue, Nov 08, 2022 at 03:10:01PM +0100, Linus Walleij wrote:
+> On Fri, Nov 4, 2022 at 3:23 PM Thierry Reding <thierry.reding@gmail.com> =
+wrote:
+>=20
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> > This patch series changes the pin controller DT description on Tegra194
+> > in order to properly describe how the hardware works. Currently a
+> > simplified description is used that merges two pin controller instances
+> > (called AON and main) into a single DT node. This has some disadvantages
+> > such as creating a complicated mapping between the pins in those pin
+> > controllers and the corresponding GPIO controllers (which are already
+> > separated).
+> >
+> > As a prerequisite, the first patch in this series converts the device
+> > tree bindings to json-schema. A second patch then adds an additional
+> > compatible string for the AON instance (along with more details about
+> > each controller's pins) and finally patch 3 converts the driver to
+> > cope with these changes. A fourth patch makes the corresponding
+> > changes in the Tegra194 DTS file.
+> >
+> > Note that while this changes the DT node in an incompatible way, this
+> > doesn't have any practical implications for backwards-compatibility. The
+> > reason for this is that device trees have only reconfigured a very
+> > narrow subset of pins of the main controller, so the new driver will
+> > remain backwards-compatible with old device trees.
+> >
+> > Changes in v3:
+> > - address more review comments by Rob Herring and make validation work
+>=20
+> This looks good to me!
+>=20
+> I tried to apply them to the pinctrl devel branch but this happens:
+>=20
+> $ git am --signoff
+> ./v3_20221104_thierry_reding_pinctrl_tegra_separate_tegra194_instances.mbx
+> Applying: dt-bindings: pinctrl: tegra: Convert to json-schema
+> error: Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml:
+> does not exist in index
+> Patch failed at 0001 dt-bindings: pinctrl: tegra: Convert to json-schema
+>=20
+> I guess there are some prerequisites?
 
+Yeah, I noticed the same thing as I was just testing to cherry-pick just
+the first three patches to a vanilla upstream branch. So yes, that pre-
+requisite is another json-schema conversion that I have in my tree but
+which hasn't been merged yet.
+
+The good news is that my testing confirms what I recollect about the DT
+backwards-compatibility not being an issue. In practice the only pins
+=66rom this that are being used are in the first controller, so if we
+change the driver to only take control of one of them, the second will
+be ignored and that's really a no-op.
+
+What that also implies is that the pinctrl driver patch is completely
+standalone, so you can apply that whenever you want and I can apply the
+DT patch to the Tegra tree. I can then also pick up the DT bindings
+patches and resolve the conflict there. That is, if you don't mind.
+
+Thierry
+
+--HZeBpEYEJWldW/UB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNuaAIACgkQ3SOs138+
+s6G7PQ/+KgZZbOu4GM2OFplp4E42IdyUdN9zgYBdFRY+OLIjG6gMmY8sfY9Rj47w
+w6Ugi/LiEJKpBbfos6tXqnrgE/A3fK+G8RTWLYHiD0zr8XhytBRZ1+9bTE3OjDwO
+2p8K+YSWpQCVOP0DIZ8nf/w3EXTyQ2Wday+0EJPg6ro8XL4o3mCYzryDYRwMJRvn
+8eIKl9gZPJUXCCYJ2yphwzJ2SH6VL5aR396mK/waEBwYR4XkJQiZJJEVddrDEq4k
+q+DwOv8SuMIDc45Vwc1J+aDOYSM+ICsh/qb5K8St7fHzFnFBKep0B1s60tfEs2ke
++fdBxl0MDa0febtuKxQqJNSeSoOhb8Q2HQCpSOBvnGsRPnqGXNBCfFU//0bZ1Z1P
+r46j1j5HUMhKip9elA5BPI+B0MowevGRSeT/sw1xnX+csbwqfvGH7tf/T3q+Te+A
+oT8Zss5kirkvRdb16igoux0zEfzbNwQnOO7CFsLIfyKBaChFv4zDdUJ6ydx9dUCe
+CPSXEO2ZeaM47vR3hyyYl3uq6BWD9vNNLIZ8WUQUD2zHOgGA8fDWqKXNAIZ53Y7b
+Zi7HISh2csDV6ETiEHI1fx60MfowlTJnjl7cWyX0g47Ts8+KR7PvBMjtLEhOEi8M
+vuLP5mdFIIUg2peOSEyzqe6VwMmQm1Uerd/6jT70FwwvbgKUCU0=
+=70p8
+-----END PGP SIGNATURE-----
+
+--HZeBpEYEJWldW/UB--
