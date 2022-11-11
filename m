@@ -2,206 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF8C6252AB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 05:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E38BC6252B8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 05:42:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233020AbiKKEfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Nov 2022 23:35:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
+        id S231699AbiKKEmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Nov 2022 23:42:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232888AbiKKEfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 23:35:32 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7546B212
-        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:35:09 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221111043508epoutp04fc1dd1fee3f1e40fabaae08ba0696614~mba6ECWqc2673926739epoutp04B
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 04:35:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221111043508epoutp04fc1dd1fee3f1e40fabaae08ba0696614~mba6ECWqc2673926739epoutp04B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1668141308;
-        bh=6h15vmBu1KlWANEt8q88z1t98BduIhW5b68r16XTLlI=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=On8UyeehhKTm5fH5JVYlilXF3E2zV+l1LfSi8JknthHcRERyH8/UsLvOqhOz0eHJ3
-         Xet8m/VPgAoMqP2UgzjUAhSaHDfd49kaZty5H4aypdpPzPNVwZUS49YtZlfI78bQHV
-         6K2PUf81tFxpTZ26RdQNSLN5NnZp+Vfq0/Jv3HPc=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20221111043507epcas5p453119b36e9f1aec4f81573152195b725~mba5YPp_p0129601296epcas5p4h;
-        Fri, 11 Nov 2022 04:35:07 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.179]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4N7m8S6qwTz4x9Q6; Fri, 11 Nov
-        2022 04:35:04 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0D.88.01710.8F0DD636; Fri, 11 Nov 2022 13:35:04 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20221111040651epcas5p25baa64cda35ccabdc28081ed50b40a9f~mbCNxl-oa1633416334epcas5p2D;
-        Fri, 11 Nov 2022 04:06:51 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221111040651epsmtrp279291d471f5194e1af3257e224072880~mbCNwjDcu1387513875epsmtrp2Y;
-        Fri, 11 Nov 2022 04:06:51 +0000 (GMT)
-X-AuditID: b6c32a49-a41ff700000006ae-7b-636dd0f86efa
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C8.A0.18644.B5ACD636; Fri, 11 Nov 2022 13:06:51 +0900 (KST)
-Received: from FDSFTE314 (unknown [107.122.81.85]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20221111040648epsmtip14a368cde17f779d482923804ba92d3bf~mbCKylUd32425424254epsmtip1v;
-        Fri, 11 Nov 2022 04:06:48 +0000 (GMT)
-From:   "Vivek Yadav" <vivek.2311@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <rcsekar@samsung.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>,
-        <alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
-        <robh+dt@kernel.org>
-Cc:     <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <aswani.reddy@samsung.com>, <sriranjani.p@samsung.com>
-In-Reply-To: <277004ed-3b6b-4ee5-39e4-beb75a272e60@linaro.org>
-Subject: RE: [PATCH v2 1/6] dt-bindings: Document the SYSREG specific
- compatibles found on FSD SoC
-Date:   Fri, 11 Nov 2022 09:36:46 +0530
-Message-ID: <001601d8f583$06d01250$147036f0$@samsung.com>
+        with ESMTP id S229703AbiKKEmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Nov 2022 23:42:45 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B586A743
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:42:44 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id n186so3961449oih.7
+        for <devicetree@vger.kernel.org>; Thu, 10 Nov 2022 20:42:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5rRCdDoP4ucuHJTu4Dp35ZlpfeELCSDaYd2hKM7VLR8=;
+        b=Ah9ALclYD+mRrHhK5dzn2/JkJ5HxliwwDYtD/JQV6/7PU5gcF/nGWIceSm5kyLSF/x
+         F+vAiZT8lVqGvGO8CeWYjDrqAVQGySjalFTLunBFcc88mR33+D+KrXWbFkLIqgFgxMPo
+         k8KqKhA9zaokx2Ly0yz/gukqPpKK6jxQMYstYdMZo3rEAzPtwTactGy1IByOBla6SwAF
+         G+RFXRFFLhYKU9e/fX17c6LbTom4Gv4BrvXeMMxKJrAaPbB7Q6gfbxEzaTYhJ4HWHacb
+         f9HTXX4q5//06+49rHn+TktjO+G6Gby1C7CCe3pW9ZTFNJc7SihrcVrzlLlG36awoZRd
+         +m0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5rRCdDoP4ucuHJTu4Dp35ZlpfeELCSDaYd2hKM7VLR8=;
+        b=Qsf0fAXNrIlcIa3ArzbcIW64FH3hFGZ1eFeXyrppilj45Q9gxSWOgEpwXq/BwNIPSy
+         HHPs991XscADbiGHzyDan/HzOZty+qvsXT6LTD72Yp4ojz6+50hDmUq/lXRdgOte+I3y
+         9bgoGPlj4SOyS7lyk4Y9jVQ9IprYPXmXEYfjpbJrEj0Lh6jNvrXO3VtHy8KndulPAtKM
+         vYccafE1LAhvUoqV1qekWjcGKNeZpNEsmeTpba2gD1AKWJbYp1HOI/LoQSQgLFmdna+1
+         DljFH1qiLb1aFlL/pM0pM7DfcWDi2s3kXeRVvauZlsJwfj5FEkCn/ZJFPvgAXimbGHh3
+         E2eQ==
+X-Gm-Message-State: ACrzQf174xFjTm+2y2p+8Z42+teTlYe3bBG3us/1tfstXBWx3TY9PG8S
+        rwLeDSIRWwflD3Kq69QTyeBrRA==
+X-Google-Smtp-Source: AMsMyM6ccFBGCQhM+86XrT4r7MAESQqQ3bT7i9DXvYWPsUkIqaLCjxouX/GRGmYeduFJ0b4L6HovRg==
+X-Received: by 2002:aca:f241:0:b0:35a:1a81:1961 with SMTP id q62-20020acaf241000000b0035a1a811961mr2787471oih.251.1668141763441;
+        Thu, 10 Nov 2022 20:42:43 -0800 (PST)
+Received: from anup-ubuntu64-vm.. ([103.97.165.210])
+        by smtp.gmail.com with ESMTPSA id k14-20020a056870350e00b0013d9bd4ad2esm787353oah.12.2022.11.10.20.42.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Nov 2022 20:42:43 -0800 (PST)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH 0/9] Linux RISC-V AIA Support
+Date:   Fri, 11 Nov 2022 10:11:58 +0530
+Message-Id: <20221111044207.1478350-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFejcOECimRbNc2gYBlewkpfd/ZqQHz7ogqAVwjo3kCSHwOhwGfuKaeAOJGcdCu7RURAA==
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xTZxjGc3p6Tlugy+Ey+SDRdEWjIpd2lu6rATXBLGdRlM0MdZKw5nBC
-        ETitbdkYJo6iU2GAMGQ4hojXYZmwtFAql+o6QBgdkLG5EJhyFQM4KiXbnAIrPbLx3+/93ufJ
-        e/ny8lE/Ay+Yn8roaS2jTBfjXlzLD1s3h//dn0FJLF0yOFJlwaHd3MiDlX2nufByey8GJzvH
-        eLDoySgK22bciX5LEQZN4w8waPyrDIWj04fgQHMlDi/22Tiw/uoFLuysXgf/7JlF4NXGBR4c
-        dbbyYEW/FYOftbXz4NBsHQZvPLyD7V5HNtwa5JDVpkzy2c9DCGky5uHk8INWnDRf/5Q8vygh
-        52y/4mRRgxEhl3Iv8UiXaUO89wdp0SpamUxrRTRDqZNTmZQY8d6DSbFJUXKJNFyqgG+JRYwy
-        g44R79kXH/52arp7VLHoI2V6pvspXqnTiSN3RmvVmXpapFLr9DFiWpOcrpFpInTKDF0mkxLB
-        0PodUonkzSi38MM0leHpIE9TH5BVdcqA5yAOIh8R8AEhA8tnzVg+4sX3I1oQ4Dj3PZcN5hEw
-        bptE2MCFgBvncjmrlvsTDpxNNCNgeOQlygZTCPjt+nmPCifCwKnSRY89gDCgoHy+0xOgRC4H
-        2Gbs+IpKQOwEVoPLw/5EMmi8O46uMJfYBO6YnNgKCwkFGK6p5rLsC7q/mvAwSmwDN6/MoGxP
-        IvB88qZHH0AkgIVbNozVBIKO5wWe9gDxjQDcttfgrGEPKCxq4LHsD6bvr3IwcP3R9kpDAetS
-        HsayClSXtCIs7wL3fql0N8F3F9gK6psj2ef1oOzHOg5b9zVQ+GLi1b6EwFq1yhvBE1cxtmJd
-        KVXY61+MiCvWTFaxZrKKNRNU/F+sGuEakSBao8tIoXVRGilDf/zfl1PqDBPiuYXQd6zI7yPO
-        CDvC4SN2BPBRcYDQe0sa5SdMVn6STWvVSdrMdFpnR6Lc6y5Bg1+n1O5jYvRJUplCIpPL5TLF
-        drlUHCi8djGU8iNSlHo6jaY1tHbVx+ELgnM4TWfGaG2O8dpLIQh9eERQddjoelell37eHUK9
-        mEwR1fo8CgqaEzjIkLwSX4PZljjQc9bh21vguvfT3ekz24/si7PFHO6w7vf1OdYEc9q/PL4c
-        Ep7QHDc157XlDfPj7EZLgb53KC9htmCsPGwoNneqL8vnRITr0tMdFNPe+O2xWl+ftubx7xbL
-        9nt/0ZnYYexynaCoAVVLmbOt9Gip+Sj/wKOw+vnjTQHFrvK8C4m76ycsPdPETPbGg93TuyKX
-        5e8bahVBXiIndG7qPhl35fQzRaxkQ83mvdFkYFbXIXowiz45B1vq4qoWohvWlziZ0ELH0j9f
-        b+Pll77XhDV0Rjy+LebqVEppKKrVKf8FSw7RWZQEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sb0zMcRzH973fvyvKr6vVVyZ2EkqnzJ9vW2vmAT8siU0WVqf7LdRd566Q
-        B0RanFSU6KTumlp3U3Iq4bpxJU50pbljNaRupz+U9cdohevGevbaXu/3e58HHy7GG8B9uUck
-        qaxMIkzmk654QzPfL3j/S3FCSKXVA30qbSCR8X49hUrM53FU1tJOIFvrZwrlfunFUNPQX9HR
-        kEsgXZ+FQNof1zDUOxiDuh6VkOiG2cBBd8sLcdSq8kaTbcMAldePU6h3VE8hZUcjgbKaWijU
-        PVxDoIoPD4lN3kyd5j2HUenSmO9vugGj014kmR6LnmTu3z7D5E2HMCOGtySTW6cFzMy5WxQz
-        pvPbNS/WNVzEJh85zsrWRMS7Hv71sY+QDnueHDcUUxkgm1YAFy6k18Hn/a9IBXDl8uhGACeG
-        moFT+MLCVwO4kz2hZsZOOUM2ACerOjGHIOnVMLNgerbgRV/BYFP5UkcIoxUc+PrdDO5sdHJg
-        bcXgbMqFjoCNZ8dIB3vSh2Br5xPKwTi9HD7UjRIOdqPDYE+VCneyBzQV988yRgdB23vbf65U
-        D2HO85bCn7ZKwnnFXjiuMRDOjA989jMHyweeyjlTyjlTyjlTyjkVFcC1YCErlYsTxfJQ6VoJ
-        e0IgF4rlaZJEQUKKWAdmvyEwsBHotaMCI+BwgRFALsb3cpu3MimB5yYSpp9iZSlxsrRkVm4E
-        i7g438etQ2GK49GJwlQ2iWWlrOyf5XBdfDM4Qmv3SMG2M83d4vSr509MtNU2qHyEBwt/LT52
-        KSr89LrJ6tMBY5rV7QX9puO7LwZN01G71E2hl3SRWz+IHijUC3rdf5tqLNuDlr0wzPQnmRX6
-        JTEZVw2CgRHRzj0T+qgydzIl9Y51Ijh6c25OQHzX07r8b8u6jkrI7VnW6Bq/FE2QVnCz2KPI
-        N3hPtnxK/fjL67zSIllP2qB/n/llhS0yyb4vtseUZd8RYr95IdPCSM1GbXrWqo8B1rAVnC3X
-        Wza2l+TFWoxhiaVX5t+LyikcLNZdXu+tjmOnEjYFU/5ft3Vkb3A/kP/cpbXarzl2zeO3pXZe
-        ZM3tA9XRp6putHiJBG18XH5YGBqIyeTCPwwyymt8AwAA
-X-CMS-MailID: 20221111040651epcas5p25baa64cda35ccabdc28081ed50b40a9f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221109100245epcas5p38a01aed025f491d39a09508ebcdcef84
-References: <20221109100928.109478-1-vivek.2311@samsung.com>
-        <CGME20221109100245epcas5p38a01aed025f491d39a09508ebcdcef84@epcas5p3.samsung.com>
-        <20221109100928.109478-2-vivek.2311@samsung.com>
-        <709daf8b-a58e-9247-c5d8-f3be3e60fe70@linaro.org>
-        <000001d8f4f6$1c7e96e0$557bc4a0$@samsung.com>
-        <277004ed-3b6b-4ee5-39e4-beb75a272e60@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The RISC-V AIA specification is now frozen as-per the RISC-V international
+process. The latest frozen specifcation can be found at:
+https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interrupts-1.0-RC1.pdf
 
+At a high-level, the AIA specification adds three things:
+1) AIA CSRs
+   - Improved local interrupt support
+2) Incoming Message Signaled Interrupt Controller (IMSIC)
+   - Per-HART MSI controller
+   - Support MSI virtualization
+   - Support IPI along with virtualization
+3) Advanced Platform-Level Interrupt Controller (APLIC)
+   - Wired interrupt controller
+   - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+   - In Direct-mode, injects external interrupts directly into HARTs
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> Sent: 10 November 2022 17:42
-> To: Vivek Yadav <vivek.2311=40samsung.com>; rcsekar=40samsung.com;
-> krzysztof.kozlowski+dt=40linaro.org; wg=40grandegger.com;
-> mkl=40pengutronix.de; davem=40davemloft.net; edumazet=40google.com;
-> kuba=40kernel.org; pabeni=40redhat.com; pankaj.dubey=40samsung.com;
-> ravi.patel=40samsung.com; alim.akhtar=40samsung.com; linux-fsd=40tesla.co=
-m;
-> robh+dt=40kernel.org
-> Cc: linux-can=40vger.kernel.org; netdev=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
-> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org;
-> aswani.reddy=40samsung.com; sriranjani.p=40samsung.com
-> Subject: Re: =5BPATCH v2 1/6=5D dt-bindings: Document the SYSREG specific
-> compatibles found on FSD SoC
->=20
-> On 10/11/2022 12:18, Vivek Yadav wrote:
-> >>> +maintainers:
-> >>> +  - Alim Akhtar <alim.akhtar=40samsung.com>
-> >>> +
-> >>> +description: =7C
-> >>> +  This is a system control registers block, providing multiple low
-> >>> +level
-> >>> +  platform functions like board detection and identification,
-> >>> +software
-> >>> +  interrupt generation.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>
-> >> No need for oneOf.
-> >>
-> > Removing this results into dt_binding_check error, so this is required.
->=20
-> No, this is not required. You do not have more than one condition for one=
-Of.
->=20
-Oh, ok I got it. I was not removing =22-=22 before items, which is resultin=
-g an error. I will update this in next patch series. Sorry for confusion.
-> >>> +      - items:
-> >>> +          - enum:
-> >>> +              - tesla,sysreg_fsys0
-> >>> +              - tesla,sysreg_peric
-> >>
-> >> From where did you get underscores in compatibles?
-> >>
-> > I have seen in MCAN Driver <drivers/net/can/m_can/m_can_platform.c>
-> and also too many other yaml files.
-> > Do you have any ref standard guideline of compatible which says
-> underscore is not allowed.
->=20
-> git grep compatible arch/arm64/boot/dts/exynos/ =7C grep _ git grep
-> compatible arch/arm/boot/dts/exynos* =7C grep _
->=20
-> Both give 0 results. For few other SoCs there such cases but that's reall=
-y,
-> really exception. Drop underscores.
->=20
-git grep compatible arch/arm64/boot/dts/ =7C grep _ =7C wc -l=20
-This gives me 456 location, am I missing anything here ?
-Anyway I will replace with =22-=22 in next patch series.
->=20
-> Best regards,
-> Krzysztof
-Thanks for review the patches.
+For an overview of the AIA specification, refer the recent AIA virtualization
+talk at KVM Forum 2022:
+https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+https://www.youtube.com/watch?v=r071dL8Z0yo
 
+This series adds required Linux irqchip drivers for AIA and it depends on
+the recent "RISC-V IPI Improvements".
+(Refer, https://lore.kernel.org/lkml/20221101143400.690000-1-apatel@ventanamicro.com/t/)
+
+To test this series, use QEMU v7.1 (or higher) and OpenSBI v1.1 (or higher).
+
+These patches can also be found in the riscv_aia_v1 branch at:
+https://github.com/avpatel/linux.git
+
+Anup Patel (9):
+  RISC-V: Add AIA related CSR defines
+  RISC-V: Detect AIA CSRs from ISA string
+  irqchip/riscv-intc: Add support for RISC-V AIA
+  dt-bindings: Add RISC-V incoming MSI controller bindings
+  irqchip: Add RISC-V incoming MSI controller driver
+  dt-bindings: Add RISC-V advanced PLIC bindings
+  irqchip: Add RISC-V advanced PLIC driver
+  RISC-V: Select APLIC and IMSIC drivers for QEMU virt machine
+  MAINTAINERS: Add entry for RISC-V AIA drivers
+
+ .../interrupt-controller/riscv,aplic.yaml     |  136 ++
+ .../interrupt-controller/riscv,imsic.yaml     |  174 +++
+ MAINTAINERS                                   |   12 +
+ arch/riscv/Kconfig.socs                       |    2 +
+ arch/riscv/include/asm/csr.h                  |   92 ++
+ arch/riscv/include/asm/hwcap.h                |    8 +
+ arch/riscv/kernel/cpu.c                       |    2 +
+ arch/riscv/kernel/cpufeature.c                |    2 +
+ drivers/irqchip/Kconfig                       |   32 +-
+ drivers/irqchip/Makefile                      |    2 +
+ drivers/irqchip/irq-riscv-aplic.c             |  656 +++++++++
+ drivers/irqchip/irq-riscv-imsic.c             | 1207 +++++++++++++++++
+ drivers/irqchip/irq-riscv-intc.c              |   37 +-
+ include/linux/irqchip/riscv-aplic.h           |  117 ++
+ include/linux/irqchip/riscv-imsic.h           |   92 ++
+ 15 files changed, 2564 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+ create mode 100644 drivers/irqchip/irq-riscv-aplic.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic.c
+ create mode 100644 include/linux/irqchip/riscv-aplic.h
+ create mode 100644 include/linux/irqchip/riscv-imsic.h
+
+-- 
+2.34.1
 
