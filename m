@@ -2,68 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02494625317
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7C2962531B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 06:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiKKFej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 00:34:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58526 "EHLO
+        id S230198AbiKKFhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 00:37:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiKKFeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:34:37 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E095CD03;
-        Thu, 10 Nov 2022 21:34:36 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id a5so6174382edb.11;
-        Thu, 10 Nov 2022 21:34:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=npuUH7t8jZtW/7WS6lnnUhD3GHnWwrPrxxOd+6LRKUc=;
-        b=JUyU6npbpKhkqVghfVWeesBOt/qOhUiDgqqbp8mrRdCFv27wKaAFnkeHCM3Yp+3pmu
-         cDEI7RtaWI8rnBmWJWuY7qQAYNldWB6eudXK+ecy+num71p/q8CU3t0SXONq5k3+pRxZ
-         eyspoRFMUNDd+5WSY0KMR6+tPIaOMhdLjI2Tve+uQAXg8u2HYezxQrh9uqjj81mVjQb4
-         P7BQyx9vTpALI5kudise9WO7YbHAD0QxHi45Q9zEpdtsBa+qCffqA5a/+DjYOLyskdfM
-         oJITy1+duMIgWACGRdg4uZK/f6dA696CktIgbatgCIGyut2wzdH25Z8ol1sQ5kUB/tb/
-         PxYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=npuUH7t8jZtW/7WS6lnnUhD3GHnWwrPrxxOd+6LRKUc=;
-        b=bjkrfPgcv7WdpvrcwQmHs8/MmwCLq1xSN7QpIMhnZzO49FVCljsqlGwyjNKoNgEcv9
-         HB9O/hbNMRpgTYvmrMmjtNh1KOTU6T0Xci8cMR52CtMzGZ8qj1iTJcgvDIbXc4LWDt0p
-         JqOTIkKeoEI9P8jwB/ACmJXwwcCIJIp3EUZrIkMf/5PuxM4lGNmRq8y0SDAvYALUJPQj
-         AGbRv8VD58PTzgDeuHgfMXwy8FQoCneut5hLS0Mu5QsJ/i1s6/CU3nl35V6qcq8T8SiA
-         qUAmlATHRG22aiQ4yehPvRgSd39nmFhG1jGoI9hEupA0t9vjrNHlTsVeNEQ71rPtJDZg
-         XOaQ==
-X-Gm-Message-State: ANoB5plwyuddVBhFwkTU2GyQscbUlE3HKj74szInWcetGfoxi5/kzQBh
-        UD7yja4Q/jZeC4Se3kUiG0b2r+uSBxKsjirsYKE=
-X-Google-Smtp-Source: AA0mqf7XmZ6slGPr098jHVig861NAEmq6cOQtiNhBCfhcGefQm7tsyj4UD6RNdGWhMcqw75I2fBxtvgM9fJnMZF4Sa8=
-X-Received: by 2002:aa7:c649:0:b0:463:b0de:c210 with SMTP id
- z9-20020aa7c649000000b00463b0dec210mr138855edr.10.1668144875220; Thu, 10 Nov
- 2022 21:34:35 -0800 (PST)
+        with ESMTP id S229461AbiKKFhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 00:37:22 -0500
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10CB64A2B;
+        Thu, 10 Nov 2022 21:37:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Buohi4luCCUIFxVtavdCbUTpeT4hohJkJFllqf1/WwLyQHFCUkj1XyRDf4sss22i8ylsCVoXvWvUpgzEBTxRe8Hr3DwKwwYqBS28x4JuLu/ERyatu9HTzN+de81oU2e+yRVJj+BMXHapWLuHywPIApHJQelpFY0O0XK53Q0yTlL2jGyQGHx4jwj9EFZgipF4RKC4IQqcxFb72sJeItKX8C+L5fOij6RbOsRJjvU8HSYA2qDnPFpQ6XF2cJCtHW4uqUtD3WPXtptCUYguhMkzrEEAjt3ldOp+CXjX6VQtl/5RnX9RpRHxUtKpE1m4e1qdKO2mnn3rPZvcPOMd5p8Caw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9cW6r+Z1TFxn1OnXUEVfCIbVORQbc+I4DZzdcTHLp3w=;
+ b=K7WaKx9MJLli0L1BOeeSYRsZBahbQjmQxGHaS4odUn922GhJwYk8Cnsytv52u5y21S0ulna+e/5apqAvWxg85JFUrHAnoU9+mDEK/flauX+TaALXR58P4UmZ2vw8US22bbHwUnXfmYJUueSVq4keirbO0/dCSDVMzNbukFjNBc0U4P1/r0RMn8d1R0Tf1G0jOq+AoU7c5uNly13H0Jd8epTC4dfell90knP8UUejBb43wxCTkC7TaHVz9tJEFKOo6TW8vvTn/BJmaiCqk+lK6mqMiYL6otXvjg0vzpBNZrHfaz5powlYH6D9RGs4fS1bAfRNS2VLNK2TtDBh3oBUqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9cW6r+Z1TFxn1OnXUEVfCIbVORQbc+I4DZzdcTHLp3w=;
+ b=oIg1M74hZ1zfKb/H6dKo2yvU6bz1qY4GjAjN03UedAdL2N/S7PjCmAOur6AYNeaYFiuYSO7+UG1nbrglV7mcCIah/wp/fQWxCAgiBHMiKMF1PJls7TQY3CJpRZOs4GS8IU6v40/2s9qBkeX7+BVxk852/P/UGIoqfYPpOy8lFnQ=
+Received: from DM6PR08CA0043.namprd08.prod.outlook.com (2603:10b6:5:1e0::17)
+ by DM6PR12MB4267.namprd12.prod.outlook.com (2603:10b6:5:21e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.12; Fri, 11 Nov
+ 2022 05:37:18 +0000
+Received: from DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1e0:cafe::d2) by DM6PR08CA0043.outlook.office365.com
+ (2603:10b6:5:1e0::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.27 via Frontend
+ Transport; Fri, 11 Nov 2022 05:37:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT018.mail.protection.outlook.com (10.13.172.110) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5813.12 via Frontend Transport; Fri, 11 Nov 2022 05:37:18 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 10 Nov
+ 2022 23:37:18 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 10 Nov
+ 2022 23:37:17 -0600
+Received: from xhdarjunv40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
+ Transport; Thu, 10 Nov 2022 23:37:15 -0600
+From:   Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
+CC:     <bhelgaas@google.com>, <michals@xilinx.com>, <robh+dt@kernel.org>,
+        <nagaradhesh.yeleswarapu@amd.com>, <bharat.kumar.gogada@amd.com>,
+        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Subject: [PATCH v6 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML schemas of Xilinx AXI PCIe Root Port Bridge
+Date:   Fri, 11 Nov 2022 11:07:08 +0530
+Message-ID: <20221111053709.1474323-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221110133640.30522-1-zhewang116@gmail.com> <20221110133640.30522-2-zhewang116@gmail.com>
- <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org>
-In-Reply-To: <4bee5178-b34c-ec4b-9773-07f368064c48@linaro.org>
-From:   Zhe Wang <zhewang116@gmail.com>
-Date:   Fri, 11 Nov 2022 13:34:24 +0800
-Message-ID: <CAJxzgGpAPs5+HFdq=GxR4bd_27XGLdJeTqAairCOhAf-wvj_CQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alim.akhtar@samsung.com, avri.altman@wdc.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        zhe.wang1@unisoc.com, orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT018:EE_|DM6PR12MB4267:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9ed184e-1b0a-43c8-e892-08dac3a6cc70
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RK9Da0MQgJzH8pKWFaWt4ybDbg1RNKuJxslzrgu6fFQPoTq09kuUYwr5H5LHSCeFdv9g5N47I0DL14+drXDfxMkywwnWGJ8CQaeiG0Kk/A3jIlCTfd0GeBNGBL4K0XEy3c/7MixYgPJWoE/JXjnTpQecF4qh+cpWG9jOMdW8695b9zppjPCerAii1APdCC8hzV+pB146gcnRnolSKaEolVUf6uxGf4jivCB6bvtkArQvkoFOYRqsZAHVBinezD170cgd4WOxD0Q8l5n+4xEOSsRYj/sDVhBoYJCukzZ3qttiZ2Vk6R6pcJ3T02/xArSYNRXfZVhfWb+/AGj9EvCrZ7okjkbbr8WZnUqycHRg55FoXL8hsbuuvqFt6y57g+qhriKpMsbpjWvT03Ty11RpDaB+sIFwcxggFwzc/Wg0DGLe4XVvOu7ps0Hqmj6rqPuRj4gb8XRQIqh06lHMFdQVtqmKqpWK9WLxtzqIk/f5Z7kWR68HV1fDzg6jYfFrg83VHHs9tm51uHCKwzAu5/gR7TocuBhfBCGXwsYhHUm/56oBRaVtkpfdrK6FjFOgN1KnaRSW+9pay23Kc4+lkY0ewCRR+7BxjxfhOZMrsr9ZCucCuqTjU3eAOrsW9LkQWZ5md9HWrpb0gs5FDRs20B30srs+NTKsydddTBxjHHjFETlCFJTLia9RxyLL3rfloaKs6FfTjyQWqcdZENPf7eZXjB00JS4z296YRZ3n9CqIppdY6VFUjKjiccfZcLtNRc7tdF8DznjZ1UFGwxRWTXxxXIVUXQChWcUo5QcVGmmSmh07Z3M9NRn796+Jplrt3/WRT0gNkvx9UUd3qeXNvdADMSCj1EPi9aID2WNXDrd0gq+knsJu3ehz1p4tRiwAPeHJ
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(396003)(346002)(376002)(451199015)(36840700001)(46966006)(40470700004)(966005)(478600001)(81166007)(82310400005)(110136005)(356005)(6666004)(82740400003)(54906003)(316002)(40480700001)(4326008)(8676002)(70206006)(70586007)(26005)(5660300002)(86362001)(36756003)(2616005)(8936002)(1076003)(336012)(186003)(36860700001)(47076005)(83380400001)(44832011)(41300700001)(426003)(40460700003)(2906002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 05:37:18.7191
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9ed184e-1b0a-43c8-e892-08dac3a6cc70
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4267
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,161 +102,206 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
+dt binding.
 
-Thank you for your review!
+Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/pci/xilinx-pcie.txt   | 88 -------------------
+ .../bindings/pci/xlnx,axi-pcie-host.yaml      | 88 +++++++++++++++++++
+ 2 files changed, 88 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
 
-On Thu, Nov 10, 2022 at 10:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/11/2022 14:36, Zhe Wang wrote:
-> > From: Zhe Wang <zhe.wang1@unisoc.com>
-> >
-> > Add Unisoc ums9620 ufs host controller devicetree document.
-> >
-> > Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
-> > ---
-> >  .../devicetree/bindings/ufs/sprd,ufs.yaml     | 72 +++++++++++++++++++
-> >  1 file changed, 72 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/ufs/sprd,ufs.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/ufs/sprd,ufs.yaml b/Documentation/devicetree/bindings/ufs/sprd,ufs.yaml
-> > new file mode 100644
-> > index 000000000000..88f2c670b0a4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/ufs/sprd,ufs.yaml
->
->
-> Filename matching the compatible, so sprd,ums9620-ufs.yaml, unless you
-> expect this to grow already? If so, can you post the rest?
->
+diff --git a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+deleted file mode 100644
+index fd57a81180a4..000000000000
+--- a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
++++ /dev/null
+@@ -1,88 +0,0 @@
+-* Xilinx AXI PCIe Root Port Bridge DT description
+-
+-Required properties:
+-- #address-cells: Address representation for root ports, set to <3>
+-- #size-cells: Size representation for root ports, set to <2>
+-- #interrupt-cells: specifies the number of cells needed to encode an
+-	interrupt source. The value must be 1.
+-- compatible: Should contain "xlnx,axi-pcie-host-1.00.a"
+-- reg: Should contain AXI PCIe registers location and length
+-- device_type: must be "pci"
+-- interrupts: Should contain AXI PCIe interrupt
+-- interrupt-map-mask,
+-  interrupt-map: standard PCI properties to define the mapping of the
+-	PCI interface to interrupt numbers.
+-- ranges: ranges for the PCI memory regions (I/O space region is not
+-	supported by hardware)
+-	Please refer to the standard PCI bus binding document for a more
+-	detailed explanation
+-
+-Optional properties for Zynq/Microblaze:
+-- bus-range: PCI bus numbers covered
+-
+-Interrupt controller child node
+-+++++++++++++++++++++++++++++++
+-Required properties:
+-- interrupt-controller: identifies the node as an interrupt controller
+-- #address-cells: specifies the number of cells needed to encode an
+-	address. The value must be 0.
+-- #interrupt-cells: specifies the number of cells needed to encode an
+-	interrupt source. The value must be 1.
+-
+-NOTE:
+-The core provides a single interrupt for both INTx/MSI messages. So,
+-created a interrupt controller node to support 'interrupt-map' DT
+-functionality.  The driver will create an IRQ domain for this map, decode
+-the four INTx interrupts in ISR and route them to this domain.
+-
+-
+-Example:
+-++++++++
+-Zynq:
+-	pci_express: axi-pcie@50000000 {
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		#interrupt-cells = <1>;
+-		compatible = "xlnx,axi-pcie-host-1.00.a";
+-		reg = < 0x50000000 0x1000000 >;
+-		device_type = "pci";
+-		interrupts = < 0 52 4 >;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+-				<0 0 0 2 &pcie_intc 2>,
+-				<0 0 0 3 &pcie_intc 3>,
+-				<0 0 0 4 &pcie_intc 4>;
+-		ranges = < 0x02000000 0 0x60000000 0x60000000 0 0x10000000 >;
+-
+-		pcie_intc: interrupt-controller {
+-			interrupt-controller;
+-			#address-cells = <0>;
+-			#interrupt-cells = <1>;
+-		};
+-	};
+-
+-
+-Microblaze:
+-	pci_express: axi-pcie@10000000 {
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		#interrupt-cells = <1>;
+-		compatible = "xlnx,axi-pcie-host-1.00.a";
+-		reg = <0x10000000 0x4000000>;
+-		device_type = "pci";
+-		interrupt-parent = <&microblaze_0_intc>;
+-		interrupts = <1 2>;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+-				<0 0 0 2 &pcie_intc 2>,
+-				<0 0 0 3 &pcie_intc 3>,
+-				<0 0 0 4 &pcie_intc 4>;
+-		ranges = <0x02000000 0x00000000 0x80000000 0x80000000 0x00000000 0x10000000>;
+-
+-		pcie_intc: interrupt-controller {
+-			interrupt-controller;
+-			#address-cells = <0>;
+-			#interrupt-cells = <1>;
+-		};
+-
+-	};
+diff --git a/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+new file mode 100644
+index 000000000000..69b7decabd45
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+@@ -0,0 +1,88 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/xlnx,axi-pcie-host.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx AXI PCIe Root Port Bridge
++
++maintainers:
++  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    const: xlnx,axi-pcie-host-1.00.a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  ranges:
++    items:
++      - description: |
++          ranges for the PCI memory regions (I/O space region is not
++          supported by hardware)
++
++  "#interrupt-cells":
++    const: 1
++
++  interrupt-controller:
++    description: identifies the node as an interrupt controller
++    type: object
++    properties:
++      interrupt-controller: true
++
++      "#address-cells":
++        const: 0
++
++      "#interrupt-cells":
++        const: 1
++
++    required:
++      - interrupt-controller
++      - "#address-cells"
++      - "#interrupt-cells"
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - interrupts
++  - interrupt-map
++  - "#interrupt-cells"
++  - interrupt-controller
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    pcie@50000000 {
++        compatible = "xlnx,axi-pcie-host-1.00.a";
++        reg = <0x50000000 0x1000000>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++        #interrupt-cells = <1>;
++        device_type = "pci";
++        interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-map-mask = <0 0 0 7>;
++        interrupt-map = <0 0 0 1 &pcie_intc 1>,
++                        <0 0 0 2 &pcie_intc 2>,
++                        <0 0 0 3 &pcie_intc 3>,
++                        <0 0 0 4 &pcie_intc 4>;
++        ranges = <0x02000000 0 0x60000000 0x60000000 0 0x10000000>;
++        pcie_intc: interrupt-controller {
++            interrupt-controller;
++            #address-cells = <0>;
++            #interrupt-cells = <1>;
++        };
++    };
+-- 
+2.25.1
 
-Currently only ums9620 will be uploaded, I'll fix it.
-
-> > @@ -0,0 +1,72 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/ufs/sprd,ufs.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Unisoc Universal Flash Storage (UFS) Controller
-> > +
-> > +maintainers:
-> > +  - Zhe Wang <zhe.wang1@unisoc.com>
-> > +
-> > +allOf:
-> > +  - $ref: ufs-common.yaml
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - sprd,ums9620-ufs
-> > +
-> > +  clocks:
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: hclk
-> > +      - const: hclk_source
->
-> Can you make these descriptive? "clk" is redundant, so basically you are
-> saying name is "h" and "h_source"?
->
-
-I'll fix it.
-
-> > +
-> > +  resets:
-> > +    maxItems: 2
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: ufs_soft_rst
-> > +      - const: ufsdev_soft_rst
->
-> Drop "_rst" from both.
->
-
-Will remove this.
-
-> > +
-> > +  sprd,ufs-anly-reg-syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of syscon used to control ufs analog reg.
->
-> It's a reg? Then such syntax is expected:
-> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
->
->
-
-I will modify it based on this example.
-
-> > +  sprd,aon-apb-syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of syscon used to control always-on reg.
->
-> It's a reg? Then such syntax is expected:
-> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
->
-
-I will modify it based on this example.
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    ufs: ufs@22000000 {
-> > +        compatible = "sprd,ums9620-ufs";
-> > +        reg = <0x22000000 0x3000>;
-> > +        interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> > +        vcc-supply = <&vddemmcore>;
-> > +        vdd-mphy-supply = <&vddufs1v2>;
-> > +        clocks-name = "ufs_eb", "ufs_cfg_eb",
-> > +            "ufs_hclk", "ufs_hclk_source";
->
-> Align the lines.
->
-
-I'll fix it.
-
-> > +        clocks = <&apahb_gate CLK_UFS_EB>, <&apahb_gate CLK_UFS_CFG_EB>,
-> > +            <&onapb_clk CLK_UFS_AON>, <&g51_pll CLK_TGPLL_256M>;
-> > +        freq-table-hz = <0 0>, <0 0>, <0 0>, <0 0>;
->
-> Why this is empty? What's the use of empty table?
->
-
-freq-table-hz is used to configure the maximum frequency and minimum
-frequency of clk, and an empty table means that no scaling up\down
-operation is requiredfor the frequency of these clks.
-
-> > +        reset-names = "ufs_soft_rst", "ufsdev_soft_rst";
-> > +        resets = <&apahb_gate RESET_AP_AHB_UFS_SOFT_RST>,
-> > +            <&aonapb_gate RESET_AON_APB_UFSDEV_SOFT_RST>;
-> > +        sprd,ufs-anly-reg-syscon = <&anly_phy_g12_regs>;
-> > +        sprd,aon-apb-syscon = <&aon_apb_regs>;
-> > +        status = "disable";
->
-> Drop status.
->
-
-Will remove this.
-
-Best regards,
-Zhe Wang
-
-> > +    };
->
-> Best regards,
-> Krzysztof
->
