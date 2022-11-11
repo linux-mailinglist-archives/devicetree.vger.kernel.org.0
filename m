@@ -2,162 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1846D6257F7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D860625827
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 11:24:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231615AbiKKKRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 05:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53892 "EHLO
+        id S233582AbiKKKYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 05:24:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233822AbiKKKQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:16:59 -0500
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0850D742F5;
-        Fri, 11 Nov 2022 02:16:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V6OCI14v7wX6IcdhfiqBvevRc0vDEpe7C8UhS4Qqhcwd2Jun5xm5l/AKaZifVz+YcIvaSN23OVL86Z1678ttYA4ZrGmCpBafPquzzkpbrZwUeOTXiebYUV/MH+ncjmHAZnbOMdL+jB5B69fP0aOJjOS9PRcGL+q6bj0VWxETWseAv4AF6MgAQ9rtsFBJFXyYRLEtKUNyGFl5EvmlNMgX/lOkaeCCCbpQAN71gZdOb9S24p978A6ykqTlyOsHbR+CpICxyAwQDa07dr/WMeqPmwUj1lkZZSPf3DhQmbszLxB7AJDDnPVAcrmOKo7REUt9W3fkEHOebMqiV8hrL54R0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UJargNSXfW7QRE1/1dEp9jA9DYhmUchTKoXMao3tsQU=;
- b=VK+ZVTmYbXL7ay3aJQeAiUFSTFR/l1JP6/QD0VVpqN9zKnPZpwa0v2PtY5YMfIXHN1nkBt4Y3t8huLSfLKl00+fKmnze6B2zguEhMviwYb4F4eqUZJaIrgSdp7wDYMWBiOxMmxI6drjOq5dUuZ1vcahuMjiQ3aJjbUS8iNkIcGd3xc8Z+7iHohnJ3HpEi5tEL8Vs9yp8JXI3hoswkSNby2Nt/H1f9YYQC0PFbIaUtoJx+d8mzvKo4Yv4twnkjKoMx6BIo+1rH6X5udzY5jZeklWg2EjrO5SGCa0k3tZ0yE/WqMbgJd3euy/nDwHmIbm+Xd13GUZPrlQlS7BTdGbR3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=linuxfoundation.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UJargNSXfW7QRE1/1dEp9jA9DYhmUchTKoXMao3tsQU=;
- b=MeRo+KZqOHgUbMPVYjzf2oZp0FtbhzcK5SMM2Q+5k1TsveputBGI5ZjbLUp1GlZJZmzd4R+CTmFJ6oZHXAwRb2Y0ZZHAt333Kaa+9T5NlF/F7RNbuERDz4xvRgG0YLRx7rppbFT6IMxmUSPXjtk02+EWzXlr96z9ypHUUZ7Efm/6tckgVYqkykpHxoB3Ry4TZGWF7GgFupA1PqEDVjmiHB6VTXWmD/8EJsBeBP+tsDcFmiiSnOWU5A+VrwNz9wA9iOcxkMDfDONLoKuobbHc5bZnpw0fDvfjt9GpJ+tbRj1+QKCZhXbLSOr6j+Q6gOFwHZ9XgBYTqEJBPxC8xbW9Wg==
-Received: from MN2PR12CA0011.namprd12.prod.outlook.com (2603:10b6:208:a8::24)
- by BL1PR12MB5125.namprd12.prod.outlook.com (2603:10b6:208:309::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Fri, 11 Nov
- 2022 10:16:52 +0000
-Received: from BL02EPF0000EE3E.namprd05.prod.outlook.com
- (2603:10b6:208:a8:cafe::a7) by MN2PR12CA0011.outlook.office365.com
- (2603:10b6:208:a8::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.27 via Frontend
- Transport; Fri, 11 Nov 2022 10:16:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL02EPF0000EE3E.mail.protection.outlook.com (10.167.241.135) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5813.11 via Frontend Transport; Fri, 11 Nov 2022 10:16:51 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Fri, 11 Nov
- 2022 02:16:37 -0800
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 11 Nov
- 2022 02:16:37 -0800
-Received: from waynec-Precision-5760.nvidia.com (10.127.8.13) by
- mail.nvidia.com (10.129.68.7) with Microsoft SMTP Server id 15.2.986.36 via
- Frontend Transport; Fri, 11 Nov 2022 02:16:33 -0800
-From:   Wayne Chang <waynec@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <treding@nvidia.com>,
-        <jonathanh@nvidia.com>, <thierry.reding@gmail.com>,
-        <heikki.krogerus@linux.intel.com>, <ajayg@nvidia.com>,
-        <vkoul@kernel.org>, <p.zabel@pengutronix.de>, <balbi@kernel.org>,
-        <mathias.nyman@intel.com>, <jckuo@nvidia.com>
-CC:     <waynec@nvidia.com>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <singhanc@nvidia.com>, <linux-i2c@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-tegra@vger.kernel.org>
-Subject: [PATCH v2 13/13] usb: gadget: tegra-xudc: Add Tegra234 support
-Date:   Fri, 11 Nov 2022 18:15:09 +0800
-Message-ID: <20221111101509.999589-14-waynec@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221111101509.999589-1-waynec@nvidia.com>
-References: <20221111101509.999589-1-waynec@nvidia.com>
+        with ESMTP id S233398AbiKKKXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 05:23:48 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FF1E088;
+        Fri, 11 Nov 2022 02:23:41 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AB6f9Ix002819;
+        Fri, 11 Nov 2022 10:23:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=wacIboVDm3CMWwN7iuKwYJz2pTNcSm2fNbXRv5TKfqI=;
+ b=M5fYFbWI3i/EUYX77OUaWD5+FGo92xhJqlDqg7FyC7koQFh9LAtNc+4Mq3lYJ0qX63O+
+ JWcVDHQ+ta/da+qaHzv5oQOfQH9HFg/NETrUOTKRzyQnXdVfd+r7hTxKT9h+GOCiss5e
+ FqWhDP/4alrISIXoic0PaqCh3D6PNj6GRk0x2xVtu1GCI6mmI88OCILlR4unsfYnzQhe
+ f8RJpXHU9URMwwdN8klvAupFTzAg9WbYy8eICSvfyX4v+6pZh1j1lkfaoPkfI0fClLmL
+ pyjoGfge7Ay197wJvk9QFdqVEjzhReDQ9mRJPMS9x2UYm0NM1v1tOosP97+nA2chaoEM yg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kshbgrrmd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:23:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ABANXqD005659
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Nov 2022 10:23:33 GMT
+Received: from [10.79.43.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 11 Nov
+ 2022 02:23:29 -0800
+Message-ID: <f77fd45d-56b7-ad79-efbf-472805f0b6ed@quicinc.com>
+Date:   Fri, 11 Nov 2022 15:53:24 +0530
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000EE3E:EE_|BL1PR12MB5125:EE_
-X-MS-Office365-Filtering-Correlation-Id: c8527019-35b7-4fd4-4b2f-08dac3cdda0c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x2aO9h5yqQF6bx/8L1lHqDc7OMlcJmtF8ffPsFwNjovHToZ55qKlHRFx/2UjniZB5ny4HvOJ4zkwT9E9nURPdHL+SpclwY3LIWlDlPqdwxq2u6WRi307cb/Xkl26O8DRSaUykSbMAplNP1xHsgr7hZ4dhbJ+gADIr9wKVp32k+PwBsgn8fVWoJ2kmnxU7yM5H4wW7xYt424kXiw7lXFD8o/X/SkFy8xzGlolFQjXo/3USiwnUNK62+UNBER1xCgiXjLCILiWJJ5rjebtOgKm816erOvP10Ua0uD4fdxoRW2g8VsDYEKWVlxALQNIg9Y9UO4jEvO1hh+kNMbBoXpOKj/kmpMwBcFOtZfravtQ7BSEBjP/0I+e7V6wbp6bxRJ1LW4XozHMamNwTgaN1Cffg1xu9R97JLiPySel5hPbDRqZs0qGG//2cp+D/kAVzfz7fyoSk4kxlcj6VaMQS+qMoUAn0RCBT0BGCIRb+t7dPhmUvLbBvjNSGo9B1h9uZozSPRtacvIJTYBI+Uy1KLKesbMfUirNdcLCcQ6t5mGhJUBdoPyiKCGI6F9v7O3wiyI/QCZMigOaxPSHl/iq55y4oPd5MWQDUH+QkKnnZJUM5wM2JDQE8UoFcnS5PFWapaMmCnhdLccTBEs1iwsWJKcYGze/PAECZxsM15r7TZmMc564FvkIieJUSVyG/pb69FVubcypV7Zyy2ZB1QbOinBrePRUyk84Wxf/1qIMRwOa8gVKN6njIxdnyALaTZNtsf5I+gat4HKXsfQ7hpv2p8WyH1uKJLTAjmBzGVW36zEk7bU=
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(346002)(39860400002)(136003)(451199015)(46966006)(40470700004)(36840700001)(26005)(7696005)(2616005)(82310400005)(478600001)(6666004)(40480700001)(921005)(40460700003)(82740400003)(356005)(7636003)(86362001)(83380400001)(336012)(186003)(1076003)(47076005)(426003)(36756003)(36860700001)(8936002)(5660300002)(41300700001)(2906002)(7416002)(316002)(6636002)(54906003)(110136005)(4326008)(70586007)(70206006)(8676002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2022 10:16:51.8422
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8527019-35b7-4fd4-4b2f-08dac3cdda0c
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000EE3E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5125
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 01/10] interconnect: qcom: osm-l3: Use
+ platform-independent node ids
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        "Johan Hovold" <johan+linaro@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+ <20221111032515.3460-2-quic_bjorande@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <20221111032515.3460-2-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wzDCtqJnlc167nyC6RhGKPzOoJq3zpzh
+X-Proofpoint-ORIG-GUID: wzDCtqJnlc167nyC6RhGKPzOoJq3zpzh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-11_05,2022-11-11_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 clxscore=1011 suspectscore=0 mlxscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211110068
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sing-Han Chen <singhanc@nvidia.com>
+Hey Bjorn
+Thanks for the patch.
 
-This commit adds support for XUSB device mode controller support on
-Tegra234 SoC. This is very similar to the existing Tegra194 XUDC.
+On 11/11/22 08:55, Bjorn Andersson wrote:
+> The identifiers used for nodes needs to be unique in the running system,
+> but defining them per platform results in a lot of duplicated
+> definitions and prevents us from using generic compatibles.
+> 
+> As these identifiers are not exposed outside the kernel, change to use
+> driver-local numbers, picked completely at random.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Tested-by: Steev Klimaszewski <steev@kali.org>
 
-Signed-off-by: Sing-Han Chen <singhanc@nvidia.com>
-Signed-off-by: Wayne Chang <waynec@nvidia.com>
----
-V1 -> V2:Nothing has changed
- drivers/usb/gadget/udc/tegra-xudc.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+With the change in implementation, you can remove now remove the per soc
+node id headers included in the driver. With ^^ done.
 
-diff --git a/drivers/usb/gadget/udc/tegra-xudc.c b/drivers/usb/gadget/udc/tegra-xudc.c
-index 76919d7570d2..ff697190469b 100644
---- a/drivers/usb/gadget/udc/tegra-xudc.c
-+++ b/drivers/usb/gadget/udc/tegra-xudc.c
-@@ -3660,6 +3660,19 @@ static struct tegra_xudc_soc tegra194_xudc_soc_data = {
- 	.has_ipfs = false,
- };
- 
-+static struct tegra_xudc_soc tegra234_xudc_soc_data = {
-+	.clock_names = tegra186_xudc_clock_names,
-+	.num_clks = ARRAY_SIZE(tegra186_xudc_clock_names),
-+	.num_phys = 4,
-+	.u1_enable = true,
-+	.u2_enable = true,
-+	.lpm_enable = true,
-+	.invalid_seq_num = false,
-+	.pls_quirk = false,
-+	.port_reset_quirk = false,
-+	.has_ipfs = false,
-+};
-+
- static const struct of_device_id tegra_xudc_of_match[] = {
- 	{
- 		.compatible = "nvidia,tegra210-xudc",
-@@ -3673,6 +3686,10 @@ static const struct of_device_id tegra_xudc_of_match[] = {
- 		.compatible = "nvidia,tegra194-xudc",
- 		.data = &tegra194_xudc_soc_data
- 	},
-+	{
-+		.compatible = "nvidia,tegra234-xudc",
-+		.data = &tegra234_xudc_soc_data
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, tegra_xudc_of_match);
--- 
-2.25.1
+Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
 
+> ---
+> 
+> Changes since v1:
+> - None
+> 
+>   drivers/interconnect/qcom/osm-l3.c | 87 +++++++++++-------------------
+>   1 file changed, 30 insertions(+), 57 deletions(-)
+> 
+> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
+> index ddbdf0943f94..d23769844419 100644
+> --- a/drivers/interconnect/qcom/osm-l3.c
+> +++ b/drivers/interconnect/qcom/osm-l3.c
+> @@ -74,6 +74,11 @@ struct qcom_osm_l3_desc {
+>   	unsigned int reg_perf_state;
+>   };
+>   
+> +enum {
+> +	OSM_L3_MASTER_NODE = 10000,
+> +	OSM_L3_SLAVE_NODE,
+> +};
+> +
+>   #define DEFINE_QNODE(_name, _id, _buswidth, ...)			\
+>   	static const struct qcom_osm_l3_node _name = {			\
+>   		.name = #_name,						\
+> @@ -83,97 +88,65 @@ struct qcom_osm_l3_desc {
+>   		.links = { __VA_ARGS__ },				\
+>   	}
+>   
+> -DEFINE_QNODE(sdm845_osm_apps_l3, SDM845_MASTER_OSM_L3_APPS, 16, SDM845_SLAVE_OSM_L3);
+> -DEFINE_QNODE(sdm845_osm_l3, SDM845_SLAVE_OSM_L3, 16);
+> +DEFINE_QNODE(osm_l3_master, OSM_L3_MASTER_NODE, 16, OSM_L3_SLAVE_NODE);
+> +DEFINE_QNODE(osm_l3_slave, OSM_L3_SLAVE_NODE, 16);
+> +
+> +static const struct qcom_osm_l3_node * const osm_l3_nodes[] = {
+> +	[MASTER_OSM_L3_APPS] = &osm_l3_master,
+> +	[SLAVE_OSM_L3] = &osm_l3_slave,
+> +};
+> +
+> +DEFINE_QNODE(epss_l3_master, OSM_L3_MASTER_NODE, 32, OSM_L3_SLAVE_NODE);
+> +DEFINE_QNODE(epss_l3_slave, OSM_L3_SLAVE_NODE, 32);
+>   
+> -static const struct qcom_osm_l3_node * const sdm845_osm_l3_nodes[] = {
+> -	[MASTER_OSM_L3_APPS] = &sdm845_osm_apps_l3,
+> -	[SLAVE_OSM_L3] = &sdm845_osm_l3,
+> +static const struct qcom_osm_l3_node * const epss_l3_nodes[] = {
+> +	[MASTER_EPSS_L3_APPS] = &epss_l3_master,
+> +	[SLAVE_EPSS_L3_SHARED] = &epss_l3_slave,
+>   };
+>   
+>   static const struct qcom_osm_l3_desc sdm845_icc_osm_l3 = {
+> -	.nodes = sdm845_osm_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sdm845_osm_l3_nodes),
+> +	.nodes = osm_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(osm_l3_nodes),
+>   	.lut_row_size = OSM_LUT_ROW_SIZE,
+>   	.reg_freq_lut = OSM_REG_FREQ_LUT,
+>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>   };
+>   
+> -DEFINE_QNODE(sc7180_osm_apps_l3, SC7180_MASTER_OSM_L3_APPS, 16, SC7180_SLAVE_OSM_L3);
+> -DEFINE_QNODE(sc7180_osm_l3, SC7180_SLAVE_OSM_L3, 16);
+> -
+> -static const struct qcom_osm_l3_node * const sc7180_osm_l3_nodes[] = {
+> -	[MASTER_OSM_L3_APPS] = &sc7180_osm_apps_l3,
+> -	[SLAVE_OSM_L3] = &sc7180_osm_l3,
+> -};
+> -
+>   static const struct qcom_osm_l3_desc sc7180_icc_osm_l3 = {
+> -	.nodes = sc7180_osm_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sc7180_osm_l3_nodes),
+> +	.nodes = osm_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(osm_l3_nodes),
+>   	.lut_row_size = OSM_LUT_ROW_SIZE,
+>   	.reg_freq_lut = OSM_REG_FREQ_LUT,
+>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>   };
+>   
+> -DEFINE_QNODE(sc7280_epss_apps_l3, SC7280_MASTER_EPSS_L3_APPS, 32, SC7280_SLAVE_EPSS_L3);
+> -DEFINE_QNODE(sc7280_epss_l3, SC7280_SLAVE_EPSS_L3, 32);
+> -
+> -static const struct qcom_osm_l3_node * const sc7280_epss_l3_nodes[] = {
+> -	[MASTER_EPSS_L3_APPS] = &sc7280_epss_apps_l3,
+> -	[SLAVE_EPSS_L3_SHARED] = &sc7280_epss_l3,
+> -};
+> -
+>   static const struct qcom_osm_l3_desc sc7280_icc_epss_l3 = {
+> -	.nodes = sc7280_epss_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sc7280_epss_l3_nodes),
+> +	.nodes = epss_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(epss_l3_nodes),
+>   	.lut_row_size = EPSS_LUT_ROW_SIZE,
+>   	.reg_freq_lut = EPSS_REG_FREQ_LUT,
+>   	.reg_perf_state = EPSS_REG_PERF_STATE,
+>   };
+>   
+> -DEFINE_QNODE(sc8180x_osm_apps_l3, SC8180X_MASTER_OSM_L3_APPS, 32, SC8180X_SLAVE_OSM_L3);
+> -DEFINE_QNODE(sc8180x_osm_l3, SC8180X_SLAVE_OSM_L3, 32);
+> -
+> -static const struct qcom_osm_l3_node * const sc8180x_osm_l3_nodes[] = {
+> -	[MASTER_OSM_L3_APPS] = &sc8180x_osm_apps_l3,
+> -	[SLAVE_OSM_L3] = &sc8180x_osm_l3,
+> -};
+> -
+>   static const struct qcom_osm_l3_desc sc8180x_icc_osm_l3 = {
+> -	.nodes = sc8180x_osm_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sc8180x_osm_l3_nodes),
+> +	.nodes = osm_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(osm_l3_nodes),
+>   	.lut_row_size = OSM_LUT_ROW_SIZE,
+>   	.reg_freq_lut = OSM_REG_FREQ_LUT,
+>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>   };
+>   
+> -DEFINE_QNODE(sm8150_osm_apps_l3, SM8150_MASTER_OSM_L3_APPS, 32, SM8150_SLAVE_OSM_L3);
+> -DEFINE_QNODE(sm8150_osm_l3, SM8150_SLAVE_OSM_L3, 32);
+> -
+> -static const struct qcom_osm_l3_node * const sm8150_osm_l3_nodes[] = {
+> -	[MASTER_OSM_L3_APPS] = &sm8150_osm_apps_l3,
+> -	[SLAVE_OSM_L3] = &sm8150_osm_l3,
+> -};
+> -
+>   static const struct qcom_osm_l3_desc sm8150_icc_osm_l3 = {
+> -	.nodes = sm8150_osm_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sm8150_osm_l3_nodes),
+> +	.nodes = osm_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(osm_l3_nodes),
+>   	.lut_row_size = OSM_LUT_ROW_SIZE,
+>   	.reg_freq_lut = OSM_REG_FREQ_LUT,
+>   	.reg_perf_state = OSM_REG_PERF_STATE,
+>   };
+>   
+> -DEFINE_QNODE(sm8250_epss_apps_l3, SM8250_MASTER_EPSS_L3_APPS, 32, SM8250_SLAVE_EPSS_L3);
+> -DEFINE_QNODE(sm8250_epss_l3, SM8250_SLAVE_EPSS_L3, 32);
+> -
+> -static const struct qcom_osm_l3_node * const sm8250_epss_l3_nodes[] = {
+> -	[MASTER_EPSS_L3_APPS] = &sm8250_epss_apps_l3,
+> -	[SLAVE_EPSS_L3_SHARED] = &sm8250_epss_l3,
+> -};
+> -
+>   static const struct qcom_osm_l3_desc sm8250_icc_epss_l3 = {
+> -	.nodes = sm8250_epss_l3_nodes,
+> -	.num_nodes = ARRAY_SIZE(sm8250_epss_l3_nodes),
+> +	.nodes = epss_l3_nodes,
+> +	.num_nodes = ARRAY_SIZE(epss_l3_nodes),
+>   	.lut_row_size = EPSS_LUT_ROW_SIZE,
+>   	.reg_freq_lut = EPSS_REG_FREQ_LUT,
+>   	.reg_perf_state = EPSS_REG_PERF_STATE,
