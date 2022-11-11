@@ -2,187 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A34E625D57
-	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD7F4625D6B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Nov 2022 15:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234756AbiKKOlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Nov 2022 09:41:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S234129AbiKKOqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Nov 2022 09:46:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234656AbiKKOkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:40:16 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F0E6C710
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:40:06 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id g7so8625824lfv.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:40:05 -0800 (PST)
+        with ESMTP id S234760AbiKKOpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Nov 2022 09:45:36 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DDA7DEF3
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:45:35 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id j4so8704982lfk.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 06:45:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ps6+CrFrf1G8yxoOGed9ZXoVR3hjv0NG/3mQJo+Ut9Q=;
-        b=oGx3VkoPSO2ZKYabYiWWOTYN53Hpr4zaQMnkzolc249rz0cPeC88yNt1bYNVrAPS8r
-         AIYiVqED1zrsePxKZtPycqKpNFePYaKpXnSxy7apkC0UMcNcV9kEAmATmWglnJ9JEOtJ
-         3AXJYOGv9d3kY1Nl65rE1djkxjc6pv3eWx3WdwMXLOBXxLfcJrtr4cGmIvi10Xehpk5K
-         VLSvq/8EIoiY85GIPy77R273rffBqeBLLvAcayCqMI3BB7LMofgPHCOV0JfV6I8Stkuj
-         fvyf8gQvjW1oPqSZigjRZ4+bezCnTO/Yw9d+ZehIDA/GLuF33PzcLyyOorc3e3VKo8uu
-         vZbw==
+        bh=nKIh7Rn2uY03gvMDxLSAjGI/gyfIpOz2PNRYMB/8BVY=;
+        b=zMLqECAHr+5NcQNla/y7bj36+Jihm72LxNXySqm8xh+3R51WS6kmb8BtZlvnSPqDe/
+         igKUE/GAiR9gOUGc4qHV9tkJW/7sbMSEYiWS0UIQYo1Z7/kmm6k5wASAJOJKomoVAY47
+         Kb2GD5r0gu5itoPz6sZK49pbQhiySjQsFbvaEAnLSVpbI0fwR2LDfRE//v5AjgFf+DD+
+         waGekmsiQWHluWL22/FWNtkd/9TBklGK4p1GLIPqkb8dKq8tCscS52QU5WvSegdzfiVX
+         aYhHp1GTJg5XGXC58x1ppi9ZDqYtjsD7f3qL4rLaZ5BbJqNFlsPuI6//YxkETH8shZdL
+         P8GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ps6+CrFrf1G8yxoOGed9ZXoVR3hjv0NG/3mQJo+Ut9Q=;
-        b=Ztn0pPiJ01x7AR7V6Wvs3iGpOOsr/ldyPviod9QZbxkMFRQ0VSGcxRrDlNsQE7LTD0
-         kUV96OAVBUcyDCCpYg3TpVDnGVTijfHWUbvpCbP3+pkRcmxRV025Afd/OM607fUdZSJj
-         ia8kbvS8ccPY7z+XrOB8Yi6kZ7jax4rvCkd0zoEaPBxo3P7QhYOWeGa658GHP407y7w2
-         jIVGSbfTpjzw+mQ+m/rBo7y1OM0z6PCseXviQBbd3JR/eVVwOcbKoLlMLxfO5rs44DTt
-         p+xJARjyHvD3ri4EZMGoMwPadbEWo9MqfMg5XKVV7FeuvFKufvMBoHe2LD93UT5Qv4gN
-         Si2g==
-X-Gm-Message-State: ANoB5pk9c0oBdHb2jUsuxD5zcSdXaO5qFYe96BBVoY4fFoe6TlC53mzO
-        Vlev2MZ+cnvCBN4uLkvSIHECWg==
-X-Google-Smtp-Source: AA0mqf70IVc17pOFBXcRbcVopq4rQFE6Z5pSqKrcFJi6790TOHWOmuJf3IppF3ixjppkrhD1p+EB9Q==
-X-Received: by 2002:a05:6512:3581:b0:4a8:41b8:5cb7 with SMTP id m1-20020a056512358100b004a841b85cb7mr777625lfr.61.1668177604331;
-        Fri, 11 Nov 2022 06:40:04 -0800 (PST)
+        bh=nKIh7Rn2uY03gvMDxLSAjGI/gyfIpOz2PNRYMB/8BVY=;
+        b=rLMltz/6kwCgnNk0fGQlYgDfNkKbgIbCaMXG3J7k7B4TY0REUL06dtzyaTJ72nq+0D
+         5RNZK+JpEBO622YZ7jj8XyBl7LS5Eq+HHyGgEJIydL+oabQGNuyBMRCSfgPvNGouEi0N
+         /K6cuDOAacgPY+6sgZvMOkne+VsboZql/sCQCSCX9qygTchaSB5A9N9AFvCewlFZ2+Aw
+         wCA/BHWlTij133HJTFWmwT3h8Lutss8LBXzT5EjbEKqa7sqwkAEbupKQZr28G97yEyVG
+         1v/w40m7IVQbrAgLm8G1lXOueWPT3XEsPTQejdDhfuXWswfcsdBXmf62lbD7PluaQWQa
+         DjWQ==
+X-Gm-Message-State: ANoB5pnc7R2uQmCqVJEUn7zot0zH1UyFRnmiTXcKepkj24BCtHFmu8bS
+        mZJPUq3uzeHSVMfRMPGGIzqJdA==
+X-Google-Smtp-Source: AA0mqf4sgLsj52HWaY59vMgHa4fGiq4HixM8ZVYXfqlh1s69CeMqoQVflfov72D5yRE0mhynje0tUA==
+X-Received: by 2002:a19:6d0f:0:b0:4a2:23b0:b850 with SMTP id i15-20020a196d0f000000b004a223b0b850mr780143lfc.60.1668177933536;
+        Fri, 11 Nov 2022 06:45:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id q28-20020ac2515c000000b004a8f824466bsm358339lfd.188.2022.11.11.06.40.03
+        by smtp.gmail.com with ESMTPSA id n26-20020ac2491a000000b00494a603953dsm361574lfi.89.2022.11.11.06.45.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Nov 2022 06:40:03 -0800 (PST)
-Message-ID: <36680a5e-7b0c-4d7e-f039-734e9304dc18@linaro.org>
-Date:   Fri, 11 Nov 2022 15:40:02 +0100
+        Fri, 11 Nov 2022 06:45:32 -0800 (PST)
+Message-ID: <72093230-9da4-665d-c177-055c0a5e33cc@linaro.org>
+Date:   Fri, 11 Nov 2022 15:45:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 5/5] arm64: dts: uniphier: Add NX1 SoC and boards
- support
+Subject: Re: [PATCH v4 3/9] dt-bindings: regulator: Add binding schema for
+ mt6357 regulators
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221107103410.3443-1-hayashi.kunihiko@socionext.com>
- <20221107103410.3443-6-hayashi.kunihiko@socionext.com>
- <f8f83839-2e76-e500-a16e-5fd2985a278d@linaro.org>
- <df21cfca-67ed-0c78-7f1e-13e321edabe1@socionext.com>
- <a1e4a039-3b65-2f2b-2196-340cc754b1c1@linaro.org>
- <afdb63d2-217b-1ed5-3398-3e610bce8ecb@socionext.com>
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>
+References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
+ <20221005-mt6357-support-v4-3-5d2bb58e6087@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <afdb63d2-217b-1ed5-3398-3e610bce8ecb@socionext.com>
+In-Reply-To: <20221005-mt6357-support-v4-3-5d2bb58e6087@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 09:48, Kunihiko Hayashi wrote:
-> Hi Krzysztof,
+On 08/11/2022 19:43, Alexandre Mergnat wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> On 2022/11/09 0:11, Krzysztof Kozlowski wrote:
->> On 08/11/2022 15:30, Kunihiko Hayashi wrote:
->>> Hi Krzysztof,
->>>
->>> On 2022/11/08 20:13, Krzysztof Kozlowski wrote:
->>>> On 07/11/2022 11:34, Kunihiko Hayashi wrote:
->>>>> Initial version of devicetree sources for NX1 SoC and boards.
->>>>>
->>>>> NX1 SoC belongs to the UniPhier armv8 architecture platform, and is
->>>>> designed for IoT and AI/ML application fields.
->>>>>
->>>>
->>>>> +
->>>>> +		soc_glue: syscon@1f800000 {
->>>>> +			compatible = "socionext,uniphier-nx1-soc-glue",
->>>>> +				     "simple-mfd", "syscon";
->>>>> +			reg = <0x1f800000 0x2000>;
->>>>> +
->>>>> +			pinctrl: pinctrl {
->>>>> +				compatible = "socionext,uniphier-nx1-pinctrl";
->>>>
->>>> So instead of documenting the hardware precisily, you have one big bag
->>>> for everything under simple-mfd. This is not how the SoC should be
->>>> described in DTS.
->>>
->>> Sorry I don't understand. This is inherited from the previous
->>> descriptions,
->>> but is there some example to express DTS correctly about that?
->>
->> I think yes, although it actually depends what is this hardware.
->> Generally speaking, do not use simple-mfd and syscon when these are not
->> really simple devices. There are quite many in your DTS, which got my
->> attention. Instead - have regular device with or without children.
->>
->> There is no real need to have this a simple-mfd with one children
->> without any resources (no address space, no clocks, no interrupts, nothing).
->>
->> Why this syscon/mfd and pinctrl is not a regular, one device?
-> 
-> The mfd/syscon.yaml says:
->    System controller node represents a register region containing a set
->    of miscellaneous registers.
-> 
-> The "soc-glue" is exactly this, it contains various register functions
-> and might be referred to the drivers.
-> 
-> For example in this NX1 dts, ethernet node points to "soc-glue" node.
-> 
->      eth: ethernet@15000000 {
->          compatible = "socionext,uniphier-nx1-ave4";
->          ...
->          socionext,syscon-phy-mode = <&soc_glue 0>;
->      };
-> 
-> Since such register region is not often systematically designed,
-> it is tough to cut out as specific memory region for "pinctrl".
+> Add YAML schema for the MediaTek MT6357 regulators.
 
-So your choice is instead use entire address space as pinctrl - as a
-child device without IO address space. That's also not a good solution.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+regulator: dt-bindings:
 
 > 
-> And more, the existing pinctrl driver uses of_get_parent() and
-> syscon_node_to_regmap(), so this change breaks compatibility.
-
-This is a new DTS, so what compatibility is broken? With old kernel?
-There was no compatibility with this Devicetree. Anyway using driver
-implementation as reason for specific hardware description (DTS) is also
-not correct.
-
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  .../regulator/mediatek,mt6357-regulator.yaml       | 292 +++++++++++++++++++++
+>  1 file changed, 292 insertions(+)
 > 
->>>>> +			};
->>>>> +		};
->>>>> +
->>>>> +		soc-glue@1f900000 {
->>>>> +			compatible = "simple-mfd";
->>>>
->>>> No, it is not allowed on its own. You need a specific compatible and
->>>> bindings describing its children.
->>>
->>> I saw the definition of "simple-mfd" itself is only in mfd/mfd.txt.
->>>
->>> Currently there are only efuse devices as children, and this space means
->>> nothing. I think it had better define the devices directly.
->>
->> You need to start describe the hardware. efuse is an efuse, not MFD.
->> pinctrl is pinctrl not MFD + pinctrl.
-> 
-> This region also has multiple functions, though, the efuse might be
-> cut out as specific region without "simple-mfd", unlike pinctrl.
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
+> new file mode 100644
+> index 000000000000..3997a70a8b6c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
+> @@ -0,0 +1,292 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6357-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 
-simple-mfd itself does not mean region has multiple functions, but that
-children do not depend on anything from the parent device.
 
-You over-use syscon and simple-mfd in multiple places. of course some of
-them will be reasonable, but now it does not.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
