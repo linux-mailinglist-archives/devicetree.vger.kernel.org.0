@@ -2,134 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA9F6267BF
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 08:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2C2626849
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 10:15:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbiKLHqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 02:46:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
+        id S234710AbiKLJPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 04:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230257AbiKLHqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 02:46:51 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE8945EF0
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 23:46:50 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so7667746fac.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 23:46:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q63GJUSuDThP3uhtQba7IfspRKrI38ddEA7KDeMNEBs=;
-        b=OU6VbUzxoJagZDCAhkjPlwn+dxRYKXSdHS3bm8UzVpdr8cEmzHxPs09JjfkImTKJN+
-         XFcsoC1FAX6ofpuAHdIai45gSdgIofR2A/1UQpByFY1wXPa4AWDTqWtrHBXOwNIQ1hKB
-         M58koGCywJ5peiq0aXvLGnIuwgNYfX2ec3S90=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q63GJUSuDThP3uhtQba7IfspRKrI38ddEA7KDeMNEBs=;
-        b=AaPl+zDEL6ThAAIuu1NYNYEWItfHILShUelC+9GNWWXGNIIxt7PXr8q0EQIobI0b3k
-         V+C1fiqASRDnXIN+2Az8mzbhav6QfiL8oNXxYCj8WQicy9p/xNelPQQJyto674Gip2Zk
-         3sCUMz+2wP25+nwqfisvhBp4Zl5JjaXLx/faeTUdVRHcYLFtYx8g1x4kKzgIXRI/luuJ
-         5AklsqglyG0DYaUt+o6J9+MRfF+aili4JkdETGfsrM/hOizGWX4qpkv7dtsGXnP0ysZU
-         VjCDj/iL/RoVYMZ9ACpLQan8Wg/gU3p2zpg0L10XKZxdUxHdQqHANB1EQk/y32iD67Rn
-         Ca3A==
-X-Gm-Message-State: ANoB5pke/4IDCaA4Z2GDYNKTa2HPZAvTfcNZ0DvK/8yPdaUxodOOq6NB
-        Z5XLCe3vwBWeYDRse4kdPHVg/QrAsV6hieFjGXeG
-X-Google-Smtp-Source: AA0mqf5UZ4i28VsBcXzC38GqHTvV3wPQq6gV4LbNJlcIfzZ/TtpvLnkdm9eKU7eM+H6GimyjKU6Bf9PqVPrLqR+IgVU=
-X-Received: by 2002:a05:6870:518:b0:13b:be90:a68a with SMTP id
- j24-20020a056870051800b0013bbe90a68amr2736045oao.181.1668239209389; Fri, 11
- Nov 2022 23:46:49 -0800 (PST)
+        with ESMTP id S230344AbiKLJPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 04:15:41 -0500
+Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E958BE3A;
+        Sat, 12 Nov 2022 01:15:36 -0800 (PST)
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+        by mxout3.routing.net (Postfix) with ESMTP id 10353604CC;
+        Sat, 12 Nov 2022 09:15:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1668244534;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=8h7HnuaIbJzS+1bSDsJciWFXEu36biz2822mlX20rAg=;
+        b=UPzPkiLVH4L2++lfu6zi7oUxA268Vr2ju1R+3f2m/ygukvVgXaWrE6m+bkH9cR0mcI+NIj
+        lnzjGcQHWRCJpioXY7EQkMBP+iuU+JihfHO5m48yVXDCbsOt+/N4mHMuj8+zfvQbczNNHl
+        yL747nbEtwLFdA+2JgzENhWT57d19Es=
+Received: from frank-G5.. (fttx-pool-157.180.227.41.bambit.de [157.180.227.41])
+        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 931A4360217;
+        Sat, 12 Nov 2022 09:15:31 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: [PATCH v4 00/11] Add BananaPi R3
+Date:   Sat, 12 Nov 2022 10:15:07 +0100
+Message-Id: <20221112091518.7846-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <CAOnJCUK5Z6i39f5MJaRFhorGjcmBR=p_MapY_TDcR1e274wtpA@mail.gmail.com>
- <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
-In-Reply-To: <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Fri, 11 Nov 2022 23:46:38 -0800
-Message-ID: <CAOnJCUKKqJmJXvebn=12NciDe7iw016jpN6me-ZCH=50cCm+hg@mail.gmail.com>
-Subject: Re: [PATCH] RISC-V: Do not issue remote fences until smp is available
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Conor Dooley <conor@kernel.org>, Atish Patra <atishp@rivosinc.com>,
-        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
-        anup@brainfault.org, damien.lemoal@wdc.com,
-        devicetree@vger.kernel.org, jszhang@kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 0a530238-cec0-442a-b8de-6e8f0e31b058
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 1:42 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
->
-> On Mon, 31 Oct 2022 12:26:05 PDT (-0700), atishp@atishpatra.org wrote:
-> > On Mon, Oct 31, 2022 at 12:12 PM Conor Dooley <conor@kernel.org> wrote:
-> >>
-> >> On Fri, Oct 28, 2022 at 04:19:29PM -0700, Atish Patra wrote:
-> >> > It is useless to issue remote fences if there is a single core
-> >> > available. It becomes a bottleneck for sbi based rfences where
-> >> > we will be making those ECALLs for no reason. Early code patching
-> >> > because of static calls end up in this path.
-> >> >
-> >> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> >>
-> >> Hey Atish,
-> >> This doesn't apply for me to either fixes or for-next. What branch does
-> >> it apply to?
-> >> Thanks,
-> >> Conor.
-> >>
-> >> > ---
-> >> >  arch/riscv/mm/cacheflush.c | 4 ++++
-> >> >  1 file changed, 4 insertions(+)
-> >> >
-> >> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
-> >> > index f10cb47eac3a..7fafc8c26505 100644
-> >> > --- a/arch/riscv/mm/cacheflush.c
-> >> > +++ b/arch/riscv/mm/cacheflush.c
-> >> > @@ -19,6 +19,10 @@ void flush_icache_all(void)
-> >> >  {
-> >> >       local_flush_icache_all();
-> >> >
-> >> > +     /* No need to issue remote fence if only 1 cpu is online */
-> >> > +     if (num_online_cpus() == 1)
-> >> > +             return;
-> >> > +
-> >> >       if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
-> >> >               sbi_remote_fence_i(NULL);
-> >> >       else
-> >> > --
-> >> > 2.34.1
-> >> >
-> >
-> > Sorry I forgot to specify the dependencies for this patch. This patch
-> > is based on Anup's IPI series [1] as
-> > I assumed the IPI series would go first. I can rebase on top of the
-> > master if required.
-> > However, the issue will manifest only after Jisheng's patch[2] which
-> > moved the sbi_init to earlier and introduced the
-> > static key in the paging_init path.
-> >
-> > [1] https://patchwork.kernel.org/project/linux-riscv/patch/20220820065446.389788-8-apatel@ventanamicro.com/
-> > [2] https://lore.kernel.org/lkml/20220716115059.3509-1-jszhang@kernel.org/
->
-> IMO we should just stop issuing the SBI remote fences at all, with the
-> code to do IPI-based fences we're just adding complexity for the slow
-> case.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Sure. We can do that too. However, that will have some performance
-impact for any platform(existing and future ones) without imsic.
+This Series adds some Nodes to mt7986 devicetree and the BananaPi R3
 
-Is that acceptable ? Maybe it will encourage every vendor to implement
-AIA instead of PLIC ;)
+This version is rebased on Matthias' DTS64 next Branch from 2022/11/11.
 
---
-Regards,
-Atish
+i included sams series for mt7986 DTS with small changes
+https://patchwork.kernel.org/project/linux-mediatek/cover/20220427124741.18245-1-sam.shih@mediatek.com/
+
+i had run full dtbs-check but i end up with some strange warnings in
+ethernet-node that should not come up as phy-handle and sfp/managed
+properties are already defined.
+
+phy-handle made optional
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/mediatek,net.yaml#n265
+
+property sfp/managed (which is included for mac subnode in yaml above):
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml#n137
+
+changes:
+v4:
+- dropped RFC prefix
+- rebase on matthias' mtk dts-next (for 6.2) branch
+- added author information to overlays
+- fixed sfp binding error
+- added fix for moving wed_pcie node
+- readded missing compatible patches
+v3:
+- changed mmc pull-ups
+- added patch for board binding (sent separately before)
+- added pcie node in mt7986 (not yet again in r3)
+- added dt overlays
+
+
+Frank Wunderlich (7):
+  arm64: dts: mt7986: move wed_pcie node
+  dt-bindings: phy: mediatek,tphy: add support for mt7986
+  dt-bindings: usb: mtk-xhci: add support for mt7986
+  dt-bindings: PCI: mediatek-gen3: add SoC based clock config
+  dt-bindings: PCI: mediatek-gen3: add support for mt7986
+  arm64: dts: mt7986: add Bananapi R3
+  arm64: dts: mt7986: add BPI-R3 nand/nor overlays
+
+Sam Shih (4):
+  arm64: dts: mt7986: add spi related device nodes
+  arm64: dts: mt7986: add usb related device nodes
+  arm64: dts: mt7986: add mmc related device nodes
+  arm64: dts: mt7986: add pcie related device nodes
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  64 ++-
+ .../bindings/phy/mediatek,tphy.yaml           |   1 +
+ .../bindings/usb/mediatek,mtk-xhci.yaml       |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   4 +
+ .../mediatek/mt7986a-bananapi-bpi-r3-emmc.dts |  31 ++
+ .../mediatek/mt7986a-bananapi-bpi-r3-nand.dts |  55 +++
+ .../mediatek/mt7986a-bananapi-bpi-r3-nor.dts  |  69 +++
+ .../mediatek/mt7986a-bananapi-bpi-r3-sd.dts   |  25 +
+ .../dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi | 458 ++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts  | 166 +++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 162 ++++++-
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts  |  63 +++
+ 12 files changed, 1081 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+
+-- 
+2.34.1
+
