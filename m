@@ -2,93 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 453F2626A4A
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 16:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E252626A63
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 17:04:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234617AbiKLPlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 10:41:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36432 "EHLO
+        id S232759AbiKLQEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 11:04:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235054AbiKLPlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 10:41:08 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7441AF1C;
-        Sat, 12 Nov 2022 07:41:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 37B60B80943;
-        Sat, 12 Nov 2022 15:41:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7875CC433D6;
-        Sat, 12 Nov 2022 15:41:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668267664;
-        bh=dLq9YD8fzmn23nYLtg+yfmTIkefkqgbfgx6wWA1+cdU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=LjC7pYkcm5BAtgGj7t8cUS21lTCoXOmE+YakYS54NvFzsL4B5QBfSVfms53LQ8mTI
-         iC7PGNBApxCR2p9/65pka8Rnd+gM4lPM33a2hPj/F7ld9bqEmOdLAqyqYoa99Q+qHf
-         Wo9UhCDUG+ltp+lYbVcOwAFMqSAS2+/1vLHHGKu0FKiMTPN6lJGlA9glY3XTzBDxVP
-         Cv+AJw6Ot4b2P7RZIiKkoWmnWZX5tC84frmEYBpe/nKJ+3kWDubMFf/2Ee0W2DEU7f
-         V12rBVGaW2mUj8zAZrHAAFb618iT03bbtL0BjbPPaeIzPJd+4WO2/c+VVuE2eZ9uc9
-         v5ozv40doTM+A==
-Date:   Sat, 12 Nov 2022 15:53:18 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6dsv16x
- device bindings
-Message-ID: <20221112155318.01bd737f@jic23-huawei>
-In-Reply-To: <Y2pm5HpHu+O1cl4n@localhost.localdomain>
-References: <cover.1667745215.git.lorenzo@kernel.org>
-        <8d10a63ec6abd22863ab25addd8c2f578dbc9cd9.1667745215.git.lorenzo@kernel.org>
-        <a464ae19-3b18-3a34-9706-151b1512057b@linaro.org>
-        <Y2pm5HpHu+O1cl4n@localhost.localdomain>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S232347AbiKLQET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 11:04:19 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048A2E0CE;
+        Sat, 12 Nov 2022 08:04:19 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id d9so5486991wrm.13;
+        Sat, 12 Nov 2022 08:04:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BzftkJ+4gAzALNOFNlR0ynkJ89pkyFUm1wKevHfbpdU=;
+        b=Dd+3stiS49wu3yR+maof3xzekVzhFVNf9ABzYShA4b7Rsw+ss9XG1zwCAd7YReERQk
+         e9xfFAOhjJnisioz/LlJyxoNP1GHixqnoG/3b6T2qQsoo+OGcRyfAX/WGwFFYKnKkVgD
+         gYZGedX5/KUbcIjMOaMKlkM7j6OoD2mUEHejC95B0/XuhR9sM3oEOo9fUCU2ThNWiXA0
+         4yOLgP+ttiZPTHRFyEc/s7pTtmhtbyAv1oefKswsUFvvOYlep5uf4ANQ9a8cJma4McmI
+         ScW9R8H3B5ks9f6DuSgUYbV84SsIHRD7HTn/vR+qy7J6sI+yAdUIjKo4XhWedfG0xyKo
+         2ohA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BzftkJ+4gAzALNOFNlR0ynkJ89pkyFUm1wKevHfbpdU=;
+        b=5PsqxGqYHCHNFNNjJQE9i8iAfAKmChIowl3O8HglR5BBPFc2h+bNtjPr1oP0NXqKGl
+         aXQCa2qrFD3ReuOYplZFcHLTBYa+aSK3iYCEEBpzAnSCcFsNtq9tS2tgeeQL9Hma+3R6
+         rvl7mPQGNFil8VW+MuRMaKYKB41kE6RCcd8PgVnJMjhjeOzU2rglyHvH8YEe4x1rfQS6
+         gA4e4yQx2pTHrHaaKSiUZd+glmpVvzq+tUtxBtB3k5SzNPqlv/HVXtZEPi0y0JuAFVtk
+         6PhC4PUGW+5jr1MB4sbqSsBqXPS3P6Kqe1DjCh5v3OUAWre/GF7igSB/H5pfyfj7Xq7t
+         QCiA==
+X-Gm-Message-State: ANoB5pkmAkTW2quZv4Dk/LtbiCqSx4OXV0WtwX3Wg/j9KtOawnSxD2Qj
+        cHYd7aQfjTWcpgeAWaJJ20M=
+X-Google-Smtp-Source: AA0mqf42xObJGVx93xSxumkmGRbcuB2yKXMO/ZP07kz+rokHYiwbXDZYbIbfdLeqG13BNCt1UvAGZA==
+X-Received: by 2002:adf:e302:0:b0:236:76ab:c986 with SMTP id b2-20020adfe302000000b0023676abc986mr3895551wrj.379.1668269057389;
+        Sat, 12 Nov 2022 08:04:17 -0800 (PST)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id iv16-20020a05600c549000b003cf87623c16sm14605752wmb.4.2022.11.12.08.04.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Nov 2022 08:04:16 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Misc SOQuartz Enablement
+Date:   Sat, 12 Nov 2022 17:03:57 +0100
+Message-Id: <20221112160404.70868-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Nov 2022 15:25:40 +0100
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+This series enables the following functionality on the SOQuartz CM4
+module:
 
-> > On 06/11/2022 15:36, Lorenzo Bianconi wrote:  
-> > > Add device bindings for lsm6dsv16x IMU sensor.  
-> > 
-> > Drop redundant, second "device bindings" in subject.  So the subject
-> > should be (also with different prefix):  
-> 
-> ack
-> 
-> > 
-> > dt-bindings: iio: imu:: st,lsm6dsx.yaml: add lsm6dsv16x
-> > 
-> > With subject fixes:
-> > 
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > Best regards,
-> > Krzysztof
-> >   
-> 
-> @Jonathan: do you want me send v2 or are you going to take care of it?
-> 
-> Regards,
-> Lorenzo
+ * GPU (patch 1)
+ * Video output (patch 2)
+ * HDMI (also patch 2)
+ * HDMI audio (patch 3)
+ * PCIe2 (patch 4), CM4IO board
+ * SOQuartz Blade bindings (patch 5)
+ * SOQuartz Blade device tree (patch 6)
 
-I tidied the patch title up whilst applying. Applied to the togreg
-branch of iio.git and pushed out as testing for all the normal reasons.
+In V2, we also add the SOQuartz Blade base board and bindings
+definition. The Blade base board allows mounting a SOQuartz CM4
+SoM onto a 1U-rackable board with PoE and and M.2 (PCIe 2 x1) slot.
 
-Thanks,
+Changes to v1:
+ - added pcie-clkreq-h to soquartz pinctrl
+ - added blade base board (by Andrew "neggles" Powers-Holmes)
 
-Jonathan
+Andrew Powers-Holmes (1):
+  arm64: dts: rockchip: Add SOQuartz blade board
+
+Nicolas Frattaroli (5):
+  arm64: dts: rockchip: Enable GPU on SOQuartz CM4
+  arm64: dts: rockchip: Enable video output and HDMI on SOQuartz
+  arm64: dts: rockchip: Enable HDMI sound on SOQuartz
+  arm64: dts: rockchip: Enable PCIe 2 on SOQuartz CM4IO
+  dt-bindings: arm: rockchip: Add SOQuartz Blade
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3566-soquartz-blade.dts    | 194 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3566-soquartz-cm4.dts |  11 +
+ .../boot/dts/rockchip/rk3566-soquartz.dtsi    |  75 +++++++
+ 5 files changed, 282 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts
+
+-- 
+2.38.1
+
