@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC834626965
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 13:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2547362696A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 13:41:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234728AbiKLMlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 07:41:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
+        id S234884AbiKLMlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 07:41:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234869AbiKLMll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 07:41:41 -0500
+        with ESMTP id S234762AbiKLMln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 07:41:43 -0500
 Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B13212ACA
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 04:41:40 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id t25so18102910ejb.8
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 04:41:40 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB8C812771
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 04:41:41 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id i10so9479636ejg.6
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 04:41:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SW1r5A1hXNoZH6nEqF4dUZL+EuJMyzrztmVIxOhjiNs=;
-        b=IHyV91eZUWesaEnBQt3Uc/qb6bKbaUd3PQnusUby1uiH/Jm4L2QnrIvjaJJwAyUjca
-         Nz5EeneyuT+8B2zo9YByPOXf78nNS5WLfPPOL2arQohQpLWcEVOUkUe7FWfDl+tATS9e
-         NKsF5h0wHW1sA7WnuMz2jSLR86/zVrDhuxqfOYO/WSfxFuDmeEWbzZhBGjNsRg+baCgG
-         46Gt0eL3nkQ6VQg0EYySgtYElq9UUmfp4gNl3+zpNJy3FvKVUsbzwNcgMtEWyqijFkwN
-         yj6VPzyM0PidUXSVLbX3U7taMPYCRblZy0bRRGqf3X0pkn6jFXOzzv47XEQU7snyaEfE
-         39RA==
+        bh=m11Wfyl1s0tVU6aM4TogI60DJN2xjUND4jny0vFuOjE=;
+        b=dniROph7TrNRUUZpE1NfM59JBHZlHl0WBdHLjIKt71MdDVqd72gIMkUnn3pmGqBAcx
+         rmSE6Sji0YiTstrNWhVNdm21Pbu1RG+zjnhpnUi8yrFAmq1w7Jqigw8X2AJknfg7+IlU
+         QS5HqefxB5KGYQH73g1XBhkQ4sa4mOh+1HnfFfDl5o4Pf+m5ZW/S4okZ/5ZbIgyAf7Cd
+         ay65F3URSTv2GwQbXstW6MkwLYln1CZbB5UziVYcozcorE1btBzuOSn8oz1ID57sTer6
+         nESFGEzAZMTs4ddkb3ao3ubmbMtzk0aI2kwDJ9G7VBdM5GgAJjI+zue3DDE573GUtv2Q
+         TvoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SW1r5A1hXNoZH6nEqF4dUZL+EuJMyzrztmVIxOhjiNs=;
-        b=J49VjVddJsfOI3b8Qj/LaOgF5E/yniCdVipWqFJz6Q/hSd4H9CTZIY5dNzfXV0j0ND
-         WEiiQzOoVMhGo0kRstTP8dAH7GQr3LpCpKdKgTH/rivrIzi2HYZvpxveZmoN9hY6gHgA
-         OrfNl4lWBlVABJF7FviDKE+/lkeABKBoavY5Zb+EkVyC+I6vuvMSUPVodqDHGDqgrzDE
-         zAItjAVAI3Glv2xNz8XDu94M1f/9VQ8P3Qo3e29iseXs2G2PdAGhJiQT9OLttibSXWUT
-         b0kZHL7OTazYVkpbRmJtbBTsAcjTPxD5tfcqPIwhAF9yiJyE3OuJe/Sqv2OocFYaREud
-         7DWw==
-X-Gm-Message-State: ANoB5pkSVGFXdpvOWlSzfV56OTNcuhHVQO0/HN5k5y+xIF/pCLLLXb38
-        7yXPqTR2CLW566v02oPqXiD9CQ==
-X-Google-Smtp-Source: AA0mqf7miIuB1aD5MeGdZk5K8VN+Mb57ynDaPc7xJG+Aj9qSIoiEjVVPDuh1ju3hc4WeYvaebyrvSQ==
-X-Received: by 2002:a17:906:4e48:b0:73d:dfb2:d188 with SMTP id g8-20020a1709064e4800b0073ddfb2d188mr5156360ejw.426.1668256899050;
-        Sat, 12 Nov 2022 04:41:39 -0800 (PST)
+        bh=m11Wfyl1s0tVU6aM4TogI60DJN2xjUND4jny0vFuOjE=;
+        b=bXdmN+Q+qR6lcVVwA6X5K9v0Hum1oTcHThUxV3yewRCI/PNWvNdhkN7dkhxsq1BrqL
+         K5iUQXRvQxHjtUopenZHF+laVbtTgSSyB4oZIfUW8UACNKxnlKk06I1ISIuw8TLB8cRw
+         gDl9Ogp9ekWoa2wz7HquwTjoVHOmm8pFi6aJ7VCGE29KOIvosj0yE2uKesubnIrh9HZO
+         TIfG5OvHdQAacUnDUTxN8GH7rj4wWrULrEECaNRTIVi0SSaK8e/wo16+u0JtP7kHZfBY
+         gyUzoWjMAcrYBpvi9kAIbz/FczJdlSslAKAZPEn+ArRcFVcwvq/neGYYysSpD77C3dSN
+         iuWg==
+X-Gm-Message-State: ANoB5pnwaksC074FlXNb94zn5crQ4Py1HjCew+PVCYz9V2S1i/mI42Y3
+        3WWwrS/EGzNiXVr9OIYc6+lvmA==
+X-Google-Smtp-Source: AA0mqf6T1ROUnUkmfrlYgaB2RCORn1Wxf081qL9m3nFrZbilSxnQqiRU8Ll/EwnNNiRU7bNjTwo+/g==
+X-Received: by 2002:a17:906:4bd5:b0:78d:408a:4a18 with SMTP id x21-20020a1709064bd500b0078d408a4a18mr5091407ejv.261.1668256900266;
+        Sat, 12 Nov 2022 04:41:40 -0800 (PST)
 Received: from localhost.localdomain (2001-1c06-2302-5600-7e82-4de3-e7e5-df38.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:7e82:4de3:e7e5:df38])
-        by smtp.gmail.com with ESMTPSA id h23-20020a170906585700b007317f017e64sm1882915ejs.134.2022.11.12.04.41.37
+        by smtp.gmail.com with ESMTPSA id h23-20020a170906585700b007317f017e64sm1882915ejs.134.2022.11.12.04.41.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Nov 2022 04:41:38 -0800 (PST)
+        Sat, 12 Nov 2022 04:41:39 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
@@ -60,9 +60,9 @@ Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
         linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org,
         Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: [PATCH v4 1/3] arm64: dts: qcom: sm8250: camss: Define ports address/size cells
-Date:   Sat, 12 Nov 2022 12:41:24 +0000
-Message-Id: <20221112124126.86815-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 2/3] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Add vision mezzanine
+Date:   Sat, 12 Nov 2022 12:41:25 +0000
+Message-Id: <20221112124126.86815-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221112124126.86815-1-bryan.odonoghue@linaro.org>
 References: <20221112124126.86815-1-bryan.odonoghue@linaro.org>
@@ -78,32 +78,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ports {} address and size cells definition is the same for every
-derived 8250 board so, we should define it in the core sm8250.dtsi.
+The Vision Mezzanine for the RB5 ships with an imx517 and ov9282 populated.
+Other sensors and components may be added or stacked with additional
+mezzanines.
 
-Suggested-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Enable both the IMX577
+
+An example media-ctl pipeline for the imx577 is:
+
+media-ctl --reset
+media-ctl -v -d /dev/media0 -V '"imx577 '22-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+media-ctl -V '"msm_csiphy2":0[fmt:SRGGB10/4056x3040]'
+media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
+media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+
+yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/qcom/Makefile             |  1 +
+ .../dts/qcom/qrb5165-rb5-vision-mezzanine.dts | 63 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 33 ++++++++++
+ 3 files changed, 97 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
 
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index d534888bcfe52..cd88efa19e750 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5-vision-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+new file mode 100644
+index 0000000000000..315d524045cf3
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+@@ -0,0 +1,63 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2022, Linaro Ltd.
++ */
++
++/dts-v1/;
++
++#include "qrb5165-rb5.dts"
++
++&camss {
++	status = "okay";
++	vdda-phy-supply = <&vreg_l5a_0p88>;
++	vdda-pll-supply = <&vreg_l9a_1p2>;
++
++	ports {
++		/* The port index denotes CSIPHY id i.e. csiphy2 */
++		port@2 {
++			reg = <2>;
++			csiphy2_ep: endpoint {
++				clock-lanes = <7>;
++				data-lanes = <0 1 2 3>;
++				remote-endpoint = <&imx577_ep>;
++			};
++		};
++	};
++};
++
++&camcc {
++	status = "okay";
++};
++
++&cci1 {
++	status = "okay";
++};
++
++&cci1_i2c0 {
++	camera@1a {
++		compatible = "sony,imx577";
++		reg = <0x1a>;
++
++		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
++		pinctrl-names = "default", "suspend";
++		pinctrl-0 = <&cam2_default>;
++		pinctrl-1 = <&cam2_suspend>;
++
++		clocks = <&camcc CAM_CC_MCLK2_CLK>;
++		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
++		assigned-clock-rates = <24000000>;
++
++		dovdd-supply  = <&vreg_l7f_1p8>;
++		avdd-supply = <&vdc_5v>;
++		dvdd-supply = <&vdc_5v>;
++
++		port {
++			imx577_ep: endpoint {
++				clock-lanes = <1>;
++				link-frequencies = /bits/ 64 <600000000>;
++				data-lanes = <1 2 3 4>;
++				remote-endpoint = <&csiphy2_ep>;
++			};
++		};
++	};
++};
 diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index d517d6a80bdcb..f28a8893d00d7 100644
+index f28a8893d00d7..83604b9772766 100644
 --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3412,6 +3412,11 @@ camss: camss@ac6a000 {
- 					     "cam_hf_0_mnoc",
- 					     "cam_sf_0_mnoc",
- 					     "cam_sf_icp_mnoc";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 		};
+@@ -3798,6 +3798,39 @@ tlmm: pinctrl@f100000 {
+ 			gpio-ranges = <&tlmm 0 0 181>;
+ 			wakeup-parent = <&pdc>;
  
- 		camcc: clock-controller@ad00000 {
++			cam2_default: cam2-default-state {
++				rst-pins {
++					pins = "gpio78";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-disable;
++				};
++
++				mclk-pins {
++					pins = "gpio96";
++					function = "cam_mclk";
++					drive-strength = <16>;
++					bias-disable;
++				};
++			};
++
++			cam2_suspend: cam2-suspend-state {
++				rst-pins {
++					pins = "gpio78";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-pull-down;
++					output-low;
++				};
++
++				mclk-pins {
++					pins = "gpio96";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
+ 			cci0_default: cci0-default-state {
+ 				cci0_i2c0_default: cci0-i2c0-default-pins {
+ 					/* SDA, SCL */
 -- 
 2.34.1
 
