@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A24CE626908
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 12:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C63162690A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 12:16:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231463AbiKLLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 06:15:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
+        id S234710AbiKLLQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 06:16:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234273AbiKLLPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 06:15:50 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 673B51C402
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:15:48 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id j4so11998126lfk.0
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:15:48 -0800 (PST)
+        with ESMTP id S234273AbiKLLQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 06:16:40 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFDA1D652
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:16:39 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id b9so7210227ljr.5
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:16:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R7iDZL/QujFwMm7jx3Nc9pgsghkA1TlulQ08yEkqzm8=;
-        b=O5j4F8KvBvXnQcWiyN7RVK0RroFeorgsDjVrKrVXeUZOcpAjnN+wsAXy2M0KOHCfmZ
-         PBmsef2Qi/rk6m5Tf++cB7UB7sxVdl4lDbOoeowFZqfsKqKPxph7goa8uDComO07W6do
-         DWHv7anXSdF2yrPbtbX1R2+vgturKkLnOFxNRi2PdA8Mz3WL+bzyw13D3XLuE2iB2R97
-         6h5Msyndh91We4UQrFePyCw9zCSb9B6oEfiZA+JBreXN9lIpcn0OOwK+s302MJTGKTzo
-         n0/gY96mFJYCz9yx5EvT67zoZSxPrvdgfL86dvQ7cgbP1/pRHyON/uD/yCCOfliVxp6Z
-         QZhw==
+        bh=usLQM2GRgo6G5zV0n+K+few4UokTLDJIqn1X3n+/7eY=;
+        b=QtqjW7jrkJx46ATqTwbwEIJimu4PgF9DKwVSOuuf4NmGi3MiGKXAQyhX4lMRjjufS3
+         jNcSHkxmVCwPbd0Wvu3ah7dr7bKcay6XV8O095pN3MN0GMVxSZaHXsQQ3VQL6v4WOAak
+         sU3G4SvH+7c4EhNFwl2eKRJRq74068BzfLgl4NVMFP6Rn/Sv9uuT96iPBiVQG/JhPr//
+         AUriPuCgY0oy3ZJR/uh7JxkNLAniZLpYqXD2kSOF/hj/KLQGuX5LeAa0mys9+7PPKhjr
+         /dnHliYI6Ij+BbJmRxaIn2uJ7yAyInVQq5MbhhHHU2iDnefq9R63k1HNs+ckVpxb3XZi
+         MsUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R7iDZL/QujFwMm7jx3Nc9pgsghkA1TlulQ08yEkqzm8=;
-        b=F8StMiiLerQ5ccUJin8FS99i7yR5uvx+HMtmaheSh2uxHVrx3y7Yrgs+oa/gMGwubV
-         RC5b3xLSev8cYSmEeqd85ERqyEOA/PawjYlr8nzaRlYghd58kZ77H3EZ/E+HrG4HYCkx
-         wzx8aZNHRxdNKWvO1uh/IobixseASUH1xJ7Sln7wDRIDYFlpfMpSQ5Xxir3H6CZ6U+vL
-         JSb9xD0TcYMvPfziuAlwgsuXOrudF7zSyh+E0bGF97vRqvVvLsPf0ETBHKOXeSVcW5Ar
-         YnUzjpdZOkfq91gzxQEn1ywWOaRNyFfkREj9cuPl/Pg+zrRLQODUIqFlG8ZfyzMazW+y
-         BCGQ==
-X-Gm-Message-State: ANoB5plP3X2sgipBGo0sYPdOZXyjnnIZrgEMkOds9p6l4IaqdFg7UoJ2
-        sDQZcu1lvIByTH2R/rd6MRCEXw==
-X-Google-Smtp-Source: AA0mqf7UnXUai6cU7HQ4E8RR2SFUUk5skG2m61T7Io4PUYpKkNCirRINVA1LiPCqs48Rz6A84/DriA==
-X-Received: by 2002:a05:6512:130d:b0:4b4:c0c:8995 with SMTP id x13-20020a056512130d00b004b40c0c8995mr2229488lfu.326.1668251746795;
-        Sat, 12 Nov 2022 03:15:46 -0800 (PST)
+        bh=usLQM2GRgo6G5zV0n+K+few4UokTLDJIqn1X3n+/7eY=;
+        b=ih8K0/nSZK3HdblDYp/n5rHlYNmYUW2ZFtvwpwa80UNhVemg8RCXASOQ5WFB7iD3+K
+         5yYQ2j6sC3dstaVxepINnR9sS5mbvKHw/hoZaTYbOXqeY9TXvbgBRr7hNY59Yz5BCsDY
+         B4YtJ0DMUFSOJE9twkRjO5H2DCHgeCMt5oPPmsrCU2ZDzWV4ds2nI1ZhfLdkvm14uUeb
+         z+9ppd9PVzKBe6rVq3nSweBHFAs5s9GRfueAdXW8EwNpK0bYQ219/0rOQLe53RIX1QOY
+         HGppK8KyPYGlyhAHKPH/Z4CQ3x+V/dX2SJryrnMSqjQ4dV7vwbLQ7YCkq4giUyn5QFHs
+         q27Q==
+X-Gm-Message-State: ANoB5pmBzlRbRQoGWQu9vh8AGNzt3QpBlS5aLS/1a5NnLogK8yPx2cyr
+        4tIyreHXpDaZdDyJuo7GvhWexQ==
+X-Google-Smtp-Source: AA0mqf4rX8KHS/ur6RbwvNnkJ+nujSEZ4baBqLu7grSwQ3YarEBmG1Z7Ak0Cq2Fe/Lxl2aoI4L6YwA==
+X-Received: by 2002:a2e:8783:0:b0:26c:532e:3cc with SMTP id n3-20020a2e8783000000b0026c532e03ccmr1708678lji.66.1668251797322;
+        Sat, 12 Nov 2022 03:16:37 -0800 (PST)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b004979db5aa5bsm825066lfg.223.2022.11.12.03.15.46
+        by smtp.gmail.com with ESMTPSA id n22-20020a05651203f600b004ab98cd5644sm824622lfq.182.2022.11.12.03.16.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Nov 2022 03:15:46 -0800 (PST)
-Message-ID: <d0325483-2e8b-7a09-8c64-ebf30619e3c1@linaro.org>
-Date:   Sat, 12 Nov 2022 14:15:45 +0300
+        Sat, 12 Nov 2022 03:16:36 -0800 (PST)
+Message-ID: <d2aa457d-2d63-af9d-f206-55c8b3051023@linaro.org>
+Date:   Sat, 12 Nov 2022 14:16:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 06/14] phy: qcom-qmp-combo: generate pipe clock name
+Subject: Re: [PATCH 07/14] phy: qcom-qmp-combo: drop redundant clock structure
 Content-Language: en-GB
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
@@ -66,9 +66,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-7-johan+linaro@kernel.org>
+ <20221111092457.10546-8-johan+linaro@kernel.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221111092457.10546-7-johan+linaro@kernel.org>
+In-Reply-To: <20221111092457.10546-8-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,11 +82,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/11/2022 12:24, Johan Hovold wrote:
-> In preparation for supporting devicetree bindings which do not use child
-> nodes, generate also the USB3 pipe clock name based on the platform
-> device name as is done for the DP clocks.
+> Drop the unnecessary DP clock structure and instead store the clocks
+> directly in the driver data.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 52 ++++++++---------------
+>   1 file changed, 17 insertions(+), 35 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
