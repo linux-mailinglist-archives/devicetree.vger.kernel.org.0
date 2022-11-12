@@ -2,173 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2565C6269F7
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 15:34:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF2F6269FD
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 15:37:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234794AbiKLOee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 09:34:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45432 "EHLO
+        id S234872AbiKLOhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 09:37:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234747AbiKLOec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 09:34:32 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF7E1C10A;
-        Sat, 12 Nov 2022 06:34:31 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id i10so9876901ejg.6;
-        Sat, 12 Nov 2022 06:34:30 -0800 (PST)
+        with ESMTP id S234794AbiKLOhu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 09:37:50 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF021C119
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 06:37:48 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id q9so18694836ejd.0
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 06:37:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cr+7dkLsIQWkssfwSwIW2QDjIIkEwPc25TwB+Qcm5uo=;
-        b=YKeasKflZl4c3qMzSMsz2RorOL4VRVaj8/U3xQm+eVknrGNWTSYiZkzUube5tqAEFd
-         RbXNhajc0myPH8IE0+D8K+lx3mrBlWfAihzHsZpKAXBL1zF5LSIInBLrU9dubZy1GNJB
-         78w4NlIHoq2IyA4YayFm31T36U5NEeBUTUQbDlfM+iq+GFd5gRhsc9TJTMI+tWg74t3j
-         wq4UqZIUijtea8WYvi22KWB0At0WgMhK3bCBI3195FCncgIZ6BsVKU2e5PAPJI4wQ66j
-         3hfK+eoaOwOZqZygpRn7fbHvO4wqnoqXHZD+1zFPfl8wTMtHJaLirj584lX7XAwbMxwA
-         t3hA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vE9vHQ1GxZrhNxIqKdhrGPPNxHu5WjObDhAr7v58OGs=;
+        b=K8ZqOnGkyoGS8KXqk4X+gJJ1L2foUkItW/ICjLcl2wZCnjOt2Bs2spBCh2EuZaZ855
+         U6hZMRgpTgH8iQdSriSIiGNsBB21hqYVsjnlnKheW8MuaytVDPHBZ8z5d/pPJReyk5aL
+         WNP5XS6GM9rTkRmeQgrUxMfzrBGoCwl9yu4cw/4GPqXb44TPp9oRzr17KxLuPsTTwIdd
+         HDaeK3HBWtFG/0N57bBSK7XaXxNPVp7TqVSf82PAsLYdXZk73nb/V0G2lsQyOo+tHUp3
+         vnTcV8nkM7nZCJTv0SmK/kNONnnX7XkTWazcVWPYPR+Y48ThMEvgO1iDppBArQbZhzYa
+         5kEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cr+7dkLsIQWkssfwSwIW2QDjIIkEwPc25TwB+Qcm5uo=;
-        b=6b/C/Nk0UCzMsZXJdhmNLlQU5sLlkkIowUnsEBSfId5Qmnzt18gnWjJQExUZz0v3AJ
-         cGffleCys5FsSQ3z1kHz8FoDuy5gJDerf3kYUmLvmIaB2TREENn8uFzlLEAxX/IID2Ug
-         6sEJ+lR2eLoNFlEBxuEuzr1DGOqsub6pJ1pCF6m5o0T8bAYI3EnEqTg9eOKF9pT/AE9z
-         lSEqhx7e09K82/Nva0oDgF21E9RDubYG9vxzcRwd9TJ6Rk0wQTDZw7sC2qBlw2gSj5Jm
-         +KgDJ9UO2oeV4iYKMFHDPc6/V/zY4OK383nU1B9ymxBKX6LIxCzGS9TcQH5MAMImM+HU
-         4zIQ==
-X-Gm-Message-State: ANoB5pnYUY158uDCT3n6RibIiAH+yYBiQeqKcaUNHmMxVg+0Na6oRzus
-        LDiK4giLcM6NqV1mpVUVlSrLMHD/Qw7XrsLN
-X-Google-Smtp-Source: AA0mqf4+tgay/1Fy+91DYqwR3WBS4VFwoALib4pDVA8WajyUvg8mJzbTjMXXKmO4q/kjrFsAPXyDJg==
-X-Received: by 2002:a17:906:504a:b0:78d:6655:d12e with SMTP id e10-20020a170906504a00b0078d6655d12emr5328264ejk.260.1668263669639;
-        Sat, 12 Nov 2022 06:34:29 -0800 (PST)
-Received: from localhost.localdomain (83.31.120.236.ipv4.supernova.orange.pl. [83.31.120.236])
-        by smtp.gmail.com with ESMTPSA id l9-20020a1709063d2900b0077a11b79b9bsm1974668ejf.133.2022.11.12.06.34.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Nov 2022 06:34:29 -0800 (PST)
-From:   Maya Matuszczyk <maccraft123mc@gmail.com>
-To:     linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     =?UTF-8?q?Jo=C3=A3o=20H=20=2E=20Spies?= <jhlspies@gmail.com>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: Add Anbernic RG351M
-Date:   Sat, 12 Nov 2022 15:34:11 +0100
-Message-Id: <20221112143411.517906-6-maccraft123mc@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221112143411.517906-1-maccraft123mc@gmail.com>
-References: <20221112143411.517906-1-maccraft123mc@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vE9vHQ1GxZrhNxIqKdhrGPPNxHu5WjObDhAr7v58OGs=;
+        b=Oz9cgHIcK+m8TqCEXmXeZn+eU2FghX2mNygqCO/m7zq8M3u+iVXqMUpDDIXA59iQ0q
+         BEWNf4BjXhgxMgotv/6rD0kkYJIRjvTkBPYb1dfJ5f4ynRcMa1rLauvccYRXMqBXxP2s
+         nsFM7fIDrWbu+2WRJWryNy058Iuz0mu0NQsKvzID73yK7b0UuXJhRFoME+/aWkZBzo07
+         gzaXNJhNNnRtehZCfoHbOVb3tOzn1ewQryXSBeZEmDJKS5RQ4jxwSGfriBABQTfOnjeH
+         cP1rFXiiXjNT+AcwLHKbmG1f077DyJqJ8xGpgQP74sk13MdyPgJO0lz2ZbGxqRZFuFy4
+         Kz+Q==
+X-Gm-Message-State: ANoB5pnkNNDmyp9DG6wWSFmeiI3Bt//KZH3eOvTRpNZ2ABHajFI4ZkRY
+        ypmL7idVHR+r4PXFWoTHvpL9xQ==
+X-Google-Smtp-Source: AA0mqf6GQjcU1H6BnA5a+CimHeHjbbDLUyt7tJQwf3fSo8uh5kB+qYf9VGdvXINTUhgh3QSLfgTkBQ==
+X-Received: by 2002:a17:906:3ace:b0:7ad:9028:4b17 with SMTP id z14-20020a1709063ace00b007ad90284b17mr5354884ejd.366.1668263867159;
+        Sat, 12 Nov 2022 06:37:47 -0800 (PST)
+Received: from ?IPV6:2001:1c06:2302:5600:3861:6a56:346:9c90? (2001-1c06-2302-5600-3861-6a56-0346-9c90.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:3861:6a56:346:9c90])
+        by smtp.gmail.com with ESMTPSA id i15-20020a05640200cf00b00463c5c32c6esm2371982edu.89.2022.11.12.06.37.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Nov 2022 06:37:46 -0800 (PST)
+Message-ID: <836531bb-e2ae-e851-82d1-e2c7f39482a3@linaro.org>
+Date:   Sat, 12 Nov 2022 14:37:44 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom:
+ sdm845-db845c-navigation-mezzanine: Add navigation mezzanine dts
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, robert.foss@linaro.org,
+        todor.too@gmail.com, agross@kernel.org, andersson@kernel.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221112124126.86815-1-bryan.odonoghue@linaro.org>
+ <20221112124126.86815-4-bryan.odonoghue@linaro.org>
+ <5729af47-8e18-535d-8e3a-299e82f54a06@linaro.org>
+Content-Language: en-US
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <5729af47-8e18-535d-8e3a-299e82f54a06@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This device is a clone of Odroid Go Advance, with added PWM motor, internal
-gamepad connected on USB instead of just having it be on GPIO + ADC, and
-missing battery shunt resistor.
+On 12/11/2022 13:17, Konrad Dybcio wrote:
+> 
+> 
+> On 12/11/2022 13:41, Bryan O'Donoghue wrote:
+>> Move the dts data for the rb3 navigation mezzanine into its own dts file.
+>>
+>> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>   .../sdm845-db845c-navigation-mezzanine.dts    | 109 ++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/sdm845-db845c.dts    | 101 ----------------
+>>   3 files changed, 110 insertions(+), 101 deletions(-)
+>>   create mode 100644 
+>> arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
+>> b/arch/arm64/boot/dts/qcom/Makefile
+>> index cd88efa19e750..5eadd251a0a16 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += sdm845-cheza-r1.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-cheza-r2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-cheza-r3.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-db845c.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)    += sdm845-db845c-navigation-mezzanine.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-lg-judyln.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-lg-judyp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)    += sdm845-mtp.dtb
+>> diff --git 
+>> a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts 
+>> b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+>> new file mode 100644
+>> index 0000000000000..0862ca30c8963
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+>> @@ -0,0 +1,109 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2022, Linaro Ltd.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "sdm845-db845c.dts"
+>> +
+>> +&cci {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&camss {
+>> +    vdda-phy-supply = <&vreg_l1a_0p875>;
+>> +    vdda-pll-supply = <&vreg_l26a_1p2>;
+>> +
+>> +    status = "ok";
+> "okay" is preferred.
+> 
+>> +
+>> +    ports {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+> Looks like the -cells properties are defined in 845 dtsi already.
+> 
+> 
+>> +        port@0 {
+>> +            reg = <0>;
+>> +            csiphy0_ep: endpoint {
+>> +                data-lanes = <0 1 2 3>;
+>> +                remote-endpoint = <&ov8856_ep>;
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&cci_i2c0 {
+>> +    camera@10 {
+>> +        compatible = "ovti,ov8856";
+>> +        reg = <0x10>;
+>> +
+>> +        /* CAM0_RST_N */
+>> +        reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&cam0_default>;
+>> +
+>> +        clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
+>> +        clock-names = "xvclk";
+>> +        clock-frequency = <19200000>;
+>> +
+>> +        /*
+>> +         * The &vreg_s4a_1p8 trace is powered on as a,
+>> +         * so it is represented by a fixed regulator.
+>> +         *
+>> +         * The 2.8V vdda-supply and 1.2V vddd-supply regulators
+>> +         * both have to be enabled through the power management
+>> +         * gpios.
+>> +         */
+>> +        dovdd-supply = <&vreg_lvs1a_1p8>;
+>> +        avdd-supply = <&cam0_avdd_2v8>;
+>> +        dvdd-supply = <&cam0_dvdd_1v2>;
+>> +
+>> +        status = "ok";
+> "okay" is prefered.
+> 
+>> +
+>> +        port {
+>> +            ov8856_ep: endpoint {
+>> +                link-frequencies = /bits/ 64
+>> +                    <360000000 180000000>;
+>> +                data-lanes = <1 2 3 4>;
+>> +                remote-endpoint = <&csiphy0_ep>;
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&cci_i2c1 {
+>> +    camera@60 {
+>> +        compatible = "ovti,ov7251";
+>> +
+>> +        /* I2C address as per ov7251.txt linux documentation */
+>> +        reg = <0x60>;
+>> +
+>> +        /* CAM3_RST_N */
+>> +        enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&cam3_default>;
+>> +
+>> +        clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
+>> +        clock-names = "xclk";
+>> +        clock-frequency = <24000000>;
+>> +
+>> +        /*
+>> +         * The &vreg_s4a_1p8 trace always powered on.
+>> +         *
+>> +         * The 2.8V vdda-supply regulator is enabled when the
+>> +         * vreg_s4a_1p8 trace is pulled high.
+>> +         * It too is represented by a fixed regulator.
+>> +         *
+>> +         * No 1.2V vddd-supply regulator is used.
+>> +         */
+>> +        vdddo-supply = <&vreg_lvs1a_1p8>;
+>> +        vdda-supply = <&cam3_avdd_2v8>;
+>> +
+>> +        status = "disable";
+> Missing d
+> 
+> Konrad
+>> +
+>> +        port {
+>> +            ov7251_ep: endpoint {
+>> +                data-lanes = <0 1>;
+>> +/*                remote-endpoint = <&csiphy3_ep>; */
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts 
+>> b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+>> index 3e7ceb0861eb0..f41c6d600ea8c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+>> @@ -1174,107 +1174,6 @@ &pm8998_gpio {
+>>   };
+>> -&cci {
+>> -    status = "okay";
+>> -};
+>> -
+>> -&camss {
+>> -    vdda-phy-supply = <&vreg_l1a_0p875>;
+>> -    vdda-pll-supply = <&vreg_l26a_1p2>;
+>> -
+>> -    status = "ok";
+>> -
+>> -    ports {
+>> -        #address-cells = <1>;
+>> -        #size-cells = <0>;
+>> -        port@0 {
+>> -            reg = <0>;
+>> -            csiphy0_ep: endpoint {
+>> -                data-lanes = <0 1 2 3>;
+>> -                remote-endpoint = <&ov8856_ep>;
+>> -            };
+>> -        };
+>> -    };
+>> -};
+>> -
+>> -&cci_i2c0 {
+>> -    camera@10 {
+>> -        compatible = "ovti,ov8856";
+>> -        reg = <0x10>;
+>> -
+>> -        /* CAM0_RST_N */
+>> -        reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+>> -        pinctrl-names = "default";
+>> -        pinctrl-0 = <&cam0_default>;
+>> -
+>> -        clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
+>> -        clock-names = "xvclk";
+>> -        clock-frequency = <19200000>;
+>> -
+>> -        /*
+>> -         * The &vreg_s4a_1p8 trace is powered on as a,
+>> -         * so it is represented by a fixed regulator.
+>> -         *
+>> -         * The 2.8V vdda-supply and 1.2V vddd-supply regulators
+>> -         * both have to be enabled through the power management
+>> -         * gpios.
+>> -         */
+>> -        dovdd-supply = <&vreg_lvs1a_1p8>;
+>> -        avdd-supply = <&cam0_avdd_2v8>;
+>> -        dvdd-supply = <&cam0_dvdd_1v2>;
+>> -
+>> -        status = "ok";
+>> -
+>> -        port {
+>> -            ov8856_ep: endpoint {
+>> -                link-frequencies = /bits/ 64
+>> -                    <360000000 180000000>;
+>> -                data-lanes = <1 2 3 4>;
+>> -                remote-endpoint = <&csiphy0_ep>;
+>> -            };
+>> -        };
+>> -    };
+>> -};
+>> -
+>> -&cci_i2c1 {
+>> -    camera@60 {
+>> -        compatible = "ovti,ov7251";
+>> -
+>> -        /* I2C address as per ov7251.txt linux documentation */
+>> -        reg = <0x60>;
+>> -
+>> -        /* CAM3_RST_N */
+>> -        enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+>> -        pinctrl-names = "default";
+>> -        pinctrl-0 = <&cam3_default>;
+>> -
+>> -        clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
+>> -        clock-names = "xclk";
+>> -        clock-frequency = <24000000>;
+>> -
+>> -        /*
+>> -         * The &vreg_s4a_1p8 trace always powered on.
+>> -         *
+>> -         * The 2.8V vdda-supply regulator is enabled when the
+>> -         * vreg_s4a_1p8 trace is pulled high.
+>> -         * It too is represented by a fixed regulator.
+>> -         *
+>> -         * No 1.2V vddd-supply regulator is used.
+>> -         */
+>> -        vdddo-supply = <&vreg_lvs1a_1p8>;
+>> -        vdda-supply = <&cam3_avdd_2v8>;
+>> -
+>> -        status = "disable";
+>> -
+>> -        port {
+>> -            ov7251_ep: endpoint {
+>> -                data-lanes = <0 1>;
+>> -/*                remote-endpoint = <&csiphy3_ep>; */
+>> -            };
+>> -        };
+>> -    };
+>> -};
+>> -
+>>   /* PINCTRL - additions to nodes defined in sdm845.dtsi */
+>>   &qup_spi0_default {
+>>       config {
 
-There's also an LED on GPIO 77(I *guess* PB5 on &gpio2), that is controlled in a weird way:
+Hmm.
 
-- It is set to red by setting output value to 1
-- Set to green by setting output value to 0
-- Set to yellow by setting gpio direction to input
+I wasn't really looking to do anything other than move existing upstream 
+stuff from one location to another.
 
-I have no idea how to describe that in DTS, without adding a custom
-driver, for now it's just left out.
+But, since you flag it I will generate a number of Fixes: and append 
+them to the head of this series.
 
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../dts/rockchip/rk3326-anbernic-rg351m.dts   | 54 +++++++++++++++++++
- 2 files changed, 55 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 142c83d2e5aa..b379516c15eb 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-rock-pi-s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3318-a95x-z2.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-anbernic-rg351m.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2-v11.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go3.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dts b/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dts
-new file mode 100644
-index 000000000000..7f4726d4130e
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-anbernic-rg351m.dts
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Hardkernel Co., Ltd
-+ * Copyright (c) 2020 Theobroma Systems Design und Consulting GmbH
-+ * Copyright (c) 2022 Maya Matuszczyk <maccraft123mc@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "rk3326-odroid-go.dtsi"
-+
-+/ {
-+	model = "Anbernic RG351M";
-+	compatible = "anbernic,rg351m", "rockchip,rk3326";
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3450000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <2000000>;
-+		constant-charge-voltage-max-microvolt = <4200000>;
-+		factory-internal-resistance-micro-ohms = <100000>;
-+		voltage-max-design-microvolt = <4100000>;
-+		voltage-min-design-microvolt = <3500000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =  <4046950 100>, <4001920 95>, <3967900 90>, <3919950 85>,
-+					<3888450 80>, <3861850 75>, <3831540 70>, <3799130 65>,
-+					<3768190 60>, <3745650 55>, <3726610 50>, <3711630 45>,
-+					<3696720 40>, <3685660 35>, <3674950 30>, <3663050 25>,
-+					<3649470 20>, <3635260 15>, <3616920 10>, <3592440 5>,
-+					<3574170 0>;
-+	};
-+
-+	vibrator {
-+		compatible = "pwm-vibrator";
-+		pwms = <&pwm0 0 1000000 0>;
-+		pwm-names = "enable";
-+	};
-+};
-+
-+/delete-node/ &builtin_gamepad;
-+/delete-node/ &vcc_host; /* conflicts with pwm vibration motor */
-+
-+&internal_display {
-+	compatible = "elida,kd35t133";
-+};
-+
-+&pwm0 {
-+	status = "okay";
-+};
-+
-+&rk817_charger {
-+	monitored-battery = <&battery>;
-+};
--- 
-2.38.1
-
+bod
