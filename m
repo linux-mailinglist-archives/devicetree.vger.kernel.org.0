@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F3D62673C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 07:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FA9F6267BF
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 08:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234533AbiKLGAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 01:00:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34462 "EHLO
+        id S232427AbiKLHqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 02:46:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233446AbiKLGAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 01:00:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68EC61183A;
-        Fri, 11 Nov 2022 22:00:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E25FE60B7C;
-        Sat, 12 Nov 2022 06:00:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2F361C433D6;
-        Sat, 12 Nov 2022 06:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668232818;
-        bh=Cc00GUziqpEEUO2BSbvzg6qh2KbXsDUerRvn2urwehE=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=JZUjRRdgPq1XPkkWGuabvIGGQPiqmYtVzXkyQAyNJgnSEQtUeJ2qJ3OJ21Z7t8Jqk
-         6lYmt9p5zeFEM+Llaa5+YC9Fpn1wKxDtdgxKN0B+1dzjwV+3rmwt+mlmBOhCrKjWe2
-         0TesZrqXYkDZ4MEFHwaTVQW3Tts8R744seZtXYqu76076gZqk4jftGV7z6uHQQymZ7
-         ZNuuh8RtqY02kNhU72kfnTzHp7ozJ5qWp4JZgdneEiUoFMGn1XXt+Pix7iCl9ky4FJ
-         r+7cHg6MHKPeiavVmUCGMe/O8HNvuR6wKy/pUJzbH1+pt8KsLv+IN6s//fi1hFeImt
-         yTQCsC5YkX/AA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 119ADE270C3;
-        Sat, 12 Nov 2022 06:00:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230257AbiKLHqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 02:46:51 -0500
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE8945EF0
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 23:46:50 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so7667746fac.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Nov 2022 23:46:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q63GJUSuDThP3uhtQba7IfspRKrI38ddEA7KDeMNEBs=;
+        b=OU6VbUzxoJagZDCAhkjPlwn+dxRYKXSdHS3bm8UzVpdr8cEmzHxPs09JjfkImTKJN+
+         XFcsoC1FAX6ofpuAHdIai45gSdgIofR2A/1UQpByFY1wXPa4AWDTqWtrHBXOwNIQ1hKB
+         M58koGCywJ5peiq0aXvLGnIuwgNYfX2ec3S90=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q63GJUSuDThP3uhtQba7IfspRKrI38ddEA7KDeMNEBs=;
+        b=AaPl+zDEL6ThAAIuu1NYNYEWItfHILShUelC+9GNWWXGNIIxt7PXr8q0EQIobI0b3k
+         V+C1fiqASRDnXIN+2Az8mzbhav6QfiL8oNXxYCj8WQicy9p/xNelPQQJyto674Gip2Zk
+         3sCUMz+2wP25+nwqfisvhBp4Zl5JjaXLx/faeTUdVRHcYLFtYx8g1x4kKzgIXRI/luuJ
+         5AklsqglyG0DYaUt+o6J9+MRfF+aili4JkdETGfsrM/hOizGWX4qpkv7dtsGXnP0ysZU
+         VjCDj/iL/RoVYMZ9ACpLQan8Wg/gU3p2zpg0L10XKZxdUxHdQqHANB1EQk/y32iD67Rn
+         Ca3A==
+X-Gm-Message-State: ANoB5pke/4IDCaA4Z2GDYNKTa2HPZAvTfcNZ0DvK/8yPdaUxodOOq6NB
+        Z5XLCe3vwBWeYDRse4kdPHVg/QrAsV6hieFjGXeG
+X-Google-Smtp-Source: AA0mqf5UZ4i28VsBcXzC38GqHTvV3wPQq6gV4LbNJlcIfzZ/TtpvLnkdm9eKU7eM+H6GimyjKU6Bf9PqVPrLqR+IgVU=
+X-Received: by 2002:a05:6870:518:b0:13b:be90:a68a with SMTP id
+ j24-20020a056870051800b0013bbe90a68amr2736045oao.181.1668239209389; Fri, 11
+ Nov 2022 23:46:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/2] dt-bindings: net: qcom,ipa: relax some
- restrictions
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166823281806.10181.477421817831482606.git-patchwork-notify@kernel.org>
-Date:   Sat, 12 Nov 2022 06:00:18 +0000
-References: <20221110195619.1276302-1-elder@linaro.org>
-In-Reply-To: <20221110195619.1276302-1-elder@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, andersson@kernel.org, konrad.dybcio@linaro.org,
-        agross@kernel.org, elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <CAOnJCUK5Z6i39f5MJaRFhorGjcmBR=p_MapY_TDcR1e274wtpA@mail.gmail.com>
+ <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
+In-Reply-To: <mhng-76ad1ec7-7ad6-4223-9e6f-321ac56d6dee@palmer-ri-x1c9a>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Fri, 11 Nov 2022 23:46:38 -0800
+Message-ID: <CAOnJCUKKqJmJXvebn=12NciDe7iw016jpN6me-ZCH=50cCm+hg@mail.gmail.com>
+Subject: Re: [PATCH] RISC-V: Do not issue remote fences until smp is available
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Conor Dooley <conor@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        anup@brainfault.org, damien.lemoal@wdc.com,
+        devicetree@vger.kernel.org, jszhang@kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,32 +67,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Thu, Nov 10, 2022 at 1:42 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>
+> On Mon, 31 Oct 2022 12:26:05 PDT (-0700), atishp@atishpatra.org wrote:
+> > On Mon, Oct 31, 2022 at 12:12 PM Conor Dooley <conor@kernel.org> wrote:
+> >>
+> >> On Fri, Oct 28, 2022 at 04:19:29PM -0700, Atish Patra wrote:
+> >> > It is useless to issue remote fences if there is a single core
+> >> > available. It becomes a bottleneck for sbi based rfences where
+> >> > we will be making those ECALLs for no reason. Early code patching
+> >> > because of static calls end up in this path.
+> >> >
+> >> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> >>
+> >> Hey Atish,
+> >> This doesn't apply for me to either fixes or for-next. What branch does
+> >> it apply to?
+> >> Thanks,
+> >> Conor.
+> >>
+> >> > ---
+> >> >  arch/riscv/mm/cacheflush.c | 4 ++++
+> >> >  1 file changed, 4 insertions(+)
+> >> >
+> >> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+> >> > index f10cb47eac3a..7fafc8c26505 100644
+> >> > --- a/arch/riscv/mm/cacheflush.c
+> >> > +++ b/arch/riscv/mm/cacheflush.c
+> >> > @@ -19,6 +19,10 @@ void flush_icache_all(void)
+> >> >  {
+> >> >       local_flush_icache_all();
+> >> >
+> >> > +     /* No need to issue remote fence if only 1 cpu is online */
+> >> > +     if (num_online_cpus() == 1)
+> >> > +             return;
+> >> > +
+> >> >       if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
+> >> >               sbi_remote_fence_i(NULL);
+> >> >       else
+> >> > --
+> >> > 2.34.1
+> >> >
+> >
+> > Sorry I forgot to specify the dependencies for this patch. This patch
+> > is based on Anup's IPI series [1] as
+> > I assumed the IPI series would go first. I can rebase on top of the
+> > master if required.
+> > However, the issue will manifest only after Jisheng's patch[2] which
+> > moved the sbi_init to earlier and introduced the
+> > static key in the paging_init path.
+> >
+> > [1] https://patchwork.kernel.org/project/linux-riscv/patch/20220820065446.389788-8-apatel@ventanamicro.com/
+> > [2] https://lore.kernel.org/lkml/20220716115059.3509-1-jszhang@kernel.org/
+>
+> IMO we should just stop issuing the SBI remote fences at all, with the
+> code to do IPI-based fences we're just adding complexity for the slow
+> case.
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+Sure. We can do that too. However, that will have some performance
+impact for any platform(existing and future ones) without imsic.
 
-On Thu, 10 Nov 2022 13:56:16 -0600 you wrote:
-> The first patch in this series simply removes an unnecessary
-> requirement in the IPA binding.  Previously, if the modem was doing
-> GSI firmware loading, the firmware name property was required to
-> *not* be present.  There is no harm in having the firmware name be
-> specified, so this restriction isn't needed.
-> 
-> The second patch restates a requirement on the "memory-region"
-> property more accurately.
-> 
-> [...]
+Is that acceptable ? Maybe it will encourage every vendor to implement
+AIA instead of PLIC ;)
 
-Here is the summary with links:
-  - [net-next,1/2] dt-bindings: net: qcom,ipa: remove an unnecessary restriction
-    https://git.kernel.org/netdev/net-next/c/9d26628a4ce2
-  - [net-next,2/2] dt-bindings: net: qcom,ipa: restate a requirement
-    https://git.kernel.org/netdev/net-next/c/7a6ca44c1e61
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+--
+Regards,
+Atish
