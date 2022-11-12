@@ -2,129 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20851626930
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 12:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4688462693A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 12:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234911AbiKLLg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 06:36:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
+        id S234915AbiKLLmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 06:42:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234146AbiKLLg1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 06:36:27 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AE023E8F
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:36:25 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id r12so11998935lfp.1
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:36:25 -0800 (PST)
+        with ESMTP id S234914AbiKLLmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 06:42:04 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469E51A074
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:42:03 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id c15-20020a17090a1d0f00b0021365864446so6743885pjd.4
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:42:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kRbo22PtqHobTCeV1YZA3tYBu2AmF31nXSrL8zFUE7w=;
-        b=PxRzqdglo5xsAfV2+zPzrOeZyo8zSrbPaBOlhuS6Ei+U4ZJpP10HKAuetRzSqXQxGi
-         3NcmnZamzK6tWa5TrY752rp5ix5pYsfoPqhTgLO6qvAyfvdl2dfnSw6nGD4KaIYbl0Le
-         Uq9Gn7JIMqsBXxLjozKT41aa+GCF/Qzh0AurAxCy5xwOK0CTpgk5WwT+RXBvvgOsQAP1
-         gOS93K6POaiWagi90o+aJWNyivFFyoJrhES4i4cqSEzBdbzKGGYy/1kIq4D4CUtHuxdI
-         hNJr0jePbm1qnlIsgmfFvf4hQMq4dxJachtIvvZjNETwHwp2qJvg8tT7tY/vRExbdx3k
-         oCJg==
+        d=omnom-net.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wUJur4eVPzA0iY2JL1ZbCoGq1dKojqTulWseoldi6uA=;
+        b=WhOUwIfGsxKfkHoG7tRINJX7dicX7/Tvb4xl7lUAkj37SLilDOnia9YuXBHa54zqaT
+         Vi14P7KPX0Kgm28u+a48bfS2LPxa3H5Yp/eSxv9HuHcRzLG2k2y9WsSmLANx1AXqnxpA
+         wBT1AU2y+KuBKnzsUlz4zOskgBxsiUWT+QC37GvEhT/BI7sFkZBiaLspmWbJCN+dIpH/
+         RTO9OPQUujoyMgXwbGlspCh8KtfNA43SbODn94XTlpindNd5mi5nRtmzv4CMD4qZq/s8
+         q85FJIwyxQZ+oSJPJ76vNuvOlwRSYEnKfga8kA0PxT3ij7p/k//QAZHsmRclExCaKwBE
+         8WcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRbo22PtqHobTCeV1YZA3tYBu2AmF31nXSrL8zFUE7w=;
-        b=z3x1hz+E91w5fFh/wt5zkCl0Ux+kXSG1TpVdzewlDzBP/Tn4d7X8YM+8aZHfXCorxz
-         hdb1Ekv1gFlUlX5rpYGRAn7jqxmv+J61pma6n9sda/dTCpyn/mvrJCHOP3H4R3QVM5Jf
-         qBWeUU5lIn+xeSLmYlhM+Rk1+BM9YHFxzma/Tmppb5gyvMLUZpcPNkX+9W2Maw+SfC70
-         XUYDxxdGtPy0NCxT8SHt1aDndy7ri2dM4cjJSAMNQtZusB+TzC6r6jzcKGNXPQNs0YEd
-         Y6jzXBjjHB8rNlaC5mt4pWa5OPeEn+FacfGT+dN/1avmmVzA9kSCHcvx5LFB80aUyM8b
-         +L2w==
-X-Gm-Message-State: ANoB5pmng37N2yQ0zj1VhGnJrrxFZw0WhXNuJgtd4lbxuP1PanwERpWW
-        Z4immJOSuNhrwb8bsWkAaT/bxA==
-X-Google-Smtp-Source: AA0mqf7rj1x3q1LBG9NCbryzByD0dB+icZsVAx/s1dv6PQrlY1jKO6N36HaoBo09/p6FnElIW8TTDQ==
-X-Received: by 2002:ac2:4bd0:0:b0:4b0:1305:7039 with SMTP id o16-20020ac24bd0000000b004b013057039mr1885054lfq.543.1668252984151;
-        Sat, 12 Nov 2022 03:36:24 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s8-20020a056512202800b004a65780e4cfsm833698lfs.106.2022.11.12.03.36.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Nov 2022 03:36:23 -0800 (PST)
-Message-ID: <ae61af60-46ef-e455-6063-e47238c608b1@linaro.org>
-Date:   Sat, 12 Nov 2022 14:36:23 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 14/14] phy: qcom-qmp-combo: add support for updated
- sc8280xp binding
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wUJur4eVPzA0iY2JL1ZbCoGq1dKojqTulWseoldi6uA=;
+        b=vsIYT5YusmfGz6L2wflODS7y6PatEuVyOjE/tE9RsFGABwraBvVI4wtqz1bWm2ocip
+         B27Idk/p0w9v0US+50u8yWhX3AxiirXExWbgteeLQ1o1HOLrbektaDAh8oWR9y5wAWHu
+         zO1OfOEsR/QfioQzXgiUoy+wrcyLKWbE+cR2uzWF8MbIGhJo3UGdin3pQM67yJFONjvl
+         FYQJIyC7nT4MQrrq7yTWk9BoPnGbH3+Py2F8Ir464X41RNwcjSCJNMYJCrjmi0VNQ4kL
+         DTR3uTRQAtJwE2Ped8j0862H1fQOm7DvYM5wn4gBEUw0b8qPGwGBIKacK/H4Qx7Y7oai
+         aEfg==
+X-Gm-Message-State: ANoB5plqoC5ayIrfVDxDZM3iRSED0qfXZ/oOnl7GYiSZg/6K9Pq35RGw
+        oUgdeEbx/wkn96tlHMfey5VXvQ==
+X-Google-Smtp-Source: AA0mqf5cl6ADcjWvHGgt9BQptQBABfkSpoLRYCxk+AcKUl0ZOQmJHdAjXaha43C6ssnesABN2xaTRw==
+X-Received: by 2002:a17:902:f7d1:b0:17f:8544:e0dd with SMTP id h17-20020a170902f7d100b0017f8544e0ddmr6543348plw.34.1668253322831;
+        Sat, 12 Nov 2022 03:42:02 -0800 (PST)
+Received: from astraea-lnx.home.neggl.es (119-18-16-128.771210.mel.static.aussiebb.net. [119.18.16.128])
+        by smtp.gmail.com with ESMTPSA id e2-20020aa79802000000b0056e8ce106d1sm3132091pfl.132.2022.11.12.03.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Nov 2022 03:42:02 -0800 (PST)
+From:   Andrew Powers-Holmes <aholmes@omnom.net>
+To:     linux-rockchip@lists.infradead.org
+Cc:     =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-15-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221111092457.10546-15-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/1] arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
+Date:   Sat, 12 Nov 2022 22:41:25 +1100
+Message-Id: <20221112114125.1637543-1-aholmes@omnom.net>
+X-Mailer: git-send-email 2.38.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 12:24, Johan Hovold wrote:
-> Add support for the new SC8280XP binding.
-> 
-> Note that the binding does not try to describe every register subregion
-> and instead the driver holds the corresponding offsets.
-> 
-> Also note that (possibly) unlike on earlier platforms, the TX registers
-> are used by both the USB and DP implementation.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 143 ++++++++++++++++++++--
->   1 file changed, 133 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index 0a4d53e6c586..544a7e55bf14 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -798,9 +798,25 @@ static const u8 qmp_dp_v5_voltage_swing_hbr_rbr[4][4] = {
->   
->   struct qmp_combo;
->   
-> +struct qmp_combo_offsets {
-> +	u16 com;
-> +	u16 txa;
-> +	u16 rxa;
-> +	u16 txb;
-> +	u16 rxb;
+The Rockchip RK356x SoCs currently have incorrect, or at least sub-optimal,`reg`
+and `ranges` values in their DTS files' PCIe nodes. Ondřej Jirman sent a patch
+in [1] to resolve this, but it was not merged due to some issues discovered
+during testing (it fixed his issues with devices behind a switch, but broke
+directly connected NVMe drives, amongst others - see [2]).
+
+This patch is a reworked of that patch, using the same mappings the Rockchip BSP
+kernel uses. Peter sent these up during the discussion in [3] and they've been
+tested on his boards as well as Ondřej's, mine, and those of a few others.
+
+Ondřej also sent a patch in [4] with these fixed ranges, but without the fix
+for RK3568 as he was not able to test on that SoC. I've included the fixes for
+both SoCs as he's happy with that and the patch has not yet been merged.
+
+I have tested these ranges against devices which only map 32-bit ranges, devices
+which only map 64-bit, and devices which require both. An Intel i350-T4 NIC does
+not enumerate at all with the existing or previous patch's addresses, but works
+quite happily with these, as do NVMe drives and every other device I've been
+able to test.
+
+MSI/MSI-X has also been tested as working, but does not currently work upstream
+due to a workaround needed in the GIC driver which Rockchip are still yet to
+issue an erratum for.
+
+Thanks,
+Andrew
+
+[1] https://lore.kernel.org/linux-rockchip/20221005085439.740992-1-megi@xff.cz/
+[2] https://lore.kernel.org/linux-rockchip/CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com/
+[3] https://lore.kernel.org/linux-rockchip/CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com/
+[4] https://lore.kernel.org/all/20221107130157.1425882-1-megi@xff.cz/
+
+Andrew Powers-Holmes (1):
+  arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
+
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++------
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi |  7 ++++---
+ 2 files changed, 12 insertions(+), 9 deletions(-)
 
 
-Yes, txa/txb are more in spite of the vendor headers. I'd sill suggest 
-to use tx/tx2 and rx/rx2 as used everywhere in the QMP driver.
-
-
-> +	u16 usb3_serdes;
-> +	u16 usb3_pcs_misc;
-> +	u16 usb3_pcs;
-> +	u16 usb3_pcs_usb;
-> +	u16 dp_serdes;
-> +	u16 dp_dp_phy;
-> +};
-> +
--- 
-With best wishes
-Dmitry
+base-commit: f0c4d9fc9cc9462659728d168387191387e903cc
+--
+2.38.0
 
