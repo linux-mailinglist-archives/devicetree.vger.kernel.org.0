@@ -2,105 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79B1862689C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 10:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 350F0626904
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 12:15:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234862AbiKLJmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 04:42:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35964 "EHLO
+        id S233947AbiKLLPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 06:15:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234856AbiKLJmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 04:42:03 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E0D1D64C;
-        Sat, 12 Nov 2022 01:41:59 -0800 (PST)
-X-UUID: eca59704464c44f39073f98433d34dbc-20221112
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=yCwlqTUR0f3marYM71BL/VwjecQ/4JBs0deXny1k1gc=;
-        b=mYJUi7GmuVGS7Q4ixMlg6zsP6RWqJNfcyXYoanfxLIMe1GKYj+eNoe01hzTbbdkQuX7NH208PT/agtS2UV1MIoPAcv05OlVxsF2z/6fMWt9i2TzrCtXYrYEqtEXeIGICGXne7DTwFS59qR2v5sxEOAFQwW3U42O47NxQ823jicQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.13,REQID:d5e945c6-8ec9-4781-989f-0575db8e00ce,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:d12e911,CLOUDID:21481751-b7af-492d-8b40-b1032f90ce11,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: eca59704464c44f39073f98433d34dbc-20221112
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 790872799; Sat, 12 Nov 2022 17:41:54 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Sat, 12 Nov 2022 17:41:52 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Sat, 12 Nov 2022 17:41:51 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 5/5] media: mediatek: vcodec: Core thread depends on core_list
-Date:   Sat, 12 Nov 2022 17:41:44 +0800
-Message-ID: <20221112094144.4256-6-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221112094144.4256-1-yunfei.dong@mediatek.com>
-References: <20221112094144.4256-1-yunfei.dong@mediatek.com>
+        with ESMTP id S231240AbiKLLPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 06:15:08 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7432D192AB
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:15:07 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id d6so11890096lfs.10
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 03:15:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BP3HObLwfnQ6Z033Q/+ZsVYc5sgYgaxGGPnUH0Zg5Zg=;
+        b=D9CjHXdC2dDtUGwfpFzrppKqh3FCN2xg3+eiugFIqSdPBMtIc/ZqtiQB6wIv+N6xo2
+         fZRQ+OuQe7PNEaUQpRysJSHHCAF9tNIaMcmX+ndioHtqTedd10nfELorFV09fVegr3RU
+         Z/+e1A3R3yW2kBiCKb4Tmi8nuBdzqHDnryaVBur52TP1G+0Xs3r7LkonykEJrlDdrVAL
+         rS7/4nynNZpQZ3Gu710mccDL0ejFyR6otdDdRcdpvyIY7mt6a5yd60qFJvKaI0AUnare
+         6PpX+SuzJjr76KOG2SIIU4rpaAZiU1AuwlPQQFanB1+W25Ddi0gfPFdpJr9dJIglvHmm
+         F5mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BP3HObLwfnQ6Z033Q/+ZsVYc5sgYgaxGGPnUH0Zg5Zg=;
+        b=tT7vn1u/z+JOy1zJDuXht1cC34IEXm7OaqBM/nnrGtIgQJIfP2K0vPOP83cjoyIRlh
+         VSN2ba6srRyWAEwAkQ3CBRj+odUtLSAPTkMB9VGGHVISEZdHWCUlDPLL2n8off4IgqW8
+         /gHWdKvyE3EpoPxx/BdUPVMT2Rzf3G4nvue3Uez/S+I1ccDLkCbt5XqQzEftTQMjUMBa
+         qgirxL6VCg+ckP5v2PQ/cFeod0gHHqEeSnCscj1NKLARsaKXvHYQxQJE5SOXhOJxNdLq
+         OQNhk8w7WdVBCx8c4I+YowmAkQrsyCrO+s5aSyUo2QPuSewh0vfGm474IiQ92lumn19P
+         MPqQ==
+X-Gm-Message-State: ANoB5pkgYaelfjH6ExJAaRfUZC5ABRPRMZpJKFLut6t6W+B5ZR10bTSH
+        I8bmG1ilqpH442wTTSYxyL3vJg==
+X-Google-Smtp-Source: AA0mqf63YnUBeua3mL7qR3PkxrkqtWWRHuxK7R+CfBrmhjcm4iJJ/tIaUB+VKUkYN7sx1ncWqJ7fvw==
+X-Received: by 2002:a19:5016:0:b0:4ad:5fbb:a5b0 with SMTP id e22-20020a195016000000b004ad5fbba5b0mr1832416lfb.466.1668251705808;
+        Sat, 12 Nov 2022 03:15:05 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u19-20020a05651220d300b0049462af8614sm823974lfr.145.2022.11.12.03.15.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Nov 2022 03:15:05 -0800 (PST)
+Message-ID: <9c94f81c-963e-d1a3-6514-f803bb7e05fa@linaro.org>
+Date:   Sat, 12 Nov 2022 14:15:04 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 05/14] phy: qcom-qmp-combo: register clocks sooner
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111092457.10546-1-johan+linaro@kernel.org>
+ <20221111092457.10546-6-johan+linaro@kernel.org>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221111092457.10546-6-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Core thread will continue to work when core_list is not empty, not
-depends on lat_list.
+On 11/11/2022 12:24, Johan Hovold wrote:
+> Runtime PM should be enabled before registering the PHYs, but there is
+> no reason that the clocks can not be registered before enabling runtime
+> PM.
 
-Fixes: 365e4ba01df4 ("media: mtk-vcodec: Add work queue for core hardware decode")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This will have a side effect of DP and pipe clocks not using runtime PM 
+during the clocks operations (see the code handling rpm_enabled in 
+drivers/clk/clk.c). If this is an intended change, it should be 
+described in the commit message.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-index ae500980ad45..dc2004790a47 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-@@ -221,7 +221,7 @@ static void vdec_msg_queue_core_work(struct work_struct *work)
- 	mtk_vcodec_dec_disable_hardware(ctx, MTK_VDEC_CORE);
- 	vdec_msg_queue_qbuf(&ctx->msg_queue.lat_ctx, lat_buf);
- 
--	if (!list_empty(&ctx->msg_queue.lat_ctx.ready_queue)) {
-+	if (!list_empty(&dev->msg_queue_core_ctx.ready_queue)) {
- 		mtk_v4l2_debug(3, "re-schedule to decode for core: %d",
- 			       dev->msg_queue_core_ctx.ready_num);
- 		queue_work(dev->core_workqueue, &msg_queue->core_work);
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index 1bc8567a8605..1a6aa61a12c5 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -2642,6 +2642,14 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto err_node_put;
+>   
+> +	ret = phy_pipe_clk_register(qmp, usb_np);
+> +	if (ret)
+> +		goto err_node_put;
+> +
+> +	ret = phy_dp_clks_register(qmp, dp_np);
+> +	if (ret)
+> +		goto err_node_put;
+> +
+>   	pm_runtime_set_active(dev);
+>   	ret = devm_pm_runtime_enable(dev);
+>   	if (ret)
+> @@ -2652,14 +2660,6 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>   	 */
+>   	pm_runtime_forbid(dev);
+>   
+> -	ret = phy_pipe_clk_register(qmp, usb_np);
+> -	if (ret)
+> -		goto err_node_put;
+> -
+> -	ret = phy_dp_clks_register(qmp, dp_np);
+> -	if (ret)
+> -		goto err_node_put;
+> -
+>   	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
+>   	if (IS_ERR(qmp->usb_phy)) {
+>   		ret = PTR_ERR(qmp->usb_phy);
+
 -- 
-2.18.0
+With best wishes
+Dmitry
 
