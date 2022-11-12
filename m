@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B85626AD1
-	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 18:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9A5626ADE
+	for <lists+devicetree@lfdr.de>; Sat, 12 Nov 2022 18:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235047AbiKLR1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Nov 2022 12:27:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32870 "EHLO
+        id S234710AbiKLR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Nov 2022 12:28:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235045AbiKLR06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 12:26:58 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785B5183A5
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 09:26:57 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id l11so11717095edb.4
-        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 09:26:57 -0800 (PST)
+        with ESMTP id S235051AbiKLR07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Nov 2022 12:26:59 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23F6183B1
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 09:26:58 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id t25so19133802ejb.8
+        for <devicetree@vger.kernel.org>; Sat, 12 Nov 2022 09:26:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Z38NVszeeRzwpeCo7llBZCNOGY8/lbL4u7FRY89ykkI=;
-        b=YpP/W7fpkp+243on8JOUUN+Qr+osZ/b3gkWDIGsJmZ9MfG+/hyldpIbn+EfbcH01TB
-         J55iN4eU3Zm2saAAsiarrRIGC74qvYX7AL+0eNVUGw1hXaoBbIpxU6/E8yeKoVjjenNB
-         +XhN2iZOR9/eCiye9ykYmktilHRc0o040IbT4xL4kUScUYnptO6/RKC7odsQ8kACRXLq
-         l+IDVlOaFTXcKpbFQjWACXI2tTd6rH6bo11U/LXdOE68sXEg+URxAJehtABAVncrc2bP
-         u45E8FRZyEpqyhOsdALNl3jGF8wvytHIVOaWb+Dht1WbxNbUIVgEzTCbDFdYixdVQytO
-         +2Hw==
+        bh=0U///bHfyu+eJ33f5aGcqLhAu/znMGGv82jQ6Af73qs=;
+        b=wj648wajgFLhCRVsxrcj9DqgbvLXCkILxv/+4oZ3pteJUbDYLTTlM3xMbUddSTBtap
+         7sqWrQeniUFY1mzbMNYRsPqsgS40AluJg77gDi0rhKRsR/mZ0lNygjFThK5Nf7brax+N
+         Dya7Am0sZR3QOl7jU0Qr6Pq0Jb1gnPURJ4hq6ZEph/Gy/LZ0U8O7X8KwH9a6Vsnjfmbu
+         9LzvESKf2oVXrCvMedE5/kvbQxsCL89risnW9+74h6iuwPLDLZDWweJNJKZm/uLbh309
+         6zZDG52q4PiH3HZrNrxG/uoeJgwIBDTc4x7R3g/iHJKyMAphgs+9nXNrs+7qmF/Y5kjp
+         x2pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Z38NVszeeRzwpeCo7llBZCNOGY8/lbL4u7FRY89ykkI=;
-        b=a+OA/DPVQjk6oxAI0kBlELXDjL4O1jGxvKljxZ1Yl/5+BczDppJ0CjySl4kCjF71Gs
-         m/JRtMUmb2fnp97pUHt/qjWvOfy6cM21xI9GWxG9FdMdzCwFbqQHJWdDv3GzlOjQHXAx
-         WlKjc/fZ4tVTU5gvlivaW/MAH6u/D43DCsPSYPkks09B78qDHhe/k/lmQLmaR7VipHUy
-         owrrOR47KF3+UvujY16gbTwBNgziSbsuH4gtv05MR//w06w1/Fre9FGuCFIcoES0BpFl
-         /BWIgag5AFw1JmGhnmwm/LRlSQMwsIyYHaKF8KB54ZVJeodTrOe8XMx0dRlF00ZOY41e
-         yK9Q==
-X-Gm-Message-State: ANoB5plLq3lm6CCWob/unrQ53hZj4aiQeIg6xIWIC/q+TMN2BjC+Dxsz
-        mWprwaXvCunjvHqD0qfr9QBHpA==
-X-Google-Smtp-Source: AA0mqf5vdXHouvfKT3uRuv95XjECUr5LI2duP59LqQqBrXFB1b4w8za30xzeT0Laae5n7tznzqMt5Q==
-X-Received: by 2002:a05:6402:b7b:b0:463:ab08:2bc6 with SMTP id cb27-20020a0564020b7b00b00463ab082bc6mr5854206edb.143.1668274015984;
-        Sat, 12 Nov 2022 09:26:55 -0800 (PST)
+        bh=0U///bHfyu+eJ33f5aGcqLhAu/znMGGv82jQ6Af73qs=;
+        b=XnnvfiUVnzPyOWphlRU/EF6Z1OgdTdwIR7NAfkstrEDGJfoG/HlGRkqwAIaKDyw85I
+         G4muq78p29Yp9DZ5IS5ZR2lNUHK25455c6xmXPeS6tb3GHtgenTRzAfj7hE8TRoCiAtm
+         fKiN849tOnci6WC9wJdC9sMxa1wNWedFVVkUwQecpz6lWJd9owI26FdTPu+cC+5U59F8
+         5h68hPU8C+yQhjhBMATw/XDRIpBy4gsjisznCEZWDtUWW02sJe6ZiePaTrHagRl4j63J
+         +I1wkRNosPKgQ9PBQ5CNvZJ34cwL1+n9aRzldsJi/uB2r8fI9BoVrEk5BFS96uv41tsw
+         WB0A==
+X-Gm-Message-State: ANoB5pmi/voDUFhZJsm5ODbxqmkwltpLlr5Bx6Gcz6Aoa50RW21imo/m
+        XiGVfgobk8cHz+GunSgqf4HDqg==
+X-Google-Smtp-Source: AA0mqf4SkjaKZ9V4hMiOv/JrPh/ow6CTPCVna8uWh4Yt2L4DrT22MtMPMORJF2XXJ0zSDL0TxX+V7w==
+X-Received: by 2002:a17:906:5048:b0:7ae:e9c1:760f with SMTP id e8-20020a170906504800b007aee9c1760fmr1468535ejk.18.1668274017153;
+        Sat, 12 Nov 2022 09:26:57 -0800 (PST)
 Received: from localhost.localdomain (2001-1c06-2302-5600-3861-6a56-0346-9c90.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:3861:6a56:346:9c90])
-        by smtp.gmail.com with ESMTPSA id qo9-20020a170907874900b0078c1e174e11sm2099265ejc.136.2022.11.12.09.26.54
+        by smtp.gmail.com with ESMTPSA id qo9-20020a170907874900b0078c1e174e11sm2099265ejc.136.2022.11.12.09.26.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Nov 2022 09:26:55 -0800 (PST)
+        Sat, 12 Nov 2022 09:26:56 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
@@ -61,9 +61,9 @@ Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
         devicetree@vger.kernel.org,
         Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v5 2/6] arm64: dts: qcom: sdm845-db845c: Use okay not ok for status
-Date:   Sat, 12 Nov 2022 17:26:46 +0000
-Message-Id: <20221112172650.127280-3-bryan.odonoghue@linaro.org>
+Subject: [PATCH v5 3/6] arm64: dts: qcom: sdm845-db845c: Use status disabled not disable
+Date:   Sat, 12 Nov 2022 17:26:47 +0000
+Message-Id: <20221112172650.127280-4-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
 References: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
@@ -79,36 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert camss status from "ok" to "okay".
+Use preferred status "disabled" instead of "disable".
 
 Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 7c88312333c22..ce95b51f17fff 100644
+index ce95b51f17fff..5da91c646c200 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1182,7 +1182,7 @@ &camss {
- 	vdda-phy-supply = <&vreg_l1a_0p875>;
- 	vdda-pll-supply = <&vreg_l26a_1p2>;
+@@ -1262,7 +1262,7 @@ camera@60 {
+ 		vdddo-supply = <&vreg_lvs1a_1p8>;
+ 		vdda-supply = <&cam3_avdd_2v8>;
  
--	status = "ok";
-+	status = "okay";
- 
- 	ports {
- 		port@0 {
-@@ -1221,7 +1221,7 @@ camera@10 {
- 		avdd-supply = <&cam0_avdd_2v8>;
- 		dvdd-supply = <&cam0_dvdd_1v2>;
- 
--		status = "ok";
-+		status = "okay";
+-		status = "disable";
++		status = "disabled";
  
  		port {
- 			ov8856_ep: endpoint {
+ 			ov7251_ep: endpoint {
 -- 
 2.34.1
 
