@@ -2,53 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 170D1626F8E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 13:48:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51AFE626FE7
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 14:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233810AbiKMMsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 07:48:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38872 "EHLO
+        id S235249AbiKMNuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 08:50:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233797AbiKMMso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 07:48:44 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A3312AB1;
-        Sun, 13 Nov 2022 04:48:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 396CC60B81;
-        Sun, 13 Nov 2022 12:48:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4826CC433D6;
-        Sun, 13 Nov 2022 12:48:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668343722;
-        bh=7i4I5LouaUPrD6INxO4gASs9HbJWfOfLOUNuyxhm3MY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Gma3NW1JB3SMTbEhTaaEYo2Crc9R+TXX13mH37vgWQ3ofdCTi8mOJ8s6UoXhw1SAz
-         6nO25aQV/lOja1I+wfxucXmOJ0JG2yo+rNb4lA5cWLyh6jTIpkxir3QZXUkvwhjNbz
-         nhJUzX10RKi+UJZK6fO2VjmHiQ44apNUfWsNUIct9K45mvec0zOYrskk7LvZdXL0nG
-         dvMkJiznXaRZ1tnQM26E3j3rIjORKmy8LsE4K2msrsVh3QR6gEFYT5ATthDppbm5+y
-         bRtVPMXbeB+0T6FVNPWMjse/ctCJ0IajOXrI7edydtMdAvM6ieNE81zDW5hWnWwis5
-         N5yQRVPNSR7kQ==
-Date:   Sun, 13 Nov 2022 13:00:56 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] Documentation: ABI: testing: adf4377: add ABI
- docs
-Message-ID: <20221113130056.571e107f@jic23-huawei>
-In-Reply-To: <20221107120243.57344-3-antoniu.miclaus@analog.com>
-References: <20221107120243.57344-1-antoniu.miclaus@analog.com>
-        <20221107120243.57344-3-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S235231AbiKMNuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 08:50:17 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E3610FED
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 05:50:16 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id s18so10682766ybe.10
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 05:50:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eceknYWf5pXSjf3uYAdpptzDpxH4rWxr35RcE2M9s1g=;
+        b=FkMNT5XysKQDnMO4RcQWSQ6H7JCNFeKZZrJ2RLstMOmDyEPOw5EcHE0WBI5VTbk4Qr
+         XR3eYK45+vctcOxbt3m64ODnkQhxCc8VxSO6pDr8uOeYZJCrCtrxFNJSvRp6Cfd/EYN2
+         3GUeyTC5bjLbCPZHJEJ219NcIcqu3jKi2nvEAC1pEK3cLsSfm2/cIMJMUodj+yyOgoAH
+         vVNL1n2OsEXwwJjcSA5PswuzthJu5PrWiB5y5ldAjsdlb2fAOoszqRkrWC1px0D0fHOm
+         k7kxYvddZ1Z/iC1KvOEBUEyfWy2zh/A2ulFOjqMx+043APYWlftEZvQ9Zq9xgU3DrEoQ
+         jnNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eceknYWf5pXSjf3uYAdpptzDpxH4rWxr35RcE2M9s1g=;
+        b=SZ/Q94voIJSQ0PO864pg+G4lPpe6Mg15l19NeU34gvcntXuGHiL5ZKi++n4xQ7a65Z
+         ijTYGQbjX5rrAl5BqzaKEC2IhODH48RJoWXkXappVvZGfyKDy8m4xBSTvunNtovEYIL3
+         gxkye0j+huwpVXVkLnrNiBsGVD6Xjlgc8jN19O7b1Lt6+OHs8PIk18p8SXRSLvlz8Qs9
+         dQUoFrasaY41NK7GqNIJRxyqZYiGyJn7C1yFlJUxHsTw7D0HcD0/RqzjDaS1MR+EuWSK
+         VvjAdVBZyt56un2sXbe0eCLHqib1Gp2q6zEF0XartdkPGs/Kuid+rHGGBZ6Yvpous+0Y
+         uoZg==
+X-Gm-Message-State: ANoB5plMwto365a1bN4W2Th7yoZt1ABO2w0HUdbaJTbPV5mK1JmZk8sY
+        jEtLkJq9PklKl6EfALGh9BYgJdJ0LwGChLpaplhU7A==
+X-Google-Smtp-Source: AA0mqf6sABYM0kp61+uu3VEcuDtmXePEQdU78gemQ06iM60ToPaMLunsSHhpQ/NJfefnF7ny12NVXGvpNKORe+MuZos=
+X-Received: by 2002:a25:8445:0:b0:6de:4801:a09b with SMTP id
+ r5-20020a258445000000b006de4801a09bmr8780968ybm.15.1668347415574; Sun, 13 Nov
+ 2022 05:50:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220830065744.161163-1-krzysztof.kozlowski@linaro.org>
+ <20220830065744.161163-2-krzysztof.kozlowski@linaro.org> <fe747000-a650-ed2f-8581-92b044f86f2f@linaro.org>
+In-Reply-To: <fe747000-a650-ed2f-8581-92b044f86f2f@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 13 Nov 2022 16:50:04 +0300
+Message-ID: <CAA8EJpruwhOVacH6_kN2TABmVR5Peu1pjFa1b4sag5p1zouqRA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: arm: qcom: document qcom,msm-id and qcom,board-id
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Kumar Gala <galak@codeaurora.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,44 +72,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Nov 2022 14:02:43 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+Hi Bjorn, Krzysztof,
 
-> Add documentation for the use of the output frequency and muxout select.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+On Mon, 26 Sept 2022 at 13:30, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/08/2022 08:57, Krzysztof Kozlowski wrote:
+> > The top level qcom,msm-id and qcom,board-id properties are utilized by
+> > bootloaders on Qualcomm MSM platforms to determine which device tree
+> > should be used and passed to the kernel.
+> >
+> > The commit b32e592d3c28 ("devicetree: bindings: Document qcom board
+> > compatible format") from 2015 was a consensus during discussion about
+> > upstreaming qcom,msm-id and qcom,board-id fields.  There are however still
+> > problems with that consensus:
+> > 1. It was reached 7 years ago but it turned out its implementation did
+> >    not reach all possible products.
+> >
+> > 2. Initially additional tool (dtbTool) was needed for parsing these
+> >    fields to create a QCDT image consisting of multiple DTBs, later the
+> >    bootloaders were improved and they use these qcom,msm-id and
+> >    qcom,board-id properties directly.
+> >
+> > 3. Extracting relevant information from the board compatible requires
+> >    this additional tool (dtbTool), which makes the build process more
+> >    complicated and not easily reproducible (DTBs are modified after the
+> >    kernel build).
+> >
+> > 4. Some versions of Qualcomm bootloaders expect these properties even
+> >    when booting with a single DTB.  The community is stuck with these
+> >    bootloaders thus they require properties in the DTBs.
+> >
+> > Since several upstreamed Qualcomm SoC-based boards require these
+> > properties to properly boot and the properties are reportedly used by
+> > bootloaders, document them along with the bindings header with constants
+> > used by: bootloader, some DTS and socinfo driver.
+> >
+> > Link: https://lore.kernel.org/r/a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org/
+> > Co-developed-by: Kumar Gala <galak@codeaurora.org>
+> > Signed-off-by: Kumar Gala <galak@codeaurora.org>
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > ---
+> >
+> > Changes since v6:
+> > 1. Update header with defines
+> > 2. Add Rb tag
+>
+> Hi Bjorn,
+>
+> Any further comments on this? Can it be applied?
 
-The docs system doesn't support more specific definitions of ABI for individual drivers
-if there is already an entry in another doc.
+A gracious ping from my side. I think it would be better to apply this
+patch rather than having the undocumented and controversial propreties
+in the device trees.
 
-Here we have the same entry in sysfs-bus-iio
-
-We can add extra info to that top level description related to an individual part, but
-I don't think that's necessary here.
-
-So I suggest dropping this patch.
-
-Thanks,
-
-Jonathan
-
-> ---
-> changes in v2:
->  - remove muxout selectdocumentation, since it is done in the devicetree now
->  Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377 | 6 ++++++
->  1 file changed, 6 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
-> new file mode 100644
-> index 000000000000..8888be49754c
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
-> @@ -0,0 +1,6 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency
-> +KernelVersion:
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Stores the PLL frequency in Hz for output channels.
-> +		Reading returns the frequency in Hz.
-
+-- 
+With best wishes
+Dmitry
