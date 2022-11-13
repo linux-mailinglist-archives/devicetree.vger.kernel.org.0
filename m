@@ -2,116 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4C2626FFD
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 15:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB51262700E
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 15:20:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234073AbiKMOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 09:01:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
+        id S233522AbiKMOUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 09:20:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbiKMOBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 09:01:00 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B967225C7;
-        Sun, 13 Nov 2022 06:00:58 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id b124so9147272oia.4;
-        Sun, 13 Nov 2022 06:00:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZKsttX7dR/kj4LzS1HqgSrInqnD5E8Kl3NokubvYYsw=;
-        b=yV0GP9Rn2CklXDGpiWKpZ9vywaI8ocGi79JrpwEpqDkudikZ6GuzoD92ZP546qicMa
-         lQubosd0KiNF46adqa8+Xd2CMYh4DUqvYur14lx6GY0fRPKzLHGwA4q1hUdezKcNqb0M
-         PkfAJRj+jeLhBA0VEl/UrQzW2A3niQFfCSs4NxtnnypQk99TeXmQpQfUTcyrw5Z3Let7
-         HqxR80Y2WXj4jJ/wOpEVLQRrRsv7IKtT/IG/0HHDD3GTCJAA4Iiu3igFzSL5YmzwGaM2
-         Z4hSCN8+QrYDEavQokn0ehks7GnWDKjlMqAwbwhz63mccSdH/eSKzRRndPzrPmyAgXE4
-         6WwA==
-X-Gm-Message-State: ANoB5pmukel8Ro33A1eWBbbQxipLsjkVbZUxxNJ3PB5Tnw4OFDWFuPdQ
-        wMgkTMG1P/9YQH8pd0CfLQ==
-X-Google-Smtp-Source: AA0mqf7sBsExjDIonPC+fh7PURcCdxGNOaw+XYBJlszceX2eXK+nZPWs46yN6CXtpbCaWJArJ/pPnA==
-X-Received: by 2002:aca:4487:0:b0:35a:7dd3:cfa7 with SMTP id r129-20020aca4487000000b0035a7dd3cfa7mr4228912oia.226.1668348057762;
-        Sun, 13 Nov 2022 06:00:57 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t30-20020a056870609e00b001417f672787sm2958000oae.36.2022.11.13.06.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Nov 2022 06:00:57 -0800 (PST)
-Received: (nullmailer pid 3392130 invoked by uid 1000);
-        Sun, 13 Nov 2022 14:00:59 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Aurelien Jarno <aurelien@aurel32.net>
-Cc:     Lin Jinhan <troy.lin@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S232799AbiKMOUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 09:20:12 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6FEB4AC;
+        Sun, 13 Nov 2022 06:20:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BCBA60B49;
+        Sun, 13 Nov 2022 14:20:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA9AC433C1;
+        Sun, 13 Nov 2022 14:20:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668349210;
+        bh=BYWQERbdgHEBT7t6yByeyv9+5k/nRsNpyAKlViPkdOE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f+UzpbeA2zc2YeQ6TvzpWvfs6jT3UZiKmrKcZ5ObtrlOPyv4FpN5qQORO8KxBSXvv
+         ifJpHTtjwYAIGunQn4960S2KgFR8dpz0qpG7PmPGB4vI4Fn2oKHYUTeQjKQb3SVcfW
+         hUewxrCuVB+qUqjF4LgzZ5n+f53+7yCwmAgittArQqvDeDUUjO7Z7nItdrfcTFTW1h
+         AhjE6sFcvillgplHdJn8jh1g1U//Jbdp2xEY8DqSiHYAZJXZoh/dBoLF5n2LS8yJzN
+         0ixqanPgMbvLbEVK2VGdgKgDLiSzjn52kmVR8df9q5PVkfzOPovE3d/gVxbcRBBwKc
+         KLMLE7FyrfarA==
+Date:   Sun, 13 Nov 2022 14:20:05 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Olivia Mackall <olivia@selenic.com>,
-        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-crypto@vger.kernel.org
-In-Reply-To: <20221112141059.3802506-2-aurelien@aurel32.net>
-References: <20221112141059.3802506-1-aurelien@aurel32.net>
- <20221112141059.3802506-2-aurelien@aurel32.net>
-Message-Id: <166834780489.3385723.11805626394561676880.robh@kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
-Date:   Sun, 13 Nov 2022 08:00:59 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/9] RISC-V: Detect AIA CSRs from ISA string
+Message-ID: <Y3D9FfXd+vULLTc0@spud>
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-3-apatel@ventanamicro.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111044207.1478350-3-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sat, 12 Nov 2022 15:10:57 +0100, Aurelien Jarno wrote:
-> Add the RNG bindings for the RK3568 SoC from Rockchip
+On Fri, Nov 11, 2022 at 10:12:00AM +0530, Anup Patel wrote:
+> We have two extension names for AIA ISA support: Smaia (M-mode AIA CSRs)
+> and Ssaia (S-mode AIA CSRs).
 > 
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> We extend the ISA string parsing to detect Smaia and Ssaia extensions.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  .../devicetree/bindings/rng/rockchip-rng.yaml | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/rockchip-rng.yaml
+>  arch/riscv/include/asm/hwcap.h | 8 ++++++++
+>  arch/riscv/kernel/cpu.c        | 2 ++
+>  arch/riscv/kernel/cpufeature.c | 2 ++
+>  3 files changed, 12 insertions(+)
 > 
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index b22525290073..06314220284f 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -59,9 +59,17 @@ enum riscv_isa_ext_id {
+>  	RISCV_ISA_EXT_ZIHINTPAUSE,
+>  	RISCV_ISA_EXT_SSTC,
+>  	RISCV_ISA_EXT_SVINVAL,
+> +	RISCV_ISA_EXT_SSAIA,
+> +	RISCV_ISA_EXT_SMAIA,
+>  	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+>  };
+>  
+> +#ifdef CONFIG_RISCV_M_MODE
+> +#define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SMAIA
+> +#else
+> +#define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SSAIA
+> +#endif
+> +
+>  /*
+>   * This enum represents the logical ID for each RISC-V ISA extension static
+>   * keys. We can use static key to optimize code path if some ISA extensions
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index 852ecccd8920..3c84680c2289 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -138,6 +138,8 @@ device_initcall(riscv_cpuinfo_init);
+>   *    extensions by an underscore.
+>   */
+>  static struct riscv_isa_ext_data isa_ext_arr[] = {
+> +	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
+> +	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Trivially minor question: Is there a reason you added these before
+after svinval elsewhere but before it here?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.yaml: properties:compatible:oneOf: [{'const': 'rockchip,rk3568-rng'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-./Documentation/devicetree/bindings/rng/rockchip-rng.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/rng/rockchip-rng.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.example.dtb: rng@fe388000: reg: [[0, 4265115648], [0, 16384]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.example.dtb: rng@fe388000: clock-names:0: 'clk' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.example.dtb: rng@fe388000: clock-names:1: 'hclk' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rng/rockchip-rng.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+>  	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
+>  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 694267d1fe81..e6d750d088ab 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -205,6 +205,8 @@ void __init riscv_fill_hwcap(void)
+>  				SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_EXT_ZIHINTPAUSE);
+>  				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
+>  				SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_SVINVAL);
+> +				SET_ISA_EXT_MAP("smaia", RISCV_ISA_EXT_SMAIA);
+> +				SET_ISA_EXT_MAP("ssaia", RISCV_ISA_EXT_SSAIA);
+>  			}
+>  #undef SET_ISA_EXT_MAP
+>  		}
+> -- 
+> 2.34.1
+> 
