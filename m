@@ -2,105 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC5F626EA5
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 10:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B3F1626F67
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 13:21:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235192AbiKMJJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 04:09:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51620 "EHLO
+        id S233810AbiKMMU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 07:20:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbiKMJJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 04:09:19 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214E511C3A;
-        Sun, 13 Nov 2022 01:09:18 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id i10so13037096ejg.6;
-        Sun, 13 Nov 2022 01:09:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hdmFyrxH9KBgUJy2hTLc21pkrAs2hfwxAf5+zY1YFck=;
-        b=W2rhpb9dqHDTWZPBaSQD2aj2is28lAxya16Pmp3K4hSzT/DUPDYMAHDr3GF4BaR3F0
-         Pj2SygikL0TCh6bqLN+47qXLsydcV2wJnHn/AKoT27Kupdu7rq6dA6OxRkoCthqDpXUV
-         /QIkSeLHHGwk2fnRbLOhGcjzOwyl9MPJ752V01UiZ00CcH+xutjIi6fdEMdBSpWzu00k
-         j0LkttyohlX8Euz2Jtkg08PAq7U4CLpClqAqpeWNAVUn9jRT4DPOxjfyCx0bk/TVvKDC
-         Ig9KRXOV6xVmnff08gEV5voppY/STdCXhArX/LywooGrL/CL5anxXFZ8x2vvEKkBqT30
-         ULrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hdmFyrxH9KBgUJy2hTLc21pkrAs2hfwxAf5+zY1YFck=;
-        b=cBsvm1lfkWTYw5XaEevRHCtRoNDA7jqROtdC4zkMvFjWLmzdGyVuYJiZQyGBRAYIbb
-         tu4eABXMqAePXeN1wnFS8dQe6BGYIP8HhK2MAptaN6Wh2rdlQgKOEGvkKGIOS4Ar3DWS
-         ghqSbk7HhXbwrXGUZeAEf+9c8c43WW+BKbCVxT6VzIUUxS79uwlR53JVQCm1AcQ/Vp0o
-         WUKZhgmU6rDRAoPNi/zy9lhL4hUmY5TbCDdnwXoBnB+bAIXCaCLoMYs3bVYjVGHZGYFn
-         M2LwP/SrqE2a46fbwOFXG/95p6k1Tnw7EPRuxMZk24UTAW+XiyV9+ljiTeFn6Dz9RVE/
-         nRXQ==
-X-Gm-Message-State: ANoB5pmug6n870Ls16PJRU8ZpyfatR5XrJBhkvdhqzoZSiCQyp4EybTl
-        hQi9zAWTpKIHEZgPCFLZo9E=
-X-Google-Smtp-Source: AA0mqf6LkwqQU9h0H5HQVk864rKO/Muc3cQgvHwOfMKXgIRdw5U2W5RvNPCe5EjZKOpdPJjqvMMuSg==
-X-Received: by 2002:a17:907:674b:b0:7a2:b352:a0d3 with SMTP id qm11-20020a170907674b00b007a2b352a0d3mr7022393ejc.399.1668330556520;
-        Sun, 13 Nov 2022 01:09:16 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id ew13-20020a056402538d00b004642b35f89esm3300203edb.9.2022.11.13.01.09.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Nov 2022 01:09:15 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233792AbiKMMU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 07:20:58 -0500
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74901DF93;
+        Sun, 13 Nov 2022 04:20:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1668342056; x=1699878056;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=O9v7vVxN4raPpuVeniWD+75Gm4EvYuxE8XEu0qEGfuk=;
+  b=DOggXvVLy+/3DrVtE7HcwZy9vd48tdo3phl4cSRUyNjtdEVl/7zAm5SB
+   SHced2KOnyylwyWO6a3rC2BlHIQ/hO4aH8V4nmaZtCozS0qik3jqceCZZ
+   UyUZDVUFKCPNexSu7v6hfjzHf5Rp1IWGmhUcjMF22UDhrbcCeaaKjduCz
+   WR+RDnF+3IzPHOJKyc6cvaSscSlxzIQF/zU6u+9adlZtxzBqXUg8eE6F/
+   AfJTp1tbDedkNp9Ikdpuk1UBIXWZHWAPy4pc9ZMV5sZ2XGRuFX6k//E/x
+   l0qJ/wGMPG6z+P+FwtS4z5K3QVUMG5H+FWx4ddDAD8xBIIzCORyyfYydG
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="291525116"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
+   d="scan'208";a="291525116"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2022 04:20:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="671233762"
+X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
+   d="scan'208";a="671233762"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP; 13 Nov 2022 04:20:51 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1ouByi-00BfhA-2j;
+        Sun, 13 Nov 2022 14:20:48 +0200
+Date:   Sun, 13 Nov 2022 14:20:48 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Andrew Davis <afd@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] mips: dts: bcm63268: add TWD block timer
-Date:   Sun, 13 Nov 2022 10:09:04 +0100
-Message-Id: <20221113090904.8784-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
+Message-ID: <Y3DhIO7H9mfRpe3z@smile.fi.intel.com>
+References: <20221024173434.32518-1-afd@ti.com>
+ <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
+ <Y26lDEtiG4KFzc91@smile.fi.intel.com>
+ <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, Nov 11, 2022 at 03:05:20PM -0600, Andrew Davis wrote:
+> On 11/11/22 1:39 PM, Andy Shevchenko wrote:
+> > On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
+> > > On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
+> > > > 
+> > > > Hello all,
+> > > > 
+> > > > This is a series based on my patch here[0]. As suggested by Rob
+> > > > I've resurrected Frank's patch and appended it to mine as a series.
+> > > > 
+> > > > First patch here is my original patch, 3rd is Frank's patch but with
+> > > > the unittest changes pulled out into the 2nd patch. That was re-worked
+> > > > moving the source building macro into scripts/Makefile.lib.
+> > > > 
+> > > > Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
+> > > > overlays. Split out by platform so they could be taken by platform
+> > > > maintainers or if easier ACK'd here and taken all together.
+> > > > 
+> > > > This should cover all the DTB overlays so we can remove the old .dts
+> > > > rule for overlays and make .dtso the only supported way, let me know
+> > > > if we want that this cycle and I can post that too.
+> > > > 
+> > > > Thanks,
+> > > > Andrew
+> > > > 
+> > > > Changes from v1[1]:
+> > > >   - Added patch to rename pi433 overlay.
+> > > >   - Cleaned wording on patch 4-6.
+> > > >   - Collected some ACKs
+> > > > 
+> > > > [0] https://www.spinics.net/lists/kernel/msg4548509.html
+> > > > [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
+> > > > 
+> > > > Andrew Davis (6):
+> > > >    kbuild: Allow DTB overlays to built from .dtso named source files
+> > > >    kbuild: Allow DTB overlays to built into .dtso.S files
+> > > >    arm64: dts: freescale: Rename DTB overlay source files from .dts to
+> > > >      .dtso
+> > > >    arm64: dts: renesas: Rename DTB overlay source files from .dts to
+> > > >      .dtso
+> > > >    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
+> > > >    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
+> > > > 
+> > > > Frank Rowand (1):
+> > > >    of: overlay: rename overlay source files from .dts to .dtso
+> > > 
+> > > I've applied patches 1-3 and 7. I'll send a PR for the branch to the
+> > > platform maintainers after a few days in linux-next.
+> > 
+> > The patch
+> > 
+> > commit 941214a512d8c80d47e720c17ec17e8539175e93
+> > Author: Andrew Davis <afd@ti.com>
+> > Date:   Mon Oct 24 12:34:29 2022 -0500
+> > 
+> >      kbuild: Allow DTB overlays to built into .dtbo.S files
+> > 
+> > broke the build reproducibility / no-op builds.
+> > 
+> > Before:
+> >    2+ execution of `make` on non-changed tree did nothing
+> > 
+> > Now:
+> >    Each run of `make` (even without a single bit changed) restarts vmlinux
+> >    rebuild.
+> > 
+> > Please, revert or fix.
+> > 
+> 
+> I do not see this behavior. What config are you using?
+> 
+> Not sure how this patch could be the root cause, it only adds
+> a build target/rule, but doesn't actually use it anywhere yet..
 
-BCM63268 TWD contains block with 3 timers. Add binding for it.
+For your reference I started with this one [1].
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
----
-V2: Add missing ';'
----
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+When I bisected, I just answered with defaults on whatever `make` told me at
+the configuration stage.
 
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index 8926417a8fbc..c663efce91cf 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -110,6 +110,11 @@ timer-mfd@10000080 {
- 			reg = <0x10000080 0x30>;
- 			ranges = <0x0 0x10000080 0x30>;
- 
-+			timer@0 {
-+				compatible = "brcm,bcm6345-timer";
-+				reg = <0x0 0x1c>;
-+			};
-+
- 			wdt: watchdog@1c {
- 				compatible = "brcm,bcm7038-wdt";
- 				reg = <0x1c 0xc>;
+The actual `make` command I used:
+
+	make O=/path/to/the/result W=1 C=1 CF=-D__CHECK_ENDIAN__ -j64
+
+But there is nothing that can affect the described issue.
+
+[1]: https://p.defau.lt/?ZSOdGnNxF9v9AQtrfDo_KQ
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
