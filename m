@@ -2,100 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9943D6271CB
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 19:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BE976271F6
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 20:14:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234149AbiKMSrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 13:47:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
+        id S235428AbiKMTOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 14:14:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235554AbiKMSrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 13:47:46 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382461180A;
-        Sun, 13 Nov 2022 10:47:39 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id f7so14370363edc.6;
-        Sun, 13 Nov 2022 10:47:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pVDig1RRKsZiaPOKlAeQRhmQ8lXaiXxKccYF0IZ+PBk=;
-        b=k5kLPtjxsguN5R8wefRr6oX7rk0Qfkth/BbCL1XwrqGgQR0iQ6wCHMAyo2fdVd6CFa
-         S03Clzz1Pbulp09EcMnqUIzSKs53AXz9bEHigDsw7E3CPnU3G+Uk3dKXsbJDlg/u3D3W
-         bdRuRQyH815QHPAEEBCD5nqnuJFr4azzjj9z03zcvuynRhoVQTlc+0WoNLbRzCk4q3FQ
-         xf7VfjpEuQ29i9t2qzeYsed/prPLAUOJg9zs0kXSgskaWwfs/JOSOHSGWZatO9YoSvUI
-         YAXv+FXfgrnen88fV8f/p0Yeyko+UupjTec+xis6iXRRMMl5hlOzpde7TfMcuvN5OnB1
-         1WRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pVDig1RRKsZiaPOKlAeQRhmQ8lXaiXxKccYF0IZ+PBk=;
-        b=VbElGyU29Cw2pqA199WPJKHN9hCHM4EKqFkm9q3WRDkwWr1TXS7EyhGyDvdXgxNdAa
-         Y4orrhBhGjYqxI+c+fttS8DrGNxYPS+0Vy/jIWO+bEixL20GuzTNb5MpE+91Ni8Fa2E4
-         uISGtV9StDVQVuwdaINn3DiRzGNNjalNwtGhsOsy0YH9BKsYGm8iG6ayGp+qFDy63fHb
-         y1D4F8p1e+0UDatfXGyb9NBTmaOFb6JZl7UUlBTecagVu/ws9Y7oqGZ9k5BhO3sMF5Zk
-         R1Gd+sUmKKeg8mNT3rdbpezEcKg2KcCx3uSHZMsNHPzWuu3LTq88+Lbm+4f9cXCPU/2x
-         rm8w==
-X-Gm-Message-State: ANoB5pkWbWPEFKWGyuJNCt4612sVSLawNaqOBVZzrNjVIx9eVr4ZzOz2
-        vQnoqh/QRYDQuLvLDozORrs=
-X-Google-Smtp-Source: AA0mqf5kySzMP+W7wXHErU8epLpNPKZx5FZo07Zl8CqTzEeHygv5MweEvgDnzCIQD42Wgh5VZ1WEqQ==
-X-Received: by 2002:a05:6402:6c8:b0:467:205b:723d with SMTP id n8-20020a05640206c800b00467205b723dmr9150411edy.69.1668365257789;
-        Sun, 13 Nov 2022 10:47:37 -0800 (PST)
-Received: from fedora.. (dh207-97-48.xnet.hr. [88.207.97.48])
-        by smtp.googlemail.com with ESMTPSA id a2-20020aa7d742000000b004623028c594sm3760050eds.49.2022.11.13.10.47.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Nov 2022 10:47:37 -0800 (PST)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 5/5] arm64: dts: qcom: ipq8074: add SoC specific compatible to MDIO
-Date:   Sun, 13 Nov 2022 19:47:27 +0100
-Message-Id: <20221113184727.44923-5-robimarko@gmail.com>
+        with ESMTP id S235273AbiKMTOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 14:14:52 -0500
+Received: from post.baikalelectronics.com (post.baikalelectronics.com [213.79.110.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 146C22BE1;
+        Sun, 13 Nov 2022 11:14:46 -0800 (PST)
+Received: from post.baikalelectronics.com (localhost.localdomain [127.0.0.1])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id 2EE99E0EA0;
+        Sun, 13 Nov 2022 22:14:44 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        baikalelectronics.ru; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:from:from:message-id
+        :mime-version:reply-to:subject:subject:to:to; s=post; bh=r2ypEUn
+        uWnZhzrpjOrG8An08uwSie+G9WcFH47IU5PE=; b=GIVXTs2etcqibfBBga9drFU
+        Z/sZaD6z0UMAxJ1aYrNBwkU2NY6QW7dORlz5C40z11jX71RhqwMErAbTLEMd9gUX
+        XUPB3wCpxWYLcUNEL+wmg9uTXm5o8yPsgZTty/0MquCq8N2xOnci2cCQO8065Tnw
+        ErAVl39DK7RHkTl0QCec=
+Received: from mail.baikal.int (mail.baikal.int [192.168.51.25])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id 1183EE0E6A;
+        Sun, 13 Nov 2022 22:14:44 +0300 (MSK)
+Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Sun, 13 Nov 2022 22:14:43 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 00/20] PCI: dwc: Add generic resources and Baikal-T1 support
+Date:   Sun, 13 Nov 2022 22:12:41 +0300
+Message-ID: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
 X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221113184727.44923-1-robimarko@gmail.com>
-References: <20221113184727.44923-1-robimarko@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.168.10]
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the newly documented SoC compatible to MDIO in order to be able to
-validate clocks for it.
+This patchset is a third one in the series created in the framework of
+my Baikal-T1 PCIe/eDMA-related work:
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1: Done v5] PCI: dwc: Various fixes and cleanups
+Link: https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
+Merged: kernel 6.0-rc1
+[2: Done v4] PCI: dwc: Add hw version and dma-ranges support
+Link: https://lore.kernel.org/linux-pci/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
+Merged: kernel 6.0-rc1
+[3: In-review v7] PCI: dwc: Add generic resources and Baikal-T1 support
+Link: ---you are looking at it---
+[4: Done v6] dmaengine: dw-edma: Add RP/EP local DMA support
+Link: https://lore.kernel.org/linux-pci/20221107210438.1515-1-Sergey.Semin@baikalelectronics.ru/
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index a0481c671faf..583871c29586 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -331,7 +331,7 @@ pcie_phy1: phy@8e200 {
- 		};
- 
- 		mdio: mdio@90000 {
--			compatible = "qcom,ipq4019-mdio";
-+			compatible = "qcom,ipq8074-mdio", "qcom,ipq4019-mdio";
- 			reg = <0x00090000 0x64>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+Note it is very recommended to merge the patchsets in the same order as
+they are listed in the set above in order to have them applied smoothly.
+Nothing prevents them from being reviewed synchronously though.
+
+Originally the patches submitted in this patchset were a part of the series:
+Link: https://lore.kernel.org/linux-pci/20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru/
+but due to the reviewers requests the series was expanded to about 30
+patches which made it too bulky for a comfortable review. So I decided to
+split it up into two patchsets: 2. and 3. in the table above.
+
+Regarding the series content. This patchset is mainly about adding new DW
+PCIe platform support - Baikal-T1 PCIe of DW PCIe v4.60a IP-core. But a
+set of feature-reach preparations are done first. It starts from
+converting the currently available DT-schema into a more flexible schemas
+hierarchy with separately defined regs, clocks, resets and interrupts
+properties. As a result the common schema can be easily re-used by all the
+currently available platforms while the named properties above can be
+either re-defined or used as is if the platforms support they. In the
+framework of that modification we also suggest to add a set of generic
+regs, clocks, resets and interrupts resource names in accordance with what
+the DW PCIe hardware reference manual describes and what the DW PCIe core
+driver already expects to be specified. Thus the new platform driver will
+be able to re-use the common resources infrastructure.
+
+Link: https://lore.kernel.org/linux-pci/20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v2:
+- Rename 'syscon' property to 'baikal,bt1-syscon'. (@Rob)
+- Move the iATU region selection procedure into a helper function (@Rob).
+- Rebase from kernel v5.17 onto v5.18-rc3 since the later kernel has
+  already DT bindings converted. (@Rob)
+- Use 'definitions' property instead of the '$defs' one. It fixes the
+  dt-validate error: 'X is not of type array.'
+- Drop 'interrupts' and 'interrupt-names' property from being required
+  for the native DW PCIe host.
+- Evaluate the 'snps,dw-pcie-common.yaml' schema in the
+  'socionext,uniphier-pcie-ep.yaml' DT-bindings since the later has
+  platform-specific names defined.
+
+Link: https://lore.kernel.org/linux-pci/20220503225104.12108-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Split up the patch "dt-bindings: PCI: dwc: Define common and native DT
+  bindings" into a series of modifications. (@Rob)
+- Detach this series of the patches into a dedicated patchset.
+- Add a new feature patch: "PCI: dwc: Introduce generic controller
+  capabilities interface".
+- Add a new feature patch: "PCI: dwc: Introduce generic resources getter".
+- Add a new cleanup patch: "PCI: dwc: Combine iATU detection procedures".
+- Add a method to at least request the generic clocks and resets. (@Rob)
+- Add GPIO-based PERST# signal support to the core module.
+- Redefine Baikal-T1 PCIe host bridge config space accessors with the
+  pci_generic_config_read32() and pci_generic_config_write32() methods.
+  (@Rob)
+- Drop synonymous from the names list in the common DT-schema since the
+  device sub-schemas create their own enumerations anyway.
+- Rebase onto kernel v5.18.
+
+Link: https://lore.kernel.org/linux-pci/20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v4:
+- Drop PCIBIOS_* macros usage. (@Rob)
+- Add "static const" to the dw_pcie_ops and dw_pcie_host_ops structure
+  instances. (@Bjorn)
+- Rename bt1_pcie_dw_ops to bt1_pcie_ops. (@Bjorn)
+- Rename bt1_pcie_ops to bt1_pci_ops. (@Bjorn)
+- Use start_link/stop_link suffixes in the Baikal-T1 PCIe
+  start/stop link callbacks. (@Bjorn)
+- Change the get_res() method suffix to being get_resources(). (@Bjorn)
+- Change *_{add,del}_dw_port() method to *_{add,del}_port(). (@Bjorn)
+- Drop dma_coerce_mask_and_coherent() applied to the PCI host bridge
+  kernel device instance. (@Bjorn)
+- Add the comment above the dma_set_mask_and_coherent() method usage
+  regarding the controller eDMA feature. (@Bjorn)
+- Fix the comment above the core reset controls assertion. (@Bjorn)
+- Replace delays and timeout numeric literals with macros. (@Bjorn)
+- Convert the method name from dw_pcie_get_res() to
+  dw_pcie_get_resources(). (@Bjorn)
+- Rebase onto the kernel v5.19-rcX.
+
+Link: https://lore.kernel.org/linux-pci/20220728143427.13617-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v5:
+- Add a note about having line-based PHY phandles order. (@Rob)
+- Prefer 'pcie[0-9]+' PHY-names over the rest of the cases. (@Rob)
+- Drop generic fallback names from the Baikal-T1 compatible property
+  constraints. (@Rob)
+- Define ordered {reg,interrupt,clock,reset}-names Baikal-T1 PCIe
+  properties. (@Rob)
+- Drop minItems from the Baikal-T1 PCIe clocks and reset properties,
+  since it equals to the maxItems for them.
+- Drop num-ob-windows and num-ib-windows properties constraint from
+  Baikal-T1 PCIe bindings. (@Rob)
+- Add a note about having line-based PHY phandles order. (@Rob)
+- Prefer 'pcie[0-9]+' PHY-names over the rest of the cases. (@Rob)
+- Add platform-specific reg/interrupt/clock/reset names to the generic
+  schema, but mark them as deprecated.
+- Add new patches:
+  dt-bindings: visconti-pcie: Fix interrupts array max constraints
+  dt-bindings: imx6q-pcie: Fix clock names for imx6sx and imx8mq
+- Move the patch:
+  PCI: dwc: Introduce dma-ranges property support for RC-host
+  from the previous patchset in here. (@Bjorn)
+- Rebase onto the kernel v6.0-rc2.
+
+Link: https://lore.kernel.org/linux-pci/20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v6:
+- Add the Nvidia Tegra194-specific "p2u-[0-7]" phy-names too. (@DT-tbot)
+- Drop 'deprecated' keywords from the vendor-specific names. (@Rob)
+- Move the common *-names definitions to the RP/EP schemas. Thus drop
+  the 'definitions' property usage from the DT-schemas. (@Rob)
+- Move the DMA-mask setup to the eDMA driver. (@Robin)
+- Rebase onto the kernel v6.1-rc3.
+
+Link: https://lore.kernel.org/linux-pci/20221107204934.32655-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v7:
+- Replace if-then-dev_err_probe-return statement with just
+  return-dev_err_probe one in the pcie-bt1 driver.
+- Get back device.of_node pointer to the dw_pcie_ep_init() method.
+  (@Yoshihiro)
+- Drop the dtschema tool 'lib.py' fix chunk from under the '---' pattern.
+  (@Yoshihiro)
+- Move the allOf clause to the bottom of the fsl,imx6q-pcie.yaml bindings.
+  (@Krzysztof)
+- Get back the names to the clock-names property and make sure the
+  platform-specific cloc-names constraint is applied in the allOf clause
+  in the fsl,imx6q-pcie.yaml bindings. (@Rob)
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: "Krzysztof Wilczyński" <kw@linux.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: caihuoqing <caihuoqing@baidu.com>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: linux-pci@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (20):
+  dt-bindings: imx6q-pcie: Fix clock names for imx6sx and imx8mq
+  dt-bindings: visconti-pcie: Fix interrupts array max constraints
+  dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+  dt-bindings: PCI: dwc: Remove bus node from the examples
+  dt-bindings: PCI: dwc: Add phys/phy-names common properties
+  dt-bindings: PCI: dwc: Add max-link-speed common property
+  dt-bindings: PCI: dwc: Apply generic schema for generic device only
+  dt-bindings: PCI: dwc: Add max-functions EP property
+  dt-bindings: PCI: dwc: Add interrupts/interrupt-names common
+    properties
+  dt-bindings: PCI: dwc: Add reg/reg-names common properties
+  dt-bindings: PCI: dwc: Add clocks/resets common properties
+  dt-bindings: PCI: dwc: Add dma-coherent property
+  dt-bindings: PCI: dwc: Apply common schema to Rockchip DW PCIe nodes
+  dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
+  PCI: dwc: Introduce dma-ranges property support for RC-host
+  PCI: dwc: Introduce generic controller capabilities interface
+  PCI: dwc: Introduce generic resources getter
+  PCI: dwc: Combine iATU detection procedures
+  PCI: dwc: Introduce generic platform clocks and resets
+  PCI: dwc: Add Baikal-T1 PCIe controller support
+
+ .../bindings/pci/baikal,bt1-pcie.yaml         | 168 +++++
+ .../bindings/pci/fsl,imx6q-pcie.yaml          |  46 +-
+ .../bindings/pci/rockchip-dw-pcie.yaml        |   4 +-
+ .../bindings/pci/snps,dw-pcie-common.yaml     | 266 ++++++++
+ .../bindings/pci/snps,dw-pcie-ep.yaml         | 212 ++++--
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml | 260 +++++--
+ .../bindings/pci/toshiba,visconti-pcie.yaml   |   7 +-
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-bt1.c         | 643 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-designware-ep.c   |  29 +-
+ .../pci/controller/dwc/pcie-designware-host.c |  47 +-
+ drivers/pci/controller/dwc/pcie-designware.c  | 262 +++++--
+ drivers/pci/controller/dwc/pcie-designware.h  |  63 +-
+ 14 files changed, 1796 insertions(+), 221 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-bt1.c
+
 -- 
 2.38.1
+
 
