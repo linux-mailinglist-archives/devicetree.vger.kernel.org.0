@@ -2,178 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E23AE626F7D
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 13:36:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E521626F87
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 13:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233954AbiKMMgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 07:36:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35362 "EHLO
+        id S233794AbiKMMpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 07:45:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232884AbiKMMgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 07:36:41 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DCCFCE3;
-        Sun, 13 Nov 2022 04:36:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668343000; x=1699879000;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tXxNoJ4p40NbDu6Pg1fz6lrpeT1kuob3UG5D0fgt2iE=;
-  b=mUe+O9R/P5NPzbu60fYjQhCx5ATrF+vmakHBufEnZSkoANTQEKwoDGgw
-   5YEYlXk4BvVX9indhORoKE78alibfyFLvQOBa3js5JrJfvowB0lIq8h1H
-   EANWgBCv5d1TwE5qRgf+F2ZeWc2WToUdEy21EeC2rUV8julZECl9anYk6
-   BoOupdOSO4NoMGwmb75hXyacCB8h/tg5INXvF55kDtgUy1BK8ZKoPHS/h
-   cjJ57qsXUtKca6svZumXhoXxE4pHAczNOOWyQJfKXwcHvggfN+ehtYPSg
-   c1hNw3J3gsWDcuEwf/dXiUbEWGTqSFcK8bsnedLWw0cPUypdMv0uyMJ7B
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="338588356"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
-   d="scan'208";a="338588356"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2022 04:36:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10529"; a="615963179"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
-   d="scan'208";a="615963179"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP; 13 Nov 2022 04:36:35 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1ouCDx-00Bfz5-0E;
-        Sun, 13 Nov 2022 14:36:33 +0200
-Date:   Sun, 13 Nov 2022 14:36:32 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
-Message-ID: <Y3Dk0HJAPuq64tKe@smile.fi.intel.com>
-References: <20221024173434.32518-1-afd@ti.com>
- <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
- <Y26lDEtiG4KFzc91@smile.fi.intel.com>
- <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
- <Y3DhIO7H9mfRpe3z@smile.fi.intel.com>
+        with ESMTP id S232799AbiKMMpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 07:45:17 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3775712AA0
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 04:45:15 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id 94-20020a9d0067000000b0066c8d13a33dso5240383ota.12
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 04:45:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xm+sHX73sFAT+ks236foYrX1KP0BAgnh+zrDjNCztZE=;
+        b=ZgyCNR/WvfrGD/a9a2aZ38shETIDCbumWCh6r0kPob5S+z9x+XZ5QLQFf0UBrImEhP
+         15gBwUjRZd3zZCfaOnQT0qIxYylDlwWUi7WB9b55lMMNHfoLLpZfAhqDi1a4AfzXJa8o
+         jcMq7yEx0S+iZUHDAC/bUTg37oj/3+MjmhIlps5bloaywsRnpbuEjEjiAAMCn5G3JVms
+         lZkglGithrFrSXSuiJun/wcc8m23wyIfLl8f4oi1vuRP0WcmNdfGzBLc4Apb+y9Q60NK
+         1qit0+nqgV76pJS3HjuwUuho5xsmJVk/rih6yiRtbrfb621/ICqhevhIXyOqK5c27j94
+         NS6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xm+sHX73sFAT+ks236foYrX1KP0BAgnh+zrDjNCztZE=;
+        b=k6BEJFIDWVfLSyER7CbSnWSwQHAr+gsM1mrfti2NWWVAW0yF8QHhSOgkLXji/O/KLb
+         awrQRufS+iNhuETqryFwNhwSfHGqhyePtnqk1V20pNLPuCmfBmRS0+XGCakbWZ60KoIc
+         g+0LaVD8GkOyw5z++HJHWyttrB5OlNNjxMAWc1UXPn8eU1gZhWcEFh2hI6ZsqvkBEOzb
+         cA77aGtrYDzyZ1mMkIJ/Sft/BzNnU6aqnqHyi8lPimCIqKwISx6KiKO9kMqoWWnH7+Qp
+         f+3wLVy0I08GLYEY090hM1cYczCBnrE2EaH6xB5TKEU6D+rxmDsbD1IlGunWnOUPFskq
+         Ayug==
+X-Gm-Message-State: ANoB5pm3vyIorh/4/AyuR+R8ZY9v76O1p2ZT6H3LpMuVEPHHhz1cIDrj
+        YHWqILXmca0ayaA5+FIGk+M=
+X-Google-Smtp-Source: AA0mqf6/GExBx9s3EAcGOSoSqRDcFNwjmWDlPfqP7qUyhp2c30cAhbDrcjwA9sOf5JfuJt2Kj4XS7g==
+X-Received: by 2002:a9d:7a51:0:b0:661:c2b9:11df with SMTP id z17-20020a9d7a51000000b00661c2b911dfmr4722471otm.76.1668343514380;
+        Sun, 13 Nov 2022 04:45:14 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:485:4b69:d950:2f03:b64d:2009])
+        by smtp.gmail.com with ESMTPSA id z19-20020a0568301db300b006690f65a830sm3016481oti.14.2022.11.13.04.45.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Nov 2022 04:45:13 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add an entry for Cloos
+Date:   Sun, 13 Nov 2022 09:44:57 -0300
+Message-Id: <20221113124459.662004-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3DhIO7H9mfRpe3z@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 13, 2022 at 02:20:48PM +0200, Andy Shevchenko wrote:
-> On Fri, Nov 11, 2022 at 03:05:20PM -0600, Andrew Davis wrote:
-> > On 11/11/22 1:39 PM, Andy Shevchenko wrote:
-> > > On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
-> > > > On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
-> > > > > 
-> > > > > Hello all,
-> > > > > 
-> > > > > This is a series based on my patch here[0]. As suggested by Rob
-> > > > > I've resurrected Frank's patch and appended it to mine as a series.
-> > > > > 
-> > > > > First patch here is my original patch, 3rd is Frank's patch but with
-> > > > > the unittest changes pulled out into the 2nd patch. That was re-worked
-> > > > > moving the source building macro into scripts/Makefile.lib.
-> > > > > 
-> > > > > Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
-> > > > > overlays. Split out by platform so they could be taken by platform
-> > > > > maintainers or if easier ACK'd here and taken all together.
-> > > > > 
-> > > > > This should cover all the DTB overlays so we can remove the old .dts
-> > > > > rule for overlays and make .dtso the only supported way, let me know
-> > > > > if we want that this cycle and I can post that too.
-> > > > > 
-> > > > > Thanks,
-> > > > > Andrew
-> > > > > 
-> > > > > Changes from v1[1]:
-> > > > >   - Added patch to rename pi433 overlay.
-> > > > >   - Cleaned wording on patch 4-6.
-> > > > >   - Collected some ACKs
-> > > > > 
-> > > > > [0] https://www.spinics.net/lists/kernel/msg4548509.html
-> > > > > [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
-> > > > > 
-> > > > > Andrew Davis (6):
-> > > > >    kbuild: Allow DTB overlays to built from .dtso named source files
-> > > > >    kbuild: Allow DTB overlays to built into .dtso.S files
-> > > > >    arm64: dts: freescale: Rename DTB overlay source files from .dts to
-> > > > >      .dtso
-> > > > >    arm64: dts: renesas: Rename DTB overlay source files from .dts to
-> > > > >      .dtso
-> > > > >    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
-> > > > >    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
-> > > > > 
-> > > > > Frank Rowand (1):
-> > > > >    of: overlay: rename overlay source files from .dts to .dtso
-> > > > 
-> > > > I've applied patches 1-3 and 7. I'll send a PR for the branch to the
-> > > > platform maintainers after a few days in linux-next.
-> > > 
-> > > The patch
-> > > 
-> > > commit 941214a512d8c80d47e720c17ec17e8539175e93
-> > > Author: Andrew Davis <afd@ti.com>
-> > > Date:   Mon Oct 24 12:34:29 2022 -0500
-> > > 
-> > >      kbuild: Allow DTB overlays to built into .dtbo.S files
-> > > 
-> > > broke the build reproducibility / no-op builds.
-> > > 
-> > > Before:
-> > >    2+ execution of `make` on non-changed tree did nothing
-> > > 
-> > > Now:
-> > >    Each run of `make` (even without a single bit changed) restarts vmlinux
-> > >    rebuild.
-> > > 
-> > > Please, revert or fix.
-> > > 
-> > 
-> > I do not see this behavior. What config are you using?
-> > 
-> > Not sure how this patch could be the root cause, it only adds
-> > a build target/rule, but doesn't actually use it anywhere yet..
-> 
-> For your reference I started with this one [1].
-> 
-> When I bisected, I just answered with defaults on whatever `make` told me at
-> the configuration stage.
-> 
-> The actual `make` command I used:
-> 
-> 	make O=/path/to/the/result W=1 C=1 CF=-D__CHECK_ENDIAN__ -j64
-> 
-> But there is nothing that can affect the described issue.
+From: Fabio Estevam <festevam@denx.de>
 
-Actually, O= might affect which Makefile is used and how.
-The C=, CF= are sparse flags, W= is just warning level.
+Carl Cloos Schweisstechnik GmbH develops, manufactures and delivers
+welding industrial solutions:
 
-> [1]: https://p.defau.lt/?ZSOdGnNxF9v9AQtrfDo_KQ
+https://www.cloos.de/de-en/
 
+Add a vendor prefix entry for it.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 37dd5c54818a..8c6a5283bc46 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -264,6 +264,8 @@ patternProperties:
+     description: Cirrus Logic, Inc.
+   "^cisco,.*":
+     description: Cisco Systems, Inc.
++  "^cloos,.*":
++    description: Carl Cloos Schweisstechnik GmbH.
+   "^cloudengines,.*":
+     description: Cloud Engines, Inc.
+   "^cnm,.*":
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
