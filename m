@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B5F62701B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 15:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E059A627047
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 16:44:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233069AbiKMOsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 09:48:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36746 "EHLO
+        id S235273AbiKMPok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 10:44:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbiKMOsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 09:48:36 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6687BC3D;
-        Sun, 13 Nov 2022 06:48:32 -0800 (PST)
+        with ESMTP id S235264AbiKMPoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 10:44:39 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF68633C;
+        Sun, 13 Nov 2022 07:44:38 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8D805B80945;
-        Sun, 13 Nov 2022 14:48:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95EE4C433C1;
-        Sun, 13 Nov 2022 14:48:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0572F60BEE;
+        Sun, 13 Nov 2022 15:44:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB8E7C433C1;
+        Sun, 13 Nov 2022 15:44:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668350910;
-        bh=w5m0TCHObmqhvWCvsEi/mHUBLY7Vp+pmyFwDm9FPnws=;
+        s=k20201202; t=1668354277;
+        bh=+np6BjdLB4FoW60WKA7TfzR9a9to1GXUs99jMYQqsIk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o76Tg4NceKEhHyPVkfpWhrIG38uSedqWLp9fDIOYPVQ+h3OWQGeOhPwhewH1EBHj2
-         0ioZsckiidxXo/UjnhzaNzBTkr5KLRoIT+7IlxlR7lu9Ea9/5kaatre1Xs9SM+J0h8
-         WkbhdYxS7Bw+XopVoNkrzZal82OwjUM5G8iqTHLs3OVa4ik/RmNHYkPKIObd6wBjLR
-         iTPB5ka23ux1jCr5aEGAbmOdv6v8Pxs5mCEpOw10AhSfRXpgr4M40l+UYWlgnfvihv
-         7kKXGYL0Xvg5cNM/sAuqRmog0awmFd9rB9H1FXKAtbpe8i915DuqN7YtCUC5anmcPd
-         qPfdnpQMmY8dQ==
-Date:   Sun, 13 Nov 2022 14:48:25 +0000
+        b=TrbpvlicUFIA2xU9R/2jl+aNgW4hg3wEHJa38nzZwIeL0ZM5PJo7mI8nVqCOUWvIY
+         U9z/n8RcC1RcR2y7OvpuXDpjp5kS81TymtITR6G5OfLy7ZXcZLsJNPQc6l88vktoVJ
+         scy+yaraNR2rjXmw0GfgEZ40TrAgQkC+wpJTKSfNyFk9UHj03R03/qNQ+JkeTJmFCb
+         kaCD5SDbmGfldhZFTFUicdVd6jVVz87DX2reLF56gt7mamyh77bpCxsRvQ6Jp/ieFt
+         6lzco2U8G6wf5lAaGezFoCms5moT/argc8/ex4FDXlF2M4Yw6koRJMqPWkJWkIopeC
+         WNUp+GfODpKqg==
+Date:   Sun, 13 Nov 2022 15:44:32 +0000
 From:   Conor Dooley <conor@kernel.org>
 To:     Anup Patel <apatel@ventanamicro.com>
 Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
@@ -45,15 +45,14 @@ Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Anup Patel <anup@brainfault.org>,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller
- bindings
-Message-ID: <Y3EDuaW0zQSSfiQ/@spud>
+Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
+Message-ID: <Y3EQ4JU7uGbIMGiW@spud>
 References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-5-apatel@ventanamicro.com>
+ <20221111044207.1478350-7-apatel@ventanamicro.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221111044207.1478350-5-apatel@ventanamicro.com>
+In-Reply-To: <20221111044207.1478350-7-apatel@ventanamicro.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -65,71 +64,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hey Anup,
 
-On Fri, Nov 11, 2022 at 10:12:02AM +0530, Anup Patel wrote:
-> dt-bindings: Add RISC-V incoming MSI controller bindings
+Ditto the $subject nit here.
 
-nit: it looks like the usual prefix here is "dt-bindings:
-interrupt-controller".
-
-> We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
-> defined by the RISC-V advanced interrupt architecture (AIA) specification.
+On Fri, Nov 11, 2022 at 10:12:04AM +0530, Anup Patel wrote:
+> We add DT bindings document for RISC-V advanced platform level interrupt
+> controller (APLIC) defined by the RISC-V advanced interrupt architecture
+> (AIA) specification.
 > 
 > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
->  1 file changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+>  .../interrupt-controller/riscv,aplic.yaml     | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
 > new file mode 100644
-> index 000000000000..05106eb1955e
+> index 000000000000..0aa48571f3bc
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> @@ -0,0 +1,174 @@
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> @@ -0,0 +1,136 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
+> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aplic.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: RISC-V Incoming MSI Controller (IMSIC)
+> +title: RISC-V Advancded Platform Level Interrupt Controller (APLIC)
+
+Typo: Advanced
+
 > +
 > +maintainers:
 > +  - Anup Patel <anup@brainfault.org>
 > +
 > +description:
+> +  The RISC-V advanced interrupt architecture (AIA) defines advanced platform
+                                                             ^
+Missing an article here?
 
-Is this one of the situations where we want to have a | after
-"description:" to preserve formatting?
+> +  level interrupt controller (APLIC) for handling wired interrupts in a
+> +  RISC-V platform. The RISC-V AIA specification can be found at
+> +  https://github.com/riscv/riscv-aia.
+> +
+> +  The RISC-V APLIC is implemented as hierarchical APLIC domains where all
+> +  interrupt sources connect to the root domain which can further delegate
+> +  interrupts to child domains. We have one device tree node for each APLIC
 
-> +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
-> +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
-> +  AIA specification can be found at https://github.com/riscv/riscv-aia.
-> +
-> +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
-> +  for each privilege level (machine or supervisor). The configuration of
-> +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
-> +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
-> +  fixed number of interrupt identities (to distinguish MSIs from devices)
-> +  which is same for given privilege level across CPUs (or HARTs).
-> +
-> +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
-> +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
-> +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
-> +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
-> +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
-> +  privilege level (machine or supervisor) encodes group index, HART index,
-> +  and guest index (shown below).
-> +
-> +  XLEN-1           >=24                                 12    0
-> +  |                  |                                  |     |
-> +  -------------------------------------------------------------
-> +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
-> +  -------------------------------------------------------------
-> +
-> +  The device tree of a RISC-V platform will have one IMSIC device tree node
-> +  for each privilege level (machine or supervisor) which collectively describe
-> +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
+While I am nitpicking, s/We have/There is/ ?
+
+> +  domain.
 > +
 > +allOf:
 > +  - $ref: /schemas/interrupt-controller.yaml#
@@ -138,98 +121,96 @@ Is this one of the situations where we want to have a | after
 > +  compatible:
 > +    items:
 > +      - enum:
-> +          - vendor,chip-imsics
+> +          - vendor,chip-aplic
 
-Is it valid to have a dummy here? I did a bit of grepping & could not
-see a single other yaml binding which used a placeholder like this -
-other than the example schema itself. I assume you're trying to get
-across the point that using the bare riscv,imsics is not okay and a
-vendor should create a custom string for their implementation?
+Same comment here about the validity of this placeholder.
 
-Also, the file name says "riscv,imsic", the description says "IMSIC" but
-you've used "imsics" in the compatible. Is this a typo, or a plural?
-
-Thanks,
-Conor.
-
-> +      - const: riscv,imsics
+> +      - const: riscv,aplic
 > +
 > +  reg:
-> +    minItems: 1
-> +    maxItems: 128
-> +    description:
-> +      Base address of each IMSIC group.
+> +    maxItems: 1
 > +
 > +  interrupt-controller: true
 > +
 > +  "#interrupt-cells":
-> +    const: 0
-> +
-> +  msi-controller: true
+> +    const: 2
 > +
 > +  interrupts-extended:
 > +    minItems: 1
-> +    maxItems: 32768
+> +    maxItems: 16384
 > +    description:
-> +      This property represents the set of CPUs (or HARTs) for which given
-> +      device tree node describes the IMSIC interrupt files. Each node pointed
-> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
-> +      HART) as parent.
+> +      The presence of this property implies that given APLIC domain directly
+                                                   ^
+Missing indefinite article here (and in msi-parent)?
+
+> +      injects external interrupts to a set of RISC-V HARTS (or CPUs). Each
+> +      node pointed to should be a riscv,cpu-intc node, which has a riscv node
+> +      (i.e. RISC-V HART) as parent.
 > +
-> +  riscv,num-ids:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 63
-> +    maximum: 2047
+> +  msi-parent:
 > +    description:
-> +      Specifies how many interrupt identities are supported by IMSIC interrupt
-> +      file.
+> +      The presence of this property implies that given APLIC domain forwards
+> +      wired interrupts as MSIs to a AIA incoming message signaled interrupt
+> +      controller (IMSIC). This property should be considered only when the
+> +      interrupts-extended property is absent.
+
+This mutual exclusion can be represented, can't it?
+IIRC it is some sort of oneOf thing, somewhat like below:
+oneOf:
+  - required:
+      - msi-parent
+  - required:
+      - interrupts-extended
+
+AFAIR from doing the i2c ocores binding, this will force the addition of
+one, but not both, to a node.
+
+Or is this not actually mutually exclusive & the msi-parent property is
+permitted but just left unused if interrupts-extended is present?
+
+> +  riscv,num-sources:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    minimum: 1
+> +    maximum: 1023
+> +    description:
+> +      Specifies how many wired interrupts are supported by this APLIC domain.
 > +
-> +  riscv,num-guest-ids:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 63
-> +    maximum: 2047
+> +  riscv,children:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    minItems: 1
+> +    maxItems: 1024
 > +    description:
-> +      Specifies how many interrupt identities are supported by IMSIC guest
-> +      interrupt file. When not specified the number of interrupt identities
-> +      supported by IMSIC guest file is assumed to be same as specified by
-> +      the riscv,num-ids property.
+> +      This property represents a list of child APLIC domains for the given
+> +      APLIC domain. Each child APLIC domain is assigned child index in
+> +      increasing order with the first child APLIC domain assigned child
+> +      index 0. The APLIC domain child index is used by firmware to delegate
+> +      interrupts from the given APLIC domain to a particular child APLIC
+> +      domain.
 > +
-> +  riscv,slow-ipi:
-> +    type: boolean
+> +  riscv,delegate:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    minItems: 1
+> +    maxItems: 1024
 > +    description:
-> +      The presence of this property implies that software interrupts (i.e.
-> +      IPIs) using IMSIC software injected MSIs is slower compared to other
-> +      software interrupt mechanisms (such as SBI IPI) on the underlying
-> +      RISC-V platform.
-> +
-> +  riscv,guest-index-bits:
-> +    minimum: 0
-> +    maximum: 7
-> +    description:
-> +      Specifies number of guest index bits in the MSI target address. When
-> +      not specified it is assumed to be 0.
-> +
-> +  riscv,hart-index-bits:
-> +    minimum: 0
-> +    maximum: 15
-> +    description:
-> +      Specifies number of HART index bits in the MSI target address. When
-> +      not specified it is estimated based on the interrupts-extended property.
-> +
-> +  riscv,group-index-bits:
-> +    minimum: 0
-> +    maximum: 7
-> +    description:
-> +      Specifies number of group index bits in the MSI target address. When
-> +      not specified it is assumed to be 0.
-> +
-> +  riscv,group-index-shift:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 24
-> +    maximum: 55
-> +    description:
-> +      Specifies the least significant bit of the group index bits in the
-> +      MSI target address. When not specified it is assumed to be 24.
+> +      This property represents a interrupt delegation list where each entry
+> +      is a triple consisting of child APLIC domain phandle, first interrupt
+> +      number, and last interrupt number. The firmware will configure interrupt
+> +      delegation registers based on interrupt delegation list.
+
+What is the inter dependence of the children and delegate?
+Is it valid to have a delegate property without children?
+Can the firmware delegate interrupts without the delegation list, based
+on the children property alone? Or is it effectively useless without a
+children property?
+
+In your examples, the second has msi-parent but neither of these custom
+properties. Do the children/delegate properties have a meaning in the
+msi-parent case?
+
+I think the binding should enforce whatever dependency exists there.
+Thanks,
+Conor.
+
 > +
 > +additionalProperties: false
 > +
@@ -237,44 +218,49 @@ Conor.
 > +  - compatible
 > +  - reg
 > +  - interrupt-controller
-> +  - msi-controller
-> +  - interrupts-extended
-> +  - riscv,num-ids
+> +  - "#interrupt-cells"
+> +  - riscv,num-sources
 > +
 > +examples:
 > +  - |
-> +    // Example 1 (Machine-level IMSIC files with just one group):
+> +    // Example 1 (APIC domain directly injecting interrupt to HARTs):
 > +
-> +    imsic_mlevel: interrupt-controller@24000000 {
-> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+> +    aplic0: interrupt-controller@c000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
 > +      interrupts-extended = <&cpu1_intc 11>,
 > +                            <&cpu2_intc 11>,
 > +                            <&cpu3_intc 11>,
 > +                            <&cpu4_intc 11>;
-> +      reg = <0x28000000 0x4000>;
+> +      reg = <0xc000000 0x4080>;
 > +      interrupt-controller;
-> +      #interrupt-cells = <0>;
-> +      msi-controller;
-> +      riscv,num-ids = <127>;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
+> +      riscv,children = <&aplic1>;
+> +      riscv,delegate = <&aplic1 1 63>;
 > +    };
 > +
-> +  - |
-> +    // Example 2 (Supervisor-level IMSIC files with two groups):
-> +
-> +    imsic_slevel: interrupt-controller@28000000 {
-> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+> +    aplic1: interrupt-controller@d000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
 > +      interrupts-extended = <&cpu1_intc 9>,
 > +                            <&cpu2_intc 9>,
 > +                            <&cpu3_intc 9>,
 > +                            <&cpu4_intc 9>;
-> +      reg = <0x28000000 0x2000>, /* Group0 IMSICs */
-> +            <0x29000000 0x2000>; /* Group1 IMSICs */
+> +      reg = <0xd000000 0x4080>;
 > +      interrupt-controller;
-> +      #interrupt-cells = <0>;
-> +      msi-controller;
-> +      riscv,num-ids = <127>;
-> +      riscv,group-index-bits = <1>;
-> +      riscv,group-index-shift = <24>;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
+> +    };
+> +
+> +  - |
+> +    // Example 2 (APIC domain forwarding interrupts as MSIs):
+> +
+> +    interrupt-controller@d000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> +      msi-parent = <&imsics>;
+> +      reg = <0xd000000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
 > +    };
 > +...
 > -- 
