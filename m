@@ -2,382 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E083662701A
-	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 15:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B5F62701B
+	for <lists+devicetree@lfdr.de>; Sun, 13 Nov 2022 15:48:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233793AbiKMOo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 09:44:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
+        id S233069AbiKMOsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 09:48:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbiKMOo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 09:44:29 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E007B1D
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 06:44:24 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1ouEDc-0002qr-6u; Sun, 13 Nov 2022 15:44:20 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Simon Glass <sjg@chromium.org>, Tom Rini <trini@konsulko.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: rockchip: Remove unknown regulator-init-microvolt property
-Date:   Sun, 13 Nov 2022 15:44:19 +0100
-Message-ID: <6087432.MhkbZ0Pkbq@diego>
-In-Reply-To: <fbb14294-59c4-da70-4865-6b6994f8e292@arm.com>
-References: <20221104132046.1555932-1-thierry.reding@gmail.com> <fbb14294-59c4-da70-4865-6b6994f8e292@arm.com>
+        with ESMTP id S232676AbiKMOsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 09:48:36 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6687BC3D;
+        Sun, 13 Nov 2022 06:48:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8D805B80945;
+        Sun, 13 Nov 2022 14:48:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95EE4C433C1;
+        Sun, 13 Nov 2022 14:48:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668350910;
+        bh=w5m0TCHObmqhvWCvsEi/mHUBLY7Vp+pmyFwDm9FPnws=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o76Tg4NceKEhHyPVkfpWhrIG38uSedqWLp9fDIOYPVQ+h3OWQGeOhPwhewH1EBHj2
+         0ioZsckiidxXo/UjnhzaNzBTkr5KLRoIT+7IlxlR7lu9Ea9/5kaatre1Xs9SM+J0h8
+         WkbhdYxS7Bw+XopVoNkrzZal82OwjUM5G8iqTHLs3OVa4ik/RmNHYkPKIObd6wBjLR
+         iTPB5ka23ux1jCr5aEGAbmOdv6v8Pxs5mCEpOw10AhSfRXpgr4M40l+UYWlgnfvihv
+         7kKXGYL0Xvg5cNM/sAuqRmog0awmFd9rB9H1FXKAtbpe8i915DuqN7YtCUC5anmcPd
+         qPfdnpQMmY8dQ==
+Date:   Sun, 13 Nov 2022 14:48:25 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller
+ bindings
+Message-ID: <Y3EDuaW0zQSSfiQ/@spud>
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-5-apatel@ventanamicro.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111044207.1478350-5-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 4. November 2022, 15:41:09 CET schrieb Robin Murphy:
-> On 2022-11-04 13:20, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> > 
-> > The regulator-init-microvolt is not defined anywhere and not used by any
-> > driver, so remove it from existing device trees.
+Hey Anup,
+
+On Fri, Nov 11, 2022 at 10:12:02AM +0530, Anup Patel wrote:
+> dt-bindings: Add RISC-V incoming MSI controller bindings
+
+nit: it looks like the usual prefix here is "dt-bindings:
+interrupt-controller".
+
+> We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
+> defined by the RISC-V advanced interrupt architecture (AIA) specification.
 > 
-> <vague memory triggers...>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
 > 
-> There *are* drivers that use it, just not in Linux[1][2][3]. Having a 
-> single canonical bindings repo can't come soon enough :(
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+> new file mode 100644
+> index 000000000000..05106eb1955e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V Incoming MSI Controller (IMSIC)
+> +
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
+> +
+> +description:
+
+Is this one of the situations where we want to have a | after
+"description:" to preserve formatting?
+
+> +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
+> +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
+> +  AIA specification can be found at https://github.com/riscv/riscv-aia.
+> +
+> +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
+> +  for each privilege level (machine or supervisor). The configuration of
+> +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
+> +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
+> +  fixed number of interrupt identities (to distinguish MSIs from devices)
+> +  which is same for given privilege level across CPUs (or HARTs).
+> +
+> +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
+> +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
+> +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
+> +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
+> +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
+> +  privilege level (machine or supervisor) encodes group index, HART index,
+> +  and guest index (shown below).
+> +
+> +  XLEN-1           >=24                                 12    0
+> +  |                  |                                  |     |
+> +  -------------------------------------------------------------
+> +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
+> +  -------------------------------------------------------------
+> +
+> +  The device tree of a RISC-V platform will have one IMSIC device tree node
+> +  for each privilege level (machine or supervisor) which collectively describe
+> +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - vendor,chip-imsics
+
+Is it valid to have a dummy here? I did a bit of grepping & could not
+see a single other yaml binding which used a placeholder like this -
+other than the example schema itself. I assume you're trying to get
+across the point that using the bare riscv,imsics is not okay and a
+vendor should create a custom string for their implementation?
+
+Also, the file name says "riscv,imsic", the description says "IMSIC" but
+you've used "imsics" in the compatible. Is this a typo, or a plural?
+
+Thanks,
+Conor.
+
+> +      - const: riscv,imsics
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 128
+> +    description:
+> +      Base address of each IMSIC group.
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 0
+> +
+> +  msi-controller: true
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 32768
+> +    description:
+> +      This property represents the set of CPUs (or HARTs) for which given
+> +      device tree node describes the IMSIC interrupt files. Each node pointed
+> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
+> +      HART) as parent.
+> +
+> +  riscv,num-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 63
+> +    maximum: 2047
+> +    description:
+> +      Specifies how many interrupt identities are supported by IMSIC interrupt
+> +      file.
+> +
+> +  riscv,num-guest-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 63
+> +    maximum: 2047
+> +    description:
+> +      Specifies how many interrupt identities are supported by IMSIC guest
+> +      interrupt file. When not specified the number of interrupt identities
+> +      supported by IMSIC guest file is assumed to be same as specified by
+> +      the riscv,num-ids property.
+> +
+> +  riscv,slow-ipi:
+> +    type: boolean
+> +    description:
+> +      The presence of this property implies that software interrupts (i.e.
+> +      IPIs) using IMSIC software injected MSIs is slower compared to other
+> +      software interrupt mechanisms (such as SBI IPI) on the underlying
+> +      RISC-V platform.
+> +
+> +  riscv,guest-index-bits:
+> +    minimum: 0
+> +    maximum: 7
+> +    description:
+> +      Specifies number of guest index bits in the MSI target address. When
+> +      not specified it is assumed to be 0.
+> +
+> +  riscv,hart-index-bits:
+> +    minimum: 0
+> +    maximum: 15
+> +    description:
+> +      Specifies number of HART index bits in the MSI target address. When
+> +      not specified it is estimated based on the interrupts-extended property.
+> +
+> +  riscv,group-index-bits:
+> +    minimum: 0
+> +    maximum: 7
+> +    description:
+> +      Specifies number of group index bits in the MSI target address. When
+> +      not specified it is assumed to be 0.
+> +
+> +  riscv,group-index-shift:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 24
+> +    maximum: 55
+> +    description:
+> +      Specifies the least significant bit of the group index bits in the
+> +      MSI target address. When not specified it is assumed to be 24.
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - msi-controller
+> +  - interrupts-extended
+> +  - riscv,num-ids
+> +
+> +examples:
+> +  - |
+> +    // Example 1 (Machine-level IMSIC files with just one group):
+> +
+> +    imsic_mlevel: interrupt-controller@24000000 {
+> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+> +      interrupts-extended = <&cpu1_intc 11>,
+> +                            <&cpu2_intc 11>,
+> +                            <&cpu3_intc 11>,
+> +                            <&cpu4_intc 11>;
+> +      reg = <0x28000000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <0>;
+> +      msi-controller;
+> +      riscv,num-ids = <127>;
+> +    };
+> +
+> +  - |
+> +    // Example 2 (Supervisor-level IMSIC files with two groups):
+> +
+> +    imsic_slevel: interrupt-controller@28000000 {
+> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+> +      interrupts-extended = <&cpu1_intc 9>,
+> +                            <&cpu2_intc 9>,
+> +                            <&cpu3_intc 9>,
+> +                            <&cpu4_intc 9>;
+> +      reg = <0x28000000 0x2000>, /* Group0 IMSICs */
+> +            <0x29000000 0x2000>; /* Group1 IMSICs */
+> +      interrupt-controller;
+> +      #interrupt-cells = <0>;
+> +      msi-controller;
+> +      riscv,num-ids = <127>;
+> +      riscv,group-index-bits = <1>;
+> +      riscv,group-index-shift = <24>;
+> +    };
+> +...
+> -- 
+> 2.34.1
 > 
-> Robin.
 > 
-> [1] 
-> https://source.denx.de/u-boot/u-boot/-/blob/master/doc/device-tree-bindings/regulator/regulator.txt#L40
-> [2] 
-> https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/power/regulator/pwm_regulator.c#L108
-> [3] 
-> https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/power/regulator/regulator-uclass.c#L455
-
-U-Boot always tries to merge Linux devicetrees with minimal changes,
-but I guess nobody ever tried to "upstream" that property?
-
-In any case, in a lot of rockchip boards in the u-boot source,
-I do see the regulator-init-microvolt in the *-u-boot.dtsi override file,
-so it already seems to be agreed that this stuff is bootloader-specific.
-[rk3399-pinebook-pro-u-boot.dtsi, and a number more]
-
-So I guess, if nobody complains to loudly, I guess I'll merge this patch.
-
-
-Heiko
-
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts          | 1 -
-> >   arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts       | 1 -
-> >   arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi        | 1 -
-> >   arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi | 3 ---
-> >   arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi       | 2 --
-> >   arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts      | 2 --
-> >   arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts      | 2 --
-> >   arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts          | 2 --
-> >   arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi       | 3 ---
-> >   arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts      | 3 ---
-> >   arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts        | 3 ---
-> >   arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts       | 3 ---
-> >   arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts         | 3 ---
-> >   13 files changed, 29 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-> > index 7ea48167747c..9232357f4fec 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-> > @@ -106,7 +106,6 @@ vdd_core: vdd-core {
-> >   		regulator-name = "vdd_core";
-> >   		regulator-min-microvolt = <827000>;
-> >   		regulator-max-microvolt = <1340000>;
-> > -		regulator-init-microvolt = <1015000>;
-> >   		regulator-settling-time-up-us = <250>;
-> >   		regulator-always-on;
-> >   		regulator-boot-on;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> > index a71f249ed384..e9810d2f0407 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> > @@ -105,7 +105,6 @@ vdd_core: vdd-core {
-> >   		regulator-name = "vdd_core";
-> >   		regulator-min-microvolt = <827000>;
-> >   		regulator-max-microvolt = <1340000>;
-> > -		regulator-init-microvolt = <1015000>;
-> >   		regulator-settling-time-up-us = <250>;
-> >   		regulator-always-on;
-> >   		regulator-boot-on;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-> > index b6e082f1f6d9..7c5f441a2219 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-> > @@ -375,7 +375,6 @@ regulator-state-mem {
-> >   			vcc_sdio: LDO_REG4 {
-> >   				regulator-always-on;
-> >   				regulator-boot-on;
-> > -				regulator-init-microvolt = <3000000>;
-> >   				regulator-min-microvolt = <1800000>;
-> >   				regulator-max-microvolt = <3300000>;
-> >   				regulator-name = "vcc_sdio";
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-> > index 41262a69d33e..a71973b16075 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-> > @@ -356,7 +356,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-name = "vdd_logic";
-> > @@ -371,7 +370,6 @@ vdd_gpu: DCDC_REG2 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-name = "vdd_gpu";
-> > @@ -533,7 +531,6 @@ vdd_cpu: regulator@40 {
-> >   		regulator-boot-on;
-> >   		regulator-min-microvolt = <712500>;
-> >   		regulator-max-microvolt = <1390000>;
-> > -		regulator-init-microvolt = <900000>;
-> >   		regulator-name = "vdd_cpu";
-> >   		regulator-ramp-delay = <2300>;
-> >   		vin-supply = <&vcc_sys>;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-> > index 8d61f824c12d..d899087bf0b5 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-> > @@ -264,7 +264,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-always-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   
-> > @@ -278,7 +277,6 @@ vdd_gpu_npu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu_npu";
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > index 25a8c781f4e7..854d02b46e6f 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > @@ -366,7 +366,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-name = "vdd_logic";
-> > @@ -381,7 +380,6 @@ vdd_gpu: DCDC_REG2 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-name = "vdd_gpu";
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> > index 77b179cd20e7..fc38b30d3722 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> > @@ -277,7 +277,6 @@ vdd_log: DCDC_REG1 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   
-> >   				regulator-state-mem {
-> > @@ -292,7 +291,6 @@ vdd_gpu: DCDC_REG2 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <900000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   
-> >   				regulator-state-mem {
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
-> > index 61c7a3ad7387..45807d7e22eb 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts
-> > @@ -250,7 +250,6 @@ vdd_log: DCDC_REG1 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   
-> >   				regulator-state-mem {
-> > @@ -263,7 +262,6 @@ vdd_gpu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu";
-> >   				regulator-min-microvolt = <900000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   
-> >   				regulator-state-mem {
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-> > index 5bcd4be32964..e23e2293d10a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi
-> > @@ -192,7 +192,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-state-mem {
-> > @@ -207,7 +206,6 @@ vdd_gpu: DCDC_REG2 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-ramp-delay = <6001>;
-> >   				regulator-initial-mode = <0x2>;
-> >   					regulator-state-mem {
-> > @@ -230,7 +228,6 @@ vdd_npu: DCDC_REG4 {
-> >   				regulator-boot-on;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-name = "vdd_npu";
-> >   				regulator-state-mem {
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > index 26d7fda275ed..a70b89e39dd6 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > @@ -301,7 +301,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-name = "vdd_logic";
-> >   				regulator-always-on;
-> >   				regulator-boot-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -315,7 +314,6 @@ regulator-state-mem {
-> >   			vdd_gpu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu";
-> >   				regulator-always-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -339,7 +337,6 @@ regulator-state-mem {
-> >   
-> >   			vdd_npu: DCDC_REG4 {
-> >   				regulator-name = "vdd_npu";
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > index 674792567fa6..19f8fc369b13 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > @@ -293,7 +293,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-name = "vdd_logic";
-> >   				regulator-always-on;
-> >   				regulator-boot-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -307,7 +306,6 @@ regulator-state-mem {
-> >   			vdd_gpu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu";
-> >   				regulator-always-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -331,7 +329,6 @@ regulator-state-mem {
-> >   
-> >   			vdd_npu: DCDC_REG4 {
-> >   				regulator-name = "vdd_npu";
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-> > index 59ecf868dbd0..a337f547caf5 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-> > @@ -291,7 +291,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-name = "vdd_logic";
-> >   				regulator-always-on;
-> >   				regulator-boot-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -305,7 +304,6 @@ regulator-state-mem {
-> >   			vdd_gpu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu";
-> >   				regulator-always-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -329,7 +327,6 @@ regulator-state-mem {
-> >   
-> >   			vdd_npu: DCDC_REG4 {
-> >   				regulator-name = "vdd_npu";
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > index ea74ba32fbbd..482c892567de 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> > @@ -340,7 +340,6 @@ vdd_logic: DCDC_REG1 {
-> >   				regulator-name = "vdd_logic";
-> >   				regulator-always-on;
-> >   				regulator-boot-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -354,7 +353,6 @@ regulator-state-mem {
-> >   			vdd_gpu: DCDC_REG2 {
-> >   				regulator-name = "vdd_gpu";
-> >   				regulator-always-on;
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> > @@ -378,7 +376,6 @@ regulator-state-mem {
-> >   
-> >   			vdd_npu: DCDC_REG4 {
-> >   				regulator-name = "vdd_npu";
-> > -				regulator-init-microvolt = <900000>;
-> >   				regulator-initial-mode = <0x2>;
-> >   				regulator-min-microvolt = <500000>;
-> >   				regulator-max-microvolt = <1350000>;
-> 
-
-
-
-
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
