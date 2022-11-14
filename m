@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08ABA62771F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1FC627721
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:11:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236210AbiKNIKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 03:10:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60734 "EHLO
+        id S236214AbiKNILA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 03:11:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236125AbiKNIKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:10:06 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766A4F592
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:05 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id t10so12159321ljj.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:05 -0800 (PST)
+        with ESMTP id S235540AbiKNIK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:10:59 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4767F14D31
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:58 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id c25so12127080ljr.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=rasmusvillemoes.dk; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tCeNiv0uBYzpZqxZWRhSbtsBMoxOYzYOiK5Rx6GVk50=;
-        b=P83PberwhZDcYiwg50+dvxuXIHmkTFYaiKENJXvfkW9B4aiKgyy7unYjqgtaOOIsWE
-         cceJfo52C6TAlLiPOQjlDwAa3miiUwSZYFtl6v1mhOaRSd7bk4W1bZ6H4z7iWkHnOBDd
-         z/fXAzweX9jHUSL643YEczhVOukXPtifbln2NidZMNVbIqXbqw7myitIS+4V7NyB3pf1
-         x3lc1QWpr/KSpasQbr/IBkYfKa5UxtQ14zeCafS3B2EoNdXzX8fqkOFMDBaAAB6so193
-         WtYdnXOkAXw2PknsnU8rvd+dMjoQQ9E8VJFKzLdKdgpY9FO47XJNs9T/QcLMU4VY04Q+
-         vRNw==
+        bh=3H0LxXhpL76jfnhP8PQ1RHBeIChC4ZVpOi0Wx0bdW8E=;
+        b=TkRLz+/gekpKO7S03tCmLxg4IKlHcjnVElTWA9QX1RVVKswKNfXp4+60Rl3D5+XVI4
+         SzjaGBYtEuZJHqg3BRzS6OSbgjA9h3l75d5JTgRwrPxGf+17eYdYdC/D9cJwtxBvwmNC
+         gBRp2X/yrXnF+GhrXvuZGKqpERZM/lsgSvdrk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tCeNiv0uBYzpZqxZWRhSbtsBMoxOYzYOiK5Rx6GVk50=;
-        b=qdA1nqP7VOATXYj0LOHTYkKTRW+gsj8R72sLcXKTEFepz94MtUYrz4rfa9FKnMEz7d
-         WKlwC3ZfGKhYLtNhn9Y9V2aOXZGshFtWQkG3bY3DNrwQNvbtzkrs8A6U8cyUnSBOjz1y
-         hieDajGoLEkQpazt66kCE0W0H5IATKr6jvm3HbWGUBmFtQkab1KQe3ww/IlFUSsmlCOw
-         SqGb1ACAup4MREi1aZm0Y1o4P6pQnRj59nKZ3eFNq3IkbK/ZuObHt6tePmvXfdWjDXpz
-         r0vCL7BfgzNRNNzxEeYR6P4eSGYjZJi9JIkF9iCdBU9+hUvfRNc3UYZYFCbPWE/q8nFs
-         xV6g==
-X-Gm-Message-State: ANoB5pnsNs2iUfN/r33X0fG2H5dpP3QcVRo5kHF5tmpVNotk8D6CsNe1
-        GcpI2lSDsJIlwzHgUPe9BY4gRLGAGcpMHhyL
-X-Google-Smtp-Source: AA0mqf57zW1Vcw6Dbd8QjVYMtxFXFERlH805TdYAg7t+5ZaHRrpZJZTCmTVmB2ouqzO0OdFeVLJ8nw==
-X-Received: by 2002:a05:651c:54c:b0:278:f1a5:a361 with SMTP id q12-20020a05651c054c00b00278f1a5a361mr2628295ljp.124.1668413403835;
-        Mon, 14 Nov 2022 00:10:03 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a27-20020a2eb55b000000b0026e8b82eba6sm1901237ljn.34.2022.11.14.00.10.02
+        bh=3H0LxXhpL76jfnhP8PQ1RHBeIChC4ZVpOi0Wx0bdW8E=;
+        b=6rkIpbWHqQ0S1QCyXOnDLEyQm5v7B6OQ0R3Ya39YG9F18SSKmC+0n3AUtfI9wif7qX
+         v+EfE7xO1KcS9o+SGk2I5X1WIEJVBaoDwXG7BAnnKqS2SbbkW2LTDrs2RJ402HUUQ5RX
+         JdlWc2r5CaHqtsaNGtF3hhtI/bD61JnZ9+N3++XrH1FVZjB1Ttx5+ANnvmEFlyoZEhnQ
+         1l5l3cwBd0mXPR04Uw+o4pfV7DcZ66T1GwtRjdxQDRnRtzPX570C+NitjSBDv4xH2IaV
+         /7HvHyBQt2PpDWZ/R6smev/T8Ar60+nhUdNCTpznoVbCpCvkKAoNFHDGNEGs5i98TbEw
+         ti5g==
+X-Gm-Message-State: ANoB5pm1K5aU5qXXKie+KbtKWEckrR9YVsjdgALQ+sZVdKLCmGPi35hP
+        9b7camZP8TCXGHi87zLyRCnWM5kRv0QgRdedmBs=
+X-Google-Smtp-Source: AA0mqf5KtaHWmZmBx8dX/kqroR0rymfu6pyC/o70E1rrGmIGAUsbgDoZAZx9JhPVWx8avRTfMy8FTg==
+X-Received: by 2002:a2e:8706:0:b0:26d:e3ae:886a with SMTP id m6-20020a2e8706000000b0026de3ae886amr4049310lji.531.1668413456613;
+        Mon, 14 Nov 2022 00:10:56 -0800 (PST)
+Received: from [172.16.11.74] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id o22-20020ac25e36000000b0049fbf5facf4sm1720992lfg.75.2022.11.14.00.10.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 00:10:03 -0800 (PST)
-Message-ID: <3fd5b40f-25eb-7ce3-0e23-84c35962e6e1@linaro.org>
-Date:   Mon, 14 Nov 2022 09:10:02 +0100
+        Mon, 14 Nov 2022 00:10:55 -0800 (PST)
+Message-ID: <feafad6d-736d-27a5-380d-e8a531b4c46b@rasmusvillemoes.dk>
+Date:   Mon, 14 Nov 2022 09:10:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v9 1/2] dt-bindings: mfd: Add dt-schema MAX5970 and
- MAX5978
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221114075739.4117439-1-Naresh.Solanki@9elements.com>
- <20221114075739.4117439-2-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114075739.4117439-2-Naresh.Solanki@9elements.com>
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/5] dt-bindings: iio: ad74413r: make refin-supply
+ optional
+Content-Language: en-US, da
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
+ <20221111143921.742194-3-linux@rasmusvillemoes.dk>
+ <20221112165448.17489ef1@jic23-huawei>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <20221112165448.17489ef1@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,226 +76,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 08:57, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
-
-Subject: I asked to drop the redundant words, but you re-added now in
-different form. So again, drop "dt-schema".
-
+On 12/11/2022 17.54, Jonathan Cameron wrote:
+> On Fri, 11 Nov 2022 15:39:18 +0100
+> Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
 > 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
+>> The ad74412r/ad74413r has an internal 2.5V reference output, which (by
+>> tying the REFOUT pin to the REFIN pin) can be used in lieu of an
+>> external 2.5V input reference. So stop marking refin-supply as
+>> required.
+>>
+>> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../bindings/mfd/maxim,max5970.yaml           | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> new file mode 100644
-> index 000000000000..a93b6e009b9a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> @@ -0,0 +1,172 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
-> +
-> +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
-> +
-> +description: |
-> +  The smart switch provides no output regulation, but independent fault protection
-> +  and voltage and current sensing.
-> +  Programming is done through I2C bus.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max5970
-> +      - maxim,max5978
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
-> +    description:
-> +      Properties for four LEDS.
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-3]$":
-> +        $ref: /schemas/leds/common.yaml#
-> +        type: object
-> +
-> +    additionalProperties: false
-> +
-> +  vss1-supply:
-> +    description: Supply of the first channel.
-> +
-> +  vss2-supply:
-> +    description: Supply of the second channel.
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +  regulators:
-> +    type: object
-> +    description:
-> +      Properties for regulator.
+> Interesting corner case.  Given we have no way of knowing if the
+> wiring has REFOUT connected to REFIN I see two ways we should fix this.
+> 
+> 1) Just have any DT doing this provide a fixed regulator.
+> 2) Have the REFOUT supported as an actual regulator - in theory it might be
+>    wired to other devices.  This might get a little interesting ordering
+>    wise as we'll want to register the regulator before we try to consume
+>    it in the same driver.  I'm also not 100% sure there are no other issues
+>    in a driver providing and consuming the same regulator.
 
-That's not correct description. This is not one regulator.
+Hm, I don't like the idea of exposing REFOUT as a real regulator. As you
+write, there's gonna be interesting chicken-and-egg problems, and I also
+don't think it can actually deliver any meaningful current, i.e. it
+can't really (and shouldn't) be used for supplying other peripherals.
 
-> +
-> +    patternProperties:
-> +      "^sw[0-1]$":
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
+A third option is to have a boolean property to explicitly indicate that
+"yes, we're using refout as refin", and then make the requirement in the
+schema be "refin-supply XOR refout-as-refin".
 
-unevaluatedProperties: false
+But I think the simplest is (1), I will just add a fixed-regulator with
+a suitable comment in my .dts, and patches 2,3 can be ignored.
 
-> +        properties:
-> +          shunt-resistor-micro-ohms:
-> +            description: |
-> +              The value of curent sense resistor in microohms.
-
-Typo: current
-
-> +
-> +        required:
-> +          - shunt-resistor-micro-ohms
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +  - vss1-supply
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - maxim,max5970
-> +    then:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +            - description: voltage second channel
-> +            - description: current second channel
-> +          description: |
-> +            Voltage and current for first and second channel.
-> +      required:
-> +        - vss2-supply
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Comment was:
-"Also, add it in the existing example."
-
-> +    else:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +          description: |
-> +            Voltage and current for first channel.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        regulator@3a {
-> +           compatible = "maxim,max5978";
-> +           reg = <0x3a>;
-> +           vss1-supply = <&p3v3>;
-> +
-> +           regulators {
-> +               sw0_ref_0: sw0 {
-> +                      regulator-compatible = "SW0";
-
-Use 4 spaces for example indentation.
-
-> +                      shunt-resistor-micro-ohms = <12000>;
-> +               };
-> +           };
-> +
-> +           leds {
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +               led@0 {
-> +                   reg = <0>;
-> +                   label = "led0";
-> +                   default-state = "on";
-> +               };
-> +               led@1 {
-> +                   reg = <1>;
-> +                   label = "led1";
-> +                   default-state = "on";
-> +               };
-> +           };
-> +        };
-> +    };
-> +
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        regulator@3a {
-> +            compatible = "maxim,max5970";
-> +            reg = <0x3a>;
-> +            vss1-supply = <&p3v3>;
-> +            vss2-supply = <&p5v>;
-> +
-> +            regulators {
-> +                sw0_ref_1: sw0 {
-> +                    regulator-compatible = "SW0";
-> +                    shunt-resistor-micro-ohms = <12000>;
-> +                };
-> +                sw1_ref_1: sw1 {
-> +                    regulator-compatible = "SW1";
-> +                    shunt-resistor-micro-ohms = <10000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-
-Best regards,
-Krzysztof
+Thanks,
+Rasmus
 
