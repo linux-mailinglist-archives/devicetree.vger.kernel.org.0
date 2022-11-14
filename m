@@ -2,111 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B2B46283F4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3215628402
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236953AbiKNPcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:32:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54758 "EHLO
+        id S236135AbiKNPeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237224AbiKNPby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:31:54 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC2A2E695
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:31:50 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id p8so19847247lfu.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:31:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NOWBKmXybEX1OHhK1KbtYTt3hmjgbm76+zxfNN+3ArM=;
-        b=kwAl/fBziCR2zSE2ZWp6HT+geZ5LGV8FdVEUMhnkFGi/c4tKLFIfK0n0A8SqcouoIQ
-         8lTcjcK+ZWWkdmgWKnH8HCHb5lvjkcM5JJN5Fq+F7x/vkFTjL43kvvpNOWGliKZGd8mr
-         l2cy74ROMHl30KG7dkgQW2l8khdv7kDC/ixrxKtZLFpcIEP7ofdghDSNUtK8x7zmSMXv
-         eK04mUnwvsn50DQBEV8lmDBohBJF7fJWn1OmlDVZuCe1dyo83p20ecKkB4WBWVd7GqLL
-         75pGfqXuDWnTYrBYVlY6p9SFfoaOzJYgtJjofIFBs4TZXwzKejhC6Bzv71zrO6lf43uD
-         2EPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NOWBKmXybEX1OHhK1KbtYTt3hmjgbm76+zxfNN+3ArM=;
-        b=m9zccr4CT/evRyQ/diADOz+tUM2i6YY5hXrCJLT3YRR8Jj1BOXVRoGA+PTIjZ+UC/o
-         NFd7qtp6/iSbLWuOHxRwZgVSeYrufqVOzJWPNh2Y8nAWqka38Qwh9jfUP5kgrXlfDKxC
-         Jwef6W9KQaICozY3J/nhaG+YZlt2QlON2tpLkRkU5iTqof4mUExqQEI68Df1DQWcBt09
-         dDvbivfW89xP5rDIte625NGE7ljlSZWqcvONqDwQ7o1+8nePxVOJsX5vbSj1LcTnaCuZ
-         +LK04gdasnpRFm9ufBSFb1Tz73lXvffu6tJ7v3rFF6YwnU8sXzAv1tq/QtXAgBo4pI9v
-         6M5A==
-X-Gm-Message-State: ANoB5pnYQeaqs1POUsF63wdOL6lPpp1YmygO4WnInpEcnmX4PMpPK4oQ
-        FtzVCkNn1yLVCxaP2LWPHyhfbg==
-X-Google-Smtp-Source: AA0mqf4CVE/dg5p7b2shK5W+v5UBoaFtWwkBelND98rOl5lom/mY2/0GUCzBZLUmRzjyCwFcBtV9Iw==
-X-Received: by 2002:a05:6512:34c1:b0:4b1:5a96:983f with SMTP id w1-20020a05651234c100b004b15a96983fmr4862734lfr.535.1668439909326;
-        Mon, 14 Nov 2022 07:31:49 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h8-20020ac24da8000000b004ad5f5c2b28sm1850242lfe.119.2022.11.14.07.31.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 07:31:49 -0800 (PST)
-Message-ID: <fc6dcc79-0ccb-da40-85f9-826380991a96@linaro.org>
-Date:   Mon, 14 Nov 2022 18:31:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 08/14] phy: qcom-qmp-combo: drop redundant clock
- allocation
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236008AbiKNPeP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:34:15 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38244AE63;
+        Mon, 14 Nov 2022 07:34:14 -0800 (PST)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id 9C2321FFD1;
+        Mon, 14 Nov 2022 15:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1668440052; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iX0twiutIXQvyzjvENfNYeTzi5iV06fn6/uJ3rwwZHQ=;
+        b=CSqUQJ08j5/qIt6kMB+TN0dttJya6Uhm0czVdp3AA47iPq4SLqKwE0jAXalRa4kxsrFQiv
+        Ue+cwR7I2ZEkuCD6NoN7jvTBC/sog6Tt4IKCxLbydvrfyKmt2pclKFrhOQGYKiVjtT2JW2
+        rdKzXoU7xcaRXSO722vtMJPAQeuhPsQ=
+Received: from suse.cz (unknown [10.100.201.202])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id E91DB2C143;
+        Mon, 14 Nov 2022 15:34:10 +0000 (UTC)
+Date:   Mon, 14 Nov 2022 16:34:07 +0100
+From:   Petr Mladek <pmladek@suse.com>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-9-johan+linaro@kernel.org>
- <75e188ce-99ea-7511-a561-5b0fef9feeaf@linaro.org>
- <Y3I3vec+9Ob1dPhW@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y3I3vec+9Ob1dPhW@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 2/7] lib/vsprintf: Add support for generic FOURCCs by
+ extending %p4cc
+Message-ID: <Y3Jf7xz2CQjJuEeT@alley>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 15:42, Johan Hovold wrote:
-> On Sat, Nov 12, 2022 at 02:17:44PM +0300, Dmitry Baryshkov wrote:
->> On 11/11/2022 12:24, Johan Hovold wrote:
->>> Since the QMP driver split, there is no reason to allocate the
->>> fixed-rate pipe clock structure separately from the driver data.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>    drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 7 ++-----
->>>    1 file changed, 2 insertions(+), 5 deletions(-)
->>>
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>
->> Note: it would be nice to port these two patches to USB & PCIe QMP PHY
->> drivers.
+On Tue 2022-11-08 16:33:22, Russell King wrote:
+> From: Hector Martin <marcan@marcan.st>
 > 
-> Already done:
+> %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
+> it's useful to be able to print generic 4-character codes formatted as
+> an integer. Extend it to add format specifiers for printing generic
+> 32-bit FOURCCs with various endian semantics:
 > 
-> 	https://lore.kernel.org/lkml/20221111094239.11547-1-johan+linaro@kernel.org/
+> %p4ch   Host-endian
+> %p4cl	Little-endian
+> %p4cb	Big-endian
+> %p4cr	Reverse-endian
+> 
+> The endianness determines how bytes are interpreted as a u32, and the
+> FOURCC is then always printed MSByte-first (this is the opposite of
+> V4L/DRM FOURCCs). This covers most practical cases, e.g. %p4cr would
+> allow printing LSByte-first FOURCCs stored in host endian order
+> (other than the hex form being in character order, not the integer
+> value).
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Thanks!
+Reviewed-by: Petr Mladek <pmladek@suse.com>
 
--- 
-With best wishes
-Dmitry
+See one nit below.
 
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -1762,27 +1762,50 @@ char *fourcc_string(char *buf, char *end, const u32 *fourcc,
+>  	char output[sizeof("0123 little-endian (0x01234567)")];
+>  	char *p = output;
+>  	unsigned int i;
+> +	bool pixel_fmt = false;
+>  	u32 orig, val;
+>  
+> -	if (fmt[1] != 'c' || fmt[2] != 'c')
+> +	if (fmt[1] != 'c')
+>  		return error_string(buf, end, "(%p4?)", spec);
+>  
+>  	if (check_pointer(&buf, end, fourcc, spec))
+>  		return buf;
+>  
+>  	orig = get_unaligned(fourcc);
+> -	val = orig & ~BIT(31);
+> +	switch (fmt[2]) {
+> +	case 'h':
+> +		val = orig;
+> +		break;
+> +	case 'r':
+> +		val = orig = swab32(orig);
+
+I do not like much these multi assignments. I think that the result
+was not even defined in some older C standards. Though, I can't find
+it now. And even make W=3 does not warn about it.
+
+> +		break;
+> +	case 'l':
+> +		val = orig = le32_to_cpu(orig);
+> +		break;
+> +	case 'b':
+> +		val = orig = be32_to_cpu(orig);
+> +		break;
+
+Best Regards,
+Petr
