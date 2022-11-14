@@ -2,129 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34CCA62840D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C4462840F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235865AbiKNPgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:36:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
+        id S235617AbiKNPha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:37:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235617AbiKNPgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:36:36 -0500
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8870513F2F;
-        Mon, 14 Nov 2022 07:36:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SGUPxx+xNj23yctHI9MeVRM9ohEFo/iD4gfoFVR8Hf6FrOSeL1AwDkEQhf/xnVd4PZKou/nnkU+T2N/fldQwsDz2Wh2kvWYKrmfnh1L21YAVioeEW1JFAMdO7Ja70LN7wXPccQW2oWopkXUh97tN/Es1BXRkjuRxrnen6XtETXY2mRuCaNMojCIqGGYFJTSNr1UuRAh/T4mil+DJ6qLz2A3frmYnOKWwc6yWtIr3xZ/2lQAEJluxE1Z6P7F7QmkxC+INIh4Q7TlOheqLqkJl/M71iPuJiDgKzbxC8nTw/lMdUoi3SzCOsWJvrj6H28JnVEdmR43CukxFKRUb9uoabQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rzxP7+M5oO8OUuUI9El0prRbZ22WJRxqFrYrXKIxJfU=;
- b=nifbiDdfYykDcG9mCQJHpEAyIMWowF+gMlyZ7xAsT6EiXLBx77iQ6iP/P3NRA+v6wseANl/WwPSn5w4P3SZtx+ZP4M2p8FCDb3a7vyEASdf/OnQlAAiSNxfUL6zCFrwke1z2PVUdjPvdOfBJxRp3aD970TAWFzagJ5UoRmfX0hq9kYTkeyvVpk0qIpBxLBJTyIyR/b6dNqPuLhzrbJLeAPp4n0WgHvLq3l3IYtGEAETjRDa+f3ORzzx8nFSF+zRszl+DcHytt8rBXFIummePB355nvQawSnvfP0aFy4FoQiixGZDUAjTfuGOqQNV7VolRzUmmJdNFR0zlLrKYS3wyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rzxP7+M5oO8OUuUI9El0prRbZ22WJRxqFrYrXKIxJfU=;
- b=cfUOyNyMeJEuI14JbufDsX8eeQ+YFiSO890Y47dAwd4hxiogEtFDqkHmUAz+pdx/dXewtbM2kFOS82ZbD+/z4tAA9/ncQBXpi3WJIBF6hrB3JJodZThdJAKONvS5M4yqhlZMmN9wIW9QyBF/F6w1PZC5wmeFIlcoXbQ8oaDs/KKsyGsoaLbIsHLlG4DhWc/7xL3+hIATZPD15ebSJIohHoRDCqldtLrxbXD+RxBbN4M/7kwIHK/aXFjQDYBYGyfz3rAuy1UAQ5qtyFcydzElH/JoDwpMXKWCG3f+TUX9OayA0htJ9g9OxzkK/cahPJYZRO/5vmYq6ZN288pvpBby2Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- MN2PR12MB4517.namprd12.prod.outlook.com (2603:10b6:208:267::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
- 2022 15:36:33 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::8edd:6269:6f31:779e]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::8edd:6269:6f31:779e%5]) with mapi id 15.20.5813.017; Mon, 14 Nov 2022
- 15:36:32 +0000
-Message-ID: <049113cc-1031-2576-0fcc-92f391841a7b@nvidia.com>
-Date:   Mon, 14 Nov 2022 15:36:26 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V2 1/2] dt-bindings: PCI: tegra234: Add ECAM support
-Content-Language: en-US
+        with ESMTP id S235760AbiKNPh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:37:29 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09FD62CE3F
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:37:27 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id l12so19886822lfp.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:37:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fFpPtsIZPnLv0idmQwOsp8XEsqToaapu1rkNvS1qXCk=;
+        b=hfz1+J1sDkC6JW6EayrlQ1t8+nmSqmqvktBzSQijHQiQp/bOFf3gjYa9VTDs1SPzXs
+         Fa62YyKZt/C5/kh54c7waU7olkcMXk6OdhvQKwemnRUTWwERKju8GfkxDu91hnXaGgtY
+         7CDjObHnVNojjjVD+3Eu/59nzOmfoEB547P2RegUS0g8RDgwFLEIaNiQ+FQJ8alCNd4Y
+         k2Os8BN50ILxqtD3kjkA905QhroBXsFuHgbtWpE8opCnv5TFXGkTRZb4bOpUrP3OXJ2g
+         zRNDX3vR90QHv20a30mintQmM3F4kLy3XrL6RyHDap8ESC+FAS4di3TLEcBlVMKNP3A+
+         pE6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fFpPtsIZPnLv0idmQwOsp8XEsqToaapu1rkNvS1qXCk=;
+        b=QUliwDtOaxm9hWzxUFbS5FVomUyG1hs3Y8/7LPP/P+7fCai69AdbmMZEHwlyRVxcnd
+         RQmg0Yl8cT3gZYxy44UwtO+M48p6eJSJpbJRMeHQl9POZdH5cJEg+byzC9fbTGgqtW8X
+         9yWeIh1bA5OEIr3sbnhB/Au766ZG/Li7P6cJo0o6GuGk5ZkTsNhB1GqaOzfXnWyx5OYR
+         qeIcqZbrZIcgZySZ+GTURDTmMDrL+UxPO3J7CjEWTT90IuLiOQGCHRMReAFc4BlUm7Gw
+         Jyvp3tGNbUiiGbl2Q+g0OWrbHu+1ifKRcUqrbizxQBGsQ1x0NS2gWcGk9g17Xqnco/2t
+         t2EQ==
+X-Gm-Message-State: ANoB5pkYrqFbLAN7LBhL1Yqd10AhH+MAIZGjfVjTbS6S6qH6yUcr8KF5
+        JmBQAHD+zXzoLZ7JCd0YSfgdcA==
+X-Google-Smtp-Source: AA0mqf4U+8GhKaB3MnjZ/epQ5/hFdpnDPEuDJkT6ruJBkACEW50ERtd93hPHI0sxZmJiKMfoppVCvQ==
+X-Received: by 2002:a05:6512:3132:b0:4aa:1754:9ae3 with SMTP id p18-20020a056512313200b004aa17549ae3mr4091259lfd.344.1668440245283;
+        Mon, 14 Nov 2022 07:37:25 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id c10-20020ac2414a000000b0049313f77755sm1858582lfi.213.2022.11.14.07.37.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 07:37:24 -0800 (PST)
+Message-ID: <fbf1fc09-31a9-a08f-6ffd-551fdd317ec0@linaro.org>
+Date:   Mon, 14 Nov 2022 16:37:20 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8450: add Soundwire and LPASS
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
-        mmaddireddy@nvidia.com
-References: <20221114140916.200395-1-jonathanh@nvidia.com>
- <20221114140916.200395-2-jonathanh@nvidia.com>
- <d8edc185-52cd-ffa1-7b46-2ec84d0d712c@linaro.org>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <d8edc185-52cd-ffa1-7b46-2ec84d0d712c@linaro.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20221114152130.385871-1-krzysztof.kozlowski@linaro.org>
+ <20221114152130.385871-3-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221114152130.385871-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0199.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:9e::19) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MN2PR12MB4517:EE_
-X-MS-Office365-Filtering-Correlation-Id: 63cf2756-2503-4bbc-901e-08dac65601d7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BvR5NzUOGzxaq3Nm4f6s102HPrOuvozmc5NHqGKXPkcOZhB5M+fb7mKz791/nLZVGbskd9NkQYQjMX5XlGilvzbVyhzWXXTcjFseLe44HOkAU99Lhw1OkNDD9XIgb2yalXmWszycv9MD8COjBhxwXOjsVVzM4z1XPZE/bSenjN+9GvtIXVdVZU9GtyjCSC+cjOAUjw9sY3ZWvZTF9RIAIaiA5wqOVx5A2uTRnK3HP3ySme2jP0BmIn3uCbef+cOh6uBSsgwhB6wJ5Htjc3RpTddClFN4hcYsM2VSIvZTPGlIQ3lIvIVP1etUxiHUoUMmgekyAhY4fPjmRkX0NouFVSdcffe95A66EJTicwNXOXxTz/XPY74josAN4qb7u3SfHnUdK8HA7OvjD0eCgGa6d2oLgFoPzr1m8eLnzI0bz8xWIqZp/3uBmzmKm0PRdeEM8fHyfDWHq78wZiH5x8q8+JjiQzc/R2LQCrTMziqptWytKRvUl8ftn5Hw8ijvfxA6fQfJskXJlIULHL4dPwjcIntdCr5frVJW/6UMMRjfxqk8cgpeX5jFRd31PitktpWEFEO/YEtYtjPe1Ya5n+RR/Cg2iOO1CODgw7hllEhikw1kyE4s8NS7fZEcaPY1WJrVMPjFd32NifTu4WyRXaAlBC9p80xyw60Bl279HnkWBORGs2HD6wOBtWvLLKU2h1r/s3lhaFXqzjtXPcTfiLa0fYx9l54aA3ZR+fZrYi2/ql65FKzrwCI6aLR3DvlHTgOY1N12uaE4DUP1Qj168IGK1ORkXTH/h9OGgqKfC5SLj80=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(346002)(366004)(39860400002)(136003)(451199015)(107886003)(6666004)(31686004)(41300700001)(53546011)(8936002)(38100700002)(6486002)(6506007)(83380400001)(478600001)(5660300002)(110136005)(6512007)(86362001)(31696002)(316002)(2616005)(66556008)(8676002)(4326008)(186003)(36756003)(2906002)(66476007)(66946007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T01rU251aTFaZFcxSFBoYm1TREhnY3cydHBKdm84STIvT3V3cE1iRHRVUmw2?=
- =?utf-8?B?cThHenhZMUYya1Y5WW1seWZ2SEQrek5jWHgvcE1IUEdXZ3hKWndBV01yUEpK?=
- =?utf-8?B?dE1yS1Y2RmxQdFpLNGE2azNZcFM3RDRHZEx6YWc3eVRJdW9sMW81a3hxSy91?=
- =?utf-8?B?Rk5XZkVKdlhOczhKQ1RCZDBTMExXY25oUDMwYmYvcjgrSkt6NmVYcmxYRDEx?=
- =?utf-8?B?TERxSVVmQmF3TThLcC8zV1V4aGU5eitIS2pqaEJ4ZDViVFR0TC9uNjZRYUlZ?=
- =?utf-8?B?Uk9VN2dJSmZJcUJVK1ZmY25CcFo1bGo5Q0paS2NnQ1hZVU5JdUt4cWJlSU1a?=
- =?utf-8?B?NzhnTDdMMEU5K0J3bmxqZjFIa0NZNHVjbDVrdCtZNTZKWUFDVy93aHU5d1Jv?=
- =?utf-8?B?S2VHS0ovY2J5NEFXTS83V1NpL1ZhT1RhcEh6anFaV1BteGpZWEQweitEby9o?=
- =?utf-8?B?UVphYnM3TnM2S3c2TjZpdUN1MEc2bEUrOGhNTzRHKzcrVXpDL1YxMEhiRWRC?=
- =?utf-8?B?UTVtbFl1QVFTWlIvVEVTRm51TitRMC9QOUZhaEV3ajZiQnEzTXQ3M3N6eG1S?=
- =?utf-8?B?Nkl1YjliRUN5OHBESkxLZFExTmVNSW9iNG1JY3lBSjMvRzdOcWRzbHlXUzg0?=
- =?utf-8?B?QmlkNFBKNE5melNWK1FTWVRuYkhxSHNYSDMxUXNaR0hxZmlUVmx3ZW9pL1Y2?=
- =?utf-8?B?WHFXZHhvbDNEaGE2RjNKN0xtenMxSWdKK0JBUzdQVlNEUlRFc3Q5VWUwT3Ux?=
- =?utf-8?B?SDJyR2lGRlc3RkdtYmZUVGd4SVp1UHdZZ043U0twSkRmc0Jva2dySVllVm16?=
- =?utf-8?B?VU9SOTNXZG1wWURiVUNzK0ZrMnE1VTh6bTF0blNGclQ4OFovaS9ad2MrM25j?=
- =?utf-8?B?cEQ1aUQyRFE5aC9rdjFvczFDY0ZYT2g4aldKQllvVkliZ0NtN3ZvK0laUUhP?=
- =?utf-8?B?M2xFd1QxQkloZ0kwb2xwQ2ZIU2lSUTNjaFFScmN4MkxOUlNsTGxhMXJRaUls?=
- =?utf-8?B?QkF4YkR2L1NUMEcvNGh4emhWSGQrUytOKzRGVUxncHZFanFwOTNFeFNqWmhx?=
- =?utf-8?B?UzBLeUhHMFlzYTJsNVlBQ1NHeVVWT2NtUUpvMkw3dkZRZTROSndJWGdrWUh1?=
- =?utf-8?B?TG1VdGhoeDRVaU44VDhRbTBkVkdaQlYzNXlSSU1OSDV1VnlyMk5JbENMV2pH?=
- =?utf-8?B?TnVKQ1hhQVQyaWhOOXBaM3drbHI1UVk3aEsvaGxaQk9sTHFVbHBiWG1KY1hi?=
- =?utf-8?B?emVVTi8rbkJsRFZvckJhcDJNNFJNOW5YT0JnRWs1V0FweVR4ZHlZWVVSd2M5?=
- =?utf-8?B?Rnp6VWd6aXJrTzJ0V3lWbnJoV1dWQmxnUWxoR3AzdTFwMENpdytxbVJ3aUhm?=
- =?utf-8?B?SytKNUEzbDZ6Q1A2NlNhUDByTERYMDBRdFlQcG9tNWVmVFFYMU5vdE1aQ2hP?=
- =?utf-8?B?NjhYb2dRemVTdGdYdW5UZXFmOGJMWk05bFJlTVhMTXdrbFV6WUoySU9wUWFo?=
- =?utf-8?B?L0hCeHhtNWpnTDl3TW94bXhJdEZ2b1NUeFd2cERSc25yOW9STkF4SDIxSllB?=
- =?utf-8?B?SUNDSkE4dUk5dTc0M3Y0d3M2RCs0VWkxOFlhNVp2NURKRWdzNlpvdlJvY0NI?=
- =?utf-8?B?b0t4ZHVZUjNQUHd3OHZEZDFNWjNQR1dwQlhMRFdkbGI4RjVCYkZxaThpOXIw?=
- =?utf-8?B?ODl4a2xsRDJXdkhsa0srT2phQzFlTWZvdkpWY3VDVU43ODRxNlZoWnJVN3Zp?=
- =?utf-8?B?dzVXV0FzUVNMeHNVdE9kYlpLSmlsM2hJdEFJcmk2TU5KMHVkYlBoSnlFKzNr?=
- =?utf-8?B?TWpFRm54S2hhRFAyZVB2K0gvaEZFY3c5bXB0TjgzZ1Nnc3QrRUIrOHFkQWoy?=
- =?utf-8?B?MDg5TC9mNVRlZE9hWlNnME9kUUZRS2tZa1NSU1BMR05rNVJzR0VLU3d6UVNy?=
- =?utf-8?B?NVRyRFdCWDUvaEg2VTdyWjZTOXFINVlDOU0xT3hrN1EwdllOUzRqaW9lTVhk?=
- =?utf-8?B?eG91eHR5bTNSQjAzd2hRbWM4Q090dElXdUs4OUtwV0pHOU5XUno3YzJZcFdp?=
- =?utf-8?B?OWsyQTY2cGp1NksyWW02MjFtTDdTZXhtTFVCS0hYNGNvb1FCcTF1THl1eFFU?=
- =?utf-8?B?QUVUS1BhQWt3d25tMWJzQ3RPb2lZYVNlR2huKy9US2hldFhrdGY4YXFQUFcx?=
- =?utf-8?Q?gbmUT2sqXn6MgcEexFTU+K0sCqFq7WTqKho9a7mpdZdo?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63cf2756-2503-4bbc-901e-08dac65601d7
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 15:36:32.8457
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kvKeERC9qpYYxOEwi/w7tcVyPYFEGFDMDt/mn1q+TnVw02QnVu1LfGTuf/dP1p02IOfOJ+Xhf0ZATgMDQmEKww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4517
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -132,127 +80,359 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 14/11/2022 14:23, Krzysztof Kozlowski wrote:
-> On 14/11/2022 15:09, Jon Hunter wrote:
->> From: Vidya Sagar <vidyas@nvidia.com>
->>
->> Add support for ECAM aperture that is only supported for Tegra234
->> devices.
->>
->> Co-developed-by: Vidya Sagar <vidyas@nvidia.com>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->> Changes since V1:
->> - Restricted the ECAM aperture to only Tegra234 devices that support it.
->>
->>   .../bindings/pci/nvidia,tegra194-pcie.yaml    | 76 +++++++++++++++----
->>   .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
->>   2 files changed, 62 insertions(+), 16 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
->> index 75da3e8eecb9..7ae0f37f5364 100644
->> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
->> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
->> @@ -27,21 +27,12 @@ properties:
->>         - nvidia,tegra234-pcie
->>   
->>     reg:
->> -    items:
->> -      - description: controller's application logic registers
->> -      - description: configuration registers
->> -      - description: iATU and DMA registers. This is where the iATU (internal
->> -          Address Translation Unit) registers of the PCIe core are made
->> -          available for software access.
->> -      - description: aperture where the Root Port's own configuration
->> -          registers are available.
->> +    minItems: 4
->> +    maxItems: 5
->>   
->>     reg-names:
->> -    items:
->> -      - const: appl
->> -      - const: config
->> -      - const: atu_dma
->> -      - const: dbi
->> +    minItems: 4
->> +    maxItems: 5
->>   
->>     interrupts:
->>       items:
->> @@ -202,6 +193,60 @@ properties:
->>   
->>   allOf:
->>     - $ref: /schemas/pci/snps,dw-pcie.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - nvidia,tegra194-pcie
->> +    then:
->> +      properties:
->> +        reg:
->> +          minItems: 4
->> +          maxItems: 4
-> 
-> How you wrote it, you do not need min/maxItems here, because you have
-> items below. However see further comment.
-> 
->> +          items:
->> +            - description: controller's application logic registers
->> +            - description: configuration registers
->> +            - description: iATU and DMA registers. This is where the iATU (internal
->> +                Address Translation Unit) registers of the PCIe core are made
->> +                available for software access.
->> +            - description: aperture where the Root Port's own configuration
->> +                registers are available.
->> +        reg-names:
->> +          items:
->> +            - const: appl
->> +            - const: config
->> +            - const: atu_dma
->> +            - const: dbi
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - nvidia,tegra234-pcie
->> +    then:
->> +      properties:
->> +        reg:
->> +          minItems: 5
->> +          maxItems: 5
-> 
-> Similar issue.
-> 
->> +          items:
->> +            - description: controller's application logic registers
->> +            - description: configuration registers
->> +            - description: iATU and DMA registers. This is where the iATU (internal
->> +                Address Translation Unit) registers of the PCIe core are made
->> +                available for software access.
->> +            - description: aperture where the Root Port's own configuration
->> +                registers are available.
->> +            - description: aperture to access the configuration space through ECAM.
-> 
-> This is unnecessarily duplicated. You can keep the descriptions of items
-> and reg-names items in top level (with min 4 and max 5) and restrict
-> maxItems for 194 and minItems for 234 here.
+On 14/11/2022 16:21, Krzysztof Kozlowski wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>
+> Add Soundwire controllers, Low Power Audio SubSystem (LPASS) devices and
+> LPASS pin controller.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 295 +++++++++++++++++++++++++++
+>   1 file changed, 295 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 4b0a1eee8bd9..c99740591467 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -15,6 +15,7 @@
+>   #include <dt-bindings/interconnect/qcom,sm8450.h>
+>   #include <dt-bindings/soc/qcom,gpr.h>
+>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> +#include <dt-bindings/sound/qcom,q6afe.h>
+>   #include <dt-bindings/thermal/thermal.h>
+>   
+>   / {
+> @@ -2097,6 +2098,212 @@ compute-cb@3 {
+>   			};
+>   		};
+>   
+> +		wsa2macro: codec@31e0000 {
+> +			compatible = "qcom,sm8450-lpass-wsa-macro";
+> +			reg = <0 0x031e0000 0 0x1000>;
+The sorting will be off, as adsp and cdsp have been mistakenly put in
+the wrong place (notice adsp @ 32300000 is actually at an address
+that's 8 hex digits long, but the reg addr is padded to 9 hex digits..).
+
+Could you submit a fix for that as well?
+
+> +			clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&vamacro>;
+> +			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +					  <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+
+Remove the duplicated space before LPASS_CLK_ATTRIBUTE_COUPLE_NO.
 
 
-Yes I wondered if there was a good way to avoid duplication. It looks
-like I cannot have 'maxItems' and 'items' at the top-level, but
-obviously I can set 'maxItems' appropriately for each device.
+> +			assigned-clock-rates = <19200000>, <19200000>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "wsa2-mclk";
+> +			#sound-dai-cells = <1>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&wsa2_swr_active>;
+> +		};
+> +
+> +		/* WSA2 */
+> +		swr4: soundwire-controller@31f0000 {
+> +			reg = <0 0x031f0000 0 0x2000>;
+> +			compatible = "qcom,soundwire-v1.7.0";
+> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&wsa2macro>;
+> +			clock-names = "iface";
+> +
+> +			qcom,din-ports = <2>;
+> +			qcom,dout-ports = <6>;
+> +
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x0f 0x0f>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x02 0x0c 0x06 0x12 0x0d 0x07 0x0a>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x00 0x1f 0xff 0x00 0x1f 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
 
-Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml: properties:reg: {'minItems': 4, 'maxItems': 5, 'items': [{'description': "controller's application logic registers"}, {'description': 'configuration registers'}, {'description': 'iATU and DMA registers. This is where the iATU (internal Address Translation Unit) registers of the PCIe core are made available for software access.'}, {'description': "aperture where the Root Port's own configuration registers are available."}, {'description': 'aperture to access the configuration space through ECAM.'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
+Please avoid mixing upper- and lowercase hex throughout the file.
 
-Thanks
-Jon
 
--- 
-nvpublic
+Konrad
+
+> +			qcom,ports-hstop =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xFF 0xFF 0x01 0xFF 0xFF 0x01 0xFF 0xFF>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		rxmacro: codec@3200000 {
+> +			compatible = "qcom,sm8450-lpass-rx-macro";
+> +			reg = <0 0x3200000 0 0x1000>;
+> +			clocks = <&q6prmcc LPASS_CLK_ID_RX_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&vamacro>;
+> +			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_RX_CORE_TX_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clock-rates = <19200000>, <19200000>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "mclk";
+> +			#sound-dai-cells = <1>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&rx_swr_active>;
+> +		};
+> +
+> +		swr1: soundwire-controller@3210000 {
+> +			reg = <0 0x3210000 0 0x2000>;
+> +			compatible = "qcom,soundwire-v1.7.0";
+> +			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&rxmacro>;
+> +			clock-names = "iface";
+> +			label = "RX";
+> +			qcom,din-ports = <0>;
+> +			qcom,dout-ports = <5>;
+> +
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x1F 0x1F 0x07 0x00>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0B 0x01 0x00>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0B 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xFF 0x03 0xFF 0xFF 0xFF>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xFF 0x06 0xFF 0xFF 0xFF>;
+> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xFF 0xFF>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xFF 0x00 0x01 0xFF 0xFF>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0x00>;
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		txmacro: codec@3220000 {
+> +			compatible = "qcom,sm8450-lpass-tx-macro";
+> +			reg = <0 0x3220000 0 0x1000>;
+> +			clocks = <&q6prmcc LPASS_CLK_ID_RX_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&vamacro>;
+> +			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_RX_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +					   <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clock-rates = <19200000>, <19200000>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "mclk";
+> +			#sound-dai-cells = <1>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&tx_swr_active>;
+> +		};
+> +
+> +		wsamacro: codec@3240000 {
+> +			compatible = "qcom,sm8450-lpass-wsa-macro";
+> +			reg = <0 0x03240000 0 0x1000>;
+> +			clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&vamacro>;
+> +			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> +
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +					  <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clock-rates = <19200000>, <19200000>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "mclk";
+> +			#sound-dai-cells = <1>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&wsa_swr_active>;
+> +		};
+> +
+> +		/* WSA */
+> +		swr0: soundwire-controller@3250000 {
+> +			reg = <0 0x03250000 0 0x2000>;
+> +			compatible = "qcom,soundwire-v1.7.0";
+> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&wsamacro>;
+> +			clock-names = "iface";
+> +
+> +			qcom,din-ports = <2>;
+> +			qcom,dout-ports = <6>;
+> +
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x07 0x1f 0x3f 0x07 0x1f 0x3f 0x0f 0x0f>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x02 0x0c 0x06 0x12 0x0d 0x07 0x0a>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0xff 0x00 0x1f 0xff 0x00 0x1f 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xFF 0xFF 0x01 0xFF 0xFF 0x01 0xFF 0xFF>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,port-offset = <1>;
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		swr2: soundwire-controller@33b0000 {
+> +			reg = <0 0x33b0000 0 0x2000>;
+> +			compatible = "qcom,soundwire-v1.7.0";
+> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "core", "wake";
+> +
+> +			clocks = <&vamacro>;
+> +			clock-names = "iface";
+> +			label = "TX";
+> +
+> +			qcom,din-ports = <4>;
+> +			qcom,dout-ports = <0>;
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x01 0x01>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xFF 0xFF 0xFF 0xFF>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x02 0x00 0x00>;
+> +			qcom,port-offset = <1>;
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		vamacro: codec@33f0000 {
+> +			compatible = "qcom,sm8450-lpass-va-macro";
+> +			reg = <0 0x033f0000 0 0x1000>;
+> +			clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			clock-names = "mclk", "macro", "dcodec", "npl";
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clock-rates = <19200000>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "fsgen";
+> +			#sound-dai-cells = <1>;
+> +		};
+> +
+>   		remoteproc_adsp: remoteproc@30000000 {
+>   			compatible = "qcom,sm8450-adsp-pas";
+>   			reg = <0 0x030000000 0 0x100>;
+> @@ -3030,6 +3237,91 @@ qup_uart20_default: qup-uart20-default-state {
+>   
+>   		};
+>   
+> +		lpass_tlmm: pinctrl@3440000{
+> +			compatible = "qcom,sm8450-lpass-lpi-pinctrl";
+> +			reg = <0 0x3440000 0x0 0x20000>,
+> +			      <0 0x34d0000 0x0 0x10000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&lpass_tlmm 0 0 23>;
+> +
+> +			clocks = <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			clock-names = "core", "audio";
+> +
+> +			wsa_swr_active: wsa-swr-active-state {
+> +				clk-pins {
+> +					pins = "gpio10";
+> +					function = "wsa_swr_clk";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-disable;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "gpio11";
+> +					function = "wsa_swr_data";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-bus-hold;
+> +				};
+> +			};
+> +
+> +			tx_swr_active: tx-swr-active-state {
+> +				clk-pins {
+> +					pins = "gpio0";
+> +					function = "swr_tx_clk";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-disable;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "gpio1", "gpio2", "gpio14";
+> +					function = "swr_tx_data";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-bus-hold;
+> +				};
+> +			};
+> +
+> +			rx_swr_active: rx-swr-active-state {
+> +				clk-pins {
+> +					pins = "gpio3";
+> +					function = "swr_rx_clk";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-disable;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "gpio4", "gpio5";
+> +					function = "swr_rx_data";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-bus-hold;
+> +				};
+> +			};
+> +
+> +			wsa2_swr_active: wsa2-swr-active-state {
+> +				clk-pins {
+> +					pins = "gpio15";
+> +					function = "wsa2_swr_clk";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-disable;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "gpio16";
+> +					function = "wsa2_swr_data";
+> +					drive-strength = <2>;
+> +					slew-rate = <1>;
+> +					bias-bus-hold;
+> +				};
+> +			};
+> +		};
+> +
+>   		apps_smmu: iommu@15000000 {
+>   			compatible = "qcom,sm8450-smmu-500", "arm,mmu-500";
+>   			reg = <0 0x15000000 0 0x100000>;
+> @@ -3507,6 +3799,9 @@ lpass_ag_noc: interconnect@3c40000 {
+>   		};
+>   	};
+>   
+> +	sound: sound {
+> +	};
+> +
+>   	thermal-zones {
+>   		aoss0-thermal {
+>   			polling-delay-passive = <0>;
