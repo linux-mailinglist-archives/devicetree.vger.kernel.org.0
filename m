@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7C9628302
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:43:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 396DC6282F4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:42:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237123AbiKNOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:43:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
+        id S235697AbiKNOmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:42:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236330AbiKNOmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:42:20 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7709F2AE1F;
-        Mon, 14 Nov 2022 06:42:17 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AEEdRJe030459;
-        Mon, 14 Nov 2022 14:41:04 GMT
+        with ESMTP id S236540AbiKNOlj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:41:39 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04D42B1AC;
+        Mon, 14 Nov 2022 06:41:37 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AEEK1X5001568;
+        Mon, 14 Nov 2022 14:41:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-type; s=qcppdkim1;
- bh=0FdiXwsLREqDCHXvvoxGUIuuTdH+FrZdRUA6gEdggzI=;
- b=fRHzVVW/MSMMW1HSaSlCDtzCIvtPLpW74h7L+vLJT4502gmoPa3A6bcz0/cvAr3xi4oa
- H2jtdSek/j/g3qHDSfzoJ2z1rzFg5NvDrDPx00YPv3DB2SBP7vvEmobgZW+StJ8HtCVT
- LBTDQ2BDhOnuKLAAKUhRcUedC1yVU30OCs4wG7A6OCDD/phL9KPwJ6KG2zp+Il0VpGlw
- +Ea8rna9+6O1Vl+i+oZNZVX91fWlgVe+/PJjI80niCndgDUjIwHHNdhYgxV46vRrjh2V
- Gm68/iP3dmk6dgcviRXfcSry+zinOM0lKv2gGclb50qltW3tnW4+cGxUs6G36eLqkMSv Zw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kufrcryph-1
+ bh=gHjNE0xcZgxtjK2/MLqyX9Dwm7rH9KWd+5MGtNGc6bE=;
+ b=O3Gsro3rWGQQN/TnWFu7P67J3Em31IJStpwcCSfCzTSpUtJtty1zyWWgtIWkf7ty8IUB
+ W0egjmCbY47DD5itAaOAn6NQnHty99kVx3K9IpmNPsBJCfGVDTYZ/qqRCvju6nBqSWU4
+ s4YE6N0TQtNKHjOp8FcqIwkXelrrQhUCqq9b7f08RmslM4Gcc6R4+YueXFuTLE2YpOUz
+ k5rE2CpwSbe8I5hEchkpX3dzbJehEHOcpsq0Lh531os04ih8gzv22Dzr9BbfZr5bIz+Y
+ vcCGrIgvy2Cc2NAemMlNnIM2cvNDc+D4YShs62LBmxdgU8dqIWSHwqCh5TnOZPAgfwfl qQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kufk21a9w-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Nov 2022 14:41:04 +0000
+        Mon, 14 Nov 2022 14:41:21 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AEEf3SP009664
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AEEfLnV012923
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Nov 2022 14:41:03 GMT
+        Mon, 14 Nov 2022 14:41:21 GMT
 Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 14 Nov 2022 06:40:58 -0800
+ 15.2.986.29; Mon, 14 Nov 2022 06:41:16 -0800
 From:   Mao Jinlong <quic_jinlmao@quicinc.com>
 To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
         Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -59,9 +59,9 @@ CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
         Hao Zhang <quic_hazha@quicinc.com>,
         <linux-arm-msm@vger.kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH v15 3/8] dt-bindings: arm: Adds CoreSight TPDM hardware
-Date:   Mon, 14 Nov 2022 22:40:22 +0800
-Message-ID: <20221114144027.14365-4-quic_jinlmao@quicinc.com>
+Subject: [PATCH v15 7/8] dt-bindings: arm: Adds CoreSight TPDA hardware definitions
+Date:   Mon, 14 Nov 2022 22:40:26 +0800
+Message-ID: <20221114144027.14365-8-quic_jinlmao@quicinc.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20221114144027.14365-1-quic_jinlmao@quicinc.com>
 References: <20221114144027.14365-1-quic_jinlmao@quicinc.com>
@@ -72,16 +72,16 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g1IjopE_-pLlJUYArWFswZKJ1-8ftin1
-X-Proofpoint-GUID: g1IjopE_-pLlJUYArWFswZKJ1-8ftin1
+X-Proofpoint-ORIG-GUID: WCm00r6I4lckLSrarSBS0DyZ5YCBU7Q3
+X-Proofpoint-GUID: WCm00r6I4lckLSrarSBS0DyZ5YCBU7Q3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-11-14_12,2022-11-11_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- spamscore=0 suspectscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 adultscore=1 impostorscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211140104
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ suspectscore=0 bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211140104
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -91,45 +91,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds new coresight-tpdm.yaml file describing the bindings required
-to define tpdm in the device trees.
+Adds new coresight-tpda.yaml file describing the bindings required
+to define tpda in the device trees.
 
 Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
 Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
 Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 ---
- .../bindings/arm/qcom,coresight-tpdm.yaml     | 93 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+ .../bindings/arm/qcom,coresight-tpda.yaml     | 129 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 2 files changed, 130 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
 new file mode 100644
-index 000000000000..5881cb41da70
+index 000000000000..c46ddeaf0ced
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-@@ -0,0 +1,93 @@
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+@@ -0,0 +1,129 @@
 +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 +# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/qcom,coresight-tpdm.yaml#
++$id: http://devicetree.org/schemas/arm/qcom,coresight-tpda.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Trace, Profiling and Diagnostics Monitor - TPDM
++title: Trace, Profiling and Diagnostics Aggregator - TPDA
 +
 +description: |
-+  The TPDM or Monitor serves as data collection component for various dataset
-+  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
-+  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
-+  Single Bit (DSB). It performs data collection in the data producing clock
-+  domain and transfers it to the data collection time domain, generally ATB
-+  clock domain.
++  TPDAs are responsible for packetization and timestamping of data sets
++  utilizing the MIPI STPv2 packet protocol. Pulling data sets from one or
++  more attached TPDM and pushing the resultant (packetized) data out a
++  master ATB interface. Performing an arbitrated ATB interleaving (funneling)
++  task for free-flowing data from TPDM (i.e. CMB and DSB data set flows).
 +
-+  The primary use case of the TPDM is to collect data from different data
-+  sources and send it to a TPDA for packetization, timestamping, and funneling.
++  There is no strict binding between TPDM and TPDA. TPDA can have multiple
++  TPDMs connect to it. But There must be only one TPDA in the path from the
++  TPDM source to TMC sink. TPDM can directly connect to TPDA's inport or
++  connect to funnel which will connect to TPDA's inport.
++
++  We can use the commands are similar to the below to validate TPDMs.
++  Enable coresight sink first.
++
++  echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
++  echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
++  echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
++  echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
++
++  The test data will be collected in the coresight sink which is enabled.
++  If rwp register of the sink is keeping updating when do integration_test
++  (by cat tmc_etf0/mgmt/rwp), it means there is data generated from TPDM
++  to sink.
 +
 +maintainers:
 +  - Mao Jinlong <quic_jinlmao@quicinc.com>
@@ -141,16 +155,16 @@ index 000000000000..5881cb41da70
 +    compatible:
 +      contains:
 +        enum:
-+          - qcom,coresight-tpdm
++          - qcom,coresight-tpda
 +  required:
 +    - compatible
 +
 +properties:
 +  $nodename:
-+    pattern: "^tpdm(@[0-9a-f]+)$"
++    pattern: "^tpda(@[0-9a-f]+)$"
 +  compatible:
 +    items:
-+      - const: qcom,coresight-tpdm
++      - const: qcom,coresight-tpda
 +      - const: arm,primecell
 +
 +  reg:
@@ -164,15 +178,22 @@ index 000000000000..5881cb41da70
 +    items:
 +      - const: apb_pclk
 +
-+  out-ports:
++  in-ports:
++    type: object
 +    description: |
-+      Output connections from the TPDM to coresight funnel/TPDA.
++      Input connections from TPDM to TPDA
++    $ref: /schemas/graph.yaml#/properties/ports
++
++  out-ports:
++    type: object
++    description: |
++      Output connections from the TPDA to legacy CoreSight trace bus.
 +    $ref: /schemas/graph.yaml#/properties/ports
 +
 +    properties:
 +      port:
-+        description: Output connection from the TPDM to coresight
-+            funnel/TPDA.
++        description:
++          Output connection from the TPDA to legacy CoreSight Trace bus.
 +        $ref: /schemas/graph.yaml#/properties/port
 +
 +required:
@@ -180,39 +201,55 @@ index 000000000000..5881cb41da70
 +  - reg
 +  - clocks
 +  - clock-names
++  - in-ports
++  - out-ports
 +
 +additionalProperties: false
 +
 +examples:
-+  # minimum TPDM definition. TPDM connect to coresight TPDA.
++  # minimum tpda definition.
 +  - |
-+    tpdm@684c000 {
-+      compatible = "qcom,coresight-tpdm", "arm,primecell";
-+      reg = <0x0684c000 0x1000>;
++    tpda@6004000 {
++       compatible = "qcom,coresight-tpda", "arm,primecell";
++       reg = <0x6004000 0x1000>;
 +
-+      clocks = <&aoss_qmp>;
-+      clock-names = "apb_pclk";
++       clocks = <&aoss_qmp>;
++       clock-names = "apb_pclk";
 +
-+      out-ports {
-+        port {
-+          tpdm_prng_out_tpda_qdss: endpoint {
++       in-ports {
++         #address-cells = <1>;
++         #size-cells = <0>;
++
++        port@0 {
++          reg = <0>;
++          tpda_qdss_0_in_tpdm_dcc: endpoint {
 +            remote-endpoint =
-+              <&tpda_qdss_in_tpdm_prng>;
-+          };
++              <&tpdm_dcc_out_tpda_qdss_0>;
++            };
 +        };
 +      };
++
++       out-ports {
++         port {
++                 tpda_qdss_out_funnel_in0: endpoint {
++                    remote-endpoint =
++                    <&funnel_in0_in_tpda_qdss>;
++                  };
++          };
++       };
 +    };
 +
 +...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 256f03904987..1cf03790485c 100644
+index 1cf03790485c..b7721e9388a1 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -2060,6 +2060,7 @@ S:	Maintained
+@@ -2060,7 +2060,7 @@ S:	Maintained
  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git
  F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
  F:	Documentation/devicetree/bindings/arm/arm,coresight-*.yaml
-+F:	Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+-F:	Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
++F:	Documentation/devicetree/bindings/arm/qcom,coresight-*.yaml
  F:	Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
  F:	Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
  F:	Documentation/trace/coresight/*
