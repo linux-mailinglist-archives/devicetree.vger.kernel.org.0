@@ -2,96 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E566279C7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:59:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F11F66279D2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237071AbiKNJ7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:59:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59284 "EHLO
+        id S237098AbiKNJ7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:59:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236983AbiKNJ6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:58:34 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B64BBC95
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:57:10 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id g12so18428658lfh.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:57:10 -0800 (PST)
+        with ESMTP id S237027AbiKNJ6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:58:40 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 597721FCED
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:57:15 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id u11so12406068ljk.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:57:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rZgFCCwj8wB11LmKlfLDfrqCHhlE8OVqSoDXgx3BC38=;
-        b=SQte+uuFjh+iCDGFXt+4viMdPtvMlDBe751UjK82Hzad2N5dN/acH0h+kbwHOj6/vH
-         rOg1g+aV4EmzytsJB6tkj4lu1fcQaQcbJ9LoHD7h4ercvmGf6B5gBzOQYwaH3+oOsYf4
-         05yfW3/ZTQO01bfnVNvVnLEVdeEjkp1/ccP+rGO3QhhhzkcWu8L9hAPWnrSX66jVdhwh
-         cKYrdEjjxNryTrRbsIrLqI4fsREr2tp64HJHXTLeyHGb8Dfiua0ctbA0O9eNkcs0Him2
-         6gMDblMH/froZ/qvda6i9OU6GNAYwahhDh2btItHzOLfCKZ7aE5lni+t6FbWAGpknald
-         XNrg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MLJtGqbbAuvt7hlzediwejrBOt3AE1EPLmO7ITdmCW0=;
+        b=VwezdBBBBhMUCoZtkjAXloTyM2ZV+O+pBIbLLMCGBn3L7cK7zzR7XwviANcdIpQhHg
+         rKWoexfpEICTZ8UoRj2j972pt1WzvsP0AN+JnyHPo82y2v5YJ0fKRYTKtA6MIH5PuI3K
+         IZq+FumssAVx2Iu7dIkllSMZGlYPxTMN++24I+lY8ghsozFUswBbhm3oTt2J+aMn9XGn
+         ++skQDS1I4NB3Hzyv0RwfaeyyPmTnpu1mo+iSdQPIKY2Ts7ipKnwRT2iFWDbyGOZnQuL
+         sX2dqYWvFKEfikzpnv/WkDCkCTkDvTOWQVYa61sWrCbZOkDJoX2D0USbQ4sQ+hTiF8Og
+         y3sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rZgFCCwj8wB11LmKlfLDfrqCHhlE8OVqSoDXgx3BC38=;
-        b=6fPYXorO0BEHL9UDt/GIP8jCYukcxNU7H9cYHu2LBZW0H3cVQwmsm4x6NJyXikoQTq
-         h3Ajygz6ivYaO45qz9VK96TEw+BHOcGktbB8JQbBTYK1ejfivCJ4/NglDnz0aovEFV5B
-         Uwq0rem4VAXsKjvj9n0DmpCNnU/kyeXHBvvDYzdTlbuVfZ4T6h7x7u9oERDdzMOAKQDk
-         9tGMsOjfvSDe2Cn6kTZDQ8fZmOrpOnouDKPo1dgOUI6E1NP+daxmxIjiXW4ocxlG0MFf
-         EFdcnnekqcLT1P8javjyydEa7UpB8Ps1VV2B/V98mNK2/5nYK1u0TWlDCUvhby1w3XVB
-         xWJg==
-X-Gm-Message-State: ANoB5pk1RtIt0RnFiF/zpRizVTXBYBH01y0akV7pYo93hPIBpn3d+UXS
-        b2b+90yQnEIByR4R7DF7/aBqAA==
-X-Google-Smtp-Source: AA0mqf6bxOqmmy6/RlNRckHSCmsMrReMHSiLWyHiZXClP4QJOy1BdNeCHp29S90ZVMf4Bccsu+ak7w==
-X-Received: by 2002:ac2:5f50:0:b0:4a2:4eba:3de0 with SMTP id 16-20020ac25f50000000b004a24eba3de0mr4463812lfz.633.1668419814975;
-        Mon, 14 Nov 2022 01:56:54 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i20-20020a198c54000000b004aa14caf6e9sm1762331lfj.58.2022.11.14.01.56.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:56:54 -0800 (PST)
-Message-ID: <d9034e77-c127-b81e-e6c0-2478c861cedf@linaro.org>
-Date:   Mon, 14 Nov 2022 10:56:53 +0100
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MLJtGqbbAuvt7hlzediwejrBOt3AE1EPLmO7ITdmCW0=;
+        b=C7SvpKESAPmg/Mk91eMw1NxFXPpS3jAQ8y/Ejcpqe4N0uO7AGNyGwL3XYIVgf9Zn59
+         0cVSetq6RByIZ0xcDblVxenHl9GsAhVx/uKik5vIzrq5l0Ffg/DnK+HGFLelS6Z7YtA3
+         Uz5Mo+tK3VSJKhj6F3cq4SavKA4zf7fgr74yKlDzw5s2/A1xnsVJdRGbHCdBiwdcyAKX
+         ErYlANAIeqH+2mmB6CW/Y64BXNgIugw+MX1WOPwO42dSrFzUF8HWRATwlm41FDpF+qAP
+         b1FFQET7IY2OBntlGNePgZrzVgd37dieeqyaMr5eLnC6aDPNSfV+j1s3hbqeF6kgCwzu
+         mAcQ==
+X-Gm-Message-State: ANoB5pk3397ouWjL0Qp4PCB89umfu1HnJChqfib7yuPlIG56Q4uLywf/
+        rY0dOvtKEBNBo0fi9A8Hx3+R8w==
+X-Google-Smtp-Source: AA0mqf5SqUNrdMbnYxgvsQNWerF5Az4A0cIwG0rn2W6UM9NvXMLW1ijKLtdIqTQT6DF+mAFU4FMDYg==
+X-Received: by 2002:a05:651c:1988:b0:278:f1a5:a365 with SMTP id bx8-20020a05651c198800b00278f1a5a365mr2623603ljb.29.1668419827443;
+        Mon, 14 Nov 2022 01:57:07 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id p12-20020a2eb98c000000b00278e7800715sm1832012ljp.16.2022.11.14.01.57.06
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 14 Nov 2022 01:57:07 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8450-nagara: Add Samsung touchscreen
+Date:   Mon, 14 Nov 2022 10:56:54 +0100
+Message-Id: <20221114095654.34561-4-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+In-Reply-To: <20221114095654.34561-1-konrad.dybcio@linaro.org>
+References: <20221114095654.34561-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next 4/5] dt-bindings: net: qcom,ipa: support skipping
- GSI firmware load
-Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221112200717.1533622-1-elder@linaro.org>
- <20221112200717.1533622-5-elder@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221112200717.1533622-5-elder@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2022 21:07, Alex Elder wrote:
-> Add a new enumerated value to those defined for the qcom,gsi-loader
-> property.  If the qcom,gsi-loader is "skip", the GSI firmware will
-> already be loaded, so neither the AP nor modem is required to load
-> GSI firmware.
-> 
-> Signed-off-by: Alex Elder <elder@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 4 +++-
+Add device node and required pinctrl settings (as well as a fixup for
+an existing one, whoops!) to support the Samsung Electronics
+touchscreen on Nagara devices.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+No changes since v1
 
-Best regards,
-Krzysztof
+ .../dts/qcom/sm8450-sony-xperia-nagara.dtsi   | 27 +++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+index 0d8d1519a23b..38256226d229 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+@@ -435,7 +435,22 @@ &gpi_dma2 {
+ 	status = "okay";
+ };
+ 
+-/* I2C4 is used, it hosts a Samsung touchscreen, but GPI DMA is broken.. */
++&i2c4 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	touchscreen@48 {
++		compatible = "samsung,s6sy761";
++		reg = <0x48>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <21 0x2008>;
++		vdd-supply = <&pm8350c_l2>;
++		avdd-supply = <&pm8350c_l3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_reset_default &ts_int_default>;
++	};
++};
+ 
+ &i2c5 {
+ 	clock-frequency = <400000>;
+@@ -566,8 +581,16 @@ &spi10 {
+ &tlmm {
+ 	gpio-reserved-ranges = <28 4>;
+ 
++	ts_reset_default: ts-reset-default-state {
++		pins = "gpio20";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
+ 	ts_int_default: ts-int-default-state {
+-		pins = "gpio23";
++		pins = "gpio21";
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-disable;
+-- 
+2.38.1
 
