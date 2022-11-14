@@ -2,96 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5EA86281D9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9006281F8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:07:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236546AbiKNOC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:02:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46658 "EHLO
+        id S236833AbiKNOH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:07:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235636AbiKNOC2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:02:28 -0500
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FA9527B36;
-        Mon, 14 Nov 2022 06:02:26 -0800 (PST)
-Received: by mail-qt1-f177.google.com with SMTP id c15so6759329qtw.8;
-        Mon, 14 Nov 2022 06:02:26 -0800 (PST)
+        with ESMTP id S236617AbiKNOHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:07:47 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3322B277
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:07:45 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id x21so13304301ljg.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:07:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6ccwwIW79Q1wp+RCdp9ccn6uwmegByz56nlURvMAyHY=;
+        b=SpFp1v9ZAJjhp6EB36WNfg60TtbpBMj1tGYf5Trjvq7kSClFo+db38EYFIgBD2Jq05
+         D4P9Qh7q4B8WRTZ/e3E4AJKz6VGjEZxwD8WkwLqeGLxD2LjCQ40glrzrejMQK5h38AD2
+         7Sy1JUB/6EUHFoOcol9NfTZPJlBENQAlJH81oj7qIynD9iKfC3ErObZ+rQLYhXr/QiXE
+         8gyEAD5Z/s2latNJxLt/nvqIs64H2da9UdD71RqV1XdMt7cPzBwM+FdxACq0bGE75TNs
+         L/fmK7AeZXlhEHFNtNi2CXgXgeR+JT2dS4T4gR4Zhf0t+zOMdXbXaTfigipM84GYobcj
+         ne9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vdYjgMgXn6UMjwDeO+ZS8VMHPTpueegMscT499nSXN4=;
-        b=3IYzaInsr2qwQIwXw5X9IrpABBdyZAORkCRMP7F03uOzpMSG1LIRVtDs55cKC18mZr
-         /+vqbXa5Vis6j4ECEjoYV9DiekPeY7GlTEa1ayoScQV6TzgNxXPdNCG8BcZY8gYAzYN+
-         Rc+wcIBEqP6H/TXt/aJbANkTQ1K1WixdSR1/cltgW3QLe/4HULnMoaKPAuhcOeat5166
-         IP38qCGsEptEyiceyeALPxhnBnfTEhUPvM3ehhiqJe6kWBOCduWc67yvqDCYycoiuVCm
-         p0lUvfiYRN0W86lL/NvNBi2DxHS606qCjkEbLHLQUY0eRUlY9E2TWPkLZJgub5scCpYg
-         ikhw==
-X-Gm-Message-State: ANoB5pmxWXkeTpXKH8f3TayaoZSmDxr+7eFPbp1yJLGA88WqOSyFEuJO
-        2xUgyM99qZJzRkHRqWM+qrpzOkWhy7uqow==
-X-Google-Smtp-Source: AA0mqf6FNDmrZp3pR9/XxDfPRLrBd3E0AW5irg3fUTxUTbN40Ki+HVBkJBs1JktQFQ+AJXV1R4N4mA==
-X-Received: by 2002:ac8:7dc1:0:b0:3a5:211f:1f2c with SMTP id c1-20020ac87dc1000000b003a5211f1f2cmr12554206qte.241.1668434545332;
-        Mon, 14 Nov 2022 06:02:25 -0800 (PST)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id bk8-20020a05620a1a0800b006f9f3c0c63csm6511083qkb.32.2022.11.14.06.02.23
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ccwwIW79Q1wp+RCdp9ccn6uwmegByz56nlURvMAyHY=;
+        b=pQdoY+davXR2Sr95KkYZoil4WhNBCuHL8gbZow/IlJM+70bOP7m5HiVOpy0gLuuoH3
+         O8Si5tHgy2ypug7BDOBirlTeOiOdyse3ZlbxetBR3vKkRecmIlIXOJplFkh/aRK3LMeF
+         NAN/lajjL2ADhzupBgmzaeN+vT5qKxYOyyGz9SA2wj/3a8oqRwQKpdI7j8KGGD/k55MR
+         RTxVp+EjPvL1x/p2MUMc2FBHiDd4TiF8kfl/HbC47NHrGegCt141TNYtRacqgWb/VVqI
+         UadxA90hM24VvegcpTsZRscKzsCyM6QfHGaN3m1Xtss+yeZxLAuV9jZcOqeF2jCOA7LN
+         OmQA==
+X-Gm-Message-State: ANoB5pkB9ZC5vI1nCk0a9mikkS7jnT2bdw9MwIuzKGz7yjRM5oQo/7FK
+        G1bjtNLaQ1XcAHd6xFVu8/SYfg==
+X-Google-Smtp-Source: AA0mqf7LC1QOnDuEDlFCopCuZ50Oj0F1+LypAIKaZQov5Bfx4JKEL735MyUsWqrx6y2vkADZoL4cLg==
+X-Received: by 2002:a2e:3216:0:b0:277:295:982e with SMTP id y22-20020a2e3216000000b002770295982emr3888991ljy.11.1668434863376;
+        Mon, 14 Nov 2022 06:07:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r22-20020ac24d16000000b0049944ab6895sm1830010lfi.260.2022.11.14.06.07.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 06:02:24 -0800 (PST)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-381662c78a9so26019027b3.7;
-        Mon, 14 Nov 2022 06:02:23 -0800 (PST)
-X-Received: by 2002:a81:4ed2:0:b0:370:202b:f085 with SMTP id
- c201-20020a814ed2000000b00370202bf085mr12749930ywb.502.1668434543693; Mon, 14
- Nov 2022 06:02:23 -0800 (PST)
+        Mon, 14 Nov 2022 06:07:42 -0800 (PST)
+Message-ID: <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
+Date:   Mon, 14 Nov 2022 15:07:41 +0100
 MIME-Version: 1.0
-References: <20221103223956.50575-1-fabrizio.castro.jz@renesas.com> <20221103223956.50575-4-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20221103223956.50575-4-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Nov 2022 15:02:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWsiWsH_YwmZj6O+z08oxouNGbEp-h9fmS=gLNn=vZh3w@mail.gmail.com>
-Message-ID: <CAMuHMdWsiWsH_YwmZj6O+z08oxouNGbEp-h9fmS=gLNn=vZh3w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: v2mevk2: Enable watchdog
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
+ bindings
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111092457.10546-1-johan+linaro@kernel.org>
+ <20221111092457.10546-3-johan+linaro@kernel.org>
+ <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
+ <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 3, 2022 at 11:47 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> Enable the watchdog so that we can reboot the system.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+On 14/11/2022 14:27, Johan Hovold wrote:
+> On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
+>> On 11/11/2022 10:24, Johan Hovold wrote:
+>>> The current QMP USB3-DP PHY bindings are based on the original MSM8996
+>>> binding which provided multiple PHYs per IP block and these in turn were
+>>> described by child nodes.
+>>>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Vinod Koul <vkoul@kernel.org>
+>>
+>> Maybe you want to add also yourself?
+> 
+> Due to the lack of public documentation for these platforms and the
+> amount of work involved in effectively reverse-engineering the
+> corresponding details from random vendor-kernel trees, it's probably
+> best to leave maintainence with Vinod who at least has access to some
+> documentation.
+> 
+>>> +
+>>> +description:
+>>> +  The QMP PHY controller supports physical layer functionality for a number of
+>>> +  controllers on Qualcomm chipsets, such as, PCIe, UFS and USB.
+>>> +
+>>> +  See also:
+>>> +    - include/dt-bindings/dt-bindings/phy/phy.h
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,sc8280xp-qmp-usb43dp-phy
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 4
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: aux
+>>> +      - const: ref
+>>> +      - const: com_aux
+>>> +      - const: usb3_pipe
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>> +  resets:
+>>> +    maxItems: 2
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: phy
+>>> +      - const: common
+>>> +
+>>> +  vdda-phy-supply: true
+>>> +
+>>> +  vdda-pll-supply: true
+>>> +
+>>> +  "#clock-cells":
+>>> +    const: 1
+>>> +
+>>> +  clock-output-names:
+>>> +    items:
+>>> +      - const: usb3_pipe
+>>> +      - const: dp_link
+>>> +      - const: dp_vco_div
+>>
+>> Why defining here fixed names? The purpose of this field is to actually
+>> allow customizing these - at least in most cases. If these have to be
+>> fixed, then driver should just instantiate these clocks with such names,
+>> right?
+> 
+> I'm only using these names as documentation of the indexes. The driver
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.2.
+What do you mean by documentation of indexes? You require these specific
+entries and do not allow anything else.
 
-Gr{oetje,eeting}s,
+> doesn't use these names, but that's a Linux-specific implementation
+> detail.
+> 
+> I noticed that several bindings leave the clock indexes unspecified, or
+> have header files defining some or all of them. I first added a QMP
+> header but that seemed like overkill, especially if we'd end up with
+> one header per SoC (cf. the GCC headers) due to (known and potential)
+> platform differences.
 
-                        Geert
+Headers for the names? I do not recall such but that does not seem right.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> On the other hand reproducing this list in each node is admittedly a bit
+> redundant.
+> 
+> Shall I add back a shared header for all PHYs handled by this driver
+> (another implementation detail) even if this could eventually lead to
+> describing clocks not supported by a particular SoC (so such constraints
+> would still need to be described by the binding somehow):
+> 
+> 	/* QMP clocks */
+> 	#define QMP_USB3_PIPE_CLK	0
+> 	#define QMP_DP_LINK_CLK		1
+> 	#define QMP_DP_VCO_DIV_CLK	2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+What are these about? To remind - we talk about names of clocks this
+device creates. The output names. Whatever IDs you have are not related
+to the names.
+
+
+Best regards,
+Krzysztof
+
