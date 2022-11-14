@@ -2,66 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F4E628587
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:37:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF6A628585
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:37:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237534AbiKNQhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 11:37:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
+        id S237628AbiKNQhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 11:37:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238226AbiKNQhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:37:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 782882FFEA;
-        Mon, 14 Nov 2022 08:32:59 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 72034B8107E;
-        Mon, 14 Nov 2022 16:32:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12299C433D6;
-        Mon, 14 Nov 2022 16:32:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668443557;
-        bh=FeL8hcVZ96Ig1ibWMn9cO+EXY2FFjExd+//b5d1iIc8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jMYOPnLTplQBPVAHaO2nCtUSFDjwM/toHZ762LZLbRkMcs2XWfc5LjuAIIwLquvdK
-         1c2NNmpsthyGAq96yNSAS3PSg78vMdErfUQwHUhjXMX1PQG8xWD6MU+Pr8Ty6aYCXl
-         UthNmMyLVTOMN23c1IiAMvLR+8EUT1rDuWajW1NFGlQplQSS+Lksp5DWKoFcdGibX7
-         rSRvWrovNZ07+CUmYQ6hDShK1Wu7SVxpvFfZB3go24OC/whaqmhjIBrXU8WJ7UAyNE
-         Czm/91mSOG0RiLPyNkaLQrpYVufYhd+C0V3juJmxI+pCE8D0dgrL34ZP5fG1NbrS17
-         0CYvPRdQ1HiTw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oucNQ-00051w-BM; Mon, 14 Nov 2022 17:32:05 +0100
-Date:   Mon, 14 Nov 2022 17:32:04 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S237967AbiKNQhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:37:01 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E52E51C07
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:32:36 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id s8so3035633lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:32:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7vnhu6yNrqNrpqctulCCvpFfm97Ns9ccrXidxr6uN3A=;
+        b=I4LJD45fhaHsRV6ElCpOeJwFnTEywE2nZ6tqO7xyUstPAsVvSBiTwMhE2EZX4nKUj+
+         SrcPQofwNVlsRf00139u4pIr8fEI1USIhwdtoshHJE9qATpdzmMyjeHHSu57Dy2QM+GV
+         C0nxU7xWKqBrK1RZZ8UWisX2pDpZ1rlzQG/nFN74VjBMAvAKZJnsn3IrR9/NqpV12Qnw
+         9afLyrWn080mISfp4KSEAca6T3SpD2vqAOunzkSuJ3mdTyAkLYdW8EAaXjWv2S4mg7YR
+         3d+QlX0dPgUvkgYTtyWo0U4qIqTLUCHbmK1m3iBOgnYVhAa0082zZtEg4xDBFSw6iqaL
+         Al/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7vnhu6yNrqNrpqctulCCvpFfm97Ns9ccrXidxr6uN3A=;
+        b=NvYHP0AjhRvBx/V6zlV29ahYKtcqm0QGnIQ9Q1GXB3fAnSJsCByHO4Xi0Wk1I5TC7a
+         28FCwQbNKrBFWfMhjvb/nEZI1ZXTJ43p4snsjAoAk53PiglZYReqTLNISOsdryuEJarF
+         bS+k0QbyyISr5Cs5yZLaAxFZwXYbeqR9BrxXJ4WBOgnp2HFPZ6/JJffPwJmlF8A+MqxE
+         mVoQ/hNqruRKjyrLSAfJkX0Z6Qm2iEgzHAjt+13Eu92vhgXNz+YG4X4Ztz+KdVq3tviR
+         hJxB3NaWzXa1hZo8dWy5wBIwTEVzdRDPQKUT2uSQy8OgASj3MLFKLT6vrVbGo1gSbJC+
+         +1Aw==
+X-Gm-Message-State: ANoB5pmk65wGpGdsJcj4RfrVUSw9+jDvmuyY3UojPkbFs15d3ouvCwN7
+        7/yTeIqtHNueveuv1WYyN26VRQ==
+X-Google-Smtp-Source: AA0mqf4ISD+xs2P4fe0Q2q0sA4FfHPePO5IFq43TA32UB5FdpZiXEDsqMW46T/Rfjw/WKF6bFtmVRw==
+X-Received: by 2002:a05:6512:2345:b0:4ae:d4db:9f89 with SMTP id p5-20020a056512234500b004aed4db9f89mr4201387lfu.174.1668443547223;
+        Mon, 14 Nov 2022 08:32:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bq38-20020a056512152600b0048b1b2233ddsm1877979lfb.120.2022.11.14.08.32.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 08:32:26 -0800 (PST)
+Message-ID: <839d9740-e814-897e-d484-ded3d531a97a@linaro.org>
+Date:   Mon, 14 Nov 2022 17:32:25 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y3JthM1jC2vH1Kn+@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
- <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
- <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
- <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
- <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
- <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20221110162126.103437-1-biju.das.jz@bp.renesas.com>
+ <20221110162126.103437-2-biju.das.jz@bp.renesas.com>
+ <ae35fd75-64d3-3ab9-8cc0-3cbcc9c34b78@linaro.org>
+ <OS0PR01MB59229179DE3D3D00C4963F3186009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <a7bbfdd1-1abd-2ee5-1d32-47d0bcb7e1f2@linaro.org>
+ <OS0PR01MB5922863B8EC8DF54D8E881FE86009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB5922C8A590502C8820B05A7186059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB5922C8A590502C8820B05A7186059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,57 +88,152 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 04:49:37PM +0100, Krzysztof Kozlowski wrote:
-> On 14/11/2022 15:18, Johan Hovold wrote:
-> > On Mon, Nov 14, 2022 at 03:07:41PM +0100, Krzysztof Kozlowski wrote:
-> >> On 14/11/2022 14:27, Johan Hovold wrote:
-> >>> On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 11/11/2022 10:24, Johan Hovold wrote:
-> >>>>> The current QMP USB3-DP PHY bindings are based on the original MSM8996
-> >>>>> binding which provided multiple PHYs per IP block and these in turn were
-> >>>>> described by child nodes.
-> > 
-> >>>>> +  "#clock-cells":
-> >>>>> +    const: 1
-> >>>>> +
-> >>>>> +  clock-output-names:
-> >>>>> +    items:
-> >>>>> +      - const: usb3_pipe
-> >>>>> +      - const: dp_link
-> >>>>> +      - const: dp_vco_div
-> >>>>
-> >>>> Why defining here fixed names? The purpose of this field is to actually
-> >>>> allow customizing these - at least in most cases. If these have to be
-> >>>> fixed, then driver should just instantiate these clocks with such names,
-> >>>> right?
-> >>>
-> >>> I'm only using these names as documentation of the indexes. The driver
-> >>
-> >> What do you mean by documentation of indexes? You require these specific
-> >> entries and do not allow anything else.
-> > 
-> > I'm using this property as documentation of the valid indexes that can
-> > be used when referring to clocks provided by this device.
-> > 
-> > There are currently three and the mapping is described by the
-> > 'clock-output-names' property.
+On 14/11/2022 17:18, Biju Das wrote:
+> Hi All,
 > 
-> That's not the purpose of this property. Drop it then. The names do not
-> define the ABI and do not document it, actually. You require now that
-> every DTB, if providing clock-output-names, will have exactly such names
-> instead of having fixed IDs. DTBs are not for defining the ABI.
+>> -----Original Message-----
+>> From: Biju Das
+>> Sent: 11 November 2022 11:17
+>  >
+>>> On 11/11/2022 10:06, Biju Das wrote:
+>>>> Hi Krzysztof Kozlowski,
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Sent: 11 November 2022 08:34
+>>>>> To: Biju Das <biju.das.jz@bp.renesas.com>; Rob Herring
+>>>>> <robh+dt@kernel.org>; Krzysztof Kozlowski
+>>>>> <krzysztof.kozlowski+dt@linaro.org>
+>>>>> Cc: Phil Edworthy <phil.edworthy@renesas.com>; Geert Uytterhoeven
+>>>>> <geert+renesas@glider.be>; Magnus Damm <magnus.damm@gmail.com>;
+>>>>> linux- renesas-soc@vger.kernel.org; devicetree@vger.kernel.org;
+>>>>> Chris Paterson <Chris.Paterson2@renesas.com>; Fabrizio Castro
+>>>>> <fabrizio.castro.jz@renesas.com>
+>>>>> Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document
+>>>>> Renesas RZ/V2M System Configuration
+>>>>>
+>>>>> On 10/11/2022 17:21, Biju Das wrote:
+>>>>>> From: Phil Edworthy <phil.edworthy@renesas.com>
+>>>>>>
+>>>>>> Add DT binding documentation for System Configuration (SYS) found
+>>>>>> on RZ/V2M SoC's.
+>>>>>>
+>>>>>> SYS block contains the SYS_VERSION register which can be used to
+>>>>>> retrieve SoC version information.
+>>>>>>
+>>>>>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+>>>>>> [biju: Updated the example ]
+>>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>>> ---
+>>>>>> v1->v2:
+>>>>>>  * Moved the file from arm->soc/renesas
+>>>>>>  * Updated the path for binding file
+>>>>>>  * Updated the example
+>>>>>> ---
+>>>>>>  .../soc/renesas/renesas,rzv2m-sys.yaml        | 39 +++++++++++++++++++
+>>>>>>  1 file changed, 39 insertions(+)
+>>>>>>  create mode 100644
+>>>>>> Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.ya
+>>>>>> ml
+>>>>>>
+>>>>>> diff --git
+>>>>>> a/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.
+>>>>>> ya
+>>>>>> ml
+>>>>>> b/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.
+>>>>>> ya
+>>>>>> ml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..cc41747798e2
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-sys.
+>>>>>> +++ yaml
+>>>>>
+>>>>> Filename should be based on the compatible. Pretty often some
+>>>>> common parts of both are fine (e.g. when file contains multiple
+>>>>> compatibles), but this very different then what I see below.
+>>>>
+>>>> We plan to upstream another similar SoC, RZ/V2MA which has similar
+>>>> IP, so we may need to add generic compatible rzv2m-sys. I am
+>>>> checking with HW people to get more info about RZ/V2MA.
+>>>>
+>>>>>
+>>>>>> @@ -0,0 +1,39 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
+>>>>>> +1.2
+>>>>>> +---
+>>>>>> +$id:
+>>>>> "
+>>>> "
+>>>>>> +$schema:
+>>>>> "
+>>>> "
+>>>>>
+>>>>> Drop quotes from both.
+>>>>
+>>>> OK.
+>>>>
+>>>>>
+>>>>>> +
+>>>>>> +title: Renesas RZ/V2M System Configuration (SYS)
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+>>>>>> +
+>>>>>> +description:
+>>>>>> +  The RZ/V2M System Configuration (SYS) performs system control
+>>>>>> +of the LSI
+>>>>>> +  and supports the following functions,
+>>>>>> +  - LSI version
+>>>>>> +  - 34-bit address space access function
+>>>>>> +  - PCIe related settings
+>>>>>> +  - WDT stop control
+>>>>>> +  - Temperature sensor (TSU) monitor
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: renesas,r9a09g011-sys
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +required:
+>>>>>> +  - compatible
+>>>>>> +  - reg
+>>>>>> +
+>>>>>> +additionalProperties: false
+>>>>>> +
+>>>>>> +examples:
+>>>>>> +  - |
+>>>>>> +    sysc: system-configuration@a3f03000 {
+>>>>>
+>>>>> If I get properly the purpose of the device, usually this is called
+>>>>> "system- controller". Use that as device node.
+>>>>
+>>>> The hardware manual mentions the below. So want to consistent with
+>>>> HW
+>>> manual.
+>>>
+>>> If the hardware manual said this is called "foo-whatever-name" or
+>>> "rz85736dfnx2", you would use it as well?
+>>>
+>>> Node names should be generic.
+> 
+> I got the following feedback from LSI team.
+> 
+> *The reason why we use "configuration" and not "controller" is the possibility that users might take it to mean 
+> "control" of system operation (product operation). This unit determines how the whole LSI configure to operate LSI, 
+> so we use "configuration" for this IP name.
+> 
+> As per this it is not a controller. It is a Configuration IP.
+> 
+> What should be generic node name for system configuration IP?
 
-Fair enough, I'll drop it. But there doesn't seem to be a good way to
-describe the indexes currently and most bindings simply ignore to do so.
+Then it's closer to chipid and should be in hwinfo?
 
-So what is the preference then? Just leave things undocumented, listing
-indexes in a free-text 'description', or adding a free-text reference to
-a binding header file and using those define names in a free-text
-'description'?
+Anyway, you wrote in bindings description: "performs system control", so
+what can I say?
 
-And if going with the last option, does this mean that every SoC and PHY
-type needs its own header for those three clocks or so to avoid having
-a common dumping ground header file where indexes will not necessarily
-be 0-based and consecutive.
+Best regards,
+Krzysztof
 
-Johan
