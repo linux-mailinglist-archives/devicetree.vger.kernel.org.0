@@ -2,126 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD5DD627D7E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E836D627D98
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237096AbiKNMRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 07:17:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
+        id S236176AbiKNMVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 07:21:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237097AbiKNMRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:17:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE8F1EAE3;
-        Mon, 14 Nov 2022 04:17:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 38FF0B80DBF;
-        Mon, 14 Nov 2022 12:17:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E76D4C433C1;
-        Mon, 14 Nov 2022 12:16:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668428221;
-        bh=UH+GWkwtfms2AOzvG2j6b82aSdcxdwm3nMRBgLF6O14=;
-        h=From:To:Cc:Subject:Date:From;
-        b=d1PUskdkK8fQfRAqaWSguZqyt5ak+ENLkFQEh5ZoLq7cmDRLS8xmGFF6ytUPwgdBy
-         LqE6iqeC5bPYUOKMAQV0IgesFXwVaPpvYNW9tMsAdEX+nRYuDAs3u9Fx4H+rH+SJxz
-         EOp5Dj2tGDHj4cPaj3BJGf5zWMyQJ+HjfIH2VFbuXqRPaO8QogsWSz0fyZKjc1c4Bu
-         7/pj4AuddXeSz01oiG4Ggl2a16RVHUxGOT/Lnt3ul55K7a6WXncOxL4vzwE/VDlVuO
-         5ArUt/AdxOYHP4MWksraFb4Uo+rnRgAcW11N3XFvlIicZeFnFVnFqqrSz97kYjN7Y6
-         SmdKUT4fydJPA==
-From:   matthias.bgg@kernel.org
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, frank-w@public-files.de
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH v2] arm64: dts: mediatek: mt7986: Add SoC compatible
-Date:   Mon, 14 Nov 2022 13:16:53 +0100
-Message-Id: <20221114121653.14739-1-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S236584AbiKNMVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:21:48 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23CA023BEE
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:21:47 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id p4so11173176vsa.11
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:21:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NQjGpKJwFRQldPMBS1RB9/2fjaTlWUG/ZVpaABszmJc=;
+        b=P1f7QIuacrhH0W0S9PmNG41RFwe6iMnnxpQjvgBLQ/HAwp6q3DKo8XLjIhbAJJaCz5
+         yv1wXH8hDKaHgMxl4SFJUFml8Ps6DrbptcfpPinJVytoM5cgZEtX1buD9yPCI+gEkhhu
+         XyY5KqIrDRanfEWrQ84ThEWkIKKeSWaSIGT6rWr3cfgETe08juaZQIHyKhztMhnwwG/h
+         4UMfN+LrfozjznQRE0etwAQUcny4/vXIncEJhoFoPk7xrrR39a0y1d3L94HUvquhggMV
+         TmzICErbm1POBoqQts3rYCSkLlmsLKuC9f3YC2202YasmITLeV5dX/NapS1ItpCRnWul
+         MK6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NQjGpKJwFRQldPMBS1RB9/2fjaTlWUG/ZVpaABszmJc=;
+        b=FVMmSkJIujRR2r7FGtZ6ZNuaxwIteA0uYHyFbmNOU3rKwDJR7A93q7giXQpWuQEexF
+         MnojfM3j8EkjGP3DO71PN2AQBkYP2tVn7da21OpbWl/OVxc8Y5AAYwY1yWNABNcXUS8U
+         nQSmiqJC98UOOZbKi+VvYH6SwkMDtM5SKeRPxVh1eVWWzDKJtqZordb7qDtJGHAd0T+U
+         LMK4W5ExC6Li8UADKzZZoPGEA8gM8ZOZLtUhA/3jawMMMu2yWODlSniuNiK9+FUclbmh
+         l8pJ98OnMO2woSsZsG4fwDnJu9/Y2IpSjdDWqJDyQNuGilyg1nS8+DoFKba+3z0exnEB
+         rq/w==
+X-Gm-Message-State: ANoB5pmYksEmBUfmHoclQc5YUr9N2AuP/EaZXFV6+q34+3ORcVfqTepD
+        XfxDt4YaAZ9vGgqcDe+1tHmQT+jyPKaPpaLO6+DP6g==
+X-Google-Smtp-Source: AA0mqf69sum61rEy9cOqRqF9p5n/5Fica+46LF0sBPSO5L3Z3yaJ+IpRZ4xX3zIAoF5RBikKxZGRbOcX5kxjKx0wNXA=
+X-Received: by 2002:a67:6b03:0:b0:398:6504:9ece with SMTP id
+ g3-20020a676b03000000b0039865049ecemr5734945vsc.16.1668428506317; Mon, 14 Nov
+ 2022 04:21:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221114085659.847611-1-miquel.raynal@bootlin.com> <20221114085659.847611-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20221114085659.847611-3-miquel.raynal@bootlin.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 14 Nov 2022 13:21:35 +0100
+Message-ID: <CAMRc=MetoyeD3neFo1yg128NYgDEAfvji+1FqNEym6BEHpFtOw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: eeprom: Inherit from nvmem.yaml
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <mbrugger@suse.com>
+On Mon, Nov 14, 2022 at 9:57 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+>
+> EEPROMs can be nvmem providers. Let's make all EEPROM bindings
+> reference nvmem.yaml as they should, so that nvmem cells and layout
+> parsers can be safely described within the EEPROM nodes.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
 
-Missing SoC compatible in the board file causes dt bindings check.
-
-Signed-off-by: Matthias Brugger <mbrugger@suse.com>
-
----
-Changes since v1:
-- Move SoC compatible to first line of the block
-- Add SoC compatible to mt7986b
-
-
- arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 2 +-
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 1 +
- arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 2 +-
- arch/arm64/boot/dts/mediatek/mt7986b.dtsi    | 3 +++
- 4 files changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-index afe37b702eef9..0e3b603159477 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-@@ -9,7 +9,7 @@
- 
- / {
- 	model = "MediaTek MT7986a RFB";
--	compatible = "mediatek,mt7986a-rfb";
-+	compatible = "mediatek,mt7986a-rfb", "mediatek,mt7986a";
- 
- 	aliases {
- 		serial0 = &uart0;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 72e0d9722e07a..3c52ec3f99a31 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/reset/mt7986-resets.h>
- 
- / {
-+	compatible = "mediatek,mt7986a";
- 	interrupt-parent = <&gic>;
- 	#address-cells = <2>;
- 	#size-cells = <2>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-index 3443013b5971e..d03e66a84c5d4 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-@@ -9,7 +9,7 @@
- 
- / {
- 	model = "MediaTek MT7986b RFB";
--	compatible = "mediatek,mt7986b-rfb";
-+	compatible = "mediatek,mt7986b-rfb", "mediatek,mt7986b";
- 
- 	aliases {
- 		serial0 = &uart0;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b.dtsi b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-index 23923b9f8944b..db5189664c29b 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-@@ -5,6 +5,9 @@
-  */
- 
- #include "mt7986a.dtsi"
-+/ {
-+	compatible = "mediatek,mt7986b";
-+};
- 
- &pio {
- 	compatible = "mediatek,mt7986b-pinctrl";
--- 
-2.38.1
-
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
