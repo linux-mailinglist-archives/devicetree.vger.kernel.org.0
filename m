@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5EE76276CD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CC46276D8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:57:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236168AbiKNHyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 02:54:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
+        id S235564AbiKNH5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 02:57:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236144AbiKNHxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:53:21 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A18E1A04C
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:53:19 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bp15so17891211lfb.13
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:53:19 -0800 (PST)
+        with ESMTP id S235416AbiKNH5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:57:48 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 182C322A
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:57:47 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id r188-20020a1c44c5000000b003cfdd569507so1748015wma.4
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:57:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mPteRXuurrYIqWrse9JwxLjzfWbyyHOFXx8cvgeh7xI=;
-        b=RbpQb7sW542HdgS4M2H8DTDHsg3T3PRosLUxU5N5G7BQU4oBb+axXvDmDDLLiVQRYg
-         BTwR98kQW7n6JuXEBKN5cxk1srrQW3yrFmVdslAWHN2zWtwd6zo/7558lfHWTCJ7C9kW
-         JBd1p9HA08p4EJwZIEax9c1/cGR+BNCOOTNUm+tZhoXhUWu/8vJRzsGTe4bzbGUsViWP
-         4yWEsMzdddtTYwR0NdUe/QKHdEVwiRPtzVKqHkwmP3w+/v+tSe8Fs7PjHE+DCqFQYHPc
-         HuEBULhWe/jOd/2gM1HclbjFR8A/kPlPcJ9d+2KSX8wGh32m3xuSPgLy/39gVIpvf+Qg
-         mNYg==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3U74mFDMpN62FdLEwAEXWD976tY7wKj8syGMpCbQ/2s=;
+        b=U49NwKMRpu9BVfE8/S/Bu/n5Y5Nt+7hkJJFiVIiNWD898lHThkA5CAlwSiNTWwEPE1
+         PJVj4yh7koHVDTlkFMCn/3KkDsJXZMT8nQLn5vlG3gJgfSYEJN1RQG4WxVg0WSIUfYJk
+         qk7YEpV6SAFk3PVnKNTm99BrN3BGCKwYkFm/rhAElfkpKjjozxV0a7FDJ3xAZ4YFYYjJ
+         UMz1mxlItvO73rhJlnzk5A+g7Uo5uN9oK8wOBjpYxJBm5UsxGu8M1Wnib7w8+DvCiRO8
+         aZ3j8jZYN4CQxSFUIJMMML8tOe2sDCTnJ0nenSxdCc7+lIk6C988CZljO0+DgobKk8lG
+         sHTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mPteRXuurrYIqWrse9JwxLjzfWbyyHOFXx8cvgeh7xI=;
-        b=8JHKr3wpNi//DBcsBVG4r7Y/aUcyTnpDz7SJSgu3sLMIEN0cIuqB0ALfGyRS8W92My
-         VaG9lDdi31mwtTDI28qZeiSbjE5EgV3Ljh4NSJyEJsfDwbgBeaYxkbCtTKNnBYnOGxft
-         nuTLYuuLjVs/pxy7GhXuwiG8Ph84CRw6xAfGw+QFHJoqzdj3ZF+JnOGZ/Wj0XrLkfpAz
-         2fubYBwp7kTKAlx+7rwtp02tYVWttfIYCHzoNKIuorK3QQPd+7X2r+D+NYjbjqWKTP0n
-         TZ1xnvDHd4j8QBzoBsL3SMNt2aj4HWxIb9jALpv5sAddkJQjXCsZyisTOGXJ7yqBtfQH
-         qVrg==
-X-Gm-Message-State: ANoB5pnt1qvCzsJRDoksl75+y5DprvTu56KYYOdN0yl68FfYb3ZdE5py
-        mv20ZXV4L1Vv14Sisp9LLkJqnGwgPJVXQxOt
-X-Google-Smtp-Source: AA0mqf4OBoAylXtT0sBiy8jHQ+/GQteJ4T/mfs0zyPgj4RG4qH2mkmcXLXi4oSRxCmQCriiQPyBeAA==
-X-Received: by 2002:a05:6512:308:b0:4aa:8cd:5495 with SMTP id t8-20020a056512030800b004aa08cd5495mr3446242lfp.254.1668412397911;
-        Sun, 13 Nov 2022 23:53:17 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u3-20020ac25183000000b004ae394b6a6fsm1709573lfi.246.2022.11.13.23.53.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Nov 2022 23:53:17 -0800 (PST)
-Message-ID: <fa9255f1-d083-936f-e402-61873e582882@linaro.org>
-Date:   Mon, 14 Nov 2022 08:53:11 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3U74mFDMpN62FdLEwAEXWD976tY7wKj8syGMpCbQ/2s=;
+        b=VzD6u9FMbvAAHXjeb3Rf7pgrgF5Iu1mfDJf6yPqUbHSi1/zlF6oCM0OwISfr7imY4B
+         zh59YClTzn9KY480clnuMq2J7I0gfDbk3BSRqexAoioV6Lpdo04V3vaVofLOcjll3hkI
+         BLjaBe3FaVbE3GsPhl9BgzZ3M+2bN9qwxCDcNzoJ8TA2Ep9n+shoF3f+erUksuJd6mwp
+         MWMjJ7SLBMUu6SxyGuz7UPpMQj1V2QGBtjJsZSE37+ZupNnoWYfSelGxzVq/u2QKdHR+
+         zDBmoVLGYLEb8cThVJdT73DDeqE2aPfy/uk5VQNog6MCbh8+aOMowTm7h55O8XM+kD87
+         zuUw==
+X-Gm-Message-State: ANoB5pnFbclAbQhoMt8NbFGe0A6sp/TsJehjmLqRTT0ZbcXl9lDXYZDT
+        N/NwLhsamCQGXwALCP44eXCcDw==
+X-Google-Smtp-Source: AA0mqf4sSjWC4fiTrv54VzXcqDPNsiM57TAYLdUTPhd73MNacaC5CSu3ZLwRtsBPj30iqjJ/gN9f2g==
+X-Received: by 2002:a7b:ca52:0:b0:3cf:81af:8b69 with SMTP id m18-20020a7bca52000000b003cf81af8b69mr6695103wml.147.1668412665455;
+        Sun, 13 Nov 2022 23:57:45 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id p25-20020a05600c1d9900b003c64c186206sm11617768wms.16.2022.11.13.23.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Nov 2022 23:57:45 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH v9 0/2] mfd: max597x: Add support for max597x
+Date:   Mon, 14 Nov 2022 08:57:37 +0100
+Message-Id: <20221114075739.4117439-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 5/6] dt-bindings: arm: rockchip: Add SOQuartz Blade
-Content-Language: en-US
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221112160404.70868-1-frattaroli.nicolas@gmail.com>
- <20221112160404.70868-6-frattaroli.nicolas@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221112160404.70868-6-frattaroli.nicolas@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,28 +67,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2022 17:04, Nicolas Frattaroli wrote:
+max597x is multifunction device with hot swap controller, fault
+protection & upto four indication leds.
 
-You miss commit msg.
+max5978 has single hot swap controller whereas max5970 has two hot swap
+controllers.
 
-> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 244c42eaae8c..fc5f14fcd007 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -579,6 +579,7 @@ properties:
->          items:
->            - enum:
->                - pine64,soquartz-cm4io
-> +              - pine64,soquartz-blade
+Changes in V9:
+- Update properties description
+- update required property
+Change in V8:
+- Set additionalproperties to false
+Change in V7:
+- Update id
+- Remove empty line
+Changes in V6:
+- Update missing vendor prefix
+- Update indentation in example
+Changes in V5:
+- Fix dt schema error
+Changes in V4:
+- Add NULL entry for of_device_id
+- Memory allocation check
+Changes in V3:
+- Address code review comment
+Changes in V2:
+- Update depends in Kconfig.
 
-Keep alphabetical order,
+Marcello Sylvester Bauer (1):
+  dt-bindings: mfd: Add dt-schema MAX5970 and MAX5978
+
+Patrick Rudolph (1):
+  mfd: max597x: Add support for MAX5970 and MAX5978
+
+ .../bindings/mfd/maxim,max5970.yaml           | 172 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max597x.c                         |  92 ++++++++++
+ include/linux/mfd/max597x.h                   | 103 +++++++++++
+ 5 files changed, 380 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+ create mode 100644 drivers/mfd/max597x.c
+ create mode 100644 include/linux/mfd/max597x.h
 
 
-Best regards,
-Krzysztof
+base-commit: 6b780408be034213edfb5946889882cb29f8f159
+-- 
+2.37.3
 
