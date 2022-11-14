@@ -2,151 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0134E6284C4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5A66284CF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:16:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237369AbiKNQOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 11:14:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51438 "EHLO
+        id S236854AbiKNQQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 11:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237364AbiKNQOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:14:52 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A0527D
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:14:50 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id d3so13865280ljl.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:14:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b6wTsoEqnWNCo+xLotcVL4lHOc4APMKma952G03jZA0=;
-        b=xbKjKIjyIM+dukGJQt2smut7cqu9mbiXPsmLQizdri/lnUIqTbDIrFLV7iFsNHqy3D
-         01pctG0PwRPw+sAIHWGIcJlTATI9mmhkfvUECE7k9yn550PtmqartHzQOaw+sk2vgV5B
-         cGZfINyThuePrkhwwX8UnxGvKcRP5WXhc6fLgs/ZuG8K/gQNVEu97s6zMXInDV9cKUus
-         pkALnXz1zPTE6EXbZk4DBX09AVjU8cIKbUYU/s7ijeHmS3+kuM8Gr6Ozj4qwdX9oiT22
-         9dmqv5n+zPP3+Oa6dRakTjtfFfPEtzcbHyx35VGUUCHpi69SVAHu77M21HdO+m4LS4JL
-         3UIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b6wTsoEqnWNCo+xLotcVL4lHOc4APMKma952G03jZA0=;
-        b=Yoqfy//S1W+Dph1XGoB1hD3NPDYeR1Ad7lTbUuLo95XH9Is9ssh2ZoDhIsigmk8gJN
-         3qizLNKZlwAmySu6D9SQwE+lw4EcUi83EKbOjh+2QNuFMJ4HHAvb0hpWcjY34+2p4Ryr
-         +yWuSIsAKHGm3KbgXrX5XOdQUaFuy3A4Fhv0YuO5DGa8JQnTYcQ1YdFsaw9EiiZvXP4M
-         nNcewLsyT5CqaXfcPZbkzdotGiLKlqTemdME7+u8jBChaf4BywC1ocUJmDtFz2R7QKLc
-         jDxL7TPYxUNfEHWii+EDrT4SQreMhm0SzLKofyF6sqzrRHJ+IdX4R1JsHmj/REuvFCUu
-         Sqaw==
-X-Gm-Message-State: ANoB5plU91/YhmZPnWsEKAlolK7r+QpDRQqUsiUfdvpRq91eRaGdVPcC
-        JQaONSt08eKdxP0GTSeZl2d/pg==
-X-Google-Smtp-Source: AA0mqf4RlZ5Ep2WoSFwSpBUgtUqa42n8p2HqsbNIqQqAWZpJtUoN6gfm3iQnIWeex21qOCaZ7GKQTA==
-X-Received: by 2002:a2e:99d5:0:b0:277:7714:3fca with SMTP id l21-20020a2e99d5000000b0027777143fcamr4306897ljj.529.1668442489070;
-        Mon, 14 Nov 2022 08:14:49 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a1-20020a19ca01000000b004a03d5c2140sm1867981lfg.136.2022.11.14.08.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 08:14:48 -0800 (PST)
-Message-ID: <bcc327b6-c38b-86a9-34cb-440ad33df210@linaro.org>
-Date:   Mon, 14 Nov 2022 19:14:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230079AbiKNQQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:16:11 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0386264CA;
+        Mon, 14 Nov 2022 08:16:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=znnsShYF3xMT+VtpHIRsweTjuKslFaebTs8rKcGhy3I=; b=NGUAJ3PUj4W0JFQSXxGJbcBUQ/
+        brGT1l6wHh1sn8UkG+adbRc1r/md9kAuUOyuoiYNhiMF3I9bAj6W/J8sz8zl9iW2n3AyilbK83oj8
+        sLiY1dHAeT/yqkV3pDilb7JLyvUm1ifJ7Uo9zzS5neCknjQO163obDLUM1D8yxpLg0HJYnwlYe0mA
+        Kh/W/GfeEE7fYcxqJ7mBB9Mg/m2okIiKlpFm7MYsCRTQcLGyRn6uTu9oOYFxjDft1giaLeAm0a543
+        1NaB/+pX8T2qz+SUHEUklMrrabJ0L/LfN577N8YG6DVUXzagS06rcTwuxXMFTO3/iESar/IXZVSXC
+        SimKFuMQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35264)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ouc7o-00014G-14; Mon, 14 Nov 2022 16:15:56 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ouc7i-0003wN-OK; Mon, 14 Nov 2022 16:15:50 +0000
+Date:   Mon, 14 Nov 2022 16:15:50 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
- <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
- <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
- <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
- <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
- <78cda6f8-849c-219a-8dbb-966c283c1a92@linaro.org>
- <Y3Jg/qmMW3rC5Okc@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y3Jg/qmMW3rC5Okc@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 2/7] lib/vsprintf: Add support for generic FOURCCs by
+ extending %p4cc
+Message-ID: <Y3Jptob4bGL9Weel@shell.armlinux.org.uk>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
+ <Y3Jf7xz2CQjJuEeT@alley>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y3Jf7xz2CQjJuEeT@alley>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 18:38, Johan Hovold wrote:
-> On Mon, Nov 14, 2022 at 06:19:25PM +0300, Dmitry Baryshkov wrote:
->> On 14/11/2022 17:18, Johan Hovold wrote:
->>> On Mon, Nov 14, 2022 at 03:07:41PM +0100, Krzysztof Kozlowski wrote:
->>>> On 14/11/2022 14:27, Johan Hovold wrote:
->>>>> On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
->>>>>> On 11/11/2022 10:24, Johan Hovold wrote:
+On Mon, Nov 14, 2022 at 04:34:07PM +0100, Petr Mladek wrote:
+> On Tue 2022-11-08 16:33:22, Russell King wrote:
+> > From: Hector Martin <marcan@marcan.st>
+> > 
+> > %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
+> > it's useful to be able to print generic 4-character codes formatted as
+> > an integer. Extend it to add format specifiers for printing generic
+> > 32-bit FOURCCs with various endian semantics:
+> > 
+> > %p4ch   Host-endian
+> > %p4cl	Little-endian
+> > %p4cb	Big-endian
+> > %p4cr	Reverse-endian
+> > 
+> > The endianness determines how bytes are interpreted as a u32, and the
+> > FOURCC is then always printed MSByte-first (this is the opposite of
+> > V4L/DRM FOURCCs). This covers most practical cases, e.g. %p4cr would
+> > allow printing LSByte-first FOURCCs stored in host endian order
+> > (other than the hex form being in character order, not the integer
+> > value).
+> > 
+> > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > 
->>>>> I noticed that several bindings leave the clock indexes unspecified, or
->>>>> have header files defining some or all of them. I first added a QMP
->>>>> header but that seemed like overkill, especially if we'd end up with
->>>>> one header per SoC (cf. the GCC headers) due to (known and potential)
->>>>> platform differences.
+> Reviewed-by: Petr Mladek <pmladek@suse.com>
 > 
->>>>> Shall I add back a shared header for all PHYs handled by this driver
->>>>> (another implementation detail) even if this could eventually lead to
->>>>> describing clocks not supported by a particular SoC (so such constraints
->>>>> would still need to be described by the binding somehow):
->>>>>
->>>>> 	/* QMP clocks */
->>>>> 	#define QMP_USB3_PIPE_CLK	0
->>>>> 	#define QMP_DP_LINK_CLK		1
->>>>> 	#define QMP_DP_VCO_DIV_CLK	2
->>
->> Maybe QMP_COMBO_USB3_PIPE_CLK, QMP_COMBO_DP_LINK_CLK,
->> QMP_COMBO_DP_VCO_DIV_CLK?
+> See one nit below.
 > 
-> "COMBO" is just the name of the Linux driver and does not belong in the
-> binding.
+> > --- a/lib/vsprintf.c
+> > +++ b/lib/vsprintf.c
+> > @@ -1762,27 +1762,50 @@ char *fourcc_string(char *buf, char *end, const u32 *fourcc,
+> >  	char output[sizeof("0123 little-endian (0x01234567)")];
+> >  	char *p = output;
+> >  	unsigned int i;
+> > +	bool pixel_fmt = false;
+> >  	u32 orig, val;
+> >  
+> > -	if (fmt[1] != 'c' || fmt[2] != 'c')
+> > +	if (fmt[1] != 'c')
+> >  		return error_string(buf, end, "(%p4?)", spec);
+> >  
+> >  	if (check_pointer(&buf, end, fourcc, spec))
+> >  		return buf;
+> >  
+> >  	orig = get_unaligned(fourcc);
+> > -	val = orig & ~BIT(31);
+> > +	switch (fmt[2]) {
+> > +	case 'h':
+> > +		val = orig;
+> > +		break;
+> > +	case 'r':
+> > +		val = orig = swab32(orig);
+> 
+> I do not like much these multi assignments. I think that the result
+> was not even defined in some older C standards. Though, I can't find
+> it now. And even make W=3 does not warn about it.
 
-We do not have any standard (iow, coming from the docs) name, so we can 
-invent it on our own.
+Err.
 
->   
->> I'll then extend this header with QMP_UFS_RX_SYMBOL_0_CLK
->> QMP_UFS_RX_SYMBOL_1_CLK and QMP_UFS_TX_SYMBOL_0_CLK.
-> 
-> Yeah, I had those in mind when creating the header and using a generic
-> QMP prefix (even if I didn't end up using the header in v1).
-> 
-> This could just be mapping of (arbitrary) QMP indexes to clocks and we
-> use it for USB3, DP, UFS and later also USB4.
-> 
-> This will however mean that the indexes are not necessarily zero-based
-> and consecutive for a specific SoC and PHY. But that's perhaps a
-> non-issue (cf. the PHY_TYPE defines).
+It's been supported for decades. I learnt about it back in 1992 when
+I was introduced to C by another experienced C programmer. It's been
+supported in ANSI C compilers. The Norcroft C compiler (which is
+strict ANSI) on Acorn platforms back in the late 1980s/1990s even
+supported it.
 
-Ugh. Please, no. We have symbol clocks for UFS PHY, USB+DP clocks for 
-USB+DP PHY, but let's not go for the unified clocks index definition.
-
-> 
-> We'd still need to describe which clocks are available on a particular
-> SoC and PHY, and that's partly why I used 'clock-output-names' to fix
-> the mapping in the binding. Guess we can just list the valid defines in
-> the property description as I did for #phy-cells.
-> 
-> Johan
+I think you're a bit out of date.
 
 -- 
-With best wishes
-Dmitry
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
