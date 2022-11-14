@@ -2,261 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90AF6277FB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6B762780B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:46:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236024AbiKNIp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 03:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60008 "EHLO
+        id S236394AbiKNIq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 03:46:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235830AbiKNIpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:45:25 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3DF71B9CE
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:45:23 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id a29so18112938lfj.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:45:23 -0800 (PST)
+        with ESMTP id S236604AbiKNIqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:46:20 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F671C43F
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:46:19 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id a29so18116057lfj.9
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:46:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JVmwIG2s4EyBaQ0ZMDJcfx3U/7J7QX25R/a+LsVxmaQ=;
-        b=alrOU5uP7aHB2OFLmG9pJgp21eMFCOH3j4AkhDcS2sO5Yizu6MhR4FQah7F2cKfipz
-         iD0Gh4I810N5WEy6laL4piM6oHiTDJYl8vW6zlEYX3KKRJBksbXi5iuGhuQ/0swEK4fV
-         GZjkloAP+/m4KHm2r0U+FD+pa4+4uWk+ooj8ROfxFRT5fEmY4Fy4Vf4ElgusOVZF+AQx
-         xwxSyhjAGg97ufFF6xLK6u0YBZPeE+TfXWTf6Zd+1/oAIoJD9YNyNGleEbbjv1uyZjqG
-         rEshg9X5fh7HXIK/rz80rtkH4Iq7v4J9ducjDJNdMIh4s8vQRJRendfxMsh68Uchrtau
-         p7TQ==
+        bh=ayjb4SbwIOWUmx2oNYBfq/TTYDmZlaBaAub29KPIR70=;
+        b=jt8d7u8QhOnfD+ySzp74OJ8+vcd3RhYSFerY0umLTHkcSE6G0dMluSu4ZdAqV0S//g
+         8uUyVjfm2JFq02MsUxl5U8b7GD5AM4MJPR811q7JmOB6VMDARxKgtbX7H3jjxqdmaiEV
+         vq2HS8HVeiyLIf8AEcVH69Uql4PtpiutAnyPkGCRYbDhdSIlcaSIp9hO5nPJLJgbpQzc
+         KFp3SEFddtm+hYQv+Oud+Nz2OzQIA34vZ9yE5e7Z+ySoYF3ajio4tqzjAfjBinhQuSsM
+         jOi1eOikYOMd85AcsGzsPJtg7J/SQAiJepwz2LPTHZq/qALpOvlwarCuCpKhYf9vBzPB
+         /LRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JVmwIG2s4EyBaQ0ZMDJcfx3U/7J7QX25R/a+LsVxmaQ=;
-        b=fcnOKKrEppJR9BbwH4eaYTHn3mtDnX0X45shGvXt8rfIis8rQe4ERpvEdbXlcVb9uP
-         NeT0EMs7SkYe/rs50Y0G8n/E57JVzOzANyaNXHMi1juzXhj68vWE8lYvfCv81DZyFCgp
-         58ESXYKcwd4y14Z3OfYhwMVoCXufygkjHeE8Dzr0/SfT9BVL5QAauJ7MAVsCNiW0uHda
-         iEbbGVv/bHlNNdUmN8BdexmZF2G468dbQ9Gm8P7JIf7cCZCcd+nWpqEhjjo4gDoKxs/f
-         svrrgvgZ8EOGRayumCmPMeqQionXDl1TgJDxuarVz9N3egIFeNZQwdoZgJ9kz5DwBy1O
-         /lZw==
-X-Gm-Message-State: ANoB5plW61iNu0BGBHA8z6x45FBC5/cF2dWj0xYdV33ytGskavUpueTP
-        M00xEsTBMX0Lzc8FSf9lspRmww==
-X-Google-Smtp-Source: AA0mqf6q4FegMx0hyfkYq/jghX+kjt+/o7dthzyPPPyfPesctUBSYTYFvjnnMmZKzmBu7YqYCN99Mw==
-X-Received: by 2002:a05:6512:3f28:b0:4a2:2aab:5460 with SMTP id y40-20020a0565123f2800b004a22aab5460mr3548905lfa.62.1668415522033;
-        Mon, 14 Nov 2022 00:45:22 -0800 (PST)
+        bh=ayjb4SbwIOWUmx2oNYBfq/TTYDmZlaBaAub29KPIR70=;
+        b=5bV8JwhSmXkfvshBzTrIdz9sBR2qc4mVi8/EsKK1SHrod09R3Dzo9KAo1JFeJvrUwd
+         W+o+xDIu9wSCZlVaa3MH+E/xxqIiw531MhDfxs2c8TaW2zrDvugbtJGvpm+0pBpnxIOA
+         mmKSCJCmF3s7R9y64HdVKG2hBAe+O6MosX1QoXEXHvdEwjf1pIMMG9pNJwCqCKzd51K0
+         jypEnPYw+KMaVw4TzrdypLk2260wghlvuWr+DU4e8FJnexukp/3lhN5lsEq5kRcXjjmf
+         VEB+lwuYvko3q6KRmBAs0Dpf80nXu9R67h7oS3GrvHHtVbWWg8fjrwE8EKQP2Vo/NPcw
+         iR6g==
+X-Gm-Message-State: ANoB5pla4GxoW/0+KVi+d6pO8A0NxMe7v1wVaPdecONJuNK4WLiDRgAL
+        QI00MLSUWdzsWpZY1PLiMCHsNA==
+X-Google-Smtp-Source: AA0mqf5iu4twKL2vLty2ny/0PlQaggz76QRXb+ZgRWLdoaOfeh9gho7WQDbfPdtVWoFFt1HI77O9vg==
+X-Received: by 2002:a05:6512:e8e:b0:4a4:2967:78eb with SMTP id bi14-20020a0565120e8e00b004a4296778ebmr3712508lfb.222.1668415578002;
+        Mon, 14 Nov 2022 00:46:18 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i16-20020a2ea230000000b0027710117ebdsm1907109ljm.121.2022.11.14.00.45.20
+        by smtp.gmail.com with ESMTPSA id e10-20020a19674a000000b0049311968ca4sm1730841lfj.261.2022.11.14.00.46.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 00:45:21 -0800 (PST)
-Message-ID: <5f012334-1815-2ef6-7dc0-08b4d60f754f@linaro.org>
-Date:   Mon, 14 Nov 2022 09:45:20 +0100
+        Mon, 14 Nov 2022 00:46:17 -0800 (PST)
+Message-ID: <de1ff273-acf3-6a2a-6c7f-d97a9bc0a2c3@linaro.org>
+Date:   Mon, 14 Nov 2022 09:46:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 11/12] dt-bindings: sound: Add Cirrus Logic CS48L31/32/33
- codecs
+Subject: Re: [PATCH v3 2/5] dt-bindings: arm: rockchip: Add more RK3326
+ devices
 Content-Language: en-US
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, broonie@kernel.org, tglx@linutronix.de,
-        maz@kernel.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        patches@opensource.cirrus.com
-References: <20221109165331.29332-1-rf@opensource.cirrus.com>
- <20221109165331.29332-12-rf@opensource.cirrus.com>
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     =?UTF-8?B?Sm/Do28gSCAuIFNwaWVz?= <jhlspies@gmail.com>,
+        Chris Morgan <macroalpha82@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20221112143411.517906-1-maccraft123mc@gmail.com>
+ <20221112143411.517906-3-maccraft123mc@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221109165331.29332-12-rf@opensource.cirrus.com>
+In-Reply-To: <20221112143411.517906-3-maccraft123mc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/11/2022 17:53, Richard Fitzgerald wrote:
-> Codecs in this family have multiple digital and analog audio I/O that
-> support a variety of external hardware connections and configurations.
-> 
-> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+On 12/11/2022 15:34, Maya Matuszczyk wrote:
+
+Missing commit msg, which is actually easy to write - you need to list
+devices you are adding.
+
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 > ---
->  .../bindings/sound/cirrus,cs48l32.yaml        | 96 +++++++++++++++++++
->  include/dt-bindings/sound/cs48l32.h           | 25 +++++
->  2 files changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
->  create mode 100644 include/dt-bindings/sound/cs48l32.h
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
-> new file mode 100644
-> index 000000000000..70fb294c6dc1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/cirrus,cs48l32.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cirrus Logic CS48L31/32/33 audio CODECs
-> +
-> +maintainers:
-> +  - patches@opensource.cirrus.com
-> +
-> +description: |
-> +  This describes audio configuration bindings for these codecs.
+>  .../devicetree/bindings/arm/rockchip.yaml         | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-Don't start with "This". Instead describe the hardware.
-
-> +
-> +  See also the core bindings for the parent MFD driver:
-> +
-> +    Documentation/devicetree/bindings/mfd/cirrus,cs48l32.yaml
-
-Same comment as for pinctrl patch.
-
-> +
-> +  and defines for values used in these bindings:
-> +
-> +    include/dt-bindings/sound/cs48l32.h
-> +
-> +  The properties are all contained in the parent MFD node.
-> +
-> +properties:
-
-Missing compatible. What's the point to organize bindings like that? The
-schema on its own does nothing - does not match anything.
-
-> +  '#sound-dai-cells':
-> +    const: 1
-> +
-> +  cirrus,in-type:
-> +    description:
-> +      A list of input type settings for each input. A maximum of 8 cells,
-> +      with four cells per input in the order INnL_1, INnR_1 INnL_2 INnR_2.
-> +      (where _1 and _2 are the alternative mux selections for that INn).
-> +      If the array is shorter than the number of inputs the unspecified
-> +      inputs default to CS48L32_IN_TYPE_DIFF.
-> +    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
-
-Drop quotes.
-
-> +    minItems: 1
-> +    maxItems: 8
-> +    items:
-> +      items:
-> +        - description:
-> +            The first cell is INnL_1 input type. One of the CS48L32_IN_TYPE_xxx.
-> +            For non-muxed inputs this sets the type of INnL.
-
-What is the "input type"? Referring to constants is not enough,
-especially that they are not descriptive. Explain here the values.
-
-> +            minimum: 0
-> +            maximum: 1
-> +        - description:
-> +            The second cell is INnR_1 input type. One of the CS48L32_IN_TYPE_xxx.
-> +            For non-muxed inputs this sets the type of INnR.
-> +            minimum: 0
-> +            maximum: 1
-> +        - description:
-> +            The third cell is INnL_2 input type. One of the CS48L32_IN_TYPE_xxx.
-> +            For non-muxed inputs this cell must be 0.
-> +            minimum: 0
-> +            maximum: 1
-> +        - description:
-> +            The fourth cell is INnR_2 input type. One of the CS48L32_IN_TYPE_xxx.
-> +            For non-muxed inputs this cell must be 0.
-> +            minimum: 0
-> +            maximum: 1
-> +
-> +  cirrus,max-channels-clocked:
-> +    description:
-> +      Maximum number of channels that clocks will be generated for. When using
-> +      multiple data lines, every sample slot can transfer multiple channels
-> +      (one per data line). This pdata sets the maximum number of slots.
-> +      One cell for each ASP, use a value of zero for ASPs that should be
-> +      handled normally.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      default: 0
-> +
-> +  cirrus,pdm-sup:
-> +    description:
-> +      Indicates how the MICBIAS pins have been externally connected to DMICs
-> +      on each input. One cell per input (IN1, IN2, ...). One of the
-> +      CS48L32_MICBIAS_xxx values.
-> +      See the INn_PDM_SUP field in the datasheet for a description.
-
-No, explain here.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +examples:
-> +  - |
-> +        cs48l32@0 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +                compatible = "cirrus,cs48l32";
-> +
-
-Use 4 spaces for example indentation.
-
-> +                cirrus,in-type = <
-> +                        CS48L32_IN_TYPE_DIFF CS48L32_IN_TYPE_DIFF /* IN1[LR]_1 differential */
-> +                        CS48L32_IN_TYPE_SE   CS48L32_IN_TYPE_SE   /* IN1[LR]_2 single-ended */
-> +                        CS48L32_IN_TYPE_DIFF CS48L32_IN_TYPE_DIFF /* IN2[LR]_1 differential */
-> +                >;
-> +                cirrus,max-channels-clocked = <2 0 0>;
-> +        };
-> diff --git a/include/dt-bindings/sound/cs48l32.h b/include/dt-bindings/sound/cs48l32.h
-> new file mode 100644
-> index 000000000000..0b774da0a6c8
-> --- /dev/null
-> +++ b/include/dt-bindings/sound/cs48l32.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual license.
-
-> +/*
-> + * Device Tree defines for CS48L32 codec.
-> + *
-> + * Copyright (C) 2016-2018, 2022 Cirrus Logic, Inc. and
-> + *               Cirrus Logic International Semiconductor Ltd.
-> + */
-> +
-> +#ifndef DT_BINDINGS_SOUND_CS48L32_H
-> +#define DT_BINDINGS_SOUND_CS48L32_H
-> +
-> +#define CS48L32_IN_TYPE_DIFF		0
-> +#define CS48L32_IN_TYPE_SE		1
-> +
-> +#define CS48L32_PDM_SUP_VOUT_MIC	0
-> +#define CS48L32_PDM_SUP_MICBIAS1	1
-> +#define CS48L32_PDM_SUP_MICBIAS2	2
-> +#define CS48L32_PDM_SUP_MICBIAS3	3
-> +
-> +#define CS48L32_PDM_FMT_MODE_A_LSB_FIRST	0x0000
-> +#define CS48L32_PDM_FMT_MODE_B_LSB_FIRST	0x4000
-> +#define CS48L32_PDM_FMT_MODE_A_MSB_FIRST	0x8000
-> +#define CS48L32_PDM_FMT_MODE_B_MSB_FIRST	0xc000
-
-Register values do not belong to bindings.
-
-> +
-> +#endif
 
 Best regards,
 Krzysztof
