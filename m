@@ -2,94 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4C746289C8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 20:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90DDC6289CF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 20:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236205AbiKNTtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 14:49:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49702 "EHLO
+        id S236152AbiKNTul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 14:50:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237427AbiKNTt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 14:49:28 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CE52649D;
-        Mon, 14 Nov 2022 11:48:53 -0800 (PST)
-Received: from Falcon9.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: detlev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 57386660296B;
-        Mon, 14 Nov 2022 19:48:51 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668455332;
-        bh=MLIKw1v4Jq1PCDVbOsMzfRiH8Kzx3kjxryEHcmtLcEw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=c5GsRd8KXYuQQNtE2igjr0XnkGwB18MKCBgXckogVDELeZVgtWZxjxfLGUQyFhWNg
-         nt1RJu+QEqZyyIR4Z08K3pLtoIECvEF0aBM1JNExwpqXjWftublznK2bRvpJOnyHEl
-         kDan6Dvn+OXlEzTyCD9sR2E+oETAprRmYdTZBbQIZLk89ihE+oiEqWQLs7b+wI3XjH
-         r2haG2iWpDJQkxB2cBs9RbN7nesmV0+b2JYl4av4JGr+F44xOg1dyfv/q4s5yb0KUA
-         lTsI09n4xASEssP2uvdA2i+SK++GzxZ5UldmFmr5TAZLi6oBIb08/Uboaz0u2MwiCR
-         8F871c4IsJoGA==
-From:   Detlev Casanova <detlev.casanova@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        with ESMTP id S236525AbiKNTud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 14:50:33 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B82B7F3
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 11:50:31 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id u8-20020a17090a5e4800b002106dcdd4a0so14838425pji.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 11:50:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aeYV7fDkLER/6GDtsBmzPKt14c7SuI0JOECUHSx1zDk=;
+        b=M6HioAcUd9+V0vOi9nn77C1cQZ+yuMKdHtjqJasI7QmXmRQ8uC2szUrUKvbkrkfQr9
+         4Y01GrpR1X1HpMQeAno85q+LMFPlBpy6CbJ4mJrczv4D8jcWmb7B4FYnW4U4wD6xhLRd
+         oMUhqGXDvYMiUHdDfFYDBNuQTJx6SdYI15EvAZJrOxtgHmgIh6bEmpzFaxmWjrS/65kP
+         VnZMWisqdZKYYNEIp9jiwDd+bS/VZai+OND0GNCNv9jUjdlk8XBykGKEVduXG/7cHPC7
+         BeUx8JDRSXzQyD4qtIZ6lHNvcrDUJX36jiqrLZXlzGPWbyLVA3AMhGmXYo3qFm3p6/oq
+         mcew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aeYV7fDkLER/6GDtsBmzPKt14c7SuI0JOECUHSx1zDk=;
+        b=nhjN6cVfb0FPPeuDCzV1mrPEaVsCHoSNVaDpY8ucdKUo+JeVWt5qrOYBY7lGS3aerA
+         TaJIjbYmUjLx1yPIpgkeZc+yHq+u7T634QKDj1RKqBgTd+f/t2/gJfdqZgtzrgfMdboq
+         LKhjp0gLR573CQun5BWOjgI9c2bz9Ub1c5zt+NE9xcxEZqFjFkAJH2gon2o82Q4l1bTv
+         Qr8+QHVpjqZ0xSHXlKfPcPJC8BK3BiFjhsxFFvkWSrMXV4AaLN109jHoz9kKl6uJFosv
+         EzPs28VRRwH1F6z0m7DmE+q7JNO/v3349DvY2RZACvfxJijsy2o2ycgF/LprL4QJzjFK
+         Y1Xw==
+X-Gm-Message-State: ANoB5pnjU+dANz8aa5G0meO15EHbL9uPLThD42bqUKIukXPe0ukwNVs4
+        Ak4rmKW5Izzmop0eBOYoticpdDML7lU00TrxeqrMDw==
+X-Google-Smtp-Source: AA0mqf4hSdec3Om+IZl6dvO0bLDNDJnaPYiFm4//JZu9ysk7gnawgAc89XgfoUMHBNTwplgX6FIngd8yPW9ZeuPeYFQ=
+X-Received: by 2002:a17:902:a584:b0:186:be05:798e with SMTP id
+ az4-20020a170902a58400b00186be05798emr790394plb.37.1668455430845; Mon, 14 Nov
+ 2022 11:50:30 -0800 (PST)
+MIME-Version: 1.0
+References: <20221024043925.25379-1-marcan@marcan.st> <20221024043925.25379-5-marcan@marcan.st>
+ <CAPDyKFqYr5NDhZNT=EHWzWq=eCZKbF8Z3Y0eRHY8-nY7Ej0PBw@mail.gmail.com> <c791b776-c90f-4ee5-b025-79352937bf62@marcan.st>
+In-Reply-To: <c791b776-c90f-4ee5-b025-79352937bf62@marcan.st>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 14 Nov 2022 20:49:54 +0100
+Message-ID: <CAPDyKFpnzmRkgRHsRoRRSpzFGPT7oMx0u+d1g5Rmu_mCA_nC2A@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] cpufreq: apple-soc: Add new driver to control
+ Apple SoC CPU P-states
+To:     Hector Martin <marcan@marcan.st>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org (open list:ARM/RENESAS ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH] arm64: dts: renesas: r8a77951: Add reserved memory region
-Date:   Mon, 14 Nov 2022 14:48:46 -0500
-Message-Id: <20221114194846.108814-1-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.38.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 0x3000000 bytes memory region starting at 0x54000000 is
-reserved for the lossy_decompression hardware that will try to
-decompress any data written in the region.
+On Tue, 1 Nov 2022 at 19:17, Hector Martin <marcan@marcan.st> wrote:
+>
+> On 02/11/2022 00.16, Ulf Hansson wrote:
+> > On Mon, 24 Oct 2022 at 06:40, Hector Martin <marcan@marcan.st> wrote:
+> >>
+> >> This driver implements CPU frequency scaling for Apple Silicon SoCs,
+> >> including M1 (t8103), M1 Max/Pro/Ultra (t600x), and M2 (t8112).
+> >>
+> >> Each CPU cluster has its own register set, and frequency management is
+> >> fully automated by the hardware; the driver only has to write one
+> >> register. There is boost frequency support, but the hardware will only
+> >> allow their use if only a subset of cores in a cluster are in
+> >> non-deep-idle. Since we don't support deep idle yet, these frequencies
+> >> are not achievable, but the driver supports them. They will remain
+> >> disabled in the device tree until deep idle is implemented, to avoid
+> >> confusing users.
+> >
+> > Out of curiosity, may I ask if this implies the need of a
+> > synchronization mechanism on the Linux side? Or is the boost frequency
+> > dynamically managed solely by HW/FW?
+>
+> It's managed by hardware - Linux gets to request whatever frequency it
+> wants, and the hardware will limit it to what is achievable given the
+> current idle states within the cluster (and it will change automatically
+> with them). So if Linux asks for 3.2 GHz but there are no deep idle
+> cores in the cluster, you get 3.0. If there's one deep idle core, you
+> get 3.1 (I think). Three, 3.2. So this driver doesn't have to do
+> anything (and will report the correct current-frequency as long as the
+> per-SoC compatible is matched; without that this feature is disabled and
+> it just reports the requested frequency). We could enable the boost
+> states today just fine, it's just that they would never actually be
+> reached by the hardware.
 
-Mark the region as no-map to prevent linux from using it as RAM.
+Thanks for sharing these details. It's always nice to know a bit more
+about how the HW works!
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- arch/arm64/boot/dts/renesas/r8a77951.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+From the reviewing point of view, I don't have more to add at this point!
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-index 07c8763c1e77..171833d91313 100644
---- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-@@ -290,6 +290,18 @@ CPU_SLEEP_1: cpu-sleep-1 {
- 		};
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* device specific region for Lossy Decompression */
-+		lossy_decompress: memory-region@54000000 {
-+			no-map;
-+			reg = <0x00000000 0x54000000 0x0 0x03000000>;
-+		};
-+	};
-+
- 	extal_clk: extal {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--- 
-2.38.1
-
+Kind regards
+Uffe
