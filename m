@@ -2,132 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF2A462844B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38436628457
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:49:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237175AbiKNPq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:46:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35952 "EHLO
+        id S236963AbiKNPtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:49:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236881AbiKNPq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:46:56 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB6210043;
-        Mon, 14 Nov 2022 07:46:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668440816; x=1699976816;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VDaLfJvXwECfuRPSE8pK2QFtlBh89ngfYKiiJvz35CA=;
-  b=eFhK5VmdhYLroj66CsmUtyH7aLRRdsycqD8Bp9KMLhnpUtvPlitgw/FU
-   L4n35s4BfzmR93rwmQMVBpM7gbbPOCDtr0AS0/g1d8IOrcAq0s+cDiFqx
-   195Lc4vIH1NwnVRlnyleM/XbvokQZGahZFODVJsSLjrwPdFAQOhfEzjUn
-   y4gOm70n5nC6gefUytHY74PrGL+PM9MaBClh2ak6wDnR/+BRz5zbQzK4N
-   LNLk2EyPObo+Go53MGQEvnHuih5jBuGiIJ/mdDON6PoHkyNNYRL4qhpih
-   8cftuU0YrJy+h++7ngDvy/C7QgAka+QhpIE9Ecbzd0+UHumsoHrWan5kU
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="312006610"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
-   d="scan'208";a="312006610"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2022 07:46:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="632849142"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
-   d="scan'208";a="632849142"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga007.jf.intel.com with ESMTP; 14 Nov 2022 07:46:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oubfI-00CEVn-2n;
-        Mon, 14 Nov 2022 17:46:28 +0200
-Date:   Mon, 14 Nov 2022 17:46:28 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Petr Mladek <pmladek@suse.com>
-Cc:     Russell King <rmk+kernel@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH v3 2/7] lib/vsprintf: Add support for generic FOURCCs by
- extending %p4cc
-Message-ID: <Y3Ji1B+Kar6OSBn3@smile.fi.intel.com>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
- <Y3Jf7xz2CQjJuEeT@alley>
+        with ESMTP id S236523AbiKNPtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:49:42 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FDF140A4
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:49:41 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id a15so13729838ljb.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:49:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6wSuGB76l81gaOZPm77HZM6lioiS7r+dfc+W7xsVPIc=;
+        b=HskIouhVyi2ue7+LEhRN1RNzMQvR2PC9gCYjtggrfbJLkrjQSaDW8HSkDC2ngq/GGY
+         T7CvhwkLZcQEP7RHrGRISmnitfx1GOUeqhMkImP7385hiYtqtnfPuY/NtKgTeaQqK3Xe
+         pgnx9nvuaNp7VJQmCWdEWilqgSbOoYiQaafmZWrfPz3T5RNkTyrhRLcqj8zrIUN70ITz
+         +sC3HeCliR8IXBCJsa3SMVIofiy0Tji4L7fXbJSgzNGYnkKuJ7GwIYGgnCvLzdst8IxB
+         U3bTqm76MPVBtBftuH8k2gpUyo6abWhlTUVle9NCp/FMZf2QYl7CRVCjNFI1i/z+XNXn
+         GgAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6wSuGB76l81gaOZPm77HZM6lioiS7r+dfc+W7xsVPIc=;
+        b=AS0epJqa3tcqwuvJ/5FLqoQA/opvFTigw4hkyFref4nhMlNaWe2Jzleo79OLrQgaf6
+         IL6hd7dst56p/HpKRwYMtiQdJPia2ALntHhVzIe6ayyTNNG8g6Q+Lg9KrX+nBOOwrPXZ
+         szOc08hTK10SVDKE0oBeH6UhMp7s5ajC36ElcqMPlGqkGJqEaLMmfA2Vva9ZtNFsXA2A
+         4AAFXaQrR3SBLTBdqN2uy6fbY8qhIlMbrhT2jfQUpZ9o8Dm59dNzag1RFNJuvQA5OgrC
+         Fj2ClMl+NQcx/ZvqBG6P/xUgWDCp4dKe9TwSCOBgBEXEmnapqs6O/ZpORejZdXVMER2Q
+         lzvQ==
+X-Gm-Message-State: ANoB5plAMqJQxliBuMSf7V5p7hX+zUKiFxU9JRnYR5G84LSRlk0I7CbC
+        UTU7scy2M36CGL9rlQq6Rzh9rg==
+X-Google-Smtp-Source: AA0mqf6z1dI9nYxuRJzt3DSAk7mzSPHDwCDS+Nlxum6G3BtXxkcMr8KPa73iixm4aEeEjQ4yKM8BNQ==
+X-Received: by 2002:a2e:460a:0:b0:26f:ab25:8a77 with SMTP id t10-20020a2e460a000000b0026fab258a77mr4098788lja.93.1668440979411;
+        Mon, 14 Nov 2022 07:49:39 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id e10-20020a19674a000000b0049311968ca4sm1855621lfj.261.2022.11.14.07.49.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 07:49:38 -0800 (PST)
+Message-ID: <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
+Date:   Mon, 14 Nov 2022 16:49:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3Jf7xz2CQjJuEeT@alley>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
+ bindings
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111092457.10546-1-johan+linaro@kernel.org>
+ <20221111092457.10546-3-johan+linaro@kernel.org>
+ <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
+ <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
+ <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
+ <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 04:34:07PM +0100, Petr Mladek wrote:
-> On Tue 2022-11-08 16:33:22, Russell King wrote:
-
-...
-
-> >  	orig = get_unaligned(fourcc);
-> > -	val = orig & ~BIT(31);
-> > +	switch (fmt[2]) {
-> > +	case 'h':
-> > +		val = orig;
-> > +		break;
-> > +	case 'r':
-> > +		val = orig = swab32(orig);
+On 14/11/2022 15:18, Johan Hovold wrote:
+> On Mon, Nov 14, 2022 at 03:07:41PM +0100, Krzysztof Kozlowski wrote:
+>> On 14/11/2022 14:27, Johan Hovold wrote:
+>>> On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 11/11/2022 10:24, Johan Hovold wrote:
+>>>>> The current QMP USB3-DP PHY bindings are based on the original MSM8996
+>>>>> binding which provided multiple PHYs per IP block and these in turn were
+>>>>> described by child nodes.
 > 
-> I do not like much these multi assignments. I think that the result
-> was not even defined in some older C standards. Though, I can't find
-> it now. And even make W=3 does not warn about it.
+>>>>> +  "#clock-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  clock-output-names:
+>>>>> +    items:
+>>>>> +      - const: usb3_pipe
+>>>>> +      - const: dp_link
+>>>>> +      - const: dp_vco_div
+>>>>
+>>>> Why defining here fixed names? The purpose of this field is to actually
+>>>> allow customizing these - at least in most cases. If these have to be
+>>>> fixed, then driver should just instantiate these clocks with such names,
+>>>> right?
+>>>
+>>> I'm only using these names as documentation of the indexes. The driver
+>>
+>> What do you mean by documentation of indexes? You require these specific
+>> entries and do not allow anything else.
 > 
-> > +		break;
-> > +	case 'l':
-> > +		val = orig = le32_to_cpu(orig);
-> > +		break;
-> > +	case 'b':
-> > +		val = orig = be32_to_cpu(orig);
-> > +		break;
+> I'm using this property as documentation of the valid indexes that can
+> be used when referring to clocks provided by this device.
+> 
+> There are currently three and the mapping is described by the
+> 'clock-output-names' property.
 
-Isn't easy to fix? Something like below?
+That's not the purpose of this property. Drop it then. The names do not
+define the ABI and do not document it, actually. You require now that
+every DTB, if providing clock-output-names, will have exactly such names
+instead of having fixed IDs. DTBs are not for defining the ABI.
 
-	switch (fmt[2]) {
-	case 'h':
-		break;
-	case 'r':
-		orig = swab32(orig);
-		break;
-	case 'l':
-		orig = le32_to_cpu(orig);
-		break;
-	case 'b':
-		orig = be32_to_cpu(orig);
-		break;
+>  
+>>> doesn't use these names, but that's a Linux-specific implementation
+>>> detail.
+>>>
+>>> I noticed that several bindings leave the clock indexes unspecified, or
+>>> have header files defining some or all of them. I first added a QMP
+>>> header but that seemed like overkill, especially if we'd end up with
+>>> one header per SoC (cf. the GCC headers) due to (known and potential)
+>>> platform differences.
+>>
+>> Headers for the names? I do not recall such but that does not seem right.
+> 
+> Headers for the indexes.
+> 
+>>>
+>>> On the other hand reproducing this list in each node is admittedly a bit
+>>> redundant.
+>>>
+>>> Shall I add back a shared header for all PHYs handled by this driver
+>>> (another implementation detail) even if this could eventually lead to
+>>> describing clocks not supported by a particular SoC (so such constraints
+>>> would still need to be described by the binding somehow):
+>>>
+>>> 	/* QMP clocks */
+>>> 	#define QMP_USB3_PIPE_CLK	0
+>>> 	#define QMP_DP_LINK_CLK		1
+>>> 	#define QMP_DP_VCO_DIV_CLK	2
+>>
+>> What are these about? To remind - we talk about names of clocks this
+>> device creates. The output names. Whatever IDs you have are not related
+>> to the names.
+> 
+> As I mentioned above, this is not about the names that Linux gives to
+> its representation of these clocks. Its just about defining the valid
+> indexes in the binding.
 
-		...
-	}
-	val = orig;
+With or without the header, the IDs are part of ABI and are fixed. The
+headers are I think always encouraged because it makes above sentence
+explicit. Without the headers developers might want to change the IDs.
 
+> 
+> If you think that that using 'clock-output-names' for this is a bit too
+> unconventional, I can add back the header with defines like the above
+> instead.
+> 
+> Note that the clock schema has:
+> 
+>   clock-output-names:
+>     description: |
+>       Recommended to be a list of strings of clock output signal
+>       names indexed by the first cell in the clock specifier.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Exactly. Not to describe the ABI behind the ID.
 
+>       However, the meaning of clock-output-names is domain
+>       specific to the clock provider, ...
+
+... because you might have more cells. Just because clock-output-names
+do not fit some drivers it does not mean you can use it any way you
+wish. It is still for names of provided clocks.
+
+Best regards,
+Krzysztof
 
