@@ -2,243 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08296627993
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A79D66279A7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:56:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235804AbiKNJxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:53:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
+        id S236412AbiKNJ4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:56:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236049AbiKNJxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:53:42 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1EAE2FC5;
-        Mon, 14 Nov 2022 01:53:40 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8CxfbYjEHJjit0GAA--.9023S3;
-        Mon, 14 Nov 2022 17:53:39 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeAeEHJj+X8SAA--.49711S3;
-        Mon, 14 Nov 2022 17:53:39 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v2 2/2] dt-bindings: gpio: add loongson series gpio
-Date:   Mon, 14 Nov 2022 17:53:32 +0800
-Message-Id: <20221114095332.21079-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221114095332.21079-1-zhuyinbo@loongson.cn>
-References: <20221114095332.21079-1-zhuyinbo@loongson.cn>
+        with ESMTP id S236375AbiKNJ4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:56:37 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 211A8BC80
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:56:33 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id d6so18344802lfs.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:56:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x8chpSCweIkEehH0LuFm3Awls5omUQV3c5J0T5cGVX4=;
+        b=UltxDKNSsC0dIzDpREoAgUzlNRMOlyNuqR3zpdv4x5kpuUaPOvDtlDnFE4NLYuk/pP
+         dVUh2YI92B4aTmkno4CQ9J0Ss/v25P37mzNiVXjde0H1j1B69L+r/talmLYQMvJLHJy1
+         ROi952zRZfYgIm/d2ZLWQfoHYIpc+J6ec/LUUOry8uCie7fPdCr0kmXLSKCI3wrCnbOs
+         AIEqiG5CqcLSsxPKHON5R4kFFj3IWSHhK838KhbwVodnVPHqSEg7JSeu+dhI4m/LpoN6
+         D5prLyHG1qpL1g9rXJNYmVO5X9I0KKB+BrjWFFpKEx+JLASQhaMWZ3Nn3mkF2U0Y+q+t
+         LevQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x8chpSCweIkEehH0LuFm3Awls5omUQV3c5J0T5cGVX4=;
+        b=Pz4TuHQ4VHNinSYPs62v10Ax/aoObu6vlUl/TZgYuhF++UCY4NGfJFGBj/rIHb6t5k
+         C3Y/ERHolhc15yhilh94V7W0E6A670+T8+PEJHR/fAVA7x4jJWqMDVFaNRbOHhBCeRhE
+         teH65mcZYDbHsXul+KAKwt2OTaR/vujXjYjm0UjPBpynZEMHE747/9/DbuLA88El1bdG
+         pKk9KN62FNF2Ep6ESEC5Y3zQy2dp80xgHoSelCEQxsawUDsj2Tt+RSqfZ1RTxVpDTyJC
+         97E1mzrsOY5E7Y73iNLUQC+fYKl2awCI+D/lYIBfojp4PEvDAa32JHFBZ+ZNGmFn9+C/
+         7BDg==
+X-Gm-Message-State: ANoB5pkCoevZXC9cctAyRvHL+jLW8YkszgJFMpjmLqyvAdnIxA8FqY7r
+        Ym8qKJRqG8lQxaB+ZV6voNJ4eg==
+X-Google-Smtp-Source: AA0mqf7ESogb7qBezaKzO4iAGNxpKmSohIBTvAUHOsPYskR7JS8uYXVXe1x9s2F2wXDSeJhV1qd7gw==
+X-Received: by 2002:a05:6512:1115:b0:4a2:6238:e7f9 with SMTP id l21-20020a056512111500b004a26238e7f9mr3821288lfg.294.1668419792271;
+        Mon, 14 Nov 2022 01:56:32 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k19-20020a2eb753000000b00277078d4504sm1956378ljo.13.2022.11.14.01.56.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 01:56:31 -0800 (PST)
+Message-ID: <de98dbb4-afb5-de05-1e75-2959aa720333@linaro.org>
+Date:   Mon, 14 Nov 2022 10:56:30 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxLeAeEHJj+X8SAA--.49711S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tFy8Ww43XFy5Gw4xXrb_yoWruw48p3
-        WDZF9xX3y2grnIyFs8Ka1UZrWxAr1kC3WrurnxC3yxtrW7Kwn8ZF4fWFykG3Z3WrWUXF17
-        JwsrurWrta43Aw7anT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUAVWUZwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr
-        1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Xr0_
-        Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
-        CTnIWIevJa73UjIFyTuYvjxU24EEUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: qcom,ipa: deprecate
+ modem-init
+Content-Language: en-US
+To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221112200717.1533622-1-elder@linaro.org>
+ <20221112200717.1533622-2-elder@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221112200717.1533622-2-elder@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson series gpio binding with DT schema format using
-json-schema.
+On 12/11/2022 21:07, Alex Elder wrote:
+> GSI firmware for IPA must be loaded during initialization, either by
+> the AP or by the modem.  The loader is currently specified based on
+> whether the Boolean modem-init property is present.
+> 
+> Instead, use a new property with an enumerated value to indicate
+> explicitly how GSI firmware gets loaded.  With this in place, a
+> third approach can be added in an upcoming patch.
+> 
+> The new qcom,gsi-loader property has two defined values:
+>   - self:   The AP loads GSI firmware
+>   - modem:  The modem loads GSI firmware
+> The modem-init property must still be supported, but is now marked
+> deprecated.
+> 
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
+>  .../devicetree/bindings/net/qcom,ipa.yaml     | 59 +++++++++++++++----
+>  1 file changed, 46 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> index e752b76192df0..0dfd6c721e045 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> @@ -124,12 +124,22 @@ properties:
+>        - const: ipa-clock-enabled-valid
+>        - const: ipa-clock-enabled
+>  
+> +  qcom,gsi-loader:
+> +    enum:
+> +      - self
+> +      - modem
+> +    description:
+> +      This indicates how GSI firmware should be loaded.  If the AP loads
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
-Change in v2:
-		1. Drop "loongson,gpio_base" and "gpio-ranges" will cover it.
-		1. Drop "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
-		   "loongson,support_irq" and kernel driver will initial them that depend
-		   compatible in kernel.
-		3. Fixup maintainer for this driver.
+s/This indicates/Indicate/
+(or any other grammar without describing DT syntax but hardware/system)
 
- .../bindings/gpio/loongson,ls-gpio.yaml       | 126 ++++++++++++++++++
- MAINTAINERS                                   |   8 ++
- 2 files changed, 134 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+> +      and validates GSI firmware, this property has value "self".  If the
+> +      modem does this, this property has value "modem".
+> +
+>    modem-init:
+> +    deprecated: true
+>      type: boolean
+>      description:
+> -      If present, it indicates that the modem is responsible for
+> -      performing early IPA initialization, including loading and
+> -      validating firwmare used by the GSI.
+> +      This is the older (deprecated) way of indicating how GSI firmware
+> +      should be loaded.  If present, the modem loads GSI firmware; if
+> +      absent, the AP loads GSI firmware.
+>  
+>    memory-region:
+>      maxItems: 1
+> @@ -155,15 +165,36 @@ required:
+>    - interconnects
+>    - qcom,smem-states
+>  
+> -# If modem-init is not present, the AP loads GSI firmware, and
+> -# memory-region must be specified
+> -if:
+> -  not:
+> -    required:
+> -      - modem-init
+> -then:
+> -  required:
+> -    - memory-region
+> +allOf:
+> +  # If qcom,gsi-loader is present, modem-init must not be present
+> +  - if:
+> +      required:
+> +        - qcom,gsi-loader
+> +    then:
+> +      properties:
+> +        modem-init: false
 
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-new file mode 100644
-index 000000000000..f54048d03d9b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-@@ -0,0 +1,126 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson series GPIO controller.
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-gpio
-+      - loongson,ls7a-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 64
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 64
-+
-+required:
-+  - compatible
-+  - reg
-+  - ngpios
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - gpio-ranges
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gpio0: gpio@1fe00500 {
-+      compatible = "loongson,ls2k-gpio";
-+      reg = <0x1fe00500 0x38>;
-+      ngpios = <64>;
-+      #gpio-cells = <2>;
-+      gpio-controller;
-+      gpio-ranges = <&pctrl 0 0 15>,
-+                    <&pctrl 16 16 15>,
-+                    <&pctrl 32 32 10>,
-+                    <&pctrl 44 44 20>;
-+      interrupt-parent = <&liointc1>;
-+      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
-+                   <29 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5114db9c8f32..7813b857c4a8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12051,6 +12051,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
- F:	drivers/soc/loongson/loongson2_guts.c
- 
-+LOONGSON SERIES GPIO DRIVER
-+M:	Huacai Chen <chenhuacai@kernel.org>
-+M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-+L:	linux-gpio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-+F:	drivers/gpio/gpio-loongson.c
-+
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
- M:	Sathya Prakash <sathya.prakash@broadcom.com>
- M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
--- 
-2.31.1
+This is ok, but will not allow you to keep deprecated property in DTS
+for the transition period. We talked about this that you need to keep
+both or wait few cycles before applying DTS cleanups.
+
+> +
+> +      # If qcom,gsi-loader is "self", the AP loads GSI firmware, and
+> +      # memory-region must be specified
+> +      if:
+> +        properties:
+> +          qcom,gsi-loader:
+> +            contains:
+> +              const: self
+> +      then:
+> +        required:
+> +          - memory-region
+> +    else:
+> +      # If qcom,gsi-loader is not present, we use deprecated behavior.
+> +      # If modem-init is not present, the AP loads GSI firmware, and
+> +      # memory-region must be specified.
+> +      if:
+> +        not:
+> +          required:
+> +            - modem-init
+> +      then:
+> +        required:
+> +          - memory-region
+>  
+>  additionalProperties: false
+>  
+> @@ -196,7 +227,9 @@ examples:
+>          ipa@1e40000 {
+>                  compatible = "qcom,sdm845-ipa";
+>  
+> -                modem-init;
+> +                qcom,gsi-loader = "self";
+> +                memory-region = <&ipa_fw_mem>;
+> +                firmware-name = "qcom/sc7180-trogdor/modem-nolte/mba.mbn";
+
+Isn't this example based on sdm845?
+
+>  
+>                  iommus = <&apps_smmu 0x720 0x3>;
+>                  reg = <0x1e40000 0x7000>,
+
+Best regards,
+Krzysztof
 
