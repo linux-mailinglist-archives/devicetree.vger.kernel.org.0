@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 135D862797B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F10662797F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236049AbiKNJuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:50:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52358 "EHLO
+        id S235551AbiKNJvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:51:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236367AbiKNJtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:49:51 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8BB1EAC9
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:49:49 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id u11so12384241ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:49:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fEpSeStuRn6i3Xa8okbXnlW3DvC16HOL1lzWLEAD62s=;
-        b=fpleBB82HKuLtMiWywncqgMrGbUiwlSnDtPH/ram/gZBFEdLsz2oXFHYwIM3ydHpha
-         lM1WqOqTZYrPY2I0GiZMI8GLLaxDxTt9rYNLrrFJI/hVYGldUQNvFevi8RzRgwiovGdM
-         QgfQoKUHcyIOjW5ju+XlX6wDujXgwPr5ODGD3Akj0DZqH133BG/SndVNTnZkIEf0jrc+
-         r5uxL2k1tTMy9m3yz3xmD2bIb3RF6AH7cj3o9kwZxsDeJaXlUBipe+qY3ReT2hfCdOEB
-         LmrP9VKMQEQP4DopP8g2CpYVfYN5VxfxN/jiRzNcY04nTlgq0flxjZZGUUIo6tTHg7qu
-         n9iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fEpSeStuRn6i3Xa8okbXnlW3DvC16HOL1lzWLEAD62s=;
-        b=7JXdRHZwW5eVo54Db0XXWpuGcGjan7v+0P2sGp71t4x27t4bRfq1wn7k5lQFn2ItyJ
-         fgjfmruQpyC7I3uZ1a0T3NjV9B/Fs1wW5UDMwJNqjvkJNjIEOLF/9zQlnynAx2vl2LFk
-         J6gXAINnsus5Jm7mbgxBGhEdYDowfriI+mKKlKwiJRReyt/BBL41iRRHjyyPZ0mKi6WN
-         RcU1smBE5cP9emUQxls+6celcrm2pi2Kq7JI6JqpQi32J2kCO/KYHQ+2SkDiMn/HlSRd
-         FW6mNmh5t3q86DKZddCS4Csk+8j2CMCFJBIh2jcSZT3X/ytNkpPLHFKH+QplIG8R3/Pa
-         t/mg==
-X-Gm-Message-State: ANoB5pmZWDWVNMpIoBJFGWZgSdmRaC8UAP0qK6DOz1gSY86Sk/+K356L
-        tvOEJ54TsoiZVrl49cV/7wdq1A==
-X-Google-Smtp-Source: AA0mqf4C6S4rD8fPTf2Me8DQtgca63HWFBLgqjISq+p6wSqaDu0Iq1b/kcuXgfG8VfjKLZg6IiymAA==
-X-Received: by 2002:a2e:7d0b:0:b0:277:5279:1b8 with SMTP id y11-20020a2e7d0b000000b00277527901b8mr3882494ljc.58.1668419387558;
-        Mon, 14 Nov 2022 01:49:47 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id bq38-20020a056512152600b0048b1b2233ddsm1760031lfb.120.2022.11.14.01.49.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:49:47 -0800 (PST)
-Message-ID: <0dcca394-1e90-6743-a50d-33b26c1a4836@linaro.org>
-Date:   Mon, 14 Nov 2022 10:49:44 +0100
+        with ESMTP id S229933AbiKNJua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:50:30 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E4D585F98;
+        Mon, 14 Nov 2022 01:50:27 -0800 (PST)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8AxbdpiD3JjMd0GAA--.20741S3;
+        Mon, 14 Nov 2022 17:50:26 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxj+BfD3JjTX8SAA--.49498S2;
+        Mon, 14 Nov 2022 17:50:23 +0800 (CST)
+Subject: Re: [PATCH v1 2/2] dt-bindings: gpio: add loongson series gpio
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, zhuyinbo@loongson.cn,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        richard.liu@st.com, Arnaud Patard <apatard@mandriva.com>,
+        Hongbing Hu <huhb@lemote.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+References: <20221108092107.28996-1-zhuyinbo@loongson.cn>
+ <20221108092107.28996-2-zhuyinbo@loongson.cn>
+ <d9edb6e1-c3da-0f5b-546d-37d8151aaa35@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <d5457109-3bcb-e7d3-067d-9e4acd66ac17@loongson.cn>
+Date:   Mon, 14 Nov 2022 17:50:22 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: qrb5165-rb5-vision-mezzanine:
- Add vision mezzanine
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        andersson@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
-        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
- <20221112172650.127280-7-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221112172650.127280-7-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <d9edb6e1-c3da-0f5b-546d-37d8151aaa35@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Bxj+BfD3JjTX8SAA--.49498S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3Jw45JryxJw4fXF4rXFWrZrb_yoWxArWUp3
+        WUAFsrZwsFgF13Cr4YgFnrArn3Ar1kCw1rur9xC347tryqkwn3JF4SgFykW3Z3WryUX3W7
+        Xrsxu3yrGw15A3DanT9S1TB71UUUUb7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
+        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
+        0_Jw0_GFyl42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
+        c4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
+        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
+        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
+        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
+        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0TrW5UUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,159 +79,241 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12/11/2022 18:26, Bryan O'Donoghue wrote:
-> The Vision Mezzanine for the RB5 ships with an imx517 and ov9282 populated.
-> Other sensors and components may be added or stacked with additional
-> mezzanines.
+在 2022/11/8 下午11:28, Krzysztof Kozlowski 写道:
+> On 08/11/2022 10:21, Yinbo Zhu wrote:
+>> Add the Loongson series gpio binding with DT schema format using
+>> json-schema.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>>   .../bindings/gpio/loongson,ls-gpio.yaml       | 154 ++++++++++++++++++
+>>   MAINTAINERS                                   |  11 ++
+>>   2 files changed, 165 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+>> new file mode 100644
+>> index 000000000000..9d335262ddcc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+>> @@ -0,0 +1,154 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson series GPIO controller.
+>> +
+>> +maintainers:
+>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - loongson,ls2k-gpio
+>> +      - loongson,ls7a-gpio
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  ngpios: true
 > 
-> Enable the IMX577 on the vision mezzanine.
+> minimum? maximum?
+okay, I got it.
 > 
-> An example media-ctl pipeline for the imx577 is:
+>> +
+>> +  "#gpio-cells":
+>> +    const: 2
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  gpio-ranges: true
+>> +
+>> +  loongson,conf_offset:
 > 
-> media-ctl --reset
-> media-ctl -v -d /dev/media0 -V '"imx577 '22-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
-> media-ctl -V '"msm_csiphy2":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
-> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+> No underscores in node names. Plus comments from Linus seem to apply
+> here as well. Drop it entirely or explain why this is not part of
+> compatible, why this is needed and why encoding programming model
+> address in DT matches the DT...
+Add it is to distinguish differnt address in different platform.
+and I had drop them and initial them in kernel driver that depend
+on diffent compatible.
 > 
-> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile             |  1 +
->   .../dts/qcom/qrb5165-rb5-vision-mezzanine.dts | 63 +++++++++++++++++++
->   arch/arm64/boot/dts/qcom/sm8250.dtsi          | 33 ++++++++++
->   3 files changed, 97 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This option indicate this GPIO configuration offset address.
+>> +
+>> +  loongson,out_offset:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This option indicate this GPIO output value offset address.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 70ce09bc63a33..5eadd251a0a16 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5-vision-mezzanine.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
-> new file mode 100644
-> index 0000000000000..315d524045cf3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Linaro Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "qrb5165-rb5.dts"
-> +
-> +&camss {
-> +	status = "okay";
-> +	vdda-phy-supply = <&vreg_l5a_0p88>;
-> +	vdda-pll-supply = <&vreg_l9a_1p2>;
-> +
-> +	ports {
-> +		/* The port index denotes CSIPHY id i.e. csiphy2 */
-> +		port@2 {
-> +			reg = <2>;
-> +			csiphy2_ep: endpoint {
-> +				clock-lanes = <7>;
-> +				data-lanes = <0 1 2 3>;
-> +				remote-endpoint = <&imx577_ep>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&camcc {
-> +	status = "okay";
-> +};
-camcc goes before camss alphabetically. Though I see no reason why a 
-clock controller would be disabled, even if the clocks sit unused.
+> Drop
+> 
+>> +
+>> +  loongson,in_offset:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This option indicate this GPIO input value offset address.
+> 
+> Drop
+> 
+> 
+>> +
+>> +  loongson,gpio_base:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      This option indicate the first GPIO number in this node.
+> 
+> Drop
+> 
+> 
+>> +
+>> +  loongson,support_irq:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description:
+>> +      This option indicate this GPIO whether support interrupt.
+> 
+> Drop
+> 
+>> +
+>> +  interrupts:
+>> +    minItems: 1
+>> +    maxItems: 64
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - ngpios
+>> +  - "#gpio-cells"
+>> +  - gpio-controller
+>> +  - gpio-ranges
+>> +  - interrupts
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    gpio0: gpio@1fe00500 {
+>> +      compatible = "loongson,ls2k-gpio";
+>> +      reg = <0x1fe00500 0x38>;
+>> +      ngpios = <64>;
+>> +      #gpio-cells = <2>;
+>> +      gpio-controller;
+>> +      gpio-ranges = <&pctrl 0 0 15>,
+>> +                    <&pctrl 16 16 15>,
+>> +                    <&pctrl 32 32 10>,
+>> +                    <&pctrl 44 44 20>;
+>> +      loongson,conf_offset = <0>;
+>> +      loongson,out_offset = <0x10>;
+>> +      loongson,in_offset = <0x20>;
+>> +      loongson,gpio_base = <0>;
+>> +      loongson,support_irq;
+>> +      interrupt-parent = <&liointc1>;
+>> +      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <29 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <30 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <30 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <26 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <>,
+> 
+> What's this?
+There was no interrupt function in this gpio.
+> 
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <>,
+>> +                   <>,
+> 
+> What's this?
+> 
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>,
+>> +                   <27 IRQ_TYPE_LEVEL_LOW>;
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 916b2d9cffc0..878b8320ac3b 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -12048,6 +12048,17 @@ S:	Maintained
+>>   F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
+>>   F:	drivers/soc/loongson/loongson2_guts.c
+>>   
+>> +LOONGSON SERIES GPIO DRIVER
+>> +M:	Richard Liu, STMicroelectronics <richard.liu@st.com>
+>> +M:	Arnaud Patard <apatard@mandriva.com>
+>> +M:	Hongbing Hu <huhb@lemote.com>
+>> +M:	Huacai Chen <chenhuacai@kernel.org>
+>> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+> 
+> Are they all maintainers of this driver?
+add huacai and myself as maintainer.
+> 
+>> +L:	linux-gpio@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+>> +F:	drivers/gpio/gpio-loongson.c
+>> +
+>>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
+>>   M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Konrad
-> +
-> +&cci1 {
-> +	status = "okay";
-> +};
-> +
-> +&cci1_i2c0 {
-> +	camera@1a {
-> +		compatible = "sony,imx577";
-> +		reg = <0x1a>;
-> +
-> +		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
-> +		pinctrl-names = "default", "suspend";
-> +		pinctrl-0 = <&cam2_default>;
-> +		pinctrl-1 = <&cam2_suspend>;
-> +
-> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clock-rates = <24000000>;
-> +
-> +		dovdd-supply  = <&vreg_l7f_1p8>;
-> +		avdd-supply = <&vdc_5v>;
-> +		dvdd-supply = <&vdc_5v>;
-> +
-> +		port {
-> +			imx577_ep: endpoint {
-> +				clock-lanes = <1>;
-> +				link-frequencies = /bits/ 64 <600000000>;
-> +				data-lanes = <1 2 3 4>;
-> +				remote-endpoint = <&csiphy2_ep>;
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index f28a8893d00d7..83604b9772766 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3798,6 +3798,39 @@ tlmm: pinctrl@f100000 {
->   			gpio-ranges = <&tlmm 0 0 181>;
->   			wakeup-parent = <&pdc>;
->   
-> +			cam2_default: cam2-default-state {
-> +				rst-pins {
-> +					pins = "gpio78";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
-> +
-> +				mclk-pins {
-> +					pins = "gpio96";
-> +					function = "cam_mclk";
-> +					drive-strength = <16>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			cam2_suspend: cam2-suspend-state {
-> +				rst-pins {
-> +					pins = "gpio78";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +					output-low;
-> +				};
-> +
-> +				mclk-pins {
-> +					pins = "gpio96";
-> +					function = "cam_mclk";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
-> +			};
-> +
->   			cci0_default: cci0-default-state {
->   				cci0_i2c0_default: cci0-i2c0-default-pins {
->   					/* SDA, SCL */
