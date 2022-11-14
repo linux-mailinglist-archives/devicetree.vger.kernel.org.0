@@ -2,317 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 464A9627DBE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:29:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24731627DDB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:34:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237141AbiKNM3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 07:29:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54686 "EHLO
+        id S237157AbiKNMec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 07:34:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236444AbiKNM3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:29:13 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E2665F9
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:29:12 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id 94-20020a9d0067000000b0066c8d13a33dso6515537ota.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:29:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UBYAgk/8XQPB5WMV9514943bZAhbCeR6TpxGksmgvQw=;
-        b=IeHkTMEko2YpCueQyCJhLIgos/8B9AzexLBkQ3eslu8qVkYY0G2NSPTXch4PObCaof
-         v4AKwL8CmP2/6ks6MY6r0BlerBNZOSAHiLwjuEmrklgKAuPHpbultboz6DkbHd+yCyV6
-         UP2mKBZ9nPs9c6H3aZG01CIMOmHwJkPaXx50uMQoHTuU+fp+h1FJ8VWLDyTH886zEf3B
-         Htuu9eMIpbk/h5dFeVfAhR781kI0+4xdsYozkhRi9FbycnllKPH/9tvabkk4HVQDI5YF
-         bTNZfRaB7CuW9Zn046WXYi3EebzCxxZKORBT1bjtyYl9/yktRITzNntk0wH6+aM3ELBU
-         XwLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UBYAgk/8XQPB5WMV9514943bZAhbCeR6TpxGksmgvQw=;
-        b=zAugpcK50VSVlSA8Yh34Ms8jTS62oO8g1vOEoA+cfBosPRqZMHFyWWEDrFglPIhgWT
-         6/ri2tQ4FL+rpJq3kstyR/0++mq/mSDt+J1VoisRD6gA6IpMSt31+RDrTkOtCmPI8+0U
-         Kfn5XKNQC5YOo7+tDLRTCpSGxw+pBFWglO36roweWqLlnB17pphZ0NafhBd4hDOCmp4b
-         ckuTa+v8ZcaG4gzS9KUYkaAjIYKB3gjauHvLyVhtH9xSbYpOfOh1rvqVd2P808xvzf3Z
-         R2AdYFm86Au+vbE/kKUFoxGF+jswlHW6GQCzdSwkH4dZdt4gjU+WxsRXoT+QGO9oinH6
-         8C0g==
-X-Gm-Message-State: ANoB5pk8gk07z17NdEuzbcNQvWxGuy+xBWr/aanXJz9SwdNk1UCyE34G
-        sW/wPr00t/HS2ho5bFFgRooXpFKHR8s5vW2oJ/yjWqh/kXQ=
-X-Google-Smtp-Source: AA0mqf4+mW6bbk6LR0Ggm2JGpzfrwwzBpZ6JzdyWi1Qw2SWqbMQ3blTzBVBnV2CPqQwCJ4AElEe5iJNWpGW5HZM9cTs=
-X-Received: by 2002:a9d:7345:0:b0:66c:5310:7745 with SMTP id
- l5-20020a9d7345000000b0066c53107745mr6491458otk.48.1668428951558; Mon, 14 Nov
- 2022 04:29:11 -0800 (PST)
+        with ESMTP id S236734AbiKNMeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:34:31 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA65240A4;
+        Mon, 14 Nov 2022 04:34:30 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AE9ufF6009159;
+        Mon, 14 Nov 2022 06:34:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=2e+0Fy45j+r3qO1kdoenMNM6JG4cOatfMv6LlNiyQxk=;
+ b=krY6QAVv+Gah+RvGkNYxnWSd/ebGPzFN0viG3LIq+xp0MA4ejTVtYvEgRutoo53STvlb
+ WZBsx5n6r1CxmaOL/HWO5qCP5J4Kj0RmOdXA1L2zki/twJY/rZlgepZtGIfa8xj426Rm
+ vlY2yxTGXqQW4wMdw0tAfA9KH2rZxlnd45muTO4D9iEN1E6pPzVz4vVxFa5CuHytwMsB
+ AbIFAjVt1vSFwvfb/7cP7hrLKKy7F5mCX+AjLfEp5UMk55aQVCEPDaFHNLgkHBUosHsF
+ ZeOCgqf+DSm+xuSX/EJ0qYkw0p66As8Rk1+o7bEv5Db/cEa5+8Kt92wku2OLR2wJ9Pud IQ== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3kt8sst3p5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Nov 2022 06:34:11 -0600
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.15; Mon, 14 Nov
+ 2022 06:34:09 -0600
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.15 via Frontend Transport; Mon, 14 Nov 2022 06:34:09 -0600
+Received: from [198.90.251.111] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.111])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7386F2AA;
+        Mon, 14 Nov 2022 12:34:09 +0000 (UTC)
+Message-ID: <d3868694-64b5-25e4-d955-2b86d643eb0c@opensource.cirrus.com>
+Date:   Mon, 14 Nov 2022 12:34:09 +0000
 MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-5-apatel@ventanamicro.com> <Y3EDuaW0zQSSfiQ/@spud>
-In-Reply-To: <Y3EDuaW0zQSSfiQ/@spud>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 14 Nov 2022 17:59:00 +0530
-Message-ID: <CAK9=C2WDQCnVnxKR6SFspdwope2KffyASLJDF_Ygo_417ekJ5w@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller bindings
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 11/12] dt-bindings: sound: Add Cirrus Logic CS48L31/32/33
+ codecs
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <broonie@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+ <20221109165331.29332-12-rf@opensource.cirrus.com>
+ <5f012334-1815-2ef6-7dc0-08b4d60f754f@linaro.org>
+ <8bd6b864-ca58-022d-220d-328121f7e7dd@opensource.cirrus.com>
+ <c7d73b1e-053f-21a7-4f4d-632742b4761c@linaro.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <c7d73b1e-053f-21a7-4f4d-632742b4761c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: urp2okFLvVvpuanNfMbOFJgen2N9UTBN
+X-Proofpoint-ORIG-GUID: urp2okFLvVvpuanNfMbOFJgen2N9UTBN
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 13, 2022 at 8:18 PM Conor Dooley <conor@kernel.org> wrote:
->
-> Hey Anup,
->
-> On Fri, Nov 11, 2022 at 10:12:02AM +0530, Anup Patel wrote:
-> > dt-bindings: Add RISC-V incoming MSI controller bindings
->
-> nit: it looks like the usual prefix here is "dt-bindings:
-> interrupt-controller".
+On 14/11/2022 11:03, Krzysztof Kozlowski wrote:
+> On 14/11/2022 12:00, Richard Fitzgerald wrote:
+>> On 14/11/2022 08:45, Krzysztof Kozlowski wrote:
+>>> On 09/11/2022 17:53, Richard Fitzgerald wrote:
+>>>> Codecs in this family have multiple digital and analog audio I/O that
+>>>> support a variety of external hardware connections and configurations.
+>>>>
+>>>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>>>> ---
+>>>>    .../bindings/sound/cirrus,cs48l32.yaml        | 96 +++++++++++++++++++
+>>>>    include/dt-bindings/sound/cs48l32.h           | 25 +++++
+>>>>    2 files changed, 121 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
+>>>>    create mode 100644 include/dt-bindings/sound/cs48l32.h
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..70fb294c6dc1
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
+>>>> @@ -0,0 +1,96 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/sound/cirrus,cs48l32.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Cirrus Logic CS48L31/32/33 audio CODECs
+>>>> +
+>>>> +maintainers:
+>>>> +  - patches@opensource.cirrus.com
+>>>> +
+>>>> +description: |
+>>>> +  This describes audio configuration bindings for these codecs.
+>>>
+>>> Don't start with "This". Instead describe the hardware.
+>>>
+>>>> +
+>>>> +  See also the core bindings for the parent MFD driver:
+>>>> +
+>>>> +    Documentation/devicetree/bindings/mfd/cirrus,cs48l32.yaml
+>>>
+>>> Same comment as for pinctrl patch.
+>>>
+>>>> +
+>>>> +  and defines for values used in these bindings:
+>>>> +
+>>>> +    include/dt-bindings/sound/cs48l32.h
+>>>> +
+>>>> +  The properties are all contained in the parent MFD node.
+>>>> +
+>>>> +properties:
+>>>
+>>> Missing compatible. What's the point to organize bindings like that? The
+>>> schema on its own does nothing - does not match anything.
+>>
+>> Do you mean child drivers should not share the MFD node? Or do you mean
+>> that if they share the MFD node all the child driver bindings should be
+>> documented in the MFD schema instead of having a sub-schema for each
+>> class of hardware functionality?
+> 
+> I mean, that regular binding has a compatible which allows the schema to
+> be matched.
+> 
+> Splitting parts from top-level properties is used only for re-usable
+> shared/common schemas, which does not seem the case here.
+> 
 
-Okay, I will update.
+Ok, that's good. None of these drivers are re-useable standalone.
+I'll squash the bindings all into MFD schema for V2.
 
->
-> > We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
-> > defined by the RISC-V advanced interrupt architecture (AIA) specification.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
-> >  1 file changed, 174 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> > new file mode 100644
-> > index 000000000000..05106eb1955e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> > @@ -0,0 +1,174 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V Incoming MSI Controller (IMSIC)
-> > +
-> > +maintainers:
-> > +  - Anup Patel <anup@brainfault.org>
-> > +
-> > +description:
->
-> Is this one of the situations where we want to have a | after
-> "description:" to preserve formatting?
-
-Okay, I will update.
-
->
-> > +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
-> > +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
-> > +  AIA specification can be found at https://github.com/riscv/riscv-aia.
-> > +
-> > +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
-> > +  for each privilege level (machine or supervisor). The configuration of
-> > +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
-> > +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
-> > +  fixed number of interrupt identities (to distinguish MSIs from devices)
-> > +  which is same for given privilege level across CPUs (or HARTs).
-> > +
-> > +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
-> > +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
-> > +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
-> > +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
-> > +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
-> > +  privilege level (machine or supervisor) encodes group index, HART index,
-> > +  and guest index (shown below).
-> > +
-> > +  XLEN-1           >=24                                 12    0
-> > +  |                  |                                  |     |
-> > +  -------------------------------------------------------------
-> > +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
-> > +  -------------------------------------------------------------
-> > +
-> > +  The device tree of a RISC-V platform will have one IMSIC device tree node
-> > +  for each privilege level (machine or supervisor) which collectively describe
-> > +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - vendor,chip-imsics
->
-> Is it valid to have a dummy here? I did a bit of grepping & could not
-> see a single other yaml binding which used a placeholder like this -
-> other than the example schema itself. I assume you're trying to get
-> across the point that using the bare riscv,imsics is not okay and a
-> vendor should create a custom string for their implementation?
-
-Yes, this dummy is a placeholder to mandate two compatible strings.
-The dummy can eventually be replaced by some actual implementation
-compatible string.
-
->
-> Also, the file name says "riscv,imsic", the description says "IMSIC" but
-> you've used "imsics" in the compatible. Is this a typo, or a plural?
-
-Yes, the file name should be consistent. I will update the file name.
-
->
-> Thanks,
-> Conor.
->
-> > +      - const: riscv,imsics
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 128
-> > +    description:
-> > +      Base address of each IMSIC group.
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 0
-> > +
-> > +  msi-controller: true
-> > +
-> > +  interrupts-extended:
-> > +    minItems: 1
-> > +    maxItems: 32768
-> > +    description:
-> > +      This property represents the set of CPUs (or HARTs) for which given
-> > +      device tree node describes the IMSIC interrupt files. Each node pointed
-> > +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
-> > +      HART) as parent.
-> > +
-> > +  riscv,num-ids:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 63
-> > +    maximum: 2047
-> > +    description:
-> > +      Specifies how many interrupt identities are supported by IMSIC interrupt
-> > +      file.
-> > +
-> > +  riscv,num-guest-ids:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 63
-> > +    maximum: 2047
-> > +    description:
-> > +      Specifies how many interrupt identities are supported by IMSIC guest
-> > +      interrupt file. When not specified the number of interrupt identities
-> > +      supported by IMSIC guest file is assumed to be same as specified by
-> > +      the riscv,num-ids property.
-> > +
-> > +  riscv,slow-ipi:
-> > +    type: boolean
-> > +    description:
-> > +      The presence of this property implies that software interrupts (i.e.
-> > +      IPIs) using IMSIC software injected MSIs is slower compared to other
-> > +      software interrupt mechanisms (such as SBI IPI) on the underlying
-> > +      RISC-V platform.
-> > +
-> > +  riscv,guest-index-bits:
-> > +    minimum: 0
-> > +    maximum: 7
-> > +    description:
-> > +      Specifies number of guest index bits in the MSI target address. When
-> > +      not specified it is assumed to be 0.
-> > +
-> > +  riscv,hart-index-bits:
-> > +    minimum: 0
-> > +    maximum: 15
-> > +    description:
-> > +      Specifies number of HART index bits in the MSI target address. When
-> > +      not specified it is estimated based on the interrupts-extended property.
-> > +
-> > +  riscv,group-index-bits:
-> > +    minimum: 0
-> > +    maximum: 7
-> > +    description:
-> > +      Specifies number of group index bits in the MSI target address. When
-> > +      not specified it is assumed to be 0.
-> > +
-> > +  riscv,group-index-shift:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 24
-> > +    maximum: 55
-> > +    description:
-> > +      Specifies the least significant bit of the group index bits in the
-> > +      MSI target address. When not specified it is assumed to be 24.
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupt-controller
-> > +  - msi-controller
-> > +  - interrupts-extended
-> > +  - riscv,num-ids
-> > +
-> > +examples:
-> > +  - |
-> > +    // Example 1 (Machine-level IMSIC files with just one group):
-> > +
-> > +    imsic_mlevel: interrupt-controller@24000000 {
-> > +      compatible = "vendor,chip-imsics", "riscv,imsics";
-> > +      interrupts-extended = <&cpu1_intc 11>,
-> > +                            <&cpu2_intc 11>,
-> > +                            <&cpu3_intc 11>,
-> > +                            <&cpu4_intc 11>;
-> > +      reg = <0x28000000 0x4000>;
-> > +      interrupt-controller;
-> > +      #interrupt-cells = <0>;
-> > +      msi-controller;
-> > +      riscv,num-ids = <127>;
-> > +    };
-> > +
-> > +  - |
-> > +    // Example 2 (Supervisor-level IMSIC files with two groups):
-> > +
-> > +    imsic_slevel: interrupt-controller@28000000 {
-> > +      compatible = "vendor,chip-imsics", "riscv,imsics";
-> > +      interrupts-extended = <&cpu1_intc 9>,
-> > +                            <&cpu2_intc 9>,
-> > +                            <&cpu3_intc 9>,
-> > +                            <&cpu4_intc 9>;
-> > +      reg = <0x28000000 0x2000>, /* Group0 IMSICs */
-> > +            <0x29000000 0x2000>; /* Group1 IMSICs */
-> > +      interrupt-controller;
-> > +      #interrupt-cells = <0>;
-> > +      msi-controller;
-> > +      riscv,num-ids = <127>;
-> > +      riscv,group-index-bits = <1>;
-> > +      riscv,group-index-shift = <24>;
-> > +    };
-> > +...
-> > --
-> > 2.34.1
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-
-Regards,
-Anup
+>>
+>> I'm certainly willing to collapse all the bindings into a single MFD
+>> schema yaml. For this driver we followed the same structure that was
+>> accepted for madera (and there was some discussion when we upstreamed
+>> madera about how the bindings should be organized which resulted in
+>> them being changed). We pretty much assumed that the safe bet was to do
+>> the same that was accepted by the maintainer last time around.
+> 
+> Just merge it with MFD binding.
+> 
+> Best regards,
+> Krzysztof
+> 
