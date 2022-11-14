@@ -2,406 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2184628379
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7FD628393
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:12:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237111AbiKNPFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36830 "EHLO
+        id S236983AbiKNPMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:12:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236735AbiKNPFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:05:01 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D0722532
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:04:58 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id q83so11622739oib.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:04:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ulAOjA75cdUjCrwoFzB3GNTnqeppGrkDtJATlYQPSco=;
-        b=lExNvcXwOiM309Kvig8jF70BuGGKOzlvekHmZScMYXQKI7kPvOCEcfLoIYpp/iFazb
-         ui2bUu0jH0Dgfe8kOLHBFR75CD+FDLj6ESAkjM9vwnu5jxHSxPhxvVMFm3xuGm6wcgCv
-         CFnki7JmgwOUm+PjLEGd4iZ8OF7tVSha7AvVZrPmJ8Dd+inAPiGNIgdJ+rTGKDnaEZbj
-         qXhtssXM5xgXjhuB8sr9rq/yoFi+saYHqXDZmHRGJOpjtiSkro31bi4j3GMHPvpC/KUf
-         L+SmaHRoJcbmLg6o1K0d7o5AgpcWZ4P4DEsxoUqYHsDjz4bi9im40fFEK50Ti98i60QM
-         EyfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ulAOjA75cdUjCrwoFzB3GNTnqeppGrkDtJATlYQPSco=;
-        b=wowzqCafqCvHhRNQw4zWJjphfJH/cfGRHo6NWVXpR2WT0S5Kx9sRClw5Q06Ks+A3xr
-         KmLoeqJfEWcDIhOVVnDg1YBf2cZZu4ruzCfhzB6h8ifNEpMqaHHQzp+T8sUnkdCmmZNb
-         dKWAoywtWP7FqKKJhN91Td6J0hZTTpRiH/Uidbbtt1orkAkzdImYnwXqqrVN/PAdVib8
-         j99xlOO0URKgFBUrKV+8HW9NQo+bm4YIsBn+bXdthST5w2QaTBlT5tV981+vhHItM4e5
-         TqyBFUFI3AyZ2VZQU6B/MU86ax1KZ6gbdIHfV9R6StK3etaLn6IyrWxPQ7Jn6mPqiANy
-         zBgw==
-X-Gm-Message-State: ANoB5pmH4TceIdHEVVI9Rg1CYtk9wMrILxIFwfmvesDXAbFeCtbz/4WG
-        P16zyy78PU+KI5Rx9sL/Y6y+HvxlWWg6jlxxd/ybEA==
-X-Google-Smtp-Source: AA0mqf6lT+kmg+JHdDm1daVMkl8lf3NcqyT8MzhszZniZ5XHEK8j9CkyFUgWxddEZpdnZ/vL0Rv1tENw2T9e86OzUbs=
-X-Received: by 2002:a05:6808:20a3:b0:359:c377:6f7 with SMTP id
- s35-20020a05680820a300b00359c37706f7mr6006527oiw.271.1668438297561; Mon, 14
- Nov 2022 07:04:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-5-apatel@ventanamicro.com> <9be58cb4-4ee8-a6e0-7a0a-f2f581e394d3@linaro.org>
- <CAK9=C2X55CG6tjjiTPrecnnZZiwTOS1BSH3UTPa-fLBm38WdLA@mail.gmail.com> <3f469c79-fc4e-9c29-9c47-6dd8e28484a5@linaro.org>
-In-Reply-To: <3f469c79-fc4e-9c29-9c47-6dd8e28484a5@linaro.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 14 Nov 2022 20:34:45 +0530
-Message-ID: <CAK9=C2VEZhxgqEDxxKRyvs7NdeRvPzVH=Yy_c_t-tLWhCt3wqA@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237111AbiKNPMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:12:37 -0500
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE43BCAB;
+        Mon, 14 Nov 2022 07:12:35 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 5F49C5C0118;
+        Mon, 14 Nov 2022 10:12:32 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Mon, 14 Nov 2022 10:12:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1668438752; x=
+        1668525152; bh=0AuGUPMpHoja+9h2KXd2rB+g1YZCSmA/pv709yYusZs=; b=N
+        imHqBCHQBx3TqPO+3otVYxSKGkXs9YDWBK8oMsEYTqKR9EoIJCrmDRSKajhuDm+t
+        xLTCyKkRPHs3O+ij5BTy63PS+jupxgqF2umtceFZYgbFE6YTCKe0Qn8CTzph7Bjn
+        QXzhCpOSapHICvU7ROHCfPBYRQVufWoovONSGqAJ37ZE9q/NXHU+U5e61EMfWBd8
+        Ahjy4T/tkZ51WxkXz3RrkIlrMoWqVDXqUVyJ9Fz/k+FZlBEsiXfTHIsnUev/DwpC
+        F57eKOjmtj+8dv1yrTj5BYuE0SdxDbXIfXb/wBR7//tX36prdU86J03rJrY0sDwy
+        Tj2Yq7jEoMiXYGkyy164Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668438752; x=
+        1668525152; bh=0AuGUPMpHoja+9h2KXd2rB+g1YZCSmA/pv709yYusZs=; b=l
+        fQLNXCnKbkA0PiBeyW6h5RRt+6oD3D8Q3pbG6mY5+RoQhd7+cLjQum8Q9DJJvZ51
+        CNijv/9Fiil1hA305ooBtfYIF98WNix84zLxX+ONDuYL2twQBQKStuY3y/hbyzcW
+        IiJHKEFyHI+WwhUr0vJJ3GyJd54VQeY4J1XvzOQ2CZe62IFDausnwo0Ad1LVF62d
+        deZlOsPB61X3dffxQ8zzhp3Yaf0Bj36tu/ZmMAY7YCKVc8SIXdOPpm23wYKaYJj0
+        S1RZDBlUXA6FXgGCXJHGaMX8X5z2jbHR4xfrW853TuejXe/+7Z3y+jHes3/M5UeE
+        SI+ifKZ53v+kiAaX0GQ+Q==
+X-ME-Sender: <xms:31pyY0VjEwxO4EUW4JC-rkT1WJFaktgNwfoQbSCB5gxKgs312nLL7Q>
+    <xme:31pyY4leAzEB72KnV4EBvk3-i2PolJiBgggZsJXDnLCatVeqbipug-HYUp6hA00zx
+    v5IrrOpB7sRFJdxG-s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedvgdegiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
+    jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:31pyY4auCtGnKuYCUHE2ey5OhveTmmnaHss32ff3o_ZAfOKV6FBdmQ>
+    <xmx:31pyYzUfxPb39MIdkWZo6zEyNV4CjCgkn-RgocA9m2SnJdYX2H44hQ>
+    <xmx:31pyY-mrqjwT4Db8756KAc9bjOnJuyrTpS42w7ymvcQiTlaIj1wFkA>
+    <xmx:4FpyY8tZffa25m1byUcHEEBq8VzuHYfdg-DU2LEaArTgu7bxeNKDiQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C3AF2B60086; Mon, 14 Nov 2022 10:12:31 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <48a6bfab-6b88-4a5a-989d-ab87430290c7@app.fastmail.com>
+In-Reply-To: <20221102171012.49150-1-kory.maincent@bootlin.com>
+References: <20221102171012.49150-1-kory.maincent@bootlin.com>
+Date:   Mon, 14 Nov 2022 16:12:11 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+        "Viresh Kumar" <viresh.kumar@linaro.org>,
+        "Shiraz Hashim" <shiraz.linux.kernel@gmail.com>,
+        "Vipin Kumar" <vipin.kumar@st.com>,
+        "Vijay Kumar Mishra" <vijay.kumar@st.com>,
+        "Deepak Sikri" <deepak.sikri@st.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+        "Viresh Kumar" <vireshk@kernel.org>, soc@kernel.org,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Russell King" <linux@armlinux.org.uk>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Sudeep Holla" <sudeep.holla@arm.com>,
+        "Gregory Clement" <gregory.clement@bootlin.com>,
+        "Neil Armstrong" <neil.armstrong@linaro.org>,
+        "Alexandre Ghiti" <alexandre.ghiti@canonical.com>,
+        "Rajeev Kumar" <rajeev-dlh.kumar@st.com>,
+        "Vipul Kumar Samar" <vipulkumar.samar@st.com>
+Subject: Re: [PATCH v2 0/6] Support new features to the SPEAr600
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 5:52 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Nov 2, 2022, at 18:10, K=C3=B6ry Maincent wrote:
+> From: Kory Maincent <kory.maincent@bootlin.com>
 >
-> On 14/11/2022 13:06, Anup Patel wrote:
-> > On Mon, Nov 14, 2022 at 3:19 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/11/2022 05:42, Anup Patel wrote:
-> >>> We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
-> >>> defined by the RISC-V advanced interrupt architecture (AIA) specification.
-> >>>
-> >>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >>> ---
-> >>>  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
-> >>>  1 file changed, 174 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..05106eb1955e
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> >>> @@ -0,0 +1,174 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: RISC-V Incoming MSI Controller (IMSIC)
-> >>> +
-> >>> +maintainers:
-> >>> +  - Anup Patel <anup@brainfault.org>
-> >>> +
-> >>> +description:
-> >>> +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
-> >>> +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
-> >>> +  AIA specification can be found at https://github.com/riscv/riscv-aia.
-> >>> +
-> >>> +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
-> >>> +  for each privilege level (machine or supervisor). The configuration of
-> >>> +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
-> >>> +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
-> >>> +  fixed number of interrupt identities (to distinguish MSIs from devices)
-> >>> +  which is same for given privilege level across CPUs (or HARTs).
-> >>> +
-> >>> +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
-> >>> +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
-> >>> +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
-> >>> +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
-> >>> +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
-> >>> +  privilege level (machine or supervisor) encodes group index, HART index,
-> >>> +  and guest index (shown below).
-> >>> +
-> >>> +  XLEN-1           >=24                                 12    0
-> >>> +  |                  |                                  |     |
-> >>> +  -------------------------------------------------------------
-> >>> +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
-> >>> +  -------------------------------------------------------------
-> >>> +
-> >>> +  The device tree of a RISC-V platform will have one IMSIC device tree node
-> >>> +  for each privilege level (machine or supervisor) which collectively describe
-> >>> +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
-> >>> +
-> >>> +allOf:
-> >>> +  - $ref: /schemas/interrupt-controller.yaml#
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    items:
-> >>> +      - enum:
-> >>> +          - vendor,chip-imsics
-> >>
-> >> There is no such vendor... As Conor pointed out, this does not look
-> >> correct. Compatibles must be real and specific.
-> >
-> > Previously, Rob had suggest to:
-> > 1) Mandate two compatible strings: one for implementation and
-> >     and second for specification
-> > 2) Since this is new specification with QEMU being the only
-> >     implementation, we add "vendor,chip-imsics" as dummy
-> >     implementation specific string for DT schema checkers
-> >     to pass the examples. Once we have an actual implementation,
-> >    we will replace this dummy string.
-> >
-> > Refer, https://www.spinics.net/lists/devicetree/msg442720.html
+> This patches series adds two features of the SPEAr600 SOC:
 >
-> And Rob did not propose vendor as vendor and chip-imsics as device. Read
-> his message again.
-
-Okay
-
+> - Enable the display controller
 >
-> >
-> >>
-> >>> +      - const: riscv,imsics
-> >>> +
-> >>> +  reg:
-> >>> +    minItems: 1
-> >>> +    maxItems: 128
-> >>
-> >> Is there a DTS with 128 reg items?
-> >
-> > Not at the moment since this is a new specification.
-> >
-> > The value "128" is because maximum number of
-> > IMSIC groups on an system with both IMSIC and
-> > APLIC is 128 where each IMSIC group has a
-> > separate base address. This is not a hard limit so
-> > I am willing to drop it as well.
+> - Enable the SPI buses using the SSP controller
 >
-> Is "separate base address" really a separate different range or just
-> spaced by few registers?
-
-Yes, "separate base address" of an IMSIC group
-means a separate different range.
-
-We can think of an IMSIC group as a CPU cluster or
-chiplet or die. The IMSIC files within a group are
-located next to each other whereas the groups can
-be far away from each other.
-
+> Changes in v2:
+> - Keep the I2C_CONFIG in the spear6xx_defconfig while enabling DRM.
+> - Send cover letter which was not sent in v1 due to a mistake in my git
+>   mail config.
 >
-> >
-> >>
-> >>> +    description:
-> >>> +      Base address of each IMSIC group.
-> >>> +
-> >>> +  interrupt-controller: true
-> >>> +
-> >>> +  "#interrupt-cells":
-> >>> +    const: 0
-> >>> +
-> >>> +  msi-controller: true
-> >>
-> >> You want then msi-controller.yaml schema and you can drop properties
-> >> described there.
-> >
-> > Okay, I will include msi-controller.yaml in the next revision.
-> >
-> >>
-> >>> +
-> >>> +  interrupts-extended:
-> >>> +    minItems: 1
-> >>> +    maxItems: 32768
-> >>
-> >> I just wonder if you are not putting some random stuff here... just like
-> >> this "vendor" company.
-> >>
-> >> 32768 inputs it is quite a big chip. Are you sure you have so many pins
-> >> or internal connections?
-> >
-> > The interrupts-extended property describes the association of IMSIC
-> > interrupt files with the HARTs. If there are N HARTs then we will have
-> > N entries in the interrupts-extended (just like the existing PLIC DT bindings).
-> >
-> > For example, if the first entry points to HART1 and the second entry points
-> > to HART0 then the first interrupt file is associated with HART1 and the
-> > second interrupt file is associated with HART0.
-> >
-> > Currently, the "maxItems" limit reflects the max IMSICs which an APLIC
-> > domain can target on a system with both IMSIC and APLIC.
-> >
-> > Actually, there is a typo here. The "maxItems" should be 16384 as-per
-> > the frozen AIA specification. I will update "maxItems" accordingly in
-> > next patch revision.
-> >
-> >>
-> >>> +    description:
-> >>> +      This property represents the set of CPUs (or HARTs) for which given
-> >>> +      device tree node describes the IMSIC interrupt files. Each node pointed
-> >>> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
-> >>> +      HART) as parent.
-> >>> +
-> >>> +  riscv,num-ids:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    minimum: 63
-> >>> +    maximum: 2047
-> >>> +    description:
-> >>> +      Specifies how many interrupt identities are supported by IMSIC interrupt
-> >>> +      file.
-> >>> +
-> >>> +  riscv,num-guest-ids:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    minimum: 63
-> >>> +    maximum: 2047
-> >>> +    description:
-> >>> +      Specifies how many interrupt identities are supported by IMSIC guest
-> >>> +      interrupt file. When not specified the number of interrupt identities
-> >>> +      supported by IMSIC guest file is assumed to be same as specified by
-> >>> +      the riscv,num-ids property.
-> >>> +
-> >>> +  riscv,slow-ipi:
-> >>> +    type: boolean
-> >>> +    description:
-> >>> +      The presence of this property implies that software interrupts (i.e.
-> >>> +      IPIs) using IMSIC software injected MSIs is slower compared to other
-> >>> +      software interrupt mechanisms (such as SBI IPI) on the underlying
-> >>> +      RISC-V platform.
-> >>
-> >> Is this a property of software or hardware?
-> >
-> > This is a property of hardware (or implementation) because IPIs
-> > in IMSIC are software injected MSIs so if IMSIC is trap-n-emulated
-> > by a hypervisor then all writes to MSI register will trap to hypervisor
-> > in which case IPI injection via IMSIC is slow.
-> >
-> > The presence of "riscv,slow-ipi" DT property provides a hint to
-> > driver that using IPIs through IMSIC is slow on this platform so
-> > if there are other IPI mechanisms (such as SBI IPI calls) then
-> > OS should prefer those mechanisms.
+> Viresh, will you take the patches and submit a pull request to the ARM=
+ SoC
+> maintainers?
 >
-> If this is specific to implementation, why it is not included already in
-> the compatible?
->
-> The name is anyway too vague. What is "slow"? Describe real
-> characteristics of hardware, e.g. trapped via hypervisor.
+> Kory Maincent (6):
+>   arm: configs: spear6xx: Refresh defconfig
+>   arm: dts: spear600: Fix clcd interrupt
+>   arm: configs: spear6xx: Enable PL110 display controller
+>   clk: spear: Fix CLCD clock definition on SPEAr600
+>   arm: dts: spear600: Add ssp controller nodes
+>   clk: spear: Fix SSP clock definition on SPEAr600
 
-Okay, how about renaming it to "riscv,trap-n-emulated" ?
+I've picked up patches 1 and 3 into the arm/defconfig branch,
+and patches 2 and 5 into the soc/dt branch now.
 
-Alternately, we can add "riscv,soft-imsics" as an implementation
-specific compatible string which hypervisors can use to describe
-trap-n-emulated IMSICs. This "riscv,soft-imsics" can also replace
-"vendor,chip-imsics" dummy string ?
+I can also take patches 4 and 6, but I think it's better to have
+them merged through the clk tree.
 
+Maybe resend them to just the clk maintainers.
 
-> >
-> >>
-> >>> +
-> >>> +  riscv,guest-index-bits:
-> >>> +    minimum: 0
-> >>> +    maximum: 7
-> >>> +    description:
-> >>> +      Specifies number of guest index bits in the MSI target address. When
-> >>> +      not specified it is assumed to be 0.
-> >>> +
-> >>> +  riscv,hart-index-bits:
-> >>> +    minimum: 0
-> >>> +    maximum: 15
-> >>> +    description:
-> >>> +      Specifies number of HART index bits in the MSI target address. When
-> >>> +      not specified it is estimated based on the interrupts-extended property.
-> >>> +
-> >>> +  riscv,group-index-bits:
-> >>> +    minimum: 0
-> >>> +    maximum: 7
-> >>> +    description:
-> >>> +      Specifies number of group index bits in the MSI target address. When
-> >>> +      not specified it is assumed to be 0.
-> >>
-> >> Then default: 0.
-> >
-> > Okay, I will update.
-> >
-> >>
-> >>> +
-> >>> +  riscv,group-index-shift:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    minimum: 24
-> >>> +    maximum: 55
-> >>> +    description:
-> >>> +      Specifies the least significant bit of the group index bits in the
-> >>
-> >> Please drop everywhere "Specifies the" and instead just describe the
-> >> hardware.
-> >
-> > Okay, I will update.
-> >
-> >>
-> >>> +      MSI target address. When not specified it is assumed to be 24.
-> >>> +
-> >>> +additionalProperties: false
-> >>
-> >> unevaluatedProperties: false and drop all properties already described
-> >> by other schemas.
-> >
-> > Okay, I will update.
-> >
-> >>
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - interrupt-controller
-> >>> +  - msi-controller
-> >>> +  - interrupts-extended
-> >>> +  - riscv,num-ids
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    // Example 1 (Machine-level IMSIC files with just one group):
-> >>> +
-> >>> +    imsic_mlevel: interrupt-controller@24000000 {
-> >>> +      compatible = "vendor,chip-imsics", "riscv,imsics";
-> >>> +      interrupts-extended = <&cpu1_intc 11>,
-> >>> +                            <&cpu2_intc 11>,
-> >>> +                            <&cpu3_intc 11>,
-> >>> +                            <&cpu4_intc 11>;
-> >>> +      reg = <0x28000000 0x4000>;
-> >>> +      interrupt-controller;
-> >>> +      #interrupt-cells = <0>;
-> >>> +      msi-controller;
-> >>> +      riscv,num-ids = <127>;
-> >>> +    };
-> >>> +
-> >>> +  - |
-> >>> +    // Example 2 (Supervisor-level IMSIC files with two groups):
-> >>> +
-> >>> +    imsic_slevel: interrupt-controller@28000000 {
-> >>> +      compatible = "vendor,chip-imsics", "riscv,imsics";
-> >>
-> >> Please run scripts/checkpatch.pl and fix reported warnings.
-> >
-> > I did not see any warnings with ./scripts/checkpatch.pl.
-> >
-> > Is there any parameter of checkpatch.pl which I should try ?
->
-> You should see here or with your DTS warnings about undocumented vendor
-> prefix.
-
-Okay, I will check.
-
->
-> Best regards,
-> Krzysztof
->
-
-Best Regards,
-Anup
+       Arnd
