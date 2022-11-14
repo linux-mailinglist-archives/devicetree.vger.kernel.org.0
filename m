@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83A26276FC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08ABA62771F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236125AbiKNICv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 03:02:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54632 "EHLO
+        id S236210AbiKNIKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 03:10:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236115AbiKNICt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:02:49 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA967E5D
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:02:47 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id d20so12070813ljc.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:02:47 -0800 (PST)
+        with ESMTP id S236125AbiKNIKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:10:06 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766A4F592
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:05 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id t10so12159321ljj.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:10:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sYOkC3lSl+MCr0UtIVqb3uN+PxWKiXCe/KSGqm7Qpw4=;
-        b=DH+KqV80xgBULrXFFFSI+0ylBOGgDx3w6GbXJJk/vMUzZruaUiL2huAzlCsWiQsEqK
-         CYlVQcGC2HkQFYMCuzM6iK00X4WXZUE/0snchq3BZzwgzS+gA6j8iXPaOyXQg8R8I2Qd
-         c9i8w6mYogOniJ1wRzl8VK2cpeh7W8RuFAi54=
+        bh=tCeNiv0uBYzpZqxZWRhSbtsBMoxOYzYOiK5Rx6GVk50=;
+        b=P83PberwhZDcYiwg50+dvxuXIHmkTFYaiKENJXvfkW9B4aiKgyy7unYjqgtaOOIsWE
+         cceJfo52C6TAlLiPOQjlDwAa3miiUwSZYFtl6v1mhOaRSd7bk4W1bZ6H4z7iWkHnOBDd
+         z/fXAzweX9jHUSL643YEczhVOukXPtifbln2NidZMNVbIqXbqw7myitIS+4V7NyB3pf1
+         x3lc1QWpr/KSpasQbr/IBkYfKa5UxtQ14zeCafS3B2EoNdXzX8fqkOFMDBaAAB6so193
+         WtYdnXOkAXw2PknsnU8rvd+dMjoQQ9E8VJFKzLdKdgpY9FO47XJNs9T/QcLMU4VY04Q+
+         vRNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sYOkC3lSl+MCr0UtIVqb3uN+PxWKiXCe/KSGqm7Qpw4=;
-        b=jpCLl4AruIA/Un7QXEPzbsQ+6Nmg85m1nFse9P9UoyEzFMRnhsYqcz7oBGmvqgt7d4
-         BKLDRaN+qBjgKrzAnfLYV42OB4jGATm6NGmY84AISSa4YN8u2F9s8O05zX2RyeN//ghn
-         uIMB7J/u11lnYVycd5X98v8mnjbHPDIU50aJu5z2YMJc5tK6p2EHXd/wlBRaEflHZQhE
-         c1LZmFhwlnlQkxLsjoPeRTZmRL6yNy8GGvXuIqvtjwS/bAxu7XmsD8avZIgjh9stxfVE
-         qTAFu7yQ8iYfc456ZsRtbqeqGRAX8BsnUBLiXu1HCFqkYu/+j0+ItmkjLLPVYiNB0zCA
-         FzKQ==
-X-Gm-Message-State: ANoB5pnYHLML69/2kR6a0xwt2gUP8j9Ct9DLqPRlRkqnBbvFm+1RGzYz
-        z/PaUOLSyJDhhVwqxdyhAPU15xmCGUiMW4epyBg=
-X-Google-Smtp-Source: AA0mqf676uYWbKGiXMXUjh0D7SVyW8ofLT9CqD+JCKE7P0nbNhtoW3TSlB7wJnQdLy+u1OmceiOUow==
-X-Received: by 2002:a2e:a448:0:b0:277:1cfe:398 with SMTP id v8-20020a2ea448000000b002771cfe0398mr3439816ljn.10.1668412966059;
-        Mon, 14 Nov 2022 00:02:46 -0800 (PST)
-Received: from [172.16.11.74] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id a3-20020a05651c030300b002772414817esm1900919ljp.1.2022.11.14.00.02.44
+        bh=tCeNiv0uBYzpZqxZWRhSbtsBMoxOYzYOiK5Rx6GVk50=;
+        b=qdA1nqP7VOATXYj0LOHTYkKTRW+gsj8R72sLcXKTEFepz94MtUYrz4rfa9FKnMEz7d
+         WKlwC3ZfGKhYLtNhn9Y9V2aOXZGshFtWQkG3bY3DNrwQNvbtzkrs8A6U8cyUnSBOjz1y
+         hieDajGoLEkQpazt66kCE0W0H5IATKr6jvm3HbWGUBmFtQkab1KQe3ww/IlFUSsmlCOw
+         SqGb1ACAup4MREi1aZm0Y1o4P6pQnRj59nKZ3eFNq3IkbK/ZuObHt6tePmvXfdWjDXpz
+         r0vCL7BfgzNRNNzxEeYR6P4eSGYjZJi9JIkF9iCdBU9+hUvfRNc3UYZYFCbPWE/q8nFs
+         xV6g==
+X-Gm-Message-State: ANoB5pnsNs2iUfN/r33X0fG2H5dpP3QcVRo5kHF5tmpVNotk8D6CsNe1
+        GcpI2lSDsJIlwzHgUPe9BY4gRLGAGcpMHhyL
+X-Google-Smtp-Source: AA0mqf57zW1Vcw6Dbd8QjVYMtxFXFERlH805TdYAg7t+5ZaHRrpZJZTCmTVmB2ouqzO0OdFeVLJ8nw==
+X-Received: by 2002:a05:651c:54c:b0:278:f1a5:a361 with SMTP id q12-20020a05651c054c00b00278f1a5a361mr2628295ljp.124.1668413403835;
+        Mon, 14 Nov 2022 00:10:03 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a27-20020a2eb55b000000b0026e8b82eba6sm1901237ljn.34.2022.11.14.00.10.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 00:02:45 -0800 (PST)
-Message-ID: <4e98c469-cd22-a946-784c-5e0391142570@rasmusvillemoes.dk>
-Date:   Mon, 14 Nov 2022 09:02:44 +0100
+        Mon, 14 Nov 2022 00:10:03 -0800 (PST)
+Message-ID: <3fd5b40f-25eb-7ce3-0e23-84c35962e6e1@linaro.org>
+Date:   Mon, 14 Nov 2022 09:10:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/5] iio: addac: ad74413r: add spi_device_id table
-Content-Language: en-US, da
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Oleksij Rempel <linux@rempel-privat.de>
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
- <20221111143921.742194-2-linux@rasmusvillemoes.dk>
- <20221112165049.51a5f391@jic23-huawei>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <20221112165049.51a5f391@jic23-huawei>
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 1/2] dt-bindings: mfd: Add dt-schema MAX5970 and
+ MAX5978
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221114075739.4117439-1-Naresh.Solanki@9elements.com>
+ <20221114075739.4117439-2-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114075739.4117439-2-Naresh.Solanki@9elements.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,69 +78,226 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2022 17.50, Jonathan Cameron wrote:
-> On Fri, 11 Nov 2022 15:39:17 +0100
-> Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
+On 14/11/2022 08:57, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+
+Subject: I asked to drop the redundant words, but you re-added now in
+different form. So again, drop "dt-schema".
+
 > 
->> Silence the run-time warning
->>
->>   SPI driver ad74413r has no spi_device_id for adi,ad74412r
->>
->> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
->> ---
->>  drivers/iio/addac/ad74413r.c | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>
->> diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
->> index 899bcd83f40b..37485be88a63 100644
->> --- a/drivers/iio/addac/ad74413r.c
->> +++ b/drivers/iio/addac/ad74413r.c
->> @@ -1457,12 +1457,20 @@ static const struct of_device_id ad74413r_dt_id[] = {
->>  };
->>  MODULE_DEVICE_TABLE(of, ad74413r_dt_id);
->>  
->> +static const struct spi_device_id ad74413r_spi_id[] = {
->> +	{ .name = "ad74412r", .driver_data = (kernel_ulong_t)&ad74412r_chip_info_data },
->> +	{ .name = "ad74413r", .driver_data = (kernel_ulong_t)&ad74413r_chip_info_data },
->> +	{},
-> Trivial, but prefer not to have a comma after a "NULL" terminator like this.
-> It would never make sense to add anything after it in the array.
-
-I agree and wouldn't have added it if it weren't for the existing case
-in the other table.
-
-> Now you are matching existing driver style, but I'd still rather not see more
-> instances of this added.
-
-Sure.
-
-> Also, driver_data is not currently used. It should be because adding this
-> spi_id table means the driver can be probed via various routes where
-> device_get_match_data() == NULL. 
-
-That makes sense, I think I thought that that would somehow happen
-automatically. Looking through the history of similar fixes, I see that
-for example 3f8dd0a7dc does indeed add code as you suggest, but
-855fe49984 does not (and also doesn't add the corresponding .driver_data
-initializers in the spi table). They may very well both be correct, but
-looping in Oleksij for good measure.
-
-> Hence, alongside this change you need to have a fallback to cover that case.
-> Something along the lines of...
+> The MAX597x is a hot swap controller with configurable fault protection.
+> It also has 10bit ADC for current & voltage measurements.
 > 
-> 	st->chip_info = device_get_match_data(..);
-> 	if (!st->chip_info) {
-> 		struct spi_device_id *id = spi_get_device_id();
-> 		if (!id)
-> 			return -EINVAL;
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../bindings/mfd/maxim,max5970.yaml           | 172 ++++++++++++++++++
+>  1 file changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
 > 
-> 		st->chip_info = (void *)id->driver_data;
-> 		//or better yet cast to the correct type I'm just too lazy to look it up ;)
-> 		if (!st->chip_info)
-> 			return -EINVAL;
-> 
-> 	}
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> new file mode 100644
+> index 000000000000..a93b6e009b9a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> @@ -0,0 +1,172 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +
+> +description: |
+> +  The smart switch provides no output regulation, but independent fault protection
+> +  and voltage and current sensing.
+> +  Programming is done through I2C bus.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max5970
+> +      - maxim,max5978
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  leds:
+> +    type: object
+> +    description:
+> +      Properties for four LEDS.
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        $ref: /schemas/leds/common.yaml#
+> +        type: object
+> +
+> +    additionalProperties: false
+> +
+> +  vss1-supply:
+> +    description: Supply of the first channel.
+> +
+> +  vss2-supply:
+> +    description: Supply of the second channel.
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      Properties for regulator.
 
-Thanks,
-Rasmus
+That's not correct description. This is not one regulator.
+
+> +
+> +    patternProperties:
+> +      "^sw[0-1]$":
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+
+unevaluatedProperties: false
+
+> +        properties:
+> +          shunt-resistor-micro-ohms:
+> +            description: |
+> +              The value of curent sense resistor in microohms.
+
+Typo: current
+
+> +
+> +        required:
+> +          - shunt-resistor-micro-ohms
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +  - vss1-supply
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - maxim,max5970
+> +    then:
+> +      properties:
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +            - description: voltage second channel
+> +            - description: current second channel
+> +          description: |
+> +            Voltage and current for first and second channel.
+> +      required:
+> +        - vss2-supply
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Comment was:
+"Also, add it in the existing example."
+
+> +    else:
+> +      properties:
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +          description: |
+> +            Voltage and current for first channel.
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        regulator@3a {
+> +           compatible = "maxim,max5978";
+> +           reg = <0x3a>;
+> +           vss1-supply = <&p3v3>;
+> +
+> +           regulators {
+> +               sw0_ref_0: sw0 {
+> +                      regulator-compatible = "SW0";
+
+Use 4 spaces for example indentation.
+
+> +                      shunt-resistor-micro-ohms = <12000>;
+> +               };
+> +           };
+> +
+> +           leds {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +               led@0 {
+> +                   reg = <0>;
+> +                   label = "led0";
+> +                   default-state = "on";
+> +               };
+> +               led@1 {
+> +                   reg = <1>;
+> +                   label = "led1";
+> +                   default-state = "on";
+> +               };
+> +           };
+> +        };
+> +    };
+> +
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        regulator@3a {
+> +            compatible = "maxim,max5970";
+> +            reg = <0x3a>;
+> +            vss1-supply = <&p3v3>;
+> +            vss2-supply = <&p5v>;
+> +
+> +            regulators {
+> +                sw0_ref_1: sw0 {
+> +                    regulator-compatible = "SW0";
+> +                    shunt-resistor-micro-ohms = <12000>;
+> +                };
+> +                sw1_ref_1: sw1 {
+> +                    regulator-compatible = "SW1";
+> +                    shunt-resistor-micro-ohms = <10000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+
+Best regards,
+Krzysztof
 
