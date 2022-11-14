@@ -2,318 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F10662797F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:51:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74A4162798B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:52:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235551AbiKNJvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:51:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52588 "EHLO
+        id S236281AbiKNJwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:52:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229933AbiKNJua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:50:30 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E4D585F98;
-        Mon, 14 Nov 2022 01:50:27 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8AxbdpiD3JjMd0GAA--.20741S3;
-        Mon, 14 Nov 2022 17:50:26 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxj+BfD3JjTX8SAA--.49498S2;
-        Mon, 14 Nov 2022 17:50:23 +0800 (CST)
-Subject: Re: [PATCH v1 2/2] dt-bindings: gpio: add loongson series gpio
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, zhuyinbo@loongson.cn,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        richard.liu@st.com, Arnaud Patard <apatard@mandriva.com>,
-        Hongbing Hu <huhb@lemote.com>,
-        Huacai Chen <chenhuacai@kernel.org>
-References: <20221108092107.28996-1-zhuyinbo@loongson.cn>
- <20221108092107.28996-2-zhuyinbo@loongson.cn>
- <d9edb6e1-c3da-0f5b-546d-37d8151aaa35@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <d5457109-3bcb-e7d3-067d-9e4acd66ac17@loongson.cn>
-Date:   Mon, 14 Nov 2022 17:50:22 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S236284AbiKNJvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:51:51 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934171EC7B
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:51:48 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u2so12421620ljl.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:51:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DT7Lqj5itHPkRsi+26ax9bJ9oaClt2yyUwZVkdk8a+4=;
+        b=rkmer+mc57x3Fd3FqVO0WATgmXDiXwPeIlaRDjJQ0OCnzV3u5OmWJw/DBKO3LzuyuB
+         dSXHkxMnA9yPkSRiOn9RfSAWnZxOYgiuu+spiyqVnS115DZz4d2Ub1l2pmRJI3tQndsn
+         8Y+YvXBeOsiWeHFI/yWuJ2vu3Ki0BiRnxvMjufznRHyz6sYlGYLP0xFaGxqHU0EYri62
+         EoIOETOzAXWkGlSt/eAw2v8xglrMtUUKF98qhpyWmhLZDEINfqxsgrDXoWsjtQhoVd14
+         eU8Af/IbQ46rHG/OUaED1O9AdJPoX+jkg4ZnFLuig0E4qN0CAQ496arCJlsUTEsh8LrZ
+         Zz+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DT7Lqj5itHPkRsi+26ax9bJ9oaClt2yyUwZVkdk8a+4=;
+        b=5BfdxoM7vhOyCmcYVRJtLAGjpCvSw2aHovhJ0hNPfuI9zeWG41Xi+Co5TOBHlWCxwM
+         WGVk+YOjugxqx7CP8492BpKYRWtgbd1/ZdOilji4y16wCRAtYdeA31+lw1xSQ1Zzsuzq
+         IGGLw+qPEmK+4O4baBPMK5STTI8nm3ABR73ucnB+PSKNLLDrQzZ59t1OIPXUy6N7rlMA
+         do9t9jcn0lxf89C7E8zH0QCgbNHQVZcOfWWm1Q9K9cidgOpvTyYF1CZLRkWwjuEL5qHI
+         PhAYl8DLuaUOVN1NPHMkbmgNjTM4lsCfWvrDSdV/t2FVaZV2S254ABP8CmvjFNTq4pMU
+         caOA==
+X-Gm-Message-State: ANoB5plJHo/MqjZtaAjpTSKa0bTtoHPLd5kYFUmfqqoAV/ryO164DPSj
+        Ja0nBxKiQI0SqYUAYKGeO6vLJbMXLLLDkslB
+X-Google-Smtp-Source: AA0mqf7dzDqUeVCvtLWO7fBd1nQJvIEpv9wABDCV5cLCP95ikI/GSEWJu/NmFg/E68D5VS4GkjLNRg==
+X-Received: by 2002:a2e:b706:0:b0:277:d75:f1de with SMTP id j6-20020a2eb706000000b002770d75f1demr4173250ljo.272.1668419506902;
+        Mon, 14 Nov 2022 01:51:46 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f2-20020a056512360200b004ae24559388sm1754456lfs.111.2022.11.14.01.51.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 01:51:46 -0800 (PST)
+Message-ID: <6da76cb0-428e-d35a-3b11-81c7efa22460@linaro.org>
+Date:   Mon, 14 Nov 2022 10:51:45 +0100
 MIME-Version: 1.0
-In-Reply-To: <d9edb6e1-c3da-0f5b-546d-37d8151aaa35@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bxj+BfD3JjTX8SAA--.49498S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3Jw45JryxJw4fXF4rXFWrZrb_yoWxArWUp3
-        WUAFsrZwsFgF13Cr4YgFnrArn3Ar1kCw1rur9xC347tryqkwn3JF4SgFykW3Z3WryUX3W7
-        Xrsxu3yrGw15A3DanT9S1TB71UUUUb7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
-        0_Jw0_GFyl42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
-        c4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
-        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
-        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0TrW5UUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-7-apatel@ventanamicro.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221111044207.1478350-7-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/11/2022 05:42, Anup Patel wrote:
+> We add DT bindings document for RISC-V advanced platform level interrupt
+> controller (APLIC) defined by the RISC-V advanced interrupt architecture
+> (AIA) specification.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  .../interrupt-controller/riscv,aplic.yaml     | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> new file mode 100644
+> index 000000000000..0aa48571f3bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aplic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V Advancded Platform Level Interrupt Controller (APLIC)
+> +
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
+> +
+> +description:
+> +  The RISC-V advanced interrupt architecture (AIA) defines advanced platform
+> +  level interrupt controller (APLIC) for handling wired interrupts in a
+> +  RISC-V platform. The RISC-V AIA specification can be found at
+> +  https://github.com/riscv/riscv-aia.
+> +
+> +  The RISC-V APLIC is implemented as hierarchical APLIC domains where all
+> +  interrupt sources connect to the root domain which can further delegate
+> +  interrupts to child domains. We have one device tree node for each APLIC
+> +  domain.
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - vendor,chip-aplic
+> +      - const: riscv,aplic
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 16384
+> +    description:
+> +      The presence of this property implies that given APLIC domain directly
+> +      injects external interrupts to a set of RISC-V HARTS (or CPUs). Each
+> +      node pointed to should be a riscv,cpu-intc node, which has a riscv node
+> +      (i.e. RISC-V HART) as parent.
+> +
+> +  msi-parent:
+> +    description:
+> +      The presence of this property implies that given APLIC domain forwards
 
+Drop "The presence of this property" and make it a proper sentence
+describing hardware.
 
-在 2022/11/8 下午11:28, Krzysztof Kozlowski 写道:
-> On 08/11/2022 10:21, Yinbo Zhu wrote:
->> Add the Loongson series gpio binding with DT schema format using
->> json-schema.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../bindings/gpio/loongson,ls-gpio.yaml       | 154 ++++++++++++++++++
->>   MAINTAINERS                                   |  11 ++
->>   2 files changed, 165 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> new file mode 100644
->> index 000000000000..9d335262ddcc
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> @@ -0,0 +1,154 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson series GPIO controller.
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - loongson,ls2k-gpio
->> +      - loongson,ls7a-gpio
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  ngpios: true
-> 
-> minimum? maximum?
-okay, I got it.
-> 
->> +
->> +  "#gpio-cells":
->> +    const: 2
->> +
->> +  gpio-controller: true
->> +
->> +  gpio-ranges: true
->> +
->> +  loongson,conf_offset:
-> 
-> No underscores in node names. Plus comments from Linus seem to apply
-> here as well. Drop it entirely or explain why this is not part of
-> compatible, why this is needed and why encoding programming model
-> address in DT matches the DT...
-Add it is to distinguish differnt address in different platform.
-and I had drop them and initial them in kernel driver that depend
-on diffent compatible.
-> 
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO configuration offset address.
->> +
->> +  loongson,out_offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO output value offset address.
-> 
-> Drop
-> 
->> +
->> +  loongson,in_offset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate this GPIO input value offset address.
-> 
-> Drop
-> 
-> 
->> +
->> +  loongson,gpio_base:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      This option indicate the first GPIO number in this node.
-> 
-> Drop
-> 
-> 
->> +
->> +  loongson,support_irq:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      This option indicate this GPIO whether support interrupt.
-> 
-> Drop
-> 
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 64
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - ngpios
->> +  - "#gpio-cells"
->> +  - gpio-controller
->> +  - gpio-ranges
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    gpio0: gpio@1fe00500 {
->> +      compatible = "loongson,ls2k-gpio";
->> +      reg = <0x1fe00500 0x38>;
->> +      ngpios = <64>;
->> +      #gpio-cells = <2>;
->> +      gpio-controller;
->> +      gpio-ranges = <&pctrl 0 0 15>,
->> +                    <&pctrl 16 16 15>,
->> +                    <&pctrl 32 32 10>,
->> +                    <&pctrl 44 44 20>;
->> +      loongson,conf_offset = <0>;
->> +      loongson,out_offset = <0x10>;
->> +      loongson,in_offset = <0x20>;
->> +      loongson,gpio_base = <0>;
->> +      loongson,support_irq;
->> +      interrupt-parent = <&liointc1>;
->> +      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
->> +                   <29 IRQ_TYPE_LEVEL_LOW>,
->> +                   <30 IRQ_TYPE_LEVEL_LOW>,
->> +                   <30 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <26 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <>,
-> 
-> What's this?
-There was no interrupt function in this gpio.
-> 
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <>,
->> +                   <>,
-> 
-> What's this?
-> 
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>,
->> +                   <27 IRQ_TYPE_LEVEL_LOW>;
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 916b2d9cffc0..878b8320ac3b 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -12048,6 +12048,17 @@ S:	Maintained
->>   F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
->>   F:	drivers/soc/loongson/loongson2_guts.c
->>   
->> +LOONGSON SERIES GPIO DRIVER
->> +M:	Richard Liu, STMicroelectronics <richard.liu@st.com>
->> +M:	Arnaud Patard <apatard@mandriva.com>
->> +M:	Hongbing Hu <huhb@lemote.com>
->> +M:	Huacai Chen <chenhuacai@kernel.org>
->> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-> 
-> Are they all maintainers of this driver?
-add huacai and myself as maintainer.
-> 
->> +L:	linux-gpio@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
->> +F:	drivers/gpio/gpio-loongson.c
->> +
->>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
->>   M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
-> 
-> Best regards,
-> Krzysztof
-> 
+> +      wired interrupts as MSIs to a AIA incoming message signaled interrupt
+> +      controller (IMSIC). This property should be considered only when the
+> +      interrupts-extended property is absent.
+> +
+> +  riscv,num-sources:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+
+Drop quotes.
+
+> +    minimum: 1
+> +    maximum: 1023
+> +    description:
+> +      Specifies how many wired interrupts are supported by this APLIC domain.
+> +
+> +  riscv,children:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    minItems: 1
+> +    maxItems: 1024
+> +    description:
+> +      This property represents a list of child APLIC domains for the given
+> +      APLIC domain. Each child APLIC domain is assigned child index in
+> +      increasing order with the first child APLIC domain assigned child
+> +      index 0. The APLIC domain child index is used by firmware to delegate
+> +      interrupts from the given APLIC domain to a particular child APLIC
+> +      domain.
+> +
+> +  riscv,delegate:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    minItems: 1
+> +    maxItems: 1024
+> +    description:
+> +      This property represents a interrupt delegation list where each entry
+
+Drop "This property represents".
+
+> +      is a triple consisting of child APLIC domain phandle, first interrupt
+> +      number, and last interrupt number. The firmware will configure interrupt
+> +      delegation registers based on interrupt delegation list.
+> +
+> +additionalProperties: false
+
+Same comments as in previous patch,
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - riscv,num-sources
+> +
+> +examples:
+> +  - |
+> +    // Example 1 (APIC domain directly injecting interrupt to HARTs):
+> +
+> +    aplic0: interrupt-controller@c000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> +      interrupts-extended = <&cpu1_intc 11>,
+> +                            <&cpu2_intc 11>,
+> +                            <&cpu3_intc 11>,
+> +                            <&cpu4_intc 11>;
+> +      reg = <0xc000000 0x4080>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
+> +      riscv,children = <&aplic1>;
+> +      riscv,delegate = <&aplic1 1 63>;
+> +    };
+> +
+> +    aplic1: interrupt-controller@d000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> +      interrupts-extended = <&cpu1_intc 9>,
+> +                            <&cpu2_intc 9>,
+> +                            <&cpu3_intc 9>,
+> +                            <&cpu4_intc 9>;
+> +      reg = <0xd000000 0x4080>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
+> +    };
+> +
+> +  - |
+> +    // Example 2 (APIC domain forwarding interrupts as MSIs):
+> +
+> +    interrupt-controller@d000000 {
+> +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> +      msi-parent = <&imsics>;
+> +      reg = <0xd000000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      riscv,num-sources = <63>;
+
+It's almost the same as previous... don't add unnecessary examples
+(difference in one property usually does not mean you need new example).
+
+> +    };
+> +...
+
+Best regards,
+Krzysztof
 
