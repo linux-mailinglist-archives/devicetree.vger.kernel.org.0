@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B4E62868F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8C762869C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:07:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238131AbiKNRGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 12:06:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
+        id S238148AbiKNRHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 12:07:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238115AbiKNRGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:06:45 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79D6F59C
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:44 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id p8so20306794lfu.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:44 -0800 (PST)
+        with ESMTP id S238147AbiKNRHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:07:52 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3194512603
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:07:51 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id l8so14034008ljh.13
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:07:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8u8ckjitOk87OPv1Jwz8aOeKIkjevPLVEgZLx8LVKu0=;
-        b=RKwF7+xKIOGSnKveI2PAInWKUnqEGSjLhQQFfCvQVMPJtbi24+cGu0b3OcSyBWppll
-         azC4x8354D0ekmcZLlbmkrrPTGLZ6URFJGHgfgj6MZRRWKbm57ekKj/VRsrX+dLG6mtT
-         5PdEX7ghguLGv4P9P6nctM16YxC1j3bEkYx6zSCnVoY1MApK84obwxNNeWUKGAkktnf/
-         9EKacFihcXAH7XE6hu1+s5RMFbm4zIF5/lyodKZHmITBZ+RWQmbFTpfQxDiC8rXNq5pE
-         aqiHMTlwOuWc4bWrCVEZB8e+kQGeIMo/dbg3fznpg/d2JzLVAhAytnSORJJP/Qa74Z8x
-         NXAw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/fM40YsHG69XSps9sYkKuoIaYvYZTcDub0ndtXX1Pvw=;
+        b=kjSmJdC6Mfa9wOoKRy+htVdYDPOpvub0TN6pbQE+j8u4+a+UM/QFiVHrLsrjWUNnbD
+         UHDvGNmiHaesMZ50QWLs3OchlpqHvtTPMTy7DpM0P170FKAQMhlRlTec/Vi7rb3hwN3z
+         zhMyNmte5yxkxqAODU9OtCXZW8QiisaWfz6HgA90DbUYs2TQ9T7dc1aOJZ1znOVIPQZ0
+         LeHpQl7HWNM8ycNYI/70mYxKICSUeBDHh7RA4tsncsLBtwB8+TnxotIJpjVXxRpv1zLh
+         y8sIxJTperHHwqKIeTLjLkSMDM0k3akxb5oZfUKI58WjMu6CyDdQoUaOUtbux+/bbBas
+         s6+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8u8ckjitOk87OPv1Jwz8aOeKIkjevPLVEgZLx8LVKu0=;
-        b=SWzacwmYWyY7G1p7/PTYS3WvScsCKpd3aEe9anevcyCTWyAlUdXUsS/OX1Joo8s2VZ
-         hS4duikoh5E3wQ7lEVdeqNgTglFeRcmaEAnpp7cjgwEVLuSvXRNqW1/+szU+L5tQgZmU
-         pgxBxzFgXUVoNE+YfTn37rCjR9EoiRJaTsduHmiJp6B95/Mj5X6lvvu8l/OR6fK4InUz
-         dCjz9Dar+82udF51aZCnJoBWs2AI8aGicC8NVJb6r+nNii3Uk3FGjpr5xw0c3rmb9S28
-         Nw/My3B1svKP3sfmv1rOm4afb2muAhiK7BAYniEVc+iVLxQdPUDsaYInynH3CgD2QZMy
-         ZoHg==
-X-Gm-Message-State: ANoB5pli6i01VbIfIBoR2EomFPDgCgSrWzEWNsLzLKNwb3pm72Hir1YM
-        RtpfG8QvfE1tPwV97IOEsDyOtA==
-X-Google-Smtp-Source: AA0mqf6iE8d2S2e+OPdybOymDTWtPOKfA6NgyrVu0mdAo+HMp22j6G/cBaBrN6dsAlqFPBVieiGcXQ==
-X-Received: by 2002:a05:6512:79a:b0:4b0:efed:e3a7 with SMTP id x26-20020a056512079a00b004b0efede3a7mr4543580lfr.323.1668445604416;
-        Mon, 14 Nov 2022 09:06:44 -0800 (PST)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id q7-20020a056512210700b004a2ae643b99sm1896344lfr.170.2022.11.14.09.06.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 09:06:44 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/fM40YsHG69XSps9sYkKuoIaYvYZTcDub0ndtXX1Pvw=;
+        b=f/yRuURsyDKdApo4TJ6RUGjN7RvXwPsFfqywD7J39XdZxbsr6euxyf2x/VkkDg9N3V
+         u/R1LOkVX/17Mb+TmjWXq+RZa2Fdy3O1NvLzxVBqPRDKYS4Jan7H7rGxyu9bL7gv36hW
+         vf5Qj1Q/v/CrKT442BwRe82UQBLgktMOiuyBrpsj0+qEavH27/koN6dlJqm7ZDuMrDr9
+         Kgpcltouxpr2wTlejvWSkEvgQBiuFNpCbJMvkFqLAosJ0NFAoUNkeb8aL3rG/tTVX8uc
+         w0Uxk5ixs5Uwust+k//TjJdGgxWZcvXjK5zkb1zeQGDpFhjs7DkFyrL6GUz8lrCFNAcE
+         qURg==
+X-Gm-Message-State: ANoB5pmUV5IqdCL/HVaBR//8WdLjL0depajJ/TCPYIzIY2/rYdmucJBx
+        32+eKKhLgum725rTz7mIZbYF4Q==
+X-Google-Smtp-Source: AA0mqf4lEIKNad99guFwwYc4jeiWore22u9FDVNQkYDR6JMjsV1sTvL7Q9zluHk9OLGTXJjxMQr3LQ==
+X-Received: by 2002:a05:651c:210a:b0:277:1295:31ca with SMTP id a10-20020a05651c210a00b00277129531camr4422149ljq.280.1668445669605;
+        Mon, 14 Nov 2022 09:07:49 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id b10-20020a056512070a00b004948378080csm1886391lfs.290.2022.11.14.09.07.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 09:07:49 -0800 (PST)
+Message-ID: <47ff366c-c860-e9ad-c5ad-485eff6f649b@linaro.org>
+Date:   Mon, 14 Nov 2022 20:07:48 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [RFC PATCH v2 00/11] iommu/arm-smmu-qcom: Rework Qualcomm SMMU
+ bindings and implementation
+Content-Language: en-GB
+To:     Will Deacon <will@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Vinod Koul <vkoul@kernel.org>,
         Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [PATCH v1 10/10] iommu/arm-smmu-qcom: Add generic qcom,smmu-500 match entry
-Date:   Mon, 14 Nov 2022 20:06:35 +0300
-Message-Id: <20221114170635.1406534-11-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
-References: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
+ <20221114142326.GH30263@willie-the-truck>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221114142326.GH30263@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,39 +84,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add generic qcom,smmu-500 compatibility string. Newer platforms should
-use this generic entry rather than declaring per-SoC entries.
+On 14/11/2022 17:23, Will Deacon wrote:
+> On Wed, Nov 02, 2022 at 09:44:09PM +0300, Dmitry Baryshkov wrote:
+>> The main goal of this patchset is to define a generic qcom,smmu-500
+>> binding to be used by newer Qualcomm platforms instead of defining each
+>> and every SoC line with no actual differences between the compats.
+> 
+> Thanks for doing this, I really like the cleanup and the possibility
+> that we can stop adding all these pointless strings every release!
+> 
+> It looks like Bjorn picked up patch 1, so could you please rebase the
+> rest of the series onto my SMMU bindings queue:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/bindings
+> 
+> and address the minor review comments you had so that I can pick this up?
 
-Reviewed-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Tested-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Done, thank you!
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index b93aaa0594d3..0830e614f3be 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -496,6 +496,10 @@ static const struct qcom_smmu_match_data qcom_smmu_500_impl0_data = {
- 	.cfg = &qcom_smmu_impl0_cfg,
- };
- 
-+/*
-+ * Do not add any more qcom,SOC-smmu-500 entries to this list, unless they need
-+ * special handling and can not be covered by the qcom,smmu-500 entry.
-+ */
- static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,msm8996-smmu-v2", .data = &msm8996_smmu_data },
- 	{ .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_v2_data },
-@@ -516,6 +520,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,sm8250-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sm8350-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sm8450-smmu-500", .data = &qcom_smmu_500_impl0_data },
-+	{ .compatible = "qcom,smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ }
- };
- 
+https://lore.kernel.org/linux-arm-msm/20221114170635.1406534-1-dmitry.baryshkov@linaro.org
+
 -- 
-2.35.1
+With best wishes
+Dmitry
 
