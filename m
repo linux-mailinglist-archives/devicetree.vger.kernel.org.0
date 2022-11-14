@@ -2,125 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8524C62850B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 701AC628583
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237485AbiKNQWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 11:22:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56966 "EHLO
+        id S237742AbiKNQgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 11:36:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237472AbiKNQWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:22:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C3F2FC07;
-        Mon, 14 Nov 2022 08:22:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 398C0612BE;
-        Mon, 14 Nov 2022 16:22:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DBAC433D7;
-        Mon, 14 Nov 2022 16:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668442944;
-        bh=1qhbjtrf4OBeymlcd5IJ17ytL34jXMNYYy2ti/5wf+8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WdZE0bgMsqEaxuR8BIVcBnFO5zLpsGWoIXXW/zhOzAXRvB+DMNeSsElwiNjTSLVkX
-         MMQipvVKqO0F43RZCVFC9+Gc63TaDYzRUjuKMKd4p7+LnTPFVMsGfPqkgrHNfOQ4n6
-         +R8fggl04sAK1uWDIfwvNMmOKpITUZREPUfWb5MnfeXjYI4/8JgFH8x87ceYVRThqR
-         60CZYene5AsbkxfhAFhuOuUdLfwNkXZUfo6eU5PVMh01sIpyTqBaXZab7N0bFgw4JJ
-         6gXqdZPDgJd1VLMGxJzOu7X1jTpD/8KyJrxfiRSyyYbZ/Gy5QnbcTQU/zz2j313h8k
-         3J9e3QH9vCpsQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oucDX-0004vF-Tb; Mon, 14 Nov 2022 17:21:52 +0100
-Date:   Mon, 14 Nov 2022 17:21:51 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S237743AbiKNQfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:35:50 -0500
+X-Greylist: delayed 337 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Nov 2022 08:31:37 PST
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7F945ECA
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:31:37 -0800 (PST)
+Received: from TimeMachine.lan (bband-dyn193.178-41-216.t-com.sk [178.41.216.193])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 6DE2F1F539;
+        Mon, 14 Nov 2022 17:25:54 +0100 (CET)
+From:   Martin Botka <martin.botka@somainline.org>
+To:     martin.botka1@gmail.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Yenda <jtrmal@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y3JrH+Om8qRV8JPJ@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
- <ace91d8b-9a14-5569-7c59-344e9751fa96@linaro.org>
- <Y3JEh7wO394kepXq@hovoldconsulting.com>
- <42ae9612-43da-5f3a-534d-d30b9f399f90@linaro.org>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: Add basic support for BIQU CB1
+Date:   Mon, 14 Nov 2022 17:25:46 +0100
+Message-Id: <20221114162547.1802689-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42ae9612-43da-5f3a-534d-d30b9f399f90@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 06:31:02PM +0300, Dmitry Baryshkov wrote:
-> On 14/11/2022 16:37, Johan Hovold wrote:
-> > On Sat, Nov 12, 2022 at 02:43:03PM +0300, Dmitry Baryshkov wrote:
-> >> On 11/11/2022 12:24, Johan Hovold wrote:
+CB1 is Compute Module style board that plugs into Rpi board style adapter or
+Manta 3D printer boards (M4P/M8P).
 
-> >>> +  "#clock-cells":
-> >>> +    const: 1
-> >>> +
-> >>> +  clock-output-names:
-> >>> +    items:
-> >>> +      - const: usb3_pipe
-> >>> +      - const: dp_link
-> >>> +      - const: dp_vco_div
-> >>> +
-> >>> +  "#phy-cells":
-> >>> +    const: 1
-> >>> +    description: |
-> >>> +      PHY index
-> >>> +        - PHY_TYPE_USB3
-> >>> +        - PHY_TYPE_DP
-> >>
-> >> I'm stepping on Rob's and Krzysztof's ground here, but it might be more
-> >> logical and future proof to use indices instead of phy types.
-> > 
-> > Why would that be more future-proof?
-> > 
-> > I initially added defines for these indexes to a QMP header, but noticed
-> > that we already have PHY drivers that use the PHY types for this. So
-> > there's already a precedent for this and I didn't see any real benefit
-> > to adding multiple per-SoC defines for the same thing.
-> 
-> As you guessed from my question, I was thinking about USB4 (for which we 
-> do not have a separate PHY_TYPE, but that probably shouldn't matter). 
+The board has:
+	H616 SoC
+	1GB of RAM
+	AXP313A PMIC
 
-Yeah, that's easy enough to add.
+And the actual boards that CB1 plugs in are just extension to it with ports and
+thus are not split in DT.
 
-> Would it be a separate PHY here, or would it be a combo UBS3+USB4 plus 
-> separate DP phy?
+Boards have:
+	4x (3x for Manta boards) USB and 1 USB OTG.
+	SDcard slot for loading images.
+	Ethernet port wired to the internal PHY.
+	2x HDMI 2.0.
+	Power and Status LEDs.
 
-We don't know yet.
+Currently working:
+	Booting
+	USB
+	UART
 
-> Yes, we have other PHYs, which use types as an index, however it's 
-> slightly more common to have indices instead.
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 191 ++++++++++++++++++
+ 2 files changed, 192 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
 
-If you look at (yaml) bindings using a single phy-cell, the majority
-simply ignores describing what the index is used for and which values
-are valid. Of the few that do describe it, the cell index is either used
-for something which does not allow itself for mapping to PHY_TYPE or
-PHY_TYPE is used.
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index 6a96494a2e0a..223f1be73541 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
+new file mode 100644
+index 000000000000..2225a965dddc
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
+@@ -0,0 +1,191 @@
++// SPDX-License-Identifier: (GPL-2.0+ or MIT)
++/*
++ * Copyright (C) 2022 Arm Ltd.
++ */
++
++/dts-v1/;
++
++#include "sun50i-h616.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "BIQU CB1";
++	compatible = "allwinner,sun50i-h616";
++
++	aliases {
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-0 {
++			function = LED_FUNCTION_POWER;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
++			default-state = "on";
++		};
++
++		led-1 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
++		};
++	};
++
++	reg_vcc5v: vcc5v {
++		/* board wide 5V supply directly from the USB-C socket */
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
++	reg_usb1_vbus: regulator-usb1-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb1-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&reg_vcc5v>;
++		enable-active-high;
++		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
++	};
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ehci1 {
++	status = "okay";
++};
++
++&ehci2 {
++	status = "okay";
++};
++
++&ehci3 {
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_dldo1>;
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
++	no-1-8-v;
++	bus-width = <4>;
++	status = "disabled";
++};
++
++&ohci0 {
++	status = "okay";
++};
++
++&ohci1 {
++	status = "okay";
++};
++
++&ohci2 {
++	status = "okay";
++};
++
++&ohci3 {
++	status = "okay";
++};
++
++&r_i2c {
++	status = "okay";
++
++	axp1530: pmic@36 {
++		compatible = "x-powers,axp1530";
++		status = "okay";
++		reg = <0x36>;
++		wakeup-source;
++
++		standby_param: standby_param {
++			vcc-dram = <0x4>;
++		};
++
++		regulators{
++			reg_dcdc1: dcdc1 {
++				regulator-name = "axp1530-dcdc1";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-step-delay-us = <25>;
++				regulator-final-delay-us = <50>;
++				regulator-always-on;
++			};
++
++			reg_dcdc2: dcdc2 {
++				regulator-name = "axp1530-dcdc2";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1540000>;
++				regulator-step-delay-us = <25>;
++				regulator-final-delay-us = <50>;
++				regulator-ramp-delay = <200>;
++				regulator-always-on;
++			};
++
++			reg_dcdc3: dcdc3 {
++				regulator-name = "axp1530-dcdc3";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1840000>;
++				regulator-step-delay-us = <25>;
++				regulator-final-delay-us = <50>;
++				regulator-always-on;
++			};
++
++			reg_aldo1: ldo1 {
++				regulator-name = "axp1530-aldo1";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-step-delay-us = <25>;
++				regulator-final-delay-us = <50>;
++				regulator-always-on;
++			};
++
++			reg_dldo1: ldo2 {
++				regulator-name = "axp1530-dldo1";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-step-delay-us = <25>;
++				regulator-final-delay-us = <50>;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_ph_pins>;
++	status = "okay";
++};
++
++&usbotg {
++	/*
++	 * PHY0 pins are connected to a USB-C socket, but a role switch
++	 * is not implemented: both CC pins are pulled to GND.
++	 * The VBUS pins power the device, so a fixed peripheral mode
++	 * is the best choice.
++	 * The board can be powered via GPIOs, in this case port0 *can*
++	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
++	 * then provided by the GPIOs. Any user of this setup would
++	 * need to adjust the DT accordingly: dr_mode set to "host",
++	 * enabling OHCI0 and EHCI0.
++	 */
++	dr_mode = "peripheral";
++	status = "okay";
++};
++
++&usbphy {
++	usb1_vbus-supply = <&reg_usb1_vbus>;
++	status = "okay";
++};
+-- 
+2.38.1
 
-> Anyway, this is a minor issue. It might be just that I'm more common to 
-> using indices everywhere (in other words, I have preference here, but 
-> it's not a strong requirement from my side).
-
-I don't have a strong preference here either. Let's see what Krzysztof
-and Rob says.
-
-Johan
