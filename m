@@ -2,172 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A36A8628143
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 14:28:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D4C628153
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 14:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235835AbiKNN20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 08:28:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
+        id S236319AbiKNNcU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Nov 2022 08:32:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235655AbiKNN2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 08:28:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEF6FE3;
-        Mon, 14 Nov 2022 05:28:24 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 65C236109A;
-        Mon, 14 Nov 2022 13:28:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0049C433C1;
-        Mon, 14 Nov 2022 13:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668432503;
-        bh=nNGW2Iswzw1r+ZrdtLgk9X55bimO0kAAwJsujwLckSE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pzSzze975EcOZvvpsghnV1MIb+1kUOQwwsRIidu+qX1ykxtU9KmtV+YhZlsuLyq8t
-         LPbR4mCmuTTcAkqenp9lp64RpkqWcybV9TjPEr7LyPewO+/LjjzG4n5gcVUL+RVii9
-         Qh3/rb8Rh5NkI6Iglhyzm7Kn6JHbu74uUpxPzY+9TYPa4Hpbn0qQ85ISaUZHMxJOsU
-         60cfOt+rS3GI2MYFZXtx/mhVJkhrEx7q5xtJb4Ew1q8mTO9xDPowfgv8F2KkISanuu
-         xrfemjeLBOp7Oqqfry6BtNacnS1Ibjfcx9oM4U5CIZ/wvEJFdYVPqS2+mwrK5YIsgf
-         M5TuHmY+sIsmQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ouZV9-0002p3-Mu; Mon, 14 Nov 2022 14:27:51 +0100
-Date:   Mon, 14 Nov 2022 14:27:51 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S235560AbiKNNcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 08:32:18 -0500
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 417491DF36;
+        Mon, 14 Nov 2022 05:32:17 -0800 (PST)
+Received: by mail-qv1-f50.google.com with SMTP id x15so7753866qvp.1;
+        Mon, 14 Nov 2022 05:32:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pMhSV0Cl1EFcHm2JcZW7TSJN/o+qIpdcOTKCD0tUyyw=;
+        b=Z0sGqRNZfpC3637mrDyRBsKh3YdpcdVL9SA/FNR7afYaaGiuYjj1HUB7EnjDpu+4Ns
+         9b6lA43KBYLlrG1ZJ6HRoCfp3wAphnXMApKZauTrR1LvhgGXaFmi0Kb07nxkB+qjMQFf
+         jXbPX01aYc/oXcABL29jotVw+gLSbXTLA+L7BZKIt4rGfy9shaoIUi/Dob3HHM1yqkDc
+         0Bh8T6gYUxo52y9wcqmD3J6Te2pzz1Y07qrAihYJ7ZyTD/oApQHc5DPSoQF5SzLJamA4
+         fhk7MUVfL0dlLGKpeyHcs5ZSD8hGDBqDfZZU/csGhr8KN1jTRylGenMqdSd+CEkFv9Za
+         bcFA==
+X-Gm-Message-State: ANoB5plYgOISTMZG0uCmvz3XgsAMMbSIKbrQcKtV8TRDLiswmYdwNarh
+        /zEZahieipYTVWX9Rnjw8t4pzjrU9m0YFA==
+X-Google-Smtp-Source: AA0mqf6oFLmxXYoZKWmXAwRl78hgaAGu71UAhfAMwqP9V+/DIVGSmAMrFUUxqOLZPVZrPqF6ljQX2w==
+X-Received: by 2002:a0c:e949:0:b0:4af:b750:b569 with SMTP id n9-20020a0ce949000000b004afb750b569mr12479468qvo.83.1668432736100;
+        Mon, 14 Nov 2022 05:32:16 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id dm56-20020a05620a1d7800b006eeb51bb33dsm6443645qkb.78.2022.11.14.05.32.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 05:32:15 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id j2so13406451ybb.6;
+        Mon, 14 Nov 2022 05:32:15 -0800 (PST)
+X-Received: by 2002:a25:18c5:0:b0:6de:6183:c5c3 with SMTP id
+ 188-20020a2518c5000000b006de6183c5c3mr12383197yby.89.1668432735124; Mon, 14
+ Nov 2022 05:32:15 -0800 (PST)
+MIME-Version: 1.0
+References: <20221114111513.1436165-1-herve.codina@bootlin.com> <20221114111513.1436165-4-herve.codina@bootlin.com>
+In-Reply-To: <20221114111513.1436165-4-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Nov 2022 14:32:03 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVrx3ug+RKuNXauCLKFYr5qZedrj7KmME0vzRysoqFzPQ@mail.gmail.com>
+Message-ID: <CAMuHMdVrx3ug+RKuNXauCLKFYr5qZedrj7KmME0vzRysoqFzPQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] soc: renesas: r9a06g032-sysctrl: Handle h2mode
+ device-tree property
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
- <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
-> On 11/11/2022 10:24, Johan Hovold wrote:
-> > The current QMP USB3-DP PHY bindings are based on the original MSM8996
-> > binding which provided multiple PHYs per IP block and these in turn were
-> > described by child nodes.
-> > 
-> 
-> Thank you for your patch. There is something to discuss/improve.
-> 
-> 
-> > +
-> > +maintainers:
-> > +  - Vinod Koul <vkoul@kernel.org>
-> 
-> Maybe you want to add also yourself?
+Hi Hervé,
 
-Due to the lack of public documentation for these platforms and the
-amount of work involved in effectively reverse-engineering the
-corresponding details from random vendor-kernel trees, it's probably
-best to leave maintainence with Vinod who at least has access to some
-documentation.
+On Mon, Nov 14, 2022 at 12:15 PM Herve Codina <herve.codina@bootlin.com> wrote:
+>
+> Handle the h2mode property and forces the CFG_USB[H2MODE] bit
+> accordingly.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-> > +
-> > +description:
-> > +  The QMP PHY controller supports physical layer functionality for a number of
-> > +  controllers on Qualcomm chipsets, such as, PCIe, UFS and USB.
-> > +
-> > +  See also:
-> > +    - include/dt-bindings/dt-bindings/phy/phy.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,sc8280xp-qmp-usb43dp-phy
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aux
-> > +      - const: ref
-> > +      - const: com_aux
-> > +      - const: usb3_pipe
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 2
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: phy
-> > +      - const: common
-> > +
-> > +  vdda-phy-supply: true
-> > +
-> > +  vdda-pll-supply: true
-> > +
-> > +  "#clock-cells":
-> > +    const: 1
-> > +
-> > +  clock-output-names:
-> > +    items:
-> > +      - const: usb3_pipe
-> > +      - const: dp_link
-> > +      - const: dp_vco_div
-> 
-> Why defining here fixed names? The purpose of this field is to actually
-> allow customizing these - at least in most cases. If these have to be
-> fixed, then driver should just instantiate these clocks with such names,
-> right?
+Thanks for the update!
 
-I'm only using these names as documentation of the indexes. The driver
-doesn't use these names, but that's a Linux-specific implementation
-detail.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Minor nit below.
 
-I noticed that several bindings leave the clock indexes unspecified, or
-have header files defining some or all of them. I first added a QMP
-header but that seemed like overkill, especially if we'd end up with
-one header per SoC (cf. the GCC headers) due to (known and potential)
-platform differences.
+> @@ -966,6 +967,26 @@ static int __init r9a06g032_clocks_probe(struct platform_device *pdev)
+>         clocks->reg = of_iomap(np, 0);
+>         if (WARN_ON(!clocks->reg))
+>                 return -ENOMEM;
+> +
+> +       error = of_property_read_u32(np, "renesas,h2mode", &h2mode);
+> +       if (!error) {
+> +               usb = readl(clocks->reg + R9A06G032_SYSCTRL_USB);
+> +               switch (h2mode) {
+> +               case 0:
+> +                       /* 1 host, 1 device */
+> +                       usb &= ~R9A06G032_SYSCTRL_USB_H2MODE;
+> +                       break;
+> +               case 1:
+> +                       /* 2 hosts */
+> +                       usb |= R9A06G032_SYSCTRL_USB_H2MODE;
+> +                       break;
+> +               default:
+> +                       dev_err(dev, "invalid h2mode %d\n", h2mode);
 
-On the other hand reproducing this list in each node is admittedly a bit
-redundant.
+%u
 
-Shall I add back a shared header for all PHYs handled by this driver
-(another implementation detail) even if this could eventually lead to
-describing clocks not supported by a particular SoC (so such constraints
-would still need to be described by the binding somehow):
+> +                       return -EINVAL;
+> +               }
+> +               writel(usb, clocks->reg + R9A06G032_SYSCTRL_USB);
+> +       }
+> +
+>         for (i = 0; i < ARRAY_SIZE(r9a06g032_clocks); ++i) {
+>                 const struct r9a06g032_clkdesc *d = &r9a06g032_clocks[i];
+>                 const char *parent_name = d->source ?
 
-	/* QMP clocks */
-	#define QMP_USB3_PIPE_CLK	0
-	#define QMP_DP_LINK_CLK		1
-	#define QMP_DP_VCO_DIV_CLK	2
+Gr{oetje,eeting}s,
 
-Note that for SC8280XP this list may later get extended with clocks for
-USB4 (once we understand how to use them), but those would not apply to
-the older USB3-DP PHYs, so we'd still need to describe that in the
-binding somehow.
+                        Geert
 
-Johan
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
