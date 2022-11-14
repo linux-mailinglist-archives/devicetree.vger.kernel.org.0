@@ -2,165 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 523996282DD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7C9628302
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236943AbiKNOkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:40:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46810 "EHLO
+        id S237123AbiKNOnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:43:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237063AbiKNOjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:39:46 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DFC2099B;
-        Mon, 14 Nov 2022 06:39:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668436777; x=1699972777;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0p1aFZmokWFv/YvtG1Dxt87fVW/BDd9HRj23KFuYuZM=;
-  b=Zgl87nJqPHFiRKMYL7XDtVT/ga/d3ioBs2gBkZLeqxZtGAhi23hkWyXT
-   DmcfBCpHF7HKpdmGqMqeABeIabccUSfblgo1MgDlQnb4HBZoXZX5Azdj1
-   QiLDrsnLsWVuW9/xsADLtkWofX3fuYx3HjyHyHdJNBuK/51wa1iKp4WSs
-   Op7DcX0u7dN533eq8RtLgaAkmYV3a0Pii+aVGJamZle0K+zBXTZ4n4VXG
-   0+sMsCjrPtXosO6e8/Ci/4T6DHWQgrD0orNEQvX1Hu5WHq2OliuOSQX7/
-   akaXs7my9jT0mj/9oEyD94CBkhf4IUxWFKZgWu0tSpt+GKjdA0kw4Ms3j
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="313127933"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
-   d="scan'208";a="313127933"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2022 06:39:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="813275625"
-X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
-   d="scan'208";a="813275625"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP; 14 Nov 2022 06:39:32 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1ouacT-00CCyz-1k;
-        Mon, 14 Nov 2022 16:39:29 +0200
-Date:   Mon, 14 Nov 2022 16:39:29 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
-Message-ID: <Y3JTIbU7PkNUpU34@smile.fi.intel.com>
-References: <20221024173434.32518-1-afd@ti.com>
- <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
- <Y26lDEtiG4KFzc91@smile.fi.intel.com>
- <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
+        with ESMTP id S236330AbiKNOmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:42:20 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7709F2AE1F;
+        Mon, 14 Nov 2022 06:42:17 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AEEdRJe030459;
+        Mon, 14 Nov 2022 14:41:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=0FdiXwsLREqDCHXvvoxGUIuuTdH+FrZdRUA6gEdggzI=;
+ b=fRHzVVW/MSMMW1HSaSlCDtzCIvtPLpW74h7L+vLJT4502gmoPa3A6bcz0/cvAr3xi4oa
+ H2jtdSek/j/g3qHDSfzoJ2z1rzFg5NvDrDPx00YPv3DB2SBP7vvEmobgZW+StJ8HtCVT
+ LBTDQ2BDhOnuKLAAKUhRcUedC1yVU30OCs4wG7A6OCDD/phL9KPwJ6KG2zp+Il0VpGlw
+ +Ea8rna9+6O1Vl+i+oZNZVX91fWlgVe+/PJjI80niCndgDUjIwHHNdhYgxV46vRrjh2V
+ Gm68/iP3dmk6dgcviRXfcSry+zinOM0lKv2gGclb50qltW3tnW4+cGxUs6G36eLqkMSv Zw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kufrcryph-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Nov 2022 14:41:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AEEf3SP009664
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Nov 2022 14:41:03 GMT
+Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Mon, 14 Nov 2022 06:40:58 -0800
+From:   Mao Jinlong <quic_jinlmao@quicinc.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH v15 3/8] dt-bindings: arm: Adds CoreSight TPDM hardware
+Date:   Mon, 14 Nov 2022 22:40:22 +0800
+Message-ID: <20221114144027.14365-4-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20221114144027.14365-1-quic_jinlmao@quicinc.com>
+References: <20221114144027.14365-1-quic_jinlmao@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g1IjopE_-pLlJUYArWFswZKJ1-8ftin1
+X-Proofpoint-GUID: g1IjopE_-pLlJUYArWFswZKJ1-8ftin1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-14_12,2022-11-11_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ spamscore=0 suspectscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ priorityscore=1501 adultscore=1 impostorscore=0 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211140104
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 11, 2022 at 03:05:20PM -0600, Andrew Davis wrote:
-> On 11/11/22 1:39 PM, Andy Shevchenko wrote:
-> > On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
-> > > On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
-> > > > 
-> > > > Hello all,
-> > > > 
-> > > > This is a series based on my patch here[0]. As suggested by Rob
-> > > > I've resurrected Frank's patch and appended it to mine as a series.
-> > > > 
-> > > > First patch here is my original patch, 3rd is Frank's patch but with
-> > > > the unittest changes pulled out into the 2nd patch. That was re-worked
-> > > > moving the source building macro into scripts/Makefile.lib.
-> > > > 
-> > > > Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
-> > > > overlays. Split out by platform so they could be taken by platform
-> > > > maintainers or if easier ACK'd here and taken all together.
-> > > > 
-> > > > This should cover all the DTB overlays so we can remove the old .dts
-> > > > rule for overlays and make .dtso the only supported way, let me know
-> > > > if we want that this cycle and I can post that too.
-> > > > 
-> > > > Thanks,
-> > > > Andrew
-> > > > 
-> > > > Changes from v1[1]:
-> > > >   - Added patch to rename pi433 overlay.
-> > > >   - Cleaned wording on patch 4-6.
-> > > >   - Collected some ACKs
-> > > > 
-> > > > [0] https://www.spinics.net/lists/kernel/msg4548509.html
-> > > > [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
-> > > > 
-> > > > Andrew Davis (6):
-> > > >    kbuild: Allow DTB overlays to built from .dtso named source files
-> > > >    kbuild: Allow DTB overlays to built into .dtso.S files
-> > > >    arm64: dts: freescale: Rename DTB overlay source files from .dts to
-> > > >      .dtso
-> > > >    arm64: dts: renesas: Rename DTB overlay source files from .dts to
-> > > >      .dtso
-> > > >    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
-> > > >    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
-> > > > 
-> > > > Frank Rowand (1):
-> > > >    of: overlay: rename overlay source files from .dts to .dtso
-> > > 
-> > > I've applied patches 1-3 and 7. I'll send a PR for the branch to the
-> > > platform maintainers after a few days in linux-next.
-> > 
-> > The patch
-> > 
-> > commit 941214a512d8c80d47e720c17ec17e8539175e93
-> > Author: Andrew Davis <afd@ti.com>
-> > Date:   Mon Oct 24 12:34:29 2022 -0500
-> > 
-> >      kbuild: Allow DTB overlays to built into .dtbo.S files
-> > 
-> > broke the build reproducibility / no-op builds.
-> > 
-> > Before:
-> >    2+ execution of `make` on non-changed tree did nothing
-> > 
-> > Now:
-> >    Each run of `make` (even without a single bit changed) restarts vmlinux
-> >    rebuild.
-> > 
-> > Please, revert or fix.
-> > 
-> 
-> I do not see this behavior. What config are you using?
-> 
-> Not sure how this patch could be the root cause, it only adds
-> a build target/rule, but doesn't actually use it anywhere yet..
+Adds new coresight-tpdm.yaml file describing the bindings required
+to define tpdm in the device trees.
 
-Just to confirm, I reverted the patch and everything went fine again,
-so simple revert helps!
+Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+---
+ .../bindings/arm/qcom,coresight-tpdm.yaml     | 93 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 94 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
 
-(Tested on today's Linux Next)
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+new file mode 100644
+index 000000000000..5881cb41da70
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/qcom,coresight-tpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Trace, Profiling and Diagnostics Monitor - TPDM
++
++description: |
++  The TPDM or Monitor serves as data collection component for various dataset
++  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
++  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
++  Single Bit (DSB). It performs data collection in the data producing clock
++  domain and transfers it to the data collection time domain, generally ATB
++  clock domain.
++
++  The primary use case of the TPDM is to collect data from different data
++  sources and send it to a TPDA for packetization, timestamping, and funneling.
++
++maintainers:
++  - Mao Jinlong <quic_jinlmao@quicinc.com>
++  - Tao Zhang <quic_taozha@quicinc.com>
++
++# Need a custom select here or 'arm,primecell' will match on lots of nodes
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - qcom,coresight-tpdm
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^tpdm(@[0-9a-f]+)$"
++  compatible:
++    items:
++      - const: qcom,coresight-tpdm
++      - const: arm,primecell
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: apb_pclk
++
++  out-ports:
++    description: |
++      Output connections from the TPDM to coresight funnel/TPDA.
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port:
++        description: Output connection from the TPDM to coresight
++            funnel/TPDA.
++        $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  # minimum TPDM definition. TPDM connect to coresight TPDA.
++  - |
++    tpdm@684c000 {
++      compatible = "qcom,coresight-tpdm", "arm,primecell";
++      reg = <0x0684c000 0x1000>;
++
++      clocks = <&aoss_qmp>;
++      clock-names = "apb_pclk";
++
++      out-ports {
++        port {
++          tpdm_prng_out_tpda_qdss: endpoint {
++            remote-endpoint =
++              <&tpda_qdss_in_tpdm_prng>;
++          };
++        };
++      };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 256f03904987..1cf03790485c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2060,6 +2060,7 @@ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git
+ F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
+ F:	Documentation/devicetree/bindings/arm/arm,coresight-*.yaml
++F:	Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+ F:	Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+ F:	Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
+ F:	Documentation/trace/coresight/*
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.17.1
 
