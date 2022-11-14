@@ -2,472 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8817E6282C7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 523996282DD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:40:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236882AbiKNOib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:38:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46226 "EHLO
+        id S236943AbiKNOkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:40:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236454AbiKNOi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:38:27 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCCE242
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:24 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id l11so17625995edb.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LqqUx7jeg7y/E/nMBqurpKnaZhcr17k+jJ5fcyWu3v8=;
-        b=MYcwephvYa7GUyaY/QiqWOye2J3Ho6Kj5JLdQDYdGyLGfi+PHjARZinsjkO1TAlf7y
-         jHZJblFrgtaOCc0us6rUhw+znVI/kunPlp1jVju59gkHP6V+YcEi651j9dfi85LXRlc9
-         uBiT+UZAbwg6c30O0vJjSx0849O0h+VIoHWA8K7bM6RUugRWh/NITNC1pdYztdiaw6Me
-         YJfKnr6ACBRUC2QV/5vOEwy/UsSWB3/2dKALu+CEYBJMk9vwvUW8Pco/TYVL85mDt1cz
-         fwR8QHbm8xUaglZ/QmfIH+8iBF1G4WbJQ0SJU3O8M/azmFPOZTRKf5YmJRv6rKzkiHE0
-         Xkyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LqqUx7jeg7y/E/nMBqurpKnaZhcr17k+jJ5fcyWu3v8=;
-        b=fjovM1fXKUX+XlzZIZ1M8b1sbvmjT4ibD4/g04+W1uxRhudkO0UKygpmFO3+BO/xYX
-         sAZ5ALOPtFvw9xmchznvrYnHgyCFwf5PpeMVht+GsBCHzZ8BLoBx3HxtMiia/RdNvTc2
-         X2lF7INstMemBbkLbvl44naosJTb+3kan4SIbOZcNY/TKSqMBnhrJ8y3u+JZQTl78c3Q
-         VOlz/+/hVel620XMk5LndgbveRQWOLifaUDLzYBiQaEpeLc5u5llxsyMPO/f4ZXNlxYk
-         kOwT/LbPFSooWJUla59AJt4KtIs/ysQbYQ8s6tFTURc5WSoQku1Tl01/CA+jBG2YFrpF
-         /KPg==
-X-Gm-Message-State: ANoB5pkAC2pFIh+aNy+0LhOGyV8Yac4eI0qdY63CjQmGXoAEpp1aEuHB
-        /uP5DdWJZIX5hgoQJ57D1jaAeA==
-X-Google-Smtp-Source: AA0mqf6luQo4JVFA04VeRS35aPiZWQMhzTwbkk7AMirt++NdBLv+JTPJpxktifaK/f5XKJr+gEeKww==
-X-Received: by 2002:aa7:c95a:0:b0:458:b6dc:2b56 with SMTP id h26-20020aa7c95a000000b00458b6dc2b56mr11628589edt.412.1668436702715;
-        Mon, 14 Nov 2022 06:38:22 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id ce12-20020a170906b24c00b007addcbd402esm4255069ejb.215.2022.11.14.06.38.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 06:38:22 -0800 (PST)
-Message-ID: <364844bf-73ca-96b6-cc17-893709ed5b9b@linaro.org>
-Date:   Mon, 14 Nov 2022 15:38:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350-sagami: Add most RPMh
- regulators
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237063AbiKNOjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:39:46 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DFC2099B;
+        Mon, 14 Nov 2022 06:39:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1668436777; x=1699972777;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0p1aFZmokWFv/YvtG1Dxt87fVW/BDd9HRj23KFuYuZM=;
+  b=Zgl87nJqPHFiRKMYL7XDtVT/ga/d3ioBs2gBkZLeqxZtGAhi23hkWyXT
+   DmcfBCpHF7HKpdmGqMqeABeIabccUSfblgo1MgDlQnb4HBZoXZX5Azdj1
+   QiLDrsnLsWVuW9/xsADLtkWofX3fuYx3HjyHyHdJNBuK/51wa1iKp4WSs
+   Op7DcX0u7dN533eq8RtLgaAkmYV3a0Pii+aVGJamZle0K+zBXTZ4n4VXG
+   0+sMsCjrPtXosO6e8/Ci/4T6DHWQgrD0orNEQvX1Hu5WHq2OliuOSQX7/
+   akaXs7my9jT0mj/9oEyD94CBkhf4IUxWFKZgWu0tSpt+GKjdA0kw4Ms3j
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="313127933"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
+   d="scan'208";a="313127933"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2022 06:39:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10531"; a="813275625"
+X-IronPort-AV: E=Sophos;i="5.96,164,1665471600"; 
+   d="scan'208";a="813275625"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga005.jf.intel.com with ESMTP; 14 Nov 2022 06:39:32 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1ouacT-00CCyz-1k;
+        Mon, 14 Nov 2022 16:39:29 +0200
+Date:   Mon, 14 Nov 2022 16:39:29 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Andrew Davis <afd@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114143642.44839-1-konrad.dybcio@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221114143642.44839-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
+Message-ID: <Y3JTIbU7PkNUpU34@smile.fi.intel.com>
+References: <20221024173434.32518-1-afd@ti.com>
+ <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
+ <Y26lDEtiG4KFzc91@smile.fi.intel.com>
+ <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5ce57b2-4557-2dcb-fb3a-71e2acae4502@ti.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 14/11/2022 15:36, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+On Fri, Nov 11, 2022 at 03:05:20PM -0600, Andrew Davis wrote:
+> On 11/11/22 1:39 PM, Andy Shevchenko wrote:
+> > On Wed, Oct 26, 2022 at 09:11:21AM -0500, Rob Herring wrote:
+> > > On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
+> > > > 
+> > > > Hello all,
+> > > > 
+> > > > This is a series based on my patch here[0]. As suggested by Rob
+> > > > I've resurrected Frank's patch and appended it to mine as a series.
+> > > > 
+> > > > First patch here is my original patch, 3rd is Frank's patch but with
+> > > > the unittest changes pulled out into the 2nd patch. That was re-worked
+> > > > moving the source building macro into scripts/Makefile.lib.
+> > > > 
+> > > > Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
+> > > > overlays. Split out by platform so they could be taken by platform
+> > > > maintainers or if easier ACK'd here and taken all together.
+> > > > 
+> > > > This should cover all the DTB overlays so we can remove the old .dts
+> > > > rule for overlays and make .dtso the only supported way, let me know
+> > > > if we want that this cycle and I can post that too.
+> > > > 
+> > > > Thanks,
+> > > > Andrew
+> > > > 
+> > > > Changes from v1[1]:
+> > > >   - Added patch to rename pi433 overlay.
+> > > >   - Cleaned wording on patch 4-6.
+> > > >   - Collected some ACKs
+> > > > 
+> > > > [0] https://www.spinics.net/lists/kernel/msg4548509.html
+> > > > [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
+> > > > 
+> > > > Andrew Davis (6):
+> > > >    kbuild: Allow DTB overlays to built from .dtso named source files
+> > > >    kbuild: Allow DTB overlays to built into .dtso.S files
+> > > >    arm64: dts: freescale: Rename DTB overlay source files from .dts to
+> > > >      .dtso
+> > > >    arm64: dts: renesas: Rename DTB overlay source files from .dts to
+> > > >      .dtso
+> > > >    arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
+> > > >    staging: pi433: overlay: Rename overlay source file from .dts to .dtso
+> > > > 
+> > > > Frank Rowand (1):
+> > > >    of: overlay: rename overlay source files from .dts to .dtso
+> > > 
+> > > I've applied patches 1-3 and 7. I'll send a PR for the branch to the
+> > > platform maintainers after a few days in linux-next.
+> > 
+> > The patch
+> > 
+> > commit 941214a512d8c80d47e720c17ec17e8539175e93
+> > Author: Andrew Davis <afd@ti.com>
+> > Date:   Mon Oct 24 12:34:29 2022 -0500
+> > 
+> >      kbuild: Allow DTB overlays to built into .dtbo.S files
+> > 
+> > broke the build reproducibility / no-op builds.
+> > 
+> > Before:
+> >    2+ execution of `make` on non-changed tree did nothing
+> > 
+> > Now:
+> >    Each run of `make` (even without a single bit changed) restarts vmlinux
+> >    rebuild.
+> > 
+> > Please, revert or fix.
+> > 
 > 
-> Configure most RPMh-controlled regulators on SoMC Sagami. The missing
-> ones (on pm8350b and pm8008[ij]) will be configured when driver support
-> is added. Thankfully, it looks like PDX215 and PDX214 don't have any
-> differences when it comes to PM8350/PM8350C/PMR735a.
+> I do not see this behavior. What config are you using?
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-Missing second S-o-b, sorry:
+> Not sure how this patch could be the root cause, it only adds
+> a build target/rule, but doesn't actually use it anywhere yet..
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Just to confirm, I reverted the patch and everything went fine again,
+so simple revert helps!
 
-Konrad
->   .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 350 ++++++++++++++++++
->   1 file changed, 350 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> index 93e88c40b3b9..f118caab3d42 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> @@ -3,6 +3,7 @@
->    * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
->    */
->   
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->   #include "sm8350.dtsi"
->   #include "pm8350.dtsi"
->   #include "pm8350b.dtsi"
-> @@ -73,6 +74,16 @@ ramoops@ffc00000 {
->   			no-map;
->   		};
->   	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
->   };
->   
->   &adsp {
-> @@ -80,6 +91,345 @@ &adsp {
->   	firmware-name = "qcom/sm8350/Sony/sagami/adsp.mbn";
->   };
->   
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm8350-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +		vdd-s7-supply = <&vph_pwr>;
-> +		vdd-s8-supply = <&vph_pwr>;
-> +		vdd-s9-supply = <&vph_pwr>;
-> +		vdd-s10-supply = <&vph_pwr>;
-> +		vdd-s11-supply = <&vph_pwr>;
-> +		vdd-s12-supply = <&vph_pwr>;
-> +
-> +		vdd-l1-l4-supply = <&pm8350_s11>;
-> +		vdd-l2-l7-supply = <&vreg_bob>;
-> +		vdd-l3-l5-supply = <&vreg_bob>;
-> +		vdd-l6-l9-l10-supply = <&pm8350_s11>;
-> +
-> +		/*
-> +		 * ARC regulators:
-> +		 * S5 - mx.lvl
-> +		 * S6 - gfx.lvl
-> +		 * S9 - mxc.lvl
-> +		 */
-> +
-> +		pm8350_s10: smps10 {
-> +			regulator-name = "pm8350_s10";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350_s11: smps11 {
-> +			regulator-name = "pm8350_s11";
-> +			regulator-min-microvolt = <752000>;
-> +			regulator-max-microvolt = <1000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350_s12: smps12 {
-> +			regulator-name = "pm8350_s12";
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1360000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350_l1: ldo1 {
-> +			regulator-name = "pm8350_l1";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350_l2: ldo2 {
-> +			regulator-name = "pm8350_l2";
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350_l3: ldo3 {
-> +			regulator-name = "pm8350_l3";
-> +			regulator-min-microvolt = <904000>;
-> +			regulator-max-microvolt = <904000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		/* L4 - lmx.lvl (ARC) */
-> +
-> +		pm8350_l5: ldo5 {
-> +			regulator-name = "pm8350_l5";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <888000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm8350_l6: ldo6 {
-> +			regulator-name = "pm8350_l6";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1208000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm8350_l7: ldo7 {
-> +			regulator-name = "pm8350_l7";
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		/* L8 - lcx.lvl (ARC) */
-> +
-> +		pm8350_l9: ldo9 {
-> +			regulator-name = "pm8350_l9";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pm8350c-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +		vdd-s7-supply = <&vph_pwr>;
-> +		vdd-s8-supply = <&vph_pwr>;
-> +		vdd-s9-supply = <&vph_pwr>;
-> +		vdd-s10-supply = <&vph_pwr>;
-> +
-> +		vdd-l1-l12-supply = <&pm8350c_s1>;
-> +		vdd-l2-l8-supply = <&pm8350c_s1>;
-> +		vdd-l3-l4-l5-l7-l13-supply = <&vreg_bob>;
-> +		vdd-l6-l9-l11-supply = <&vreg_bob>;
-> +		vdd-l10-supply = <&pm8350_s12>;
-> +
-> +		vdd-bob-supply = <&vph_pwr>;
-> +
-> +		pm8350c_s1: smps1 {
-> +			regulator-name = "pm8350c_s1";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1952000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		/* S2 - ebi.lvl (ARC) */
-> +
-> +		pm8350c_s3: smps3 {
-> +			regulator-name = "pm8350c_s3";
-> +			regulator-min-microvolt = <300000>;
-> +			regulator-max-microvolt = <704000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		/*
-> +		 * ARC regulators:
-> +		 * S4 - mss.lvl
-> +		 * S6 - cx.lvl
-> +		 * S8 - mmcx.lvl
-> +		 */
-> +
-> +		pm8350c_s10: smps10 {
-> +			regulator-name = "pm8350c_s10";
-> +			regulator-min-microvolt = <1048000>;
-> +			regulator-max-microvolt = <1128000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l1: ldo1 {
-> +			regulator-name = "pm8350c_l1";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l2: ldo2 {
-> +			regulator-name = "pm8350c_l2";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l3: ldo3 {
-> +			regulator-name = "pm8350c_l3";
-> +			regulator-min-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3304000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l4: ldo4 {
-> +			regulator-name = "pm8350c_l4";
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l5: ldo5 {
-> +			regulator-name = "pm8350c_l5";
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l6: ldo6 {
-> +			regulator-name = "pm8350c_l6";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l7: ldo7 {
-> +			regulator-name = "pm8350c_l7";
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l8: ldo8 {
-> +			regulator-name = "pm8350c_l8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l9: ldo9 {
-> +			regulator-name = "pm8350c_l9";
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l10: ldo10 {
-> +			regulator-name = "pm8350c_l10";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l11: ldo11 {
-> +			regulator-name = "pm8350c_l11";
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l12: ldo12 {
-> +			regulator-name = "pm8350c_l12";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		pm8350c_l13: ldo13 {
-> +			regulator-name = "pm8350c_l13";
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-name = "vreg_bob";
-> +			regulator-min-microvolt = <3400000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-> +		};
-> +	};
-> +
-> +	/* TODO: Add pm8350b (just one ldo) once the driver part is in */
-> +
-> +	regulators-2 {
-> +		compatible = "qcom,pmr735a-rpmh-regulators";
-> +		qcom,pmic-id = "e";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +
-> +		vdd-l1-l2-supply = <&pmr735a_s2>;
-> +		vdd-l3-supply = <&pmr735a_s1>;
-> +		vdd-l4-supply = <&pm8350c_s1>;
-> +		vdd-l5-l6-supply = <&pm8350c_s1>;
-> +		vdd-l7-bob-supply = <&vreg_bob>;
-> +
-> +		pmr735a_s1: smps1 {
-> +			regulator-name = "pmr735a_s1";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1280000>;
-> +		};
-> +
-> +		pmr735a_s2: smps2 {
-> +			regulator-name = "pmr735a_s2";
-> +			regulator-min-microvolt = <500000>;
-> +			regulator-max-microvolt = <976000>;
-> +		};
-> +
-> +		pmr735a_s3: smps3 {
-> +			regulator-name = "pmr735a_s3";
-> +			regulator-min-microvolt = <2208000>;
-> +			regulator-max-microvolt = <2352000>;
-> +		};
-> +
-> +		pmr735a_l1: ldo1 {
-> +			regulator-name = "pmr735a_l1";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +		};
-> +
-> +		pmr735a_l2: ldo2 {
-> +			regulator-name = "pmr735a_l2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +		};
-> +
-> +		pmr735a_l3: ldo3 {
-> +			regulator-name = "pmr735a_l3";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +		};
-> +
-> +		pmr735a_l4: ldo4 {
-> +			regulator-name = "pmr735a_l4";
-> +			regulator-min-microvolt = <1776000>;
-> +			regulator-max-microvolt = <1872000>;
-> +		};
-> +
-> +		pmr735a_l5: ldo5 {
-> +			regulator-name = "pmr735a_l5";
-> +			regulator-min-microvolt = <800000>;
-> +			regulator-max-microvolt = <800000>;
-> +		};
-> +
-> +		pmr735a_l6: ldo6 {
-> +			regulator-name = "pmr735a_l6";
-> +			regulator-min-microvolt = <480000>;
-> +			regulator-max-microvolt = <904000>;
-> +		};
-> +
-> +		pmr735a_l7: ldo7 {
-> +			regulator-name = "pmr735a_l7";
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +		};
-> +	};
-> +};
-> +
->   &cdsp {
->   	status = "okay";
->   	firmware-name = "qcom/sm8350/Sony/sagami/cdsp.mbn";
+(Tested on today's Linux Next)
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
