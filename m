@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40561628691
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B4E62868F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:06:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238108AbiKNRGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 12:06:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
+        id S238131AbiKNRGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 12:06:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238156AbiKNRGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:06:47 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA0C2D75D
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:45 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id u11so14014637ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:45 -0800 (PST)
+        with ESMTP id S238115AbiKNRGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:06:45 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79D6F59C
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:44 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id p8so20306794lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:06:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FJsRikfnRLu3deSYcn++faXtckS1l23BHpGOU9UhFWw=;
-        b=GWHy4EgGCogdO6+XalHTr/JlYtU9YsfE78OjNxgdyVFNklPvYOa9xhjg/8ENMkX5zf
-         R3DPxdSr4KOgY9pUaG9OoJTVw9CgmcQggYSb6E5p2Tqo9WI4ab9xHynS+5bCmI40Zgdh
-         RwYUTBAad/OfjXusjtPzfkAz4t0JSqdKb3OoIJVI/hG8rqPl5Dwdq1QAkJAXZlq27wBS
-         Lo7/aUvFG2gWSpYbCgRhAEFZ4+++fU7uc+5tlWM2oa3xbY4yQv25d9fQus1MXyyF6VwX
-         lKqOm0Kqjw8QOtaaacZuAxevF11gWo4xeTxNrf3mNu0OMAWR2rTFC7si203wYDiJ4x91
-         X8/Q==
+        bh=8u8ckjitOk87OPv1Jwz8aOeKIkjevPLVEgZLx8LVKu0=;
+        b=RKwF7+xKIOGSnKveI2PAInWKUnqEGSjLhQQFfCvQVMPJtbi24+cGu0b3OcSyBWppll
+         azC4x8354D0ekmcZLlbmkrrPTGLZ6URFJGHgfgj6MZRRWKbm57ekKj/VRsrX+dLG6mtT
+         5PdEX7ghguLGv4P9P6nctM16YxC1j3bEkYx6zSCnVoY1MApK84obwxNNeWUKGAkktnf/
+         9EKacFihcXAH7XE6hu1+s5RMFbm4zIF5/lyodKZHmITBZ+RWQmbFTpfQxDiC8rXNq5pE
+         aqiHMTlwOuWc4bWrCVEZB8e+kQGeIMo/dbg3fznpg/d2JzLVAhAytnSORJJP/Qa74Z8x
+         NXAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FJsRikfnRLu3deSYcn++faXtckS1l23BHpGOU9UhFWw=;
-        b=kAT3TlzYWV6yeSpdCeD/K5C8RdjfXlqN15TIvVYDya8oxFpYRc+XOASZIcLX60msMB
-         ScmqnnTMnJhKYteFoDLJR8I73I/yvA4ExZEDA5fKZI/PEwz/N7v0TCJTYZO8orifijQ8
-         HnGtD4Nb2MYZBakcsXGzpkVI9B6KQ0wPwtJ3epXKYtMjn8JiBSEhdhs0tA9BPzKbyIjQ
-         Ttfv4xhTZMge+rwLJTjmA/0iCok5U6pX7GS/G/6tEw6X1AjPof4qXQCs63yefwvcy+z8
-         Zd7vi5Nxn8Iinp14INxcLnA9ZF70HoOQngVOVhxcXBwjCSvIRSi+vaAcd58DgWqMzWGY
-         Lz/w==
-X-Gm-Message-State: ANoB5pn8W4SZaqDnlfd2JHtqDwYtsmApLRxZuv5hZ0HZ9kqSNMI0VwG3
-        7kqK5BtiYRCrbFcGWgpMEAw73Q==
-X-Google-Smtp-Source: AA0mqf7nacmK4UzsEft4cZKZK7CgZH40eDj+79SSh03+6+cCBR1tlhnS1LACye67NZhI7TD6We5EtQ==
-X-Received: by 2002:a2e:54f:0:b0:26f:a90a:fd82 with SMTP id 76-20020a2e054f000000b0026fa90afd82mr4813022ljf.248.1668445603674;
-        Mon, 14 Nov 2022 09:06:43 -0800 (PST)
+        bh=8u8ckjitOk87OPv1Jwz8aOeKIkjevPLVEgZLx8LVKu0=;
+        b=SWzacwmYWyY7G1p7/PTYS3WvScsCKpd3aEe9anevcyCTWyAlUdXUsS/OX1Joo8s2VZ
+         hS4duikoh5E3wQ7lEVdeqNgTglFeRcmaEAnpp7cjgwEVLuSvXRNqW1/+szU+L5tQgZmU
+         pgxBxzFgXUVoNE+YfTn37rCjR9EoiRJaTsduHmiJp6B95/Mj5X6lvvu8l/OR6fK4InUz
+         dCjz9Dar+82udF51aZCnJoBWs2AI8aGicC8NVJb6r+nNii3Uk3FGjpr5xw0c3rmb9S28
+         Nw/My3B1svKP3sfmv1rOm4afb2muAhiK7BAYniEVc+iVLxQdPUDsaYInynH3CgD2QZMy
+         ZoHg==
+X-Gm-Message-State: ANoB5pli6i01VbIfIBoR2EomFPDgCgSrWzEWNsLzLKNwb3pm72Hir1YM
+        RtpfG8QvfE1tPwV97IOEsDyOtA==
+X-Google-Smtp-Source: AA0mqf6iE8d2S2e+OPdybOymDTWtPOKfA6NgyrVu0mdAo+HMp22j6G/cBaBrN6dsAlqFPBVieiGcXQ==
+X-Received: by 2002:a05:6512:79a:b0:4b0:efed:e3a7 with SMTP id x26-20020a056512079a00b004b0efede3a7mr4543580lfr.323.1668445604416;
+        Mon, 14 Nov 2022 09:06:44 -0800 (PST)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id q7-20020a056512210700b004a2ae643b99sm1896344lfr.170.2022.11.14.09.06.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 09:06:43 -0800 (PST)
+        Mon, 14 Nov 2022 09:06:44 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
@@ -62,9 +62,9 @@ Cc:     Vinod Koul <vkoul@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [PATCH v1 09/10] iommu/arm-smmu-qcom: Stop using mmu500 reset for v2 MMUs
-Date:   Mon, 14 Nov 2022 20:06:34 +0300
-Message-Id: <20221114170635.1406534-10-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v1 10/10] iommu/arm-smmu-qcom: Add generic qcom,smmu-500 match entry
+Date:   Mon, 14 Nov 2022 20:06:35 +0300
+Message-Id: <20221114170635.1406534-11-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
 References: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
@@ -72,113 +72,46 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The arm_mmu500_reset() writes into registers specific for MMU500. For
-the generic ARM SMMU v2 these registers (sACR) are defined as
-'implementation defined'. Downstream Qualcomm driver for SMMUv2 doesn't
-touch them.
+Add generic qcom,smmu-500 compatibility string. Newer platforms should
+use this generic entry rather than declaring per-SoC entries.
 
 Reviewed-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
 Tested-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 41 ++++++++++++++++------
- 1 file changed, 31 insertions(+), 10 deletions(-)
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index 1843bcd81402..b93aaa0594d3 100644
+index b93aaa0594d3..0830e614f3be 100644
 --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
 +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -376,7 +376,15 @@ static int qcom_sdm845_smmu500_reset(struct arm_smmu_device *smmu)
- 	return ret;
- }
- 
--static const struct arm_smmu_impl qcom_smmu_impl = {
-+static const struct arm_smmu_impl qcom_smmu_v2_impl = {
-+	.init_context = qcom_smmu_init_context,
-+	.cfg_probe = qcom_smmu_cfg_probe,
-+	.def_domain_type = qcom_smmu_def_domain_type,
-+	.write_s2cr = qcom_smmu_write_s2cr,
-+	.tlb_sync = qcom_smmu_tlb_sync,
-+};
-+
-+static const struct arm_smmu_impl qcom_smmu_500_impl = {
- 	.init_context = qcom_smmu_init_context,
- 	.cfg_probe = qcom_smmu_cfg_probe,
- 	.def_domain_type = qcom_smmu_def_domain_type,
-@@ -394,7 +402,15 @@ static const struct arm_smmu_impl sdm845_smmu_500_impl = {
- 	.tlb_sync = qcom_smmu_tlb_sync,
- };
- 
--static const struct arm_smmu_impl qcom_adreno_smmu_impl = {
-+static const struct arm_smmu_impl qcom_adreno_smmu_v2_impl = {
-+	.init_context = qcom_adreno_smmu_init_context,
-+	.def_domain_type = qcom_smmu_def_domain_type,
-+	.alloc_context_bank = qcom_adreno_smmu_alloc_context_bank,
-+	.write_sctlr = qcom_adreno_smmu_write_sctlr,
-+	.tlb_sync = qcom_smmu_tlb_sync,
-+};
-+
-+static const struct arm_smmu_impl qcom_adreno_smmu_500_impl = {
- 	.init_context = qcom_adreno_smmu_init_context,
- 	.def_domain_type = qcom_smmu_def_domain_type,
- 	.reset = arm_mmu500_reset,
-@@ -452,12 +468,17 @@ static const struct qcom_smmu_config qcom_smmu_impl0_cfg = {
-  */
- static const struct qcom_smmu_match_data msm8996_smmu_data = {
- 	.impl = NULL,
--	.adreno_impl = &qcom_adreno_smmu_impl,
-+	.adreno_impl = &qcom_adreno_smmu_v2_impl,
-+};
-+
-+static const struct qcom_smmu_match_data qcom_smmu_v2_data = {
-+	.impl = &qcom_smmu_v2_impl,
-+	.adreno_impl = &qcom_adreno_smmu_v2_impl,
- };
- 
- static const struct qcom_smmu_match_data qcom_smmu_data = {
--	.impl = &qcom_smmu_impl,
--	.adreno_impl = &qcom_adreno_smmu_impl,
-+	.impl = &qcom_smmu_500_impl,
-+	.adreno_impl = &qcom_adreno_smmu_500_impl,
- };
- 
- static const struct qcom_smmu_match_data sdm845_smmu_500_data = {
-@@ -470,22 +491,22 @@ static const struct qcom_smmu_match_data sdm845_smmu_500_data = {
- };
- 
- static const struct qcom_smmu_match_data qcom_smmu_500_impl0_data = {
--	.impl = &qcom_smmu_impl,
--	.adreno_impl = &qcom_adreno_smmu_impl,
-+	.impl = &qcom_smmu_500_impl,
-+	.adreno_impl = &qcom_adreno_smmu_500_impl,
+@@ -496,6 +496,10 @@ static const struct qcom_smmu_match_data qcom_smmu_500_impl0_data = {
  	.cfg = &qcom_smmu_impl0_cfg,
  };
  
++/*
++ * Do not add any more qcom,SOC-smmu-500 entries to this list, unless they need
++ * special handling and can not be covered by the qcom,smmu-500 entry.
++ */
  static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
  	{ .compatible = "qcom,msm8996-smmu-v2", .data = &msm8996_smmu_data },
--	{ .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_data },
-+	{ .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_v2_data },
- 	{ .compatible = "qcom,qcm2290-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,qdu1000-smmu-500", .data = &qcom_smmu_500_impl0_data  },
- 	{ .compatible = "qcom,sc7180-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sc7280-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sc8180x-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sc8280xp-smmu-500", .data = &qcom_smmu_500_impl0_data },
--	{ .compatible = "qcom,sdm630-smmu-v2", .data = &qcom_smmu_data },
--	{ .compatible = "qcom,sdm845-smmu-v2", .data = &qcom_smmu_data },
-+	{ .compatible = "qcom,sdm630-smmu-v2", .data = &qcom_smmu_v2_data },
-+	{ .compatible = "qcom,sdm845-smmu-v2", .data = &qcom_smmu_v2_data },
- 	{ .compatible = "qcom,sdm845-smmu-500", .data = &sdm845_smmu_500_data },
- 	{ .compatible = "qcom,sm6115-smmu-500", .data = &qcom_smmu_500_impl0_data},
- 	{ .compatible = "qcom,sm6125-smmu-500", .data = &qcom_smmu_500_impl0_data },
+ 	{ .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_v2_data },
+@@ -516,6 +520,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+ 	{ .compatible = "qcom,sm8250-smmu-500", .data = &qcom_smmu_500_impl0_data },
+ 	{ .compatible = "qcom,sm8350-smmu-500", .data = &qcom_smmu_500_impl0_data },
+ 	{ .compatible = "qcom,sm8450-smmu-500", .data = &qcom_smmu_500_impl0_data },
++	{ .compatible = "qcom,smmu-500", .data = &qcom_smmu_500_impl0_data },
+ 	{ }
+ };
+ 
 -- 
 2.35.1
 
