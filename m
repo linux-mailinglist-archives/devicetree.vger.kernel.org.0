@@ -2,98 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A533627D63
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 949A1627D6A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:11:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236444AbiKNMKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 07:10:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42720 "EHLO
+        id S235859AbiKNMLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 07:11:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236278AbiKNMKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:10:24 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E58FE6;
-        Mon, 14 Nov 2022 04:10:21 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 49C74660231C;
-        Mon, 14 Nov 2022 12:10:19 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668427820;
-        bh=dx8y/g3WohBsZ27OyP/AIlNklm8U3hPwF4o+Z1udj+w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SPQSPsXQeim5Y+H7GKLFPg1VcJM12PHQ1BjIEK2Orot+ACy1o7770oH1MTEZSjKi2
-         OWiwwd7I2CKwIYBWTACopUjBDtj5F/Sq93OyjHKTexT2kj7Y0w8vZvLkqXNDi/39f0
-         QZInlaHGvJRQHlSUD3gi+8eRwXuf8p6WlZ/OhpWIwyXyCqrYqZdWPYeq2TZDSjI2wX
-         Z+Q5gLZWeRud6JugoP+kPQP0XbuYARgS11EEqm6PY1NnfFLcKld3l/iJjTHDdBtcag
-         iCriPiysO3ZxCiV0FzsMlQR89yKZrqOtGu3rQnO8HeZe6rnCKvjzLI9EGzL0O5FKfg
-         QEqEVMizPky7g==
-Message-ID: <288b510c-1ff3-ddad-1e80-dfe3de4b2a84@collabora.com>
-Date:   Mon, 14 Nov 2022 13:10:16 +0100
+        with ESMTP id S236015AbiKNMLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:11:24 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 626E8B84
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:11:22 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id m204so11160150oib.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 04:11:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=51YFDdldLWkCPyi/+N2IbUoBaeV61YgUrojaD9xxJ1s=;
+        b=J3St4sktMa3iurTc+z0Tba9fevpIBznXb/x2UYKW/39VNybPbXfLfW2CxBFluwpeTB
+         hqnyCZqCGDcBu2+iiTvmoDMUcKLE46Oe91AmejGDySx23LHScXs0dA0fguwxJA9ExjNB
+         vTqXBOA/OCiP8r6z3/LILh1I1L8dc3Ab5UbpIoUM7aCYbsq9gmzSyxLtBTphLWx9IizO
+         ypAnq/1H7WwEhF7QfqVjGOrS8sWTIiHZhg6AG7ueN17kGkT81rfsoMYS3UUOmMqhGwSU
+         O7rRHPZdGA28sncJWKeDTE0bkdU06Ul//RYx+/yLKb5uF1vVQT6mVYmDOj+qzW5QAw5X
+         TuqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=51YFDdldLWkCPyi/+N2IbUoBaeV61YgUrojaD9xxJ1s=;
+        b=tj4LkBwUHsWFGcowk1mi1Q+BKV5J4xeWG9DJeHdfoUlSqfzVRNk6RdlPrJBgRCKYii
+         mmLZcpOzUnJokArO3Qy0X61+lwIyUks1gbvv8ZZVXPofv27cXosonk9LeJRGaBl0B+r0
+         H+1RmqaoSO15QUMkNxpl3UGET/YMti2DQBji1YF7L3KZ3BmTlhdc6uKLfWhRrrBXms+H
+         akOXxWgmp+aXORao4WYnjq3dSYYnfRdeMMB8jNnuVNHNfv1pgOtkyBOiUZc3HhdvuxCA
+         NRMdcpkOpqUTu9e1eJ1b36/J/U8EO6DqToMmKSxlOv0vnhoLIrHOjiG21HIyRmEUJAdA
+         YP1g==
+X-Gm-Message-State: ANoB5pnWNPnqAHD2ouD1hzyiefiDpuNx87mJYXFDC5orCRShCZwCl6t/
+        ozz6TxPR7rmDAwkx+qIdLpxME3suZwBwUWyFybtDOA==
+X-Google-Smtp-Source: AA0mqf4WiMo2j10zXoV/vztyAL1pL9S60FOe6gqVZ6spbmQS/jf0JrOVclKT2SRrV4nGRCVm5n7OzQizfNWK3g9rbXg=
+X-Received: by 2002:aca:2b18:0:b0:359:ac8d:4227 with SMTP id
+ i24-20020aca2b18000000b00359ac8d4227mr5429997oik.17.1668427881552; Mon, 14
+ Nov 2022 04:11:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v4 10/11] arm64: dts: mt7986: add Bananapi R3
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
-        Bo Jiao <Bo.Jiao@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-7-apatel@ventanamicro.com> <6da76cb0-428e-d35a-3b11-81c7efa22460@linaro.org>
+In-Reply-To: <6da76cb0-428e-d35a-3b11-81c7efa22460@linaro.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Mon, 14 Nov 2022 17:41:10 +0530
+Message-ID: <CAK9=C2XT3wu_fpC3zUzqtR+8161Vm0VcN9YP-1F7e4-JLDm6JQ@mail.gmail.com>
+Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20221112091518.7846-1-linux@fw-web.de>
- <20221112091518.7846-11-linux@fw-web.de>
- <ee410f80-1697-6146-9755-981f2d45e88f@collabora.com>
- <A22EB676-EBD4-4E07-8E8F-BC200EDBCE1A@fw-web.de>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <A22EB676-EBD4-4E07-8E8F-BC200EDBCE1A@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/11/22 13:03, Frank Wunderlich ha scritto:
-> Am 14. November 2022 12:50:40 MEZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
->> Il 12/11/22 10:15, Frank Wunderlich ha scritto:
->>> From: Frank Wunderlich <frank-w@public-files.de>
->>>
->>> +/ {
->>> +	model = "Bananapi BPI-R3";
->>> +	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
->>
->> You have to add the machine compatible to devicetree/bindings/arm/mediatek.yaml
->> or you get dtb check issues.
-> 
-> Have already:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v6.1-next/dts64&id=8c80453864efea0a0ed5ca2b399fd97f2f55a5ae
-> 
+On Mon, Nov 14, 2022 at 3:21 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 11/11/2022 05:42, Anup Patel wrote:
+> > We add DT bindings document for RISC-V advanced platform level interrupt
+> > controller (APLIC) defined by the RISC-V advanced interrupt architecture
+> > (AIA) specification.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../interrupt-controller/riscv,aplic.yaml     | 136 ++++++++++++++++++
+> >  1 file changed, 136 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> > new file mode 100644
+> > index 000000000000..0aa48571f3bc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> > @@ -0,0 +1,136 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aplic.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V Advancded Platform Level Interrupt Controller (APLIC)
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description:
+> > +  The RISC-V advanced interrupt architecture (AIA) defines advanced platform
+> > +  level interrupt controller (APLIC) for handling wired interrupts in a
+> > +  RISC-V platform. The RISC-V AIA specification can be found at
+> > +  https://github.com/riscv/riscv-aia.
+> > +
+> > +  The RISC-V APLIC is implemented as hierarchical APLIC domains where all
+> > +  interrupt sources connect to the root domain which can further delegate
+> > +  interrupts to child domains. We have one device tree node for each APLIC
+> > +  domain.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - vendor,chip-aplic
+> > +      - const: riscv,aplic
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  "#interrupt-cells":
+> > +    const: 2
+> > +
+> > +  interrupts-extended:
+> > +    minItems: 1
+> > +    maxItems: 16384
+> > +    description:
+> > +      The presence of this property implies that given APLIC domain directly
+> > +      injects external interrupts to a set of RISC-V HARTS (or CPUs). Each
+> > +      node pointed to should be a riscv,cpu-intc node, which has a riscv node
+> > +      (i.e. RISC-V HART) as parent.
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      The presence of this property implies that given APLIC domain forwards
+>
+> Drop "The presence of this property" and make it a proper sentence
+> describing hardware.
 
-Sorry, had missed that one.
+Okay, I will update.
 
-In this case:
+>
+> > +      wired interrupts as MSIs to a AIA incoming message signaled interrupt
+> > +      controller (IMSIC). This property should be considered only when the
+> > +      interrupts-extended property is absent.
+> > +
+> > +  riscv,num-sources:
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>
+> Drop quotes.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Okay, I will update.
 
+>
+> > +    minimum: 1
+> > +    maximum: 1023
+> > +    description:
+> > +      Specifies how many wired interrupts are supported by this APLIC domain.
+> > +
+> > +  riscv,children:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > +    minItems: 1
+> > +    maxItems: 1024
+> > +    description:
+> > +      This property represents a list of child APLIC domains for the given
+> > +      APLIC domain. Each child APLIC domain is assigned child index in
+> > +      increasing order with the first child APLIC domain assigned child
+> > +      index 0. The APLIC domain child index is used by firmware to delegate
+> > +      interrupts from the given APLIC domain to a particular child APLIC
+> > +      domain.
+> > +
+> > +  riscv,delegate:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > +    minItems: 1
+> > +    maxItems: 1024
+> > +    description:
+> > +      This property represents a interrupt delegation list where each entry
+>
+> Drop "This property represents".
+
+Okay, I will update.
+
+>
+> > +      is a triple consisting of child APLIC domain phandle, first interrupt
+> > +      number, and last interrupt number. The firmware will configure interrupt
+> > +      delegation registers based on interrupt delegation list.
+> > +
+> > +additionalProperties: false
+>
+> Same comments as in previous patch,
+
+Okay, I will update.
+
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupt-controller
+> > +  - "#interrupt-cells"
+> > +  - riscv,num-sources
+> > +
+> > +examples:
+> > +  - |
+> > +    // Example 1 (APIC domain directly injecting interrupt to HARTs):
+> > +
+> > +    aplic0: interrupt-controller@c000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      interrupts-extended = <&cpu1_intc 11>,
+> > +                            <&cpu2_intc 11>,
+> > +                            <&cpu3_intc 11>,
+> > +                            <&cpu4_intc 11>;
+> > +      reg = <0xc000000 0x4080>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+> > +      riscv,children = <&aplic1>;
+> > +      riscv,delegate = <&aplic1 1 63>;
+> > +    };
+> > +
+> > +    aplic1: interrupt-controller@d000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      interrupts-extended = <&cpu1_intc 9>,
+> > +                            <&cpu2_intc 9>,
+> > +                            <&cpu3_intc 9>,
+> > +                            <&cpu4_intc 9>;
+> > +      reg = <0xd000000 0x4080>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+> > +    };
+> > +
+> > +  - |
+> > +    // Example 2 (APIC domain forwarding interrupts as MSIs):
+> > +
+> > +    interrupt-controller@d000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      msi-parent = <&imsics>;
+> > +      reg = <0xd000000 0x4000>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+>
+> It's almost the same as previous... don't add unnecessary examples
+> (difference in one property usually does not mean you need new example).
+
+The second example shows the DT node of an APLIC in MSI-mode.
+Most noteworthy part of this node is presence of "msi-parent" DT
+property instead of "interrupts-extended" DT property to describe
+an APLIC in MSI mode.
+
+>
+> > +    };
+> > +...
+>
+
+Best Regards,
+Anup
