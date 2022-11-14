@@ -2,334 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8DC362796D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B6E627974
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:49:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235984AbiKNJtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:49:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
+        id S236012AbiKNJtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:49:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236304AbiKNJsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:48:50 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4D6CE38
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:48:39 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id c1so18350065lfi.7
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:48:39 -0800 (PST)
+        with ESMTP id S236120AbiKNJt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:49:29 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 901B71DDCD
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:49:27 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id b9so12425616ljr.5
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:49:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KhoaRoDixQzBDZIa7mDZUSgASBOYSQ9jvgnxALRZ7xE=;
-        b=ZaBuAgHpDL8mDYAmiJ2+sx49DyTrjQ0usb5LhsbsReK9ti/x1YggnHwifDjP9P3BUr
-         iTLYO+Oh1Ax8Uj9LqSYbtQSGdDNN4dAebvrQhHEBoLtbbuZQiHfCFjnltEJwbaC6nbRC
-         brKXeGklpg13xDUz0KNWfP8fj1YILIMkZzFLsKpWO8O1KLo5IBNGo0a5c3afZb9fGvrK
-         /wgi5unIEiy84bhKLqR12XNtDVwh9llfxF+CutAFhS2JZGq5ALXCYQdKzJXfedr76cdp
-         MDMbPuq0nsPj2VN8GvQr5CtJ1N2LPK2fUSsL4+IVs6xvFoJguayv8z2XrsYPhcuVenFK
-         uX6A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ImTXzzSRjgHWFzodYSl0ZMauOmNHYIoqH7O3oNlMHPk=;
+        b=NroDRhTgo9wX5eizp2mXtqzT+gIHYAyCHL/etgKCWWm7igL97ZDymZ9wfSlUb43o2P
+         yPQldjUy1un1+xybodXFw0wnxgistkdTprOj2oa79UsQ5l8UyArcnhk9Uo1vPPivgMTT
+         YN/upmWp1iIq0C+Tj2124iY3zIb9zs4maob0gcKLDoFdCdMjTEPzaaW7ml1XIHCbzJWf
+         WlWU5RoVKYpeCD68mcGQNB508m3J6rJtTXO7GER6QcsufmpBH4NoI5CcDuYdZDBgUC93
+         QrZ575im0XSTb4hi9rgujHhhoCOlAHwaBjfoqnZSOCMc7a4eSVHea8oHog2loLfvvhrO
+         BSkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KhoaRoDixQzBDZIa7mDZUSgASBOYSQ9jvgnxALRZ7xE=;
-        b=uFem6nqMKjqtM/T4vHNEOFcY/2xGEdht3uqaG9745bG5ESIy6NkPnlfu+bZSD95cRq
-         shlwnzF1gjKpopACw7ONsssK+syblycuBkjQfvSl9Ryi6wxLcRMXh6uHYB+KQJ1zUKm5
-         /wOOnR+79FyxmLhCdpFQUJfpqeiqPNVBdrP/CX08H1vbvxpaWBg3BxdAOnRClLeT2Qj6
-         xCrZ/26wXHn/tG8zGJT6KPiQStO/dqT38w24xozDp1IrvCCIUpcNH9mRICzU1BjeOa3O
-         UBxt/bHzmey4LmE6Xe7uDGMz50Y3X1zPIVEQBOh5ANie8dHmVBiI1Hgc3YBwiSRcbQPb
-         bRbA==
-X-Gm-Message-State: ANoB5pmgE8WLs4fWMRy6ekc0ZaD6C4T7cS26eSYTbLCvDV4LH6MLnku1
-        ESy/Q3q4EXfskh3vpWYsneLTEA==
-X-Google-Smtp-Source: AA0mqf4ELNlADjmrdCkSo129sw2bkZhCfKDYi5JJcckn17ZcymjMCAXeBWfrDmnqnIvSduCM4X5MVg==
-X-Received: by 2002:ac2:4f12:0:b0:48a:e80f:4b3a with SMTP id k18-20020ac24f12000000b0048ae80f4b3amr4063394lfr.575.1668419317713;
-        Mon, 14 Nov 2022 01:48:37 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id o17-20020ac25e31000000b00498f23c249dsm1753357lfg.74.2022.11.14.01.48.36
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ImTXzzSRjgHWFzodYSl0ZMauOmNHYIoqH7O3oNlMHPk=;
+        b=OqEAXp7NubeEpXt4YoqhrLOCBR5tkCdjp8TlTnzdls5uBsV2y6oB2XV7XeNuC0SkXx
+         RHdmxGX84wsCfnF+bFa9k6RP/B0kEy8xKnRBkzur4kSymqWxD3kTGuX0LbKcqSOHOe3f
+         OhITeZ0Wnoj9CBHZEas43DoG6IjH7Y8YGMkzgWqc65EXT2nRoA20DX0nO2Qi0heb6/qj
+         5B/GDmpSqHxTZUq0iqmJ9TsQSNROKLUp7miwK0XL7b1XHL39c76hFe+y+VtfEEkOwMJm
+         OGRzlxe51/gDtUwG6BJW83Mr859Z1c1lMNLH3vhM5sgzgo0MgEz8rwR9XMv1CCj8Hk/2
+         G2+A==
+X-Gm-Message-State: ANoB5pmS+x7lNZGvcz9kCIMTkvti8Y786vkWRqCVFVVihlnC+G5XjcJF
+        J0Wc1FvEMZaEQMrKGtcnSw4s0Q==
+X-Google-Smtp-Source: AA0mqf6W/2H1XkevKiNWP5a3u3J4ww5Uic6TNPQb8nzLTT3yvz7U7ewCDsZ5Dl09YpvgfAGUpej1oA==
+X-Received: by 2002:a2e:a602:0:b0:277:8a07:521c with SMTP id v2-20020a2ea602000000b002778a07521cmr3602767ljp.335.1668419365869;
+        Mon, 14 Nov 2022 01:49:25 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z10-20020a05651c11ca00b002773ac59697sm1954760ljo.0.2022.11.14.01.49.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:48:37 -0800 (PST)
-Message-ID: <a05fee50-9df2-d5f7-c071-81ded4bcc873@linaro.org>
-Date:   Mon, 14 Nov 2022 10:48:34 +0100
+        Mon, 14 Nov 2022 01:49:25 -0800 (PST)
+Message-ID: <9be58cb4-4ee8-a6e0-7a0a-f2f581e394d3@linaro.org>
+Date:   Mon, 14 Nov 2022 10:49:24 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v5 4/6] arm64: dts: qcom:
- sdm845-db845c-navigation-mezzanine: Add navigation mezzanine dts
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        andersson@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
-        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller
+ bindings
+Content-Language: en-US
+To:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-References: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
- <20221112172650.127280-5-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221112172650.127280-5-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-5-apatel@ventanamicro.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221111044207.1478350-5-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/11/2022 18:26, Bryan O'Donoghue wrote:
-> Move the dts data for the rb3 navigation mezzanine into its own dts file.
+On 11/11/2022 05:42, Anup Patel wrote:
+> We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
+> defined by the RISC-V advanced interrupt architecture (AIA) specification.
 > 
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../sdm845-db845c-navigation-mezzanine.dts    | 107 ++++++++++++++++++
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  99 ----------------
->   3 files changed, 108 insertions(+), 99 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+>  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d534888bcfe52..70ce09bc63a33 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -131,6 +131,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
 > new file mode 100644
-> index 0000000000000..7bd0a15c72657
+> index 000000000000..05106eb1955e
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
-> @@ -0,0 +1,107 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022, Linaro Ltd.
-> + */
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: RISC-V Incoming MSI Controller (IMSIC)
 > +
-> +#include "sdm845-db845c.dts"
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
 > +
-> +&cci {
-> +	status = "okay";
-> +};
+> +description:
+> +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
+> +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
+> +  AIA specification can be found at https://github.com/riscv/riscv-aia.
 > +
-> +&camss {
-camss goes before cci alphabetically.
+> +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
+> +  for each privilege level (machine or supervisor). The configuration of
+> +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
+> +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
+> +  fixed number of interrupt identities (to distinguish MSIs from devices)
+> +  which is same for given privilege level across CPUs (or HARTs).
+> +
+> +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
+> +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
+> +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
+> +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
+> +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
+> +  privilege level (machine or supervisor) encodes group index, HART index,
+> +  and guest index (shown below).
+> +
+> +  XLEN-1           >=24                                 12    0
+> +  |                  |                                  |     |
+> +  -------------------------------------------------------------
+> +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
+> +  -------------------------------------------------------------
+> +
+> +  The device tree of a RISC-V platform will have one IMSIC device tree node
+> +  for each privilege level (machine or supervisor) which collectively describe
+> +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - vendor,chip-imsics
 
-Konrad
-> +	vdda-phy-supply = <&vreg_l1a_0p875>;
-> +	vdda-pll-supply = <&vreg_l26a_1p2>;
+There is no such vendor... As Conor pointed out, this does not look
+correct. Compatibles must be real and specific.
+
+> +      - const: riscv,imsics
 > +
-> +	status = "okay";
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 128
+
+Is there a DTS with 128 reg items?
+
+> +    description:
+> +      Base address of each IMSIC group.
 > +
-> +	ports {
-> +		port@0 {
-> +			reg = <0>;
-> +			csiphy0_ep: endpoint {
-> +				data-lanes = <0 1 2 3>;
-> +				remote-endpoint = <&ov8856_ep>;
-> +			};
-> +		};
-> +	};
-> +};
+> +  interrupt-controller: true
 > +
-> +&cci_i2c0 {
-> +	camera@10 {
-> +		compatible = "ovti,ov8856";
-> +		reg = <0x10>;
+> +  "#interrupt-cells":
+> +    const: 0
 > +
-> +		/* CAM0_RST_N */
-> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&cam0_default>;
+> +  msi-controller: true
+
+You want then msi-controller.yaml schema and you can drop properties
+described there.
+
 > +
-> +		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
-> +		clock-names = "xvclk";
-> +		clock-frequency = <19200000>;
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 32768
+
+I just wonder if you are not putting some random stuff here... just like
+this "vendor" company.
+
+32768 inputs it is quite a big chip. Are you sure you have so many pins
+or internal connections?
+
+> +    description:
+> +      This property represents the set of CPUs (or HARTs) for which given
+> +      device tree node describes the IMSIC interrupt files. Each node pointed
+> +      to should be a riscv,cpu-intc node, which has a riscv node (i.e. RISC-V
+> +      HART) as parent.
 > +
-> +		/*
-> +		 * The &vreg_s4a_1p8 trace is powered on as a,
-> +		 * so it is represented by a fixed regulator.
-> +		 *
-> +		 * The 2.8V vdda-supply and 1.2V vddd-supply regulators
-> +		 * both have to be enabled through the power management
-> +		 * gpios.
-> +		 */
-> +		dovdd-supply = <&vreg_lvs1a_1p8>;
-> +		avdd-supply = <&cam0_avdd_2v8>;
-> +		dvdd-supply = <&cam0_dvdd_1v2>;
+> +  riscv,num-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 63
+> +    maximum: 2047
+> +    description:
+> +      Specifies how many interrupt identities are supported by IMSIC interrupt
+> +      file.
 > +
-> +		status = "okay";
+> +  riscv,num-guest-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 63
+> +    maximum: 2047
+> +    description:
+> +      Specifies how many interrupt identities are supported by IMSIC guest
+> +      interrupt file. When not specified the number of interrupt identities
+> +      supported by IMSIC guest file is assumed to be same as specified by
+> +      the riscv,num-ids property.
 > +
-> +		port {
-> +			ov8856_ep: endpoint {
-> +				link-frequencies = /bits/ 64
-> +					<360000000 180000000>;
-> +				data-lanes = <1 2 3 4>;
-> +				remote-endpoint = <&csiphy0_ep>;
-> +			};
-> +		};
-> +	};
-> +};
+> +  riscv,slow-ipi:
+> +    type: boolean
+> +    description:
+> +      The presence of this property implies that software interrupts (i.e.
+> +      IPIs) using IMSIC software injected MSIs is slower compared to other
+> +      software interrupt mechanisms (such as SBI IPI) on the underlying
+> +      RISC-V platform.
+
+Is this a property of software or hardware?
+
 > +
-> +&cci_i2c1 {
-> +	camera@60 {
-> +		compatible = "ovti,ov7251";
+> +  riscv,guest-index-bits:
+> +    minimum: 0
+> +    maximum: 7
+> +    description:
+> +      Specifies number of guest index bits in the MSI target address. When
+> +      not specified it is assumed to be 0.
 > +
-> +		/* I2C address as per ov7251.txt linux documentation */
-> +		reg = <0x60>;
+> +  riscv,hart-index-bits:
+> +    minimum: 0
+> +    maximum: 15
+> +    description:
+> +      Specifies number of HART index bits in the MSI target address. When
+> +      not specified it is estimated based on the interrupts-extended property.
 > +
-> +		/* CAM3_RST_N */
-> +		enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&cam3_default>;
+> +  riscv,group-index-bits:
+> +    minimum: 0
+> +    maximum: 7
+> +    description:
+> +      Specifies number of group index bits in the MSI target address. When
+> +      not specified it is assumed to be 0.
+
+Then default: 0.
+
 > +
-> +		clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
-> +		clock-names = "xclk";
-> +		clock-frequency = <24000000>;
+> +  riscv,group-index-shift:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 24
+> +    maximum: 55
+> +    description:
+> +      Specifies the least significant bit of the group index bits in the
+
+Please drop everywhere "Specifies the" and instead just describe the
+hardware.
+
+> +      MSI target address. When not specified it is assumed to be 24.
 > +
-> +		/*
-> +		 * The &vreg_s4a_1p8 trace always powered on.
-> +		 *
-> +		 * The 2.8V vdda-supply regulator is enabled when the
-> +		 * vreg_s4a_1p8 trace is pulled high.
-> +		 * It too is represented by a fixed regulator.
-> +		 *
-> +		 * No 1.2V vddd-supply regulator is used.
-> +		 */
-> +		vdddo-supply = <&vreg_lvs1a_1p8>;
-> +		vdda-supply = <&cam3_avdd_2v8>;
+> +additionalProperties: false
+
+unevaluatedProperties: false and drop all properties already described
+by other schemas.
+
 > +
-> +		status = "disabled";
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - msi-controller
+> +  - interrupts-extended
+> +  - riscv,num-ids
 > +
-> +		port {
-> +			ov7251_ep: endpoint {
-> +				data-lanes = <0 1>;
-> +/*				remote-endpoint = <&csiphy3_ep>; */
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 5da91c646c200..f41c6d600ea8c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -1174,105 +1174,6 @@ &pm8998_gpio {
->   
->   };
->   
-> -&cci {
-> -	status = "okay";
-> -};
-> -
-> -&camss {
-> -	vdda-phy-supply = <&vreg_l1a_0p875>;
-> -	vdda-pll-supply = <&vreg_l26a_1p2>;
-> -
-> -	status = "okay";
-> -
-> -	ports {
-> -		port@0 {
-> -			reg = <0>;
-> -			csiphy0_ep: endpoint {
-> -				data-lanes = <0 1 2 3>;
-> -				remote-endpoint = <&ov8856_ep>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&cci_i2c0 {
-> -	camera@10 {
-> -		compatible = "ovti,ov8856";
-> -		reg = <0x10>;
-> -
-> -		/* CAM0_RST_N */
-> -		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&cam0_default>;
-> -
-> -		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
-> -		clock-names = "xvclk";
-> -		clock-frequency = <19200000>;
-> -
-> -		/*
-> -		 * The &vreg_s4a_1p8 trace is powered on as a,
-> -		 * so it is represented by a fixed regulator.
-> -		 *
-> -		 * The 2.8V vdda-supply and 1.2V vddd-supply regulators
-> -		 * both have to be enabled through the power management
-> -		 * gpios.
-> -		 */
-> -		dovdd-supply = <&vreg_lvs1a_1p8>;
-> -		avdd-supply = <&cam0_avdd_2v8>;
-> -		dvdd-supply = <&cam0_dvdd_1v2>;
-> -
-> -		status = "okay";
-> -
-> -		port {
-> -			ov8856_ep: endpoint {
-> -				link-frequencies = /bits/ 64
-> -					<360000000 180000000>;
-> -				data-lanes = <1 2 3 4>;
-> -				remote-endpoint = <&csiphy0_ep>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&cci_i2c1 {
-> -	camera@60 {
-> -		compatible = "ovti,ov7251";
-> -
-> -		/* I2C address as per ov7251.txt linux documentation */
-> -		reg = <0x60>;
-> -
-> -		/* CAM3_RST_N */
-> -		enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&cam3_default>;
-> -
-> -		clocks = <&clock_camcc CAM_CC_MCLK3_CLK>;
-> -		clock-names = "xclk";
-> -		clock-frequency = <24000000>;
-> -
-> -		/*
-> -		 * The &vreg_s4a_1p8 trace always powered on.
-> -		 *
-> -		 * The 2.8V vdda-supply regulator is enabled when the
-> -		 * vreg_s4a_1p8 trace is pulled high.
-> -		 * It too is represented by a fixed regulator.
-> -		 *
-> -		 * No 1.2V vddd-supply regulator is used.
-> -		 */
-> -		vdddo-supply = <&vreg_lvs1a_1p8>;
-> -		vdda-supply = <&cam3_avdd_2v8>;
-> -
-> -		status = "disabled";
-> -
-> -		port {
-> -			ov7251_ep: endpoint {
-> -				data-lanes = <0 1>;
-> -/*				remote-endpoint = <&csiphy3_ep>; */
-> -			};
-> -		};
-> -	};
-> -};
-> -
->   /* PINCTRL - additions to nodes defined in sdm845.dtsi */
->   &qup_spi0_default {
->   	config {
+> +examples:
+> +  - |
+> +    // Example 1 (Machine-level IMSIC files with just one group):
+> +
+> +    imsic_mlevel: interrupt-controller@24000000 {
+> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+> +      interrupts-extended = <&cpu1_intc 11>,
+> +                            <&cpu2_intc 11>,
+> +                            <&cpu3_intc 11>,
+> +                            <&cpu4_intc 11>;
+> +      reg = <0x28000000 0x4000>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <0>;
+> +      msi-controller;
+> +      riscv,num-ids = <127>;
+> +    };
+> +
+> +  - |
+> +    // Example 2 (Supervisor-level IMSIC files with two groups):
+> +
+> +    imsic_slevel: interrupt-controller@28000000 {
+> +      compatible = "vendor,chip-imsics", "riscv,imsics";
+
+Please run scripts/checkpatch.pl and fix reported warnings.
+
+Best regards,
+Krzysztof
+
