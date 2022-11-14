@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A856627775
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F3C62777B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 09:24:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236377AbiKNIXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 03:23:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
+        id S236275AbiKNIY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 03:24:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236367AbiKNIXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:23:15 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 388E51AD96
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:23:14 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id c1so18048178lfi.7
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:23:14 -0800 (PST)
+        with ESMTP id S236330AbiKNIY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 03:24:28 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7356A446
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:24:27 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id s8so926075lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 00:24:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UzuIXzgVBbI4qXY2baaAexD3LrP49vG6Bo5QwNa8cpA=;
-        b=YJMlPhqFeNe/En5JSvNaDhA15oD31ZMse9whRM9R5LPwhtsPN/ROaaQ6xqXUhrb+2I
-         nmWp6UwRwQEEqEia7NDpwEbD4ooM7Z//wQOI5Ncx/7f4B3ZjU+4w+BSs0JjqjLmiHaxU
-         /XJDDRYCathOvQJxVI9v70feKtVRThE/5yYbOLIXtLKNUSa+GOHpVcWxePFgEeo98chV
-         mxu4HS6ep/qv/bcQZK2oSyl2dIeCzvwtAPgd9jcwO6GQHGswalz1HzLndib1oZgbAx5h
-         RgzkHfIP7KqUOV5OJjAqEQxvmG32uGIDyfAgQyZ+aq41D6+nJ4Mj4fNslZ/xuELk84oL
-         PlTQ==
+        bh=mX7K+g1+HW/CWwyDEKxY//PTFx3zv2qtto+vRJUIuOI=;
+        b=dXI7heLthe0Tjl8jMmcyg784Yytf6YYvtMaeIbuzD82wNx4ULfsqv5nRAbLJ4aE2nn
+         wxqeiiG1gd74M5Jb1FEa2Esbtm2Q0FKG8RtRozlhHReZfK3gldgF+jC9cNHrWqQIXeE/
+         5ZpnmSXG3VH1uMdjAtmHQx5jvFS/MUSZ57D2j9ysBSFJUVDI9ODVux78D/TlxsHCxD0E
+         PG8XEwuBEP3p0oF4BagAoyqAKYAcK2bHEj47mVA0FaZ3Yf9U3GpxqZZDG4V9ejyxYMLS
+         xp9PAAO1w/2jB0VDOn5gZEQjqEWkeFgx4YKUGR5xIt66aLKmVAMq8lspuuwuN7PLeMNJ
+         zomw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UzuIXzgVBbI4qXY2baaAexD3LrP49vG6Bo5QwNa8cpA=;
-        b=8GO26KnspAfRE/rg5VXB7nOXAGm4r3G9StAuTo33nyIj6HPGMjkebyO9byxzj64u8N
-         uOcHnKqvTj2Kvi62biinioWuW6fN33aVRBXnb79iE0TcSx1CzXf7u/we/AXD4ZKA2zyP
-         PcpYze2PQ9arJsj4h/G719tjnKpy4DQqyx7h5uicVhwSANhVla0rewyY3sQktkUTW5m1
-         cmzev7BFoJroR5vZiXDAb9L0jJuNU1IZVEbj9NYOtXm4alf9EwY4yTCoDjz88/GLy0DA
-         8HWzdvOU+Bv2g0CVhlWd/n2UYoTV8HrfapzQxwBa1j9lF555tPvkmI8uKZWd+sA6EjvQ
-         Ey4g==
-X-Gm-Message-State: ANoB5pmF5ItN+W0QdBFx+/h1MJItYT/CeghwJTHo884+XL/rhqKiYs30
-        ryI8Bs2GrAA07UBW+87flXPkmQ==
-X-Google-Smtp-Source: AA0mqf7OUWm5Rtc5riD3KjJncb+wbHHVjUlqyYJCIr+E9i9SC0nA2fTXhPR4SKM4Ub72vdqTFuJ6OQ==
-X-Received: by 2002:a05:6512:3f19:b0:4ac:3f87:151f with SMTP id y25-20020a0565123f1900b004ac3f87151fmr4039536lfa.398.1668414192605;
-        Mon, 14 Nov 2022 00:23:12 -0800 (PST)
+        bh=mX7K+g1+HW/CWwyDEKxY//PTFx3zv2qtto+vRJUIuOI=;
+        b=pwZT08FNYOLXzMW9tJ2EAkpfyVVCNHdlklGcvjLfI8PQS7Ps2g+d/43W40hd8O2azf
+         E60gXjQVbSgP30fyR/djGy2aCZGgg8zfbPlAe+x8WkGJnqIwt/J2tf1nN83uP6peo/nq
+         GU7A8YLIrEdBbdX9bhytiPg4gXu32jdarAtV/7IV//WGhEjemTpLSZQyYgd3sM49RB0j
+         Ell5iVekZq3ig9YL+0ongJAJef6xacDJSwucmhngZ1SO2ck7l+hrEqkfIVpRMLQkRk6J
+         yrlHJ0EuMCxbTjCiKpRxepywzJwTwgDjeWT1wStyyTOma8G/h+xYDG11vNvDI9YY9wW/
+         PH9Q==
+X-Gm-Message-State: ANoB5pmvPmIVXaBAf4rydUSdqxMKmJP/LhIVvqpToLE04SFY+Osa26sX
+        t98pRE7iAW2DKU7IcrOM8wPsrQ==
+X-Google-Smtp-Source: AA0mqf7iLNCZJ2eZU6SC3h0KAiScdNro51pki8wDvgKdcvb5ClGjeyXxYBJj4rX0NXA/q962vvLqMg==
+X-Received: by 2002:a19:915a:0:b0:4a9:e691:9232 with SMTP id y26-20020a19915a000000b004a9e6919232mr3506273lfj.182.1668414266192;
+        Mon, 14 Nov 2022 00:24:26 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d9-20020a056512368900b004b373f61a60sm1741674lfs.96.2022.11.14.00.23.11
+        by smtp.gmail.com with ESMTPSA id i17-20020a2e6d11000000b0027709706194sm1886628ljc.49.2022.11.14.00.24.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 00:23:12 -0800 (PST)
-Message-ID: <c0dca253-77a0-2a0a-8a03-2a727512eedb@linaro.org>
-Date:   Mon, 14 Nov 2022 09:23:10 +0100
+        Mon, 14 Nov 2022 00:24:25 -0800 (PST)
+Message-ID: <040e00e1-00ea-32ca-09ff-ba3a35631a31@linaro.org>
+Date:   Mon, 14 Nov 2022 09:24:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/7] dt-bindings: iommu: qcom,iommu: Document qcom,ctx-num
- property
+Subject: Re: [PATCH v2 1/8] dt-bindings: sun6i-a31-mipi-dphy: Add the
+ interrupts property
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
-        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        marijn.suijten@somainline.org, kernel@collabora.com,
-        luca@z3ntu.xyz, a39.skl@gmail.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20221111135525.204134-1-angelogioacchino.delregno@collabora.com>
- <20221111135525.204134-2-angelogioacchino.delregno@collabora.com>
+To:     Samuel Holland <samuel@sholland.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20221114022113.31694-1-samuel@sholland.org>
+ <20221114022113.31694-2-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111135525.204134-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221114022113.31694-2-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,18 +83,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 14:55, AngeloGioacchino Del Regno wrote:
-> Add a new "qcom,ctx-num" property to force an ASID number on IOMMU
-> contexts where required.
+On 14/11/2022 03:21, Samuel Holland wrote:
+> The sun6i DPHY can generate several interrupts, mostly for reporting
+> error conditions, but also for detecting BTA and UPLS sequences.
+> Document this capability in order to accurately describe the hardware.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> The DPHY has no interrupt number provided in the vendor documentation
+> because its interrupt line is shared with the DSI controller.
+> 
+> A trivial interrupt handler was used to verify that interrupts were in
+> fact generated by the DPHY and not the DSI controller.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/iommu/qcom,iommu.txt | 1 +
+> 
+> Changes in v2:
+>  - Add the interrupts property to the binding example
 
-This is already a v2:
-https://lore.kernel.org/all/20220527212901.29268-1-konrad.dybcio@somainline.org/
 
-and your v2 was a v3...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
