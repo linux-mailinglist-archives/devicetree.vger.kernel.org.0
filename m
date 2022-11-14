@@ -2,63 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A8862845C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:52:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D4F62845F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:53:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236055AbiKNPwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
+        id S235591AbiKNPxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:53:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235782AbiKNPwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:52:18 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA822D1DF;
-        Mon, 14 Nov 2022 07:52:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05FDDB8107D;
-        Mon, 14 Nov 2022 15:52:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84443C433D7;
-        Mon, 14 Nov 2022 15:52:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668441134;
-        bh=n1AaO+JFk3+1SIAUdLI+8UQJro10H84KUKki8xFsQsQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AtUYWhdPEUsI6OernTHj+UBdtQw4l5R1N2aT8HzU9MDYZwcJONCCLFd+4/+3xgbT6
-         DvVHN1fH5YM1XdJa35M+quvFBtr2iNtPFjT7zYAszqGj5e6Iqh75Dnby2UaWuJQpir
-         iu61J4dYkZH0DCRufwb4GcIkR+ibCIb6t7C7b/DIPoVBOmK2BI1KzxzMfYODKK9vdi
-         Wq30yEKq8tUEPWVZGHK3JKyGhIcMRuXhDusmbrL7B/W5juOaPaGKjXijq9AAoRS+ZT
-         doPQcQXM9ijyk0nP0SUi9coWye6soAuql5mUBQ3o0DZxOYyxH8bFEzs8a9Qv0EL4dx
-         TpvGNGj2baSLw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oubkM-0004Um-2G; Mon, 14 Nov 2022 16:51:42 +0100
-Date:   Mon, 14 Nov 2022 16:51:42 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231609AbiKNPxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:53:31 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4EB2AFD
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:53:29 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id j16so19921885lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:53:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ql7BbfjZhi9PUKex4VtigUx0q+x0JH+qcMLmXxKcm9A=;
+        b=B6RXSrmcloy8u6hww8BgiAqFD6lcgsmVusw5HA8LMyLb3k7XTt65oyuat6B3WJSLjE
+         0WAopbgePqczDLA2XSyO2OMPuyq+m9jZTtNAcKmMPm97TjdNVuSthc7DD2cBqm0DUPH+
+         49s3nTx2N9CuB2eapMLAD2qmaA8ESM6ZJHk8bGUMKEB4RzlZqA4+qFxsUyaWKrCbvuyN
+         TmkJdndOYYEFqjhZLpf1B2aZwHWHQp3UMwVoakPWAZAkUcDCVAOYxf1bGf1majwRo08+
+         WzZuHoZI3+jSSKbWzVALSzlhj1jo2MbvtkqlKKRNEDHyYFkDowiUSs4W6kdAZoPwhfm0
+         tNhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ql7BbfjZhi9PUKex4VtigUx0q+x0JH+qcMLmXxKcm9A=;
+        b=3xwTOW0Tj0YqPont9QReyR4eAqEU+1IVP6WbCgZAKDfBqbiRIHUnldthJ5+R6i9Wvn
+         RY8av5DoHwnUoQLSlaZujjIrqlq21LLng4ksP3G+KxZwOioktSBAEe6aAJFQiyHV0PAF
+         QFcOl7iNXm41mBDEWd+Z8wys18dzF7/id6U5z6y/3MVObdWjuf3PD+lHATFT/Bwbg2TC
+         MNmS9wpYCmQ29Jn0+gbNI1qLchBJe4U8a4xo7Nf9eYc0XTOCQBc9kVyUlhyzMksMAoit
+         2Wkf1Z+nQ9AMNNCIzHWcqteRIKMHP2WAhlL4wOpaYBpQfiVYCUKRLLOwMGeoq4Ss3EGz
+         nHaQ==
+X-Gm-Message-State: ANoB5pmztui5esCopOfKeL9DpgwLb06hGXR64EtwbRKb0ck1o6LBNOcz
+        1kWTqAi34UsGa9hW9+lRw68vGA==
+X-Google-Smtp-Source: AA0mqf4LOVfsXdJpid8qCBFEZKOX1+gwsm7JoP/gdBWrJumjJEp6xqZ9ZpFEUBbr2IbTJX74ohz6Qg==
+X-Received: by 2002:a05:6512:3e14:b0:4aa:7eed:f70c with SMTP id i20-20020a0565123e1400b004aa7eedf70cmr4871674lfv.630.1668441207703;
+        Mon, 14 Nov 2022 07:53:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 2-20020a2e1542000000b0026c3ecf9a39sm2072160ljv.38.2022.11.14.07.53.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 07:53:27 -0800 (PST)
+Message-ID: <6df463da-1065-025f-b104-dea5c0bd0dcd@linaro.org>
+Date:   Mon, 14 Nov 2022 16:53:26 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 2/2] drivers: arm-smmu-impl: Add QDU1000 and QRU1000
+ iommu implementation
+Content-Language: en-US
+To:     Will Deacon <will@kernel.org>
+Cc:     Melody Olvera <quic_molvera@quicinc.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 12/14] phy: qcom-qmp-combo: rename common-register
- pointers
-Message-ID: <Y3JkDt9xMVMhUJPs@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-13-johan+linaro@kernel.org>
- <f3ae781b-2046-e1be-564f-9de74107f000@linaro.org>
- <Y3I6lN6UTHg2ozNP@hovoldconsulting.com>
- <e1140358-b693-c23e-68dc-787bf6aa2422@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1140358-b693-c23e-68dc-787bf6aa2422@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221026190534.4004945-1-quic_molvera@quicinc.com>
+ <20221026190534.4004945-3-quic_molvera@quicinc.com>
+ <0ae09be0-cb1b-dc27-943b-db64ca97b8c7@linaro.org>
+ <20221114144220.GA31043@willie-the-truck>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114144220.GA31043@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,64 +82,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 06:38:36PM +0300, Dmitry Baryshkov wrote:
-> On 14/11/2022 15:54, Johan Hovold wrote:
-> > On Sat, Nov 12, 2022 at 02:31:27PM +0300, Dmitry Baryshkov wrote:
-> >> On 11/11/2022 12:24, Johan Hovold wrote:
-> >>> The common registers are shared by the USB and DP parts of the PHY so
-> >>> drop the misleading "dp" prefix from the corresponding pointers.
-> >>>
-> >>> Note that the "DP" prefix could also be dropped from the corresponding
-> >>> defines, but leave that in place for now.
-> >>>
-> >>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> >>> ---
-> >>>    drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 24 +++++++++++------------
-> >>>    1 file changed, 12 insertions(+), 12 deletions(-)
-> >>
-> >> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>
-> >> Note regarding the last phrase: I'd suggest leaving the DP prefix in
-> >> register names, it makes it easier to visually note & verify the
-> >> register block.
-> > 
-> > My point is that "DP" was never part of the COM register block name. The
-> > confusion likely comes from the vendor driver naming these defines along
-> > the lines of
-> > 
-> > 	USB3_DP_COM_POWER_DOWN_CTRL
-> > 
-> > Here "USB3_DP" is the common prefix for all defines that apply to both
-> > "parts" of the PHY so the corresponding Linux define
-> > 
-> > 	QPHY_V3_DP_COM_POWER_DOWN_CTRL
-> > 
-> > should either include "USB3" or drop "DP".
+On 14/11/2022 15:42, Will Deacon wrote:
+> On Mon, Nov 14, 2022 at 03:28:15PM +0100, Krzysztof Kozlowski wrote:
+>> On 26/10/2022 21:05, Melody Olvera wrote:
+>>> Add compatible for Qualcomm QDU1000 and QRU1000 SoCs to add iommu
+>>> support for them.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>> ---
+>>>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>> index b2708de25ea3..0580a381a04b 100644
+>>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>> @@ -426,6 +426,7 @@ static struct arm_smmu_device *qcom_smmu_create(struct arm_smmu_device *smmu,
+>>>  static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+>>>  	{ .compatible = "qcom,msm8998-smmu-v2" },
+>>>  	{ .compatible = "qcom,qcm2290-smmu-500" },
+>>> +	{ .compatible = "qcom,qdu1000-smmu-500" },
+>>
+>> The patch was applied but it contradicts work here:
+>> https://lore.kernel.org/all/20221102184420.534094-12-dmitry.baryshkov@linaro.org/
+>> which explicitly asks not to add such compatibles...
 > 
-> My thought was that we already have too many _COM_ defines in the qmp 
-> headers. Having QPHY_Vn_COM_something would make it too easy to mix it 
-> with QSERDES_Vn_COM_foo. Thus I'd vote to leave DP_COM prefix in place. 
-> While it might be not fully accurate, it serves the point of identifying 
-> the register block.
-
-I don't mind terribly and I didn't even consider trying to rename the
-current defines.
-
-The lack of public conclusive documentation makes structuring this mess
-much harder than it should have to be. 
-
-That said, I don't really think that the risk of mixing up
-QPHY_Vn_COM_foo with QSERDES_Vn_COM_bar is something we need to worry
-about as you already have a separating "QSERDES" in there. Those sets of
-registers should be disjoint too if I remember correctly.
-
-> > This becomes more apparent on SC8280XP where the corresponding define
-> > is:
-> > 
-> > 	USB43DP_COM_POWER_DOWN_CTRL
+> Sure, but we've been adding new compatibles for years so I don't mind
+> picking up the last few now before we stop accepting new ones.
 > 
-> I'd still use something like QPHY_V10_DP_COM_POWER_DOWN_CTRL here.
+> I already asked Dmitry to respin his series as there are some open comments
+> from others anyway.
 
-Yeah, but then you're just making names up. ;)
+OK. This also solves my other comment for other patch.
 
-Johan
+Best regards,
+Krzysztof
+
