@@ -2,259 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BCCD6273D0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 01:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 718176273E4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 01:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235560AbiKNAWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 19:22:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32816 "EHLO
+        id S235541AbiKNAld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 19:41:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229692AbiKNAWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 19:22:16 -0500
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1378060FA;
-        Sun, 13 Nov 2022 16:22:16 -0800 (PST)
+        with ESMTP id S231252AbiKNAlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 19:41:32 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0831CE0E5;
+        Sun, 13 Nov 2022 16:41:29 -0800 (PST)
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 909333200902;
-        Sun, 13 Nov 2022 19:22:14 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id 7B53532002E2;
+        Sun, 13 Nov 2022 19:41:28 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Sun, 13 Nov 2022 19:22:15 -0500
+  by compute3.internal (MEProxy); Sun, 13 Nov 2022 19:41:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
         cc:cc:content-transfer-encoding:content-type:date:date:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1668385334; x=
-        1668471734; bh=IDAP2us2DsDsssmDKA04JGHmo1I0e3EiZIrt3EYB0Lg=; b=W
-        b93L8NQbv94Vh9dsG+G0UsEY00YQ7VB0KMD1CpUzJQy6joCIRAM2m5xsFGgTgoIE
-        CL+RuX2pJdAm28uw17U3M4BlC60BaRUCaX2zg//4hB2ZqKzM4b3rau31dIyHOrRz
-        4g14LrtzcM67yjo8neakEXfrqn6AcuQo8ikZh/6x4FjyM18iL/YqHydcuagc+yXp
-        qx0g4aBEkudmwMB1Jz+9uK33C4nBg9FtBE0e1Wzb98HoHpmToUcOyg1SYJ/gz6Au
-        fr1tnrMSJ3g/KywIwTmR+8jTds4DZLtKyzVif5wfwMfLzNke9a+mIDp3wg78aHSF
-        no1jrLiW0upFwn3K7tGxw==
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1668386488; x=
+        1668472888; bh=853Q6QTGI1l6Ew34C/zHsFg9+iR6cwS96OTnFTcARoU=; b=s
+        SuyPVan6+AaD5faJYeN3v9hb5EEhKagQ6ENUqDYTkZ3lNtBcQtwIiwxWBef+QkPr
+        6Bce2Scm55FAEROHIoAarWHgGIArg/aOdJWfZeBIowqimKKYwOYU/1iWN0r86UO9
+        5M1pj6Brka2/CNKLXms8VedYtJygc9zB/C5e7BjYx3oQUWgeMCCFalGj69GwF5CW
+        b7oVm+LA5tR/5F0fHF/LVbm3FOkHc0ZW/rKPGszzKySmC5RmQBHWQ0KsrD32Ofjd
+        DpL3l7qFhQq854b5Ns73DRb49GLeSWSUowpEeWu4RFiJjX3TC7IqP+KbeWciboAt
+        fSsD8eOtFsBrrRL0GOuOw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-transfer-encoding
         :content-type:date:date:feedback-id:feedback-id:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
         :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668385334; x=
-        1668471734; bh=IDAP2us2DsDsssmDKA04JGHmo1I0e3EiZIrt3EYB0Lg=; b=W
-        21IMqghBkMD8ugqIdWxqsVo2R5JptZFTZgD2KlMbaKwpdS1tph9UNvjeF+2BDLmv
-        AJwMEAjzS5/P7wa5zFo+kp3d5N6dO5FUSM8/6WF3KtGeSxAMqaX6TvQpV9/O8Xze
-        Am3Z0l+8jQS6Mpsqln1dXdlnTTXJ4oF+cjF7H+N95d3TCsvSKZ/G7oFzESdcFRmK
-        AdKtSgvZhMZ7cTv/bm6Lm9VXZMfQ5cD8wYW0fimPitRh66UxICXhSHOu84wtYXvG
-        MaCTPFYDK8BXg5HfFdEtFX7QRjiAPyutr1LoyvHkRf8Y/YnWddmEMQb6AwAHy7F9
-        L4Z6ulIS2Mj1WZ3uCKR0g==
-X-ME-Sender: <xms:NYpxYzXYYcG1he7ZCDAJ1WFDtohq1s40vT31MGDaOZKVYfVEJV0hDw>
-    <xme:NYpxY7nIus18lf0nHWcC69hmx6VWwTbqiFu8ZDTxidUYKzVSn-qGRH4as6DQqp0tD
-    vY7JDbTq-b6ZJi6MQ>
-X-ME-Received: <xmr:NYpxY_YEyti0AGbBuxhQ1lzjmQHROmTUshlihKwGeDXwYJpcu2BCqFGjksTq8_5KFoiiJAlSEgZn_vmxlihg7O13RdLVT-J132kqCd9sDwwrdjrBpz5nvoF6Dw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedugddvudcutefuodetggdotefrodftvf
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668386488; x=
+        1668472888; bh=853Q6QTGI1l6Ew34C/zHsFg9+iR6cwS96OTnFTcARoU=; b=D
+        VXsBuXktnlMPD3MEtIktJqFX4bxMNx7aVEPeLjw2r9EHyhY9J9FxilrLXt2sxX6L
+        E+v9pQhDmmqzNCao/ZzF9A5OQbg/VZ9jeoBwQLDrk8WRJWkXwyyZqCyusmIE+mKl
+        PZBNoeKqAGqI0w31LQw/esBvNUS8e0dW96Z7VBE90pjr+xELxAr1NSexQ43+UOuI
+        kzM/qjYrAd92qgcEqtThK6UavDkMMzmwEmrxrUoG+AVJwq125B6UpWA7ze+Y+3QU
+        C/YAsvFCwLcvc7/Gvo+6KWBlAh5ZbZoj69n5VcJBoQYo1Ms6uDX8E6UXNvuwvSqk
+        af2nOS9lCoSAbIda9TWKA==
+X-ME-Sender: <xms:t45xY-KawIhKRxJ9n__ESocnH9PGcZGql6PKqmW5E9_l6p0_VEE_Kw>
+    <xme:t45xY2Iad1Fq3vyaWmFnezb4aGf922Kb1dFFdt8HOAcKD2yKwJQarzYIp7IV7xebs
+    T-4Brw2iH-SnrgPRg>
+X-ME-Received: <xmr:t45xY-ufIvcEfusp15dg7_wPCZwsQo8d1HKL33uy9UxVinbBpEOEaJU5QCBQeNpOL0Ih2NCnU_91E8G7wB2jVupRlgBV2bnpOEwFMHcIu54J2vdbO_MnqBUxzw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedugddvhecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfvvehfhffujggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
     vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepjeeiieduffehtdejudevieevhfeiveegudfggefgiefhvedtvedv
-    vdegteefgfejnecuffhomhgrihhnpehlihhnuhigthhvrdhorhhgnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhl
-    rghnugdrohhrgh
-X-ME-Proxy: <xmx:NYpxY-WMJPqgYIFHC_A5YTsNZuBfnab1ZnNg9ohAMAOFk5gzh5__Ow>
-    <xmx:NYpxY9l_hQ3o5oPqVgUBzJEUT7aEfbnyyIUK284IYnGdK9KGR7Q89g>
-    <xmx:NYpxY7cBpz1qVEgxWowHa2ooZVrIuDOLKcxrgRs7xirGPyVD8sml9A>
-    <xmx:NopxY-iwOqF6ZTf2zuXoTzRpMy7slMkyU0GFqkR-Wm9JYK6QOEqZQQ>
+    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
+    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:t45xYzal8tCPFq0BYWdkRI8IF-k7DZtS53AVhPZg1rzhXIDYGqCfiw>
+    <xmx:t45xY1agylV04XVjN8WiSc6jU8hxTP_MwlHZ6bwG41dHOTiWSlMwGQ>
+    <xmx:t45xY_AkgndULWIIscYO-OnroRmm9c6vMJCEg6GO_wgUvMSmPe2ZkQ>
+    <xmx:uI5xY7BTq1cjM2hSRSC7TznLx4LKk_B_FYW-ZeCpslhKE3hTK1PdNg>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 13 Nov 2022 19:22:12 -0500 (EST)
-Message-ID: <d3ff28f5-0baf-4fb2-b627-442abba88665@sholland.org>
-Date:   Sun, 13 Nov 2022 18:22:11 -0600
+ 13 Nov 2022 19:41:27 -0500 (EST)
+Message-ID: <f4309a22-83a6-1d65-d9b4-7ecb1d3e251b@sholland.org>
+Date:   Sun, 13 Nov 2022 18:41:26 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
+Subject: Re: [PATCH v3 09/11] ARM: dts: suniv: add device tree for PopStick
+ v1.1
 Content-Language: en-US
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, linux-media@vger.kernel.org,
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Icenowy Zheng <uwu@icenowy.me>, soc@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20221107210208.284261-1-jernej.skrabec@gmail.com>
- <20221107210208.284261-3-jernej.skrabec@gmail.com>
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+References: <20221106154826.6687-1-andre.przywara@arm.com>
+ <20221106154826.6687-10-andre.przywara@arm.com>
+ <7d7a84bd-78e2-868b-6659-9dcc596c718c@sholland.org>
+ <20221114001733.02c94151@slackpad.lan>
 From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v2 2/3] media: sunxi: Add H6 deinterlace driver
-In-Reply-To: <20221107210208.284261-3-jernej.skrabec@gmail.com>
+In-Reply-To: <20221114001733.02c94151@slackpad.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/7/22 15:02, Jernej Skrabec wrote:
-> This driver covers H6 deinterlace core, which is marked in vendor driver
-> as v2.3. Contrary to older cores, covered by sun8i-di, it doesn't
-> support scaling, but it supports iommu and has additional motion
-> compensated deinterlacing algorithm.
+On 11/13/22 18:17, Andre Przywara wrote:
+> On Sun, 13 Nov 2022 16:41:04 -0600
+> Samuel Holland <samuel@sholland.org> wrote:
 > 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> ---
->  MAINTAINERS                                   |    4 +-
->  drivers/media/platform/sunxi/Kconfig          |    1 +
->  drivers/media/platform/sunxi/Makefile         |    1 +
->  .../media/platform/sunxi/sun50i-di/Kconfig    |   15 +
->  .../media/platform/sunxi/sun50i-di/Makefile   |    2 +
->  .../platform/sunxi/sun50i-di/sun50i-di.c      | 1149 +++++++++++++++++
->  .../platform/sunxi/sun50i-di/sun50i-di.h      |  175 +++
->  7 files changed, 1346 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/media/platform/sunxi/sun50i-di/Kconfig
->  create mode 100644 drivers/media/platform/sunxi/sun50i-di/Makefile
->  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.c
->  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.h
+>> On 11/6/22 09:48, Andre Przywara wrote:
+>>> From: Icenowy Zheng <uwu@icenowy.me>
+>>>
+>>> PopStick is a minimal Allwinner F1C200s dongle, with its USB controller
+>>> wired to a USB Type-A port, a SD slot and a SPI NAND flash on board, and
+>>> an on-board CH340 USB-UART converted connected to F1C200s's UART0.
+>>>
+>>> Add a device tree for it. As F1C200s is just F1C100s with a different
+>>> DRAM chip co-packaged, directly use F1C100s DTSI here.
+>>>
+>>> This commit covers the v1.1 version of this board, which is now shipped.
+>>> v1.0 is some internal sample that have not been shipped at all.
+>>>
+>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>>> ---
+>>>  arch/arm/boot/dts/Makefile                    |  3 +-
+>>>  .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 99 +++++++++++++++++++
+>>>  2 files changed, 101 insertions(+), 1 deletion(-)
+>>>  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index 6aa7dc4db2fc..0249c07bd8a6 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1391,7 +1391,8 @@ dtb-$(CONFIG_MACH_SUN9I) += \
+>>>  	sun9i-a80-optimus.dtb \
+>>>  	sun9i-a80-cubieboard4.dtb
+>>>  dtb-$(CONFIG_MACH_SUNIV) += \
+>>> -	suniv-f1c100s-licheepi-nano.dtb
+>>> +	suniv-f1c100s-licheepi-nano.dtb \
+>>> +	suniv-f1c200s-popstick-v1.1.dtb
+>>>  dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
+>>>  	tegra20-acer-a500-picasso.dtb \
+>>>  	tegra20-asus-tf101.dtb \
+>>> diff --git a/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+>>> new file mode 100644
+>>> index 000000000000..7d69b5fcb905
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+>>> @@ -0,0 +1,99 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include "suniv-f1c100s.dtsi"
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +
+>>> +/ {
+>>> +	model = "Popcorn Computer PopStick v1.1";
+>>> +	compatible = "sourceparts,popstick-v1.1", "sourceparts,popstick",
+>>> +		     "allwinner,suniv-f1c200s", "allwinner,suniv-f1c100s";
+>>> +
+>>> +	aliases {
+>>> +		serial0 = &uart0;
+>>> +	};
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial0:115200n8";
+>>> +	};
+>>> +
+>>> +	leds {
+>>> +		compatible = "gpio-leds";
+>>> +
+>>> +		led {
+>>> +			function = LED_FUNCTION_STATUS;
+>>> +			color = <LED_COLOR_ID_GREEN>;
+>>> +			gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>; /* PE6 */
+>>> +			linux,default-trigger = "heartbeat";
+>>> +		};
+>>> +	};
+>>> +
+>>> +	reg_vcc3v3: regulator-3v3 {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vcc3v3";
+>>> +		regulator-min-microvolt = <3300000>;
+>>> +		regulator-max-microvolt = <3300000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&mmc0 {
+>>> +	cd-gpios = <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE3 */
+>>> +	bus-width = <4>;
+>>> +	disable-wp;
+>>> +	vmmc-supply = <&reg_vcc3v3>;
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&otg_sram {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&spi0 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&spi0_pc_pins>;
+>>> +	status = "okay";
+>>> +
+>>> +	flash@0 {
+>>> +		compatible = "spi-nand";
+>>> +		reg = <0>;
+>>> +		spi-max-frequency = <40000000>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +
+>>> +		partitions {
+>>> +			compatible = "fixed-partitions";
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <1>;
+>>> +
+>>> +			partition@0 {
+>>> +				label = "u-boot-with-spl";
+>>> +				reg = <0x0 0x100000>;
+>>> +			};
+>>> +
+>>> +			ubi@100000 {
+>>> +				label = "ubi";
+>>> +				reg = <0x100000 0x7f00000>;
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +};
+>>> +
+>>> +&uart0 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&uart0_pe_pins>;
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_otg {
+>>> +	dr_mode = "peripheral";  
+>>
+>> The patch description says the board has a USB Type-A port. Why is the
+>> USB controller set to peripheral mode?
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cf0f18502372..df35acab10fc 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5781,12 +5781,14 @@ M:	"Maciej W. Rozycki" <macro@orcam.me.uk>
->  S:	Maintained
->  F:	drivers/net/fddi/defza.*
->  
-> -DEINTERLACE DRIVERS FOR ALLWINNER H3
-> +DEINTERLACE DRIVERS FOR ALLWINNER SOCS
->  M:	Jernej Skrabec <jernej.skrabec@gmail.com>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/allwinner,sun50i-h6-deinterlace.yaml
->  F:	Documentation/devicetree/bindings/media/allwinner,sun8i-h3-deinterlace.yaml
+> It's a USB type-A *plug*, not a socket, because it's some TV stick
+> style of device, just with a USB instead of an HDMI plug.
 
-I don't think YAML bindings need to be listed here, since
-get_maintainer.pl looks at the maintainers listed inside.
-
-> +F:	drivers/media/platform/sunxi/sun50i-di/
->  F:	drivers/media/platform/sunxi/sun8i-di/
->  
->  DELL LAPTOP DRIVER
-> diff --git a/drivers/media/platform/sunxi/Kconfig b/drivers/media/platform/sunxi/Kconfig
-> index 2dd15083a1d9..413a79d23625 100644
-> --- a/drivers/media/platform/sunxi/Kconfig
-> +++ b/drivers/media/platform/sunxi/Kconfig
-> @@ -7,4 +7,5 @@ source "drivers/media/platform/sunxi/sun6i-csi/Kconfig"
->  source "drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig"
->  source "drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/Kconfig"
->  source "drivers/media/platform/sunxi/sun8i-di/Kconfig"
-> +source "drivers/media/platform/sunxi/sun50i-di/Kconfig"
->  source "drivers/media/platform/sunxi/sun8i-rotate/Kconfig"
-> diff --git a/drivers/media/platform/sunxi/Makefile b/drivers/media/platform/sunxi/Makefile
-> index 9aa01cb01883..f92927f49f93 100644
-> --- a/drivers/media/platform/sunxi/Makefile
-> +++ b/drivers/media/platform/sunxi/Makefile
-> @@ -5,4 +5,5 @@ obj-y		+= sun6i-csi/
->  obj-y		+= sun6i-mipi-csi2/
->  obj-y		+= sun8i-a83t-mipi-csi2/
->  obj-y		+= sun8i-di/
-> +obj-y		+= sun50i-di/
->  obj-y		+= sun8i-rotate/
-
-Would be nice to sort the above three files consistently.
-
-> diff --git a/drivers/media/platform/sunxi/sun50i-di/Kconfig b/drivers/media/platform/sunxi/sun50i-di/Kconfig
-> new file mode 100644
-> index 000000000000..cc92f5086862
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun50i-di/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config VIDEO_SUN50I_DEINTERLACE
-> +	tristate "Allwinner Deinterlace v2 driver"
-> +	depends on V4L_MEM2MEM_DRIVERS
-> +	depends on VIDEO_DEV
-> +	depends on ARCH_SUNXI || COMPILE_TEST
-> +	depends on COMMON_CLK && OF
-> +	depends on PM
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_MEM2MEM_DEV
-> +	help
-> +	  Support for the Allwinner deinterlace v2 unit found on
-> +	  some SoCs, like H6.
-> +	  To compile this driver as a module choose m here. The
-> +	  module will be called sun50i-di.
-> diff --git a/drivers/media/platform/sunxi/sun50i-di/Makefile b/drivers/media/platform/sunxi/sun50i-di/Makefile
-> new file mode 100644
-> index 000000000000..225b3b808069
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun50i-di/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_VIDEO_SUN50I_DEINTERLACE) += sun50i-di.o
-> diff --git a/drivers/media/platform/sunxi/sun50i-di/sun50i-di.c b/drivers/media/platform/sunxi/sun50i-di/sun50i-di.c
-> new file mode 100644
-> index 000000000000..b2e53052c12b
-> --- /dev/null
-> +++ b/drivers/media/platform/sunxi/sun50i-di/sun50i-di.c
-[...]
-> +static int deinterlace_runtime_resume(struct device *device)
-> +{
-> +	struct deinterlace_dev *dev = dev_get_drvdata(device);
-> +	int ret;
-> +
-> +	ret = clk_set_rate_exclusive(dev->mod_clk, 300000000);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to set exclusive mod clock rate\n");
-> +
-> +		return ret;
-> +	}
-> +
-> +	ret = reset_control_deassert(dev->rstc);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to apply reset\n");
-> +
-> +		return ret;
-
-This should be `goto err_put_exclusive_rate;`. Otherwise,
-
-Acked-by: Samuel Holland <samuel@sholland.org>
+Ah, that makes sense. Please clarify this in the commit message.
 
 Regards,
 Samuel
-
-> +	}
-> +
-> +	ret = clk_prepare_enable(dev->bus_clk);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to enable bus clock\n");
-> +
-> +		goto err_assert_reset;
-> +	}
-> +
-> +	ret = clk_prepare_enable(dev->mod_clk);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to enable mod clock\n");
-> +
-> +		goto err_disable_bus_clk;
-> +	}
-> +
-> +	ret = clk_prepare_enable(dev->ram_clk);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to enable ram clock\n");
-> +
-> +		goto err_disable_mod_clk;
-> +	}
-> +
-> +	deinterlace_init(dev);
-> +
-> +	return 0;
-> +
-> +err_disable_mod_clk:
-> +	clk_disable_unprepare(dev->mod_clk);
-> +err_disable_bus_clk:
-> +	clk_disable_unprepare(dev->bus_clk);
-> +err_assert_reset:
-> +	reset_control_assert(dev->rstc);
-> +err_put_exclusive_rate:
-> +	clk_rate_exclusive_put(dev->mod_clk);
-> +
-> +	return ret;
-> +}
 
