@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59EBA627957
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2219F62795C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236145AbiKNJqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:46:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
+        id S235838AbiKNJrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:47:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235888AbiKNJqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:46:21 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCBA1AF35
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:46:20 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id g12so18390655lfh.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:46:20 -0800 (PST)
+        with ESMTP id S236222AbiKNJqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:46:53 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E5A1DF38
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:46:52 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id u2so12406491ljl.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:46:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=b6ohcFGB+Pojom6Xcuzr0rZKQBxZkeaRKP44kpIv7Kw=;
-        b=C6hL6yyNhAZo+LtCl8yTPkBxlm1A0qq6Q0q/DIZMXeAFf0qZmS+YsYIP4x/C+vxtA2
-         OIAPg4XC9snYhATWezNHxhpaGGZQohD13+2pVurDoMfywWTJr5ZbMyppy8/fbteL8pEg
-         EjJPWRx3dSylcDiQFttW6KxoAvJiPmvM/uP9XCsCt+VYcI7WgxYY9CbwkNB4oLER8udK
-         wYI0K7A8YTJzfpYLqGRtsfqjJLSuyrfuhlvuvVdfU/NuJXnfu8hlvRrjYEFnnfZBsfCv
-         u8/0O31bdNhy25zPYSI1hhaXH8oUUxOOba1gnZwjnoOEsiCTl9Icq7SCWcWHqYyjnBgN
-         f1Jg==
+        bh=Xqh3RXsEUvOUN02I+07ykyazO/fDJOuFxHOW6+YjhhI=;
+        b=utMZu6rCEApSt3GWGgzeAXvQkX3+Q/n1M2kH0C6GGVtuSS7qwI9Ac9oBQYdkvSQAr0
+         O2F087f+lI6HU+xv/6pfEHJMGFJLl1lLSk8hKZxhSaQ/iHy43tH4HtaLgzVPJYVkKEoF
+         /z4C8UV73FPL4g7fcLFtADckfVoAkzbnvVLFpt92aVMdOb/HBDwh4DPX9f3/uKgVi9Jl
+         NYOhrCKSauE2xK+o07a2Fn/kSpXyq16sf7Xg4HV6CWVge1OFBpG9mhSyIigBJk7cFz2l
+         jCkRW7zySDQggD8wJ2IO5Qj2SbfeXOnP36OzCQ47RaxuBn8F/+PGKGh2D/wY5yx+Cl5z
+         VgZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=b6ohcFGB+Pojom6Xcuzr0rZKQBxZkeaRKP44kpIv7Kw=;
-        b=h2D5fdjs1pnsQibXHalehgODeTlqeepArEf3B+gjj41cVZ0/hTSP5H2wUUlU2b30as
-         MneIZmnqRtVfD87AXX461I9Z+A3VJ+HhBENNNzI2UC/KBAmXCe1yK9RqLOuvgojLu9Wf
-         0rH9uxoKVu77+oVXqX5wmn85ANkwGrERKy4pUXFB7zgssuPYtp1oJs+kagOXuwFTgqyF
-         KhBlC3qmW3dOJOd1cXwuBxeiUKY+ev4Yr3KzBBWVPswxOEVZr2drUCC5EIZJvARtHpjj
-         jMvkw6e3wJNqrZJ2kPJCpc3DcQzjDXSbLnxhgNP2e15vKbIbbsZNmC05tpZdU6II/OS0
-         WybQ==
-X-Gm-Message-State: ANoB5pk4+464ETNxJW+VI0jdKKY8Mom80yYiuEAB+6TQlyJ1vu2qSweM
-        /6pQ9TWKnmSOmrt8Ic5Ts1S5PA==
-X-Google-Smtp-Source: AA0mqf5ce6HshftRPd+qnuurH8x32G0jreHABqEWcOG/p9yaRfDmqOXe/VDZdrnn4T9SC22xnRvmSA==
-X-Received: by 2002:ac2:442d:0:b0:4b1:e3ec:d99d with SMTP id w13-20020ac2442d000000b004b1e3ecd99dmr3711010lfl.95.1668419178962;
-        Mon, 14 Nov 2022 01:46:18 -0800 (PST)
+        bh=Xqh3RXsEUvOUN02I+07ykyazO/fDJOuFxHOW6+YjhhI=;
+        b=PjFYeiaT1fmfFCMP9AZjdfpdSFxCn1EB2YwE4pccNsQFfoZI/M/3yA8cgpNFAcylN2
+         8nsXLCclTwgr+N4SF180nAErRcfCaFwUYgxitcABSk9kMK3bd0EV3ReTHv2yzjjHTGlO
+         E3qcEtMbtp4ZKASOil0HjIXdUvZfREz3/qgo+dp1L93qd8Df2bWbER6N4Zl3onCs7/3G
+         em5ahFhJASzWBhQGN4zlvBYRwbleS73a1VW0QtxgWPIHPg0y99WPl/4nkL1rrKC/mZ++
+         urUUKctk7A8hXAUBg+X/dsFYtvnl/UkwNC835Kf1vHQGQg0FKpTt6W7+/hsOXm76tKtw
+         uorA==
+X-Gm-Message-State: ANoB5plgfxxBKCOZmKOKrL21hcPMqkSiKJhVKbmFr+SWzP41jA77063j
+        XP4WQIBTxC8L9UzxpWvEVvcesA==
+X-Google-Smtp-Source: AA0mqf7kVqwotthxJFzcwevZLOJIqQjIrmuTQH5oFwkzVjCkC/9yrBfYfW/c659az1hkyGIBHXyaNQ==
+X-Received: by 2002:a05:651c:1252:b0:26f:db16:4735 with SMTP id h18-20020a05651c125200b0026fdb164735mr3896499ljh.323.1668419211081;
+        Mon, 14 Nov 2022 01:46:51 -0800 (PST)
 Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id p6-20020a056512138600b004a05767bc07sm1757473lfa.28.2022.11.14.01.46.17
+        by smtp.gmail.com with ESMTPSA id x9-20020a056512078900b004ab2cb8deb5sm1765891lfr.18.2022.11.14.01.46.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:46:18 -0800 (PST)
-Message-ID: <33fafa0d-7d1d-7377-5ef0-8b60390dd30e@linaro.org>
-Date:   Mon, 14 Nov 2022 10:46:15 +0100
+        Mon, 14 Nov 2022 01:46:50 -0800 (PST)
+Message-ID: <f23710ba-1d79-c223-93f3-bf201d1b84d7@linaro.org>
+Date:   Mon, 14 Nov 2022 10:46:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v5 2/6] arm64: dts: qcom: sdm845-db845c: Use okay not ok
- for status
+Subject: Re: [PATCH v5 3/6] arm64: dts: qcom: sdm845-db845c: Use status
+ disabled not disable
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
@@ -67,9 +67,9 @@ Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
         linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
- <20221112172650.127280-3-bryan.odonoghue@linaro.org>
+ <20221112172650.127280-4-bryan.odonoghue@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221112172650.127280-3-bryan.odonoghue@linaro.org>
+In-Reply-To: <20221112172650.127280-4-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,7 +83,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 12/11/2022 18:26, Bryan O'Donoghue wrote:
-> Convert camss status from "ok" to "okay".
+> Use preferred status "disabled" instead of "disable".
 >
 > Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
@@ -94,28 +94,19 @@ Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index 7c88312333c22..ce95b51f17fff 100644
+> index ce95b51f17fff..5da91c646c200 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -1182,7 +1182,7 @@ &camss {
->   	vdda-phy-supply = <&vreg_l1a_0p875>;
->   	vdda-pll-supply = <&vreg_l26a_1p2>;
+> @@ -1262,7 +1262,7 @@ camera@60 {
+>   		vdddo-supply = <&vreg_lvs1a_1p8>;
+>   		vdda-supply = <&cam3_avdd_2v8>;
 >   
-> -	status = "ok";
-> +	status = "okay";
->   
->   	ports {
->   		port@0 {
-> @@ -1221,7 +1221,7 @@ camera@10 {
->   		avdd-supply = <&cam0_avdd_2v8>;
->   		dvdd-supply = <&cam0_dvdd_1v2>;
->   
-> -		status = "ok";
-> +		status = "okay";
+> -		status = "disable";
+> +		status = "disabled";
 >   
 >   		port {
->   			ov8856_ep: endpoint {
+>   			ov7251_ep: endpoint {
