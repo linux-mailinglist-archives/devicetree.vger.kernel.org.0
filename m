@@ -2,208 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3FB628262
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B80FF628264
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236330AbiKNOXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:23:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
+        id S235871AbiKNOXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:23:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235973AbiKNOXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:23:34 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD7FB8
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:23:31 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id t10so13415991ljj.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:23:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W18q2oxupdQ12Nl0RSmIe5LepBZSz0XtViretQW+Res=;
-        b=uLUyCI+Aay2MbUcYcAyI0OX5pQbbyEv049uGs0QtVcSr2ZXZoCXFztooT1E4tDfVAk
-         k1T0lWJPx2QInO6JMUKtbnS8esR3CiEkaTzx4fD9Dshbgsu/10ayw1LDcL5mp5PIeos3
-         P2w4dAoxzykDVwPMBkcjBbu0sUzRo5uI/Uf7Q+MlGS5BJKl6VGtvdlBjQlrig4wgJikD
-         JYV98tUad9ejnm89iUyFj8286iG9LheLRPBxWtFtpVbg08rPvYhl6FvSUasuxm+BZcKZ
-         WsLuHanrElbaTLVl0zA4JXFsXSTGERHFA2jmup/6GYAaYoUw4GqyhgefnXz6QlKtLZcV
-         G4lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W18q2oxupdQ12Nl0RSmIe5LepBZSz0XtViretQW+Res=;
-        b=5x3FVztgaOgNBcqlY15VIbSyKLp4u1I6/ySL1HINdTCVi/tbSsSL9VcntGvj7TEWLS
-         XaNGGejNJzNXOijSpmuDKYJvZ0NGLyXXoWwRo54gRqr5k3ai4ZVIOo8dTNkwqOAg6vmA
-         Bds6qLXQWlB4sjKEgP1eANqpic5zqhdqNgGxx+LgwworYrL0+qO12VlXiOL1qERkflzi
-         iNKw1SAFfVRmDHF4WxAQEAD7EB139gg2lUfeI3Ppp6nOg4CupDirQZGhvG3N4bq/Zeg1
-         s6Pz0lOPlVvNe7pzcIEAzzXRvRHmApHQDoo8jJL1uZ9NpoAKcBPYqeIzpDsUkV+/2PdM
-         dpvQ==
-X-Gm-Message-State: ANoB5pkwCPLhN0txm6Rzs0kQbC8MtcxwQI9ON8lhGpoMYNi45YNtjSoU
-        t01rrrPPjGO9aWfAxF1Hhtv+yQ==
-X-Google-Smtp-Source: AA0mqf7N+uxS1/tolR2OQnty7ew64ZdZzboeRa4wsYDocUn7cnnmIFDpkApY3SaSpwHCrQOxeU1jcw==
-X-Received: by 2002:a2e:a914:0:b0:278:f109:2844 with SMTP id j20-20020a2ea914000000b00278f1092844mr3039847ljq.224.1668435809714;
-        Mon, 14 Nov 2022 06:23:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p6-20020a056512138600b004a05767bc07sm1838155lfa.28.2022.11.14.06.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 06:23:29 -0800 (PST)
-Message-ID: <d8edc185-52cd-ffa1-7b46-2ec84d0d712c@linaro.org>
-Date:   Mon, 14 Nov 2022 15:23:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V2 1/2] dt-bindings: PCI: tegra234: Add ECAM support
-Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
+        with ESMTP id S235873AbiKNOXi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:23:38 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030FA3890;
+        Mon, 14 Nov 2022 06:23:37 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7E624B80FEE;
+        Mon, 14 Nov 2022 14:23:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B84CC43470;
+        Mon, 14 Nov 2022 14:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668435814;
+        bh=9E255QG+3FQ8gHO/W6Krz66A4Vs6SmwNv5u1uPI2t3E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=japqIyjyyhj7IK10C+Wcni5A0JAKXPbZnQvXNcTtsDTr1J+r+mzPXrkTv/XAbO0wN
+         sLoaHRvi/44QaD6WMUXHQg0OY7Lk97o8GZOhq/BXi98vof6YBpOl1/RqMxv456NvqO
+         zk7GiIz/6Tone8q8Yc3bbJ/47mIkAEIjX7nRfhauF+TWf38iqmkXly8zC8m88oh/3x
+         Ksxn8119brgKtT2bC1VBIlTr41y8eO/aODIyl/W1Wqorb7TRL/pEMfmdIs2YgVL+/E
+         Go/md/MDpP9T9nD9ZUCm90Bgn1TO2rppcmT5HVi8Jext3ow6gWObzlo/zwLN6/0qsx
+         CWUhGLJABRgng==
+Date:   Mon, 14 Nov 2022 14:23:27 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
-        mmaddireddy@nvidia.com
-References: <20221114140916.200395-1-jonathanh@nvidia.com>
- <20221114140916.200395-2-jonathanh@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114140916.200395-2-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [RFC PATCH v2 00/11] iommu/arm-smmu-qcom: Rework Qualcomm SMMU
+ bindings and implementation
+Message-ID: <20221114142326.GH30263@willie-the-truck>
+References: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 15:09, Jon Hunter wrote:
-> From: Vidya Sagar <vidyas@nvidia.com>
-> 
-> Add support for ECAM aperture that is only supported for Tegra234
-> devices.
-> 
-> Co-developed-by: Vidya Sagar <vidyas@nvidia.com>
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
-> Changes since V1:
-> - Restricted the ECAM aperture to only Tegra234 devices that support it.
-> 
->  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 76 +++++++++++++++----
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
->  2 files changed, 62 insertions(+), 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> index 75da3e8eecb9..7ae0f37f5364 100644
-> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> @@ -27,21 +27,12 @@ properties:
->        - nvidia,tegra234-pcie
->  
->    reg:
-> -    items:
-> -      - description: controller's application logic registers
-> -      - description: configuration registers
-> -      - description: iATU and DMA registers. This is where the iATU (internal
-> -          Address Translation Unit) registers of the PCIe core are made
-> -          available for software access.
-> -      - description: aperture where the Root Port's own configuration
-> -          registers are available.
-> +    minItems: 4
-> +    maxItems: 5
->  
->    reg-names:
-> -    items:
-> -      - const: appl
-> -      - const: config
-> -      - const: atu_dma
-> -      - const: dbi
-> +    minItems: 4
-> +    maxItems: 5
->  
->    interrupts:
->      items:
-> @@ -202,6 +193,60 @@ properties:
->  
->  allOf:
->    - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra194-pcie
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-> +          maxItems: 4
+On Wed, Nov 02, 2022 at 09:44:09PM +0300, Dmitry Baryshkov wrote:
+> The main goal of this patchset is to define a generic qcom,smmu-500
+> binding to be used by newer Qualcomm platforms instead of defining each
+> and every SoC line with no actual differences between the compats.
 
-How you wrote it, you do not need min/maxItems here, because you have
-items below. However see further comment.
+Thanks for doing this, I really like the cleanup and the possibility
+that we can stop adding all these pointless strings every release!
 
-> +          items:
-> +            - description: controller's application logic registers
-> +            - description: configuration registers
-> +            - description: iATU and DMA registers. This is where the iATU (internal
-> +                Address Translation Unit) registers of the PCIe core are made
-> +                available for software access.
-> +            - description: aperture where the Root Port's own configuration
-> +                registers are available.
-> +        reg-names:
-> +          items:
-> +            - const: appl
-> +            - const: config
-> +            - const: atu_dma
-> +            - const: dbi
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-pcie
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +          maxItems: 5
+It looks like Bjorn picked up patch 1, so could you please rebase the
+rest of the series onto my SMMU bindings queue:
 
-Similar issue.
+https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/bindings
 
-> +          items:
-> +            - description: controller's application logic registers
-> +            - description: configuration registers
-> +            - description: iATU and DMA registers. This is where the iATU (internal
-> +                Address Translation Unit) registers of the PCIe core are made
-> +                available for software access.
-> +            - description: aperture where the Root Port's own configuration
-> +                registers are available.
-> +            - description: aperture to access the configuration space through ECAM.
+and address the minor review comments you had so that I can pick this up?
 
-This is unnecessarily duplicated. You can keep the descriptions of items
-and reg-names items in top level (with min 4 and max 5) and restrict
-maxItems for 194 and minItems for 234 here.
+Cheers,
 
-
-> +        reg-names:
-> +          items:
-> +            - const: appl
-> +            - const: config
-> +            - const: atu_dma
-> +            - const: dbi
-> +            - const: ecam
-> +
-
-No need for blank line.
->  
->  unevaluatedProperties: false
->  
-
-Best regards,
-Krzysztof
-
+Will
