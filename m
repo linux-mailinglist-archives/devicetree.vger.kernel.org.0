@@ -2,79 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4759E628B5A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 22:28:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08651628B85
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 22:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235836AbiKNV2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 16:28:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58706 "EHLO
+        id S237743AbiKNVpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 16:45:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbiKNV2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 16:28:48 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849F118E3E;
-        Mon, 14 Nov 2022 13:28:47 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E4AD3FF808;
-        Mon, 14 Nov 2022 21:28:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668461326;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=OhAg2dg5Cr0mXaVo9Fds0vDov9wb6UjxSDea3jeHuQk=;
-        b=cfK2VnXF4YudB5XszoDd434yXRITcnTBUTTPDKvIhlJQQPuiQQ+sXfrSUNMheXQj8ZKBHz
-        hAv2LomY1SzSdBin7+T2bfpgHdnBXu/3NKzQkR0DCOvaIYLS3w/3n8J0RqQ3nPoq4tMg2P
-        LaTKWyZ2x9zqOfAspmJuyQnliXRClGRecl4Wu1WXe53aYXHBrapaUIXCJ4UB5c70Xpp4jb
-        DuSJ6wBB+ns35Nx03o02QUz9KAdwADj4wXkNB3KFh8pizDs5eY68SYGJKIMOSalQAI+Bcn
-        KLjmrCpr3SZUFk/S+umGcP47zdFRHGoEoK/q2uN9DaK9duHHZpCz+KRz5yQ0FQ==
-Date:   Mon, 14 Nov 2022 22:28:44 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S237639AbiKNVpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 16:45:04 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F1C1172
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 13:45:02 -0800 (PST)
+Received: from TimeMachine.lan (bband-dyn193.178-41-216.t-com.sk [178.41.216.193])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id E4FF340210;
+        Mon, 14 Nov 2022 22:44:58 +0100 (CET)
+From:   Martin Botka <martin.botka@somainline.org>
+To:     martin.botka1@gmail.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        Martin Botka <martin.botka@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, kernel@collabora.com,
-        linux-rtc@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: (subset) [PATCHv2 6/6] dt-bindings: rtc: convert hym8563
- bindings to json-schema
-Message-ID: <166846130108.2115004.17300234137040825586.b4-ty@bootlin.com>
-References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
- <20221024165549.74574-7-sebastian.reichel@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Conley Lee <conleylee@foxmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: arm: sunxi: Add BIQU CB1
+Date:   Mon, 14 Nov 2022 22:44:48 +0100
+Message-Id: <20221114214452.1993744-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221024165549.74574-7-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Oct 2022 18:55:49 +0200, Sebastian Reichel wrote:
-> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
-> Schema format.
-> 
-> 
+Add a name & compatible for BIQU CB1
 
-Applied, thanks!
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Changes in V2:
+Add compatible and name to dt-bindings
+Changes in V3:
+None
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-[6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
-      commit: e00a89527a497cd49436369b05459be55cb922ba
-
-Best regards,
-
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 3ad1cd50e3fe..d886924023f5 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -151,6 +151,11 @@ properties:
+           - const: roofull,beelink-x2
+           - const: allwinner,sun8i-h3
+ 
++      - description: Biqu CB1
++        items:
++          - const: biqu,cb1
++          - const: allwinner,sun50i-h616
++
+       - description: Chuwi V7 CW0825
+         items:
+           - const: chuwi,v7-cw0825
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.38.1
+
