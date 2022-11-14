@@ -2,64 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4D06279FD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:06:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8550627A02
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235966AbiKNKF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 05:05:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39378 "EHLO
+        id S236067AbiKNKGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 05:06:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237079AbiKNKFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:05:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5AD11159;
-        Mon, 14 Nov 2022 02:03:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 23CC3B80D6B;
-        Mon, 14 Nov 2022 10:03:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC64C433D6;
-        Mon, 14 Nov 2022 10:03:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668420228;
-        bh=/cd/5SkT/YEm53XS+/Pd3GNWlwb6RdQ+QlBl3NrwxRE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zbk0JuGFwiUfsDdnB1Qx5dMp61EYLsmgICY+oAsHbbLcb+wDcWaZnxbj8mjhGJ3/k
-         p4Uyt9xCU/GVRkMkb86qx9gWeNBfbZKACbIR8C+VbhIMWkl7Nb0CTGlOdbAlffs/jT
-         oqGi/WlK1kVscVQgOV4HT6PjibFA6bczU3Vng9kxeGjt4GryapPHazS+8690NTqpiC
-         jlHzwGe3d79mlmwLmVVMnL5oKOL1zPlA6Xiz4m/TSyxI0+g53m5/hec6fPQq1sD/Jx
-         WnQesfvzkDMN6qn6+EyDE3JrQkv9gulv9/oUaNMYSlLgsKGwLrKzVbvcey/EcVSKy5
-         OdHOUFsXyI6lQ==
-Date:   Mon, 14 Nov 2022 10:03:42 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Ying Liu <victor.liu@nxp.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH RESEND] mfd: Add Freescale i.MX8qxp Control and Status
- Registers (CSR) module driver
-Message-ID: <Y3ISftAta+/R711T@google.com>
-References: <20221017075702.4182846-1-victor.liu@nxp.com>
- <Y1/sUfeVy1a6EKZQ@google.com>
- <afa29fcc11436dd957314a4066c9141937f0470c.camel@nxp.com>
- <b7bcc99c006c91871f0518c1a132035d2a148f24.camel@nxp.com>
- <Y2jKRQ8VyauSfXmH@google.com>
- <4dfb7699c33974a682d798071c85b431b87e5432.camel@nxp.com>
- <AM7PR04MB70467B746B6CA03CD2FB0982983E9@AM7PR04MB7046.eurprd04.prod.outlook.com>
+        with ESMTP id S236045AbiKNKGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:06:04 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F60E1B7AA
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:05:23 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id x21so12451629ljg.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:05:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cfRX3g/NtBq3w4tEHVjl1jodzyu5oFmoKHMbIbqQo4g=;
+        b=d+ZTCaTPAU579Spu4kWghS5tq8TMv4picADoN4EGwO0AWo3xyGnrjnA7HUi9rassL6
+         HL7dwyOsqwVcuN73ZxWhpVCU6jQXwkt9QX7y4CDoVHHPs5N1s2Iv+7O+GfBg9RdKYvsG
+         w4DkWFR2xX6SeQ3vhJhBpccHOKYh1d+jcxZ+0+pzfbOwTQYHAg9eMwsOUr9SoVFe2BGm
+         oCf15R1heYXsCxZGpufLvfe/tU6ZEuiDkWKtU782J82MkESlz4NloXfwNth7e8rdQAUP
+         zwrV73RgzSNGAdWcGBsjHAcO7devz9fhlkd3d+Dfl/tuGroB3WfwgjAf3rnh9AWUztuS
+         8I4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cfRX3g/NtBq3w4tEHVjl1jodzyu5oFmoKHMbIbqQo4g=;
+        b=L4Z4pFwD+7jBdX03fbNYLy9TqluVl9VjjIzMoACj1fCpv3+KAKhX4X8PPXgGA7L71/
+         40R5Xpp3ygkV0Q/da93O5ON+ybWlkQJGMtBVk1Sm5obH6gW+TVspC8FTco3BjdQvLvYK
+         006SS1YQEK2SmWz9g95Qgo6GvZR/gbgRTosaWcE8G/aakkswYfxSq4NGdn+xxc3VNJqX
+         cvMbUzS2+ASNQLn0e7PrjQGb4cdm6osrYMdYp3tye8fwOb04Ju9qE64O99oxGqaxanZn
+         PIE0Hu8ZnDvqnD8tti1l4IAJq7IqXAqFptvRZaJO/iskeiytXxb6Jn3YVK+CYqF9iY+x
+         FWCA==
+X-Gm-Message-State: ANoB5pnAQgbBz9Abh+JvTGlL0/GBnSi4Ig0NLjGQa6oG/5NI8WWU2/R1
+        LN9XvW1SOu8oGxnTe2zpDJWXUQ==
+X-Google-Smtp-Source: AA0mqf7Gx9mFBfzDWdMSvmHbxk8CYP6QvpPOPCWZ7ID08Q044mOh49S4ncmgaLlDhh6p/Cpk/HeLrg==
+X-Received: by 2002:a2e:a9a7:0:b0:26e:5b4:52ee with SMTP id x39-20020a2ea9a7000000b0026e05b452eemr3622404ljq.460.1668420322022;
+        Mon, 14 Nov 2022 02:05:22 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d13-20020ac244cd000000b004ac980a1ba1sm1765646lfm.24.2022.11.14.02.05.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 02:05:21 -0800 (PST)
+Message-ID: <1877eadd-e1c9-c08b-4e47-8b902a8b7dd9@linaro.org>
+Date:   Mon, 14 Nov 2022 11:05:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM7PR04MB70467B746B6CA03CD2FB0982983E9@AM7PR04MB7046.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [Patch v4 2/3] media: s5p-mfc: Add variant data for MFC v7
+ hardware for Exynos 3250 SoC
+Content-Language: en-US
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, smitha.t@samsung.com
+References: <20221114054655.68090-1-aakarsh.jain@samsung.com>
+ <CGME20221114054049epcas5p3f3a5ce63fd3f1ce55197d1eaaa87e90b@epcas5p3.samsung.com>
+ <20221114054655.68090-3-aakarsh.jain@samsung.com>
+ <ec5beb10-25b8-8c14-f5d4-4a8f5241edb7@linaro.org>
+ <000001d8f80d$bdf7b320$39e71960$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000001d8f80d$bdf7b320$39e71960$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,18 +87,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Nov 2022, Ying Liu wrote:
-> > Yeah, I tried to not to introduce a new driver for the CSR module, but
-> > it seems that it is needed.
+On 14/11/2022 10:44, Aakarsh Jain wrote:
+> Hi Krzysztof,
 > 
-> After more experiments, I think it's appropriate to take the CSR module as a
-> simple-pm-bus device instead of a simple-mfd device.  This requires to change
-> the existing DT bindings for the CSR module and it's child devices.  I'll send the
-> change out once it is ready.  Thanks for Lee's review and comments.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 14 November 2022 13:22
+>> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
+>> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; devicetree@vger.kernel.org
+>> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
+>> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
+>> benjamin.gaignard@collabora.com; krzysztof.kozlowski+dt@linaro.org;
+>> stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
+>> david.plowman@raspberrypi.com; mark.rutland@arm.com;
+>> robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
+>> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
+>> pankaj.dubey@samsung.com; smitha.t@samsung.com
+>> Subject: Re: [Patch v4 2/3] media: s5p-mfc: Add variant data for MFC v7
+>> hardware for Exynos 3250 SoC
+>>
+>> On 14/11/2022 06:46, Aakarsh Jain wrote:
+>>> commit "5441e9dafdfc6dc40fa" which adds mfc v7 support for
+>>
+>> Please run scripts/checkpatch.pl and fix reported warnings.
+>>
+> Do you mean warnings on "5441e9dafdfc6dc40fa" commit? Or on this patch?
+>  
+> I am running like this :  ./scripts/checkpatch.pl patch_file, it does not show any warnings.
+> 
+> or am I missing anything while running checkpatch on the current patch?
 
-Excellent, well done.
+Eh, you're right... checkpatch does not catch it. You need to fix syntax
+- drop quotes, use proper commit title:
 
-No problem, you're very welcome.
+https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/process/submitting-patches.rst#L100
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
+
