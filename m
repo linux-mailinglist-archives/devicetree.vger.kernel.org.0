@@ -2,318 +2,388 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E248262879D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:59:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE31A6287AF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 19:00:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237527AbiKNR6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 12:58:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55214 "EHLO
+        id S237878AbiKNSAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 13:00:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237965AbiKNR6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:58:30 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAF055B1
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:58:25 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id q71so10890223pgq.8
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:58:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KM6+24y8Nx3+npt1PEW0fItw8sDTfZ+qONmMgpVZl5A=;
-        b=H1AMWfgOmUXklUoGpLcyUuiDFNdK9NWhlBr2OEuVs518AU/1QltaKC5OXiRcehIJ+L
-         7FAmo/zgqVfOBmvHeyvG+iMeI9I4quYcwz7HxWsroRthizOTg+frkHZ53dxDfpwdcisO
-         TuV442iBqSExcZzGz+XefGAhGPWAw1Endr/fa7MvgPyNvAcSSKhvqoTePSXbKYYpokJi
-         e0hMAtDkCq5mAutKNQMwBtrRlcyrOUSPNigYq2srS9Iu0sn/yy9Vi25aKipT+O34WZz+
-         bsf+DcQspiSBIEjUulnhdJtvQjGDRTFQnhZF74hUt62IQm78bjSaUWUH8IYuz5cLI1Pt
-         t0sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KM6+24y8Nx3+npt1PEW0fItw8sDTfZ+qONmMgpVZl5A=;
-        b=g2GAJjztrYSMcXZCy00KlQ4Ym7M1IFVwUzjtvei2UMYtY/rhL1PRi/FElpXduWCGKC
-         dycmns2iJOMOb8+7bKjbq1A1tUoB18yT65znGENIea9MKf0+EZWFVtP5bk6X8hWhZTcw
-         5QEy576vr1CxBH6EoBRlvv15huHN5WNts3f79ByFWDZqtT8MUIdzGg9h24uPdSH114In
-         Glv7LV3H+L4UtvJ11cpASLgmq3TCRjDL3FZitYS6ieLeAv5k7vKtUCJ3intqBAB40HMG
-         6zVsj7bUJggmF64xeyUkRnRNNssj2W3+KEZhjvhFTp5DZfrXenoZqgQcpR9VHjiHE4bw
-         m3Wg==
-X-Gm-Message-State: ANoB5pkYbetAQui/O+44CBBIT00iES8eix9UbDMyvq0axfd3qzLzWMk8
-        kzqGIOfrK6PXFs4CGNMOIzhZobI7qQ0ajKBC
-X-Google-Smtp-Source: AA0mqf54BjCniGJIMYLtI7O1hO+BWbvCMtZQ7exEQKMlm38GqyDvLxaIt7Y/hS857rv+Y/u+L5PpEg==
-X-Received: by 2002:a63:ce04:0:b0:46f:1081:f517 with SMTP id y4-20020a63ce04000000b0046f1081f517mr12869227pgf.297.1668448704779;
-        Mon, 14 Nov 2022 09:58:24 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id v1-20020a17090a7c0100b001f94d25bfabsm9933621pjf.28.2022.11.14.09.58.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 09:58:24 -0800 (PST)
-Message-ID: <19c2513f-4a6f-ba20-b8f0-b97e14d36053@9elements.com>
-Date:   Mon, 14 Nov 2022 23:28:20 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v9 1/2] dt-bindings: mfd: Add dt-schema MAX5970 and
- MAX5978
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237909AbiKNR7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:59:50 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59A127B2E;
+        Mon, 14 Nov 2022 09:59:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4303561331;
+        Mon, 14 Nov 2022 17:59:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98FE6C433C1;
+        Mon, 14 Nov 2022 17:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668448785;
+        bh=e173ROKukEUUj9RQQoI/lX82KYy/bM84YFLsDMettg4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h9+MkNgNeZPoFeI7rcWLtZu9yGw1G2+6Urmw4TF7PMm8aJAEEu7uv6HAzWfBLnMC8
+         yVafXESaQd3pGWBwb5lwRnTkLjSPh9/WnDUjqHG1CIe5wO1uayECmHznhFjY178vJK
+         Ar5jDh4iieZWpj6D18gX9tm71r9zcgu4AjfTmre69pwcmt96caUyH/RlAqH03RY16j
+         iYK4d0NZDUuOVpkCKJMuLjIiZd+QUnyPh0kI5NX8MOCc9lc3t7yhDpbwtepds2wNW9
+         fnK0Ho781Hw64GSUJvW8bWcbJIVTN0WgOlktW6f5t1C6BNU0GNqK3gShejHIMFAerc
+         uLzPXr1R+Vn2Q==
+Date:   Mon, 14 Nov 2022 23:29:29 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221114075739.4117439-1-Naresh.Solanki@9elements.com>
- <20221114075739.4117439-2-Naresh.Solanki@9elements.com>
- <3fd5b40f-25eb-7ce3-0e23-84c35962e6e1@linaro.org>
-Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <3fd5b40f-25eb-7ce3-0e23-84c35962e6e1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 17/20] PCI: dwc: Introduce generic resources getter
+Message-ID: <20221114175929.GB5305@thinkpad>
+References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
+ <20221113191301.5526-18-Sergey.Semin@baikalelectronics.ru>
+ <20221114064654.GE3869@thinkpad>
+ <20221114083903.r2vyuyotwkf52jk7@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221114083903.r2vyuyotwkf52jk7@mobilestation>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 14-11-2022 01:40 pm, Krzysztof Kozlowski wrote:
-> On 14/11/2022 08:57, Naresh Solanki wrote:
->> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On Mon, Nov 14, 2022 at 11:39:03AM +0300, Serge Semin wrote:
+> On Mon, Nov 14, 2022 at 12:16:54PM +0530, Manivannan Sadhasivam wrote:
+> > On Sun, Nov 13, 2022 at 10:12:58PM +0300, Serge Semin wrote:
+> > > Currently the DW PCIe Root Port and Endpoint CSR spaces are retrieved in
+> > > the separate parts of the DW PCIe core driver. It doesn't really make
+> > > sense since the both controller types have identical set of the core CSR
+> > > regions: DBI, DBI CS2 and iATU/eDMA. Thus we can simplify the DW PCIe Host
+> > > and EP initialization methods by moving the platform-specific registers
+> > > space getting and mapping into a common method. It gets to be even more
+> > > justified seeing the CSRs base address pointers are preserved in the
+> > > common DW PCIe descriptor. Note all the OF-based common DW PCIe settings
+> > > initialization will be moved to the new method too in order to have a
+> > > single function for all the generic platform properties handling in single
+> > > place.
+> > > 
+> > > A nice side-effect of this change is that the pcie-designware-host.c and
+> > > pcie-designware-ep.c drivers are cleaned up from all the direct dw_pcie
+> > > storage modification, which makes the DW PCIe core, Root Port and Endpoint
+> > > modules more coherent.
+> > > 
+> > 
 > 
-> Subject: I asked to drop the redundant words, but you re-added now in
-> different form. So again, drop "dt-schema".
-Sure
+> > You have clubbed both generic resource API and introducing CDM_CHECK flag.
+> > Please split them into separate patches.
 > 
->>
->> The MAX597x is a hot swap controller with configurable fault protection.
->> It also has 10bit ADC for current & voltage measurements.
->>
->> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->> ---
->>   .../bindings/mfd/maxim,max5970.yaml           | 172 ++++++++++++++++++
->>   1 file changed, 172 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->> new file mode 100644
->> index 000000000000..a93b6e009b9a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->> @@ -0,0 +1,172 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
->> +
->> +maintainers:
->> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
->> +
->> +description: |
->> +  The smart switch provides no output regulation, but independent fault protection
->> +  and voltage and current sensing.
->> +  Programming is done through I2C bus.
->> +
->> +  Datasheets:
->> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
->> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - maxim,max5970
->> +      - maxim,max5978
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  leds:
->> +    type: object
->> +    description:
->> +      Properties for four LEDS.
->> +
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^led@[0-3]$":
->> +        $ref: /schemas/leds/common.yaml#
->> +        type: object
->> +
->> +    additionalProperties: false
->> +
->> +  vss1-supply:
->> +    description: Supply of the first channel.
->> +
->> +  vss2-supply:
->> +    description: Supply of the second channel.
->> +
->> +  "#io-channel-cells":
->> +    const: 1
->> +
->> +  regulators:
->> +    type: object
->> +    description:
->> +      Properties for regulator.
-> 
-> That's not correct description. This is not one regulator.
-Sure. Will add description something like:
-Properties for both regulators. Also specify value for shunt resistor 
-used for current sense.
-> 
->> +
->> +    patternProperties:
->> +      "^sw[0-1]$":
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +        type: object
-> 
-> unevaluatedProperties: false
-Sure will add this.
-> 
->> +        properties:
->> +          shunt-resistor-micro-ohms:
->> +            description: |
->> +              The value of curent sense resistor in microohms.
-> 
-> Typo: current
-Sure. will fix this.
-> 
->> +
->> +        required:
->> +          - shunt-resistor-micro-ohms
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - regulators
->> +  - vss1-supply
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - maxim,max5970
->> +    then:
->> +      properties:
->> +        io-channels:
->> +          items:
->> +            - description: voltage first channel
->> +            - description: current first channel
->> +            - description: voltage second channel
->> +            - description: current second channel
->> +          description: |
->> +            Voltage and current for first and second channel.
->> +      required:
->> +        - vss2-supply
-> 
-> This is a friendly reminder during the review process.
-> 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
-> 
-> Comment was:
-> "Also, add it in the existing example."
-This property isn't used. hence will remove in next version.
-> 
->> +    else:
->> +      properties:
->> +        io-channels:
->> +          items:
->> +            - description: voltage first channel
->> +            - description: current first channel
->> +          description: |
->> +            Voltage and current for first channel.
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        regulator@3a {
->> +           compatible = "maxim,max5978";
->> +           reg = <0x3a>;
->> +           vss1-supply = <&p3v3>;
->> +
->> +           regulators {
->> +               sw0_ref_0: sw0 {
->> +                      regulator-compatible = "SW0";
-> 
-> Use 4 spaces for example indentation.
-Yeah. some place have 3 spaces instead. Will fix in next version for sure.
-> 
->> +                      shunt-resistor-micro-ohms = <12000>;
->> +               };
->> +           };
->> +
->> +           leds {
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +               led@0 {
->> +                   reg = <0>;
->> +                   label = "led0";
->> +                   default-state = "on";
->> +               };
->> +               led@1 {
->> +                   reg = <1>;
->> +                   label = "led1";
->> +                   default-state = "on";
->> +               };
->> +           };
->> +        };
->> +    };
->> +
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        regulator@3a {
->> +            compatible = "maxim,max5970";
->> +            reg = <0x3a>;
->> +            vss1-supply = <&p3v3>;
->> +            vss2-supply = <&p5v>;
->> +
->> +            regulators {
->> +                sw0_ref_1: sw0 {
->> +                    regulator-compatible = "SW0";
->> +                    shunt-resistor-micro-ohms = <12000>;
->> +                };
->> +                sw1_ref_1: sw1 {
->> +                    regulator-compatible = "SW1";
->> +                    shunt-resistor-micro-ohms = <10000>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +...
-> 
-> Best regards,
-> Krzysztof
+> This modification is a part of the new method dw_pcie_get_resources().
+> Without that method there is no point in adding the new flag. So no.
+> It's better to have all of it in a single patch as a part of creating
+> a coherent resources getter method.
 > 
 
-Regards,
-Naresh
+Same comment as previous patch. I'll defer it to you.
+
+Thanks,
+Mani
+
+> -Sergey
+> 
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > 
+> > > ---
+> > > 
+> > > Changelog v3:
+> > > - This is a new patch created on v3 lap of the series.
+> > > 
+> > > Changelog v4:
+> > > - Convert the method name from dw_pcie_get_res() to
+> > >   dw_pcie_get_resources(). (@Bjorn)
+> > > 
+> > > Changelog v7:
+> > > - Get back device.of_node pointer to the dw_pcie_ep_init() method.
+> > >   (@Yoshihiro)
+> > > ---
+> > >  .../pci/controller/dwc/pcie-designware-ep.c   | 25 +------
+> > >  .../pci/controller/dwc/pcie-designware-host.c | 15 +---
+> > >  drivers/pci/controller/dwc/pcie-designware.c  | 75 ++++++++++++++-----
+> > >  drivers/pci/controller/dwc/pcie-designware.h  |  3 +
+> > >  4 files changed, 65 insertions(+), 53 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > index 237bb01d7852..f68d1ab83bb3 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > @@ -13,8 +13,6 @@
+> > >  #include <linux/pci-epc.h>
+> > >  #include <linux/pci-epf.h>
+> > >  
+> > > -#include "../../pci.h"
+> > > -
+> > >  void dw_pcie_ep_linkup(struct dw_pcie_ep *ep)
+> > >  {
+> > >  	struct pci_epc *epc = ep->epc;
+> > > @@ -694,23 +692,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+> > >  
+> > >  	INIT_LIST_HEAD(&ep->func_list);
+> > >  
+> > > -	if (!pci->dbi_base) {
+> > > -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi");
+> > > -		pci->dbi_base = devm_pci_remap_cfg_resource(dev, res);
+> > > -		if (IS_ERR(pci->dbi_base))
+> > > -			return PTR_ERR(pci->dbi_base);
+> > > -	}
+> > > -
+> > > -	if (!pci->dbi_base2) {
+> > > -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi2");
+> > > -		if (!res) {
+> > > -			pci->dbi_base2 = pci->dbi_base + SZ_4K;
+> > > -		} else {
+> > > -			pci->dbi_base2 = devm_pci_remap_cfg_resource(dev, res);
+> > > -			if (IS_ERR(pci->dbi_base2))
+> > > -				return PTR_ERR(pci->dbi_base2);
+> > > -		}
+> > > -	}
+> > > +	ret = dw_pcie_get_resources(pci);
+> > > +	if (ret)
+> > > +		return ret;
+> > >  
+> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "addr_space");
+> > >  	if (!res)
+> > > @@ -739,9 +723,6 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+> > >  		return -ENOMEM;
+> > >  	ep->outbound_addr = addr;
+> > >  
+> > > -	if (pci->link_gen < 1)
+> > > -		pci->link_gen = of_pci_get_max_link_speed(np);
+> > > -
+> > >  	epc = devm_pci_epc_create(dev, &epc_ops);
+> > >  	if (IS_ERR(epc)) {
+> > >  		dev_err(dev, "Failed to create epc device\n");
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > index ea923c25e12d..3ab6ae3712c4 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > @@ -16,7 +16,6 @@
+> > >  #include <linux/pci_regs.h>
+> > >  #include <linux/platform_device.h>
+> > >  
+> > > -#include "../../pci.h"
+> > >  #include "pcie-designware.h"
+> > >  
+> > >  static struct pci_ops dw_pcie_ops;
+> > > @@ -395,6 +394,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+> > >  
+> > >  	raw_spin_lock_init(&pp->lock);
+> > >  
+> > > +	ret = dw_pcie_get_resources(pci);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
+> > >  	if (res) {
+> > >  		pp->cfg0_size = resource_size(res);
+> > > @@ -408,13 +411,6 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+> > >  		return -ENODEV;
+> > >  	}
+> > >  
+> > > -	if (!pci->dbi_base) {
+> > > -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi");
+> > > -		pci->dbi_base = devm_pci_remap_cfg_resource(dev, res);
+> > > -		if (IS_ERR(pci->dbi_base))
+> > > -			return PTR_ERR(pci->dbi_base);
+> > > -	}
+> > > -
+> > >  	bridge = devm_pci_alloc_host_bridge(dev, 0);
+> > >  	if (!bridge)
+> > >  		return -ENOMEM;
+> > > @@ -429,9 +425,6 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+> > >  		pp->io_base = pci_pio_to_address(win->res->start);
+> > >  	}
+> > >  
+> > > -	if (pci->link_gen < 1)
+> > > -		pci->link_gen = of_pci_get_max_link_speed(np);
+> > > -
+> > >  	/* Set default bus ops */
+> > >  	bridge->ops = &dw_pcie_ops;
+> > >  	bridge->child_ops = &dw_child_pcie_ops;
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > index 9d78e7ca61e1..a8436027434d 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > @@ -11,6 +11,7 @@
+> > >  #include <linux/align.h>
+> > >  #include <linux/bitops.h>
+> > >  #include <linux/delay.h>
+> > > +#include <linux/ioport.h>
+> > >  #include <linux/of.h>
+> > >  #include <linux/of_platform.h>
+> > >  #include <linux/sizes.h>
+> > > @@ -19,6 +20,59 @@
+> > >  #include "../../pci.h"
+> > >  #include "pcie-designware.h"
+> > >  
+> > > +int dw_pcie_get_resources(struct dw_pcie *pci)
+> > > +{
+> > > +	struct platform_device *pdev = to_platform_device(pci->dev);
+> > > +	struct device_node *np = dev_of_node(pci->dev);
+> > > +	struct resource *res;
+> > > +
+> > > +	if (!pci->dbi_base) {
+> > > +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi");
+> > > +		pci->dbi_base = devm_pci_remap_cfg_resource(pci->dev, res);
+> > > +		if (IS_ERR(pci->dbi_base))
+> > > +			return PTR_ERR(pci->dbi_base);
+> > > +	}
+> > > +
+> > > +	/* DBI2 is mainly useful for the endpoint controller */
+> > > +	if (!pci->dbi_base2) {
+> > > +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi2");
+> > > +		if (res) {
+> > > +			pci->dbi_base2 = devm_pci_remap_cfg_resource(pci->dev, res);
+> > > +			if (IS_ERR(pci->dbi_base2))
+> > > +				return PTR_ERR(pci->dbi_base2);
+> > > +		} else {
+> > > +			pci->dbi_base2 = pci->dbi_base + SZ_4K;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	/* For non-unrolled iATU/eDMA platforms this range will be ignored */
+> > > +	if (!pci->atu_base) {
+> > > +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "atu");
+> > > +		if (res) {
+> > > +			pci->atu_size = resource_size(res);
+> > > +			pci->atu_base = devm_ioremap_resource(pci->dev, res);
+> > > +			if (IS_ERR(pci->atu_base))
+> > > +				return PTR_ERR(pci->atu_base);
+> > > +		} else {
+> > > +			pci->atu_base = pci->dbi_base + DEFAULT_DBI_ATU_OFFSET;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	/* Set a default value suitable for at most 8 in and 8 out windows */
+> > > +	if (!pci->atu_size)
+> > > +		pci->atu_size = SZ_4K;
+> > > +
+> > > +	if (pci->link_gen < 1)
+> > > +		pci->link_gen = of_pci_get_max_link_speed(np);
+> > > +
+> > > +	of_property_read_u32(np, "num-lanes", &pci->num_lanes);
+> > > +
+> > > +	if (of_property_read_bool(np, "snps,enable-cdm-check"))
+> > > +		dw_pcie_cap_set(pci, CDM_CHECK);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >  void dw_pcie_version_detect(struct dw_pcie *pci)
+> > >  {
+> > >  	u32 ver;
+> > > @@ -639,25 +693,8 @@ static void dw_pcie_iatu_detect_regions(struct dw_pcie *pci)
+> > >  
+> > >  void dw_pcie_iatu_detect(struct dw_pcie *pci)
+> > >  {
+> > > -	struct platform_device *pdev = to_platform_device(pci->dev);
+> > > -
+> > >  	if (dw_pcie_iatu_unroll_enabled(pci)) {
+> > >  		dw_pcie_cap_set(pci, IATU_UNROLL);
+> > > -
+> > > -		if (!pci->atu_base) {
+> > > -			struct resource *res =
+> > > -				platform_get_resource_byname(pdev, IORESOURCE_MEM, "atu");
+> > > -			if (res) {
+> > > -				pci->atu_size = resource_size(res);
+> > > -				pci->atu_base = devm_ioremap_resource(pci->dev, res);
+> > > -			}
+> > > -			if (!pci->atu_base || IS_ERR(pci->atu_base))
+> > > -				pci->atu_base = pci->dbi_base + DEFAULT_DBI_ATU_OFFSET;
+> > > -		}
+> > > -
+> > > -		if (!pci->atu_size)
+> > > -			/* Pick a minimal default, enough for 8 in and 8 out windows */
+> > > -			pci->atu_size = SZ_4K;
+> > >  	} else {
+> > >  		pci->atu_base = pci->dbi_base + PCIE_ATU_VIEWPORT_BASE;
+> > >  		pci->atu_size = PCIE_ATU_VIEWPORT_SIZE;
+> > > @@ -675,7 +712,6 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci)
+> > >  
+> > >  void dw_pcie_setup(struct dw_pcie *pci)
+> > >  {
+> > > -	struct device_node *np = pci->dev->of_node;
+> > >  	u32 val;
+> > >  
+> > >  	if (pci->link_gen > 0)
+> > > @@ -703,14 +739,13 @@ void dw_pcie_setup(struct dw_pcie *pci)
+> > >  	val |= PORT_LINK_DLL_LINK_EN;
+> > >  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> > >  
+> > > -	if (of_property_read_bool(np, "snps,enable-cdm-check")) {
+> > > +	if (dw_pcie_cap_is(pci, CDM_CHECK)) {
+> > >  		val = dw_pcie_readl_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS);
+> > >  		val |= PCIE_PL_CHK_REG_CHK_REG_CONTINUOUS |
+> > >  		       PCIE_PL_CHK_REG_CHK_REG_START;
+> > >  		dw_pcie_writel_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS, val);
+> > >  	}
+> > >  
+> > > -	of_property_read_u32(np, "num-lanes", &pci->num_lanes);
+> > >  	if (!pci->num_lanes) {
+> > >  		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+> > >  		return;
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > > index c6dddacee3b1..081f169e6021 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > > @@ -46,6 +46,7 @@
+> > >  
+> > >  /* DWC PCIe controller capabilities */
+> > >  #define DW_PCIE_CAP_IATU_UNROLL		1
+> > > +#define DW_PCIE_CAP_CDM_CHECK		2
+> > >  
+> > >  #define dw_pcie_cap_is(_pci, _cap) \
+> > >  	test_bit(DW_PCIE_CAP_ ## _cap, &(_pci)->caps)
+> > > @@ -338,6 +339,8 @@ struct dw_pcie {
+> > >  #define to_dw_pcie_from_ep(endpoint)   \
+> > >  		container_of((endpoint), struct dw_pcie, ep)
+> > >  
+> > > +int dw_pcie_get_resources(struct dw_pcie *pci);
+> > > +
+> > >  void dw_pcie_version_detect(struct dw_pcie *pci);
+> > >  
+> > >  u8 dw_pcie_find_capability(struct dw_pcie *pci, u8 cap);
+> > > -- 
+> > > 2.38.1
+> > > 
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
+-- 
+மணிவண்ணன் சதாசிவம்
