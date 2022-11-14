@@ -2,168 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD71B627615
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 07:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5E162761B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 07:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235835AbiKNGtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 01:49:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46848 "EHLO
+        id S235866AbiKNGvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 01:51:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234411AbiKNGtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 01:49:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F0FA46C;
-        Sun, 13 Nov 2022 22:49:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 80F4160EA2;
-        Mon, 14 Nov 2022 06:49:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86F39C433C1;
-        Mon, 14 Nov 2022 06:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668408583;
-        bh=sM1CxadADS6VF7yySpWl8PAHvpBPliXhQmp/gxcPTR8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dMgTDJ2iQ7vqzm7LUCNeNUBq8NjgjDxhLTzCYu2v1r4S8/pTv6IuL8785ifLqMXOp
-         puwYu1ILfyT9wqXYuFXsBYOIWg7PnReCif5zBX6OM2El1boNp+eLJLlJ3GIdfiM1PO
-         YnQURXYesyL6u/JcC0AbEaiO8RUtlnIymL4t5dBhSf1xdJaJjsi8tBTqe+EGqDoS7l
-         qb7WSYeEx4CKNsrCr1MP2/Bm7CsM/Cdf/xM06W24sijiVdO8RCUdRoCweVfBonxtfm
-         EtsFfqAf4zvKfA4D1BMxr4zSte+nPzicK9DFdVqehowvfmCwxzZaiVy4TsTZzpO9Hb
-         61RKkDQM1dp8A==
-Date:   Mon, 14 Nov 2022 12:19:31 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        with ESMTP id S235862AbiKNGvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 01:51:20 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B94DF89
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 22:51:19 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id gw22so9518216pjb.3
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 22:51:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qr+/Csa4DQbRfUmbmy3oZ72h1oNUuMzGZrFMsfi/w94=;
+        b=J4pHBjE44RhQZyQPbpn0rS7CdMwvev9PP21t/XfKNpb7LdxYcFvINBI2MYfMLjaEnv
+         Gzc0KyXSu87DHrO6UIbuMpCCN23ptJrgM6xIl9x8hHNLXkSRYLUCOoLWZ7TJPyJuA8Wc
+         ypGHdEQyRQVYMzd+0vvI10M+YYygVfA7+IlE4aWw2g0lbEd6Nh8zKHb49RV4eCG/6g40
+         NPgNJhZ7zkymjEgrwwTShciLZ6Fo1VJSuoyVj9ArlgVuAq3/m5iTEBy44eJMIK/9+9QT
+         rBgjuNhFLFZ+qZAv/vkf8Hd+mJVBm0CqcPzP/3nX83acDAN7sKcI0qNL32Dy1FvBiAQo
+         9p2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qr+/Csa4DQbRfUmbmy3oZ72h1oNUuMzGZrFMsfi/w94=;
+        b=FGZGoghcQuORUUqfxawppRVM3a668ZS1hV3PkVOrAs0QGAA+k4eDmHzlPfUML/39jp
+         7VgqFSjG2tl2L16TzL4T5eWdxe/N8caw/bF4ScCu9b0ennByEMIqd9QVRbMFMENhOJtd
+         oOJbGbYHIy4IKIwgjohlnLkdzG29//CHmudnIUgCmd5m95kh/DIJQfpljH9HTQnfqT+h
+         rpERTivqZdFD3+oKHgpQB7KfGL3x1TCkitnI/4ODRsOgFhB8Ox492Sf6eammYgsUZ2+V
+         cWt/8oQABUXinYHlsJXqQls5MsiD26mPO+cligGC8/6GA9MhYsX90IVfB+n1Q58Ns1+U
+         poyQ==
+X-Gm-Message-State: ANoB5pkdK1RpYX+q505EWQ4FRrjtpHvhyq9mmWxDldTESS7sPQUEu43J
+        3KnxSRYISlmabFPo3EkSW3UCUw==
+X-Google-Smtp-Source: AA0mqf7O1kfKyS40WvCXZ5qP0whrae0q/ADSqdPFztRYqjWzf84q+mVXRSyTkyHNMe3Z5V7ql3NnDA==
+X-Received: by 2002:a17:90a:5a4a:b0:200:8a2b:d120 with SMTP id m10-20020a17090a5a4a00b002008a2bd120mr12086138pji.208.1668408679225;
+        Sun, 13 Nov 2022 22:51:19 -0800 (PST)
+Received: from localhost ([122.172.85.60])
+        by smtp.gmail.com with ESMTPSA id c27-20020a631c5b000000b0046ec7beb53esm5209030pgm.8.2022.11.13.22.51.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Nov 2022 22:51:18 -0800 (PST)
+Date:   Mon, 14 Nov 2022 12:21:16 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 18/20] PCI: dwc: Combine iATU detection procedures
-Message-ID: <20221114064931.GF3869@thinkpad>
-References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
- <20221113191301.5526-19-Sergey.Semin@baikalelectronics.ru>
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] cpufreq: apple-soc: Add new driver to control
+ Apple SoC CPU P-states
+Message-ID: <20221114065116.zs67pkbhhgfoze52@vireshk-i7>
+References: <20221024043925.25379-1-marcan@marcan.st>
+ <20221024043925.25379-5-marcan@marcan.st>
+ <20221102061819.dyl5ah6qffntqieh@vireshk-i7>
+ <c3b88bae-f6da-4242-0b19-5e2a32b9c266@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221113191301.5526-19-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <c3b88bae-f6da-4242-0b19-5e2a32b9c266@marcan.st>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 13, 2022 at 10:12:59PM +0300, Serge Semin wrote:
-> Since the iATU CSR region is now retrieved in the DW PCIe resources getter
-> there is no much benefits in the iATU detection procedures splitting up.
-> Therefore let's join the iATU unroll/viewport detection procedure with the
-> rest of the iATU parameters detection code. The resultant method will be
-> as coherent as before, while the redundant functions will be eliminated
-> thus producing more readable code.
+On 09-11-22, 21:36, Hector Martin wrote:
+> On 02/11/2022 15.18, Viresh Kumar wrote:
+> >> +	ret = dev_pm_opp_set_sharing_cpus(cpu_dev, policy->cpus);
+> > 
+> > Why do you need this ? The OPP core should be able to find this
+> > information by itself in your case AFAIU. The OPP core will refer
+> > "operating-points-v2 = <&pcluster_opp>" and find that the cores are
+> > related.
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> We have multiple clusters sharing an OPP table (e.g. the M1 Ultra has 2
+> e-cluster and 4 p-clusters, and duplicating OPP tables seems very
+> silly), so this is necessary to tell it about the subset of cores
+> sharing a table that are actually one domain.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+The cluster sharing information is already part of the OPP tables, "opp-shared"
+property. Platforms like scpi needed this because they didn't have the OPP table
+in DT and so no way to find out the relation of the CPUs.
 
-Thanks,
-Mani
-
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Changelog v3:
-> - This is a new patch created on v3 lap of the series.
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 39 +++++---------------
->  1 file changed, 10 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index a8436027434d..d31f9d41d5cb 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -628,26 +628,21 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
->  
->  }
->  
-> -static bool dw_pcie_iatu_unroll_enabled(struct dw_pcie *pci)
-> -{
-> -	u32 val;
-> -
-> -	val = dw_pcie_readl_dbi(pci, PCIE_ATU_VIEWPORT);
-> -	if (val == 0xffffffff)
-> -		return true;
-> -
-> -	return false;
-> -}
-> -
-> -static void dw_pcie_iatu_detect_regions(struct dw_pcie *pci)
-> +void dw_pcie_iatu_detect(struct dw_pcie *pci)
->  {
->  	int max_region, ob, ib;
->  	u32 val, min, dir;
->  	u64 max;
->  
-> -	if (dw_pcie_cap_is(pci, IATU_UNROLL)) {
-> +	val = dw_pcie_readl_dbi(pci, PCIE_ATU_VIEWPORT);
-> +	if (val == 0xFFFFFFFF) {
-> +		dw_pcie_cap_set(pci, IATU_UNROLL);
-> +
->  		max_region = min((int)pci->atu_size / 512, 256);
->  	} else {
-> +		pci->atu_base = pci->dbi_base + PCIE_ATU_VIEWPORT_BASE;
-> +		pci->atu_size = PCIE_ATU_VIEWPORT_SIZE;
-> +
->  		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, 0xFF);
->  		max_region = dw_pcie_readl_dbi(pci, PCIE_ATU_VIEWPORT) + 1;
->  	}
-> @@ -689,23 +684,9 @@ static void dw_pcie_iatu_detect_regions(struct dw_pcie *pci)
->  	pci->num_ib_windows = ib;
->  	pci->region_align = 1 << fls(min);
->  	pci->region_limit = (max << 32) | (SZ_4G - 1);
-> -}
-> -
-> -void dw_pcie_iatu_detect(struct dw_pcie *pci)
-> -{
-> -	if (dw_pcie_iatu_unroll_enabled(pci)) {
-> -		dw_pcie_cap_set(pci, IATU_UNROLL);
-> -	} else {
-> -		pci->atu_base = pci->dbi_base + PCIE_ATU_VIEWPORT_BASE;
-> -		pci->atu_size = PCIE_ATU_VIEWPORT_SIZE;
-> -	}
-> -
-> -	dw_pcie_iatu_detect_regions(pci);
-> -
-> -	dev_info(pci->dev, "iATU unroll: %s\n", dw_pcie_cap_is(pci, IATU_UNROLL) ?
-> -		"enabled" : "disabled");
->  
-> -	dev_info(pci->dev, "iATU regions: %u ob, %u ib, align %uK, limit %lluG\n",
-> +	dev_info(pci->dev, "iATU: unroll %s, %u ob, %u ib, align %uK, limit %lluG\n",
-> +		 dw_pcie_cap_is(pci, IATU_UNROLL) ? "T" : "F",
->  		 pci->num_ob_windows, pci->num_ib_windows,
->  		 pci->region_align / SZ_1K, (pci->region_limit + 1) / SZ_1G);
->  }
-> -- 
-> 2.38.1
-> 
-> 
+See how drivers/cpufreq/mediatek-cpufreq.c has done this.
+dev_pm_opp_of_get_sharing_cpus() followed by dev_pm_opp_of_cpumask_add_table().
 
 -- 
-மணிவண்ணன் சதாசிவம்
+viresh
