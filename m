@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C15862794D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A78DD627950
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:45:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235863AbiKNJpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:45:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48662 "EHLO
+        id S235551AbiKNJpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:45:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236092AbiKNJpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:45:22 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB1112D04
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:45:16 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id c25so12402024ljr.8
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:45:16 -0800 (PST)
+        with ESMTP id S236144AbiKNJpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:45:40 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B9C1B9C8
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:45:36 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id j16so18290910lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:45:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v2yksaLVj9+vuiqSJ6WzTREotkd4r80eEGPII8mGimA=;
-        b=k/LBP+JpL1Q++aBHW7YBpXUkOkhpA1oYdqQBJkXsy67D/LzaasVQ/k054sR2ndApPv
-         J80MhPWLc2di4j9Z73gtYAB9K3/H48a2RAqBOrD4uZXcD88mQUYrENg68YIDcVarWY6H
-         eE8M0tQPacNVI6z7OD5e9tTQ0i0WOT4M2uJ9x2V0SKgbf7qKEkVqoShH3qPnN7WQ5j68
-         WoCuvcioN4OiBmmfg0mZrOVhGdxE2rZVoHw7L/weonwNlI+OCkCSlkCOhQ4LFi8q5o9W
-         iqYar/1+m7+9Li176BLbwsvafIMArD2ni6KprCoQy3Q37k+dYEUZmQ708g985XeEDlbK
-         kynQ==
+        bh=Zqd2K4z1fA0XIu+ZObBGQxf9eETFlsgwxL+hKDVstmE=;
+        b=JL1ZB3znH+osJvc6tWS8DQnin1bt31dmezKN1aWK/qmRl/M3XczFgE24kN4/A+2bBC
+         szKCUmei3SH054XiL5f8lxKDo5sCy6U3Z0ncX4xBZKV7q1iojq/7StPv66B0El9l9QoL
+         EBq/GJW9HmsDaMMe39X4tcwSfEOaZqfTSlJ56zJxDsURNYVeMDP7y6lGrqBDuM+jn+RO
+         Wjrj5MikKLnNnWVhAWgxzV2AJRDcByt3b1Gw/rZpTwIL3wVXUN8hBSc+Jo2fukP5Y+qQ
+         9juT6IiduS7Jd4w3T3+W64BGGPtlcGM1v3qjn3OE2/I/TpB2NRzYvAg1F6m/g1eUTxPY
+         Md6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=v2yksaLVj9+vuiqSJ6WzTREotkd4r80eEGPII8mGimA=;
-        b=mOTKtEzYKmk01Uhw+KBmJE8Bs2HGDCjl8M4dGXHmCx1v6xPp9JZC+h4qHNLGbnpg0h
-         PewKUFg3DUi/TeyfP7rPKb9civTIOTbXH0UFewmqZRIHfddNIqII1h3xu1GZNJVTP+M4
-         QmzurCOnCrANKUbg+dRzm+HOw/l6FZ1Gjct3AdQ3+L72lzGPUoH7BtGTIJSSCtcMxuFn
-         xSzYkL0Ba3NOAinc2R/Mh9Xjh0+w5w8o9htjRrN5Fv8GPNjI6yv4rNWo0oSReswoW57R
-         fb7B1ydKCHkeJR3J181zbxVLvEsIHq/Hpru30Nf4nS0e5neqevXRZ+JOjlBc+7r9GyP0
-         Nz0w==
-X-Gm-Message-State: ANoB5pnqI49E5A48KItEHLZaL/pkJ0euFuQ8GrEckd7yrcrwFt2xy1WS
-        K1zDFVYlJSnsQ2enUFAeVJmUPA==
-X-Google-Smtp-Source: AA0mqf4CpqVq9z8AaQPat2gQ2PmSLie+L8U3GJgdRID4woojzx0ELBptdaFg14QieWkPGqPyu02n2g==
-X-Received: by 2002:a2e:9ec3:0:b0:277:309:73cb with SMTP id h3-20020a2e9ec3000000b00277030973cbmr4119484ljk.371.1668419115156;
-        Mon, 14 Nov 2022 01:45:15 -0800 (PST)
+        bh=Zqd2K4z1fA0XIu+ZObBGQxf9eETFlsgwxL+hKDVstmE=;
+        b=i/Yi9DDGqp/6TM/vJ3zs4bWERpzyYeJfUrTVzoIR6WDLA2rf9UbLKyc5fcMq1vWv7o
+         DIBa8rP+TvICpA9QpLOtWOclB5QX2JuwydTfiPtA/GGyN8BiQP8L6iV2tHBVaORZoZbe
+         1EsRvptw+7+xeQgIV6E+9u0U8B3McIAk8YH6d9y/Q2VoIlwBoH1MB1DSq47lDhjxAfMd
+         +pxq53jER0eftRZcUzOyCwa8aMQK0JjIaSbnkaaxurA25EoAXxHHBMkUth+hPuelgUSm
+         VVTL4bf+QHLCoGXSpzwkW/y3SN0c9vUq0bkAUalV+HFsBlRcREuNsk14L24hFwMV/xu5
+         wsZA==
+X-Gm-Message-State: ANoB5pnz+cG0fwLMdmwR06p2oIDJarvuQ1S1Oeuz/c3Jp3J6uTYDkdDx
+        S8ZCoevEtYTvadrPR8Ev4miDdA==
+X-Google-Smtp-Source: AA0mqf685CP0YwOXUV1Pzk/qyGLaPI4OguhcA653K/DIrr029DRoftMnGdmmrOAw5EyxBMaScfStKQ==
+X-Received: by 2002:a05:6512:3134:b0:4a8:3a6a:c2b8 with SMTP id p20-20020a056512313400b004a83a6ac2b8mr3851220lfd.557.1668419134615;
+        Mon, 14 Nov 2022 01:45:34 -0800 (PST)
 Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id n25-20020a2e86d9000000b0026dcfc2bf4csm1949349ljj.57.2022.11.14.01.45.13
+        by smtp.gmail.com with ESMTPSA id n1-20020ac24901000000b004b4823f02b0sm1756115lfi.152.2022.11.14.01.45.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:45:14 -0800 (PST)
-Message-ID: <718385d0-b2fd-7c7a-4b2c-ccbf641496e3@linaro.org>
-Date:   Mon, 14 Nov 2022 10:45:11 +0100
+        Mon, 14 Nov 2022 01:45:34 -0800 (PST)
+Message-ID: <3febe250-c99b-1086-20b6-9364d6ee3179@linaro.org>
+Date:   Mon, 14 Nov 2022 10:45:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.4.2
@@ -97,7 +97,7 @@ On 12/11/2022 21:33, Dzmitry Sankouski wrote:
 > 
 > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 > ---
-Reviewed-by: Konrad Dybcio <konra.dybcio@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 > Changes for v2:
