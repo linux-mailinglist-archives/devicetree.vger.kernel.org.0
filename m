@@ -2,462 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F226287C9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 19:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1AAC6287DD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 19:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238419AbiKNSEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 13:04:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57830 "EHLO
+        id S235636AbiKNSIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 13:08:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238263AbiKNSDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 13:03:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 126C82B622;
-        Mon, 14 Nov 2022 10:02:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 73FB0B8107E;
-        Mon, 14 Nov 2022 18:02:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54BABC433D7;
-        Mon, 14 Nov 2022 18:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668448924;
-        bh=WprjM543i7GuzvRawzwImksjZFno/T5c11rRzQwvdN8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ufxdo9ZC0XbnM1xLOLuwupjOaKv/wn9KPbldhQSLzjCYN6jjiMkHq1LfD4NUG0LJN
-         7Ylj3PIj68cKRaD+wrxBfQ0cy0h8uFK9RAOCheSR/aCJCc/JfGKYiIK4dneAjQPb3F
-         n4futn2ACU2MRErO4roUgoXFAHgOQwoQR0ZqzbCWWE4qQITAIythPpQ/dRkWMk+JMU
-         XUIuGw8PIkClNFd7+o7k9H9bEAJ3mL7CpLltYsTSG9Z7a5DgxT0AVtz8acNv5MCRa1
-         iRQnaX71urjtPSqK8wQD4Kte2BrjTDrCiYM5ig6DacS9a4HDw/NUXNBU4oZ3b5H+8W
-         SVitR4CfJrBKQ==
-Date:   Mon, 14 Nov 2022 23:31:48 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S238236AbiKNSIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 13:08:13 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60064.outbound.protection.outlook.com [40.107.6.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D082C113;
+        Mon, 14 Nov 2022 10:08:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GVHzzYWfFoXEHPu/J+KcYy7gpOGoREaXL88NsnbQBaqPKfcx9J3V2R2ZseiolruaGZGmYPAa9tKbR168dyWJl3d/0Z/UsREHIy1eO6cEG7mV+a+WWsXZNtu2x6DvKsSeXrTpQ5cANbl0CkNQB1dIwlheHwS/KoiY1fEz9Xnhxfxi8MYTmjeebY7DoT/xi10HV+A61xX+EPxDaSmNlji+O6QdE7yoJCB5TOjt5iVMcL0YV5shjdWxNOJ71ebWG0/6M1UEEzh3uFzZuv49elz3EthhIs9NtEi5ACAmflthGG6qHla2cGMPxc5K2md5SYa7W6ty+6SV11s9ZIS+MJuVaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1Qe63/XL2tY15GcppDUor8oU33ES+37rqU28xLY1igg=;
+ b=WQP35cBBEyAs3xSvj9ukUCAB0oS1UvER1+OJ9YhZ/mNPn68o3lx7gQTCwJvQ2QEoNwHntvihhFb6mG9pRi+RwykmZgNioN5fFQhdzhrCsXUa7ycATkue5D2p8creAGbdDa2aLaexhkwlwLn5yi1wa1EZ2+ucOwSg5R3mznvVwMdsLQrzkHhaLvQNdkPT+m8LEGGAteYd32XcfcJ4PtEroR2/KWZybbZe/JI2L3gfykdgvMJqd9aJ+NxKWUxRPOvJ3KpXKks6g5hTUwT05L9le2eEQp5h+i7VzpdWUmH77pKquxYwfd/gYvOjBKjfA/fmMrZCXgJ3g/6A0RfljRkUDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1Qe63/XL2tY15GcppDUor8oU33ES+37rqU28xLY1igg=;
+ b=AJF8wy3l2Qe+CqGkv0Xs2z+T+Ehfa8JowS4aYgX8jwFHlBXHWftImb157E/C8BruaKl6TH1LfRU3Pcjr3hRH2SjJEY22p4CVoBsfk9GG623BA8qwMLzqmSgZmGDDK3kogg7edqiHuUPkeztrELJdo5ZzhIqHIsHCT8QFSDSrGdDQe5PSNuh3IJGWniixcV5f6KfS4JIAG9US3iq5R/5wB7OW3XLiqz9i982xlSA5RXUbGy9SPVfXLxfB/IRUPXgmvYTe5Ky9IGaKTlgAKSxVOIexy2Q7QYW+OPdIMxekg1k3Bk6ug4o1Nosdn6BUyO01W0s5ZE0tf6RaofN2oEJ2fA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by PAVPR03MB8921.eurprd03.prod.outlook.com (2603:10a6:102:322::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.16; Mon, 14 Nov
+ 2022 18:08:09 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::e9d6:22e1:489a:c23d]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::e9d6:22e1:489a:c23d%4]) with mapi id 15.20.5813.017; Mon, 14 Nov 2022
+ 18:08:08 +0000
+Message-ID: <209a0d25-f109-601f-d6f6-1adc44103aee@seco.com>
+Date:   Mon, 14 Nov 2022 13:08:03 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH net-next v2 00/11] net: pcs: Add support for devices
+ probed in the "usual" manner
+Content-Language: en-US
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 19/20] PCI: dwc: Introduce generic platform clocks and
- resets
-Message-ID: <20221114180148.GC5305@thinkpad>
-References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
- <20221113191301.5526-20-Sergey.Semin@baikalelectronics.ru>
- <20221114070115.GG3869@thinkpad>
- <20221114093759.kyxdb4ijfvm4bytk@mobilestation>
+        Leo Li <leoyang.li@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+References: <20221103210650.2325784-1-sean.anderson@seco.com>
+ <20221109224110.erfaftzja4fybdbc@skbuf>
+ <bcb87445-d80d-fea0-82f2-a15b20baaf06@seco.com>
+ <20221110152925.3gkkp5opf74oqrxb@skbuf>
+ <7b4fb14f-1ca0-e4f8-46ca-3884392627c2@seco.com>
+ <20221110160008.6t53ouoxqeu7w7qr@skbuf>
+ <ce6d6a26-4867-6385-8c64-0f374d027754@seco.com>
+ <20221114172357.hdzua4xo7wixtbgs@skbuf>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20221114172357.hdzua4xo7wixtbgs@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL0PR0102CA0041.prod.exchangelabs.com
+ (2603:10b6:208:25::18) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221114093759.kyxdb4ijfvm4bytk@mobilestation>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR03MB4972:EE_|PAVPR03MB8921:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb840486-16ff-436f-f38c-08dac66b2f5c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qgzrKB2mvfQ/INaJ8SBon7lqIGhHaTGqbiiqzIBy0ScY7ZzEVAHpEJ2ucTIjPE0Rdm3bB/k2QLWlDT2weVcjsvDnGzOk7jkmnLk8r1k1i9VjkcgFm+byntZSZ4LfuscNxalEP7HIG1XWKv8+nu6wxtU/7ukd9GDjBgfXhr20AITN0tptrIhSDGhBPfT1NpAgyC7Zf6kYt0U24p+2skYCxRDhsz1EEMoGYnvUuSvfHWnML8ZpNvcWD5lkRMLPMSosUoL8VlJH2yw/7XL/bRn9zYGhPt4I4dutd9Bl+i5U9l/hC4BNjU5z3/MFC4oGhBIOWkYFiJ7Vfpd/oQfr7BY5trpsoalS/IVnYQTRmM7fcpVwGcEGIDhXXpI+qv2QSt5OK5fyrlNpY4YOblTsFZIN8x4Rp1naOkbuDRIQ9+ttWK5LjXowpw/psAE2XnpRAl4UnAw+wND4pnIdm8cEEnCmIONTf6fY5OpE6WhIYRhrwEHk96K8thkVaof0mvNYa3mtZG4rk5UPvKEitwKjISdEGrFDF3v7ppF10yCU8UXkiaQKeVnsXEdcOozwNvcQPR0N1NSBaPHDagm/52xrvPrCR02pXqo461AibXXwYAQEgJvBcleYFILZtvXHa285PnqI9fPM8GAk2vS18nVnglnZXRACAanlPXhYn1S8nJo9L+VnWHed9cJgmx3yN/DlmnBi99VjYieugUVKP7KZWuUe/XhQaZkvlSsGd+6HJwPUcpHJihREBu5OfIoU+esMUDGO/Gz/V9VsQDGFDBNqQmpQJCgrqyhSgV5/SBJ09770wdaVnxHYozqeUROCn8VihpoI
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(39850400004)(366004)(396003)(376002)(346002)(136003)(451199015)(6506007)(6512007)(31696002)(86362001)(52116002)(2906002)(6666004)(53546011)(44832011)(26005)(5660300002)(6486002)(38350700002)(41300700001)(38100700002)(478600001)(4326008)(2616005)(66556008)(186003)(8676002)(66476007)(66946007)(7406005)(7416002)(83380400001)(8936002)(316002)(54906003)(6916009)(36756003)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFVBOCtjaTYxejNNM2VYUTJITmZkejRLUlhPbXFZM29HTXEvTDhOSE8xQzZl?=
+ =?utf-8?B?dkREcHZ6anJaaUtrNWgxQnVsSDVqMzgycWIrOHdvYVNxVjYzMHI1RzVLelB5?=
+ =?utf-8?B?OTdOclRGOG1obzlud2tPbUpHRUUxTlNwRnZUWEVJbXJBRjN4Z3ZTQllZNFh3?=
+ =?utf-8?B?SllTdk9LNTBoMHpVQTVtVW5SRHZwK0dpV1JXenZSb2FEVXloMUxlRXFLS0dH?=
+ =?utf-8?B?bEJnTnVFaW00OEJDM21qZEtiekZPbmc3dUNheEtZU0FHaG13VG13anlSOW5P?=
+ =?utf-8?B?OHpQdzl4SU1MUWRycEtERWRCZ21YTjJCQzd2amhxVVovbTZWdGYxb2hDK3Uz?=
+ =?utf-8?B?TnIyQ1RnbEp1ODlWU1ROSlN4S0U4eFRZSDNBbkg5bjhnV3EwWmsvaVVFdVlJ?=
+ =?utf-8?B?ckh3VTlKdVBNb1FUUHR1bjBOU3FkVnU0bWhrTTNOeHVGQU9lcWpMazNDLzhI?=
+ =?utf-8?B?R2pFRERiMWtsRXBUYklUTXFqeTBKei82aDRPb0hab2Q5YXF6S01jL1ViMVhw?=
+ =?utf-8?B?YkRRZW5NVkFxZUREcFNpaC9HVlNDZWZVbndnOWRqWFJTUlRVUkdOUTJ2T000?=
+ =?utf-8?B?YjlNb3pSZ1dGNVNQWDcvemRFYmpMVHNIRzFna1IxOTVBa3Z3cWJRenEyZldz?=
+ =?utf-8?B?Zmk5MFlSTU51amZRc09FdGE4MHE3RkllektZdE1xQkdSN2JsYTgvTWNwVk1h?=
+ =?utf-8?B?dWlmTXo3bG8waTd0SHFHcGpIdmZjZUo4aFo2ZXNTYkpNaThxTHE1WG1VeGJ6?=
+ =?utf-8?B?OUV0NDY2RTVjUXhidlN3d2NxdExBYjl6VTUrcDFYSjE1ckNZSjBMVkJPcXFS?=
+ =?utf-8?B?dDF2bGpNaEM1SXVpRlgwQmorYlFTc084U2t0TkRVTTh0ZHNwYjZYVDA4enVN?=
+ =?utf-8?B?S29LbGpEa2Fha1FSN1UxV3VVaCtlWE9FTWNVTzlOY21aaGJ6STZOUXBlclAw?=
+ =?utf-8?B?bkxFMjZkR0N0cHhKcFordGVtVlJSeHRVVms1RVVySmpvOEZDVERObk1WbE5n?=
+ =?utf-8?B?S21zaW9MNEZlQy9oWFZPTHMreHZaK0ptWS9ad3ZlZ3VHL1dSWGswVjJibW1R?=
+ =?utf-8?B?a1JId0NPZkM1ZjIyczFLR3hjdjB0NUtRc2hIU1BqVDMvRytqV1NyOFcyUTMz?=
+ =?utf-8?B?SXBqaVJJQXhheUdjakNEZWpnR3N3MnpuWGlZd0ZWUVdrT2F1TmFRVmwrQVZ0?=
+ =?utf-8?B?VnlSY2NjQm4vS1FUK2JWd290TitHVmlUQUJNNjF3QWxjYS9XV1BtS3FTOUMw?=
+ =?utf-8?B?VEN1d2NHZ1BUWFQzdHlZblNESDNIaDlneGV2b1FMcTlCSmtoRVlTMTlZNGJN?=
+ =?utf-8?B?RGRsbUsxejhGL085c1RSMmQ3SFNFVlN5alh3anl6Tjc4SVhNRnZJRTRDTlNM?=
+ =?utf-8?B?Z0lWQldpMk1XTkdwSjRjVmU1NmV1QWRXTG5zcDUxVFBRN3A2enRJRUdGNVZx?=
+ =?utf-8?B?QXlqbmwzMWMySDBiaWY0UXhoZy9DOEZtcUlsYXlNMUF3Sit5ZmFDM3o4d2hI?=
+ =?utf-8?B?a0VkcGFxQXFVN1U1eGFINlBuZk5YMzYvRzM2UmJnRG9ybXA2c2xsd1pJZlU0?=
+ =?utf-8?B?ODZVTmd0eVRBd2lvY3pHUWhHSnBGVmJObGNsdDV6UGp5dENrTmcydU93b2dU?=
+ =?utf-8?B?MzJhOTk5YkJqWWJsekx6Z3pwajZQdmJUVkFGNjUrd0MvdWY3TU5Jc1ovTUlT?=
+ =?utf-8?B?VVNlb3dUZ1psWDFlQytQenlEam1Fdld6VmdtMTFhNDlaWXU1RUszeHEzNDg5?=
+ =?utf-8?B?WmhlWjRCNzk4STRQVlF5Zit0ZkhhVVRxWmZzTWVkcWtqZFYyRjgwWi9Mdm42?=
+ =?utf-8?B?MFBJeDB2UnpHTllhb2ZsNTJTZ0Z0TnV4NzBMcmdTTFFUeUtGdklaUHkwSm9y?=
+ =?utf-8?B?eDVJN1RBZUlPcyszUGVZQkVRZWcrMjZ3WTd3dUh6TVoySUUwdzhDYXhoK1V4?=
+ =?utf-8?B?QW5XbUhheUErV3VZa0VWaWljYVBHc0pySlg1T08xYWtPVnpRL3lMV1dyZk0y?=
+ =?utf-8?B?VDh4bE8vRDJscVhwVUtlV2NSODZ2M1pJZDFlUVJIQ3Y2bHUyRnpTS2ZiaVds?=
+ =?utf-8?B?OEpFSEZjaG9xM2RCN0NVSCt2MW5Na0hseWNtZjZ1dE41Um9pcE5Oa0NHMkI2?=
+ =?utf-8?B?TDRRY29WMVphVk13NWw3c1hBZVV3djdDVzdTMWovbEhTTzJuSHdGZGR1K2o0?=
+ =?utf-8?B?aUE9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb840486-16ff-436f-f38c-08dac66b2f5c
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 18:08:08.8048
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Yqfv7DEaXlIAQmAq2X7ATUGougL9M1gHx6nhW+u/9YNqbIJnv982ze/cN3tPXs6slvlAqokHcjbli1GQobwFYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR03MB8921
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 12:37:59PM +0300, Serge Semin wrote:
-> On Mon, Nov 14, 2022 at 12:31:15PM +0530, Manivannan Sadhasivam wrote:
-> > On Sun, Nov 13, 2022 at 10:13:00PM +0300, Serge Semin wrote:
-> > > Currently almost each platform driver uses its own resets and clocks
-> > > naming in order to get the corresponding descriptors. It makes the code
-> > > harder to maintain and comprehend especially seeing the DWC PCIe core main
-> > > resets and clocks signals set hasn't changed much for about at least one
-> > > major IP-core release. So in order to organize things around these signals
-> > > we suggest to create a generic interface for them in accordance with the
-> > > naming introduced in the DWC PCIe IP-core reference manual:
-> > > 
-> > > Application clocks:
-> > > - "dbi"  - data bus interface clock (on some DWC PCIe platforms it's
-> > >            referred as "pclk", "pcie", "sys", "ahb", "cfg", "iface",
-> > >            "gio", "reg", "pcie_apb_sys");
-> > > - "mstr" - AXI-bus master interface clock (some DWC PCIe glue drivers
-> > >            refer to this clock as "port", "bus", "pcie_bus",
-> > >            "bus_master/master_bus/axi_m", "pcie_aclk");
-> > > - "slv"  - AXI-bus slave interface clock (also called as "port", "bus",
-> > >            "pcie_bus", "bus_slave/slave_bus/axi_s", "pcie_aclk",
-> > >            "pcie_inbound_axi").
-> > > 
-> > > Core clocks:
-> > > - "pipe" - core-PCS PIPE interface clock coming from external PHY (it's
-> > >            normally named by the platform drivers as just "pipe");
-> > > - "core" - primary clock of the controller (none of the platform drivers
-> > >            declare such a clock but in accordance with the ref. manual
-> > >            the devices may have it separately specified);
-> > > - "aux"  - auxiliary PMC domain clock (it is named by some platforms as
-> > >            "pcie_aux" and just "aux");
-> > > - "ref"  - Generic reference clock (it is a generic clock source, which
-> > >            can be used as a signal source for multiple interfaces, some
-> > >            platforms call it as "ref", "general", "pcie_phy",
-> > >            "pcie_phy_ref").
-> > > 
-> > > Application resets:
-> > > - "dbi"  - Data-bus interface reset (it's CSR interface clock and is
-> > >            normally called as "apb" though technically it's not APB but
-> > >            DWC PCIe-specific interface);
-> > > - "mstr" - AXI-bus master reset (some platforms call it as "port", "apps",
-> > >            "bus", "axi_m");
-> > > - "slv"  - ABI-bus slave reset (some platforms call it as "port", "apps",
-> > >            "bus", "axi_s").
-> > > 
-> > > Core resets:
-> > > - "non-sticky" - non-sticky CSR flags reset;
-> > > - "sticky"     - sticky CSR flags reset;
-> > > - "pipe"       - PIPE-interface (Core-PCS) logic reset (some platforms
-> > >                  call it just "pipe");
-> > > - "core"       - controller primary reset (resets everything except PMC
-> > >                  module, some platforms refer to this signal as "soft",
-> > >                  "pci");
-> > > - "phy"        - PCS/PHY block reset (strictly speaking it is normally
-> > >                  connected to the input of an external block, but the
-> > >                  reference manual says it must be available for the PMC
-> > >                  working correctly, some existing platforms call it
-> > >                  "pciephy", "phy", "link");
-> > > - "hot"        - PMC hot reset signal (also called as "sleep");
-> > > - "pwr"        - cold reset signal (can be referred as "pwr", "turnoff").
-> > > 
-> > > Bus reset:
-> > > - "perst" - PCIe standard signal used to reset the PCIe peripheral
-> > >             devices.
-> > > 
-> > > As you can see each platform uses it's own naming for basically the same
-> > > set of the signals. In the framework of this commit we suggest to add a
-> > > set of the clocks and reset signals resources, corresponding names and
-> > > identifiers for each denoted entity. At current stage the platforms will
-> > > be able to use the provided infrastructure to automatically request all
-> > > these resources and manipulate with them in the Host/EP init callbacks.
-> > > Alas it isn't that easy to create a common cold/hot reset procedure due to
-> > > too many platform-specifics in the procedure, like the external flags
-> > > exposure and the delays requirement.
-> > > 
-> > 
+On 11/14/22 12:23, Vladimir Oltean wrote:
+> On Thu, Nov 10, 2022 at 11:56:15AM -0500, Sean Anderson wrote:
+>> these will probably be in device trees for a year before the kernel
+>> starts using them. But once that is done, we are free to require them.
 > 
-> > I'm not really sure if this generification is going to help. For instance, in
-> > Qcom platforms we have some required clocks and some optional clocks and that
-> > too differs with each SoC. For sure you can add logic in the core dwc driver to
-> > handle those cases but that starting to do that will add a pile of mess to the
-> > dwc driver.
-> 
-> It will help to place the order to the clock and reset naming, which
-> in its turn will improve the driver readability and maintainability.
-> Almost all the platforms get/check clocks and resets from the
-> same set defined in the DW PCIe HW-manual (including the Qcom ones).
-> The difference just in the names the developers used. Since the names
-> is a contract (a part of the DT-bindings) which can't be changed that
-> easy, we can't just update the already available drivers. But at the
-> very least we can unify the DT-bindings and the resources names
-> defined in there (which is already done and acked by Rob), provide a
-> generic driver API and persuade the new drivers developers to be using
-> the interface with already available names.
-> 
-> As I already said many times for the last year. The clocks are mainly
-> the same, but the way they are used to enable the interfaces (timings,
-> order, etc) can be platform-specific. It's possible for the
-> HW-designers in the framework of their platforms to re-use a
-> clocks/resets generation module provided by Synopsys, but even
-> Synopsys says that it's not always applicable. So practically the
-> platform-designers prefer to omit the module and provide a direct
-> control to the clocks and resets wires. Our platform is another
-> example of such approach.
-> 
-> Note you are still able to check whether the corresponding
-> clocks/resets are available for your device just by checking the
-> pointers.
-> 
-> > 
-> > IMO, if the dwc driver is not going to use these clocks, like controlling the
-> > clocks/resets, then there is no point in keeping the resource acquiring part in
-> > it.
-> 
-> Baikal-T1 will use these clocks and resets. The generic DWC PCIe
-> Host/EP driver will provide a simple and ready-to-use API to request
-> and check the clocks and resets. The new drivers will supposed to use
-> it too. Thus eventually we'll get at least the modern drivers using
-> the same names which will make the DW PCIe driver more readable and
-> maintainable. Meanwhile the old drivers alas will have to be left
-> with their platform-specific names since we can't change the
-> DT-bindings.
-> 
-> In anyway all of these has already been discussed with Rob. Here is
-> what he said:
-> 
-> On Mon, May 16, 2022 at 05:29:20PM -0500, Rob Herring wrote:
-> > No doubt there is way to much variation here (ummm, Qcom!). Some 
-> > standardization of names in (new) bindings would be good. That's where 
-> > we should be defining names IMO.
-> 
-> > On the driver side, I'd like to see the DW core handle clocks/resets/phys 
-> > at least for the easy cases of just turn on/off all the clocks and 
-> > toggle all resets. Perhaps even more minimally, move the clk/reset 
-> > struct pointers to the DWC core.
-> 
-> Due to the platform-specific order and timings I don't think it's
-> possible to create some generic clocks/resets enable/disable method.
-> It could be done, but it will be too complex with many-platform specific
-> hooks, callbacks, flags, etc. I even can't think of such interface
-> even for already available drivers, not to say for some future designs.
-> But the names and the handlers storage could be unified for sure.
-> 
-> Note eventually, if anybody would be concerned about a full
-> unification, the already available drivers could be converted to using
-> the provided here API just on the level of the clock/reset IDs, but
-> the names will have to be left as is alas.
-> 
-> Also note my very first version of this patch provided just the clocks
-> and reset names and their IDs without the corresponding resource
-> request. Rob suggested to at least provide a generic request
-> procedure. That's what I did in one of the subsequent patchset
-> revisions.
-> 
+> Sorry, you need to propose something that is not "we can break compatibility
+> with today's device trees one year from now".
 
-Okay then. I failed to go through the previous discussions, sorry about that.
+But only if the kernel gets updated and not the device tree. When can
+such a situation occur? Are we stuck with this for the next 10 years all
+because someone may have a device tree which they compiled in 2017, and
+*insist* on using the latest kernel with? Is this how you run your
+systems?
 
-Thanks,
-Mani
+We don't get the device tree from firmware on this platform; usually it
+is bundled with the kernel in a FIT or loaded from the same disk
+partition as the kernel. I can imagine that they might not always be
+updated at exactly the same time, but this is nuts.
 
-> -Sergey
-> 
-> > 
-> > Thanks,
-> > Mani
-> > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > 
-> > > ---
-> > > 
-> > > Changelog v3:
-> > > - Add a method to at least request the generic clocks and resets. (@Rob)
-> > > - Add GPIO-based PERST# signal support.
-> > > ---
-> > >  drivers/pci/controller/dwc/pcie-designware.c | 91 ++++++++++++++++++++
-> > >  drivers/pci/controller/dwc/pcie-designware.h | 42 +++++++++
-> > >  2 files changed, 133 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > > index d31f9d41d5cb..1e06ccf2dc9e 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > > @@ -10,7 +10,9 @@
-> > >  
-> > >  #include <linux/align.h>
-> > >  #include <linux/bitops.h>
-> > > +#include <linux/clk.h>
-> > >  #include <linux/delay.h>
-> > > +#include <linux/gpio/consumer.h>
-> > >  #include <linux/ioport.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/of_platform.h>
-> > > @@ -20,11 +22,89 @@
-> > >  #include "../../pci.h"
-> > >  #include "pcie-designware.h"
-> > >  
-> > > +static const char * const dw_pcie_app_clks[DW_PCIE_NUM_APP_CLKS] = {
-> > > +	[DW_PCIE_DBI_CLK] = "dbi",
-> > > +	[DW_PCIE_MSTR_CLK] = "mstr",
-> > > +	[DW_PCIE_SLV_CLK] = "slv",
-> > > +};
-> > > +
-> > > +static const char * const dw_pcie_core_clks[DW_PCIE_NUM_CORE_CLKS] = {
-> > > +	[DW_PCIE_PIPE_CLK] = "pipe",
-> > > +	[DW_PCIE_CORE_CLK] = "core",
-> > > +	[DW_PCIE_AUX_CLK] = "aux",
-> > > +	[DW_PCIE_REF_CLK] = "ref",
-> > > +};
-> > > +
-> > > +static const char * const dw_pcie_app_rsts[DW_PCIE_NUM_APP_RSTS] = {
-> > > +	[DW_PCIE_DBI_RST] = "dbi",
-> > > +	[DW_PCIE_MSTR_RST] = "mstr",
-> > > +	[DW_PCIE_SLV_RST] = "slv",
-> > > +};
-> > > +
-> > > +static const char * const dw_pcie_core_rsts[DW_PCIE_NUM_CORE_RSTS] = {
-> > > +	[DW_PCIE_NON_STICKY_RST] = "non-sticky",
-> > > +	[DW_PCIE_STICKY_RST] = "sticky",
-> > > +	[DW_PCIE_CORE_RST] = "core",
-> > > +	[DW_PCIE_PIPE_RST] = "pipe",
-> > > +	[DW_PCIE_PHY_RST] = "phy",
-> > > +	[DW_PCIE_HOT_RST] = "hot",
-> > > +	[DW_PCIE_PWR_RST] = "pwr",
-> > > +};
-> > > +
-> > > +static int dw_pcie_get_clocks(struct dw_pcie *pci)
-> > > +{
-> > > +	int i, ret;
-> > > +
-> > > +	for (i = 0; i < DW_PCIE_NUM_APP_CLKS; i++)
-> > > +		pci->app_clks[i].id = dw_pcie_app_clks[i];
-> > > +
-> > > +	for (i = 0; i < DW_PCIE_NUM_CORE_CLKS; i++)
-> > > +		pci->core_clks[i].id = dw_pcie_core_clks[i];
-> > > +
-> > > +	ret = devm_clk_bulk_get_optional(pci->dev, DW_PCIE_NUM_APP_CLKS,
-> > > +					 pci->app_clks);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return devm_clk_bulk_get_optional(pci->dev, DW_PCIE_NUM_CORE_CLKS,
-> > > +					  pci->core_clks);
-> > > +}
-> > > +
-> > > +static int dw_pcie_get_resets(struct dw_pcie *pci)
-> > > +{
-> > > +	int i, ret;
-> > > +
-> > > +	for (i = 0; i < DW_PCIE_NUM_APP_RSTS; i++)
-> > > +		pci->app_rsts[i].id = dw_pcie_app_rsts[i];
-> > > +
-> > > +	for (i = 0; i < DW_PCIE_NUM_CORE_RSTS; i++)
-> > > +		pci->core_rsts[i].id = dw_pcie_core_rsts[i];
-> > > +
-> > > +	ret = devm_reset_control_bulk_get_optional_shared(pci->dev,
-> > > +							  DW_PCIE_NUM_APP_RSTS,
-> > > +							  pci->app_rsts);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = devm_reset_control_bulk_get_optional_exclusive(pci->dev,
-> > > +							     DW_PCIE_NUM_CORE_RSTS,
-> > > +							     pci->core_rsts);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	pci->pe_rst = devm_gpiod_get_optional(pci->dev, "reset", GPIOD_OUT_HIGH);
-> > > +	if (IS_ERR(pci->pe_rst))
-> > > +		return PTR_ERR(pci->pe_rst);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  int dw_pcie_get_resources(struct dw_pcie *pci)
-> > >  {
-> > >  	struct platform_device *pdev = to_platform_device(pci->dev);
-> > >  	struct device_node *np = dev_of_node(pci->dev);
-> > >  	struct resource *res;
-> > > +	int ret;
-> > >  
-> > >  	if (!pci->dbi_base) {
-> > >  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi");
-> > > @@ -62,6 +142,17 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
-> > >  	if (!pci->atu_size)
-> > >  		pci->atu_size = SZ_4K;
-> > >  
-> > > +	/* LLDD is supposed to manually switch the clocks and resets state */
-> > > +	if (dw_pcie_cap_is(pci, REQ_RES)) {
-> > > +		ret = dw_pcie_get_clocks(pci);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		ret = dw_pcie_get_resets(pci);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > >  	if (pci->link_gen < 1)
-> > >  		pci->link_gen = of_pci_get_max_link_speed(np);
-> > >  
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > > index 081f169e6021..393dfb931df6 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > @@ -13,10 +13,13 @@
-> > >  
-> > >  #include <linux/bitfield.h>
-> > >  #include <linux/bitops.h>
-> > > +#include <linux/clk.h>
-> > >  #include <linux/dma-mapping.h>
-> > > +#include <linux/gpio/consumer.h>
-> > >  #include <linux/irq.h>
-> > >  #include <linux/msi.h>
-> > >  #include <linux/pci.h>
-> > > +#include <linux/reset.h>
-> > >  
-> > >  #include <linux/pci-epc.h>
-> > >  #include <linux/pci-epf.h>
-> > > @@ -45,6 +48,7 @@
-> > >  	 __dw_pcie_ver_cmp(_pci, TYPE_ ## _type, >=))
-> > >  
-> > >  /* DWC PCIe controller capabilities */
-> > > +#define DW_PCIE_CAP_REQ_RES		0
-> > >  #define DW_PCIE_CAP_IATU_UNROLL		1
-> > >  #define DW_PCIE_CAP_CDM_CHECK		2
-> > >  
-> > > @@ -233,6 +237,39 @@ enum dw_pcie_device_mode {
-> > >  	DW_PCIE_RC_TYPE,
-> > >  };
-> > >  
-> > > +enum dw_pcie_app_clk {
-> > > +	DW_PCIE_DBI_CLK,
-> > > +	DW_PCIE_MSTR_CLK,
-> > > +	DW_PCIE_SLV_CLK,
-> > > +	DW_PCIE_NUM_APP_CLKS
-> > > +};
-> > > +
-> > > +enum dw_pcie_core_clk {
-> > > +	DW_PCIE_PIPE_CLK,
-> > > +	DW_PCIE_CORE_CLK,
-> > > +	DW_PCIE_AUX_CLK,
-> > > +	DW_PCIE_REF_CLK,
-> > > +	DW_PCIE_NUM_CORE_CLKS
-> > > +};
-> > > +
-> > > +enum dw_pcie_app_rst {
-> > > +	DW_PCIE_DBI_RST,
-> > > +	DW_PCIE_MSTR_RST,
-> > > +	DW_PCIE_SLV_RST,
-> > > +	DW_PCIE_NUM_APP_RSTS
-> > > +};
-> > > +
-> > > +enum dw_pcie_core_rst {
-> > > +	DW_PCIE_NON_STICKY_RST,
-> > > +	DW_PCIE_STICKY_RST,
-> > > +	DW_PCIE_CORE_RST,
-> > > +	DW_PCIE_PIPE_RST,
-> > > +	DW_PCIE_PHY_RST,
-> > > +	DW_PCIE_HOT_RST,
-> > > +	DW_PCIE_PWR_RST,
-> > > +	DW_PCIE_NUM_CORE_RSTS
-> > > +};
-> > > +
-> > >  struct dw_pcie_host_ops {
-> > >  	int (*host_init)(struct dw_pcie_rp *pp);
-> > >  	void (*host_deinit)(struct dw_pcie_rp *pp);
-> > > @@ -332,6 +369,11 @@ struct dw_pcie {
-> > >  	int			num_lanes;
-> > >  	int			link_gen;
-> > >  	u8			n_fts[2];
-> > > +	struct clk_bulk_data	app_clks[DW_PCIE_NUM_APP_CLKS];
-> > > +	struct clk_bulk_data	core_clks[DW_PCIE_NUM_CORE_CLKS];
-> > > +	struct reset_control_bulk_data	app_rsts[DW_PCIE_NUM_APP_RSTS];
-> > > +	struct reset_control_bulk_data	core_rsts[DW_PCIE_NUM_CORE_RSTS];
-> > > +	struct gpio_desc		*pe_rst;
-> > >  };
-> > >  
-> > >  #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
-> > > -- 
-> > > 2.38.1
-> > > 
-> > > 
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
+The original device tree is broken because it doesn't include compatible
+strings for devices on a generic bus. There's no way to fix that other
+than hard-coding the driver. This can be done for some buses, but this
+is an MDIO bus and we already assume devices without compatibles are
+PHYs.
 
--- 
-மணிவண்ணன் சதாசிவம்
+In the next version of this series, I will include a compatibility
+function which can bind a driver automatically if one is missing when
+looking up a phy. But I would really like to have an exit strategy.
+
+--Sean
