@@ -2,61 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97890627F6A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 13:59:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31AC2627F8C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 14:00:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237605AbiKNM7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 07:59:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52556 "EHLO
+        id S237643AbiKNNA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 08:00:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237602AbiKNM7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 07:59:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CF163CC;
-        Mon, 14 Nov 2022 04:59:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2627EB80EAF;
-        Mon, 14 Nov 2022 12:59:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5DE9C433D6;
-        Mon, 14 Nov 2022 12:59:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668430741;
-        bh=mIg23pKPFLK0PkpdC5Bu9BP433GCopKjuM2NT2OEBkc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hunFjVVaaFzGk6JM0HXJ8MBdy6SzFWI7ep8GBUNhJAbBwVoTvhCW4OHaFO8Jf197E
-         gRDy1/VrbzJy8R0Zb5IXYMHy2P8Te234zqWgo2EjCTQ3n8sKcV7/oaK93b70cilCSU
-         OWmeIeDpOEraOmZTQTdqsBMgiaiLs7ec1LsM3G8uvmx1Ug4sRh5Ts/e0FizD/KXDlN
-         21HwQIK+hKBofGTrVlfL+NbrKv2Uai0XBQjKsUtZF64Z9IoD8HrkP//zJ+cX3sPoT6
-         4Cz6takmhNOuZSADFFAZJBrRue4yBJyCOx/sjkSQbIdVvnIteiEYgJr7S6tW0CaO4J
-         sg28H5aBKr+Dw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ouZ2j-0002VJ-Tt; Mon, 14 Nov 2022 13:58:29 +0100
-Date:   Mon, 14 Nov 2022 13:58:29 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S237646AbiKNNA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 08:00:27 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE24E2870E
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 05:00:25 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id g12so19180535lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 05:00:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n2v6dXeivccfrn+WhZzJKqoLRW18Q+k95BcJxS2Nft8=;
+        b=rl4Z7TiqBNvWPnhXh20wrOVuEE0wnCeMX6CSjyrdR3T1EEkoA1NKS/aVGWZYFtAZcr
+         vLqkdcGuxLaLEfazCkIBb0gwRhCTBZD6F4IBBXheK5Re9GoiZ7Eut6vScYrrLU6W5ZgI
+         EJEbQ54BV70qZwc6xuX3tq+j1Yuhtu6kON4IfDpQMB+cxsn9s2fYUW4V1LHvDj1b/eE9
+         FCIWE5HsPKK8+Vmfo75AUev7GvEUZxC+HIVVbxw9fGbCgKY30b59b77YmaraD+v+SF+t
+         odwE8AjsyIp5yRnRZ8V7oFyVtnOJVBH/941y61HKOBBsU1wLO9iOPs85TX4GnJbOvOnT
+         0AhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n2v6dXeivccfrn+WhZzJKqoLRW18Q+k95BcJxS2Nft8=;
+        b=roDzWgHcTMiSe/Kq070153ZvYAK0g+sA637AQzKCaB0Nnnb5TiDALrKvCkGUHqg6yn
+         GZWa4+SVdS7QKnakhBhRTZC0gVUND9ntXryzOVDCQQizBgtl0nTFsIrJkv5GduoES3C7
+         Qq18MPMcks9/mVwNiXlDB2JxiLLwR7A99yZI/rgwIn4yjqUksD5Dxo2xWAC2rTdUqvLE
+         01ykDVW7E/cGpAqUuBCiUYIESJgSMMOh5H3QTPIYaS4j+83no9Xq7alWJzLAAsqq0CjC
+         2mr/TV+vtbbthu1blW5Xi6Ujt4oxRfk8bJXPT0P6gRwqPYS2t5HAWcMpQGnT6XU8p0H4
+         Yv2w==
+X-Gm-Message-State: ANoB5pmkbHHilJ9Vhqahn8kyzxX3mgE7PLwtLAkR1JwCGyRSaSa88W6T
+        r11faIvsX5GWaBBANjQ4VFJ4aA==
+X-Google-Smtp-Source: AA0mqf6Y/jRSNo3kplGT/QnTrZAPtMxVjojG2hI/OrS5/UtbcwQzGqM++6h36xwYu9aPAcYHLeGkkg==
+X-Received: by 2002:ac2:5b9d:0:b0:4a2:19e0:1266 with SMTP id o29-20020ac25b9d000000b004a219e01266mr3679582lfn.264.1668430824179;
+        Mon, 14 Nov 2022 05:00:24 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id l10-20020a056512110a00b004948b667d95sm1814784lfg.265.2022.11.14.05.00.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 05:00:23 -0800 (PST)
+Message-ID: <0121fc03-b027-7659-5e6e-b42089c9888d@linaro.org>
+Date:   Mon, 14 Nov 2022 14:00:22 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/9] dt-bindings: arm-smmu: Allow up to 3 power-domains
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 14/14] phy: qcom-qmp-combo: add support for updated
- sc8280xp binding
-Message-ID: <Y3I7deJYKRAUc0Q6@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-15-johan+linaro@kernel.org>
- <ae61af60-46ef-e455-6063-e47238c608b1@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ae61af60-46ef-e455-6063-e47238c608b1@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221114104222.36329-1-konrad.dybcio@linaro.org>
+ <20221114104222.36329-2-konrad.dybcio@linaro.org>
+ <6fa8e3ea-2113-d930-96bc-3726d53e5bcd@linaro.org>
+ <a4b160d8-0faa-3f4c-a925-0beaf6ace721@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a4b160d8-0faa-3f4c-a925-0beaf6ace721@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,54 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 12, 2022 at 02:36:23PM +0300, Dmitry Baryshkov wrote:
-> On 11/11/2022 12:24, Johan Hovold wrote:
-> > Add support for the new SC8280XP binding.
-> > 
-> > Note that the binding does not try to describe every register subregion
-> > and instead the driver holds the corresponding offsets.
-> > 
-> > Also note that (possibly) unlike on earlier platforms, the TX registers
-> > are used by both the USB and DP implementation.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 143 ++++++++++++++++++++--
-> >   1 file changed, 133 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > index 0a4d53e6c586..544a7e55bf14 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > @@ -798,9 +798,25 @@ static const u8 qmp_dp_v5_voltage_swing_hbr_rbr[4][4] = {
-> >   
-> >   struct qmp_combo;
-> >   
-> > +struct qmp_combo_offsets {
-> > +	u16 com;
-> > +	u16 txa;
-> > +	u16 rxa;
-> > +	u16 txb;
-> > +	u16 rxb;
+On 14/11/2022 12:17, Konrad Dybcio wrote:
 > 
+> On 14/11/2022 12:01, Krzysztof Kozlowski wrote:
+>> On 14/11/2022 11:42, Konrad Dybcio wrote:
+>>> Some SMMUs require that a vote is held on as much as 3 separate PDs
+>>> (hello Qualcomm). Allow it in bindings.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>> Changes since v1:
+>>> - Add minItems
+>>>
+>>>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
+>>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>> index 9066e6df1ba1..82bc696de662 100644
+>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>> @@ -159,7 +159,8 @@ properties:
+>>>             through the TCU's programming interface.
+>>>   
+>>>     power-domains:
+>>> -    maxItems: 1
+>>> +    minItems: 0
+>> It cannot be 0.
+>>
+>> minItems: 1
+>>
+>> Anyway you still need to restrict it per variant, as I said in previous
+>> version.
 > 
-> Yes, txa/txb are more in spite of the vendor headers. I'd sill suggest 
-> to use tx/tx2 and rx/rx2 as used everywhere in the QMP driver.
+> Hm.. I'm not entirely sure what you mean.. Should I add a list of 
+> compatibles
 
-I don't see any reason for making up names when we can use names that
-match the hardware and do the conversion in one place when parsing the
-devicetree.
+Yes and limit it to maxItems: 1 for "else".
 
-If anything we should probably rename tx/tx2 at some point (as either
-tx0/tx1 or txa/txb).
+> that are allowed to have 3 power-domains and leave it as it was before 
+> in the
+> 'else' case?
 
-> > +	u16 usb3_serdes;
-> > +	u16 usb3_pcs_misc;
-> > +	u16 usb3_pcs;
-> > +	u16 usb3_pcs_usb;
-> > +	u16 dp_serdes;
-> > +	u16 dp_dp_phy;
-> > +};
-> > +
+Best regards,
+Krzysztof
 
-Johan
