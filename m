@@ -2,139 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7FD628393
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C2F6283AE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:19:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236983AbiKNPMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:12:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
+        id S237215AbiKNPTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:19:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237111AbiKNPMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:12:37 -0500
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE43BCAB;
-        Mon, 14 Nov 2022 07:12:35 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 5F49C5C0118;
-        Mon, 14 Nov 2022 10:12:32 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Mon, 14 Nov 2022 10:12:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1668438752; x=
-        1668525152; bh=0AuGUPMpHoja+9h2KXd2rB+g1YZCSmA/pv709yYusZs=; b=N
-        imHqBCHQBx3TqPO+3otVYxSKGkXs9YDWBK8oMsEYTqKR9EoIJCrmDRSKajhuDm+t
-        xLTCyKkRPHs3O+ij5BTy63PS+jupxgqF2umtceFZYgbFE6YTCKe0Qn8CTzph7Bjn
-        QXzhCpOSapHICvU7ROHCfPBYRQVufWoovONSGqAJ37ZE9q/NXHU+U5e61EMfWBd8
-        Ahjy4T/tkZ51WxkXz3RrkIlrMoWqVDXqUVyJ9Fz/k+FZlBEsiXfTHIsnUev/DwpC
-        F57eKOjmtj+8dv1yrTj5BYuE0SdxDbXIfXb/wBR7//tX36prdU86J03rJrY0sDwy
-        Tj2Yq7jEoMiXYGkyy164Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668438752; x=
-        1668525152; bh=0AuGUPMpHoja+9h2KXd2rB+g1YZCSmA/pv709yYusZs=; b=l
-        fQLNXCnKbkA0PiBeyW6h5RRt+6oD3D8Q3pbG6mY5+RoQhd7+cLjQum8Q9DJJvZ51
-        CNijv/9Fiil1hA305ooBtfYIF98WNix84zLxX+ONDuYL2twQBQKStuY3y/hbyzcW
-        IiJHKEFyHI+WwhUr0vJJ3GyJd54VQeY4J1XvzOQ2CZe62IFDausnwo0Ad1LVF62d
-        deZlOsPB61X3dffxQ8zzhp3Yaf0Bj36tu/ZmMAY7YCKVc8SIXdOPpm23wYKaYJj0
-        S1RZDBlUXA6FXgGCXJHGaMX8X5z2jbHR4xfrW853TuejXe/+7Z3y+jHes3/M5UeE
-        SI+ifKZ53v+kiAaX0GQ+Q==
-X-ME-Sender: <xms:31pyY0VjEwxO4EUW4JC-rkT1WJFaktgNwfoQbSCB5gxKgs312nLL7Q>
-    <xme:31pyY4leAzEB72KnV4EBvk3-i2PolJiBgggZsJXDnLCatVeqbipug-HYUp6hA00zx
-    v5IrrOpB7sRFJdxG-s>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedvgdegiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
-    jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:31pyY4auCtGnKuYCUHE2ey5OhveTmmnaHss32ff3o_ZAfOKV6FBdmQ>
-    <xmx:31pyYzUfxPb39MIdkWZo6zEyNV4CjCgkn-RgocA9m2SnJdYX2H44hQ>
-    <xmx:31pyY-mrqjwT4Db8756KAc9bjOnJuyrTpS42w7ymvcQiTlaIj1wFkA>
-    <xmx:4FpyY8tZffa25m1byUcHEEBq8VzuHYfdg-DU2LEaArTgu7bxeNKDiQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id C3AF2B60086; Mon, 14 Nov 2022 10:12:31 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <48a6bfab-6b88-4a5a-989d-ab87430290c7@app.fastmail.com>
-In-Reply-To: <20221102171012.49150-1-kory.maincent@bootlin.com>
-References: <20221102171012.49150-1-kory.maincent@bootlin.com>
-Date:   Mon, 14 Nov 2022 16:12:11 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
-        "Viresh Kumar" <viresh.kumar@linaro.org>,
-        "Shiraz Hashim" <shiraz.linux.kernel@gmail.com>,
-        "Vipin Kumar" <vipin.kumar@st.com>,
-        "Vijay Kumar Mishra" <vijay.kumar@st.com>,
-        "Deepak Sikri" <deepak.sikri@st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
-        "Viresh Kumar" <vireshk@kernel.org>, soc@kernel.org,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Russell King" <linux@armlinux.org.uk>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Gregory Clement" <gregory.clement@bootlin.com>,
-        "Neil Armstrong" <neil.armstrong@linaro.org>,
-        "Alexandre Ghiti" <alexandre.ghiti@canonical.com>,
-        "Rajeev Kumar" <rajeev-dlh.kumar@st.com>,
-        "Vipul Kumar Samar" <vipulkumar.samar@st.com>
-Subject: Re: [PATCH v2 0/6] Support new features to the SPEAr600
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237208AbiKNPT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:19:29 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958C46462
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:19:28 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id bp15so19745251lfb.13
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:19:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s4qZK+7Yu5In+UGyLhgCuDgQLMaWOt08UJeOqh2oGhw=;
+        b=emhOMbjzzww1AVtCE0BIcdbg90+NXwBG+sDpW2IiOedAX1gNoTeO/3Gkg+NP3Ipc65
+         AZOPsqLXQOvmn1vF6ZmBVwiFG00UXe5sc1RyAYEe+s2odFUJ2+9l5DxYPx7nL7u+XE9e
+         5KZlqWQC07nothoXFiTKx/c7IyUt1fcBCE09xJ6hzPw4/F7dVrExcOVJCk+CkqnsMMZv
+         HXuHjOiA6cst3u0dz/tFnhJ2e5O1Oei0tmVrxeZVimU0M0hwwd0Q1Il2/+xuCBX5OlPo
+         qIe1wtMjAOYcLMq+XtcuZNAVWnZGJw5ZQF47P3lxUG1yG73TQ61ZNUk8Zj6bXSOldsXr
+         0v6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s4qZK+7Yu5In+UGyLhgCuDgQLMaWOt08UJeOqh2oGhw=;
+        b=z1BVbCgHE9WBlmHejuX6petSClqV3REGJyuTz+4+uZ8D3UOYDVKkdOrgu/8szbgv2Y
+         iei/0RVP3gYLSIOD/Z+5pPV47U6xnNlmq/E8Bn1hIxwjlkLE3gN8fJMiUDnFaKIVrEGw
+         TXvjOY10Cubw6x2s0yR+QkNqJKN+L/tDVMBEkYp04reTC/3QRG/vDp6hy6z9hrU4IU4c
+         FDhmvWqnp/RtvE1r4du0LYu26ij3pyjCziLRpSmLJgC06Ao22Twd7d+eupXO3GOL2W3H
+         GxunMsN8BErqApqwt4REF/Dt/hK5Pk7qEiaqkX5+WwdPkkgcjkzM4b0NSBfwtvsfyZhi
+         JV7g==
+X-Gm-Message-State: ANoB5pmH7iBGK4KJnptkJis19B06bwYcKg7XUytQKBEIP4SzU0w4urvS
+        Zn1tF8ugCafpQkwQOvBVua6fQA==
+X-Google-Smtp-Source: AA0mqf7veRF5xNa75Gb2ttLpByTFoLlWD7Us1WXZrNtszCy+XYC07Ejh2ODD7bykiw3P1st5l3kUjg==
+X-Received: by 2002:a05:6512:2345:b0:4ae:d4db:9f89 with SMTP id p5-20020a056512234500b004aed4db9f89mr4098057lfu.174.1668439166935;
+        Mon, 14 Nov 2022 07:19:26 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id p4-20020ac24ec4000000b00498f570aef2sm1854905lfr.209.2022.11.14.07.19.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 07:19:26 -0800 (PST)
+Message-ID: <78cda6f8-849c-219a-8dbb-966c283c1a92@linaro.org>
+Date:   Mon, 14 Nov 2022 18:19:25 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
+ bindings
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111092457.10546-1-johan+linaro@kernel.org>
+ <20221111092457.10546-3-johan+linaro@kernel.org>
+ <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
+ <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
+ <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
+ <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 2, 2022, at 18:10, K=C3=B6ry Maincent wrote:
-> From: Kory Maincent <kory.maincent@bootlin.com>
->
-> This patches series adds two features of the SPEAr600 SOC:
->
-> - Enable the display controller
->
-> - Enable the SPI buses using the SSP controller
->
-> Changes in v2:
-> - Keep the I2C_CONFIG in the spear6xx_defconfig while enabling DRM.
-> - Send cover letter which was not sent in v1 due to a mistake in my git
->   mail config.
->
-> Viresh, will you take the patches and submit a pull request to the ARM=
- SoC
-> maintainers?
->
-> Kory Maincent (6):
->   arm: configs: spear6xx: Refresh defconfig
->   arm: dts: spear600: Fix clcd interrupt
->   arm: configs: spear6xx: Enable PL110 display controller
->   clk: spear: Fix CLCD clock definition on SPEAr600
->   arm: dts: spear600: Add ssp controller nodes
->   clk: spear: Fix SSP clock definition on SPEAr600
+On 14/11/2022 17:18, Johan Hovold wrote:
+> On Mon, Nov 14, 2022 at 03:07:41PM +0100, Krzysztof Kozlowski wrote:
+>> On 14/11/2022 14:27, Johan Hovold wrote:
+>>> On Fri, Nov 11, 2022 at 04:17:29PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 11/11/2022 10:24, Johan Hovold wrote:
+>>>>> The current QMP USB3-DP PHY bindings are based on the original MSM8996
+>>>>> binding which provided multiple PHYs per IP block and these in turn were
+>>>>> described by child nodes.
+> 
+>>>>> +  "#clock-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  clock-output-names:
+>>>>> +    items:
+>>>>> +      - const: usb3_pipe
+>>>>> +      - const: dp_link
+>>>>> +      - const: dp_vco_div
+>>>>
+>>>> Why defining here fixed names? The purpose of this field is to actually
+>>>> allow customizing these - at least in most cases. If these have to be
+>>>> fixed, then driver should just instantiate these clocks with such names,
+>>>> right?
+>>>
+>>> I'm only using these names as documentation of the indexes. The driver
+>>
+>> What do you mean by documentation of indexes? You require these specific
+>> entries and do not allow anything else.
+> 
+> I'm using this property as documentation of the valid indexes that can
+> be used when referring to clocks provided by this device.
+> 
+> There are currently three and the mapping is described by the
+> 'clock-output-names' property.
+>   
+>>> doesn't use these names, but that's a Linux-specific implementation
+>>> detail.
+>>>
+>>> I noticed that several bindings leave the clock indexes unspecified, or
+>>> have header files defining some or all of them. I first added a QMP
+>>> header but that seemed like overkill, especially if we'd end up with
+>>> one header per SoC (cf. the GCC headers) due to (known and potential)
+>>> platform differences.
+>>
+>> Headers for the names? I do not recall such but that does not seem right.
+> 
+> Headers for the indexes.
+> 
+>>>
+>>> On the other hand reproducing this list in each node is admittedly a bit
+>>> redundant.
+>>>
+>>> Shall I add back a shared header for all PHYs handled by this driver
+>>> (another implementation detail) even if this could eventually lead to
+>>> describing clocks not supported by a particular SoC (so such constraints
+>>> would still need to be described by the binding somehow):
+>>>
+>>> 	/* QMP clocks */
+>>> 	#define QMP_USB3_PIPE_CLK	0
+>>> 	#define QMP_DP_LINK_CLK		1
+>>> 	#define QMP_DP_VCO_DIV_CLK	2
 
-I've picked up patches 1 and 3 into the arm/defconfig branch,
-and patches 2 and 5 into the soc/dt branch now.
+Maybe QMP_COMBO_USB3_PIPE_CLK, QMP_COMBO_DP_LINK_CLK, 
+QMP_COMBO_DP_VCO_DIV_CLK?
 
-I can also take patches 4 and 6, but I think it's better to have
-them merged through the clk tree.
+I'll then extend this header with QMP_UFS_RX_SYMBOL_0_CLK 
+QMP_UFS_RX_SYMBOL_1_CLK and QMP_UFS_TX_SYMBOL_0_CLK.
 
-Maybe resend them to just the clk maintainers.
+>>
+>> What are these about? To remind - we talk about names of clocks this
+>> device creates. The output names. Whatever IDs you have are not related
+>> to the names.
+> 
+> As I mentioned above, this is not about the names that Linux gives to
+> its representation of these clocks. Its just about defining the valid
+> indexes in the binding.
+> 
+> If you think that that using 'clock-output-names' for this is a bit too
+> unconventional, I can add back the header with defines like the above
+> instead.
+> 
+> Note that the clock schema has:
+> 
+>    clock-output-names:
+>      description: |
+>        Recommended to be a list of strings of clock output signal
+>        names indexed by the first cell in the clock specifier.
+>        However, the meaning of clock-output-names is domain
+>        specific to the clock provider, ...
+> 
+> Johan
 
-       Arnd
+-- 
+With best wishes
+Dmitry
+
