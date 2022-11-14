@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E92ED6282D7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8817E6282C7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:38:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237103AbiKNOjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:39:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
+        id S236882AbiKNOib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:38:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237048AbiKNOiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:38:55 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4A423391
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:43 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id 4so10271031pli.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:43 -0800 (PST)
+        with ESMTP id S236454AbiKNOi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:38:27 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCCE242
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:24 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id l11so17625995edb.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:38:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y76ZfgfBJidUYPCMV+vRUvTiWIMgw/TUrl068PoooHY=;
-        b=YZzT61sjhV2pf6Bt9OLNYTSEz9HPAKEC3Yo6V74N1aZWIxU13Qi60cbmbWOoCwxXM4
-         /HWVpyqglYQRijLVoqj7/wnyitsyzORSVDJ7alVcDnlS0aa6wnoUfiH8Sh4186MFLHtq
-         AJ8kAddluKGCsk9v5u/5Zr0jhRrkY19MtQP4NpWjFSUo6LmkJZP4KkPJn/NOUJ3WgkfU
-         ECD/XHus1eR3A1YjGSxw1Sgab9EJ1CZ5PEH3cSRs8WKAb0o846vBchYu7AovFr1ufW2Z
-         wjM0g04pFCM5TazaTkB2VaVT4svlDuDIGchk8nncosHe+AddmQP7F1US1+0Fup5/x0Mv
-         Ei9w==
+        bh=LqqUx7jeg7y/E/nMBqurpKnaZhcr17k+jJ5fcyWu3v8=;
+        b=MYcwephvYa7GUyaY/QiqWOye2J3Ho6Kj5JLdQDYdGyLGfi+PHjARZinsjkO1TAlf7y
+         jHZJblFrgtaOCc0us6rUhw+znVI/kunPlp1jVju59gkHP6V+YcEi651j9dfi85LXRlc9
+         uBiT+UZAbwg6c30O0vJjSx0849O0h+VIoHWA8K7bM6RUugRWh/NITNC1pdYztdiaw6Me
+         YJfKnr6ACBRUC2QV/5vOEwy/UsSWB3/2dKALu+CEYBJMk9vwvUW8Pco/TYVL85mDt1cz
+         fwR8QHbm8xUaglZ/QmfIH+8iBF1G4WbJQ0SJU3O8M/azmFPOZTRKf5YmJRv6rKzkiHE0
+         Xkyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y76ZfgfBJidUYPCMV+vRUvTiWIMgw/TUrl068PoooHY=;
-        b=Fj1PF1xXpsTaOsxUZ9anHgkA6tTySzcqGQaoFPbbzQfi9v5GlAzWvpsRorkRPpPTrs
-         eBzGF37+jl0U1b8RC9Ccbvq0TOv5iwq2Cvw0sVYn/sa+iG1vgJj8pa4xLyazD3IJZbTx
-         YsfXgc2Wz24Cm5d1CFoGMnuToUtUedXQtO6mkdt8d6z5lJ32sJ4w0AAifMjSKPlbgKOP
-         bkwjSc4R9Rsu/GCxvzeBbdJDtfiyBYYjmOQGnZPNIBYE92kafdrWMTK3F+sQx6nJFaGC
-         GyGUWTxXdEJI0Nf2b+u9QvvmE5/B2RssmpiH2mj6EqpqUeNqqI0jN1UCQdVFf99VmVtf
-         LY8g==
-X-Gm-Message-State: ANoB5plu203e7FrmBoRS3aCOZG9LyGaF7e1i+PZb+NMcdbldcSZKzAhs
-        7l+rcx0Qj4h13XukMVffDq8g8A==
-X-Google-Smtp-Source: AA0mqf6vSr+brUvvy98DTKzeelAh8JJ54syk8GbsIJ2Ea9Aw6FbBNR/r7KP4qCnl/1dgcZLjTwpXGw==
-X-Received: by 2002:a17:902:c702:b0:186:9295:2012 with SMTP id p2-20020a170902c70200b0018692952012mr13680502plp.19.1668436723438;
-        Mon, 14 Nov 2022 06:38:43 -0800 (PST)
-Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id h12-20020a056a00000c00b0056bc742d21esm6977381pfk.176.2022.11.14.06.38.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 06:38:42 -0800 (PST)
-From:   Andy Chiu <andy.chiu@sifive.com>
-To:     davem@davemloft.net, andrew@lunn.ch, kuba@kernel.org,
-        michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
-        greentime.hu@sifive.com, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 RESEND net-next 3/3] dt-bindings: describe the support of "clock-frequency" in mdio
-Date:   Mon, 14 Nov 2022 22:37:55 +0800
-Message-Id: <20221114143755.1241466-4-andy.chiu@sifive.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20221114143755.1241466-1-andy.chiu@sifive.com>
-References: <20221114143755.1241466-1-andy.chiu@sifive.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LqqUx7jeg7y/E/nMBqurpKnaZhcr17k+jJ5fcyWu3v8=;
+        b=fjovM1fXKUX+XlzZIZ1M8b1sbvmjT4ibD4/g04+W1uxRhudkO0UKygpmFO3+BO/xYX
+         sAZ5ALOPtFvw9xmchznvrYnHgyCFwf5PpeMVht+GsBCHzZ8BLoBx3HxtMiia/RdNvTc2
+         X2lF7INstMemBbkLbvl44naosJTb+3kan4SIbOZcNY/TKSqMBnhrJ8y3u+JZQTl78c3Q
+         VOlz/+/hVel620XMk5LndgbveRQWOLifaUDLzYBiQaEpeLc5u5llxsyMPO/f4ZXNlxYk
+         kOwT/LbPFSooWJUla59AJt4KtIs/ysQbYQ8s6tFTURc5WSoQku1Tl01/CA+jBG2YFrpF
+         /KPg==
+X-Gm-Message-State: ANoB5pkAC2pFIh+aNy+0LhOGyV8Yac4eI0qdY63CjQmGXoAEpp1aEuHB
+        /uP5DdWJZIX5hgoQJ57D1jaAeA==
+X-Google-Smtp-Source: AA0mqf6luQo4JVFA04VeRS35aPiZWQMhzTwbkk7AMirt++NdBLv+JTPJpxktifaK/f5XKJr+gEeKww==
+X-Received: by 2002:aa7:c95a:0:b0:458:b6dc:2b56 with SMTP id h26-20020aa7c95a000000b00458b6dc2b56mr11628589edt.412.1668436702715;
+        Mon, 14 Nov 2022 06:38:22 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id ce12-20020a170906b24c00b007addcbd402esm4255069ejb.215.2022.11.14.06.38.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 06:38:22 -0800 (PST)
+Message-ID: <364844bf-73ca-96b6-cc17-893709ed5b9b@linaro.org>
+Date:   Mon, 14 Nov 2022 15:38:18 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350-sagami: Add most RPMh
+ regulators
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114143642.44839-1-konrad.dybcio@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221114143642.44839-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,30 +76,398 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-mdio bus frequency can be configured at boottime by a property in DT
-now, so add a description to it.
 
-Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/net/xilinx_axienet.txt | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-index 1aa4c6006cd0..80e505a2fda1 100644
---- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-+++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-@@ -68,6 +68,8 @@ Optional properties:
-  - mdio		: Child node for MDIO bus. Must be defined if PHY access is
- 		  required through the core's MDIO interface (i.e. always,
- 		  unless the PHY is accessed through a different bus).
-+		  Non-standard MDIO bus frequency is supported via
-+		  "clock-frequency", see mdio.yaml.
- 
-  - pcs-handle: 	  Phandle to the internal PCS/PMA PHY in SGMII or 1000Base-X
- 		  modes, where "pcs-handle" should be used to point
--- 
-2.36.0
+On 14/11/2022 15:36, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Configure most RPMh-controlled regulators on SoMC Sagami. The missing
+> ones (on pm8350b and pm8008[ij]) will be configured when driver support
+> is added. Thankfully, it looks like PDX215 and PDX214 don't have any
+> differences when it comes to PM8350/PM8350C/PMR735a.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+Missing second S-o-b, sorry:
 
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>   .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 350 ++++++++++++++++++
+>   1 file changed, 350 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> index 93e88c40b3b9..f118caab3d42 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> @@ -3,6 +3,7 @@
+>    * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
+>    */
+>   
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>   #include "sm8350.dtsi"
+>   #include "pm8350.dtsi"
+>   #include "pm8350b.dtsi"
+> @@ -73,6 +74,16 @@ ramoops@ffc00000 {
+>   			no-map;
+>   		};
+>   	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+>   };
+>   
+>   &adsp {
+> @@ -80,6 +91,345 @@ &adsp {
+>   	firmware-name = "qcom/sm8350/Sony/sagami/adsp.mbn";
+>   };
+>   
+> +&apps_rsc {
+> +	regulators-0 {
+> +		compatible = "qcom,pm8350-rpmh-regulators";
+> +		qcom,pmic-id = "b";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +		vdd-s9-supply = <&vph_pwr>;
+> +		vdd-s10-supply = <&vph_pwr>;
+> +		vdd-s11-supply = <&vph_pwr>;
+> +		vdd-s12-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l4-supply = <&pm8350_s11>;
+> +		vdd-l2-l7-supply = <&vreg_bob>;
+> +		vdd-l3-l5-supply = <&vreg_bob>;
+> +		vdd-l6-l9-l10-supply = <&pm8350_s11>;
+> +
+> +		/*
+> +		 * ARC regulators:
+> +		 * S5 - mx.lvl
+> +		 * S6 - gfx.lvl
+> +		 * S9 - mxc.lvl
+> +		 */
+> +
+> +		pm8350_s10: smps10 {
+> +			regulator-name = "pm8350_s10";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350_s11: smps11 {
+> +			regulator-name = "pm8350_s11";
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <1000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350_s12: smps12 {
+> +			regulator-name = "pm8350_s12";
+> +			regulator-min-microvolt = <1224000>;
+> +			regulator-max-microvolt = <1360000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350_l1: ldo1 {
+> +			regulator-name = "pm8350_l1";
+> +			regulator-min-microvolt = <912000>;
+> +			regulator-max-microvolt = <920000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350_l2: ldo2 {
+> +			regulator-name = "pm8350_l2";
+> +			regulator-min-microvolt = <3072000>;
+> +			regulator-max-microvolt = <3072000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350_l3: ldo3 {
+> +			regulator-name = "pm8350_l3";
+> +			regulator-min-microvolt = <904000>;
+> +			regulator-max-microvolt = <904000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		/* L4 - lmx.lvl (ARC) */
+> +
+> +		pm8350_l5: ldo5 {
+> +			regulator-name = "pm8350_l5";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <888000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		pm8350_l6: ldo6 {
+> +			regulator-name = "pm8350_l6";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1208000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		pm8350_l7: ldo7 {
+> +			regulator-name = "pm8350_l7";
+> +			regulator-min-microvolt = <2400000>;
+> +			regulator-max-microvolt = <3008000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		/* L8 - lcx.lvl (ARC) */
+> +
+> +		pm8350_l9: ldo9 {
+> +			regulator-name = "pm8350_l9";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-allow-set-load;
+> +		};
+> +	};
+> +
+> +	regulators-1 {
+> +		compatible = "qcom,pm8350c-rpmh-regulators";
+> +		qcom,pmic-id = "c";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +		vdd-s9-supply = <&vph_pwr>;
+> +		vdd-s10-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l12-supply = <&pm8350c_s1>;
+> +		vdd-l2-l8-supply = <&pm8350c_s1>;
+> +		vdd-l3-l4-l5-l7-l13-supply = <&vreg_bob>;
+> +		vdd-l6-l9-l11-supply = <&vreg_bob>;
+> +		vdd-l10-supply = <&pm8350_s12>;
+> +
+> +		vdd-bob-supply = <&vph_pwr>;
+> +
+> +		pm8350c_s1: smps1 {
+> +			regulator-name = "pm8350c_s1";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1952000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		/* S2 - ebi.lvl (ARC) */
+> +
+> +		pm8350c_s3: smps3 {
+> +			regulator-name = "pm8350c_s3";
+> +			regulator-min-microvolt = <300000>;
+> +			regulator-max-microvolt = <704000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		/*
+> +		 * ARC regulators:
+> +		 * S4 - mss.lvl
+> +		 * S6 - cx.lvl
+> +		 * S8 - mmcx.lvl
+> +		 */
+> +
+> +		pm8350c_s10: smps10 {
+> +			regulator-name = "pm8350c_s10";
+> +			regulator-min-microvolt = <1048000>;
+> +			regulator-max-microvolt = <1128000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l1: ldo1 {
+> +			regulator-name = "pm8350c_l1";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l2: ldo2 {
+> +			regulator-name = "pm8350c_l2";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l3: ldo3 {
+> +			regulator-name = "pm8350c_l3";
+> +			regulator-min-microvolt = <3304000>;
+> +			regulator-max-microvolt = <3304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l4: ldo4 {
+> +			regulator-name = "pm8350c_l4";
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <3000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l5: ldo5 {
+> +			regulator-name = "pm8350c_l5";
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <3000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l6: ldo6 {
+> +			regulator-name = "pm8350c_l6";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l7: ldo7 {
+> +			regulator-name = "pm8350c_l7";
+> +			regulator-min-microvolt = <3008000>;
+> +			regulator-max-microvolt = <3008000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l8: ldo8 {
+> +			regulator-name = "pm8350c_l8";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l9: ldo9 {
+> +			regulator-name = "pm8350c_l9";
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <3008000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l10: ldo10 {
+> +			regulator-name = "pm8350c_l10";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l11: ldo11 {
+> +			regulator-name = "pm8350c_l11";
+> +			regulator-min-microvolt = <2400000>;
+> +			regulator-max-microvolt = <3008000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l12: ldo12 {
+> +			regulator-name = "pm8350c_l12";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		pm8350c_l13: ldo13 {
+> +			regulator-name = "pm8350c_l13";
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_bob: bob {
+> +			regulator-name = "vreg_bob";
+> +			regulator-min-microvolt = <3400000>;
+> +			regulator-max-microvolt = <3960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
+> +		};
+> +	};
+> +
+> +	/* TODO: Add pm8350b (just one ldo) once the driver part is in */
+> +
+> +	regulators-2 {
+> +		compatible = "qcom,pmr735a-rpmh-regulators";
+> +		qcom,pmic-id = "e";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l2-supply = <&pmr735a_s2>;
+> +		vdd-l3-supply = <&pmr735a_s1>;
+> +		vdd-l4-supply = <&pm8350c_s1>;
+> +		vdd-l5-l6-supply = <&pm8350c_s1>;
+> +		vdd-l7-bob-supply = <&vreg_bob>;
+> +
+> +		pmr735a_s1: smps1 {
+> +			regulator-name = "pmr735a_s1";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1280000>;
+> +		};
+> +
+> +		pmr735a_s2: smps2 {
+> +			regulator-name = "pmr735a_s2";
+> +			regulator-min-microvolt = <500000>;
+> +			regulator-max-microvolt = <976000>;
+> +		};
+> +
+> +		pmr735a_s3: smps3 {
+> +			regulator-name = "pmr735a_s3";
+> +			regulator-min-microvolt = <2208000>;
+> +			regulator-max-microvolt = <2352000>;
+> +		};
+> +
+> +		pmr735a_l1: ldo1 {
+> +			regulator-name = "pmr735a_l1";
+> +			regulator-min-microvolt = <912000>;
+> +			regulator-max-microvolt = <912000>;
+> +		};
+> +
+> +		pmr735a_l2: ldo2 {
+> +			regulator-name = "pmr735a_l2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pmr735a_l3: ldo3 {
+> +			regulator-name = "pmr735a_l3";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pmr735a_l4: ldo4 {
+> +			regulator-name = "pmr735a_l4";
+> +			regulator-min-microvolt = <1776000>;
+> +			regulator-max-microvolt = <1872000>;
+> +		};
+> +
+> +		pmr735a_l5: ldo5 {
+> +			regulator-name = "pmr735a_l5";
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <800000>;
+> +		};
+> +
+> +		pmr735a_l6: ldo6 {
+> +			regulator-name = "pmr735a_l6";
+> +			regulator-min-microvolt = <480000>;
+> +			regulator-max-microvolt = <904000>;
+> +		};
+> +
+> +		pmr735a_l7: ldo7 {
+> +			regulator-name = "pmr735a_l7";
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <2800000>;
+> +		};
+> +	};
+> +};
+> +
+>   &cdsp {
+>   	status = "okay";
+>   	firmware-name = "qcom/sm8350/Sony/sagami/cdsp.mbn";
