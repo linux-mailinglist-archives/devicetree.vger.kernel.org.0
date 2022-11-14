@@ -2,68 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C896285FB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:50:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE830628605
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 17:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235733AbiKNQuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 11:50:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59210 "EHLO
+        id S237789AbiKNQvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 11:51:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237813AbiKNQu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:50:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F3F3F06A;
-        Mon, 14 Nov 2022 08:49:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B054BB8109E;
-        Mon, 14 Nov 2022 16:49:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E2CCC433D6;
-        Mon, 14 Nov 2022 16:49:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668444552;
-        bh=LuJxQ9ZanWwnw6gRktwMAxkqB/xkzJBmxo3YkByYA9w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ceHRkkVHhXHdYIA5qM3TOM53J0yknkuAm0/hqLxZTaEEg7wILiap84KIy08zO+IqN
-         WRpfRlwc23A7NxuimodBlrgbL58XAk/YjRN269HxMKl0Ekg7iXs1efW1GSd7qZXYSd
-         5jdg6nthpl+hAAyykmMdUAaPzE/mOI5KV8wKLXwW4MeBWo1F2MD3kjM+dik+l5df2F
-         bFQ/EmKVmd/rTDSXTAUenNoOGaq4TiOPFVs4/7UAjw7n4HPfu2ZyGqsAO9agkvAESY
-         PNp1nW1iVj3mHemhWa3sMLmQtoAQNQs3r+2QpOMxh2A1+z002TmPI+MlUc/Q740YZ3
-         FgEOVC0+2fPfQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oucdT-0005EO-Oy; Mon, 14 Nov 2022 17:48:40 +0100
-Date:   Mon, 14 Nov 2022 17:48:39 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S236651AbiKNQvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 11:51:21 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEEB3134A
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:51:07 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id j16so20202661lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 08:51:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tDefeFOW+fjlJ4uGNcUgwly22kaxUqvW0JzM0upSvxo=;
+        b=r4MppkcU0QYGwv20P5KS50okZi9kRvIohxqMTuhCU4vWZG61tPs/9DZc8cQlWPbDv1
+         FBBHUpn/h79LVc5TMD+UHZIyucBWuQJZjdkTUdsTF5TDl4SB96uCkEXNir6foH09+K7D
+         sxSalJVMThPrDWqaVB8/KyZXGLb4vo8ZLkpm4d9R1NLPGs3aRHgFXbdkPOaV2r/XpHIq
+         2B98EbXuiLoxKrhZLI16hHeI9CV3Db1sE630xmkm3mHZBHrIe9/gyeQNfZtcJnXK7cUj
+         9r4uEVH8jXRZlwIg+XhUcdj3sgVzEfCPOFuDWM4ZpJJo6cpHDHlLKpKe3U2B4LVZqlNN
+         NSkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tDefeFOW+fjlJ4uGNcUgwly22kaxUqvW0JzM0upSvxo=;
+        b=G4fflWQsUk8jYJFr32T3HjaMsVpjaAmZODuFzMUCODTEulh0X7MI7eRG/gcmUXW+Ow
+         fElppZpWSMbZTxS+mrFQBCOw1DyJb1UfgoGChThEevIkotzD6ODuDAYBhyjbsWDYR+1R
+         Q+oOUGgaeNGNJ6aRMJZEVVjO5Eps1RjAUykVFUNP9zZhTQd1xUcjvlDtlab1F70HGm7P
+         HouPiPLiyw/EFnfvLxYkJ6wNhQpK6FZi40Y2yLNdnDuCvaF2nEXw9nsYJn5r0mCECdHw
+         D6sBd4yurwUDZUEqbuhEO3boRMCmkT7/cJQNvetw9FdFLQdIYFqhm3DoPdXkcQCMMXjR
+         OnGQ==
+X-Gm-Message-State: ANoB5pl0+UaRr1G9QI8gjx1UsiF72j6dS8Q9paESnTH9GNnmiN9Ui6ie
+        vdjRXmJhgdaoNsALTydUKWcXyw==
+X-Google-Smtp-Source: AA0mqf4nBo7CZmb6pOqZhj+G0BAY0ykcwrUx9j7DLuu0rHgU4YKuk9gqHTELt1CB/C0l4OEVtjkT/Q==
+X-Received: by 2002:ac2:5ccb:0:b0:4a2:4f74:f47c with SMTP id f11-20020ac25ccb000000b004a24f74f47cmr4173672lfq.367.1668444665569;
+        Mon, 14 Nov 2022 08:51:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y20-20020ac24214000000b004b384ae61absm1881087lfh.198.2022.11.14.08.51.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 08:51:05 -0800 (PST)
+Message-ID: <a3e5d695-535e-8587-6ccc-4c65fbeba278@linaro.org>
+Date:   Mon, 14 Nov 2022 17:51:04 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y3JxZ+yFMLZkwNBi@hovoldconsulting.com>
-References: <20221111092457.10546-1-johan+linaro@kernel.org>
- <20221111092457.10546-3-johan+linaro@kernel.org>
- <a22888cd-34cb-3453-0dc2-096da208564c@linaro.org>
- <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
- <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
- <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
- <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
- <Y3JthM1jC2vH1Kn+@hovoldconsulting.com>
- <efd412d0-7411-8b0b-4700-9e183a592048@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <efd412d0-7411-8b0b-4700-9e183a592048@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20221110162126.103437-1-biju.das.jz@bp.renesas.com>
+ <20221110162126.103437-2-biju.das.jz@bp.renesas.com>
+ <ae35fd75-64d3-3ab9-8cc0-3cbcc9c34b78@linaro.org>
+ <OS0PR01MB59229179DE3D3D00C4963F3186009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <a7bbfdd1-1abd-2ee5-1d32-47d0bcb7e1f2@linaro.org>
+ <OS0PR01MB5922863B8EC8DF54D8E881FE86009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB5922C8A590502C8820B05A7186059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <839d9740-e814-897e-d484-ded3d531a97a@linaro.org>
+ <OS0PR01MB59226FC7CA88208AB5C0AED586059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB59226FC7CA88208AB5C0AED586059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,32 +90,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 05:39:26PM +0100, Krzysztof Kozlowski wrote:
-> On 14/11/2022 17:32, Johan Hovold wrote:
-
-> > Fair enough, I'll drop it. But there doesn't seem to be a good way to
-> > describe the indexes currently and most bindings simply ignore to do so.
-> > 
-> > So what is the preference then? Just leave things undocumented, listing
-> > indexes in a free-text 'description', or adding a free-text reference to
-> > a binding header file and using those define names in a free-text
-> > 'description'?
+On 14/11/2022 17:44, Biju Das wrote:
+>>>>> If the hardware manual said this is called "foo-whatever-name" or
+>>>>> "rz85736dfnx2", you would use it as well?
+>>>>>
+>>>>> Node names should be generic.
+>>>
+>>> I got the following feedback from LSI team.
+>>>
+>>> *The reason why we use "configuration" and not "controller" is the
+>>> possibility that users might take it to mean "control" of system
+>>> operation (product operation). This unit determines how the whole LSI
+>> configure to operate LSI, so we use "configuration" for this IP name.
+>>>
+>>> As per this it is not a controller. It is a Configuration IP.
+>>>
+>>> What should be generic node name for system configuration IP?
+>>
+>> Then it's closer to chipid and should be in hwinfo?
 > 
-> Either 2 or 3. Several bindings for small number of constants choose
-> option 2.
+> You mean, sys: hwinfo@a3f03000 instead of sys: system-configuration@a3f03000 ??
 
-Ok, we have three now, but USB4 will bump this to ten or so.
- 
-> > And if going with the last option, does this mean that every SoC and PHY
-> > type needs its own header for those three clocks or so to avoid having
-> > a common dumping ground header file where indexes will not necessarily
-> > be 0-based and consecutive.
+Rather be put in hwinfo directory. Typical name is "chipid", but I don't
+know if your device is a chipid.
+
 > 
-> phy-qcom-qmp-combo.c has one qcom_qmp_dp_clks_hw_get(), so why would you
-> have many of header files?
+> Also the same IP block is present on rz/v2ma as well?
+> 
+> Shall I use the same file renesas,rzv2m-sys.yaml for both r9a09g011-sys and r9a09g055-sys?
+> 
+>>
+>> Anyway, you wrote in bindings description: "performs system control", so what
+>> can I say?
+> 
+> SYS functional description is as follows.
+> 
+> The SYS controls the overall configuration of the chip, such as
 
-We don't know what kind of clock outputs later revisions of these PHYs
-will have. The only way to guarantee 0-based consecutive indexes appears
-to be to use per-SoC defines (e.g. as for the GCC bindings).
+Exactly, it controls, so it is a controller... Anyway, do not introduce
+your own names, but use something generic. There is no single reference
+of "system-configuration".
 
-Johan
+> 
+> ● Bank address settings for DMAC
+> ● Bank address settings of the units for ICB> ● ETHER AxCACHE[1] (C bit) control function
+> ● RAMA initialization control
+> ● MD[7:0] pin monitoring
+> ● LSI version register
+> ● General-purpose 32-bit readable/writable registers
+> ● Observability counting stop control for ICB
+> ● WDT counter stop control
+> ● Reading of the temperature sensor reference value
+> 
+
+
+Best regards,
+Krzysztof
+
