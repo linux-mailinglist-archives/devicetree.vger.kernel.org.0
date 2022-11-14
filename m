@@ -2,185 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C76A3628834
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 19:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B8162883C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 19:22:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236357AbiKNSUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 13:20:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
+        id S236523AbiKNSWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 13:22:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236146AbiKNSUV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 13:20:21 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 202DDBCB8
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 10:20:20 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id l2so10770351pld.13
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 10:20:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OH7OygSYbTRWmJGgVVpb8CLHwpB+vsrnDnYlpEZZpPA=;
-        b=V4QDFej6mjBxZuavrIW8lfD4hvJvdfBR46+Rd6BQo2ytrfca2xvzij9U5NfyGk6t2z
-         oRA5UccYIDFft2LIo5HbcMqPJ/2rGXd1KDnJqXRhGoDO0VoIJq/mwuYF0+6MX9W23Onp
-         17mQLeu9xfZFJgERkIDe21ozI1YzNBm9UgzPXSmJ3Oly6eQNbSdRJVu+rA5f3QfV/Ei0
-         zuPAzyIWe9MkM3vTgcx04jS0VIWt5SUc6WHDxrdvZuSGBN1e9s5UhPWGjK50+s8ykl/L
-         Yn9LnGhx7zr+4KVOvpAiCjX/YVgq42dIXCmyp44Fyneq6U7FCRnpbhhtWss/jL4QzrTm
-         eC3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OH7OygSYbTRWmJGgVVpb8CLHwpB+vsrnDnYlpEZZpPA=;
-        b=pXz9vj/ByaExmkFPeuaRCzF2a61ffa3jktf7Ci+e62xcD1ld6vwjiRROhhfyAnkBi6
-         UdRbTWMUw73TArFThUlCHf0Dq7Uc5xfXDpKhsZYQF4FR62cBPo1ozKzHXuc608XJ21s2
-         yJUWa7EnsM5cqbOoETK+GOVxLn4Cffp2TsqsmGy6Cqk3hHSoBNzOd3hQYS3zDhMntIcw
-         edAPOum2TNjNI5FqbGmnyQILaZ7Jgm7C1UqwJHpIbeU6j5dB3NisZyFbwNz++dxVDA3D
-         /yJHXMvZ5XlWr//W7+h5d0VU8NvwJYu8siaM4Y3yXoTJfd9z9SH3MXb3qb36usWRh/MG
-         I07g==
-X-Gm-Message-State: ANoB5pkEbebzDEM2MXhiLhdrC2QyX84UAbLZOBLsG88WqDO0DykP1Wg9
-        ejHBa6rbqZ4gbb/LJpOu86ObPA==
-X-Google-Smtp-Source: AA0mqf7z2pl/BadCtzO73L8mLM73fuRDqlfASOwtHaRaws1kRzCXrNYV3GqobrcgElfDThCGx5QqyA==
-X-Received: by 2002:a17:90a:ee45:b0:213:d2c:1923 with SMTP id bu5-20020a17090aee4500b002130d2c1923mr15032547pjb.234.1668450019575;
-        Mon, 14 Nov 2022 10:20:19 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id u8-20020a1709026e0800b00188767268ddsm7851377plk.151.2022.11.14.10.20.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 10:20:18 -0800 (PST)
-Message-ID: <6f2880d6-04e6-867a-f61b-30a65554e280@9elements.com>
-Date:   Mon, 14 Nov 2022 23:50:15 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v8 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>
+        with ESMTP id S237103AbiKNSWI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 13:22:08 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A97FECE21
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 10:22:05 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oue5r-0000Fg-8V; Mon, 14 Nov 2022 19:22:03 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oue5q-0007RU-Im; Mon, 14 Nov 2022 19:22:02 +0100
+Date:   Mon, 14 Nov 2022 19:22:02 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103213425.2474772-1-Naresh.Solanki@9elements.com>
- <20221103213425.2474772-3-Naresh.Solanki@9elements.com>
- <Y2jRm2J4tvK5ET1e@google.com>
- <f5e5a2d3-d985-f351-78e0-8a479a6d896a@9elements.com>
- <Y3IGR887iuyP2SoL@google.com>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <Y3IGR887iuyP2SoL@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-amarula@amarulasolutions.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, michael@amarulasolutions.com,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH 1/5] clk: imx8mn: rename vpu_pll to m7_alt_pll
+Message-ID: <20221114182202.ejt3ug7vgjuvvkz5@pengutronix.de>
+References: <20221113180710.1625410-1-dario.binacchi@amarulasolutions.com>
+ <20221113180710.1625410-2-dario.binacchi@amarulasolutions.com>
+ <20221114083405.lpy2fjslfg644wex@pengutronix.de>
+ <CABGWkvoBnq7PCzbAcF1oFVr0ydnpWPs5z7vLWBAnuectetMoDw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABGWkvoBnq7PCzbAcF1oFVr0ydnpWPs5z7vLWBAnuectetMoDw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Hi Dario,
 
-On 14-11-2022 02:41 pm, Lee Jones wrote:
-> On Fri, 11 Nov 2022, Naresh Solanki wrote:
->> On 07-11-2022 03:06 pm, Lee Jones wrote:
->>> On Thu, 03 Nov 2022, Naresh Solanki wrote:
->>>
->>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>>
->>>> Implement a regulator driver with IRQ support for fault management.
->>>
->>> This is not a "regulator driver".
->>>
->>>> Written against documentation [1] and [2] and tested on real hardware.
->>>>
->>>> Every channel has its own regulator supplies nammed 'vss1-supply' and
->>>> 'vss2-supply'. The regulator supply is used to determine the output
->>>> voltage, as the smart switch provides no output regulation.
->>>> The driver requires the 'shunt-resistor-micro-ohms' property to be
->>>> present in Device Tree to properly calculate current related
->>>> values.
->>>>
->>>> Datasheet links:
->>>> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
->>>> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->>>>
->>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+On 22-11-14, Dario Binacchi wrote:
+> Hi Marco,
 > 
-> [...]
+> On Mon, Nov 14, 2022 at 9:34 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >
+> > Hi Dario,
+> >
+> > On 22-11-13, Dario Binacchi wrote:
+> > > There is no occurrence of vpu pll in the reference manual (document
+> > > IMX8MNRM Rev 2, 07/2022). From an analysis of the code and the RM
+> > > itself, I think vpu pll is used instead of m7 alternate pll, probably
+> > > for copy and paste of code taken from modules of similar architectures.
+> > >
+> > > As an example for all, if we consider the second row of the "Clock Root"
+> > > table of chapter 5 (Clocks and Power Management) of the RM:
+> > >
+> > >      Clock Root     offset     Source Select (CCM_TARGET_ROOTn[MUX])
+> > >         ...          ...                    ...
+> > >   ARM_M7_CLK_ROOT   0x8080            000 - 24M_REF_CLK
+> > >                                       001 - SYSTEM_PLL2_DIV5
+> > >                                     010 - SYSTEM_PLL2_DIV4
+> > >                                     011 - M7_ALT_PLL_CLK
+> > >                                     100 - SYSTEM_PLL1_CLK
+> > >                                     101 - AUDIO_PLL1_CLK
+> > >                                     110 - VIDEO_PLL_CLK
+> > >                                     111 - SYSTEM_PLL3_CLK
+> > >         ...          ...                    ...
+> > >
+> > > but in the source code, the imx8mn_m7_sels clocks list contains vpu_pll
+> > > for the source select bits 011b.
+> >
+> > Thanks for the real detailed description. Maybe we should mention, that
+> > the 8MN has no VPU complex at all.
+> >
+> > > So, let's rename "vpu_pll" to "m7_alt_pll" to be consistent with the RM.
+> > >
+> > > No functional changes intended.
+> > >
+> > > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > > ---
+> > >
+> > >  drivers/clk/imx/clk-imx8mn.c             | 16 ++++++++--------
+> > >  include/dt-bindings/clock/imx8mn-clock.h |  8 ++++----
+> > >  2 files changed, 12 insertions(+), 12 deletions(-)
+> > >
+> > > diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
+> > > index d37c45b676ab..72f9563a0ff6 100644
+> > > --- a/drivers/clk/imx/clk-imx8mn.c
+> > > +++ b/drivers/clk/imx/clk-imx8mn.c
+> > > @@ -30,7 +30,7 @@ static const char * const audio_pll2_bypass_sels[] = {"audio_pll2", "audio_pll2_
+> > >  static const char * const video_pll1_bypass_sels[] = {"video_pll1", "video_pll1_ref_sel", };
+> > >  static const char * const dram_pll_bypass_sels[] = {"dram_pll", "dram_pll_ref_sel", };
+> > >  static const char * const gpu_pll_bypass_sels[] = {"gpu_pll", "gpu_pll_ref_sel", };
+> > > -static const char * const vpu_pll_bypass_sels[] = {"vpu_pll", "vpu_pll_ref_sel", };
+> > > +static const char * const m7_alt_pll_bypass_sels[] = {"m7_alt_pll", "m7_alt_pll_ref_sel", };
+> > >  static const char * const arm_pll_bypass_sels[] = {"arm_pll", "arm_pll_ref_sel", };
+> > >  static const char * const sys_pll3_bypass_sels[] = {"sys_pll3", "sys_pll3_ref_sel", };
+> > >
+> > > @@ -40,7 +40,7 @@ static const char * const imx8mn_a53_sels[] = {"osc_24m", "arm_pll_out", "sys_pl
+> > >
+> > >  static const char * const imx8mn_a53_core_sels[] = {"arm_a53_div", "arm_pll_out", };
+> > >
+> > > -static const char * const imx8mn_m7_sels[] = {"osc_24m", "sys_pll2_200m", "sys_pll2_250m", "vpu_pll_out",
+> > > +static const char * const imx8mn_m7_sels[] = {"osc_24m", "sys_pll2_200m", "sys_pll2_250m", "m7_alt_pll_out",
+> > >                                      "sys_pll1_800m", "audio_pll1_out", "video_pll1_out", "sys_pll3_out", };
+> > >
+> > >  static const char * const imx8mn_gpu_core_sels[] = {"osc_24m", "gpu_pll_out", "sys_pll1_800m",
+> > > @@ -252,10 +252,10 @@ static const char * const imx8mn_gpt6_sels[] = {"osc_24m", "sys_pll2_100m", "sys
+> > >                                               "audio_pll1_out", "clk_ext1", };
+> > >
+> > >  static const char * const imx8mn_wdog_sels[] = {"osc_24m", "sys_pll1_133m", "sys_pll1_160m",
+> > > -                                             "vpu_pll_out", "sys_pll2_125m", "sys_pll3_out",
+> > > +                                             "m7_alt_pll_out", "sys_pll2_125m", "sys_pll3_out",
+> > >                                               "sys_pll1_80m", "sys_pll2_166m", };
+> > >
+> > > -static const char * const imx8mn_wrclk_sels[] = {"osc_24m", "sys_pll1_40m", "vpu_pll_out",
+> > > +static const char * const imx8mn_wrclk_sels[] = {"osc_24m", "sys_pll1_40m", "m7_alt_pll_out",
+> > >                                                "sys_pll3_out", "sys_pll2_200m", "sys_pll1_266m",
+> > >                                                "sys_pll2_500m", "sys_pll1_100m", };
+> > >
+> > > @@ -352,7 +352,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > >       hws[IMX8MN_VIDEO_PLL1_REF_SEL] = imx_clk_hw_mux("video_pll1_ref_sel", base + 0x28, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > >       hws[IMX8MN_DRAM_PLL_REF_SEL] = imx_clk_hw_mux("dram_pll_ref_sel", base + 0x50, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > >       hws[IMX8MN_GPU_PLL_REF_SEL] = imx_clk_hw_mux("gpu_pll_ref_sel", base + 0x64, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > -     hws[IMX8MN_VPU_PLL_REF_SEL] = imx_clk_hw_mux("vpu_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > +     hws[IMX8MN_M7_ALT_PLL_REF_SEL] = imx_clk_hw_mux("m7_alt_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > >       hws[IMX8MN_ARM_PLL_REF_SEL] = imx_clk_hw_mux("arm_pll_ref_sel", base + 0x84, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > >       hws[IMX8MN_SYS_PLL3_REF_SEL] = imx_clk_hw_mux("sys_pll3_ref_sel", base + 0x114, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > >
+> > > @@ -361,7 +361,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > >       hws[IMX8MN_VIDEO_PLL1] = imx_clk_hw_pll14xx("video_pll1", "video_pll1_ref_sel", base + 0x28, &imx_1443x_pll);
+> > >       hws[IMX8MN_DRAM_PLL] = imx_clk_hw_pll14xx("dram_pll", "dram_pll_ref_sel", base + 0x50, &imx_1443x_dram_pll);
+> > >       hws[IMX8MN_GPU_PLL] = imx_clk_hw_pll14xx("gpu_pll", "gpu_pll_ref_sel", base + 0x64, &imx_1416x_pll);
+> > > -     hws[IMX8MN_VPU_PLL] = imx_clk_hw_pll14xx("vpu_pll", "vpu_pll_ref_sel", base + 0x74, &imx_1416x_pll);
+> > > +     hws[IMX8MN_M7_ALT_PLL] = imx_clk_hw_pll14xx("m7_alt_pll", "m7_alt_pll_ref_sel", base + 0x74, &imx_1416x_pll);
+> > >       hws[IMX8MN_ARM_PLL] = imx_clk_hw_pll14xx("arm_pll", "arm_pll_ref_sel", base + 0x84, &imx_1416x_pll);
+> > >       hws[IMX8MN_SYS_PLL1] = imx_clk_hw_fixed("sys_pll1", 800000000);
+> > >       hws[IMX8MN_SYS_PLL2] = imx_clk_hw_fixed("sys_pll2", 1000000000);
+> > > @@ -373,7 +373,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > >       hws[IMX8MN_VIDEO_PLL1_BYPASS] = imx_clk_hw_mux_flags("video_pll1_bypass", base + 0x28, 16, 1, video_pll1_bypass_sels, ARRAY_SIZE(video_pll1_bypass_sels), CLK_SET_RATE_PARENT);
+> > >       hws[IMX8MN_DRAM_PLL_BYPASS] = imx_clk_hw_mux_flags("dram_pll_bypass", base + 0x50, 16, 1, dram_pll_bypass_sels, ARRAY_SIZE(dram_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > >       hws[IMX8MN_GPU_PLL_BYPASS] = imx_clk_hw_mux_flags("gpu_pll_bypass", base + 0x64, 28, 1, gpu_pll_bypass_sels, ARRAY_SIZE(gpu_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > -     hws[IMX8MN_VPU_PLL_BYPASS] = imx_clk_hw_mux_flags("vpu_pll_bypass", base + 0x74, 28, 1, vpu_pll_bypass_sels, ARRAY_SIZE(vpu_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > +     hws[IMX8MN_M7_ALT_PLL_BYPASS] = imx_clk_hw_mux_flags("m7_alt_pll_bypass", base + 0x74, 28, 1, m7_alt_pll_bypass_sels, ARRAY_SIZE(m7_alt_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > >       hws[IMX8MN_ARM_PLL_BYPASS] = imx_clk_hw_mux_flags("arm_pll_bypass", base + 0x84, 28, 1, arm_pll_bypass_sels, ARRAY_SIZE(arm_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > >       hws[IMX8MN_SYS_PLL3_BYPASS] = imx_clk_hw_mux_flags("sys_pll3_bypass", base + 0x114, 28, 1, sys_pll3_bypass_sels, ARRAY_SIZE(sys_pll3_bypass_sels), CLK_SET_RATE_PARENT);
+> > >
+> > > @@ -383,7 +383,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > >       hws[IMX8MN_VIDEO_PLL1_OUT] = imx_clk_hw_gate("video_pll1_out", "video_pll1_bypass", base + 0x28, 13);
+> > >       hws[IMX8MN_DRAM_PLL_OUT] = imx_clk_hw_gate("dram_pll_out", "dram_pll_bypass", base + 0x50, 13);
+> > >       hws[IMX8MN_GPU_PLL_OUT] = imx_clk_hw_gate("gpu_pll_out", "gpu_pll_bypass", base + 0x64, 11);
+> > > -     hws[IMX8MN_VPU_PLL_OUT] = imx_clk_hw_gate("vpu_pll_out", "vpu_pll_bypass", base + 0x74, 11);
+> > > +     hws[IMX8MN_M7_ALT_PLL_OUT] = imx_clk_hw_gate("m7_alt_pll_out", "m7_alt_pll_bypass", base + 0x74, 11);
+> > >       hws[IMX8MN_ARM_PLL_OUT] = imx_clk_hw_gate("arm_pll_out", "arm_pll_bypass", base + 0x84, 11);
+> > >       hws[IMX8MN_SYS_PLL3_OUT] = imx_clk_hw_gate("sys_pll3_out", "sys_pll3_bypass", base + 0x114, 11);
+> >
+> > The driver changes looking good from my pov.
+> >
+> > > diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
+> > > index 07b8a282c268..f103b008a12a 100644
+> > > --- a/include/dt-bindings/clock/imx8mn-clock.h
+> > > +++ b/include/dt-bindings/clock/imx8mn-clock.h
+> > > @@ -19,7 +19,7 @@
+> > >  #define IMX8MN_VIDEO_PLL1_REF_SEL            10
+> > >  #define IMX8MN_DRAM_PLL_REF_SEL                      11
+> > >  #define IMX8MN_GPU_PLL_REF_SEL                       12
+> > > -#define IMX8MN_VPU_PLL_REF_SEL                       13
+> > > +#define IMX8MN_M7_ALT_PLL_REF_SEL            13
+> >
+> > If we take backward compatibility serious we can't do that since this
+> > may break existing device trees. What you can do is:
+> >
+> > #define IMX8MN_M7_ALT_PLL_REF_SEL               13
+> > #define IMX8MN_VPU_PLL_REF_SEL                  IMX8MN_M7_ALT_PLL_REF_SEL
+> >
+> > and add a comment that we need this for backward compatibility. Same
+> > applies for the below defines.
 > 
-Patrick & Marcello worked on the patch. I'm upstreaming it. Will update 
-it as:
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Co-Developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> If I run the command "git grep IMX8MN_VPU_PLL", this is the output:
+> drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_REF_SEL] =
+> imx_clk_hw_mux("vpu_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels,
+> ARRAY_SIZE(pll_ref_sels));
+> drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL] =
+> imx_clk_hw_pll14xx("vpu_pll", "vpu_pll_ref_sel", base + 0x74,
+> &imx_1416x_pll);
+> drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_BYPASS] =
+> imx_clk_hw_mux_flags("vpu_pll_bypass", base + 0x74, 28, 1,
+> vpu_pll_bypass_sels, ARRAY_SIZE(vpu_pll_bypass_sels),
+> CLK_SET_RATE_PARENT);
+> drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_OUT] =
+> imx_clk_hw_gate("vpu_pll_out", "vpu_pll_bypass", base + 0x74, 11);
+> include/dt-bindings/clock/imx8mn-clock.h:#define
+> IMX8MN_VPU_PLL_REF_SEL                 13
+> include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL
+>                  23
+> include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL_BYPASS
+>                  33
+> include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL_OUT
+>                  43
+> 
+> No device tree comes out.
+> So can we say that backwards compatibility is guaranteed or am I
+> missing something ?
 
-ok?
-
->>>> +static const struct of_device_id max597x_of_match[] = {
->>>> +	{ .compatible = "maxim,max5970", .data = (void *)MAX597x_TYPE_MAX5970 },
->>>> +	{ .compatible = "maxim,max5978", .data = (void *)MAX597x_TYPE_MAX5978 },
->>>
->>> Where is .data used?
->> The .data isn't used.
-> 
-> Then why add it?
-Yes. Will remove that in next version.
-> 
-> [...]
-> 
->>>> +#include <linux/device.h>
->>>> +#include <linux/regmap.h>
->>>> +
->>>> +/* Number of switch based on chip variant */
->>>
->>> This comment is superfluous.
->> You mean this comment should be removed ?
-> 
-> I do.
-Sure will remove.
-> 
->>>> +#define MAX5970_NUM_SWITCHES 2
->>>> +#define MAX5978_NUM_SWITCHES 1
->>>> +/* Both chip variant have 4 indication LEDs used by LED cell */
->>>
->>> Here too I think.
->>>
->>>> +#define MAX597X_NUM_LEDS     4
->>>> +
->>>> +enum max597x_chip_type {
->>>> +	MAX597x_TYPE_MAX5978 = 1,
->>>
->>> Why 1?
->> MAX5978 & single power switch wheres MAX5970 has two.
-> 
-> That's not what this enum means.
-> 
-> You are just describing the type to be matched on.
-> 
-> The value should be arbitrary, no?
-Yes you are right. And thats how its being used.
-Setting the first enum value to 1 was to avoid zero.
-> 
-> [...]
-> 
->>>> +#define  OC_STATUS_WARN(ch)				BIT(ch)
->>>> +
->>>> +#define MAX5970_REG_CHXEN				0x3b
->>>> +#define  CHXEN(ch)						(3 << (ch * 2))
->>>> +
->>>> +#define MAX5970_REG_LED_FLASH			0x43
->>>
->>> Do these all need to be shared?
->>>
->>> Or can they be isolated into, say, the Regulator driver?
->>>
->> Shared reg.
-> 
-> Where else are they used?
-> 
-The respective cell regulator/iio & led driver.
+This depends on the maintainer POV since it is unfortunately quite usual
+to not have the DTS files within the kernel repo. Also bootloaders may
+use these defines.
 
 Regards,
-Naresh
+  Marco
+
+> Thanks and regards,
+> Dario
+> 
+> >
+> > Regards,
+> >   Marco
+> >
+> > >  #define IMX8MN_ARM_PLL_REF_SEL                       14
+> > >  #define IMX8MN_SYS_PLL1_REF_SEL                      15
+> > >  #define IMX8MN_SYS_PLL2_REF_SEL                      16
+> > > @@ -29,7 +29,7 @@
+> > >  #define IMX8MN_VIDEO_PLL1                    20
+> > >  #define IMX8MN_DRAM_PLL                              21
+> > >  #define IMX8MN_GPU_PLL                               22
+> > > -#define IMX8MN_VPU_PLL                               23
+> > > +#define IMX8MN_M7_ALT_PLL                    23
+> > >  #define IMX8MN_ARM_PLL                               24
+> > >  #define IMX8MN_SYS_PLL1                              25
+> > >  #define IMX8MN_SYS_PLL2                              26
+> > > @@ -39,7 +39,7 @@
+> > >  #define IMX8MN_VIDEO_PLL1_BYPASS             30
+> > >  #define IMX8MN_DRAM_PLL_BYPASS                       31
+> > >  #define IMX8MN_GPU_PLL_BYPASS                        32
+> > > -#define IMX8MN_VPU_PLL_BYPASS                        33
+> > > +#define IMX8MN_M7_ALT_PLL_BYPASS             33
+> > >  #define IMX8MN_ARM_PLL_BYPASS                        34
+> > >  #define IMX8MN_SYS_PLL1_BYPASS                       35
+> > >  #define IMX8MN_SYS_PLL2_BYPASS                       36
+> > > @@ -49,7 +49,7 @@
+> > >  #define IMX8MN_VIDEO_PLL1_OUT                        40
+> > >  #define IMX8MN_DRAM_PLL_OUT                  41
+> > >  #define IMX8MN_GPU_PLL_OUT                   42
+> > > -#define IMX8MN_VPU_PLL_OUT                   43
+> > > +#define IMX8MN_M7_ALT_PLL_OUT                        43
+> > >  #define IMX8MN_ARM_PLL_OUT                   44
+> > >  #define IMX8MN_SYS_PLL1_OUT                  45
+> > >  #define IMX8MN_SYS_PLL2_OUT                  46
+> > > --
+> > > 2.32.0
+> > >
+> > >
+> > >
+> 
+> 
+> 
+> -- 
+> 
+> Dario Binacchi
+> 
+> Embedded Linux Developer
+> 
+> dario.binacchi@amarulasolutions.com
+> 
+> __________________________________
+> 
+> 
+> Amarula Solutions SRL
+> 
+> Via Le Canevare 30, 31100 Treviso, Veneto, IT
+> 
+> T. +39 042 243 5310
+> info@amarulasolutions.com
+> 
+> www.amarulasolutions.com
+> 
