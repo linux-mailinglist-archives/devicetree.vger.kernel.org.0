@@ -2,105 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2979F6289DF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 20:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F25026289E5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 20:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236826AbiKNTxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 14:53:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55292 "EHLO
+        id S236525AbiKNTz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 14:55:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237062AbiKNTxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 14:53:31 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D81419F;
-        Mon, 14 Nov 2022 11:53:26 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id y14so30964653ejd.9;
-        Mon, 14 Nov 2022 11:53:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xgkgU+XJK79fNtmiiykE65yOYhyetkrTOcQMcl/CZJ8=;
-        b=dDYVgHhmha1NxtiYQrt/rWBs0feFsx2LKpDZacWco2+/xjuJ4i9EdLPZYJrls6b6hE
-         JOsOMx9dQU5J7msJp3jJetYQxd3p2PuK7qyVYct893G8pZfSzcuZ9SoEjZvdqwxFJ0Zv
-         dST309VowM/mHEKLOFPG03JI+Wvh+CLiFP/HzNoYFvStwCBLjavOVujZOME86uio4LTS
-         P9EmujlrnSVtl7H3DWpzSLSWl4SCreFHTQNBAwGkUKhIlZnNLyewd7wkvIeEYFgGFiNz
-         cFV1w/AiZGZguTCqwVDomg9EUuxkLFfsEkek4XqKvB9C8FjQHqSZKVEiFv1L+OEag6X0
-         9B8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xgkgU+XJK79fNtmiiykE65yOYhyetkrTOcQMcl/CZJ8=;
-        b=6SkEHo0f2nBDOR87Exr/4hQ6Fd8ExrTvZS53pdvTYJWDgvDfHwwkZyKmeis/bij8Qx
-         QLnMbmJVkmvddcRQZfGp2KTT/loZd+GVdelLYAvY2cbMWSR6PgnbFfW+n3JEQdCYyEDH
-         OhrdtpXV/IXajWFOririw+eRfEuR0K1fg0kpuVj6MqtyNvN34PxMeqNU+PE+xC1gazwZ
-         YPRZpnyfFDgO1Nbsw1YdD36NecYnVDuHhx0CHONLA0WMRs8hjcooTY3suCbehvgngWBZ
-         N2m3Fb42OmH1KMn3V3xMPtlxVnyeSIHJYyk6QPv2Ehl+06zW5MbMRy5TM0GSCmNLawev
-         tWTA==
-X-Gm-Message-State: ANoB5pmC62IUsYN9k8f0qSgnJatzAD5tw1gZJsmvXp9Etj2410McuYGc
-        /fNa6OiG6SC8nl8BrCXdqYE=
-X-Google-Smtp-Source: AA0mqf5NrXQC9j3yvaQxmK6T+GZXv6adycdupZEpJskbybTG3KPOSJYuASy86evhxQ7UbgdKGMG3IA==
-X-Received: by 2002:a17:906:c00c:b0:7ae:e6ac:2427 with SMTP id e12-20020a170906c00c00b007aee6ac2427mr7498440ejz.345.1668455604968;
-        Mon, 14 Nov 2022 11:53:24 -0800 (PST)
-Received: from skbuf ([188.25.170.202])
-        by smtp.gmail.com with ESMTPSA id v17-20020a1709067d9100b0074134543f82sm4614809ejo.90.2022.11.14.11.53.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 11:53:24 -0800 (PST)
-Date:   Mon, 14 Nov 2022 21:53:21 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
+        with ESMTP id S235838AbiKNTz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 14:55:26 -0500
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140053.outbound.protection.outlook.com [40.107.14.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7030DF56;
+        Mon, 14 Nov 2022 11:55:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bQFkC4ASypGhoGG+rsSpgebKiPuOWVftT2So95Y/rG5zgQQa9xXHhVNh0iPCAxhV57hbBEmI4Iaizm+ODAFMrbO23l1UuiEyl9GmTvmfaCmF4RE7SfBkIcMUAXU98LMRbHf3meOZWFYbMHGmBEbCtwvumMnloMaLzxRTb7wrMAGHbjJ+/FVQwujaNBHfMl0jK2HGaOtxb79qCR+jDIKbkhZv+qJOXg2i6CyVBOUNerLR3X9tr+3cNeyWALDALmk2bPLTu2emO1ebpq3EEgN0WrCOXzEhz4kNK82Noq+BkVibzAmF5twEpvorqRpko7ixqoS790uQSkONGu9I+MevMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XBdoAd2KSXMUQQtYZbWeZmoTs9vIBQWFmQZv6T0bUEM=;
+ b=K9oqjajoyFPe5u6XPpHXjiMTUvNTcmUfxSMOXVpKInSxmZI7SAf4jjdv+EV6LaPJh28GNG6lB5wQwXgpnajKyWC7g5MDtm7rEJYa1a1U6FuGOe7/6wTO/6UgyeXc/lEqEiwq6LbvdNgBNJT3A3woG/ZSaHRdeM1L485AC0wbjYz/A23hT4FhZ+Ku82tVUrdWvay4kBz3By+IiiUqLSqOC4w+B7bIFvkdkyCXqF43SslrM8bglevo0lbkqLLHQlnV4Dil4Ms0OJIofPXe0UsRxylZmkh5uTj1+MeK0xNnIMOZG92sDDwtJHA8HyJZgDRV9k6XWTThR3GXIZaFBGGlhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XBdoAd2KSXMUQQtYZbWeZmoTs9vIBQWFmQZv6T0bUEM=;
+ b=dPob5+YTKIR4pg+mdVg4O5oQEBwJgGv0sv3KYesTo+f6piknwSI/FWM6qZqj7X93E/I2sOvenQ8uOrNSjoP/2ocHIRKiknkApLwfq3CJAmq0g6EDMS8OvCW4gtaekwxlhkU0ZVZ0JnvGVqZSiWCVAt99PNN/e0KdtCEchZH1qwk=
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com (2603:10a6:208:145::23)
+ by AM7PR04MB7080.eurprd04.prod.outlook.com (2603:10a6:20b:11b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Mon, 14 Nov
+ 2022 19:55:21 +0000
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::857:ce88:de77:5823]) by AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::857:ce88:de77:5823%4]) with mapi id 15.20.5813.017; Mon, 14 Nov 2022
+ 19:55:21 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     "Rob.Herring@arm.com" <Rob.Herring@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, Chester Lin <clin@suse.com>,
+        =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>, dl-S32 <S32@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH net-next v2 00/11] net: pcs: Add support for devices
- probed in the "usual" manner
-Message-ID: <20221114195321.uludij5x747uzcxr@skbuf>
-References: <20221103210650.2325784-1-sean.anderson@seco.com>
- <20221109224110.erfaftzja4fybdbc@skbuf>
- <bcb87445-d80d-fea0-82f2-a15b20baaf06@seco.com>
- <20221110152925.3gkkp5opf74oqrxb@skbuf>
- <7b4fb14f-1ca0-e4f8-46ca-3884392627c2@seco.com>
- <20221110160008.6t53ouoxqeu7w7qr@skbuf>
- <ce6d6a26-4867-6385-8c64-0f374d027754@seco.com>
- <20221114172357.hdzua4xo7wixtbgs@skbuf>
- <209a0d25-f109-601f-d6f6-1adc44103aee@seco.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 07/20] arm64: dts: Update cache properties for freescale
+Thread-Topic: [PATCH 07/20] arm64: dts: Update cache properties for freescale
+Thread-Index: AQHY7Qn1HioIfePw+0+dxwF9jO4Npq4+66pg
+Date:   Mon, 14 Nov 2022 19:55:21 +0000
+Message-ID: <AM0PR04MB6289C97297803675DA5A57178F059@AM0PR04MB6289.eurprd04.prod.outlook.com>
+References: <20221031091956.531935-1-pierre.gondois@arm.com>
+In-Reply-To: <20221031091956.531935-1-pierre.gondois@arm.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR04MB6289:EE_|AM7PR04MB7080:EE_
+x-ms-office365-filtering-correlation-id: d809e196-6196-45d9-2297-08dac67a2995
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dlrcKHUJrOVS8zqqw6RVRFTL11NlEbCZBQyQDQOa4CITG6xL6VY9xeAgqPWxkyNxXgHPA0wU2hlc4LsAAA+NIRshA5vi2aNEy/WBAt0ueOZtU7w32rFyIPlKtjgXPq0T6Be2FdSGcp3t9i/YS6jAeibf4a94I7cWO3Fk5VUVG+5vN/LO/zOd5uZREZon1HshrWqO1z1/O8lxKvjtjrlPybfU/Kjxo1SN9IlFeL+AgupPCXQP/6ReUfONoUmMx/9ca5ytsfgCxvwuq5QPIiNzah2CvOs4bbNq8cLMsmCmqCwIh0WCPn0p4ChVK2qBbGgDqA9i6io0Ed+NfdQ8qej62mzpczmsbvk36GEUc/2f5wpr549vzRU73zJIn1XboIv4vY7dNifSk1eA1Y6tl+gG+A1SC1bwh1NiU3euis5VDG/D6sjsr3GbhsO6eCaDc6SnEKqhoXgL+779Zu7bWxE5rCXWI6992sM8UcWTqXokkVZRSmbmVe/O7BjG2HErSmjXJjvZmQrx9+PtThWgSriXSqQ5zQpTikgqW0x9x11Fauwr9LN/Osqw308kD5Zm0W8o7mPDV+h12pQmnGXHw6bZer4SZOiVrdPs7mYk7V12R87osRRp/ZwJsX2j7GxUn+K0U+ecTeKfugro7s1EmnJbOB7VQ8pbxNnZcaaG3XQfpTJk1b9SmFmysyqctDBdRJW3EoWuFn4DoKq57+3xn60NG0PKaRobePkI6UEjU2yOoZczhYd/fEdopJ2uDatsspoT3NjSrXTgpEsydu4CdvQ11Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6289.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(366004)(39860400002)(396003)(376002)(136003)(451199015)(66574015)(71200400001)(83380400001)(86362001)(33656002)(64756008)(15650500001)(8936002)(66446008)(41300700001)(7416002)(8676002)(38070700005)(4326008)(76116006)(66556008)(66946007)(52536014)(5660300002)(316002)(66476007)(122000001)(38100700002)(7696005)(55236004)(110136005)(6506007)(54906003)(26005)(53546011)(2906002)(186003)(478600001)(9686003)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Nz80fc8hrfCNrdaX80VmchR5Kz5eEAcZW+PJCSAW95P3g+8tiuq8ldSKU2?=
+ =?iso-8859-1?Q?eepTTLBMiVrU06mU7IIu4T3VYPjPjv7hHYeYcBNj1tE9QpIGm3ARA44NYH?=
+ =?iso-8859-1?Q?d3CZDJguaRx+r4COa8hqNzUhmmiAZWjX24uwVz87ApCvL4WMrrb4n12KSM?=
+ =?iso-8859-1?Q?WU2nC3oK8SdAgofwoksg5dl1y5Rhn3b0FwpT2Mnv+dDkXbuiXwrzJMkUPa?=
+ =?iso-8859-1?Q?ABPI0A1PHF/TIwTnR1haM4EY5Svz3DIuvwkhqdmm4XQAgvXvDeDw4vwutj?=
+ =?iso-8859-1?Q?mTTFYezL2NUthVj1wl2j4Kmopgk51hw5ZvGWdcH8LQ7sSvTpCWdwoyFwue?=
+ =?iso-8859-1?Q?Cb/vZhgYpkYTrtUdRxDRzTQjTiLYKPW0JCc5fDF3BH3HvpAkHCrk9/Onts?=
+ =?iso-8859-1?Q?QVkwpU9iPY05WbmqUi1q8Ft7lMR4ICzW2Vsar65ciPPeM/e29Fkqo0pqWR?=
+ =?iso-8859-1?Q?9RQ4t3UCfZs8+8P34R8/GabXNwcOCv3lZHAdBjwt7gM7StPeaptMBL680J?=
+ =?iso-8859-1?Q?GJPTY/alU65Y1CBs1LdB4GAIrYp6CcO4AML2BqITaw02FGpKQvpDtES28l?=
+ =?iso-8859-1?Q?Dt+0hQqr+9kgRwyVYlWkS1Mcaz5fGGAPE1gcrrxCJY4t4d/RMyRbD0Miot?=
+ =?iso-8859-1?Q?t47Inpa1mSreOAJDlIaTQG+eBit5wfsrLdumqdqaCtkLT3EEYu1EAqoYka?=
+ =?iso-8859-1?Q?hty6bwUjeg9MrrXDBogvJpce+q6Y6ujtezGo1W9kVRXVpltWRPenUDlFsC?=
+ =?iso-8859-1?Q?lMedCjrTBiiap/oXlMCzMDwmJzzcEtukEWDaZdZKMsZQ0Hwf/yxX9014G6?=
+ =?iso-8859-1?Q?nu0/htboA26zlv/ut7h+wKudCQ1obIeU2iOII3a0sunX+KkuoyAcS8sl/E?=
+ =?iso-8859-1?Q?AIoo68cvvQ/FLENKP6o5hqw8FB0NPGoylym0p2FfSnGJXJmBjQ/BfCmlD+?=
+ =?iso-8859-1?Q?adQ4iR4V2XgqHpgQfMq6tI1rMlC7zR15gqxsoCIwD486F/KruUK22NmCVr?=
+ =?iso-8859-1?Q?GHTnESkKF4Ak+WZfDYcc94v8hqz4/LKPT3j8Wlp6Zp5Xe9dCWuWWd3stVP?=
+ =?iso-8859-1?Q?ulfTIYMlw10kj1WobB8O5aeHZdiEx9C9J7CVCGJT0LfiiSZ0OlTfwkqOwB?=
+ =?iso-8859-1?Q?gp0VlYdMXd4JXQCgEIJQpyzpmNiniZKd6B6mz4XY23Tq/mSS11K1HjHhtE?=
+ =?iso-8859-1?Q?xecwA1yHyzH3WsxgZlK8Lkg5q0TcbLTyg0edjSWpPj01Y21vdShyxk6SAp?=
+ =?iso-8859-1?Q?YfTS7TCIY/ivYd2OANP7RKQJ3UN6QaZZe/sGG8oFQeZ5aUejDoj34ZyyzS?=
+ =?iso-8859-1?Q?SDvytxc/mg9NXc9+kjxq30hD3zluoaVdLGqfxmDnTLt2IQMVM3V3VHD+eO?=
+ =?iso-8859-1?Q?gXnOjDMIaWxzHUfdY1VW7katZES2teTHSALZDRTSFqoVKMddoFcTcQABoj?=
+ =?iso-8859-1?Q?YfuTXhlDuYALr8uySou81JcowQWuVd/bvStvkh254WKEJUOfoPWzwjPacd?=
+ =?iso-8859-1?Q?nOK/cYEVfvzg9E7D40X9Cwn+DAROf3fDrH4ZH9rPP6hlYfnOseQ+sXTEq/?=
+ =?iso-8859-1?Q?8Fr+l+q2Tf+rA/iiko65oTu2tDnDCrN2SGo1CZMxkuOGIYJcblrvrERmNn?=
+ =?iso-8859-1?Q?9I8uFou1BNltEaFK0Iqu21foLLkbwc5G4o?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <209a0d25-f109-601f-d6f6-1adc44103aee@seco.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6289.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d809e196-6196-45d9-2297-08dac67a2995
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Nov 2022 19:55:21.1670
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DJz8kqPd3qq8XmpNB4VGwGncWin3g3annhJwjo8D1HwOUc8CSYOWur35AE5AcOIGDn5rdc969AJLUMNXK0VRvQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7080
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -108,77 +129,193 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 01:08:03PM -0500, Sean Anderson wrote:
-> On 11/14/22 12:23, Vladimir Oltean wrote:
-> > On Thu, Nov 10, 2022 at 11:56:15AM -0500, Sean Anderson wrote:
-> >> these will probably be in device trees for a year before the kernel
-> >> starts using them. But once that is done, we are free to require them.
-> > 
-> > Sorry, you need to propose something that is not "we can break compatibility
-> > with today's device trees one year from now".
-> 
-> But only if the kernel gets updated and not the device tree. When can
-> such a situation occur? Are we stuck with this for the next 10 years all
-> because someone may have a device tree which they compiled in 2017, and
-> *insist* on using the latest kernel with? Is this how you run your
-> systems?
 
-I'm a developer (and I work on other platforms than the ones you're
-planning to break), so the answer to this question doesn't mean a thing.
 
-> We don't get the device tree from firmware on this platform; usually it
-> is bundled with the kernel in a FIT or loaded from the same disk
-> partition as the kernel. I can imagine that they might not always be
-> updated at exactly the same time, but this is nuts.
+> -----Original Message-----
+> From: Pierre Gondois <pierre.gondois@arm.com>
+> Sent: Monday, October 31, 2022 4:20 AM
+> To: linux-kernel@vger.kernel.org
+> Cc: pierre.gondois@arm.com; Rob.Herring@arm.com; Shawn Guo
+> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Sascha Hauer
+> <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; dl-linux-
+> imx <linux-imx@nxp.com>; Chester Lin <clin@suse.com>; Andreas F=E4rber
+> <afaerber@suse.de>; Matthias Brugger <mbrugger@suse.com>; dl-S32
+> <S32@nxp.com>; Peng Fan <peng.fan@nxp.com>; Jacky Bai
+> <ping.bai@nxp.com>; Sudeep Holla <sudeep.holla@arm.com>; linux-arm-
+> kernel@lists.infradead.org; devicetree@vger.kernel.org
+> Subject: [PATCH 07/20] arm64: dts: Update cache properties for freescale
+>=20
+> The DeviceTree Specification v0.3 specifies that the cache node 'compatib=
+le'
+> and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+>=20
+> The recently added init_of_cache_level() function checks these properties=
+.
+> Add them if missing.
+>=20
+> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 
-What does "this" platform mean exactly? There are many platforms to
-which you've added compatible strings to keep things working assuming a
-dtb update, many of them very old. And those to which you did are not by
-far all that exist. There is no requirement that all platform device
-trees are upstreamed to the Linux kernel.
+Acked-by: Li Yang <leoyang.li@nxp.com>
 
-> The original device tree is broken because it doesn't include compatible
-> strings for devices on a generic bus. There's no way to fix that other
-> than hard-coding the driver. This can be done for some buses, but this
-> is an MDIO bus and we already assume devices without compatibles are
-> PHYs.
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
+> arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 1 +
+> arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+> arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi | 4 ++++
+> arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi     | 1 +
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi       | 2 ++
+>  arch/arm64/boot/dts/freescale/s32v234.dtsi     | 2 ++
+>  8 files changed, 16 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 5627dd7734f3..ed0cc1a5d17e 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -46,6 +46,7 @@ cpu1: cpu@1 {
+>=20
+>  		l2: l2-cache {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+> index ca3d5a90d6d4..c8b1202d2584 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+> @@ -83,6 +83,7 @@ cpu3: cpu@3 {
+>=20
+>  		l2: l2-cache {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> index feab604322cf..4590bdc076b7 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> @@ -78,6 +78,7 @@ cpu3: cpu@3 {
+>=20
+>  		l2: l2-cache {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> index 6f6667b70028..2a7e13b6ef8a 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> @@ -95,18 +95,22 @@ cpu7: cpu@301 {
+>=20
+>  	cluster0_l2: l2-cache0 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster1_l2: l2-cache1 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster2_l2: l2-cache2 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster3_l2: l2-cache3 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	CPU_PW20: cpu-pw20 {
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+> index c3dc38188c17..c12c86915ec8 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi
+> @@ -95,18 +95,22 @@ cpu7: cpu@301 {
+>=20
+>  	cluster0_l2: l2-cache0 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster1_l2: l2-cache1 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster2_l2: l2-cache2 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	cluster3_l2: l2-cache3 {
+>  		compatible =3D "cache";
+> +		cache-level =3D <2>;
+>  	};
+>=20
+>  	CPU_PW20: cpu-pw20 {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> index 60c1b018bf03..187353458673 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> @@ -50,6 +50,7 @@ A35_1: cpu@1 {
+>=20
+>  		A35_L2: l2-cache0 {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> index 824d401e7a2c..d8c82da88ca0 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> @@ -52,10 +52,12 @@ cpu3: cpu@101 {
+>=20
+>  		cluster0_l2: l2-cache0 {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>=20
+>  		cluster1_l2: l2-cache1 {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/s32v234.dtsi
+> b/arch/arm64/boot/dts/freescale/s32v234.dtsi
+> index ba0b5305d481..3e306218d533 100644
+> --- a/arch/arm64/boot/dts/freescale/s32v234.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32v234.dtsi
+> @@ -61,10 +61,12 @@ cpu3: cpu@101 {
+>=20
+>  		cluster0_l2_cache: l2-cache0 {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>=20
+>  		cluster1_l2_cache: l2-cache1 {
+>  			compatible =3D "cache";
+> +			cache-level =3D <2>;
+>  		};
+>  	};
+>=20
+> --
+> 2.25.1
 
-Let's be clear about this. It's "broken" in the sense that you don't like
-the way in which it works, not in the sense that it results in a system
-that doesn't work. And not having a compatible string is just as broken
-as it is for other devices with detectable device IDs, like Ethernet
-PHYs in general, PCI devices, etc.
-
-The way in which that works here, specifically, is that a generic PHY driver
-is bound to the Lynx PCS devices, driver which does nothing since nobody
-calls phy_attach_direct() to it. Then, using fwnode_mdio_find_device(),
-you follow the pcsphy-handle and you get a reference to the mdio_device
-(parent class of phy_device) object that resulted from the generic PHY
-driver probing on the PCS, and you program the PCS to do what you want.
-
-The PHY core does assume that mdio_devices without compatible strings
-are phy_devices, but also makes exceptions (and warns about it) - see
-commit ae461131960b ("of: of_mdio: Add a whitelist of PHY compatibilities.").
-Maybe the reverse exception could also be made, and a warning for that
-be added as well.
-
-> In the next version of this series, I will include a compatibility
-> function which can bind a driver automatically if one is missing when
-> looking up a phy. But I would really like to have an exit strategy.
-
-You'll have to get agreement from higher level maintainers than me that
-the strategy "wait one year, break old device trees" is okay. Generally
-we wouldn't have answers to this kind of questions that depend on whom
-you ask. Otherwise.. we would all know whom to ask and whom not to ;)
-
-Sadly I haven't found anything "official" in either Documentation/devicetree/usage-model.rst
-or Documentation/process/submitting-patches.rst. Maybe I missed it?
-
-I've added Arnd Bergmann for an ack, and also Marc Zyngier, not because
-of any particular connection to what's being changed here, but because
-I happen to know that he might have strong opinions on the topic :)
-
-Full context here:
-https://patchwork.kernel.org/project/netdevbpf/cover/20221103210650.2325784-1-sean.anderson@seco.com/
-
-If I'm the only one opposing this, I guess I'll look elsewhere.
