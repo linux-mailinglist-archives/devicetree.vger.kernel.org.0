@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3089362768F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D14A162769E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235976AbiKNHpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 02:45:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40498 "EHLO
+        id S236011AbiKNHsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 02:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235993AbiKNHpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:45:15 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFE32725
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:45:14 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id t10so12096497ljj.0
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:45:14 -0800 (PST)
+        with ESMTP id S235249AbiKNHsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:48:21 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE7110C1
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:48:20 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id c1so17935215lfi.7
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RThUDKfaIW0h3m+CPW+odfwhZdY9NoazLhG6pvsOy0A=;
-        b=CoOlY/JyiNs3rBh4briKTbLMg62G/yRn3DUkMDJzget5JbFD8S18U9q/bf7kLwdCgA
-         H3WNJ8E68XjGyJt6t/VX9NRljtJ/StNuprqE8a+BwtF+G5u+qwj02RRjSu7dyKQA3qPp
-         zO6eg8WjvAkD5HHTbYyjnYAL0M+YeYyobzzX6BqqVdCZD5Qkwotvga0tUWQGssdtOaYL
-         GHL97W+2ldZtctrLynDhXX4MiYSYtXgORw8klZwSedUBxZzwifo/qk4IkbwZbUxMQCCe
-         V3smUKYYzFPsX1I8CJCdOuBMLOdXt0LHAgEhcpvx6YsaXCanmx6EuwYd5xit9wZR+8yN
-         Ktew==
+        bh=RtaXBhnGo8MVscIrQnKGheYkcw3Kx7+UsbUghToyCVI=;
+        b=SMH/wDR0ipSJQ9BUzSRMG2RWykZI8v94NQ6rQnIPL3+Oq+ZKPi/veswxkIv+yEMztD
+         2QmI0HH5GldekYzi2aGpmm2oQ8bYqWvWukggo1oah2jteXry9sKr9hhszaCUNhe7JaZB
+         wtQ2IWfLRze8qnIqqOUGV270budQ2QuruVB/5jdcg93GlDmIcmNOQ93VZ2dwFWHN/cNM
+         JLIE+7LyCVT068CkPRhtyAPK3R1eNs1lvDXpLB6AOz3Qp4VaXNsJRRW7UsnXmx6847Yu
+         TDymNZOPJZcegB76FHBGkSFkdBDkb9j47VZng4bShYGV0+c1jYTr0NOza+VNBooBqfle
+         LnBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RThUDKfaIW0h3m+CPW+odfwhZdY9NoazLhG6pvsOy0A=;
-        b=pKxX8oO9uaE66piUD06wcs0VPSa/wyPRlsVH2s+azazp9l2PHWoApCY4d6ZiAPXufI
-         LQJiu1EGq4NmaKBotOOmacDa84imZ9mn4wSQzmvPf+l/hHfwWkv5lKV5MlzZv81BpGc+
-         IRz9jo9Phw67jb5m3kLi9iugLl9lACqQRY9O03qKsDpFcg63MrnV6iqgaSojpb19RjrG
-         VM6IRKQ6BwsqqW94FP47dm1BrQzXd0cYm8eX2zCnLS0wfOV3pYiNixt4JUiENaq+lhKn
-         7X8M/LIja5wzKzeybSZVhIjaB7O2LASo4AwO/yjsl1UItJOUY8Mi5XCGKGUh01nngmwu
-         ltKw==
-X-Gm-Message-State: ANoB5pnqoNe0ix6/icLw+CJHrSTJCTrtqyBGvGESZd7UIENO+L0yEJ+R
-        7E5P19RjQUkucnyxxLVgp+udmQ==
-X-Google-Smtp-Source: AA0mqf6Je7SzJ0/6XL2Blpt4CrFzA9c9QJH8q3G+IlddOO2mBMpg0spYsMrpNNrOy4sFVty13KIf3Q==
-X-Received: by 2002:a05:651c:12c9:b0:26f:c03d:f99b with SMTP id 9-20020a05651c12c900b0026fc03df99bmr3814983lje.190.1668411912583;
-        Sun, 13 Nov 2022 23:45:12 -0800 (PST)
+        bh=RtaXBhnGo8MVscIrQnKGheYkcw3Kx7+UsbUghToyCVI=;
+        b=R2b5zEWTpEZl/F/nSLtHLtudNVT8KSxCbW2TUCOykNn+xsx0y4EEpfH3WkcJoe5Xtm
+         A34MCkh2IC+8H4af9QHj3nCxfUsEt9qcdTKcmW9noLlodGuJkLB2L864hk8LSrtvNDKz
+         uCdUR7Dqi7KzEPOarVH8F2go554H3EYVwjxSfN3XN6LPvyYpoAbc5TXPjzyw9H+PjhD4
+         e/2GkNfJtbT81qd58kRtQYZKN7flj4BgiLExam68W3Z176119FLZ5HJNBtkQocK2SNXA
+         G9Q6yp6MOgR2gyBCECN+tHi+RsyTu+LErdOgBRveYudcj2enywF7P3DB8xqodeVey1cc
+         DnFw==
+X-Gm-Message-State: ANoB5pmRWhbNY9f4YJ3MDqI8Ts5UjNfe3GN4RIa54MWQGCtKNKs6DT89
+        VzrOYsfekggH7gQHS/abPitauQ==
+X-Google-Smtp-Source: AA0mqf4L855tMQ/hmtg1Tuny5MoKVDR9pzpMX2tlC4Cl8NJCd/Q5ZQSx1O0gm5QI6BjibY6zuXXH2w==
+X-Received: by 2002:a05:6512:6d5:b0:4a9:6659:40d5 with SMTP id u21-20020a05651206d500b004a9665940d5mr4232367lff.516.1668412098837;
+        Sun, 13 Nov 2022 23:48:18 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id cf30-20020a056512281e00b00492ca820e15sm1711964lfb.270.2022.11.13.23.45.11
+        by smtp.gmail.com with ESMTPSA id k20-20020a2eb754000000b0026b2094f6fcsm1899097ljo.73.2022.11.13.23.48.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Nov 2022 23:45:12 -0800 (PST)
-Message-ID: <6df681b1-318c-ea0a-8add-e0a18302eaf7@linaro.org>
-Date:   Mon, 14 Nov 2022 08:45:10 +0100
+        Sun, 13 Nov 2022 23:48:18 -0800 (PST)
+Message-ID: <0ee5db9e-d80c-947d-73d6-6214e9299b23@linaro.org>
+Date:   Mon, 14 Nov 2022 08:48:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 02/10] ASoC: dt-bindings: qcom,apr: Split services to
- shared schema
+Subject: Re: [PATCH 00/10] ASoC: dt-bindings: Rework Qualcomm APR/GPR Sound
+ nodes for SM8450
 Content-Language: en-US
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Banajit Goswami <bgoswami@quicinc.com>,
@@ -71,67 +71,57 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 Cc:     Patrick Lai <plai@qti.qualcomm.com>,
         Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
 References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
- <20221111113547.100442-3-krzysztof.kozlowski@linaro.org>
- <5207a28b-9c8c-5014-28c1-15635ad30143@linaro.org>
+ <06da072c-8cf0-8181-3c32-4592fe41f9c2@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5207a28b-9c8c-5014-28c1-15635ad30143@linaro.org>
+In-Reply-To: <06da072c-8cf0-8181-3c32-4592fe41f9c2@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 17:35, Srinivas Kandagatla wrote:
+On 11/11/2022 17:15, Srinivas Kandagatla wrote:
 > 
 > 
 > On 11/11/2022 11:35, Krzysztof Kozlowski wrote:
->> The APR/GPR nodes are organized like:
+>> Adding sound support for Qualcomm SM8450 SoC (and later for SC8280XP) brought
+>> some changes to APR/GPR services bindings.  These bindings are part of
+>> qcom,apr.yaml:
 >>
 >>    apr-or-gpr-device-node <- qcom,apr.yaml
 >>      apr-gpr-service@[0-9] <- qcom,apr.yaml
 >>        service-specific-components <- /schemas/sound/qcom,q6*.yaml
 >>
->> The schema for services (apr-gpr-service@[0-9]) already grows
+>> The schema for services (apr-gpr-service@[0-9]) already grows considerably and
+>> is still quite not specific.  It allows several incorrect combinations, like
+>> adding a clock-controller to a APM device.  Restricting it would complicate the
+>> schema even more.  Bringing new support for sound on Qualcomm SM8450 and
+>> SC8280XP SoC would grow it as well.
 > 
-> I have not seen these grow or change alteast in the past 9 years.
+> Why would this grow? All the dsp services are static and they will not 
+> change per SoC unless there is a total firmware change in DSP.
 
-You added GPR to services in 2021, so it grew past 9 years. Then it grew
-in 2022 when I started adding missing pieces - missing compatibles and
-properties.
-
-> 
-> Old APR (Elite f/w) and new GPR (AudioReach) interface provides access 
-> to static services on the DSP.
-> 
->> considerably and is still quite not specific.  It allows several
->> incorrect combinations, like adding a clock-controller to a APM device.
-> 
-> This should be fixed for sure for validation.
-
-This cannot be fixed without making schema over-complicated. It includes
-six different compatibles. Except few of them - these compatibles
-represent different devices.
+They grow now with SM8450 which requires changes there. Otherwise DTS
+does not pass with current bindings. The bindings before my fixing in
+2022 were really incomplete. Now they are complete, but:
+1. Not for SM8450 - this will bring new things,
+2. Very unspecific as they allow multiple invalid configurations.
 
 > 
-> We had dedicated bindings per service before.
-
-Where?
-
+>>
+>> Refactor the bindings before extending them for Qualcomm SM8450 SoC.
 > 
-> As the service has changed as part of new AudioReach Firmware, we could 
-> have added new bindings for these services again. But as we are dealing 
-> with the same audio hardware and clock resources a new bindings per 
-> service did not make sense. Since then we moved all the lpass audio 
-> ports and clocks related bindings to qcom,q6dsp-lpass-clocks.yaml and 
-> qcom,q6dsp-lpass-ports.yaml.
+> I dont understand this bit, what is SoC audio support to do with DSP 
+> bindings. DSP bindings should be totally independent of this.
 
-These are not bindings for services but bindings for their devices.
+APR/GPR bindings are for SoC audio, so while adding SoC audio the first
+are affected. If you went through the commits here, you would notice the
+changes.
 
 Best regards,
 Krzysztof
