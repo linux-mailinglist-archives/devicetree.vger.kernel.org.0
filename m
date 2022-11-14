@@ -2,462 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9332D628ABD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 21:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCA9628AC1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 21:48:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236990AbiKNUsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 15:48:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S236162AbiKNUsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 15:48:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237589AbiKNUsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 15:48:04 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18F213EAA;
-        Mon, 14 Nov 2022 12:48:02 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id ud5so31330134ejc.4;
-        Mon, 14 Nov 2022 12:48:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=miZ9ZnZEOqiXC323cOeXS5aiCSdlq9Sda4XPTPPCDpQ=;
-        b=a9cIi/usothtvtXKJ57HZOX3JFcSNV6++R8Y9TBEBZFtkfo7VOvxKRT6oMCTtPD7cy
-         G8nST9a6IY1GTvtIjv92diwpI1WIuwKMmK8x828WVAZTfX/G1RGcrUfFZdnKsvbV5hAH
-         I3EYU0VlHW9H/LekekJyDfFA+QhRG4XRx5ytE0rg6dLPlSiZmq8DDSSbKS4/Q/k5sv+j
-         3v+o8w72s5v70Ma9GlmV+sI16L1qfemY1muyZAyDalfMHvh20lHitQoPVKglN8rAhjE5
-         Jhh0VTguKi4KmEtD0ZvnTakCgH+3un5GoyTsKkfQKIS+tYwewbbg7Ps8I+m4YYngV/UM
-         PcFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=miZ9ZnZEOqiXC323cOeXS5aiCSdlq9Sda4XPTPPCDpQ=;
-        b=MkbPfxj09C195SS97VSQFd0Zxmb5vSOWrqbp+OzAD7mxa0e5wCy8+x46iqWP/vPYZF
-         rJ3rjBqc3giKKmrTLlnF9exvE/L0TPteJCzmSTjGccgDE/QDxhtTdUzy3wnPAxD7/Z6i
-         /0Sfc2zOFDGhkKw9pG80jRikLtxN6LOqAXWruZezi/HYOM6atIDUExYrDDkhBmMGjX9f
-         A6bC2l/Jnw5A93RmzeHH+tPQEgFhKST/UDQrTOCL+MBqwnAqUF63Tiju3noqIYlF/qSI
-         K+f6R3WwL9tz/dzWR6jw2y6lADazJAiKMgc7tGEYiXdEPISvD0Fx2mbf4f4HEA4Qn74E
-         E+QA==
-X-Gm-Message-State: ANoB5ply0oW3q087MsHZp5IpXgEfrQ7vv3ZE2Y0HNPl6zGxDqp6A3pq4
-        +6GutA6tAjJiBs0qNc2L1yY=
-X-Google-Smtp-Source: AA0mqf5pv97xR3FtEyefEbB4/YDfc/TfoxtphlsMApAv6nDfGzd718a5cNgq7CF0naMd5wtMNIRJDA==
-X-Received: by 2002:a17:906:fb81:b0:7ae:9187:eb70 with SMTP id lr1-20020a170906fb8100b007ae9187eb70mr10859698ejb.533.1668458881300;
-        Mon, 14 Nov 2022 12:48:01 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id u1-20020a1709064ac100b007081282cbd8sm4600979ejt.76.2022.11.14.12.47.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 12:48:00 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     martin.botka1@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Yenda <jtrmal@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Conley Lee <conleylee@foxmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] arm64: dts: Add basic support for BIQU CB1
-Date:   Mon, 14 Nov 2022 21:47:58 +0100
-Message-ID: <37920504.10thIPus4b@jernej-laptop>
-In-Reply-To: <KNUCLR.WTN1W6BOHHHQ@somainline.org>
-References: <20221114172018.1876608-1-martin.botka@somainline.org> <3191151.oiGErgHkdL@jernej-laptop> <KNUCLR.WTN1W6BOHHHQ@somainline.org>
+        with ESMTP id S237663AbiKNUsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 15:48:13 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A666713F7F;
+        Mon, 14 Nov 2022 12:48:07 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 547BC60007;
+        Mon, 14 Nov 2022 20:48:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668458886;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=owj7jV2GY0bbRrGgiyqXUxSTQ0wmVf4/LAIwgp1eqF8=;
+        b=fPjiK1A++szrwZEnjkTBXzH/jFiLZT76xYokAFU+URbgHTO6BNe+gXvmvPIVS5p4Lirnn8
+        O1tmoUXPl8NXoSrDw887X2foBeCr7HZcCQHekIYGUSNI/eD9X1R1jWLRPtajylOIzYzKyu
+        XE3gefsBty0Oz+3HsnvqrIp+AC5rLDcEfQNCrF/8O6PoV/SAsAB1Op54QV/W6vbQC79sjC
+        AC6svzkXuTSL8oEAMJBeEQXn7UYq2AFZzHp/tR17mzZ1r71prmAYsNupnE6YByUQFtTWxf
+        AZ1fxduvDDqotNv2gANhfhWVgmudjEn6AquhqAU7fGtMoGptMDvJEDhUMO5thg==
+Date:   Mon, 14 Nov 2022 21:48:04 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     brgl@bgdev.pl, lee@kernel.org, linus.walleij@linaro.org,
+        kristo@kernel.org, a.zummo@towertech.it,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        vigneshr@ti.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Keerthy <j-keerthy@ti.com>
+Subject: Re: [PATCH v3 3/7] rtc: rtc-tps6594x: Add support for TPS6594X PMIC
+ RTC
+Message-ID: <Y3KphJB4ux7zfW/M@mail.local>
+References: <20221109065546.24912-1-mranostay@ti.com>
+ <20221109065546.24912-4-mranostay@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221109065546.24912-4-mranostay@ti.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 14. november 2022 ob 21:38:08 CET je Martin Botka napisal(a=
-):
-> On Mon, Nov 14 2022 at 09:16:29 PM +01:00:00, Jernej =C5=A0krabec
->=20
-> <jernej.skrabec@gmail.com> wrote:
-> > Hi Martin,
-> >=20
-> > Dne ponedeljek, 14. november 2022 ob 18:20:16 CET je Martin Botka
-> >=20
-> > napisal(a):
-> >>  CB1 is Compute Module style board that plugs into Rpi board style
-> >>=20
-> >> adapter or
-> >>=20
-> >>  Manta 3D printer boards (M4P/M8P).
-> >> =20
-> >>  The board has:
-> >>  	H616 SoC
-> >>  	1GB of RAM
-> >>  	AXP313A PMIC
-> >> =20
-> >>  And the actual boards that CB1 plugs in are just extension to it
-> >>=20
-> >> with ports
-> >>=20
-> >>  and thus are not split in DT.
-> >> =20
-> >>  Boards have:
-> >>  	4x (3x for Manta boards) USB and 1 USB OTG.
-> >>  	SDcard slot for loading images.
-> >>  	Ethernet port wired to the internal PHY.
-> >>  	2x HDMI 2.0.
-> >>  	Power and Status LEDs.
-> >> =20
-> >>  Currently working:
-> >>  	Booting
-> >>  	USB
-> >>  	UART
-> >> =20
-> >>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> >>  ---
-> >>  Changes in V2:
-> >>  Add proper board compatible
-> >>  Add regulator prefix for vcc5v
-> >>  Drop okay status from PMIC
-> >>  Drop standby_param
-> >> =20
-> >>   arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >>   .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 186
-> >>=20
-> >> ++++++++++++++++++
-> >>=20
-> >>   2 files changed, 187 insertions(+)
-> >>   create mode 100644
-> >>=20
-> >> arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> >>=20
-> >>  diff --git a/arch/arm64/boot/dts/allwinner/Makefile
-> >>  b/arch/arm64/boot/dts/allwinner/Makefile index
-> >>=20
-> >> 6a96494a2e0a..223f1be73541
-> >>=20
-> >>  100644
-> >>  --- a/arch/arm64/boot/dts/allwinner/Makefile
-> >>  +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> >>  @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64.dtb
-> >> =20
-> >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64-model-b.dtb
-> >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6.dtb
-> >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6-mini.dtb
-> >> =20
-> >>  +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-biqu-cb1.dtb
-> >> =20
-> >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-orangepi-zero2.dtb
-> >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-x96-mate.dtb
-> >> =20
-> >>  diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> >>  b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts new file
-> >>=20
-> >> mode
-> >>=20
-> >>  100644
-> >>  index 000000000000..297536d7629a
-> >>  --- /dev/null
-> >>  +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> >>  @@ -0,0 +1,186 @@
-> >>  +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> >>  +/*
-> >>  + * Copyright (C) 2022 Arm Ltd.
-> >=20
-> > I suppose Arm Ltd. has nothing to do with this board? Put yours
-> > copyrights
-> > there.
->=20
-> Correct. Was a left over from Opi Zero 2 with just changed year. Will
-> correct in V3 with the rest of the changes
->=20
-> >>  + */
-> >>  +
-> >>  +/dts-v1/;
-> >>  +
-> >>  +#include "sun50i-h616.dtsi"
-> >>  +
-> >>  +#include <dt-bindings/gpio/gpio.h>
-> >>  +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>  +#include <dt-bindings/leds/common.h>
-> >>  +
-> >>  +/ {
-> >>  +	model =3D "BIQU CB1";
-> >>  +	compatible =3D "biqu,cb1", "allwinner,sun50i-h616";
-> >>  +
-> >>  +	aliases {
-> >>  +		serial0 =3D &uart0;
-> >>  +	};
-> >>  +
-> >>  +	chosen {
-> >>  +		stdout-path =3D "serial0:115200n8";
-> >>  +	};
-> >>  +
-> >>  +	leds {
-> >>  +		compatible =3D "gpio-leds";
-> >>  +
-> >>  +		led-0 {
-> >>  +			function =3D LED_FUNCTION_POWER;
-> >>  +			color =3D <LED_COLOR_ID_RED>;
-> >>  +			gpios =3D <&pio 2 12 GPIO_ACTIVE_HIGH>; /*
-> >=20
-> > PC12 */
-> >=20
-> >>  +			default-state =3D "on";
-> >>  +		};
-> >>  +
-> >>  +		led-1 {
-> >>  +			function =3D LED_FUNCTION_STATUS;
-> >>  +			color =3D <LED_COLOR_ID_GREEN>;
-> >>  +			gpios =3D <&pio 2 13 GPIO_ACTIVE_HIGH>; /*
-> >=20
-> > PC13 */
-> >=20
-> >>  +		};
-> >>  +	};
-> >>  +
-> >>  +	reg_vcc5v: regulator_vcc5v {
-> >>  +		/* board wide 5V supply directly from the USB-C socket
-> >=20
-> > */
-> >=20
-> >>  +		compatible =3D "regulator-fixed";
-> >>  +		regulator-name =3D "vcc-5v";
-> >>  +		regulator-min-microvolt =3D <5000000>;
-> >>  +		regulator-max-microvolt =3D <5000000>;
-> >>  +		regulator-always-on;
-> >>  +	};
-> >>  +
-> >>  +	reg_usb1_vbus: regulator-usb1-vbus {
-> >>  +		compatible =3D "regulator-fixed";
-> >>  +		regulator-name =3D "usb1-vbus";
-> >>  +		regulator-min-microvolt =3D <5000000>;
-> >>  +		regulator-max-microvolt =3D <5000000>;
-> >>  +		vin-supply =3D <&reg_vcc5v>;
-> >>  +		enable-active-high;
-> >>  +		gpio =3D <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-> >>  +	};
-> >>  +};
-> >>  +
-> >>  +&ehci0 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ehci1 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ehci2 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ehci3 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&mmc0 {
-> >>  +	vmmc-supply =3D <&reg_dldo1>;
-> >>  +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> >>  +	no-1-8-v;
-> >>  +	bus-width =3D <4>;
-> >>  +	status =3D "disabled";
-> >>  +};
-> >>  +
-> >>  +&ohci0 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ohci1 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ohci2 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&ohci3 {
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&r_i2c {
-> >>  +	status =3D "okay";
-> >>  +
-> >>  +	axp1530: pmic@36 {
-> >>  +		compatible =3D "x-powers,axp1530";
-> >=20
-> > I see that you send driver for this PMIC separately. Next time please
-> > mention
-> > that this series depends on another, otherwise checks will fail. Ping
-> > us here
-> > once PMIC driver is merged to unblock this.
-> >=20
-> > Anyway, RSB is prefered. Can you switch to it?
->=20
-> RSB does initialize but as soon as I try to give it the PMIC via RSB it
-> doesnt really wanna work so thats a no sadly.
+Hello,
 
-It's possible that you have to update this table:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
-drivers/bus/sunxi-rsb.c?h=3Dv6.1-rc5#n528
+On 08/11/2022 22:55:42-0800, Matt Ranostay wrote:
+> diff --git a/drivers/rtc/rtc-tps6594x.c b/drivers/rtc/rtc-tps6594x.c
+> new file mode 100644
+> index 000000000000..e9f904d0a769
+> --- /dev/null
+> +++ b/drivers/rtc/rtc-tps6594x.c
+> @@ -0,0 +1,181 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * rtc-tps6594x.c -- TPS6594x Real Time Clock driver.
+> + *
+> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com
+> + *
+> + * TODO: alarm support
 
-If still doesn't work, you have to remove RSB support in PMIC driver.
+Is this TODO actually useful? :)
 
-Is there datasheet for this PMIC?
+> +static int tps6594x_rtc_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	unsigned char rtc_data[TPS6594X_NUM_TIME_REGS];
+> +	struct tps6594x *tps6594x = dev_get_drvdata(dev->parent);
+> +	int ret;
+> +
+> +	/* Reset TPS6594X_RTC_CTRL_REG_GET_TIME bit to zero, required for latch */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +		TPS6594X_RTC_CTRL_REG_GET_TIME, 0);
+> +	if (ret < 0) {
+> +		dev_err(dev, "RTC CTRL reg update failed, err: %d\n", ret);
 
-Best regards,
-Jernej
+I would avoid these messages that are not actually actionable.
 
->=20
-> >>  +		reg =3D <0x36>;
-> >>  +		wakeup-source;
-> >>  +
-> >>  +		regulators{
-> >>  +			reg_dcdc1: dcdc1 {
-> >>  +				regulator-name =3D "axp1530-
-dcdc1";
-> >>  +				regulator-min-microvolt =3D
-> >=20
-> > <500000>;
-> >=20
-> >>  +				regulator-max-microvolt =3D
-> >=20
-> > <3400000>;
-> >=20
-> >>  +				regulator-step-delay-us =3D <25>;
-> >>  +				regulator-final-delay-us =3D <50>;
-> >>  +				regulator-always-on;
-> >>  +			};
-> >>  +
-> >>  +			reg_dcdc2: dcdc2 {
-> >>  +				regulator-name =3D "axp1530-
-dcdc2";
-> >>  +				regulator-min-microvolt =3D
-> >=20
-> > <500000>;
-> >=20
-> >>  +				regulator-max-microvolt =3D
-> >=20
-> > <1540000>;
-> >=20
-> >>  +				regulator-step-delay-us =3D <25>;
-> >>  +				regulator-final-delay-us =3D <50>;
-> >>  +				regulator-ramp-delay =3D <200>;
-> >>  +				regulator-always-on;
-> >>  +			};
-> >>  +
-> >>  +			reg_dcdc3: dcdc3 {
-> >>  +				regulator-name =3D "axp1530-
-dcdc3";
-> >>  +				regulator-min-microvolt =3D
-> >=20
-> > <500000>;
-> >=20
-> >>  +				regulator-max-microvolt =3D
-> >=20
-> > <1840000>;
-> >=20
-> >>  +				regulator-step-delay-us =3D <25>;
-> >>  +				regulator-final-delay-us =3D <50>;
-> >>  +				regulator-always-on;
-> >>  +			};
-> >>  +
-> >>  +			reg_aldo1: ldo1 {
-> >>  +				regulator-name =3D "axp1530-
-aldo1";
-> >>  +				regulator-min-microvolt =3D
-> >=20
-> > <1800000>;
-> >=20
-> >>  +				regulator-max-microvolt =3D
-> >=20
-> > <1800000>;
-> >=20
-> >>  +				regulator-step-delay-us =3D <25>;
-> >>  +				regulator-final-delay-us =3D <50>;
-> >>  +				regulator-always-on;
-> >>  +			};
-> >>  +
-> >>  +			reg_dldo1: ldo2 {
-> >>  +				regulator-name =3D "axp1530-
-dldo1";
-> >>  +				regulator-min-microvolt =3D
-> >=20
-> > <3300000>;
-> >=20
-> >>  +				regulator-max-microvolt =3D
-> >=20
-> > <3300000>;
-> >=20
-> >>  +				regulator-step-delay-us =3D <25>;
-> >>  +				regulator-final-delay-us =3D <50>;
-> >>  +				regulator-always-on;
-> >>  +			};
-> >>  +		};
-> >>  +	};
-> >>  +};
-> >>  +
-> >>  +&uart0 {
-> >>  +	pinctrl-names =3D "default";
-> >>  +	pinctrl-0 =3D <&uart0_ph_pins>;
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&usbotg {
-> >>  +	/*
-> >>  +	 * PHY0 pins are connected to a USB-C socket, but a role switch
-> >>  +	 * is not implemented: both CC pins are pulled to GND.
-> >>  +	 * The VBUS pins power the device, so a fixed peripheral mode
-> >>  +	 * is the best choice.
-> >>  +	 * The board can be powered via GPIOs, in this case port0 *can*
-> >>  +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> >>  +	 * then provided by the GPIOs. Any user of this setup would
-> >>  +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> >>  +	 * enabling OHCI0 and EHCI0.
-> >>  +	 */
-> >=20
-> > Above text is verbatim copy from OrangePi Zero2 and I'm not sure if
-> > it is
-> > fully accurate for this board too. Looking at board photo, it surely
-> > looks
-> > like this board has same USB design as Zero2. But if that's true, you
-> > shouldn't enable OHCI0 and EHCI0 nodes.
->=20
-> Correct. But M8P has a dip switch that enables or disables usbotg.
-> As for if it does anything its hard to say.
->=20
-> > Is there any board schematic publicly available for this board?
->=20
-> This is one of the issues. Im in contact with BIQU and asking for the
-> schematics.
-> I hope we can get them released ASAP as it would help me as well.
->=20
-> > Best regards,
-> > Jernej
-> >=20
-> >>  +	dr_mode =3D "peripheral";
-> >>  +	status =3D "okay";
-> >>  +};
-> >>  +
-> >>  +&usbphy {
-> >>  +	usb1_vbus-supply =3D <&reg_usb1_vbus>;
-> >>  +	status =3D "okay";
-> >>  +};
->=20
-> Best Regards,
-> Martin
+> +		return ret;
+> +	}
+> +
+> +	/* Copy RTC counting registers to static registers or latches */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +		TPS6594X_RTC_CTRL_REG_GET_TIME, TPS6594X_RTC_CTRL_REG_GET_TIME);
+> +	if (ret < 0) {
+> +		dev_err(dev, "RTC CTRL reg update failed, err: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_bulk_read(tps6594x->regmap, TPS6594X_RTC_SECONDS,
+> +			rtc_data, TPS6594X_NUM_TIME_REGS);
+> +	if (ret < 0) {
+> +		dev_err(dev, "RTC_SECONDS reg read failed, err = %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	tm->tm_sec = bcd2bin(rtc_data[0]);
+> +	tm->tm_min = bcd2bin(rtc_data[1]);
+> +	tm->tm_hour = bcd2bin(rtc_data[2]);
+> +	tm->tm_mday = bcd2bin(rtc_data[3]);
+> +	tm->tm_mon = bcd2bin(rtc_data[4]) - 1;
+> +	tm->tm_year = bcd2bin(rtc_data[5]) + 100;
+> +
+> +	return ret;
+> +}
+> +
+> +static int tps6594x_rtc_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	unsigned char rtc_data[TPS6594X_NUM_TIME_REGS];
+> +	struct tps6594x *tps6594x = dev_get_drvdata(dev->parent);
+> +	int ret, retries = 5;
+> +	unsigned int val;
+> +
+> +	rtc_data[0] = bin2bcd(tm->tm_sec);
+> +	rtc_data[1] = bin2bcd(tm->tm_min);
+> +	rtc_data[2] = bin2bcd(tm->tm_hour);
+> +	rtc_data[3] = bin2bcd(tm->tm_mday);
+> +	rtc_data[4] = bin2bcd(tm->tm_mon + 1);
+> +	rtc_data[5] = bin2bcd(tm->tm_year - 100);
+> +
+> +	/* Stop RTC while updating the RTC time registers */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC, 0);
+> +	if (ret < 0) {
+> +		dev_err(dev, "RTC stop failed, err = %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Waiting till RTC isn't running */
+> +	do {
+> +		ret = regmap_read(tps6594x->regmap, TPS6594X_RTC_STATUS, &val);
+> +		if (ret < 0) {
+> +			dev_err(dev, "RTC_STATUS reg read failed, err = %d\n", ret);
+> +			return ret;
+> +		}
+> +		msleep(20);
+> +	} while (--retries && (val & TPS6594X_RTC_STATUS_RUN));
 
+Maybe you should go for regmap_read_poll_timeout.
 
+> +
+> +	if (!retries) {
+> +		dev_err(dev, "RTC_STATUS is still RUNNING\n");
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	ret = regmap_bulk_write(tps6594x->regmap, TPS6594X_RTC_SECONDS,
+> +		rtc_data, TPS6594X_NUM_TIME_REGS);
+> +	if (ret < 0) {
+> +		dev_err(dev, "RTC_SECONDS reg write failed, err = %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Start back RTC */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC);
+> +	if (ret < 0)
+> +		dev_err(dev, "RTC start failed, err = %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct rtc_class_ops tps6594x_rtc_ops = {
+> +	.read_time	= tps6594x_rtc_read_time,
+> +	.set_time	= tps6594x_rtc_set_time,
+> +};
+> +
+> +static int tps6594x_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct tps6594x *tps6594x = dev_get_drvdata(pdev->dev.parent);
+> +	struct tps6594x_rtc *tps6594x_rtc = NULL;
+> +	int ret;
+> +
+> +	tps6594x_rtc = devm_kzalloc(&pdev->dev, sizeof(struct tps6594x_rtc), GFP_KERNEL);
+> +	if (!tps6594x_rtc)
+> +		return -ENOMEM;
+> +
+> +	tps6594x_rtc->dev = &pdev->dev;
+> +	platform_set_drvdata(pdev, tps6594x_rtc);
+> +
+> +	/* Start RTC */
+> +	ret = regmap_update_bits(tps6594x->regmap, TPS6594X_RTC_CTRL_1,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC,
+> +				 TPS6594X_RTC_CTRL_REG_STOP_RTC);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "RTC_CTRL write failed, err = %d\n", ret);
+> +		return ret;
+> +	}
 
+It doesn't make sense to start the RTC in probe as it is probably
+already started and time is kept properly or it is not started and then
+you can use this information in tps6594x_rtc_read_time as you know the
+time is not correct.
+I'd rather ensure it is started in tps6594x_rtc_set_time.
 
+> +
+> +	tps6594x_rtc->rtc = devm_rtc_device_register(&pdev->dev, pdev->name,
+
+This is deprecated, please use devm_rtc_allocate_device() and
+devm_rtc_register_device(). You also need to set the range properly.
+
+> +				&tps6594x_rtc_ops, THIS_MODULE);
+> +	if (IS_ERR(tps6594x_rtc->rtc)) {
+> +		ret = PTR_ERR(tps6594x_rtc->rtc);
+> +		dev_err(&pdev->dev, "RTC register failed, err = %d\n", ret);
+
+This message is useless as the core aloready pronts an error on
+registration failure.
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id of_tps6594x_rtc_match[] = {
+> +	{ .compatible = "ti,tps6594x-rtc", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, of_tps6594x_rtc_match);
+> +#endif
+> +
+> +static struct platform_driver tps6594x_rtc_driver = {
+> +	.probe		= tps6594x_rtc_probe,
+> +	.driver		= {
+> +		.name	= "tps6594x-rtc",
+> +		.of_match_table = of_match_ptr(of_tps6594x_rtc_match),
+> +	},
+> +};
+> +
+> +module_platform_driver(tps6594x_rtc_driver);
+> +
+> +MODULE_ALIAS("platform:tps6594x_rtc");
+> +MODULE_DESCRIPTION("TI TPS6594x series RTC driver");
+> +MODULE_AUTHOR("Keerthy J <j-keerthy@ti.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.38.GIT
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
