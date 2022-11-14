@@ -2,311 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A545D628D72
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 00:32:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39CD0628D8F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 00:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232008AbiKNXce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 18:32:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41782 "EHLO
+        id S231934AbiKNXku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 18:40:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbiKNXcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 18:32:33 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6387020E;
-        Mon, 14 Nov 2022 15:32:29 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0D5B711FB;
-        Mon, 14 Nov 2022 15:32:35 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA0193F663;
-        Mon, 14 Nov 2022 15:32:25 -0800 (PST)
-Date:   Mon, 14 Nov 2022 23:31:02 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     martin.botka1@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Conley Lee <conleylee@foxmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: Add basic support for BIQU CB1
-Message-ID: <20221114233102.3b1f96cc@slackpad.lan>
-In-Reply-To: <20221114214452.1993744-2-martin.botka@somainline.org>
-References: <20221114214452.1993744-1-martin.botka@somainline.org>
-        <20221114214452.1993744-2-martin.botka@somainline.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S230415AbiKNXkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 18:40:49 -0500
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D2010041;
+        Mon, 14 Nov 2022 15:40:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AQL7HivcnLGQJYwYrBwCu0L68++TvWx7eDKfk4sXHrDAcSfbG5i3ymLtBxHi3d+ksYJsDjD+Y55e9OoOfOS4mVe9ZRVkT/7dg+PuFgAmDguKbkz+h91luhxBcbFtIve67LkNGtQGYUbyQSm9prx1nHMJW3rxkoW0ErG17pj5b/4xVsgp29PUHrbIqZKXsn5FINPRjOWwUNXurLXm/zkI0FYs7TZCE+cHvCi0XNgaz5DyAJldmehV0woRedidDxFpWK0zZRII79EVqy9e8XtrU2mQzxGNsdrDK0Uy9eVWtyZ2ooc0LsGG7AmAK+L+M0UT3+1w5iP0hBTVQXjfCAh4UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e1iTKEMkB1E+3tWeCkczN86Ml4cdBXUOPXKWI9iqcTc=;
+ b=i8xOzbx3vr6wUfps1sAPadkyh5yI8jO0Yw/Yx1xJt4fj+vxL3/nNkpJLh8GDlQAUtmvgL5hsQo/BgnCk47MDjDSlap2p+ybmkKBvCfvCYcE/siZir4YHZs0fxOocAMIcjAMGNFsVFEpTKn+zhkQuZZ2G3p7m8Vf5AVmjIFyaO0T6uddapPs2bTTY4CerRyXjQ+Fg+0K2IOxDrNPcTM1Zibvw0n5MmbZjkf4CSpJ4/ANNz1wbzkrivuABrMoY/S8SKOYbdk2kHwcPD133D4LxhuYDKSDXlOsJ//dkARcOVPpSVGThcyLcQf3k7fqwY018hTtsrhd4D9+gJh2qvF+F/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e1iTKEMkB1E+3tWeCkczN86Ml4cdBXUOPXKWI9iqcTc=;
+ b=ZEDbufpuz8LcnW4YlhjN32/4bSbbyBIUZLa3ynpOew7pwonmptcNN/cPW68bwpRkHLqAYb+DS36RDrqNEXswIEfvO9Juo4lUJy0fRJCd0/Y4eGQ2VdvWVMor09hsuf6prx8tKMSuyrbhO2Ea6QD15RqD78UPNeIYN7mvJijhbS0=
+Received: from DM6PR06CA0052.namprd06.prod.outlook.com (2603:10b6:5:54::29) by
+ BN9PR12MB5081.namprd12.prod.outlook.com (2603:10b6:408:132::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
+ 2022 23:40:43 +0000
+Received: from DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:54:cafe::26) by DM6PR06CA0052.outlook.office365.com
+ (2603:10b6:5:54::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17 via Frontend
+ Transport; Mon, 14 Nov 2022 23:40:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT027.mail.protection.outlook.com (10.13.172.205) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5813.12 via Frontend Transport; Mon, 14 Nov 2022 23:40:43 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 14 Nov
+ 2022 17:40:42 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 14 Nov
+ 2022 17:40:42 -0600
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 14 Nov 2022 17:40:41 -0600
+From:   Tanmay Shah <tanmay.shah@amd.com>
+To:     <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <michal.simek@amd.com>
+CC:     <bill.mills@linaro.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tanmay Shah <tanmay.shah@amd.com>
+Subject: [PATCH v11 0/6] Add Xilinx RPU subsystem support
+Date:   Mon, 14 Nov 2022 15:39:34 -0800
+Message-ID: <20221114233940.2096237-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT027:EE_|BN9PR12MB5081:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4251e5d5-1853-41ba-8a9b-08dac699a555
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rpSsc4H+MXM7gNYhMIbXlGiKskh1wKhrqum9Q1AKlKBAKdUmIxS1pj/u74B33acld8YoQSLhCU33FA7qtIPN41RFoBss3o3tM/FEcSmmMubdk6R9z6dd6jPyr2DYt8dZ+D1RsHqDkD1A2cL55f+cN5oeLhc9wJyisJtr83QJr2hyp9tt4yR7oEsS/omFF3UWdGNM4S2w/wJSvdqkOCj2VS3A0/fiX1tT3JX5hHX4lzwqVSEHlsAaOBYUSEo4H5KdyBwKKWwtlOXqYs1neT4GTzBXRoC6TW5JwA48PipsMvDnqRIBxqcutxVEkU398DRSWUh/ShQ+CUOO+HgkJFXm1+O9D7jgFV5cgDVG0Mrk0nAkaQkW03eiEOhOmevTXijrStjovBF3oAsHqkKiMqDdlV/rwuBWpqHlHdYbvihuEwsdYYdoq5aXwdbp6W+uXGAHcvqa2Ur6LCH4W0qvP8djXEjUV4/z9kfOdMHAeGELZit/qrKtMD+yt+PyWBHnuqLOVSv4nBnFl1m3qP90w9bJf96eH0pbymTEEGlcwESg1NHuqG72ksQrLb+LH+hQ3Tr2koOH332exiI90MYsIDAS70SsWNNP77G/vQzz0FFepzYDp20dEJ0fufdtTUhUeB2HQxpqKTX7c5xuXeY8o0I7ksy33vYMB8Xtjfkf8Po99sQSBCzLc9RdKBveX07KxDiN+4hZTK3twyGfaey1fYo5zUhOo9u6ymlJWEa7NdjaFo3uu7F1I7wbB3mMrynkgVeu18QLMcgfQAcvIrbaAZJ4UKv9Cn4DwU7kWtwS+rmSSrXWIccEK/skPGFcoLnN/Fsn
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(136003)(376002)(396003)(451199015)(36840700001)(46966006)(40470700004)(6666004)(26005)(40480700001)(6636002)(110136005)(54906003)(316002)(36756003)(478600001)(36860700001)(47076005)(82740400003)(81166007)(40460700003)(186003)(426003)(1076003)(336012)(2906002)(2616005)(86362001)(356005)(82310400005)(83380400001)(70206006)(8936002)(41300700001)(8676002)(44832011)(70586007)(4326008)(5660300002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 23:40:43.1707
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4251e5d5-1853-41ba-8a9b-08dac699a555
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5081
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Nov 2022 22:44:49 +0100
-Martin Botka <martin.botka@somainline.org> wrote:
+This patch series adds bindings document for RPU subsystem found on Xilinx
+ZynqMP platforms. It also adds device nodes and driver to enable RPU
+subsystem in split mode and lockstep mode.
 
-> CB1 is Compute Module style board that plugs into Rpi board style adapter or
-> Manta 3D printer boards (M4P/M8P).
-> 
-> The board has:
-> 	H616 SoC
-> 	1GB of RAM
-> 	AXP313A PMIC
-> 
-> And the actual boards that CB1 plugs in are just extension to it with ports and
-> thus are not split in DT.
+Xilinx ZynqMP platform contains Remote Processing Unit(RPU). RPU subsystem
+contains two arm cortex r5f cores. RPU subsystem can be configured in
+split mode, lockstep mode and single-cpu mode.
 
-I don't really understand that sentence. There is some precedent for a
-SoM/board split, look at the sun50i-a64-sopine or
-sun50i-h5-emlid-neutis-n5 files. And if I see this correctly, then
-there are *two* boards available for the same CB1 SoM, the PI4B and the
-Manta board? Which would a strong case for a SoM .dtsi, plus the one
-or two board .dts files.
-I am just not sure whether that relation to the Pi4-CM is helpful or
-just complicates things...
+RPU subsystem also contains 4 Tightly Coupled Memory(TCM) banks.
+In lockstep mode, all 4 banks are combined and total of 256KB memory is
+made available to r5 core0. In split mode, both cores can access two
+TCM banks i.e. 128 KB.
 
-Cheers,
-Andre
+RPU can also fetch data and execute instructions from DDR memory along with
+TCM memory.
+---
 
-> 
-> Boards have:
-> 	4x (3x for Manta boards) USB and 1 USB OTG.
-> 	SDcard slot for loading images.
-> 	Ethernet port wired to the internal PHY.
-> 	2x HDMI 2.0.
-> 	Power and Status LEDs.
-> 
-> Currently working:
-> 	Booting
-> 	USB
-> 	UART
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
-> Changes in V2:
-> Add proper board compatible
-> Add regulator prefix for vcc5v
-> Drop okay status from PMIC
-> Drop standby_param
-> Changes in V3:
-> Change copyright to me
-> regulator_vcc5v to regulator-vcc5v
-> Drop ehci0 and ohci0
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 178 ++++++++++++++++++
->  2 files changed, 179 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 6a96494a2e0a..223f1be73541 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> new file mode 100644
-> index 000000000000..86b5aca9b53e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> @@ -0,0 +1,178 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2022 Martin Botka <martin.botka@somainline.org>.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "BIQU CB1";
-> +	compatible = "biqu,cb1", "allwinner,sun50i-h616";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
-> +			default-state = "on";
-> +		};
-> +
-> +		led-1 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-> +		};
-> +	};
-> +
-> +	reg_vcc5v: regulator-vcc5v {
-> +		/* board wide 5V supply directly from the USB-C socket */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_usb1_vbus: regulator-usb1-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb1-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&reg_vcc5v>;
-> +		enable-active-high;
-> +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-> +	};
-> +};
-> +
-> +&ehci1 {
-> +	status = "okay";
-> +};
-> +
-> +&ehci2 {
-> +	status = "okay";
-> +};
-> +
-> +&ehci3 {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_dldo1>;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	no-1-8-v;
-> +	bus-width = <4>;
-> +	status = "disabled";
-> +};
-> +
-> +&ohci1 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci2 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci3 {
-> +	status = "okay";
-> +};
-> +
-> +&r_i2c {
-> +	status = "okay";
-> +
-> +	axp1530: pmic@36 {
-> +		compatible = "x-powers,axp1530";
-> +		reg = <0x36>;
-> +		wakeup-source;
-> +
-> +		regulators{
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-name = "axp1530-dcdc1";
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-step-delay-us = <25>;
-> +				regulator-final-delay-us = <50>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-name = "axp1530-dcdc2";
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1540000>;
-> +				regulator-step-delay-us = <25>;
-> +				regulator-final-delay-us = <50>;
-> +				regulator-ramp-delay = <200>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-name = "axp1530-dcdc3";
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1840000>;
-> +				regulator-step-delay-us = <25>;
-> +				regulator-final-delay-us = <50>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_aldo1: ldo1 {
-> +				regulator-name = "axp1530-aldo1";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-step-delay-us = <25>;
-> +				regulator-final-delay-us = <50>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_dldo1: ldo2 {
-> +				regulator-name = "axp1530-dldo1";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-step-delay-us = <25>;
-> +				regulator-final-delay-us = <50>;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	/*
-> +	 * PHY0 pins are connected to a USB-C socket, but a role switch
-> +	 * is not implemented: both CC pins are pulled to GND.
-> +	 * The VBUS pins power the device, so a fixed peripheral mode
-> +	 * is the best choice.
-> +	 * The board can be powered via GPIOs, in this case port0 *can*
-> +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> +	 * then provided by the GPIOs. Any user of this setup would
-> +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> +	 * enabling OHCI0 and EHCI0.
-> +	 */
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	usb1_vbus-supply = <&reg_usb1_vbus>;
-> +	status = "okay";
-> +};
+Changes in v11:
+  - rename binding filename to match with compatible string
+  - change $id: value accordingly as well
+  - Rebase on latest rproc-next branch and resolve merge conflicts
+  - remove redundant < 0 check for function of_get_available_child_count()
+  - return 'ret' variable rather than masking the real error code when
+    parsing "xlnx,cluster-mode" property fails
+  - remove redundant use of devm_free()
+  - call  of_reserved_mem_device_release() to release reserved memory
+    in case driver probe fails or driver is removed.
+
+Changes in v10:
+  - bindings: rename example node to remoteproc
+  - dts: Rename node name to remoteproc
+  - switch to AMD email ID 
+  - fix Kconfig unmet dependecy error reported by kernel test robot
+  - fix r5_rproc object mem leak in function zynqmp_r5_add_rproc_core
+  - add explanation of hardcoded TCM nodes
+  - remove redundant ToDo comment
+  - remove redundant check of tcm_bank_count and rmem_count
+  - remove explicit free reserved_mem in zynqmp_r5_get_mem_region_node
+  - fix leaked reference of child_dev during zynqmp_r5_cluster_init
+    Also fix possible crash in exit path release_r5_cores 
+  - do not remove mem-region and tcm carveouts explicitly in case of failure.
+    It will be deleted as part of rproc_del. This also simplifies logic to
+    use rproc_add_carveout
+  - fix documentation all over the driver
+
+Changes in v9:
+  - bindings: remove power-domains property description
+  - bindings: fix nitpicks in description of properties
+  - dts: remove unused labels
+  - replace devm_rproc_alloc with rproc_alloc
+  - %s/until/while/r
+  - %s/i > -1/i >=0/r
+  - fix type of tcm_mode from int to enum rpu_tcm_comb
+  - release &child_pdev->dev references
+  - remove zynqmp_r5_core_exit()
+  - undefined memory-region property isn't failure
+  - remove tcm bank count check from ops
+  - fix tcm bank turn-off sequence
+  - fix parse_fw function documentation
+  - do not use rproc_mem_entry_init on vdev0buffers
+  - check tcm banks shouldn't be 0
+  - declare variabls in reverse xmas tree order
+  - remove extra line
+
+Changes in v8:
+  - add 'items:' for sram property
+
+Changes in v7:
+  - Add minItems in sram property
+
+Changes in v6:
+  - Add maxItems to sram and memory-region property
+
+Changes in v5:
+  - Add constraints of the possible values of xlnx,cluster-mode property
+  - fix description of power-domains property for r5 core
+  - Remove reg, address-cells and size-cells properties as it is not required
+  - Fix description of mboxes property
+  - Add description of each memory-region and remove old .txt binding link
+    reference in the description
+  - Remove optional reg property from r5fss node
+  - Move r5fss node out of axi node
+
+Changes in v4:
+  - Add memory-region, mboxes and mbox-names properties in dt-bindings example
+  - Add reserved memory region node and use it in Xilinx dt RPU subsystem node
+  - Remove redundant header files
+  - use dev_err_probe() to report errors during probe
+  - Fix missing check on error code returned by zynqmp_r5_add_rproc_core()
+  - Fix memory leaks all over the driver when resource allocation fails for any core
+  - make cluster mode check only at one place
+  - remove redundant initialization of variable
+  - remove redundant use of of_node_put() 
+  - Fix Comment format problem
+  - Assign offset of zynqmp_tcm_banks instead of duplicating it
+  - Add tcm and memory regions rproc carveouts during prepare instead of parse_fw
+  - Remove rproc_mem_entry object from r5_core
+  - Use put_device() and rproc_del() APIs to fix memory leaks
+  - Replace pr_* with dev_*. This was missed in v3, fix now.
+  - Use "GPL" instead of "GPL v2" in MODULE_LICENSE macro. This was reported by checkpatch script.
+
+Changes in v3:
+  - Fix checkpatch script indentation warning
+  - Remove unused variable from xilinx remoteproc driver
+  - use C style comments, i.e /*...*/
+  - Remove redundant debug information which can be derived using /proc/device-tree
+  - Fix multiline comment format
+  - s/"final fot TCM"/"final for TCM"
+  - Function devm_kzalloc() does not return an code on error, just NULL.
+    Remove redundant error check for this function throughout the driver.
+  - Fix RPU mode configuration and add documentation accordingly
+  - Get rid of the indentations to match function documentation style with rest of the driver
+  - Fix memory leak by only using r5_rproc->priv and not replace it with new instance
+  - Use 'i' for the outer loop and 'j' for the inner one as per convention
+  - Remove redundant error and NULL checks throughout the driver
+  - Use devm_kcalloc() when more than one element is required
+  - Add memory-regions carveouts during driver probe instead of parse_fw call
+    This removes redundant copy of reserved_mem object in r5_core structure.
+  - Fix memory leak by using of_node_put()
+  - Fix indentation of tcm_mem_map function args
+  - Remove redundant init of variables
+  - Initialize tcm bank size variable for lockstep mode
+  - Replace u32 with phys_addr_t for variable stroing memory bank address
+  - Add documentation of TCM behavior in lockstep mode
+  - Use dev_get_drvdata instead of platform driver API
+  - Remove info level messages
+  - Fix checkpatch.pl warnings
+  - Add documentation for the Xilinx r5f platform to understand driver design
+
+Changes in v2:
+  - Remove proprietary copyright footer from cover letter
+
+Ben Levinsky (3):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+
+Tanmay Shah (3):
+  dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
+  arm64: dts: xilinx: zynqmp: Add RPU subsystem device node
+  drivers: remoteproc: Add Xilinx r5 remoteproc driver
+
+ .../remoteproc/xlnx,zynqmp-r5fss.yaml         |  135 +++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   33 +
+ drivers/firmware/xilinx/zynqmp.c              |   97 ++
+ drivers/remoteproc/Kconfig                    |   13 +
+ drivers/remoteproc/Makefile                   |    1 +
+ drivers/remoteproc/xlnx_r5_remoteproc.c       | 1067 +++++++++++++++++
+ include/dt-bindings/power/xlnx-zynqmp-power.h |    6 +
+ include/linux/firmware/xlnx-zynqmp.h          |   60 +
+ 8 files changed, 1412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+ create mode 100644 drivers/remoteproc/xlnx_r5_remoteproc.c
+
+
+base-commit: 6eed169c7fefd9cdbbccb5ba7a98470cc0c09c63
+-- 
+2.25.1
 
