@@ -2,297 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AEC6286DE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:21:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C566286F4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 18:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236791AbiKNRUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 12:20:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
+        id S230520AbiKNRYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 12:24:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237965AbiKNRUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:20:36 -0500
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F78A1C42F
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 09:20:35 -0800 (PST)
-Received: from TimeMachine.lan (bband-dyn193.178-41-216.t-com.sk [178.41.216.193])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id CA7681F68A;
-        Mon, 14 Nov 2022 18:20:33 +0100 (CET)
-From:   Martin Botka <martin.botka@somainline.org>
-To:     martin.botka1@gmail.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Yenda <jtrmal@gmail.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <maxime@cerno.tech>,
+        with ESMTP id S236747AbiKNRYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 12:24:03 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F893AE61;
+        Mon, 14 Nov 2022 09:24:02 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id n20so9447244ejh.0;
+        Mon, 14 Nov 2022 09:24:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6TuL0Y+rO9fxtmzmyAVa69XJKRgqWPJ2OfFK7yf03Q8=;
+        b=YFSnsQf8sjzTuSTT6mTlCVstF8oHuYZEdzipDMt8cUsFTTqvRZFSEEDVqqDe93TP1S
+         K7Kp2QoZllY/I/lJWkF9sz47M/SuWDcqsYQgyIdskdg6U+3HZZNdjYBY2PFoBQ0vV1Ed
+         tuxPMDsZKPY4KGox8ZZ49QqlWkf/CN3FKfpDNqpIgzILDUFb4kkTKWqFARtbnyPkxalR
+         nDwAZwITlDKr/DOEcSEcgEHbVrdpmkyfakblsTFiwGq59M+SuzWDkT2v9mT93khiUS/O
+         IBxgICoguQV8gqLVy2zpi7r0Xy0LF4k4OYZwjEPPsd5nRrE4btcz80oFoTdyMO+VgzJQ
+         /PCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6TuL0Y+rO9fxtmzmyAVa69XJKRgqWPJ2OfFK7yf03Q8=;
+        b=8Hmbm+QVNBpEU3iuYoxA5ZqUmDLWWwvYibyLqQNOx3nA9FcUXRAO1Rebsi76GehbyU
+         aMn541jWFpAr1qNMvbLDRdKX9hBXzPx7HBLDLdP7KQPVbocu8h5yAGpPwsU0lMGe4nmF
+         aOCoj3QKfZXcZU59zk8YI/Y7IQqt7KgFMOg9Jth7RADeNU4g1skud6yxr8h6XjbSKOot
+         VaoKBFiyeiZfjAPY0NXUzBRAEunJGHA+CLAWbfruQ8PHtBcRBG29xg8ZYGSJPEFo8NJ2
+         VoRonj7cMNxSe9QFAnK2VCJhXya/ofjF+XYBz11NnNHjTQ+gnRe/Ihxq8RZ6cUHk8l1Z
+         v+pw==
+X-Gm-Message-State: ANoB5pldGJ1rMRq36LurLwBshmT3S+7JuS1TMu9Fip4ZXc/TDDhrgR11
+        7t2PYsTN8DIluU5bEvyvlhPGlhHxpC0IfQ==
+X-Google-Smtp-Source: AA0mqf5NU+UWrKjaeZ380Kdx+esoqf/0KQ1RMqDlFFH7/GMR4NAoZ9NpbjGL8EabJ5Pb/MYS6M7Qpw==
+X-Received: by 2002:a17:906:c1c6:b0:7ad:7e81:1409 with SMTP id bw6-20020a170906c1c600b007ad7e811409mr11094550ejb.326.1668446641117;
+        Mon, 14 Nov 2022 09:24:01 -0800 (PST)
+Received: from skbuf ([188.25.170.202])
+        by smtp.gmail.com with ESMTPSA id de30-20020a1709069bde00b0073d796a1043sm4388883ejc.123.2022.11.14.09.23.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Nov 2022 09:24:00 -0800 (PST)
+Date:   Mon, 14 Nov 2022 19:23:57 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Andrew Lunn <andrew@lunn.ch>,
-        Conley Lee <conleylee@foxmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V2 2/2] arm64: dts: Add basic support for BIQU CB1
-Date:   Mon, 14 Nov 2022 18:20:16 +0100
-Message-Id: <20221114172018.1876608-2-martin.botka@somainline.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221114172018.1876608-1-martin.botka@somainline.org>
-References: <20221114172018.1876608-1-martin.botka@somainline.org>
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [PATCH net-next v2 00/11] net: pcs: Add support for devices
+ probed in the "usual" manner
+Message-ID: <20221114172357.hdzua4xo7wixtbgs@skbuf>
+References: <20221103210650.2325784-1-sean.anderson@seco.com>
+ <20221109224110.erfaftzja4fybdbc@skbuf>
+ <bcb87445-d80d-fea0-82f2-a15b20baaf06@seco.com>
+ <20221110152925.3gkkp5opf74oqrxb@skbuf>
+ <7b4fb14f-1ca0-e4f8-46ca-3884392627c2@seco.com>
+ <20221110160008.6t53ouoxqeu7w7qr@skbuf>
+ <ce6d6a26-4867-6385-8c64-0f374d027754@seco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ce6d6a26-4867-6385-8c64-0f374d027754@seco.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CB1 is Compute Module style board that plugs into Rpi board style adapter or
-Manta 3D printer boards (M4P/M8P).
+On Thu, Nov 10, 2022 at 11:56:15AM -0500, Sean Anderson wrote:
+> these will probably be in device trees for a year before the kernel
+> starts using them. But once that is done, we are free to require them.
 
-The board has:
-	H616 SoC
-	1GB of RAM
-	AXP313A PMIC
-
-And the actual boards that CB1 plugs in are just extension to it with ports and
-thus are not split in DT.
-
-Boards have:
-	4x (3x for Manta boards) USB and 1 USB OTG.
-	SDcard slot for loading images.
-	Ethernet port wired to the internal PHY.
-	2x HDMI 2.0.
-	Power and Status LEDs.
-
-Currently working:
-	Booting
-	USB
-	UART
-
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
-Changes in V2:
-Add proper board compatible
-Add regulator prefix for vcc5v
-Drop okay status from PMIC
-Drop standby_param
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 186 ++++++++++++++++++
- 2 files changed, 187 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 6a96494a2e0a..223f1be73541 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-new file mode 100644
-index 000000000000..297536d7629a
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2022 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "BIQU CB1";
-+	compatible = "biqu,cb1", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
-+			default-state = "on";
-+		};
-+
-+		led-1 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: regulator_vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb1_vbus: regulator-usb1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v>;
-+		enable-active-high;
-+		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dldo1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	no-1-8-v;
-+	bus-width = <4>;
-+	status = "disabled";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp1530: pmic@36 {
-+		compatible = "x-powers,axp1530";
-+		reg = <0x36>;
-+		wakeup-source;
-+
-+		regulators{
-+			reg_dcdc1: dcdc1 {
-+				regulator-name = "axp1530-dcdc1";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-name = "axp1530-dcdc2";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1540000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-ramp-delay = <200>;
-+				regulator-always-on;
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-name = "axp1530-dcdc3";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1840000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+
-+			reg_aldo1: ldo1 {
-+				regulator-name = "axp1530-aldo1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+
-+			reg_dldo1: ldo2 {
-+				regulator-name = "axp1530-dldo1";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-step-delay-us = <25>;
-+				regulator-final-delay-us = <50>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_usb1_vbus>;
-+	status = "okay";
-+};
--- 
-2.38.1
-
+Sorry, you need to propose something that is not "we can break compatibility
+with today's device trees one year from now".
