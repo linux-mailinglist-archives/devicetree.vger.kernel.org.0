@@ -2,54 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BC98628A0C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 21:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC82E628A25
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 21:10:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235800AbiKNUDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 15:03:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32938 "EHLO
+        id S237438AbiKNUKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 15:10:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235591AbiKNUDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 15:03:14 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3763AC;
-        Mon, 14 Nov 2022 12:03:13 -0800 (PST)
-Received: from falcon9.localnet (mtl.collabora.ca [66.171.169.34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: detlev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 312D36602995;
-        Mon, 14 Nov 2022 20:03:11 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668456191;
-        bh=Tkp7ehIKGRuqX0jDN9TZfE/Yp51dOxCKo9eY01jcmpk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ebYEkhh0l9uin9YobUDe616Ui1uJWyuBXxE2xG7+dQz4LPYONsjqh+0NKaeHTMiAc
-         Uwsg+CGOvB/vEQj6V3Y0kh+kRvQfWleuTf0+9gj9/jp59AUV5htZPB1u/Om565Hh2Z
-         wBqpHXXo3aZCub44V9pH0ohgYMKfk7OLqi4LelYwRqdXNr3NymHZ8hulaVRY0co+y3
-         86MwZ3zKB8MbDuFkCAfiVb+kwJCyt/281t0gO9fACJaC/T1JunBb0IJ42sP58OD9Cy
-         CK2/aET5ZRFUR/FqE73uROcgxBEFM1WHu+ldmJUPT0tjvPUg20Hqcap3fBdg52U/PT
-         I0HE1sJvQmcHw==
-From:   Detlev Casanova <detlev.casanova@collabora.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-kernel@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:ARM/RENESAS ARCHITECTURE" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a77951: Add reserved memory region
-Date:   Mon, 14 Nov 2022 15:03:07 -0500
-Message-ID: <12113751.O9o76ZdvQC@falcon9>
-In-Reply-To: <CAMuHMdW9dAxJwzD=W1xLN2e_T_BNFk5MfbWh24Btur-o+-n4sg@mail.gmail.com>
-References: <20221114194846.108814-1-detlev.casanova@collabora.com> <CAMuHMdW9dAxJwzD=W1xLN2e_T_BNFk5MfbWh24Btur-o+-n4sg@mail.gmail.com>
+        with ESMTP id S237253AbiKNUKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 15:10:37 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078531A809;
+        Mon, 14 Nov 2022 12:10:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=MrNBngzi6wQ2NVrBxymxGH3L1+wVD3zJA4h/aW1qc4c=; b=b+TJhpxKOwgYfoF5s2K/q+DPNH
+        LxceqCmKcStjghZyOzxdukgZ1iB2WrkyOXFoc8EIlHEllhPw1rcCjxp8wPfskJA8AJpmHXNDC7tl7
+        J9WMIU39M+fiRdLVwORpYFm57Yooa+1FQF/K/j6/6dWZ1g8PSoDYeGWCjIzIR14OwX/0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oufmU-002NRm-6C; Mon, 14 Nov 2022 21:10:10 +0100
+Date:   Mon, 14 Nov 2022 21:10:10 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andy Chiu <andy.chiu@sifive.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, pabeni@redhat.com, edumazet@google.com,
+        greentime.hu@sifive.com
+Subject: Re: [PATCH v3 RESEND net-next 2/3] net: axienet: set mdio clock
+ according to bus-frequency
+Message-ID: <Y3KgoiPT+3rvqhjY@lunn.ch>
+References: <20221114143755.1241466-1-andy.chiu@sifive.com>
+ <20221114143755.1241466-3-andy.chiu@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221114143755.1241466-3-andy.chiu@sifive.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,56 +51,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday, November 14, 2022 2:57:21 P.M. EST Geert Uytterhoeven wrote:
-> Hi Detlev,
-> 
-> On Mon, Nov 14, 2022 at 8:48 PM Detlev Casanova
-> 
-> <detlev.casanova@collabora.com> wrote:
-> > The 0x3000000 bytes memory region starting at 0x54000000 is
-> > reserved for the lossy_decompression hardware that will try to
-> > decompress any data written in the region.
-> > 
-> > Mark the region as no-map to prevent linux from using it as RAM.
-> > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> 
-> Thanks for your patch!
-> 
-> > --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> > @@ -290,6 +290,18 @@ CPU_SLEEP_1: cpu-sleep-1 {
-> > 
-> >                 };
-> >         
-> >         };
-> > 
-> > +       reserved-memory {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               ranges;
-> > +
-> > +               /* device specific region for Lossy Decompression */
-> > +               lossy_decompress: memory-region@54000000 {
-> > +                       no-map;
-> > +                       reg = <0x00000000 0x54000000 0x0 0x03000000>;
-> > +               };
-> > +       };
-> 
-> This depends on the firmware/boot loader stack.  If it configures a
-> Lossy Decompression region, it should make sure to pass this
-> info through the various boot loader components to Linux,
-> just like is already done with the memory regions, RPC-IF state,
-> and OpTee configuration.
+> +	u32 mdio_freq = MAX_MDIO_FREQ;
 
-Thanks for your fast answer ! I didn't realise ATF was doing that, I probably 
-have a configuration issue in ATF then, I'll rebuild and start from there.
+>  	/* clk_div can be calculated by deriving it from the equation:
+>  	 * fMDIO = fHOST / ((1 + clk_div) * 2)
 
-Thanks !
+A nit pick, but MAX_MDIO_FREQ is not actually the max. The max would
+be clk_div = 0. You can run the MDIO bus faster than 2.5MHz, if you
+know all the devices on the bus actually support faster speeds. I've
+run it at 6Mhz with Marvell Ethernet switches and PHYs.
 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
+DEFAULT_MDIO_FREQ would be better.
 
+>  	 *
+> @@ -209,13 +218,20 @@ static int axienet_mdio_enable(struct axienet_local *lp)
+>  	 * "clock-frequency" from the CPU
+>  	 */
+>  
+> -	lp->mii_clk_div = (host_clock / (MAX_MDIO_FREQ * 2)) - 1;
+> +	clk_div = (host_clock / (mdio_freq * 2)) - 1;
+>  	/* If there is any remainder from the division of
+> -	 * fHOST / (MAX_MDIO_FREQ * 2), then we need to add
+> +	 * fHOST / (mdio_freq * 2), then we need to add
+>  	 * 1 to the clock divisor or we will surely be above 2.5 MHz
 
+s/2.5 MHz/the requested frequency/
 
+With these changes made:
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
