@@ -2,127 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 230176275DC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 07:19:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DE56275E1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 07:25:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235615AbiKNGT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 01:19:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
+        id S235456AbiKNGZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 01:25:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235484AbiKNGT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 01:19:56 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F328DDF3B
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 22:19:54 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id l22-20020a17090a3f1600b00212fbbcfb78so12844799pjc.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 22:19:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qsw5Lak96/1gpYbt2tz5xOdeqxoFbfii0SlW21VQV9g=;
-        b=Qy2yL8Zuk00rkfId+O+FbpDk7EwuuZNfnTEH5YghgY4cX5gcKf0ubfdz0937L2vWsO
-         R0AmmzclNsv37s2g4WitX+9NWqpBP7jN2UOaP+6uUVdveshAYr1Z1mhA7FO667HGxFXw
-         6ZQ9pnnkATbikScOTjXU/A9RNC7wRQzSDqxbCVvenLSyNNdfrGxRJdMsaa68GJ+2P82U
-         dsp0jgnjJTNlaCl8QSVTYLa2u6k080XXuTnp5IInUQ0DIAnsNj1vk3ivItWXzKhKj+wC
-         Z9AASkGIvmfr2RJmezfiHynRDvC6daLkG8yGL+bzkywtSDNrtldiv52LDoEIKTZIwIjI
-         vl6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qsw5Lak96/1gpYbt2tz5xOdeqxoFbfii0SlW21VQV9g=;
-        b=KSSeGaJ8Q/aAsb3YEP+4/GZ+cjsrEbQ0rTumL1SXslbFNaN/9d8MtN4N0YjlSXupKY
-         kt3XJk+7/au6q7hxeTuRhFLHzeXwCOINmJxDQGcxhzybPrnspTTsV0hPYW+nwaIRh21G
-         n14sSEE2CubFyAYcsMr1DShOqHocVFfaeruc9GRonkb3OLRwtLTFsim++O/BsxKo7+Ej
-         JXr19nF9iJ0JFfplXno9ZskGfRqoRxhFgDiNWz6ctdROSAXrMV7V8z02cCLPu4GKv9id
-         56W6gJ6j+8p44z4tvgUy9ZEt9Pb205v5NVllFqRvyXNAGq+2oL+KG0+OOToJTw215aR7
-         a0Pg==
-X-Gm-Message-State: ANoB5pmENMpdq+rG9DWLtBL5ZkDkHbE9P+vh+zhtpZeRzsTbyfAxXUeY
-        C8pyqUFLeWm4jDdasN1GK0ry
-X-Google-Smtp-Source: AA0mqf4zeBtP2j6n46fS8oSE+AVmkT5P9/BZ/88BEzYVeXCdpKfNUqMwBjAxaBNNCFuuoxGRlsiKKQ==
-X-Received: by 2002:a17:90a:bc48:b0:212:ed58:2825 with SMTP id t8-20020a17090abc4800b00212ed582825mr12638853pjv.199.1668406794387;
-        Sun, 13 Nov 2022 22:19:54 -0800 (PST)
-Received: from thinkpad ([117.248.0.54])
-        by smtp.gmail.com with ESMTPSA id u17-20020a17090341d100b001783f964fe3sm4044075ple.113.2022.11.13.22.19.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Nov 2022 22:19:53 -0800 (PST)
-Date:   Mon, 14 Nov 2022 11:49:47 +0530
+        with ESMTP id S230441AbiKNGZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 01:25:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCF715707;
+        Sun, 13 Nov 2022 22:25:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4D5BCB80CC3;
+        Mon, 14 Nov 2022 06:25:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08FA6C433C1;
+        Mon, 14 Nov 2022 06:25:14 +0000 (UTC)
+Date:   Mon, 14 Nov 2022 11:55:10 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, krzk+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 05/10] PCI: designware-ep: Add ep_pre_init() callback
- to dw_pcie_ep_ops
-Message-ID: <20221114061947.GA3869@thinkpad>
-References: <20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com>
- <20220922080647.3489791-6-yoshihiro.shimoda.uh@renesas.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Manivannan Sadhasivam <mani@kernel.org>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] cpufreq: qcom-hw: Add CPU clock provider support
+Message-ID: <20221114062510.GB3869@thinkpad>
+References: <20221108154037.111794-1-manivannan.sadhasivam@linaro.org>
+ <20221108154037.111794-4-manivannan.sadhasivam@linaro.org>
+ <20221108155717.srlnabls5ze2resx@bogus>
+ <20221109074908.GC4651@thinkpad>
+ <20221109110831.lngwmwyjqp4qj73r@bogus>
+ <20221109123526.GA29805@thinkpad>
+ <20221109164719.d7kowdu7wskyzjsc@bogus>
+ <20221114031658.pnbf7uiqqgiq3uk7@vireshk-i7>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220922080647.3489791-6-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221114031658.pnbf7uiqqgiq3uk7@vireshk-i7>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 05:06:42PM +0900, Yoshihiro Shimoda wrote:
-> Some PCIe endpoint controllers need vendor-specific initialization
-> before the common code initialization. Add a new callback function
-> ep_pre_init() for it.
+On Mon, Nov 14, 2022 at 08:46:58AM +0530, Viresh Kumar wrote:
+> On 09-11-22, 16:47, Sudeep Holla wrote:
+> > Is the cpufreq_get() API expected
+> > to return something close to what was set or is it expected to return the
+> > real set h/w value if and when possible.
+> 
+> The real frequency the hardware is running at.
 > 
 
-Why can't you call the code associated with ep_pre_init() before calling
-dw_pcie_ep_init() in probe?
+Oh... In that case, qcom-cpufreq-hw driver is not returning the real frequency
+but instead whatever set by the cpufreq core previously using target_index().
+
+Should I fix it too in the next version of this series?
 
 Thanks,
 Mani
 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 3 +++
->  drivers/pci/controller/dwc/pcie-designware.h    | 1 +
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index ca8f1804ee10..1b7e9e1b8d52 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -709,6 +709,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  
->  	dw_pcie_version_detect(pci);
->  
-> +	if (ep->ops->ep_pre_init)
-> +		ep->ops->ep_pre_init(ep);
-> +
->  	dw_pcie_iatu_detect(pci);
->  
->  	ep->ib_window_map = devm_bitmap_zalloc(dev, pci->num_ib_windows,
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index b541f653c209..9ed9621a12e4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -317,6 +317,7 @@ struct dw_pcie_rp {
->  };
->  
->  struct dw_pcie_ep_ops {
-> +	void	(*ep_pre_init)(struct dw_pcie_ep *ep);
->  	void	(*ep_init)(struct dw_pcie_ep *ep);
->  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
->  			     enum pci_epc_irq_type type, u16 interrupt_num);
 > -- 
-> 2.25.1
-> 
+> viresh
 
 -- 
 மணிவண்ணன் சதாசிவம்
