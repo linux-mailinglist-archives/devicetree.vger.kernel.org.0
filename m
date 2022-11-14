@@ -2,259 +2,531 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A4162798B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3405062798F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:53:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236281AbiKNJwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:52:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54618 "EHLO
+        id S235946AbiKNJxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:53:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236284AbiKNJvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:51:51 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934171EC7B
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:51:48 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u2so12421620ljl.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:51:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DT7Lqj5itHPkRsi+26ax9bJ9oaClt2yyUwZVkdk8a+4=;
-        b=rkmer+mc57x3Fd3FqVO0WATgmXDiXwPeIlaRDjJQ0OCnzV3u5OmWJw/DBKO3LzuyuB
-         dSXHkxMnA9yPkSRiOn9RfSAWnZxOYgiuu+spiyqVnS115DZz4d2Ub1l2pmRJI3tQndsn
-         8Y+YvXBeOsiWeHFI/yWuJ2vu3Ki0BiRnxvMjufznRHyz6sYlGYLP0xFaGxqHU0EYri62
-         EoIOETOzAXWkGlSt/eAw2v8xglrMtUUKF98qhpyWmhLZDEINfqxsgrDXoWsjtQhoVd14
-         eU8Af/IbQ46rHG/OUaED1O9AdJPoX+jkg4ZnFLuig0E4qN0CAQ496arCJlsUTEsh8LrZ
-         Zz+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DT7Lqj5itHPkRsi+26ax9bJ9oaClt2yyUwZVkdk8a+4=;
-        b=5BfdxoM7vhOyCmcYVRJtLAGjpCvSw2aHovhJ0hNPfuI9zeWG41Xi+Co5TOBHlWCxwM
-         WGVk+YOjugxqx7CP8492BpKYRWtgbd1/ZdOilji4y16wCRAtYdeA31+lw1xSQ1Zzsuzq
-         IGGLw+qPEmK+4O4baBPMK5STTI8nm3ABR73ucnB+PSKNLLDrQzZ59t1OIPXUy6N7rlMA
-         do9t9jcn0lxf89C7E8zH0QCgbNHQVZcOfWWm1Q9K9cidgOpvTyYF1CZLRkWwjuEL5qHI
-         PhAYl8DLuaUOVN1NPHMkbmgNjTM4lsCfWvrDSdV/t2FVaZV2S254ABP8CmvjFNTq4pMU
-         caOA==
-X-Gm-Message-State: ANoB5plJHo/MqjZtaAjpTSKa0bTtoHPLd5kYFUmfqqoAV/ryO164DPSj
-        Ja0nBxKiQI0SqYUAYKGeO6vLJbMXLLLDkslB
-X-Google-Smtp-Source: AA0mqf7dzDqUeVCvtLWO7fBd1nQJvIEpv9wABDCV5cLCP95ikI/GSEWJu/NmFg/E68D5VS4GkjLNRg==
-X-Received: by 2002:a2e:b706:0:b0:277:d75:f1de with SMTP id j6-20020a2eb706000000b002770d75f1demr4173250ljo.272.1668419506902;
-        Mon, 14 Nov 2022 01:51:46 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056512360200b004ae24559388sm1754456lfs.111.2022.11.14.01.51.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:51:46 -0800 (PST)
-Message-ID: <6da76cb0-428e-d35a-3b11-81c7efa22460@linaro.org>
-Date:   Mon, 14 Nov 2022 10:51:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
-Content-Language: en-US
-To:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S235756AbiKNJwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:52:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82279DF33;
+        Mon, 14 Nov 2022 01:52:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1AEE1B80DA1;
+        Mon, 14 Nov 2022 09:52:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCC30C433C1;
+        Mon, 14 Nov 2022 09:52:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668419568;
+        bh=OGA6btIf0O2nItkEUzMrs8IKbLFaQuZsMAW10U2DJxA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b2MsAM3sANjbEmcebvNSjsfxpxp4TZcX05V3vHkWcndCtUNvp8RvEG84AJ0qwFeBj
+         vAmhA5nNDs6OHDXOlerusXTu24xMuNGEqw73rKKFeCk8uO9PqPHCSpv4xlTlXiQd6z
+         B2m/hQA34qydX8IGNbzquNDj6vLJ+BUcuUhviuNV9HGTizNDkos+zVWSpIcyux7ELq
+         RoMzKjhaXZlyeYp01wb7ddAxuuiLje8P99hyynf5k+L5A5FbINs8yNaus5+p7CuPr2
+         dLISTiDp89opsr6XgqDXr7DAGin1R7FG25cPUIfjh0fC7/TEtZBM5vDp+YDhfQPNul
+         NRtXEqLsHy+kg==
+Date:   Mon, 14 Nov 2022 09:52:41 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-7-apatel@ventanamicro.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111044207.1478350-7-apatel@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH v3 1/7] mfd: Add core Apple Mac SMC driver
+Message-ID: <Y3IP6bmBdLL2LoHR@google.com>
+References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
+ <E1osRXJ-002mvq-Bg@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <E1osRXJ-002mvq-Bg@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 05:42, Anup Patel wrote:
-> We add DT bindings document for RISC-V advanced platform level interrupt
-> controller (APLIC) defined by the RISC-V advanced interrupt architecture
-> (AIA) specification.
+On Tue, 08 Nov 2022, Russell King wrote:
+
+> From: Hector Martin <marcan@marcan.st>
 > 
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> This driver implements support for the SMC (System Management
+> Controller) in Apple Macs. In contrast to the existing applesmc driver,
+> it uses pluggable backends that allow it to support different SMC
+> implementations, and uses the MFD subsystem to expose the core SMC
+> functionality so that specific features (gpio, hwmon, battery, etc.) can
+> be implemented by separate drivers in their respective downstream
+> subsystems.
+
+Could we have Russell's ASCII simplified architecture model here please?
+
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > ---
->  .../interrupt-controller/riscv,aplic.yaml     | 136 ++++++++++++++++++
->  1 file changed, 136 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+>  drivers/mfd/Kconfig        |   4 +
+>  drivers/mfd/Makefile       |   1 +
+>  drivers/mfd/macsmc.c       | 239 +++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/macsmc.h | 104 ++++++++++++++++
+>  4 files changed, 348 insertions(+)
+>  create mode 100644 drivers/mfd/macsmc.c
+>  create mode 100644 include/linux/mfd/macsmc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 8b93856de432..f73e098b7228 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -224,6 +224,10 @@ config MFD_CROS_EC_DEV
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called cros-ec-dev.
+>  
+> +config MFD_MACSMC
+> +	tristate
+
+Is this selectable?
+
+Worth having a description?
+
+> +	select MFD_CORE
+
+Help section?
+
+Copy / paste from the commit log should be enough.
+
+>  config MFD_MADERA
+>  	tristate "Cirrus Logic Madera codecs"
+>  	select MFD_CORE
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 7ed3ef4a698c..a5271b578d31 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_MFD_CROS_EC_DEV)	+= cros_ec_dev.o
+>  obj-$(CONFIG_MFD_ENE_KB3930)	+= ene-kb3930.o
+>  obj-$(CONFIG_MFD_EXYNOS_LPASS)	+= exynos-lpass.o
+>  obj-$(CONFIG_MFD_GATEWORKS_GSC)	+= gateworks-gsc.o
+> +obj-$(CONFIG_MFD_MACSMC)	+= macsmc.o
+>  
+>  obj-$(CONFIG_HTC_PASIC3)	+= htc-pasic3.o
+>  obj-$(CONFIG_HTC_I2CPLD)	+= htc-i2cpld.o
+> diff --git a/drivers/mfd/macsmc.c b/drivers/mfd/macsmc.c
 > new file mode 100644
-> index 000000000000..0aa48571f3bc
+> index 000000000000..e5c3957efea4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aplic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V Advancded Platform Level Interrupt Controller (APLIC)
-> +
-> +maintainers:
-> +  - Anup Patel <anup@brainfault.org>
-> +
-> +description:
-> +  The RISC-V advanced interrupt architecture (AIA) defines advanced platform
-> +  level interrupt controller (APLIC) for handling wired interrupts in a
-> +  RISC-V platform. The RISC-V AIA specification can be found at
-> +  https://github.com/riscv/riscv-aia.
-> +
-> +  The RISC-V APLIC is implemented as hierarchical APLIC domains where all
-> +  interrupt sources connect to the root domain which can further delegate
-> +  interrupts to child domains. We have one device tree node for each APLIC
-> +  domain.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - vendor,chip-aplic
-> +      - const: riscv,aplic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 16384
-> +    description:
-> +      The presence of this property implies that given APLIC domain directly
-> +      injects external interrupts to a set of RISC-V HARTS (or CPUs). Each
-> +      node pointed to should be a riscv,cpu-intc node, which has a riscv node
-> +      (i.e. RISC-V HART) as parent.
-> +
-> +  msi-parent:
-> +    description:
-> +      The presence of this property implies that given APLIC domain forwards
+> +++ b/drivers/mfd/macsmc.c
+> @@ -0,0 +1,239 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Apple SMC core framework
 
-Drop "The presence of this property" and make it a proper sentence
-describing hardware.
+"SMC (System Management Controller)"
 
-> +      wired interrupts as MSIs to a AIA incoming message signaled interrupt
-> +      controller (IMSIC). This property should be considered only when the
-> +      interrupts-extended property is absent.
+Tiny nit: '\n'
+
+> + * Copyright The Asahi Linux Contributors
+
+Missing (C)
+
+Would you like an Author(s) line here?
+
+> + */
 > +
-> +  riscv,num-sources:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes.
-
-> +    minimum: 1
-> +    maximum: 1023
-> +    description:
-> +      Specifies how many wired interrupts are supported by this APLIC domain.
+> +#include <linux/device.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/macsmc.h>
+> +#include <linux/mutex.h>
+> +#include <linux/notifier.h>
 > +
-> +  riscv,children:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    minItems: 1
-> +    maxItems: 1024
-> +    description:
-> +      This property represents a list of child APLIC domains for the given
-> +      APLIC domain. Each child APLIC domain is assigned child index in
-> +      increasing order with the first child APLIC domain assigned child
-> +      index 0. The APLIC domain child index is used by firmware to delegate
-> +      interrupts from the given APLIC domain to a particular child APLIC
-> +      domain.
-> +
-> +  riscv,delegate:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    minItems: 1
-> +    maxItems: 1024
-> +    description:
-> +      This property represents a interrupt delegation list where each entry
 
-Drop "This property represents".
+Would you be kind enough to add a header here to describe the
+attributes please.  Some of them are non-standard.
 
-> +      is a triple consisting of child APLIC domain phandle, first interrupt
-> +      number, and last interrupt number. The firmware will configure interrupt
-> +      delegation registers based on interrupt delegation list.
+> +struct apple_smc {
+> +	struct device *dev;
 > +
-> +additionalProperties: false
+> +	void *be_cookie;
+> +	const struct apple_smc_backend_ops *be;
+> +
+> +	struct mutex mutex;
+> +
+> +	u32 key_count;
+> +	smc_key first_key;
+> +	smc_key last_key;
+> +
+> +	struct blocking_notifier_head event_handlers;
+> +};
+> +
+> +static const struct mfd_cell apple_smc_devs[] = {
+> +	MFD_CELL_OF("macsmc-gpio", NULL, NULL, 0, 0, "apple,smc-gpio"),
+> +	MFD_CELL_NAME("macsmc-hid"),
+> +	MFD_CELL_NAME("macsmc-power"),
+> +	MFD_CELL_NAME("macsmc-reboot"),
+> +	MFD_CELL_OF("macsmc-rtc", NULL, NULL, 0, 0, "apple,smc-rtc"),
+> +};
+> +
+> +int apple_smc_read(struct apple_smc *smc, smc_key key, void *buf, size_t size)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&smc->mutex);
+> +	ret = smc->be->read_key(smc->be_cookie, key, buf, size);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_read);
+> +
+> +int apple_smc_write(struct apple_smc *smc, smc_key key, void *buf, size_t size)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&smc->mutex);
+> +	ret = smc->be->write_key(smc->be_cookie, key, buf, size);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_write);
+> +
+> +int apple_smc_write_atomic(struct apple_smc *smc, smc_key key, void *buf, size_t size)
+> +{
+> +	int ret;
+> +
+> +	/*
+> +	 * Will fail if SMC is busy. This is only used by SMC reboot/poweroff
+> +	 * final calls, so it doesn't really matter at that point.
+> +	 */
+> +	if (!mutex_trylock(&smc->mutex))
+> +		return -EBUSY;
+> +
+> +	ret = smc->be->write_key_atomic(smc->be_cookie, key, buf, size);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_write_atomic);
+> +
+> +int apple_smc_rw(struct apple_smc *smc, smc_key key, void *wbuf, size_t wsize,
+> +		 void *rbuf, size_t rsize)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&smc->mutex);
+> +	ret = smc->be->rw_key(smc->be_cookie, key, wbuf, wsize, rbuf, rsize);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_rw);
+> +
+> +int apple_smc_get_key_by_index(struct apple_smc *smc, int index, smc_key *key)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&smc->mutex);
+> +	ret = smc->be->get_key_by_index(smc->be_cookie, index, key);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_get_key_by_index);
+> +
+> +int apple_smc_get_key_info(struct apple_smc *smc, smc_key key, struct apple_smc_key_info *info)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&smc->mutex);
+> +	ret = smc->be->get_key_info(smc->be_cookie, key, info);
+> +	mutex_unlock(&smc->mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(apple_smc_get_key_info);
+> +
+> +int apple_smc_find_first_key_index(struct apple_smc *smc, smc_key key)
+> +{
+> +	int start = 0, count = smc->key_count;
+> +	int ret;
+> +
+> +	if (key <= smc->first_key)
+> +		return 0;
+> +	if (key > smc->last_key)
+> +		return smc->key_count;
+> +
+> +	while (count > 1) {
+> +		int pivot = start + ((count - 1) >> 1);
+> +		smc_key pkey;
+> +
+> +		ret = apple_smc_get_key_by_index(smc, pivot, &pkey);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		if (pkey == key)
+> +			return pivot;
+> +
+> +		pivot++;
+> +
+> +		if (pkey < key) {
+> +			count -= pivot - start;
+> +			start = pivot;
+> +		} else {
+> +			count = pivot - start;
+> +		}
+> +	}
+> +
+> +	return start;
+> +}
 
-Same comments as in previous patch,
+Maybe a 1 or 2 line comment to provide an overview of what's happening
+in here please.
 
+> +EXPORT_SYMBOL(apple_smc_find_first_key_index);
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - riscv,num-sources
+> +int apple_smc_get_key_count(struct apple_smc *smc)
+> +{
+> +	return smc->key_count;
+> +}
+> +EXPORT_SYMBOL(apple_smc_get_key_count);
 > +
-> +examples:
-> +  - |
-> +    // Example 1 (APIC domain directly injecting interrupt to HARTs):
+> +void apple_smc_event_received(struct apple_smc *smc, uint32_t event)
+> +{
+> +	dev_dbg(smc->dev, "Event: 0x%08x\n", event);
+> +	blocking_notifier_call_chain(&smc->event_handlers, event, NULL);
+> +}
+> +EXPORT_SYMBOL(apple_smc_event_received);
 > +
-> +    aplic0: interrupt-controller@c000000 {
-> +      compatible = "vendor,chip-aplic", "riscv,aplic";
-> +      interrupts-extended = <&cpu1_intc 11>,
-> +                            <&cpu2_intc 11>,
-> +                            <&cpu3_intc 11>,
-> +                            <&cpu4_intc 11>;
-> +      reg = <0xc000000 0x4080>;
-> +      interrupt-controller;
-> +      #interrupt-cells = <2>;
-> +      riscv,num-sources = <63>;
-> +      riscv,children = <&aplic1>;
-> +      riscv,delegate = <&aplic1 1 63>;
-> +    };
+> +int apple_smc_register_notifier(struct apple_smc *smc, struct notifier_block *n)
+> +{
+> +	return blocking_notifier_chain_register(&smc->event_handlers, n);
+> +}
+> +EXPORT_SYMBOL(apple_smc_register_notifier);
 > +
-> +    aplic1: interrupt-controller@d000000 {
-> +      compatible = "vendor,chip-aplic", "riscv,aplic";
-> +      interrupts-extended = <&cpu1_intc 9>,
-> +                            <&cpu2_intc 9>,
-> +                            <&cpu3_intc 9>,
-> +                            <&cpu4_intc 9>;
-> +      reg = <0xd000000 0x4080>;
-> +      interrupt-controller;
-> +      #interrupt-cells = <2>;
-> +      riscv,num-sources = <63>;
-> +    };
+> +int apple_smc_unregister_notifier(struct apple_smc *smc, struct notifier_block *n)
+> +{
+> +	return blocking_notifier_chain_unregister(&smc->event_handlers, n);
+> +}
+> +EXPORT_SYMBOL(apple_smc_unregister_notifier);
 > +
-> +  - |
-> +    // Example 2 (APIC domain forwarding interrupts as MSIs):
-> +
-> +    interrupt-controller@d000000 {
-> +      compatible = "vendor,chip-aplic", "riscv,aplic";
-> +      msi-parent = <&imsics>;
-> +      reg = <0xd000000 0x4000>;
-> +      interrupt-controller;
-> +      #interrupt-cells = <2>;
-> +      riscv,num-sources = <63>;
+> +void *apple_smc_get_cookie(struct apple_smc *smc)
+> +{
+> +	return smc->be_cookie;
+> +}
+> +EXPORT_SYMBOL(apple_smc_get_cookie);
 
-It's almost the same as previous... don't add unnecessary examples
-(difference in one property usually does not mean you need new example).
+These parts seem like abstraction for the sake of abstraction.
 
-> +    };
-> +...
+Any reason why the caller can't use the blocking_notifier_* API and
+look into the apple_smc for themselves.
 
-Best regards,
-Krzysztof
+> +struct apple_smc *apple_smc_probe(struct device *dev, const struct apple_smc_backend_ops *ops, void *cookie)
+> +{
+> +	struct apple_smc *smc;
+> +	u32 count;
+> +	int ret;
+> +
+> +	smc = devm_kzalloc(dev, sizeof(*smc), GFP_KERNEL);
+> +	if (!smc)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	smc->dev = dev;
+> +	smc->be_cookie = cookie;
+> +	smc->be = ops;
+> +	mutex_init(&smc->mutex);
+> +	BLOCKING_INIT_NOTIFIER_HEAD(&smc->event_handlers);
+> +
+> +	ret = apple_smc_read_u32(smc, SMC_KEY(#KEY), &count);
+> +	if (ret)
+> +		return ERR_PTR(dev_err_probe(dev, ret, "Failed to get key count"));
+> +	smc->key_count = be32_to_cpu(count);
+> +
+> +	ret = apple_smc_get_key_by_index(smc, 0, &smc->first_key);
+> +	if (ret)
+> +		return ERR_PTR(dev_err_probe(dev, ret, "Failed to get first key"));
+> +
+> +	ret = apple_smc_get_key_by_index(smc, smc->key_count - 1, &smc->last_key);
+> +	if (ret)
+> +		return ERR_PTR(dev_err_probe(dev, ret, "Failed to get last key"));
+> +
+> +	/* Enable notifications */
+> +	apple_smc_write_flag(smc, SMC_KEY(NTAP), 1);
+> +
+> +	dev_info(dev, "Initialized (%d keys %p4ch..%p4ch)\n",
+> +		 smc->key_count, &smc->first_key, &smc->last_key);
+> +
+> +	dev_set_drvdata(dev, smc);
+> +
+> +	ret = mfd_add_devices(dev, -1, apple_smc_devs, ARRAY_SIZE(apple_smc_devs), NULL, 0, NULL);
 
+Please replace the -1 with the defines provided.
+
+> +	if (ret)
+> +		return ERR_PTR(dev_err_probe(dev, ret, "Subdevice initialization failed"));
+
+"Failed to register sub-devices"
+
+> +	return smc;
+> +}
+> +EXPORT_SYMBOL(apple_smc_probe);
+> +
+> +int apple_smc_remove(struct apple_smc *smc)
+> +{
+> +	mfd_remove_devices(smc->dev);
+
+devm_*?
+
+> +	/* Disable notifications */
+> +	apple_smc_write_flag(smc, SMC_KEY(NTAP), 1);
+
+The same command enables and disables notifications?
+
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(apple_smc_remove);
+> +
+> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
+> +MODULE_LICENSE("Dual MIT/GPL");
+> +MODULE_DESCRIPTION("Apple SMC core");
+
+SMC (System Management Controller)
+
+> diff --git a/include/linux/mfd/macsmc.h b/include/linux/mfd/macsmc.h
+> new file mode 100644
+> index 000000000000..99cfa23f27bd
+> --- /dev/null
+> +++ b/include/linux/mfd/macsmc.h
+> @@ -0,0 +1,104 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Apple SMC core definitions
+
+SMC (System Management Controller)
+
+> + * Copyright (C) The Asahi Linux Contributors
+> + */
+> +
+> +#ifndef _LINUX_MFD_MACSMC_H
+> +#define _LINUX_MFD_MACSMC_H
+> +
+> +struct apple_smc;
+
+You can move the definition into here and omit this line.
+
+> +typedef u32 smc_key;
+> +
+> +#define SMC_KEY(s) (smc_key)(_SMC_KEY(#s))
+> +#define _SMC_KEY(s) (((s)[0] << 24) | ((s)[1] << 16) | ((s)[2] << 8) | (s)[3])
+> +
+> +#define APPLE_SMC_READABLE BIT(7)
+> +#define APPLE_SMC_WRITABLE BIT(6)
+> +#define APPLE_SMC_FUNCTION BIT(4)
+> +
+> +struct apple_smc_key_info {
+> +	u8 size;
+> +	u32 type_code;
+> +	u8 flags;
+> +};
+> +
+> +int apple_smc_read(struct apple_smc *smc, smc_key key, void *buf, size_t size);
+> +int apple_smc_write(struct apple_smc *smc, smc_key key, void *buf, size_t size);
+> +int apple_smc_write_atomic(struct apple_smc *smc, smc_key key, void *buf, size_t size);
+> +int apple_smc_rw(struct apple_smc *smc, smc_key key, void *wbuf, size_t wsize,
+> +		 void *rbuf, size_t rsize);
+> +
+> +int apple_smc_get_key_count(struct apple_smc *smc);
+> +int apple_smc_find_first_key_index(struct apple_smc *smc, smc_key key);
+> +int apple_smc_get_key_by_index(struct apple_smc *smc, int index, smc_key *key);
+> +int apple_smc_get_key_info(struct apple_smc *smc, smc_key key, struct apple_smc_key_info *info);
+> +
+> +static inline bool apple_smc_key_exists(struct apple_smc *smc, smc_key key)
+> +{
+> +	return apple_smc_get_key_info(smc, key, NULL) >= 0;
+> +}
+> +
+> +#define APPLE_SMC_TYPE_OPS(type) \
+> +	static inline int apple_smc_read_##type(struct apple_smc *smc, smc_key key, type *p) \
+> +	{ \
+> +		int ret = apple_smc_read(smc, key, p, sizeof(*p)); \
+> +		return (ret < 0) ? ret : ((ret != sizeof(*p)) ? -EINVAL : 0); \
+> +	} \
+> +	static inline int apple_smc_write_##type(struct apple_smc *smc, smc_key key, type p) \
+> +	{ \
+> +		return apple_smc_write(smc, key, &p, sizeof(p)); \
+> +	} \
+> +	static inline int apple_smc_write_##type##_atomic(struct apple_smc *smc, smc_key key, type p) \
+> +	{ \
+> +		return apple_smc_write_atomic(smc, key, &p, sizeof(p)); \
+> +	} \
+> +	static inline int apple_smc_rw_##type(struct apple_smc *smc, smc_key key, \
+> +					      type w, type *r) \
+> +	{ \
+> +		int ret = apple_smc_rw(smc, key, &w, sizeof(w), r, sizeof(*r)); \
+> +		return (ret < 0) ? ret : ((ret != sizeof(*r)) ? -EINVAL : 0); \
+> +	}
+> +
+> +APPLE_SMC_TYPE_OPS(u64)
+> +APPLE_SMC_TYPE_OPS(u32)
+> +APPLE_SMC_TYPE_OPS(u16)
+> +APPLE_SMC_TYPE_OPS(u8)
+> +APPLE_SMC_TYPE_OPS(s64)
+> +APPLE_SMC_TYPE_OPS(s32)
+> +APPLE_SMC_TYPE_OPS(s16)
+> +APPLE_SMC_TYPE_OPS(s8)
+> +
+> +static inline int apple_smc_read_flag(struct apple_smc *smc, smc_key key)
+> +{
+> +	u8 val;
+> +	int ret = apple_smc_read_u8(smc, key, &val);
+
+Nit: Please separate the declaration and assignment via function call
+with a line break in between.
+
+> +	if (ret < 0)
+> +		return ret;
+> +	return val ? 1 : 0;
+> +}
+> +#define apple_smc_write_flag apple_smc_write_u8
+> +
+> +int apple_smc_register_notifier(struct apple_smc *smc, struct notifier_block *n);
+> +int apple_smc_unregister_notifier(struct apple_smc *smc, struct notifier_block *n);
+> +
+> +/* backend interface */
+> +
+> +struct apple_smc_backend_ops {
+> +	int (*read_key)(void *cookie, smc_key key, void *buf, size_t size);
+> +	int (*write_key)(void *cookie, smc_key key, void *buf, size_t size);
+> +	int (*write_key_atomic)(void *cookie, smc_key key, void *buf, size_t size);
+> +	int (*rw_key)(void *cookie, smc_key key, void *wbuf, size_t wsize,
+> +		      void *rbuf, size_t rsize);
+> +	int (*get_key_by_index)(void *cookie, int index, smc_key *key);
+> +	int (*get_key_info)(void *cookie, smc_key key, struct apple_smc_key_info *info);
+> +};
+> +
+> +struct apple_smc *apple_smc_probe(struct device *dev, const struct apple_smc_backend_ops *ops,
+> +				  void *cookie);
+> +void *apple_smc_get_cookie(struct apple_smc *smc);
+> +int apple_smc_remove(struct apple_smc *smc);
+> +void apple_smc_event_received(struct apple_smc *smc, uint32_t event);
+> +
+> +#endif
+
+-- 
+Lee Jones [李琼斯]
