@@ -2,162 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F100628461
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5B4628467
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 16:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237252AbiKNPxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 10:53:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39424 "EHLO
+        id S237197AbiKNPyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 10:54:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237146AbiKNPxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:53:38 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04CEA2D748
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:53:37 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id s24so13737674ljs.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 07:53:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iFWd2m5XWAIUBukAvtG87ESkORevoEKwbahoShbsHGs=;
-        b=gHKpaujIP4yqkPLWSxP/u7oOLFIAUkdMqLmA2+M/QEBY4DUULV8ZWQ2SSHqq/xUBff
-         MDdDnV5i+9H4tVU+S0gIms9A5gbbT9D5LNPkzWPLBIvyIud5QSkUDfiRf7T5V/bQbg50
-         S8D1lkrwkdYQdzNx0CnkcRG08tvhfCEX/eV03FRz37df8u3eflXTgGKYBavc5XG33NCh
-         Sk70zjtPZHMO/yD9ctcTLLx9yaKv3Gb45tf2kUu2zqFgDagTEsi1zZ/Y2ieLgaXbdSdO
-         tROJy7mrxMIgPwvFUtuNbxW3Gx+a+Ar1iN8D4W3sDpbawFXw4JYQQsOtxNA7Mn1zoElR
-         0hgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iFWd2m5XWAIUBukAvtG87ESkORevoEKwbahoShbsHGs=;
-        b=OJKL//VJkdEQxoGuVVpVM4CQm8Yw2s51wIMZ2q9u2FoC7QVRgwEAAwFXNYmwrPqj50
-         Hkd50Jy1FkJ/+a89eaUOaUrxOxKrup78oDKxrCc2ZMFXcdmYqO1fTHNSojvO6gEDDj2I
-         M6za9YQd2sC7ysCtUQzDJ0CT3I7YE+ZbhSfbI7Vejz8zn7hD3hNIRHAzuzI9VNC/uBh/
-         dLORGSotJ0ArJ1ppe7mZKGNDCZ+0ORzoen9zUNgFE4oIX0huwHdFqJkY4RKGF8cJBzSn
-         QmMX7X6P3ngeb4q0iVVyLJt9mQI3RAZlSTCtGstvYWp/o0goNdjVLRL+JYKQvW2T0rHF
-         YJ3g==
-X-Gm-Message-State: ANoB5pnTPHm5nMBun6KxrYo8F7AbfxjbbLXl2Vk8Wr9QDim7G/bhBO5e
-        EdUtzOL4Eb+vTOtSGyNFpcMTRA==
-X-Google-Smtp-Source: AA0mqf7u3FO6mqMqL/O/9MD1mYQ8T/xRPY8vSC+lEwCmp+D+mRgb+hzX8+tpF096sntwINEzwHms9Q==
-X-Received: by 2002:a2e:7310:0:b0:277:d86:a36d with SMTP id o16-20020a2e7310000000b002770d86a36dmr4258270ljc.288.1668441215396;
-        Mon, 14 Nov 2022 07:53:35 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id h31-20020a0565123c9f00b00498f00420e9sm1857160lfv.194.2022.11.14.07.53.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 07:53:34 -0800 (PST)
-Message-ID: <12578e05-ced9-e5f7-7922-0af2f2159333@linaro.org>
-Date:   Mon, 14 Nov 2022 16:53:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/9] dt-bindings: arm-smmu: Allow up to 3 power-domains
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237168AbiKNPyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 10:54:00 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1589020361;
+        Mon, 14 Nov 2022 07:53:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mvWGkdthRdOADaR1CiC03cCZbgzAr346vpny/mMqiFB6hs//gQGY/UHyealKXxh/9cX4L1e9qAoABCvoeUie1ZPDwIvCvR84acyqvwOFbmhrD7UzEIevBsdwe5zYzBscEl+17DQSB/MJBs8gpacgXKZzkOAyjYfJey58d+xXHZx2KCi9G9/FDNZxjfLorbFqrAoHkU+l7JT127N1CF1ewIpQdV9g2t2Qa8lp4S6CnduwT2R9huAGWaNobd8o7Ccwrj6Eifj+ARGBPu2zL8X98zn1lHRmkl49ixKkyRB+qpwyF43rD3JYnLbhPMJ7do5m4JdIz2rakaVGi3v6Kh3hlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oCZdRJRAKiUOO6QzsuBra6D6+5XaQKabGWZwGltWjbM=;
+ b=eVyGQ+d48cSdf/FSF4g75/KwEYRn9J7beQbcE2wIhGbeJJ/4gfW4xiscVyQjbEmbsSjB01asCtYxdD7Env8gv5Q/BG0UQXpoquXYKD66CNA45NC8CiVaR/8/keatYMqWszbuY2APLKcU7HpoO9x2fSEGFRsp8GLN6GdoyTOnFmVFh9EsPvrB5YzSkBVHmA0qHsho0ahVhc/fKsH6WNQbKU+8OlrG0/A26aiotsOT+CcFElHrWFguWTvNYb+HXqtrRGxniw/vtK5zDP+Cl7bq5zDTt6xlZ9z9LSJqf027m84kSAfJYQXR3QHioksAjoUixcmw6rWijndMARQzEZdiTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oCZdRJRAKiUOO6QzsuBra6D6+5XaQKabGWZwGltWjbM=;
+ b=ofIiU5dQen8iVKbEExw9vo1DWJG/weF4qFT9/7LGvps4DvonSX1HFVA0w0ObpIXCiR/rNF4xVJZNP9dUgcBxLdwgr/XEu/0M+mVR4+6Nv8qLyok9y7eFof0mnLmlS3InxAhglll2QaWEf0kLZXAZBQauSYRuZ5mOJAekV33NqYBvNWwfgQntvHOXgi5gWjLaE+r0x1VLf5J5EtsOHejqJC9mYuuZdssL8N70DOKs4i+5hlKRZOLK3t67ya1AlY8dj0O1seOcBHsFXraI6CXOpUerZa4eBEzr5M1zqAaJ7G6uLM1SVIF9WIcPi8QsN1Fqx0cdJT7Zgb2GRtlE+4UGvQ==
+Received: from DS7PR03CA0061.namprd03.prod.outlook.com (2603:10b6:5:3bb::6) by
+ BL1PR12MB5379.namprd12.prod.outlook.com (2603:10b6:208:317::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
+ 2022 15:53:57 +0000
+Received: from DM6NAM11FT097.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3bb:cafe::69) by DS7PR03CA0061.outlook.office365.com
+ (2603:10b6:5:3bb::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17 via Frontend
+ Transport; Mon, 14 Nov 2022 15:53:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT097.mail.protection.outlook.com (10.13.172.72) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5813.12 via Frontend Transport; Mon, 14 Nov 2022 15:53:56 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 14 Nov
+ 2022 07:53:47 -0800
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 14 Nov
+ 2022 07:53:46 -0800
+Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Mon, 14 Nov 2022 07:53:44 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114104222.36329-1-konrad.dybcio@linaro.org>
- <20221114104222.36329-2-konrad.dybcio@linaro.org>
- <6fa8e3ea-2113-d930-96bc-3726d53e5bcd@linaro.org>
- <a4b160d8-0faa-3f4c-a925-0beaf6ace721@linaro.org>
- <0121fc03-b027-7659-5e6e-b42089c9888d@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <0121fc03-b027-7659-5e6e-b42089c9888d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <vidyas@nvidia.com>,
+        <mmaddireddy@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH V3 0/2] Add ECAM aperture for Tegra234
+Date:   Mon, 14 Nov 2022 15:53:31 +0000
+Message-ID: <20221114155333.234496-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT097:EE_|BL1PR12MB5379:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0889817-8919-4287-904a-08dac6587061
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zirrET2G8y0ZHhKCwhnXgPlCA/egY0Lzw7IKDYlvsEe4eQ5lZJRPcyOWOnhQ9NGGO4gUQdXgdcGMAtJpB75+6ltRL8Dk7IZEZPQ+gv6eaaQ+9/Rmqyuiv3Sd9/FM9Rgt/7aviG0rfh9SPghk1Mp3fJtw9vpu7NYKT5b5EyISwo5l7P4ITGdX6ObMw4YyF4GKk83pLBI3Mw0H8y6Sh1u4hY1DCIO8o5eFnsZc/oMg+im87B/U1WUA1YHGj9g5hnEcMob2KrzYCK47YJub1YR2m1lPAPIcJH2Add2UoHpWRWQIYIPOIdSXN0PNUF+iyUtK6n7EGXdWfz8AF7bfFQud8bbDXfy3u3ZNs7bbJTCAADLah8ZGashvXpUywqA8uHVNrtNlR1BKgjAbXa17DfbL60rH0rE7BpmN+dRBpvkmN4fQEyM2J1of+Ew3YGJUha+0UaBk1J4ZqPKuG/WT6XIXAxZNOTnvgcWTtcBqQDwait67NdweDexx9YS4BOt5Ozcv0lysVEviJREquMiRhdr6QevGrYZGWg3fEnICp+VNv0Jis76lgtymxRD5POIGpPZaWjK4e9Sn/u60tyJryoYcJ3l+DQyHlNsPLaiBNQfIFnCVmaWhA5vF8Bcun4qE0725HSCIke/HZhaI+1JjEJ19evzycnzuWuhiY3iVVONDCQqQPgMD3RhLnzLuInDwlftAGcM68MGwDLQ24UDrnwL1u601rd4FEskVGQOZnG22i0AcbDoHqhio9JDP0unBYfohwSP8ymR9B/xSAB2zsPIY6Q==
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(376002)(346002)(396003)(451199015)(36840700001)(40470700004)(46966006)(107886003)(6666004)(478600001)(36860700001)(54906003)(40480700001)(110136005)(186003)(426003)(2616005)(8936002)(4744005)(336012)(36756003)(41300700001)(26005)(2906002)(7696005)(5660300002)(70206006)(47076005)(316002)(70586007)(4326008)(8676002)(40460700003)(83380400001)(1076003)(86362001)(82740400003)(356005)(7636003)(82310400005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 15:53:56.9647
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0889817-8919-4287-904a-08dac6587061
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT097.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5379
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds ECAM aperture information in both device-tree and
+documentation files for Tegra234.
 
-On 14/11/2022 14:00, Krzysztof Kozlowski wrote:
-> On 14/11/2022 12:17, Konrad Dybcio wrote:
->> On 14/11/2022 12:01, Krzysztof Kozlowski wrote:
->>> On 14/11/2022 11:42, Konrad Dybcio wrote:
->>>> Some SMMUs require that a vote is held on as much as 3 separate PDs
->>>> (hello Qualcomm). Allow it in bindings.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>> Changes since v1:
->>>> - Add minItems
->>>>
->>>>    Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
->>>>    1 file changed, 2 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> index 9066e6df1ba1..82bc696de662 100644
->>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> @@ -159,7 +159,8 @@ properties:
->>>>              through the TCU's programming interface.
->>>>    
->>>>      power-domains:
->>>> -    maxItems: 1
->>>> +    minItems: 0
->>> It cannot be 0.
->>>
->>> minItems: 1
->>>
->>> Anyway you still need to restrict it per variant, as I said in previous
->>> version.
->> Hm.. I'm not entirely sure what you mean.. Should I add a list of
->> compatibles
-> Yes and limit it to maxItems: 1 for "else".
+Vidya Sagar (2):
+  dt-bindings: PCI: tegra234: Add ECAM support
+  arm64: tegra: Add ECAM aperture info for all the PCIe controllers
 
-I tried adding:
+ .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++-
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 55 +++++++++++--------
+ 3 files changed, 66 insertions(+), 25 deletions(-)
 
+-- 
+2.25.1
 
-
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - qcom,sm6375-smmu-500
-     then:
-       properties:
-         power-domains:
-           minItems: 3
-           maxItems: 3
-     else:
-       properties:
-         power-domains:
-           maxItems: 1
-
-
-Right under the nvidia reg if-else in the allOf, but dtbs_check throws 
-errors like:
-
-
-/home/konrad/linux/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb: 
-iommu@5040000: 'power-domains' does not match any of the regexes: 
-'pinctrl-[0-9]+'
-
-
-Any clues as to why?
-
-
-Konrad
-
->
->> that are allowed to have 3 power-domains and leave it as it was before
->> in the
->> 'else' case?
-> Best regards,
-> Krzysztof
->
