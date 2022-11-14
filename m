@@ -2,58 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46FB66279F3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:05:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B016279F4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:05:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237012AbiKNKFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 05:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
+        id S236290AbiKNKFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 05:05:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237071AbiKNKEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:04:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C9B1260C;
-        Mon, 14 Nov 2022 02:01:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A2100B80DA2;
-        Mon, 14 Nov 2022 10:01:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B6D0C433D6;
-        Mon, 14 Nov 2022 10:01:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668420113;
-        bh=0AWDgj8YRiMgi+RCQmhjPkOW5dw2tU+daCdk+KQy8U8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Uiw0du2Mn3DKr94KgOc6lFzKfMp0U0UJWL9mUM2a89p4q+S8FvSsFFihv+vNk+RFl
-         ADaK7pe4lGb0pD9+FOqBNtQPwWL54XYGppMM6lsBEYvtQul0FGn9xf7+u12Cydh6aQ
-         xas6VneccrgIZlzJ7mZRDAH+NV/d+WnxMlQQyjkO9spZFjtAg445WC6ZM4IB7fWP4J
-         5pFXgmm4MkFnkdhtriiNxNUWVfrbg5iC812Ly7flrLFNcz436eNQaSDGJLORpwlnZl
-         hHeHRQ3IZqgu1p6U/zyZJD3AkFphUDVmaO0HCghcgUoR0sBhOjKnW6xKvWNC2KBOb/
-         8fonfWtvLMKWQ==
-Date:   Mon, 14 Nov 2022 10:01:47 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH RESEND] mfd: Add Freescale i.MX8qxp Control and Status
- Registers (CSR) module driver
-Message-ID: <Y3ISCzNvFjA4UkNW@google.com>
-References: <20221017075702.4182846-1-victor.liu@nxp.com>
- <Y1/sUfeVy1a6EKZQ@google.com>
- <afa29fcc11436dd957314a4066c9141937f0470c.camel@nxp.com>
- <b7bcc99c006c91871f0518c1a132035d2a148f24.camel@nxp.com>
- <Y2jKRQ8VyauSfXmH@google.com>
- <4dfb7699c33974a682d798071c85b431b87e5432.camel@nxp.com>
+        with ESMTP id S236023AbiKNKEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:04:45 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390D713F74
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:02:02 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id d20so12419843ljc.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:02:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=05spzSRRyT7OBmRrIwDf0/+WSIqvccuv7vWNFes/4GY=;
+        b=GBhEkgO/CksLYuQtXrGNAwV45QtTyfzMYGEogTVR6ldZnTavtPSIvQQ4KbKhygxtyZ
+         0DL4S5S3hyJcVMg7jb5QPAwn0hpIO5YFhKuaJoajVFg/Iu4uHCxvD3DbqUwP3vrznQQu
+         m27Z5Vz2l2weC9N9uaOKsoZ+lz1O2BKhnSeow4JhXsdyKFyPPsIaen7/Rdd/uyqorPEv
+         tI9mxTTYazMPg2NEe71leenK0cKul64cdfgBmSOklewcEB3EV01U4qrW5ElFbFmVyWo8
+         m5ArLfuGYMhwILZzAnrjCpcbugV6JkTr2VcAd98JVnYIYr0IgMCMHLiHDtZ9bVQsUJmf
+         DdaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=05spzSRRyT7OBmRrIwDf0/+WSIqvccuv7vWNFes/4GY=;
+        b=xQ744d4wm7lHis+meOh/j2uh7Be0ip+9b6QLlhHxKE+oyjtYQCQ9zLnUwKMkvf95dG
+         hDaPDxuipVF6uiLHWIkTfRhg8SakAd86rIZrFjEKL0RTZ8sYtLKDAbKoXmuc9JE8EFT2
+         1u4stS2ZODDVCItIWonu2r+E/5i1LvijyrK40QmxVBcCFgPJJNlojfxLBqIreK57D/cU
+         0czQ32gz2q8qDgJaBMTHVz4wnZAyF1pqeitxs+JsfQQ1MdXx3ni0/++ot5BgiHCdUlLp
+         HEwsCKdQs28oLruSNjFijtqDz3DummcN36ICD6627OMr2eeh0DYWPcT+bUa0KxkffuVJ
+         Tq8A==
+X-Gm-Message-State: ANoB5plpByyvWbXptu+fbKVRCJ0Cj1lZ8092hGE/I1yLRyGvRIA5NQsr
+        1mm7zXkGDJiX1wD+O9iGhCTOEA==
+X-Google-Smtp-Source: AA0mqf5Qs6cTvSYQPrmie5ihp8vrq8lxtwvWGp4+ZEpoM+OoUmCnVSnexG9QP22L6rIy5lvJjFulkg==
+X-Received: by 2002:a2e:98d0:0:b0:277:3984:324f with SMTP id s16-20020a2e98d0000000b002773984324fmr3563127ljj.424.1668420121300;
+        Mon, 14 Nov 2022 02:02:01 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k11-20020a05651210cb00b004a1e592837esm1763797lfg.140.2022.11.14.02.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Nov 2022 02:02:00 -0800 (PST)
+Message-ID: <95636144-871a-be0a-e15d-b6714db97e43@linaro.org>
+Date:   Mon, 14 Nov 2022 11:01:58 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4dfb7699c33974a682d798071c85b431b87e5432.camel@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 4/6] arm64: dts: qcom:
+ sdm845-db845c-navigation-mezzanine: Add navigation mezzanine dts
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221112172650.127280-1-bryan.odonoghue@linaro.org>
+ <20221112172650.127280-5-bryan.odonoghue@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221112172650.127280-5-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,231 +82,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Nov 2022, Liu Ying wrote:
+On 12/11/2022 18:26, Bryan O'Donoghue wrote:
+> Move the dts data for the rb3 navigation mezzanine into its own dts file.
+> 
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../sdm845-db845c-navigation-mezzanine.dts    | 107 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  99 ----------------
+>  3 files changed, 108 insertions(+), 99 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index d534888bcfe52..70ce09bc63a33 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -131,6 +131,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+> new file mode 100644
+> index 0000000000000..7bd0a15c72657
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+> @@ -0,0 +1,107 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022, Linaro Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sdm845-db845c.dts"
+> +
+> +&cci {
+> +	status = "okay";
+> +};
+> +
+> +&camss {
+> +	vdda-phy-supply = <&vreg_l1a_0p875>;
+> +	vdda-pll-supply = <&vreg_l26a_1p2>;
+> +
+> +	status = "okay";
+> +
+> +	ports {
+> +		port@0 {
+> +			reg = <0>;
+> +			csiphy0_ep: endpoint {
+> +				data-lanes = <0 1 2 3>;
+> +				remote-endpoint = <&ov8856_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cci_i2c0 {
+> +	camera@10 {
+> +		compatible = "ovti,ov8856";
+> +		reg = <0x10>;
+> +
+> +		/* CAM0_RST_N */
+> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&cam0_default>;
+> +
+> +		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
+> +		clock-names = "xvclk";
+> +		clock-frequency = <19200000>;
+> +
+> +		/*
+> +		 * The &vreg_s4a_1p8 trace is powered on as a,
+> +		 * so it is represented by a fixed regulator.
+> +		 *
+> +		 * The 2.8V vdda-supply and 1.2V vddd-supply regulators
+> +		 * both have to be enabled through the power management
+> +		 * gpios.
+> +		 */
+> +		dovdd-supply = <&vreg_lvs1a_1p8>;
+> +		avdd-supply = <&cam0_avdd_2v8>;
+> +		dvdd-supply = <&cam0_dvdd_1v2>;
+> +
+> +		status = "okay";
 
-> Hi Lee,
-> 
-> On Mon, 2022-11-07 at 09:05 +0000, Lee Jones wrote:
-> > On Wed, 02 Nov 2022, Liu Ying wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > On Tue, 2022-11-01 at 13:53 +0800, Liu Ying wrote:
-> > > > Hi Lee,
-> > > > 
-> > > > On Mon, 2022-10-31 at 15:40 +0000, Lee Jones wrote:
-> > > > > On Mon, 17 Oct 2022, Liu Ying wrote:
-> > > > > 
-> > > > > > Freescale i.MX8qxp Control and Status Registers (CSR) module is a
-> > > > > > system
-> > > > > > controller. It represents a set of miscellaneous registers of a
-> > > > > > specific
-> > > > > > subsystem. It may provide control and/or status report interfaces
-> > > > > > to a
-> > > > > > mix of standalone hardware devices within that subsystem.
-> > > > > > 
-> > > > > > The CSR module in i.MX8qm/qxp SoCs is a child node of a simple
-> > > > > > power-managed
-> > > > > > bus(i.MX8qxp pixel link MSI bus). To propagate power management
-> > > > > > operations
-> > > > > > of the CSR module's child devices to that simple power-managed
-> > > > > > bus, add a
-> > > > > > dedicated driver for the CSR module. Also, the driver would
-> > > > > > populate the CSR
-> > > > > > module's child devices.
-> > > > > > 
-> > > > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > > > > ---
-> > > > > > The Freescale i.MX8qxp CSR DT bindings is at
-> > > > > > Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml.
-> > > > > > 
-> > > > > > Resend the patch based on v6.1-rc1.
-> > > > > > 
-> > > > > >  drivers/mfd/Kconfig           | 10 +++++++
-> > > > > >  drivers/mfd/Makefile          |  1 +
-> > > > > >  drivers/mfd/fsl-imx8qxp-csr.c | 53
-> > > > > > +++++++++++++++++++++++++++++++++++
-> > > > > >  3 files changed, 64 insertions(+)
-> > > > > >  create mode 100644 drivers/mfd/fsl-imx8qxp-csr.c
-> > > > 
-> > > > [...]
-> > > > 
-> > > > > > diff --git a/drivers/mfd/fsl-imx8qxp-csr.c b/drivers/mfd/fsl-
-> > > > > > imx8qxp-csr.c
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..3915d3d6ca65
-> > > > > > --- /dev/null
-> > > > > > +++ b/drivers/mfd/fsl-imx8qxp-csr.c
-> > > > > > @@ -0,0 +1,53 @@
-> > > > > > +// SPDX-License-Identifier: GPL-2.0+
-> > > > > > +
-> > > > > > +/*
-> > > > > > + * Copyright 2022 NXP
-> > > > > > + */
-> > > > > > +
-> > > > > > +#include <linux/module.h>
-> > > > > > +#include <linux/of_platform.h>
-> > > > > > +#include <linux/platform_device.h>
-> > > > > > +#include <linux/pm_runtime.h>
-> > > > > > +
-> > > > > > +static int imx8qxp_csr_probe(struct platform_device *pdev)
-> > > > > > +{
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	pm_runtime_enable(&pdev->dev);
-> > > > > > +
-> > > > > > +	ret = devm_of_platform_populate(&pdev->dev);
-> > > > > 
-> > > > > The use of this API does not constitute a MFD.
-> > > > > 
-> > > > > Please use "simple-mfd" instead.
-> > > > 
-> > > > simple-mfd devices have "ONLY_BUS" set in simple-pm-bus.c, so the
-> > > > simple-pm-bus driver would not populate child devices of simple-mfd
-> > > > devices.
-> > 
-> > Right, simple-pm-bus will not populate child devices, because:
-> 
-> simple-pm-bus.c may populate child devices of simple-pm-bus devices
-> because "ONLY_BUS" is _not_ set for simple-pm-bus devices.
-> 
-> simple-pm-bus.c would _not_ populate child devices of simple-mfd
-> devices because "ONLY_BUS" is set for simple-mfd devices.
-> 
-> > 
-> >   /*                                                                     
-> >    * These are transparent bus devices (not simple-pm-bus matches) that  
-> >    * have their child nodes populated automatically.  So, don't need to  
-> >    * do anything more. We only match with the device if this driver is   
-> >    * the most specific match because we don't want to incorrectly bind to
-> >    * a device that has a more specific driver.                           
-> >    */                                                                    
-> > 
-> > So "simple-mfd" must be populated elsewhere i.e. drivers/of/platform.c.
-> 
-> If simple-mfd device is a child device of one device listed in
-> of_default_bus_match_table[], then it may be populated by
-> drivers/of/platform.c.  But, in my case, simple-mfd device is a child
-> device of simple-pm-bus device(not listed in that table), so it will
-> not be populated by drivers/of/platform.c.  Instead,
-> drivers/bus/simple-pm-bus.c would populate the simple-mfd device.
-> 
-> > 
-> > > > Also, the simple-pm-bus driver would not enable runtime
-> > > > power management for simple-mfd devices due to "ONLY_BUS", which
-> > > > means it would not propagate power management operations from child
-> > > > devices of simple-mfd devices to parent devices of simple-mfd
-> > > > devices.  That's why a dedicated fsl-imx8qxp-csr driver is needed. 
-> > 
-> > This is more of an issue.
-> > 
-> > Why can't this device use "simple-pm-bus" to have support for both
-> > auto-registration AND Runtime PM?
-> 
-> If I change the compatible string of the CSR module from
-> "fsl,imx8qxp-mipi-lvds-csr", "syscon", "simple-mfd"
-> to
-> "fsl,imx8qxp-mipi-lvds-csr", "syscon", "simple-pm-bus",
-> all devices I'm interested in are populated and all relevant drivers
-> can probe.
+Drop it.
 
-Okay, that's good.
+Best regards,
+Krzysztof
 
-> But, this change makes 'make dt_binding_check' for the
-> existing fsl,imx8qxp-csr.yaml fail:
-> 
-> --------------------------------8<------------------------------------
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.example.dtb: syscon@56221000: $nodename:0: 'syscon@56221000' does
-> not match '^bus(@[0-9a-f]+)?$'
-> 	From schema:
-> /kernel/linux/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.example.dtb: syscon@56221000: '#address-cells' is a required
-> property
-> 	From schema:
-> /kernel/linux/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.example.dtb: syscon@56221000: '#size-cells' is a required property
-> 	From schema:
-> /kernel/linux/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.example.dtb: syscon@56221000: 'ranges' is a required property
-> 	From schema:
-> /kernel/linux/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
-> --------------------------------8<------------------------------------
-> 
-> The error log basically complains two things:
-> 1) The example nodename 'syscon@56221000' should match
-> '^bus(@[0-9a-f]+)?$'.
-> 2) Missing '#address-cells', '#size-cells' and 'ranges' properties as
-> required by simple-pm-bus.
-> 
-> Regarding 1), if I change 'syscon@56221000' to 'bus@56221000', then the
-> below error comes along:
-> --------------------------------8<------------------------------------
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.example.dtb: bus@56221000: $nodename:0: 'bus@56221000' does not
-> match '^syscon@[0-9a-f]+$'
-> 	From schema:
-> /kernel/linux/Documentation/devicetree/bindings/mfd/fsl,imx8qxp-
-> csr.yaml
-> --------------------------------8<------------------------------------
-> So, it looks like "syscon" and "simple-pm-bus" can not be in compatbile
-> string at the same time.  Note that "syscon" is needed because other
-> device nodes may reference the CSR module through a phandle, like the
-> "fsl,imx8qxp-mipi-dphy" device.
-> 
-> Regarding 2), I may try to add those required properties, but it would
-> break the existing schemas of the child devices of the CSR module, like
-> the "fsl,imx8qxp-ldb" device, because "reg" property is not allowed.
-> 
-> So, it looks like the CSR module still should be simple-mfd device but
-> not simple-pm-bus device, right?
-
-It sounds like the generic auto-probing functionality provided by the
-kernel works well to give you with a fully self-registering mechanism.
-All you need to do now is figure out why the DT checker is not happy
-with your solution.
-
-Please work with the Device Tree maintainers on this.
-
-> > > One more point which might be overlooked - as mentioned in commit
-> > > message, the CSR module is a child node of a simple power-managed
-> > > bus(i.MX8qxp pixel link MSI bus), which means the child devices of the
-> > > CSR module(as a simple-mfd device) won't be populated by
-> > > of_platform_default_populate() from of_platform_default_populate_init()
-> > > because "simple-pm-bus" is not listed in of_default_bus_match_table[]
-> > > and hence recursion of of_platform_bus_create() will stop at the
-> > > simple-pm-bus. This is also a reason why a dedicated fsl-imx8qxp-csr
-> > > driver is needed to populated those child devices of the CSR module.
-> > 
-> > Not sure I know the semantics well enough (anymore) to get a
-> > meaningful picture of what you're trying to explain, and I do not have
-> > any suitable H/W here to mock-up a real-world test-bed / concept
-> > demonstrator to debug this for you.
-> 
-> I understand you have no hardware to debug this directly.  But, the
-> example in dt-binding doc for the i.MX8qxp pixel link MSI bus(a simple-
-> pm-bus) may give you a kinda full picture of what the relevant devices
-> look like.  I mentioned the patch set to add the MSI bus previously,
-> however, you may find the binding doc directly here -
-> https://lore.kernel.org/lkml/20221017074039.4181843-3-victor.liu@nxp.com/
-> 
-> > 
-> > The long and the short of it is; we have a bunch of automatic
-> > child-device-registering helpers in the kernel.  One of the mechanisms
-> > is bound to work for you if you structure your code appropriately.
-> > 
-> > Introducing an empty, meaningless driver, simply to call a single
-> > function it not acceptable.  Please make the infrastructure already
-> > offered specifically to solve this category of issue work for your
-> > use-case.
-> 
-> Yeah, I tried to not to introduce a new driver for the CSR module, but
-> it seems that it is needed.
-
-It's not. :)
-
--- 
-Lee Jones [李琼斯]
