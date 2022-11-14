@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5AFE627A9C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED9E627ABE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 11:42:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235628AbiKNKgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 05:36:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35310 "EHLO
+        id S230441AbiKNKmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 05:42:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235126AbiKNKfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:35:51 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821D71D65B;
-        Mon, 14 Nov 2022 02:35:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668422150; x=1699958150;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KQI39jI+VhVq9DkODJATdCRiiFhF16bievVRLfJnrnw=;
-  b=E3Kh+FO4PXk2BSmUV59SRJzrFwwXKB3lpNUaXDYg5CEzHNMPyhlzEjar
-   ZMshzZfxNhJx6ggzQUoS209ujfwJeS2hN63R/VKd2mkUO3Zr8EIVWyikD
-   IHpMgvlZ57OokRWnHBXwejYVoQS4zoz2WZfm7a2Mo4YaWeEl2ckVBb6dE
-   XMN4wJws9uxQ7zqeEn54Zf+n1ANYABCiqjtzyX/zGx3h5+a64DXGJ406O
-   hbco6oMzlKqvYKcaCz0nOKQjXtVhUUDNGswraPqx03F8ZXrXBENIvcml2
-   CrENjSmn/XYEHcZE3VBOfWr+zaajIvnff9cmSIoQUkVfm7/gkzfeF+Zip
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="338722178"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
-   d="scan'208";a="338722178"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2022 02:35:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10530"; a="589320025"
-X-IronPort-AV: E=Sophos;i="5.96,161,1665471600"; 
-   d="scan'208";a="589320025"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP; 14 Nov 2022 02:35:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ouWoY-00C7k0-1J;
-        Mon, 14 Nov 2022 12:35:42 +0200
-Date:   Mon, 14 Nov 2022 12:35:42 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
+        with ESMTP id S235997AbiKNKmh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 05:42:37 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FE31DDCE
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:42:36 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id x21so12568661ljg.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 02:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zDzwDb0dnKoTPgCy4RBfiMpDFetmXY9OEGk9SR/WSLY=;
+        b=FhlApcqDxCtCoupJ/TIS0Ykf65afLK30ejNB8v2zhMO/08W/KJGjo+jBHJsNqt10pm
+         1GEqKtYy830ohGlIM91yJZR6N3HiLjwX/ldBqlIKM5vXM3kFSN+2IIvvYOj+qJ87LRfI
+         dzDH0BAB4MOhdYEyvZ3udJabwEej8WLG14Mgf1O8L/LxHKjVqaxAvZpwi12vdDcBIVpu
+         SuIQrLXvLUodif/creo1nAh7wOM3vGtIU/3ALCYbvqgi8SSmbsONxt+v709lJdR5zYEw
+         fxJFr0c9PqfemGYKmEEvkXXlRTEeFlBCxfFC6xv+x98BZlO64aBbZ6833hVafWVYTAYD
+         0eZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zDzwDb0dnKoTPgCy4RBfiMpDFetmXY9OEGk9SR/WSLY=;
+        b=N4uMn2KJKpqokr7II20Rr09El5KP3t4DlfoU0xSaLMYmjfGDcEl+aGkmkh2hfBTwch
+         16rBhqcAYqKDFQil8IUPz5AZZ8T2lfv5w4XJYPEIylxMv+Cy7aFBf/AH9YNz2VvAa40B
+         y3psPhHaGLTY9HFG7+OOTGnShpjM0Xr5ESYAYRZKdHEe/kmPlUeeeeBitQr0YV28EdJL
+         QRTBptzAqpSEHYO/y/9y5cO6xqXXO8EK6ui9kSLrMnPgwtwLRUR1I8Cxui2D7XDFtkYG
+         OVWwfdn14fS7o0jsj4g25HfXniNAbrAiWajIuEBPJFOZPBwOxZvzWvkZF3Lz8RIeuM8r
+         XoKQ==
+X-Gm-Message-State: ANoB5pk1pUilyIoZao2V5exGiWYSXRC4e3aolkupa20dvwVyhAjBZOoQ
+        kQAYmoo+o+/mIxIZhgzvg9bcKw==
+X-Google-Smtp-Source: AA0mqf4qlxiMY3JDejy6a3SVEFC3TJHChXsZGfocnkqWhpRLRNPJLTzvyucW4mkNtj7j0c1yswAz8g==
+X-Received: by 2002:a2e:960d:0:b0:277:4f:bd2a with SMTP id v13-20020a2e960d000000b00277004fbd2amr3622765ljh.341.1668422554455;
+        Mon, 14 Nov 2022 02:42:34 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id bs21-20020a05651c195500b0026c4e922fb2sm1946486ljb.48.2022.11.14.02.42.33
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 14 Nov 2022 02:42:34 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH v3 1/7] mfd: Add core Apple Mac SMC driver
-Message-ID: <Y3IZ/ppKU/bWc5aU@smile.fi.intel.com>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXJ-002mvq-Bg@rmk-PC.armlinux.org.uk>
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/9] dt-bindings: arm-smmu: Allow up to 3 power-domains
+Date:   Mon, 14 Nov 2022 11:42:14 +0100
+Message-Id: <20221114104222.36329-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+In-Reply-To: <20221114104222.36329-1-konrad.dybcio@linaro.org>
+References: <20221114104222.36329-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1osRXJ-002mvq-Bg@rmk-PC.armlinux.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 08, 2022 at 04:33:17PM +0000, Russell King wrote:
-> From: Hector Martin <marcan@marcan.st>
-> 
-> This driver implements support for the SMC (System Management
-> Controller) in Apple Macs. In contrast to the existing applesmc driver,
-> it uses pluggable backends that allow it to support different SMC
-> implementations, and uses the MFD subsystem to expose the core SMC
-> functionality so that specific features (gpio, hwmon, battery, etc.) can
-> be implemented by separate drivers in their respective downstream
-> subsystems.
+Some SMMUs require that a vote is held on as much as 3 separate PDs
+(hello Qualcomm). Allow it in bindings.
 
-...
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes since v1:
+- Add minItems
 
-> +	ret = mfd_add_devices(dev, -1, apple_smc_devs, ARRAY_SIZE(apple_smc_devs), NULL, 0, NULL);
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-PLATFORM_DEVID_NONE
-
-> +	if (ret)
-> +		return ERR_PTR(dev_err_probe(dev, ret, "Subdevice initialization failed"));
-
-...
-
-> +EXPORT_SYMBOL(apple_smc_probe);
-
-Namespace?
-
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 9066e6df1ba1..82bc696de662 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -159,7 +159,8 @@ properties:
+           through the TCU's programming interface.
+ 
+   power-domains:
+-    maxItems: 1
++    minItems: 0
++    maxItems: 3
+ 
+   nvidia,memory-controller:
+     description: |
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.38.1
 
