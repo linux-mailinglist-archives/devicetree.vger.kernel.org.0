@@ -2,308 +2,439 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C174F62748E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 03:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E426274AC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 03:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235697AbiKNCWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Nov 2022 21:22:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37106 "EHLO
+        id S235625AbiKNCrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Nov 2022 21:47:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235730AbiKNCVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 21:21:48 -0500
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C4FF59C;
-        Sun, 13 Nov 2022 18:21:37 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 7BBAD3200919;
-        Sun, 13 Nov 2022 21:21:36 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Sun, 13 Nov 2022 21:21:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1668392496; x=1668478896; bh=gj
-        Txd/OJ3XJY9Y9W7MUwj9LbmBQtUOqoYWx80cWH4tA=; b=dv9RTRgh0sYupDLwTl
-        1jiL05KjhZ3cPsZwCHIh8u/HNuoCOyWmMo18j0BF6bLzEmGERmWbt6k0u3aomUnb
-        YYHmwjgoAQTjmBnGOr1v840kg52Wf/J0xz36ZHthYM6mrX/HmYhfMqoSbKwDNaaH
-        f4karJO+BiVcWoCqaHcigFUgCD/zxZ0YGVvQGxlFWSGatZmUqCahownObk9w/hpN
-        p3svfgj8LNucGbXdeM6Zm6FwYZZY9Zub8Q5mWPXRD1jnme8mZTaI0jSWhvy+eHCT
-        oK9ljUpR93MJvKzZDu2JT6nv2C94RH+xl06jYYDpA6nsKbS3G4JfQWUuT5x+AqGE
-        z9Rw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1668392496; x=1668478896; bh=gjTxd/OJ3XJY9
-        Y9W7MUwj9LbmBQtUOqoYWx80cWH4tA=; b=eDe5SHgitCLCmhqOB38VQdkdhxkUL
-        td2WQK2rki7jIoZd9+vCH0fjf3CJRMs4AT13upvh67rh6YjYIY9BTG9LsNgJKHq/
-        FGuWLAGIvAuLP4xL6+XuinTkaGArlldg22AKwQY4mo8ZZ9ArG8QqYNTUD40D7izc
-        Wv2mW+PVvTq/+1ZVl/9HgN/IBdEZGxsE4cqo0xmIuXJOplvfxu7a4Q0rYeWgr/Nm
-        bD3kTDb/oI7WwZRbzbZYl7Liy7/SzPFbdlor+vwZNu964j8usJ7dWo0veVAUNgEu
-        pn/eEWqnS2/PSlhh9jyeQHi88UJmyEZ19OBMo0Jnw2qt2dNAvlm7rHEsw==
-X-ME-Sender: <xms:L6ZxYy70vmvPesL2emIiDveT2AK6pQft1C5gsO_CNewfZuNyR_-m_g>
-    <xme:L6ZxY75nDbbXv6MM1NjPa4BFdIgQeGUCYk2yP4ODoy8lFWAIzU7qwUZmsKbkNsX0H
-    Hy_3qiiZUxyuHeEqw>
-X-ME-Received: <xmr:L6ZxYxc4cu2tE1xgmyTvRcoXE-AW2pwcI6LwrSm4FeVUE2u10X3opvec_YRFocdkTkd0YTuPByfeSRNjnVbLdHi-iiyQ43qeapo1216FdBGlTSqkuLpMyNfe7YKvL51BMdQ3nw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgedugdeghecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeehgfdu
-    feeitdevteenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:MKZxY_L3HaR6rSkgY7s2-U0OTFig8o0FXzy5KbXmKrvYlhfHLuqPmg>
-    <xmx:MKZxY2LC4XhibtHVVqhy2mUynDuocDiYxCDAZkKrY8hpcjSnE2tSdQ>
-    <xmx:MKZxYwxsAvwlTlKwvJexvWXDzzZCw4Yf8hJr6EaEtrPrWA9JYpMaVA>
-    <xmx:MKZxY4BHqOppT4HEqHzbVnyZInEKPZ3ulJ2izQouUKydiry5fIfnrQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 13 Nov 2022 21:21:35 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Samuel Holland <samuel@sholland.org>,
+        with ESMTP id S234264AbiKNCrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Nov 2022 21:47:23 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 99082BC1B;
+        Sun, 13 Nov 2022 18:47:20 -0800 (PST)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8DxPdk2rHFj9McGAA--.20478S3;
+        Mon, 14 Nov 2022 10:47:18 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxr+AvrHFjMDkSAA--.49472S2;
+        Mon, 14 Nov 2022 10:47:17 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v2 8/8] phy: allwinner: phy-sun6i-mipi-dphy: Add the A100 DPHY variant
-Date:   Sun, 13 Nov 2022 20:21:13 -0600
-Message-Id: <20221114022113.31694-9-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221114022113.31694-1-samuel@sholland.org>
-References: <20221114022113.31694-1-samuel@sholland.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v12 1/2] thermal: loongson-2: add thermal management support
+Date:   Mon, 14 Nov 2022 10:47:08 +0800
+Message-Id: <20221114024709.7975-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8Dxr+AvrHFjMDkSAA--.49472S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3uw4DJw1kuFyxAry7ZrykuFg_yoWkCw1UpF
+        W3C3y5GrsrGFsruwn8Ar1UZFs0vwnIyFy3ZFWxGw1Y9rZ8J343Wry8JFy8ZrWSkryDGF13
+        ZF98KFWUCFWDW3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bxkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcxkI7VAKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcV
+        Cjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+        MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+        1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l
+        IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+        A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8niSJUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A100 features an updated DPHY, which moves PLL control inside the DPHY
-register space (previously the PLL was controlled from the CCU). It also
-requires a modified analog power-on sequence. This "combo PHY" can also
-be used as an LVDS PHY, but that is not yet supported by the driver.
+This patch adds the support for Loongson-2 thermal sensor controller,
+which can support maximum 4 sensors.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
+It's based on thermal of framework:
+ - Trip points defined in device tree.
+ - Cpufreq as cooling device registered in Loongson-2 cpufreq driver.
+ - Pwm fan as cooling device registered in hwmon pwm-fan driver.
+
+Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 ---
+Change in v12:
+		1. Fixup it about min and max.
+		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
+Change in v11:
+		1. Add min() and max() to replace related code in function
+		   loongson2_thermal_set.
+		2. Add dev_err_probe to to replace related code for function
+		   return value use devm_thermal_of_zone_register.
+		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
+		   and use dev_warn replace dev_err in this context.
+Change in v10:
+		1. Add all history change log information.
+Change in v9:
+		1. Switch new API that use devm_thermal_of_zone_register
+		   to replace previous interfaces.
+		2. Add depend on LOONGARCH || COMPILE_TEST.
+Change in v8:
+                1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
+                   Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
+		   files.
+Change in v7:
+		1. Split the modification of patch 3 and merge it into this patch.
+		2. Remove the unless code annotation to fix the compile warning
+		   when compile C code with W=1.
+Change in v6:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v5:
+		1. NO change, but other patch in this series of patches set has
+		   changes.
+Change in v4:
+		1. Fixup the compatible.
+Change in v3:
+		1. Add a function to gain sensor id an remove dts id.
+Change in v2:
+		1. Remove error msg printing when addr ioremap has error.
+		2. Make loongson2 thermal driver was built-in by default.
+		3. Replace ls2k with loongson2.
+		4. Remove CONFIG_PM_SLEEP and set pm function type was
+		   __maybe_unused.
 
-(no changes since v1)
+ MAINTAINERS                         |   7 +
+ drivers/thermal/Kconfig             |  10 ++
+ drivers/thermal/Makefile            |   1 +
+ drivers/thermal/loongson2_thermal.c | 260 ++++++++++++++++++++++++++++
+ 4 files changed, 278 insertions(+)
+ create mode 100644 drivers/thermal/loongson2_thermal.c
 
- drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 143 +++++++++++++++++++-
- 1 file changed, 142 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
-index ac144ee0f0a6..36eab95271b2 100644
---- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
-+++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
-@@ -70,11 +70,19 @@
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1b391ca7cf91..0d867573fe4c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12013,6 +12013,13 @@ F:	drivers/*/*loongarch*
+ F:	Documentation/loongarch/
+ F:	Documentation/translations/zh_CN/loongarch/
  
- #define SUN6I_DPHY_ANA0_REG		0x4c
- #define SUN6I_DPHY_ANA0_REG_PWS			BIT(31)
-+#define SUN6I_DPHY_ANA0_REG_PWEND		BIT(30)
-+#define SUN6I_DPHY_ANA0_REG_PWENC		BIT(29)
- #define SUN6I_DPHY_ANA0_REG_DMPC		BIT(28)
- #define SUN6I_DPHY_ANA0_REG_DMPD(n)		(((n) & 0xf) << 24)
-+#define SUN6I_DPHY_ANA0_REG_SRXDT(n)		(((n) & 0xf) << 20)
-+#define SUN6I_DPHY_ANA0_REG_SRXCK(n)		(((n) & 0xf) << 16)
-+#define SUN6I_DPHY_ANA0_REG_SDIV2		BIT(15)
- #define SUN6I_DPHY_ANA0_REG_SLV(n)		(((n) & 7) << 12)
- #define SUN6I_DPHY_ANA0_REG_DEN(n)		(((n) & 0xf) << 8)
-+#define SUN6I_DPHY_ANA0_REG_PLR(n)		(((n) & 0xf) << 4)
- #define SUN6I_DPHY_ANA0_REG_SFB(n)		(((n) & 3) << 2)
-+#define SUN6I_DPHY_ANA0_REG_RSD			BIT(1)
-+#define SUN6I_DPHY_ANA0_REG_SELSCK		BIT(0)
++LOONGSON-2 SOC SERIES THERMAL DRIVER
++M:	zhanghongchen <zhanghongchen@loongson.cn>
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	linux-pm@vger.kernel.org
++S:	Maintained
++F:	drivers/thermal/loongson2_thermal.c
++
+ LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+ M:	Sathya Prakash <sathya.prakash@broadcom.com>
+ M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+index e052dae614eb..93d84bcb16dd 100644
+--- a/drivers/thermal/Kconfig
++++ b/drivers/thermal/Kconfig
+@@ -504,4 +504,14 @@ config KHADAS_MCU_FAN_THERMAL
+ 	  If you say yes here you get support for the FAN controlled
+ 	  by the Microcontroller found on the Khadas VIM boards.
  
- #define SUN6I_DPHY_ANA1_REG		0x50
- #define SUN6I_DPHY_ANA1_REG_VTTMODE		BIT(31)
-@@ -97,8 +105,13 @@
- #define SUN6I_DPHY_ANA3_EN_LDOR			BIT(18)
- 
- #define SUN6I_DPHY_ANA4_REG		0x5c
-+#define SUN6I_DPHY_ANA4_REG_EN_MIPI		BIT(31)
-+#define SUN6I_DPHY_ANA4_REG_EN_COMTEST		BIT(30)
-+#define SUN6I_DPHY_ANA4_REG_COMTEST(n)		(((n) & 3) << 28)
-+#define SUN6I_DPHY_ANA4_REG_IB(n)		(((n) & 3) << 25)
- #define SUN6I_DPHY_ANA4_REG_DMPLVC		BIT(24)
- #define SUN6I_DPHY_ANA4_REG_DMPLVD(n)		(((n) & 0xf) << 20)
-+#define SUN6I_DPHY_ANA4_REG_VTT_SET(n)		(((n) & 0x7) << 17)
- #define SUN6I_DPHY_ANA4_REG_CKDV(n)		(((n) & 0x1f) << 12)
- #define SUN6I_DPHY_ANA4_REG_TMSC(n)		(((n) & 3) << 10)
- #define SUN6I_DPHY_ANA4_REG_TMSD(n)		(((n) & 3) << 8)
-@@ -109,6 +122,56 @@
- 
- #define SUN6I_DPHY_DBG5_REG		0xf4
- 
-+#define SUN50I_DPHY_TX_SLEW_REG0	0xf8
-+#define SUN50I_DPHY_TX_SLEW_REG1	0xfc
-+#define SUN50I_DPHY_TX_SLEW_REG2	0x100
++config LOONGSON2_THERMAL
++	tristate "Loongson-2 SoC series thermal driver"
++	depends on LOONGARCH || COMPILE_TEST
++	depends on OF
++	help
++	  Support for Thermal driver found on Loongson-2 SoC series platforms.
++	  It supports one critical trip point and one passive trip point. The
++	  cpufreq and the pwm fan is used as the cooling device to throttle
++	  CPUs when the passive trip is crossed.
 +
-+#define SUN50I_DPHY_PLL_REG0		0x104
-+#define SUN50I_DPHY_PLL_REG0_CP36_EN		BIT(23)
-+#define SUN50I_DPHY_PLL_REG0_LDO_EN		BIT(22)
-+#define SUN50I_DPHY_PLL_REG0_EN_LVS		BIT(21)
-+#define SUN50I_DPHY_PLL_REG0_PLL_EN		BIT(20)
-+#define SUN50I_DPHY_PLL_REG0_P(n)		(((n) & 0xf) << 16)
-+#define SUN50I_DPHY_PLL_REG0_N(n)		(((n) & 0xff) << 8)
-+#define SUN50I_DPHY_PLL_REG0_NDET		BIT(7)
-+#define SUN50I_DPHY_PLL_REG0_TDIV		BIT(6)
-+#define SUN50I_DPHY_PLL_REG0_M0(n)		(((n) & 3) << 4)
-+#define SUN50I_DPHY_PLL_REG0_M1(n)		((n) & 0xf)
+ endif
+diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+index 2506c6c8ca83..02f3db809858 100644
+--- a/drivers/thermal/Makefile
++++ b/drivers/thermal/Makefile
+@@ -61,3 +61,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+ obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+ obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+ obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
++obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
+diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
+new file mode 100644
+index 000000000000..2d495469e8dd
+--- /dev/null
++++ b/drivers/thermal/loongson2_thermal.c
+@@ -0,0 +1,260 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Author: zhanghongchen <zhanghongchen@loongson.cn>
++ *         Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
 +
-+#define SUN50I_DPHY_PLL_REG1		0x108
-+#define SUN50I_DPHY_PLL_REG1_UNLOCK_MDSEL(n)	(((n) & 3) << 14)
-+#define SUN50I_DPHY_PLL_REG1_LOCKMDSEL		BIT(13)
-+#define SUN50I_DPHY_PLL_REG1_LOCKDET_EN		BIT(12)
-+#define SUN50I_DPHY_PLL_REG1_VSETA(n)		(((n) & 0x7) << 9)
-+#define SUN50I_DPHY_PLL_REG1_VSETD(n)		(((n) & 0x7) << 6)
-+#define SUN50I_DPHY_PLL_REG1_LPF_SW		BIT(5)
-+#define SUN50I_DPHY_PLL_REG1_ICP_SEL(n)		(((n) & 3) << 3)
-+#define SUN50I_DPHY_PLL_REG1_ATEST_SEL(n)	(((n) & 3) << 1)
-+#define SUN50I_DPHY_PLL_REG1_TEST_EN		BIT(0)
++#include <linux/cpufreq.h>
++#include <linux/delay.h>
++#include <linux/interrupt.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/io.h>
++#include <linux/of_device.h>
++#include <linux/thermal.h>
++#include "thermal_hwmon.h"
 +
-+#define SUN50I_DPHY_PLL_REG2		0x10c
-+#define SUN50I_DPHY_PLL_REG2_SDM_EN		BIT(31)
-+#define SUN50I_DPHY_PLL_REG2_FF_EN		BIT(30)
-+#define SUN50I_DPHY_PLL_REG2_SS_EN		BIT(29)
-+#define SUN50I_DPHY_PLL_REG2_SS_FRAC(n)		(((n) & 0x1ff) << 20)
-+#define SUN50I_DPHY_PLL_REG2_SS_INT(n)		(((n) & 0xff) << 12)
-+#define SUN50I_DPHY_PLL_REG2_FRAC(n)		((n) & 0xfff)
++#define LOONGSON2_SOC_MAX_SENSOR_NUM			4
 +
-+#define SUN50I_COMBO_PHY_REG0		0x110
-+#define SUN50I_COMBO_PHY_REG0_EN_TEST_COMBOLDO	BIT(5)
-+#define SUN50I_COMBO_PHY_REG0_EN_TEST_0P8	BIT(4)
-+#define SUN50I_COMBO_PHY_REG0_EN_MIPI		BIT(3)
-+#define SUN50I_COMBO_PHY_REG0_EN_LVDS		BIT(2)
-+#define SUN50I_COMBO_PHY_REG0_EN_COMBOLDO	BIT(1)
-+#define SUN50I_COMBO_PHY_REG0_EN_CP		BIT(0)
++#define LOONGSON2_TSENSOR_CTRL_HI			0x0
++#define LOONGSON2_TSENSOR_CTRL_LO			0x8
++#define LOONGSON2_TSENSOR_STATUS			0x10
++#define LOONGSON2_TSENSOR_OUT				0x14
 +
-+#define SUN50I_COMBO_PHY_REG1		0x114
-+#define SUN50I_COMBO_PHY_REG2_REG_VREF1P6(n)	(((n) & 0x7) << 4)
-+#define SUN50I_COMBO_PHY_REG2_REG_VREF0P8(n)	((n) & 0x7)
-+
-+#define SUN50I_COMBO_PHY_REG2		0x118
-+#define SUN50I_COMBO_PHY_REG2_HS_STOP_DLY(n)	((n) & 0xff)
-+
- enum sun6i_dphy_direction {
- 	SUN6I_DPHY_DIRECTION_TX,
- 	SUN6I_DPHY_DIRECTION_RX,
-@@ -196,6 +259,76 @@ static void sun6i_a31_mipi_dphy_tx_power_on(struct sun6i_dphy *dphy)
- 	udelay(1);
- }
- 
-+static void sun50i_a100_mipi_dphy_tx_power_on(struct sun6i_dphy *dphy)
-+{
-+	unsigned long mipi_symbol_rate = dphy->config.hs_clk_rate;
-+	unsigned int div, n;
-+
-+	regmap_write(dphy->regs, SUN6I_DPHY_ANA4_REG,
-+		     SUN6I_DPHY_ANA4_REG_IB(2) |
-+		     SUN6I_DPHY_ANA4_REG_DMPLVD(4) |
-+		     SUN6I_DPHY_ANA4_REG_VTT_SET(3) |
-+		     SUN6I_DPHY_ANA4_REG_CKDV(3) |
-+		     SUN6I_DPHY_ANA4_REG_TMSD(1) |
-+		     SUN6I_DPHY_ANA4_REG_TMSC(1) |
-+		     SUN6I_DPHY_ANA4_REG_TXPUSD(2) |
-+		     SUN6I_DPHY_ANA4_REG_TXPUSC(3) |
-+		     SUN6I_DPHY_ANA4_REG_TXDNSD(2) |
-+		     SUN6I_DPHY_ANA4_REG_TXDNSC(3));
-+
-+	regmap_update_bits(dphy->regs, SUN6I_DPHY_ANA2_REG,
-+			   SUN6I_DPHY_ANA2_EN_CK_CPU,
-+			   SUN6I_DPHY_ANA2_EN_CK_CPU);
-+
-+	regmap_update_bits(dphy->regs, SUN6I_DPHY_ANA2_REG,
-+			   SUN6I_DPHY_ANA2_REG_ENIB,
-+			   SUN6I_DPHY_ANA2_REG_ENIB);
-+
-+	regmap_write(dphy->regs, SUN6I_DPHY_ANA3_REG,
-+		     SUN6I_DPHY_ANA3_EN_LDOR |
-+		     SUN6I_DPHY_ANA3_EN_LDOC |
-+		     SUN6I_DPHY_ANA3_EN_LDOD);
-+
-+	regmap_write(dphy->regs, SUN6I_DPHY_ANA0_REG,
-+		     SUN6I_DPHY_ANA0_REG_PLR(4) |
-+		     SUN6I_DPHY_ANA0_REG_SFB(1));
-+
-+	regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG0,
-+		     SUN50I_COMBO_PHY_REG0_EN_CP);
-+
-+	/* Choose a divider to limit the VCO frequency to around 2 GHz. */
-+	div = 16 >> order_base_2(DIV_ROUND_UP(mipi_symbol_rate, 264000000));
-+	n = mipi_symbol_rate * div / 24000000;
-+
-+	regmap_write(dphy->regs, SUN50I_DPHY_PLL_REG0,
-+		     SUN50I_DPHY_PLL_REG0_CP36_EN |
-+		     SUN50I_DPHY_PLL_REG0_LDO_EN |
-+		     SUN50I_DPHY_PLL_REG0_EN_LVS |
-+		     SUN50I_DPHY_PLL_REG0_PLL_EN |
-+		     SUN50I_DPHY_PLL_REG0_NDET |
-+		     SUN50I_DPHY_PLL_REG0_P((div - 1) % 8) |
-+		     SUN50I_DPHY_PLL_REG0_N(n) |
-+		     SUN50I_DPHY_PLL_REG0_M0((div - 1) / 8) |
-+		     SUN50I_DPHY_PLL_REG0_M1(2));
-+
-+	/* Disable sigma-delta modulation. */
-+	regmap_write(dphy->regs, SUN50I_DPHY_PLL_REG2, 0);
-+
-+	regmap_update_bits(dphy->regs, SUN6I_DPHY_ANA4_REG,
-+			   SUN6I_DPHY_ANA4_REG_EN_MIPI,
-+			   SUN6I_DPHY_ANA4_REG_EN_MIPI);
-+
-+	regmap_update_bits(dphy->regs, SUN50I_COMBO_PHY_REG0,
-+			   SUN50I_COMBO_PHY_REG0_EN_MIPI |
-+			   SUN50I_COMBO_PHY_REG0_EN_COMBOLDO,
-+			   SUN50I_COMBO_PHY_REG0_EN_MIPI |
-+			   SUN50I_COMBO_PHY_REG0_EN_COMBOLDO);
-+
-+	regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG2,
-+		     SUN50I_COMBO_PHY_REG2_HS_STOP_DLY(20));
-+	udelay(1);
-+}
-+
- static int sun6i_dphy_tx_power_on(struct sun6i_dphy *dphy)
- {
- 	u8 lanes_mask = GENMASK(dphy->config.lanes - 1, 0);
-@@ -408,7 +541,7 @@ static const struct regmap_config sun6i_dphy_regmap_config = {
- 	.reg_bits	= 32,
- 	.val_bits	= 32,
- 	.reg_stride	= 4,
--	.max_register	= SUN6I_DPHY_DBG5_REG,
-+	.max_register	= SUN50I_COMBO_PHY_REG2,
- 	.name		= "mipi-dphy",
- };
- 
-@@ -484,11 +617,19 @@ static const struct sun6i_dphy_variant sun6i_a31_mipi_dphy_variant = {
- 	.rx_supported	= true,
- };
- 
-+static const struct sun6i_dphy_variant sun50i_a100_mipi_dphy_variant = {
-+	.tx_power_on	= sun50i_a100_mipi_dphy_tx_power_on,
++struct loongson2_thermal_data {
++	struct thermal_zone_device *tzd;
++	int irq;
++	int id;
++	void __iomem *regs;
++	struct platform_device *pdev;
++	u16 ctrl_low_val;
++	u16 ctrl_hi_val;
 +};
 +
- static const struct of_device_id sun6i_dphy_of_table[] = {
- 	{
- 		.compatible	= "allwinner,sun6i-a31-mipi-dphy",
- 		.data		= &sun6i_a31_mipi_dphy_variant,
- 	},
-+	{
-+		.compatible	= "allwinner,sun50i-a100-mipi-dphy",
-+		.data		= &sun50i_a100_mipi_dphy_variant,
++static int loongson2_thermal_set(struct loongson2_thermal_data *data,
++					int low, int high, bool enable)
++{
++	u64 reg_ctrl = 0;
++	int reg_off = data->id * 2;
++
++	if (low > high)
++		return -EINVAL;
++
++	low = max(low, -100);
++	high = min(high, 155);
++
++	low += 100;
++	high += 100;
++
++	reg_ctrl |= low;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++
++	reg_ctrl = 0;
++	reg_ctrl |= high;
++	reg_ctrl |= enable ? 0x100 : 0;
++	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	return 0;
++}
++
++static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
++{
++	u32 reg_val;
++	struct loongson2_thermal_data *data = tz->devdata;
++
++	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
++	*temp = ((reg_val & 0xff) - 100) * 1000;
++
++	return 0;
++}
++
++static int loongson2_thermal_get_sensor_id(void)
++{
++	int ret, id;
++	struct of_phandle_args sensor_specs;
++	struct device_node *np, *sensor_np;
++
++	np = of_find_node_by_name(NULL, "thermal-zones");
++	if (!np)
++		return -ENODEV;
++
++	sensor_np = of_get_next_child(np, NULL);
++	ret = of_parse_phandle_with_args(sensor_np, "thermal-sensors",
++			"#thermal-sensor-cells",
++			0, &sensor_specs);
++	if (ret) {
++		of_node_put(np);
++		of_node_put(sensor_np);
++		return ret;
++	}
++
++	if (sensor_specs.args_count >= 1) {
++		id = sensor_specs.args[0];
++		WARN(sensor_specs.args_count > 1,
++				"%s: too many cells in sensor specifier %d\n",
++				sensor_specs.np->name, sensor_specs.args_count);
++	} else {
++		id = 0;
++	}
++
++	of_node_put(np);
++	of_node_put(sensor_np);
++
++	return id;
++}
++
++static irqreturn_t loongson2_thermal_alarm_irq(int irq, void *dev)
++{
++	struct loongson2_thermal_data *data = dev;
++
++	/* clear interrupt */
++	writeb(0x3, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	disable_irq_nosync(irq);
++
++	return IRQ_WAKE_THREAD;
++}
++
++static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
++{
++	struct loongson2_thermal_data *data = dev;
++
++	thermal_zone_device_update(data->tzd,
++				   THERMAL_EVENT_UNSPECIFIED);
++	enable_irq(data->irq);
++
++	return IRQ_HANDLED;
++}
++
++static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
++{
++	struct loongson2_thermal_data *data = tz->devdata;
++
++	return loongson2_thermal_set(data, low/1000, high/1000, true);
++}
++
++static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
++	.get_temp = loongson2_thermal_get_temp,
++	.set_trips = loongson2_thermal_set_trips,
++};
++
++static int loongson2_thermal_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	struct loongson2_thermal_data *data;
++	int ret;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->pdev = pdev;
++	platform_set_drvdata(pdev, data);
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	data->regs = devm_ioremap(dev, res->start, resource_size(res));
++	if (IS_ERR(data->regs))
++		return PTR_ERR(data->regs);
++
++	/* get irq */
++	data->irq = platform_get_irq(pdev, 0);
++	if (data->irq < 0)
++		return data->irq;
++
++	/* get id */
++	data->id = loongson2_thermal_get_sensor_id();
++	if (data->id > LOONGSON2_SOC_MAX_SENSOR_NUM - 1 || data->id < 0) {
++		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
++				LOONGSON2_SOC_MAX_SENSOR_NUM - 1);
++		return -EINVAL;
++	}
++
++	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
++
++	loongson2_thermal_set(data, 0, 0, false);
++
++	data->tzd = devm_thermal_of_zone_register(&pdev->dev, data->id, data,
++			&loongson2_of_thermal_ops);
++	if (IS_ERR(data->tzd))
++		return dev_err_probe(&pdev->dev, PTR_ERR(data->tzd),
++				"failed to register");
++
++	ret = devm_request_threaded_irq(dev, data->irq,
++			loongson2_thermal_alarm_irq, loongson2_thermal_irq_thread,
++			IRQF_ONESHOT, "loongson2_thermal", data);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
++
++	/*
++	 * Thermal_zone doesn't enable hwmon as default,
++	 * enable it here
++	 */
++	data->tzd->tzp->no_hwmon = false;
++	if (devm_thermal_add_hwmon_sysfs(data->tzd))
++		dev_warn(&pdev->dev, "Failed to add hwmon sysfs attributes\n");
++
++	return 0;
++}
++
++static int loongson2_thermal_remove(struct platform_device *pdev)
++{
++	struct loongson2_thermal_data *data = platform_get_drvdata(pdev);
++	int reg_off = data->id * 2;
++
++	/* disable interrupt */
++	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	return 0;
++}
++
++static const struct of_device_id of_loongson2_thermal_match[] = {
++	{ .compatible = "loongson,ls2k-thermal",},
++	{ /* end */ }
++};
++MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
++
++static int __maybe_unused loongson2_thermal_suspend(struct device *dev)
++{
++	struct loongson2_thermal_data *data = dev_get_drvdata(dev);
++	int reg_off = data->id * 2;
++
++	data->ctrl_low_val = readw(data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++	data->ctrl_hi_val = readw(data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++	writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	return 0;
++}
++
++static int __maybe_unused loongson2_thermal_resume(struct device *dev)
++{
++	struct loongson2_thermal_data *data = dev_get_drvdata(dev);
++	int reg_off = data->id * 2;
++
++	writew(data->ctrl_low_val, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
++	writew(data->ctrl_hi_val, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(loongson2_thermal_pm_ops,
++			 loongson2_thermal_suspend, loongson2_thermal_resume);
++
++static struct platform_driver loongson2_thermal_driver = {
++	.driver = {
++		.name		= "loongson2_thermal",
++		.pm = &loongson2_thermal_pm_ops,
++		.of_match_table = of_loongson2_thermal_match,
 +	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun6i_dphy_of_table);
++	.probe	= loongson2_thermal_probe,
++	.remove	= loongson2_thermal_remove,
++};
++module_platform_driver(loongson2_thermal_driver);
++
++MODULE_DESCRIPTION("Loongson2 thermal driver");
++MODULE_LICENSE("GPL");
 -- 
-2.37.3
+2.31.1
 
