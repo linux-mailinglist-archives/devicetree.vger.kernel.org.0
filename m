@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F82628304
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A5E628312
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 15:45:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236783AbiKNOnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 09:43:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50376 "EHLO
+        id S237006AbiKNOpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 09:45:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236730AbiKNOm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:42:28 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D10412C117;
-        Mon, 14 Nov 2022 06:42:27 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E03A61211;
-        Mon, 14 Nov 2022 14:42:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABE7C433D6;
-        Mon, 14 Nov 2022 14:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668436946;
-        bh=zsPHg2CbneKaAfSvj9WkPgYa0y7b09xQojV5FYHP5sk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e5Qy7Rlxxzy9JFuT/hsrGD7f4hcJbO+ae6+Z61L2DEEAQC8FLT8AzwxSGnRYkjM1L
-         JXl7B816rveuzs3L556r6NgStq28YHhw9aR3ouMRpSOfV7M+4blTngit83vE/8cV8J
-         lF4oqxRF2Zpj3r1LLNx0YVeJZdQ1J1mFbOYFMPhwfA07JK8qs7jNlfMQSUduK/CVii
-         R0XwReJzXGRWDzqx9BGNEPMzg8F8LCpNxP83h/yoVp4tFpJyJp2xY2QKy3KOZYnWTO
-         nu0Nb4qLpiFVTOtyQmLtwu55ms6fwZb5cc3ZIn4Gx58AYlv0PLaOHN/sAWctoQRWZ2
-         lUA80vWx3Wrow==
-Date:   Mon, 14 Nov 2022 14:42:21 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] drivers: arm-smmu-impl: Add QDU1000 and QRU1000
- iommu implementation
-Message-ID: <20221114144220.GA31043@willie-the-truck>
-References: <20221026190534.4004945-1-quic_molvera@quicinc.com>
- <20221026190534.4004945-3-quic_molvera@quicinc.com>
- <0ae09be0-cb1b-dc27-943b-db64ca97b8c7@linaro.org>
+        with ESMTP id S236464AbiKNOp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 09:45:27 -0500
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C7D52E9DB
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:44:43 -0800 (PST)
+Received: by mail-vs1-xe30.google.com with SMTP id p4so11579069vsa.11
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 06:44:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TDD4odG4r6r2FFSUbuXjQnaIDLkqm4SYPlYk8JgwRG0=;
+        b=bSTBS+UwIJoGYERxx8sMuOF9h0aklOvy9mKGzl3ITPDTxziUXCBWcBNC04rMsZCXgU
+         HQSzcFJGo+zZn+eivwsRYcxZD0kMXo+8GXObIe+1y8V7yGRw4j/WjInlLFUwsYSG+n2i
+         QXEE7umxtH/9V2yGLSV9xuePgZBoC8DU2yEFLshA9Y1N3cNXgutBLsf8ESVIgCT/KJrp
+         5dHTDOKkP3CC1IgW7TWlMyF8A3xtQBjeLNkPiEd0PIyTFhIlyhpK/kidk3ynWXSQzXTC
+         FiuWuJ9csk7FlbBhMdwIhqouwxXomLhUdzn2Lde9KdwGyau+QsiiWr7U/Jgasq1TxXfn
+         VcGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TDD4odG4r6r2FFSUbuXjQnaIDLkqm4SYPlYk8JgwRG0=;
+        b=TUDeFXRauA0Nxk5t2Ju56sR6xXj9a/arMEnjTKxr6HVpsZEZOjcu4+52mcPP1zk7eG
+         u9/2vsLjfzwVxzlvCidCSxqjPW4GG90qrj1xQreM8sULLHEwZnR+gVCluygaWRJTe5hd
+         eoaishteJyxHF0jIa3iJ6aFv4ppmhTwRd8YWvxV8Rzz0WUQ2di1UcdABmpa7VQBpQj2C
+         YCyGc0l5dntchJQYRwCLxAu3jLuAzMVVGkE0gaqBuou2UYaE4dtBZxkSXns2E9yQriEe
+         BZTPUF1peEd+Ix1wOiGxNoKGHmLZse+bXV2Ew7SzVrrFNHQnY5vM/FsYUxX1r9deUcx5
+         w+zA==
+X-Gm-Message-State: ANoB5pl5679u4ewzLoz8ZQZUloNyKs/BbeNle+NaVv/k7Y4UG+ED2HFQ
+        BcJJoAOIdXBFzj3REZ7icjYYe2DSVHpybsL1P8bS9A==
+X-Google-Smtp-Source: AA0mqf7GN7HAz1P+7NaDghpgbl0bA1RxgVxRtZRKHgyOjm+k7fAqKDWHqcEj4ikVCKhMS2t+v6z+m5O7wQVDC+FSAKk=
+X-Received: by 2002:a67:ebd9:0:b0:3aa:305c:da63 with SMTP id
+ y25-20020a67ebd9000000b003aa305cda63mr6268938vso.18.1668437082717; Mon, 14
+ Nov 2022 06:44:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0ae09be0-cb1b-dc27-943b-db64ca97b8c7@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221104060305.1025215-1-andy.chiu@sifive.com> <20221108170259.2e95c6c0@kernel.org>
+In-Reply-To: <20221108170259.2e95c6c0@kernel.org>
+From:   Andy Chiu <andy.chiu@sifive.com>
+Date:   Mon, 14 Nov 2022 22:44:31 +0800
+Message-ID: <CABgGipWRzcRxqmwOVibxupvme7eD=C+ZR4ARw3SjQM3rb411Kg@mail.gmail.com>
+Subject: Re: [PATCH v3 net-next 0/3] net: axienet: Use a DT property to
+ configure frequency of the MDIO bus
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     davem@davemloft.net, andrew@lunn.ch, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, pabeni@redhat.com, edumazet@google.com,
+        greentime.hu@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 03:28:15PM +0100, Krzysztof Kozlowski wrote:
-> On 26/10/2022 21:05, Melody Olvera wrote:
-> > Add compatible for Qualcomm QDU1000 and QRU1000 SoCs to add iommu
-> > support for them.
-> > 
-> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> > ---
-> >  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > index b2708de25ea3..0580a381a04b 100644
-> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> > @@ -426,6 +426,7 @@ static struct arm_smmu_device *qcom_smmu_create(struct arm_smmu_device *smmu,
-> >  static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
-> >  	{ .compatible = "qcom,msm8998-smmu-v2" },
-> >  	{ .compatible = "qcom,qcm2290-smmu-500" },
-> > +	{ .compatible = "qcom,qdu1000-smmu-500" },
-> 
-> The patch was applied but it contradicts work here:
-> https://lore.kernel.org/all/20221102184420.534094-12-dmitry.baryshkov@linaro.org/
-> which explicitly asks not to add such compatibles...
+On Wed, Nov 9, 2022 at 9:03 AM Jakub Kicinski <kuba@kernel.org> wrote:
+> FWIW this patch set was set to Changes Requested in the patchwork
+> but I don't recall what the reason was. If you're not aware of anyone
+> requesting changes either - could you just repost to the list again,
+> the same exact code?
 
-Sure, but we've been adding new compatibles for years so I don't mind
-picking up the last few now before we stop accepting new ones.
-
-I already asked Dmitry to respin his series as there are some open comments
-from others anyway.
-
-Will
+Hi, I am not aware of any requested changes on the v3 patch either. I
+just resent the patch again, please check the following link, thanks!!
+https://lore.kernel.org/all/20221114143755.1241466-1-andy.chiu@sifive.com/
