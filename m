@@ -2,68 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3972627BC5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 12:12:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D78627BFC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 12:18:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235969AbiKNLMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 06:12:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34732 "EHLO
+        id S236291AbiKNLSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 06:18:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236619AbiKNLLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 06:11:36 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52831248E3;
-        Mon, 14 Nov 2022 03:08:45 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A1066660035A;
-        Mon, 14 Nov 2022 11:08:40 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668424121;
-        bh=WSZBBTuHZl7i5QeHJkZThtLqJACixahwu9l9LESefbA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oHySW+J8hVuJ7x6PI24Y90yrAp822hL2yetyUUbeIhY1OmfW2+SXasFB0RzCVKCKk
-         4PEkbXvmLBOtcG3Ppj7ZAVn06lona6ffEshFTBBzX3QDkAU6qVoF3wcZaFqUGyQMKU
-         zDk+gT7GhMcJTyWAZ+rjPCr1ZOP+PNAA8FvV3XWJZTTtLl8nBdOw5kZz1y0uw7mDjY
-         VZrkoC12Yj9Wr+Y/09+zvKHs3mrjYwGk6rcgRyU4IZNkMsoJaln0F/0daKkFHBS/HE
-         O6gCjOIJDdo/Vulo7AJGIkkCKdqUvmJpN5PE417zZI1ITorN9tzHbZWGuzMBwVxYBV
-         XGIsXxzvo0s8w==
-Message-ID: <f301a43a-5d55-1607-b8d3-5cd057977397@collabora.com>
-Date:   Mon, 14 Nov 2022 12:08:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2] media: mediatek: vcodec: fix h264 cavlc bitstream fail
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        with ESMTP id S236957AbiKNLR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 06:17:26 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766682253B;
+        Mon, 14 Nov 2022 03:15:24 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id DB3976000F;
+        Mon, 14 Nov 2022 11:15:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668424522;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=JCugCvGRdbEluzdDQKoO/nIaXFqTiQjnDG3+OCpPLoU=;
+        b=kUPMpPqGSSnUB0ZJcDO/lAPSZhYByPeTCi73VRYXpTus04v3V/an/AqIOlXAdUmvaoIANT
+        bjDA5YIR8KFlHCjcScOf9iWytIf7RiOHHdQRe25JFJ+VeYpkRSPHoqY8NOzXoynglMs+J3
+        2axxBrd8kGlHTBxzpcCrMiid6ZnF+hpsQyJh9K5+/WSwdq+rZ4ktfhm51z6wghYlZHgTah
+        rypVytdp3YFpESV9QGtBA+PqnMD201FnrM6a8/Pa2eGJ1xfv5H3q+qXHnlidU6CZJeDlG8
+        rJRYvSTiCoqh8uVn33YNTGvZf3DW+fTs/pMNg+y1yuXRqPTBD/PcTKUS62dTdQ==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221018114122.26785-1-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221018114122.26785-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 0/7] Add the Renesas USBF controller support
+Date:   Mon, 14 Nov 2022 12:15:06 +0100
+Message-Id: <20221114111513.1436165-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,57 +58,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/10/22 13:41, Yunfei Dong ha scritto:
-> Some cavlc bistream will decode fail when the frame size is small than
+Hi,
 
-s/small/smaller/g
+This series add support for the Renesas USBF controller (USB Device
+Controller) available in the Renesas RZ/N1 SoC.
 
-> 20 bytes. Need to add pending data at the end of the bitstream.
-> 
-> For the minimum size of mapped memory is 256 bytes(16x16), adding four bytes data
-> won't lead to access unknown virtual memory.
-> 
-> Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless H.264 decoding for mt8192")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> compared with v1:
-> - add detail comments for function: vdec_h264_insert_startcode.
-> - re-write commit message.
-> ---
->   .../vcodec/vdec/vdec_h264_req_multi_if.c      | 32 +++++++++++++++++--
->   1 file changed, 29 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> index 4cc92700692b..18e048755d11 100644
-> --- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-> @@ -539,6 +539,29 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
->   	return 0;
->   }
->   
-> +static void vdec_h264_insert_startcode(struct mtk_vcodec_dev *vcodec_dev, unsigned char *buf,
-> +				       size_t *bs_size, struct mtk_h264_pps_param *pps)
-> +{
-> +	struct device *dev = &vcodec_dev->plat_dev->dev;
-> +
-> +	/* Need to add pending data at the end of bitstream when bs_sz is small than
-> +	 * 20 bytes for cavlc bitstream, or lat will decode fail. This pending data is
-> +	 * useful for mt8192 and mt8195 platform.
+The first three patches are related to the H2MODE bit from CFG_USB
+register. This register is managed by the Renesas sysctrl driver.
+The H2MODE bit allows to configure the internal USB Port interface
+for two hosts or one host and one device.
 
-What is the reason why other SoCs don't need this?
+The next patches are related to the USBF controller with a new
+binding definition, the driver itself and myself as a maintainer
+of this controller.
 
-> +	 *
-> +	 * cavlc bitstream when entropy_coding_mode_flag is false.
-> +	 */
-> +	if (pps->entropy_coding_mode_flag || *bs_size > 20 ||
-> +	    !(of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec") ||
-> +	    of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec")))
+Best regards,
+Herve Codina
 
-I'm not comfortable seeing of_device_is_compatible... this list will grow whenever
-a new SoC needing this appears.
-Please think about a good name for a flag/quirk, or a bool, in the platform data
-for these two SoCs and use it.
+Changes v1 -> v2:
+  - Patch 1:
+    Rename r9a06g032_sysctrl_get_usb_h2mode to r9a06g032_sysctrl_get_usb_role
+    and return USB_ROLE_{HOST,DEVICE} or an error code.
+    Reword commit log
 
-Regards,
-Angelo
+  - Patches 2 and 3:
+    No changes. Some previous feedbacks still need to be taken into account
+      https://lore.kernel.org/all/20221107182642.05a09f2f@bootlin.com/
+      https://lore.kernel.org/all/20221107173614.474707d7@bootlin.com/
+
+  - Patch 4:
+    Rename file from renesas,usbf.yaml to renesas,rzn1-usbf.yaml.
+    Remove 'oneOf'.
+    Add blank line and line break.
+    Add 'power-domains'.
+    Reword commit log
+
+  - Patch 5:
+    Remove clocks handling (handled by runtime PM through the clock domain
+    pointed by power-domains).
+    Fix compilation warning raised by the 'kernel test robot'.
+
+  - Patch 6:
+    Add 'power-domains'
+
+  - Patch 7:
+    Add 'Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>'
+
+Herve Codina (7):
+  soc: renesas: r9a06g032-sysctrl: Export function to get the usb role
+  dt-bindings: clock: renesas,r9a06g032-sysctrl: Add h2mode property
+  soc: renesas: r9a06g032-sysctrl: Handle h2mode device-tree property
+  dt-bindings: usb: add the Renesas RZ/N1 USBF controller binding
+  usb: gadget: udc: add Renesas RZ/N1 USBF controller support
+  ARM: dts: r9a06g032: Add the USBF controller node
+  MAINTAINERS: add the Renesas RZ/N1 USBF controller entry
+
+ .../clock/renesas,r9a06g032-sysctrl.yaml      |   10 +
+ .../bindings/usb/renesas,rzn1-usbf.yaml       |   68 +
+ MAINTAINERS                                   |    8 +
+ arch/arm/boot/dts/r9a06g032.dtsi              |   12 +
+ drivers/clk/renesas/r9a06g032-clocks.c        |   39 +
+ drivers/usb/gadget/udc/Kconfig                |   11 +
+ drivers/usb/gadget/udc/Makefile               |    1 +
+ drivers/usb/gadget/udc/renesas_usbf.c         | 3430 +++++++++++++++++
+ include/linux/soc/renesas/r9a06g032-sysctrl.h |    2 +
+ 9 files changed, 3581 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.yaml
+ create mode 100644 drivers/usb/gadget/udc/renesas_usbf.c
+
+-- 
+2.38.1
 
