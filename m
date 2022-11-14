@@ -2,103 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D024A627864
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D11C627878
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 10:03:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236704AbiKNJAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 04:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43444 "EHLO
+        id S236745AbiKNJDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 04:03:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236686AbiKNJAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:00:33 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC5E1C434
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:00:30 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id j16so18126923lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 01:00:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jSB6TW51XM2yvmI8chRE/GRF+Jj8yKiNsELalSRirxc=;
-        b=sfsu+KoYe6/zZLJaWJ7gyMm2qpwZjyJUWiGTBNqyez7nf3ybJZ2AD/8kXVC4DAy2bs
-         EDeIqXfzEb65abG7P+/KkPfndbrgrDh48zIMqShZu242Z3IOW+ySq2/dxxn53cs9/0y8
-         W19FHMtfA5OgIeOICx6RsS9Pkq9GatkyFC3n8WvsDdw8CtVoCiZG1cNa9hgTx0yJGK/J
-         jNpFhqpFtQAh2fOdUtBZ26VM13zFbBCtOB88g6wMxKPCaK/FyifjSSAHWmR9be9KTfRP
-         i0voL+wqb+z1SDjp33lba3aLleeZPmXJoy48LMaLt9wXxI3RGDQMFGr6olRAIF+NZTWx
-         aEvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jSB6TW51XM2yvmI8chRE/GRF+Jj8yKiNsELalSRirxc=;
-        b=kxOmRMbtblTWA2c2prG9kM7WxYLhtFF4XLrNw/b9CTg1l8fGQlj0LkD2mdlEdjDQ7H
-         EDpj8N1xvXMcyXKhM4m32Eii0P15b0lsjI/IwDWN0XviOQXwg+my5t02nsPfwtPaUGSp
-         OGRLGs46QmAhwwZVH3XXpns2CCJ/eLpYv2PVxEs0Y9qH5mxbmN5pxIFYH4xE9KiWMYLj
-         MWSgIYUGKGwGjJFyD5LqVAhhJac0wXe4TVnmYjAF3S8D4xcEQDK52pN/Tf4p4DMnm5Ac
-         QGziJ8VBLFi/7M6nLg9dJwyBDY2mfFjbo5Mlq2unRZ2leZJtFvqoSGGPd568PXnhpfYM
-         MlLA==
-X-Gm-Message-State: ANoB5pnPcc5kAq19eKEkGfFnhr0ONXarOM4oGTABWIh/mkpN8gvi1Vtd
-        wUZzWgBdrVgc0AL4td9YyHZHQA==
-X-Google-Smtp-Source: AA0mqf4amsE2iSGKFTVIso6JQHxz9emYnEPwgoWzceVcXofHyqdeIEb56vf8UZ90yTT2opK6yaAxmw==
-X-Received: by 2002:ac2:4db6:0:b0:4a2:2c4b:8138 with SMTP id h22-20020ac24db6000000b004a22c4b8138mr3683454lfe.14.1668416429100;
-        Mon, 14 Nov 2022 01:00:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 24-20020ac24838000000b004a2550db9ddsm1729475lft.245.2022.11.14.01.00.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 01:00:28 -0800 (PST)
-Message-ID: <cf9e261b-dbf8-bce0-ecc8-c2aec659aa18@linaro.org>
-Date:   Mon, 14 Nov 2022 10:00:27 +0100
+        with ESMTP id S236704AbiKNJDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 04:03:31 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC3F1DA4D;
+        Mon, 14 Nov 2022 01:03:19 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id CFD85FF811;
+        Mon, 14 Nov 2022 09:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668416598;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=m1B6Mnm8XzXPNHtjMpbkW+lAQQ7J9tuEFW6OZfbcDe8=;
+        b=cGj9Pm2oK64KKCV9hrbhd66Urst+VNXwdu9gKbIJhVOvTs4z2Etfqa8/bW6W+E1mi5xQiY
+        JXucPMqWVqh+mWW0bTC0RW7zeLWkOTGnTv6g1j7ntX+pwu4LCjp0Sf7TherxP1z8iF912G
+        UDHoQAIlXMgcKreYop/uD5goUrWy7X0/a8vq3S72qHNKtxveZEINIFMby7OfTJ8RLecYEt
+        trURNMgFuenuBDEgbQB1oO80zv5vbi0sUq0KI0SJE0ffCNRmF7Ol2CLNUOHCU+dAwKQOsp
+        Rz5ZskUaTInrkhm1nrfeOx9KVYav3RHNK3H8yTXTXKQqyyPBGL68Vkrv3FtC0Q==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 00/17]  Improve MTD bindings
+Date:   Mon, 14 Nov 2022 10:02:58 +0100
+Message-Id: <20221114090315.848208-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 3/6] dt-bindings: sdhci-fujitsu: Add compatible string
- for F_SDH30_E51
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111081033.3813-1-hayashi.kunihiko@socionext.com>
- <20221111081033.3813-4-hayashi.kunihiko@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111081033.3813-4-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 09:10, Kunihiko Hayashi wrote:
-> Add a compatible string for F_SDH30_E51 IP to the documentation.
-> Since this IP is transferred to Socionext, so append it as vendor name.
-> 
-> Cc: devicetree@vger.kernel.org
+Hello,
 
-No need to keep list-cc in commit log. If you really need such, keep
-them under '---'.
+During a yaml conversion review, Krzysztof opened the discussion about
+the links and references made between the different files in the mtd
+bindings. I figured out some minimal changes might be needed to properly
+reference everything correctly and ensure we constrain as much as
+possible the existing bindings. That is what I tried to do here.
 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml      | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+The idea is:
+* partition.yaml defines one MTD partition
+* parsers/*.yaml define partition parsers (mainly compatibles)
+* mtd.yaml contains the generic definition of any mtd device (nand,
+  spi-nand, spi-nor, nor, sram, etc), in particular, it defines the
+  various partition formats (legacy and current) and references
+  partition.yaml as well as a list of all the possible parsers within a
+  "partitions" node.
+* nand-chip.yaml, jedec,spi-nor, mtd-physmap.yaml all describe real
+  instances of mtd device, each of them with a different underlying
+  technology, they reference mtd.yaml 
+* nand-controller.yaml has subnodes which reference nand-chip.yaml.
+* Specific NAND controller bindings reference nand-controller.yaml.
 
+I've tested each and every patch with the following command and it
+worked fine:
+$ make dt_binding_check -j10 DT_CHECKER_FLAG=-m DT_SCHEMA_FILES=mtd/
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cheers,
+Miquèl
 
+Changes since v2:
+* Added Rob's R-by on almost all the patches but
+  "dt-bindings: mtd: nvmem-cells: Fix example"
+* Changed the commit message of the patch mentioned above to mention
+  that 'ranges' is not declared anywhere besides being a potentially
+  valid property, hence dropping it from the example just to avoid
+  failing the test, knowing that at some point someone could reintroduce
+  it by defining it in one of the core yaml files. 
 
-Best regards,
-Krzysztof
+Miquel Raynal (17):
+  dt-bindings: mtd: Clarify all partition subnodes
+  dt-bindings: mtd: Remove useless file about partitions
+  dt-bindings: mtd: nand-chip: Reference mtd.yaml
+  dt-bindings: mtd: nand: Drop common properties already defined in
+    generic files
+  dt-bindings: mtd: nand: Standardize the child node name
+  dt-bindings: mtd: ingenic: Mark partitions in the controller node as
+    deprecated
+  dt-bindings: mtd: onenand: Mention the expected node name
+  dt-bindings: mtd: sunxi-nand: Add an example to validate the bindings
+  dt-bindings: mtd: spi-nor: Drop common properties
+  dt-bindings: mtd: physmap: Reuse the generic definitions
+  dt-bindings: mtd: partitions: Constrain the list of parsers
+  dt-bindings: mtd: partitions: Change qcom,smem-part partition type
+  dt-bindings: mtd: nvmem-cells: Drop range property from example
+  dt-bindings: mtd: nvmem-cells: Inherit from MTD partitions
+  dt-bindings: mtd: Argue in favor of keeping additionalProperties set
+    to true
+  dt-bindings: mtd: Drop object types when referencing other files
+  dt-bindings: mtd: Standardize the style in the examples
+
+ .../mtd/allwinner,sun4i-a10-nand.yaml         |  34 +++--
+ .../bindings/mtd/arasan,nand-controller.yaml  |   5 +-
+ .../bindings/mtd/arm,pl353-nand-r2p1.yaml     |  30 ++---
+ .../devicetree/bindings/mtd/atmel-nand.txt    |   6 +-
+ .../bindings/mtd/brcm,brcmnand.yaml           |  80 ++++++------
+ .../devicetree/bindings/mtd/denali,nand.yaml  |   2 +-
+ .../devicetree/bindings/mtd/ingenic,nand.yaml | 116 ++++++++---------
+ .../bindings/mtd/intel,lgm-ebunand.yaml       |  48 +++----
+ .../bindings/mtd/jedec,spi-nor.yaml           |  14 ---
+ .../devicetree/bindings/mtd/lpc32xx-mlc.txt   |   2 +-
+ .../devicetree/bindings/mtd/lpc32xx-slc.txt   |   2 +-
+ .../bindings/mtd/microchip,mchp48l640.yaml    |  14 +--
+ .../devicetree/bindings/mtd/mtd-physmap.yaml  |   7 +-
+ .../devicetree/bindings/mtd/mtd.yaml          |  24 +++-
+ .../devicetree/bindings/mtd/mtk-nand.txt      |   2 +-
+ .../devicetree/bindings/mtd/nand-chip.yaml    |   4 +
+ .../bindings/mtd/nand-controller.yaml         |   2 +-
+ .../devicetree/bindings/mtd/partition.txt     |  33 -----
+ .../partitions/arm,arm-firmware-suite.yaml    |   2 +
+ .../partitions/brcm,bcm4908-partitions.yaml   |   2 +
+ .../brcm,bcm947xx-cfe-partitions.yaml         |   2 +
+ .../mtd/partitions/linksys,ns-partitions.yaml |   2 +
+ .../bindings/mtd/partitions/nvmem-cells.yaml  |   4 +-
+ .../bindings/mtd/partitions/partition.yaml    |   1 +
+ .../bindings/mtd/partitions/partitions.yaml   |  41 ++++++
+ .../mtd/partitions/qcom,smem-part.yaml        |  32 ++---
+ .../bindings/mtd/partitions/redboot-fis.yaml  |   6 +
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   | 117 +++++++++---------
+ .../bindings/mtd/st,stm32-fmc2-nand.yaml      |  47 +++----
+ .../bindings/mtd/ti,am654-hbmc.yaml           |  36 +++---
+ .../bindings/mtd/ti,gpmc-onenand.yaml         |   3 +
+ drivers/mtd/parsers/Kconfig                   |   2 +-
+ 32 files changed, 380 insertions(+), 342 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/partition.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+
+-- 
+2.34.1
 
