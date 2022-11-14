@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D14A162769E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 371E76276B0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Nov 2022 08:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236011AbiKNHsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 02:48:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42032 "EHLO
+        id S236063AbiKNHuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 02:50:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235249AbiKNHsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:48:21 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE7110C1
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:48:20 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id c1so17935215lfi.7
-        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:48:20 -0800 (PST)
+        with ESMTP id S236024AbiKNHuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 02:50:03 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F5918E35
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:49:48 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id b9so12082628ljr.5
+        for <devicetree@vger.kernel.org>; Sun, 13 Nov 2022 23:49:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RtaXBhnGo8MVscIrQnKGheYkcw3Kx7+UsbUghToyCVI=;
-        b=SMH/wDR0ipSJQ9BUzSRMG2RWykZI8v94NQ6rQnIPL3+Oq+ZKPi/veswxkIv+yEMztD
-         2QmI0HH5GldekYzi2aGpmm2oQ8bYqWvWukggo1oah2jteXry9sKr9hhszaCUNhe7JaZB
-         wtQ2IWfLRze8qnIqqOUGV270budQ2QuruVB/5jdcg93GlDmIcmNOQ93VZ2dwFWHN/cNM
-         JLIE+7LyCVT068CkPRhtyAPK3R1eNs1lvDXpLB6AOz3Qp4VaXNsJRRW7UsnXmx6847Yu
-         TDymNZOPJZcegB76FHBGkSFkdBDkb9j47VZng4bShYGV0+c1jYTr0NOza+VNBooBqfle
-         LnBA==
+        bh=pLUcanZpIPDIxYags5evcbs5d8jq/ba7Gm91KfYxHmM=;
+        b=q1+u7puqkZtKO0ytMyIuatmp924hrXzJxIhk4WP3Vog1+uZT+JVla/nHxaGcTYv3Ah
+         tRDDqdVJIbf7Ep3ivml+zhk+TrxLfaY6AWPVCBwT1xsH1Ux6xZHBavpTkGHUxCQQ50By
+         +NeW3lZvYWf/ZlnLt03JMqo9k8/gTTqeeR+6NaV1vxRzBmPjvTJMsy03vzv9WXcQ09CI
+         SMOTTB6E1He5fXawjuiCESv6IWVR1aWm7btPCmzzYvpxogR1T4+LXG7jpM48EeC5kXW+
+         sny1KX/3IcAmpAP1iURN34zAZ9noQb6hE2x5iUxyE+2Vk47cbyVJW3GpSJV7jEKKbYsd
+         KcLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RtaXBhnGo8MVscIrQnKGheYkcw3Kx7+UsbUghToyCVI=;
-        b=R2b5zEWTpEZl/F/nSLtHLtudNVT8KSxCbW2TUCOykNn+xsx0y4EEpfH3WkcJoe5Xtm
-         A34MCkh2IC+8H4af9QHj3nCxfUsEt9qcdTKcmW9noLlodGuJkLB2L864hk8LSrtvNDKz
-         uCdUR7Dqi7KzEPOarVH8F2go554H3EYVwjxSfN3XN6LPvyYpoAbc5TXPjzyw9H+PjhD4
-         e/2GkNfJtbT81qd58kRtQYZKN7flj4BgiLExam68W3Z176119FLZ5HJNBtkQocK2SNXA
-         G9Q6yp6MOgR2gyBCECN+tHi+RsyTu+LErdOgBRveYudcj2enywF7P3DB8xqodeVey1cc
-         DnFw==
-X-Gm-Message-State: ANoB5pmRWhbNY9f4YJ3MDqI8Ts5UjNfe3GN4RIa54MWQGCtKNKs6DT89
-        VzrOYsfekggH7gQHS/abPitauQ==
-X-Google-Smtp-Source: AA0mqf4L855tMQ/hmtg1Tuny5MoKVDR9pzpMX2tlC4Cl8NJCd/Q5ZQSx1O0gm5QI6BjibY6zuXXH2w==
-X-Received: by 2002:a05:6512:6d5:b0:4a9:6659:40d5 with SMTP id u21-20020a05651206d500b004a9665940d5mr4232367lff.516.1668412098837;
-        Sun, 13 Nov 2022 23:48:18 -0800 (PST)
+        bh=pLUcanZpIPDIxYags5evcbs5d8jq/ba7Gm91KfYxHmM=;
+        b=j7BQXlPeq2Q/+EgVzgH6+sLNAJrrwM7uHze8U8DF9AetGW0iv4eJCzFUMhBWM8elyL
+         O5y3ZBmDSUtWjsdqLYSjHRR+hGo/gGKQPs0hucXtsjMCpv6Q3BMvfr1P9J3jwF/3pS4e
+         xYoLabuHlbTm2wtY6SnvfgWQUn6yg11Wf/AjduvkKvGbYbnnd8TwjroPdOnoQbOtIGlB
+         +7ksAZTncM4Ft/KMP6+6VFZzIEjUDXD4juj65JNs/l0Quk+anii+mUun23w+vqTAuGju
+         PNXbNTET/CNwL+QZd0kUbngtypaCxyqfImeJkYM4vdau7yp0nvkGq4s8odq2NWZQe9pb
+         NgeQ==
+X-Gm-Message-State: ANoB5pmP53IkZV1bHYQKsCVsBATunIfc7kfnxdsQx5o9hzdODgJmt3V4
+        43w3bOpFCRVcCmSDwU/L/K3i5g==
+X-Google-Smtp-Source: AA0mqf7+/iFcHz+MUB5JgOVurFgigYpSTd9rLYyoVKgjk4rRNQITNByYGO3a4WL6LigSqBxhDwBkjA==
+X-Received: by 2002:a2e:6817:0:b0:278:f852:e75f with SMTP id c23-20020a2e6817000000b00278f852e75fmr2231114lja.433.1668412186494;
+        Sun, 13 Nov 2022 23:49:46 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k20-20020a2eb754000000b0026b2094f6fcsm1899097ljo.73.2022.11.13.23.48.17
+        by smtp.gmail.com with ESMTPSA id 19-20020a2eb953000000b002770f7d8dcasm1892940ljs.134.2022.11.13.23.49.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Nov 2022 23:48:18 -0800 (PST)
-Message-ID: <0ee5db9e-d80c-947d-73d6-6214e9299b23@linaro.org>
-Date:   Mon, 14 Nov 2022 08:48:17 +0100
+        Sun, 13 Nov 2022 23:49:46 -0800 (PST)
+Message-ID: <9a374649-3517-98d6-b971-fb054edf9f04@linaro.org>
+Date:   Mon, 14 Nov 2022 08:49:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 00/10] ASoC: dt-bindings: Rework Qualcomm APR/GPR Sound
- nodes for SM8450
+Subject: Re: [Patch v4 1/3] media: dt-bindings: s5p-mfc: Add new compatible
+ string for Exynos3250 SoC
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Patrick Lai <plai@qti.qualcomm.com>,
-        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
- <06da072c-8cf0-8181-3c32-4592fe41f9c2@linaro.org>
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, smitha.t@samsung.com
+References: <20221114054655.68090-1-aakarsh.jain@samsung.com>
+ <CGME20221114054044epcas5p31658120e6d653d4f56177b70f5583b2a@epcas5p3.samsung.com>
+ <20221114054655.68090-2-aakarsh.jain@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <06da072c-8cf0-8181-3c32-4592fe41f9c2@linaro.org>
+In-Reply-To: <20221114054655.68090-2-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,43 +85,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 17:15, Srinivas Kandagatla wrote:
+On 14/11/2022 06:46, Aakarsh Jain wrote:
+> Since MFC v7 support was present for both Exynos5420 and Exynos3250
+> SoC with same compatible string "samsung,mfc-v7". As both SoCs
+> having different hardware properties and having same compatible
+> string for both SoCs doesn't seems to be correct.
+> Add new compatible for Exynos3250 SoC followed by mfc-v7 fallback
+> which will differentiate the node properties for both SoCs which 
+> support MFC v7.
 > 
-> 
-> On 11/11/2022 11:35, Krzysztof Kozlowski wrote:
->> Adding sound support for Qualcomm SM8450 SoC (and later for SC8280XP) brought
->> some changes to APR/GPR services bindings.  These bindings are part of
->> qcom,apr.yaml:
->>
->>    apr-or-gpr-device-node <- qcom,apr.yaml
->>      apr-gpr-service@[0-9] <- qcom,apr.yaml
->>        service-specific-components <- /schemas/sound/qcom,q6*.yaml
->>
->> The schema for services (apr-gpr-service@[0-9]) already grows considerably and
->> is still quite not specific.  It allows several incorrect combinations, like
->> adding a clock-controller to a APM device.  Restricting it would complicate the
->> schema even more.  Bringing new support for sound on Qualcomm SM8450 and
->> SC8280XP SoC would grow it as well.
-> 
-> Why would this grow? All the dsp services are static and they will not 
-> change per SoC unless there is a total firmware change in DSP.
+> Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
 
-They grow now with SM8450 which requires changes there. Otherwise DTS
-does not pass with current bindings. The bindings before my fixing in
-2022 were really incomplete. Now they are complete, but:
-1. Not for SM8450 - this will bring new things,
-2. Very unspecific as they allow multiple invalid configurations.
-
-> 
->>
->> Refactor the bindings before extending them for Qualcomm SM8450 SoC.
-> 
-> I dont understand this bit, what is SoC audio support to do with DSP 
-> bindings. DSP bindings should be totally independent of this.
-
-APR/GPR bindings are for SoC audio, so while adding SoC audio the first
-are affected. If you went through the commits here, you would notice the
-changes.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
