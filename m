@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E611E629941
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:53:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAC9C629947
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:53:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbiKOMxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 07:53:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59628 "EHLO
+        id S232695AbiKOMxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 07:53:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232220AbiKOMxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:53:17 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C1B27DE6
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:15 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id u11so17314936ljk.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:15 -0800 (PST)
+        with ESMTP id S232617AbiKOMxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:53:18 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A2727FC3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:17 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id d6so24230483lfs.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A0aVE2Vm75FnX45DS6H+N0+bh1Fym8h1oNgifah97LI=;
-        b=TZYEMDIsfylrpXElIbq2FfxDowrQafjfPMu+JkDdlXWDvpVKBuKztENdYIxcUO2blr
-         NZt79bd1h5j/Be90jj4YHnkaq18CGKzCc9CFWZU4TdOAvfQCpuEa7eOb6j9yyyTISPK4
-         GWWcsmdWiZWMtzG6T+wh3tkxp2+Z43tRIq7JBVtjdThL8Etu1d5oLe9UtezRJM83efm6
-         9uRuCoj5/wS1vNSTVkM0XEtlqpmAV38xLp8Z5KgHWPGMfMkHHNH9jeBsb3C/8fURILRk
-         bwsapGWHSRsXgkEvqqhSjduhO9ZMnMFgKz8ILgYlQIDTVQHrRaJUR7kMNc5T8tT5o+6h
-         oP8w==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P7Fq1FCtyMG04pZ3N5J1xdkdEifZzPEkicokXK7IZsM=;
+        b=HFeCv5xRltnADl564uNdQ1Jnuv1UhuzSw7+EUjEGXddQV4BTeXCMhUXXlx8fF6B9+F
+         PZrEMZpzY2mpm3tWzifZRO/svSFZt0s90+LqOG8TSFZ5vYdQqbU6gowl/k0K3Z2P35g9
+         7YvuEskqWcYuzL+l4UnCDoAspEcxihiHWcq63+ol55DNdFcLnepY0nJrBJpJ2MtUWLJd
+         ArrqXW8rvhoo3EGAI+W9v582a2eXErEpvLAYQYbQ5qmoDwhnu8BFm9FfSWFy1ExxoACg
+         r9TA0GBQ/RcJByZ/bWcBRdQ7r2xYmMmM6i497DkwQt6ZWrL79aEeMtFzescYkV+MaJd/
+         0ecg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A0aVE2Vm75FnX45DS6H+N0+bh1Fym8h1oNgifah97LI=;
-        b=zYnXkfg4F/9FeQI50XtL5FDSK7k3KdYginZB45otTzmcj7KXbwucfo2H2jaqQcPPrL
-         cQLTBVHXmIEV2ra1XzVCZisFGGYEV8cdzRRqND8f7uvWG/0G4vnM704YKnb+tc91IZD9
-         G2zbKh2VXtGq8X65fQDugmH3UzjKv86eQclTy6dybyyfF0vU+D1NMaCTB4jffwiQjn7R
-         1z8+80maOcmktkXqJ0o7F4Tz2oI++ryIgJnFdYtJJgLNXK/dorruw/xzEYDx3GT9SH9I
-         c4H3blZRoaV4RK0PYKhAKh5n9shjzdmjymxPlj7XyyqgHsNqtm/Z0NOdaHWsAye0pgd3
-         8+Lg==
-X-Gm-Message-State: ANoB5pk/qYDGV5I+QWX/tEanl9EJn6j/haeOurQxlRGHUzh85Korpqko
-        AZiHJZNsLo3OSd1iVSpNzF5B9A==
-X-Google-Smtp-Source: AA0mqf64JEQ7hBw+k88FcuUEk+S7j1SeEfj3LtvIwpUBJaQuCyDwMTeM0NbrlrXkh3lRsm2Z685URg==
-X-Received: by 2002:a05:651c:10b8:b0:26e:8e6f:3c4 with SMTP id k24-20020a05651c10b800b0026e8e6f03c4mr5950160ljn.113.1668516793996;
-        Tue, 15 Nov 2022 04:53:13 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P7Fq1FCtyMG04pZ3N5J1xdkdEifZzPEkicokXK7IZsM=;
+        b=ewgjZnDKQ3NwIjt+R7Yty8YK3ylshwwfl6oEURoXdcuGylSUqzCeT8UK4na6T30Ao5
+         ZhgtLc8h5UYBEUIDaRjGtbj89E7N61ZlbKqqALlezFtq7CYdg6NnE5BAOWApiwL5b1vT
+         Ga7t5rKzgfFfAq/1qW2Lf+0+0NFIoClCSPb4ED9NwyyioheJewUEh/B5jGQEqiEIkdnQ
+         6wJ6z2gjil0YJz9zTnp7gnam+r/V8oeWAjeu9ZcOcRvCXYxrhRdFgVTG2Z7orvEwb8SF
+         64K0d3HWFrnE0rHX+SdEJB1TFqJUXhF92DL3xNodWKp+zt3274JWRzmdI+l7/kzImugx
+         F2SQ==
+X-Gm-Message-State: ANoB5plUedgq7deZcx3plrYQrNrxVVIByV4C+fJzOmzeqzwKaenoeLr7
+        Gp0s9/gFHkLXo67EArUPmxlI4A==
+X-Google-Smtp-Source: AA0mqf76Uwnh+P/zCsp9u/ilh8sDWAscM4fXnqtEGAzuB433bQVF1uXvWX4tSKzwfgGERt+0dWQsNw==
+X-Received: by 2002:ac2:5ccb:0:b0:4ae:aa99:849c with SMTP id f11-20020ac25ccb000000b004aeaa99849cmr6183458lfq.592.1668516795527;
+        Tue, 15 Nov 2022 04:53:15 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b0049110ba325asm2177224lfs.158.2022.11.15.04.53.12
+        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b0049110ba325asm2177224lfs.158.2022.11.15.04.53.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 04:53:13 -0800 (PST)
+        Tue, 15 Nov 2022 04:53:14 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,10 +60,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/4] dt-bindings: PCI: qcom: add MSM8998 specific compatible
-Date:   Tue, 15 Nov 2022 13:53:07 +0100
-Message-Id: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] dt-bindings: PCI: qcom: unify clock order between MSM8996 and MSM8998
+Date:   Tue, 15 Nov 2022 13:53:08 +0100
+Message-Id: <20221115125310.184012-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
+References: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,67 +78,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new compatible for MSM8998 (compatible with MSM8996) to allow
-further customizing if needed and to accurately describe the hardware.
+MSM8996 and MSM8998 use the same clocks, so use one order to make the
+binding simpler.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/pci/qcom,pcie.yaml    | 42 ++++++++++---------
- 1 file changed, 23 insertions(+), 19 deletions(-)
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 24 ++++++-------------
+ 1 file changed, 7 insertions(+), 17 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index 54f07852d279..0411e2e67661 100644
+index 0411e2e67661..ee719e879ce3 100644
 --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -16,25 +16,29 @@ description: |
+@@ -306,27 +306,17 @@ allOf:
+             enum:
+               - qcom,pcie-msm8996
+     then:
+-      oneOf:
+-        - properties:
+-            clock-names:
+-              items:
+-                - const: pipe # Pipe Clock driving internal logic
+-                - const: aux # Auxiliary (AUX) clock
+-                - const: cfg # Configuration clock
+-                - const: bus_master # Master AXI clock
+-                - const: bus_slave # Slave AXI clock
+-        - properties:
+-            clock-names:
+-              items:
+-                - const: pipe # Pipe Clock driving internal logic
+-                - const: bus_master # Master AXI clock
+-                - const: bus_slave # Slave AXI clock
+-                - const: cfg # Configuration clock
+-                - const: aux # Auxiliary (AUX) clock
+       properties:
+         clocks:
+           minItems: 5
+           maxItems: 5
++        clock-names:
++          items:
++            - const: pipe # Pipe Clock driving internal logic
++            - const: aux # Auxiliary (AUX) clock
++            - const: cfg # Configuration clock
++            - const: bus_master # Master AXI clock
++            - const: bus_slave # Slave AXI clock
+         resets: false
+         reset-names: false
  
- properties:
-   compatible:
--    enum:
--      - qcom,pcie-ipq8064
--      - qcom,pcie-ipq8064-v2
--      - qcom,pcie-apq8064
--      - qcom,pcie-apq8084
--      - qcom,pcie-msm8996
--      - qcom,pcie-ipq4019
--      - qcom,pcie-ipq8074
--      - qcom,pcie-qcs404
--      - qcom,pcie-sa8540p
--      - qcom,pcie-sc7280
--      - qcom,pcie-sc8180x
--      - qcom,pcie-sc8280xp
--      - qcom,pcie-sdm845
--      - qcom,pcie-sm8150
--      - qcom,pcie-sm8250
--      - qcom,pcie-sm8450-pcie0
--      - qcom,pcie-sm8450-pcie1
--      - qcom,pcie-ipq6018
-+    oneOf:
-+      - enum:
-+          - qcom,pcie-ipq8064
-+          - qcom,pcie-ipq8064-v2
-+          - qcom,pcie-apq8064
-+          - qcom,pcie-apq8084
-+          - qcom,pcie-msm8996
-+          - qcom,pcie-ipq4019
-+          - qcom,pcie-ipq8074
-+          - qcom,pcie-qcs404
-+          - qcom,pcie-sa8540p
-+          - qcom,pcie-sc7280
-+          - qcom,pcie-sc8180x
-+          - qcom,pcie-sc8280xp
-+          - qcom,pcie-sdm845
-+          - qcom,pcie-sm8150
-+          - qcom,pcie-sm8250
-+          - qcom,pcie-sm8450-pcie0
-+          - qcom,pcie-sm8450-pcie1
-+          - qcom,pcie-ipq6018
-+      - items:
-+          - const: qcom,pcie-msm8998
-+          - const: qcom,pcie-msm8996
- 
-   reg:
-     minItems: 4
 -- 
 2.34.1
 
