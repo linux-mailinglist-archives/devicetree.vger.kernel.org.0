@@ -2,226 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB3B629E26
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:54:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05136629E1C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiKOPyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:54:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
+        id S229970AbiKOPwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:52:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbiKOPtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:49:04 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6E011112A
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:49:03 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id F29C980E0;
-        Tue, 15 Nov 2022 15:39:01 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Keerthy <j-keerthy@ti.com>, Georgi Vlaev <g-vlaev@ti.com>
-Subject: [PATCH v3 3/3] arm64: dts: ti: k3-am62: Add general purpose timers for am62
-Date:   Tue, 15 Nov 2022 17:48:42 +0200
-Message-Id: <20221115154842.7755-4-tony@atomide.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221115154842.7755-1-tony@atomide.com>
-References: <20221115154842.7755-1-tony@atomide.com>
+        with ESMTP id S238511AbiKOPwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:52:34 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1422DAAD
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:52:30 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id l8so18032999ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:52:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qv1jQJ+HAdTvDoHEWeiJyxCYUc1W0oMj7+9QSvPLhVc=;
+        b=by67cHmdJG/Y3MLIFsigEaHI6UU+//XXwrX3/Ut83VA+Cmpe8/MUNVfjV21llKKtiI
+         nx7MbqtWD/pTgQIjfINnM778dG6FGptovgryInpbKTk5tzwwEhALKRvxrnybAjqGoZCW
+         VtmgjdS7Z4M7h2d43uAphVjmqQyPldFRAbVBW6O3ErHeYluHYPet2100OI5zksptMpI8
+         Ol6EAbdBAhP1H7yR9auIqrabT3cBB5yO+mc1a82AR4U092w4gXTHo/y4lFjCsTzNRkAr
+         +PpmDROj/OzHQMft5k3DIgL62g4gc2asRAQCKKTB+fqkd6rycNH5GF3EimYh+tNPfDd5
+         YhmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qv1jQJ+HAdTvDoHEWeiJyxCYUc1W0oMj7+9QSvPLhVc=;
+        b=xqkQaCP1SoBP59py4FWvnIbaElhGyN5mzKQq5x1uWfQPBdFsZD9B8ZPnJSgwa1Ww+m
+         C7iCuIb5PKTwWFu2MyVmZ6SZgO7fxVJuR3tjtKSoGgC0kU7HQUvkzqK77DHY7h5VCuzj
+         4UI2Hi9a64sCXPzYNeF2mH9M/SbEjscAgEMCjCXWCL7bf5buLaSsaal6BmNodtZV73+o
+         S6vtPlhMz7AOSOIChvUL/3s6EhxuCf4XoMfT1CSsBRN6p6aaif25sROS/WKlTjFwgiQm
+         8oKG1oYFMAJA7IL0ByjbM9UrCtT1a1YjTlvtN5Bnhe8gN2FKiI5rx6iKqOG0n8X72PBq
+         zIeQ==
+X-Gm-Message-State: ANoB5pl9GouO5Azvruz4nxCnEz5o6jV+6FT2ntwIgw478YYNoKg80LeV
+        /Q3IG1bjuEnRBQ2XDfEQQNTJjQ==
+X-Google-Smtp-Source: AA0mqf7gWLAjDp2it8ozEEeNxtZ/0E2c3yVOGMOdPqQ9nMgKSfpCDyG2szboeSX/KAVBrxbsqEMLzw==
+X-Received: by 2002:a2e:a401:0:b0:277:37a8:ba87 with SMTP id p1-20020a2ea401000000b0027737a8ba87mr5799824ljn.14.1668527549201;
+        Tue, 15 Nov 2022 07:52:29 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b004a45ed1ae21sm2243842lfa.224.2022.11.15.07.52.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 07:52:28 -0800 (PST)
+Message-ID: <63f4d2eb-d681-a523-1a5c-9f727c3ddc7f@linaro.org>
+Date:   Tue, 15 Nov 2022 16:52:26 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/9] dt-bindings: arm-smmu: Allow 3 power domains on
+ SM6375 MMU500
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221115152727.9736-1-konrad.dybcio@linaro.org>
+ <20221115152727.9736-2-konrad.dybcio@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115152727.9736-2-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 8 general purpose timers on am65 that can be used for things
-like PWM using pwm-omap-dmtimer driver. There are also additional four
-timers in the MCU domain that do not have interrupts routable for Linux.
+On 15/11/2022 16:27, Konrad Dybcio wrote:
+> The SMMU on SM6375 requires 3 power domains to be active. Add an
+> appropriate description of that.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-We configure the timers with the 25 MHz input clock by default as the
-32.768 kHz clock may not be wired on the device. We leave the MCU domain
-timers clock mux unconfigured, and mark the MCU domain timers reserved.
-The MCU domain timers are likely reserved by the software for the ESM
-module.
 
-Compared to am65, the timers on am62 do not have a dedicated IO mux for
-the timers. On am62, the timers have different interrupts, clocks and
-power domains compared to am65, and the MCU timers are at a different
-IO address.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Reviewed-by: Georgi Vlaev <g-vlaev@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 96 ++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi  | 45 +++++++++++
- 2 files changed, 141 insertions(+)
+Best regards,
+Krzysztof
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -192,6 +192,102 @@ main_pmx0: pinctrl@f4000 {
- 		pinctrl-single,function-mask = <0xffffffff>;
- 	};
- 
-+	main_timer0: timer@2400000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2400000 0x00 0x400>;
-+		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 36 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 36 2>;
-+		assigned-clock-parents = <&k3_clks 36 3>;
-+		power-domains = <&k3_pds 36 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer1: timer@2410000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2410000 0x00 0x400>;
-+		interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 37 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 37 2>;
-+		assigned-clock-parents = <&k3_clks 37 3>;
-+		power-domains = <&k3_pds 37 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer2: timer@2420000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2420000 0x00 0x400>;
-+		interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 38 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 38 2>;
-+		assigned-clock-parents = <&k3_clks 38 3>;
-+		power-domains = <&k3_pds 38 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer3: timer@2430000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2430000 0x00 0x400>;
-+		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 39 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 39 2>;
-+		assigned-clock-parents = <&k3_clks 39 3>;
-+		power-domains = <&k3_pds 39 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer4: timer@2440000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2440000 0x00 0x400>;
-+		interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 40 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 40 2>;
-+		assigned-clock-parents = <&k3_clks 40 3>;
-+		power-domains = <&k3_pds 40 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer5: timer@2450000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2450000 0x00 0x400>;
-+		interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 41 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 41 2>;
-+		assigned-clock-parents = <&k3_clks 41 3>;
-+		power-domains = <&k3_pds 41 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer6: timer@2460000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2460000 0x00 0x400>;
-+		interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 42 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 42 2>;
-+		assigned-clock-parents = <&k3_clks 42 3>;
-+		power-domains = <&k3_pds 42 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer7: timer@2470000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2470000 0x00 0x400>;
-+		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 43 2>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 43 2>;
-+		assigned-clock-parents = <&k3_clks 43 3>;
-+		power-domains = <&k3_pds 43 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+	};
-+
- 	main_uart0: serial@2800000 {
- 		compatible = "ti,am64-uart", "ti,am654-uart";
- 		reg = <0x00 0x02800000 0x00 0x100>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -14,6 +14,51 @@ mcu_pmx0: pinctrl@4084000 {
- 		pinctrl-single,function-mask = <0xffffffff>;
- 	};
- 
-+	/*
-+	 * The MCU domain timer interrupts are routed only to the ESM module,
-+	 * and not currently available for Linux. The MCU domain timers are
-+	 * of limited use without interrupts, and likely reserved by the ESM.
-+	 */
-+	mcu_timer0: timer@4800000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x4800000 0x00 0x400>;
-+		clocks = <&k3_clks 35 2>;
-+		clock-names = "fck";
-+		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer1: timer@4810000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x4810000 0x00 0x400>;
-+		clocks = <&k3_clks 48 2>;
-+		clock-names = "fck";
-+		power-domains = <&k3_pds 48 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer2: timer@4820000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x4820000 0x00 0x400>;
-+		clocks = <&k3_clks 49 2>;
-+		clock-names = "fck";
-+		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer3: timer@4830000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x4830000 0x00 0x400>;
-+		clocks = <&k3_clks 50 2>;
-+		clock-names = "fck";
-+		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
- 	mcu_uart0: serial@4a00000 {
- 		compatible = "ti,am64-uart", "ti,am654-uart";
- 		reg = <0x00 0x04a00000 0x00 0x100>;
--- 
-2.38.1
