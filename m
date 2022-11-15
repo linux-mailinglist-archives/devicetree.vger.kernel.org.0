@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 178FC629B3A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BDB629B44
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:57:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbiKONyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:54:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55230 "EHLO
+        id S229708AbiKON5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:57:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbiKONyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:54:17 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C3B238
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:54:16 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id n12so36118279eja.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:54:16 -0800 (PST)
+        with ESMTP id S229495AbiKON5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:57:19 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C6DF37
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:57:17 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b3so24538923lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:57:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R0sFkX+nbXodQt671NtDLbwnj/LAv7WU9JCGBKOzfpo=;
-        b=LCXNFQyj9iyDqZ0IoY/l3bCF9KVFvTQK/X31I9OveRprtKEzUCRvM8avrTYoCf6xR0
-         sZibGh7vNgog7H0X2Q+Fv0xpGCCnpZfbJTF/Q8J3MXrB6etR+Bv2rs256mCMkEjswuF/
-         epkHDYiuiyNEZmIHKIecEgnX8vGdb5rnfrm0irBH9Nl86aof8dyN6s4vYaOi8dGcu8k7
-         DNPJLlHBY+WHAqBxboGWbN49MfKxdl9C4hGyDmPP2hVLyhOm2ndxhvRJRb2yv6naEz9x
-         15+E27B/yeP0tR3/Jk36kZS2TR20ue0APo+lEHUq0fvCFQr9UKSjEJyvJ1Ob0szqjRpT
-         IrCg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eRDy77pLORMZ/XulovaxWyKY5V8oIS0uLhcTxtOQZjk=;
+        b=ih8E8fklramz2fm/5na93sr2QZeV4xQv9SRXu+nQBgU8zxhPDbkNEZfeBguyCyhN6g
+         8hLDWOItg8pG3YGEQM376J/9kGr3vNLtamH0ulRHB3BPlD31iqsYjllV4YMXi9EU3rc3
+         5p3lDezgSk409+a32ar9zhNxMQbYJSk0xs9KoQaQG3vojprSeNUL7CtnJbeJY46Qlq9r
+         tI/Ca+VE4UopJjOdJrEJtJG6SWFnwWuDk0Z85Jm83eyc+u6KuYcXjB6wcf8a4HN3BAtd
+         AKCnA6I5DOtrS2HVovVaxrvl/HC2eU5ZOfVLKqjIMf3yTXtPTXpdEr6dfArHbUXBwYYT
+         J3rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R0sFkX+nbXodQt671NtDLbwnj/LAv7WU9JCGBKOzfpo=;
-        b=wdo00kH2zXRNHg+EFXBPWMLasi6iq0a/bEheEDr3cTFiKFqJ3OgEpOd+bL5eHC4Xcv
-         Amv6cZFk5F5lfCojpOf06j02Pgeqs7isqvf9Us+FYxonfy87lioEDyFcS/Ktr/AYATr4
-         9MZ2LwacmRFn/TTKSJDMZuFFHWsfGmF/DoL7joSYKRXXyzfIbfYzU4KNSqHH7cETLn5v
-         CdLAoZjxEzIfqdgjHq1nrB1PVGMyMJ1ORvUnPJHeGVgUWmjzDrWTUzsSEESgwETwLdcS
-         1EJf1CjtxxmkUVYBblbc7RbwBVJKn5hZUBnK9r4qrd3OhSLc2WE/zXfVK9pwXV1uRuMY
-         7OuA==
-X-Gm-Message-State: ANoB5pktER1MpSYEOtkwwCtqAPS+vwr6x1PTtF8kClYKq1RD/50ZjdxK
-        azricPZDbT1b0t+GQKpBMGppBOx6EVRHeDPS++Yhrw==
-X-Google-Smtp-Source: AA0mqf4WMyt4uB3gxvki+JAXsKJPJAU1cd1VDx3nBWsvAl7puGi2zyYQVi+2VHiXzUHT9ITHHgAIIdG2a5wj+RmSmso=
-X-Received: by 2002:a17:906:a1d9:b0:78d:b371:16e5 with SMTP id
- bx25-20020a170906a1d900b0078db37116e5mr13497638ejb.456.1668520454765; Tue, 15
- Nov 2022 05:54:14 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eRDy77pLORMZ/XulovaxWyKY5V8oIS0uLhcTxtOQZjk=;
+        b=TeqMhCtF+HmB3DBXUb0cYo4Wj7ol/r377kNs9LHAH/lWCh8qk6BiA+otkwJ+XJ+DXD
+         6qptWqCoKkC9ahuUEaV/sy6cwCIWWc2iBCkkw41f+RtQZ6EMT1NEsbVwpVhfDJWDwKgW
+         QtvY9JnA+CWQ5NRPUGejQ/w+vZQ0OX/PN+L3+HShl3tiG8LdwLLCdSOYB3YTOqwu9yNJ
+         M2Xploffl+ZHYg5F5oj5Z1EEvzVjPlxOWoy4+9NdAVYPBwOBdoW8dxd26SvjtjNpS55D
+         pIo5N6uxVtOVMJ0BKEbztH014Otkj1SCTkvx3oPxtQ5M8FZwMKy/Ej23H6lA6nWqZkB7
+         aEow==
+X-Gm-Message-State: ANoB5plkLIjlAbVFUFvKtd7bHQHU1jbC95dyDiENV/vDxxo5QfgXbrga
+        1dEt48tR83A9p5N01Uiqh/Qaqw==
+X-Google-Smtp-Source: AA0mqf7dCyJ6i1FCEJ9EudMl+bRs4RS1CImhCmmrmtULiRsWIYxofVo8G8JZ//VkKlUarOnUPvJhVw==
+X-Received: by 2002:a05:6512:2983:b0:4ae:6bbc:e8af with SMTP id du3-20020a056512298300b004ae6bbce8afmr5360869lfb.411.1668520636293;
+        Tue, 15 Nov 2022 05:57:16 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d17-20020a2eb051000000b002770e6c620bsm2437751ljl.106.2022.11.15.05.57.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 05:57:15 -0800 (PST)
+Message-ID: <76d3c821-a5c1-952e-dc9a-6f1c2f927139@linaro.org>
+Date:   Tue, 15 Nov 2022 14:57:14 +0100
 MIME-Version: 1.0
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-5-5d2bb58e6087@baylibre.com> <fe898d24-54fa-56bb-8067-b422a3a52ff5@collabora.com>
-In-Reply-To: <fe898d24-54fa-56bb-8067-b422a3a52ff5@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 15 Nov 2022 14:54:03 +0100
-Message-ID: <CAFGrd9r70XRd=4Ogei+U2QXQny7LhWr9bDCRNYco+Bsy+2XqrA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/9] dt-bindings: soc: mediatek: convert pwrap documentation
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Fabien Parent <fabien.parent@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] arm64: dts: SC7280: Remove unused sleep pin control nodes
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org
+References: <1668510598-19535-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1668510598-19535-1-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+On 15/11/2022 12:09, Srinivasa Rao Mandadapu wrote:
+> Remove Unused and redundant sleep pin control entries
+> in herobrine device tree variants.
+> 
 
-Le mer. 9 nov. 2022 =C3=A0 10:55, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
->
-> Il 08/11/22 19:43, Alexandre Mergnat ha scritto:
-> > +maintainers:
-> > +  - Alexandre Mergnat <amergnat@baylibre.com>
->
-> I say that the maintainer for pwrap is Flora Fu <flora.fu@mediatek.com>..=
-..
+And these are redundant because... ? E.g. not referenced anywhere thus
+not used?
 
-Flora Fu is the driver maintainer. As described in
-Documentation/devicetree/bindings/writing-schema.rst:
-maintainers
-  A DT specific property. Contains a list of email address(es)
-  for maintainers of this binding.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-My  understanding is this field is only for binding maintainers, but
-not related driver maintainers. Are we aligned ?
+Best regards,
+Krzysztof
 
-Regards,
-Alex
