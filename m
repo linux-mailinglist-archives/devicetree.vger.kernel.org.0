@@ -2,168 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1695C6293D1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 10:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB25B6293D7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 10:07:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237401AbiKOJFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 04:05:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
+        id S237639AbiKOJHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 04:07:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232432AbiKOJFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:05:53 -0500
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D4C1E71F
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:05:51 -0800 (PST)
-Received: by mail-vs1-xe2a.google.com with SMTP id t5so14033649vsh.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:05:51 -0800 (PST)
+        with ESMTP id S237662AbiKOJHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:07:10 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E021B21E04
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:07:09 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id b1-20020a17090a7ac100b00213fde52d49so13243097pjl.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:07:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DPUEJYNpBZuDWaWvpWz9lTBlWL+Xs7ztgn+pfOxI9Vw=;
-        b=za5gKQHyD5pfb+Psq9X451yj/JM/sWgade6c5blX+uuQ2wxffv7AkvmTo1P0h/EN09
-         Fy3sp3m+6emgJD4ycOw+g6J0KpPXl5XJ4OaQJnxsOLH2lEe6hoCyMXfT53vfQSTIyZWl
-         qUe0miJhOkndQKc0+RwVEGXuasFvwQrgZI2RXrJH/AzgtJ4tQq8kyB41Fi2JV57QBx/U
-         e9mBNZw42y15hjRkxNZTAJAWw93sqE2R7+AsU0he/J3QreUibqfXO+mATPYzyaxUgkhB
-         1bC/swUVlF2528bieS438IHPBlS1TDJHrlb3j/tkH3EUeo+EazNACSO3uUFi/bhFLYZJ
-         8Dyw==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BVzHUOg3Tw/oS7PqcIhE4bFaHM91oQiodH+CwJsS3b4=;
+        b=cQNzhkJfVjxyKHBWiF4Trq5Tb7qKVSKPLT6h1vLWg7/3Q4RsgrlomSgDOqBJWObhJO
+         ekLGK5Yyc2gpBQEs4FHjKosvholJvzPzfEJ1Ay48ZFXQ6XRtgKCDEXtr5gOu5bYEYeIX
+         xLHMLM3T6F1sSQy8qXVbYx86hqV9lWWb2KYgc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DPUEJYNpBZuDWaWvpWz9lTBlWL+Xs7ztgn+pfOxI9Vw=;
-        b=zEqykpd6QKY1c6RX5/cBObUpddHpyCSi1BH6a9f5X+hFTIYM6Qbmc6yi5I3zSD47b1
-         4bRCIExCnYV08X7ERP/UF5jMj7XYhTb1GGmeyAJDWuWSycvdBKGdivQMCALkYH/KMKhq
-         +/nSwvwUefgOLbBxTz/FQHahdvfDQ169vNdQGI0ke3ca66OfHNPlXmCz+/2bnBQKQw82
-         nZ2zLcGfdyQcvklq1tCpT7tyLpuLNhwIoVgHlN9J87ljwUHpKSjqbqKL6FaZ+WIM8gWo
-         6XPOJsvodapaCSbxNK211fRRUrqWORo652lQDD8G0O8Tn4bNgH9IjalQk7POUY+m0MZG
-         4Vsg==
-X-Gm-Message-State: ANoB5pmgbyd9lzeDTy0GPty+IsXMC3bXvOnUGVq+RM++aralaseqEutI
-        sSrzPU7aIhj1LVjEsL/S3xrFMUqMEn5xPFyWlHalCg==
-X-Google-Smtp-Source: AA0mqf7+HqkJSU4s6JQwT2ZWSckr32WEqchatmDr7NixiuSYebqcmgWdYUG8Gs6SmmejKZeaxlr8IJgVjjoKp9Fl4yw=
-X-Received: by 2002:a05:6102:488:b0:3ac:38c7:1bdd with SMTP id
- n8-20020a056102048800b003ac38c71bddmr8089142vsa.9.1668503150211; Tue, 15 Nov
- 2022 01:05:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20221114095332.21079-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221114095332.21079-1-zhuyinbo@loongson.cn>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 15 Nov 2022 10:05:39 +0100
-Message-ID: <CAMRc=McnEiSj1Q51pG3Lc8e+HcXE_uU7dm=1VoOa__xOgyoZPg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] gpio: loongson: add dts/acpi gpio support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        bh=BVzHUOg3Tw/oS7PqcIhE4bFaHM91oQiodH+CwJsS3b4=;
+        b=aO29Yp3fyDU97favr0KUuErqr6+2ZqWEgW+WPznQw4wRqFUvs6rJ/BEzsnCStxnwWU
+         6ZzlaPxAKA2n70WDnDVrhsUg8uqdlx3V0Lgyo2HHL0BaB/r7GA29NHbznImoBiDV11TD
+         ggyXdDWQRNYpqqVXgG/4FJKtPwTzxYks+/1lYTj4jLq2Q5P8hYWlsBqIMD5V2eMO/JWl
+         pg83K0UKz2VWE34MvUJSjdzWPHoyGkkuqpLVbKPqyH9PohI9IXFDYH5Sxzimd29yO1I7
+         q7QJxndn5sF2Bv4UlQFXSPOGoH+WI6+GdGH3jNoxjIeEj6DsWlPuZ5ZbYK1Etle5SvCG
+         3veg==
+X-Gm-Message-State: ANoB5pmuDCzci0kPqQ6zNU/AskdlaERXPz1mYG+5gkOBeDCz2z82kBCO
+        tWY/c2DxFKY0iEAln5EOMMsGZQ==
+X-Google-Smtp-Source: AA0mqf5ZPq5c3BoUDT8xkuFzdF1QmWcMV7pUAtSTv0EFvGqy/jnfrTAIei6OAmdzrPX3VMusoP9+2w==
+X-Received: by 2002:a17:903:228c:b0:183:6efe:65eb with SMTP id b12-20020a170903228c00b001836efe65ebmr3224312plh.34.1668503229437;
+        Tue, 15 Nov 2022 01:07:09 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:4d49:6d15:b250:5977])
+        by smtp.gmail.com with ESMTPSA id q16-20020a17090311d000b00182a9c27acfsm3378830plh.227.2022.11.15.01.07.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 01:07:09 -0800 (PST)
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        lvjianmin <lvjianmin@loongson.cn>,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] arm64: allwinner: h6: Add IOMMU reference to Hantro G2 decoder
+Date:   Tue, 15 Nov 2022 17:06:42 +0800
+Message-Id: <20221115090644.3602573-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.38.1.493.g58b659f92b-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 10:53 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->
-> The latest Loongson series platform use dts or acpi framework to
-> register gpio device resources, such as the Loongson-2 series
-> SoC of LOONGARCH architecture. In order to support dts, acpi and
-> compatibility with previous platform device resources in driver,
-> this patch was added.
->
-> Signed-off-by: lvjianmin <lvjianmin@loongson.cn>
-> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v2:
->                 1. Fixup of_loongson_gpio_get_props and remove the parse logic about
->                    "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
->                    "loongson,gpio_base", "loongson,support_irq" then kernel driver will
->                    initial them that depend compatible except "loongson,gpio_base".
->
->  arch/loongarch/include/asm/loongson.h         |  13 +
->  .../include/asm/mach-loongson2ef/loongson.h   |  12 +
->  .../include/asm/mach-loongson64/loongson.h    |  13 +
->  drivers/gpio/Kconfig                          |   6 +-
->  drivers/gpio/gpio-loongson.c                  | 422 +++++++++++++++---
->  5 files changed, 391 insertions(+), 75 deletions(-)
->
-> diff --git a/arch/loongarch/include/asm/loongson.h b/arch/loongarch/include/asm/loongson.h
-> index 00db93edae1b..383fdda155f0 100644
-> --- a/arch/loongarch/include/asm/loongson.h
-> +++ b/arch/loongarch/include/asm/loongson.h
-> @@ -60,6 +60,19 @@ static inline void xconf_writeq(u64 val64, volatile void __iomem *addr)
->         );
->  }
->
-> +/* ============== Data structrues =============== */
-> +
-> +/* gpio data */
-> +struct platform_gpio_data {
-> +       u32 gpio_conf;
-> +       u32 gpio_out;
-> +       u32 gpio_in;
-> +       u32 support_irq;
-> +       char *label;
-> +       int gpio_base;
-> +       int ngpio;
-> +};
+While doing some decoder tests with Fluster and Chrome's VDA tests, I
+found that the Hantro G2 was failing, and there were IOMMU fault errors
+in the kernel log.
 
-This is a terrible name for an exported structure. You would at least
-need some kind of a namespace prefix. But even then the need to add a
-platform data structure is very questionable. We've moved past the
-need for platform data in the kernel. I don't see anyone setting it up
-in this series either. Could you provide more explanation on why you
-would need it and who would use it?
+Turns out the decoder is behind the IOMMU on the H6, as shown in the
+user manual.
 
-> +
->  /* ============== LS7A registers =============== */
->  #define LS7A_PCH_REG_BASE              0x10000000UL
->  /* LPC regs */
-> diff --git a/arch/mips/include/asm/mach-loongson2ef/loongson.h b/arch/mips/include/asm/mach-loongson2ef/loongson.h
-> index ca039b8dcde3..b261cea4fee1 100644
-> --- a/arch/mips/include/asm/mach-loongson2ef/loongson.h
-> +++ b/arch/mips/include/asm/mach-loongson2ef/loongson.h
-> @@ -315,4 +315,16 @@ extern unsigned long _loongson_addrwincfg_base;
->
->  #endif /* ! CONFIG_CPU_SUPPORTS_ADDRWINCFG */
->
-> +/* ============== Data structrues =============== */
-> +
-> +/* gpio data */
-> +struct platform_gpio_data {
-> +       u32 gpio_conf;
-> +       u32 gpio_out;
-> +       u32 gpio_in;
-> +       u32 support_irq;
-> +       char *label;
-> +       int gpio_base;
-> +       int ngpio;
-> +};
+This series adds the "iommus" property to the binding and the dtsi.
+Please have a look.
 
-No idea why you would need to duplicate it like this either. And why
-put it in arch/.
 
-[snip]
+Thanks
+ChenYu
 
-I will hold off reviewing the rest of the patch until we get that clarified.
+Chen-Yu Tsai (2):
+  media: dt-bindings: allwinner: h6-vpu-g2: Add IOMMU reference property
+  arm64: dts: allwinner: h6: Add IOMMU reference to Hantro G2
 
-Bartosz
+ .../bindings/media/allwinner,sun50i-h6-vpu-g2.yaml           | 5 +++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi                 | 1 +
+ 2 files changed, 6 insertions(+)
+
+-- 
+2.38.1.493.g58b659f92b-goog
+
