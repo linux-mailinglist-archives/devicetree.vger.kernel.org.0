@@ -2,136 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F92629CD3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC816629CD6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:01:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbiKOPAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:00:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
+        id S229838AbiKOPBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:01:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbiKOPAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:00:06 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CF182B63E
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:00:02 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id j15so24755949wrq.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:00:02 -0800 (PST)
+        with ESMTP id S229613AbiKOPA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:00:59 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C54324087
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:00:58 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b3so24837914lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:00:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wGd0eX9dHnbMWbZ42d1c86XckxWPxOIEV8Vb6s6+IpQ=;
-        b=BcsGr0Rq+viCW0Ll8pHykvGWU6QJ+XVHP6g81m7DojwvWk4YbMmyPOYnWs8FLuyUNi
-         INdfeAe7wkRlUSu/t2vgaCkEze5QxvBhiWHCGRgP8ZE0Pn2YXjvoDqV7jLk/E6ChYh9m
-         yBUwQwoCbLaYigIYIxL6kt+9IAuDaLGyHmFoRXJYfRoHr8N1lYNRLVq4ej2shT93aCti
-         5sUbr+3mo1NM3/fH4lV6vSg7C2aZARlqch4wswroCGHoDqIhHdtX8Zd2ANA/rGo6FOUE
-         qahVHa4PiqXqWqmnaA1kSH79Jn8dlJB0BV2tGqCsNxafM24cNZ2djdtR4goUXrNCiePm
-         2yBg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F4jUAwmhTQdTrwQKeKo2XqBWyE1rzqyVY9EqrXd1rb4=;
+        b=yWlfIKfy1RjmW4cqzHEQYZ0P6H3bTMh70oUTOEi7dAkF6t8/GEcAvUZrYY7ugZZsqp
+         /Hdlt3APkEkt28div8SyumBc1+KVCvgc+INVTlcp1s0IjvJP1g3lG8iXVGjywGKjifnQ
+         aBxGT/fImyqWcbDHuZo0DLe7CU3jeOKDALA+4i5GjRScq2+6OkW7Bae3IW6l4ALmAWyJ
+         k8ItIm9bclRbK98aOf6+tZRbqG+vjjwR2z5J/m1NugPrip33q9SXyHy7JM2XyUf1ivkS
+         4ygWO41BOOQG7sz54oV2TzccEwfKTVfRC/qbv8duc9T/J5XeHLurKqwVbKDi+C4ljgf1
+         13Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wGd0eX9dHnbMWbZ42d1c86XckxWPxOIEV8Vb6s6+IpQ=;
-        b=oF1oaDxvhbeQnuLLB1jQcX9gFSupJHHr3z4bR6U1lDCknWI/lGSsbBc87BQZvdAJJr
-         Yw1CqJwyUaIaFHMuCKoGW6QrzRPBIjnPa4rSWJYpcZr9/L5qTG9YMFrhSEHWdmOpWcBd
-         psp6XQeGPuiRx56odWXIJbav3GpmKHl4+sMD5kIgqC8FOMtd+HEnPK1bfvNGkzpXMIvM
-         FM6CKsEZlBSkn5lfixk9/n665LdcQKQ/FRSOsIb42RoG/mlsH64ld+w6CxkIEcvyr1Wv
-         BhwoXZ/eWzISiSJCMOlGLNBOSl1HzMXDxEYiJPKITpeW/NQN3toJazCEHTj73zhUP5PN
-         B/GQ==
-X-Gm-Message-State: ANoB5pmbNGLaaV+efN64eJeKc/rKj1JUQoxhAdyx3ZlXiTUJDS33ZZVf
-        QFxLHYb1HdTb66ljRTEXlFfZog==
-X-Google-Smtp-Source: AA0mqf5BIhE9LqTRNtr8yELm7gIiWdFkyK3CdvNNzl1T0wlk3NkIVEvus9hfeCAuUASWJI2txLvtdQ==
-X-Received: by 2002:a5d:6086:0:b0:22e:71db:47ba with SMTP id w6-20020a5d6086000000b0022e71db47bamr11491222wrt.359.1668524401507;
-        Tue, 15 Nov 2022 07:00:01 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:fcf3:1c15:2e51:def7? ([2a01:e0a:982:cbb0:fcf3:1c15:2e51:def7])
-        by smtp.gmail.com with ESMTPSA id b3-20020adff903000000b002366fb99cdasm12567649wrr.50.2022.11.15.07.00.00
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F4jUAwmhTQdTrwQKeKo2XqBWyE1rzqyVY9EqrXd1rb4=;
+        b=3Xg9x7UC/KZ77wmmwSWyP2HqL2+bCu5REuI2ow8fMsdR+lftVSgQyu4S2G8p0r20j8
+         siTgkPn8b147RxqOWhLKtSeyoTJWPjzZ/0/Pgu8iALlTYz2CcaY22rnXdicF23uGyItk
+         KBNbPM+VN6KeBqkPGQEy4vLvZU/+Q1xMtLH1Kwngot3ThofxOW1IoVixHKxDjRWMSNpR
+         5X2bDkrc1d1hkVZg1tJVhB9rksR7z87HZWJ0KEhfUEfJWvMsnG0+7kLIEd6kGZRn2agQ
+         Ag81hrdau/IIWxElOaS0bVZ/Hlkp7wA5j5usIsWD1qIgiKZnN1IKYuW9FZ4OqnbCACeU
+         DIkA==
+X-Gm-Message-State: ANoB5pkeEoWdBoJmJqPjvEwRcCO6lu56W4sEq2F73jPnDs3f3Tqa0JIw
+        IyE0qSWTrZV1fIelE+W980Kheg==
+X-Google-Smtp-Source: AA0mqf7YV/RWxvpJd+exJ8ozFBpdV0AmoKBtjMSdoMFabRmcv88VA/ScE0Y/rh2lP/33+6Vl6LgfIg==
+X-Received: by 2002:ac2:5396:0:b0:4a4:6ee3:f57b with SMTP id g22-20020ac25396000000b004a46ee3f57bmr5439911lfh.17.1668524456417;
+        Tue, 15 Nov 2022 07:00:56 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y29-20020a19641d000000b004a22599c4ddsm2234896lfb.268.2022.11.15.07.00.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 07:00:01 -0800 (PST)
-Message-ID: <1ec5c839-ea5d-e6eb-3a51-f5824c322b76@linaro.org>
-Date:   Tue, 15 Nov 2022 16:00:00 +0100
+        Tue, 15 Nov 2022 07:00:55 -0800 (PST)
+Message-ID: <4516dcfb-b928-d454-18a6-bd725f39cc24@linaro.org>
+Date:   Tue, 15 Nov 2022 16:00:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v4 2/2] dt-bindings: soc: qcom: convert non-smd RPM
- bindings to dt-schema
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 03/11] phy: sun4i-usb: add support for the USB PHY on
+ F1C100s SoC
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-References: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
- <20221005-mdm9615-pinctrl-yaml-v4-2-463523919c19@linaro.org>
- <166851961723.867617.14976811191392756271.robh@kernel.org>
-Reply-To: neil.armstrong@linaro.org
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <166851961723.867617.14976811191392756271.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Icenowy Zheng <uwu@icenowy.me>, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+References: <20221106154826.6687-1-andre.przywara@arm.com>
+ <20221106154826.6687-4-andre.przywara@arm.com> <Y2ypy0CM8rJGu2g4@matsya>
+ <4438485.LvFx2qVVIh@jernej-laptop>
+ <52920a00-8e29-f7f4-0cbd-ceb638ded970@linaro.org>
+ <20221115104426.20728ba5@donnerap.cambridge.arm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115104426.20728ba5@donnerap.cambridge.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 15:11, Rob Herring wrote:
+On 15/11/2022 11:44, Andre Przywara wrote:
+> On Tue, 15 Nov 2022 11:03:24 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> On Tue, 15 Nov 2022 11:12:36 +0100, Neil Armstrong wrote:
->> Convert the non-SMD RPM node bindings to dt-schema, the old txt bindings
->> are now removed since all bindings were converted.
+> Hi,
+> 
+>> On 15/11/2022 07:01, Jernej Škrabec wrote:
+>>> Dne četrtek, 10. november 2022 ob 08:35:39 CET je Vinod Koul napisal(a):  
+>>>> On 06-11-22, 15:48, Andre Przywara wrote:  
+>>>>> From: Icenowy Zheng <uwu@icenowy.me>
+>>>>>
+>>>>> The F1C100s SoC has one USB OTG port connected to a MUSB controller.
+>>>>>
+>>>>> Add support for its USB PHY.  
+>>>>
+>>>> This does not apply for me, please rebase and resend
+>>>>
+>>>> Also, consider splitting phy patches from this. I dont think there is
+>>>> any dependency  
+>>>
+>>> DT patches in this series depend on functionality added here.
+>>>   
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Acked-by: Lee Jones <lee@kernel.org>
->> ---
->>   Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 283 ---------------------
->>   .../devicetree/bindings/soc/qcom/qcom,rpm.yaml     | 101 ++++++++
->>   2 files changed, 101 insertions(+), 283 deletions(-)
->>
+>> DTS always goes separately from driver changes because it is a hardware
+>> description. Depending on driver means you have potential ABI break, so
+>> it is already a warning sign.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> We understand that ;-)
+> What Jernej meant was that the DTS patches at the end depend on patch
+> 01/10, which adds to the PHY binding doc. I am not sure if Vinod's
+> suggestion was about splitting off 01/10, 03/10, and 10/10, or just the
+> two latter which touch the driver.
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/regulator/qcom,ipc-rpm-regulator.yaml
-> ./Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml: $id: relative path/filename doesn't match actual path or filename
-> 	expected: http://devicetree.org/schemas/soc/qcom/qcom,rpm.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb: rpm@108000: regulators: False schema does not allow {'compatible': ['qcom,rpm-pm8921-regulators'], 'vdd_l1_l2_l12_l18-supply': [[1]], 's1': {'regulator-min-microvolt': [[1225000]], 'regulator-max-microvolt': [[1225000]], 'bias-pull-down': True, 'qcom,switch-mode-frequency': [[3200000]]}, 's4': {'regulator-min-microvolt': [[1800000]], 'regulator-max-microvolt': [[1800000]], 'qcom,switch-mode-frequency': [[1600000]], 'bias-pull-down': True, 'qcom,force-mode': [[3]], 'phandle': [[1]]}}
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb: rpm@108000: regulators: Unevaluated properties are not allowed ('compatible', 's1', 's4', 'vdd_l1_l2_l12_l18-supply' were unexpected)
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml
-> Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb:0:0: /example-0/rpm@108000/regulators: failed to match any schema with compatible: ['qcom,rpm-pm8921-regulators']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+> I can split off 03/10 and 10/10, rebased on top of linux-phy.git/next, and
+> send that to Vinod.
+> Then I would keep 01/10 in a respin of this series here, to satisfy the
+> dependency of the later DTS patches, and Vinod can pick that one patch from
+> there?
 
-Damn, will fix in v5.
+There is no hard dependency of DTS on bindings. You can split these (and
+some maintainers prefer that way) and in DTS patches just provide the
+link to the bindings, saying it is in progress.
 
-Neil
+The bindings should be however kept with driver changes as it goes the
+same way.
+
+Best regards,
+Krzysztof
+
