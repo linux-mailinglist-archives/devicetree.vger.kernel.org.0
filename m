@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04039629F61
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 497B5629F6B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:45:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbiKOQoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 11:44:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        id S230123AbiKOQpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 11:45:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238811AbiKOQo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:44:29 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E9B13CD0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:44:27 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p8so25309749lfu.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:44:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z6MDTudeaDNBWLFtCxygDdf5wiboyzw894OPiiSIQMM=;
-        b=Hu1stuBszFyfEikMGRREw8GkTMg4/jMjAkS8HM0aCn1Pg8pwp9GvlZy6cKhFetu10v
-         gXNoiRimrks/UGckegepAthYuEUg+Rm/FhHMxl8DuAi1HLy1guBs1Dh/YgegXHIXU16X
-         Fzw2PJD5KxTkyTkc0gwgQYZk1wpbTlpsp8nP18UVXO3BoGO/0I4zUQVLEMuttpz7tbPW
-         aMkXanFphY0o3rLhy+espHWF5kVnsFnLusfgKDkcC60QcfZeSo8KepVqUBG7FnyU0ymn
-         Db6pM0P2pcXn0Wlt0VuGuHd05FkenkTn5V964JoSB2O/fWtKWyxYsUFFFXCX6jo3XHNX
-         lrYw==
+        with ESMTP id S229939AbiKOQpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:45:51 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCF31F3;
+        Tue, 15 Nov 2022 08:45:48 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id b124so15460231oia.4;
+        Tue, 15 Nov 2022 08:45:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z6MDTudeaDNBWLFtCxygDdf5wiboyzw894OPiiSIQMM=;
-        b=lQV3YMDG1JqHVJHV8/tcZyjrlw2JLK0+JeA3bH2r/acC52xpnaEKQvmCA4Y4u4cAru
-         NJyAg6JsD/ngTZMfYELFWWbh7tZ7AJfhKcDok7HDlWaH+sKBrXnW79eliLF9SdKGmxOt
-         Yf/xT4Ukr7vYxRNqYj0a24NHB5/M4DTm4aeyHSr2NVRQ1fTcK4+WH2vS+mCII+OccfCf
-         r3OOtKe6UsubN+vqF+ndyvlKvF9HUoEOc5J8Trt4dmAPKsFfQVy3VEmM7I1k7+5RxHQk
-         FLM66V1zD3BBC7zhK9hFTLwNqJqMxdLuxzrZwieCxxxTcyGZc+luFOGkJ9WZWdDa3Mpw
-         ctkg==
-X-Gm-Message-State: ANoB5pkf1c5CKT/MC1WXMUFwRc4reWxX03e2TE7UrxzrBhhO1aj2I0HG
-        dpIVqn+BuZiJnqS7AIANIhUHaA==
-X-Google-Smtp-Source: AA0mqf5hHSaayh6XTIOJeav8sG5uVl7z5pI4d6VCS16r7C4ku9jeeQ+ehHOWzQZKeWDNgHgW7s6iWA==
-X-Received: by 2002:ac2:5490:0:b0:493:1196:8ca1 with SMTP id t16-20020ac25490000000b0049311968ca1mr5674960lfk.303.1668530665724;
-        Tue, 15 Nov 2022 08:44:25 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b41-20020a0565120ba900b004aa255e2e66sm2253141lfv.241.2022.11.15.08.44.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 08:44:25 -0800 (PST)
-Message-ID: <14947ae2-c8d4-de86-ce9e-29175e73cbb2@linaro.org>
-Date:   Tue, 15 Nov 2022 17:44:23 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bpB0DnIAvfrGbGP924nojTI5rkoGhC08JADkFVFEIXw=;
+        b=aZAMal82Thq0gebilD+8oqy1CeiGIuSTeQMX6T3iPTCPg0dvMZHWcDyjHap3SNlLJ6
+         4rISyixM+XjtQUTvQYbb+Ei2wareLY/7DT/+5r6Nx/I5oPBoaz+h3tnAkldkNsvKhqXb
+         aM6RGiqMzov5EtyotaK1yQgrTDWUodrv7DfulosbwSnN/RTWy7o9riuCwYc/zALlvKGz
+         nKafj9lZdc/yO3hKUm1X2nBPtKiohjs9GE0Z3jyb2w42Dz6RZKsyaN3aKHWjeIh1Nnap
+         mxWJJu2kgdKmatXGTrwL2gIzN5F41vJ3W8Rof3hfSPGZIjsC8UCfny9vpWFAoJ5Esdba
+         bBLA==
+X-Gm-Message-State: ANoB5pmnZUAHx8a7HVfvH1sOOXpd0bEfBGHt8UF4BP3usC0ovEYTNBgM
+        DwdSft5TeXqyYAx2LiiC8g==
+X-Google-Smtp-Source: AA0mqf5VUkKcLRvmerOG2+29l48fzbwkTMibacpwCXqHvIyVT9sdB9182Jgw1CU4ZxTjs6VTEzUywg==
+X-Received: by 2002:a54:4685:0:b0:35a:1078:5f90 with SMTP id k5-20020a544685000000b0035a10785f90mr794917oic.117.1668530747395;
+        Tue, 15 Nov 2022 08:45:47 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u29-20020a0568301f5d00b00660fe564e12sm5522176oth.58.2022.11.15.08.45.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 08:45:46 -0800 (PST)
+Received: (nullmailer pid 1091300 invoked by uid 1000);
+        Tue, 15 Nov 2022 16:45:47 -0000
+Date:   Tue, 15 Nov 2022 10:45:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        konrad.dybcio@somainline.org, quic_kalyant@quicinc.com,
+        swboyd@chromium.org, angelogioacchino.delregno@somainline.org,
+        loic.poulain@linaro.org, vkoul@kernel.org,
+        quic_vpolimer@quicinc.com, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
+        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
+        andersson@kernel.org
+Subject: Re: [PATCH v2 01/12] dt-bindings: display: msm: Add qcom,sm8350-dpu
+ binding
+Message-ID: <20221115164547.GA1088214-robh@kernel.org>
+References: <20221115111721.891404-1-robert.foss@linaro.org>
+ <20221115111721.891404-2-robert.foss@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 05/11] dt-bindings: mailbox: qcom: Allow syscon on
- qcom,msm8976-apcs-kpss-global
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        evgreen@chromium.org, gregkh@linuxfoundation.org,
-        a39.skl@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-hardening@vger.kernel.org,
-        marijn.suijten@somainline.org, kernel@collabora.com, luca@z3ntu.xyz
-References: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
- <20221111120156.48040-6-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111120156.48040-6-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221115111721.891404-2-robert.foss@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 13:01, AngeloGioacchino Del Regno wrote:
-> MSM8976 supports SMSM, which needs this node to also be a syscon:
-> move the compatible to allow that.
+On Tue, Nov 15, 2022 at 12:17:10PM +0100, Robert Foss wrote:
+> Mobile Display Subsystem (MDSS) encapsulates sub-blocks
+> like DPU display controller, DSI etc. Add YAML schema for DPU device
+> tree bindings
 > 
-> Fixes: bcc8d70f912d ("dt-bindings: mailbox: Add compatible for the MSM8976")
-
-I am not sure if this is still a bug. Maybe just a missing feature?
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
-Best regards,
-Krzysztof
+>  .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 ++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
 
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+But since there is a dependency, no idea if this passes validation.
