@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9D46299CB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EEB36299D6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230375AbiKONO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:14:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47300 "EHLO
+        id S230478AbiKONQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:16:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbiKONOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:14:55 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AA828E03
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:14:54 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id l12so24339662lfp.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:14:53 -0800 (PST)
+        with ESMTP id S230400AbiKONQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:16:31 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1DFBA
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:16:30 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id c1so24347726lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:16:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ooyl1uFqat+f2ZNpkIjPxta1ZbRx2XG5h0e61uujqKk=;
-        b=Le74PuhyssQXy39UPs3dvmgG7S+szyOwSa9W0c/Uxly7crv/XWyEfo/WDS01afAYCZ
-         YXthv+RFSKt2FWOymLaBCAblLi0Vbrqex7wNGRnCbj3NhFLJ5ub0oQaOQ09pbZPIZmYl
-         cQeUI0xOMJuoX6Ye2URpIdAQYtHZ0shGX9dx2zRb8GB0SkgHMBqqoyMqhcU8/PUBNA+W
-         LOxmv+fpQAXT2e2woqIVlDRVU6DHlrfEhmiMnpEzB+clsq4D0CEpNSDbzxutKM/obSGF
-         FbCSwB1DKWk6fQwj5Dxf6FsOqylkojIw1gvoCYNGHulpNhRTM2bvSVaHBbojVEqFgHzN
-         Y33A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vl1BV7fBxn6Va3uDyQcOPanm5XadBqhJHUBBX9Sb6bI=;
+        b=M+nPLf+nbaNgQJZE3GZoHbIVDgFHNZyWDibcs3t07MLtUGfM+jXjJ4HMxEXGmruaKO
+         2rMbiJQKIt7T5dUt2xI7GQIs4T6EFphstUZVsobgWUz2wybUBqkKo7BhEiE8k0VGYmP9
+         F92t0Z8Up2MvN5Lx6F4B4tZ3/H/qeK11Khpe5vrxAFRc2z+jjVmdB/f0snl28Phd5G3Z
+         VhU2P0WgWkgC5B+NIS2hkr5ga7bb0r1QfvFF9P8c7bWl1W+KitlJNJSELPEElQtzJUHj
+         5VIPwVqpArabsYNNFerQQ62tF72X3gcMAVY68mmBQjvkbIyJ0LCzOioZk0BrnsaHOlcJ
+         rtnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Ooyl1uFqat+f2ZNpkIjPxta1ZbRx2XG5h0e61uujqKk=;
-        b=uaCNzELpStbBV7CXAS1zodPYezlDMFRonLxHwujXyhnRO1XnPeTnREWwNUX8jS4reV
-         PlcbmXXMnSBHnU3aN68HpSajUDx7QZFrqYE0DebqAKmZzN4qamAPhD7H2lNXfwgK/Fpg
-         d74SQWpDmB9iMS/4zQ+Y0vU27pfvWMCB7/mE99azuifr329s+b4u7Uhm8egkogcf5DkJ
-         yqV5nkgXuDf1CPAb1Ypg6VypisObG1i+Om9JryzTEm8tlBioTevt7R7Z1mOwT44OLVnv
-         ht03FZDllNr/A65ll1o3Ij4lkC7zGtbTXQjssfZgQEj7BOBGL203dW428hFHqJRjKGkF
-         RjfA==
-X-Gm-Message-State: ANoB5plB+lSCJHg4iBecrQHpxp3ofGN/eAUPUW2zUNYL9+QJzcHuXybZ
-        Ghm8tasgw1fxKRvFQ7w8qjTH7g==
-X-Google-Smtp-Source: AA0mqf5bf1tHm6zM/I+mQqK8jSttcy4XiXKdKL0ZzsOi9LJQ8cWmKlYfrjYcjMksIRh1tYVEjHzR0A==
-X-Received: by 2002:a19:6442:0:b0:497:a17d:d848 with SMTP id b2-20020a196442000000b00497a17dd848mr5302938lfj.381.1668518092400;
-        Tue, 15 Nov 2022 05:14:52 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id s21-20020a056512203500b004a8b9c68735sm2200581lfs.102.2022.11.15.05.14.51
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vl1BV7fBxn6Va3uDyQcOPanm5XadBqhJHUBBX9Sb6bI=;
+        b=Jiu+CeR8a2Qp+X16TK4GKMVP32lgp6foDT83SNxQBSJDpY/BSjWZXJR4Q92/5iHwW5
+         2PiTHAuxb/clLmp+XBOtut0PePxysK9uYqFTeW9ZWYb+Ei+tEI138t/IfEbTn8Jw+eja
+         Mnf+oM7vww14T5sUQzkFRUNuJSzxKZpghlAClJX9p6dz4aviXn4ISewz5GuMwu7r7dfP
+         64KIzD6f943OdlVOTEORH3LwrISsJzwHrgYCSg85t9u/NW3ZjDBbrXfBmzmd5NyGdEGI
+         bPRPZ3lLoi4jXBuPjeow+W8NnPKhYIndUAE9WA8J246lzCTEM3QvXo9vV8faLVzV6ZvV
+         S9Qg==
+X-Gm-Message-State: ANoB5pkAh4iZ1AJLH6dCr604ZKKCCR4MWQxYtkjBfJIApZcpGkitseB2
+        c+5jI/PudDd9IWjPGNYl2MLrXg==
+X-Google-Smtp-Source: AA0mqf4khaa5y9EhlBl8gS9PmoJr4OoakMGwbZAbkLgVi7zDvGOcJrtmg5qiaP7TkzP5lsOga3hyuw==
+X-Received: by 2002:a05:6512:128e:b0:4b3:ccea:9b2e with SMTP id u14-20020a056512128e00b004b3ccea9b2emr6383119lfs.379.1668518188894;
+        Tue, 15 Nov 2022 05:16:28 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bi20-20020a05651c231400b0026dcf0cbb97sm2507562ljb.137.2022.11.15.05.16.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:14:51 -0800 (PST)
-Message-ID: <93d30faf-da88-7bdc-dca7-82435b5f9fe9@linaro.org>
-Date:   Tue, 15 Nov 2022 14:14:46 +0100
+        Tue, 15 Nov 2022 05:16:28 -0800 (PST)
+Message-ID: <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
+Date:   Tue, 15 Nov 2022 14:16:27 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 4/4] arm64: dts: msm8998: unify PCIe clock order
- withMSM8996
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
- <20221115125310.184012-4-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221115125310.184012-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-7-herve.codina@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114111513.1436165-7-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -80,37 +85,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 15/11/2022 13:53, Krzysztof Kozlowski wrote:
-> PCIe on MSM8996 and MSM8998 use the same clocks, so use one order to
-> make the binding simpler.
+On 14/11/2022 12:15, Herve Codina wrote:
+> Add the USBF controller available in the r9a06g032 SoC.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->   arch/arm64/boot/dts/qcom/msm8998.dtsi | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
+>  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 320a28232a32..539382dab0ad 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -929,11 +929,11 @@ pcie0: pci@1c00000 {
->   					<0 0 0 4 &intc 0 0 139 IRQ_TYPE_LEVEL_HIGH>;
->   
->   			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
-> -				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-> -				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_AUX_CLK>,
->   				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> -				 <&gcc GCC_PCIE_0_AUX_CLK>;
-> -			clock-names = "pipe", "bus_master", "bus_slave", "cfg", "aux";
-> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>;
-> +			clock-names = "pipe", "aux", "cfg", "bus_master", "bus_slave";
->   
->   			power-domains = <&gcc PCIE_0_GDSC>;
->   			iommu-map = <0x100 &anoc1_smmu 0x1480 1>;
+> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
+> index 563024c9a4ae..a4bb069457a3 100644
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
+>  			};
+>  		};
+>  
+> +		udc: usb@4001e000 {
+> +			compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
+> +			reg = <0x4001e000 0x2000>;
+> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&sysctrl R9A06G032_HCLK_USBF>,
+> +				 <&sysctrl R9A06G032_HCLK_USBPM>;
+> +			clock-names = "hclkf", "hclkpm";
+> +			power-domains = <&sysctrl>;
+> +			status = "disabled";
+
+If you provided all resources (clocks, power domains etc), why disabling it?
+
+Best regards,
+Krzysztof
+
