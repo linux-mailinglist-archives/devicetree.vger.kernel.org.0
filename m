@@ -2,60 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2925E62A2B8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 21:23:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F7962A305
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 21:33:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbiKOUXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 15:23:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33988 "EHLO
+        id S238436AbiKOUda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 15:33:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbiKOUXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 15:23:09 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3503A2CDF5
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 12:23:09 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKN5tL012173;
-        Tue, 15 Nov 2022 14:23:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668543785;
-        bh=6f7LiAhpG5Hii1ndKZ/WGVi0ywic75RT+UpVk/HuO6U=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ym12zvIRyTxp1gdl8rsTix107oZi1xnJGwpsh6b2D3a0d4eiMIefRg6Z7s7pOXYp9
-         JaoxLZLHGRpLYDL54O6AmUYfahMfP1xs6gvIcktapz/cxpBd8RsArkU5LuBhYaoqsR
-         oD3Me7sebKO/D50SdxRQEtgv/+5Z869+O+Go6VkI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AFKN5mW053890
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Nov 2022 14:23:05 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 15
- Nov 2022 14:23:05 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 15 Nov 2022 14:23:05 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKN5Rw069046;
-        Tue, 15 Nov 2022 14:23:05 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     <tony@atomide.com>, <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <j-keerthy@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <g-vlaev@ti.com>
-Subject: Re: [PATCH v3 0/3] Collected pending TI dmtimer dts changes
-Date:   Tue, 15 Nov 2022 14:23:04 -0600
-Message-ID: <166854376727.11677.14097105577577542690.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20221115154842.7755-1-tony@atomide.com>
-References: <20221115154842.7755-1-tony@atomide.com>
+        with ESMTP id S231751AbiKOUdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 15:33:06 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EFC31ED1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 12:30:49 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id b21so14203163plc.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 12:30:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VruM4CbTIOWzFMx0rxGuqPrwzvP7mA2aTck9eYJcn90=;
+        b=fVp5FfgiqCHuyKWQmSsmfW7fMN91QNmKjM9t974RJ3KQETVgnF5Ot05IHAT+MJsK3q
+         o6mwyQJXySlCDrk8IHbxo/Z+yUCD0f7YXhZ2tr0atS0gt6JFjeHPSbuT+dsChQ9nQemU
+         YpuzBhYuOhH1sTIC8zGOlpLVk+5bd8WUjf2qQszSIf7+Fe237qpMsbbpu8KSUUOyXW6y
+         MdPspjl83T1AFlAS/U0YSYxKhwwkASS00Sw5HnsxNlVRDYR3tOz8flE3EMnliljdcAeQ
+         10dIVmo+NXpBsoVfwAXiAcQAXJNrPwi4elvMhsFmtjPG9gQZhkUBN6OfeQQSfMBVlqMA
+         dDpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VruM4CbTIOWzFMx0rxGuqPrwzvP7mA2aTck9eYJcn90=;
+        b=az4XzKIevNt3GO1ljOVAaPYiP4Lh/IUv1QSIzBY4gE8LarRMkiVhKJkhYf0KV9EqMc
+         50aV8BNod6lL8dxVvRNBHhhZwRMUFueop9noe69NjsWstZZkP09tzQZ6lY4zXm6FPNkd
+         V1lpv/6gZ2D+xU2cmEnQ479WYuJ+rlZsUh2VfkS/ooERRTfGAxoMNUjrJLYz0GfBfdqf
+         amo22bS3c+y1apLesvHjAyEATaKm8tmbk0OYcSurI+KQw6dX0PGfZjvxTmJUekMrEBoC
+         lBS+kPh3mRZc9KaseuWmRkftyLcVM5t1g9M6dOZCzWS4VUb+r419mJUpzFGQHaWDcdRa
+         94rA==
+X-Gm-Message-State: ANoB5pk0YXeAPS6jMo7rcAcYuKJSNA7B8QsciVR7Mwa1t1yHUm5/R09z
+        WqbbqZV9y1ALZvzBrLTlN8iCLw8MiccECxGm
+X-Google-Smtp-Source: AA0mqf6L/z5lIHZ+hIvsUNv+f/79D0F3jpzeUa0ZxfrVTezdYuEwUbgVfpAzAN5Ftu/o/J2nL/G+RA==
+X-Received: by 2002:a17:902:e483:b0:188:b44b:598 with SMTP id i3-20020a170902e48300b00188b44b0598mr5754384ple.54.1668544248651;
+        Tue, 15 Nov 2022 12:30:48 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id y188-20020a6364c5000000b00451f4071151sm7985842pgb.65.2022.11.15.12.30.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 12:30:48 -0800 (PST)
+Message-ID: <d6be0d25-b7a2-fe6a-f653-d3b583c7202a@9elements.com>
+Date:   Wed, 16 Nov 2022 02:00:44 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v10 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221115110932.637091-1-Naresh.Solanki@9elements.com>
+ <20221115110932.637091-2-Naresh.Solanki@9elements.com>
+ <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,47 +78,197 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony Lindgren,
+Hi Krzysztof,
 
-On Tue, 15 Nov 2022 17:48:39 +0200, Tony Lindgren wrote:
-> Here are the pending TI dmtimer dts changes posted earlier. The related
-> driver and binding changes are now in the mainline Linux. There has been
-> no changes to these patches, I just updated them against current Linux
-> next and added the tags from Georgi.
+On 15-11-2022 07:34 pm, Krzysztof Kozlowski wrote:
+> On 15/11/2022 12:09, Naresh Solanki wrote:
+>> From: Marcello Sylvester Bauer <sylv@sylv.io>
+>>
+>> The MAX597x is a hot swap controller with configurable fault protection.
+>> It also has 10bit ADC for current & voltage measurements.
+>>
+>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> ---
+>>   .../bindings/mfd/maxim,max5970.yaml           | 154 ++++++++++++++++++
+>>   1 file changed, 154 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>> new file mode 100644
+>> index 000000000000..edf0c23db4ca
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>> @@ -0,0 +1,154 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+>> +
+>> +maintainers:
+>> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+>> +
+>> +description: |
+>> +  The smart switch provides no output regulation, but independent fault protection
+>> +  and voltage and current sensing.
+>> +  Programming is done through I2C bus.
+>> +
+>> +  Datasheets:
+>> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+>> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - maxim,max5970
+>> +      - maxim,max5978
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  leds:
+>> +    type: object
+>> +    description:
+>> +      Properties for four LEDS.
+>> +
+>> +    properties:
+>> +      "#address-cells":
+>> +        const: 1
+>> +
+>> +      "#size-cells":
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      "^led@[0-3]$":
+>> +        $ref: /schemas/leds/common.yaml#
+>> +        type: object
+>> +
+>> +    additionalProperties: false
+>> +
+>> +  vss1-supply:
+>> +    description: Supply of the first channel.
+>> +
+>> +  vss2-supply:
+>> +    description: Supply of the second channel.
+>> +
+>> +  regulators:
+>> +    type: object
+>> +    description:
+>> +      Properties for both regulators. Also set value for shunt resistor used.
 > 
-> Regards,
+> You should explain not the syntax,  but what part of hardware this nodes
+> represents. Therefore "Also set value" does not fit at all. Hardware
+> sets value?
+You mean something like: Properties for power switch
 > 
-> [...]
+> I looked at datasheets to figure it out but they do not refer to any
+> configurable regulator, LDO nor "sw0/sw1/sw2". Therefore I have no clue
+> what to expect here...
+Yes this is for power switch part of max5970/8
+> 
+>> +
+>> +    patternProperties:
+>> +      "^sw[0-1]$":
+>> +        $ref: /schemas/regulator/regulator.yaml#
+>> +        type: object
+>> +        properties:
+>> +          shunt-resistor-micro-ohms:
+>> +            description: |
+>> +              The value of current sense resistor in microohms.
+>> +
+>> +        required:
+>> +          - shunt-resistor-micro-ohms
+>> +
+>> +      unevaluatedProperties: false
+> 
+> I don't think it has proper indentation. Did you test the binding?
+Definitely tested the bindings before I push the patch.
+> 
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - regulators
+>> +  - vss1-supply
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - maxim,max5970
+>> +    then:
+>> +      required:
+>> +        - vss2-supply
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        regulator@3a {
+>> +            compatible = "maxim,max5978";
+>> +            reg = <0x3a>;
+>> +            vss1-supply = <&p3v3>;
+>> +
+>> +            regulators {
+>> +                sw0_ref_0: sw0 {
+>> +                    regulator-compatible = "SW0";
+>> +                    shunt-resistor-micro-ohms = <12000>;
+>> +                };
+>> +            };
+>> +
+>> +            leds {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +                led@0 {
+>> +                    reg = <0>;
+>> +                    label = "led0";
+>> +                    default-state = "on";
+>> +                };
+>> +                led@1 {
+>> +                    reg = <1>;
+>> +                    label = "led1";
+>> +                    default-state = "on";
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        regulator@3a {
+>> +            compatible = "maxim,max5970";
+>> +            reg = <0x3a>;
+>> +            vss1-supply = <&p3v3>;
+>> +            vss2-supply = <&p5v>;
+>> +
+>> +            regulators {
+>> +                sw0_ref_1: sw0 {
+>> +                    regulator-compatible = "SW0";
+> 
+> This property is deprecated, isn't it? Again - did you test this?
+Yes tested.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/3] arm64: dts: ti: k3-am65: Configure pinctrl for timer IO pads
-      commit: 7928c712e2d6666a1816d5182038436902f57380
-[2/3] arm64: dts: ti: k3-am65: Add general purpose timers for am65
-      commit: cdbaf880b440287f56bc7dc58c4362b6bebb64e4
-[3/3] arm64: dts: ti: k3-am62: Add general purpose timers for am62
-      commit: 3308a31c507cacff94dc4c55f8402de1f9102621
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Naresh
