@@ -2,132 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EA36295AC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 263726295BC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:25:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232786AbiKOKWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:22:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41054 "EHLO
+        id S229705AbiKOKZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:25:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232523AbiKOKWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:22:44 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F89A1F620
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:22:42 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id d6so23675070lfs.10
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:22:42 -0800 (PST)
+        with ESMTP id S229634AbiKOKZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:25:17 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F03DA45C;
+        Tue, 15 Nov 2022 02:25:17 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id f18so1880926ejz.5;
+        Tue, 15 Nov 2022 02:25:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZbREAzKGWsIEWUQJpy4XElK+ime7W53jXwcpw2dqzo=;
-        b=URWmS52KU77TWjmjG6UB4lH6yXLsHtFdFoDjqDZDTqW8s8fgbpukZVncpNKzxXkXiK
-         Ig37LGNmjMnu1U2f/1pomq95OJLikyGVyB+4ABQ0POWetHCFlHhL94EXdNn5+7UpOX4Q
-         ZhKHee8n+38c/rLKiVvjJQ8SSexQrhnSFzsNoRNLejRYqPK/7mdYwYG5stAufYWtyK+O
-         7jp0YZoE+rK/1zIWDtCV4jMq6ttRkqDgjFxIo/+bG5zNIpxmTe73E5QIux/rYqHA+M0n
-         +w4RiGEYZ599h0aPvRTuCJ4evleTgjqQ/pZsMEpOn1E4kCr2nM6UkMljIEeQgqCv7ecL
-         Mx8A==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QiqDyHGlZxMgswEWLlx/5IXGHN/+M/e2E7njA25+Yas=;
+        b=nSLC1oGWbgO/cUDwfYorZF4i+uopgFAb166iZkJdbP4FIu2c/gRZElFgNztoBf4Zvl
+         bfMwNwbJZKaK9LiTDBowB7ol/RySr914LI1rNxN26l76ClM085DcS9XC4UD3O8gpl2+s
+         Y5UW6Z06aPPlfc4ACFO0LcgdO5wWGNUsONYqvnePEoSzkHqNO9TIqKSvYv+RBVOLMAZA
+         xib6+cmtoSJ8Ww0ve8XN+6Xam2IQr3vxtjoaMW3M8SSCVlvfJBkY2R2juNo02/8y8FpU
+         bCeqkA0XgbIZtDNt8sqLKHDfxMTb4nhmlC1qMyrAoDcZW2yFKdwtQoYxroAhliYobdi9
+         MBHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZbREAzKGWsIEWUQJpy4XElK+ime7W53jXwcpw2dqzo=;
-        b=VuF2LcwScsryzxHhdCR1csLRSVoTpFGF6eA0M+/kC3jW0w/lfDQxpuzL2ZLHqAZITr
-         VusQ7pn1TtiYAzHxtkE/NjrWyHunNo9tILzIR1MQNVevNqkFjpDdnLgYMWplXjNV/zxw
-         c3szkv2zXbsi6xpu2J0wP0tAcTBb0FJrt6nspb5pQe1Z7iuyesOpsS0A3Yq/NnEq/5MZ
-         2NfqC60NcFC4e3xQoeeMvhl48PLqQOObkCZMhBseGuiRyql8NZ5ThM5O3B2Tu3ut402y
-         wVRsqJCXEvnwvhnQCw/vAuOZm4+3n/b9uAwILOgU+B57SlOrUnyYJUhZkrLSHIvQaWOy
-         FQHA==
-X-Gm-Message-State: ANoB5pm3EKybWfa8yQ2m2JJK14jPqfN0/0gfi/chw7qS5jY/IEd9upRI
-        RwigApfbE1T9vmnVgEmR8A6sRQ==
-X-Google-Smtp-Source: AA0mqf7Eoob8tu5VvSML0bCXRs+5OlrwB4RhRTonYV8TvWwQfLAeC7eqY+781izx5/9lW5imSf++mA==
-X-Received: by 2002:a05:6512:258f:b0:4af:ad16:8a08 with SMTP id bf15-20020a056512258f00b004afad168a08mr5231106lfb.664.1668507761001;
-        Tue, 15 Nov 2022 02:22:41 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c18-20020ac25f72000000b00492dc29be7bsm2148197lfc.227.2022.11.15.02.22.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 02:22:40 -0800 (PST)
-Message-ID: <5dae76ba-bd48-233d-4d4a-14111ff1b2ec@linaro.org>
-Date:   Tue, 15 Nov 2022 11:22:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 02/10] ASoC: dt-bindings: qcom,apr: Split services to
- shared schema
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QiqDyHGlZxMgswEWLlx/5IXGHN/+M/e2E7njA25+Yas=;
+        b=th7o6zqnHzonwLWxKlyg+of9VTQRtLrngvQQBShFxDPp/D6udi61Y989FEj1zqLnte
+         BHCwgCMlGwsVgHB+0U0WPNN8oe7vbS4VBdMY/l4qIY2RvGB/ftjFw1RvOATlYU3n2KzO
+         vOrh79jmAJe3GGDaZxlzOGK5O4m9GdcSDRGrcjFVXqJd5Pud9zQKEfWurCFP8kv7Qj20
+         PdJbyatxT5X5+Wbyn4HVKQN0BGA9pHnfe6Ce0MztMv6m8GrWoaOnJQKdhiLLZ1Urxxnz
+         ch//OO8rVFnLk382FMOsYeQtAIlDlRGBkZnoRjtARdK86DdP36mLj8NI6A2xLfeCbpVq
+         3j5w==
+X-Gm-Message-State: ANoB5pnT2vVmqbaj20QlICD9EpOeo0l25oGmfnVtldrwUm5NG3nQP0t0
+        5Z8aZxh6ijdSY+uh3R7rYxQ=
+X-Google-Smtp-Source: AA0mqf50zVuqI5KShUbY34Dl4BKiF9UQwD4gT2JX4AAmDlDxB1BLXgMYtJbnQ9aNnqrBC2du8M5s2A==
+X-Received: by 2002:a17:907:a78b:b0:7ae:37a9:b8f2 with SMTP id vx11-20020a170907a78b00b007ae37a9b8f2mr13002097ejc.398.1668507915304;
+        Tue, 15 Nov 2022 02:25:15 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id y14-20020aa7ccce000000b0045b4b67156fsm6001694edt.45.2022.11.15.02.25.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 02:25:14 -0800 (PST)
+Date:   Tue, 15 Nov 2022 11:25:12 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Patrick Lai <plai@qti.qualcomm.com>,
-        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-References: <20221111113547.100442-1-krzysztof.kozlowski@linaro.org>
- <20221111113547.100442-3-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221111113547.100442-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v2 02/10] ARM: dts: suniv: f1c100s: add PWM node
+Message-ID: <Y3NpCKONx/0/COAv@orome>
+References: <20221107005433.11079-1-andre.przywara@arm.com>
+ <20221107005433.11079-3-andre.przywara@arm.com>
+ <20221115101926.dldj6ralahdzhj7k@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="l6W4QUPthCHqA1lj"
+Content-Disposition: inline
+In-Reply-To: <20221115101926.dldj6ralahdzhj7k@pengutronix.de>
+User-Agent: Mutt/2.2.8 (2022-11-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/11/2022 12:35, Krzysztof Kozlowski wrote:
-> The APR/GPR nodes are organized like:
-> 
->   apr-or-gpr-device-node <- qcom,apr.yaml
->     apr-gpr-service@[0-9] <- qcom,apr.yaml
->       service-specific-components <- /schemas/sound/qcom,q6*.yaml
-> 
 
-(...)
+--l6W4QUPthCHqA1lj
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> index 0a7a34cb2497..9302ffe567d6 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> @@ -80,115 +80,13 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> -#APR/GPR Services
->  patternProperties:
->    "^service@[1-9a-d]$":
->      type: object
-> +    $ref: /schemas/soc/qcom/qcom,apr-services.yaml
-> +    additionalProperties: true
->      description:
-> -      APR/GPR node's client devices use subnodes for desired static port services.
-> -
-> -    properties:
-> -      compatible:
-> -        enum:
-> -          - qcom,q6core
-> -          - qcom,q6asm
-> -          - qcom,q6afe
-> -          - qcom,q6adm
-> -          - qcom,q6apm
-> -          - qcom,q6prm
+On Tue, Nov 15, 2022 at 11:19:26AM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> On Mon, Nov 07, 2022 at 12:54:25AM +0000, Andre Przywara wrote:
+> > The Allwinner F1C100s family of SoCs contain a PWM controller compatible
+> > to the one used in the A20 chip.
+> > Add the DT node so that any users can simply enable it in their board
+> > DT.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>=20
+> I checked "by hand" that this matches the modified binding in patch
+> 01/10.=20
+>=20
+> Reviewed-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> I assume the whole series will go in via a tree different from the PWM
+> tree? While this is Thierry's area of maintenance, I'd be surprised if
+> he had concerns about that.
 
-I think that this piece could stay here. Otherwise we allow any
-compatible which matches the qcom,apr-services.yaml binding, but that's
-easy to achieve.
+Yeah, it's probably best for the Allwinner maintainers to pick this up
+into their tree so that the bindings changes go along with the DT
+changes.
 
-Best regards,
-Krzysztof
+Acked-by: Thierry Reding <thierry.reding@gmail.com>
 
+--l6W4QUPthCHqA1lj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNzaQgACgkQ3SOs138+
+s6Fn9RAAt+XRPFAS9efnEeAg7yzhd5KACfgZ5iOHVCTYLLgA67VmqUZ/LS/fjb/t
+0pbACyLypmoGflQL5YjV5jwg1smW6ubWWCw9BJq8VlZ0eISjx3QkRxZSaK1P5Kil
+N/GyeLV53ezyV8gBE0vMBDKPn7XSH0KpJbs8ompGb36jWBAwT4r7E8Ze+MBDTUtP
+HcQZbrVNCReYBIo38G6Nav+2lZnYHyb2rey2WMuGoWl38WR+68/V/Fo+2kRB14hV
+FpRNE/QCRNa7e1W7JgbjUTrDTt/NrOPV2tnMDUofpecSUeRMGMG3vF87pQLMm92Y
+Hw6lYMRBTR3cab0waBUSXJCBOIefdPsEgOxkQ8ap3phdsvrsgLLy/DxWtyR6GNyE
+s0SjbCnutGVmVXfLUMUH8Z3MPPr5TKw8cjsRIzKgCxBkNcpyu9Me2SD6Npmf379/
+4gyGw9g/3eS3UtQc9HmiBgpyuhsNljCEVvoG6+TMbSMtBKttiKKiwpvJuMz81caF
+g0QmqGGWNitbZJspwhqGFLFckFDQ+xkmX20vFA3NPE6eMtkOivfaslYZVdJRGmZM
+HDYAFfTbXGEIawHftmIrrm8VNZfs/CToSxayQecZGjVPlyMEBxyZXbxJC3S5ZTuc
+dcMif7pTYY2Jk/OEikFG8G38H2IeQGHEee1+YRXv46oSx1pyh+I=
+=TpgC
+-----END PGP SIGNATURE-----
+
+--l6W4QUPthCHqA1lj--
