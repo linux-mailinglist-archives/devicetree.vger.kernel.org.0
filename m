@@ -2,125 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1ED8629921
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E611E629941
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:53:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiKOMqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 07:46:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56176 "EHLO
+        id S232338AbiKOMxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 07:53:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiKOMqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:46:08 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087DE27CFB
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:46:05 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id l14so24064001wrw.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:46:04 -0800 (PST)
+        with ESMTP id S232220AbiKOMxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:53:17 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C1B27DE6
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:15 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id u11so17314936ljk.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:53:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mlZD0Z2uZ+ThYG4e4r6CMcbbN5g4YL6Nxz6PbfmS5NA=;
-        b=Yb7kmLhGhyYiM5Q8MgXeUnKQK4LE6+7zq57DqabdJ26qf7EizBpTbfxYyt6TRJRH7g
-         iMCvzoK2Hjfv9V7SD/2dgd+0NrOlZpVSIb+Zn3bOFrYEsCltvvivgOVnvZHW2Vddxaiv
-         yU0lMINmERm0Hi8UK3OClxCtltTXYgQXZ1argRqmb5aLQjZMBreAsiXddyMR/8RCYvBY
-         3fNB4/DBNErdX2p4BFu0nX1Vd777tDlL6VbsuFetwlpXVkLNDEN3bumcqizBZBBfFpIE
-         w3O/cx3oY8iFEFI1tbqApqu9NRxlKlB/MP05CIZN+Palc9NZo/G3fpcB0HUppPqPB/pz
-         hlVw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A0aVE2Vm75FnX45DS6H+N0+bh1Fym8h1oNgifah97LI=;
+        b=TZYEMDIsfylrpXElIbq2FfxDowrQafjfPMu+JkDdlXWDvpVKBuKztENdYIxcUO2blr
+         NZt79bd1h5j/Be90jj4YHnkaq18CGKzCc9CFWZU4TdOAvfQCpuEa7eOb6j9yyyTISPK4
+         GWWcsmdWiZWMtzG6T+wh3tkxp2+Z43tRIq7JBVtjdThL8Etu1d5oLe9UtezRJM83efm6
+         9uRuCoj5/wS1vNSTVkM0XEtlqpmAV38xLp8Z5KgHWPGMfMkHHNH9jeBsb3C/8fURILRk
+         bwsapGWHSRsXgkEvqqhSjduhO9ZMnMFgKz8ILgYlQIDTVQHrRaJUR7kMNc5T8tT5o+6h
+         oP8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mlZD0Z2uZ+ThYG4e4r6CMcbbN5g4YL6Nxz6PbfmS5NA=;
-        b=GOsb/kLVtBcES6TS+q4PaMBXiSLY9Z7Sr9wnpq7CzD7NKGnnSkjVB5M8UmJqrkyzgp
-         ozKFnEy/Qv6AsypJBGEL4APseGPQf53mFd7TTlqMFomNnvwziXlLUbUJAuPP/IP7L/wP
-         WOeOdmidgcIR56dPKDC3sDAggeN2NsWN97aFyhOpjDpLiH1JR6AZyBBfMq4xAWT6zyy2
-         ARjXl0dhfi7KCBQlhGUtWdP+/M0MEi5DXrnfyFcxYjI71ZPgI7VohLvORvzIUy0MRZ+j
-         gWzTRzM+0GkiVunTjlUaMBAmm25bNrLGrRklLbg+Mri+a72zNn68aYRKxVcXFmClMEPl
-         cDPQ==
-X-Gm-Message-State: ANoB5pkRPsRY9BMMdQSsPMCbMRbmPo8cWZKLlz7zuApgUKGw5RUr6Ume
-        UySS7zQO9LUJ1+LPF0xbyP29VA==
-X-Google-Smtp-Source: AA0mqf6vybVgZNApQBaGCsmb/WmoxQCxkT1rPljAJ3wbuzXcligL+cMP8YKndcURsBFb7hNRAA9EBg==
-X-Received: by 2002:adf:ec10:0:b0:22e:48ee:dc64 with SMTP id x16-20020adfec10000000b0022e48eedc64mr10465784wrn.319.1668516363574;
-        Tue, 15 Nov 2022 04:46:03 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id h5-20020a1ccc05000000b003cf7292c553sm15100857wmb.13.2022.11.15.04.46.02
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A0aVE2Vm75FnX45DS6H+N0+bh1Fym8h1oNgifah97LI=;
+        b=zYnXkfg4F/9FeQI50XtL5FDSK7k3KdYginZB45otTzmcj7KXbwucfo2H2jaqQcPPrL
+         cQLTBVHXmIEV2ra1XzVCZisFGGYEV8cdzRRqND8f7uvWG/0G4vnM704YKnb+tc91IZD9
+         G2zbKh2VXtGq8X65fQDugmH3UzjKv86eQclTy6dybyyfF0vU+D1NMaCTB4jffwiQjn7R
+         1z8+80maOcmktkXqJ0o7F4Tz2oI++ryIgJnFdYtJJgLNXK/dorruw/xzEYDx3GT9SH9I
+         c4H3blZRoaV4RK0PYKhAKh5n9shjzdmjymxPlj7XyyqgHsNqtm/Z0NOdaHWsAye0pgd3
+         8+Lg==
+X-Gm-Message-State: ANoB5pk/qYDGV5I+QWX/tEanl9EJn6j/haeOurQxlRGHUzh85Korpqko
+        AZiHJZNsLo3OSd1iVSpNzF5B9A==
+X-Google-Smtp-Source: AA0mqf64JEQ7hBw+k88FcuUEk+S7j1SeEfj3LtvIwpUBJaQuCyDwMTeM0NbrlrXkh3lRsm2Z685URg==
+X-Received: by 2002:a05:651c:10b8:b0:26e:8e6f:3c4 with SMTP id k24-20020a05651c10b800b0026e8e6f03c4mr5950160ljn.113.1668516793996;
+        Tue, 15 Nov 2022 04:53:13 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b0049110ba325asm2177224lfs.158.2022.11.15.04.53.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 04:46:03 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     linux-amlogic@lists.infradead.org,
-        Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        Will Deacon <will@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <healych@amzon.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+        Tue, 15 Nov 2022 04:53:13 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
-References: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
-Subject: Re: (subset) [PATCH v9 1/4] perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver
-Message-Id: <166851636240.2706970.5044622392336607391.b4-ty@linaro.org>
-Date:   Tue, 15 Nov 2022 13:46:02 +0100
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/4] dt-bindings: PCI: qcom: add MSM8998 specific compatible
+Date:   Tue, 15 Nov 2022 13:53:07 +0100
+Message-Id: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add new compatible for MSM8998 (compatible with MSM8996) to allow
+further customizing if needed and to accurately describe the hardware.
 
-On Wed, 9 Nov 2022 09:58:15 +0800, Jiucheng Xu wrote:
-> This patch adds support Amlogic meson G12 series SoC
-> DDR bandwidth PMU driver framework and interfaces.
-> 
-> The PMU not only can monitor the total DDR bandwidth,
-> but also the bandwidth which is from individual IP module.
-> 
-> Example usage:
-> 
-> [...]
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 42 ++++++++++---------
+ 1 file changed, 23 insertions(+), 19 deletions(-)
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
-
-[4/4] arm64: dts: meson: Add DDR PMU node
-      https://git.kernel.org/amlogic/c/90cf8e21016fa3864a311622f6162fde13aaaf23
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 54f07852d279..0411e2e67661 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -16,25 +16,29 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,pcie-ipq8064
+-      - qcom,pcie-ipq8064-v2
+-      - qcom,pcie-apq8064
+-      - qcom,pcie-apq8084
+-      - qcom,pcie-msm8996
+-      - qcom,pcie-ipq4019
+-      - qcom,pcie-ipq8074
+-      - qcom,pcie-qcs404
+-      - qcom,pcie-sa8540p
+-      - qcom,pcie-sc7280
+-      - qcom,pcie-sc8180x
+-      - qcom,pcie-sc8280xp
+-      - qcom,pcie-sdm845
+-      - qcom,pcie-sm8150
+-      - qcom,pcie-sm8250
+-      - qcom,pcie-sm8450-pcie0
+-      - qcom,pcie-sm8450-pcie1
+-      - qcom,pcie-ipq6018
++    oneOf:
++      - enum:
++          - qcom,pcie-ipq8064
++          - qcom,pcie-ipq8064-v2
++          - qcom,pcie-apq8064
++          - qcom,pcie-apq8084
++          - qcom,pcie-msm8996
++          - qcom,pcie-ipq4019
++          - qcom,pcie-ipq8074
++          - qcom,pcie-qcs404
++          - qcom,pcie-sa8540p
++          - qcom,pcie-sc7280
++          - qcom,pcie-sc8180x
++          - qcom,pcie-sc8280xp
++          - qcom,pcie-sdm845
++          - qcom,pcie-sm8150
++          - qcom,pcie-sm8250
++          - qcom,pcie-sm8450-pcie0
++          - qcom,pcie-sm8450-pcie1
++          - qcom,pcie-ipq6018
++      - items:
++          - const: qcom,pcie-msm8998
++          - const: qcom,pcie-msm8996
+ 
+   reg:
+     minItems: 4
 -- 
-Neil
+2.34.1
+
