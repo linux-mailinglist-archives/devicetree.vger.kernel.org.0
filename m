@@ -2,87 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF9B62951C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 822A4629535
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238211AbiKOKAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:00:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
+        id S238250AbiKOKDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:03:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232870AbiKOJ76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:59:58 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D723324081
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:59:53 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id k19so16837500lji.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:59:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=we5icLF5qMbtdyi+O3fAzjYqkzl4E8jlaLkt16W+v8Y=;
-        b=UIzFfmDJK39st7JSIT5v2XYzdCLguFhqQa4GDHWXZgztsgu4AnwMAMhxqvyiTZCKJA
-         9Pddz+uMl5M3gmWWvkAQmHgbGk4v6fzwlMvb1HhuVnJWLRWi3ePD8RtR4hMHXNs0x/Q/
-         g936CDTJp/vP0E4a/DXDiHvGDC52Ji6EY7CirgMQ61VDvrgWTSIXM9BS8KLPMe7ZFYnX
-         AhZVmGK13uu2ppQzD9HJEodFV6Ve8+rbPRBSqr/8vtpfQTdiDvBuFQvJpB3slutHGL8+
-         OYo3dF3L/EIvpNHyKii1kP7RH423eHgJhz+EVBygoO+5bfHkMiGgV7FPwRASQeWB5gN2
-         c3qQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=we5icLF5qMbtdyi+O3fAzjYqkzl4E8jlaLkt16W+v8Y=;
-        b=Ry1q1j2XgCw79EW/GtnSA+E5UmKmybRvHMXMcfB0DFhkhC0RvHEwOkIICvi34SBtdh
-         B5jDPMCp8VFLyAKrtJfBMJehhe+bX/vBEHgcxHSVubyngqUtbToPanprJky/VgGRojku
-         0yAkfa9/TkanPvoDF/2wrqVwnO+6CI+8ILivtEtw6wAWbfBhFbTkdIY5J9sWN1dO8PJg
-         eckPCxygj73zl0pVTq7GIvXxznV8yiLgIaGFSeDZT9FdazMVnL41ytNKdf+3kzWgIipB
-         vU9U0fLlHx3saEO5jsyO7n9tYI2bJ9n8hMubeyaBRjiix5kC7g+jyELLRZRV8cDwMZtn
-         7xJg==
-X-Gm-Message-State: ANoB5pmbM/mHe+4MPVbfcOZtNHc4J9u566l34+PBrPIJPVbG/x8iZGyd
-        8RH4EJM5OKsi2K/H7oUyXTtRSg==
-X-Google-Smtp-Source: AA0mqf5kKzTZwy3o3Cf4h9p/7Ric73X3MaF+6pxIjfDZhcnddYTepNSi9exl7I5gdGM8r5bEH3I+iA==
-X-Received: by 2002:a2e:7217:0:b0:26d:fe34:6dc0 with SMTP id n23-20020a2e7217000000b0026dfe346dc0mr6088126ljc.477.1668506392241;
-        Tue, 15 Nov 2022 01:59:52 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v4-20020a2ea604000000b0027713ef5360sm2434920ljp.71.2022.11.15.01.59.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 01:59:51 -0800 (PST)
-Message-ID: <d88f85af-0de3-ab2a-b507-58ac3f8c5518@linaro.org>
-Date:   Tue, 15 Nov 2022 10:59:50 +0100
+        with ESMTP id S238228AbiKOKDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:03:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADAD240A2;
+        Tue, 15 Nov 2022 02:03:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 425EDB81714;
+        Tue, 15 Nov 2022 10:03:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A8C1C433B5;
+        Tue, 15 Nov 2022 10:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668506597;
+        bh=WyPRetAl/Vae/HPH9Ll9K6wRyR4YuEk9GYqHudIFD7E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZSH5w6UHCZJqfjXX1TAxdENWVSC0VrMs5cyNszWmX0cyKpH128gdzkuzDnuP0jyLt
+         f46acOtrQR1hrU4556xcm4l0/fyCgveXlXkmQKNY/KfZcBOpyssgoRdPMeVF9W3Yaj
+         xtziwgM7NoZRsGD3aWwB97+KKD3G5bQyhMpyRQly6hFgvvkHoGC5R9Y80/GHbUKwYr
+         g9kpkt8c4dKx7Ro2C94QqUIkpaB7TFzKM9HKsI412ie5tQDf9gzpqHNouCPye9W6F0
+         iFg/oLOVRxJfn3W9PwbMdw3p/ilaS/K6AuFQNILMCGXsLovc7xYZqBhW2n9Ei6MX8Q
+         ATwVH06dv1iOg==
+Date:   Tue, 15 Nov 2022 10:03:14 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     andrew@lunn.ch, calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
+        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v4 1/3] regulator: Add of_regulator_bulk_get_all
+Message-ID: <Y3Nj4pA2+WRFvSNd@sirena.org.uk>
+References: <20221115073603.3425396-1-clabbe@baylibre.com>
+ <20221115073603.3425396-2-clabbe@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: sunxi: Add BIQU CB1
-Content-Language: en-US
-To:     Martin Botka <martin.botka@somainline.org>, martin.botka1@gmail.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Conley Lee <conleylee@foxmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <20221114214452.1993744-1-martin.botka@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114214452.1993744-1-martin.botka@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="E5+2TnzAyurkPAg9"
+Content-Disposition: inline
+In-Reply-To: <20221115073603.3425396-2-clabbe@baylibre.com>
+X-Cookie: Ego sum ens omnipotens.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,32 +62,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 22:44, Martin Botka wrote:
-> Add a name & compatible for BIQU CB1
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
-> Changes in V2:
-> Add compatible and name to dt-bindings
-> Changes in V3:
-> None
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> index 3ad1cd50e3fe..d886924023f5 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -151,6 +151,11 @@ properties:
->            - const: roofull,beelink-x2
->            - const: allwinner,sun8i-h3
->  
-> +      - description: Biqu CB1
-> +        items:
-> +          - const: biqu,cb1
 
-Undocumented vendor prefix. Did you run checkpatch?
+--E5+2TnzAyurkPAg9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Tue, Nov 15, 2022 at 07:36:01AM +0000, Corentin Labbe wrote:
 
+> It work exactly like regulator_bulk_get() but instead of working on a
+> provided list of names, it seek all consumers properties matching
+> xxx-supply.
+
+What's the use case - why would a device not know which supplies
+it requires?  This just looks like an invitation to badly written
+consumers TBH.
+
+--E5+2TnzAyurkPAg9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNzY+EACgkQJNaLcl1U
+h9DJ5wf/YCSejgcjszC0Ec4QlSsXfOv1ET9BGiUz8TuNUGAQThsYlKX5Bbk5nfki
+PP3uLpGppXYtVoAprGXivsFMtoMGjaC124+Ixo2dxAQNsvx0w6EeFcIVQByrADs6
+tE3s1jKNq4UPco+DzYAEbQEvIv00aabm1PdbOp3RrrlDwSWgD5Sb8TllN3ulJ2+s
+R9//sUxhyaFM894wpnU2zyUL05Dp+maPYrdt81nz0l5+vAORk8P3L2X69wWlvkrB
+5moncC/AwzJ0mmIIvY5E78cv2vK40BbBJyv61OllcNjErCpxFKO2V64n2Ij5H4Ov
+oCL2X1HnI7kLEXeOWxJ95Wo2gGPGtg==
+=Ax15
+-----END PGP SIGNATURE-----
+
+--E5+2TnzAyurkPAg9--
