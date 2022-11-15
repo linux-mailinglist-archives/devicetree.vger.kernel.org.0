@@ -2,591 +2,2207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1313462AF87
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 00:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C708362AF9F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 00:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbiKOXiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 18:38:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
+        id S229663AbiKOXrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 18:47:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbiKOXiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 18:38:15 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2101.outbound.protection.outlook.com [40.107.113.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42F62A27C;
-        Tue, 15 Nov 2022 15:38:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wtw+WUclIkVKKE9Kz2fKR7lsBn3gaCeVAPzPvS8h3RR8ZW8wis/aPCIPmSoZXaq7bdJwK5NkIky4XmraBJPacc2XT3fhXYcvKl+lTvdhdhPj1UonY8Ino+zv4LU+qKBwwuo+BYmXbcWCrpFu4cV6FQZS4jBThOmBywQoLELg1I4Ssj7DtbiqvVT3fqX0hgvmMNFzL4QhE23OO2hthmv/gU6Ly/5jNsvffpu3N9tsa/Cxy0gt42bmYmyfwddxFQrKFUUhXSrP57/N53yqnHEo7hWzddpP60Gs/qMfx/yL9bJ3Gw0xSsv/TFOdf9IODMhiizJAp0ErchdCp2bV525gLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KxuLH6HTvJ99lMDIe9+ZKFcNFsWiCK41QU/oWCAQQNY=;
- b=QWr5CPa6q8/VkDkfz72JLOSTZ8Rvv3j8ANXPqNitNLEkJubxLxrF53s3OFpT0w4GGnvgT3DSHbW8cEGPxM5PPHm8ziDS+V29NGDE5QFO42i+4EdBof+hUrfc59ah9oWh/UFxk8hPlPJkLOIWolZvgXvGfPn8fBwxtvx3UdSH4EHu7mIPFXgaRXTkt+3ZhOp6YLlFgHMQ3d9bZh/cp1ri/RspBYgu4gMG12vw1hhp6YsC8TgPWtjRRF+Wp092mpccap2AXFjuug/JmkSIZSvf4L/KhhrvqNluc85Vs8WP7Efw7s339mjEWhcF3BLeZQKRCwEWibYnei58acjtgiEbPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KxuLH6HTvJ99lMDIe9+ZKFcNFsWiCK41QU/oWCAQQNY=;
- b=DkYx9GK3SuHf4P0DaqfjFZnEyvJrHt3Ntf+AIyBtIhOa2NOAgtPe2gDGfbMbcuGJKgdadxn4RXpAOfA9YcG13aYn6hT2DAWn0I7FqBtnc9RCNhdoJXAc0cY/n40cd1ppkgx5wC3BARslTBPVjpPjZtrJYWv9DmJr0L6MDRrs0hM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com (2603:1096:604:5b::23)
- by OS3PR01MB8842.jpnprd01.prod.outlook.com (2603:1096:604:17f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Tue, 15 Nov
- 2022 23:38:09 +0000
-Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com
- ([fe80::60f7:f062:7c7c:d289]) by OSAPR01MB3892.jpnprd01.prod.outlook.com
- ([fe80::60f7:f062:7c7c:d289%6]) with mapi id 15.20.5813.018; Tue, 15 Nov 2022
- 23:38:09 +0000
-From:   Alex Helms <alexander.helms.jy@renesas.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com, geert+renesas@glider.be,
-        alexander.helms.jy@renesas.com
-Subject: [PATCH v3 2/2] clk: Add support for Renesas ProXO oscillator
-Date:   Tue, 15 Nov 2022 16:37:49 -0700
-Message-Id: <20221115233749.10161-3-alexander.helms.jy@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221115233749.10161-1-alexander.helms.jy@renesas.com>
-References: <20221115233749.10161-1-alexander.helms.jy@renesas.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0052.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::27) To OSAPR01MB3892.jpnprd01.prod.outlook.com
- (2603:1096:604:5b::23)
+        with ESMTP id S229509AbiKOXrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 18:47:32 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E08317F7;
+        Tue, 15 Nov 2022 15:47:27 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id t25so40128562ejb.8;
+        Tue, 15 Nov 2022 15:47:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6Ve0CQk8EyR0Z+BwDP5D8HqbhgqslyHEaNlg3pw6SYw=;
+        b=b/g7rO2RUHUWNkefGcaRbfgd7Eqfb/GErhoDi8rJMphGyiduNjWI2KaubNuDrlua+0
+         WKI5smgXljD13pv0glWYENAvGKdT+L81DNUikFJffGeejgwrCzTFwlPFNLZmmGQdzfjs
+         P8OfmwOfQ/REq/0/3LgJ8OFaJ245GQtSyxVoD/awUMy0BgvaCENMoEk89JatPaFWcm0c
+         DzVTwrCR5tA68jATVIkUxB6vMhWfuVgLkx8nbBev5vCasdvXQoRtNtu8p8LaFhiuyklB
+         MPXvcZ9bgS+8Y+1N1hjRhE/W2X+LmrNFgN2tzrOwb4sZErg3NgmOnGTyACpG6Gi7Qq4y
+         RcPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Ve0CQk8EyR0Z+BwDP5D8HqbhgqslyHEaNlg3pw6SYw=;
+        b=37R8t1UCGQ44jxI31UIfcS4uGF/eMv4y5Xj4v9DEBzBhrft4SbCa/3g+IRKCk+wTGB
+         8I6ooyubnfR3uiOi++yzRrkGsStu68rGpK4BEtEH8griq2MKfs51q3AQ7zeXSPa5Wmeo
+         4tPJq96FkYD98GXSjemYXt2xxxFkT+EuWHshNH5SAc6RjdvA6WCYUHHy6bbetWuSssyU
+         Kb+3OpoMnHBYIBxQEn/O+8ePDFRZlC0q8AvwPtDmNU6E/fHWEmqYBGNLD6ID3cw5+OVt
+         gwHMK9/cqgMMZxcmv5b+p+i1YmAEf1cyO5xpHSVlQnfJiCPHvNlx/YnHW42qocMzhgoN
+         IXZQ==
+X-Gm-Message-State: ANoB5pk6fz8an7t7t41dlUFq5vDzHf8oMGrPa79WkuzpHqOsGoGCbWI6
+        nfAV2u0BMjmsoaQB3ORC9CI=
+X-Google-Smtp-Source: AA0mqf6EK/reEKC7+v2IQ9eCiY2ATWy/8RY0jaiK3mEjeNBKPVnOEZV4jKWY/+cYFQJXDG7AI6NCiA==
+X-Received: by 2002:a17:906:a148:b0:79e:9d9b:d41f with SMTP id bu8-20020a170906a14800b0079e9d9bd41fmr15789921ejb.404.1668556044124;
+        Tue, 15 Nov 2022 15:47:24 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id sz15-20020a1709078b0f00b0073cf6ec3276sm6076708ejc.207.2022.11.15.15.47.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 15:47:23 -0800 (PST)
+Message-ID: <75cf5f03-fee0-d1e0-e61a-2d08decba525@gmail.com>
+Date:   Wed, 16 Nov 2022 00:47:21 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSAPR01MB3892:EE_|OS3PR01MB8842:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0316ef2c-bf10-42ea-05b3-08dac7627441
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lK43rrcdf4uj1SwnjEAN1f8qP8CZwBccrWxHTHrrFK3uD6dA4q9+mMiVUbGqwRbYEGQQjqYheHN5jhVRl6lwVSlZhHIdRrp0xgUcf3CIBCtfI9pR0e1izRkweOvmHvKgWVbJzDY/q16rTkjBhFuPTqDkrk/dtCze0jlfhqVLCQPj84oeFORVKvgD6DMndDFh2+HwmIj/JKFu9PW5NHsYf4yTDta9eUCysyOhw5+V2enniZ/7LGDaFKdac9oVIxcUrQN2gMrq20xamYe4papnuLEdG7+tkFHNl85LcMcwFz0Tpjs1uKqy0YOqxxaG/Qdh4dB/Qs6XlWdKEsWxtIf+NjnanbRsgJJCSNvn6zKqZHI9B/BHojd33NLciaO7srw0ziKCuAb4sGiyfYuhlAY0AY4vci0vTMPKZju6YE06jCttjpP1+bAYaQIvR68yOSbqnhK+AGn3MDlSewsuBbLtvC6iz3Qffh6kXofAh7K6x5o+rAw2Xv/7Gv1F4CtZJpuH44qFF5tYzlhChyQtseXXsqdTgHFUUURenAfOONRRHVhbek11z/LviDL750Ab4f9qxJgtlGWfvZFFrgMEMxdXgc5dlt4klWD7yvroh2+7lOmae4f69FWBUILabRAEeJPonJ4VXalDh7JdzEP65WdDn9vqgT0pcRh6mYdQwqaZT6uwucp63t+sWxdekqJVTkiPmsaMHl5Du25FM6d5P1+sYFykoI+bcg+3ws9B3ulZLt6kSSpcuIxQuCbYcfuHcNea
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB3892.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(376002)(396003)(366004)(39860400002)(451199015)(1076003)(186003)(36756003)(83380400001)(6486002)(478600001)(6512007)(2616005)(107886003)(6666004)(52116002)(6506007)(86362001)(103116003)(38350700002)(8936002)(38100700002)(41300700001)(2906002)(26005)(5660300002)(30864003)(316002)(8676002)(66476007)(66946007)(66556008)(4326008);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sSLwzu2e1D6R5ruuHCA8blUq3yMC1TFcfvkoXJbuKjqwlV6Cbl3MszcjaQEm?=
- =?us-ascii?Q?lm9S22paGFKnyWK5c5wgxyI+LG3PF2m1L7FnTeuHrqTb8ksGDPXkmbLkBAV7?=
- =?us-ascii?Q?RHMy2mUBD3fukXe+++Wdygd+wXzryKk1s9KLQPXJCShgTDQWj981uAztpiCs?=
- =?us-ascii?Q?CKvQz1I7nWA0tjjDcRMxe/eXZkIaBJCrx8zhhiLaUkjGH3CoDanyNcbP39dy?=
- =?us-ascii?Q?1WlARhFSY4drAZclOOCZGclkDWTD7J5bPaLq8zwkaCNEo4SbaMOvtOYuKsVr?=
- =?us-ascii?Q?acLE0XpWz3g9dFlvpEI+ebcyclqgxb2SSfHAnCyXUGoNFaOF7RQShLw//LY3?=
- =?us-ascii?Q?jnzo9XfDH13ifyg5HcsQPFXEcF5CZNtPYtJBSgvgfRqkJeooh7EurYUXV5Ye?=
- =?us-ascii?Q?RWeFwkiZgeHPhikwYV0PAulKfO8TXojnOuth3OBoLoZPP7/nzxu2KnaXSYnV?=
- =?us-ascii?Q?+aXw/XhRaKaeqH/xQV3J7JpgGnI1uucmTEN0QwPAP+V03BkHAxzg7oYnJa9J?=
- =?us-ascii?Q?siYRWLrhQo5vXvJ1Ug2dYnCg2o0QgZ/IIBImd4RssUkiEbsNn7oAhQhgov66?=
- =?us-ascii?Q?evXoVWaej89H0kI7WrQLuGjtfYMPWEAgZr3bNGmj04yQbCx1ERdA8+DEzUV4?=
- =?us-ascii?Q?EgZPUF4rrs+QnLAK9TRiLQXit/EtyBKQSlQjbjipJEAWljlrko5BL8+Cu3oE?=
- =?us-ascii?Q?M3H5DNmEwzjOgWkdcIshpxZFdIUVdZzFv7HZTA3rkMCFhW6oiflX3lacsQ1F?=
- =?us-ascii?Q?LHJK6e3X9hg7kK09CyVkarbiegUccIlmymFCrggxNolshBpAxWK9Ys1gRkDt?=
- =?us-ascii?Q?q6L605Z7XYRPaSd1ud6Tfhl0rn6HoYVn0zQxR4LXy9e7+mZgbEw//OJpAxLl?=
- =?us-ascii?Q?7Dq8BYsIvHElEsCXzAwMQjP5H/pLXd/bq+pezJ+378nS9FXX8PdK3Y2rEmSj?=
- =?us-ascii?Q?RTmh6xGtJ7jcv1cdqUld6N53DP6ERdLPSkgb/LZ85tQFQtmc/qOt5kahA8C/?=
- =?us-ascii?Q?gQO1LwtAd8D1Wh9XyB2p4U66RblDIv+b7MZL2eW4r1MAvwIkxFxIDHvFgSRu?=
- =?us-ascii?Q?k0nFe3SU/GFaUAodmBZtaotXtF4VlYmVGOPG6X3pHnBW5E92F20VTJ5KIs5u?=
- =?us-ascii?Q?XW9mqxVpYnzCubDgZN8G+NLSJra/DkWuqGd7/cIwCJYPTR7a8ZGm593BhBag?=
- =?us-ascii?Q?2s983Qk5RCxi1gB/G25fkY6wj/NeSp0SxTFhiiTnwQ+47t7BIOUnEwwRHtVS?=
- =?us-ascii?Q?mzdFt1tATiKM3+BjpnrnvFI3mJr3TS3asLYjSJMphtdDOD89LTFKgss1qcAU?=
- =?us-ascii?Q?TGJEfyKRXeCBLnCMwLCwO+Eq+Zs1O7/b5w3h3gLujRmjWPb5CVta2ARx8rXP?=
- =?us-ascii?Q?QpNdkq7OIlg2wdm82klJ+DJdsg7NTf+DOaeWT3s52LhYXy4k/SOsTs+CSGgz?=
- =?us-ascii?Q?6mixsRSiAfaZrrl6gY0q/zXswHbeQcPgudMJLBb/MHOAPiZWdeHtPTPZAh4P?=
- =?us-ascii?Q?ggmfy33y1pERcVoubnaNa/obCVBSzS14A5faB9FHIY0ydUCd47G+/uCMmvm+?=
- =?us-ascii?Q?dqqQGCNseADh01jiD5XoHr5vcROhHnQMR6Zym7akhBd5BLCzVYOCVNfAZjw2?=
- =?us-ascii?Q?pUeBX1fiwbGq3BYqanWOTto=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0316ef2c-bf10-42ea-05b3-08dac7627441
-X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB3892.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 23:38:09.8580
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W+2tQuBf2yxllxdZehzZ3Vhh8XwrgLhKAQHtmHCBorN7tk4r7AfzpeVpaRmB4YeSAWlg+KiKZLSPftSNRJH1DsbQBOOtTpNJypaMz0Y0uKM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8842
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [PATCHv2 3/5] arm64: dts: rockchip: Add base DT for rk3588 SoC
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+References: <20221115161702.163057-1-sebastian.reichel@collabora.com>
+ <20221115161702.163057-4-sebastian.reichel@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20221115161702.163057-4-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ProXO is a programmable ultra-low phase noise quartz-based
-oscillator with a single output. This driver supports changing
-the frequency of the ProXP XP variant.
+Hi,
 
-Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
----
- MAINTAINERS             |   1 +
- drivers/clk/Kconfig     |   7 +
- drivers/clk/Makefile    |   1 +
- drivers/clk/clk-proxo.c | 410 ++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 419 insertions(+)
- create mode 100644 drivers/clk/clk-proxo.c
+Some comments...part 1.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d52a8a5d2..c7f5c0655 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16084,6 +16084,7 @@ RENESAS PROXO CLOCK DRIVER
- M:	Alex Helms <alexander.helms.jy@renesas.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-+F:	drivers/clk/clk-proxo.c
- 
- RESET CONTROLLER FRAMEWORK
- M:	Philipp Zabel <p.zabel@pengutronix.de>
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 8f905df60..31f684d69 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -396,6 +396,13 @@ config COMMON_CLK_K210
- 	help
- 	  Support for the Canaan Kendryte K210 RISC-V SoC clocks.
- 
-+config COMMON_CLK_PROXO
-+	bool "Clock driver for Renesas ProXO"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	help
-+	  Support for the Renesas ProXO oscillator clock.
-+
- source "drivers/clk/actions/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/baikal-t1/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 99941b4a3..be6e28cc4 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_ARCH_NSPIRE)		+= clk-nspire.o
- obj-$(CONFIG_COMMON_CLK_OXNAS)		+= clk-oxnas.o
- obj-$(CONFIG_COMMON_CLK_PALMAS)		+= clk-palmas.o
- obj-$(CONFIG_CLK_LS1028A_PLLDIG)	+= clk-plldig.o
-+obj-$(CONFIG_COMMON_CLK_PROXO)		+= clk-proxo.o
- obj-$(CONFIG_COMMON_CLK_PWM)		+= clk-pwm.o
- obj-$(CONFIG_CLK_QORIQ)			+= clk-qoriq.o
- obj-$(CONFIG_COMMON_CLK_RK808)		+= clk-rk808.o
-diff --git a/drivers/clk/clk-proxo.c b/drivers/clk/clk-proxo.c
-new file mode 100644
-index 000000000..7d4268687
---- /dev/null
-+++ b/drivers/clk/clk-proxo.c
-@@ -0,0 +1,410 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Common clock framework driver for the ProXO family of quartz-based oscillators.
-+ *
-+ * Copyright (c) 2022 Renesas Electronics Corporation
-+ */
-+
-+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <linux/swab.h>
-+
-+/* Most ProXO products have a 50MHz xtal, can be overridden in device tree */
-+#define PROXO_DEFAULT_XTAL	50000000
-+
-+/* VCO range is 6.86 GHz to 8.65 GHz */
-+#define PROXO_FVCO_MIN		6860000000ULL
-+#define PROXO_FVCO_MAX		8650000000ULL
-+
-+/* Output range is 15MHz to 2.1GHz */
-+#define PROXO_FOUT_MIN		15000000UL
-+#define PROXO_FOUT_MAX		2100000000UL
-+
-+#define PROXO_FRAC_BITS		24
-+#define PROXO_FRAC_DIVISOR	BIT(PROXO_FRAC_BITS)
-+
-+/* Disable the doubler if the crystal is > 80MHz */
-+#define PROXO_FDBL_MAX		80000000U
-+
-+#define PROXO_OUTDIV_MIN	4
-+#define PROXO_OUTDIV_MAX	511
-+#define PROXO_FB_MIN		41
-+
-+#define PROXO_REG_FREQ0		0x10
-+#define PROXO_REG_XO		0x51
-+#define PROXO_REG_TRIG		0x62
-+
-+#define OUTDIV_8_MASK		0x80
-+#define FBDIV_INT_8_7_MASK	0x30
-+#define FBDIV_INT_6_0_MASK	0x7f
-+#define DOUBLE_DIS_MASK		0x80
-+#define CP_MASK			0x0e
-+#define PLL_MODE_MASK		0x01
-+
-+enum proxo_model {
-+	PROXO_XP,
-+};
-+
-+enum proxo_pll_mode {
-+	PLL_MODE_FRAC,
-+	PLL_MODE_INT,
-+};
-+
-+struct clk_proxo {
-+	struct clk_hw hw;
-+	struct regmap *regmap;
-+	struct i2c_client *i2c_client;
-+	enum proxo_model model;
-+	u32 fxtal;
-+	u64 fvco;
-+	u32 fout;
-+	u8 double_dis;
-+	u16 fb_int;
-+	u32 fb_frac;
-+	u16 out_div;
-+};
-+
-+#define to_clk_proxo(_hw)	container_of(_hw, struct clk_proxo, hw)
-+
-+static u8 proxo_get_cp_value(u64 fvco)
-+{
-+	if (fvco < 7000000000ULL)
-+		return 5;
-+	else if (fvco >= 7000000000ULL && fvco < 7400000000ULL)
-+		return 4;
-+	else if (fvco >= 7400000000ULL && fvco < 7800000000ULL)
-+		return 3;
-+	else
-+		return 2;
-+}
-+
-+static u64 proxo_calc_fvco(u32 fxtal, u8 double_dis, u16 fb_int, u32 fb_frac)
-+{
-+	u64 fref, fvco;
-+	u8 doubler;
-+
-+	doubler = double_dis ? 1 : 2;
-+	fref = (u64)fxtal * doubler;
-+	fvco = (fref * fb_int) + div_u64(fref * fb_frac, PROXO_FRAC_DIVISOR);
-+
-+	return fvco;
-+}
-+
-+static int proxo_get_divs(struct clk_proxo *proxo, u16 *out_div, u16 *fb_int, u32 *fb_frac,
-+			  u8 *double_dis)
-+{
-+	int ret;
-+	u8 reg[6];
-+	unsigned int xo;
-+
-+	ret = regmap_bulk_read(proxo->regmap, PROXO_REG_FREQ0, reg, ARRAY_SIZE(reg));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(proxo->regmap, PROXO_REG_XO, &xo);
-+	if (ret)
-+		return ret;
-+
-+	*out_div = (u16_get_bits(reg[1], OUTDIV_8_MASK) << 8) + reg[0];
-+	*fb_int = (u16_get_bits(reg[2], FBDIV_INT_8_7_MASK) << 7) + (reg[1] & FBDIV_INT_6_0_MASK);
-+	*fb_frac = ((u32)reg[5] << 16) + ((u32)reg[4] << 8) + reg[3];
-+	*double_dis = !!(xo & DOUBLE_DIS_MASK);
-+
-+	if (*fb_frac > (PROXO_FRAC_DIVISOR >> 1))
-+		(*fb_int)--;
-+
-+	pr_debug("%s - out_div: %u, fb_int: %u, fb_frac: %u, doubler_dis: %u\n",
-+		 __func__, *out_div, *fb_int, *fb_frac, *double_dis);
-+
-+	return ret;
-+}
-+
-+static int proxo_get_defaults(struct clk_proxo *proxo)
-+{
-+	int ret;
-+
-+	ret = proxo_get_divs(proxo, &proxo->out_div, &proxo->fb_int, &proxo->fb_frac,
-+			     &proxo->double_dis);
-+	if (ret)
-+		return ret;
-+
-+	proxo->fvco = proxo_calc_fvco(proxo->fxtal, proxo->double_dis, proxo->fb_int,
-+				      proxo->fb_frac);
-+	proxo->fout = div_u64(proxo->fvco, proxo->out_div);
-+
-+	pr_debug("%s - out_div: %u, fb_int: %u, fb_frac: %u, doubler_dis: %u, fvco: %llu, fout: %u\n",
-+		 __func__, proxo->out_div, proxo->fb_int, proxo->fb_frac, proxo->double_dis,
-+		 proxo->fvco, proxo->fout);
-+
-+	return ret;
-+}
-+
-+static int proxo_calc_divs(unsigned long frequency, struct clk_proxo *proxo, u32 *fout,
-+			   u16 *out_div, u16 *fb_int, u32 *fb_frac, u8 *double_dis)
-+{
-+	int i;
-+	u8 doubler;
-+	u16 out_div_start;
-+	u32 fref;
-+	u64 fvco;
-+	bool found = false, allow_frac = false;
-+
-+	out_div_start = 1 + div64_u64(PROXO_FVCO_MIN, frequency);
-+	doubler = proxo->fxtal <= PROXO_FDBL_MAX ? 2 : 1;
-+	fref = proxo->fxtal * doubler;
-+	*fout = (u32)max(PROXO_FOUT_MIN, min(PROXO_FOUT_MAX, (unsigned long)*fout));
-+	*out_div = PROXO_OUTDIV_MIN;
-+	*fb_int = PROXO_FB_MIN;
-+	*fb_frac = 0;
-+	*double_dis = doubler == 1 ? 1 : 0;
-+
-+retry:
-+	for (i = out_div_start; i <= PROXO_OUTDIV_MAX; ++i) {
-+		*out_div = i;
-+		fvco = frequency * *out_div;
-+		if (fvco > PROXO_FVCO_MAX) {
-+			allow_frac = true;
-+			goto retry;
-+		}
-+		*fb_int = div_u64_rem(fvco, fref, fb_frac);
-+		if (*fb_frac == 0) {
-+			found = true;
-+			break;
-+		}
-+		if (allow_frac) {
-+			*fb_frac = 1 + (u32)div_u64((u64)*fb_frac << PROXO_FRAC_BITS, fref);
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found)
-+		return -EINVAL;
-+
-+	if (fvco < PROXO_FVCO_MIN || fvco > PROXO_FVCO_MAX)
-+		return -EINVAL;
-+
-+	fvco = ((u64)fref * *fb_int) + div_u64((u64)fref * *fb_frac, PROXO_FRAC_DIVISOR);
-+	*fout = div_u64(fvco, *out_div);
-+
-+	return 0;
-+}
-+
-+static int proxo_update_frequency(struct clk_proxo *proxo)
-+{
-+	enum proxo_pll_mode pll_mode;
-+	u8 cp_value;
-+	u16 fb_int;
-+	u8 reg[6];
-+
-+	cp_value = proxo_get_cp_value(proxo->fvco);
-+	pll_mode = proxo->fb_frac == 0 ? PLL_MODE_INT : PLL_MODE_FRAC;
-+	fb_int = proxo->fb_frac > (PROXO_FRAC_DIVISOR >> 1) ? proxo->fb_int + 1 : proxo->fb_int;
-+
-+	reg[0] = proxo->out_div & 0xff;
-+	reg[1] = ((proxo->out_div >> 1) & OUTDIV_8_MASK) + (fb_int & FBDIV_INT_6_0_MASK);
-+	reg[2] = (fb_int >> 3) & FBDIV_INT_8_7_MASK;
-+	reg[2] = u8_replace_bits(reg[2], cp_value, CP_MASK);
-+	reg[2] = u8_replace_bits(reg[2], pll_mode, PLL_MODE_MASK);
-+	reg[3] = proxo->fb_frac & 0xff;
-+	reg[4] = (proxo->fb_frac >> 8) & 0xff;
-+	reg[5] = (proxo->fb_frac >> 16) & 0xff;
-+
-+	return regmap_bulk_write(proxo->regmap, PROXO_REG_FREQ0, reg, ARRAY_SIZE(reg));
-+}
-+
-+static int proxo_set_frequency(struct clk_proxo *proxo, unsigned long frequency)
-+{
-+	int ret;
-+
-+	ret = proxo_calc_divs(frequency, proxo, &proxo->fout, &proxo->out_div, &proxo->fb_int,
-+			      &proxo->fb_frac, &proxo->double_dis);
-+	if (ret)
-+		return ret;
-+
-+	proxo->fvco = proxo_calc_fvco(proxo->fxtal, proxo->double_dis, proxo->fb_int,
-+				      proxo->fb_frac);
-+	proxo->fout = div_u64(proxo->fvco, proxo->out_div);
-+
-+	pr_debug("%s - out_div: %u, fb_int: %u, fb_frac: %u, doubler_dis: %u, fvco: %llu, fout: %u\n",
-+		 __func__, proxo->out_div, proxo->fb_int, proxo->fb_frac,
-+	proxo->double_dis, proxo->fvco, proxo->fout);
-+
-+	proxo_update_frequency(proxo);
-+
-+	/* trigger frequency change */
-+	regmap_write(proxo->regmap, PROXO_REG_TRIG, 0x00);
-+	regmap_write(proxo->regmap, PROXO_REG_TRIG, 0x01);
-+	regmap_write(proxo->regmap, PROXO_REG_TRIG, 0x00);
-+
-+	return ret;
-+}
-+
-+static unsigned long proxo_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-+{
-+	struct clk_proxo *proxo = to_clk_proxo(hw);
-+	int ret;
-+	u8 double_dis;
-+	u16 out_div, fb_int;
-+	u32 fout, fb_frac;
-+	u64 fvco;
-+
-+	ret = proxo_get_divs(proxo, &out_div, &fb_int, &fb_frac, &double_dis);
-+	if (ret) {
-+		dev_err(&proxo->i2c_client->dev, "unable to recalc rate\n");
-+		return 0;
-+	}
-+
-+	fvco = proxo_calc_fvco(proxo->fxtal, double_dis, fb_int, fb_frac);
-+	fout = div_u64(fvco, out_div);
-+
-+	return fout;
-+}
-+
-+static long proxo_round_rate(struct clk_hw *hw, unsigned long rate, unsigned long *parent_rate)
-+{
-+	struct clk_proxo *proxo = to_clk_proxo(hw);
-+	int ret;
-+	u8 double_dis;
-+	u16 out_div, fb_int;
-+	u32 fout, fb_frac;
-+
-+	if (!rate)
-+		return 0;
-+
-+	ret = proxo_calc_divs(rate, proxo, &fout, &out_div, &fb_int, &fb_frac, &double_dis);
-+	if (ret) {
-+		dev_err(&proxo->i2c_client->dev, "unable to round rate\n");
-+		return 0;
-+	}
-+
-+	return fout;
-+}
-+
-+static int proxo_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long parent_rate)
-+{
-+	struct clk_proxo *proxo = to_clk_proxo(hw);
-+
-+	if (rate < PROXO_FOUT_MIN || rate > PROXO_FOUT_MAX) {
-+		dev_err(&proxo->i2c_client->dev, "requested frequency %lu Hz is out of range\n",
-+			rate);
-+		return -EINVAL;
-+	}
-+
-+	return proxo_set_frequency(proxo, rate);
-+}
-+
-+static const struct clk_ops proxo_clk_ops = {
-+	.recalc_rate = proxo_recalc_rate,
-+	.round_rate = proxo_round_rate,
-+	.set_rate = proxo_set_rate,
-+};
-+
-+static const struct i2c_device_id proxo_i2c_id[] = {
-+	{ "proxo-xp", PROXO_XP },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, proxo_i2c_id);
-+
-+static const struct regmap_config proxo_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x63,
-+	.cache_type = REGCACHE_RBTREE,
-+	.use_single_write = true,
-+	.use_single_read = true,
-+};
-+
-+static int proxo_probe(struct i2c_client *client)
-+{
-+	struct clk_proxo *proxo;
-+	struct clk_init_data init;
-+	const struct i2c_device_id *id = i2c_match_id(proxo_i2c_id, client);
-+	int ret;
-+
-+	proxo = devm_kzalloc(&client->dev, sizeof(*proxo), GFP_KERNEL);
-+	if (!proxo)
-+		return -ENOMEM;
-+
-+	init.ops = &proxo_clk_ops;
-+	init.flags = 0;
-+	init.num_parents = 0;
-+	proxo->hw.init = &init;
-+	proxo->i2c_client = client;
-+	proxo->model = id->driver_data;
-+
-+	if (of_property_read_string(client->dev.of_node, "clock-output-names", &init.name))
-+		init.name = client->dev.of_node->name;
-+
-+	if (of_property_read_u32(client->dev.of_node, "renesas,crystal-frequency-hz", &proxo->fxtal))
-+		proxo->fxtal = PROXO_DEFAULT_XTAL;
-+
-+	proxo->regmap = devm_regmap_init_i2c(client, &proxo_regmap_config);
-+	if (IS_ERR(proxo->regmap))
-+		return PTR_ERR(proxo->regmap);
-+
-+	i2c_set_clientdata(client, proxo);
-+
-+	ret = proxo_get_defaults(proxo);
-+	if (ret) {
-+		dev_err(&client->dev, "getting defaults failed\n");
-+		return ret;
-+	}
-+
-+	ret = devm_clk_hw_register(&client->dev, &proxo->hw);
-+	if (ret) {
-+		dev_err(&client->dev, "clock registration failed\n");
-+		return ret;
-+	}
-+
-+	ret = of_clk_add_hw_provider(client->dev.of_node, of_clk_hw_simple_get, &proxo->hw);
-+	if (ret) {
-+		dev_err(&client->dev, "unable to add clk provider\n");
-+		return ret;
-+	}
-+
-+	ret = clk_set_rate_range(proxo->hw.clk, PROXO_FOUT_MIN, PROXO_FOUT_MAX);
-+	if (ret) {
-+		dev_err(&client->dev, "clk_set_rate_range failed\n");
-+		return ret;
-+	}
-+
-+	dev_info(&client->dev, "registered, current frequency %u Hz\n", proxo->fout);
-+
-+	return ret;
-+}
-+
-+static int proxo_remove(struct i2c_client *client)
-+{
-+	of_clk_del_provider(client->dev.of_node);
-+	return 0;
-+}
-+
-+static const struct of_device_id proxo_of_match[] = {
-+	{ .compatible = "renesas,proxo-xp" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, proxo_of_match);
-+
-+static struct i2c_driver proxo_i2c_driver = {
-+	.driver = {
-+		.name = "proxo",
-+		.of_match_table = proxo_of_match,
-+	},
-+	.probe_new = proxo_probe,
-+	.remove = proxo_remove,
-+	.id_table = proxo_i2c_id,
-+};
-+module_i2c_driver(proxo_i2c_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Alex Helms <alexander.helms.jy@renesas.com");
-+MODULE_DESCRIPTION("Renesas ProXO common clock framework driver");
--- 
-2.30.2
+The mainline Rockchip DT files are sort with help of a number of rules:
 
+Heiko's sort rules:
+
+compatible
+reg
+interrupts
+[alphabetical]
+status [if needed]
+
+===
+
+My incomplete list:
+
+For aliases:
+Each board should have its own aliases node that describes
+exactly which of the devices are wired up on that board, and
+in which order.
+Alias numbers should follow the TRM hardware description for UART, I2C, SPI, PWM and timers.
+MMC aliases numbers are based on reg order, availability and without number gap.
+
+For nodes:
+If exists on top: model, compatible and chosen.
+Sort things without reg alphabetical first,
+then sort the rest by reg address.
+
+Inside nodes:
+If exists on top: compatible, reg and interrupts.
+In alphabetical order the required properties.
+Then in alphabetical order the other properties.
+And as last things that start with '#' in alphabetical order.
+Add status below all other properties for SOC internal components with
+any board-specifics.
+Keep an empty line between properties and nodes and between 2 nodes.
+
+Exceptions:
+Sort pinctrl-0 above pinctrl-names, so it stays in line with clock-names
+and dma-names.
+Sort simple-audio-card,name above other simple-audio-card properties.
+Sort regulator-name above other regulator properties.
+Sort regulator-min-microvolt above regulator-max-microvolt.
+
+===
+
+Sort all rk3588 nodes with reg property on reg address.
+
+sort --field-separator="@" -k 2 sort-dt.txt
+
+	sys_grf: syscon@fd58c000 {
+	php_grf: syscon@fd5b0000 {
+	ioc: syscon@fd5f0000 {
+	syssram: sram@fd600000 {
+	cru: clock-controller@fd7c0000 {
+	i2c0: i2c@fd880000 {
+	uart0: serial@fd890000 {
+	pwm0: pwm@fd8b0000 {
+	pwm1: pwm@fd8b0010 {
+	pwm2: pwm@fd8b0020 {
+	pwm3: pwm@fd8b0030 {
+	gmac1: ethernet@fe1c0000 {
+	sdhci: mmc@fe2e0000 {
+	gic: interrupt-controller@fe600000 {
+	dmac0: dma-controller@fea10000 {
+	dmac1: dma-controller@fea30000 {
+	i2c1: i2c@fea90000 {
+	i2c2: i2c@feaa0000 {
+	i2c3: i2c@feab0000 {
+	i2c4: i2c@feac0000 {
+	i2c5: i2c@fead0000 {
+	spi0: spi@feb00000 {
+	spi1: spi@feb10000 {
+	spi2: spi@feb20000 {
+	spi3: spi@feb30000 {
+	uart1: serial@feb40000 {
+	uart2: serial@feb50000 {
+	uart3: serial@feb60000 {
+	uart4: serial@feb70000 {
+	uart5: serial@feb80000 {
+	uart6: serial@feb90000 {
+	uart7: serial@feba0000 {
+	uart8: serial@febb0000 {
+	uart9: serial@febc0000 {
+	pwm4: pwm@febd0000 {
+	pwm5: pwm@febd0010 {
+	pwm6: pwm@febd0020 {
+	pwm7: pwm@febd0030 {
+	pwm8: pwm@febe0000 {
+	pwm9: pwm@febe0010 {
+	pwm10: pwm@febe0020 {
+	pwm11: pwm@febe0030 {
+	pwm12: pwm@febf0000 {
+	pwm13: pwm@febf0010 {
+	pwm14: pwm@febf0020 {
+	i2c6: i2c@fec80000 {
+	i2c7: i2c@fec90000 {
+	i2c8: i2c@feca0000 {
+	dmac2: dma-controller@fed10000 {
+
+On 11/15/22 17:17, Sebastian Reichel wrote:
+> From: Kever Yang <kever.yang@rock-chips.com>
+> 
+> This initial version supports (single core) CPU, dma, interrupts, timers,
+> UART and SDHCI. In short - everything necessary to boot Linux on this
+> system on chip.
+> 
+> The DT is split into rk3588 and rk3588s, which is a reduced version
+> (i.e. with less peripherals) of the former.
+> 
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> [rebase, squash and reword commit message]
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   62 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 1678 +++++++++++++++++++++
+>  2 files changed, 1740 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> new file mode 100644
+> index 000000000000..dd1b66176e53
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include "rk3588s.dtsi"
+> +#include "rk3588-pinctrl.dtsi"
+> +
+
+> +/ {
+> +	aliases {
+> +		ethernet0 = &gmac0;
+> +	};
+Bus aliases are board specific and represent what is actually available
+on headers/pins etc. These do not belong to SoC DTSI.
+
+Comment by Krzysztof:
+https://lore.kernel.org/all/f2652e0e-fb08-efb4-e25a-36a335f0c457@linaro.org/
+
+
+No, not only mmc. UART, I2C, SPI - all of these should go to the board.
+
+Comment by Arnd:
+https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
+
+Each board should have its own aliases node that describes
+exactly which of the devices are wired up on that board, and
+in which order. If there are connectors on the board that
+are labeled in some form, then the aliases are meant to
+match what is written on the board or in its documentation.
+
+> +
+> +	gmac0: ethernet@fe1b0000 {
+> +		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
+> +		reg = <0x0 0xfe1b0000 0x0 0x10000>;
+> +		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "macirq", "eth_wake_irq";
+> +		clocks = <&cru CLK_GMAC_125M>, <&cru CLK_GMAC_50M>,
+> +			 <&cru PCLK_GMAC0>, <&cru ACLK_GMAC0>,
+> +			 <&cru CLK_GMAC0_PTP_REF>;
+> +		clock-names = "stmmaceth", "clk_mac_ref",
+> +			      "pclk_mac", "aclk_mac",
+> +			      "ptp_ref";
+> +		power-domains = <&power RK3588_PD_GMAC>;
+> +		resets = <&cru SRST_A_GMAC0>;
+> +		reset-names = "stmmaceth";
+> +		rockchip,grf = <&sys_grf>;
+> +		rockchip,php-grf = <&php_grf>;
+> +		snps,axi-config = <&gmac0_stmmac_axi_setup>;
+> +		snps,mixed-burst;
+> +		snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
+> +		snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
+> +		snps,tso;
+> +		status = "disabled";
+> +
+> +		mdio0: mdio {
+> +			compatible = "snps,dwmac-mdio";
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +		};
+> +
+> +		gmac0_stmmac_axi_setup: stmmac-axi-config {
+> +			snps,blen = <0 0 0 0 16 8 4>;
+> +			snps,wr_osr_lmt = <4>;
+> +			snps,rd_osr_lmt = <8>;
+> +		};
+> +
+> +		gmac0_mtl_rx_setup: rx-queues-config {
+> +			snps,rx-queues-to-use = <2>;
+> +			queue0 {};
+> +			queue1 {};
+> +		};
+> +
+> +		gmac0_mtl_tx_setup: tx-queues-config {
+> +			snps,tx-queues-to-use = <2>;
+> +			queue0 {};
+> +			queue1 {};
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> new file mode 100644
+> index 000000000000..9a9ea0407636
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -0,0 +1,1678 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> + */
+> +
+
+> +#include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +#include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +#include <dt-bindings/power/rk3588-power.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+
+Sort includes.
+
+> +
+> +/ {
+> +	compatible = "rockchip,rk3588";
+> +
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+
+> +	aliases {
+> +		ethernet1 = &gmac1;
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+> +		serial6 = &uart6;
+> +		serial7 = &uart7;
+> +		serial8 = &uart8;
+> +		serial9 = &uart9;
+> +	};
+
+remove
+
+> +
+
+> +	spll: clock-0 {
+
+Is there a generic node name for clocks ?? Krzysztof ??
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <702000000>;
+> +		clock-output-names = "spll";
+> +	};
+> +
+> +	xin24m: clock-1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xin24m";
+> +	};
+> +
+> +	xin32k: clock-2 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "xin32k";
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu_l0>;
+> +				};
+
+Keep an empty line between properties and nodes and between 2 nodes.
+
+> +				core1 {
+> +					cpu = <&cpu_l1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu_l2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu_l3>;
+> +				};
+> +			};
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&cpu_b0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu_b1>;
+> +				};
+> +			};
+> +			cluster2 {
+> +				core0 {
+> +					cpu = <&cpu_b2>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu_b3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu_l0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0>;
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <530>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUL>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache_l0>;
+> +			#cooling-cells = <2>;
+> +			dynamic-power-coefficient = <228>;
+
+Sort node properties.
+
+> +		};
+> +
+> +		cpu_l1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x100>;
+
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <530>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUL>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache_l1>;
+same
+> +		};
+> +
+> +		cpu_l2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x200>;
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <530>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUL>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache_l2>;
+same
+> +		};
+> +
+> +		cpu_l3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x300>;
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <530>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUL>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&l2_cache_l3>;
+same
+
+
+#cooling-cells and dynamic-power-coefficient for all cpus ??
+
+
+> +		};
+> +
+> +		cpu_b0: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a76";
+> +			reg = <0x400>;
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUB01>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_cache_b0>;
+> +			#cooling-cells = <2>;
+> +			dynamic-power-coefficient = <416>;
+> +		};
+> +
+> +		cpu_b1: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a76";
+> +			reg = <0x500>;
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUB01>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_cache_b1>;
+same
+> +		};
+> +
+> +		cpu_b2: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a76";
+> +			reg = <0x600>;
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUB23>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_cache_b2>;
+> +			#cooling-cells = <2>;
+> +			dynamic-power-coefficient = <416>;
+same
+> +		};
+> +
+> +		cpu_b3: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a76";
+> +			reg = <0x700>;
+
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+> +			clocks = <&scmi_clk SCMI_CLK_CPUB23>;
+> +			cpu-idle-states = <&CPU_SLEEP>;
+> +			i-cache-size = <65536>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <65536>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <256>;
+> +			next-level-cache = <&l2_cache_b3>;
+
+same
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+
+Keep an empty line between properties and nodes and between 2 nodes.
+
+> +			CPU_SLEEP: cpu-sleep {
+> +				compatible = "arm,idle-state";
+
+> +				local-timer-stop;
+
+sort
+
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				entry-latency-us = <100>;
+> +				exit-latency-us = <120>;
+> +				min-residency-us = <1000>;
+> +			};
+> +		};
+> +
+> +		l2_cache_l0: l2-cache-l0 {
+> +			compatible = "cache";
+> +			cache-size = <131072>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_l1: l2-cache-l1 {
+> +			compatible = "cache";
+> +			cache-size = <131072>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_l2: l2-cache-l2 {
+> +			compatible = "cache";
+> +			cache-size = <131072>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_l3: l2-cache-l3 {
+> +			compatible = "cache";
+> +			cache-size = <131072>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+
+> +		l2_cache_b0: l2-cache-b0 {
+> +			compatible = "cache";
+> +			cache-size = <524288>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <1024>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_b1: l2-cache-b1 {
+> +			compatible = "cache";
+> +			cache-size = <524288>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <1024>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_b2: l2-cache-b2 {
+> +			compatible = "cache";
+> +			cache-size = <524288>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <1024>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l2_cache_b3: l2-cache-b3 {
+> +			compatible = "cache";
+> +			cache-size = <524288>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <1024>;
+> +			next-level-cache = <&l3_cache>;
+> +		};
+> +
+> +		l3_cache: l3-cache {
+> +			compatible = "cache";
+> +			cache-size = <3145728>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <4096>;
+> +		};
+
+sort nodes
+
+> +		l2_cache_b0: l2-cache-b0 {
+> +		l2_cache_b1: l2-cache-b1 {
+> +		l2_cache_b2: l2-cache-b2 {
+> +		l2_cache_b3: l2-cache-b3 {
+> +		l2_cache_l0: l2-cache-l0 {
+> +		l2_cache_l1: l2-cache-l1 {
+> +		l2_cache_l2: l2-cache-l2 {
+> +		l2_cache_l3: l2-cache-l3 {
+
+> +	};
+> +
+
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	pmu-a76 {
+> +		compatible = "arm,cortex-a76-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+
+sort nodes
+
+> +
+> +	firmware {
+> +		optee: optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +		};
+> +
+> +		scmi: scmi {
+> +			compatible = "arm,scmi-smc";
+
+> +			shmem = <&scmi_shmem>;
+> +			arm,smc-id = <0x82000010>;
+
+sort
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			scmi_clk: protocol@14 {
+> +				reg = <0x14>;
+
+> +				#clock-cells = <1>;
+
+> +
+
+remove
+
+> +				assigned-clocks = <&scmi_clk SCMI_CLK_CPUB01>,
+> +						  <&scmi_clk SCMI_CLK_CPUB23>;
+> +				assigned-clock-rates = <1200000000>,
+> +						       <1200000000>;
+
+sort properties
+
+> +			};
+> +
+> +			scmi_reset: protocol@16 {
+> +				reg = <0x16>;
+> +				#reset-cells = <1>;
+> +			};
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+
+> +	sram@10f000 {
+
+label ?
+
+> +		compatible = "mmio-sram";
+> +		reg = <0x0 0x0010f000 0x0 0x100>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x0 0x0010f000 0x100>;
+> +
+> +		scmi_shmem: sram@0 {
+> +			compatible = "arm,scmi-shmem";
+> +			reg = <0x0 0x100>;
+> +		};
+> +	};
+> +
+> +	sys_grf: syscon@fd58c000 {
+> +		compatible = "rockchip,rk3588-sys-grf", "syscon";
+> +		reg = <0x0 0xfd58c000 0x0 0x1000>;
+> +	};
+> +
+> +	php_grf: syscon@fd5b0000 {
+> +		compatible = "rockchip,rk3588-php-grf", "syscon";
+> +		reg = <0x0 0xfd5b0000 0x0 0x1000>;
+> +	};
+> +
+> +	ioc: syscon@fd5f0000 {
+> +		compatible = "rockchip,rk3588-ioc", "syscon";
+> +		reg = <0x0 0xfd5f0000 0x0 0x10000>;
+> +	};
+> +
+
+> +	syssram: sram@fd600000 {
+
+sys_sram ??
+
+> +		compatible = "mmio-sram";
+> +		reg = <0x0 0xfd600000 0x0 0x100000>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x0 0xfd600000 0x100000>;
+> +	};
+> +
+> +	cru: clock-controller@fd7c0000 {
+> +		compatible = "rockchip,rk3588-cru";
+> +		rockchip,grf = <&php_grf>;
+> +		reg = <0x0 0xfd7c0000 0x0 0x5c000>;
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +
+> +		assigned-clocks =
+> +			<&cru PLL_PPLL>, <&cru PLL_AUPLL>,
+> +			<&cru PLL_NPLL>, <&cru PLL_GPLL>,
+> +			<&cru ACLK_CENTER_ROOT>,
+> +			<&cru HCLK_CENTER_ROOT>, <&cru ACLK_CENTER_LOW_ROOT>,
+> +			<&cru ACLK_TOP_ROOT>, <&cru PCLK_TOP_ROOT>,
+> +			<&cru ACLK_LOW_TOP_ROOT>, <&cru PCLK_PMU0_ROOT>,
+> +			<&cru HCLK_PMU_CM0_ROOT>, <&cru ACLK_VOP>,
+> +			<&cru ACLK_BUS_ROOT>, <&cru CLK_150M_SRC>,
+> +			<&cru CLK_GPU>;
+> +		assigned-clock-rates =
+> +			<100000000>, <786432000>,
+> +			<850000000>, <1188000000>,
+> +			<702000000>,
+> +			<400000000>, <500000000>,
+> +			<800000000>, <100000000>,
+> +			<400000000>, <100000000>,
+> +			<200000000>, <500000000>,
+> +			<375000000>, <150000000>,
+> +			<200000000>;
+> +	};
+> +
+> +	gmac1: ethernet@fe1c0000 {
+> +		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
+> +		reg = <0x0 0xfe1c0000 0x0 0x10000>;
+> +		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "macirq", "eth_wake_irq";
+> +		clocks = <&cru CLK_GMAC_125M>, <&cru CLK_GMAC_50M>,
+> +			 <&cru PCLK_GMAC1>, <&cru ACLK_GMAC1>,
+> +			 <&cru CLK_GMAC1_PTP_REF>;
+> +		clock-names = "stmmaceth", "clk_mac_ref",
+> +			      "pclk_mac", "aclk_mac",
+> +			      "ptp_ref";
+> +		power-domains = <&power RK3588_PD_GMAC>;
+> +		resets = <&cru SRST_A_GMAC1>;
+> +		reset-names = "stmmaceth";
+> +		rockchip,grf = <&sys_grf>;
+> +		rockchip,php-grf = <&php_grf>;
+> +		snps,axi-config = <&gmac1_stmmac_axi_setup>;
+> +		snps,mixed-burst;
+> +		snps,mtl-rx-config = <&gmac1_mtl_rx_setup>;
+> +		snps,mtl-tx-config = <&gmac1_mtl_tx_setup>;
+> +		snps,tso;
+> +		status = "disabled";
+> +
+> +		mdio1: mdio {
+> +			compatible = "snps,dwmac-mdio";
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +		};
+> +
+> +		gmac1_stmmac_axi_setup: stmmac-axi-config {
+> +			snps,blen = <0 0 0 0 16 8 4>;
+> +			snps,wr_osr_lmt = <4>;
+> +			snps,rd_osr_lmt = <8>;
+> +		};
+> +
+> +		gmac1_mtl_rx_setup: rx-queues-config {
+> +			snps,rx-queues-to-use = <2>;
+> +			queue0 {};
+> +			queue1 {};
+> +		};
+> +
+> +		gmac1_mtl_tx_setup: tx-queues-config {
+> +			snps,tx-queues-to-use = <2>;
+> +			queue0 {};
+> +			queue1 {};
+> +		};
+> +	};
+> +
+> +	sdhci: mmc@fe2e0000 {
+> +		compatible = "rockchip,rk3588-dwcmshc";
+> +		reg = <0x0 0xfe2e0000 0x0 0x10000>;
+> +		interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> +		assigned-clocks = <&cru BCLK_EMMC>, <&cru TMCLK_EMMC>, <&cru CCLK_EMMC>;
+> +		assigned-clock-rates = <200000000>, <24000000>, <200000000>;
+> +		clocks = <&cru CCLK_EMMC>, <&cru HCLK_EMMC>,
+> +			 <&cru ACLK_EMMC>, <&cru BCLK_EMMC>,
+> +			 <&cru TMCLK_EMMC>;
+> +		clock-names = "core", "bus", "axi", "block", "timer";
+> +		resets = <&cru SRST_C_EMMC>, <&cru SRST_H_EMMC>,
+> +			 <&cru SRST_A_EMMC>, <&cru SRST_B_EMMC>,
+> +			 <&cru SRST_T_EMMC>;
+> +		reset-names = "core", "bus", "axi", "block", "timer";
+
+> +		max-frequency = <200000000>;
+
+sort
+
+> +		status = "disabled";
+> +	};
+> +
+> +	gic: interrupt-controller@fe600000 {
+> +		compatible = "arm,gic-v3";
+> +		reg = <0x0 0xfe600000 0 0x10000>, /* GICD */
+> +		      <0x0 0xfe680000 0 0x100000>; /* GICR */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <3>;
+> +		mbi-alias = <0x0 0xfe610000>;
+> +		mbi-ranges = <424 56>;
+> +		msi-controller;
+> +
+> +		ppi-partitions {
+> +			interrupt-partition-0 {
+> +				affinity = <
+> +					&cpu_l0 &cpu_l1 &cpu_l2 &cpu_l3
+> +					&cpu_b0 &cpu_b1 &cpu_b2 &cpu_b3
+> +				>;
+> +			};
+> +		};
+> +	};
+> +
+> +	dmac0: dma-controller@fea10000 {
+> +		compatible = "arm,pl330", "arm,primecell";
+> +		reg = <0x0 0xfea10000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_DMAC0>;
+> +		clock-names = "apb_pclk";
+> +		#dma-cells = <1>;
+
+> +		arm,pl330-periph-burst;
+
+sort
+
+> +	};
+> +
+> +	dmac1: dma-controller@fea30000 {
+> +		compatible = "arm,pl330", "arm,primecell";
+> +		reg = <0x0 0xfea30000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_DMAC1>;
+> +		clock-names = "apb_pclk";
+> +		#dma-cells = <1>;
+
+> +		arm,pl330-periph-burst;
+
+sort
+
+> +	};
+> +
+> +	dmac2: dma-controller@fed10000 {
+> +		compatible = "arm,pl330", "arm,primecell";
+> +		reg = <0x0 0xfed10000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru ACLK_DMAC2>;
+> +		clock-names = "apb_pclk";
+> +		#dma-cells = <1>;
+
+> +		arm,pl330-periph-burst;
+
+sort
+
+> +	};
+> +
+> +	i2c0: i2c@fd880000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfd880000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C0>, <&cru PCLK_I2C0>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c0m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c1: i2c@fea90000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfea90000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C1>, <&cru PCLK_I2C1>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c1m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c2: i2c@feaa0000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfeaa0000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C2>, <&cru PCLK_I2C2>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c2m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c3: i2c@feab0000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfeab0000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C3>, <&cru PCLK_I2C3>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c3m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c4: i2c@feac0000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfeac0000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C4>, <&cru PCLK_I2C4>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c4m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c5: i2c@fead0000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfead0000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C5>, <&cru PCLK_I2C5>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c5m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c6: i2c@fec80000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfec80000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C6>, <&cru PCLK_I2C6>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c6m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c7: i2c@fec90000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfec90000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C7>, <&cru PCLK_I2C7>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c7m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	i2c8: i2c@feca0000 {
+> +		compatible = "rockchip,rk3588-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0x0 0xfeca0000 0x0 0x1000>;
+> +		clocks = <&cru CLK_I2C8>, <&cru PCLK_I2C8>;
+> +		clock-names = "i2c", "pclk";
+> +		interrupts = <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c8m0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
+> +	spi0: spi@feb00000 {
+> +		compatible = "rockchip,rk3588-spi", "rockchip,rk3066-spi";
+> +		reg = <0x0 0xfeb00000 0x0 0x1000>;
+> +		interrupts = <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>;
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +		clocks = <&cru CLK_SPI0>, <&cru PCLK_SPI0>;
+> +		clock-names = "spiclk", "apb_pclk";
+> +		dmas = <&dmac0 14>, <&dmac0 15>;
+> +		dma-names = "tx", "rx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spi0m0_cs0 &spi0m0_cs1 &spi0m0_pins>;
+
+> +		num-cs = <2>;
+
+sort
+
+> +		status = "disabled";
+> +	};
+> +
+> +	spi1: spi@feb10000 {
+> +		compatible = "rockchip,rk3588-spi", "rockchip,rk3066-spi";
+> +		reg = <0x0 0xfeb10000 0x0 0x1000>;
+> +		interrupts = <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>;
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+same
+
+> +		clocks = <&cru CLK_SPI1>, <&cru PCLK_SPI1>;
+> +		clock-names = "spiclk", "apb_pclk";
+> +		dmas = <&dmac0 16>, <&dmac0 17>;
+> +		dma-names = "tx", "rx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spi1m1_cs0 &spi1m1_cs1 &spi1m1_pins>;
+
+> +		num-cs = <2>;
+
+sort
+
+> +		status = "disabled";
+> +	};
+> +
+> +	spi2: spi@feb20000 {
+> +		compatible = "rockchip,rk3588-spi", "rockchip,rk3066-spi";
+> +		reg = <0x0 0xfeb20000 0x0 0x1000>;
+> +		interrupts = <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>;
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+same
+
+> +		clocks = <&cru CLK_SPI2>, <&cru PCLK_SPI2>;
+> +		clock-names = "spiclk", "apb_pclk";
+> +		dmas = <&dmac1 15>, <&dmac1 16>;
+> +		dma-names = "tx", "rx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spi2m2_cs0 &spi2m2_cs1 &spi2m2_pins>;
+
+> +		num-cs = <2>;
+
+sort
+
+> +		status = "disabled";
+> +	};
+> +
+> +	spi3: spi@feb30000 {
+> +		compatible = "rockchip,rk3588-spi", "rockchip,rk3066-spi";
+> +		reg = <0x0 0xfeb30000 0x0 0x1000>;
+> +		interrupts = <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>;
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+same
+
+> +		clocks = <&cru CLK_SPI3>, <&cru PCLK_SPI3>;
+> +		clock-names = "spiclk", "apb_pclk";
+> +		dmas = <&dmac1 17>, <&dmac1 18>;
+> +		dma-names = "tx", "rx";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spi3m1_cs0 &spi3m1_cs1 &spi3m1_pins>;
+
+> +		num-cs = <2>;
+
+sort
+
+> +		status = "disabled";
+> +	};
+> +
+> +	uart0: serial@fd890000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfd890000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>;
+
+> +		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac0 6>, <&dmac0 7>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart0m1_xfer>;
+
+sort all uart properties
+
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm0: pwm@fd8b0000 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfd8b0000 0x0 0x10>;
+
+> +		#pwm-cells = <3>;
+
+Things that start with "#" down the list but above status.
+
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm0m0_pins>;
+> +		clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>;
+> +		clock-names = "pwm", "pclk";
+
+sort all pwm properties
+
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm1: pwm@fd8b0010 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfd8b0010 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm1m0_pins>;
+> +		clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm2: pwm@fd8b0020 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfd8b0020 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm2m0_pins>;
+> +		clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm3: pwm@fd8b0030 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfd8b0030 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm3m0_pins>;
+> +		clocks = <&cru CLK_PMU1PWM>, <&cru PCLK_PMU1PWM>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	uart1: serial@feb40000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb40000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac0 8>, <&dmac0 9>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart1m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart2: serial@feb50000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb50000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac0 10>, <&dmac0 11>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart2m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart3: serial@feb60000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb60000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac0 12>, <&dmac0 13>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart3m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart4: serial@feb70000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb70000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac1 9>, <&dmac1 10>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart4m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart5: serial@feb80000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb80000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac1 11>, <&dmac1 12>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart5m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart6: serial@feb90000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeb90000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac1 13>, <&dmac1 14>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart6m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart7: serial@feba0000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfeba0000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac2 7>, <&dmac2 8>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart7m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart8: serial@febb0000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfebb0000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART8>, <&cru PCLK_UART8>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		dmas = <&dmac2 9>, <&dmac2 10>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart8m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart9: serial@febc0000 {
+> +		compatible = "rockchip,rk3588-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xfebc0000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru SCLK_UART9>, <&cru PCLK_UART9>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+
+> +		dmas = <&dmac2 11>, <&dmac2 12>;
+
+sort all uart properties
+
+dma-names = "tx", "rx";
+
+7 UART7_TX
+8 UART7_RX
+9 UART8_TX
+10 UART8_RX
+11 UART9_TX
+12 UART9_RX
+
+DT and Linux driver support are 2 different things.
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart9m1_xfer>;
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm4: pwm@febd0000 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebd0000 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm4m0_pins>;
+> +		clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm5: pwm@febd0010 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebd0010 0x0 0x10>;
+
+> +		#pwm-cells = <3>;
+
+Things that start with "#" down the list but above status.
+
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm5m0_pins>;
+> +		clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+> +		clock-names = "pwm", "pclk";
+
+Sort all pwm node properties.
+
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm6: pwm@febd0020 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebd0020 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm6m0_pins>;
+> +		clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm7: pwm@febd0030 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebd0030 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm7m0_pins>;
+> +		clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm8: pwm@febe0000 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebe0000 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm8m0_pins>;
+> +		clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm9: pwm@febe0010 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebe0010 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm9m0_pins>;
+> +		clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm10: pwm@febe0020 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebe0020 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm10m0_pins>;
+> +		clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm11: pwm@febe0030 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebe0030 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm11m0_pins>;
+> +		clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm12: pwm@febf0000 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebf0000 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm12m0_pins>;
+> +		clocks = <&cru CLK_PWM3>, <&cru PCLK_PWM3>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm13: pwm@febf0010 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebf0010 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm13m0_pins>;
+> +		clocks = <&cru CLK_PWM3>, <&cru PCLK_PWM3>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm14: pwm@febf0020 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebf0020 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm14m0_pins>;
+> +		clocks = <&cru CLK_PWM3>, <&cru PCLK_PWM3>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pwm15: pwm@febf0030 {
+> +		compatible = "rockchip,rk3588-pwm", "rockchip,rk3328-pwm";
+> +		reg = <0x0 0xfebf0030 0x0 0x10>;
+> +		#pwm-cells = <3>;
+> +		pinctrl-names = "active";
+> +		pinctrl-0 = <&pwm15m0_pins>;
+> +		clocks = <&cru CLK_PWM3>, <&cru PCLK_PWM3>;
+> +		clock-names = "pwm", "pclk";
+> +		status = "disabled";
+> +	};
+> +
+> +	pinctrl: pinctrl {
+> +		compatible = "rockchip,rk3588-pinctrl";
+> +		rockchip,grf = <&ioc>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gpio0: gpio@fd8a0000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x0 0xfd8a0000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO0>, <&cru DBCLK_GPIO0>;
+
+> +
+
+remove empty lines
+
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio1: gpio@fec20000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x0 0xfec20000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+
+> +
+
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio2: gpio@fec30000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x0 0xfec30000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+
+> +
+
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio3: gpio@fec40000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x0 0xfec40000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
+
+> +
+
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio4: gpio@fec50000 {
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0x0 0xfec50000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
+
+> +
+
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 128 32>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pmu: power-management@fd8d8000 {
+> +		compatible = "rockchip,rk3588-pmu", "syscon", "simple-mfd";
+> +		reg = <0x0 0xfd8d8000 0x0 0x400>;
+> +
+> +		power: power-controller {
+> +			compatible = "rockchip,rk3588-power-controller";
+> +			#power-domain-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+
+> +			status = "okay";
+
+remove
+A new node is already okay.
+
+> +
+> +			/* These power domains are grouped by VD_NPU */
+> +			power-domain@RK3588_PD_NPU {
+> +				reg = <RK3588_PD_NPU>;
+
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +				#power-domain-cells = <0>;
+> +
+> +				power-domain@RK3588_PD_NPUTOP {
+> +					reg = <RK3588_PD_NPUTOP>;
+
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +					clocks = <&cru HCLK_NPU_ROOT>,
+> +						 <&cru PCLK_NPU_ROOT>,
+> +						 <&cru CLK_NPU_DSU0>,
+> +						 <&cru HCLK_NPU_CM0_ROOT>;
+> +					pm_qos = <&qos_npu0_mwr>,
+> +						 <&qos_npu0_mro>,
+> +						 <&qos_mcu_npu>;
+
+> +					#power-domain-cells = <0>;
+
+#power-domain-cells = <1>;
+
+This has a subnode.
+
+> +
+> +					power-domain@RK3588_PD_NPU1 {
+> +						reg = <RK3588_PD_NPU1>;
+> +						clocks = <&cru HCLK_NPU_ROOT>,
+> +							 <&cru PCLK_NPU_ROOT>,
+> +							 <&cru CLK_NPU_DSU0>;
+> +						pm_qos = <&qos_npu1>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +					power-domain@RK3588_PD_NPU2 {
+> +						reg = <RK3588_PD_NPU2>;
+> +						clocks = <&cru HCLK_NPU_ROOT>,
+> +							 <&cru PCLK_NPU_ROOT>,
+> +							 <&cru CLK_NPU_DSU0>;
+> +						pm_qos = <&qos_npu2>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +				};
+> +			};
+> +			/* These power domains are grouped by VD_GPU */
+> +			power-domain@RK3588_PD_GPU {
+> +				reg = <RK3588_PD_GPU>;
+> +				clocks = <&cru CLK_GPU>,
+> +					 <&cru CLK_GPU_COREGROUP>,
+> +					 <&cru CLK_GPU_STACKS>;
+> +				pm_qos = <&qos_gpu_m0>,
+> +					 <&qos_gpu_m1>,
+> +					 <&qos_gpu_m2>,
+> +					 <&qos_gpu_m3>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			/* These power domains are grouped by VD_VCODEC */
+> +			power-domain@RK3588_PD_VCODEC {
+> +				reg = <RK3588_PD_VCODEC>;
+
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +				#power-domain-cells = <0>;
+
+#power-domain-cells = <1>;
+
+This has a subnode.
+
+> +
+> +				power-domain@RK3588_PD_RKVDEC0 {
+> +					reg = <RK3588_PD_RKVDEC0>;
+> +					clocks = <&cru HCLK_RKVDEC0>,
+> +						 <&cru HCLK_VDPU_ROOT>,
+> +						 <&cru ACLK_VDPU_ROOT>,
+> +						 <&cru ACLK_RKVDEC0>,
+> +						 <&cru ACLK_RKVDEC_CCU>;
+> +					pm_qos = <&qos_rkvdec0>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_RKVDEC1 {
+> +					reg = <RK3588_PD_RKVDEC1>;
+> +					clocks = <&cru HCLK_RKVDEC1>,
+> +						 <&cru HCLK_VDPU_ROOT>,
+> +						 <&cru ACLK_VDPU_ROOT>,
+> +						 <&cru ACLK_RKVDEC1>;
+> +					pm_qos = <&qos_rkvdec1>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_VENC0 {
+> +					reg = <RK3588_PD_VENC0>;
+
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+Things that start with "#" down the list but above status.
+
+> +					clocks = <&cru HCLK_RKVENC0>,
+> +						 <&cru ACLK_RKVENC0>;
+> +					pm_qos = <&qos_rkvenc0_m0ro>,
+> +						 <&qos_rkvenc0_m1ro>,
+> +						 <&qos_rkvenc0_m2wo>;
+
+> +					#power-domain-cells = <0>;
+
+#power-domain-cells = <1>;
+
+This has a subnode.
+
+> +
+> +					power-domain@RK3588_PD_VENC1 {
+> +						reg = <RK3588_PD_VENC1>;
+> +						clocks = <&cru HCLK_RKVENC1>,
+> +							 <&cru HCLK_RKVENC0>,
+> +							 <&cru ACLK_RKVENC0>,
+> +							 <&cru ACLK_RKVENC1>;
+> +						pm_qos = <&qos_rkvenc1_m0ro>,
+> +							 <&qos_rkvenc1_m1ro>,
+> +							 <&qos_rkvenc1_m2wo>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +				};
+> +			};
+> +			/* These power domains are grouped by VD_LOGIC */
+> +			power-domain@RK3588_PD_VDPU {
+> +				reg = <RK3588_PD_VDPU>;
+
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+Things that start with "#" down the list but above status.
+
+> +				clocks = <&cru HCLK_VDPU_ROOT>,
+> +					 <&cru ACLK_VDPU_LOW_ROOT>,
+> +					 <&cru ACLK_VDPU_ROOT>,
+> +					 <&cru ACLK_JPEG_DECODER_ROOT>,
+> +					 <&cru ACLK_IEP2P0>,
+> +					 <&cru HCLK_IEP2P0>,
+> +					 <&cru ACLK_JPEG_ENCODER0>,
+> +					 <&cru HCLK_JPEG_ENCODER0>,
+> +					 <&cru ACLK_JPEG_ENCODER1>,
+> +					 <&cru HCLK_JPEG_ENCODER1>,
+> +					 <&cru ACLK_JPEG_ENCODER2>,
+> +					 <&cru HCLK_JPEG_ENCODER2>,
+> +					 <&cru ACLK_JPEG_ENCODER3>,
+> +					 <&cru HCLK_JPEG_ENCODER3>,
+> +					 <&cru ACLK_JPEG_DECODER>,
+> +					 <&cru HCLK_JPEG_DECODER>,
+> +					 <&cru ACLK_RGA2>,
+> +					 <&cru HCLK_RGA2>;
+> +				pm_qos = <&qos_iep>,
+> +					 <&qos_jpeg_dec>,
+> +					 <&qos_jpeg_enc0>,
+> +					 <&qos_jpeg_enc1>,
+> +					 <&qos_jpeg_enc2>,
+> +					 <&qos_jpeg_enc3>,
+> +					 <&qos_rga2_mro>,
+> +					 <&qos_rga2_mwo>;
+
+> +				#power-domain-cells = <0>;
+#power-domain-cells = <1>;
+
+This has a subnode.
+
+> +
+> +				power-domain@RK3588_PD_AV1 {
+> +					reg = <RK3588_PD_AV1>;
+> +					clocks = <&cru PCLK_AV1>,
+> +						 <&cru ACLK_AV1>,
+> +						 <&cru HCLK_VDPU_ROOT>;
+> +					pm_qos = <&qos_av1>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_RKVDEC0 {
+> +					reg = <RK3588_PD_RKVDEC0>;
+> +					clocks = <&cru HCLK_RKVDEC0>,
+> +						 <&cru HCLK_VDPU_ROOT>,
+> +						 <&cru ACLK_VDPU_ROOT>,
+> +						 <&cru ACLK_RKVDEC0>;
+> +					pm_qos = <&qos_rkvdec0>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_RKVDEC1 {
+> +					reg = <RK3588_PD_RKVDEC1>;
+> +					clocks = <&cru HCLK_RKVDEC1>,
+> +						 <&cru HCLK_VDPU_ROOT>,
+> +						 <&cru ACLK_VDPU_ROOT>;
+> +					pm_qos = <&qos_rkvdec1>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_RGA30 {
+> +					reg = <RK3588_PD_RGA30>;
+> +					clocks = <&cru ACLK_RGA3_0>,
+> +						 <&cru HCLK_RGA3_0>;
+> +					pm_qos = <&qos_rga3_0>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +			};
+> +			power-domain@RK3588_PD_VOP {
+> +				reg = <RK3588_PD_VOP>;
+
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +				clocks = <&cru PCLK_VOP_ROOT>,
+> +					 <&cru HCLK_VOP_ROOT>,
+> +					 <&cru ACLK_VOP>;
+> +				pm_qos = <&qos_vop_m0>,
+> +					 <&qos_vop_m1>;
+> +				#power-domain-cells = <0>;
+> +
+> +				power-domain@RK3588_PD_VO0 {
+> +					reg = <RK3588_PD_VO0>;
+> +					clocks = <&cru PCLK_VO0_ROOT>,
+> +						 <&cru PCLK_VO0_S_ROOT>,
+> +						 <&cru HCLK_VO0_S_ROOT>,
+> +						 <&cru ACLK_VO0_ROOT>,
+> +						 <&cru HCLK_HDCP0>,
+> +						 <&cru ACLK_HDCP0>,
+> +						 <&cru HCLK_VOP_ROOT>;
+> +					pm_qos = <&qos_hdcp0>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +			};
+> +			power-domain@RK3588_PD_VO1 {
+> +				reg = <RK3588_PD_VO1>;
+> +				clocks = <&cru PCLK_VO1_ROOT>,
+> +					 <&cru PCLK_VO1_S_ROOT>,
+> +					 <&cru HCLK_VO1_S_ROOT>,
+> +					 <&cru HCLK_HDCP1>,
+> +					 <&cru ACLK_HDCP1>,
+> +					 <&cru ACLK_HDMIRX_ROOT>,
+> +					 <&cru HCLK_VO1USB_TOP_ROOT>;
+> +				pm_qos = <&qos_hdcp1>,
+> +					 <&qos_hdmirx>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_VI {
+> +				reg = <RK3588_PD_VI>;
+
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+
+Things that start with "#" down the list but above status.
+
+> +				clocks = <&cru HCLK_VI_ROOT>,
+> +					 <&cru PCLK_VI_ROOT>,
+> +					 <&cru HCLK_ISP0>,
+> +					 <&cru ACLK_ISP0>,
+> +					 <&cru HCLK_VICAP>,
+> +					 <&cru ACLK_VICAP>;
+> +				pm_qos = <&qos_isp0_mro>,
+> +					 <&qos_isp0_mwo>,
+> +					 <&qos_vicap_m0>,
+> +					 <&qos_vicap_m1>;
+> +				#power-domain-cells = <0>;
+> +
+> +				power-domain@RK3588_PD_ISP1 {
+> +					reg = <RK3588_PD_ISP1>;
+> +					clocks = <&cru HCLK_ISP1>,
+> +						 <&cru ACLK_ISP1>,
+> +						 <&cru HCLK_VI_ROOT>,
+> +						 <&cru PCLK_VI_ROOT>;
+> +					pm_qos = <&qos_isp1_mwo>,
+> +						 <&qos_isp1_mro>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +				power-domain@RK3588_PD_FEC {
+> +					reg = <RK3588_PD_FEC>;
+> +					clocks = <&cru HCLK_FISHEYE0>,
+> +						 <&cru ACLK_FISHEYE0>,
+> +						 <&cru HCLK_FISHEYE1>,
+> +						 <&cru ACLK_FISHEYE1>,
+> +						 <&cru PCLK_VI_ROOT>;
+> +					pm_qos = <&qos_fisheye0>,
+> +						 <&qos_fisheye1>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +			};
+> +			power-domain@RK3588_PD_RGA31 {
+> +				reg = <RK3588_PD_RGA31>;
+> +				clocks = <&cru HCLK_RGA3_1>,
+> +					 <&cru ACLK_RGA3_1>;
+> +				pm_qos = <&qos_rga3_1>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_USB {
+> +				reg = <RK3588_PD_USB>;
+> +				clocks = <&cru PCLK_PHP_ROOT>,
+> +					 <&cru ACLK_USB_ROOT>,
+> +					 <&cru HCLK_USB_ROOT>,
+> +					 <&cru HCLK_HOST0>,
+> +					 <&cru HCLK_HOST_ARB0>,
+> +					 <&cru HCLK_HOST1>,
+> +					 <&cru HCLK_HOST_ARB1>;
+> +				pm_qos = <&qos_usb3_0>,
+> +					 <&qos_usb3_1>,
+> +					 <&qos_usb2host_0>,
+> +					 <&qos_usb2host_1>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_GMAC {
+> +				reg = <RK3588_PD_GMAC>;
+> +				clocks = <&cru PCLK_PHP_ROOT>,
+> +					 <&cru ACLK_PCIE_ROOT>,
+> +					 <&cru ACLK_PHP_ROOT>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_PCIE {
+> +				reg = <RK3588_PD_PCIE>;
+> +				clocks = <&cru PCLK_PHP_ROOT>,
+> +					 <&cru ACLK_PCIE_ROOT>,
+> +					 <&cru ACLK_PHP_ROOT>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_SDIO {
+> +				reg = <RK3588_PD_SDIO>;
+> +				clocks = <&cru HCLK_SDIO>,
+> +					 <&cru HCLK_NVM_ROOT>;
+> +				pm_qos = <&qos_sdio>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_AUDIO {
+> +				reg = <RK3588_PD_AUDIO>;
+> +				clocks = <&cru HCLK_AUDIO_ROOT>,
+> +					 <&cru PCLK_AUDIO_ROOT>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +			power-domain@RK3588_PD_SDMMC {
+> +				reg = <RK3588_PD_SDMMC>;
+> +				pm_qos = <&qos_sdmmc>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	qos_gpu_m0: qos@fdf35000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf35000 0x0 0x20>;
+> +	};
+> +
+> +	qos_gpu_m1: qos@fdf35200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf35200 0x0 0x20>;
+> +	};
+> +
+> +	qos_gpu_m2: qos@fdf35400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf35400 0x0 0x20>;
+> +	};
+> +
+> +	qos_gpu_m3: qos@fdf35600 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf35600 0x0 0x20>;
+> +	};
+> +
+> +	qos_rga3_1: qos@fdf36000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf36000 0x0 0x20>;
+> +	};
+> +
+> +	qos_sdio: qos@fdf39000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf39000 0x0 0x20>;
+> +	};
+> +
+> +	qos_sdmmc: qos@fdf3d800 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf3d800 0x0 0x20>;
+> +	};
+> +
+> +	qos_usb3_1: qos@fdf3e000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf3e000 0x0 0x20>;
+> +	};
+> +
+> +	qos_usb3_0: qos@fdf3e200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf3e200 0x0 0x20>;
+> +	};
+> +
+> +	qos_usb2host_0: qos@fdf3e400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf3e400 0x0 0x20>;
+> +	};
+> +
+> +	qos_usb2host_1: qos@fdf3e600 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf3e600 0x0 0x20>;
+> +	};
+> +
+> +	qos_fisheye0: qos@fdf40000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40000 0x0 0x20>;
+> +	};
+> +
+> +	qos_fisheye1: qos@fdf40200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40200 0x0 0x20>;
+> +	};
+> +
+> +	qos_isp0_mro: qos@fdf40400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40400 0x0 0x20>;
+> +	};
+> +
+> +	qos_isp0_mwo: qos@fdf40500 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40500 0x0 0x20>;
+> +	};
+> +
+> +	qos_vicap_m0: qos@fdf40600 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40600 0x0 0x20>;
+> +	};
+> +
+> +	qos_vicap_m1: qos@fdf40800 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf40800 0x0 0x20>;
+> +	};
+> +
+> +	qos_isp1_mwo: qos@fdf41000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf41000 0x0 0x20>;
+> +	};
+> +
+> +	qos_isp1_mro: qos@fdf41100 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf41100 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc0_m0ro: qos@fdf60000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf60000 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc0_m1ro: qos@fdf60200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf60200 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc0_m2wo: qos@fdf60400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf60400 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc1_m0ro: qos@fdf61000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf61000 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc1_m1ro: qos@fdf61200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf61200 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvenc1_m2wo: qos@fdf61400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf61400 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvdec0: qos@fdf62000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf62000 0x0 0x20>;
+> +	};
+> +
+> +	qos_rkvdec1: qos@fdf63000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf63000 0x0 0x20>;
+> +	};
+> +
+> +	qos_av1: qos@fdf64000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf64000 0x0 0x20>;
+> +	};
+> +
+> +	qos_iep: qos@fdf66000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66000 0x0 0x20>;
+> +	};
+> +
+> +	qos_jpeg_dec: qos@fdf66200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66200 0x0 0x20>;
+> +	};
+> +
+> +	qos_jpeg_enc0: qos@fdf66400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66400 0x0 0x20>;
+> +	};
+> +
+> +	qos_jpeg_enc1: qos@fdf66600 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66600 0x0 0x20>;
+> +	};
+> +
+> +	qos_jpeg_enc2: qos@fdf66800 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66800 0x0 0x20>;
+> +	};
+> +
+> +	qos_jpeg_enc3: qos@fdf66a00 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66a00 0x0 0x20>;
+> +	};
+> +
+> +	qos_rga2_mro: qos@fdf66c00 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66c00 0x0 0x20>;
+> +	};
+> +
+> +	qos_rga2_mwo: qos@fdf66e00 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf66e00 0x0 0x20>;
+> +	};
+> +
+> +	qos_rga3_0: qos@fdf67000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf67000 0x0 0x20>;
+> +	};
+> +
+> +	qos_vdpu: qos@fdf67200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf67200 0x0 0x20>;
+> +	};
+> +
+> +	qos_npu1: qos@fdf70000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf70000 0x0 0x20>;
+> +	};
+> +
+> +	qos_npu2: qos@fdf71000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf71000 0x0 0x20>;
+> +	};
+> +
+> +	qos_npu0_mwr: qos@fdf72000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf72000 0x0 0x20>;
+> +	};
+> +
+> +	qos_npu0_mro: qos@fdf72200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf72200 0x0 0x20>;
+> +	};
+> +
+> +	qos_mcu_npu: qos@fdf72400 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf72400 0x0 0x20>;
+> +	};
+> +
+> +	qos_hdcp0: qos@fdf80000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf80000 0x0 0x20>;
+> +	};
+> +
+> +	qos_hdcp1: qos@fdf81000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf81000 0x0 0x20>;
+> +	};
+> +
+> +	qos_hdmirx: qos@fdf81200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf81200 0x0 0x20>;
+> +	};
+> +
+> +	qos_vop_m0: qos@fdf82000 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf82000 0x0 0x20>;
+> +	};
+> +
+> +	qos_vop_m1: qos@fdf82200 {
+> +		compatible = "rockchip,rk3588-qos", "syscon";
+> +		reg = <0x0 0xfdf82200 0x0 0x20>;
+> +	};
+> +
+> +};
+> +
+> +#include "rk3588s-pinctrl.dtsi"
