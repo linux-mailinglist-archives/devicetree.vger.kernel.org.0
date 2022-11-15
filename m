@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0B46295F5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D79E629626
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232816AbiKOKes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:34:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50808 "EHLO
+        id S230093AbiKOKnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:43:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbiKOKeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:34:46 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DC3A197
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:34:44 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id p13-20020a05600c468d00b003cf8859ed1bso9946811wmo.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:34:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=51eyqY8UTV5ywIgQsiHkYmYRRcSexiaefC0ZpHFo2a8=;
-        b=XQhNYO7eEMH/ML6Ek2vWNsT1W4wWTdKTdS4A7rD21XxH+U4UZWYtW4zGE1rAekXTsw
-         jArznlvIdrcFLoYBqFSrc3k9jBKKmtpNPd5VJEerOotNauut47I59zs4LUO9Nofqarru
-         wIbFoP49X4eTJXGdpiwGbzfISJ9J7ng49wYdO7S+wXybs1xV/MA4HkUAM68Hb5Gp1fa5
-         UpMXIwaCuDUi5ZaMFSHDt9uxnEGFv2udkfScPawgxYuEqM0Ch3+qDBZt8Hxzr5n6Xsar
-         1zUbdldqRdKY/QyxoxCUmSlPQSQnIbn/M2lWiuobH/nmms3sAcKDQn5aO0lG0prGddnp
-         faLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=51eyqY8UTV5ywIgQsiHkYmYRRcSexiaefC0ZpHFo2a8=;
-        b=KWNtQkHycvlLAmHWtmOQdOFicn2uy8tkp7FeyH8eJrd7m/HIQNMi6kZPrOI7Tt6+kf
-         w7+Zpq9NfbUSfXxSqd6fcwTvGSld7kNv5CgCzG2Xq3g2sT0lfA80Kwv7zSjIu0zY1K6L
-         U3SuI5LI+zNCt8x1tWPuBta/EcLt/BO3ZEvUcYiiJrUwln9/8dhW2lUgt1jTYbnehbkb
-         40vwLqnLAxlZBKlWmv2U2gdf9boUROuH2dvxfmm37OfTbAp0Q/p5OW9WzibskNc+ZRYH
-         wJZzMNm0Cl7OOwhaY3k5WU1FVP8s8e5Ip5lUURpDsvdLrMAWvfHiKsA2mO7wQM6o3OqD
-         V/tA==
-X-Gm-Message-State: ANoB5pkOANb1yEgsNlZn1BxyZxYzTA0sLYk84OQHcS3eB5A5YOeVMLnb
-        l+2zL5KHQPGHDeO/YzRWnIcbXQ==
-X-Google-Smtp-Source: AA0mqf5wOpmiqEs0k+MjZLqrmjy48gJaqw7MB07dSClzfm9gxF2kTyHEIeCaGZHkqdxGGrgmZhgQDQ==
-X-Received: by 2002:a1c:720f:0:b0:3cf:6f77:375 with SMTP id n15-20020a1c720f000000b003cf6f770375mr92914wmc.102.1668508483147;
-        Tue, 15 Nov 2022 02:34:43 -0800 (PST)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id p5-20020a05600c358500b003c6b9749505sm23742112wmq.30.2022.11.15.02.34.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 02:34:42 -0800 (PST)
-Message-ID: <ba0901a0-56c5-4e60-49b3-356899921934@baylibre.com>
-Date:   Tue, 15 Nov 2022 11:34:41 +0100
+        with ESMTP id S229910AbiKOKnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:43:11 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CD0F25C51;
+        Tue, 15 Nov 2022 02:43:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=B85cuMRk7m/GxUw8KclvU5Eto26IVRvj2aMlFbVY1SU=; b=MS5yRjBVqNX8Cz7qZ346BZzJEO
+        AFtoeic2FvsFskee3v2ZQRh3/japbhQiR5YrJ4/9KArJwNO5p0NU9rR3R+tr+z91ElT5UaRCAhApX
+        sAFKZ2zfPaKEenDMRdaw48TZqmfO4OuYRNApSXCZB5hTQ1CLXomRywfBfV5a/NyF9Z8P3zKeaH2fq
+        gGtqWJdPJ8NNDzxvtNaZv2KeLzuPciybCvHrLlsMmbS3xAL/ViJNW6kSrFMzL9fvhTJjeTW9LXX/a
+        B/xPE0BtvgrPvWWvm5nn0vCGuoAGv7cQ674hyPc57SoaaQCxhMqRdqY/TiUDXjSmVDZ4knGYd/M9e
+        XIGE2K5w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35282)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1outP4-0001vu-6Q; Tue, 15 Nov 2022 10:42:54 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1outP0-0004iD-2t; Tue, 15 Nov 2022 10:42:50 +0000
+Date:   Tue, 15 Nov 2022 10:42:50 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Corentin LABBE <clabbe@baylibre.com>, andrew@lunn.ch,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, pabeni@redhat.com,
+        robh+dt@kernel.org, samuel@sholland.org, wens@csie.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        netdev@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v4 1/3] regulator: Add of_regulator_bulk_get_all
+Message-ID: <Y3NtKgb0LpWs0RkB@shell.armlinux.org.uk>
+References: <20221115073603.3425396-1-clabbe@baylibre.com>
+ <20221115073603.3425396-2-clabbe@baylibre.com>
+ <Y3Nj4pA2+WRFvSNd@sirena.org.uk>
+ <Y3NnirK0bN71IgCo@Red>
+ <Y3NrQffcdGIjS64a@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-To:     krzysztof.kozlowski@linaro.org
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        amergnat@baylibre.com, angelogioacchino.delregno@collabora.com,
-        broonie@kernel.org, chen.zhong@mediatek.com,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        fabien.parent@linaro.org, fparent@baylibre.com,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-rtc@vger.kernel.org, matthias.bgg@gmail.com,
-        mkorpershoek@baylibre.com, pavel@ucw.cz, robh@kernel.org,
-        sean.wang@mediatek.com
-References: <09495553-e563-e12b-056e-bed95531ab6b@linaro.org>
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <09495553-e563-e12b-056e-bed95531ab6b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <Y3NrQffcdGIjS64a@sirena.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, thanks for your help
+On Tue, Nov 15, 2022 at 10:34:41AM +0000, Mark Brown wrote:
+> On Tue, Nov 15, 2022 at 11:18:50AM +0100, Corentin LABBE wrote:
+> > Le Tue, Nov 15, 2022 at 10:03:14AM +0000, Mark Brown a �crit :
+> 
+> > > What's the use case - why would a device not know which supplies
+> > > it requires?  This just looks like an invitation to badly written
+> > > consumers TBH.
+> 
+> > The device know which supply it have, but I found only this way to made all maintainers happy.
+> > See https://lore.kernel.org/netdev/0518eef1-75a6-fbfe-96d8-bb1fc4e5178a@linaro.org/t/#m7a2e012f4c7c7058478811929774ab2af9bfcbf6
+> 
+> Well, it's not making this maintainer happy :/  If we know what
+> PHY is there why not just look up the set of supplies based on
+> the compatible of the PHY?
 
->>>> I checked and it doesn't support it but this needs to be fixed.  >>>> >>>>> What about rest of rtc.yaml schema? >>>>> >>>> >>>> 
-wakeup-source would make sense but the driver doesn't support it yet. 
- >>> >>> The question is about hardware - does hardware support waking 
-up the >>> system via interrupt? This is usually a domain of PMICs which 
-still are >>> powered on when system sleeps. >>> >> >> I'd say that it 
-is possible that a PMIC is able to wake up the system >> with or without 
-having an interrupt wired to the SoC so wakeup-source >> makes sense. We 
-don't need it if it is interrupt only. >
->Then I propose to reference the rtc.yaml.
+It looks to me like this series fetches the regulators before the PHY
+is bound to the driver, so what you're proposing would mean that the
+core PHY code would need a table of all compatibles (which is pretty
+hard to do, they encode the vendor/device ID, not some descriptive
+name) and then a list of the regulator names. IMHO that doesn't scale.
 
-I think I understand my error.
-Actually, the RTC (HW) support the "start-year" feature, then I suggest
-to fix the binding like that:
-
-allOf:
-   - $ref: "rtc.yaml#"
-
-properties:
-   compatible:
-     enum:
-       - mediatek,mt6323-rtc
-       - mediatek,mt6357-rtc
-       - mediatek,mt6358-rtc
-       - mediatek,mt6366-rtc
-       - mediatek,mt6397-rtc
-
-   start-year: true
-
-additionalProperties: false
-
-required:
-   - compatible
-
-examples:
-   - |
-     pmic {
-         rtc {
-             compatible = "mediatek,mt6397-rtc";
-         };
-     };
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
