@@ -2,121 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D3FE629A0A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC17629A1B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:26:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbiKONYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:24:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54514 "EHLO
+        id S230249AbiKON0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:26:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbiKONYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:24:35 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 145BFCE16;
-        Tue, 15 Nov 2022 05:24:32 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 85164100011;
-        Tue, 15 Nov 2022 13:24:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668518671;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=f6fcy6AoSokp3bOroUbPnvTVQrydLqn0tIKHwQ1O4Z8=;
-        b=GFNU2XeCv9u6jVUVPf7qJMQXEpFNt3zpy/7wSoIevQYyR6yA5Cf5Z8mtKsAMRIgOX0eyjc
-        rzJiRFpcmliu5MxWSQ96TysGrCPR0IZCmyO3KDyNo0mC7bKHKSrd6BmZmqPhXHfCyOtotE
-        xvyysg+eHE/4uFpd+Q4p3mXDhqyCZ9YfCZwXur/QXU+GhfotFyDe7S+gWjqFfFoV78f+7j
-        QRWatgQiUSulMgISP8f2FE3RqeGdtODDJ5c4vPpsjOJq5nncHDbiWsp+b5cL0+RmopBb5K
-        kagpX6pj4+jit0VFY73QtD/wAzZ/kMrwp5Z2KNjGSO/PQTLgjjmsGj49llddDA==
-Date:   Tue, 15 Nov 2022 14:24:25 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     kernel test robot <lkp@intel.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230010AbiKON0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:26:36 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E38C13E3F
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:26:35 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id a29so24389380lfj.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:26:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=avm+9lW3Cfqvwcnd4WK23Pkk+Ognl6G/huZdXFKiRVU=;
+        b=GW0GcWh4GtG+/whFF5lRx8Awlwweap1xz9DTUOxMyt3vHTuLcNqqgnKsDvKPCLPgTU
+         zzOCICDWb5fOPfxd12gXlIp8+16GGS2XwyhVkpyr8aCTvd+SLTKrjVm11SKSWGePfreV
+         AwwGHpRz2gGJJIzGlFtjonv5sUuXt+jTwjEd37bizjvv6/FcMeeLg2D2i2skwUEoB1qF
+         1ElL9v9RoJAZjrnu7QX0C4lz+YPGaFi6EDSqyumgQVh/gKpThm0nsvaHZdguzxeIiENb
+         1l5q4lq5Y2OjiU/1W/I1ToySPsQMoU8kUJnGaAkNRw933f5bW+cyBgit7eg763CLKY9v
+         +zmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=avm+9lW3Cfqvwcnd4WK23Pkk+Ognl6G/huZdXFKiRVU=;
+        b=D9jqW3lLMOesi7U5FIP4ZhwJq6OWE6+YDdVkmXPnWBgcl7M4stPc4RWg5+maxX590N
+         uW7x5MhIYRE0eFN40oqOT8eQRiVlcwagzAIKALEqAMmyffJy/5jeeQG+0siguY1lwdz9
+         v3M9xIFk6lyFRM0Urucllt3ZMs9zR0uTwHu/kDvkg6RyYpkoE3vOBwgdN3Fvgb14TI30
+         CKOO39tqsC+6snktlxDC/tu/H0csPj05nOpCJfxpKJK4PYQKqrkm+6LUp+JYMRFZqpYP
+         RRl2qHyFBcc0tUyGBsdtv6TDxUzTYFBJ1kUzX023sIvYunSy1R2D8zR0nsMqwPjSOh0W
+         nYjg==
+X-Gm-Message-State: ANoB5pl5wbL3IkC1mWZLoJ+BQ93Wbduz/7KsIAqy5hn+Mw6YQNVGXX8t
+        QADTnRSDNXeqgtmxyk1gonCTuw==
+X-Google-Smtp-Source: AA0mqf5WkBcirivUyMPkDGRq9mNhSK7jkQk9WOz7hcwygJ7zZtbmCcq0VrnElegqtytyk52Li7RNEg==
+X-Received: by 2002:a05:6512:1115:b0:494:7055:b085 with SMTP id l21-20020a056512111500b004947055b085mr5200955lfg.109.1668518793984;
+        Tue, 15 Nov 2022 05:26:33 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id d13-20020a19f24d000000b0049ad2619becsm2203077lfk.131.2022.11.15.05.26.32
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 15 Nov 2022 05:26:33 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        oe-kbuild-all@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 7/7] MAINTAINERS: add the Renesas RZ/N1 USBF
- controller entry
-Message-ID: <20221115142425.34e0a82d@bootlin.com>
-In-Reply-To: <202211152032.SMRBH7dx-lkp@intel.com>
-References: <20221114111513.1436165-8-herve.codina@bootlin.com>
-        <202211152032.SMRBH7dx-lkp@intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pmk8350: Specify PBS register for PON
+Date:   Tue, 15 Nov 2022 14:26:26 +0100
+Message-Id: <20221115132626.7465-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
+PMK8350 is the first PMIC to require both HLOS and PBS registers for
+PON to function properly (at least in theory, sm8350 sees no change).
+The support for it on the driver side has been added long ago,
+but it has never been wired up. Do so.
 
-On Tue, 15 Nov 2022 20:20:33 +0800
-kernel test robot <lkp@intel.com> wrote:
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> Hi Herve,
->=20
-> I love your patch! Perhaps something to improve:
->=20
-> [auto build test WARNING on geert-renesas-drivers/renesas-clk]
-> [also build test WARNING on usb/usb-testing usb/usb-next usb/usb-linus ge=
-ert-renesas-devel/next linus/master v6.1-rc5 next-20221114]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->=20
-> url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/Add-t=
-he-Renesas-USBF-controller-support/20221114-192136
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-dri=
-vers.git renesas-clk
-> patch link:    https://lore.kernel.org/r/20221114111513.1436165-8-herve.c=
-odina%40bootlin.com
-> patch subject: [PATCH v2 7/7] MAINTAINERS: add the Renesas RZ/N1 USBF con=
-troller entry
-> reproduce:
->         # https://github.com/intel-lab-lkp/linux/commit/2d4ab4c37cc32d822=
-86869f7ec4ee5247354db88
->         git remote add linux-review https://github.com/intel-lab-lkp/linux
->         git fetch --no-tags linux-review Herve-Codina/Add-the-Renesas-USB=
-F-controller-support/20221114-192136
->         git checkout 2d4ab4c37cc32d82286869f7ec4ee5247354db88
->         make menuconfig
->         # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONF=
-IG_WARN_ABI_ERRORS
->         make htmldocs
->=20
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
->=20
-> All warnings (new ones prefixed by >>):
->=20
-> >> Warning: MAINTAINERS references a file that doesn't exist: Documentati=
-on/devicetree/bindings/usb/renesas,usbf.yaml =20
->=20
+diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+index 2730d97ab213..32f5e6af8c11 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+@@ -22,7 +22,8 @@ pmk8350: pmic@PMK8350_SID {
+ 
+ 		pmk8350_pon: pon@1300 {
+ 			compatible = "qcom,pm8998-pon";
+-			reg = <0x1300>;
++			reg = <0x1300>, <0x800>;
++			reg-names = "hlos", "pbs";
+ 
+ 			pon_pwrkey: pwrkey {
+ 				compatible = "qcom,pmk8350-pwrkey";
+-- 
+2.38.1
 
-Oops, I renamed a file and missed the MAINTAINER file update.
-Will be fixed in v3.
-
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
