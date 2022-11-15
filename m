@@ -2,96 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69431629960
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92589629969
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:56:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232338AbiKOMzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 07:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34198 "EHLO
+        id S232817AbiKOM4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 07:56:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbiKOMzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:55:37 -0500
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4FE2C7;
-        Tue, 15 Nov 2022 04:55:36 -0800 (PST)
-Received: by mail-qt1-f169.google.com with SMTP id l2so8599706qtq.11;
-        Tue, 15 Nov 2022 04:55:36 -0800 (PST)
+        with ESMTP id S238046AbiKOM4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:56:23 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF3F100F
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:56:21 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id g12so24319392lfh.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:56:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wjdv2UNqYCuw6JZR6Qee1XPUfMLpqLvp5AsLB1cS+Ik=;
+        b=OwUZ+bRXRknpv394jiyHB6iYAL8S+/dF0QDWH8P7Tycz1AVEtSjbg5cAP8RAF5DPh0
+         KGf6tu9eQ6EEOAtaHOEDCy2veq6w3RXOb77aBzBeZLmZ1kLBqo1MZ0/TepJVSi0CNPj5
+         q2YbOwO3mpUEaRmbwYPi/KO++T/o5sZJgrRa//3iMyxa1/hFejq5/insq9fyAGQzCz1S
+         /Q5bx6oZZygnFE1ZAuUPfTyDQFG76WxKeXqSrC5+DM8T0qCDEJ4PFDm93WvX/KS5kMbX
+         hmf47q3XHnzrgurhmN/e3PrMs48V4rfD1TerZ9ueSXbzmpFxiPSnLoem687ai8D+0Rk5
+         W/aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4nWTUZBps9Z4pbhdUToWGjZ9Vj80wF5upKxd2gOYqwA=;
-        b=m9/fEZ+aE2x4qFzmtPl9rd7ar8LSR752TgbBIsFDVOqNv+jtUF85vrdVx2AaIoNeMz
-         bG7vn116ehVNDWhPh/HfTrEEcCmUVQUhMWLt24I0CvZ7ASM6ErnZs/s4acsjb8wcnv+H
-         +xb8WUFJXElK+blg4BmCxAvQ9/McmTUH99x/gBeK9FQOq2s211nBWGium4WxEofvQukm
-         f4xSs2OaPNxjoS1/cpa/B6kf3V6NOcCg05idrclX6WXTW1Bte/JnV+FIWewn2PkDzL1q
-         2VKDB0eXol7NmZJfuLIs1uY+nczlUs9icBxATd0mwpQ7A3WVz4z4DfU0OhwnDmrdeHMg
-         s3tQ==
-X-Gm-Message-State: ANoB5pm1NtMN+DkFPG1En6OuXCzIbVqHrUFSNelG+lZI1uRkzedOoM+A
-        d7t0IUReFme/nMp1CDTGTAUCY5WmmtnP7w==
-X-Google-Smtp-Source: AA0mqf6v+6umNkgxSkGl9iGFvbVu+vDwLgCbqBtaSI0Tz70TDq7ufQQOamEga6FOf8Vb3fI0uCjePA==
-X-Received: by 2002:ac8:444b:0:b0:3a5:7d:3657 with SMTP id m11-20020ac8444b000000b003a5007d3657mr16314259qtn.500.1668516935837;
-        Tue, 15 Nov 2022 04:55:35 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id e7-20020ac84b47000000b0039953dcc480sm7115805qts.88.2022.11.15.04.55.34
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wjdv2UNqYCuw6JZR6Qee1XPUfMLpqLvp5AsLB1cS+Ik=;
+        b=bWSMm3gn7EUKt8oV1wUOW9mVJC1DyV0bZUFmw2MxUEMwim1l370J+hHn47DB03Rhkd
+         P9nmnZtWqVpfLn+JSZDsv6/YZKGzt7CNtswdu2x3Cjwn7/l2832Xu0U5I3Cx7o5jR7CS
+         cPjBzw0oSRS2XW2IDnPAmvnfUk0fgnuENqH7c5CUDehao4FWBgq+GwUvu9sUiQ8vhIQc
+         VZiu81BNTphpPHmPoPR9rwi1JAOpxWGa/OwKxFKWFHFojI41uuGMaxseTM+TrcnT+CCs
+         ONIPhIU1HF94Gj/Vf/KLudd8n+VeXHM/VsEoILaSqfgKe3fzkPV61Zq2OjS2dnZftt+6
+         STSQ==
+X-Gm-Message-State: ANoB5pkfycCf1/CZsMIdJ34bO3QPqqnGyoWU6g7tpZY/GWwvLK/VkvLH
+        frfUThcjsWfkD496kkpGYnwsPw==
+X-Google-Smtp-Source: AA0mqf6CP8Ur/mJFML2icvGxqrOoUsXzsngCLunz9VxC5g5y+d0aiTC9FJSlSZT9+Iyq9wF5rDUCfA==
+X-Received: by 2002:a05:6512:530:b0:4a4:77a8:45a4 with SMTP id o16-20020a056512053000b004a477a845a4mr5253259lfc.654.1668516980234;
+        Tue, 15 Nov 2022 04:56:20 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v26-20020ac258fa000000b004a8b9c68728sm2206285lfo.105.2022.11.15.04.56.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 04:55:35 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-382f0906929so44610747b3.10;
-        Tue, 15 Nov 2022 04:55:34 -0800 (PST)
-X-Received: by 2002:a81:a085:0:b0:37e:6806:a5f9 with SMTP id
- x127-20020a81a085000000b0037e6806a5f9mr12150361ywg.47.1668516934534; Tue, 15
- Nov 2022 04:55:34 -0800 (PST)
+        Tue, 15 Nov 2022 04:56:19 -0800 (PST)
+Message-ID: <a4c4257b-1467-2ccb-f546-d58c6356a39a@linaro.org>
+Date:   Tue, 15 Nov 2022 13:56:18 +0100
 MIME-Version: 1.0
-References: <20221115124128.1183144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221115124128.1183144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 15 Nov 2022 13:55:22 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVexCsodZcsdb6xYULvJkGbYMLV99EfgFPSAHOp2XKFsg@mail.gmail.com>
-Message-ID: <CAMuHMdVexCsodZcsdb6xYULvJkGbYMLV99EfgFPSAHOp2XKFsg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: adc: renesas,rzg2l-adc: Document
- RZ/Five SoC
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next v2 4/5] dt-bindings: net: qcom,ipa: support
+ skipping GSI firmware load
+Content-Language: en-US
+To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221115113119.249893-1-elder@linaro.org>
+ <20221115113119.249893-5-elder@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115113119.249893-5-elder@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 15, 2022 at 1:51 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The ADC block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-> SoC. "renesas,r9a07g043-adc" compatible string will be used on the RZ/Five
-> SoC so to make this clear, update the comment to include RZ/Five SoC.
->
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-adc" will be used as a fallback on RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 15/11/2022 12:31, Alex Elder wrote:
+> Add a new enumerated value to those defined for the qcom,gsi-loader
+> property.  If the qcom,gsi-loader is "skip", the GSI firmware will
+> already be loaded, so neither the AP nor modem is required to load
+> GSI firmware.
+> 
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This is a friendly reminder during the review process.
 
-Gr{oetje,eeting}s,
+It looks like you received a tag and forgot to add it.
 
-                        Geert
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+If a tag was not added on purpose, please state why and what changed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
