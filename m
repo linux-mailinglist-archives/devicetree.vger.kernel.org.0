@@ -2,118 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8076A629A3B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B9CB629A3E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:30:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbiKON3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:29:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59254 "EHLO
+        id S232302AbiKON37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:29:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238223AbiKON3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:29:34 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2D1F49
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:29:28 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id u2so17496925ljl.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:29:28 -0800 (PST)
+        with ESMTP id S238130AbiKON3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:29:51 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A2F108B;
+        Tue, 15 Nov 2022 05:29:49 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id m14-20020a17090a3f8e00b00212dab39bcdso16933413pjc.0;
+        Tue, 15 Nov 2022 05:29:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m8/571RzD8HO7x98AMQxlDHgd69AGcRueUaHlHGZA2k=;
-        b=jpMA+aALKoFqugZ/DkuZDU0yDcLbzWdAdLvx3bKcWcJ//U9YlKIJvT2cIrb0dvFALa
-         Vdol+cwrROakLQObmfWUefKh3YtiSn7RBeIfeRy/AkVgZ4iOSpSIUqNDkR27/pzHtVz3
-         zHPCF1JqSz91LM3GKf2U+Yu9/ce/ZzwYC2QoVPI+4SVNYN2eYeJNDmV2ZokCwNEbL4PG
-         7B+IvRTKPyyodKgHStyhW9VTSGji+cknjHJYAF+cu3MXKY8JPzINY77xyKaArIcTabmw
-         5qg3F+wPC991MR1+cPNvTCCJ8ynDlsrEG7O0npmzdAoIe8v6T9JwYT3cWCn04lH6CuRI
-         ZcQg==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8xk+OpOZEAXUa3Tyg2mS46z4nyFJq+12Wxup6TV57oo=;
+        b=Jwh3aB+V0BzxXaySqVdjDWDSrUrnMmOHgU1BcepLC9kdfOFndgdB4iv6uRFc7k+dNe
+         YcvZ9NUT6NYQzq7NlAMqUMv0uHW4/zoxHr+4K1rcLVfTJaBR07Si4FHs10ipGtNryS8J
+         E8t3gKTx0RgG/JVff4Ua56QCnkr6s3BEkNFdK6GKcYmvRBOKZIy25jLRj2T14bPIyHgZ
+         rQLsQvwDLWyU4Mo3aq96VkeLWyCLl7E9GQZ+f1TPvtZU2uPiPtHxtLrxD1oKOMkBcTJg
+         uylpUMUy1QfQIQGMkDXQT1rEehWS9hz7xPaaVqysAEWOVmuVPsl5z/+qE8cowIC/Dy1f
+         uEAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m8/571RzD8HO7x98AMQxlDHgd69AGcRueUaHlHGZA2k=;
-        b=Hy8EkVVvq7fB8H0HuNsihnAetCjYn2P9W6UDFWBMWK9dWm72ZgMtb0eSjo5vyEfWd6
-         CkQacAbNc+IceOAJeSt3OKEwb/Q8Z6qUoPBkW/nebK4vV9LuyDd9AdGmNnDzkcKFgDEs
-         PDmvVcyiGvVLzp0htC+gtBfewrY5c5tWJaRTeIlwHDKFGdOgKTWS5FEwpIeEMiKrDGVF
-         wRK05E9y+tiAzI71z9yPByxIPW5D85hPFdZtbJen2FCGtc3u6eywh5wg8ni65kWjDwW2
-         +OTyLaqYuEvkuH45ZnNpFflSXWOJQl1qyi2lzmsTiBYpRM0MVw/1YkXJsOEoe1waTMEw
-         CnrQ==
-X-Gm-Message-State: ANoB5pnhsHYxKyREDKtbMJAaO8Ch9EYPDOb17TezTkQSGH1nSY9Hc5LR
-        AhLOG4VkuTGx+U8IonRE3Qf38w==
-X-Google-Smtp-Source: AA0mqf5lYIIfVeBC99+U3iZHmg7EN30sHOtE2HHltdeEpz34+ahL7J381NXgO+cbaTjJO1jB9Ljdmg==
-X-Received: by 2002:a05:651c:2314:b0:26e:2772:ffab with SMTP id bi20-20020a05651c231400b0026e2772ffabmr5568604ljb.97.1668518967304;
-        Tue, 15 Nov 2022 05:29:27 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o18-20020a2e0c52000000b00277351f7145sm2415833ljd.105.2022.11.15.05.29.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:29:26 -0800 (PST)
-Message-ID: <205120bd-7178-0c2e-b131-e296d3d3cca8@linaro.org>
-Date:   Tue, 15 Nov 2022 14:29:25 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8xk+OpOZEAXUa3Tyg2mS46z4nyFJq+12Wxup6TV57oo=;
+        b=sdUBjX/LgnhyOmZZ8yOEO/4Gj4jkP29BxUS1VTIAsrez7m1aZ+6r2TEew78Lkexve9
+         TLiuwhh3GUydrXXcxce0TmhSur1smLRlzvKqaO/cf09bRNxb7AlRHbZhna7v3Io4cWzk
+         Kqot8h6PxRFiOgYHvAETnmv9+pbnjPKr1maNzgyD8Of0sqyasKaFBueHzTzsWVCxex/K
+         U/nSNr/PpBNCwtxIiQcPVm5x6HaU5+D6DFKRwAJ7B0/JdU3KmMmIeyjh9VL8stP5g6mV
+         h0EO14Ly9/+wmAAx+3LuqLfyCLeLH6y3FDgoiWVW2vPh1nj5ekdRvnHyebj8SrAFV4+e
+         /SmA==
+X-Gm-Message-State: ANoB5pkV4mga8Ksv77f3dkyAKt1rwntQa8ALJYl0oBfh+HH3lTw2yD/u
+        PY0jI9wBnLMGb/41d3VdKs4=
+X-Google-Smtp-Source: AA0mqf5odsnNn6PmZPgMQGKC1R7U+FfL4zlUUlWIDd5CUb3EUGbqei55Lf+V3rZ1sajQcAeYCJyhVw==
+X-Received: by 2002:a17:90a:fd12:b0:218:494d:e9d2 with SMTP id cv18-20020a17090afd1200b00218494de9d2mr605916pjb.50.1668518988996;
+        Tue, 15 Nov 2022 05:29:48 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id k13-20020a170902ce0d00b0017f5ad327casm9787344plg.103.2022.11.15.05.29.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 05:29:48 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 15 Nov 2022 05:29:47 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: watchdog: gpio: Convert bindings to YAML
+Message-ID: <20221115132947.GB4189373@roeck-us.net>
+References: <20221107160338.27910-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [EXT] Re: [PATCH v3 00/10] Initial support for Cadence
- MHDP(HDMI/DP) for i.MX8MQ
-Content-Language: en-US
-To:     Sandor Yu <sandor.yu@nxp.com>, Jani Nikula <jani.nikula@intel.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "lyude@redhat.com" <lyude@redhat.com>,
-        "javierm@redhat.com" <javierm@redhat.com>,
-        "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "maxime@cerno.tech" <maxime@cerno.tech>,
-        "penguin-kernel@I-love.SAKURA.ne.jp" 
-        <penguin-kernel@I-love.SAKURA.ne.jp>,
-        Oliver Brown <oliver.brown@nxp.com>
-References: <cover.1667911321.git.Sandor.yu@nxp.com>
- <87iljp8u4r.fsf@intel.com>
- <PAXPR04MB9448612AD6C7744B7C706D6FF43F9@PAXPR04MB9448.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB9448612AD6C7744B7C706D6FF43F9@PAXPR04MB9448.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221107160338.27910-1-marex@denx.de>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 14:50, Sandor Yu wrote:
-> Run get_maintainer.pl for patch 1, 
-> Your email address is list as follow,
-> Jani Nikula <jani.nikula@intel.com> (commit_signer:2/8=25%)
+On Mon, Nov 07, 2022 at 05:03:38PM +0100, Marek Vasut wrote:
+> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
 > 
-> And I add the email address that comment as "commit_signer" into Cc list.
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-That's not a maintainer entry, but contributor. No need to Cc occasional
-contributors, except people interested in the driver.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Best regards,
-Krzysztof
-
+> ---
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: linux-watchdog@vger.kernel.org
+> To: devicetree@vger.kernel.org
+> ---
+> V2: - Add missing required: properties
+>     - Drop quotes around ref: referenced schema file name
+> V3: - Add Guenter as maintainer of the bindings
+>     - Add RB from Rob
+> ---
+>  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 -----------
+>  .../bindings/watchdog/linux,wdt-gpio.yaml     | 47 +++++++++++++++++++
+>  2 files changed, 47 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+> deleted file mode 100644
+> index 198794963786b..0000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* GPIO-controlled Watchdog
+> -
+> -Required Properties:
+> -- compatible: Should contain "linux,wdt-gpio".
+> -- gpios: From common gpio binding; gpio connection to WDT reset pin.
+> -- hw_algo: The algorithm used by the driver. Should be one of the
+> -  following values:
+> -  - toggle: Either a high-to-low or a low-to-high transition clears
+> -    the WDT counter. The watchdog timer is disabled when GPIO is
+> -    left floating or connected to a three-state buffer.
+> -  - level: Low or high level starts counting WDT timeout,
+> -    the opposite level disables the WDT. Active level is determined
+> -    by the GPIO flags.
+> -- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
+> -
+> -Optional Properties:
+> -- always-running: If the watchdog timer cannot be disabled, add this flag to
+> -  have the driver keep toggling the signal without a client. It will only cease
+> -  to toggle the signal when the device is open and the timeout elapsed.
+> -
+> -Example:
+> -	watchdog: watchdog {
+> -		/* ADM706 */
+> -		compatible = "linux,wdt-gpio";
+> -		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
+> -		hw_algo = "toggle";
+> -		hw_margin_ms = <1600>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> new file mode 100644
+> index 0000000000000..c729c96a5dc75
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/linux,wdt-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO-controlled Watchdog
+> +
+> +maintainers:
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +properties:
+> +  compatible:
+> +    const: linux,wdt-gpio
+> +
+> +  gpios:
+> +    description: gpio connection to WDT reset pin
+> +    maxItems: 1
+> +
+> +  hw_algo:
+> +    description: The algorithm used by the driver.
+> +    enum: [ level, toggle ]
+> +
+> +  hw_margin_ms:
+> +    description: Maximum time to reset watchdog circuit (milliseconds).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - gpios
+> +  - hw_algo
+> +  - hw_margin_ms
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    watchdog {
+> +        compatible = "linux,wdt-gpio";
+> +        gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
+> +        hw_algo = "toggle";
+> +        hw_margin_ms = <1600>;
+> +    };
+> -- 
+> 2.35.1
+> 
