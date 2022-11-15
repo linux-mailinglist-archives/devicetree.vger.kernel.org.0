@@ -2,401 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F18EF629542
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E7962955C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:11:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbiKOKHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56806 "EHLO
+        id S238228AbiKOKLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:11:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiKOKG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:06:57 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBC5C0C
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:06:55 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5so9317624wmo.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:06:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=r6J2lsA0Wo197QAgdKxOXmtdQ23amoC9lDrXaGdR/FQ=;
-        b=RXsBzvZsf7KCOSfh2YF3gb4x2ca7GWci0hQ80sX9RbhHT0CwRxVHX3aQ7JsEYsP4yJ
-         U/xYGh3/K7RWX/Z4mMJ+P8hRuq9piViCBeOjdPvIrG00e24ltWTKqHjhdFyCT+h6rLXG
-         fKrOM0rLMIUVZ1SbWNsBTIgFd3iWhwHGynymr64zu6Zn+QS1pV8R9VuKDQ05Bce/aOzj
-         T8g5Aj1qx4lWXp75KkZSs8T50h6iNEXF8hA5NdjSIwy28GcOXsSeT6fkwCR1znmNI5cb
-         ZISNz96aGCWleN8yu/LTUdO0tlUNSIdQ0SSulTXnI4KTrzIUzsQTVvZujhy5N2IBc2Qf
-         oNgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r6J2lsA0Wo197QAgdKxOXmtdQ23amoC9lDrXaGdR/FQ=;
-        b=yUHing7rXTAQSb1XGxa6j1OfihTZMaYS8AcXFzHY9IYnB1ETq00JuNi9pKRpvm/+8v
-         zxTxSYyJEZu8fVmHN42ZEWh5rcNF2oU5L/dAd9iYyOnCnmcKRxfGrZ1DEe4wmopznfNw
-         jkhyLqBNg2UNw5Ghh+J63IVRx2rPrmlKyUjYtJJal04ZsVjOx72xZsUopGfHaHrdRDi3
-         hYOP/g1bZslb00qtndIc6vkxx28tO8lqccOnuB/Nd+VGxqyy/3BJ0g5uYsAfOXnJQrDI
-         KoQu8aKkoJHGD6tQqPESGSjGqbHnmzYTCaJ7QLycJmNsgsMMzTOcz2Hs7+nTT/ByxXt4
-         rcdg==
-X-Gm-Message-State: ANoB5pmDgUJmx2dHV7ItpxUf2zkOyZPJuVU3q60nD4y8cRRQSnhiMUw3
-        nw4zVxhUBUbIFilPqYuq2aURuw==
-X-Google-Smtp-Source: AA0mqf60kkOnsL2coIZUUusLLQoO8xcZuEF7Ejs909LN8vxM5+59flaYZZSPiG41TJq6qWFXdwGk3w==
-X-Received: by 2002:a05:600c:3b27:b0:3cf:6263:bfc5 with SMTP id m39-20020a05600c3b2700b003cf6263bfc5mr196888wms.137.1668506814125;
-        Tue, 15 Nov 2022 02:06:54 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id o7-20020a05600c4fc700b003a6125562e1sm16199370wmq.46.2022.11.15.02.06.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:06:53 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 15 Nov 2022 11:06:47 +0100
-Subject: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq bindings to
- dt-schema
+        with ESMTP id S238182AbiKOKLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:11:36 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF741F0B;
+        Tue, 15 Nov 2022 02:11:34 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2E6E266023A6;
+        Tue, 15 Nov 2022 10:11:32 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668507093;
+        bh=kZb3JWtliFai/b1ZuQh7QxCIbxt8MwDeQ3HbQ09qJuE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=U0GScTKQsbrxt3MWYMhL54sVhSRfyw38v9sRjI2VyQ4ET0WN36mQkKEwK1L0HB452
+         fRR2bNX6T6NwQf/4RGa8Wy1FEh5km1KIP4suzEt8ducXJsDDIwgk7cKKn48jqYzPlw
+         eZ0DaQc8OcggEK6DmQIb1UNbaR9u+JZZnMoYgwgJyT8QUfWhHOK0pXAljpbGBgsKXv
+         1pS7FDxTJ2rUsKToB9dKPfBfGNrttPnB5Y/on/fCosmsYwdw7jTiPLlwQkVXhNW860
+         CrMMA/VkIV1UAWxv8wiVGU39rFbeS2s668Wuzc4EukrJ3mi/YPvPhRCmJQOAPtDtge
+         FOUpCVK+J0oUw==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        luca@z3ntu.xyz, a39.skl@gmail.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v3 0/6] Add support for Qualcomm's legacy IOMMU v2
+Date:   Tue, 15 Nov 2022 11:11:16 +0100
+Message-Id: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-gpio@vger.kernel.org
-X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Semtech SX150Xq bindings to dt-schemas, add necessary
-bindings documentation to cover all differences between HW variants
-and current bindings usage.
+This series adds support for handling "v2" firmware's IOMMU, found
+on at least MSM8956 and MSM8976 (some other SoCs also need the same
+but I honestly don't remember which ones precisely).
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-To: Linus Walleij <linus.walleij@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-gpio@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
----
+This is strictly required to get functional IOMMUs on these SoCs.
+
+I'm sorry for not performing a much needed schema conversion on
+qcom,iommu.txt, but I really didn't have time to do that :-(
+
+This series was tested on Sony Xperia X and X Compact (MSM8956):
+ADSP, LPASS, Venus, MSS, MDP and GPU are happy :-)
+
+
 Changes in v3:
-- Resent with missing To: Linus Walleij
-- Link to v2: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v2-0-a4a5b8eecc7b@linaro.org
+ - Removed useless FSRRESTORE reset and definition as pointed
+   out in Robin Murphy's review
+ - Fixed qcom,iommu.txt changes: squashed MSM8976 compatible
+   string addition with msm-iommu-v2 generics addition
 
 Changes in v2:
-- fixed rob comments
-- added rob's Reviewed-by
-- Link to v1: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v1-0-0c26649b637c@linaro.org
----
- .../devicetree/bindings/pinctrl/pinctrl-sx150x.txt |  72 -------
- .../bindings/pinctrl/semtech,sx1501q.yaml          | 208 +++++++++++++++++++++
- 2 files changed, 208 insertions(+), 72 deletions(-)
+ - Added back Marijn's notes (sorry man!)
+ - Added ARM_SMMU_CB_FSRRESTORE definition
+ - Changed context bank reset to properly set FSR and FSRRESTORE
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-sx150x.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-sx150x.txt
-deleted file mode 100644
-index 4023bad2fe39..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-sx150x.txt
-+++ /dev/null
-@@ -1,72 +0,0 @@
--SEMTECH SX150x GPIO expander bindings
--
--Please refer to pinctrl-bindings.txt, ../gpio/gpio.txt, and
--../interrupt-controller/interrupts.txt for generic information regarding
--pin controller, GPIO, and interrupt bindings.
--
--Required properties:
--- compatible: should be one of :
--			"semtech,sx1501q",
--			"semtech,sx1502q",
--			"semtech,sx1503q",
--			"semtech,sx1504q",
--			"semtech,sx1505q",
--			"semtech,sx1506q",
--			"semtech,sx1507q",
--			"semtech,sx1508q",
--			"semtech,sx1509q".
--
--- reg: The I2C slave address for this device.
--
--- #gpio-cells: Should be 2. The first cell is the GPIO number and the
--		second cell is used to specify optional parameters:
--		bit 0: polarity (0: normal, 1: inverted)
--
--- gpio-controller: Marks the device as a GPIO controller.
--
--Optional properties :
--- interrupts: Interrupt specifier for the controllers interrupt.
--
--- interrupt-controller: Marks the device as a interrupt controller.
--
--- semtech,probe-reset: Will trigger a reset of the GPIO expander on probe,
--		only for sx1507q, sx1508q and sx1509q
--
--The GPIO expander can optionally be used as an interrupt controller, in
--which case it uses the default two cell specifier.
--
--Required properties for pin configuration sub-nodes:
-- - pins: List of pins to which the configuration applies.
--
--Optional properties for pin configuration sub-nodes:
------------------------------------------------------
-- - bias-disable: disable any pin bias, except the OSCIO pin
-- - bias-pull-up: pull up the pin, except the OSCIO pin
-- - bias-pull-down: pull down the pin, except the OSCIO pin
-- - bias-pull-pin-default: use pin-default pull state, except the OSCIO pin
-- - drive-push-pull: drive actively high and low
-- - drive-open-drain: drive with open drain only for sx1507q, sx1508q and sx1509q and except the OSCIO pin
-- - output-low: set the pin to output mode with low level
-- - output-high: set the pin to output mode with high level
--
--Example:
--
--	i2c0gpio-expander@20{
--		#gpio-cells = <2>;
--		#interrupt-cells = <2>;
--		compatible = "semtech,sx1506q";
--		reg = <0x20>;
--		interrupt-parent = <&gpio_1>;
--		interrupts = <16 0>;
--
--		gpio-controller;
--		interrupt-controller;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&gpio1_cfg_pins>;
--
--		gpio1_cfg_pins: gpio1-cfg {
--			pins = "gpio1";
--			bias-pull-up;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-new file mode 100644
-index 000000000000..df429a396ba3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/semtech,sx1501q.yaml
-@@ -0,0 +1,208 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright 2022 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/semtech,sx1501q.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Semtech SX150x GPIO expander
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - semtech,sx1501q
-+      - semtech,sx1502q
-+      - semtech,sx1503q
-+      - semtech,sx1504q
-+      - semtech,sx1505q
-+      - semtech,sx1506q
-+      - semtech,sx1507q
-+      - semtech,sx1508q
-+      - semtech,sx1509q
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  semtech,probe-reset:
-+    description: Will trigger a reset of the GPIO expander on probe
-+    type: boolean
-+
-+patternProperties:
-+  '-cfg$':
-+    type: object
-+    properties:
-+      pins: true
-+
-+      bias-disable: true
-+      bias-pull-up: true
-+      bias-pull-down: true
-+      bias-pull-pin-default: true
-+      drive-push-pull: true
-+      output-low: true
-+      output-high: true
-+      drive-open-drain: true
-+
-+    required:
-+      - pins
-+
-+    allOf:
-+      - $ref: "pincfg-node.yaml#"
-+      - $ref: "pinmux-node.yaml#"
-+      - if:
-+          properties:
-+            pins:
-+              contains:
-+                const: oscio
-+        then:
-+          properties:
-+            bias-disable: false
-+            bias-pull-up: false
-+            bias-pull-down: false
-+            bias-pull-pin-default: false
-+            drive-open-drain: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#gpio-cells'
-+  - gpio-controller
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - semtech,sx1507q
-+                - semtech,sx1508q
-+                - semtech,sx1509q
-+    then:
-+      properties:
-+        semtech,probe-reset: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1501q
-+              - semtech,sx1504q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^gpio[0-3]$'
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1502q
-+              - semtech,sx1505q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^gpio[0-7]$'
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - semtech,sx1503q
-+              - semtech,sx1506q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^gpio[0-15]$'
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: semtech,sx1507q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^(oscio|gpio[0-3])$'
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: semtech,sx1508q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^(oscio|gpio[0-7])$'
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: semtech,sx1509q
-+    then:
-+      patternProperties:
-+        '-cfg$':
-+          properties:
-+            pins:
-+              items:
-+                pattern: '^(oscio|gpio[0-15])$'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c@1000 {
-+        reg = <0x1000 0x80>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pinctrl@20 {
-+            compatible = "semtech,sx1501q";
-+            reg = <0x20>;
-+
-+            #gpio-cells = <2>;
-+            #interrupt-cells = <2>;
-+
-+            interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-+
-+            gpio-controller;
-+            interrupt-controller;
-+
-+            gpio1-cfg {
-+                  pins = "gpio1";
-+                  bias-pull-up;
-+            };
-+        };
-+    };
+AngeloGioacchino Del Regno (6):
+  dt-bindings: iommu: qcom,iommu: Document qcom,ctx-num property
+  iommu/qcom: Use the asid read from device-tree if specified
+  iommu/qcom: Properly reset the IOMMU context
+  iommu/qcom: Index contexts by asid number to allow asid 0
+  dt-bindings: iommu: qcom,iommu: Document QSMMUv2 and MSM8976
+    compatibles
+  iommu/qcom: Add support for QSMMUv2 and QSMMU-500 secured contexts
 
----
-base-commit: 4fe89d07dcc2804c8b562f6c7896a45643d34b2f
-change-id: 20221005-mdm9615-sx1509q-yaml-7cfabf896fff
+ .../devicetree/bindings/iommu/qcom,iommu.txt  |  9 +++
+ drivers/iommu/arm/arm-smmu/qcom_iommu.c       | 78 +++++++++++++++----
+ 2 files changed, 70 insertions(+), 17 deletions(-)
 
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.38.1
+
