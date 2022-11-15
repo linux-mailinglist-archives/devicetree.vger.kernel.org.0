@@ -2,164 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0CB6299FE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3713E629A06
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:23:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbiKONXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:23:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52560 "EHLO
+        id S238204AbiKONXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:23:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbiKONXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:23:05 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391611DDDE
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:02 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id c25so17480886ljr.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:02 -0800 (PST)
+        with ESMTP id S237977AbiKONXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:23:46 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C604611A39
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:42 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id bp15so24313745lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/o/3zwA1NwkP3vmamqHJzmINORKwtRnCyTK8X6rmfAY=;
-        b=Fp/yh30hTCyxhHXOGgmHXKUy+b/GnFmVdNFACkGhNIF4QJas8UQyMBe0ZXMkaGc9hv
-         RPBIgtKdUwfecY2HmklmKGh6a5yvsqJjZYcSwkPVTjJAjNpEh+nGKAu7SlqXd0GEQoj1
-         S7aQZxTwySUt18174hxlfphLdUzzrazFROeVor69sXxnd8gyl/l1IeDVai4jV7IcTVKC
-         E7+0k7S3W4gKClg5ZFqn7dD2I2PNoNTU/l06oUwBtXZwibpL2YPpVgYw20ixrSlRoXj0
-         kOdMOj0/aVJs9BzWrrZx81ASunCXeipCjuH4qxgtDSdGMppq37i1ynC/yLNMKo31DYlc
-         1rdQ==
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FqH00M5tmI+hJaxcTJuo6fH1GrWWsoOr/MknXsui2eE=;
+        b=Nltim8rZvpTvTZ7pTQ+/8Gx82aBXz5lw5ke1QBpq3c+LocGqtCtn1/6Stckq+Il3zV
+         5ruuF/Zqqjx4K9dLBDERJDofKCMxQ9ufaPTL9SFIUGO0wRyG5qrAt9ihgo6fQduY2fTi
+         TuYCM7r61DP2vrSEGfsF1W1mk3hBrZwNrnO751Pi0ExY1UW47kjy3Qmrctr0IEdgabTd
+         +h1H/5wtUK8b7DsKZ028xikl8tyFKr7zj8a4r43m2RTGoW+RhaygRJWL7C+QPruO/k+U
+         g19v1kZYLqb6PqnECKVDKoO9fz4HVwfPoD4hR+R50WlQAdCtbg9PztoCOccxW9RCl0yK
+         0m/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/o/3zwA1NwkP3vmamqHJzmINORKwtRnCyTK8X6rmfAY=;
-        b=W7H/kS/65Xl2jyJZ1XK8lByCDN1aMgbByekTmO/TWal+4+ADzZjYw2SQYE7h1nhgDk
-         J1xuncupbDRg4HGXd2+WT/wpmewf/yK8SFXAh2aE7Qk57tw1athWq29eZixysTi9YdOU
-         g7mNTYuGxQnY+njWNJnE8wNYWxblFBp3gda1y66yz5NAocMOEUiE67ssrHQVqMVKdma5
-         FKHHIomDlYLwLuRXWwGaLzrsODe8Re0oO8vCfOI+auOGdRYbPYzAAevH2LhOyTNwxfZ/
-         kVoZFXp/07zOpKBgdp8BkDfLUlKTeGGU57dKS13O/yoSRZ5LJFcbcIXJXOILIH3abaQd
-         QEag==
-X-Gm-Message-State: ANoB5pnxsIejSVDb5aByE1UDuFPf8pR8MHsBKgn+YrBzN0qx6hTAtVai
-        bjRZ9Qxahva3n0BfewSbOK6y8g==
-X-Google-Smtp-Source: AA0mqf4aI+PJ9CJYgPMHCCNlHjXG0ZEMQwuDfBpPge/N1r2HjXKeLCm1NzbPASZH5ZPVo1BO/jHh1A==
-X-Received: by 2002:a2e:8e75:0:b0:277:3e88:4fb6 with SMTP id t21-20020a2e8e75000000b002773e884fb6mr5512224ljk.509.1668518580553;
-        Tue, 15 Nov 2022 05:23:00 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b41-20020a2ebc29000000b0026acc9edecdsm2504460ljf.47.2022.11.15.05.22.58
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FqH00M5tmI+hJaxcTJuo6fH1GrWWsoOr/MknXsui2eE=;
+        b=fDfUO0U4nPC/J7yz/Wv6fbqNYbJaC1uyzuJb7Y5kxFlB77ph+2H4EU1rFwSX0si7Op
+         AtSxlaHXR2aCPn3XuDc1soclqPYSHj0RrGq0AW2jXjeyy9iG0omQaSqCb9btxn1/gKA+
+         fJR2s7pBa1tsqv6vTHkZRm6tNA1c+dX3T9hiV8tptO8ActE1t4DBOIpXycLYYs8x3yun
+         e9j+lrvLaLQkFhj8EcIDQS8eJ115L7DseZoNhuGAZZqOuKuwG/r3N4SED2F9m4tIJ9E3
+         ug156onvL6NsQT/MDPs0v6KkoNowVrhXfQktKQyfKuvegsao5qd2jTZIpXYamKQTRJtI
+         WiTQ==
+X-Gm-Message-State: ANoB5pnocgBLssu7sUf+zZDcn96og48H6gZYARN9P14WROysuzKNhUT2
+        8PTguJiT260XS5c2nApYmFYGcw==
+X-Google-Smtp-Source: AA0mqf5RdniR/Ee7x0mXUJxIEQ22iEk//HmT/2HMJe3jl/3wCB3uyHvScYI+6SXd/oMtdJrhfu1akw==
+X-Received: by 2002:a05:6512:329c:b0:494:79b6:c7a2 with SMTP id p28-20020a056512329c00b0049479b6c7a2mr6218139lfe.513.1668518621156;
+        Tue, 15 Nov 2022 05:23:41 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id p12-20020a2eb98c000000b00278e7800715sm2402884ljp.16.2022.11.15.05.23.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:23:00 -0800 (PST)
-Message-ID: <073ed7fc-e276-738c-d25e-7ef0baa11745@linaro.org>
-Date:   Tue, 15 Nov 2022 14:22:58 +0100
+        Tue, 15 Nov 2022 05:23:40 -0800 (PST)
+Message-ID: <d2ed5161-7411-359c-021f-548fa45352ac@linaro.org>
+Date:   Tue, 15 Nov 2022 14:23:34 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 02/10] dt-bindings: display: bridge: Add MHDP HDMI for
- i.MX8MQ
-Content-Language: en-US
-To:     Sandor Yu <Sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, vkoul@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-imx@nxp.com, tzimmermann@suse.de, lyude@redhat.com,
-        javierm@redhat.com, ville.syrjala@linux.intel.com,
-        sam@ravnborg.org, jani.nikula@intel.com, maxime@cerno.tech,
-        penguin-kernel@I-love.SAKURA.ne.jp, oliver.brown@nxp.com
-References: <cover.1667911321.git.Sandor.yu@nxp.com>
- <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH v2 00/12] Enable Display for SM8350
+To:     Robert Foss <robert.foss@linaro.org>, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        quic_kalyant@quicinc.com, swboyd@chromium.org,
+        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
+        vkoul@kernel.org, quic_vpolimer@quicinc.com, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
+        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
+        andersson@kernel.org
+References: <20221115111721.891404-1-robert.foss@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221115111721.891404-1-robert.foss@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 14:00, Sandor Yu wrote:
-> Add bindings for i.MX8MQ MHDP HDMI.
+
+
+On 15/11/2022 12:17, Robert Foss wrote:
+> Dependencies:
+> https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
+> https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
+> https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
 > 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  .../display/bridge/cdns,mhdp-imx8mq-hdmi.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
+Looks like only patches 0-3 reached linux-arm-msm and freedreno lists?
+
+Konrad
+> Branch:
+> https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v2
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
-> new file mode 100644
-> index 000000000000..8c0afef157aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MHDP HDMI bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
-> +
-> +description:
-> +  The Cadence MHDP TX HDMI interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,mhdp-imx8mq-hdmi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Hotplug detect interrupter for cable plugin event.
-> +      - description: Hotplug detect interrupter for cable plugout event.
-
-I don't know what is interrupter, so maybe just "cable plugin/plugout"
-or "Hotplug cable plugin/plugout"?
-
-Sorry for not bringing this earlier.
-
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      A port node pointing to the output port of a display controller.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mhdp_hdmi: hdmi-bridge@32c00000 {
-> +        compatible = "cdns,mhdp-imx8mq-hdmi";
-> +        reg = <0x32c00000 0x100000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-
-Align with opening <
-
-
-
-Best regards,
-Krzysztof
-
+> This series implements display support for SM8350 and
+> enables HDMI output for the SM8350-HDK platform.
+> 
+> Changes from v1:
+>   - Added R-b tags from v1
+>   - Added qcom,sm8350-dpu binding patch
+>   - Added qcom,sm8350-mdss binding patch
+>   - Corrected sm8350.dtsi according to new dpu/mdss bindings
+>   - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
+>   - Bjorn: Moved lt9611 pinctl pins into a common node
+>   - Bjorn/Krzysztof: Moved status property to last in node
+>   - Krzysztof: Changed hdmi-out to hdmi-connector
+>   - Krzysztof: Fixed regulator node name
+>   - Krzysztof: Changed &mdss to status=disabled as default
+>   - Krzysztof: Changed &mdss_mdp node name to display-controller
+>   - Krzysztof: Fixed opp-table node name
+>   - Krzysztof: Fixed phy node name
+>   - Dmitry: Split commit containing dpu & mdss compatibles string
+>   - Dmitry: Added msm_mdss_enable case
+>   - Dmitry: Fixed dpu ctl features
+>   
+> 
+> Robert Foss (12):
+>    dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+>    dt-bindings: display: msm: Add qcom,sm8350-mdss binding
+>    drm/msm/dpu: Refactor sc7280_pp location
+>    drm/msm/dpu: Add SM8350 to hw catalog
+>    drm/msm/dpu: Add support for SM8350
+>    drm/msm: Add support for SM8350
+>    arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
+>    arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
+>    arm64: dts: qcom: sm8350: Use 2 interconnect cells
+>    arm64: dts: qcom: sm8350: Add display system nodes
+>    arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
+>    arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
+> 
+>   .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
+>   .../display/msm/qcom,sm8350-mdss.yaml         | 240 +++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8350.dtsi          | 226 +++++++++++-
+>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 210 ++++++++++-
+>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+>   drivers/gpu/drm/msm/msm_mdss.c                |   4 +
+>   8 files changed, 1108 insertions(+), 26 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+> 
