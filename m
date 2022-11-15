@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FE80629646
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:50:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C12D62964C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238428AbiKOKuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:50:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59692 "EHLO
+        id S237288AbiKOKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:51:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238407AbiKOKty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:49:54 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B20425C69
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:49:53 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id u24so21241524edd.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:49:53 -0800 (PST)
+        with ESMTP id S232818AbiKOKvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:02 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FFE25E82
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:47 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id s8so6664177lfc.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MgfvtjWpUyCcngkAsp0WSy9MN/6jQcOcrSZ1puz0tzE=;
-        b=c7Xb10ntWnmK5qhaPrZ0sSfc94vAt36h7qSx6WdiCXugC/sawwR079ngJ4fBpfSD3l
-         6ZEoSqwQ1Dy7Bbd86I0ALHC97KBFEQ1XBPyiblMq7nyZVdqU98ika0SMk6ud40FaWaof
-         LF446r+u17ZkC0amqvHTVddbbR/H9ofWs7q/s=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bLbp0wJvq57oO/aqR1507U+w5Xitt7wxnM4y42X75Ug=;
+        b=iSXQillTkvNosXmaPm3UaEUZyQ7JYBLtOTkIO/cr26J8ImBqIgc7pgOExn9yXF3NVm
+         BRTP3wWYj+opRxTFeaC1kRLFsf2nRrhZaK02RTNKHj4Hp7lxSk83c4uXCFLs3hXhhV4A
+         zZct5RrKRNx3NaJ+yHm0J0+U+3ldDguzsszXc0zS7Jj74G2+8xkCS+g6QIm9c1kZ+17R
+         o5ftC0VdljUjW3e2m4X0souftrED2x3+u6K+S7/jRV+q+osT4ZcuFXGmrw/Yut8h6cIZ
+         K4N8aLgyHZPrj/M+XsLPUV0sodKuILS6/sG0AHGf1Bgom0RXPMIS2ADFk9epVhOiG90L
+         MWJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MgfvtjWpUyCcngkAsp0WSy9MN/6jQcOcrSZ1puz0tzE=;
-        b=GUaEvqgUC4cV9QbwF8fOXZdZLh5TV+VZuR5oWNGi744gbqKBg5hDM/2LhUNXPkEmIH
-         Dt9D3htIoYhFHhr0uKkfsc70uGBCOVNPnoN5MPcM1PW2Vc/jAmozjUDgrfew9KsrLP3G
-         9/bYROVZ89HcVNSlQcp+evK5so+8iAgC3PhrKx+GQw/m5+fGkePAdCAbysQrZqPli6zn
-         I1v0NIqnnV2wAA95PbBrnsJWTH/HZTco10FIOGaCe0grsO7t3/QK7XxCi890cxzBfPjc
-         lVPjmI+Gj7d4pEHeQ1A72OGGpJ2RTAsFiXnQkCDrmH9+P2//MWwXTMHNrt6A/aDO290i
-         z8jQ==
-X-Gm-Message-State: ANoB5pmyvLT5J6XUIDuLZleAms1BMnfASTWTtsVPuELXiH4IbzMsBstv
-        0YDetsgWl/AVhkfg40a0+q4GoiHFtKtLv3hONSlxEA==
-X-Google-Smtp-Source: AA0mqf7Zyg6WawPT7Tna1gAq72a4ziGX+mFjPdYsJ7neaPLo97UI4HoB6yml4mdouC5vAq58QJOaHg+s1MYMpi1apEI=
-X-Received: by 2002:aa7:d482:0:b0:467:78f2:d81f with SMTP id
- b2-20020aa7d482000000b0046778f2d81fmr11755071edr.88.1668509391652; Tue, 15
- Nov 2022 02:49:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20221018-up-i350-thermal-bringup-v6-0-c87b9f75550b@baylibre.com> <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
-In-Reply-To: <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Tue, 15 Nov 2022 18:49:40 +0800
-Message-ID: <CAEXTbpd2zLdk-VmkGvpk2_Qz0TDyC9aOsQbCz=FpopnMqs9djg@mail.gmail.com>
-Subject: Re: [PATCH v6 4/4] thermal: mediatek: add another get_temp ops for
- thermal sensors
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
+        bh=bLbp0wJvq57oO/aqR1507U+w5Xitt7wxnM4y42X75Ug=;
+        b=GYSsO/RbbAUBIzk+3z3fAbvGhK0kBzTH1rgetw66WsWpTtdrZu/G8sOUz9hPO2SStT
+         zXGhiLDC72LM3CWZpXVJvkTI475YseZOetqEKGirzNcq9og4nz5fPUz2OMPHW9UPMA18
+         tNLzkIHMfKTIjjhZjRK1W5NSW1oZxhyVemp0+2hMYX7A1Nf8b87ZIsnWckX+Z6puQXb+
+         vMSrXQQL3nXF2E9UClnibtlckK227WeDhQ31LECeYpAcCldawRJTI5vHetociXVDpzHq
+         uWmHOfZwLjybJk0pOkisocdyzL5LyaMDZxS79c8J4n0UspBQy8E31wNGdqGKop6tvcpP
+         Ud1w==
+X-Gm-Message-State: ANoB5pkNeKTVUznW60+DQW/NiwNlIoTa+3TTwLFos3nWMoFSYJhl1bB4
+        DpH2giQqfdv4cGFAxV8/qWllNks0cwX135uF
+X-Google-Smtp-Source: AA0mqf4/YK3RiUextXoV5tx032V9L1KGOHjfxnaEsuFiTHIdltPf410U5euv3K8Ked/kbso/cCMUWw==
+X-Received: by 2002:a05:6512:128e:b0:4b3:ccea:9b2e with SMTP id u14-20020a056512128e00b004b3ccea9b2emr6150372lfs.379.1668509445829;
+        Tue, 15 Nov 2022 02:50:45 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id be17-20020a056512251100b00494935ddb88sm2150742lfb.240.2022.11.15.02.50.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 02:50:45 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Kao <michael.kao@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: ti: trim addresses to 8 digits
+Date:   Tue, 15 Nov 2022 11:50:44 +0100
+Message-Id: <20221115105044.95225-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,209 +72,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amjad,
+Hex numbers in addresses and sizes should be rather eight digits, not
+nine.  Drop leading zeros.  No functional change (same DTB).
 
-On Wed, Oct 19, 2022 at 10:17 PM Amjad Ouled-Ameur
-<aouledameur@baylibre.com> wrote:
->
-> Provide thermal zone to read thermal sensor in the SoC. We can read all the
-> thermal sensors value in the SoC by the node /sys/class/thermal/
->
-> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
-> on the first read of sensor that often are bogus values.
-> This can avoid following warning on boot:
->
->   thermal thermal_zone6: failed to read out thermal zone (-13)
->
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/thermal/mtk_thermal.c | 104 ++++++++++++++++++++++++++++++++----------
->  1 file changed, 79 insertions(+), 25 deletions(-)
->
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index 3a5df1440822..311ad611fdab 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -259,6 +259,11 @@ enum mtk_thermal_version {
->
->  struct mtk_thermal;
->
-> +struct mtk_thermal_zone {
-> +       struct mtk_thermal *mt;
-> +       int id;
-> +};
-> +
->  struct thermal_bank_cfg {
->         unsigned int num_sensors;
->         const int *sensors;
-> @@ -307,6 +312,8 @@ struct mtk_thermal {
->
->         const struct mtk_thermal_data *conf;
->         struct mtk_thermal_bank banks[MAX_NUM_ZONES];
-> +
-> +       int (*raw_to_mcelsius)(struct mtk_thermal *mt, int sensno, s32 raw);
->  };
->
->  /* MT8183 thermal sensor data */
-> @@ -709,6 +716,29 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
->                 mutex_unlock(&mt->lock);
->  }
->
-> +static int _get_sensor_temp(struct mtk_thermal *mt, int id)
-> +{
-> +       u32 raw;
-> +       int temp;
-> +
-> +       const struct mtk_thermal_data *conf = mt->conf;
-> +
-> +       raw = readl(mt->thermal_base + conf->msr[id]);
-> +
-> +       temp = mt->raw_to_mcelsius(mt, id, raw);
-> +
-> +       /*
-> +        * The first read of a sensor often contains very high bogus
-> +        * temperature value. Filter these out so that the system does
-> +        * not immediately shut down.
-> +        */
-> +
-> +       if (temp > 200000)
-> +               return -EAGAIN;
-> +       else
-> +               return temp;
-> +}
-> +
->  /**
->   * mtk_thermal_bank_temperature - get the temperature of a bank
->   * @bank:      The bank
-> @@ -721,26 +751,9 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->         struct mtk_thermal *mt = bank->mt;
->         const struct mtk_thermal_data *conf = mt->conf;
->         int i, temp = INT_MIN, max = INT_MIN;
-> -       u32 raw;
->
->         for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
-> -               raw = readl(mt->thermal_base + conf->msr[i]);
-> -
-> -               if (mt->conf->version == MTK_THERMAL_V1) {
-> -                       temp = raw_to_mcelsius_v1(
-> -                               mt, conf->bank_data[bank->id].sensors[i], raw);
-> -               } else {
-> -                       temp = raw_to_mcelsius_v2(
-> -                               mt, conf->bank_data[bank->id].sensors[i], raw);
-> -               }
-> -
-> -               /*
-> -                * The first read of a sensor often contains very high bogus
-> -                * temperature value. Filter these out so that the system does
-> -                * not immediately shut down.
-> -                */
-> -               if (temp > 200000)
-> -                       temp = 0;
-> +               temp = _get_sensor_temp(mt, i);
->
->                 if (temp > max)
->                         max = temp;
-> @@ -749,9 +762,10 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->         return max;
->  }
->
-> -static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
-> +static int mtk_read_temp(struct thermal_zone_device *tzdev, int *temperature)
->  {
-> -       struct mtk_thermal *mt = tz->devdata;
-> +       struct mtk_thermal_zone *tz = tzdev->devdata;
-> +       struct mtk_thermal *mt = tz->mt;
->         int i;
->         int tempmax = INT_MIN;
->
-> @@ -770,10 +784,28 @@ static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
->         return 0;
->  }
->
-> +static int mtk_read_sensor_temp(struct thermal_zone_device *tzdev, int *temperature)
-> +{
-> +       struct mtk_thermal_zone *tz = tzdev->devdata;
-> +       struct mtk_thermal *mt = tz->mt;
-> +       int id = tz->id - 1;
-> +
-> +       if (id < 0)
-> +               return -EACCES;
-> +
-> +       *temperature = _get_sensor_temp(mt, id);
-> +
-> +       return 0;
-> +}
-> +
->  static const struct thermal_zone_device_ops mtk_thermal_ops = {
->         .get_temp = mtk_read_temp,
->  };
->
-> +static const struct thermal_zone_device_ops mtk_thermal_sensor_ops = {
-> +       .get_temp = mtk_read_sensor_temp,
-> +};
-> +
->  static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
->                                   u32 apmixed_phys_base, u32 auxadc_phys_base,
->                                   int ctrl_id)
-> @@ -1072,6 +1104,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->         u64 auxadc_phys_base, apmixed_phys_base;
->         struct thermal_zone_device *tzdev;
->         void __iomem *apmixed_base, *auxadc_base;
-> +       struct mtk_thermal_zone *tz;
->
->         mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
->         if (!mt)
-> @@ -1150,6 +1183,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->
->         mtk_thermal_turn_on_buffer(mt, apmixed_base);
->
-> +       mt->raw_to_mcelsius = (mt->conf->version == MTK_THERMAL_V1) ?
-> +                               raw_to_mcelsius_v1 : raw_to_mcelsius_v2;
-> +
->         if (mt->conf->version == MTK_THERMAL_V2) {
->                 mtk_thermal_release_periodic_ts(mt, auxadc_base);
->         }
-> @@ -1161,11 +1197,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->
->         platform_set_drvdata(pdev, mt);
->
-> -       tzdev = devm_thermal_of_zone_register(&pdev->dev, 0, mt,
-> -                                             &mtk_thermal_ops);
-> -       if (IS_ERR(tzdev)) {
-> -               ret = PTR_ERR(tzdev);
-> -               goto err_disable_clk_peri_therm;
-> +       for (i = 0; i < mt->conf->num_sensors + 1; i++) {
-> +               tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
-> +               if (!tz)
-> +                       return -ENOMEM;
-> +
-> +               tz->mt = mt;
-> +               tz->id = i;
-> +
-> +               tzdev = devm_thermal_of_zone_register(&pdev->dev, i, tz, (i == 0) ?
-> +                                                            &mtk_thermal_ops :
-> +                                                            &mtk_thermal_sensor_ops);
-> +
-> +               if (IS_ERR(tzdev)) {
-> +                       if (PTR_ERR(tzdev) == -ENODEV) {
-> +                               dev_warn(&pdev->dev,
-> +                                        "sensor %d not registered in thermal zone in dt\n", i);
-> +                               continue;
-> +                       }
-> +                       if (PTR_ERR(tzdev) == -EACCES) {
-> +                               ret = PTR_ERR(tzdev);
-> +                               goto err_disable_clk_peri_therm;
-> +                       }
-> +               }
->         }
->
->         ret = devm_thermal_add_hwmon_sysfs(tzdev);
-tzdev can be an error pointer here. I think we should move the line
-into the loop above, so hwmon sysfs is not added when IS_ERR(tzdev) ==
-true.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi  | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 2 +-
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi    | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi    | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
-Regards,
-Pin-yen
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index ff936d547c99..38dced6b4fef 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -31,7 +31,7 @@ wkup_uart0: serial@2b300000 {
+ 
+ 	wkup_i2c0: i2c@2b200000 {
+ 		compatible = "ti,am64-i2c", "ti,omap4-i2c";
+-		reg = <0x00 0x02b200000 0x00 0x100>;
++		reg = <0x00 0x2b200000 0x00 0x100>;
+ 		interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+index 99afac40e8d4..81d984414fd4 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+@@ -31,7 +31,7 @@ wkup_uart0: serial@2b300000 {
+ 
+ 	wkup_i2c0: i2c@2b200000 {
+ 		compatible = "ti,am64-i2c", "ti,omap4-i2c";
+-		reg = <0x00 0x02b200000 0x00 0x100>;
++		reg = <0x00 0x2b200000 0x00 0x100>;
+ 		interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index d2ea067df686..6fec2b41e780 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -1369,8 +1369,8 @@ gpmc0: memory-controller@3b000000 {
+ 		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
+ 		clocks = <&k3_clks 80 0>;
+ 		clock-names = "fck";
+-		reg = <0x00 0x03b000000 0x00 0x400>,
+-		      <0x00 0x050000000 0x00 0x8000000>;
++		reg = <0x00 0x3b000000 0x00 0x400>,
++		      <0x00 0x50000000 0x00 0x8000000>;
+ 		reg-names = "cfg", "data";
+ 		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+ 		gpmc,num-cs = <3>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 1930da25d282..6378f8ff5400 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -355,7 +355,7 @@ serdes_mux: mux-controller {
+ 
+ 		dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
+ 			compatible = "syscon";
+-			reg = <0x0000041e0 0x14>;
++			reg = <0x000041e0 0x14>;
+ 		};
+ 
+ 		ehrpwm_tbclk: clock@4140 {
+-- 
+2.34.1
+
