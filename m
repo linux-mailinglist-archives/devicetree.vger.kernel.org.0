@@ -2,108 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD3362946C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 10:35:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DAF3629479
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 10:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbiKOJfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 04:35:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58550 "EHLO
+        id S232359AbiKOJhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 04:37:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiKOJfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:35:46 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB5B613D07
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:35:44 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id s8so6393775lfc.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:35:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mZ6Oz0sLUjFX7pwq6JQ+9oBAMxDNq4ohGil/uu3b+jE=;
-        b=FDjNKPXQhWpbc5h0A/hhim/Ps0oJjRZKZN7CUzZbshJ2CQzXoXA6GFrHjQU8nQok9+
-         2JT6/9/wf5XTuZ0Hjs2msjSmpXXqLN5SGiaKe9qaIuHeKt0UETpBq4q6VH/+CQ7BGQSW
-         HjjOnuec9xggd6oEvY++h+1OF+Oi6Rc6SM97oWoSH0le5a4QG0Gt8W0us5hJ7yvw5+U5
-         Osiay8K8Uy7BD7IbrzL3tURMFHpx3JE0zo39ZcxcWrTQNdT26b+SsLHV6qYOTQrs4fYX
-         VjuWKMA8/gq+nhjPKg/u3XOmchJWOq5BtyyS8/X1/Gkfuxg1Z4ATEA6spEbIQ5X5ogyc
-         tKhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mZ6Oz0sLUjFX7pwq6JQ+9oBAMxDNq4ohGil/uu3b+jE=;
-        b=fTVmp52hADNsJAT32r8GZAPnAiRVC7ui9+MTuQgxRFTISc72XSJ2ikiIcwqsGuwwm/
-         /4jn1taiZHC6Y0j42hNLqiZptNZ/LPBHyRpnqBOBM7v9As0IRwD4NjGeCyflVVIjB4Sk
-         P6pw6hwIiDGrnDtACB2Idki1MBf2h5gr+8ne5GXsCmGpBYkQxYDFY2B0bBk3jQzlfw3G
-         bUjXbVWh2Fahtz21IZ/gjygcFTN/Z0hI9ZrG3/Uu2/kOBjCE/LzetPDntSywVZyp3nb0
-         Cnr4OFZYO5VaKShfxg58NTvqv8MtiT1kTNwqNO5jxDcTciw6egKckfhEvL64eHOnAM7v
-         FgsA==
-X-Gm-Message-State: ANoB5pmP9tvFwVVEkEuVj9bOEECzfkO33gqlNEwOAd/DrQK78FhQGz/O
-        JDnT06a+wX7pVAuvNT7KL5lhVg==
-X-Google-Smtp-Source: AA0mqf4f0lXKjEINfFwZBuMCFvAJLYZv9A+U/hJvSeVgjo2hNcPftEhehAL7kQxRJPvOb7ggd0vNuA==
-X-Received: by 2002:a05:6512:3696:b0:4ad:5f5c:2b26 with SMTP id d22-20020a056512369600b004ad5f5c2b26mr4945691lfs.626.1668504943014;
-        Tue, 15 Nov 2022 01:35:43 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o18-20020a2e0c52000000b00277351f7145sm2332083ljd.105.2022.11.15.01.35.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 01:35:42 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Aakarsh Jain <aakarsh.jain@samsung.com>,
-        devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        andi@etezian.org, smitha.t@samsung.com, jernej.skrabec@gmail.com,
-        krzk+dt@kernel.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, dillon.minfei@gmail.com,
-        ezequiel@vanguardiasur.com.ar, robh+dt@kernel.org,
-        pankaj.dubey@samsung.com, benjamin.gaignard@collabora.com,
-        andrzej.hajda@intel.com, aswani.reddy@samsung.com,
-        mark.rutland@arm.com, stanimir.varbanov@linaro.org,
-        hverkuil-cisco@xs4all.nl, mchehab@kernel.org,
-        david.plowman@raspberrypi.com, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: (subset) [Patch v5 3/3] ARM: dts: exynos: Add new SoC specific compatible string for Exynos3250 SoC
-Date:   Tue, 15 Nov 2022 10:35:40 +0100
-Message-Id: <166850489230.15995.9764434606186169223.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221114115024.69591-4-aakarsh.jain@samsung.com>
-References: <20221114115024.69591-1-aakarsh.jain@samsung.com> <CGME20221114114412epcas5p43350b596e52a98eb69406574b4a16171@epcas5p4.samsung.com> <20221114115024.69591-4-aakarsh.jain@samsung.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229681AbiKOJhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:37:10 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70043.outbound.protection.outlook.com [40.107.7.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA4B13D66;
+        Tue, 15 Nov 2022 01:37:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WSsdjqVGNMGsIzbScxwmrAP70wBh23iZjoQh/cEksWDn4O0ZuPCGO7oNndXZRnX2NE1on2GksnNKhJWpe60dqwKoNlPw1/iCmPe/aqK6njfLsl2qapVcSFX/8ZMz2PSdCoH4cZAx8QIHaRfNXygCTTRcTiLAo4vuQ3Xyl8VJVJM2VFtnCS5eMr/ubkgn6KrXqME5TJDyYHVMiL7xSSY3sOV9v+zRlsW0rl07trkHznlRxYMYGIXOXtPTsyBIzvOqzoPV9HVo002N+BdfU3kdgS7MppJCsGryFQRm1Ig4MYguP1bW5IIInbJrBWGvBRcnCNKmza2Z1fZ4CLrAb1oJmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3VrjJy/viKtUTs/dRGwMV1X0W0tQdVKWwAITPA4U3ZA=;
+ b=U4Qut9iYjDMkX3qj6eby+MpMYXu11rWqD6wq8RlEkDTVJgMh/roMs+Ho+RkrbwfoKXpSPFfuy+QRU+0gXM+wosvlQ8TobCRjVeOUyrz6iLwlLvH28P+S+1dkHsEyjYiRDPVxm+hnO9/iJ6+LpW3RIHVzBQBIS0l24d7Jo/rFoYQSIdfGrtVwyqS9iWOR/Z/eQt9RVvSOS9WKYirKmXxk/T8aeKn1AcF9jV6xYSmYczzWel0gQ7+xOxTVdVbHxGFcNgrbzYxVAa2usGk+bkVts8VQSmWT3cSsVA/qC98ozZgIk5e+DyI+GKO3KQSfWi+xkx6nCCfCWJNQQbgC1EF5/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3VrjJy/viKtUTs/dRGwMV1X0W0tQdVKWwAITPA4U3ZA=;
+ b=fgM7KPuPTec238D6dJlwpUSN4d86NhdWo3k/qdGX/XWFItUdjvUBKNA2eN6FGu6ea8oSPNyVdfp/5KP3omXWgbW+/lNB9owYq5O4K5xUNWFiMm9Eo1jfomBEzliWfZboFmPbSWhiv8/m6fb0BWdpTeAq6f4KlD9bUx0D7Xwdhk8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com (2603:10a6:20b:ab::19)
+ by PA4PR04MB9462.eurprd04.prod.outlook.com (2603:10a6:102:2aa::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Tue, 15 Nov
+ 2022 09:37:05 +0000
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::7a34:469:fd53:922c]) by AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::7a34:469:fd53:922c%7]) with mapi id 15.20.5813.018; Tue, 15 Nov 2022
+ 09:37:05 +0000
+From:   Joy Zou <joy.zou@nxp.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
+Cc:     shengjiu.wang@nxp.com, martink@posteo.de, dev@lynxeye.de,
+        alexander.stein@ew.tq-group.com, peng.fan@nxp.com, david@ixit.cz,
+        aford173@gmail.com, hongxing.zhu@nxp.com, linux-imx@nxp.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v10 0/2] dmaengine: sdma support hdmi audio
+Date:   Tue, 15 Nov 2022 17:38:21 +0800
+Message-Id: <20221115093823.2879128-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0017.APCP153.PROD.OUTLOOK.COM (2603:1096::27) To
+ AM6PR04MB5925.eurprd04.prod.outlook.com (2603:10a6:20b:ab::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB5925:EE_|PA4PR04MB9462:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5968caaf-4df2-4442-b4ea-08dac6ecf4bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CsACllp1XHCvs+oBrBhbHltHCgDJtg5gYzv80AadNUPy0CigUZeIWN9CW16YMgqYBEKep8SZ/fS3UqSHkCZB/iWK0lfHCshSRSMPVUtW4PA/Zh/dzMEhNAX5LoN4BYCmIhLasC/kgDCSARdEr6cqJQlJstqqIWa7UGb213TQ16egU+1o1Mf34bE5EziaTXmcBFqiwl4tXrYshd8RbU+puuFeVq7XeunY57ymFaY93N2JDjd2HWT2Mi775IUjfxPcNhgkcxITEWPYBMxInERECEeuckY6Un1jtA70oXKwWkLbcZz+svZu/WmjJdxcjg05iEM7aeCBWFXpSAbQHWNUvfwSZhGgJ663edufniLQ/JKYSuhLGYObNQx0AQuAfd/YVt5JE/al2cpySySyJLYPmKb8adnazJAOkUwrm00Eiw4vIx7J9JVvS+YG3YN9ie6wfxQaxf09vpUsK+FXEPfUiYS5Ilsjr9T3JJDGWyptiQpRd5v1wr+Xe61j1zxDG1zKOYB8Yk11FwS4Wj0hPcZsJ3+30svA0WH0diHc8ievgojjiMxtgnfKalQeqhnJXhohsX4JorYGF2FA4TG8oOhF6HeC2a2Q4PYcGV6+Xt5HffNCC139hnNDFFIHUV6TpGe71hYuZ+1DMZbQP2UTYBWORZD5Pi/MR4DLyMOrk+pZwoURuA6Re/M/SMX6Lvqw9e6X0L3nEj6crCwjXyVkxkN46j9gvSPtRWh1uNDo4y91JS9u/gixgOubM3UTco+NSSFbuz4wwYnuWqfbSbALUMaPJg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5925.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(366004)(136003)(396003)(39860400002)(451199015)(6666004)(478600001)(6486002)(5660300002)(8936002)(7416002)(4744005)(66556008)(36756003)(6506007)(41300700001)(2616005)(52116002)(44832011)(2906002)(1076003)(66476007)(316002)(6512007)(26005)(8676002)(4326008)(66946007)(186003)(83380400001)(86362001)(38100700002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rTvdHb+9Y781tCWR3+dytuiolVffpBiE99kuROnJ+bHH8w4m9bbTSEQMSYe+?=
+ =?us-ascii?Q?lvpjqUc6zmb+CwBrtplwHPuILEphbdwZqbdR5gr+qgJf3chVssFBqFOB98eF?=
+ =?us-ascii?Q?eZ0u7hb9mXurJru4HwvGi/8gZTpBtdGBD+6uGuwBvEwTZ/zd+g6UJygSIq4F?=
+ =?us-ascii?Q?/auqZXLjTOemlIQg0wAYzao38AY5ipZM51NKqo/8m6IqsLDqyXh60aBCR5+K?=
+ =?us-ascii?Q?gBsft95d24KA/h7+3oo9UsRiKql8JFuphXp98+ZEwXSnk4W4IDYdRsbVItP2?=
+ =?us-ascii?Q?dbsxHI8UoX78Q9BU+3HMn2piWGLCLITVp/dszm+VpaZ6fRng/XkONjffYU97?=
+ =?us-ascii?Q?mljiemUjiW0zUkssZKMOYsFMT/DkWRU4VF4x8OaAPzXi+rEzJm/OQJG+iUdT?=
+ =?us-ascii?Q?SCtNg1A/f6cH9xEr9f7jWKUsW+O/BYEkgzCVrAWdnnRdAW5M9zlzU7ni7iV1?=
+ =?us-ascii?Q?VJTNK9APQJfqaVQhsSM6QKQSmqIvfUdfD0U9STV2clUs86agWwg4RDqKCmAY?=
+ =?us-ascii?Q?4dZo8J+LzzlRjCoU/nFmvlqrmVY7LFqQZqR3U/C386HMaE8T6goCRtzCm4ea?=
+ =?us-ascii?Q?sxKLIgCpCwV/zSLRJHIL+lWyKb99eYtwq/OjTQtBbM20l1f5tJAgIrHR808B?=
+ =?us-ascii?Q?xnRkBcUM8RXKmawT6MZMqof3WyjuRdKSGzAsUb4AUZIxkSHH20eB662Axl8H?=
+ =?us-ascii?Q?G2OnoZNSx5XHGGii2oN4pMYQRMBwmNOg+5Oy1shd7LR/co1TQu+rY7tNnJZB?=
+ =?us-ascii?Q?CcCB8U8x2MzGOaIH3674ZmcUn+CsicMqHk7jzodFmeSgu42AoJgiA3tNeOQ6?=
+ =?us-ascii?Q?u1LAbyUfBpEIYEDWibQJz/cMacskxlxZBO2utEHR8BTmzfuPX1bYznYgzUER?=
+ =?us-ascii?Q?JECbEGKhjyDidzRu3Q9DYBqjo/853ndDjsqiZ7cbp6rULVOpArH8743GxTQX?=
+ =?us-ascii?Q?yfoCNq22srnaIbmamDnAP5QQqNkGO1snwQNUz9ittYedrpkJhZ/FuIdYdw+B?=
+ =?us-ascii?Q?JsPYn9q3gc/lEWF/pX2dKSi0L8Lr3FZQlAeiUXE9U5MHCaDWIH63IRnbX1lV?=
+ =?us-ascii?Q?PjZSWcV9iGvd9mwa3M/zfsrmXOSqMyexBPyvf0Wa9yVpEsemJ72S/sSYDBHj?=
+ =?us-ascii?Q?aISvEk3H5aHMXhEGAY1eOSrbAuL7zCfT5sT0li3AuD12JtTg0rx60oOUYdiX?=
+ =?us-ascii?Q?vUGepg6kxMMxcrpMGEvZVMmjmai00ee/4x2U+G9jLsifQAuDpb4bn2gX9IDc?=
+ =?us-ascii?Q?RyIyuqmz+4SsNaV5iUrWFkxuKRtaoYQw8xjNiAYeYr8U8YurgzALJFLrkplZ?=
+ =?us-ascii?Q?+wCsOaIiuL+1uMNcWpdMqpYaZVqETZy135mptHweGxiYVYQvRcpLVZ5CqFpZ?=
+ =?us-ascii?Q?5syoMc4IxcfC30AkZoYjxy8WCchMuUNDXqLHWBVQ/oyeA6D7RniluHdL8bEx?=
+ =?us-ascii?Q?aDZ7JieyHsUmjEDwWniw19kD4SrzyCfwuaXPA3bvtyqa4HtskEVppYN7M0bt?=
+ =?us-ascii?Q?4BbsJgKhwh/g7Vwjxx+th6tKJGUkw4SUiUhp+waXdJUKMcO2KRvexC3XPKd/?=
+ =?us-ascii?Q?Lj7gfBt5/JxB1FXipKKg871d8yp/oP2m3XH2HZZQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5968caaf-4df2-4442-b4ea-08dac6ecf4bf
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5925.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2022 09:37:05.0725
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ESk7JnRIAdu2DAUhTlVzYPHMLS7BU4RPLD5eUp8x6YLkkUs3b+MFG5px6fA+Fdcf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9462
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Nov 2022 17:20:24 +0530, Aakarsh Jain wrote:
-> Commit 752d3a23d1f68de ("ARM: dts: add MFC codec device node for
-> exynos3250") which adds MFC codec device node for exynos3250 SoC.
+The patchset supports sdma hdmi audio.
+For the details, please check the patch commit log.
 
-This sentence ends prematurely. I don't know what you wanted to say here, so I
-dropped it.
+Joy Zou (2):
+  dt-bindings: fsl-imx-sdma: Convert imx sdma to DT schema
+  dmaengine: imx-sdma: support hdmi in sdma
 
-> Since exynos3250.dtsi and exynos5420.dtsi are using same compatible
-> string as "samsung,mfc-v7" but their node properties are different.
-> As both SoCs have MFC v7 hardware module but with different clock
-> hierarchy and complexity.
-> Add new compatible string followed by mfc-v7 fallback for Exynos3250
-> SoC.
-> 
-> [...]
+ .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 149 ++++++++++++++++++
+ .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 --------------
+ drivers/dma/imx-sdma.c                        |  38 ++++-
+ include/linux/dma/imx-dma.h                   |   1 +
+ 4 files changed, 180 insertions(+), 126 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
 
-Applied with changes to commit msg, thanks!
-
-[3/3] ARM: dts: exynos: Add new SoC specific compatible string for Exynos3250 SoC
-      https://git.kernel.org/krzk/linux/c/c9259e0d224b15a734673200e0825fae5ea2ab1e
-
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.37.1
+
