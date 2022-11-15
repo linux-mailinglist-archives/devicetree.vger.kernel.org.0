@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BF9629504
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 10:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF9B62951C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232761AbiKOJ63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 04:58:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49250 "EHLO
+        id S238211AbiKOKAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:00:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237831AbiKOJ6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:58:23 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B75915735
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:58:22 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id p8so23602516lfu.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:58:21 -0800 (PST)
+        with ESMTP id S232870AbiKOJ76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 04:59:58 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D723324081
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:59:53 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id k19so16837500lji.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 01:59:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6juo/G7lsQvTKk0wwfl/N9U9Zrf2YS9a6XxIt2w0Gz4=;
-        b=Wehg82bsZeGgL44LnWaLKYNuB7qTx/GrZyqn00wtkPxp1Af2/5Xez9E68dlhiHh30A
-         Qp2Tf+tBvu/HHAbGjX+BbvZo5lYjEF+UxPXkiAREzX5UG3fW9JPAKGzkUFsgrIhjzNH+
-         u00dz4b9InlHCrYL6+VtIi76gQYLRsDhbtZ07PS7prBJUzCQQlex8s1PQ2qE3J0KySEy
-         WM9YBLig2uO9dICchdYjkQ7leE3wo3xQPKKiNUXN2p3+391hcOyOvWQJzsqukONWXqhN
-         yvGrwUNQkaMrpLaBB3Vz+GccTrTsgaWbdnAGk67rEOTtCX0RMiOjEBdSJq48k8n9CU/M
-         U7Iw==
+        bh=we5icLF5qMbtdyi+O3fAzjYqkzl4E8jlaLkt16W+v8Y=;
+        b=UIzFfmDJK39st7JSIT5v2XYzdCLguFhqQa4GDHWXZgztsgu4AnwMAMhxqvyiTZCKJA
+         9Pddz+uMl5M3gmWWvkAQmHgbGk4v6fzwlMvb1HhuVnJWLRWi3ePD8RtR4hMHXNs0x/Q/
+         g936CDTJp/vP0E4a/DXDiHvGDC52Ji6EY7CirgMQ61VDvrgWTSIXM9BS8KLPMe7ZFYnX
+         AhZVmGK13uu2ppQzD9HJEodFV6Ve8+rbPRBSqr/8vtpfQTdiDvBuFQvJpB3slutHGL8+
+         OYo3dF3L/EIvpNHyKii1kP7RH423eHgJhz+EVBygoO+5bfHkMiGgV7FPwRASQeWB5gN2
+         c3qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6juo/G7lsQvTKk0wwfl/N9U9Zrf2YS9a6XxIt2w0Gz4=;
-        b=qKQ3/tIqQq1tE0QVktRCe58KXIDC1WVdAw7gmk77nGwWzH5f5DthpfX0ocEIWH1iJk
-         6jfGLqQoeLth5bTl0nI7rHMPLldiWr9X0yl3r6EAq5IsfaS2j3+53x6Ykdl19ll51JNk
-         fhd9HVEThPoZLylU+QJO9oH8+X8flzP3j/8U+RnumbaOW/Q0Uxcxx0QEP4djGJab0SV7
-         JzJMFZmX/vOr6thJZIEwoDBK7joOBX6gzb76Uz07u9hxV91N2lNY27AmCzXr6h7dct0e
-         nbKA7ck701PQyLDLklDQjo9+UUWUTKNOZZ1seW7+9Z6l35Y5umb9fyuZictiKw4TbEbp
-         Z7hA==
-X-Gm-Message-State: ANoB5pn//GBNYJqSWz5Fk7jboJ1lISFNFUyCBv7dzqXGT0neTRJhfYAi
-        gtgjhIFOE/vRD1BTQTfg02WJLA==
-X-Google-Smtp-Source: AA0mqf5ZDNZjWdGk7sBPAGwBXO0zxQiHOKP9nStDRm0y7OArlh4UHkBE1J+m5ZYnT1T8HbqaDP5o+g==
-X-Received: by 2002:ac2:55a9:0:b0:4a4:6256:a888 with SMTP id y9-20020ac255a9000000b004a46256a888mr5067978lfg.46.1668506300450;
-        Tue, 15 Nov 2022 01:58:20 -0800 (PST)
+        bh=we5icLF5qMbtdyi+O3fAzjYqkzl4E8jlaLkt16W+v8Y=;
+        b=Ry1q1j2XgCw79EW/GtnSA+E5UmKmybRvHMXMcfB0DFhkhC0RvHEwOkIICvi34SBtdh
+         B5jDPMCp8VFLyAKrtJfBMJehhe+bX/vBEHgcxHSVubyngqUtbToPanprJky/VgGRojku
+         0yAkfa9/TkanPvoDF/2wrqVwnO+6CI+8ILivtEtw6wAWbfBhFbTkdIY5J9sWN1dO8PJg
+         eckPCxygj73zl0pVTq7GIvXxznV8yiLgIaGFSeDZT9FdazMVnL41ytNKdf+3kzWgIipB
+         vU9U0fLlHx3saEO5jsyO7n9tYI2bJ9n8hMubeyaBRjiix5kC7g+jyELLRZRV8cDwMZtn
+         7xJg==
+X-Gm-Message-State: ANoB5pmbM/mHe+4MPVbfcOZtNHc4J9u566l34+PBrPIJPVbG/x8iZGyd
+        8RH4EJM5OKsi2K/H7oUyXTtRSg==
+X-Google-Smtp-Source: AA0mqf5kKzTZwy3o3Cf4h9p/7Ric73X3MaF+6pxIjfDZhcnddYTepNSi9exl7I5gdGM8r5bEH3I+iA==
+X-Received: by 2002:a2e:7217:0:b0:26d:fe34:6dc0 with SMTP id n23-20020a2e7217000000b0026dfe346dc0mr6088126ljc.477.1668506392241;
+        Tue, 15 Nov 2022 01:59:52 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i25-20020a2e8099000000b0026bca725cd0sm2436205ljg.39.2022.11.15.01.58.19
+        by smtp.gmail.com with ESMTPSA id v4-20020a2ea604000000b0027713ef5360sm2434920ljp.71.2022.11.15.01.59.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 01:58:19 -0800 (PST)
-Message-ID: <168ed6e6-21bf-f034-504e-6da36842f4bc@linaro.org>
-Date:   Tue, 15 Nov 2022 10:58:18 +0100
+        Tue, 15 Nov 2022 01:59:51 -0800 (PST)
+Message-ID: <d88f85af-0de3-ab2a-b507-58ac3f8c5518@linaro.org>
+Date:   Tue, 15 Nov 2022 10:59:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
- expansion interface(SGPIO)
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: sunxi: Add BIQU CB1
 Content-Language: en-US
-To:     Jim Liu <jim.t90615@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com>
- <20221108092840.14945-4-JJLIU0@nuvoton.com>
- <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
- <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
- <CACRpkdYW0P8gqtGdiRX_frP32WF2W=NVg1JTu1fVMBXxEL0-WA@mail.gmail.com>
- <CAKUZ0+Hy5suFg9VZ8-+cH7kGc5KLqUnf9hjnT+iaw+a1HF8x0A@mail.gmail.com>
- <CACRpkdYbS_syVwgc=YndkV-DpEF0K8NpH6WzP=g0AFpN+OTN8A@mail.gmail.com>
- <CAKUZ0+FD=x8s+vqUpYwsuRUw-yTHQjtTFzWDwW=d4k8X1x1LoQ@mail.gmail.com>
+To:     Martin Botka <martin.botka@somainline.org>, martin.botka1@gmail.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Conley Lee <conleylee@foxmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20221114214452.1993744-1-martin.botka@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAKUZ0+FD=x8s+vqUpYwsuRUw-yTHQjtTFzWDwW=d4k8X1x1LoQ@mail.gmail.com>
+In-Reply-To: <20221114214452.1993744-1-martin.botka@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,22 +90,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 10:21, Jim Liu wrote:
-> Hi Linus and Krzysztof
+On 14/11/2022 22:44, Martin Botka wrote:
+> Add a name & compatible for BIQU CB1
 > 
-> Thanks for your understanding and your suggestion.
-> I will follow your suggestion to modify the yaml file.
-> -> nuvoton,input-ngpios = <...>
-> -> nuvoton,output-ngpios = <...>
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+> Changes in V2:
+> Add compatible and name to dt-bindings
+> Changes in V3:
+> None
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> And I don't think the node name needs to use gpio.
-> because it's not a general gpio, so I reference aspeed dts and use sgpio.
-> Could I use the sgpio node name or could you provide some suggestions?
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index 3ad1cd50e3fe..d886924023f5 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -151,6 +151,11 @@ properties:
+>            - const: roofull,beelink-x2
+>            - const: allwinner,sun8i-h3
+>  
+> +      - description: Biqu CB1
+> +        items:
+> +          - const: biqu,cb1
 
-Aspeed DTS has poor code readability (not following several common DT
-conventions), so using it as an example or argument is not correct
-approach. Nodes have name "gpio" for GPIO controllers or one of
-pinctrl.yaml for pin controllers.
+Undocumented vendor prefix. Did you run checkpatch?
 
 Best regards,
 Krzysztof
