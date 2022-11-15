@@ -2,39 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BAE6296DB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE976296DC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:11:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238030AbiKOLLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 06:11:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
+        id S230126AbiKOLLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 06:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238007AbiKOLKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:10:45 -0500
+        with ESMTP id S238128AbiKOLKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:10:47 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E1160EC;
-        Tue, 15 Nov 2022 03:10:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29367103C;
+        Tue, 15 Nov 2022 03:10:29 -0800 (PST)
 Received: from wf0498.dip.tu-dresden.de ([141.76.181.242] helo=phil.dip.tu-dresden.de)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1outpf-0007ai-C3; Tue, 15 Nov 2022 12:10:23 +0100
+        id 1outpf-0007ai-Ka; Tue, 15 Nov 2022 12:10:23 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-rockchip@lists.infradead.org
-Subject: Re: [PATCHv3 0/9] RK3588 Clock and Reset Support
-Date:   Tue, 15 Nov 2022 12:10:19 +0100
-Message-Id: <166851058432.863884.12311782948431945111.b4-ty@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix Pine64 Quartz4-B PMIC interrupt
+Date:   Tue, 15 Nov 2022 12:10:20 +0100
+Message-Id: <166851058430.863884.3049189227884445450.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221018151407.63395-1-sebastian.reichel@collabora.com>
-References: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20221106161513.4140-1-wens@kernel.org>
+References: <20221106161513.4140-1-wens@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -46,41 +42,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Oct 2022 17:13:58 +0200, Sebastian Reichel wrote:
-> This has been part of a bigger patchset adding basic rk3588 support.
-> Since that gets more and more out of hand, I'm now sending patches
-> for each subsystem as individual patchset.
+On Mon, 7 Nov 2022 00:15:13 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Changes since PATCHv2:
->  * https://lore.kernel.org/all/20220930153857.299396-1-sebastian.reichel@collabora.com/
->  * rebased to v6.1-rc1
->  * define rk3588_rst_init() in clk.h to fix build warning
->  * add input clocks to the binding
->  * add some more rates from the rate table (merged downstream fix)
->  * fix input of mux_700m_400m_200m_24m_p clock (merged downstream fix)
+> Ths PMIC's interrupt line is tied to GPIO0_A3. This is described
+> correctly for the pinmux setting, but incorrectly for the interrupt.
+> 
+> Correct the interrupt setting so that interrupts from the PMIC get
+> delivered.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/9] dt-bindings: clock: add rk3588 clock definitions
-      commit: f204a60e545ccd4bc28939054389690fd194cb5e
-[2/9] dt-bindings: reset: add rk3588 reset definitions
-      commit: 0a8eb7dae617a9537b9a64a6b14e63415c279eb5
-[3/9] dt-bindings: clock: add rk3588 cru bindings
-      commit: 4f5ca304f202938a07eb0c2e20551795286d817d
-[4/9] clk: rockchip: add register offset of the cores select parent
-      commit: cf87691f143e6cc5727767b02ec2be3725534a5d
-[5/9] clk: rockchip: add pll type for RK3588
-      commit: 8f6594494b1cb0ad14493795b436413cfe64a0f8
-[6/9] clk: rockchip: clk-cpu: add mux setting for cpu change frequency
-      commit: 2004b7b1803719eaaaee5fa6b089b1699a65d31d
-[7/9] clk: rockchip: simplify rockchip_clk_add_lookup
-      commit: ff94c8660dac444081f2f650fae36a283c55b117
-[8/9] clk: rockchip: add lookup table support
-      commit: ada8f95ba04e8fe07289b7de157ae99bb96bc8cb
-[9/9] clk: rockchip: add clock controller for the RK3588
-      commit: f1c506d152ff235ad621d3c25d061cb16da67214
+[1/1] arm64: dts: rockchip: Fix Pine64 Quartz4-B PMIC interrupt
+      commit: 562105c1b072411c71ac2202410d83ee79297624
 
 Best regards,
 -- 
