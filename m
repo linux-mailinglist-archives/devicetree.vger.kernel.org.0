@@ -2,76 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30109629DCD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:41:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB651629DE9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:46:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbiKOPlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40236 "EHLO
+        id S238368AbiKOPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:46:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbiKOPlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:41:11 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2B1AC2E9C2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:40:56 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id D788380E0;
-        Tue, 15 Nov 2022 15:30:55 +0000 (UTC)
-Date:   Tue, 15 Nov 2022 17:40:54 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>,
-        Georgi Vlaev <g-vlaev@ti.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: k3-am62: Add general purpose
- timers for am62
-Message-ID: <Y3OzBslhKLd7xrk5@atomide.com>
-References: <20221107163533.48777-1-tony@atomide.com>
- <20221107163533.48777-4-tony@atomide.com>
- <20221115144604.qjtor4wsetqmxnlh@hatching>
+        with ESMTP id S236873AbiKOPqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:46:05 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8B7C2657F;
+        Tue, 15 Nov 2022 07:46:00 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 08DB966029B0;
+        Tue, 15 Nov 2022 15:45:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668527159;
+        bh=tnniZiVJY7xBZ5WD5I7gy0UTPhCI/2A5r5o/6SEqiSc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=X870VwmoY+ndoiroLAzp0nUMhWstHUYL1te1W9Tn3mMaVbVgFqzl7DNJ1q4oVHJLo
+         XL3eWJZTMuYv9li73FvNEzsKyP8eXX3HHiWqvoWoq/Ssq3wsLn5ro8/b8tjiII/fL7
+         MzdJqIKUSOrVuNcPeb6QBTCwwZlb9hkucLNEI3NLALDSqF8V8AV1FxJwjtwyKpBFEE
+         bGqKzCVm6HENSiSJyxNgysvQfByPu7rhCbGpgMzbNsalPD4hPETvLnM4WMjH7rmnlL
+         1PS9FNtL+CN3OAhVKSMX1I166+197ZeN0+UAw1v0JMf0IuCVHin+ZIJo2XWU7tIV6u
+         Sfr0tON8/Ua/A==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        angelogioacchino.delregno@collabora.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
+        kernel@collabora.com
+Subject: [PATCH v3 0/2] Qualcomm Ramp Controller and MSM8976 config
+Date:   Tue, 15 Nov 2022 16:45:53 +0100
+Message-Id: <20221115154555.324437-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221115144604.qjtor4wsetqmxnlh@hatching>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Nishanth Menon <nm@ti.com> [221115 14:36]:
-> On 18:35-20221107, Tony Lindgren wrote:
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 97 ++++++++++++++++++++++++
-> >  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi  | 45 +++++++++++
-> >  2 files changed, 142 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > @@ -192,6 +192,103 @@ main_pmx0: pinctrl@f4000 {
-> 	[...]
-> > +
-> > +	main_timer7: timer@2470000 {
-> > +		compatible = "ti,am654-timer";
-> > +		reg = <0x00 0x2470000 0x00 0x400>;
-> > +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> > +		clocks = <&k3_clks 43 2>;
-> > +		clock-names = "fck";
-> > +		assigned-clocks = <&k3_clks 43 2>;
-> > +		assigned-clock-parents = <&k3_clks 43 3>;
-> > +		power-domains = <&k3_pds 43 TI_SCI_PD_EXCLUSIVE>;
-> > +		ti,timer-pwm;
-> > +	};
-> > +
-> > +
-> ^^ Looks like an extra EoL crept in here.
+This series adds the Qualcomm Ramp Controller driver, necessary on
+various legacy Qualcomm SoCs to enable CPU DVFS by programming said
+controller with the right values, where the bootloader doesn't do
+that before booting the kernel.
 
-Oops, will send out an updated set with that fixed and without
-the last patch.
+At least MSM8976 and MSM8956 require this initial programming to be
+performed on Linux.
 
-Regards,
+Changes in v3:
+ - Removed blank line at EOF on commit [1/2]
+ - Changed example node name to cpu-power-controller
 
-Tony
+Changes in v2:
+ - Fixed yaml issues as per Krzysztof's review
+ - Reworded s/linking/link/g in both yaml and Kconfig help
+ - Constified reg_sequence pointers
+ - Removed spaces before defines
+ - Added COMPILE_TEST to Kconfig entry
+
+AngeloGioacchino Del Regno (2):
+  dt-bindings: soc: qcom: Add bindings for Qualcomm Ramp Controller
+  soc: qcom: Add Qualcomm Ramp Controller driver
+
+ .../qcom/qcom,msm8976-ramp-controller.yaml    |  36 ++
+ drivers/soc/qcom/Kconfig                      |   9 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/ramp_controller.c            | 331 ++++++++++++++++++
+ 4 files changed, 377 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,msm8976-ramp-controller.yaml
+ create mode 100644 drivers/soc/qcom/ramp_controller.c
+
+-- 
+2.38.1
+
