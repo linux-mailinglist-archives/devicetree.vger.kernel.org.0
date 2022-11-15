@@ -2,146 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F146F629E87
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A55AC629EB2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231161AbiKOQK5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Nov 2022 11:10:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32776 "EHLO
+        id S238545AbiKOQRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 11:17:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbiKOQK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:10:56 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F165A1C119;
-        Tue, 15 Nov 2022 08:10:55 -0800 (PST)
-Received: from frapeml500002.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NBWLk5JNFz67T9q;
-        Wed, 16 Nov 2022 00:08:30 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- frapeml500002.china.huawei.com (7.182.85.205) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 15 Nov 2022 17:10:54 +0100
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 15 Nov
- 2022 16:10:53 +0000
-Date:   Tue, 15 Nov 2022 16:10:52 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rasmus Villemoes" <linux@rasmusvillemoes.dk>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/5] iio: addac: ad74413r: add support for reset-gpio
-Message-ID: <20221115161052.00002633@Huawei.com>
-In-Reply-To: <0d6b3e4047df9f560079a562bc167bd7a0bf2d28.camel@gmail.com>
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
-        <20221111143921.742194-6-linux@rasmusvillemoes.dk>
-        <20221112170705.7efe1673@jic23-huawei>
-        <095a454b55cf497392a621649f24e067@analog.com>
-        <20221114194447.2528f699@jic23-huawei>
-        <0d6b3e4047df9f560079a562bc167bd7a0bf2d28.camel@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S238556AbiKOQRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:17:12 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BC02AE16;
+        Tue, 15 Nov 2022 08:17:11 -0800 (PST)
+Received: from jupiter.universe (dyndsl-095-033-156-109.ewe-ip-backbone.de [95.33.156.109])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8DF9066023A6;
+        Tue, 15 Nov 2022 16:17:09 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668529029;
+        bh=fKfUXO5zcA7cT/xlG3ZFpWxaafbdeWYxv/sohfNQGLc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Z/PdmmVcq7no8E0y2w3K/1Jdgc0XDqeRqnCScMGKm7YoFo2yHYiMNfe2Utv/oQzyd
+         WnSoZ73TfZ/1Tawqb2/AK41rPweq1yvIht4fZZOd0xx8+Rx/wwIIM32VDx4ZBYOb0F
+         KOOJk1YcbmI3mLdKAv5vgGvcdIbyUBx2XCrdpAcjCIIhH/LdBALSx47Nsaa+4Q3H3L
+         2yr6u2dYRexahwHMK2E/ENTpKO8zMI0TM1EHrkkl3x9Dvw19TJqFTrc/9PNot1K8IX
+         6esq031dfPRuPR8X2psyzkmgElXp7cPWxMIrxO/FNceHnHGRhYlpnz+Sb/JTe3WCzC
+         hjMMNfrkaKrgQ==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 5BB11480119; Tue, 15 Nov 2022 17:17:07 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv2 0/5] Initial rk3588 DT
+Date:   Tue, 15 Nov 2022 17:16:57 +0100
+Message-Id: <20221115161702.163057-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Nov 2022 15:49:46 +0100
-Nuno Sá <noname.nuno@gmail.com> wrote:
+Hi,
 
-> On Mon, 2022-11-14 at 19:44 +0000, Jonathan Cameron wrote:
-> > On Mon, 14 Nov 2022 13:52:26 +0000
-> > "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com> wrote:
-> >   
-> > > > -----Original Message-----
-> > > > From: Jonathan Cameron <jic23@kernel.org>
-> > > > Sent: Saturday, November 12, 2022 7:07 PM
-> > > > To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> > > > Cc: Tanislav, Cosmin <Cosmin.Tanislav@analog.com>; Lars-Peter
-> > > > Clausen
-> > > > <lars@metafoo.de>; Hennerich, Michael
-> > > > <Michael.Hennerich@analog.com>;
-> > > > devicetree@vger.kernel.org; Rob Herring <robh+dt@kernel.org>;
-> > > > linux-
-> > > > iio@vger.kernel.org; linux-kernel@vger.kernel.org
-> > > > Subject: Re: [PATCH 5/5] iio: addac: ad74413r: add support for
-> > > > reset-gpio
-> > > > 
-> > > > [External]
-> > > > 
-> > > > On Fri, 11 Nov 2022 15:39:21 +0100
-> > > > Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
-> > > >     
-> > > > > We have a board where the reset pin of the ad74412 is connected
-> > > > > to a
-> > > > > gpio, but also pulled low by default. Hence to get the chip out
-> > > > > of
-> > > > > reset, the driver needs to know about that gpio and set it high
-> > > > > before
-> > > > > attempting to communicate with it.    
-> > > > 
-> > > > I'm a little confused on polarity here.  The pin is a !reset so
-> > > > we need to drive it low briefly to trigger a reset.
-> > > > I'm guessing for your board the pin is set to active low? (an
-> > > > example
-> > > > in the dt would have made that clearer) Hence the pulse
-> > > > in here to 1 is actually briefly driving it low before restoring
-> > > > to high?
-> > > > 
-> > > > For a pin documented as !reset that seems backwards though you
-> > > > have
-> > > > called it reset so that is fine, but this description doesn't
-> > > > make that
-> > > > celar.    
-> > > 
-> > > My opinion is that the driver shouldn't exactly know the polarity
-> > > of the reset,
-> > > and just assume that setting the reset GPIO to 1 means putting it
-> > > in reset,
-> > > and setting it to 0 means bringing out of reset.  
-> > 
-> > Agreed. I'd just like a comment + example in the dt-binding to make
-> > the point
-> > that the pin is !reset.
-> > 
-> > Preferably with an example in the dt binding of the common case of it
-> > being wired
-> > up to an active low pin.
-> > 
-> > The main oddity here is the need to pulse it rather than request it
-> > directly as
-> > in the reset state and then just set that to off.
-> > 
-> >   
-> 
-> Agreed... In theory we should be able to request the gpio with
-> GPIOD_OUT_HIGH and then just bring the device out of reset
+This adds initial rk3588(s) DT including two different board
+devicetrees. All required driver changes have been merged into
+the respective maintainer trees. There is one pending DT binding
+fix:
 
-If I recall correctly the datasheet specifically calls out that a pulse
-should be used.  No idea if that's actually true, or if it was meant
-to be there just to say it needs to be set for X nsecs.
+https://lore.kernel.org/all/20221021172012.87954-1-sebastian.reichel@collabora.com/
 
-Jonathan
+Even with that there is still one warning from the DT check:
 
-> 
-> - Nuno Sá
-> 
+$ make CHECK_DTBS=y rockchip/rk3588-evb1-v10.dtb rockchip/rk3588s-rock-5a.dtb
+  DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb
+/home/sre/src/collabora/rode/linux-rockchip-upstream/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb:
+    ethernet@fe1c0000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mdio',
+    'power-domains', 'reg', 'reset-names', 'resets', 'rx-queues-config', 'snps,axi-config', 'snps,mixed-burst',
+    'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'stmmac-axi-config', 'tx-queues-config' were unexpected)
+	From schema: /home/sre/src/collabora/rode/linux-rockchip-upstream/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+
+This is for gmac1. gmac0 has the same properties and there is no warning. Also
+rk3588s (and thus the Rock 5A) has only gmac1 and there is no warning for the
+Rock 5A. It looks like the for some reason the referenced "snps,dwmac.yaml#"
+is only checked for the first node. I think it's a bug in dt-validate.
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221108171500.99599-1-sebastian.reichel@collabora.com/
+ * Drop Acked-by from Krzysztof
+ * Add 'regulator-' prefix to VCC12V VCC5V0 regulators
+ * Change 'Radxa Rock 5A' to 'Radxa ROCK 5 Model A' in DT binding
+ * Update cover-letter (clock driver and some DT binding fixes got merged)
+
+-- Sebastian
+
+Jianqun Xu (1):
+  arm64: dts: rockchip: Add rk3588 pinctrl data
+
+Kever Yang (2):
+  arm64: dts: rockchip: Add base DT for rk3588 SoC
+  arm64: dts: rockchip: Add rk3588-evb1 board
+
+Sebastian Reichel (2):
+  dt-bindings: soc: rockchip: add initial rk3588 syscon compatibles
+  arm64: dts: rockchip: Add rock-5a board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   10 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    2 +
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |  156 +
+ .../boot/dts/rockchip/rk3588-pinctrl.dtsi     |  516 +++
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |   62 +
+ .../boot/dts/rockchip/rk3588s-pinctrl.dtsi    | 3403 +++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   63 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 1678 ++++++++
+ 9 files changed, 5895 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+
+-- 
+2.35.1
 
