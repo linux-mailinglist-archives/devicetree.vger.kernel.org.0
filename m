@@ -2,139 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE8C629BF3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F928629BF9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:24:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229454AbiKOOXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:23:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46466 "EHLO
+        id S230215AbiKOOYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbiKOOX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:23:29 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725F9DF2;
-        Tue, 15 Nov 2022 06:23:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0DDFC6179B;
-        Tue, 15 Nov 2022 14:23:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 612C4C433C1;
-        Tue, 15 Nov 2022 14:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668522207;
-        bh=6MybgYS++YBsa14WSMeMsE+CurMBOnWwTePlaWVNdAU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bXBhJuDfqCrmRoK3Wouw3dWT4IdtX2aEnsUF+G9YfKy/vi1bX/0NIMCCOoy4IF08Z
-         UBA3zFlrHBfXg4Rosxr2K3VI525n+8TNv5rxqvMdMA2fU9gRBjtrc8FIYHFMTd4kx/
-         kpcqRz8Py7MK8/k/CIajiPSqGmrS/ihoh0OZvDQxbVhFHxadK9hG8VhcTPRNehOvoz
-         bSnJSdAoQ2vcGfbZIR5IcBNPkjCwvsp9kVjPecFnVtHF1ffFQsxCI3iGn3ljrcO3Y9
-         y/qebzR3/zDueIByh8KYxb+TlP3L6JZWsjGnU3hrrUOHo8ombknmlyoo3WsuRck3kp
-         g2SdLMD4Kkg/g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ouwq0-0000Nf-NH; Tue, 15 Nov 2022 15:22:57 +0100
-Date:   Tue, 15 Nov 2022 15:22:56 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
- bindings
-Message-ID: <Y3OgwLlNaqcd5SwW@hovoldconsulting.com>
-References: <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
- <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
- <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
- <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
- <Y3JthM1jC2vH1Kn+@hovoldconsulting.com>
- <efd412d0-7411-8b0b-4700-9e183a592048@linaro.org>
- <Y3JxZ+yFMLZkwNBi@hovoldconsulting.com>
- <8420c342-9dce-aea7-8d1e-f141e0c1ebb5@linaro.org>
- <Y3J2AjjjsybI9mKd@hovoldconsulting.com>
- <61df3c4f-f41c-9525-606d-1b8261163080@linaro.org>
+        with ESMTP id S230305AbiKOOYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:24:00 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11D425C6B
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:23:52 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id x21so17699746ljg.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZpL11cNJx2l9z+r6z/7+POcZMvt9C9FRB9mdY/4v0yc=;
+        b=bZ236k1sR9rLsZmH2QLK/jWvz5w55IXdkp1pkw0jB+lj12y+GkMBVdGMjPGLfWYzsr
+         YQW6QNgFrUiSbt/oUHQCSZmwJKKsqjPJcU64+Wa+4cdvHGHHrs8bn9fE/rc/IiiWE09C
+         CqzZJs9Qupqm1iwIFBn5QIEY3lk/bvNvSa7pe1/KKB5k1Rrel4F1heY792b7gvbdtBs9
+         voXHqYupPmcnCRRIsCh1ZTraRuj0JJoYO8iWcZrGkggQ+73mmrEWUR0p7jVs020G2zS4
+         h8U3kw1yPFda0FtmhaeLa9wg+0pZg7PZ4AbxOPpCGlALEU0GGq/Bo6EE2h3b/ADt4s8g
+         jyZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZpL11cNJx2l9z+r6z/7+POcZMvt9C9FRB9mdY/4v0yc=;
+        b=1dA70NVQmgC3+ASxthfDVqrZpvWXmIooZJfUnu2aUES6Gwd9z1aLUtz9i1j8/4IoZ0
+         MY+G0dSaJlnqJt+UXjHHwN3eShclDOy031QeJoYpiTOWLD7vETsEb99FZVl9dXBIsvLX
+         U1TpteeBhepG4D5JrVZsGehVO1+QoiRLs7ymftUlcCZdrhw2ZDR8DDImIHg0OGcT1oxj
+         uTMgdShCmgJCJj69uaC0SyzhpRMqchQW7IWa4rsBFDfYp8LXSNpKHi6wGyvXKsZIR09V
+         0tf+BZqVY1fNa8yKkNX/rRZSfcI3pzKunVugQZjPMVSWAiZgvONGnceorrh8Yuk7mM6u
+         9GKQ==
+X-Gm-Message-State: ANoB5pnTRyhjQcFPv1l7oevEdi67tznAEtzVh9lle4GdsSh8YInc2ym+
+        ZZSVQp7+o0GNBsJoir35cRmCCA==
+X-Google-Smtp-Source: AA0mqf5cGkz19RcK9Ps9BvdlLxu3x3Y78oitxCK1++IR4SM4ClgTCHxDYPY+NRbRPH/u/b+2Yx+vpw==
+X-Received: by 2002:a2e:8184:0:b0:277:139d:78d2 with SMTP id e4-20020a2e8184000000b00277139d78d2mr5619258ljg.22.1668522231137;
+        Tue, 15 Nov 2022 06:23:51 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a17-20020ac25e71000000b0049aa20af00fsm2221593lfr.21.2022.11.15.06.23.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 06:23:50 -0800 (PST)
+Message-ID: <090831eb-2c7a-56c2-601e-e910431a9403@linaro.org>
+Date:   Tue, 15 Nov 2022 15:23:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <61df3c4f-f41c-9525-606d-1b8261163080@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/2] ASoC: codecs: va-macro: add npl clk
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
+        tiwai@suse.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+References: <20221115105541.16322-1-srinivas.kandagatla@linaro.org>
+ <20221115105541.16322-3-srinivas.kandagatla@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115105541.16322-3-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 15, 2022 at 09:12:54AM +0100, Krzysztof Kozlowski wrote:
-> On 14/11/2022 18:08, Johan Hovold wrote:
-> >>
-> >> Which is also fine. I don't understand still why it is a problem - even
-> >> if you have multiple files, one for each SoC/phy. If USB4 brings here 10
-> >> more clocks and other SoCs/phys might bring many more options, then what
-> >> else can you do? Grow the binding file with big text-based mapping of
-> >> IDs? It's not a viable solution. Header or headers is the only
-> >> maintainable way for such cases.
-> > 
-> > So then we must add per-SoC (and PHY type) headers even if we can
-> > possibly reuse defines from one platform for another as long as they
-> > appear to be similar enough?
+On 15/11/2022 11:55, Srinivas Kandagatla wrote:
+> New versions of VA Macro has soundwire integrated, so handle the soundwire npl
+> clock correctly in the codec driver.
 > 
-> No, you don't have to. I just got impression that future devices will
-> bring so many changes that anyway you will end up with per-SoC defines.
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  sound/soc/codecs/lpass-va-macro.c | 41 +++++++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > 
-> > For example, using a "SC7180_USB3_DP" infix
-> > for the current platforms and add a new series of indexes for SC8280XP:
-> > 
-> > 	QMP_SC7180_USB3_DP_USB3_PIPE			0
-> > 	QMP_SC7180_USB3_DP_DP_LINK			1
-> > 	QMP_SC7180_USB3_DP_DP_VCO_DIV			2
-> > 
-> > 	QMP_SC8280XP_USB4_USB3_DP_USB3_PIPE		0
-> > 	QMP_SC8280XP_USB4_USB3_DP_DP_LINK		1
-> > 	QMP_SC8280XP_USB4_USB3_DP_DP_VCO_DIV		2
-> > 	QMP_SC8280XP_USB4_USB3_DP_USB4_PCIE_PIPE	3
-> > 	...
-> > 	QMP_SC8280XP_USB4_USB3_DP_USB4_RX1		9
-> 
-> The names are just a names, you can even use QMP_SC7180_* on SC8280XP.
-> You can skip the SoC part and have something shared. We already have
-> such patterns - although maybe more often for outside components (like
-> PMICs). The differences are:
-> 1. For per-SoC name it's quite obvious which clock is supported on fiven
-> SoC,
-> 2. With shared names, you should document somewhere mapping between
-> supported clocks and SoCs. Also what to do if new device comes with 10
-> new clocks entirely different - re-use/map existing defines or add
-> completely new set of 10 of them?
+> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
+> index b0b6cf29cba3..d59af6d69c34 100644
+> --- a/sound/soc/codecs/lpass-va-macro.c
+> +++ b/sound/soc/codecs/lpass-va-macro.c
+> @@ -205,6 +205,7 @@ struct va_macro {
+>  	int dec_mode[VA_MACRO_NUM_DECIMATORS];
+>  	struct regmap *regmap;
+>  	struct clk *mclk;
+> +	struct clk *npl;
+>  	struct clk *macro;
+>  	struct clk *dcodec;
+>  	struct clk *fsgen;
+> @@ -1332,6 +1333,9 @@ static int fsgen_gate_enable(struct clk_hw *hw)
+>  	struct regmap *regmap = va->regmap;
+>  	int ret;
+>  
+> +	if (va->has_swr_master)
+> +		clk_prepare_enable(va->mclk);
 
-Ok, thanks. I'll go with a common prefix per PHY type for now, and we
-can worry about hypothetical hardware revisions later.
+No error path?
 
-I'll use a "QMP_USB43DP_" prefix for the new SC8280XP binding, which can
-be reused also for the older SoCs with USB3-DP PHYs if/when we convert
-them as their indexes will be a subset of the SC8280XP ones:
+> +
+>  	ret = va_macro_mclk_enable(va, true);
+>  	if (!va->has_swr_master)
+>  		return ret;
+> @@ -1358,6 +1362,8 @@ static void fsgen_gate_disable(struct clk_hw *hw)
+>  			   CDC_VA_SWR_CLK_EN_MASK, 0x0);
+>  
+>  	va_macro_mclk_enable(va, false);
+> +	if (va->has_swr_master)
+> +		clk_disable_unprepare(va->mclk);
+>  }
+>  
+>  static int fsgen_gate_is_enabled(struct clk_hw *hw)
+> @@ -1386,6 +1392,9 @@ static int va_macro_register_fsgen_output(struct va_macro *va)
+>  	struct clk_init_data init;
+>  	int ret;
+>  
+> +	if (va->has_swr_master)
+> +		parent = va->npl;
+> +
+>  	parent_clk_name = __clk_get_name(parent);
+>  
+>  	of_property_read_string(np, "clock-output-names", &clk_name);
+> @@ -1512,6 +1521,14 @@ static int va_macro_probe(struct platform_device *pdev)
+>  	/* mclk rate */
+>  	clk_set_rate(va->mclk, 2 * VA_MACRO_MCLK_FREQ);
+>  
+> +	if (va->has_swr_master) {
+> +		va->npl = devm_clk_get(dev, "npl");
 
-	/* QMP USB4-USB3-DP clocks */
-	#define QMP_USB43DP_USB3_PIPE_CLK	0
-	#define QMP_USB43DP_DP_LINK_CLK		1
-	#define QMP_USB43DP_DP_VCO_DIV_CLK	2
+I think you miss:
+ret = PTR_ERR(va->npl);
 
-Since I'm adding a new header anyway, I decided to go with dedicated
-indexes also for the PHY selection (instead of using the PHY_TYPE
-defines):
+> +		if (IS_ERR(va->npl))
+> +			goto err;
+> +
+> +		clk_set_rate(va->npl, 2 * VA_MACRO_MCLK_FREQ);
+> +	}
+> +
+>  	ret = clk_prepare_enable(va->macro);
+>  	if (ret)
+>  		goto err;
 
-	/* QMP USB4-USB3-DP PHYs */
-	#define QMP_USB43DP_USB3_PHY		0
-	#define QMP_USB43DP_DP_PHY		1
+Best regards,
+Krzysztof
 
-I'll add these to a common dt-bindings/phy/phy-qcom-qmp.h header so that
-it can be used also for the UFS clocks (with a "QMP_UFS_" prefix).
-
-Johan
