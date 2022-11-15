@@ -2,159 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D453362910B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 05:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A116290EB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 04:44:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232579AbiKOEB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 23:01:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
+        id S231750AbiKODoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 22:44:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237801AbiKOEBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 23:01:53 -0500
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F691C120
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 20:01:41 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20221115040139epoutp01af194a2106f80302a6b0e264f8b9a240~npi0sS5UY2093920939epoutp01w
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:01:39 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20221115040139epoutp01af194a2106f80302a6b0e264f8b9a240~npi0sS5UY2093920939epoutp01w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1668484899;
-        bh=4Q5OQv6ek20SCDHutwu88UaXFb56EuVL8bwNMJ3r/eI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GxquBRPch+4wHsILaHnPS8fLoEbygdmrP2zkVmqYwaLNS2gQmXLoSQRTl2bpsjQZa
-         nbyQQggy5x6TRnmQkzzWEwjOPN58FBkGkj8LH1Bqt+TXEuEWzdsHOST6NWTDSu4o5W
-         hTRbrcVsvyUoSgPyymfkOINYP33ueVjovWQAqjZ0=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-        20221115040138epcas5p11ede79a041ca797f039232c8076e47dd~npizpQy5N0913709137epcas5p18;
-        Tue, 15 Nov 2022 04:01:38 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.180]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4NBCD10hy6z4x9Pv; Tue, 15 Nov
-        2022 04:01:37 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        BA.0E.56352.02F03736; Tue, 15 Nov 2022 13:01:36 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20221114114412epcas5p43350b596e52a98eb69406574b4a16171~ncNZTqLUx0954209542epcas5p4B;
-        Mon, 14 Nov 2022 11:44:12 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221114114412epsmtrp2dfab1581fcfc90883516c1d65bfcae17~ncNZR16uR0788507885epsmtrp2t;
-        Mon, 14 Nov 2022 11:44:12 +0000 (GMT)
-X-AuditID: b6c32a4b-5f7fe7000001dc20-7b-63730f207faa
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        25.E4.14392.C0A22736; Mon, 14 Nov 2022 20:44:12 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20221114114409epsmtip2ec50e17d83fb8bd28910d3118d833d2e~ncNWPvCIM1393413934epsmtip2G;
-        Mon, 14 Nov 2022 11:44:09 +0000 (GMT)
-From:   Aakarsh Jain <aakarsh.jain@samsung.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com,
-        aakarsh.jain@samsung.com
-Subject: [Patch v5 3/3] ARM: dts: exynos: Add new SoC specific compatible
- string for Exynos3250 SoC
-Date:   Mon, 14 Nov 2022 17:20:24 +0530
-Message-Id: <20221114115024.69591-4-aakarsh.jain@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221114115024.69591-1-aakarsh.jain@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0VTe0xTZxTfd+/t7a2h81Lc+CQ+mgZNwACtUvaV8dgy4m7m/iBzc0ZmuqZc
-        C1Lapg98sVhEGKBrhKgZjKHhtQDyKlAYKwYrD0EYMhxkApaXARxRhMkIY8taCtt/v3PO73fO
-        ye98H4ULnpB+VKLGyOo1CrWI3EbY7gcEBAm3G5Ti5pfh6FlLPgdNFNlIVLI6iyFnyTKBHA1N
-        XNT4+Dsc/dDdzkG3On7moOZ7UwSqn3NVB/PHCTR7qwag+YKnJLLMTeLIOj3MQUOthSS6WtfE
-        QdUd41xUNjKIoXLrOoaKm/7gooy2Di4at9sAupzZgb0HmTtFdwDTMl4KmJHSJZz5sWCcy5TY
-        5zHGWplNMmPDdpJpKL3IZHSuEYylsRIwOR0jJLNs3cP0vl7mxvJPJEUksIp4Vi9kNUptfKJG
-        FSk6clT+gVwaJpYESWToHZFQo0hmI0UxH8cGHU5UuywQCVMUapMrFaswGEQhURF6rcnIChO0
-        BmOkiNXFq3WhumCDItlg0qiCNawxXCIWH5S6iF8mJdRZ03FdJ+/s9zM2jhlcpnIAj4J0KFx/
-        dInMAdsoAf0TgGuVV7meYAnA285czBOsAGi2LYItyd3e0U1JG4B9ji6OuyCgMzBYbP08B1AU
-        SQfB/ma1O72DTgNwOsvo5uN0LgFHLXO4u+BDs9BZV0C4MUHvgzWdrZhby6cj4T/VmGfWXlhV
-        175B59FRsP/eIuHuA+l0Huyx/AncfEjHwKVunofvA593N3I92A8uv2gjPVgJp4vncQ9Ww1r7
-        dcKDo2H740LC3QanA2Bta4gnvRve6K3ZWAGn34Tf/DWzuQ4fthRt4f2wcGyV48G74P2qsk17
-        GDj5KJ/w2JMLYG72EHkN7Cn4f8RtACrBTlZnSFaxBqnukIY989/NlNpkK9h45IFHWsDUxGKw
-        A2AUcABI4aId/KJdWqWAH684d57Va+V6k5o1OIDUZV8u7veWUuv6JRqjXBIqE4eGhYWFyg6F
-        SUS+/JJvA5UCWqUwskksq2P1WzqM4vmZMXZBqtTWVzyr2j3l2H9FIqt8hU3lvP8KTzpe3RWi
-        n3jx0fWok+UH08gV7s5Th8sCL+U9SOh7O3y774DWwnS1qOb/Xjjt/zJG9Zv3+deCT6JP9c1k
-        2zIx5qFQVtG12mnKz1q0RN80V5zI+uyYPEXe5iz2+lq2EDdkSbWmGfF3qaGzsQN7LQcG7/bY
-        tekXlPwGs/fY+fqVAyl5A6mc7iveo/79+8p+yS73Zx6OfJU6LKWfpD8VpzjizOe+KAk5GvmG
-        7HTFRK3vujP5Yn0T1TNkz7z2oLfBqFw+7kX+mkc+95G2xp38ffbD/KI0Is+r0BQx37ByrFdY
-        F7F2oWrFOfPp5M0zIsKQoJAE4nqD4l+S+mDYbQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAAzWRa1BMYRzGveecPee0LMeu4XVJM2uMLlNkMO8YGuMDxy1mGDU+4NhOMfaS
-        c1xiDI22Ne24hBmjsEmrpl2yrbbCMlvtipKKtENWSs1aRNnQpEGr8e33/J/nmf+Hh8blF4gZ
-        9B7tfl7QcmolKSUq65QRsROiBdWCzIFI1FudJ0HvTJUkKhryY6izKEig2jsOClW0XcZRSb1L
-        ggrczySoqqabQOUfRt3WPB+B/AVlAAXy35LozIcuHNnft0vQi3tXSHTK5pCgW24fhW54WzFU
-        bB/B0HXHIIWyH7gp5HNWAqQ3uLEVkL1pugnYap8ZsF7zN5y9m++j2CJnAGPtlhySfdPuJNk7
-        5uNstmeYYM9UWABrdHtJNmifzTZ8D1KbZNuky1J49Z6DvDA/Yad0t82ehad7wjKu9lRKMoGe
-        NoIwGjKL4MOGDtIIpLScuQ9gu7kMjBmz4B/DI2qMFbD0t58aC2VhsNx2e1TQNMnEwqYqdeg+
-        hckG0Fuag4UEzpQSsKP8FBZqKxgVzHKZ/zHBzIVlnntYqCxjlsPft7CxBxHQanPhIQ5jEmBT
-        TT8RYvlo5MujPjIXTLwGxlnAdD5d1KRpxPj0eC1/KE7kNOIBbVqcSqexg3+7RUdVgypLf1wt
-        wGhQCyCNK6fITLN0KrkshTt8hBd0O4QDal6sBTNpQjlN1mJ8skPOpHH7+b08n84L/12MDpuR
-        idUX/9RLW1bmwrWFaWt+uQzhP5o+akvWPW14/V21MDv8FaSjUxu7VfNySONgb7PM2lLSve5E
-        4rOrwuqJq0dMTkVrTMvBqSkDkc3tRwNusd7XtzRjhPxBi+N6FhXqzq5PjHrsSS0wPLEubPAn
-        vd9X+Py5xcOdretqTGnzJ3QutYbn9c5JjmosztPp3+q8WxOd1xPvc6QrmdpufTgwbDi54FxQ
-        t+XY9M/N5xVTNzs+KZICX1+MD8Zk0LDJ/Up9cvBcxeTcHptNNpTPHUlVdXmEVZckJRczNjiT
-        hzta++5OTioLHIrsd2j6vpEbhzpf7lry0jYt62nE6bZPa9ab7JP0i5WEuJuLj8YFkfsL/ucI
-        NiYDAAA=
-X-CMS-MailID: 20221114114412epcas5p43350b596e52a98eb69406574b4a16171
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221114114412epcas5p43350b596e52a98eb69406574b4a16171
-References: <20221114115024.69591-1-aakarsh.jain@samsung.com>
-        <CGME20221114114412epcas5p43350b596e52a98eb69406574b4a16171@epcas5p4.samsung.com>
+        with ESMTP id S230415AbiKODn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 22:43:58 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7806A15A25;
+        Mon, 14 Nov 2022 19:43:55 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AF3hOoj046493;
+        Mon, 14 Nov 2022 21:43:24 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668483805;
+        bh=vW4Na6MUWNFRZenOB8ly6uHS+ELtuXqlkGUOA9uhB+Y=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=JzxPMmLHUH0YD90PYMH06sxwLrRqqsyVyYZAYwSr8EcuK6v5EAdJEVmHunpzKH2jc
+         CRqKkbZJ/TQKCvvPCH2xZxurVEGw6Ihki6QZGsAikqgBPdhGpNiH7edCpSva3mxnnB
+         NJZwhNnbKBaxmBrs28V6GXcGVP7uDx1DI9tNfW+4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AF3hOl8012785
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Nov 2022 21:43:24 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 14
+ Nov 2022 21:43:24 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 14 Nov 2022 21:43:24 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AF3hODx121431;
+        Mon, 14 Nov 2022 21:43:24 -0600
+Date:   Mon, 14 Nov 2022 21:43:24 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Bhavya Kapoor <b-kapoor@ti.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <piyali_g@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel
+ property
+Message-ID: <20221115034324.6qpxl2774bzwbl3t@acorn>
+References: <20221107112246.69242-1-b-kapoor@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221107112246.69242-1-b-kapoor@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 752d3a23d1f68de ("ARM: dts: add MFC codec device node for
-exynos3250") which adds MFC codec device node for exynos3250 SoC.
-Since exynos3250.dtsi and exynos5420.dtsi are using same compatible
-string as "samsung,mfc-v7" but their node properties are different.
-As both SoCs have MFC v7 hardware module but with different clock 
-hierarchy and complexity.
-Add new compatible string followed by mfc-v7 fallback for Exynos3250
-SoC.
+On 16:52-20221107, Bhavya Kapoor wrote:
+> According to latest errata of J721e [1], HS400 mode is not supported
+> in MMCSD0 subsystem (i2024) .  Speed modes supported has been already
+> updated in PATCH eb8f6194e807. 'ti,strobe-sel' property is only
 
-Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
-Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
----
- arch/arm/boot/dts/exynos3250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+eb8f6194e807 isn't a PATCH :) See
+Documentation/process/submitting-patches.rst line 99 as an example how
+to refer to specific commits.
 
-diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-index 326b9e0ed8d3..a2d6ee7fff08 100644
---- a/arch/arm/boot/dts/exynos3250.dtsi
-+++ b/arch/arm/boot/dts/exynos3250.dtsi
-@@ -485,7 +485,7 @@
- 		};
- 
- 		mfc: codec@13400000 {
--			compatible = "samsung,mfc-v7";
-+			compatible = "samsung,exynos3250-mfc", "samsung,mfc-v7";
- 			reg = <0x13400000 0x10000>;
- 			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "mfc", "sclk_mfc";
+> required by HS400 speed mode and thus needs to be removed from kernel
+> dtsi for J721e soc.
+
+s/soc/SoC
+
+> 
+> 'ti,strobe-sel' is read in sdhci_am654.c line 733 and gets stored in
+> sdhci_am654->strb_sel. This sdhci_am654->strb_sel is used at only one
+> place in sdhci_am654.c line 291 which will only get used if HS400
+> is enabled.
+
+Please don't describe driver behavior in device tree patch. DT binding
+should indicate the property behavior.
+
+> 
+> Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e soc.
+> 
+> [.] https://www.ti.com/lit/er/sprz455/sprz455.pdf
+
+Should be [1] ?
+
+I think we could simplify it by saying that the commit that implemented
+the patch missed dropping ti,strobe-sel property that is only meant for
+HS400. (please rephrase appropriately).
+
+Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+
+Now, that said - this could be enforced in dt-schema to prevent such a
+miss from taking place (if then required)
+
+Might be a case to post a separate patch for the enforcement?
+
+> 
+> Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 917c9dc99efa..e4748a838d83 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1094,7 +1094,6 @@
+>  		ti,itap-del-sel-mmc-hs = <0xa>;
+>  		ti,itap-del-sel-ddr52 = <0x3>;
+>  		ti,trm-icp = <0x8>;
+> -		ti,strobe-sel = <0x77>;
+>  		dma-coherent;
+>  	};
+>  
+> -- 
+> 2.20.1
+> 
+
 -- 
-2.17.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
