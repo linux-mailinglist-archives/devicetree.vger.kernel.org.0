@@ -2,105 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DFDD629D45
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B256F629D4D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:26:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbiKOPXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:23:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
+        id S229572AbiKOP0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:26:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbiKOPXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:23:35 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21A1D10C
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:23:33 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id u2so17949103ljl.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xLKS/17GpYY4MgR4/+gEylG604Jj9+YJ2C6BLpGM54Y=;
-        b=LYkbwLcE94T02m+S8klc61BdLgSw8W4InLpW5Q6gh9TUg136iEgHNKLzg8Tm4FHm8U
-         aOg4Do2GSIOXi7sGolkSuBk9k+R25thUGno+VbjD0A2gQu4+xJj0h3rkjhsZRsKgxGD6
-         j3G5C+tWgoHNxi1ZDXc6ob607kOUAs0bn6hUqt22dnZDbqUO4EKRDA+Zk0ULrO/wa7nw
-         r4VSX+vj1eh7rb3ImE/XWYRFCZxo91NwirRshRlmgG2Fzgwavpq1g2CwDONt9DDnRPwd
-         dC2sCKroneKdVoqhoxHO2HghWXHbKK9HHDppXpBZUnVJ0/L80e1UHn5QpQFAf/Aj29uF
-         R5bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xLKS/17GpYY4MgR4/+gEylG604Jj9+YJ2C6BLpGM54Y=;
-        b=yxRlHg/1O2ELiE4Y9+vM8ADgFKTVC+GvS0EnbaH9GiHADg2DKlhbIqIeP/ipv0wQaU
-         ZRCWliKAZEXVMU+1XbfHZBeU+e4jGSDAzw/9yQ3TyB0l3zrZI8wdMIzwPhnaZnl/RIhY
-         OCI5V+55/ho51x5A9oSY948rOZWf53KXyJj0DEoGQ+gxw7NCF+I9IN1zi7iKh2Jt+Tqs
-         WmIE7ZjbBrxQ5Ex/UOPGRM7XDpbUiV3+IuzCzQk7cttFY15omfyU3LPDqzk4In4iaJfR
-         e4Ll8Ufw6RDq9NKCp26R4D8ZuZMtXPVQiTKgZ2uHK0KmeAsiyf//fdKFW7eOv4guUdKf
-         qpgw==
-X-Gm-Message-State: ANoB5pnlkSHBKO8Q0teyOmzzw1lJUdroqOZALFzWikqatbFCGd/G49wU
-        VknjdsjM2EJiraYxga2sII0iXQ==
-X-Google-Smtp-Source: AA0mqf5usyXx6gAprC2KqXwUCKgLy2D00K8A1R/p5KXWhg4DJKBRIIA+Yqk/jAqdlUOURDEc2BvSfw==
-X-Received: by 2002:a2e:b4a9:0:b0:26d:cf5f:6a22 with SMTP id q9-20020a2eb4a9000000b0026dcf5f6a22mr5875512ljm.508.1668525812254;
-        Tue, 15 Nov 2022 07:23:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w26-20020ac2443a000000b004acbfa4a18bsm2245731lfl.173.2022.11.15.07.23.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 07:23:31 -0800 (PST)
-Message-ID: <bbc08d1e-62fc-b0e2-15e1-76802ed3c4fc@linaro.org>
-Date:   Tue, 15 Nov 2022 16:23:29 +0100
+        with ESMTP id S232883AbiKOP0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:26:22 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE4E1E3D5;
+        Tue, 15 Nov 2022 07:26:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1668525979; x=1700061979;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=97PFrgnk+DB1D9eGelLXCgNw+jakJpsENZbaBuQwyoc=;
+  b=x+IhVH94ygnSx2c8NebmbbdI4AqTAK2Qaz1t0SILuDEWWAOaHO+mmZGJ
+   d3pIWLIUmFnZ7HFp4VftEDBZt8k+lFQlwUKYE0T1VI1/elSdjTcVUPxH8
+   XaVbW1bxln29yIyTbpE+AWVk78YfpxFuDugLYS0Dc7feJs46ps8z4QV5d
+   Qox8X92aBY0Rhnlx1lAhPpwsFCsJcoIVRxF+zE5dFLKndIQZaY3Eb+KPm
+   eLUNkkDqZlLs2LQ567xnasOHeuuOXaiNa4ABHccYMCDl3ZrwjokspIuXY
+   KP8fux/S5ys2vzX94blcTd/eWLQsbUOKcZe0ISN+WXtrJz1eSPbddDBW1
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,166,1665471600"; 
+   d="scan'208";a="187073176"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Nov 2022 08:26:16 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 15 Nov 2022 08:26:10 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Tue, 15 Nov 2022 08:26:09 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Vattipalli Praveen <praveen.kumar@microchip.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] riscv: dts: microchip: remove pcie node from the sev kit
+Date:   Tue, 15 Nov 2022 15:25:46 +0000
+Message-ID: <20221115152546.1425309-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 00/12] Enable Display for SM8350
-Content-Language: en-US
-To:     Robert Foss <robert.foss@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, quic_kalyant@quicinc.com,
-        swboyd@chromium.org, angelogioacchino.delregno@somainline.org,
-        loic.poulain@linaro.org, quic_khsieh@quicinc.com,
-        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
-        andersson@kernel.org
-References: <20221115133105.980877-1-robert.foss@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115133105.980877-1-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 14:30, Robert Foss wrote:
-> Dependencies:
-> https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
-> https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
-> https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
-> 
-> Branch:
-> https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v2
-> 
-> This series implements display support for SM8350 and
-> enables HDMI output for the SM8350-HDK platform.
-> 
+The SEV kit reference design does not hook up the PCIe root port to the
+core complex including it is misleading.
+The entry is a re-use mistake - I was not aware of this when I moved
+the PCIe node out of mpfs.dtsi so that individual bistreams could
+connect it to different fics etc.
 
-I received two of these patchsets... Which one is valid? Folks also
-review in both...
+Fixes: 978a17d1a688 ("riscv: dts: microchip: add sevkit device tree")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../dts/microchip/mpfs-sev-kit-fabric.dtsi    | 29 -------------------
+ 1 file changed, 29 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-sev-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-sev-kit-fabric.dtsi
+index 8545baf4d129..39a77df489ab 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-sev-kit-fabric.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs-sev-kit-fabric.dtsi
+@@ -13,33 +13,4 @@ fabric_clk1: fabric-clk1 {
+ 		#clock-cells = <0>;
+ 		clock-frequency = <125000000>;
+ 	};
+-
+-	pcie: pcie@2000000000 {
+-		compatible = "microchip,pcie-host-1.0";
+-		#address-cells = <0x3>;
+-		#interrupt-cells = <0x1>;
+-		#size-cells = <0x2>;
+-		device_type = "pci";
+-		reg = <0x20 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+-		reg-names = "cfg", "apb";
+-		bus-range = <0x0 0x7f>;
+-		interrupt-parent = <&plic>;
+-		interrupts = <119>;
+-		interrupt-map = <0 0 0 1 &pcie_intc 0>,
+-				<0 0 0 2 &pcie_intc 1>,
+-				<0 0 0 3 &pcie_intc 2>,
+-				<0 0 0 4 &pcie_intc 3>;
+-		interrupt-map-mask = <0 0 0 7>;
+-		clocks = <&fabric_clk1>, <&fabric_clk1>, <&fabric_clk3>;
+-		clock-names = "fic0", "fic1", "fic3";
+-		ranges = <0x3000000 0x0 0x8000000 0x20 0x8000000 0x0 0x80000000>;
+-		msi-parent = <&pcie>;
+-		msi-controller;
+-		status = "disabled";
+-		pcie_intc: interrupt-controller {
+-			#address-cells = <0>;
+-			#interrupt-cells = <1>;
+-			interrupt-controller;
+-		};
+-	};
+ };
+-- 
+2.38.0
 
