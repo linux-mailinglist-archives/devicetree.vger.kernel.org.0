@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2BB629778
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F279562977F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiKOLbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 06:31:38 -0500
+        id S229626AbiKOLcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 06:32:07 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232897AbiKOLbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:31:32 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6222B1ADAF
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:31:31 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id w14so23723917wru.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:31:31 -0800 (PST)
+        with ESMTP id S237426AbiKOLbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:31:37 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D980320BEC
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:31:33 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id v1so23701683wrt.11
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:31:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8v8FoH1On1F2wnSoCme92GBkJZmxbbw7MltkC0PFYms=;
-        b=fV81m0WSB0Y0qWL64erh+PxRX/0jfKH6EuUYi1t5kjQz8PuFyAd/DioBHcf1HQT1db
-         OddtrRrcbbaPvBsbdaXjpnNFSM8I5foNs2TU2VHwWYfJfWJMz3jJWdko60QZC1c9W2+K
-         x04Jka6V9I2ds31GZRRI7ZwSHNYHKBUgVHXYO2ZuTlvGyZWXgbWMetK/aWK/O+eNT5SQ
-         TTMkr5aMtu0YG3tnX6tWeNIoPYlgqieK07001dSLFGfH+0PoCe+hlvZEmNXP2oOLqKRd
-         YYjhFulu7AC/oG076eU0IV4Xc3400GQwJ6NAYXFDu5aowI0gVPXvwjawC5ID9sLV9ZI5
-         FcTg==
+        bh=umpLk1dbP5jy5ZPV4Q21UM7cr1nZKFjsXDStFsdzpxA=;
+        b=D8EGa8htGFTrwr+uWFdhGjdWi5azQWY7WKuZsWKqSGl7DOBh5SqcqwVODSBoQ5raO3
+         16AhnKECzyxTxO7lN0ueLWY2nuYw2CdMPY/TbAJfSzrSkwxtx1hodXF27VnVR3P1SJwA
+         wDO79WtzmOQyTP+Hy9qWADtHJAB2b2DxfGDlH8/j8SdN5KygAJ4KVfqjfABAjmxKamZl
+         Gamru9txX23IdiJM7YAAh5W8WZfXelXG2MdFpSx2khyzXBPdwMHdllb5kf1+/UXPmw2y
+         E5jfGp8Vv0HZ60B2wDiJQrYWgF/CpkTkZmYgOn5gJZNWsdBSnK08LXQSpPxY8pxRj12Y
+         O3qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8v8FoH1On1F2wnSoCme92GBkJZmxbbw7MltkC0PFYms=;
-        b=V5Oag3y7t76fVccRRZ1TUNSdzJ72g/vpLJTsyqAuf7+gYBeZCMhvOQGUmU2DVZHjsn
-         naFmcnG/bYCyzPfep/vBmW3TFHvDk9UfI87xPbAx+sFZGiaKpxtBvkPzRV4rZCwU6uqk
-         n5Ga9QYc+trm9Iul5e+sjzXOUsxwz1Srql+fTcnckRIw7QG8PcG4ZAp2sSQQQPYd+Ybq
-         fQN3pJ5MvoDZ5LKEQjl6rpaeESEseYI6MAxLmzH8Q4b736axihKWcqOUry/C6sRzS36X
-         /atcURvfLy20vTf3cUBqGypIf487Jy/LxoTOdscFAZw+xPZd8PYdNWkyb/PPc0DHQHbX
-         6TmA==
-X-Gm-Message-State: ANoB5pnuFoMxSXbYIdM9vbyKUZHvgXMgjqxF2ADkLwXOwZack9phi1sU
-        s7DaNbWyoCJJIeecJKRKQKN+yg==
-X-Google-Smtp-Source: AA0mqf4rBCbH8yVrbONUMZtbsOjGvs/+gFwoCFUHPTxOJOfNsDMlOXKvZ7JDtRGqVf/ZjSQQ60BhCg==
-X-Received: by 2002:adf:ec8f:0:b0:236:ae0d:e833 with SMTP id z15-20020adfec8f000000b00236ae0de833mr10196617wrn.155.1668511890934;
-        Tue, 15 Nov 2022 03:31:30 -0800 (PST)
+        bh=umpLk1dbP5jy5ZPV4Q21UM7cr1nZKFjsXDStFsdzpxA=;
+        b=LF7WXal+y7TVut2Uy/R41RLPcrxmep7dRUQDNN6LX5/EldVydLOjH7RGVdB074VUDy
+         BHMa5cD/5Xhj52BbxoVKl0RFZQsHYEh8soPmAW1/ED+He0k85Yd6w5G9r98rAWOytves
+         oApZrqVpTT9nWOw5AdfJO2fjYDXk/zcKlAjp3uAX9Vk1iTdjNa6Kiefm9uyHOYJSfcZD
+         hjK636w2NPCA4JS0t3wuHvsX1A+MIqCyWWPeKJE8uZeQzctjPjY+5f1fh5cU+7ouKRbt
+         IkrAynTH5KFnyhUMbcqP/oXoqoebN846TvpAsMmxQ1dCV12Jlg9rvKwfL5JQ7JeIryJg
+         WzRQ==
+X-Gm-Message-State: ANoB5pmFq0GvJXIwCOR0DqL6mVH5wAQVafW6Qdo6TbgJliiYo8n0Y687
+        CGz1olKTyYW0VstcBYMUPm/erQ==
+X-Google-Smtp-Source: AA0mqf5jBv+V66YDQSGDY5sxfIA+tTGVm91bEfy16sYi3/by6+Igxb52m7WTZXG/KVa3dltkOhZuIg==
+X-Received: by 2002:a5d:58c3:0:b0:238:8896:7876 with SMTP id o3-20020a5d58c3000000b0023888967876mr10459521wrf.645.1668511892383;
+        Tue, 15 Nov 2022 03:31:32 -0800 (PST)
 Received: from zoltan.localdomain ([81.128.185.34])
-        by smtp.gmail.com with ESMTPSA id r18-20020adfe692000000b00238df11940fsm12273091wrm.16.2022.11.15.03.31.29
+        by smtp.gmail.com with ESMTPSA id r18-20020adfe692000000b00238df11940fsm12273091wrm.16.2022.11.15.03.31.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 03:31:29 -0800 (PST)
+        Tue, 15 Nov 2022 03:31:31 -0800 (PST)
 From:   Alex Elder <elder@linaro.org>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
@@ -57,9 +57,9 @@ Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
         elder@kernel.org, linux-arm-msm@vger.kernel.org,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v2 4/5] dt-bindings: net: qcom,ipa: support skipping GSI firmware load
-Date:   Tue, 15 Nov 2022 05:31:18 -0600
-Message-Id: <20221115113119.249893-5-elder@linaro.org>
+Subject: [PATCH net-next v2 5/5] net: ipa: permit GSI firmware loading to be skipped
+Date:   Tue, 15 Nov 2022 05:31:19 -0600
+Message-Id: <20221115113119.249893-6-elder@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221115113119.249893-1-elder@linaro.org>
 References: <20221115113119.249893-1-elder@linaro.org>
@@ -75,33 +75,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new enumerated value to those defined for the qcom,gsi-loader
-property.  If the qcom,gsi-loader is "skip", the GSI firmware will
-already be loaded, so neither the AP nor modem is required to load
-GSI firmware.
+Define a new value "skip" for the "qcom,gsi-loader" Device Tree
+property.  If used, it indicates that neither the AP nor the modem
+need to load GSI firmware (because it has already been loaded--for
+example by the boot loader).
 
 Signed-off-by: Alex Elder <elder@linaro.org>
 ---
- Documentation/devicetree/bindings/net/qcom,ipa.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/ipa/ipa_main.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index d0f34763b9383..9e81b9ec7cfdd 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -128,10 +128,12 @@ properties:
-     enum:
-       - self
-       - modem
-+      - skip
-     description:
-       Indicates how GSI firmware should be loaded.  If the AP loads
-       and validates GSI firmware, this property has value "self".
-       If the modem does this, this property has value "modem".
-+      Otherwise, "skip" means GSI firmware loading is not required.
+diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
+index 214e524dce795..8f20825675a1a 100644
+--- a/drivers/net/ipa/ipa_main.c
++++ b/drivers/net/ipa/ipa_main.c
+@@ -87,12 +87,14 @@
+  * @IPA_LOADER_DEFER:		System not ready; try again later
+  * @IPA_LOADER_SELF:		AP loads GSI firmware
+  * @IPA_LOADER_MODEM:		Modem loads GSI firmware, signals when done
++ * @IPA_LOADER_SKIP:		Neither AP nor modem need to load GSI firmware
+  * @IPA_LOADER_INVALID:	GSI firmware loader specification is invalid
+  */
+ enum ipa_firmware_loader {
+ 	IPA_LOADER_DEFER,
+ 	IPA_LOADER_SELF,
+ 	IPA_LOADER_MODEM,
++	IPA_LOADER_SKIP,
+ 	IPA_LOADER_INVALID,
+ };
  
-   modem-init:
-     deprecated: true
+@@ -740,6 +742,10 @@ static enum ipa_firmware_loader ipa_firmware_loader(struct device *dev)
+ 	if (!strcmp(str, "modem"))
+ 		return IPA_LOADER_MODEM;
+ 
++	/* No GSI firmware load is needed for "skip" */
++	if (!strcmp(str, "skip"))
++		return IPA_LOADER_SKIP;
++
+ 	/* Any value other than "self" is an error */
+ 	if (strcmp(str, "self"))
+ 		return IPA_LOADER_INVALID;
+@@ -872,10 +878,12 @@ static int ipa_probe(struct platform_device *pdev)
+ 	if (loader == IPA_LOADER_MODEM)
+ 		goto done;
+ 
+-	/* The AP is loading GSI firmware; do so now */
+-	ret = ipa_firmware_load(dev);
+-	if (ret)
+-		goto err_deconfig;
++	if (loader == IPA_LOADER_SELF) {
++		/* The AP is loading GSI firmware; do so now */
++		ret = ipa_firmware_load(dev);
++		if (ret)
++			goto err_deconfig;
++	} /* Otherwise loader == IPA_LOADER_SKIP */
+ 
+ 	/* GSI firmware is loaded; proceed to setup */
+ 	ret = ipa_setup(ipa);
 -- 
 2.34.1
 
