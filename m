@@ -2,159 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 537F262A0C9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 18:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD66A62A0EA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 19:01:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiKOR5P convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Nov 2022 12:57:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
+        id S231550AbiKOSBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 13:01:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiKOR5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 12:57:14 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2D4322613;
-        Tue, 15 Nov 2022 09:57:13 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3662F13D5;
-        Tue, 15 Nov 2022 09:57:19 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 023943F587;
-        Tue, 15 Nov 2022 09:57:10 -0800 (PST)
-Date:   Tue, 15 Nov 2022 17:57:08 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Icenowy Zheng <uwu@icenowy.me>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 03/11] phy: sun4i-usb: add support for the USB PHY on
- F1C100s SoC
-Message-ID: <20221115175708.3e69dcd8@donnerap.cambridge.arm.com>
-In-Reply-To: <e861e62f-4148-b867-0155-e71b1cee0b81@linaro.org>
-References: <20221106154826.6687-1-andre.przywara@arm.com>
-        <20221106154826.6687-4-andre.przywara@arm.com>
-        <Y2ypy0CM8rJGu2g4@matsya>
-        <4438485.LvFx2qVVIh@jernej-laptop>
-        <52920a00-8e29-f7f4-0cbd-ceb638ded970@linaro.org>
-        <20221115104426.20728ba5@donnerap.cambridge.arm.com>
-        <4516dcfb-b928-d454-18a6-bd725f39cc24@linaro.org>
-        <20221115161917.328ec91a@donnerap.cambridge.arm.com>
-        <e861e62f-4148-b867-0155-e71b1cee0b81@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S236796AbiKOSA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 13:00:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D362531235;
+        Tue, 15 Nov 2022 10:00:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8DDE9B81A59;
+        Tue, 15 Nov 2022 18:00:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DDA4C433B5;
+        Tue, 15 Nov 2022 18:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668535220;
+        bh=V+CDw9Lkisi0pVuYP/vfuaiILE7103hOmqneHcdz7K4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DpXCK2plJGNPu+0M8wHbEdKu/WJY4aLUaFyzENRpJWF9UhGvFSyuTVswdjCNMTCc7
+         0VBrULhtgPAfyKxtw0znCGEzu29uv4GtsBJGO8+ieSg1/usokIxocCTT/oVG9P+Svl
+         r7bMwijJTWWcoI1jRTmVCAZrqkpLUGqBVqEd2i8fdIsqRW3FcBxgaiS/2V1vQgFy+P
+         KBYscfgywKJDSbyaG95Nl1mf9nwF825DqCRlmuQNDfUK4GkfUPMfR/QqbQZFOOFy9G
+         AVg/pedgdi64bq17xeT6MOLLLbhwH8mCwwqQwwHyc359WJuK/QMp/6RCduNnqZuJR+
+         Ervg/LYaRer0g==
+Received: by mail-lj1-f170.google.com with SMTP id u2so18565322ljl.3;
+        Tue, 15 Nov 2022 10:00:20 -0800 (PST)
+X-Gm-Message-State: ANoB5pk4ymGSGobNp8w3eRdrv94uQLQBRpc+zZz2LQVAhi2agHJucZPb
+        s+7YJgv4lO0h2EO1V7LqgPyEuT52UzTUMmE77g==
+X-Google-Smtp-Source: AA0mqf4zsHpIKzELoBNtkrNEltVvWv6+X5mMUF7dvrGkfZPdg/U6t9+lLgKOIerV413GobUiXZJXyeo65Y4F6JleoLU=
+X-Received: by 2002:a2e:a80b:0:b0:275:1343:df71 with SMTP id
+ l11-20020a2ea80b000000b002751343df71mr6791315ljq.215.1668535218200; Tue, 15
+ Nov 2022 10:00:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
+ <20221115020136.GA3973578-robh@kernel.org> <f8148686-796f-62a6-e424-733966f7db0b@nvidia.com>
+In-Reply-To: <f8148686-796f-62a6-e424-733966f7db0b@nvidia.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Nov 2022 12:00:09 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+HWqLLk5dwYxNc0sKuiguT1DeTSFke+GSML5UACD=yFA@mail.gmail.com>
+Message-ID: <CAL_Jsq+HWqLLk5dwYxNc0sKuiguT1DeTSFke+GSML5UACD=yFA@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
+        mmaddireddy@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Nov 2022 17:29:09 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-Hi,
-
-> On 15/11/2022 17:19, Andre Przywara wrote:
-> > On Tue, 15 Nov 2022 16:00:54 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> > Hi,
-> >   
-> >> On 15/11/2022 11:44, Andre Przywara wrote:  
-> >>> On Tue, 15 Nov 2022 11:03:24 +0100
-> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>> Hi,
-> >>>     
-> >>>> On 15/11/2022 07:01, Jernej Škrabec wrote:    
-> >>>>> Dne četrtek, 10. november 2022 ob 08:35:39 CET je Vinod Koul napisal(a):      
-> >>>>>> On 06-11-22, 15:48, Andre Przywara wrote:      
-> >>>>>>> From: Icenowy Zheng <uwu@icenowy.me>
-> >>>>>>>
-> >>>>>>> The F1C100s SoC has one USB OTG port connected to a MUSB controller.
-> >>>>>>>
-> >>>>>>> Add support for its USB PHY.      
-> >>>>>>
-> >>>>>> This does not apply for me, please rebase and resend
-> >>>>>>
-> >>>>>> Also, consider splitting phy patches from this. I dont think there is
-> >>>>>> any dependency      
-> >>>>>
-> >>>>> DT patches in this series depend on functionality added here.
-> >>>>>       
-> >>>>
-> >>>> DTS always goes separately from driver changes because it is a hardware
-> >>>> description. Depending on driver means you have potential ABI break, so
-> >>>> it is already a warning sign.    
-> >>>
-> >>> We understand that ;-)
-> >>> What Jernej meant was that the DTS patches at the end depend on patch
-> >>> 01/10, which adds to the PHY binding doc. I am not sure if Vinod's
-> >>> suggestion was about splitting off 01/10, 03/10, and 10/10, or just the
-> >>> two latter which touch the driver.
-> >>>
-> >>> I can split off 03/10 and 10/10, rebased on top of linux-phy.git/next, and
-> >>> send that to Vinod.
-> >>> Then I would keep 01/10 in a respin of this series here, to satisfy the
-> >>> dependency of the later DTS patches, and Vinod can pick that one patch from
-> >>> there?    
+On Tue, Nov 15, 2022 at 10:03 AM Jon Hunter <jonathanh@nvidia.com> wrote:
+>
+>
+> On 15/11/2022 02:01, Rob Herring wrote:
+> > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
+> >> From: Vidya Sagar <vidyas@nvidia.com>
 > >>
-> >> There is no hard dependency of DTS on bindings. You can split these (and
-> >> some maintainers prefer that way) and in DTS patches just provide the
-> >> link to the bindings, saying it is in progress.  
-> > 
-> > But that breaks "make dtbs_check", doesn't it?  
-> 
-> The check will be broken anyway because binding goes via driver
-> subsystem and DTS goes via arm-soc.
-> 
-> If both make to the linux-next and next release, then it's not a problem.
-> 
-> > 
-> > I would think that the DT bits - bindings first, then DTS files using it -
-> > should be bundled. This is how I imagine the future(TM), where DTs and
-> > bindings live outside the kernel repo.  
-> 
-> Yes, that's preferred. Therefore in DTS patch you say the binding is not
-> merged and it is here - lore link.
-> 
-> >   
-> >> The bindings should be however kept with driver changes as it goes the
-> >> same way.  
-> > 
-> > I understand that the bindings describe the contract the driver acts on,
-> > but going forward I think driver changes would need to come later, then
-> > (since they will live in a separate repo at some day)?
-> > Maybe pointing to the binding changes in progress?  
-> 
-> Later as one commit later - yes. Later as other option - not really, why?
-> 
-> > So with a separate repo we would actually need to upstream just the
-> > bindings first, then could push driver changes and .dts files
-> > independently?  
-> 
-> There is no separate repo, so we talk about Linux case now.
-> 
-> > And for now it looks like we are stuck with putting everything in one
-> > series, to make both checkpatch and dtbs_check happy.  
-> 
-> You should rather make maintainers happy :) and here one asked to split.
+> >> Add support for ECAM aperture that is only supported for Tegra234
+> >> devices.
+> >>
+> >> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> >> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> >> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> >> ---
+> >> Changes since V2:
+> >> - Avoid duplication of reg items and reg-names
+> >> Changes since V1:
+> >> - Restricted the ECAM aperture to only Tegra234 devices that support it.
+> >>
+> >>   .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
+> >>   .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+> >>   2 files changed, 33 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+> >> index 75da3e8eecb9..fe81d52c7277 100644
+> >> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+> >> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+> >> @@ -27,6 +27,7 @@ properties:
+> >>         - nvidia,tegra234-pcie
+> >>
+> >>     reg:
+> >> +    minItems: 4
+> >>       items:
+> >>         - description: controller's application logic registers
+> >>         - description: configuration registers
+> >> @@ -35,13 +36,16 @@ properties:
+> >>             available for software access.
+> >>         - description: aperture where the Root Port's own configuration
+> >>             registers are available.
+> >> +      - description: aperture to access the configuration space through ECAM.
+> >>
+> >>     reg-names:
+> >> +    minItems: 4
+> >>       items:
+> >>         - const: appl
+> >>         - const: config
+> >>         - const: atu_dma
+> >>         - const: dbi
+> >> +      - const: ecam
+> >
+> > Wouldn't this be mutually exclusive with 'config'? 'config' is not
+> > really h/w, but an just an iATU window typically.
+>
+> Yes that is true, however, I was chatting with Sagar and we really need
+> both ranges to be defined.
+>
+> > Where's the driver change to use this?
+>
+> For Linux there is not one. However, we need this for our port of the
+> EDK2 bootloader [0] that parses device-tree and can support booting
+> Linux with either device-tree or ACPI. We wanted to have a common
+> device-tree we can use for EDK2 and Linux.
 
-Well, he asked to split off the USB PHY patches from the rest of the
-series, since there is some conflict with the recently merged H616 USB PHY
-patches. It is still unclear to me whether this split includes the binding
-patch, or just the two patches touching the actual code.
+Ok, makes sense.
 
-Cheers,
-Andre.
+Acked-by: Rob Herring <robh@kernel.org>
