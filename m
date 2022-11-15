@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC11662938D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:48:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31CB162939E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236559AbiKOIsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 03:48:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
+        id S232598AbiKOIwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 03:52:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236567AbiKOIso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:48:44 -0500
+        with ESMTP id S232394AbiKOIwY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:52:24 -0500
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D7213DDE;
-        Tue, 15 Nov 2022 00:48:43 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD238F5B6;
+        Tue, 15 Nov 2022 00:52:23 -0800 (PST)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D5BE46602A38;
-        Tue, 15 Nov 2022 08:48:40 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CE50566029B1;
+        Tue, 15 Nov 2022 08:52:21 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668502121;
-        bh=afh5nLCtMvnV2dhw8HFhFnQfG2zyHLlOoAj39CkXeNk=;
+        s=mail; t=1668502342;
+        bh=/HIRPmCrAbi1g9Wxs/I+JuWDXoQgjWz8G2CL3MrPoHg=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YWidoY67PPOWtdw1B2RBEp7e2W05Cld19Ygu8m29KXI8Yztk5n10AzbdLNtdVPlzo
-         1ruqRz5fhHMRokmnt7h0Wg7FI9lv2BdW2PXdshiilurmQ4LJ6401qIlgi459j6vls7
-         knmEx4+hUn0HqggWooB5FO/1htfNhQ6mzGn5maGvUrE5tb/RLE4+epChr5eU7Amrnk
-         MTwtQ0u5PKXmFfQ8jMiNz4q+fhxQQEYRqy+iN0M5GLBZlmVCVSgE+S63CcKwS8d8KQ
-         A8hG90hX49AK7QCFLBu/4+35xzLp+P68udhaOQ2DMiN5bWP9NgWtWWruBcyszDMmPZ
-         JuzSCLvOYgzeQ==
-Message-ID: <75d967f0-f200-da86-868d-7f85a56371aa@collabora.com>
-Date:   Tue, 15 Nov 2022 09:48:38 +0100
+        b=ZsE348TFM/TKIjHKMzkZkSuv+ntrtq8yL8nArP0zQSIbD3GEFtmgY8ZK/wWr7GSDF
+         YvWIIjA5Aw2Fx0lYcVsMf7cFK5Z53kK5a5QdC3GNafwKXmImMBdflMHAinXS5cLtCJ
+         QJSUf9SmM8PZijlNpiZleCe8DDTnkameOJNs1wdh0QIHotWS0JrbIs98vnZpl4GjHj
+         F0vn3tq5w4g5/kZbsgwQzsFlQ1EYz4QeVDdLWPUwhvq6adUadDJSaOEh0lET/Y5bVc
+         LFMT8euW5koibUeKX97oNvx3mOZhBwPHXudCY5TA/RoSG9YFr5XS0GOH5UF7UmndNM
+         KPmIe7wDs78Yw==
+Message-ID: <8732f418-a8eb-3cb4-962f-2353fe8d0154@collabora.com>
+Date:   Tue, 15 Nov 2022 09:52:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v2] media: mediatek: vcodec: fix h264 cavlc bitstream fail
+Subject: Re: [PATCH v4 2/4] arm64: dts: mt8195: Add edptx and dptx nodes
 Content-Language: en-US
-To:     =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
-        <Yunfei.Dong@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
-        <tiffany.lin@mediatek.com>,
-        "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc:     =?UTF-8?B?WGlhb3lvbmcgTHUgKOWNouWwj+WLhyk=?= 
-        <Xiaoyong.Lu@mediatek.com>,
+To:     =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <Rex-BC.Chen@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?R2VvcmdlIFN1biAo5a2Z5p6XKQ==?= <George.Sun@mediatek.com>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        "stevecho@chromium.org" <stevecho@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-mediatek@lists.infradead.org" 
         <linux-mediatek@lists.infradead.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20221018114122.26785-1-yunfei.dong@mediatek.com>
- <f301a43a-5d55-1607-b8d3-5cd057977397@collabora.com>
- <2d7212e96ca2b80934cc5b53300f46e0454085a3.camel@mediatek.com>
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20221110063716.25677-1-rex-bc.chen@mediatek.com>
+ <20221110063716.25677-3-rex-bc.chen@mediatek.com>
+ <73e5491a-9720-ea52-48ff-cc506c6dc582@gmail.com>
+ <bb53d1d7e3cfa75af578412d56d2c6e8fc0d1be7.camel@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <2d7212e96ca2b80934cc5b53300f46e0454085a3.camel@mediatek.com>
+In-Reply-To: <bb53d1d7e3cfa75af578412d56d2c6e8fc0d1be7.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,101 +70,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/11/22 03:00, Yunfei Dong (董云飞) ha scritto:
-> Hi AngeloGioacchino,
-> 
-> Thanks for your detail suggestion.
-> On Mon, 2022-11-14 at 12:08 +0100, AngeloGioacchino Del Regno wrote:
->> Il 18/10/22 13:41, Yunfei Dong ha scritto:
->>> Some cavlc bistream will decode fail when the frame size is small
->>> than
+Il 15/11/22 08:58, Rex-BC Chen (陳柏辰) ha scritto:
+> On Fri, 2022-11-11 at 13:22 +0100, Matthias Brugger wrote:
 >>
->> s/small/smaller/g
-> 
-> Will fix in next patch.
->>
->>> 20 bytes. Need to add pending data at the end of the bitstream.
+>> On 10/11/2022 07:37, Bo-Chen Chen wrote:
+>>> In MT8195, we use edptx as the internal display interface and use
+>>> dptx as the external display interface. Therefore, we need to add
+>>> these nodes to support the internal display and the external
+>>> display.
 >>>
->>> For the minimum size of mapped memory is 256 bytes(16x16), adding
->>> four bytes data
->>> won't lead to access unknown virtual memory.
+>>> - Add dp calibration data in the efuse node.
+>>> - Add edptx and dptx nodes for MT8195.
 >>>
->>> Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless
->>> H.264 decoding for mt8192")
->>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>>> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+>>> Reviewed-by: AngeloGioacchino Del Regno <
+>>> angelogioacchino.delregno@collabora.com>
 >>> ---
->>> compared with v1:
->>> - add detail comments for function: vdec_h264_insert_startcode.
->>> - re-write commit message.
->>> ---
->>>    .../vcodec/vdec/vdec_h264_req_multi_if.c      | 32
->>> +++++++++++++++++--
->>>    1 file changed, 29 insertions(+), 3 deletions(-)
+>>>    arch/arm64/boot/dts/mediatek/mt8195.dtsi | 25
+>>> ++++++++++++++++++++++++
+>>>    1 file changed, 25 insertions(+)
 >>>
->>> diff --git
->>> a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
->>> f.c
->>> b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
->>> f.c
->>> index 4cc92700692b..18e048755d11 100644
->>> ---
->>> a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
->>> f.c
->>> +++
->>> b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
->>> f.c
->>> @@ -539,6 +539,29 @@ static int vdec_h264_slice_core_decode(struct
->>> vdec_lat_buf *lat_buf)
->>>    	return 0;
->>>    }
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> index c380738d10cb..7acbef5a4517 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>>> @@ -1244,6 +1244,9 @@
+>>>    				reg = <0x189 0x2>;
+>>>    				bits = <7 5>;
+>>>    			};
+>>> +			dp_calibration: dp-data@1ac {
+>>> +				reg = <0x1ac 0x10>;
+>>> +			};
+>>>    		};
 >>>    
->>> +static void vdec_h264_insert_startcode(struct mtk_vcodec_dev
->>> *vcodec_dev, unsigned char *buf,
->>> +				       size_t *bs_size, struct
->>> mtk_h264_pps_param *pps)
->>> +{
->>> +	struct device *dev = &vcodec_dev->plat_dev->dev;
+>>>    		u3phy2: t-phy@11c40000 {
+>>> @@ -2205,5 +2208,27 @@
+>>>    			clock-names = "engine", "pixel", "pll";
+>>>    			status = "disabled";
+>>>    		};
 >>> +
->>> +	/* Need to add pending data at the end of bitstream when bs_sz
->>> is small than
->>> +	 * 20 bytes for cavlc bitstream, or lat will decode fail. This
->>> pending data is
->>> +	 * useful for mt8192 and mt8195 platform.
+>>> +		edp_tx: edp-tx@1c500000 {
+>>> +			compatible = "mediatek,mt8195-edp-tx";
+>>> +			reg = <0 0x1c500000 0 0x8000>;
+>>> +			nvmem-cells = <&dp_calibration>;
+>>> +			nvmem-cell-names = "dp_calibration_data";
+>>> +			power-domains = <&spm
+>>> MT8195_POWER_DOMAIN_EPD_TX>;
+>>> +			interrupts = <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH
+>>> 0>;
+>>> +			max-linkrate-mhz = <8100>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		dp_tx: dp-tx@1c600000 {
+>>> +			compatible = "mediatek,mt8195-dp-tx";
+>>> +			reg = <0 0x1c600000 0 0x8000>;
+>>> +			nvmem-cells = <&dp_calibration>;
+>>> +			nvmem-cell-names = "dp_calibration_data";
+>>> +			power-domains = <&spm
+>>> MT8195_POWER_DOMAIN_DP_TX>;
+>>> +			interrupts = <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH
+>>> 0>;
+>>> +			max-linkrate-mhz = <8100>;
+>>> +			status = "disabled";
+>>> +		};
 >>
->> What is the reason why other SoCs don't need this?
+>> For some not really obvious reasons we get the following errors with
+>> make CHECK_DTBS=1 mediatek/mt8195-cherry-tomato-r2.dtb
 >>
-> For the hardware not add this feature, and will add in the future Soc.
->>> +	 *
->>> +	 * cavlc bitstream when entropy_coding_mode_flag is false.
->>> +	 */
->>> +	if (pps->entropy_coding_mode_flag || *bs_size > 20 ||
->>> +	    !(of_device_is_compatible(dev->of_node, "mediatek,mt8192-
->>> vcodec-dec") ||
->>> +	    of_device_is_compatible(dev->of_node, "mediatek,mt8195-
->>> vcodec-dec")))
+>> arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dtb:0:0:
+>> /soc/edp-tx@1c500000: failed to match any schema with compatible:
+>> ['mediatek,mt8195-edp-tx']
+>> arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dtb:0:0:
+>> /soc/dp-tx@1c600000: failed to match any schema with compatible:
+>> ['mediatek,mt8195-dp-tx']
 >>
->> I'm not comfortable seeing of_device_is_compatible... this list will
->> grow whenever
->> a new SoC needing this appears.
->> Please think about a good name for a flag/quirk, or a bool, in the
->> platform data
->> for these two SoCs and use it.
+>> Can you please see how to fix this. Tested with next-20221111.
 >>
-> For this feature only need to add in these two Socs, and won't grow
-> anymore. So just want to use compatible to separate, not add one flags.
+>> Regards,
+>> Matthias
+>>
 > 
-> So you think that using one flag to separate much better?
+> Hello Matthias,
+> 
+> I can not reproduce this issue in my local environment, but I am sure
+> the binding is in kernel master branch (v6.1-rc5):
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml?h=v6.1-rc5
+> 
+> It's strange that the message you provided said it can not find any
+> schema with ['mediatek,mt8195-edp-tx'] and ['mediatek,mt8195-dp-tx'].
 > 
 
-A flag is better: please remember that calls to of_device_is_compatible()
-will perform a string comparison which, as you know, as much optimized as
-it can be, it's always going to be slower than a simple integer/bool/flag
-check.
+Matthias, I can't reproduce that either... perhaps there's something odd that's
+going on with your environment?
 
-This means that even for functional (not just cosmetic) reasons we should
-not use of_device_is_compatible() here :-)
-
-Cheers,
-Angelo
-
-
+Cheers
