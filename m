@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFED5629D18
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EC44629D32
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbiKOPRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:17:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51682 "EHLO
+        id S231326AbiKOPTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:19:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbiKOPRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:17:03 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE082D74F
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:17:01 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id a29so24906322lfj.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:17:01 -0800 (PST)
+        with ESMTP id S231330AbiKOPTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:19:04 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FD024F1E
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:19:02 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id r12so24930549lfp.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Y1Unr3jk2bOCLfcHXLh0v2yUNwm4KjpCvyCco0aj3w=;
-        b=YN5FADMEILtvu2IUFFRBSils1wlS+leCNFvwasIFdUGEW6+JdUgV2vmuctzZ2gHSQl
-         fjteLNGD8+XSIzZfElynrxHrZBCbz3/PF4JKMu1o7dMdHc4xhls1bopQztdJzPNh4++1
-         SQ2C5kRZluYQ76UdjTAooOZsXQk9xqUbLluQZw5b8XACz2q3stesvZLUzKzSXMbrw5dp
-         lWE3nAONb+uQ6UF3koVEt9AGb+2WNjIU+gf6wv6HDjCklIEJ2yqXNWDdiK8XHQeoLufg
-         f95QFOe+KuIgmmP0IeSVekicjhRefmuNgsCdUCD184BT5OSm1AG3Bw2996SlWx/d4T/z
-         X+Qg==
+        bh=bBTiHOlwLmRiAuaSvNZO8YXJt075Sx4T7PQqEUHFf2c=;
+        b=d6u6VmjGdTBtmz5cEKvMM6xpVQ6BvhVhWJCSIuME0VV8b1aBkaLDsezcLTxZb2vrcG
+         rR8uuNHtMCcSaHyQ7KSfMHTW4LPRHxL5qSeQEMf80/9jcWQ3sPfDL2zGhFlhe3f48aEV
+         YVEX5hBoeB+y9lEtuLlCZDphF0T1D+u3GMWL6k4rZsFYojo4KNggT0ViLLlZtOAW8Nwp
+         s3hiUF8yl+k9DRNNIkut80NAEaCzYZ2y5zeCHwBp53LHx+wKVqG341hSpxNqoZHXLk2g
+         AQlsDnSjUW8m6H1RzZx/oMOMIhcn6JkXxS3noAHAE2rxgnScOAhVA/kN/8f68k6AGyVM
+         FXUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Y1Unr3jk2bOCLfcHXLh0v2yUNwm4KjpCvyCco0aj3w=;
-        b=psRpakmmw9AqLGUkMvjs0lfIAPxoRotZleh76PhC6c3X8+qL/kjJq1DSgwlWF8LYaO
-         NPNCg4ZZZAqPVtznfqYD25PNar5xp1GGIiO4mab0YQxCURE0d+HqmH9TIaWZItpueIQ/
-         NTBWPVH2/c1atoaYpLSk57S+VgJR2pKoI7BlfqI1LaZt1SraTDNl42fedvzVXRSgSLud
-         uVFRriN+UIfmQ6n6cZv2HOg+mZ4IOCG9vu+xlLb9RaJiDk69l/PQaKBmEmOFtMeRzwY4
-         bq7BKBP3BpaNnqW1me3OLVMDMn8Wo6xMEakBamqo9TO6/qQqrLYBRw/P/uATdP90NGfh
-         T+ZQ==
-X-Gm-Message-State: ANoB5pkuOg9CxQn+/GhA1wndFv9rRIjUHR7+BpJPD/NPVkPLAl3cbeaB
-        VX6N1Ugi4b5IJixtZLvfAmIDiQ==
-X-Google-Smtp-Source: AA0mqf5PN9m2bdys3cfOygrhya+5SbkH0Qn9BXfjeKcoi/QWIyM/gH03wLlofI4HUJIbzRZDnSsymA==
-X-Received: by 2002:ac2:5cda:0:b0:4a2:3f29:5e8a with SMTP id f26-20020ac25cda000000b004a23f295e8amr5722536lfq.221.1668525419800;
-        Tue, 15 Nov 2022 07:16:59 -0800 (PST)
+        bh=bBTiHOlwLmRiAuaSvNZO8YXJt075Sx4T7PQqEUHFf2c=;
+        b=Uj3LwhxoNtmsbviV7yzD8AxpkO0Jn5fqUVX0w//jSFwcP4ooZOw1HfPEmiMErD1aTv
+         KQbQUpNLM0FPdwtsMI84pt3/GhUJZLxfc6YEi/qvKjY+7sfJE2Heov+v2C+a1cC7HnVV
+         kLXKKtEJ+VY8KU0YlFmp83zAej/0NW6AhftoeVtWIJ68h7GjkOlW/We0rJuBFvcTz7x2
+         M7MSXqmf+04KheJR6+YV/h2ZZcM4OsSBy6xFqQZWBSuhpFeiuUYRmYVYzkkHXqtLWHFr
+         /bXuqlh1tju3zqs/4993J0/3Dd3SY+B8IEyMHdIEvfP+RjyrDRt6NI00Dk30rriIutET
+         9Hvg==
+X-Gm-Message-State: ANoB5pnAymhc1I3dXkkkj6nsU4oCG3T7EFlmMRfZqKqQrbjucn2Dz2fi
+        BJgXFQW6KkNbfcAdH+R/vDmkaQ==
+X-Google-Smtp-Source: AA0mqf4jb3EPPaIrHilGakTHY0Y9MJQ/s64A+PrmCjrCNClAt3BIroL+6i112TZF2XocXB6Cod5vEw==
+X-Received: by 2002:ac2:5314:0:b0:4b1:8fbb:d3f4 with SMTP id c20-20020ac25314000000b004b18fbbd3f4mr6147602lfh.70.1668525540702;
+        Tue, 15 Nov 2022 07:19:00 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z6-20020a056512370600b004a459799bc3sm2234005lfr.283.2022.11.15.07.16.58
+        by smtp.gmail.com with ESMTPSA id bp8-20020a056512158800b00494a8fecacesm2241052lfb.192.2022.11.15.07.18.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 07:16:59 -0800 (PST)
-Message-ID: <5c0dfcad-956d-e3cd-fd06-7671b85c4ae7@linaro.org>
-Date:   Tue, 15 Nov 2022 16:16:58 +0100
+        Tue, 15 Nov 2022 07:19:00 -0800 (PST)
+Message-ID: <a7d1de8f-c1a6-890e-12ed-ebb75a96aa2c@linaro.org>
+Date:   Tue, 15 Nov 2022 16:18:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: Add bindings for Qualcomm
- Ramp Controller
+Subject: Re: [PATCH v10 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT
+ schema
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
-        kernel@collabora.com, andersson@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        agross@kernel.org
-References: <20221104142204.156333-1-angelogioacchino.delregno@collabora.com>
- <20221104142204.156333-2-angelogioacchino.delregno@collabora.com>
- <166758411781.2066027.6365889663189109123.robh@kernel.org>
- <160cb3fc-176e-bc0e-1bff-9334478af8ec@collabora.com>
- <342d556a-e710-590c-3c81-fcc60bbaa6e7@linaro.org>
- <3e9deab6-58ca-3a58-5f06-c1e4d181bc94@collabora.com>
+To:     Joy Zou <joy.zou@nxp.com>, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
+Cc:     shengjiu.wang@nxp.com, martink@posteo.de, dev@lynxeye.de,
+        alexander.stein@ew.tq-group.com, peng.fan@nxp.com, david@ixit.cz,
+        aford173@gmail.com, hongxing.zhu@nxp.com, linux-imx@nxp.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221115093823.2879128-1-joy.zou@nxp.com>
+ <20221115093823.2879128-2-joy.zou@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3e9deab6-58ca-3a58-5f06-c1e4d181bc94@collabora.com>
+In-Reply-To: <20221115093823.2879128-2-joy.zou@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,63 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 15:44, AngeloGioacchino Del Regno wrote:
+On 15/11/2022 10:38, Joy Zou wrote:
+> Convert the i.MX SDMA binding to DT schema format using json-schema.
+> 
+> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma, fsl,imx35-to1-sdma
+> and fsl,imx35-to2-sdma are not used. So need to delete it. The compatibles
+> fsl,imx50-sdma, fsl,imx6sll-sdma and fsl,imx6sl-sdma are added. The
+> original binding don't list all compatible used.
+> 
+> In addition, add new peripheral types HDMI Audio.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
 
->>>> Please check and re-submit.
->>>>
->>>
->>> I'm unsure about what I should do about this one.
->>> This is a power-controller, but does *not* need any #power-domain-cells, as it is
->>> standalone and doesn't require being attached to anything.
->>
->> power-domain-cells are for power domain providers, not consumers. The
->> generic binding expect that nodes called power-controller are exactly
->> like that.
->>
->> Solutions could be:
->> 1. Rename the node to something else. I cannot deduct the type of the
->> device based on description. What is "sequence ID" and how is it even
->> closely related to power control?
-> 
-> This uC is mainly controlling DCVS, automagically plays with voltages for
-> each ramp up/down step and from what I understand also decides to shut down
-> or bring up *power* to "certain clocks" before ungating (CPU related, mainly
-> big cluster).
-> This also interacts with LMH - setting the LMH part makes it possible to
-> later use CPR (otherwise CPR errors out internally and won't start, as it
-> requires this controller, SAW and LMH to be set up in order to work).
-> 
-> What I've seen is that without it I can't bring up the big cluster at all,
-> not even at minimum frequency, as the HF2PLL (a clock source for that cluster)
-> will not power up.
-> All it takes is to initialize these params and start the controller, then
-> everything goes as it should.
-> 
-> If you're wondering why my explanation may not be particularly satisfying,
-> that's because downstream contains practically no information about this
-> one, apart from a bunch of lines of code and because this controller is
-> just a big black box.
-> 
->>
->> 2. Narrow the node name in power-domain.yaml which would require changes
->> in multiple DTS and bindings.
->>
->> 3. Do not require power-domain-cells for power-controllers, only for
->> power-domains.
->>
-> 
-> Solutions 2 and 3... well, I don't think that this would be really feasible
-> as I envision this being the one and only driver that will ever require
-> that kind of thing.
-> Also, this programming was later moved to bootloaders and the only SoCs that
-> will ever require this are MSM8956/76, MSM8953 and.. I think MSM8952 as well,
-> but nothing more.
-> 
-> Even if I can imagine the answer, I'm still tempted to ask: can we eventually
-> just name it ramp-controller@xxxx or qcom-rc@xxxx or something "special" like
-> that to overcome to this binding issue?
 
-So maybe "cpu-power-controller"? This should already help for this warning.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
