@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4EB062901C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 03:54:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45A3D62901E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 03:54:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232563AbiKOCyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 21:54:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38022 "EHLO
+        id S232593AbiKOCyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 21:54:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232452AbiKOCyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 21:54:35 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DB415837
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 18:54:34 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id i10so24257376ejg.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 18:54:34 -0800 (PST)
+        with ESMTP id S236156AbiKOCyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 21:54:36 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B72F13FA2
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 18:54:35 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id f27so32968083eje.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 18:54:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wRYDzS6yAt4cpvGVye2SW5vgcMntnZG/i/Ggtx20GY8=;
-        b=EdE8bFuG4EphbFKpcxdIIfm3ak/iOs7F6ye5Bw0bJUAMo88bMnH11/qvrugOAb0cLJ
-         /8JttmWZG+cKt4QUAgJJ8Q8SHaInulLWvMW6KaIImNUEmVu+k/yR8haNYmvu71pxC6E0
-         foS3sUTx6outGy/xCAtIryaY0bjeY64ogC9UuYet4q1kHfq8nEt6f2gkYlGqSDJY0/Wd
-         RaU2nVc6RhuSy2gTRhkVbYNfaVF0J5d976lmTLy0BtAKvmGqBTYZFqRxyMLYhftYTB6M
-         zrlWD1VNaVIuCBMowc7TKbtYCzBdfgbW/IgrERUC6ePilpBkG1ET56YiluIrKVUmBYLN
-         e+ZQ==
+        bh=vMatkpXRBfYZcOpwK4gKTH0eFwLe1XO/MVtN1h01A6s=;
+        b=pRx3zIId767gjM7NXVu8V8PmGqYcR/4i6pri81J2dVsTmGdFdrOVQS9XriPKKLrM2J
+         HcM20wGyaSiFQ8RMvwo7QxPuGX3QZa+wzUO2vp54uCA3+kTb98+EbYTsOfCDZCb73VXR
+         CV67lwPGw3xS5VvxUMJsPuI/U5112u40Ltq6VsXTZ3VOQJBT8fsLEmFmbyNaHClpeSij
+         mE4/7af4eNSDOYLZhNMzXu4KzBdWKcRKQy+wk5FUHrOuckKoHpRyw0K59WZcLmEB2JoG
+         1hPsAxDy/cfLbqlgFXhx2CWBcXO2qBIcn3fFsxXE+ok1XQDbMpqhdE9nbCf+eRqR7FrY
+         /Ljg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wRYDzS6yAt4cpvGVye2SW5vgcMntnZG/i/Ggtx20GY8=;
-        b=b1mcVdOgUX6c2ozeKgycp/4rOj69otsEYSr0tHd+gTbDfFb9qcgW6YfPiRFltleJLf
-         Tkdr7nGR9+D0/eORpEnVPFstwl1wInNn98ve8017okU1cRJJzW8cQMy/eYRtvkG0jLdW
-         rtrImAbW2HY46DjigwDgxq9R+Hu8SFic7KWpRYhcOCFbnGaCEGV7ZHD6ncAEVVcpgZ3n
-         Lqps3HE1O2d81RQ8XW9la6y/3Y1Yu8zR2xLVHTFWK6P+IA96GVQeKdCqat1hicpDSmeJ
-         S0BDDVao2BpdikMpTo3a/MlvEdjOdwR9ePiaMi6Z8oXmcyLHC/fR3M57RfIfFNt/QRTN
-         6U9w==
-X-Gm-Message-State: ANoB5pkBIGJmExKmPJXUSckpanI8ZHmGma9NxUPKcOopEd3QgsF669Ty
-        KkMffsfWH5FfrDVuY7zl8w4dIg==
-X-Google-Smtp-Source: AA0mqf582fgL1+vzC2joPQG/FmqgK3d7CgczhTfJbJeR1vCerfkmq+R4+r8ZixBzOGX3gC+jqC9F0Q==
-X-Received: by 2002:a17:906:4a0f:b0:7a2:36c7:31eb with SMTP id w15-20020a1709064a0f00b007a236c731ebmr11503557eju.491.1668480874002;
+        bh=vMatkpXRBfYZcOpwK4gKTH0eFwLe1XO/MVtN1h01A6s=;
+        b=j+ObCAwxRtCzFo7daRDw6BERNmmjJJ4ktdC8fHw5CY93KvTjIG+T9qWR2tyXmhiU3D
+         +KUrZwzq6y5V+DmO8JFuHXLb362NZ+C1OyLf+ShHcXBvymPRgGPLRzPXU5+KRHisAeYU
+         OJkkxxI6a1kKy3tPPdse797tEWwMwbQifF35eb/VSXVMM29Ri1im8JWD+mqUki6LoLec
+         j48h9PslXLB30ScQwY+4Lt9/HGFnX3IkulQDilQEyMrt0w4IYiVJ3yzL92JsfUFi1Agt
+         loD3NkjSqCD9nXSK+P4F+KHo/dYexngnY3QoP1vEeOHOdPlyyhal/ElHF/I/pDSRGQZR
+         8q8g==
+X-Gm-Message-State: ANoB5plApIFDGeaPIEHUUGReB1C78dETK1bryhhGhmfyXCkfDxjPYT8X
+        wHD7kIKzwRhJ+ppkEiFFtIrnUQ==
+X-Google-Smtp-Source: AA0mqf7yVrSTl6QoiMkprqkNQ9/YAbx/qUv/mivAcZBzk781qq/v68Bm/XB1ajZuwcArbC0YNAE3pg==
+X-Received: by 2002:a17:906:6007:b0:78d:b6ea:174e with SMTP id o7-20020a170906600700b0078db6ea174emr12023955ejj.95.1668480874794;
         Mon, 14 Nov 2022 18:54:34 -0800 (PST)
 Received: from c64.fritz.box ([2a01:2a8:8108:8301:7643:bec8:f62b:b074])
-        by smtp.gmail.com with ESMTPSA id l9-20020a1709063d2900b0073d9a0d0cbcsm4861177ejf.72.2022.11.14.18.54.33
+        by smtp.gmail.com with ESMTPSA id l9-20020a1709063d2900b0073d9a0d0cbcsm4861177ejf.72.2022.11.14.18.54.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Nov 2022 18:54:33 -0800 (PST)
+        Mon, 14 Nov 2022 18:54:34 -0800 (PST)
 From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
 To:     linux-mediatek@lists.infradead.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Subject: [PATCH v2 06/15] dt-bindings: usb: mediatek,mtk-xhci: add MT8365 SoC bindings
-Date:   Tue, 15 Nov 2022 03:54:12 +0100
-Message-Id: <20221115025421.59847-7-bero@baylibre.com>
+Subject: [PATCH v2 07/15] dt-bindings: mmc: mtk-sd: add bindings for MT8365 SoC
+Date:   Tue, 15 Nov 2022 03:54:13 +0100
+Message-Id: <20221115025421.59847-8-bero@baylibre.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221115025421.59847-1-bero@baylibre.com>
 References: <20221107211001.257393-1-bero@baylibre.com>
@@ -64,8 +64,8 @@ References: <20221107211001.257393-1-bero@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,25 +74,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabien Parent <fparent@baylibre.com>
 
-Add binding documentation for the MT8365 SoC.
+Add MMC bindings for MT8365 bindings.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-index 939623867a646..3b92725bbc99b 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-@@ -34,6 +34,7 @@ properties:
-           - mediatek,mt8188-xhci
-           - mediatek,mt8192-xhci
-           - mediatek,mt8195-xhci
-+          - mediatek,mt8365-xhci
-       - const: mediatek,mtk-xhci
+diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+index 6f8ecb4788eb8..36f9fce8f4795 100644
+--- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
++++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+@@ -35,6 +35,9 @@ properties:
+               - mediatek,mt8192-mmc
+               - mediatek,mt8195-mmc
+           - const: mediatek,mt8183-mmc
++      - items:
++          - const: mediatek,mt8365-mmc
++          - const: mediatek,mt8183-mmc
  
    reg:
+     minItems: 1
 -- 
 2.38.1
 
