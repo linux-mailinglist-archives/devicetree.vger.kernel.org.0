@@ -2,276 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE194629CEA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A430629D01
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:09:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiKOPEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:04:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45688 "EHLO
+        id S230473AbiKOPJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:09:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbiKOPEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:04:44 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A102AC69
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:04:42 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id bj12so36627256ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:04:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d9LeILXvw8L9LoEFMAR3miqDBARgsMFwg1ZrW9AFkIk=;
-        b=jDUHta9jtUjIl9jrU1sLbM7rBYUjPsoylRiLOMdRDqi+BOGmx5u4eRb4/HiKseL232
-         FhDu1k2nLxoNlP9n1hhtq+KMOjVaGWvccm/svuCSmvRH2z3U8+kMNhT66an9lZ2FJGLW
-         XjdMDFy6f7z2DlD/9Ja/5sivV+usDEtyPrpQrwbw3fSooNkoCXYRT+Quorpz88oWxstO
-         sBLsQHVlZGVFhavpiQp+62kfjGo4Xy6ryCZrRXuVk+pJNABdCXIP3CBLxdwGuO/Oc5IE
-         VHvIILZmgni9Dz+v1wQQDpV3JLR30W2HIgyCU3k2dbg0eaCx//UWVXCeuyU7UQv0CrOc
-         e/iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=d9LeILXvw8L9LoEFMAR3miqDBARgsMFwg1ZrW9AFkIk=;
-        b=0LTU8440Z2uc+v+c0d++Vp++fmy2KM97aMFc6Wo6JxItgJ6jxqEy0+BxGFR8duvF5+
-         iWP4ZiUqBjmac7YZvWvUxAn2nhCggfz/fzYqPorevUg9tom4geddn2kWUDNKsl+MnVs0
-         6z5Ln9MS8EEbEkqcemAD3AIumIvuS4njHTSEq1WxWyRgyGQZ8qAF9qGTgtbEdjRKRJ6G
-         M/ON8Z2ke7/q9swaZfwgsUe3Sv1nWEJIHcS9pOQUFws8SbzHgbha2TBMd8jfvsRkYH2h
-         P8qXCCnULn9TcGP5ftY3rOsf71Z+Qhr1qkBs8DhjS7znbC4994qCqU8WbeWaKF64vmVm
-         hueg==
-X-Gm-Message-State: ANoB5pmqVmOegxRdxSUQKnixXaWo9r4FQ9HlTLwDmgg1a03OuUwqM0KS
-        6dLM1tYzDigLK3WWLku5/gxcFg==
-X-Google-Smtp-Source: AA0mqf6KK9noe2qvxHfnjBSUJjx6KLuYgdcHS4UDhN/VuQX/gbwFigj+4fke8gGB5rAnslfFsSRCZg==
-X-Received: by 2002:a17:907:8e92:b0:7ad:a34f:1efe with SMTP id tx18-20020a1709078e9200b007ada34f1efemr14115723ejc.350.1668524681034;
-        Tue, 15 Nov 2022 07:04:41 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id b3-20020a170906728300b007a559542fcfsm5571581ejl.70.2022.11.15.07.04.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 07:04:40 -0800 (PST)
-Message-ID: <03a8c0e4-bc5c-1447-e3b6-a26f2f221862@linaro.org>
-Date:   Tue, 15 Nov 2022 16:04:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/9] dt-bindings: arm-smmu: Allow up to 3 power-domains
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
+        with ESMTP id S230165AbiKOPJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:09:25 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630037664;
+        Tue, 15 Nov 2022 07:09:21 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 47A9AC0006;
+        Tue, 15 Nov 2022 15:09:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668524960;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=52nZTyzLtyLE0oMbZMuPmwJjms8J7lFPa4BIfaCMGt8=;
+        b=Qdgpyqb++6k8h2Ul3v4+WDXeTugffLUG8/ox2YuZ9jkQakjENUumrptpRObBjztTwMiSJW
+        /UktSqmj/blsk2CPlU645Te7QzJWC6T/KO+gusI8l9yE0SYLzDMW7WGWFIJ2HKPe70u7KJ
+        7IjpyUTnISrtXARiMfZ97to3FiW9zSosv8CnXeu8bwUgH5b0qzQCzOa/T6a1pZrHdEQ56Q
+        yir514nkITii/3WblZTLcb39qjCoU+juEipCLiP2wgbdqlYYkvb5nZk54mxAYCWRV7h6Ka
+        SR/3hWaW52GXwRzFGCF2ZUDZ81kOeOG1qG98I/gIW1MxVWHorJFgGMFBRPv5GQ==
+Date:   Tue, 15 Nov 2022 16:09:17 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114104222.36329-1-konrad.dybcio@linaro.org>
- <20221114104222.36329-2-konrad.dybcio@linaro.org>
- <6fa8e3ea-2113-d930-96bc-3726d53e5bcd@linaro.org>
- <a4b160d8-0faa-3f4c-a925-0beaf6ace721@linaro.org>
- <0121fc03-b027-7659-5e6e-b42089c9888d@linaro.org>
- <12578e05-ced9-e5f7-7922-0af2f2159333@linaro.org>
- <878402e7-7f80-31c7-3a6b-989a6ca29841@linaro.org>
- <f59ddce1-c2e1-4055-3bce-1319c68ddf94@linaro.org>
- <4b4ca3ba-8e4d-088e-8b3e-a47ad6ecb965@linaro.org>
- <cff269c8-f944-9277-9df8-653522efbba0@linaro.org>
- <4a9083fc-81ba-f5ca-5df7-cd04becb1dce@arm.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <4a9083fc-81ba-f5ca-5df7-cd04becb1dce@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller
+ node
+Message-ID: <20221115160917.73e7b4ef@bootlin.com>
+In-Reply-To: <20221115142754.6253881b@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+        <20221114111513.1436165-7-herve.codina@bootlin.com>
+        <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
+        <20221115142754.6253881b@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof
 
+On Tue, 15 Nov 2022 14:27:54 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-On 15/11/2022 14:43, Robin Murphy wrote:
-> On 2022-11-15 13:06, Konrad Dybcio wrote:
->>
->>
->> On 15/11/2022 14:00, Krzysztof Kozlowski wrote:
->>> On 15/11/2022 13:54, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 14/11/2022 17:58, Krzysztof Kozlowski wrote:
->>>>> On 14/11/2022 16:53, Konrad Dybcio wrote:
->>>>>>
->>>>>> On 14/11/2022 14:00, Krzysztof Kozlowski wrote:
->>>>>>> On 14/11/2022 12:17, Konrad Dybcio wrote:
->>>>>>>> On 14/11/2022 12:01, Krzysztof Kozlowski wrote:
->>>>>>>>> On 14/11/2022 11:42, Konrad Dybcio wrote:
->>>>>>>>>> Some SMMUs require that a vote is held on as much as 3 
->>>>>>>>>> separate PDs
->>>>>>>>>> (hello Qualcomm). Allow it in bindings.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>>>>>>> ---
->>>>>>>>>> Changes since v1:
->>>>>>>>>> - Add minItems
->>>>>>>>>>
->>>>>>>>>>      Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 
->>>>>>>>>> ++-
->>>>>>>>>>      1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>>>>
->>>>>>>>>> diff --git 
->>>>>>>>>> a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml 
->>>>>>>>>> b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>>>>>>>> index 9066e6df1ba1..82bc696de662 100644
->>>>>>>>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>>>>>>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>>>>>>>> @@ -159,7 +159,8 @@ properties:
->>>>>>>>>>                through the TCU's programming interface.
->>>>>>>>>>        power-domains:
->>>>>>>>>> -    maxItems: 1
->>>>>>>>>> +    minItems: 0
->>>>>>>>> It cannot be 0.
->>>>>>>>>
->>>>>>>>> minItems: 1
->>>>>>>>>
->>>>>>>>> Anyway you still need to restrict it per variant, as I said in 
->>>>>>>>> previous
->>>>>>>>> version.
->>>>>>>> Hm.. I'm not entirely sure what you mean.. Should I add a list of
->>>>>>>> compatibles
->>>>>>> Yes and limit it to maxItems: 1 for "else".
->>>>>>
->>>>>> I tried adding:
->>>>>>
->>>>>>
->>>>>>
->>>>>>      - if:
->>>>>>          properties:
->>>>>>            compatible:
->>>>>>              contains:
->>>>>>                enum:
->>>>>>                  - qcom,sm6375-smmu-500
->>>>>>        then:
->>>>>>          properties:
->>>>>>            power-domains:
->>>>>>              minItems: 3
->>>>>>              maxItems: 3
->>>>>>        else:
->>>>>>          properties:
->>>>>>            power-domains:
->>>>>>              maxItems: 1
->>>>>>
->>>>>>
->>>>>> Right under the nvidia reg if-else in the allOf, but dtbs_check 
->>>>>> throws
->>>>>> errors like:
->>>>>>
->>>>>>
->>>>>> /home/konrad/linux/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb:
->>>>>> iommu@5040000: 'power-domains' does not match any of the regexes:
->>>>>> 'pinctrl-[0-9]+'
->>>>>>
->>>>>>
->>>>>> Any clues as to why?
->>>>>
->>>>> I don't know what code do you have there, but generic pattern is:
->>>>>
->>>>> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L38
->>>>>
->>>> I tried many things, but I still don't seem to get a hang of it.. 
->>>> Here's
->>>> my current diff rebased on top of Dmitry's recent cleanups 
->>>> (available at
->>>> [1])
->>>>
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> index 28f5720824cd..55759aebc4a0 100644
->>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->>>> @@ -200,7 +200,7 @@ properties:
->>>>        maxItems: 7
->>>>
->>>>      power-domains:
->>>
->>> As I mentioned before - minItems: 1.
->> But not all SMMUs require a power domain :/
-> 
-> Right, so it's not a required property. However if it *is* present, then 
-> it needs to reference at least one power domain, because having an empty 
-> property, i.e.:
-> 
->      power-domains = <>;
-> 
-> or
->      power-domains;
-> 
-> makes no sense whatsoever.
-> 
-> Thanks,
-> Robin.
-OHHHH!
+> Hi Krzysztof,
+>=20
+> On Tue, 15 Nov 2022 14:16:27 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> > On 14/11/2022 12:15, Herve Codina wrote: =20
+> > > Add the USBF controller available in the r9a06g032 SoC.
+> > >=20
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
+> > >  1 file changed, 12 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a=
+06g032.dtsi
+> > > index 563024c9a4ae..a4bb069457a3 100644
+> > > --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> > > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> > > @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
+> > >  			};
+> > >  		};
+> > > =20
+> > > +		udc: usb@4001e000 {
+> > > +			compatible =3D "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
+> > > +			reg =3D <0x4001e000 0x2000>;
+> > > +			interrupts =3D <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			clocks =3D <&sysctrl R9A06G032_HCLK_USBF>,
+> > > +				 <&sysctrl R9A06G032_HCLK_USBPM>;
+> > > +			clock-names =3D "hclkf", "hclkpm";
+> > > +			power-domains =3D <&sysctrl>;
+> > > +			status =3D "disabled";   =20
+> >=20
+> > If you provided all resources (clocks, power domains etc), why disablin=
+g it? =20
+>=20
+> Because I forgot to remove the 'status' property ...
+> 'status' will be simply removed in v3.
+> Sorry for this mistake.
+>=20
+> Thanks for the review,
+> Herv=C3=A9
+>=20
 
-That was the missing piece that made it click for me!
-Thanks Krzysztof, Robin for guiding me through this.
+I said something completely wrong for this point.
 
-Konrad
-> 
->>
->>>
->>> Just like the link I gave you.
->>>
->>>> -    maxItems: 1
->>>> +    maxItems: 3
->>>>
->>>>      nvidia,memory-controller:
->>>>        description: |
->>>> @@ -364,6 +364,26 @@ allOf:
->>>>                - description: interface clock required to access smmu's
->>>> registers
->>>>                    through the TCU's programming interface.
->>>>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            const: qcom,sm6375-smmu-500
->>>> +    then:
->>>> +      properties:
->>>> +        power-domains:
->>>> +          items:
->>>> +            - description: SNoC MMU TBU RT GDSC
->>>> +            - description: SNoC MMU TBU NRT GDSC
->>>> +            - description: SNoC TURING MMU TBU0 GDSC
->>>> +
->>>> +      required:
->>>> +        - power-domains
->>>> +    else:
->>>> +      properties:
->>>> +        power-domains:
->>>> +          maxItems: 1
->>>> +
->>>>    examples:
->>>>      - |+
->>>>        /* SMMU with stream matching or stream indexing */
->>>>
->>>>
->>>> In my eyes, this should work, but I still get errors like:
->>>>
->>>> /home/konrad/linux/arch/arm64/boot/dts/qcom/sm8250-hdk.dtb:
->>>> iommu@3da0000: power-domains: [[108, 0]] is too short
->>>>
->>>> as if the else: path was never taken..
->>>
->>> It was, but the top-level property said that minItems=3 (implicitly), so
->>> it is too short.
->> So the top-level properties take precedence over the ones that come 
->> from the if-then-else?? Ugh.
->>
->> Konrad
->>>
->>> Best regards,
->>> Krzysztof
->>>
+status is set disabled because it is a .dtsi and can be
+included by several dts to represent a board.
+This node (USB device) can be wired on some board and not on
+some others.
+So, the node will be enabled in each dts board that has the USBF
+device wired and used.
+
+Herv=C3=A9
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
