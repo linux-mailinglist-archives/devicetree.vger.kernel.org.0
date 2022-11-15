@@ -2,131 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B715629149
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 05:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00A34629166
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 06:11:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231908AbiKOEwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 23:52:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S230033AbiKOFLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 00:11:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231598AbiKOEwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 23:52:37 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEF91582E;
-        Mon, 14 Nov 2022 20:52:34 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AF4qRE5071518;
-        Mon, 14 Nov 2022 22:52:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668487947;
-        bh=/E64PIHXFOY3H6YTDaG6PFJhJzJ2G3dj+Y42ilK0YHI=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=aidddNcZMEXSMIFt4ma3aqQPuCCtDWL2Up5uxYPJJdMUaccZ+Cas4iF2OiX/e2YOx
-         46LrzXc1bixZLllpIGnm0oyQA2pE82t2yuerGE3Ycw7H+zxUX/n/jY8BDh9bDC7Xql
-         2nolg+uzTSKgNJBghzQ9a8Pn+pGu0h3zqCdsr++g=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AF4qRhC129576
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Nov 2022 22:52:27 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 14
- Nov 2022 22:52:26 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 14 Nov 2022 22:52:26 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AF4qQhv009627;
-        Mon, 14 Nov 2022 22:52:26 -0600
-Date:   Mon, 14 Nov 2022 22:52:26 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Apurva Nandan <a-nandan@ti.com>
-CC:     Andrew Davis <afd@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229966AbiKOFLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 00:11:31 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C2919C2B
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 21:11:29 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id t25so33329788ejb.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 21:11:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9X5gavBgb/Wglf/XTm1Y3iI6Wt14bllzi0excp6wbNI=;
+        b=Ch4GWTvFW9A/W//Ar7wULEELol5YOg8zAEI1I7wrVV1Tbe3gY/vXhtXBhuERjzEzy/
+         16OFu4kKs820NNn0JEuSQPxRYdVURpgwmf/tlf3x776IbZAHInM9u0NgaoAh/eDjox8A
+         X5NJTqiYSwvy1SIdL9eJzFtwCKMqRFGRiNcE1tsLFGLjbfnel3qd5AYsY4FJxDCYZcd2
+         EgLWBqvA3IPUbZjp3bIJTBHA0PGAJgVsrViCxiiVKHU+Iso0blSvwxzp5ZeNsS4NI7EL
+         lycMiugyOdropKwiUpBszbcJY3OdB2a/YbBWb6FRDBZ7nvjlfimiYMfElrV1RbEZSvSs
+         0cyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9X5gavBgb/Wglf/XTm1Y3iI6Wt14bllzi0excp6wbNI=;
+        b=TwUbTuF/jiqBCT9s4kdo459aAOHinlO5ZdpkyAKEpo7SDR+mEAtdFgFsGMsl7V8f4g
+         i6R31r9mTq0dIclB/VjA/d4yPg8fsOcCpSRAvFOgQ/m8EnuaCYnxLLKsSsL0oKoIDNN2
+         NM+cjvXsclJuoWjAszBnVqAn++YVTnHItGmygXQASnYCcZSNQYokKPGhSBL5NoIKhse0
+         2CZIYBm/ruUBXUcCJ/2YdBgoh9kyyoGH6cDAtTqV3Pwb2U4zAy4SXFn8PXDnaBdjkvLU
+         Fy66fkwXLOLDSXiceCdeO735xhJcuTna8/hkDakHikHqV1/fbyBKFZzVHTzuB/WqPsHG
+         5Rnw==
+X-Gm-Message-State: ANoB5pkGGBR3TF/AF6SBxwuSDHJy8lRG/gJpWoAldOm546QfXR1xMqZF
+        Oi0OmBIDjnFk7zYKH3BuBYVDWwOb1KTeTA==
+X-Google-Smtp-Source: AA0mqf4zd79bgtCeRyvvejnHuF11adVMo41g5zMGL0LyoDgN/69gkHKT+bufC0s93YP9cfJnmie+BA==
+X-Received: by 2002:a17:906:4f85:b0:7ae:c1b2:d912 with SMTP id o5-20020a1709064f8500b007aec1b2d912mr11892930eju.577.1668489088175;
+        Mon, 14 Nov 2022 21:11:28 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id r18-20020a1709061bb200b0077d37a5d401sm5029382ejg.33.2022.11.14.21.11.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Nov 2022 21:11:27 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: ti: Add support for J784S4 EVM board
-Message-ID: <20221115045226.6l4j4qbvedv2whjq@effects>
-References: <20221014082314.118361-1-a-nandan@ti.com>
- <20221014082314.118361-5-a-nandan@ti.com>
- <cd5dbbb0-2d9f-8d7d-b051-f8d01d710c62@ti.com>
- <581d0735-8294-5805-9a44-ed4ec3e9ae54@ti.com>
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 00/10] ARM: dts: suniv: F1C100s: add more peripherals
+Date:   Tue, 15 Nov 2022 06:11:25 +0100
+Message-ID: <5875968.lOV4Wx5bFT@jernej-laptop>
+In-Reply-To: <20221115002808.5456008b@slackpad.lan>
+References: <20221107005433.11079-1-andre.przywara@arm.com> <1920557.yKVeVyVuyW@kista> <20221115002808.5456008b@slackpad.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <581d0735-8294-5805-9a44-ed4ec3e9ae54@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:48-20221111, Apurva Nandan wrote:
-> 
-[...]
+Dne torek, 15. november 2022 ob 01:28:08 CET je Andre Przywara napisal(a):
+> On Mon, 07 Nov 2022 20:33:47 +0100
+> Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+>=20
+> Hi Jernej,
+>=20
+> thanks for the reviews!
+>=20
+> > Dne ponedeljek, 07. november 2022 ob 01:54:23 CET je Andre Przywara
+> >=20
+> > napisal(a):
+> > > This is a fixed version of the initial post. I dropped the two patches
+> > > that were already applied by the respective maintainers, and fixed the
+> > > smaller issues mentioned in the review.
+> > > This adds v2 of the series enabling the "Lctech Pi F1C200s" board on
+> > > top,
+> > > also with the comments addressed.
+> >=20
+> > Please don't combine series if not agreed upon before. Now whole series
+> > will be delayed until USB is sorted out.
+>=20
+> Apologies for that. Indeed I should have added the board DT to the USB
+> series instead, as there is no dependency to anything in here.
+>=20
+> If you don't mind, I will send a v3 with the last three patches
+> dropped, and the ACKs and R-b's added (and that one line in the commit
+> message fixed).
 
-> > > Schematics: https://www.ti.com/lit/zip/sprr458
+That would be nice. I was planning to merge other patches anyway if USB ser=
+ies=20
+is not sorted out in time, but I prefer merging whole series at once. I sho=
+uld=20
+add that to previous response, sorry.
+
+Best regards,
+Jernej
+
+>=20
+> Cheers,
+> Andre
+>=20
+> > Best regards,
+> > Jernej
+> >=20
+> > > The whole series goes on top of v3 of Icenowy's F1C100s USB support
+> > > series [1]. There is no real conflict, but the lctech-pi.dts file
+> > > references the new USB DT nodes from the .dtsi.
+> > >=20
+> > > I put a git repo with all those patches up here:
+> > > https://github.com/apritzel/linux/commits/f1c100s-devices-v2
+> > >=20
+> > > For a changelog see below.
+> > >=20
+> > > [1]
+> > > https://lore.kernel.org/linux-arm-kernel/20221106154826.6687-1-andre.=
+prz
+> > > ywa
+> > > ra@arm.com/T/#t
+> > >=20
+> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > The Allwinner F1C100s series of SoCs shares many peripherals with oth=
+er
+> > > Allwinner SoCs. Since they are compatible, we can use the existing
+> > > drivers, and just need to enable the devices in the DT.
+> > >=20
+> > > This series adds the I2C controllers, the PWM device, the CIR (infrar=
+ed)
+> > > device and the LRADC (aka. KEYADC, low res ADC) to the F1C100s .dtsi,=
+ so
+> > > boards can just use them by setting 'status =3D "okay";'.
+> > >=20
+> > > The only thing missing driver-wise is the IR mod clock, which was not
+> > > modeled in our CCU driver. Patch 4/10 fixes that.
+> > >=20
+> > > For every device there is one patch that adds the new compatible stri=
+ng
+> > > to the DT binding, and another patch to add the DT node.
+> > >=20
+> > > This has been tested on the Lctech Pi F1C200s board, by:
+> > > - Connecting an LED to PE6, and configuring this as the PWM pin in the
+> > > DT.
+> > >=20
+> > >   Doing a sweep on /sys/class/pwm/pwm1/duty_cycle made the LED fade o=
+ut.
+> > >=20
+> > > - Configuring PD0/PD12 as I2C0, and letting i2c-detect find the on-bo=
+ard
+> > >=20
+> > >   NS2009 I2C chip.
+> > >=20
+> > > - Connecting two resistors to the "ADC" pin, and configuring them as =
+two
+> > >=20
+> > >   buttons in the DT. /dev/input/event0 properly reported button press=
+es.
+> > >=20
+> > > - Connecting an infrared receiver to PE11, configured as CIR.
+> > >=20
+> > >   ir-keytable reported key presses on a remote control.
+> > >=20
+> > > All those (basic) tests were successful, and prove that the periphera=
+ls
+> > > do work and are compatible.
+> > >=20
+> > > The final three patches add the binding docs and the .dts file for the
+> > > Lctech Pi F1C200s development board.
+> > >=20
+> > > Please have a look and test on your hardware, if possible.
+> > >=20
+> > > Cheers,
+> > > Andre
+> > >=20
+> > > Changelog v1 ... v2:
+> > > - dropped former patch 3/9 and 8/9: already applied
+> > > - increase register frame size in DT for PWM and LRADC
+> > > - drop I2C1 pins from pinctroller DT node
+> > > - increase IR mod clock mux to 2 bits
+> > > - fix mistyped comma in vendor prefix name
+> > > - drop unneeded mmc0 and spi0 aliases from Lctech Pi DT
+> > > - add /omit-if-no-ref/ tag to UART1 pins
+> > > - add ACKs and Reviewed-by tags
+> > >=20
+> > > Andre Przywara (10):
+> > >   dt-bindings: pwm: allwinner,sun4i-a10: Add F1C100s compatible
+> > >   ARM: dts: suniv: f1c100s: add PWM node
+> > >   ARM: dts: suniv: f1c100s: add I2C DT nodes
+> > >   clk: sunxi-ng: f1c100s: Add IR mod clock
+> > >   dt-bindings: media: IR: Add F1C100s IR compatible string
+> > >   ARM: dts: suniv: f1c100s: add CIR DT node
+> > >   ARM: dts: suniv: f1c100s: add LRADC node
+> > >   dt-bindings: vendor-prefixes: add Lctech name
+> > >   dt-bindings: arm: sunxi: add compatible strings for Lctech Pi
+> > >   ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
+> > > =20
+> > >  .../devicetree/bindings/arm/sunxi.yaml        |  6 ++
+> > >  .../media/allwinner,sun4i-a10-ir.yaml         |  1 +
+> > >  .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml |  4 +-
+> > >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> > >  arch/arm/boot/dts/Makefile                    |  1 +
+> > >  arch/arm/boot/dts/suniv-f1c100s.dtsi          | 76 ++++++++++++++++++
+> > >  arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 78 +++++++++++++++++=
+++
+> > >  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c      | 11 ++-
+> > >  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.h      |  2 +-
+> > >  include/dt-bindings/clock/suniv-ccu-f1c100s.h |  2 +
+> > >  10 files changed, 180 insertions(+), 3 deletions(-)
+> > >  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+> > >=20
+> > > --
+> > > 2.35.5
 
 
-> > > 
-> > > Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> > > Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> > > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> > > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-Uggh - too many Signed-off-by -> Can we either trim this down or use
-Co-developed-by ?
 
-The last of the SoB should be yours as you are handing the patch over.
-> > > ---
-> > >    arch/arm64/boot/dts/ti/Makefile          |   2 +
-> > >    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 199 +++++++++++++++++++++++
-> > >    2 files changed, 201 insertions(+)
-> > >    create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> > > index 02e5d80344d0..6381c458738a 100644
-> > > --- a/arch/arm64/boot/dts/ti/Makefile
-> > > +++ b/arch/arm64/boot/dts/ti/Makefile
-> > > @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-> > >    dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-
-One EoL here please? helps keeps the dtbs grouped.
-
-> > > +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-> > > +
-> > >    dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-> > >    dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> > > new file mode 100644
-> > > index 000000000000..bf2f2dfb7658
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> > > @@ -0,0 +1,199 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> > > + *
-> > > + * Common Processor Board: https://www.ti.com/tool/J721EXCPXEVM
-> > This doesn't seem to be the right EVM, I'd just drop this link.
-
-Please use the proper link -> I think it is in commit message.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
