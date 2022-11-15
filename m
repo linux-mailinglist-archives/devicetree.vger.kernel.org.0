@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0D5629D6C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ABF4629DA3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231302AbiKOP3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:29:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
+        id S230239AbiKOPez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:34:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238263AbiKOP2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:28:12 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A2E2E691
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:27:52 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id bj12so36815171ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:27:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VXNeiZSiKUzdZoTHuirJDg5xuDfVFRqeocp2CsC1HKs=;
-        b=f0/LC4qEmBltwHtca1iArNV86IyOU5fGnON5xaV+i8xRAy8zt9ZzEc0iPDhysWUzhR
-         XQvzMveBCys8i2b5TNixUxT5s4FKGbFzAZ7qckT86MS8qjTJ+dlbmssKkhzWrTrmslDs
-         xdm+UmsqBe7V7tJZt4N9tj9opSCQoLMkDYPZ3x8oqJyiREmK9PUpT5XZ9nsnXla/5vEc
-         co0Bw9veFcR9UQo9PXWDVbJzdlpijsNDbdPrVmtSE+68b0ddIVYsZgEd8E0QaEnZZ0Zs
-         Wxe1I/NGVe+JwE0fqf6GQFRGNou1ppnoB2zi6Jhj8kBhw5I+dxtLqc1gZlMrhkPXyPEI
-         rA4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VXNeiZSiKUzdZoTHuirJDg5xuDfVFRqeocp2CsC1HKs=;
-        b=fWq1nXlZKIR8WDimh2ed+HOjMpgbA8u3bXj3/QfWo6FPQX3V4AOopUwKxhI8Wp+RqR
-         5unacVyo4nWI87LYLg/w0xRwe9FcsC2Hhg2LTLr8jumC8gDau1FilnPZoDt+SC5H3hNw
-         Jl4fcX6K5RFgPlIph15ekON90nEvpOl739mmz+4lXeLmcSGhgXlMczDWMgcuCxpeoZdU
-         mra0tZZdcEGWzmybeqwPr0H/yJP1wPMRuv2Ql0VF03nkbtRjl/kPk24qn8zKeT6GXVCF
-         kuvMFhddcyHFzSQ0rAkvR8TwHg+jvOrsW0+XZv06dKMEk9oDJFY37Z9ThuhtIxIzqfPO
-         fD3Q==
-X-Gm-Message-State: ANoB5pmt6CzoKrzU8iIdOMxPGcforhjw50XU/7Y8QlWjbcyzVRqZj3bq
-        Jqq3q1HDQiWP5PdCajK55dCljv2sTCDaWy+R
-X-Google-Smtp-Source: AA0mqf6G00aK5hcQ0x7+uFf7ziD5zons24TbIeFxMratzW5r9iONupr0GsEq5Busc/qWa+nuvpxBdQ==
-X-Received: by 2002:a17:906:16d0:b0:7ae:31a0:5727 with SMTP id t16-20020a17090616d000b007ae31a05727mr14523521ejd.540.1668526072162;
-        Tue, 15 Nov 2022 07:27:52 -0800 (PST)
-Received: from localhost.localdomain ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id ku21-20020a170907789500b007ae1ab8f887sm5750679ejc.14.2022.11.15.07.27.50
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Tue, 15 Nov 2022 07:27:51 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 9/9] arm64: dts: qcom: sm6375-pdx225: Configure Samsung touchscreen
-Date:   Tue, 15 Nov 2022 16:27:27 +0100
-Message-Id: <20221115152727.9736-10-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <20221115152727.9736-1-konrad.dybcio@linaro.org>
-References: <20221115152727.9736-1-konrad.dybcio@linaro.org>
+        with ESMTP id S238280AbiKOPep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:34:45 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25242EE30;
+        Tue, 15 Nov 2022 07:34:39 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E68606602A2D;
+        Tue, 15 Nov 2022 15:34:36 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668526477;
+        bh=UsrtOUGmm9yQjbTKRfPm8z8pCEAuKpMkDN99XHev6Wg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jBwVOnmaeqNEw6rRKembroMAaHqQ39JcG2R2PUJ77BocmGy4j1V7sWHDBOGy3b8Q1
+         EQzDgQ5zda3rsrxyhsRdzcOe+eJ/KdRexk09gOkMh2rifI0htoA26J2V7U9rgv6NmB
+         fNE34JtGUxDr3R6QjoV0kH5WvoD4pHD75yauxdG8SypkfTSPTwXhMOKcPSYPVWRkvY
+         LRT9wUn1Vpn1H3cUWwwhL74j0j+GJObQaXzOi3dPpOK4KDbmHi9ojTB3JfuLu3vVbJ
+         F2bo5ObrJeqFOpf8qqpRhpck52o9yNZv+ej3lh3kNGUTVhan7rK1LdQmbGluKiHaV0
+         9RtdJy+eolNkQ==
+Message-ID: <f2260dea-6f05-6ca9-d241-2ba986f4ca45@collabora.com>
+Date:   Tue, 15 Nov 2022 16:34:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: Add bindings for Qualcomm
+ Ramp Controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
+        kernel@collabora.com, andersson@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
+        agross@kernel.org
+References: <20221104142204.156333-1-angelogioacchino.delregno@collabora.com>
+ <20221104142204.156333-2-angelogioacchino.delregno@collabora.com>
+ <166758411781.2066027.6365889663189109123.robh@kernel.org>
+ <160cb3fc-176e-bc0e-1bff-9334478af8ec@collabora.com>
+ <342d556a-e710-590c-3c81-fcc60bbaa6e7@linaro.org>
+ <3e9deab6-58ca-3a58-5f06-c1e4d181bc94@collabora.com>
+ <5c0dfcad-956d-e3cd-fd06-7671b85c4ae7@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <5c0dfcad-956d-e3cd-fd06-7671b85c4ae7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pretty bog-standard-for-Xperias-for-the-past-3-years
-touchscreen setup.
+Il 15/11/22 16:16, Krzysztof Kozlowski ha scritto:
+> On 15/11/2022 15:44, AngeloGioacchino Del Regno wrote:
+> 
+>>>>> Please check and re-submit.
+>>>>>
+>>>>
+>>>> I'm unsure about what I should do about this one.
+>>>> This is a power-controller, but does *not* need any #power-domain-cells, as it is
+>>>> standalone and doesn't require being attached to anything.
+>>>
+>>> power-domain-cells are for power domain providers, not consumers. The
+>>> generic binding expect that nodes called power-controller are exactly
+>>> like that.
+>>>
+>>> Solutions could be:
+>>> 1. Rename the node to something else. I cannot deduct the type of the
+>>> device based on description. What is "sequence ID" and how is it even
+>>> closely related to power control?
+>>
+>> This uC is mainly controlling DCVS, automagically plays with voltages for
+>> each ramp up/down step and from what I understand also decides to shut down
+>> or bring up *power* to "certain clocks" before ungating (CPU related, mainly
+>> big cluster).
+>> This also interacts with LMH - setting the LMH part makes it possible to
+>> later use CPR (otherwise CPR errors out internally and won't start, as it
+>> requires this controller, SAW and LMH to be set up in order to work).
+>>
+>> What I've seen is that without it I can't bring up the big cluster at all,
+>> not even at minimum frequency, as the HF2PLL (a clock source for that cluster)
+>> will not power up.
+>> All it takes is to initialize these params and start the controller, then
+>> everything goes as it should.
+>>
+>> If you're wondering why my explanation may not be particularly satisfying,
+>> that's because downstream contains practically no information about this
+>> one, apart from a bunch of lines of code and because this controller is
+>> just a big black box.
+>>
+>>>
+>>> 2. Narrow the node name in power-domain.yaml which would require changes
+>>> in multiple DTS and bindings.
+>>>
+>>> 3. Do not require power-domain-cells for power-controllers, only for
+>>> power-domains.
+>>>
+>>
+>> Solutions 2 and 3... well, I don't think that this would be really feasible
+>> as I envision this being the one and only driver that will ever require
+>> that kind of thing.
+>> Also, this programming was later moved to bootloaders and the only SoCs that
+>> will ever require this are MSM8956/76, MSM8953 and.. I think MSM8952 as well,
+>> but nothing more.
+>>
+>> Even if I can imagine the answer, I'm still tempted to ask: can we eventually
+>> just name it ramp-controller@xxxx or qcom-rc@xxxx or something "special" like
+>> that to overcome to this binding issue?
+> 
+> So maybe "cpu-power-controller"? This should already help for this warning.
+> 
 
-The OEM that built the Xperia 10 IV for SONY decided to use some
-kind of a GPIO regulator that needs to be enabled at all times
-for both the touch panel and the display panel to function.
+Agreed. Thanks for the advice!
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../qcom/sm6375-sony-xperia-murray-pdx225.dts | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-index 0f1ddfa28c89..d18167bcb41f 100644
---- a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-@@ -81,6 +81,23 @@ &gpi_dma1 {
- 	status = "okay";
- };
- 
-+&i2c8 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "samsung,s6sy761";
-+		reg = <0x48>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <22 0x2008>;
-+
-+		vdd-supply = <&pm6125_l13>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_default &ts_avdd_default>;
-+	};
-+};
-+
- &pmk8350_adc_tm {
- 	status = "okay";
- };
-@@ -290,6 +307,20 @@ pmr735a_l7: l7 {
- 
- &tlmm {
- 	gpio-reserved-ranges = <13 4>;
-+
-+	ts_int_default: ts-int-default-state {
-+		pins = "gpio22";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	ts_avdd_default: ts-avdd-default-state {
-+		pins = "gpio59";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		output-high;
-+	};
- };
- 
- &usb_1 {
--- 
-2.38.1
-
+Sending a v3 asap!
