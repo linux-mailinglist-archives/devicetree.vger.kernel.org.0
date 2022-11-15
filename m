@@ -2,178 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E037629F0C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3CF1629F16
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 17:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238641AbiKOQ3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 11:29:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
+        id S229533AbiKOQaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 11:30:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiKOQ3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:29:14 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5572BB7F9
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:29:13 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id c25so18218520ljr.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:29:13 -0800 (PST)
+        with ESMTP id S238381AbiKOQay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 11:30:54 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F88B7DB
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:30:52 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id k19so18227949lji.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 08:30:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sSUOaIRRIaxCLKOVLUG5d+WOgQHkBDA9Bz3omdshBMY=;
-        b=dTUbslcQxIsZytfrJ6/WgQJkXDPlTWI1saLhS8IYtQYvVFNXLXSgiX5+p6JL4NO2lC
-         mtoZSjHkBoIcTc5YskvjicGU1Ms8VUfBv6wcmDDOM4XCz7Of0VbHvAA/lOPHDQbY+OJF
-         NPpm4p6oR1VEvuEpbgcjnqI83AuDNxLyKcY1KY8TmiDv+rbbQY89eMFUrAxpTqWd8Qi/
-         PfRllCRd+nAgmuxQ8WipXpHb/G89hE5+YgFMrGNM+KyV1/CoAk4YO/xQFDl1av4V20Ik
-         Bpb7P8cR1o7oba4nk4DpAl8Z9ZsTibMb6sjQLMPykA2xSq4g3ASV/6VXWqnHUtA12X4V
-         8pwg==
+        bh=WgmhkilsxspOz5NWRqSMIhLipP/HJEPgQBayMZdWBrw=;
+        b=FGIToAWnLxWH/nNXH4Bc8NPARTKs+TGdOcxBxW+NwDA8ogN+41Yy9hAXq6hZYmg5rm
+         E5WwGRSzNfdPh4RKw/qzCgAmNx8PB8fXQiJY2BhtgUBmp2Wg7DPDkLXeTQW5jCRBpxUY
+         5ZI96mIUE34Ez+kcUW/KBPbPmebd5pme11C81WRfl+TtOWA8AetIBdJ4T/5GXw1AdiD8
+         A0t+yrlvyW45uGPQND8zUBzZ4ec5l4T6aWUCCFvntu2dB2D4qP1ff4rpqYZ0Q1cbiNC1
+         6tPcToXU5iuwpTLyY1xq8ZYZB7aO47yzHWDD+rngVtDKcK04TfoXgLJvMDDzuW1ExSho
+         dvBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sSUOaIRRIaxCLKOVLUG5d+WOgQHkBDA9Bz3omdshBMY=;
-        b=mtDSXiPMf18SHq3tQj8ybF4rWrUa2rmAGg4baMrfCF3lU+a5bFc4Lzj7UfiH8TanUX
-         1PHQbk5K6okaUL+g+MZm0A/yd/R9Bg1G91iqNS5a+Y/BBw49QlSQWSISgt8qEGxvqOao
-         lW3w7TkOy5JbZ4tygIEOtTPLvTl5eFwuCmltTEL3EQ5ooOU/Gn5MNkRYU8QFAZVIqsD6
-         9xar2NucnlwyymDoDoumMhJbamJUSlZ239V94Yfb9FYBHb7hSQf4ax+qtBL0gOlELlwG
-         wUkschL0wMbydbi41aQVe7JJnzl6PAC0u5r+wVlFD8AV+xd4vx9cWNxeH51mmMqF1eGi
-         kMfw==
-X-Gm-Message-State: ANoB5pnXtEQAVfNOkiK6xZ+sqvs8wb50m1hCT+HRQCz/d7AtEJWspBa/
-        rjom/GyeBjCfJeL9wSklwOI09A==
-X-Google-Smtp-Source: AA0mqf6D8YP9WiiKhNlDLQWxOuvAdoFVC4qTb68DacS4/NhKXtdcQN2FDpXCsDm2xYVspqHfO13eSw==
-X-Received: by 2002:a2e:b0ca:0:b0:277:7793:fcd2 with SMTP id g10-20020a2eb0ca000000b002777793fcd2mr6697368ljl.364.1668529751652;
-        Tue, 15 Nov 2022 08:29:11 -0800 (PST)
+        bh=WgmhkilsxspOz5NWRqSMIhLipP/HJEPgQBayMZdWBrw=;
+        b=JjOWatAeAkfTdiirrNgQtGgSEhghQ/TZus1zgLEc0fXA4m9hAfgcmpaXCfJmNk90L0
+         ufY5xCmhF5OiPDg15oqChu3TgOn+AtnoCiGqnaJLmgc2feUtuNPJqi23tE3ohCLiO/Bj
+         CgZM/CHm6iY9LvW62kZotRLSheHaxJKaopuuBInSdaTubEgBLUEbqxfDSi2pOlhAL39h
+         24rLWqCZJrRDh3desQ0TRWiPEObHbYn31QJ6iA25urfae5g6NgsQRijYakFO2BIV3KMw
+         tA4CNHfoX0XxiEwFJEbflzxZNyEHYrugD294qUpiyXb0P7a7iMWALLyasiRJBDLXmX4Q
+         mTwQ==
+X-Gm-Message-State: ANoB5pkSEgb+V+27uSeAMr75vlex72pT0BmPFKo6h+3lyW2GyMTwHH2J
+        OmqGihTdSdS6ZKBfvJXCloTFGA==
+X-Google-Smtp-Source: AA0mqf6Tx5INGoZ78d+9myc+vdTm5mzsmp5rLWprRQV1O1l0dTir56KzqEnejFqId0Li9Ws03Fr7Vw==
+X-Received: by 2002:a05:651c:2314:b0:277:2123:120e with SMTP id bi20-20020a05651c231400b002772123120emr6513113ljb.4.1668529850815;
+        Tue, 15 Nov 2022 08:30:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e21-20020a196915000000b004b3db0a3d9csm2263721lfc.117.2022.11.15.08.29.10
+        by smtp.gmail.com with ESMTPSA id v14-20020ac258ee000000b004998d9ccb62sm2262902lfo.99.2022.11.15.08.30.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 08:29:11 -0800 (PST)
-Message-ID: <e861e62f-4148-b867-0155-e71b1cee0b81@linaro.org>
-Date:   Tue, 15 Nov 2022 17:29:09 +0100
+        Tue, 15 Nov 2022 08:30:50 -0800 (PST)
+Message-ID: <8e80a8ae-41dd-3f17-b165-eaba5335ae68@linaro.org>
+Date:   Tue, 15 Nov 2022 17:30:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 03/11] phy: sun4i-usb: add support for the USB PHY on
- F1C100s SoC
+Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Icenowy Zheng <uwu@icenowy.me>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org
-References: <20221106154826.6687-1-andre.przywara@arm.com>
- <20221106154826.6687-4-andre.przywara@arm.com> <Y2ypy0CM8rJGu2g4@matsya>
- <4438485.LvFx2qVVIh@jernej-laptop>
- <52920a00-8e29-f7f4-0cbd-ceb638ded970@linaro.org>
- <20221115104426.20728ba5@donnerap.cambridge.arm.com>
- <4516dcfb-b928-d454-18a6-bd725f39cc24@linaro.org>
- <20221115161917.328ec91a@donnerap.cambridge.arm.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-7-herve.codina@bootlin.com>
+ <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
+ <20221115142754.6253881b@bootlin.com> <20221115160917.73e7b4ef@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115161917.328ec91a@donnerap.cambridge.arm.com>
+In-Reply-To: <20221115160917.73e7b4ef@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 17:19, Andre Przywara wrote:
-> On Tue, 15 Nov 2022 16:00:54 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 15/11/2022 16:09, Herve Codina wrote:
+> Hi Krzysztof
 > 
-> Hi,
+> On Tue, 15 Nov 2022 14:27:54 +0100
+> Herve Codina <herve.codina@bootlin.com> wrote:
 > 
->> On 15/11/2022 11:44, Andre Przywara wrote:
->>> On Tue, 15 Nov 2022 11:03:24 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> Hi,
->>>   
->>>> On 15/11/2022 07:01, Jernej Škrabec wrote:  
->>>>> Dne četrtek, 10. november 2022 ob 08:35:39 CET je Vinod Koul napisal(a):    
->>>>>> On 06-11-22, 15:48, Andre Przywara wrote:    
->>>>>>> From: Icenowy Zheng <uwu@icenowy.me>
->>>>>>>
->>>>>>> The F1C100s SoC has one USB OTG port connected to a MUSB controller.
->>>>>>>
->>>>>>> Add support for its USB PHY.    
->>>>>>
->>>>>> This does not apply for me, please rebase and resend
->>>>>>
->>>>>> Also, consider splitting phy patches from this. I dont think there is
->>>>>> any dependency    
->>>>>
->>>>> DT patches in this series depend on functionality added here.
->>>>>     
->>>>
->>>> DTS always goes separately from driver changes because it is a hardware
->>>> description. Depending on driver means you have potential ABI break, so
->>>> it is already a warning sign.  
->>>
->>> We understand that ;-)
->>> What Jernej meant was that the DTS patches at the end depend on patch
->>> 01/10, which adds to the PHY binding doc. I am not sure if Vinod's
->>> suggestion was about splitting off 01/10, 03/10, and 10/10, or just the
->>> two latter which touch the driver.
->>>
->>> I can split off 03/10 and 10/10, rebased on top of linux-phy.git/next, and
->>> send that to Vinod.
->>> Then I would keep 01/10 in a respin of this series here, to satisfy the
->>> dependency of the later DTS patches, and Vinod can pick that one patch from
->>> there?  
+>> Hi Krzysztof,
 >>
->> There is no hard dependency of DTS on bindings. You can split these (and
->> some maintainers prefer that way) and in DTS patches just provide the
->> link to the bindings, saying it is in progress.
+>> On Tue, 15 Nov 2022 14:16:27 +0100
+>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>>> On 14/11/2022 12:15, Herve Codina wrote:  
+>>>> Add the USBF controller available in the r9a06g032 SoC.
+>>>>
+>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>> ---
+>>>>  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
+>>>>  1 file changed, 12 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
+>>>> index 563024c9a4ae..a4bb069457a3 100644
+>>>> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+>>>> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+>>>> @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
+>>>>  			};
+>>>>  		};
+>>>>  
+>>>> +		udc: usb@4001e000 {
+>>>> +			compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
+>>>> +			reg = <0x4001e000 0x2000>;
+>>>> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +			clocks = <&sysctrl R9A06G032_HCLK_USBF>,
+>>>> +				 <&sysctrl R9A06G032_HCLK_USBPM>;
+>>>> +			clock-names = "hclkf", "hclkpm";
+>>>> +			power-domains = <&sysctrl>;
+>>>> +			status = "disabled";    
+>>>
+>>> If you provided all resources (clocks, power domains etc), why disabling it?  
+>>
+>> Because I forgot to remove the 'status' property ...
+>> 'status' will be simply removed in v3.
+>> Sorry for this mistake.
+>>
+>> Thanks for the review,
+>> Hervé
+>>
 > 
-> But that breaks "make dtbs_check", doesn't it?
-
-The check will be broken anyway because binding goes via driver
-subsystem and DTS goes via arm-soc.
-
-If both make to the linux-next and next release, then it's not a problem.
-
+> I said something completely wrong for this point.
 > 
-> I would think that the DT bits - bindings first, then DTS files using it -
-> should be bundled. This is how I imagine the future(TM), where DTs and
-> bindings live outside the kernel repo.
+> status is set disabled because it is a .dtsi and can be
+> included by several dts to represent a board.
+> This node (USB device) can be wired on some board and not on
+> some others.
+> So, the node will be enabled in each dts board that has the USBF
+> device wired and used.
 
-Yes, that's preferred. Therefore in DTS patch you say the binding is not
-merged and it is here - lore link.
-
-> 
->> The bindings should be however kept with driver changes as it goes the
->> same way.
-> 
-> I understand that the bindings describe the contract the driver acts on,
-> but going forward I think driver changes would need to come later, then
-> (since they will live in a separate repo at some day)?
-> Maybe pointing to the binding changes in progress?
-
-Later as one commit later - yes. Later as other option - not really, why?
-
-> So with a separate repo we would actually need to upstream just the
-> bindings first, then could push driver changes and .dts files
-> independently?
-
-There is no separate repo, so we talk about Linux case now.
-
-> And for now it looks like we are stuck with putting everything in one
-> series, to make both checkpatch and dtbs_check happy.
-
-You should rather make maintainers happy :) and here one asked to split.
+So it depends on having the connector? Yes, makes sense as well.
+Actually my recommendation was about internal parts of OS, which usually
+do not require anything from board. I missed the part that it is an USB...
 
 Best regards,
 Krzysztof
