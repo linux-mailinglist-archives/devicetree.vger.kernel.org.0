@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ECFE629B7B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAA1629B8F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbiKOOFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:05:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33574 "EHLO
+        id S229583AbiKOOIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:08:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238587AbiKOOFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:05:01 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0D92C130
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:04:50 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id d20so17599235ljc.12
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:04:50 -0800 (PST)
+        with ESMTP id S229545AbiKOOIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:08:43 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB21656D
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:08:41 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id t10so17687499ljj.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:08:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zUNMs9VUAYdzsYfZj27O2GLpDUkgxaYUW8ObUFHeds0=;
-        b=u+QFzxo8dFM9n5LLms3vKX6AtCaWd9OUiB7ag8+KWKx1CJUazR4DjCML3W1oZb91kc
-         j3mSyC5JgKEPhMjJ0ny11pXN9q0MGzqOqea72A4Ziu8gxD4wfaRRTcJ7P/HcBLGU7Ivo
-         pGvjLZ8yFAeBfpoixuMWYEFN0aGCxWdnHb0aVDb7moBqo9j7RMtt3+6+5A9DYerreadD
-         7PxuRTaB5is6gL0yqGbJfHBpo6v09b0iFuSKyWg6sukt+Lz7tgdKiB6XyE95E5s6/xCY
-         u90JEPg7X14bdlqR7Rbusxvo6DYLXCYbOlJ407ALJxDnAj9OIYzcTPxy8vCoqYvmzOJf
-         zQsQ==
+        bh=qiTVqep6DU3EQigGK3/zHq9dFgIjE2mGeNBBEKQcEuw=;
+        b=VIOa8Bduskofw1HyyiM/+ADYmDV7qu6UAs23GhKMa5I+72Wpi1+scUftzlB1QlGYCC
+         2bf7cy/aQbYg/JsVaD9WiZAUpXaQluLwDHuX3IJpRaycZjuu1m4+RqEkiWTgtrr8umUH
+         qTxdNj4xFTgQVfXDhIzgNj9RJJOZLxzYta5RocnLzaqwWlcr3TX1x/cSagU5fdmH/lGt
+         uS5RbxehwU3AD/PRDGz/eJc0QP0OVUPHHtpShW/hl6GxbczYpMqKP7aS0wVTg2mf9PIt
+         rUNc8+Nvpjg0Aw23TVmbcNy126//piwytSQubsHIGY8wJRAa9YBuYMcWtbkWy1m5/+5P
+         aQUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zUNMs9VUAYdzsYfZj27O2GLpDUkgxaYUW8ObUFHeds0=;
-        b=lcm89jbs0nNKQi7RP+qw/pCkldoXmTnFnAcacYMLiOKPbpkU+H1J9k/PP8XC3Bu/vr
-         naUGK+jLXG5zH7QlrrockksqZ+7O9ZD9Dd75mbJfbhSA4jnQefztK9Ii4Ni2JYi3zhpF
-         y/yWMAc69rVEDari7+vRIUA2Dge08aOB4URUqgOkkZRvWOROSaYLtCoDe2eaC+sWjL8+
-         fgkG4hpH+LCyJyPiXpoetaKso3cdzOs59mOI2Q9nK/lzSrDHnVthNX9mmkkrOYmYATc9
-         vRf5tPOUexqOLrmLh3WWWiZJxxZ0Q+UdIIRp21m0mflsR4D1uGEPTEHQrja9KAQJa6U+
-         kAgg==
-X-Gm-Message-State: ANoB5pm9Hqf9wYsuC4tclqkHrAb0NSFth2lP2yofIP/lWzZLaCfXRT3w
-        CAkJ26E3y0JJSRsgaAe7c7toQg==
-X-Google-Smtp-Source: AA0mqf7tUo+4QoipSM45XImyjkR2A/it5s5rIMCeuLa9TU6VpMwLpU2oNRM6yJWAb9NGweATnPCL+w==
-X-Received: by 2002:a2e:9904:0:b0:277:8d3:4298 with SMTP id v4-20020a2e9904000000b0027708d34298mr5475696lji.302.1668521089181;
-        Tue, 15 Nov 2022 06:04:49 -0800 (PST)
+        bh=qiTVqep6DU3EQigGK3/zHq9dFgIjE2mGeNBBEKQcEuw=;
+        b=61dHVn1xErtyM1ELJM/DzHxsSW8U0HTQi5P+KevIQ7WGzjQcF5tR96T3aS0cSc6eQh
+         E/5NyHLoaXGKj1Fl8PzVfss2rHza6eIp6nfgmpU0DYbOP65ts/l9epce0Ptre2yWiK02
+         xwiHN0wJ0qR8lByvlchcjhwwOYTbOYL0KGygU3J9ZK0gfD+YTOo1O6vScZC/Np6Tuffr
+         vV0eDWbZGo428npb3+l2KTe+bDORrqjHI0VTI/ic/K7huWSA7hPuDr5c2LvedYh20/G7
+         GpP2GgERwpRLVsVez11GYDzF+wZAnWIPJK53xnABqclrtPqEMtSvwZUM+kWItLv2j/1e
+         TF2A==
+X-Gm-Message-State: ANoB5pk+cfYNM8gftNZtth8utMjLqQtaza302iT51JQW2IPuy+N9fUWe
+        QOK9rkzicIEmI3ViRPkRUj+7kg==
+X-Google-Smtp-Source: AA0mqf5tf4cNFzATyjN2JH2wnr6CNKgdMcgN+PCe0/cmxPHrIlV6p350nZWLhKt8Xi7zKVD4RKF+9Q==
+X-Received: by 2002:a2e:a27b:0:b0:279:5fa:8e7c with SMTP id k27-20020a2ea27b000000b0027905fa8e7cmr2725033ljm.62.1668521319792;
+        Tue, 15 Nov 2022 06:08:39 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s7-20020a056512314700b004946b549a19sm2203167lfi.45.2022.11.15.06.04.48
+        by smtp.gmail.com with ESMTPSA id 14-20020ac2568e000000b004946bb30469sm2221536lfr.82.2022.11.15.06.08.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 06:04:48 -0800 (PST)
-Message-ID: <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
-Date:   Tue, 15 Nov 2022 15:04:46 +0100
+        Tue, 15 Nov 2022 06:08:39 -0800 (PST)
+Message-ID: <c9b82051-a9f5-883f-5455-1cb06aa6521b@linaro.org>
+Date:   Tue, 15 Nov 2022 15:08:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v10 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+Subject: Re: [PATCH v2] dt-bindings: spi: convert Freescale DSPI to dt-schema
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221115110932.637091-1-Naresh.Solanki@9elements.com>
- <20221115110932.637091-2-Naresh.Solanki@9elements.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+References: <20221111224651.577729-1-vladimir.oltean@nxp.com>
+ <417bfdea-ed41-6468-ec16-f54480cfe2f6@linaro.org>
+ <20221115135912.ksjk7zxqsyazqhtf@skbuf>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115110932.637091-2-Naresh.Solanki@9elements.com>
+In-Reply-To: <20221115135912.ksjk7zxqsyazqhtf@skbuf>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,186 +83,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 12:09, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On 15/11/2022 14:59, Vladimir Oltean wrote:
+> On Tue, Nov 15, 2022 at 02:46:21PM +0100, Krzysztof Kozlowski wrote:
+>>> +$id: http://devicetree.org/schemas/spi/fsl,spi-fsl-dspi.yaml
+>>
+>> Why second "fsl" in file name? It does not patch compatibles and
+>> duplicates the vendor. We do not have compatibles "nxp,imx6-nxp".
 > 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
+> Ok, which file name would be good then? There are 9 different (all SoC
+> specific) compatible strings, surely the convention of naming the file
+> after a compatible string has some limitations...
+
+If all DSPI blocks fit here, then maybe: fsl,dspi.yaml
+
+fsl,spi-dspi.yaml is also a bit redundant.
+
 > 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../bindings/mfd/maxim,max5970.yaml           | 154 ++++++++++++++++++
->  1 file changed, 154 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml
+>>> +
+>>> +title: Freescale DSPI Controller
+>>> +
+>>> +maintainers:
+>>> +  - Vladimir Oltean <olteanv@gmail.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: "spi-controller.yaml#"
+>>
+>> Drop quotes.
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    description:
+>>> +      Some integrations can have a single compatible string containing their
+>>> +      SoC name (LS1012A, LS1021A, ...). Others require their SoC compatible
+>>> +      string, plus a fallback compatible string (either on LS1021A or on
+>>> +      LS2085A).
+>>
+>> Why? The fsl,ls1012a-dspi device is either compatible with
+>> fsl,ls1021a-v1.0-dspi or not. It cannot be both - compatible and not
+>> compatible.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> new file mode 100644
-> index 000000000000..edf0c23db4ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> @@ -0,0 +1,154 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
-> +
-> +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
-> +
-> +description: |
-> +  The smart switch provides no output regulation, but independent fault protection
-> +  and voltage and current sensing.
-> +  Programming is done through I2C bus.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max5970
-> +      - maxim,max5978
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
-> +    description:
-> +      Properties for four LEDS.
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-3]$":
-> +        $ref: /schemas/leds/common.yaml#
-> +        type: object
-> +
-> +    additionalProperties: false
-> +
-> +  vss1-supply:
-> +    description: Supply of the first channel.
-> +
-> +  vss2-supply:
-> +    description: Supply of the second channel.
-> +
-> +  regulators:
-> +    type: object
-> +    description:
-> +      Properties for both regulators. Also set value for shunt resistor used.
+> LS1012A is compatible with LS1021A to the extent that it works when
+> treated like a LS1021A. LS1012A has a FIFO size of 8 SPI words, LS1021A
+> of just 4. Treating it like LS1021A means roughly half the performance,
+> but it still works.
+> 
+> I didn't invent any of this. When I took over the driver, there were
+> device trees like this all over the place:
+> 
+> 		dspi: spi@2100000 {
+> 			compatible = "fsl,ls1012a-dspi", "fsl,ls1021a-v1.0-dspi";
 
-You should explain not the syntax,  but what part of hardware this nodes
-represents. Therefore "Also set value" does not fit at all. Hardware
-sets value?
+Which looks ok...
 
-I looked at datasheets to figure it out but they do not refer to any
-configurable regulator, LDO nor "sw0/sw1/sw2". Therefore I have no clue
-what to expect here...
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 			reg = <0x0 0x2100000 0x0 0x10000>;
+> 			interrupts = <0 64 IRQ_TYPE_LEVEL_HIGH>;
+> 			clock-names = "dspi";
+> 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+> 					    QORIQ_CLK_PLL_DIV(1)>;
+> 			spi-num-chipselects = <5>;
+> 			big-endian;
+> 			status = "disabled";
+> 		};
+> 
+> but the Linux driver pre-~5.7 always relied on the fallback compatible
+> string (LS1021A in this case). I'm working with what's out in the field,
+> haven't changed a thing there.
 
-> +
-> +    patternProperties:
-> +      "^sw[0-1]$":
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
-> +        properties:
-> +          shunt-resistor-micro-ohms:
-> +            description: |
-> +              The value of current sense resistor in microohms.
-> +
-> +        required:
-> +          - shunt-resistor-micro-ohms
-> +
-> +      unevaluatedProperties: false
+The driver matters less (except ABI), but anyway it confirms the case -
+fallback is expected always.  Why the fallback should be removed if the
+devices are compatible (including halved performance)?
 
-I don't think it has proper indentation. Did you test the binding?
+> 
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - fsl,ls1012a-dspi
+>>> +          - fsl,ls1021a-v1.0-dspi
+>>> +          - fsl,ls1028a-dspi
+>>> +          - fsl,ls2085a-dspi
+>>> +          - fsl,lx2160a-dspi
+>>> +          - fsl,vf610-dspi
+>>> +      - items:
+>>> +          - enum:
+>>> +              - fsl,ls1012a-dspi
+>>> +              - fsl,ls1028a-dspi
+>>> +              - fsl,ls1043a-dspi
+>>> +              - fsl,ls1046a-dspi
+>>> +              - fsl,ls1088a-dspi
+>>> +          - const: fsl,ls1021a-v1.0-dspi
+>>> +      - items:
+>>> +          - enum:
+>>> +              - fsl,ls2080a-dspi
+>>> +              - fsl,lx2160a-dspi
+>>> +          - const: fsl,ls2085a-dspi
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: dspi
+>>> +
+>>> +  dmas:
+>>> +    maxItems: 2
+>>> +
+>>> +  dma-names:
+>>> +    items:
+>>> +      - const: tx
+>>> +      - const: rx
+>>> +
+>>> +  spi-num-chipselects:
+>>
+>> Would be nice to deprecated it in separate patches. There is num-cs
+>> property.
+> 
+> Will add this on my TODO list. Right now I'm just converting what exists.
 
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +  - vss1-supply
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - maxim,max5970
-> +    then:
-> +      required:
-> +        - vss2-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        regulator@3a {
-> +            compatible = "maxim,max5978";
-> +            reg = <0x3a>;
-> +            vss1-supply = <&p3v3>;
-> +
-> +            regulators {
-> +                sw0_ref_0: sw0 {
-> +                    regulator-compatible = "SW0";
-> +                    shunt-resistor-micro-ohms = <12000>;
-> +                };
-> +            };
-> +
-> +            leds {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                led@0 {
-> +                    reg = <0>;
-> +                    label = "led0";
-> +                    default-state = "on";
-> +                };
-> +                led@1 {
-> +                    reg = <1>;
-> +                    label = "led1";
-> +                    default-state = "on";
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        regulator@3a {
-> +            compatible = "maxim,max5970";
-> +            reg = <0x3a>;
-> +            vss1-supply = <&p3v3>;
-> +            vss2-supply = <&p5v>;
-> +
-> +            regulators {
-> +                sw0_ref_1: sw0 {
-> +                    regulator-compatible = "SW0";
-
-This property is deprecated, isn't it? Again - did you test this?
+Sure.
 
 Best regards,
 Krzysztof
