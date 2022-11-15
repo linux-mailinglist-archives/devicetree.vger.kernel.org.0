@@ -2,131 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD66A62A0EA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 19:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 355E662A0FE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 19:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231550AbiKOSBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 13:01:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
+        id S229824AbiKOSCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 13:02:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236796AbiKOSA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 13:00:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D362531235;
-        Tue, 15 Nov 2022 10:00:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8DDE9B81A59;
-        Tue, 15 Nov 2022 18:00:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DDA4C433B5;
-        Tue, 15 Nov 2022 18:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668535220;
-        bh=V+CDw9Lkisi0pVuYP/vfuaiILE7103hOmqneHcdz7K4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DpXCK2plJGNPu+0M8wHbEdKu/WJY4aLUaFyzENRpJWF9UhGvFSyuTVswdjCNMTCc7
-         0VBrULhtgPAfyKxtw0znCGEzu29uv4GtsBJGO8+ieSg1/usokIxocCTT/oVG9P+Svl
-         r7bMwijJTWWcoI1jRTmVCAZrqkpLUGqBVqEd2i8fdIsqRW3FcBxgaiS/2V1vQgFy+P
-         KBYscfgywKJDSbyaG95Nl1mf9nwF825DqCRlmuQNDfUK4GkfUPMfR/QqbQZFOOFy9G
-         AVg/pedgdi64bq17xeT6MOLLLbhwH8mCwwqQwwHyc359WJuK/QMp/6RCduNnqZuJR+
-         Ervg/LYaRer0g==
-Received: by mail-lj1-f170.google.com with SMTP id u2so18565322ljl.3;
-        Tue, 15 Nov 2022 10:00:20 -0800 (PST)
-X-Gm-Message-State: ANoB5pk4ymGSGobNp8w3eRdrv94uQLQBRpc+zZz2LQVAhi2agHJucZPb
-        s+7YJgv4lO0h2EO1V7LqgPyEuT52UzTUMmE77g==
-X-Google-Smtp-Source: AA0mqf4zsHpIKzELoBNtkrNEltVvWv6+X5mMUF7dvrGkfZPdg/U6t9+lLgKOIerV413GobUiXZJXyeo65Y4F6JleoLU=
-X-Received: by 2002:a2e:a80b:0:b0:275:1343:df71 with SMTP id
- l11-20020a2ea80b000000b002751343df71mr6791315ljq.215.1668535218200; Tue, 15
- Nov 2022 10:00:18 -0800 (PST)
+        with ESMTP id S238373AbiKOSBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 13:01:47 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2CE20181
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 10:01:46 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id t4so10194417wmj.5
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 10:01:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6tyLu//sUdUlLfcb+DLobo5/aUjbDUieQQrm3E0uXs=;
+        b=QKK3vP1kJ3b/VDq/Nra/LHQfVXh4tiB8yugNkjQYZiLyNuxM/Lx8EvsLd8ASSZznPf
+         NwgpqmLiYOTkSHv76ADFSf41VKWx8zQ8mJt4dsYKH+cqHNwEQX8Wh7ejXPFcFkuCw9lI
+         baMyGF7lQH9nHhZg9PVX13r8htppxYKWTRgIc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6tyLu//sUdUlLfcb+DLobo5/aUjbDUieQQrm3E0uXs=;
+        b=yrcXjaa+as5pSm0JC3lE1CNMer5aK3dVlASSmset70TaohdBpDsUvgQm6ViQ7sDRX2
+         0vBbMoxLO1h1vR5GLHFveApjae6OHFRtMi7ORIw94XqKZVGJcIdD3BpnO/IMSO2cJxJP
+         E+YCTnexi/j2gACgg/OHiZ4FgpYCgMvEFq09bU9a9LDTSG2UM8YHEPvW6412plojR2KA
+         L6n4CgYIfocpizuwbB5oxefelvNFaJv9gJOVXMYc1PHurerPZ6NTBLX3U52aFsAzNW5q
+         lXLei9LCIPL1UWVB2IUz7UxOv7lGHsGC2GEhp7tFE9uIxm4Q8q0X4TA3P9YZGq7KfQvq
+         zwOA==
+X-Gm-Message-State: ANoB5pmmuNju6Samo/ZnADiXHrLEGnrmILp9cC2nOaaiGe2L2Rh6AV01
+        JZuH0/G3cnWp2n1zs11e0PxOIg==
+X-Google-Smtp-Source: AA0mqf7kpB6uatetwA12Z7FJMUL5Vv9yVzLk2ylYofFLk0c7x+23o2Aq0ZJU541qCl2PbDG4LWyEyw==
+X-Received: by 2002:a1c:2581:0:b0:3cf:6a83:c7a3 with SMTP id l123-20020a1c2581000000b003cf6a83c7a3mr2279349wml.21.1668535305126;
+        Tue, 15 Nov 2022 10:01:45 -0800 (PST)
+Received: from [10.211.55.3] ([167.98.215.174])
+        by smtp.googlemail.com with ESMTPSA id c2-20020a05600c0a4200b003cfd4cf0761sm14788029wmq.1.2022.11.15.10.01.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 10:01:44 -0800 (PST)
+Message-ID: <96374132-d05f-0b78-0b9c-8818c39fcec8@ieee.org>
+Date:   Tue, 15 Nov 2022 12:01:43 -0600
 MIME-Version: 1.0
-References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
- <20221115020136.GA3973578-robh@kernel.org> <f8148686-796f-62a6-e424-733966f7db0b@nvidia.com>
-In-Reply-To: <f8148686-796f-62a6-e424-733966f7db0b@nvidia.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 15 Nov 2022 12:00:09 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+HWqLLk5dwYxNc0sKuiguT1DeTSFke+GSML5UACD=yFA@mail.gmail.com>
-Message-ID: <CAL_Jsq+HWqLLk5dwYxNc0sKuiguT1DeTSFke+GSML5UACD=yFA@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
-        mmaddireddy@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next v2 4/5] dt-bindings: net: qcom,ipa: support
+ skipping GSI firmware load
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221115113119.249893-1-elder@linaro.org>
+ <20221115113119.249893-5-elder@linaro.org>
+ <a4c4257b-1467-2ccb-f546-d58c6356a39a@linaro.org>
+Content-Language: en-US
+From:   Alex Elder <elder@ieee.org>
+In-Reply-To: <a4c4257b-1467-2ccb-f546-d58c6356a39a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 15, 2022 at 10:03 AM Jon Hunter <jonathanh@nvidia.com> wrote:
->
->
-> On 15/11/2022 02:01, Rob Herring wrote:
-> > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
-> >> From: Vidya Sagar <vidyas@nvidia.com>
-> >>
-> >> Add support for ECAM aperture that is only supported for Tegra234
-> >> devices.
-> >>
-> >> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> >> Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> >> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> >> ---
-> >> Changes since V2:
-> >> - Avoid duplication of reg items and reg-names
-> >> Changes since V1:
-> >> - Restricted the ECAM aperture to only Tegra234 devices that support it.
-> >>
-> >>   .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
-> >>   .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
-> >>   2 files changed, 33 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> >> index 75da3e8eecb9..fe81d52c7277 100644
-> >> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> >> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> >> @@ -27,6 +27,7 @@ properties:
-> >>         - nvidia,tegra234-pcie
-> >>
-> >>     reg:
-> >> +    minItems: 4
-> >>       items:
-> >>         - description: controller's application logic registers
-> >>         - description: configuration registers
-> >> @@ -35,13 +36,16 @@ properties:
-> >>             available for software access.
-> >>         - description: aperture where the Root Port's own configuration
-> >>             registers are available.
-> >> +      - description: aperture to access the configuration space through ECAM.
-> >>
-> >>     reg-names:
-> >> +    minItems: 4
-> >>       items:
-> >>         - const: appl
-> >>         - const: config
-> >>         - const: atu_dma
-> >>         - const: dbi
-> >> +      - const: ecam
-> >
-> > Wouldn't this be mutually exclusive with 'config'? 'config' is not
-> > really h/w, but an just an iATU window typically.
->
-> Yes that is true, however, I was chatting with Sagar and we really need
-> both ranges to be defined.
->
-> > Where's the driver change to use this?
->
-> For Linux there is not one. However, we need this for our port of the
-> EDK2 bootloader [0] that parses device-tree and can support booting
-> Linux with either device-tree or ACPI. We wanted to have a common
-> device-tree we can use for EDK2 and Linux.
+On 11/15/22 06:56, Krzysztof Kozlowski wrote:
+> This is a friendly reminder during the review process.
 
-Ok, makes sense.
+Yes as soon as I saw your message I remembered that I'd forgotten
+to add your reviewed-by tag.  I can send v3, but if the network
+maintainers are willing they could generously add it for me.
 
-Acked-by: Rob Herring <robh@kernel.org>
+					-Alex
