@@ -2,388 +2,425 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C51629337
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3EA62934D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:34:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbiKOIYL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Nov 2022 03:24:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44982 "EHLO
+        id S231789AbiKOIep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 03:34:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbiKOIYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:24:11 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F841C2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 00:24:09 -0800 (PST)
-Received: from [127.0.0.1] (85-237-234-20.dynamic.orange.sk [85.237.234.20])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229966AbiKOIeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:34:44 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A89FBA5;
+        Tue, 15 Nov 2022 00:34:42 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D248920088;
-        Tue, 15 Nov 2022 09:24:06 +0100 (CET)
-Date:   Tue, 15 Nov 2022 09:24:04 +0100
-From:   Martin Botka <martin.botka@somainline.org>
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Martin Botka <martin.botka1@gmail.com>
-CC:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Conley Lee <conleylee@foxmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: Add basic support for BIQU CB1
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20221115005429.57d72f64@slackpad.lan>
-References: <20221114214452.1993744-1-martin.botka@somainline.org> <20221114214452.1993744-2-martin.botka@somainline.org> <20221114233102.3b1f96cc@slackpad.lan> <CADQ2G_HXx59YYjNvhcNRonahgT3AcE_2BiU43vDJ3CRUGKwAKA@mail.gmail.com> <20221115005429.57d72f64@slackpad.lan>
-Message-ID: <D69CAA04-56A2-4FFD-A33D-C802084A7150@somainline.org>
+        by sin.source.kernel.org (Postfix) with ESMTPS id C5919CE1278;
+        Tue, 15 Nov 2022 08:34:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08456C433D6;
+        Tue, 15 Nov 2022 08:34:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668501277;
+        bh=RPhqxSuLjnoiovOxDmBnRxxubrALwemxcVdK+oIlxZ4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZxcbK3mdK8q8mIY2JhKtNMQANaAT7TAyWUjq6xQqsHSC00w57hBhfyMVzWq4SefVb
+         B/esnMw2OEpMe03ez0T+VXMtyrfFGBgbSmBFWLZxYStg4jKw3dc9dWDHyIdk4hyZme
+         dBrj28MKfIaqt/h7UPpv8BoxTpcAlAjned58VHChlSn5ZqEF4zJLqUgj0Wqgoalzj0
+         oQQ3Ceo4teWy6/ZAs25fEAs1XgJKJ6nl65m6ZlBATwOtLP6jh6kOkHTabQGpeF2gqT
+         EM7n/WwPgmunZyCKSkJotFbmpTbYXolDmAgbo2fOazghk4VXb2Tgeq5iue9jKzDJPy
+         RkrYN2Xryh/dA==
+Message-ID: <9a1d6524-05b3-11f7-4f3b-794a3a44b5b8@kernel.org>
+Date:   Tue, 15 Nov 2022 10:34:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [EXTERNAL] Re: [PATCH v7 2/5] remoteproc: pru: Add APIs to get
+ and put the PRU cores
+Content-Language: en-US
+To:     Md Danish Anwar <a0501179@ti.com>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        nm@ti.com, vigneshr@ti.com, srk@ti.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221031073801.130541-1-danishanwar@ti.com>
+ <20221031073801.130541-3-danishanwar@ti.com>
+ <a729e4e2-2f2e-8c3e-af45-3b8276bc6522@kernel.org>
+ <10c7731d-c776-15ee-50e7-406a40e657c3@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <10c7731d-c776-15ee-50e7-406a40e657c3@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Danish,
 
+On 15/11/2022 07:53, Md Danish Anwar wrote:
+> 
+> Hi Roger,
+> 
+> I had responded to two of your comments on this patch earlier but missed one
+> comment. Responding to that comment now.
+> 
+> On 04/11/22 18:25, Roger Quadros wrote:
+>> Hi Danish,
+>>
+>> On 31/10/2022 09:37, MD Danish Anwar wrote:
+>>> From: Tero Kristo <t-kristo@ti.com>
+>>>
+>>> Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
+>>> driver to allow client drivers to acquire and release the remoteproc
+>>> device associated with a PRU core. The PRU cores are treated as
+>>> resources with only one client owning it at a time.
+>>>
+>>> The pru_rproc_get() function returns the rproc handle corresponding
+>>> to a PRU core identified by the device tree "ti,prus" property under
+>>> the client node. The pru_rproc_put() is the complementary function
+>>> to pru_rproc_get().
+>>>
+>>> Co-developed-by: Suman Anna <s-anna@ti.com>
+>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>>> Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
+>>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>  drivers/remoteproc/pru_rproc.c | 142 +++++++++++++++++++++++++++++++--
+>>>  include/linux/pruss.h          |  56 +++++++++++++
+>>>  2 files changed, 193 insertions(+), 5 deletions(-)
+>>>  create mode 100644 include/linux/pruss.h
+>>>
+>>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>>> index 128bf9912f2c..9ba73cfc29e2 100644
+>>> --- a/drivers/remoteproc/pru_rproc.c
+>>> +++ b/drivers/remoteproc/pru_rproc.c
+>>> @@ -2,12 +2,14 @@
+>>>  /*
+>>>   * PRU-ICSS remoteproc driver for various TI SoCs
+>>>   *
+>>> - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+>>> + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
+>>>   *
+>>>   * Author(s):
+>>>   *	Suman Anna <s-anna@ti.com>
+>>>   *	Andrew F. Davis <afd@ti.com>
+>>>   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+>>> + *	Puranjay Mohan <p-mohan@ti.com>
+>>> + *	Md Danish Anwar <danishanwar@ti.com>
+>>>   */
+>>>  
+>>>  #include <linux/bitops.h>
+>>> @@ -16,6 +18,7 @@
+>>>  #include <linux/module.h>
+>>>  #include <linux/of_device.h>
+>>>  #include <linux/of_irq.h>
+>>> +#include <linux/pruss.h>
+>>>  #include <linux/pruss_driver.h>
+>>>  #include <linux/remoteproc.h>
+>>>  
+>>> @@ -111,6 +114,8 @@ struct pru_private_data {
+>>>   * @rproc: remoteproc pointer for this PRU core
+>>>   * @data: PRU core specific data
+>>>   * @mem_regions: data for each of the PRU memory regions
+>>> + * @client_np: client device node
+>>> + * @lock: mutex to protect client usage
+>>>   * @fw_name: name of firmware image used during loading
+>>>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+>>>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+>>> @@ -126,6 +131,8 @@ struct pru_rproc {
+>>>  	struct rproc *rproc;
+>>>  	const struct pru_private_data *data;
+>>>  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+>>> +	struct device_node *client_np;
+>>> +	struct mutex lock; /* client access lock */
+>>>  	const char *fw_name;
+>>>  	unsigned int *mapped_irq;
+>>>  	struct pru_irq_rsc *pru_interrupt_map;
+>>> @@ -146,6 +153,127 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+>>>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+>>>  }
+>>>  
+>>> +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+>>> +{
+>>> +	struct rproc *rproc;
+>>> +	phandle rproc_phandle;
+>>> +	int ret;
+>>> +
+>>> +	ret = of_property_read_u32_index(np, "ti,prus", index, &rproc_phandle);
+>>> +	if (ret)
+>>> +		return ERR_PTR(ret);
+>>> +
+>>> +	rproc = rproc_get_by_phandle(rproc_phandle);
+>>> +	if (!rproc) {
+>>> +		ret = -EPROBE_DEFER;
+>>> +		goto err_no_rproc_handle;
+>>> +	}
+>>> +
+>>> +	/* make sure it is PRU rproc */
+>>> +	if (!is_pru_rproc(rproc->dev.parent)) {
+>>> +		rproc_put(rproc);
+>>> +		return ERR_PTR(-ENODEV);
+>>> +	}
+>>> +
+>>> +	get_device(&rproc->dev);
+>>
+>> Why do you need a get_device() here?
+>> rproc_get_by_phandle() does it right?
+>>
+>>> +
+>>> +	return rproc;
+>>> +
+>>> +err_no_rproc_handle:
+>>> +	rproc_put(rproc);
+>>> +	return ERR_PTR(ret);
+>>> +}
+>>> +
+>>> +/**
+>>> + * pru_rproc_get() - get the PRU rproc instance from a device node
+>>> + * @np: the user/client device node
+>>> + * @index: index to use for the ti,prus property
+>>> + * @pru_id: optional pointer to return the PRU remoteproc processor id
+>>> + *
+>>> + * This function looks through a client device node's "ti,prus" property at
+>>> + * index @index and returns the rproc handle for a valid PRU remote processor if
+>>> + * found. The function allows only one user to own the PRU rproc resource at a
+>>> + * time. Caller must call pru_rproc_put() when done with using the rproc, not
+>>> + * required if the function returns a failure.
+>>> + *
+>>> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+>>> + * returned.
+>>> + *
+>>> + * Return: rproc handle on success, and an ERR_PTR on failure using one
+>>> + * of the following error values
+>>> + *    -ENODEV if device is not found
+>>> + *    -EBUSY if PRU is already acquired by anyone
+>>> + *    -EPROBE_DEFER is PRU device is not probed yet
+>>> + */
+>>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>>> +			    enum pruss_pru_id *pru_id)
+>>> +{
+>>> +	struct rproc *rproc;
+>>> +	struct pru_rproc *pru;
+>>> +	struct device *dev;
+>>> +	int ret;
+>>> +
+>>> +	rproc = __pru_rproc_get(np, index);
+>>> +	if (IS_ERR(rproc))
+>>> +		return rproc;
+>>
+>> Why bother doing __pru_rproc_get() if pru->client_np exists?
+>>
+>> You could do the below if check first and exit if pru->client_np exists.
+>>
+>>> +
+>>> +	pru = rproc->priv;
+>>> +	dev = &rproc->dev;
+>>> +
+>>> +	mutex_lock(&pru->lock);
+>>> +
+>>> +	if (pru->client_np) {
+>>> +		mutex_unlock(&pru->lock);
+>>> +		put_device(dev);
+>>> +		ret = -EBUSY;
+>>> +		goto err_no_rproc_handle;
+>>> +	}
+>>> +
+>>> +	pru->client_np = np;
+>>> +
+>>> +	mutex_unlock(&pru->lock);
+>>> +
+>>> +	if (pru_id)
+>>> +		*pru_id = pru->id;
+>>> +
+>>> +	return rproc;
+>>> +
+>>> +err_no_rproc_handle:
+>>> +	rproc_put(rproc);
+>>> +	return ERR_PTR(ret);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(pru_rproc_get);
+>>> +
+>>> +/**
+>>> + * pru_rproc_put() - release the PRU rproc resource
+>>> + * @rproc: the rproc resource to release
+>>> + *
+>>> + * Releases the PRU rproc resource and makes it available to other
+>>> + * users.
+>>> + */
+>>> +void pru_rproc_put(struct rproc *rproc)
+>>> +{
+>>> +	struct pru_rproc *pru;
+>>> +
+>>> +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
+>>> +		return;
+>>> +
+>>> +	pru = rproc->priv;
+>>> +
+>>> +	mutex_lock(&pru->lock);
+>>> +
+>>> +	if (!pru->client_np) {
+>>> +		mutex_unlock(&pru->lock);
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	pru->client_np = NULL;
+>>> +	mutex_unlock(&pru->lock);
+>>> +
+>>> +	rproc_put(rproc);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(pru_rproc_put);
+>>> +
+>>>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+>>>  {
+>>>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+>>> @@ -438,7 +566,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>>>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>>>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>>>  	/* PRU1 has its local RAM addresses reversed */
+>>> -	if (pru->id == 1)
+>>> +	if (pru->id == PRUSS_PRU1)
+>>
+>> Introduction of PRUSS_PRU0/1 enum could have been a separate patch.
+>>
+> 
+> Yes, Introduction of PRUSS_PRU0/1 enum could have been a separated patch in the
+> same series. But from the v1 of this series, this enum has been part of this
+> patch and that's why I kept it that way. We can introduce a new patch for this
+> enum (and the APIs that are using the enum) in next version of the series if
+> it's okay with you and Mathieu.
+> 
 
-On November 15, 2022 1:54:29 AM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
->On Tue, 15 Nov 2022 00:44:46 +0100
->Martin Botka <martin.botka1@gmail.com> wrote:
->
->Hi Martin,
->
->> I can totally understand how this can get confusing.
->> 
->> Basically because of the Rpi shortage biqu decided to make an Rpi
->> alternative.
->> 
->> So they made CB1 which is compute module style board.
->> 
->> And they made 3 other boards where CB1 or Rpi CM4 can be plugged in. The 3
->> boards are:
->> 
->> Rpi adapter which takes the Compute module style boards and turns them into
->> SBC style with basically identical size and etc to Rpi 4.
->> 
->> Then we have Manta M8P and M4P. These boards are MCUs for a 3D printer. But
->> they were made for Klipper use case which requires a computer or SBC
->> (Usually Rpi4). They combined it into 1 board.
->> Where you get the MCU and you can plug in CM4 or CB1
->
->Thanks for the explanations! I was guessing along those shortage lines,
->since the H616 is quite a step down from the RPi4CM, though probably
->still enough for driving a 3D printer.
-Mostly yes
->
->> All these boards are basically taking the pins and routing them to ports.
->
->Yes, this is what those SoM carrier boards do ;-)
-:)
->
->> There is nearly 0 chips for conversion or processing of the pins from CB1
->> or CM4 thus i do not see a reason for having parent dtsi and dts for the
->> adapter and Manta boards.
->
->And the DT does not need to describe "chips" only, a lot of DT nodes
->are about connectors, and which ports and which exact pins (out of the
->possible pinmuxes) are actually used. The SoM itself mostly exposes
->just pins, and the board DT describes how these pins are used (GPIO or
->special function, for instance).
->
->So did you try to split this up? How would that look?
+Yes please. Thanks!
 
-The main difference between adapter and Manta boards is that adapter has 4x USB. Manta only has 3 and 1 otg. But it has a switch to disable or enable otg.
+>>>  		swap(dram0, dram1);
+>>>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>>>  
+>>> @@ -747,14 +875,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>>>  	case RTU0_IRAM_ADDR_MASK:
+>>>  		fallthrough;
+>>>  	case PRU0_IRAM_ADDR_MASK:
+>>> -		pru->id = 0;
+>>> +		pru->id = PRUSS_PRU0;
+>>>  		break;
+>>>  	case TX_PRU1_IRAM_ADDR_MASK:
+>>>  		fallthrough;
+>>>  	case RTU1_IRAM_ADDR_MASK:
+>>>  		fallthrough;
+>>>  	case PRU1_IRAM_ADDR_MASK:
+>>> -		pru->id = 1;
+>>> +		pru->id = PRUSS_PRU1;
+>>>  		break;
+>>>  	default:
+>>>  		ret = -EINVAL;
+>>> @@ -816,6 +944,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
+>>>  	pru->pruss = platform_get_drvdata(ppdev);
+>>>  	pru->rproc = rproc;
+>>>  	pru->fw_name = fw_name;
+>>> +	pru->client_np = NULL;
+>>> +	mutex_init(&pru->lock);
+>>>  
+>>>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+>>>  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>>> @@ -904,7 +1034,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
+>>>  
+>>>  static struct platform_driver pru_rproc_driver = {
+>>>  	.driver = {
+>>> -		.name   = "pru-rproc",
+>>> +		.name   = PRU_RPROC_DRVNAME,
+>>>  		.of_match_table = pru_rproc_match,
+>>>  		.suppress_bind_attrs = true,
+>>>  	},
+>>> @@ -916,5 +1046,7 @@ module_platform_driver(pru_rproc_driver);
+>>>  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+>>>  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+>>>  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+>>> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
+>>> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
+>>>  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+>>>  MODULE_LICENSE("GPL v2");
+>>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+>>> new file mode 100644
+>>> index 000000000000..fdc719b43db0
+>>> --- /dev/null
+>>> +++ b/include/linux/pruss.h
+>>> @@ -0,0 +1,56 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>>> +/**
+>>> + * PRU-ICSS Subsystem user interfaces
+>>> + *
+>>> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+>>> + *	Suman Anna <s-anna@ti.com>
+>>> + */
+>>> +
+>>> +#ifndef __LINUX_PRUSS_H
+>>> +#define __LINUX_PRUSS_H
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <linux/types.h>
+>>> +
+>>> +#define PRU_RPROC_DRVNAME "pru-rproc"
+>>> +
+>>> +/*
+>>> + * enum pruss_pru_id - PRU core identifiers
+>>> + */
+>>> +enum pruss_pru_id {
+>>> +	PRUSS_PRU0 = 0,
+>>> +	PRUSS_PRU1,
+>>> +	PRUSS_NUM_PRUS,
+>>> +};
+>>> +
+>>> +struct device_node;
+>>> +
+>>> +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>>> +
+>>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>>> +			    enum pruss_pru_id *pru_id);
+>>> +void pru_rproc_put(struct rproc *rproc);
+>>> +
+>>> +#else
+>>> +
+>>> +static inline struct rproc *
+>>> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+>>> +{
+>>> +	return ERR_PTR(-EOPNOTSUPP);
+>>> +}
+>>> +
+>>> +static inline void pru_rproc_put(struct rproc *rproc) { }
+>>> +
+>>> +#endif /* CONFIG_PRU_REMOTEPROC */
+>>> +
+>>> +static inline bool is_pru_rproc(struct device *dev)
+>>> +{
+>>> +	const char *drv_name = dev_driver_string(dev);
+>>> +
+>>> +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
+>>> +		return false;
+>>> +
+>>> +	return true;
+>>> +}
+>>> +
+>>> +#endif /* __LINUX_PRUSS_H */
+>>
+>> cheers,
+>> -roger
+> 
+> Thanks,
+> Danish.
 
-Im not opposed to splitting it up. It is probably a good idea.
-I dont see how to resolve that switch on manta boards tho.
-
-Regards,
-Martin
->
->Cheers,
->Andre
->
->> The only exception to conversion are the LEDs on the boards but since both
->> adapter and manta boards have them this yet again eliminates need for
->> parent style DT.
->> 
->> Best regards,
->> Martin
->> 
->> On Tue, Nov 15, 2022, 12:32 AM Andre Przywara <andre.przywara@arm.com>
->> wrote:
->> 
->> > On Mon, 14 Nov 2022 22:44:49 +0100
->> > Martin Botka <martin.botka@somainline.org> wrote:
->> >  
->> > > CB1 is Compute Module style board that plugs into Rpi board style  
->> > adapter or  
->> > > Manta 3D printer boards (M4P/M8P).
->> > >
->> > > The board has:
->> > >       H616 SoC
->> > >       1GB of RAM
->> > >       AXP313A PMIC
->> > >
->> > > And the actual boards that CB1 plugs in are just extension to it with  
->> > ports and  
->> > > thus are not split in DT.  
->> >
->> > I don't really understand that sentence. There is some precedent for a
->> > SoM/board split, look at the sun50i-a64-sopine or
->> > sun50i-h5-emlid-neutis-n5 files. And if I see this correctly, then
->> > there are *two* boards available for the same CB1 SoM, the PI4B and the
->> > Manta board? Which would a strong case for a SoM .dtsi, plus the one
->> > or two board .dts files.
->> > I am just not sure whether that relation to the Pi4-CM is helpful or
->> > just complicates things...
->> >
->> > Cheers,
->> > Andre
->> >  
->> > >
->> > > Boards have:
->> > >       4x (3x for Manta boards) USB and 1 USB OTG.
->> > >       SDcard slot for loading images.
->> > >       Ethernet port wired to the internal PHY.
->> > >       2x HDMI 2.0.
->> > >       Power and Status LEDs.
->> > >
->> > > Currently working:
->> > >       Booting
->> > >       USB
->> > >       UART
->> > >
->> > > Signed-off-by: Martin Botka <martin.botka@somainline.org>
->> > > ---
->> > > Changes in V2:
->> > > Add proper board compatible
->> > > Add regulator prefix for vcc5v
->> > > Drop okay status from PMIC
->> > > Drop standby_param
->> > > Changes in V3:
->> > > Change copyright to me
->> > > regulator_vcc5v to regulator-vcc5v
->> > > Drop ehci0 and ohci0
->> > >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->> > >  .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 178 ++++++++++++++++++
->> > >  2 files changed, 179 insertions(+)
->> > >  create mode 100644  
->> > arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> > >
->> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile  
->> > b/arch/arm64/boot/dts/allwinner/Makefile  
->> > > index 6a96494a2e0a..223f1be73541 100644
->> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
->> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
->> > > @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
->> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
->> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> > b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> > > new file mode 100644
->> > > index 000000000000..86b5aca9b53e
->> > > --- /dev/null
->> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
->> > > @@ -0,0 +1,178 @@
->> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
->> > > +/*
->> > > + * Copyright (C) 2022 Martin Botka <martin.botka@somainline.org>.
->> > > + */
->> > > +
->> > > +/dts-v1/;
->> > > +
->> > > +#include "sun50i-h616.dtsi"
->> > > +
->> > > +#include <dt-bindings/gpio/gpio.h>
->> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> > > +#include <dt-bindings/leds/common.h>
->> > > +
->> > > +/ {
->> > > +     model = "BIQU CB1";
->> > > +     compatible = "biqu,cb1", "allwinner,sun50i-h616";
->> > > +
->> > > +     aliases {
->> > > +             serial0 = &uart0;
->> > > +     };
->> > > +
->> > > +     chosen {
->> > > +             stdout-path = "serial0:115200n8";
->> > > +     };
->> > > +
->> > > +     leds {
->> > > +             compatible = "gpio-leds";
->> > > +
->> > > +             led-0 {
->> > > +                     function = LED_FUNCTION_POWER;
->> > > +                     color = <LED_COLOR_ID_RED>;
->> > > +                     gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
->> > > +                     default-state = "on";
->> > > +             };
->> > > +
->> > > +             led-1 {
->> > > +                     function = LED_FUNCTION_STATUS;
->> > > +                     color = <LED_COLOR_ID_GREEN>;
->> > > +                     gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
->> > > +             };
->> > > +     };
->> > > +
->> > > +     reg_vcc5v: regulator-vcc5v {
->> > > +             /* board wide 5V supply directly from the USB-C socket */
->> > > +             compatible = "regulator-fixed";
->> > > +             regulator-name = "vcc-5v";
->> > > +             regulator-min-microvolt = <5000000>;
->> > > +             regulator-max-microvolt = <5000000>;
->> > > +             regulator-always-on;
->> > > +     };
->> > > +
->> > > +     reg_usb1_vbus: regulator-usb1-vbus {
->> > > +             compatible = "regulator-fixed";
->> > > +             regulator-name = "usb1-vbus";
->> > > +             regulator-min-microvolt = <5000000>;
->> > > +             regulator-max-microvolt = <5000000>;
->> > > +             vin-supply = <&reg_vcc5v>;
->> > > +             enable-active-high;
->> > > +             gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
->> > > +     };
->> > > +};
->> > > +
->> > > +&ehci1 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&ehci2 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&ehci3 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&mmc0 {
->> > > +     vmmc-supply = <&reg_dldo1>;
->> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
->> > > +     no-1-8-v;
->> > > +     bus-width = <4>;
->> > > +     status = "disabled";
->> > > +};
->> > > +
->> > > +&ohci1 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&ohci2 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&ohci3 {
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&r_i2c {
->> > > +     status = "okay";
->> > > +
->> > > +     axp1530: pmic@36 {
->> > > +             compatible = "x-powers,axp1530";
->> > > +             reg = <0x36>;
->> > > +             wakeup-source;
->> > > +
->> > > +             regulators{
->> > > +                     reg_dcdc1: dcdc1 {
->> > > +                             regulator-name = "axp1530-dcdc1";
->> > > +                             regulator-min-microvolt = <500000>;
->> > > +                             regulator-max-microvolt = <3400000>;
->> > > +                             regulator-step-delay-us = <25>;
->> > > +                             regulator-final-delay-us = <50>;
->> > > +                             regulator-always-on;
->> > > +                     };
->> > > +
->> > > +                     reg_dcdc2: dcdc2 {
->> > > +                             regulator-name = "axp1530-dcdc2";
->> > > +                             regulator-min-microvolt = <500000>;
->> > > +                             regulator-max-microvolt = <1540000>;
->> > > +                             regulator-step-delay-us = <25>;
->> > > +                             regulator-final-delay-us = <50>;
->> > > +                             regulator-ramp-delay = <200>;
->> > > +                             regulator-always-on;
->> > > +                     };
->> > > +
->> > > +                     reg_dcdc3: dcdc3 {
->> > > +                             regulator-name = "axp1530-dcdc3";
->> > > +                             regulator-min-microvolt = <500000>;
->> > > +                             regulator-max-microvolt = <1840000>;
->> > > +                             regulator-step-delay-us = <25>;
->> > > +                             regulator-final-delay-us = <50>;
->> > > +                             regulator-always-on;
->> > > +                     };
->> > > +
->> > > +                     reg_aldo1: ldo1 {
->> > > +                             regulator-name = "axp1530-aldo1";
->> > > +                             regulator-min-microvolt = <1800000>;
->> > > +                             regulator-max-microvolt = <1800000>;
->> > > +                             regulator-step-delay-us = <25>;
->> > > +                             regulator-final-delay-us = <50>;
->> > > +                             regulator-always-on;
->> > > +                     };
->> > > +
->> > > +                     reg_dldo1: ldo2 {
->> > > +                             regulator-name = "axp1530-dldo1";
->> > > +                             regulator-min-microvolt = <3300000>;
->> > > +                             regulator-max-microvolt = <3300000>;
->> > > +                             regulator-step-delay-us = <25>;
->> > > +                             regulator-final-delay-us = <50>;
->> > > +                             regulator-always-on;
->> > > +                     };
->> > > +             };
->> > > +     };
->> > > +};
->> > > +
->> > > +&uart0 {
->> > > +     pinctrl-names = "default";
->> > > +     pinctrl-0 = <&uart0_ph_pins>;
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&usbotg {
->> > > +     /*
->> > > +      * PHY0 pins are connected to a USB-C socket, but a role switch
->> > > +      * is not implemented: both CC pins are pulled to GND.
->> > > +      * The VBUS pins power the device, so a fixed peripheral mode
->> > > +      * is the best choice.
->> > > +      * The board can be powered via GPIOs, in this case port0 *can*
->> > > +      * act as a host (with a cable/adapter ignoring CC), as VBUS is
->> > > +      * then provided by the GPIOs. Any user of this setup would
->> > > +      * need to adjust the DT accordingly: dr_mode set to "host",
->> > > +      * enabling OHCI0 and EHCI0.
->> > > +      */
->> > > +     dr_mode = "peripheral";
->> > > +     status = "okay";
->> > > +};
->> > > +
->> > > +&usbphy {
->> > > +     usb1_vbus-supply = <&reg_usb1_vbus>;
->> > > +     status = "okay";
->> > > +};  
->> >
->> >  
->
+cheers,
+-roger
