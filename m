@@ -2,155 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2F46295A2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:19:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE67E6295A9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiKOKTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:19:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39964 "EHLO
+        id S238312AbiKOKV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:21:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbiKOKTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:19:53 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7245D13F06
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:19:52 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id c1so23691736lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:19:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mYrT9Brqn6UtjqQy0f2wcD8We2xi1ytM62MKdkElEIc=;
-        b=zPOwLqNRx+Rvcg06eNoUDm7x/jiIf5hrEQuvGceAw7mabXYpnSVhCUaLumgEULiu5p
-         aZzNQF6L5r4sv5UEKlYAuObSWFcjY+e2G6c/+8IkI6cipfXQ06IcwfMMwkpfu+Z/y3fi
-         /T2THfTowctZUoEoKpG5vkY7Kcvg4iOVQw76BxFMiBovpIGhkSf4GVVkXIhZEpsxU2hE
-         eV6wIIsb0J8mxt+ELF3hMNKCy8TlFOB8Hr3edPoxQw8xWtSiX+WNS07sNfH/N5Am3GhG
-         nG3BzFlB0txIWlKUzv263qPf6uDJHut4XYqvMx6xAKF5TTihSk195dLXbNp/5O1I/nLW
-         mfSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mYrT9Brqn6UtjqQy0f2wcD8We2xi1ytM62MKdkElEIc=;
-        b=xUvglt/uvpz96M+vJIMQ8L3zc6kjxV3rlSYPf5PeATA6sNgRnRNI0B2kmU3fTgy4RZ
-         s1K5y+I5Qjebk1UPAxrpLLk8DqpdxiFVy+bG8lBWKFe8yvMd3CThIHWUCa7KEcE0gwLb
-         ZK1rFKNZtjfke/kGChnN5ZZZUDlTPRhOYMTUA9sbepUXqPF+yZ51E8Kc8dgF1svEwI4X
-         35s8yIV3FT8ifWsWogkrCIZlPca9TT/4pT0V5C2JrqptmHyhmx8FU89VKoKc+fBOvFr9
-         cvGDDpv4oF5oK6lxZG1KJp/EF7SEaMj4kU8ZWdCjQ+4hGquDKMbJ9MZFozX35xVxmV6H
-         f4bA==
-X-Gm-Message-State: ANoB5pkwaegVQRwqfDxEZ0ooqIIBPuQsnJjNhBsEZNYtcv6EpF5ei4j6
-        f+PuvbHuC++MQ8oXnJ75Z9ZxTw==
-X-Google-Smtp-Source: AA0mqf6OSY+BxeZ/rDrQTLVfmBTjbBE796KQVAihHAavbB/aVKpB9sHlRYPkhEnCzazf32e/rEIXcA==
-X-Received: by 2002:a05:6512:3414:b0:4a2:2b23:f17f with SMTP id i20-20020a056512341400b004a22b23f17fmr4998120lfr.688.1668507590808;
-        Tue, 15 Nov 2022 02:19:50 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b4a0482a48sm490918lfr.139.2022.11.15.02.19.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 02:19:50 -0800 (PST)
-Message-ID: <096f390b-39e7-302b-ec54-3301cadd39aa@linaro.org>
-Date:   Tue, 15 Nov 2022 11:19:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8450: add Soundwire and LPASS
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S237684AbiKOKVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:21:51 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47B08CFB;
+        Tue, 15 Nov 2022 02:21:50 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1out4b-00084p-00; Tue, 15 Nov 2022 11:21:45 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id E5112C1ACA; Tue, 15 Nov 2022 11:20:50 +0100 (CET)
+Date:   Tue, 15 Nov 2022 11:20:50 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20221114152130.385871-1-krzysztof.kozlowski@linaro.org>
- <20221114152130.385871-3-krzysztof.kozlowski@linaro.org>
- <fbf1fc09-31a9-a08f-6ffd-551fdd317ec0@linaro.org>
- <d1177e53-a4f2-70e5-9214-671910ea28ac@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <d1177e53-a4f2-70e5-9214-671910ea28ac@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        lvjianmin <lvjianmin@loongson.cn>,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Subject: Re: [PATCH v2 1/2] gpio: loongson: add dts/acpi gpio support
+Message-ID: <20221115102050.GA3167@alpha.franken.de>
+References: <20221114095332.21079-1-zhuyinbo@loongson.cn>
+ <CAMRc=McnEiSj1Q51pG3Lc8e+HcXE_uU7dm=1VoOa__xOgyoZPg@mail.gmail.com>
+ <8b24e3df-8c22-bd09-cfc1-b27e39a05c25@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8b24e3df-8c22-bd09-cfc1-b27e39a05c25@loongson.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 15, 2022 at 05:53:26PM +0800, Yinbo Zhu wrote:
+> > > +/* ============== Data structrues =============== */
+> > > +
+> > > +/* gpio data */
+> > > +struct platform_gpio_data {
+> > > +       u32 gpio_conf;
+> > > +       u32 gpio_out;
+> > > +       u32 gpio_in;
+> > > +       u32 support_irq;
+> > > +       char *label;
+> > > +       int gpio_base;
+> > > +       int ngpio;
+> > > +};
+> > 
+> > No idea why you would need to duplicate it like this either. And why
+> > put it in arch/.
+> because loongson platform include mips and loongarch, and the gpio device
+> data was defined in arch/ in leagcy loongson gpio driver.  so the
+> latest loongson gpio drvier add platform_gpio_data in same dir.
 
+put the struct into a new file in  include/linux/platform_data and
+use that.
 
-On 15/11/2022 11:15, Krzysztof Kozlowski wrote:
-> On 14/11/2022 16:37, Konrad Dybcio wrote:
->>
->> On 14/11/2022 16:21, Krzysztof Kozlowski wrote:
->>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>
->>> Add Soundwire controllers, Low Power Audio SubSystem (LPASS) devices and
->>> LPASS pin controller.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 295 +++++++++++++++++++++++++++
->>>    1 file changed, 295 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> index 4b0a1eee8bd9..c99740591467 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> @@ -15,6 +15,7 @@
->>>    #include <dt-bindings/interconnect/qcom,sm8450.h>
->>>    #include <dt-bindings/soc/qcom,gpr.h>
->>>    #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>> +#include <dt-bindings/sound/qcom,q6afe.h>
->>>    #include <dt-bindings/thermal/thermal.h>
->>>    
->>>    / {
->>> @@ -2097,6 +2098,212 @@ compute-cb@3 {
->>>    			};
->>>    		};
->>>    
->>> +		wsa2macro: codec@31e0000 {
->>> +			compatible = "qcom,sm8450-lpass-wsa-macro";
->>> +			reg = <0 0x031e0000 0 0x1000>;
->> The sorting will be off, as adsp and cdsp have been mistakenly put in
->> the wrong place (notice adsp @ 32300000 is actually at an address
->> that's 8 hex digits long, but the reg addr is padded to 9 hex digits..).
-> 
-> I don't get it. This has address:
-> 31e0000
-> ADSP has
-> 30000000
-> 
-> so why sorting is odd?
-It's gonna be fine, you're right, I can't read properly...
+Thomas.
 
-Konrad
-> 
->>> Could you submit a fix for that as well?
-> 
-> For 9 digits, sure, but this is independent issue.
-> 
->>
->>> +			clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +				 <&vamacro>;
->>> +			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
->>> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +					  <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->>
->> Remove the duplicated space before LPASS_CLK_ATTRIBUTE_COUPLE_NO.
-> 
-> Ack.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
