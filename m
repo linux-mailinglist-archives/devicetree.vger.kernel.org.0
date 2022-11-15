@@ -2,441 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4206629C1A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6AEC629C26
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbiKOO1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:27:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49506 "EHLO
+        id S231189AbiKOOcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:32:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbiKOO1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:27:23 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A5DEF29367;
-        Tue, 15 Nov 2022 06:27:21 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A17CC13D5;
-        Tue, 15 Nov 2022 06:27:27 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B1A423F73B;
-        Tue, 15 Nov 2022 06:27:18 -0800 (PST)
-Date:   Tue, 15 Nov 2022 14:27:14 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     Martin Botka <martin.botka1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        with ESMTP id S232301AbiKOOb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:31:57 -0500
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150059.outbound.protection.outlook.com [40.107.15.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE383BF;
+        Tue, 15 Nov 2022 06:31:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WssYNMIQOH9Ksykuz+QDcZ8vFIu33RDGg+FHrGlNbgscAW9UDarkOIegr8OW+iz2v5xjbtyaxWiCoqDVHXLrmoIUOH9zmy75uwELWDxWgzlUGcB8y1DfKex7Ck0Pk+6cHi2ErUaYje36BOqHrCXYT2mT3PgxnYcj5S4IRSTWT0Djxu0zFj6KSWtWsPja1Daeq5n0H2fO5S2jaqYrvMmPu4u4cqSSTCAfqx6IuhJ7elbUFS2pAabDmWVFdd+4qdIt9gTA0StCQ+vEn+PeRc8vhHkYMik3nSlH3TZysLOF28nxykXV+UEy1Bh7Dr+UeAMPsIJCaW5Ym+joUYeCeJpPIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EOTOPxblDjyBpy+N9Sn27yZWzEjj+h43fOS19mW8X6I=;
+ b=MyXZ8C3qJ92X/JT41v3wC0I+RGomAx+nwGTQSBOEheW8Gg9HXLrLFUNFRNYPfUfTPx6tiP2G3XKOxRule9zoSi4a5EbxV24Hjsiofewb0TYHr9dYbcokisxpocTYrwxUrbeE6p6L6TkrymJBuQE7T4hok6bEGOAf2JTldvWEX8uo/rAMamHxg09C/RNuP6b8FZb3d0pPExkO1LJ7YaWCcbU4138pY7FeJQGeU7X+cWwUZ6RmeynYEFlRmMyOzTzQPSDrcmp4fpMxsnekXv6dITszioxPQi/LL4nStmJIQX/7QIiQ9gqLBLKn2wjXedQWceIHUJ4rsPWmV1mrGydhmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EOTOPxblDjyBpy+N9Sn27yZWzEjj+h43fOS19mW8X6I=;
+ b=qgfJcxukoBj4ip2XdyQv4Uira9xHFqL0XhlAuGlGE3SWggno8vhCL90iRXRO8DKUl6VTVk7TYwmu2x0Uj2NNqUPyUmLsSQf0BJU+WP4BOkk/mAA7iuyTVtulQJfyPoiKJsTDsiIIwmmURbqPABiz1oF3kaWm5Ki2Xb5GqBjtwVc=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by AS8PR04MB8166.eurprd04.prod.outlook.com (2603:10a6:20b:3fa::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Tue, 15 Nov
+ 2022 14:31:53 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::9317:77dc:9be2:63b]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::9317:77dc:9be2:63b%7]) with mapi id 15.20.5813.018; Tue, 15 Nov 2022
+ 14:31:53 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Conley Lee <conleylee@foxmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: Add basic support for BIQU CB1
-Message-ID: <20221115142714.310049c4@donnerap.cambridge.arm.com>
-In-Reply-To: <78EC79B1-1664-48EB-A902-9173FE59C45B@somainline.org>
-References: <20221114214452.1993744-1-martin.botka@somainline.org>
-        <20221114214452.1993744-2-martin.botka@somainline.org>
-        <20221114233102.3b1f96cc@slackpad.lan>
-        <CADQ2G_HXx59YYjNvhcNRonahgT3AcE_2BiU43vDJ3CRUGKwAKA@mail.gmail.com>
-        <20221115005429.57d72f64@slackpad.lan>
-        <D69CAA04-56A2-4FFD-A33D-C802084A7150@somainline.org>
-        <20221115103307.5f5b9106@donnerap.cambridge.arm.com>
-        <78EC79B1-1664-48EB-A902-9173FE59C45B@somainline.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: convert Freescale DSPI to dt-schema
+Thread-Topic: [PATCH v2] dt-bindings: spi: convert Freescale DSPI to dt-schema
+Thread-Index: AQHY9h+FTOIdILG+UESwpW9mF9x8Sq5ABQqAgAADlwCAAAKigIAAAusAgAAB/YCAAAGXAA==
+Date:   Tue, 15 Nov 2022 14:31:53 +0000
+Message-ID: <20221115143152.xjfr7v333rhjhd3m@skbuf>
+References: <20221111224651.577729-1-vladimir.oltean@nxp.com>
+ <417bfdea-ed41-6468-ec16-f54480cfe2f6@linaro.org>
+ <20221115135912.ksjk7zxqsyazqhtf@skbuf>
+ <c9b82051-a9f5-883f-5455-1cb06aa6521b@linaro.org>
+ <20221115141904.26lyetiforkgoqaf@skbuf>
+ <0b4d2bc0-0f45-4bff-dee9-825efa5b5a2e@linaro.org>
+In-Reply-To: <0b4d2bc0-0f45-4bff-dee9-825efa5b5a2e@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|AS8PR04MB8166:EE_
+x-ms-office365-filtering-correlation-id: a001c2bd-9ac2-485a-7e7b-08dac7162411
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: a/TvNu1DoPqhmtlr2UCPuLDSdyhHYn+fwDCgB5gcjwaereeB34ZmZ+euaYVCz2LfycsrrfoaPppCKYHG5va8TEEBrH7KGSrDzMX/MMkt97QUcPWOvrqoFUNTZFmqf3DLgfLU7vMzlBNBRZKSxBBHqh3zIYQKIkOPYPRqBXJbLD1AiLa6DyxzN0nDjWCSDYhzy7n1uJEGWgF+FgmPiRqqoETaWtGVGdAr7gkadOuQS8T8eiq6guZGZ4sAEf92nLZCEbJTY3FIkTa393Nrvl73gQvjgila2FrdwGFEFFDOlF/HzQEWlNNhZ4VRy1Uo745QUydDr9qY9DF56TW0mveBGgBYH7syflCeU7VeCdmOUQWf9X2yad9+pFZR/axoCsaL2W2aivNTzeSHVTEoIx92mb44uWZXXGFf7tZXUeMKQJG8w6TfHl+AGHJJmsYxlZN14j7yewOEyre+7/WDrogybuaAehhquKIwnfR4w9imD+RV5YJcG/qiAGXiWsAdfkazHWXfiFVfVKzeSxNZh7w4fc1MnedDtP8q42CwLkqKSoYxpQpIFpBnE+319RGvspuHp4dJliZN0EZOzke4/ruYdxayvUWf3utM8ORyfkVAHvVedfK9OPAGoquE+XIwC5rJ0owEDoMR0JXzzFhFrZo/jXQQBSCJdncLOahDNXoNgxZmfBWwug5Bw1APJvsrCt+PtKplTTJ9j7YKY/z4m5YTGx0yZpXQeT1bTBhVAtYjRa1mio495hZWkIdit0E868nO1otURzxlUgM8Ir9l32r2hQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(346002)(366004)(396003)(376002)(136003)(39860400002)(451199015)(478600001)(71200400001)(38070700005)(83380400001)(7416002)(5660300002)(8936002)(122000001)(6486002)(86362001)(38100700002)(9686003)(186003)(6512007)(26005)(1076003)(6506007)(6916009)(54906003)(316002)(41300700001)(44832011)(4744005)(66446008)(4326008)(2906002)(76116006)(66946007)(8676002)(66556008)(64756008)(66476007)(33716001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?u5tgP/VFh0owSgiYo/8WHbTNKL0YOqUVD7feNJO3ZImJYFCmRkPo34NN17mJ?=
+ =?us-ascii?Q?+Pw1bCjpHgzqZsp3wXk/TC/uWpj3zQrn9UMt4KuJiPJ4liiZhPIPRw4fFy2X?=
+ =?us-ascii?Q?vDVWCQKGGGXgs48RH0yCVFLUUhLnOWzj98yQMZLeEE7YxFWnzpH3aAl1/99G?=
+ =?us-ascii?Q?iKH3h5YRXGfMZIcgfT6DBLzGEARcatLKFZEoiwNbA5lwgZitFPC3F0RsTn6a?=
+ =?us-ascii?Q?QDEFOsB/W92WBomhUjEDpogA5v3cdPYmYOUrn4xW6svK6a1n4aCYlo0DL3ix?=
+ =?us-ascii?Q?cx7juiVYhSRp7XQZ9L2XrAp+Bx0q+VXigrpwHaOJLXn+Ig2ApY+EV4R0CCkR?=
+ =?us-ascii?Q?WAZZBSb6pKQe/0Un62SpnweCuGgk6ZMJYmpFqAjTeb55ub+l13Cp2UT/sgDQ?=
+ =?us-ascii?Q?hoI3nxfMXT4Mj2m27O79WVcmogwT7Fff2dO2ySi0t4BgkhEtJQYf8nZfCmiD?=
+ =?us-ascii?Q?TzwCfVOLI6GPRLcJort8gB5FRMHCcpFX93hbNiiIlM5h3s0eEnaRPQ2nmKz7?=
+ =?us-ascii?Q?fIWAmc0zB2Cdb0//KhETk9mXgnrRg/BMqev5CUMQTAXnmcP51BK1WXOLq6kc?=
+ =?us-ascii?Q?8dktiNMlp9QEdST7KRGbblvGaUt5WeDD0ZVdQ44GQunc/HHQsU97Ahwd2RcI?=
+ =?us-ascii?Q?h9noKUgQgafX6eix7oEHlTpqtLKlLGMqlBlGehI0hPgP3iKeIS/2H6tGDeTh?=
+ =?us-ascii?Q?Hq3S3+YhRUb0hn5cKDuG4Li0zCakbE2WosDDbAkCJ2nH8JhJw56C2JFiY8Yc?=
+ =?us-ascii?Q?mFSpUZ2oEbSSYSEs/70CyhS87QzCwCa/L1NhtmPs1fG4+auZGEyxch6+w6YP?=
+ =?us-ascii?Q?Lrea4aDHd0woDUPYgXtj/j3eEl1zBTPuadp697OHqGPeKIU37bdrVsP3ApiA?=
+ =?us-ascii?Q?zH/+aJu2qZh4ojj+YNraCP5ir08wjTfzJAA2k8POCFZ0cnbS/NKFjfmNZuyx?=
+ =?us-ascii?Q?n9UE/Kn9ofV0gUytUq18abliUQ+wYclBEoIA/GbDPmIplHwCAzbaZRbmJ4Fh?=
+ =?us-ascii?Q?9TN0WS3u0Po05mYEdQFDIXz27USvFfmC63WxpbLpWPGz2P6uj9LhvMKtgCMh?=
+ =?us-ascii?Q?HLVcGj5uCOjTcBek7CcdFTpfagCpCrrkun48W1fHeby/2RyEUgjSY+GUrkrz?=
+ =?us-ascii?Q?8Z7fKH+/FXK4KKkwrafzessHaA2Lx4TlJPPzVauFV91QaAmZLYBFJPaFQF0f?=
+ =?us-ascii?Q?t8kr6M3GBmD0u9lKY2GA/sQ1wf1rEgmrc5eVw+aH9m93PKijuR1TvBEjgNGe?=
+ =?us-ascii?Q?40L6Ch4rmIMfQlOOUQTIqPN0qRC08oz4idedonDCntpLZprEmPCFDJwJGtnF?=
+ =?us-ascii?Q?YcDC7cRrzGWwh8NzIXa19PfYtn3oQBbGKQYp4oNDgJasmPEmIta8l4E7Jyro?=
+ =?us-ascii?Q?42rjK9MepcyvGyUCEIXgfYd5w6+/UrmY9fLXVDARBaNUvghpLGxrSFSjjgo2?=
+ =?us-ascii?Q?FBQoCJBQQcZrk/O0dYZrZ7UAGxhSy0YrZ/3vZHGQ9m4TYpSv6SQv0hg8RGUj?=
+ =?us-ascii?Q?mQ7cZq3dwIn75QBVdau/8kAA5EKZKQDj8VYx2tqMDqzmUIoL/VHqoLvqNuGI?=
+ =?us-ascii?Q?nR0UecYE1UkvrDS+IvmN3omrAR10cFy1isaWUzN+DFBDuq4UN/YNZSudm9xM?=
+ =?us-ascii?Q?JQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <9B71382C151025428C892EF356CE1069@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a001c2bd-9ac2-485a-7e7b-08dac7162411
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2022 14:31:53.4055
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CwveGqQWQ7qFrUKvVPDGVr0vpgTyRRpppp6ClVd+2kBjPwgKfmckMjfXriCvvg71tSFiz2/2sbvY92A35c3wlQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8166
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Nov 2022 12:38:59 +0100
-Martin Botka <martin.botka@somainline.org> wrote:
+On Tue, Nov 15, 2022 at 03:26:11PM +0100, Krzysztof Kozlowski wrote:
+> To be clear: ls1012a, ls1028a and lx2160a should be either followed by
+> compatible or not. Cannot be both.
 
-Hi Martin,
+LS1012A should be followed by fallback compatible for practical reasons
+(Linux kernel worked that way up to 5.7, time during which LS1012A was
+supported).
 
-> On November 15, 2022 11:33:07 AM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
-> >On Tue, 15 Nov 2022 09:24:04 +0100
-> >Martin Botka <martin.botka@somainline.org> wrote:
-> >
-> >Hi,
-> >
-> >> On November 15, 2022 1:54:29 AM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
-> >> >On Tue, 15 Nov 2022 00:44:46 +0100
-> >> >Martin Botka <martin.botka1@gmail.com> wrote:
-> >> >
-> >> >Hi Martin,
-> >> >  
-> >> >> I can totally understand how this can get confusing.
-> >> >> 
-> >> >> Basically because of the Rpi shortage biqu decided to make an Rpi
-> >> >> alternative.
-> >> >> 
-> >> >> So they made CB1 which is compute module style board.
-> >> >> 
-> >> >> And they made 3 other boards where CB1 or Rpi CM4 can be plugged in. The 3
-> >> >> boards are:
-> >> >> 
-> >> >> Rpi adapter which takes the Compute module style boards and turns them into
-> >> >> SBC style with basically identical size and etc to Rpi 4.
-> >> >> 
-> >> >> Then we have Manta M8P and M4P. These boards are MCUs for a 3D printer. But
-> >> >> they were made for Klipper use case which requires a computer or SBC
-> >> >> (Usually Rpi4). They combined it into 1 board.
-> >> >> Where you get the MCU and you can plug in CM4 or CB1  
-> >> >
-> >> >Thanks for the explanations! I was guessing along those shortage lines,
-> >> >since the H616 is quite a step down from the RPi4CM, though probably
-> >> >still enough for driving a 3D printer.  
-> >> Mostly yes
-> >> >  
-> >> >> All these boards are basically taking the pins and routing them to ports.  
-> >> >
-> >> >Yes, this is what those SoM carrier boards do ;-)  
-> >> :)
-> >> >  
-> >> >> There is nearly 0 chips for conversion or processing of the pins from CB1
-> >> >> or CM4 thus i do not see a reason for having parent dtsi and dts for the
-> >> >> adapter and Manta boards.  
-> >> >
-> >> >And the DT does not need to describe "chips" only, a lot of DT nodes
-> >> >are about connectors, and which ports and which exact pins (out of the
-> >> >possible pinmuxes) are actually used. The SoM itself mostly exposes
-> >> >just pins, and the board DT describes how these pins are used (GPIO or
-> >> >special function, for instance).
-> >> >
-> >> >So did you try to split this up? How would that look?  
-> >> 
-> >> The main difference between adapter and Manta boards is that adapter has 4x USB.
-> >
-> >So those are two double-type-A sockets? This is not really what the DT
-> >below describes? It's perfectly fine to fix USB0 to host mode, we do this
-> >on the Pine64 boards (both A64 and H6), for instance.
-> 
-> Yes. But the third and fourth is also used. Third is done in 2.54 4p connector (just pins on board) and fourth is connected directly to manta stm32 MCU. So all 4 are host.
-
-Wait, so you are talking about the Manta board now? I see two sockets, the
-2.54mm headers and the STM32 there, but the Pi4B is quite different in
-that respect: I see four(!) USB type-A sockets (two dual-port stacks).
-Plus the CM4 connector seems to only have pins for one USB 2.0 port
-(D-,D+). So is this a hub chip on the underside of the board, close to the
-USB ports? Can you read the label of that chip?
-And where are the other H616 USB pins routed to? Are they (ab-)using the
-PCIe pins of the CM4 connector? Or are they actually not used at all, and
-it's all one USB port through a by-4 hub?
-If you have a running system, "lsusb -t" should give you a clue which host
-ports are used and if there is a hub.
-
-Cheers,
-Andre
-
-> >> Manta only has 3 and 1 otg. But it has a switch to disable or enable otg.
-> >
-> >What does the switch do, exactly? By definition OTG works fine in both
-> >ways. And there are pins in the connector to decide the role.
-> The switch is just signal pin for RS2227. Its the multiplexer i mentioned. It decides if we should have the pins wired to usb type C port or normally to stm32 MCU. Thats all it does.
-> >
-> >Allwinner actually goes one step further and provides a full HCI to the
-> >same PHY that the MUSB OTG controller is connected to, so you don't need
-> >to live with the sometimes limited performance of the MUSB host mode
-> >(which we drive without DMA). Not sure if that is the case or a problem on
-> >the RPi4.
-> >
-> >> Im not opposed to splitting it up. It is probably a good idea.
-> >> I dont see how to resolve that switch on manta boards tho.
-> >
-> >If the Manta board is (almost) a superset of the Pi4B, then you can
-> >include the latter from there. Look at sun50i-a64-pine64-lts.dts or
-> >sun50i-h6-pine-h64-model-b.dts for examples.
-> >
-> >Cheers,
-> >Andre.
-> >
-> Yep i will split it into SoM boards.
-> >> >> The only exception to conversion are the LEDs on the boards but since both
-> >> >> adapter and manta boards have them this yet again eliminates need for
-> >> >> parent style DT.
-> >> >> 
-> >> >> Best regards,
-> >> >> Martin
-> >> >> 
-> >> >> On Tue, Nov 15, 2022, 12:32 AM Andre Przywara <andre.przywara@arm.com>
-> >> >> wrote:
-> >> >>   
-> >> >> > On Mon, 14 Nov 2022 22:44:49 +0100
-> >> >> > Martin Botka <martin.botka@somainline.org> wrote:
-> >> >> >    
-> >> >> > > CB1 is Compute Module style board that plugs into Rpi board style    
-> >> >> > adapter or    
-> >> >> > > Manta 3D printer boards (M4P/M8P).
-> >> >> > >
-> >> >> > > The board has:
-> >> >> > >       H616 SoC
-> >> >> > >       1GB of RAM
-> >> >> > >       AXP313A PMIC
-> >> >> > >
-> >> >> > > And the actual boards that CB1 plugs in are just extension to it with    
-> >> >> > ports and    
-> >> >> > > thus are not split in DT.    
-> >> >> >
-> >> >> > I don't really understand that sentence. There is some precedent for a
-> >> >> > SoM/board split, look at the sun50i-a64-sopine or
-> >> >> > sun50i-h5-emlid-neutis-n5 files. And if I see this correctly, then
-> >> >> > there are *two* boards available for the same CB1 SoM, the PI4B and the
-> >> >> > Manta board? Which would a strong case for a SoM .dtsi, plus the one
-> >> >> > or two board .dts files.
-> >> >> > I am just not sure whether that relation to the Pi4-CM is helpful or
-> >> >> > just complicates things...
-> >> >> >
-> >> >> > Cheers,
-> >> >> > Andre
-> >> >> >    
-> >> >> > >
-> >> >> > > Boards have:
-> >> >> > >       4x (3x for Manta boards) USB and 1 USB OTG.
-> >> >> > >       SDcard slot for loading images.
-> >> >> > >       Ethernet port wired to the internal PHY.
-> >> >> > >       2x HDMI 2.0.
-> >> >> > >       Power and Status LEDs.
-> >> >> > >
-> >> >> > > Currently working:
-> >> >> > >       Booting
-> >> >> > >       USB
-> >> >> > >       UART
-> >> >> > >
-> >> >> > > Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> >> >> > > ---
-> >> >> > > Changes in V2:
-> >> >> > > Add proper board compatible
-> >> >> > > Add regulator prefix for vcc5v
-> >> >> > > Drop okay status from PMIC
-> >> >> > > Drop standby_param
-> >> >> > > Changes in V3:
-> >> >> > > Change copyright to me
-> >> >> > > regulator_vcc5v to regulator-vcc5v
-> >> >> > > Drop ehci0 and ohci0
-> >> >> > >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >> >> > >  .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 178 ++++++++++++++++++
-> >> >> > >  2 files changed, 179 insertions(+)
-> >> >> > >  create mode 100644    
-> >> >> > arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts    
-> >> >> > >
-> >> >> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile    
-> >> >> > b/arch/arm64/boot/dts/allwinner/Makefile    
-> >> >> > > index 6a96494a2e0a..223f1be73541 100644
-> >> >> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> >> >> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> >> >> > > @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
-> >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
-> >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-> >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> >> >> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
-> >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> >> >> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts    
-> >> >> > b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts    
-> >> >> > > new file mode 100644
-> >> >> > > index 000000000000..86b5aca9b53e
-> >> >> > > --- /dev/null
-> >> >> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
-> >> >> > > @@ -0,0 +1,178 @@
-> >> >> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> >> >> > > +/*
-> >> >> > > + * Copyright (C) 2022 Martin Botka <martin.botka@somainline.org>.
-> >> >> > > + */
-> >> >> > > +
-> >> >> > > +/dts-v1/;
-> >> >> > > +
-> >> >> > > +#include "sun50i-h616.dtsi"
-> >> >> > > +
-> >> >> > > +#include <dt-bindings/gpio/gpio.h>
-> >> >> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> >> > > +#include <dt-bindings/leds/common.h>
-> >> >> > > +
-> >> >> > > +/ {
-> >> >> > > +     model = "BIQU CB1";
-> >> >> > > +     compatible = "biqu,cb1", "allwinner,sun50i-h616";
-> >> >> > > +
-> >> >> > > +     aliases {
-> >> >> > > +             serial0 = &uart0;
-> >> >> > > +     };
-> >> >> > > +
-> >> >> > > +     chosen {
-> >> >> > > +             stdout-path = "serial0:115200n8";
-> >> >> > > +     };
-> >> >> > > +
-> >> >> > > +     leds {
-> >> >> > > +             compatible = "gpio-leds";
-> >> >> > > +
-> >> >> > > +             led-0 {
-> >> >> > > +                     function = LED_FUNCTION_POWER;
-> >> >> > > +                     color = <LED_COLOR_ID_RED>;
-> >> >> > > +                     gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
-> >> >> > > +                     default-state = "on";
-> >> >> > > +             };
-> >> >> > > +
-> >> >> > > +             led-1 {
-> >> >> > > +                     function = LED_FUNCTION_STATUS;
-> >> >> > > +                     color = <LED_COLOR_ID_GREEN>;
-> >> >> > > +                     gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-> >> >> > > +             };
-> >> >> > > +     };
-> >> >> > > +
-> >> >> > > +     reg_vcc5v: regulator-vcc5v {
-> >> >> > > +             /* board wide 5V supply directly from the USB-C socket */
-> >> >> > > +             compatible = "regulator-fixed";
-> >> >> > > +             regulator-name = "vcc-5v";
-> >> >> > > +             regulator-min-microvolt = <5000000>;
-> >> >> > > +             regulator-max-microvolt = <5000000>;
-> >> >> > > +             regulator-always-on;
-> >> >> > > +     };
-> >> >> > > +
-> >> >> > > +     reg_usb1_vbus: regulator-usb1-vbus {
-> >> >> > > +             compatible = "regulator-fixed";
-> >> >> > > +             regulator-name = "usb1-vbus";
-> >> >> > > +             regulator-min-microvolt = <5000000>;
-> >> >> > > +             regulator-max-microvolt = <5000000>;
-> >> >> > > +             vin-supply = <&reg_vcc5v>;
-> >> >> > > +             enable-active-high;
-> >> >> > > +             gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-> >> >> > > +     };
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ehci1 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ehci2 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ehci3 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&mmc0 {
-> >> >> > > +     vmmc-supply = <&reg_dldo1>;
-> >> >> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
-> >> >> > > +     no-1-8-v;
-> >> >> > > +     bus-width = <4>;
-> >> >> > > +     status = "disabled";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ohci1 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ohci2 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&ohci3 {
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&r_i2c {
-> >> >> > > +     status = "okay";
-> >> >> > > +
-> >> >> > > +     axp1530: pmic@36 {
-> >> >> > > +             compatible = "x-powers,axp1530";
-> >> >> > > +             reg = <0x36>;
-> >> >> > > +             wakeup-source;
-> >> >> > > +
-> >> >> > > +             regulators{
-> >> >> > > +                     reg_dcdc1: dcdc1 {
-> >> >> > > +                             regulator-name = "axp1530-dcdc1";
-> >> >> > > +                             regulator-min-microvolt = <500000>;
-> >> >> > > +                             regulator-max-microvolt = <3400000>;
-> >> >> > > +                             regulator-step-delay-us = <25>;
-> >> >> > > +                             regulator-final-delay-us = <50>;
-> >> >> > > +                             regulator-always-on;
-> >> >> > > +                     };
-> >> >> > > +
-> >> >> > > +                     reg_dcdc2: dcdc2 {
-> >> >> > > +                             regulator-name = "axp1530-dcdc2";
-> >> >> > > +                             regulator-min-microvolt = <500000>;
-> >> >> > > +                             regulator-max-microvolt = <1540000>;
-> >> >> > > +                             regulator-step-delay-us = <25>;
-> >> >> > > +                             regulator-final-delay-us = <50>;
-> >> >> > > +                             regulator-ramp-delay = <200>;
-> >> >> > > +                             regulator-always-on;
-> >> >> > > +                     };
-> >> >> > > +
-> >> >> > > +                     reg_dcdc3: dcdc3 {
-> >> >> > > +                             regulator-name = "axp1530-dcdc3";
-> >> >> > > +                             regulator-min-microvolt = <500000>;
-> >> >> > > +                             regulator-max-microvolt = <1840000>;
-> >> >> > > +                             regulator-step-delay-us = <25>;
-> >> >> > > +                             regulator-final-delay-us = <50>;
-> >> >> > > +                             regulator-always-on;
-> >> >> > > +                     };
-> >> >> > > +
-> >> >> > > +                     reg_aldo1: ldo1 {
-> >> >> > > +                             regulator-name = "axp1530-aldo1";
-> >> >> > > +                             regulator-min-microvolt = <1800000>;
-> >> >> > > +                             regulator-max-microvolt = <1800000>;
-> >> >> > > +                             regulator-step-delay-us = <25>;
-> >> >> > > +                             regulator-final-delay-us = <50>;
-> >> >> > > +                             regulator-always-on;
-> >> >> > > +                     };
-> >> >> > > +
-> >> >> > > +                     reg_dldo1: ldo2 {
-> >> >> > > +                             regulator-name = "axp1530-dldo1";
-> >> >> > > +                             regulator-min-microvolt = <3300000>;
-> >> >> > > +                             regulator-max-microvolt = <3300000>;
-> >> >> > > +                             regulator-step-delay-us = <25>;
-> >> >> > > +                             regulator-final-delay-us = <50>;
-> >> >> > > +                             regulator-always-on;
-> >> >> > > +                     };
-> >> >> > > +             };
-> >> >> > > +     };
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&uart0 {
-> >> >> > > +     pinctrl-names = "default";
-> >> >> > > +     pinctrl-0 = <&uart0_ph_pins>;
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&usbotg {
-> >> >> > > +     /*
-> >> >> > > +      * PHY0 pins are connected to a USB-C socket, but a role switch
-> >> >> > > +      * is not implemented: both CC pins are pulled to GND.
-> >> >> > > +      * The VBUS pins power the device, so a fixed peripheral mode
-> >> >> > > +      * is the best choice.
-> >> >> > > +      * The board can be powered via GPIOs, in this case port0 *can*
-> >> >> > > +      * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> >> >> > > +      * then provided by the GPIOs. Any user of this setup would
-> >> >> > > +      * need to adjust the DT accordingly: dr_mode set to "host",
-> >> >> > > +      * enabling OHCI0 and EHCI0.
-> >> >> > > +      */
-> >> >> > > +     dr_mode = "peripheral";
-> >> >> > > +     status = "okay";
-> >> >> > > +};
-> >> >> > > +
-> >> >> > > +&usbphy {
-> >> >> > > +     usb1_vbus-supply = <&reg_usb1_vbus>;
-> >> >> > > +     status = "okay";
-> >> >> > > +};    
-> >> >> >
-> >> >> >    
-> >> >  
-> >
-
+LS1028A and LX2160A device trees were both introduced after the Linux
+kernel started looking at specific device trees, so I believe that Linux
+never relied on the fallback compatible string and it could be removed.
+The fallback is present in device trees in circulation, even if the .txt
+schema says it isn't required. I don't know what the BSDs do about this,
+so I'd be tempted to leave them in the camp with required fallbacks,
+just because it's not worth risking a regression.=
