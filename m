@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1040629651
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB5662964E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238393AbiKOKvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:51:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59768 "EHLO
+        id S238082AbiKOKvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238399AbiKOKvE (ORCPT
+        with ESMTP id S238400AbiKOKvE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:04 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E5226127
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:50 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id l8so16950105ljh.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:50 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28712648C
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:51 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id c25so16991012ljr.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3jeUp2U1S6pehRzAaj935AujC0T+FHs+JgelXqy8edc=;
-        b=GFtiBHdj76khS0rzZbLEhiMxo7P+omEnOtfXtWgZjlz9PCs9eB4CpBn1U2fimQyLha
-         Mog5/4/4b5prfCEuRu8O3ZX/p2IW6XT0s55BHLjTP/VDvRK0tSQpO5Qzv/NPjAsV86SB
-         sq0TNTbz2PkDESXhUM0nGdIjGirjF4krkNzQWAMfnVvUP+oOnmY8WeQhexdVN4ryg1y9
-         WWww7SkzDKA7+XT/GeOpUzmihkfxLV/5dKIiIdAgaWS8kGwBNnAODzrEGGKW/L4DXKqW
-         sT324tGaYIy0upeI1delMdoEauGXGSfCaj8Rks0RXgAhMfi1RbW7pzfY0tCGQjOWV63S
-         ZvyQ==
+        bh=UGjykOjceH4eYkA7OZEc1299a3XbmJI2Br4/Li5jEVM=;
+        b=cBr/yYY16FlBIk3qt3jawqz+aPmJnbY0pIyIaUIaC7Rtk6pnVEY+LQRpkjN/ea2Nz5
+         DjWZcwrOEdPVVnXCACMW8wOuTZD+pLY9FTpyDWesS9nyP7p/qwEZMAwmOHWIOcrWz3oF
+         yfAqFpVBEpRlY4RVQGQF433onjyEpReK6C1JekAtImZMjYTANSX+QllIPzkEB1u8pbK3
+         Jt3EX5gXA42IKRG8/2JKVdT9xiQY4e7Rft60LJZ9z5gUB2Dl3DZ1rRQ1pz+uV9eOBn2P
+         kTJi2KE9iw450+Flkg5irVl0qxJlNUfut0KaoR1msv7OqRqjB6b2Eh3D4QIuWuHx56X/
+         746g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3jeUp2U1S6pehRzAaj935AujC0T+FHs+JgelXqy8edc=;
-        b=N3zal3/YxvW1f9tiTBke8fLHc0AMhAoI1253wX8arOWxjr4lfBlkZfU51vze5nI02f
-         xBBG3vJXcm9WJ3wkYq3PDsMBD5rHrYZFrQVtYVy7rZR1iYir/2o9yDpniEw20nFptEYy
-         TOxZ2UFeQLyggtQScInOK9wSIp2GGq3QLtZEv6lzCrUZCxwEch1224ox9dwQw7uJ9KCb
-         eiqqhXnpBdteFqbPzs4qvWsKPuSbrFm7rdghx8ehhY/MqIkYQ9AUmn3Ck71gvNdTOmZv
-         lh3ml0aN/1qzzMVdSgvDv//0FUdiVMvxBEdRWHty4Ss7wy53gOEK6OHBttdCqHnyCxPc
-         CgUw==
-X-Gm-Message-State: ANoB5pmEVascdaPHyHB0uzOHlLXsqvt9loznVvuG5qpIk8p9DYmLqm6M
-        deI4OukJXMn3vGkcVnUgcdQTH4c1uGLn8QKp
-X-Google-Smtp-Source: AA0mqf4mjOTKQVZ3ML/z84ZJid0+WN8C+0/2KxtGTMiMq1WPWS6UTLK0IWowkMfcy2oAG1vuvAfbRw==
-X-Received: by 2002:a05:651c:22f:b0:278:ec8c:7923 with SMTP id z15-20020a05651c022f00b00278ec8c7923mr4715088ljn.185.1668509449247;
-        Tue, 15 Nov 2022 02:50:49 -0800 (PST)
+        bh=UGjykOjceH4eYkA7OZEc1299a3XbmJI2Br4/Li5jEVM=;
+        b=XMbGdQXLiD1x91UpdKffFzKsWXHcai5PUYWLDUehMi3jY/ZgB+824m8YFrswveiVG8
+         QWFPU+nOOmDxNAC4oNtTqaGXAn4/3PIbERqRM8NMUyNwjbODBn1huaV+XmHjt9y/GTNZ
+         qoOJQ2XzFewx2c+XPHhuC6S0LEzvW59U1r5AeDKVHCdCDaXRH9Vdhc+rerwtjkHVKhrm
+         Cge6ab83QQEI+PqTyotBUvNZgyT/VRaNTYxC7edWRYJjYbTwMskpaJ1SUFRzqyXcOD2c
+         PMD/nLEmcl1KAhbU6PsT6yFgG2L/jRrxhlfoFXXXBXdfRpYjWYD2vXAZN/aOpwgKkPad
+         HlyQ==
+X-Gm-Message-State: ANoB5pnLZV8JNiUEzESAP9DIGS34idRGIn9zR3z92keMsP7FSlWfWJP1
+        XcJLNJQ+lXldnp4LJ42a2xtSUw==
+X-Google-Smtp-Source: AA0mqf6e3Kr3P7XLgfpzxF2LZl6/IBo6LGm0frKLjBHLqkLntXEDdNgjrK38Vf9CriEVLAdkbdvhlQ==
+X-Received: by 2002:a2e:b706:0:b0:277:d75:f1de with SMTP id j6-20020a2eb706000000b002770d75f1demr6035466ljo.272.1668509451209;
+        Tue, 15 Nov 2022 02:50:51 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p17-20020ac24ed1000000b0048a9e899693sm2188124lfr.16.2022.11.15.02.50.48
+        by smtp.gmail.com with ESMTPSA id n25-20020a2e86d9000000b0026dcfc2bf4csm2468872ljj.57.2022.11.15.02.50.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:50:48 -0800 (PST)
+        Tue, 15 Nov 2022 02:50:50 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Vladimir Zapolskiy <vz@mleia.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: broadcom: trim addresses to 8 digits
-Date:   Tue, 15 Nov 2022 11:50:47 +0100
-Message-Id: <20221115105047.95281-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: lpc32xx: trim addresses to 8 digits
+Date:   Tue, 15 Nov 2022 11:50:49 +0100
+Message-Id: <20221115105049.95313-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -77,35 +74,21 @@ nine.  Drop leading zeros.  No functional change (same DTB).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts | 2 +-
- arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/lpc32xx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-index e34172e3117e..fbf0392b8371 100644
---- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-+++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
-@@ -52,7 +52,7 @@ chosen {
- 
- 	memory {
- 		device_type = "memory";
--		reg = <0x000000000 0x80000000 0x00000000 0x40000000>;
-+		reg = <0x00000000 0x80000000 0x00000000 0x40000000>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-index 7bf26f3e36bf..699f7742ce7f 100644
---- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-+++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-@@ -49,7 +49,7 @@ chosen {
- 
- 	memory {
- 		device_type = "memory";
--		reg = <0x000000000 0x80000000 0x00000001 0x00000000>;
-+		reg = <0x00000000 0x80000000 0x00000001 0x00000000>;
- 	};
- };
+diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+index c87066d6c995..974410918f35 100644
+--- a/arch/arm/boot/dts/lpc32xx.dtsi
++++ b/arch/arm/boot/dts/lpc32xx.dtsi
+@@ -315,7 +315,7 @@ fab {
+ 			/* System Control Block */
+ 			scb {
+ 				compatible = "simple-bus";
+-				ranges = <0x0 0x040004000 0x00001000>;
++				ranges = <0x0 0x40004000 0x00001000>;
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
  
 -- 
 2.34.1
