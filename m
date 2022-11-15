@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1852362964F
+	by mail.lfdr.de (Postfix) with ESMTP id E1040629651
 	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbiKOKvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:51:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
+        id S238393AbiKOKvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:51:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238361AbiKOKvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:03 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0272611E
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:49 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id k19so16996146lji.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:49 -0800 (PST)
+        with ESMTP id S238399AbiKOKvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:04 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E5226127
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:50 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id l8so16950105ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sSBSF/sLpzI/Q4uji6qv4fnRpsWHHEYH7VX7xCQV1hQ=;
-        b=HYK9HvRbP60CIuuRaLIDzaSSks6Wu1g4XI1qLGK9+HilOmiHWsnl7nylhQgtvjjuEM
-         W60kGGA16/FydnJgRFu9snDzo5zvqk756QsRKMd1b4s5SHcojLHQDT/LacJvNNmeC/2P
-         yXKzAoR3R3PnSsQ3BEGWuF3hhJ9uay8VJArf5jCzTN1KJOOHTtiBqiJulmotfFwYi5aU
-         S4wgsvZzw/K/MsB7riUf/+U7z1wKQ/0CYATzRCQgajPiDd2WwgudFabccAQ58I9P6wAy
-         ldsXbTmjmODj0tsfj9ucuUxK2T/V56Bx/M1HlAic4owoTJOfpavKebVmbb/iEgL0WurC
-         wWXQ==
+        bh=3jeUp2U1S6pehRzAaj935AujC0T+FHs+JgelXqy8edc=;
+        b=GFtiBHdj76khS0rzZbLEhiMxo7P+omEnOtfXtWgZjlz9PCs9eB4CpBn1U2fimQyLha
+         Mog5/4/4b5prfCEuRu8O3ZX/p2IW6XT0s55BHLjTP/VDvRK0tSQpO5Qzv/NPjAsV86SB
+         sq0TNTbz2PkDESXhUM0nGdIjGirjF4krkNzQWAMfnVvUP+oOnmY8WeQhexdVN4ryg1y9
+         WWww7SkzDKA7+XT/GeOpUzmihkfxLV/5dKIiIdAgaWS8kGwBNnAODzrEGGKW/L4DXKqW
+         sT324tGaYIy0upeI1delMdoEauGXGSfCaj8Rks0RXgAhMfi1RbW7pzfY0tCGQjOWV63S
+         ZvyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sSBSF/sLpzI/Q4uji6qv4fnRpsWHHEYH7VX7xCQV1hQ=;
-        b=F0qJ1Q+Rb31JOV+xVX+HTihGIlMs+8lWXj/v157JjBqcNDSTR5EChcYR1Hn9PNzuWv
-         bsOQUrYOnvSEjbnq7023oS6ZMzXm8ROf/3ikHHZEMKIuXZoIvLa2Bo6ufnuX/zLIcqHr
-         OFmreSWb0pZcngvFie2JBGVbj0E4xCczpvLMVUSUWHPhgSyGP4I669nm9DbdliZ4Rr/N
-         hrmM3x8fQN7xsB++bbSRwPIM9HLXrvjl+2Qa8Lb+a0CYrQ/arDsgVs5fgY1kXxWCiX7G
-         dagx+OzschLs7yl5PkrsjpTV1o1PMHiMqD10TJOiS4ih/vDeERne9OQn7ZJ3+Ob81U4k
-         Q1jQ==
-X-Gm-Message-State: ANoB5pm5BXVri9re78116e7S1SLDlwddufbqTS/U8bK6MtXtQPl3kRoF
-        /6NeNHCdBQKmQ683CeX2SthNnQ==
-X-Google-Smtp-Source: AA0mqf6g1sH4Ba+C806ZOBv8EX46tw1RtamEfRi0Kslwl39+IvyurKavAULu4iR8NnmYNpHV/SOF8Q==
-X-Received: by 2002:a2e:9d0a:0:b0:277:7c4:6c49 with SMTP id t10-20020a2e9d0a000000b0027707c46c49mr6156444lji.276.1668509447492;
-        Tue, 15 Nov 2022 02:50:47 -0800 (PST)
+        bh=3jeUp2U1S6pehRzAaj935AujC0T+FHs+JgelXqy8edc=;
+        b=N3zal3/YxvW1f9tiTBke8fLHc0AMhAoI1253wX8arOWxjr4lfBlkZfU51vze5nI02f
+         xBBG3vJXcm9WJ3wkYq3PDsMBD5rHrYZFrQVtYVy7rZR1iYir/2o9yDpniEw20nFptEYy
+         TOxZ2UFeQLyggtQScInOK9wSIp2GGq3QLtZEv6lzCrUZCxwEch1224ox9dwQw7uJ9KCb
+         eiqqhXnpBdteFqbPzs4qvWsKPuSbrFm7rdghx8ehhY/MqIkYQ9AUmn3Ck71gvNdTOmZv
+         lh3ml0aN/1qzzMVdSgvDv//0FUdiVMvxBEdRWHty4Ss7wy53gOEK6OHBttdCqHnyCxPc
+         CgUw==
+X-Gm-Message-State: ANoB5pmEVascdaPHyHB0uzOHlLXsqvt9loznVvuG5qpIk8p9DYmLqm6M
+        deI4OukJXMn3vGkcVnUgcdQTH4c1uGLn8QKp
+X-Google-Smtp-Source: AA0mqf4mjOTKQVZ3ML/z84ZJid0+WN8C+0/2KxtGTMiMq1WPWS6UTLK0IWowkMfcy2oAG1vuvAfbRw==
+X-Received: by 2002:a05:651c:22f:b0:278:ec8c:7923 with SMTP id z15-20020a05651c022f00b00278ec8c7923mr4715088ljn.185.1668509449247;
+        Tue, 15 Nov 2022 02:50:49 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f5-20020a05651c03c500b002777a07f48esm2469418ljp.12.2022.11.15.02.50.46
+        by smtp.gmail.com with ESMTPSA id p17-20020ac24ed1000000b0048a9e899693sm2188124lfr.16.2022.11.15.02.50.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:50:47 -0800 (PST)
+        Tue, 15 Nov 2022 02:50:48 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: trim addresses to 8 digits
-Date:   Tue, 15 Nov 2022 11:50:46 +0100
-Message-Id: <20221115105046.95254-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: broadcom: trim addresses to 8 digits
+Date:   Tue, 15 Nov 2022 11:50:47 +0100
+Message-Id: <20221115105047.95281-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,48 +75,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hex numbers in addresses and sizes should be rather eight digits, not
 nine.  Drop leading zeros.  No functional change (same DTB).
 
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts | 2 +-
+ arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 552c0da3c479..49db223a0777 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2222,7 +2222,7 @@ compute-cb@3 {
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
+index e34172e3117e..fbf0392b8371 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
+@@ -52,7 +52,7 @@ chosen {
  
- 		cdsp: remoteproc@98900000 {
- 			compatible = "qcom,sm8350-cdsp-pas";
--			reg = <0 0x098900000 0 0x1400000>;
-+			reg = <0 0x98900000 0 0x1400000>;
+ 	memory {
+ 		device_type = "memory";
+-		reg = <0x000000000 0x80000000 0x00000000 0x40000000>;
++		reg = <0x00000000 0x80000000 0x00000000 0x40000000>;
+ 	};
+ };
  
- 			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 19a0f5033cc9..f20db5456765 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2091,7 +2091,7 @@ compute-cb@3 {
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
+index 7bf26f3e36bf..699f7742ce7f 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
+@@ -49,7 +49,7 @@ chosen {
  
- 		remoteproc_adsp: remoteproc@30000000 {
- 			compatible = "qcom,sm8450-adsp-pas";
--			reg = <0 0x030000000 0 0x100>;
-+			reg = <0 0x30000000 0 0x100>;
+ 	memory {
+ 		device_type = "memory";
+-		reg = <0x000000000 0x80000000 0x00000001 0x00000000>;
++		reg = <0x00000000 0x80000000 0x00000001 0x00000000>;
+ 	};
+ };
  
- 			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
-@@ -2157,7 +2157,7 @@ compute-cb@5 {
- 
- 		remoteproc_cdsp: remoteproc@32300000 {
- 			compatible = "qcom,sm8450-cdsp-pas";
--			reg = <0 0x032300000 0 0x1400000>;
-+			reg = <0 0x32300000 0 0x1400000>;
- 
- 			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
 -- 
 2.34.1
 
