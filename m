@@ -2,214 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDAA1629B8F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B225629BAB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbiKOOIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:08:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
+        id S231178AbiKOOLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:11:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbiKOOIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:08:43 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB21656D
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:08:41 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id t10so17687499ljj.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:08:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qiTVqep6DU3EQigGK3/zHq9dFgIjE2mGeNBBEKQcEuw=;
-        b=VIOa8Bduskofw1HyyiM/+ADYmDV7qu6UAs23GhKMa5I+72Wpi1+scUftzlB1QlGYCC
-         2bf7cy/aQbYg/JsVaD9WiZAUpXaQluLwDHuX3IJpRaycZjuu1m4+RqEkiWTgtrr8umUH
-         qTxdNj4xFTgQVfXDhIzgNj9RJJOZLxzYta5RocnLzaqwWlcr3TX1x/cSagU5fdmH/lGt
-         uS5RbxehwU3AD/PRDGz/eJc0QP0OVUPHHtpShW/hl6GxbczYpMqKP7aS0wVTg2mf9PIt
-         rUNc8+Nvpjg0Aw23TVmbcNy126//piwytSQubsHIGY8wJRAa9YBuYMcWtbkWy1m5/+5P
-         aQUA==
+        with ESMTP id S230292AbiKOOLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:11:25 -0500
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEEC2B610;
+        Tue, 15 Nov 2022 06:11:24 -0800 (PST)
+Received: by mail-qk1-f169.google.com with SMTP id d7so7116816qkk.3;
+        Tue, 15 Nov 2022 06:11:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qiTVqep6DU3EQigGK3/zHq9dFgIjE2mGeNBBEKQcEuw=;
-        b=61dHVn1xErtyM1ELJM/DzHxsSW8U0HTQi5P+KevIQ7WGzjQcF5tR96T3aS0cSc6eQh
-         E/5NyHLoaXGKj1Fl8PzVfss2rHza6eIp6nfgmpU0DYbOP65ts/l9epce0Ptre2yWiK02
-         xwiHN0wJ0qR8lByvlchcjhwwOYTbOYL0KGygU3J9ZK0gfD+YTOo1O6vScZC/Np6Tuffr
-         vV0eDWbZGo428npb3+l2KTe+bDORrqjHI0VTI/ic/K7huWSA7hPuDr5c2LvedYh20/G7
-         GpP2GgERwpRLVsVez11GYDzF+wZAnWIPJK53xnABqclrtPqEMtSvwZUM+kWItLv2j/1e
-         TF2A==
-X-Gm-Message-State: ANoB5pk+cfYNM8gftNZtth8utMjLqQtaza302iT51JQW2IPuy+N9fUWe
-        QOK9rkzicIEmI3ViRPkRUj+7kg==
-X-Google-Smtp-Source: AA0mqf5tf4cNFzATyjN2JH2wnr6CNKgdMcgN+PCe0/cmxPHrIlV6p350nZWLhKt8Xi7zKVD4RKF+9Q==
-X-Received: by 2002:a2e:a27b:0:b0:279:5fa:8e7c with SMTP id k27-20020a2ea27b000000b0027905fa8e7cmr2725033ljm.62.1668521319792;
-        Tue, 15 Nov 2022 06:08:39 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 14-20020ac2568e000000b004946bb30469sm2221536lfr.82.2022.11.15.06.08.38
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PEBoPkzZkEwXxKxn/LguL/Tj7JNM9p+vnmqYk3f/wqg=;
+        b=t+0BF7v8qNwl9dvZTGsWpEK+153oiJxHnUloU7OOA0OaFRDMXH0pSRjkcJZ6BsCKl1
+         S6eYj4vqa6qZhJ9aFpnn/gZLc8qvygceWJ7YyzssLq8EE8NFmBkM+P/I/ZqXVGzHUZHp
+         pUzQy4dxAWIe9cu/t3V2df8p8++ehhoZlg8grw1umexHn2nTGF/9iiuqTnDWtpcrHA5b
+         iJCH1P/VaDKDQsiFe4IcrQ42KENs0/eLQp/Mk3XfNEIqlL72ivtrOJR1EAmXCUupFK8F
+         4cGzgGlEN7E2KntsrycO5WRYTfjfocYLxqFBqOldwkFq6/lzzSaXw4UTu851kFujJNoK
+         J8MQ==
+X-Gm-Message-State: ANoB5pnQI6ahEvOZvvv775rU3iR2BaXi5uWFh1e+zxNTgzBDP2cG17IF
+        iigkjw8o4tTIWGQ2CkE62HMc76UuD8zbjw==
+X-Google-Smtp-Source: AA0mqf4QG3pJAV5zFRWByezi8YOB5YXep940kO74qeNszq9lLHnXXhlsaBbglsJ7hUOzoiEMHI69Dw==
+X-Received: by 2002:a37:c245:0:b0:6ee:909e:ed6c with SMTP id j5-20020a37c245000000b006ee909eed6cmr15276266qkm.264.1668521483304;
+        Tue, 15 Nov 2022 06:11:23 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id g26-20020ac8469a000000b003a5416da03csm7193453qto.96.2022.11.15.06.11.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 06:08:39 -0800 (PST)
-Message-ID: <c9b82051-a9f5-883f-5455-1cb06aa6521b@linaro.org>
-Date:   Tue, 15 Nov 2022 15:08:37 +0100
+        Tue, 15 Nov 2022 06:11:21 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 63so17300258ybq.4;
+        Tue, 15 Nov 2022 06:11:20 -0800 (PST)
+X-Received: by 2002:a25:844b:0:b0:6de:6c43:3991 with SMTP id
+ r11-20020a25844b000000b006de6c433991mr15875248ybm.604.1668521478365; Tue, 15
+ Nov 2022 06:11:18 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2] dt-bindings: spi: convert Freescale DSPI to dt-schema
-Content-Language: en-US
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-7-herve.codina@bootlin.com> <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
+In-Reply-To: <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Nov 2022 15:11:06 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
+Message-ID: <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-References: <20221111224651.577729-1-vladimir.oltean@nxp.com>
- <417bfdea-ed41-6468-ec16-f54480cfe2f6@linaro.org>
- <20221115135912.ksjk7zxqsyazqhtf@skbuf>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115135912.ksjk7zxqsyazqhtf@skbuf>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 14:59, Vladimir Oltean wrote:
-> On Tue, Nov 15, 2022 at 02:46:21PM +0100, Krzysztof Kozlowski wrote:
->>> +$id: http://devicetree.org/schemas/spi/fsl,spi-fsl-dspi.yaml
->>
->> Why second "fsl" in file name? It does not patch compatibles and
->> duplicates the vendor. We do not have compatibles "nxp,imx6-nxp".
-> 
-> Ok, which file name would be good then? There are 9 different (all SoC
-> specific) compatible strings, surely the convention of naming the file
-> after a compatible string has some limitations...
+Hi Krzysztof,
 
-If all DSPI blocks fit here, then maybe: fsl,dspi.yaml
+On Tue, Nov 15, 2022 at 2:16 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 14/11/2022 12:15, Herve Codina wrote:
+> > Add the USBF controller available in the r9a06g032 SoC.
+> >
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
+> > index 563024c9a4ae..a4bb069457a3 100644
+> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> > @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
+> >                       };
+> >               };
+> >
+> > +             udc: usb@4001e000 {
+> > +                     compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
+> > +                     reg = <0x4001e000 0x2000>;
+> > +                     interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                  <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks = <&sysctrl R9A06G032_HCLK_USBF>,
+> > +                              <&sysctrl R9A06G032_HCLK_USBPM>;
+> > +                     clock-names = "hclkf", "hclkpm";
+> > +                     power-domains = <&sysctrl>;
+> > +                     status = "disabled";
+>
+> If you provided all resources (clocks, power domains etc), why disabling it?
 
-fsl,spi-dspi.yaml is also a bit redundant.
+Doesn't this depend on wiring on the board, and providing pin control
+in the board DTS?
 
-> 
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml
->>> +
->>> +title: Freescale DSPI Controller
->>> +
->>> +maintainers:
->>> +  - Vladimir Oltean <olteanv@gmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: "spi-controller.yaml#"
->>
->> Drop quotes.
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    description:
->>> +      Some integrations can have a single compatible string containing their
->>> +      SoC name (LS1012A, LS1021A, ...). Others require their SoC compatible
->>> +      string, plus a fallback compatible string (either on LS1021A or on
->>> +      LS2085A).
->>
->> Why? The fsl,ls1012a-dspi device is either compatible with
->> fsl,ls1021a-v1.0-dspi or not. It cannot be both - compatible and not
->> compatible.
-> 
-> LS1012A is compatible with LS1021A to the extent that it works when
-> treated like a LS1021A. LS1012A has a FIFO size of 8 SPI words, LS1021A
-> of just 4. Treating it like LS1021A means roughly half the performance,
-> but it still works.
-> 
-> I didn't invent any of this. When I took over the driver, there were
-> device trees like this all over the place:
-> 
-> 		dspi: spi@2100000 {
-> 			compatible = "fsl,ls1012a-dspi", "fsl,ls1021a-v1.0-dspi";
+Gr{oetje,eeting}s,
 
-Which looks ok...
+                        Geert
 
-> 			#address-cells = <1>;
-> 			#size-cells = <0>;
-> 			reg = <0x0 0x2100000 0x0 0x10000>;
-> 			interrupts = <0 64 IRQ_TYPE_LEVEL_HIGH>;
-> 			clock-names = "dspi";
-> 			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-> 					    QORIQ_CLK_PLL_DIV(1)>;
-> 			spi-num-chipselects = <5>;
-> 			big-endian;
-> 			status = "disabled";
-> 		};
-> 
-> but the Linux driver pre-~5.7 always relied on the fallback compatible
-> string (LS1021A in this case). I'm working with what's out in the field,
-> haven't changed a thing there.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-The driver matters less (except ABI), but anyway it confirms the case -
-fallback is expected always.  Why the fallback should be removed if the
-devices are compatible (including halved performance)?
-
-> 
->>> +    oneOf:
->>> +      - enum:
->>> +          - fsl,ls1012a-dspi
->>> +          - fsl,ls1021a-v1.0-dspi
->>> +          - fsl,ls1028a-dspi
->>> +          - fsl,ls2085a-dspi
->>> +          - fsl,lx2160a-dspi
->>> +          - fsl,vf610-dspi
->>> +      - items:
->>> +          - enum:
->>> +              - fsl,ls1012a-dspi
->>> +              - fsl,ls1028a-dspi
->>> +              - fsl,ls1043a-dspi
->>> +              - fsl,ls1046a-dspi
->>> +              - fsl,ls1088a-dspi
->>> +          - const: fsl,ls1021a-v1.0-dspi
->>> +      - items:
->>> +          - enum:
->>> +              - fsl,ls2080a-dspi
->>> +              - fsl,lx2160a-dspi
->>> +          - const: fsl,ls2085a-dspi
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: dspi
->>> +
->>> +  dmas:
->>> +    maxItems: 2
->>> +
->>> +  dma-names:
->>> +    items:
->>> +      - const: tx
->>> +      - const: rx
->>> +
->>> +  spi-num-chipselects:
->>
->> Would be nice to deprecated it in separate patches. There is num-cs
->> property.
-> 
-> Will add this on my TODO list. Right now I'm just converting what exists.
-
-Sure.
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
