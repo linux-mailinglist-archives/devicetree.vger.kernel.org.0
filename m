@@ -2,59 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F74629CAF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 921CC629CBD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:57:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbiKOOyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:54:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
+        id S229843AbiKOO5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:57:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiKOOyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:54:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C628F036;
-        Tue, 15 Nov 2022 06:54:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BBC8B617C8;
-        Tue, 15 Nov 2022 14:54:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20B70C433D6;
-        Tue, 15 Nov 2022 14:54:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668524040;
-        bh=fbIWojubXodIJ1FHKbRAX7quL96K4Jpg6lapDdJFksA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PQjJGWmL0WXWLPfPJHHsDuvs7hZXH9NJssREheNU4/psTZPYRnlBWfxLiVbex2uE5
-         vwkSU7blMkcoWZSaSPpEkhbawCzgbEBAxFnQ2TXtXGzfKc64q2CRkK8z3y4k1iP+K+
-         8WotE2zZ8Aky1+OGRudvK6M6oAZ1LRtcXMM4FIfnKMqaI3L1e9xzxUrvSMouPhS0Ur
-         +y3mJ6kenxw3gGXJKzDl3y1BVU62xWHSg45Hjsn6G1jPDhw5iGxnhaaJftAR5xGRhY
-         9lpqzBqeZIk3kuzrVF1vQxM1GluGyj5D8Rvyp0wB3VMPVvS9UdS2/uT00YD3da7l0v
-         EFOZUKwmAlA9w==
-Received: by mail-lf1-f49.google.com with SMTP id j4so24863255lfk.0;
-        Tue, 15 Nov 2022 06:54:00 -0800 (PST)
-X-Gm-Message-State: ANoB5plcY5Mnj7F3QvspUdLGs80gFq2N0TYS9fz1RkLo+nkeNCko5GfV
-        mkKfiit8SEdsqsahrdeK/rFMdUwki7QyqGy+LA==
-X-Google-Smtp-Source: AA0mqf7BFHKb3QwAbtjRBeUHg0VriQfG0v4tMZXxpjjvv7eArCZ9FE8KHaucdRBF0MiusQTrNzEeJUYN7kyPf32MgPo=
-X-Received: by 2002:a05:6512:b1a:b0:4b0:3e46:2b75 with SMTP id
- w26-20020a0565120b1a00b004b03e462b75mr5540087lfu.368.1668524038181; Tue, 15
- Nov 2022 06:53:58 -0800 (PST)
+        with ESMTP id S229926AbiKOO5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:57:09 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D192C662
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:57:02 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id a29so24806855lfj.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:57:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DJek8SvY1lKznzyHiHHaCNeGOuDew0+hc/954ZKQZoo=;
+        b=XCKQP2v4t1zCGERxBtVGE0MF/1x+qOv4zbnMsLNEb845mJn4wjXgRsw0fV3M+zoFwB
+         KHNsVWKGUEkftwb1b5xobkusAs80O6C6jBpsPsR+mdPhxJ8MAzBpYfJUVeHjwJFOSODz
+         Yawq7iwkvB+xzXfQvtw9g0w0zMk8IoMLpJ2u3yhBV6T4TfkAcneJ8rto60pT/xPhDr4u
+         KrsM0Wi+04es9OgwTr4mAZMbOtrk1q1gqsH95Iiw4bKzQ2im3o/a04kITaySfItQSgES
+         vrZA4ktt2Cm9bI2CyZ50mSYB/sMpgK9dAO6GqvNllOtYdXpBNQyqgX7hBv58avv1I7B5
+         zoJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DJek8SvY1lKznzyHiHHaCNeGOuDew0+hc/954ZKQZoo=;
+        b=tTDSpfHYetP79CMvl8+Guii2n62l8jWzbEza5rNVQiiJJHox1GGd4Q5rAxtkN4OJbM
+         1WivmSo2suyUB0fuNmM5EhYfRNp8xAFEvxjChHoLgySYebScJ/rwyr34ujqec45Spgt/
+         OWQIBBC3x3SUSzZE8sufwf/b9I3RYRPw7dTQfVHe8HQOY6Tdf5ClPDjx8985jBMR1pcq
+         mo54T4NoskqjLnyKfA/jbbD8Bg0iDd+6lOpPyydhuUdzWVKn0g0+fnbwiS6ru/mghLJD
+         TReLgbTvSCSUX/w+TaRXfTQYC7zR6JUbDXBAjGMasgxUGrGtKcy5Id8RYr3QQoKFCSnt
+         duOQ==
+X-Gm-Message-State: ANoB5pkp36qF8t2AK+dOpXSl4uFGENbb4ZyCUj+XnrHy9GyyJOh7ZBFT
+        LRrMVI+5hEUSsKwmYabjvd7kNw==
+X-Google-Smtp-Source: AA0mqf7EJdF6Rm3TGtS3IrReZ2gMfHNq0nBv5xhrw57YYWrJhBklbkSG9T4lJmh0N7yrbW9WrlVPIA==
+X-Received: by 2002:a05:6512:3134:b0:4a8:3a6a:c2b8 with SMTP id p20-20020a056512313400b004a83a6ac2b8mr5806014lfd.557.1668524220782;
+        Tue, 15 Nov 2022 06:57:00 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s7-20020a19ad47000000b004abc977ad7fsm2225842lfd.294.2022.11.15.06.56.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 06:57:00 -0800 (PST)
+Message-ID: <28ddcec9-095f-f2e7-48ab-e05aab04963a@linaro.org>
+Date:   Tue, 15 Nov 2022 15:56:58 +0100
 MIME-Version: 1.0
-References: <202211150903277271642@zte.com.cn>
-In-Reply-To: <202211150903277271642@zte.com.cn>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Nov 2022 08:53:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLuWhQw52O4aWS=Z4T=0McjiPqtJMiFbvR-Rmwy3=+wBw@mail.gmail.com>
-Message-ID: <CAL_JsqLuWhQw52O4aWS=Z4T=0McjiPqtJMiFbvR-Rmwy3=+wBw@mail.gmail.com>
-Subject: Re: [PATCH linux-next] scripts/dtc: Replace zero-length array with
- DECLARE_FLEX_ARRAY() helper
-To:     guo.ziliang@zte.com.cn
-Cc:     gustavoars@kernel.org, frowand.list@gmail.com,
-        keescook@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 02/14] dt-bindings: phy: qcom,qmp-usb3-dp: fix sc8280xp
+ bindings
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <Y3JCVzJ74YsfcDz4@hovoldconsulting.com>
+ <de3a426a-03e8-ed15-a9a1-bb300e776e5f@linaro.org>
+ <Y3JOO0kNnaNhnW3K@hovoldconsulting.com>
+ <02725b78-04ad-8f4a-25c2-9cdaa1e37ab7@linaro.org>
+ <Y3JthM1jC2vH1Kn+@hovoldconsulting.com>
+ <efd412d0-7411-8b0b-4700-9e183a592048@linaro.org>
+ <Y3JxZ+yFMLZkwNBi@hovoldconsulting.com>
+ <8420c342-9dce-aea7-8d1e-f141e0c1ebb5@linaro.org>
+ <Y3J2AjjjsybI9mKd@hovoldconsulting.com>
+ <61df3c4f-f41c-9525-606d-1b8261163080@linaro.org>
+ <Y3OgwLlNaqcd5SwW@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3OgwLlNaqcd5SwW@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,19 +91,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 7:03 PM <guo.ziliang@zte.com.cn> wrote:
->
-> From: guo ziliang <guo.ziliang@zte.com.cn>
->
-> Zero-length arrays are deprecated and we are moving towards adopting
-> C99 flexible-array members, instead. So, replace zero-length arrays
-> declarations in anonymous union with the new DECLARE_FLEX_ARRAY()
-> helper macro.
->
-> Signed-off-by: guo ziliang <guo.ziliang@zte.com.cn>
-> ---
->  scripts/dtc/libfdt/fdt.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+On 15/11/2022 15:22, Johan Hovold wrote:
+> On Tue, Nov 15, 2022 at 09:12:54AM +0100, Krzysztof Kozlowski wrote:
+>> On 14/11/2022 18:08, Johan Hovold wrote:
+>>>>
+>>>> Which is also fine. I don't understand still why it is a problem - even
+>>>> if you have multiple files, one for each SoC/phy. If USB4 brings here 10
+>>>> more clocks and other SoCs/phys might bring many more options, then what
+>>>> else can you do? Grow the binding file with big text-based mapping of
+>>>> IDs? It's not a viable solution. Header or headers is the only
+>>>> maintainable way for such cases.
+>>>
+>>> So then we must add per-SoC (and PHY type) headers even if we can
+>>> possibly reuse defines from one platform for another as long as they
+>>> appear to be similar enough?
+>>
+>> No, you don't have to. I just got impression that future devices will
+>> bring so many changes that anyway you will end up with per-SoC defines.
+>>
+>>> For example, using a "SC7180_USB3_DP" infix
+>>> for the current platforms and add a new series of indexes for SC8280XP:
+>>>
+>>> 	QMP_SC7180_USB3_DP_USB3_PIPE			0
+>>> 	QMP_SC7180_USB3_DP_DP_LINK			1
+>>> 	QMP_SC7180_USB3_DP_DP_VCO_DIV			2
+>>>
+>>> 	QMP_SC8280XP_USB4_USB3_DP_USB3_PIPE		0
+>>> 	QMP_SC8280XP_USB4_USB3_DP_DP_LINK		1
+>>> 	QMP_SC8280XP_USB4_USB3_DP_DP_VCO_DIV		2
+>>> 	QMP_SC8280XP_USB4_USB3_DP_USB4_PCIE_PIPE	3
+>>> 	...
+>>> 	QMP_SC8280XP_USB4_USB3_DP_USB4_RX1		9
+>>
+>> The names are just a names, you can even use QMP_SC7180_* on SC8280XP.
+>> You can skip the SoC part and have something shared. We already have
+>> such patterns - although maybe more often for outside components (like
+>> PMICs). The differences are:
+>> 1. For per-SoC name it's quite obvious which clock is supported on fiven
+>> SoC,
+>> 2. With shared names, you should document somewhere mapping between
+>> supported clocks and SoCs. Also what to do if new device comes with 10
+>> new clocks entirely different - re-use/map existing defines or add
+>> completely new set of 10 of them?
+> 
+> Ok, thanks. I'll go with a common prefix per PHY type for now, and we
+> can worry about hypothetical hardware revisions later.
+> 
+> I'll use a "QMP_USB43DP_" prefix for the new SC8280XP binding, which can
+> be reused also for the older SoCs with USB3-DP PHYs if/when we convert
+> them as their indexes will be a subset of the SC8280XP ones:
+> 
+> 	/* QMP USB4-USB3-DP clocks */
+> 	#define QMP_USB43DP_USB3_PIPE_CLK	0
+> 	#define QMP_USB43DP_DP_LINK_CLK		1
+> 	#define QMP_USB43DP_DP_VCO_DIV_CLK	2
+> 
+> Since I'm adding a new header anyway, I decided to go with dedicated
+> indexes also for the PHY selection (instead of using the PHY_TYPE
+> defines):
+> 
+> 	/* QMP USB4-USB3-DP PHYs */
+> 	#define QMP_USB43DP_USB3_PHY		0
+> 	#define QMP_USB43DP_DP_PHY		1
+> 
+> I'll add these to a common dt-bindings/phy/phy-qcom-qmp.h header so that
+> it can be used also for the UFS clocks (with a "QMP_UFS_" prefix).
 
-Changes to dtc/libfdt must go upstream first and then we sync upstream
-back to the kernel.
+Sounds good, thanks.
+
+Best regards,
+Krzysztof
+
