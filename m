@@ -2,561 +2,865 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BBB62A067
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 18:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D220562A084
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 18:39:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiKORcv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Nov 2022 12:32:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
+        id S231330AbiKORjs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Nov 2022 12:39:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiKORcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 12:32:51 -0500
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03D52D1F3
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 09:32:48 -0800 (PST)
-Received: from [127.0.0.1] (bband-dyn193.178-41-216.t-com.sk [178.41.216.193])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 178B9201A8;
-        Tue, 15 Nov 2022 18:32:47 +0100 (CET)
-Date:   Tue, 15 Nov 2022 18:32:45 +0100
-From:   Martin Botka <martin.botka@somainline.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-CC:     Martin Botka <martin.botka1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        with ESMTP id S230512AbiKORjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 12:39:42 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A502E9C1;
+        Tue, 15 Nov 2022 09:39:40 -0800 (PST)
+Received: from frapeml500007.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NBYGX6BfYz686vL;
+        Wed, 16 Nov 2022 01:35:00 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ frapeml500007.china.huawei.com (7.182.85.172) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 15 Nov 2022 18:39:37 +0100
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 15 Nov
+ 2022 17:39:37 +0000
+Date:   Tue, 15 Nov 2022 17:39:35 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Conley Lee <conleylee@foxmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: Add basic support for BIQU CB1
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20221115172501.04065c13@donnerap.cambridge.arm.com>
-References: <20221114214452.1993744-1-martin.botka@somainline.org> <20221114214452.1993744-2-martin.botka@somainline.org> <20221114233102.3b1f96cc@slackpad.lan> <CADQ2G_HXx59YYjNvhcNRonahgT3AcE_2BiU43vDJ3CRUGKwAKA@mail.gmail.com> <20221115005429.57d72f64@slackpad.lan> <D69CAA04-56A2-4FFD-A33D-C802084A7150@somainline.org> <20221115103307.5f5b9106@donnerap.cambridge.arm.com> <78EC79B1-1664-48EB-A902-9173FE59C45B@somainline.org> <20221115142714.310049c4@donnerap.cambridge.arm.com> <JCFELR.HONCNORN1D0L@somainline.org> <20221115172501.04065c13@donnerap.cambridge.arm.com>
-Message-ID: <23C58328-F93B-4407-8427-FF37DC591255@somainline.org>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH 2/2] iio: magnetometer: add ti tmag5273 driver
+Message-ID: <20221115173935.0000508a@Huawei.com>
+In-Reply-To: <20221115073718.2377311-3-gerald.loacker@wolfvision.net>
+References: <20221115073718.2377311-1-gerald.loacker@wolfvision.net>
+        <20221115073718.2377311-3-gerald.loacker@wolfvision.net>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 15 Nov 2022 08:37:18 +0100
+Gerald Loacker <gerald.loacker@wolfvision.net> wrote:
+
+> Add support for TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor.
+> Additionally to temperature and magnetic X, Y and Z-axes the angle and
+> magnitude are reported.
+> The sensor is operating in continuous measurement mode and changes to sleep
+> mode if not used for 5 seconds.
+> 
+> Datasheet: https://www.ti.com/lit/gpn/tmag5273
+> 
+> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+Hi Gerald,
+
+Some comments inline.
+
+Jonathan
 
 
-On November 15, 2022 6:25:01 PM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
->On Tue, 15 Nov 2022 18:02:43 +0100
->Martin Botka <martin.botka@somainline.org> wrote:
->
->> On Tue, Nov 15 2022 at 02:27:14 PM +00:00:00, Andre Przywara 
->> <andre.przywara@arm.com> wrote:
->> > On Tue, 15 Nov 2022 12:38:59 +0100
->> > Martin Botka <martin.botka@somainline.org> wrote:
->> > 
->> > Hi Martin,
->> >   
->> >>  On November 15, 2022 11:33:07 AM GMT+01:00, Andre Przywara 
->> >> <andre.przywara@arm.com> wrote:  
->> >>  >On Tue, 15 Nov 2022 09:24:04 +0100
->> >>  >Martin Botka <martin.botka@somainline.org> wrote:
->> >>  >
->> >>  >Hi,
->> >>  >  
->> >>  >> On November 15, 2022 1:54:29 AM GMT+01:00, Andre Przywara   
->> >> <andre.przywara@arm.com> wrote:  
->> >>  >> >On Tue, 15 Nov 2022 00:44:46 +0100
->> >>  >> >Martin Botka <martin.botka1@gmail.com> wrote:
->> >>  >> >
->> >>  >> >Hi Martin,
->> >>  >> >  
->> >>  >> >> I can totally understand how this can get confusing.
->> >>  >> >>
->> >>  >> >> Basically because of the Rpi shortage biqu decided to make an   
->> >> Rpi  
->> >>  >> >> alternative.
->> >>  >> >>
->> >>  >> >> So they made CB1 which is compute module style board.
->> >>  >> >>
->> >>  >> >> And they made 3 other boards where CB1 or Rpi CM4 can be   
->> >> plugged in. The 3  
->> >>  >> >> boards are:
->> >>  >> >>
->> >>  >> >> Rpi adapter which takes the Compute module style boards and   
->> >> turns them into  
->> >>  >> >> SBC style with basically identical size and etc to Rpi 4.
->> >>  >> >>
->> >>  >> >> Then we have Manta M8P and M4P. These boards are MCUs for a   
->> >> 3D printer. But  
->> >>  >> >> they were made for Klipper use case which requires a computer   
->> >> or SBC  
->> >>  >> >> (Usually Rpi4). They combined it into 1 board.
->> >>  >> >> Where you get the MCU and you can plug in CM4 or CB1  
->> >>  >> >
->> >>  >> >Thanks for the explanations! I was guessing along those   
->> >> shortage lines,  
->> >>  >> >since the H616 is quite a step down from the RPi4CM, though   
->> >> probably  
->> >>  >> >still enough for driving a 3D printer.  
->> >>  >> Mostly yes  
->> >>  >> >  
->> >>  >> >> All these boards are basically taking the pins and routing   
->> >> them to ports.  
->> >>  >> >
->> >>  >> >Yes, this is what those SoM carrier boards do ;-)  
->> >>  >> :)  
->> >>  >> >  
->> >>  >> >> There is nearly 0 chips for conversion or processing of the   
->> >> pins from CB1  
->> >>  >> >> or CM4 thus i do not see a reason for having parent dtsi and   
->> >> dts for the  
->> >>  >> >> adapter and Manta boards.  
->> >>  >> >
->> >>  >> >And the DT does not need to describe "chips" only, a lot of DT   
->> >> nodes  
->> >>  >> >are about connectors, and which ports and which exact pins (out   
->> >> of the  
->> >>  >> >possible pinmuxes) are actually used. The SoM itself mostly   
->> >> exposes  
->> >>  >> >just pins, and the board DT describes how these pins are used   
->> >> (GPIO or  
->> >>  >> >special function, for instance).
->> >>  >> >
->> >>  >> >So did you try to split this up? How would that look?  
->> >>  >>
->> >>  >> The main difference between adapter and Manta boards is that   
->> >> adapter has 4x USB.  
->> >>  >
->> >>  >So those are two double-type-A sockets? This is not really what   
->> >> the DT  
->> >>  >below describes? It's perfectly fine to fix USB0 to host mode, we   
->> >> do this  
->> >>  >on the Pine64 boards (both A64 and H6), for instance.  
->> >> 
->> >>  Yes. But the third and fourth is also used. Third is done in 2.54 
->> >> 4p connector (just pins on board) and fourth is connected directly 
->> >> to manta stm32 MCU. So all 4 are host.  
->> > 
->> > Wait, so you are talking about the Manta board now? I see two 
->> > sockets, the
->> > 2.54mm headers and the STM32 there, but the Pi4B is quite different in
->> > that respect: I see four(!) USB type-A sockets (two dual-port stacks).
->> > Plus the CM4 connector seems to only have pins for one USB 2.0 port
->> > (D-,D+). So is this a hub chip on the underside of the board, close 
->> > to the
->> > USB ports? Can you read the label of that chip?
->> > And where are the other H616 USB pins routed to? Are they (ab-)using 
->> > the
->> > PCIe pins of the CM4 connector? Or are they actually not used at all, 
->> > and
->> > it's all one USB port through a by-4 hub?
->> > If you have a running system, "lsusb -t" should give you a clue which 
->> > host
->> > ports are used and if there is a hub.
->> > 
->> > Cheers,
->> > Andre
->> >   
->> >>  >> Manta only has 3 and 1 otg. But it has a switch to disable or   
->> >> enable otg.  
->> >>  >
->> >>  >What does the switch do, exactly? By definition OTG works fine in   
->> >> both  
->> >>  >ways. And there are pins in the connector to decide the role.  
->> >>  The switch is just signal pin for RS2227. Its the multiplexer i 
->> >> mentioned. It decides if we should have the pins wired to usb type C 
->> >> port or normally to stm32 MCU. Thats all it does.  
->> >>  >
->> >>  >Allwinner actually goes one step further and provides a full HCI   
->> >> to the  
->> >>  >same PHY that the MUSB OTG controller is connected to, so you   
->> >> don't need  
->> >>  >to live with the sometimes limited performance of the MUSB host   
->> >> mode  
->> >>  >(which we drive without DMA). Not sure if that is the case or a   
->> >> problem on  
->> >>  >the RPi4.
->> >>  >  
->> >>  >> Im not opposed to splitting it up. It is probably a good idea.
->> >>  >> I dont see how to resolve that switch on manta boards tho.  
->> >>  >
->> >>  >If the Manta board is (almost) a superset of the Pi4B, then you can
->> >>  >include the latter from there. Look at sun50i-a64-pine64-lts.dts or
->> >>  >sun50i-h6-pine-h64-model-b.dts for examples.
->> >>  >
->> >>  >Cheers,
->> >>  >Andre.
->> >>  >  
->> >>  Yep i will split it into SoM boards.  
->> >>  >> >> The only exception to conversion are the LEDs on the boards   
->> >> but since both  
->> >>  >> >> adapter and manta boards have them this yet again eliminates   
->> >> need for  
->> >>  >> >> parent style DT.
->> >>  >> >>
->> >>  >> >> Best regards,
->> >>  >> >> Martin
->> >>  >> >>
->> >>  >> >> On Tue, Nov 15, 2022, 12:32 AM Andre Przywara   
->> >> <andre.przywara@arm.com>  
->> >>  >> >> wrote:
->> >>  >> >>  
->> >>  >> >> > On Mon, 14 Nov 2022 22:44:49 +0100
->> >>  >> >> > Martin Botka <martin.botka@somainline.org> wrote:
->> >>  >> >> >  
->> >>  >> >> > > CB1 is Compute Module style board that plugs into Rpi   
->> >> board style  
->> >>  >> >> > adapter or  
->> >>  >> >> > > Manta 3D printer boards (M4P/M8P).
->> >>  >> >> > >
->> >>  >> >> > > The board has:
->> >>  >> >> > >       H616 SoC
->> >>  >> >> > >       1GB of RAM
->> >>  >> >> > >       AXP313A PMIC
->> >>  >> >> > >
->> >>  >> >> > > And the actual boards that CB1 plugs in are just   
->> >> extension to it with  
->> >>  >> >> > ports and  
->> >>  >> >> > > thus are not split in DT.  
->> >>  >> >> >
->> >>  >> >> > I don't really understand that sentence. There is some   
->> >> precedent for a  
->> >>  >> >> > SoM/board split, look at the sun50i-a64-sopine or
->> >>  >> >> > sun50i-h5-emlid-neutis-n5 files. And if I see this   
->> >> correctly, then  
->> >>  >> >> > there are *two* boards available for the same CB1 SoM, the   
->> >> PI4B and the  
->> >>  >> >> > Manta board? Which would a strong case for a SoM .dtsi,   
->> >> plus the one  
->> >>  >> >> > or two board .dts files.
->> >>  >> >> > I am just not sure whether that relation to the Pi4-CM is   
->> >> helpful or  
->> >>  >> >> > just complicates things...
->> >>  >> >> >
->> >>  >> >> > Cheers,
->> >>  >> >> > Andre
->> >>  >> >> >  
->> >>  >> >> > >
->> >>  >> >> > > Boards have:
->> >>  >> >> > >       4x (3x for Manta boards) USB and 1 USB OTG.
->> >>  >> >> > >       SDcard slot for loading images.
->> >>  >> >> > >       Ethernet port wired to the internal PHY.
->> >>  >> >> > >       2x HDMI 2.0.
->> >>  >> >> > >       Power and Status LEDs.
->> >>  >> >> > >
->> >>  >> >> > > Currently working:
->> >>  >> >> > >       Booting
->> >>  >> >> > >       USB
->> >>  >> >> > >       UART
->> >>  >> >> > >
->> >>  >> >> > > Signed-off-by: Martin Botka <martin.botka@somainline.org>
->> >>  >> >> > > ---
->> >>  >> >> > > Changes in V2:
->> >>  >> >> > > Add proper board compatible
->> >>  >> >> > > Add regulator prefix for vcc5v
->> >>  >> >> > > Drop okay status from PMIC
->> >>  >> >> > > Drop standby_param
->> >>  >> >> > > Changes in V3:
->> >>  >> >> > > Change copyright to me
->> >>  >> >> > > regulator_vcc5v to regulator-vcc5v
->> >>  >> >> > > Drop ehci0 and ohci0
->> >>  >> >> > >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->> >>  >> >> > >  .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 178   
->> >> ++++++++++++++++++  
->> >>  >> >> > >  2 files changed, 179 insertions(+)
->> >>  >> >> > >  create mode 100644  
->> >>  >> >> > arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> >>  >> >> > >
->> >>  >> >> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile  
->> >>  >> >> > b/arch/arm64/boot/dts/allwinner/Makefile  
->> >>  >> >> > > index 6a96494a2e0a..223f1be73541 100644
->> >>  >> >> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
->> >>  >> >> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
->> >>  >> >> > > @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=   
->> >> sun50i-h6-pine-h64.dtb  
->> >>  >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) +=   
->> >> sun50i-h6-pine-h64-model-b.dtb  
->> >>  >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->> >>  >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
->> >>  >> >> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
->> >>  >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) +=   
->> >> sun50i-h616-orangepi-zero2.dtb  
->> >>  >> >> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
->> >>  >> >> > > diff --git   
->> >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> >>  >> >> > b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> >>  >> >> > > new file mode 100644
->> >>  >> >> > > index 000000000000..86b5aca9b53e
->> >>  >> >> > > --- /dev/null
->> >>  >> >> > > +++   
->> >> b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
->> >>  >> >> > > @@ -0,0 +1,178 @@
->> >>  >> >> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
->> >>  >> >> > > +/*
->> >>  >> >> > > + * Copyright (C) 2022 Martin Botka   
->> >> <martin.botka@somainline.org>.  
->> >>  >> >> > > + */
->> >>  >> >> > > +
->> >>  >> >> > > +/dts-v1/;
->> >>  >> >> > > +
->> >>  >> >> > > +#include "sun50i-h616.dtsi"
->> >>  >> >> > > +
->> >>  >> >> > > +#include <dt-bindings/gpio/gpio.h>
->> >>  >> >> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> >>  >> >> > > +#include <dt-bindings/leds/common.h>
->> >>  >> >> > > +
->> >>  >> >> > > +/ {
->> >>  >> >> > > +     model = "BIQU CB1";
->> >>  >> >> > > +     compatible = "biqu,cb1", "allwinner,sun50i-h616";
->> >>  >> >> > > +
->> >>  >> >> > > +     aliases {
->> >>  >> >> > > +             serial0 = &uart0;
->> >>  >> >> > > +     };
->> >>  >> >> > > +
->> >>  >> >> > > +     chosen {
->> >>  >> >> > > +             stdout-path = "serial0:115200n8";
->> >>  >> >> > > +     };
->> >>  >> >> > > +
->> >>  >> >> > > +     leds {
->> >>  >> >> > > +             compatible = "gpio-leds";
->> >>  >> >> > > +
->> >>  >> >> > > +             led-0 {
->> >>  >> >> > > +                     function = LED_FUNCTION_POWER;
->> >>  >> >> > > +                     color = <LED_COLOR_ID_RED>;
->> >>  >> >> > > +                     gpios = <&pio 2 12   
->> >> GPIO_ACTIVE_HIGH>; /* PC12 */  
->> >>  >> >> > > +                     default-state = "on";
->> >>  >> >> > > +             };
->> >>  >> >> > > +
->> >>  >> >> > > +             led-1 {
->> >>  >> >> > > +                     function = LED_FUNCTION_STATUS;
->> >>  >> >> > > +                     color = <LED_COLOR_ID_GREEN>;
->> >>  >> >> > > +                     gpios = <&pio 2 13   
->> >> GPIO_ACTIVE_HIGH>; /* PC13 */  
->> >>  >> >> > > +             };
->> >>  >> >> > > +     };
->> >>  >> >> > > +
->> >>  >> >> > > +     reg_vcc5v: regulator-vcc5v {
->> >>  >> >> > > +             /* board wide 5V supply directly from the   
->> >> USB-C socket */  
->> >>  >> >> > > +             compatible = "regulator-fixed";
->> >>  >> >> > > +             regulator-name = "vcc-5v";
->> >>  >> >> > > +             regulator-min-microvolt = <5000000>;
->> >>  >> >> > > +             regulator-max-microvolt = <5000000>;
->> >>  >> >> > > +             regulator-always-on;
->> >>  >> >> > > +     };
->> >>  >> >> > > +
->> >>  >> >> > > +     reg_usb1_vbus: regulator-usb1-vbus {
->> >>  >> >> > > +             compatible = "regulator-fixed";
->> >>  >> >> > > +             regulator-name = "usb1-vbus";
->> >>  >> >> > > +             regulator-min-microvolt = <5000000>;
->> >>  >> >> > > +             regulator-max-microvolt = <5000000>;
->> >>  >> >> > > +             vin-supply = <&reg_vcc5v>;
->> >>  >> >> > > +             enable-active-high;
->> >>  >> >> > > +             gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /*   
->> >> PC16 */  
->> >>  >> >> > > +     };
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ehci1 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ehci2 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ehci3 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&mmc0 {
->> >>  >> >> > > +     vmmc-supply = <&reg_dldo1>;
->> >>  >> >> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
->> >>  >> >> > > +     no-1-8-v;
->> >>  >> >> > > +     bus-width = <4>;
->> >>  >> >> > > +     status = "disabled";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ohci1 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ohci2 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&ohci3 {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&r_i2c {
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +
->> >>  >> >> > > +     axp1530: pmic@36 {
->> >>  >> >> > > +             compatible = "x-powers,axp1530";
->> >>  >> >> > > +             reg = <0x36>;
->> >>  >> >> > > +             wakeup-source;
->> >>  >> >> > > +
->> >>  >> >> > > +             regulators{
->> >>  >> >> > > +                     reg_dcdc1: dcdc1 {
->> >>  >> >> > > +                             regulator-name =   
->> >> "axp1530-dcdc1";  
->> >>  >> >> > > +                             regulator-min-microvolt =   
->> >> <500000>;  
->> >>  >> >> > > +                             regulator-max-microvolt =   
->> >> <3400000>;  
->> >>  >> >> > > +                             regulator-step-delay-us =   
->> >> <25>;  
->> >>  >> >> > > +                             regulator-final-delay-us =   
->> >> <50>;  
->> >>  >> >> > > +                             regulator-always-on;
->> >>  >> >> > > +                     };
->> >>  >> >> > > +
->> >>  >> >> > > +                     reg_dcdc2: dcdc2 {
->> >>  >> >> > > +                             regulator-name =   
->> >> "axp1530-dcdc2";  
->> >>  >> >> > > +                             regulator-min-microvolt =   
->> >> <500000>;  
->> >>  >> >> > > +                             regulator-max-microvolt =   
->> >> <1540000>;  
->> >>  >> >> > > +                             regulator-step-delay-us =   
->> >> <25>;  
->> >>  >> >> > > +                             regulator-final-delay-us =   
->> >> <50>;  
->> >>  >> >> > > +                             regulator-ramp-delay =   
->> >> <200>;  
->> >>  >> >> > > +                             regulator-always-on;
->> >>  >> >> > > +                     };
->> >>  >> >> > > +
->> >>  >> >> > > +                     reg_dcdc3: dcdc3 {
->> >>  >> >> > > +                             regulator-name =   
->> >> "axp1530-dcdc3";  
->> >>  >> >> > > +                             regulator-min-microvolt =   
->> >> <500000>;  
->> >>  >> >> > > +                             regulator-max-microvolt =   
->> >> <1840000>;  
->> >>  >> >> > > +                             regulator-step-delay-us =   
->> >> <25>;  
->> >>  >> >> > > +                             regulator-final-delay-us =   
->> >> <50>;  
->> >>  >> >> > > +                             regulator-always-on;
->> >>  >> >> > > +                     };
->> >>  >> >> > > +
->> >>  >> >> > > +                     reg_aldo1: ldo1 {
->> >>  >> >> > > +                             regulator-name =   
->> >> "axp1530-aldo1";  
->> >>  >> >> > > +                             regulator-min-microvolt =   
->> >> <1800000>;  
->> >>  >> >> > > +                             regulator-max-microvolt =   
->> >> <1800000>;  
->> >>  >> >> > > +                             regulator-step-delay-us =   
->> >> <25>;  
->> >>  >> >> > > +                             regulator-final-delay-us =   
->> >> <50>;  
->> >>  >> >> > > +                             regulator-always-on;
->> >>  >> >> > > +                     };
->> >>  >> >> > > +
->> >>  >> >> > > +                     reg_dldo1: ldo2 {
->> >>  >> >> > > +                             regulator-name =   
->> >> "axp1530-dldo1";  
->> >>  >> >> > > +                             regulator-min-microvolt =   
->> >> <3300000>;  
->> >>  >> >> > > +                             regulator-max-microvolt =   
->> >> <3300000>;  
->> >>  >> >> > > +                             regulator-step-delay-us =   
->> >> <25>;  
->> >>  >> >> > > +                             regulator-final-delay-us =   
->> >> <50>;  
->> >>  >> >> > > +                             regulator-always-on;
->> >>  >> >> > > +                     };
->> >>  >> >> > > +             };
->> >>  >> >> > > +     };
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&uart0 {
->> >>  >> >> > > +     pinctrl-names = "default";
->> >>  >> >> > > +     pinctrl-0 = <&uart0_ph_pins>;
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&usbotg {
->> >>  >> >> > > +     /*
->> >>  >> >> > > +      * PHY0 pins are connected to a USB-C socket, but a   
->> >> role switch  
->> >>  >> >> > > +      * is not implemented: both CC pins are pulled to   
->> >> GND.  
->> >>  >> >> > > +      * The VBUS pins power the device, so a fixed   
->> >> peripheral mode  
->> >>  >> >> > > +      * is the best choice.
->> >>  >> >> > > +      * The board can be powered via GPIOs, in this case   
->> >> port0 *can*  
->> >>  >> >> > > +      * act as a host (with a cable/adapter ignoring   
->> >> CC), as VBUS is  
->> >>  >> >> > > +      * then provided by the GPIOs. Any user of this   
->> >> setup would  
->> >>  >> >> > > +      * need to adjust the DT accordingly: dr_mode set   
->> >> to "host",  
->> >>  >> >> > > +      * enabling OHCI0 and EHCI0.
->> >>  >> >> > > +      */
->> >>  >> >> > > +     dr_mode = "peripheral";
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};
->> >>  >> >> > > +
->> >>  >> >> > > +&usbphy {
->> >>  >> >> > > +     usb1_vbus-supply = <&reg_usb1_vbus>;
->> >>  >> >> > > +     status = "okay";
->> >>  >> >> > > +};  
->> >>  >> >> >
->> >>  >> >> >  
->> >>  >> >  
->> >>  >  
->> >   
->> And yes there should be CM4 and CB1 DT for these boards.
->> But since i do not own CM4. I will only create CB1 version of this DT.
->
->That's the interesting part: there is already a DT for the CM4:
->arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
->Theoretically you should be able to include this .dtsi instead of your
->cb1.dtsi into the board .dts, and it should work(TM). Now I don't know if
->this has ever been done before, but I would imagine this to not compile,
->as the references are not the same, and the peripherals being rather
->different anyway.
->So let's for a moment pretend we can only plug the CB1 in ;-)
->
->As for the same DT between the Manta and RPi4: let's just start with one.
->If the other one is indeed identical (thought they look very different to
->me!), we just might not bother with upstreaming the other one.
->Should there be differences (which could be an LED wired differently), and
->people care, we can always add a second .dts, and include the first one.
->
->As to which board to upstream: I am a bit torn between the more practical
->RPi4 board and the fact that you actually own the Manta board. I guess we
->should play it safe, and you upstream what you have and can test.
->
->Cheers,
->Andre
+> diff --git a/drivers/iio/magnetometer/tmag5273.c b/drivers/iio/magnetometer/tmag5273.c
+> new file mode 100644
+> index 000000000000..549ed1ddba61
+> --- /dev/null
+> +++ b/drivers/iio/magnetometer/tmag5273.c
+> @@ -0,0 +1,809 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for the TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor
+> + *
+> + * Copyright (C) 2022 WolfVision GmbH
+> + *
+> + * Author: Gerald Loacker <gerald.loacker@wolfvision.net>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +#define TMAG5273_DEVICE_CONFIG_1	 0x00
+> +#define TMAG5273_DEVICE_CONFIG_2	 0x01
+> +#define TMAG5273_SENSOR_CONFIG_1	 0x02
+> +#define TMAG5273_SENSOR_CONFIG_2	 0x03
+> +#define TMAG5273_X_THR_CONFIG		 0x04
+> +#define TMAG5273_Y_THR_CONFIG		 0x05
+> +#define TMAG5273_Z_THR_CONFIG		 0x06
+> +#define TMAG5273_T_CONFIG		 0x07
+> +#define TMAG5273_INT_CONFIG_1		 0x08
+> +#define TMAG5273_MAG_GAIN_CONFIG	 0x09
+> +#define TMAG5273_MAG_OFFSET_CONFIG_1	 0x0A
+> +#define TMAG5273_MAG_OFFSET_CONFIG_2	 0x0B
+> +#define TMAG5273_I2C_ADDRESS		 0x0C
+> +#define TMAG5273_DEVICE_ID		 0x0D
+> +#define TMAG5273_MANUFACTURER_ID_LSB	 0x0E
+> +#define TMAG5273_MANUFACTURER_ID_MSB	 0x0F
+> +#define TMAG5273_T_MSB_RESULT		 0x10
+> +#define TMAG5273_T_LSB_RESULT		 0x11
+> +#define TMAG5273_X_MSB_RESULT		 0x12
+> +#define TMAG5273_X_LSB_RESULT		 0x13
+> +#define TMAG5273_Y_MSB_RESULT		 0x14
+> +#define TMAG5273_Y_LSB_RESULT		 0x15
+> +#define TMAG5273_Z_MSB_RESULT		 0x16
+> +#define TMAG5273_Z_LSB_RESULT		 0x17
+> +#define TMAG5273_CONV_STATUS		 0x18
+> +#define TMAG5273_ANGLE_RESULT_MSB	 0x19
+> +#define TMAG5273_ANGLE_RESULT_LSB	 0x1A
+> +#define TMAG5273_MAGNITUDE_RESULT	 0x1B
+> +#define TMAG5273_DEVICE_STATUS		 0x1C
+> +
+> +#define TMAG5273_MANUFACTURER_ID	 0x5449
+> +
+> +#define TMAG5273_AUTOSLEEP_DELAY	 5000
+> +
+> +/* Bits in the TMAG5273_DEVICE_CONFIG_1 register */
+> +#define TMAG5273_AVG_MODE_MASK		 GENMASK(4, 2)
+> +#define TMAG5273_AVG_1_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 0)
+> +#define TMAG5273_AVG_2_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 1)
+> +#define TMAG5273_AVG_4_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 2)
+> +#define TMAG5273_AVG_8_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 3)
+> +#define TMAG5273_AVG_16_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 4)
+> +#define TMAG5273_AVG_32_MODE		 FIELD_PREP(TMAG5273_AVG_MODE_MASK, 5)
+> +
+> +/* bits in the TMAG5273_DEVICE_CONFIG_2 register */
+> +#define TMAG5273_OP_MODE_MASK		 GENMASK(1, 0)
+> +#define TMAG5273_OP_MODE_STANDBY	 FIELD_PREP(TMAG5273_OP_MODE_MASK, 0)
+> +#define TMAG5273_OP_MODE_SLEEP		 FIELD_PREP(TMAG5273_OP_MODE_MASK, 1)
+> +#define TMAG5273_OP_MODE_CONT		 FIELD_PREP(TMAG5273_OP_MODE_MASK, 2)
+> +#define TMAG5273_OP_MODE_WAKEUP		 FIELD_PREP(TMAG5273_OP_MODE_MASK, 3)
+> +
+> +/* bits in the TMAG5273_SENSOR_CONFIG_1 register */
+> +#define TMAG5273_MAG_CH_EN_MASK		 GENMASK(7, 4)
+> +#define TMAG5273_MAG_CH_EN_X_Y_Z	 0x07
+> +
+> +/* bits in the TMAG5273_SENSOR_CONFIG_2 register */
+> +#define TMAG5273_Z_RANGE_MASK		 BIT(0)
+> +#define TMAG5273_X_Y_RANGE_MASK		 BIT(1)
+> +#define TMAG5273_ANGLE_EN_MASK		 GENMASK(3, 2)
+> +#define TMAG5273_ANGLE_EN_X_Y		 1
+> +#define TMAG5273_ANGLE_EN_Y_Z		 2
+> +#define TMAG5273_ANGLE_EN_X_Z		 3
+> +
+> +/* bits in the TMAG5273_T_CONFIG register */
+> +#define TMAG5273_T_CH_EN		 BIT(0)
+> +
+> +/* bits in the TMAG5273_DEVICE_ID register */
+> +#define TMAG5273_VERSION_MASK		 GENMASK(1, 0)
+> +
+> +/* bits in the TMAG5273_CONV_STATUS register */
+> +#define TMAG5273_CONV_STATUS_COMPLETE	 BIT(0)
+> +
+> +/* state container for the TMAG5273 driver */
+> +struct tmag5273_data {
+> +	struct device *dev;
+> +	unsigned int devid;
+> +	unsigned int version;
+> +	char name[16];
+> +	int conv_avg;
+> +	int max_avg;
+> +	int range;
+> +	u32 angle_en;
+> +	struct regmap *map;
+> +	struct regulator *vcc;
+> +	/* Locks the sensor for exclusive use during a measurement (which
+> +	 * involves several register transactions so the regmap lock is not
+> +	 * enough) so that measurements get serialized in a first-come-first-
+> +	 * serve manner.
+> +	 */
+> +	struct mutex lock;
+> +};
+> +
+> +static const struct {
+> +	int avg;
+> +	u8 reg_val;
+> +} tmag5273_avg_table[] = {
+> +	{ 1, 0x00 }, { 2, 0x01 },  { 4, 0x02 },
+> +	{ 8, 0x03 }, { 16, 0x04 }, { 32, 0x05 },
+> +};
+> +
+> +/*
+> + * magnetic range in mT for different TMAG5273 versions
+> + * only version 1 and 2 are valid, version 0 and 3 are reserved
+> + */
+> +static const struct {
+> +	int range;
+> +	u8 reg_val;
+> +} tmag5273_range_table[4][2] = {
+> +	{ { 0, 0 }, { 0, 3 } },
+> +	{ { 40, 0 }, { 80, 3 } },
+> +	{ { 133, 0 }, { 266, 3 } },
+> +	{ { 0, 0 }, { 0, 3 } },
+> +};
+> +
+> +/*
+/**
 
-They do look different ofc. One has a full blown 3D printer board attached to it :) (which just occupies the 1 USB slot on the hub)
+It's kernel doc style, so mark it as such, but also run the kernel doc
+script over it and fix any warnings.
 
-On the rest i fully agree.
+> + * tmag5273_measure() - Make a measure from the hardware
+> + * @tmag5273: The device state
+> + * @t: the processed temperature measurement
+> + * @x: the raw x axis measurement
+> + * @y: the raw x axis measurement
+> + * @z: the raw x axis measurement
+> + * @angle: the calculated angle
+> + * @magnitude: the calculated magnitude
+> + * @return: 0 on success or error code
+> + */
+> +static int tmag5273_measure(struct tmag5273_data *data, u16 *t, u16 *x, u16 *y,
+> +			    u16 *z, u16 *angle, u16 *magnitude)
+> +{
+> +	unsigned int status;
+> +	u8 reg_data[12];
+> +	int ret;
+> +	u16 val;
+> +
+> +	mutex_lock(&data->lock);
+> +	ret = regmap_read(data->map, TMAG5273_CONV_STATUS, &status);
+> +	if (ret < 0)
+> +		goto out_unlock;
+> +
+> +	/*
+> +	 * Conversion time is 2425 us in 32x averaging mode for all three
+> +	 * channels. Since we are in continuous measurement mode, a measurement
+> +	 * may already be there, so poll for completed measurement with
+> +	 * timeout.
 
-Cheers,
-Martin
+Ideally adjust timeout to match what we expect for current mode. Can be a later
+optimization if you prefer.
+
+> +	 */
+> +	ret = regmap_read_poll_timeout(data->map, TMAG5273_CONV_STATUS, status,
+> +				       status & TMAG5273_CONV_STATUS_COMPLETE,
+> +				       100, 10000);
+> +	if (ret) {
+> +		dev_err_probe(data->dev, ret, "timeout waiting for measurement\n");
+> +		goto out_unlock;
+> +	}
+> +
+> +	ret = regmap_bulk_read(data->map, TMAG5273_T_MSB_RESULT, reg_data,
+> +			       sizeof(reg_data));
+Is there a need to read it in bulk?  Seems like it makes sense for the first 8 registers.
+If you split it there those can go directly into __be16 reg_data[4]
+then you can do a 2 byte read to get the angle and a separate one byte read to get the
+magnitude.
+
+Not as efficient though so maybe this dance is worthwhile.
+
+> +	if (ret)
+> +		goto out_unlock;
+> +
+> +	ret = regmap_read(data->map, TMAG5273_CONV_STATUS, &status);
+> +	if (ret < 0)
+> +		goto out_unlock;
+> +
+> +	mutex_unlock(&data->lock);
+> +
+> +	*t = get_unaligned_be16(&reg_data[0]);
+> +	*x = get_unaligned_be16(&reg_data[2]);
+> +	*y = get_unaligned_be16(&reg_data[4]);
+> +	*z = get_unaligned_be16(&reg_data[6]);
+As below - drop these directly into the s16 variables rather than going via a u16.
+> +	/*
+> +	 * angle has 9 bits integer value and 4 bits fractional part
+> +	 * 15 14 13 12 11 10 9  8  7  6  5  4  3  2  1  0
+> +	 * 0  0  0  a  a  a  a  a  a  a  a  a  f  f  f  f
+> +	 */
+> +	val = get_unaligned_be16(&reg_data[9]);
+> +	*angle = FIELD_GET(GENMASK(12, 0), val);
+> +	*magnitude = reg_data[11];
+> +	return ret;
+> +
+> +out_unlock:
+> +	mutex_unlock(&data->lock);
+> +	return ret;
+> +}
+> +
+> +/*
+> + * tmag5273_get_measure() - Measure a sample of all axis and process
+> + * @tmag5273: The device state
+> + * @to: Temperature out
+> + * @xo: X axis out
+> + * @yo: Y axis out
+> + * @zo: Z axis out
+> + * @ao: Angle out
+> + * @mo: Magnitude out
+> + * @return: 0 on success or error code
+> + */
+> +static int tmag5273_get_measure(struct tmag5273_data *data, s32 *to, s32 *xo,
+> +				s32 *yo, s32 *zo, u16 *ao, u16 *mo)
+> +{
+> +	u16 t, x, y, z, angle, magnitude;
+
+If these are signed, use signed variables.
+
+> +	int ret;
+> +
+> +	ret = tmag5273_measure(data, &t, &x, &y, &z, &angle, &magnitude);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * convert device specific value to millicelsius
+> +	 * use multiply by 16639 and divide by 10000 to achieve divide by 60.1
+> +	 *   and convert to millicelsius
+> +	 */
+> +	*to = (((s32)t - 17508) * 16639) / 1000 + 25000;
+
+That looks like it should be presented as a _raw channel and the offset
+and scale exported to userspace (which is much better at doign this sort of maths)
+
+> +	*xo = (s16)x;
+> +	*yo = (s16)y;
+> +	*zo = (s16)z;
+
+If these are 16 bit, why expand to 32 bits?  Also if you are doing that
+do it with sign_extend32() not like this so it is clear wht is going on.
+
+> +	*ao = angle;
+> +	*mo = magnitude;
+> +	return 0;
+> +}
+> +
+> +static int tmag5273_read_raw(struct iio_dev *indio_dev,
+> +			     const struct iio_chan_spec *chan, int *val,
+> +			     int *val2, long mask)
+> +{
+> +	struct tmag5273_data *data = iio_priv(indio_dev);
+> +	s32 t, x, y, z;
+> +	u16 angle, magnitude;
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = pm_runtime_resume_and_get(data->dev);
+> +		if (ret < 0)
+> +			return ret;
+
+blank line here.
+
+> +		ret = tmag5273_get_measure(data, &t, &x, &y, &z, &angle,
+> +					   &magnitude);
+> +		if (ret)
+> +			return ret;
+
+blank line here.
+
+> +		pm_runtime_mark_last_busy(data->dev);
+> +		pm_runtime_put_autosuspend(data->dev);
+> +		switch (chan->scan_index) {
+Better to use chan->addr and put enum values in there for the
+different channels.  scan_index has a different purpose that you
+aren't yet supporting in this driver (buffered mode / chardev
+access).
+
+> +		case 0:
+> +			*val = t;
+return IIO_VAL_INT;
+in each of these rather than break.
+
+> +			break;
+> +		case 1:
+> +			*val = x;
+> +			break;
+> +		case 2:
+> +			*val = y;
+> +			break;
+> +		case 3:
+> +			*val = z;
+> +			break;
+> +		case 4:
+> +			*val = angle;
+> +			break;
+> +		case 5:
+> +			*val = magnitude;
+> +			break;
+> +		default:
+> +			return dev_err_probe(data->dev, -EINVAL, "unknown channel\n");
+
+Not in probe, so not appropriate to use dev_err_probe().
+
+> +		}
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_TEMP:
+> +			/* 1 LSB = 1 millidegree Celsius */
+
+Don't expose scale if it's already in the base units.
+You can't get here anyway as you haven't set relevant bit in the mask 
+for the temp channesl.
+
+> +			*val = 1;
+> +			return IIO_VAL_INT;
+> +		case IIO_MAGN:
+> +			/*
+> +			 * The axis values are in stored in 2^15 / range LSB/mT.
+> +			 * Since 1 mT = 10 Gauss, we need to multiply by 10 and
+> +			 * divide by [range] to get Gauss from the raw value.
+> +			 */
+> +			*val = data->range * 10;
+> +			*val2 = 32768;
+> +			return IIO_VAL_FRACTIONAL;
+> +		case IIO_ANGL:
+> +			/*
+> +			 * Angle is in degrees and has four fractional bits,
+> +			 * therefore use 1/16 * pi/180 to convert to radiants.
+> +			 */
+> +			*val = 1000;
+> +			*val2 = 916732;
+> +			return IIO_VAL_FRACTIONAL;
+> +		case IIO_DISTANCE:
+> +			/* Magnitude is unscaled */
+
+If it's unscaled then don't provide a scale and make it a raw reading
+not a processed one.  This is common for various types of proximity sensor
+where we don't have any way to know the scaling.
+
+> +			*val = 1;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		/* Unknown request */
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +static struct attribute *tmag5273_attributes[] = {
+> +	&iio_dev_attr_conv_avg.dev_attr.attr,
+> +	&iio_dev_attr_conv_avg_available.dev_attr.attr,
+
+Needs documentation so we can review what it is for and see if it either
+fits with existing ABI or we need new generic ABI.
+Documentation/ABI/testing/sysfs-bus-iio-*
+
+Superficially I'm guessing this is an oversampling control and we
+have standard ABI for that.
+
+
+> +	&iio_dev_attr_range.dev_attr.attr,
+> +	&iio_dev_attr_range_available.dev_attr.attr,
+
+It's rare we allow a range attribute. I most cases the same can be derived
+from SCALE plus available for the raw channel.
+There have been a few really obscure corner cases where it has been only way
+of exposing things, but those always came with detailed justification.
+
+> +	NULL,
+
+No trailing comma on NULL terminators.
+
+> +};
+> +
+> +static const struct attribute_group tmag5273_attrs_group = {
+> +	.attrs = tmag5273_attributes,
+> +};
+> +
+> +#define TMAG5273_AXIS_CHANNEL(axis, index)                         \
+> +	{                                                          \
+> +		.type = IIO_MAGN,				   \
+> +		.modified = 1,					   \
+> +		.channel2 = IIO_MOD_##axis,                        \
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |     \
+> +				      BIT(IIO_CHAN_INFO_SCALE),    \
+> +		.scan_index = index,                               \
+> +		.scan_type = {                                     \
+> +			.sign = 's',                               \
+> +			.realbits = 32,                            \
+> +			.storagebits = 32,                         \
+
+From above these seem to be 16 bit...
+
+> +			.endianness = IIO_CPU,                     \
+> +		},                                                 \
+> +	}
+> +
+> +static const struct iio_chan_spec tmag5273_channels[] = {
+> +	{
+> +		.type = IIO_TEMP,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+> +		.scan_index = 0,
+> +		.scan_type = {
+> +			.sign = 's',
+> +			.realbits = 32,
+> +			.storagebits = 32,
+> +			.endianness = IIO_CPU,
+> +		},
+> +	},
+> +	TMAG5273_AXIS_CHANNEL(X, 1),
+> +	TMAG5273_AXIS_CHANNEL(Y, 2),
+> +	TMAG5273_AXIS_CHANNEL(Z, 3),
+> +	{
+> +		.type = IIO_ANGL,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
+> +		.scan_index = 4,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 16,
+> +			.storagebits = 16,
+> +			.endianness = IIO_CPU,
+> +		},
+> +	},
+> +	{
+> +		.type = IIO_DISTANCE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+Is it processed, or is it 
+> +		.scan_index = 5,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 16,
+> +			.storagebits = 16,
+> +			.endianness = IIO_CPU,
+> +		},
+> +	},
+> +	IIO_CHAN_SOFT_TIMESTAMP(6),
+> +};
+
+...
+
+> +
+> +static int tmag5273_chip_init(struct tmag5273_data *data)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_write(data->map, TMAG5273_DEVICE_CONFIG_1,
+> +			   TMAG5273_AVG_32_MODE);
+> +	if (ret)
+> +		return ret;
+> +	data->conv_avg = 32;
+Blank line here to separate blocks doing more or less unconnected things.
+
+> +	ret = regmap_write(data->map, TMAG5273_DEVICE_CONFIG_2,
+> +			   TMAG5273_OP_MODE_CONT);
+
+Register a devm_add_action_or_reset() to handle putting it in 
+sleep in error paths / remove().
+
+> +	if (ret)
+> +		return ret;
+Blank line here helps readability a little.
+> +	ret = regmap_write(data->map, TMAG5273_SENSOR_CONFIG_1,
+> +			   FIELD_PREP(TMAG5273_MAG_CH_EN_MASK,
+> +				      TMAG5273_MAG_CH_EN_X_Y_Z));
+> +	if (ret)
+> +		return ret;
+and here
+
+> +	ret = regmap_write(data->map, TMAG5273_SENSOR_CONFIG_2,
+> +			   FIELD_PREP(TMAG5273_ANGLE_EN_MASK, data->angle_en));
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->range = tmag5273_range_table[data->version][0].range;
+> +	return regmap_write(data->map, TMAG5273_T_CONFIG, TMAG5273_T_CH_EN);
+> +}
+> +
+> +static int tmag5273_probe(struct i2c_client *i2c,
+> +			  const struct i2c_device_id *id)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct device *dev = &i2c->dev;
+> +	struct device_node *node = dev->of_node;
+> +	struct tmag5273_data *data;
+> +	int val, ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +	i2c_set_clientdata(i2c, indio_dev);
+> +	data->dev = dev;
+> +	mutex_init(&data->lock);
+> +
+> +	data->vcc = devm_regulator_get(dev, "vcc");
+> +	if (IS_ERR(data->vcc))
+> +		return dev_err_probe(dev, PTR_ERR(data->vcc),
+> +				     "failed to get VCC regulator\n");
+> +
+> +	/* Operating voltage 1.7V .. 3.6V according to datasheet */
+
+That is normally considered a job for device tree binding or similar rather than
+a driver to configure it. AS such, can probably just use
+devm_regulator_get_enabled() and drop the need to manually turn it off again
+
+
+
+> +	ret = regulator_set_voltage(data->vcc, 1700000, 3600000);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to set VCC voltage\n");
+> +
+> +	ret = regulator_enable(data->vcc);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to enable VCC regulator\n");
+> +
+> +	/*
+> +	 * Regulators have to ramp up with 3V/ms, additional time to go to
+> +	 * stand-by mode is 270us typically. We give 1 ms to 2 ms time.
+
+That should be a problem for the regulator driver, not this one.
+The regulator_enable() should not return until it is powered up and we can carry
+on.
+
+> +	 */
+> +	usleep_range(1000, 2000);
+> +
+> +	data->map = devm_regmap_init_i2c(i2c, &tmag5273_regmap_config);
+> +	if (IS_ERR(data->map)) {
+> +		ret = PTR_ERR(data->map);
+> +		dev_err_probe(dev, ret, "failed to allocate register map\n");
+> +		goto out_disable_vcc;
+> +	}
+> +
+> +	ret = regmap_read(data->map, TMAG5273_DEVICE_ID, &val);
+> +	if (ret) {
+> +		/*
+> +		 * If we come from sleep with power already activated, the
+> +		 * first I2C command wakes up the chip but will fail.
+
+Minor but I'd make this unconditional. It's a small cost in probe() time but
+simplifies the code flow a little.
+
+
+> +		 * Time to go to stand-by mode from sleep mode is 50us
+> +		 * typically. During this time no I2C access is possible.
+> +		 */
+> +		usleep_range(80, 200);
+> +
+> +		ret = regmap_read(data->map, TMAG5273_DEVICE_ID, &val);
+> +		if (ret)
+> +			goto out_disable_vcc;
+> +	}
+> +	data->version = FIELD_PREP(TMAG5273_VERSION_MASK, val);
+> +
+> +	ret = regmap_bulk_read(data->map, TMAG5273_MANUFACTURER_ID_LSB,
+> +			       &data->devid, 2);
+> +	if (ret)
+> +		goto out_disable_vcc;
+> +
+> +	switch (data->devid) {
+> +	case TMAG5273_MANUFACTURER_ID:
+> +		strncpy(data->name, "TMAG5273", sizeof(data->name) - 2);
+
+Lowercase preferred as much more common for IIO device names.
+(no idea why, but we have ended up like that ;)
+
+I'd also be lazy / efficient as there are only two names
+
+		switch (data->version) {
+		case 1:
+			indio_dev->name = "tmag5273x1";
+			break;
+		case 2:
+			indio_dev->name = "tmag5273x2";
+			break;
+		default:
+		 	return -ENODEV; //after switch to devm for everything.
+		}	
+> +		switch (data->version) {
+> +		case 1:
+> +			strncat(data->name, "x1", 2);
+> +			break;
+> +		case 2:
+> +			strncat(data->name, "x2", 2);
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +		dev_info(dev, "%s", data->name);
+		noisy so don't print it. Can read from sysfs anyway.
+> +		data->max_avg = 32;
+
+		Given this is only valid option, why is it in here?
+
+> +		break;
+> +	default:
+> +		ret = -ENODEV;
+
+We generally only warn on such cases.  Often manufacturers spin new versions
+of chips that are compatible enough that we give them a fallback compatible
+in device tree.  That is only a useful thing to do if they'll 'work' with old
+drivers.   A warning that it might be the wrong device is considered fine though.
+"Unknown device ID...
+
+Bit tricky in this case as we have to pick between two values for some things.
+Chopse a default maybe?
+
+
+> +		dev_err_probe(dev, ret, "unhandled device ID 0x%x\n", data->devid);
+> +		goto out_disable_vcc;
+> +	}
+> +
+> +	/*
+> +	 * Angle-enable is optional and set to 1 (enable X-Y plane) by default,
+> +	 * the value is modified only if a valid u32 value can be decoded.
+> +	 */
+> +	data->angle_en = TMAG5273_ANGLE_EN_X_Y;
+> +	of_property_read_u32(node, "tmag5273,angle-enable", &data->angle_en);
+
+Use generic firmware properties linux/property.h so this will work with other
+types of firmware.
+
+> +
+> +	ret = tmag5273_chip_init(data);
+> +	if (ret)
+> +		goto out_disable_vcc;
+> +
+> +	indio_dev->info = &tmag5273_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->name = data->name;
+> +	indio_dev->channels = tmag5273_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(tmag5273_channels);
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, TMAG5273_AUTOSLEEP_DELAY);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_mark_last_busy(dev);
+> +	ret = pm_runtime_set_active(dev);
+> +	if (ret < 0)
+> +		goto out_disable_vcc;
+> +	pm_runtime_enable(dev);
+
+devm_pm_runtime_enable()
+
+> +	pm_runtime_idle(dev);
+
+Why idle rather than a pm_runtime_put_autosuspend()?
+
+> +
+> +	ret = iio_device_register(indio_dev);
+devm_iio_device_register()
+
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "device register failed\n");
+> +		goto cleanup_runtime;
+> +	}
+> +
+> +	return 0;
+> +
+> +cleanup_runtime:
+> +	pm_runtime_dont_use_autosuspend(dev);
+> +	pm_runtime_disable(dev);
+> +out_disable_vcc:
+> +	tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_SLEEP);
+> +	regulator_disable(data->vcc);
+> +	return ret;
+> +}
+> +
+> +static void tmag5273_remove(struct i2c_client *i2c)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(i2c);
+> +	struct tmag5273_data *data = iio_priv(indio_dev);
+> +	struct device *dev = &i2c->dev;
+> +
+> +	iio_device_unregister(indio_dev);
+> +
+> +	pm_runtime_dont_use_autosuspend(dev);
+> +	pm_runtime_disable(dev);
+> +	pm_runtime_set_suspended(dev);
+> +
+> +	tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_SLEEP);
+
+With use of devm_add_action_or_reset() for this you should be able to 
+move to a simpler fully devm_ managed flow and not have a remove()
+callback at all.
+
+> +	regulator_disable(data->vcc);
+> +}
+> +
+> +static int tmag5273_runtime_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct tmag5273_data *data = iio_priv(indio_dev);
+> +
+> +	tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_SLEEP);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tmag5273_runtime_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct tmag5273_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
+> +	if (ret) {
+> +		/*
+> +		 * Time to go to stand-by mode from sleep mode is 50us
+> +		 * typically. During this time no I2C access is possible.
+> +		 */
+How would we ever not have entered sleep mode and yet be calling runtime
+resume?  I'd just make the i2c access twice unconditionally.
+
+> +		usleep_range(80, 200);
+> +		ret = tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct dev_pm_ops tmag5273_pm_ops = {
+> +	SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
+> +	RUNTIME_PM_OPS(tmag5273_runtime_suspend, tmag5273_runtime_resume, NULL)
+> +};
+
+This looks familiar. 
+static const DEFINE_RUNTIME_DEV_PM_OPS(...)
+
+> +
+> +static const struct i2c_device_id tmag5273_id[] = {
+> +	{
+> +		"tmag5273",
+> +	},
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, tmag5273_id);
+> +
+> +static const struct of_device_id tmag5273_of_match[] = {
+> +	{
+> +		.compatible = "ti,tmag5273",
+> +	},
+> +	{ /* sentinel */ },
+
+Drop the trailing commas on these entries as we can never add anything after them
+so the comma never makes sense.
+
+
+> +};
+> +MODULE_DEVICE_TABLE(of, tmag5273_of_match);
+
+Thanks,
+
+Jonathan
