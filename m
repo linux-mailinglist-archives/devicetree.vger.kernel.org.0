@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEB36299D6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B0CB6299FE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:23:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbiKONQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:16:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48082 "EHLO
+        id S229661AbiKONXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:23:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbiKONQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:16:31 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1DFBA
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:16:30 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id c1so24347726lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:16:30 -0800 (PST)
+        with ESMTP id S229977AbiKONXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:23:05 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391611DDDE
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:02 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id c25so17480886ljr.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:23:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vl1BV7fBxn6Va3uDyQcOPanm5XadBqhJHUBBX9Sb6bI=;
-        b=M+nPLf+nbaNgQJZE3GZoHbIVDgFHNZyWDibcs3t07MLtUGfM+jXjJ4HMxEXGmruaKO
-         2rMbiJQKIt7T5dUt2xI7GQIs4T6EFphstUZVsobgWUz2wybUBqkKo7BhEiE8k0VGYmP9
-         F92t0Z8Up2MvN5Lx6F4B4tZ3/H/qeK11Khpe5vrxAFRc2z+jjVmdB/f0snl28Phd5G3Z
-         VhU2P0WgWkgC5B+NIS2hkr5ga7bb0r1QfvFF9P8c7bWl1W+KitlJNJSELPEElQtzJUHj
-         5VIPwVqpArabsYNNFerQQ62tF72X3gcMAVY68mmBQjvkbIyJ0LCzOioZk0BrnsaHOlcJ
-         rtnw==
+        bh=/o/3zwA1NwkP3vmamqHJzmINORKwtRnCyTK8X6rmfAY=;
+        b=Fp/yh30hTCyxhHXOGgmHXKUy+b/GnFmVdNFACkGhNIF4QJas8UQyMBe0ZXMkaGc9hv
+         RPBIgtKdUwfecY2HmklmKGh6a5yvsqJjZYcSwkPVTjJAjNpEh+nGKAu7SlqXd0GEQoj1
+         S7aQZxTwySUt18174hxlfphLdUzzrazFROeVor69sXxnd8gyl/l1IeDVai4jV7IcTVKC
+         E7+0k7S3W4gKClg5ZFqn7dD2I2PNoNTU/l06oUwBtXZwibpL2YPpVgYw20ixrSlRoXj0
+         kOdMOj0/aVJs9BzWrrZx81ASunCXeipCjuH4qxgtDSdGMppq37i1ynC/yLNMKo31DYlc
+         1rdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vl1BV7fBxn6Va3uDyQcOPanm5XadBqhJHUBBX9Sb6bI=;
-        b=Jiu+CeR8a2Qp+X16TK4GKMVP32lgp6foDT83SNxQBSJDpY/BSjWZXJR4Q92/5iHwW5
-         2PiTHAuxb/clLmp+XBOtut0PePxysK9uYqFTeW9ZWYb+Ei+tEI138t/IfEbTn8Jw+eja
-         Mnf+oM7vww14T5sUQzkFRUNuJSzxKZpghlAClJX9p6dz4aviXn4ISewz5GuMwu7r7dfP
-         64KIzD6f943OdlVOTEORH3LwrISsJzwHrgYCSg85t9u/NW3ZjDBbrXfBmzmd5NyGdEGI
-         bPRPZ3lLoi4jXBuPjeow+W8NnPKhYIndUAE9WA8J246lzCTEM3QvXo9vV8faLVzV6ZvV
-         S9Qg==
-X-Gm-Message-State: ANoB5pkAh4iZ1AJLH6dCr604ZKKCCR4MWQxYtkjBfJIApZcpGkitseB2
-        c+5jI/PudDd9IWjPGNYl2MLrXg==
-X-Google-Smtp-Source: AA0mqf4khaa5y9EhlBl8gS9PmoJr4OoakMGwbZAbkLgVi7zDvGOcJrtmg5qiaP7TkzP5lsOga3hyuw==
-X-Received: by 2002:a05:6512:128e:b0:4b3:ccea:9b2e with SMTP id u14-20020a056512128e00b004b3ccea9b2emr6383119lfs.379.1668518188894;
-        Tue, 15 Nov 2022 05:16:28 -0800 (PST)
+        bh=/o/3zwA1NwkP3vmamqHJzmINORKwtRnCyTK8X6rmfAY=;
+        b=W7H/kS/65Xl2jyJZ1XK8lByCDN1aMgbByekTmO/TWal+4+ADzZjYw2SQYE7h1nhgDk
+         J1xuncupbDRg4HGXd2+WT/wpmewf/yK8SFXAh2aE7Qk57tw1athWq29eZixysTi9YdOU
+         g7mNTYuGxQnY+njWNJnE8wNYWxblFBp3gda1y66yz5NAocMOEUiE67ssrHQVqMVKdma5
+         FKHHIomDlYLwLuRXWwGaLzrsODe8Re0oO8vCfOI+auOGdRYbPYzAAevH2LhOyTNwxfZ/
+         kVoZFXp/07zOpKBgdp8BkDfLUlKTeGGU57dKS13O/yoSRZ5LJFcbcIXJXOILIH3abaQd
+         QEag==
+X-Gm-Message-State: ANoB5pnxsIejSVDb5aByE1UDuFPf8pR8MHsBKgn+YrBzN0qx6hTAtVai
+        bjRZ9Qxahva3n0BfewSbOK6y8g==
+X-Google-Smtp-Source: AA0mqf4aI+PJ9CJYgPMHCCNlHjXG0ZEMQwuDfBpPge/N1r2HjXKeLCm1NzbPASZH5ZPVo1BO/jHh1A==
+X-Received: by 2002:a2e:8e75:0:b0:277:3e88:4fb6 with SMTP id t21-20020a2e8e75000000b002773e884fb6mr5512224ljk.509.1668518580553;
+        Tue, 15 Nov 2022 05:23:00 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi20-20020a05651c231400b0026dcf0cbb97sm2507562ljb.137.2022.11.15.05.16.27
+        by smtp.gmail.com with ESMTPSA id b41-20020a2ebc29000000b0026acc9edecdsm2504460ljf.47.2022.11.15.05.22.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:16:28 -0800 (PST)
-Message-ID: <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
-Date:   Tue, 15 Nov 2022 14:16:27 +0100
+        Tue, 15 Nov 2022 05:23:00 -0800 (PST)
+Message-ID: <073ed7fc-e276-738c-d25e-7ef0baa11745@linaro.org>
+Date:   Tue, 15 Nov 2022 14:22:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
+Subject: Re: [PATCH v3 02/10] dt-bindings: display: bridge: Add MHDP HDMI for
+ i.MX8MQ
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-7-herve.codina@bootlin.com>
+To:     Sandor Yu <Sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, vkoul@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-imx@nxp.com, tzimmermann@suse.de, lyude@redhat.com,
+        javierm@redhat.com, ville.syrjala@linux.intel.com,
+        sam@ravnborg.org, jani.nikula@intel.com, maxime@cerno.tech,
+        penguin-kernel@I-love.SAKURA.ne.jp, oliver.brown@nxp.com
+References: <cover.1667911321.git.Sandor.yu@nxp.com>
+ <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114111513.1436165-7-herve.codina@bootlin.com>
+In-Reply-To: <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,34 +84,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 12:15, Herve Codina wrote:
-> Add the USBF controller available in the r9a06g032 SoC.
+On 08/11/2022 14:00, Sandor Yu wrote:
+> Add bindings for i.MX8MQ MHDP HDMI.
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
 > ---
->  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../display/bridge/cdns,mhdp-imx8mq-hdmi.yaml | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
 > 
-> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-> index 563024c9a4ae..a4bb069457a3 100644
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
->  			};
->  		};
->  
-> +		udc: usb@4001e000 {
-> +			compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
-> +			reg = <0x4001e000 0x2000>;
-> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&sysctrl R9A06G032_HCLK_USBF>,
-> +				 <&sysctrl R9A06G032_HCLK_USBPM>;
-> +			clock-names = "hclkf", "hclkpm";
-> +			power-domains = <&sysctrl>;
-> +			status = "disabled";
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
+> new file mode 100644
+> index 000000000000..8c0afef157aa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence MHDP HDMI bridge
+> +
+> +maintainers:
+> +  - Sandor Yu <Sandor.yu@nxp.com>
+> +
+> +description:
+> +  The Cadence MHDP TX HDMI interface.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cdns,mhdp-imx8mq-hdmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Hotplug detect interrupter for cable plugin event.
+> +      - description: Hotplug detect interrupter for cable plugout event.
 
-If you provided all resources (clocks, power domains etc), why disabling it?
+I don't know what is interrupter, so maybe just "cable plugin/plugout"
+or "Hotplug cable plugin/plugout"?
+
+Sorry for not bringing this earlier.
+
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: plug_in
+> +      - const: plug_out
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      A port node pointing to the output port of a display controller.
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mhdp_hdmi: hdmi-bridge@32c00000 {
+> +        compatible = "cdns,mhdp-imx8mq-hdmi";
+> +        reg = <0x32c00000 0x100000>;
+> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +                <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+
+Align with opening <
+
+
 
 Best regards,
 Krzysztof
