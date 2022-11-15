@@ -2,106 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78DCC629712
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0916F62971F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 12:18:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237857AbiKOLR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 06:17:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54636 "EHLO
+        id S232736AbiKOLSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 06:18:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238255AbiKOLRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:17:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A67563A0;
-        Tue, 15 Nov 2022 03:17:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D9B13616A1;
-        Tue, 15 Nov 2022 11:17:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11215C433C1;
-        Tue, 15 Nov 2022 11:17:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668511025;
-        bh=WtfglS+fHBP2n3DCncZu5y610bEqJwb4B2bqp0aQtXA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kbZXyEsRQ7AbwmFyU7jSi25sJSMtMZHaEgRllS9A0n5qUULkADCOlqHupxcUhcLTx
-         NxZSBOYUCNBXcVvvAu1CiKEhyTMROCVv+Q4OxRHkyKELaEBa6KKWajbP9Ei+eq2bYD
-         4gwjbMiLp2Hdrn9Wk1y02JQciwUV4QltulHZSvBBo0cVUrlEsKaxro3XSsFc7wwWZS
-         OFnsFHV7oM+7/eKt152cSyC17XYhfMNSocVvK0sAGO2SOLAmiTeXakViAFD18M5QGp
-         vUxeLaIjziEZfbyK+i7fn23zz7Mq8sb8HAAWTJywrvIa1ajuLapUl8gTxazKsPGSEs
-         ADZSqF3caLEeQ==
-Date:   Tue, 15 Nov 2022 11:16:53 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Corentin LABBE <clabbe@baylibre.com>, andrew@lunn.ch,
-        calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, lgirdwood@gmail.com, pabeni@redhat.com,
-        robh+dt@kernel.org, samuel@sholland.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        netdev@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 1/3] regulator: Add of_regulator_bulk_get_all
-Message-ID: <Y3N1JYVx9tB9pisR@sirena.org.uk>
-References: <20221115073603.3425396-1-clabbe@baylibre.com>
- <20221115073603.3425396-2-clabbe@baylibre.com>
- <Y3Nj4pA2+WRFvSNd@sirena.org.uk>
- <Y3NnirK0bN71IgCo@Red>
- <Y3NrQffcdGIjS64a@sirena.org.uk>
- <Y3NtKgb0LpWs0RkB@shell.armlinux.org.uk>
+        with ESMTP id S233001AbiKOLR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 06:17:59 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A9027FD5
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:17:33 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id kt23so35210765ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 03:17:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f6IjOuxVRqwYYk9pLv1Yfn07Gi6XGY94dgyzaZaHkoI=;
+        b=puMBpdWyj4ubsojCo/jC54Hst8XON3KObkLMeAubcKA6ihpqoIIDRkJRvVIQCMJ1YP
+         7eYr5a7zHxqqgsEuzmiMYYTazppiXKn+gSLR1tX9tuNh9OlcJhOsfU9MVeQsUOcTqsdv
+         5njesmo3FllfcDseoIMj9J+nHjEUgrq4sKghAnOETIr1jkbt3lnW6rjGAaAtLBO2cI8c
+         UpqCQNu7F2MLUz9fIbW3PH+I78Ux5G+zWgal1/0RHbC7JQYj5HvLaPhJwNLKuPHK3X2b
+         n+8I1dMIX0BhhtsmDr3YURxUhOhIpJymN0jsjr6wD+y42GeSA2CQjo5h6ghaSvTfET+0
+         Nguw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f6IjOuxVRqwYYk9pLv1Yfn07Gi6XGY94dgyzaZaHkoI=;
+        b=qHtAHqoyGw6zz6SDsENEbm7Yfb5aHSI02XY+O0MzCoxzUa1tvir6plH7ipGsKbZEex
+         9p0QYrC93grHEZEzuGET5r8Gsx2ZEaBjPcH09K4OQQjqKywOL9RTiMzTpX/h6ZXlgb8r
+         GhCKNRCUnzpANOBp5pQi8RIkdReo0LfVLvWVhO2qioeeQP0boXgSSpShAAhhHHjlK8Pd
+         kqUtjeRPqjDDdayBRkUiqajl2sW0iuyGZh6LZOXRNON4S6h+fN+2JtFIi5AKL+yZAJVJ
+         LCcNm9jZWGaGwyGyFP7ARJi9JAStkALnb0vnw1SW4074Ne7vDHqVu1AyA/2fK2M9d1EQ
+         5o4g==
+X-Gm-Message-State: ANoB5pnXYtAsr8/GqIgA9wOAW9KmlitE1HpaKx7yVfFROTyjqOxfwJec
+        7q8XUgVYmMxVNxRLxLh9OsLKig==
+X-Google-Smtp-Source: AA0mqf5IysjqPGQiH0eOOXTA4zlm4ZoIUc/ikYmnFKhdkc7e/dZX+QzxUMdfSlI1E9bvlfo9aJxpaw==
+X-Received: by 2002:a17:906:388c:b0:7aa:97c7:2c04 with SMTP id q12-20020a170906388c00b007aa97c72c04mr13520583ejd.191.1668511051709;
+        Tue, 15 Nov 2022 03:17:31 -0800 (PST)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id eg25-20020a056402289900b00457b5ba968csm5973519edb.27.2022.11.15.03.17.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 03:17:28 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        quic_kalyant@quicinc.com, swboyd@chromium.org,
+        robert.foss@linaro.org, angelogioacchino.delregno@somainline.org,
+        loic.poulain@linaro.org, vkoul@kernel.org,
+        quic_vpolimer@quicinc.com, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
+        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
+        andersson@kernel.org
+Subject: [PATCH v2 00/12] Enable Display for SM8350
+Date:   Tue, 15 Nov 2022 12:17:09 +0100
+Message-Id: <20221115111721.891404-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="khsmKj4b0178bR6g"
-Content-Disposition: inline
-In-Reply-To: <Y3NtKgb0LpWs0RkB@shell.armlinux.org.uk>
-X-Cookie: Ego sum ens omnipotens.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dependencies:
+https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
 
---khsmKj4b0178bR6g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Branch:
+https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v2
 
-On Tue, Nov 15, 2022 at 10:42:50AM +0000, Russell King (Oracle) wrote:
-> On Tue, Nov 15, 2022 at 10:34:41AM +0000, Mark Brown wrote:
+This series implements display support for SM8350 and
+enables HDMI output for the SM8350-HDK platform.
 
-> > Well, it's not making this maintainer happy :/  If we know what
-> > PHY is there why not just look up the set of supplies based on
-> > the compatible of the PHY?
+Changes from v1:
+ - Added R-b tags from v1
+ - Added qcom,sm8350-dpu binding patch
+ - Added qcom,sm8350-mdss binding patch
+ - Corrected sm8350.dtsi according to new dpu/mdss bindings
+ - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
+ - Bjorn: Moved lt9611 pinctl pins into a common node
+ - Bjorn/Krzysztof: Moved status property to last in node
+ - Krzysztof: Changed hdmi-out to hdmi-connector
+ - Krzysztof: Fixed regulator node name
+ - Krzysztof: Changed &mdss to status=disabled as default
+ - Krzysztof: Changed &mdss_mdp node name to display-controller
+ - Krzysztof: Fixed opp-table node name
+ - Krzysztof: Fixed phy node name
+ - Dmitry: Split commit containing dpu & mdss compatibles string
+ - Dmitry: Added msm_mdss_enable case
+ - Dmitry: Fixed dpu ctl features
+ 
 
-> It looks to me like this series fetches the regulators before the PHY
-> is bound to the driver, so what you're proposing would mean that the
-> core PHY code would need a table of all compatibles (which is pretty
-> hard to do, they encode the vendor/device ID, not some descriptive
-> name) and then a list of the regulator names. IMHO that doesn't scale.
+Robert Foss (12):
+  dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+  dt-bindings: display: msm: Add qcom,sm8350-mdss binding
+  drm/msm/dpu: Refactor sc7280_pp location
+  drm/msm/dpu: Add SM8350 to hw catalog
+  drm/msm/dpu: Add support for SM8350
+  drm/msm: Add support for SM8350
+  arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
+  arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
+  arm64: dts: qcom: sm8350: Use 2 interconnect cells
+  arm64: dts: qcom: sm8350: Add display system nodes
+  arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
+  arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
 
-Oh, PHYs have interesting enough drivers to dynamically load
-here? The last time I was looking at MDIO stuff it was all
-running from generic class devices but that was quite a while
-ago.
+ .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
+ .../display/msm/qcom,sm8350-mdss.yaml         | 240 +++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 226 +++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 210 ++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   4 +
+ 8 files changed, 1108 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
 
---khsmKj4b0178bR6g
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNzdSUACgkQJNaLcl1U
-h9Dunwf/UIC8Fi+irHTQ/olw2gqDv6691gO5hJTGM3xepy7LuVjmp0NUgHJR3q8G
-NPWdNrz0GP3bdx61XL1FlajcfnM/JU5RoMiFAyQmnceuK7P2hmLboHcW85BFGjtc
-FP8wgwBiWyrAfZnEePrZcPwxKFpdyUxtX3pkhTWy5+MYsc8H+fBiEpmpOhPu+FYb
-gZwx/FeE0fxZQKnViJddT5naB61EZ7OR5EsGjuZP2+AVG8D5c9seFd81V1ulkQKe
-IPwRZGjre5377b3iy3gVbtrJ6ol4nN0YmaEkW2eL0BVcDwCCVSkf7nP5rK8QIiAM
-8HFyYYD6WtCEjnUU1tyFcRLYPLKJwA==
-=KltA
------END PGP SIGNATURE-----
-
---khsmKj4b0178bR6g--
