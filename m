@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FFC629576
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15037629578
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:13:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238425AbiKOKNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:13:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33334 "EHLO
+        id S238450AbiKOKNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:13:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238354AbiKOKNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:13:24 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C412624F35
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:38 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so12740401wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:38 -0800 (PST)
+        with ESMTP id S238341AbiKOKNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:13:25 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B2F24BEB
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:39 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id r4-20020a1c4404000000b003cfdd569507so99169wma.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=HYUPzUV+S9Fy+mYwzh6CSP3umqa+7In6uixG2u9bF/E=;
-        b=a0+qfMKXjIvovlIGHjkV1WfW7ga7PZy0Eqh9MfJis5SerHAAdrfO/Ln3EtAEoo5TOA
-         NQb7EA5x5abu8j73no53C9tyB4hAw0HJBzCNTCZfLloLil87NNOiG+wXo6CiMEIwFCZ/
-         FwbNptzJsJUShD3S+B6D6PWEBtDIP/d8ftIhU5qqlMnOSiaR9vtbrnhmUJ8xoRe9rU7x
-         xiJTFkXDspL5NEyspZtI7Y9/ZVHGLzpU2jVUTg86Pz+ma1hog9R/WXgxyg4p3xoP+Duu
-         kSBpMX1LF5nd3+hWLuux0lCHjIqyHdm0Tsa2kSlD7gdAqf8eR2qjpQ6O9KdswyQyOwrT
-         v0rQ==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wwzcVpYP/Huaa1K0tWSVBnF1N89m1GUqGjxL6qKqN7M=;
+        b=jdGg9Z0znwZ9TjN8AtGSbEtR9nTyHCO05xCqDX03z+NMz9mvPreLzOlmHaRKgqIv4+
+         OejX14zkwM7ZjiwAbjAcd/78tchLwPuJtmTqRxIcfvnbBpprHhYpDNX8z6gbLJRH7Fq9
+         LOHxwAM7wFSJOerExOGz0W7E0cxjpHRUwzcWDGj8u6lSRSyVY9ovFJ+9IAYaSkWzc2CO
+         qFhYf2r+/4zTMbdFJfocySkcFs1llou73TQ3Aq6FjEkJ9srGWdVc7LJ1kBTpwt4FI4bB
+         a14UhvaWkgdW3EeOmx0hjkkDZS9yZs4mWVNSLfTe7S61OT4WxcZjjI9jDZcP9nj/oUfC
+         cBUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HYUPzUV+S9Fy+mYwzh6CSP3umqa+7In6uixG2u9bF/E=;
-        b=Sj2avQDs+sQqI11UHNokjnnc36WQ36YSlej5fsATCx12sXUt7XyDDNWbGA/ZfXeaQc
-         RggcKxA0x6KKcGeGGKR56nWIjjAmzTGH3eLKin4WVQQR2tD4uQmLdVQHZClZhDEwR7gK
-         ricJakcaEv18jeTcsyzRZmo+Rub+/KvHUWCIbbA6JhysvWIOEN57JFliW1ZhE7DVIxJN
-         KsHGgI35v5s4b1wzWB+uKojvonDRdLT9a81UXfDIzyPm/uKsTcqSKQy+sqYoboRAEeOA
-         X2p+f6HSfiAa6f2ZGlzEmXSs1sqHIf/87CNy1yGkSOwfBVlK9ljk3bOXMR2I1c7FJm43
-         q/Jw==
-X-Gm-Message-State: ANoB5pmdmry15mqg+BkpRKX/8iG+dUrVcEuz4k7kiKzMUXS2cScJODXi
-        p5afObbpmD6W9eFq33pZ+7k4gw==
-X-Google-Smtp-Source: AA0mqf6cqFMpLe4sdsSvweZOEAkruMlMvbfcomg5LEJX/mo3qjW1mryzLkhdNwpXKrX1k455qG5wHg==
-X-Received: by 2002:a7b:cb89:0:b0:3cf:8a44:e1eb with SMTP id m9-20020a7bcb89000000b003cf8a44e1ebmr891215wmi.189.1668507157277;
-        Tue, 15 Nov 2022 02:12:37 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wwzcVpYP/Huaa1K0tWSVBnF1N89m1GUqGjxL6qKqN7M=;
+        b=oTxpFE0bbJ27rjOSk266dPR4nu2s1VcGyJF+hFC/aN66lB3Fivp6XEAOIqiuxVYvvC
+         A1qZ/BK0+AjfUGZZY6Sz/DZ3fD9Hpu+HvQep9uva3NAAxORd3QL5iournqSCiajITPvp
+         JHMQoUnBbpBBsL17HNCRiexCQlz1X4BoELfOWaLVkaHdTrhjYZlIS8t7TwoujSU/J0J1
+         5j3jJxjtVkKO2E2vZETYfKQJKjttyUTbmirI4vBz1Q8apIbxlBmn75+iiUZw/TnXhq01
+         RyBj3La2rEAgtd6AVTv+Z6oWG1knl3crtXQ6xKxID76wu4KXr6w8HYuM/c1v/9cBXXIJ
+         71hg==
+X-Gm-Message-State: ANoB5pkZ4l4xIP6ydQxppHehgGUnPlMCPgvG8X0oAKOd8sDAtl2Wm3bi
+        PrOQGOicIDxnzvKHQ+OzTaPA8Q==
+X-Google-Smtp-Source: AA0mqf7mzTDYGm3jtXN5N/W93WwqpbPJySt8B/JavAFHbPl5RvqNlD3ZpVecc5LEggz7hYo5mxfKRA==
+X-Received: by 2002:a05:600c:654e:b0:3cf:7016:d401 with SMTP id dn14-20020a05600c654e00b003cf7016d401mr21014wmb.154.1668507158160;
+        Tue, 15 Nov 2022 02:12:38 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id az40-20020a05600c602800b003b492753826sm15165154wmb.43.2022.11.15.02.12.36
+        by smtp.gmail.com with ESMTPSA id az40-20020a05600c602800b003b492753826sm15165154wmb.43.2022.11.15.02.12.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:12:36 -0800 (PST)
-Subject: [PATCH v4 0/2] arm: qcom: mdm9615: second round of bindings and DT fixes
+        Tue, 15 Nov 2022 02:12:37 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Tue, 15 Nov 2022 11:12:35 +0100
+Subject: [PATCH v4 1/2] dt-bindings: regulators: convert non-smd RPM Regulators
+ bindings to dt-schema
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-b4-tracking: H4sIABJmc2MC/43NTQrCMBAF4KtI1kYmv1pX3kNcTNPRBtJUEi1I6d0d3IkLuxreg/fNLCqVSFUcN7
- MoNMUax8zBbjci9JhvJGPHWWjQWgE4OXRD45WT95jDoyT5wiFJZa4uqAPazqDgaYuVZFswh57H+ZkS
- l32sj7G8Pq8mxef8R52UBAmhDQCeNBo4pZixjLux3MSFxUmvUTQr3jRX8nsE29KPYtYohhVyBNZ5a5 u9+lKWZXkDb0ygeUoBAAA=
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 15 Nov 2022 11:12:34 +0100
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
+Message-Id: <20221005-mdm9615-pinctrl-yaml-v4-1-463523919c19@linaro.org>
+References: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
+In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
 To:     Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -71,73 +72,156 @@ Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
 X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a second round of bindings & DT fixes for the MDM9615 platform.
+Convert the non-SMD Regulators bindings to dt-schema, the old text based
+bindings will be deleted later since the RPM bindings are not yet converted.
 
-This second round focuses on less trivial changes like pinctrl & regulators bindings,
-the remaining work will mainly be fixing the qcom,kpss-timer/qcom,msm-timer situation and
-add bindings for qcom,lcc-mdm9615, qcom,kpss-gcc & swir,mangoh-iotport-spi.
-
-Dependencies: None
-
-To: Andy Gross <agross@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@somainline.org>
-To: Liam Girdwood <lgirdwood@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-Changes in v4:
-- Removed applied patches
-- Removed "-ipc" from bindings file name and removed IPC from title & description
-- Added the review tags from v3 after file renaming & title/description change, after Lee's acceptation
-- Link to v3: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org
+ .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 +++++++++++++++++++++
+ 1 file changed, 128 insertions(+)
 
-Changes in v3:
-- Path 1: Removed from serie because applied
-- Path 2: None
-- Path 3: Added reviewed-by tag
-- Path 4: Fixed dt-schema title and added unevaluatedProperties
-- Path 5: Various schema fixes, uses same naming as other dt-schema for qcom regulators
-- New patch added changing regulators names of msm8660 to conform to bindings
-- Link to v2: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+new file mode 100644
+index 000000000000..dde8fbd3f0af
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/qcom,ipc-rpm-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm RPM regulator
++
++description:
++  The Qualcomm RPM regulator is modelled as a subdevice of the RPM.
++
++  Please refer to Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
++  for information regarding the RPM node.
++
++  The regulator node houses sub-nodes for each regulator within the device.
++  Each sub-node is identified using the node's name, with valid values listed
++  for each of the pmics below.
++
++  For pm8058 l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15,
++  l16, l17, l18, l19, l20, l21, l22, l23, l24, l25, s0, s1, s2, s3, s4,
++  lvs0, lvs1, ncp
++
++  For pm8901 l0, l1, l2, l3, l4, l5, l6, s0, s1, s2, s3, s4, lvs0, lvs1, lvs2, lvs3,
++  mvs
++
++  For pm8921 s1, s2, s3, s4, s7, s8, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
++  l12, l14, l15, l16, l17, l18, l21, l22, l23, l24, l25, l26, l27, l28,
++  l29, lvs1, lvs2, lvs3, lvs4, lvs5, lvs6, lvs7, usb-switch, hdmi-switch,
++  ncp
++
++  For pm8018 s1, s2, s3, s4, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
++  l12, l14, lvs1
++
++  For smb208 s1a, s1b, s2a, s2b
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpm-pm8058-regulators
++      - qcom,rpm-pm8901-regulators
++      - qcom,rpm-pm8921-regulators
++      - qcom,rpm-pm8018-regulators
++      - qcom,rpm-smb208-regulators
++
++patternProperties:
++  ".*-supply$":
++    description: Input supply phandle(s) for this node
++
++  "^((s|l|lvs)[0-9]*)|(s[1-2][a-b])|(ncp)|(mvs)|(usb-switch)|(hdmi-switch)$":
++    description: List of regulators and its properties
++    $ref: regulator.yaml#
++    unevaluatedProperties: false
++    properties:
++      bias-pull-down:
++        description: enable pull down of the regulator when inactive
++        type: boolean
++
++      qcom,switch-mode-frequency:
++        description: Frequency (Hz) of the switch-mode power supply
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum:
++          - 19200000
++          - 9600000
++          - 6400000
++          - 4800000
++          - 3840000
++          - 3200000
++          - 2740000
++          - 2400000
++          - 2130000
++          - 1920000
++          - 1750000
++          - 1600000
++          - 1480000
++          - 1370000
++          - 1280000
++          - 1200000
++
++      qcom,force-mode:
++        description: Indicates that the regulator should be forced to a particular mode
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum:
++          - 0 # QCOM_RPM_FORCE_MODE_NONE do not force any mode
++          - 1 # QCOM_RPM_FORCE_MODE_LPM force into low power mode
++          - 2 # QCOM_RPM_FORCE_MODE_HPM force into high power mode
++          - 3 # QCOM_RPM_FORCE_MODE_AUTO allow regulator to automatically select its own mode
++              # based on realtime current draw, only for pm8921 smps and ftsmps
++
++      qcom,power-mode-hysteretic:
++        description: select that the power supply should operate in hysteretic mode,
++          instead of the default pwm mode
++        type: boolean
++
++additionalProperties: false
++
++required:
++  - compatible
++
++examples:
++  - |
++    #include <dt-bindings/mfd/qcom-rpm.h>
++    regulators {
++      compatible = "qcom,rpm-pm8921-regulators";
++      vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
++
++      s1 {
++        regulator-min-microvolt = <1225000>;
++        regulator-max-microvolt = <1225000>;
++
++        bias-pull-down;
++
++        qcom,switch-mode-frequency = <3200000>;
++      };
++
++      pm8921_s4: s4 {
++        regulator-min-microvolt = <1800000>;
++        regulator-max-microvolt = <1800000>;
++
++        qcom,switch-mode-frequency = <1600000>;
++        bias-pull-down;
++
++        qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
++      };
++    };
++...
 
-Changes in v2:
-- Rebased on v6.1-rc1
-- Patch 1: Fixed bindings and aligned with Krysztof's series
-- Patch 2: Rewrote patch title and added reviewed-by tag
-- Patch 3: Added reviewed-by tag
-- Patch 4: Moved to end, added support for (regulators|-regulators) sudnode
-- Patch 5: Fixed schema description and added missing unevaluatedProperties in patternProperties
-- Patch 6: Dropped & squashed with patch 4
-- Link to v1: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org
-
----
-Neil Armstrong (2):
-      dt-bindings: regulators: convert non-smd RPM Regulators bindings to dt-schema
-      dt-bindings: soc: qcom: convert non-smd RPM bindings to dt-schema
-
- Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 283 ---------------------
- .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 ++++++++++
- .../devicetree/bindings/soc/qcom/qcom,rpm.yaml     | 101 ++++++++
- 3 files changed, 229 insertions(+), 283 deletions(-)
----
-base-commit: 19d64985796125c5e3820c3db995c5df6d13d6dc
-change-id: 20221005-mdm9615-pinctrl-yaml-13f5c18a4d3a
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+b4 0.10.1
