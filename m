@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E47A0629A43
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E2F8629A46
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:31:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiKONbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:31:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
+        id S229736AbiKONbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:31:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiKONbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:31:13 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7F5E94
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:11 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id s12so21838328edd.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:11 -0800 (PST)
+        with ESMTP id S229713AbiKONbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:31:15 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A41E94
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:13 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id s5so5644021edc.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IiZNPefqWsmH3ZBwLzJSiNW009NxhDiT7gHxpkwTECI=;
-        b=kyMm9dzGTmkggekSl/fhsLsfuT8amxXO4nXvV3egvBQEdesRVsaWe8PtW5bKNQvtKm
-         utNBsudX6+R6JDFrkZCybji7HWB8/tc0MHD87PCqLk/h61ijC7HJKGcEUxmay3sa+cYN
-         n94o9hzrHBxHETnHy879umkzFz+aBDQ65gsP1w5ULcp+P5IiRCbdmVbWrUxNK3iRD32S
-         6uNLZKvcQrqOEVOeaE7cs7wef+HXgW67h6WfduQWqzK82mpvdy8OqN6K6sDOg7qc+SJc
-         DqNz44GQIefFBkAF8dFb6LiNt/u33l9YxlUbqzQcClLerQrklw8+wJYBbuot3F+kcjwS
-         Y+CQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BI4uKN83KwpFv+aZH8WcfU1uC+N8zfagUkvOFMX2f/0=;
+        b=paG/2fJENIvm8NnWAawUhhBzGSPdHRUpmbX4bOrjkAokwgW0r0gNTXCK9Zf+jwsSax
+         k8F1TG1paJuubjAzS5iLwmaEavsKZkxKPlXnDnjEok59ScH5ZjSdN+xtgF6dasadbWXl
+         R/nbD24qHP7qcJ/VBNcX68QJhF60mKMl8CBp1Oxc6oMngar7Uh6Ec427ORMXsM93P1xQ
+         VlTuH6S5YVIScNueY0JEMKkQ1JinpLtVv712a7i/XwL26wZ+aaK+POyI8QMHqxzUkd1F
+         ftru4A7QfO8njAqTbaYU1NgA4Nkvbi6IKQXydF95oYdU225WFkcxZqO0bF4FaLef0XNA
+         JMlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IiZNPefqWsmH3ZBwLzJSiNW009NxhDiT7gHxpkwTECI=;
-        b=joCbls3qQXVE/HLyeXAmkp447HY/gIK+dXo76y87xO4oUZykoGrlUgkR6MOc2X4B7y
-         mcKnoDYjvmqtFD881MfGUUzTfQIZne6X+tAabn5YvF819RuoexmnryHsQdddALOtQ3aA
-         fzuciezL7+sxP4MFZULDG4Y1BAd82+nOUMliWU0qYVCj4f1ZgKXV8DIEIDa82Lpk0n5W
-         OmN7+uYGzLcuprRqsfiWmzBu0xhu30eN2IsnlMInz+Vl7LxMueOpQm8Yh8ZeCL+0EuQb
-         7oT+feak3lRQMbHLq1YiPCVuKU92gvqEy4c7lHFu6BqjTgEKe+yj1iobD0vn9m3fbRJF
-         dRvw==
-X-Gm-Message-State: ANoB5pmuPdKd/SFJ7OY5FwQrxeSkRSKBE/Q98f6zJuGT+uRfaOoN22AC
-        eerGox/CaMggtaXimoqTCbuvqg==
-X-Google-Smtp-Source: AA0mqf4dpx4w6x/phoewqJ5Ke40pRyOHvvagLP/cl7aCR6H+XDSla2FPNOiX4W017H1HCmTjVHDr0A==
-X-Received: by 2002:a05:6402:f19:b0:461:a1c1:b667 with SMTP id i25-20020a0564020f1900b00461a1c1b667mr15330299eda.191.1668519070263;
-        Tue, 15 Nov 2022 05:31:10 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BI4uKN83KwpFv+aZH8WcfU1uC+N8zfagUkvOFMX2f/0=;
+        b=W/8GDEYx0Mer121+3IBvjl4IKeVo0/Yxoe3sERRXywylowqUDt4WgzWMgreCpyLOF1
+         vnZRkCHPKn/aGVq9yNAZhIJfKRslElj9v2gKqOXz+e4nY4R4gNo8doB43BtiD/7/DWxR
+         qIZPRvNtMp32HXo583ZPfNCdf0vkjJ1I13ny0iJkATskooPgq0Swni3yREXKz49mE5Cz
+         AEJWTo9PzXEEWv/3lT7jQNnbo6RNQoLb0yhGNzPjx2gOd4cPIp0MvZHhbVGYdE04xVCk
+         hoWL+xzdykGVFsdMmtiuyRPi2lxjsRXIirp5mgbPUzjY33r3ZRUzIx2ABN9g1jCwn+4c
+         gg7w==
+X-Gm-Message-State: ANoB5pmg5CFis7c4kG3SNv+DUAAaLWXaPCP8d+TxmfAjgm32Egm9Flyi
+        Prc3EEFSQYAtuSCTCbckmtm1gQ==
+X-Google-Smtp-Source: AA0mqf7JZToraL1ximlhe1IQa5XejnrUhUva884fFu71/bfihz2zI7eZX+2nHb5XQCXMz8jq9lSo7A==
+X-Received: by 2002:aa7:d64a:0:b0:45b:cb6b:c342 with SMTP id v10-20020aa7d64a000000b0045bcb6bc342mr15099503edr.282.1668519072342;
+        Tue, 15 Nov 2022 05:31:12 -0800 (PST)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id q22-20020aa7d456000000b004618f2127d2sm6162176edr.57.2022.11.15.05.31.08
+        by smtp.gmail.com with ESMTPSA id q22-20020aa7d456000000b004618f2127d2sm6162176edr.57.2022.11.15.05.31.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 05:31:09 -0800 (PST)
+        Tue, 15 Nov 2022 05:31:11 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
@@ -62,10 +64,12 @@ To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
         vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
         andersson@kernel.org
-Subject: [PATCH v2 00/12] Enable Display for SM8350
-Date:   Tue, 15 Nov 2022 14:30:53 +0100
-Message-Id: <20221115133105.980877-1-robert.foss@linaro.org>
+Subject: [PATCH v2 01/12] dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+Date:   Tue, 15 Nov 2022 14:30:54 +0100
+Message-Id: <20221115133105.980877-2-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221115133105.980877-1-robert.foss@linaro.org>
+References: <20221115133105.980877-1-robert.foss@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,64 +83,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dependencies:
-https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
-https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
-https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
+Mobile Display Subsystem (MDSS) encapsulates sub-blocks
+like DPU display controller, DSI etc. Add YAML schema for DPU device
+tree bindings
 
-Branch:
-https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v2
-
-This series implements display support for SM8350 and
-enables HDMI output for the SM8350-HDK platform.
-
-
-Changes from v1:
- - Added R-b tags from v1
- - Added qcom,sm8350-dpu binding patch
- - Added qcom,sm8350-mdss binding patch
- - Corrected sm8350.dtsi according to new dpu/mdss bindings
- - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
- - Bjorn: Moved lt9611 pinctl pins into a common node
- - Bjorn/Krzysztof: Moved status property to last in node
- - Krzysztof: Changed hdmi-out to hdmi-connector
- - Krzysztof: Fixed regulator node name
- - Krzysztof: Changed &mdss to status=disabled as default
- - Krzysztof: Changed &mdss_mdp node name to display-controller
- - Krzysztof: Fixed opp-table node name
- - Krzysztof: Fixed phy node name
- - Dmitry: Split commit containing dpu & mdss compatibles string
- - Dmitry: Added msm_mdss_enable case
- - Dmitry: Fixed dpu ctl features
- 
-
-
-Robert Foss (12):
-  dt-bindings: display: msm: Add qcom,sm8350-dpu binding
-  dt-bindings: display: msm: Add qcom,sm8350-mdss binding
-  drm/msm/dpu: Refactor sc7280_pp location
-  drm/msm/dpu: Add SM8350 to hw catalog
-  drm/msm/dpu: Add support for SM8350
-  drm/msm: Add support for SM8350
-  arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
-  arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
-  arm64: dts: qcom: sm8350: Use 2 interconnect cells
-  arm64: dts: qcom: sm8350: Add display system nodes
-  arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
-  arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
-
- .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
- .../display/msm/qcom,sm8350-mdss.yaml         | 240 +++++++++++++
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8350.dtsi          | 226 +++++++++++-
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 210 ++++++++++-
- .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
- drivers/gpu/drm/msm/msm_mdss.c                |   4 +
- 8 files changed, 1108 insertions(+), 26 deletions(-)
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+---
+ .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 ++++++++++++++++++
+ 1 file changed, 120 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
 
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+new file mode 100644
+index 000000000000..120500395c9a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+@@ -0,0 +1,120 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/qcom,sm8350-dpu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8350 Display DPU
++
++maintainers:
++  - Robert Foss <robert.foss@linaro.org>
++
++$ref: /schemas/display/msm/dpu-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm8350-dpu
++
++  reg:
++    items:
++      - description: Address offset and size for mdp register set
++      - description: Address offset and size for vbif register set
++
++  reg-names:
++    items:
++      - const: mdp
++      - const: vbif
++
++  clocks:
++    items:
++      - description: Display hf axi clock
++      - description: Display sf axi clock
++      - description: Display ahb clock
++      - description: Display lut clock
++      - description: Display core clock
++      - description: Display vsync clock
++
++  clock-names:
++    items:
++      - const: bus
++      - const: nrt_bus
++      - const: iface
++      - const: lut
++      - const: core
++      - const: vsync
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,dispcc-sm8350.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8350.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interconnect/qcom,sm8350.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    display-controller@ae01000 {
++        compatible = "qcom,sm8350-dpu";
++        reg = <0x0ae01000 0x8f000>,
++              <0x0aeb0000 0x2008>;
++        reg-names = "mdp", "vbif";
++
++        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
++                 <&gcc GCC_DISP_SF_AXI_CLK>,
++                 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
++                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        clock-names = "bus",
++                      "nrt_bus",
++                      "iface",
++                      "lut",
++                      "core",
++                      "vsync";
++
++        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        assigned-clock-rates = <19200000>;
++
++        operating-points-v2 = <&mdp_opp_table>;
++        power-domains = <&rpmhpd SM8350_MMCX>;
++
++        interrupt-parent = <&mdss>;
++        interrupts = <0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dpu_intf1_out: endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++        };
++
++        mdp_opp_table: opp-table {
++            compatible = "operating-points-v2";
++
++            opp-200000000 {
++                opp-hz = /bits/ 64 <200000000>;
++                required-opps = <&rpmhpd_opp_low_svs>;
++            };
++
++            opp-300000000 {
++                opp-hz = /bits/ 64 <300000000>;
++                required-opps = <&rpmhpd_opp_svs>;
++            };
++
++            opp-345000000 {
++                opp-hz = /bits/ 64 <345000000>;
++                required-opps = <&rpmhpd_opp_svs_l1>;
++            };
++
++            opp-460000000 {
++                opp-hz = /bits/ 64 <460000000>;
++                required-opps = <&rpmhpd_opp_nom>;
++            };
++        };
++    };
++...
 -- 
 2.34.1
 
