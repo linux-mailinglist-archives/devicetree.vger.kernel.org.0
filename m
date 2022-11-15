@@ -2,124 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B225629BAB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD654629BA6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:11:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbiKOOLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:11:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
+        id S229811AbiKOOLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:11:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbiKOOLZ (ORCPT
+        with ESMTP id S230215AbiKOOLZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:11:25 -0500
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEEC2B610;
-        Tue, 15 Nov 2022 06:11:24 -0800 (PST)
-Received: by mail-qk1-f169.google.com with SMTP id d7so7116816qkk.3;
-        Tue, 15 Nov 2022 06:11:24 -0800 (PST)
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D7010541;
+        Tue, 15 Nov 2022 06:11:21 -0800 (PST)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-13b23e29e36so16316147fac.8;
+        Tue, 15 Nov 2022 06:11:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PEBoPkzZkEwXxKxn/LguL/Tj7JNM9p+vnmqYk3f/wqg=;
-        b=t+0BF7v8qNwl9dvZTGsWpEK+153oiJxHnUloU7OOA0OaFRDMXH0pSRjkcJZ6BsCKl1
-         S6eYj4vqa6qZhJ9aFpnn/gZLc8qvygceWJ7YyzssLq8EE8NFmBkM+P/I/ZqXVGzHUZHp
-         pUzQy4dxAWIe9cu/t3V2df8p8++ehhoZlg8grw1umexHn2nTGF/9iiuqTnDWtpcrHA5b
-         iJCH1P/VaDKDQsiFe4IcrQ42KENs0/eLQp/Mk3XfNEIqlL72ivtrOJR1EAmXCUupFK8F
-         4cGzgGlEN7E2KntsrycO5WRYTfjfocYLxqFBqOldwkFq6/lzzSaXw4UTu851kFujJNoK
-         J8MQ==
-X-Gm-Message-State: ANoB5pnQI6ahEvOZvvv775rU3iR2BaXi5uWFh1e+zxNTgzBDP2cG17IF
-        iigkjw8o4tTIWGQ2CkE62HMc76UuD8zbjw==
-X-Google-Smtp-Source: AA0mqf4QG3pJAV5zFRWByezi8YOB5YXep940kO74qeNszq9lLHnXXhlsaBbglsJ7hUOzoiEMHI69Dw==
-X-Received: by 2002:a37:c245:0:b0:6ee:909e:ed6c with SMTP id j5-20020a37c245000000b006ee909eed6cmr15276266qkm.264.1668521483304;
-        Tue, 15 Nov 2022 06:11:23 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id g26-20020ac8469a000000b003a5416da03csm7193453qto.96.2022.11.15.06.11.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 06:11:21 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id 63so17300258ybq.4;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ko/Jm2Crg/0IdcHGiNY7XpYLJ5KYFoRqG/YZh7PVLyY=;
+        b=FhWMyJsA3vsxjdc9rv6A/uAcrw9ZhihR+NxIiv6FSWvpqzIGcBPx79WwC7UNYllooT
+         lNX1e3xO6EW9xslIEtL3VRMAC+t1Ts1L3rJy3t560HgQ1q5aD5FoMM+RfYn4I2sZtLYS
+         CFuN/JoOTRWXk7LtZXHS1v8o/RL3ZPbafuqWHgXTsFuS/RX4KfEoiYfddXqV/akWaxHA
+         XfoP8XiJ7VIh1ubuSalIzB0pc+EwUmYjAEjD+6TpF8aj2YDNMJX3UOMJOGIBIVDx6zUZ
+         yDamXChlKRWV3ogSPEMS6Cbs6nx4758xzt490+yzRltn/tNkKI2oQfYFYw6jXChGA5gm
+         qyXA==
+X-Gm-Message-State: ANoB5plzWjaJDgWDmZRDCMB76Mp86Lej4mIS0fFTifhWMaWJghGxXlS5
+        dlG89Vh/L0GoBIa9YMZ3Zg==
+X-Google-Smtp-Source: AA0mqf4uFfNYExut1Ar/priZ+hCGhKrNBdRZ8B91gwC+ZnuPQ2gqm3VuCjdMAE7iq3CCnmQj84NR9g==
+X-Received: by 2002:a05:6870:5246:b0:13b:d7c0:d66b with SMTP id o6-20020a056870524600b0013bd7c0d66bmr472834oai.36.1668521480911;
         Tue, 15 Nov 2022 06:11:20 -0800 (PST)
-X-Received: by 2002:a25:844b:0:b0:6de:6c43:3991 with SMTP id
- r11-20020a25844b000000b006de6c433991mr15875248ybm.604.1668521478365; Tue, 15
- Nov 2022 06:11:18 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q204-20020acaf2d5000000b0035418324b78sm4937480oih.11.2022.11.15.06.11.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 06:11:20 -0800 (PST)
+Received: (nullmailer pid 908580 invoked by uid 1000);
+        Tue, 15 Nov 2022 14:11:14 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-7-herve.codina@bootlin.com> <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
-In-Reply-To: <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 15 Nov 2022 15:11:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
-Message-ID: <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v4-2-463523919c19@linaro.org>
+References: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v4-2-463523919c19@linaro.org>
+Message-Id: <166851961723.867617.14976811191392756271.robh@kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: soc: qcom: convert non-smd RPM
+ bindings to dt-schema
+Date:   Tue, 15 Nov 2022 08:11:14 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Tue, Nov 15, 2022 at 2:16 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 14/11/2022 12:15, Herve Codina wrote:
-> > Add the USBF controller available in the r9a06g032 SoC.
-> >
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  arch/arm/boot/dts/r9a06g032.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-> > index 563024c9a4ae..a4bb069457a3 100644
-> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> > @@ -117,6 +117,18 @@ dmamux: dma-router@a0 {
-> >                       };
-> >               };
-> >
-> > +             udc: usb@4001e000 {
-> > +                     compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
-> > +                     reg = <0x4001e000 0x2000>;
-> > +                     interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks = <&sysctrl R9A06G032_HCLK_USBF>,
-> > +                              <&sysctrl R9A06G032_HCLK_USBPM>;
-> > +                     clock-names = "hclkf", "hclkpm";
-> > +                     power-domains = <&sysctrl>;
-> > +                     status = "disabled";
->
-> If you provided all resources (clocks, power domains etc), why disabling it?
+On Tue, 15 Nov 2022 11:12:36 +0100, Neil Armstrong wrote:
+> Convert the non-SMD RPM node bindings to dt-schema, the old txt bindings
+> are now removed since all bindings were converted.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Lee Jones <lee@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 283 ---------------------
+>  .../devicetree/bindings/soc/qcom/qcom,rpm.yaml     | 101 ++++++++
+>  2 files changed, 101 insertions(+), 283 deletions(-)
+> 
 
-Doesn't this depend on wiring on the board, and providing pin control
-in the board DTS?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Gr{oetje,eeting}s,
+yamllint warnings/errors:
 
-                        Geert
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/regulator/qcom,ipc-rpm-regulator.yaml
+./Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/soc/qcom/qcom,rpm.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb: rpm@108000: regulators: False schema does not allow {'compatible': ['qcom,rpm-pm8921-regulators'], 'vdd_l1_l2_l12_l18-supply': [[1]], 's1': {'regulator-min-microvolt': [[1225000]], 'regulator-max-microvolt': [[1225000]], 'bias-pull-down': True, 'qcom,switch-mode-frequency': [[3200000]]}, 's4': {'regulator-min-microvolt': [[1800000]], 'regulator-max-microvolt': [[1800000]], 'qcom,switch-mode-frequency': [[1600000]], 'bias-pull-down': True, 'qcom,force-mode': [[3]], 'phandle': [[1]]}}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb: rpm@108000: regulators: Unevaluated properties are not allowed ('compatible', 's1', 's4', 'vdd_l1_l2_l12_l18-supply' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpm.yaml
+Documentation/devicetree/bindings/soc/qcom/qcom,rpm.example.dtb:0:0: /example-0/rpm@108000/regulators: failed to match any schema with compatible: ['qcom,rpm-pm8921-regulators']
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+doc reference errors (make refcheckdocs):
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
