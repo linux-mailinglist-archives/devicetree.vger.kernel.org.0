@@ -2,88 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 355E662A0FE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 19:02:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A120262A109
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 19:06:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbiKOSCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 13:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
+        id S229685AbiKOSGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 13:06:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238373AbiKOSBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 13:01:47 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2CE20181
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 10:01:46 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id t4so10194417wmj.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 10:01:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6tyLu//sUdUlLfcb+DLobo5/aUjbDUieQQrm3E0uXs=;
-        b=QKK3vP1kJ3b/VDq/Nra/LHQfVXh4tiB8yugNkjQYZiLyNuxM/Lx8EvsLd8ASSZznPf
-         NwgpqmLiYOTkSHv76ADFSf41VKWx8zQ8mJt4dsYKH+cqHNwEQX8Wh7ejXPFcFkuCw9lI
-         baMyGF7lQH9nHhZg9PVX13r8htppxYKWTRgIc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6tyLu//sUdUlLfcb+DLobo5/aUjbDUieQQrm3E0uXs=;
-        b=yrcXjaa+as5pSm0JC3lE1CNMer5aK3dVlASSmset70TaohdBpDsUvgQm6ViQ7sDRX2
-         0vBbMoxLO1h1vR5GLHFveApjae6OHFRtMi7ORIw94XqKZVGJcIdD3BpnO/IMSO2cJxJP
-         E+YCTnexi/j2gACgg/OHiZ4FgpYCgMvEFq09bU9a9LDTSG2UM8YHEPvW6412plojR2KA
-         L6n4CgYIfocpizuwbB5oxefelvNFaJv9gJOVXMYc1PHurerPZ6NTBLX3U52aFsAzNW5q
-         lXLei9LCIPL1UWVB2IUz7UxOv7lGHsGC2GEhp7tFE9uIxm4Q8q0X4TA3P9YZGq7KfQvq
-         zwOA==
-X-Gm-Message-State: ANoB5pmmuNju6Samo/ZnADiXHrLEGnrmILp9cC2nOaaiGe2L2Rh6AV01
-        JZuH0/G3cnWp2n1zs11e0PxOIg==
-X-Google-Smtp-Source: AA0mqf7kpB6uatetwA12Z7FJMUL5Vv9yVzLk2ylYofFLk0c7x+23o2Aq0ZJU541qCl2PbDG4LWyEyw==
-X-Received: by 2002:a1c:2581:0:b0:3cf:6a83:c7a3 with SMTP id l123-20020a1c2581000000b003cf6a83c7a3mr2279349wml.21.1668535305126;
-        Tue, 15 Nov 2022 10:01:45 -0800 (PST)
-Received: from [10.211.55.3] ([167.98.215.174])
-        by smtp.googlemail.com with ESMTPSA id c2-20020a05600c0a4200b003cfd4cf0761sm14788029wmq.1.2022.11.15.10.01.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 10:01:44 -0800 (PST)
-Message-ID: <96374132-d05f-0b78-0b9c-8818c39fcec8@ieee.org>
-Date:   Tue, 15 Nov 2022 12:01:43 -0600
+        with ESMTP id S229554AbiKOSGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 13:06:32 -0500
+Received: from smtp-8faf.mail.infomaniak.ch (smtp-8faf.mail.infomaniak.ch [IPv6:2001:1600:3:17::8faf])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383006143
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 10:06:30 -0800 (PST)
+Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
+        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4NBYyn3rHZzMqFk9;
+        Tue, 15 Nov 2022 19:06:25 +0100 (CET)
+Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
+        by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4NBYyl11H9zMppYF;
+        Tue, 15 Nov 2022 19:06:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1668535585;
+        bh=Ppwbtaour3/Jw/cgaDOFjnjF7G+KdfGQVdagBHehM/g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=lt1lC9fQVWKV5ufGh4LiBh1eGcYTsK9YSrmV7QZRKqi8erKNY1aWKxRmeQpd8P9AX
+         PaOpnGoBFZ8w8PEAtP8UJMRpVZasp+s2sIaPmZFY21+v8tyhXFqUnmXqmA3yV/gJUe
+         8GmT1kNxgu/F494LF658bQB/L+IBwhXtuyLdcQS4=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: colibri-imx6ull: Enable dual-role switching
+Date:   Tue, 15 Nov 2022 19:05:54 +0100
+Message-Id: <20221115180554.73696-1-dev@pschenker.ch>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next v2 4/5] dt-bindings: net: qcom,ipa: support
- skipping GSI firmware load
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221115113119.249893-1-elder@linaro.org>
- <20221115113119.249893-5-elder@linaro.org>
- <a4c4257b-1467-2ccb-f546-d58c6356a39a@linaro.org>
-Content-Language: en-US
-From:   Alex Elder <elder@ieee.org>
-In-Reply-To: <a4c4257b-1467-2ccb-f546-d58c6356a39a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/15/22 06:56, Krzysztof Kozlowski wrote:
-> This is a friendly reminder during the review process.
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Yes as soon as I saw your message I remembered that I'd forgotten
-to add your reviewed-by tag.  I can send v3, but if the network
-maintainers are willing they could generously add it for me.
+The Colibri standard provides a GPIO called USBC_DET to switch from
+USB Host to USB Device and back. Make use of this GPIO by adding it
+with usb-connector framework.
 
-					-Alex
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+
+---
+
+Changes in v2:
+- Switched from extcon-usb-gpio to usb-connector-gpio
+
+ arch/arm/boot/dts/imx6ull-colibri.dtsi | 29 ++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
+index a4429ba1f2ae..336ab2e0534c 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
++++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
+@@ -24,6 +24,28 @@ backlight: backlight {
+ 		status = "disabled";
+ 	};
+ 
++	connector {
++		compatible = "gpio-usb-b-connector", "usb-b-connector";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_snvs_usbc_det>;
++		id-gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>; /* SODIMM 137 / USBC_DET */
++		label = "USBC";
++		self-powered;
++		type = "micro";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				usb_dr_connector: endpoint {
++					remote-endpoint = <&usb1_drd_sw>;
++				};
++			};
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -280,6 +302,13 @@ &usbotg1 {
+ 	srp-disable;
+ 	hnp-disable;
+ 	adp-disable;
++	usb-role-switch;
++
++	port {
++		usb1_drd_sw: endpoint {
++			remote-endpoint = <&usb_dr_connector>;
++		};
++	};
+ };
+ 
+ /* Colibri USBH */
+-- 
+2.38.1
+
