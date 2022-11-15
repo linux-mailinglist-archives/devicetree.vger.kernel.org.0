@@ -2,94 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E377D629322
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 120DF629331
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:21:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbiKOIRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 03:17:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
+        id S229455AbiKOIVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 03:21:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbiKOIRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:17:35 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCF91FCC5
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 00:17:33 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id l8so16485242ljh.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 00:17:33 -0800 (PST)
+        with ESMTP id S232708AbiKOIVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:21:20 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FA120BE4
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 00:21:17 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id z24so16542934ljn.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 00:21:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3GYVEqyWRIb5M8DvqDeUYgwKR6PMorbc+DxpJvheRTc=;
-        b=TqJCj+iF0xcmojTDBuDLqr1AeL6bJ9jOa5Q+rGhcue0HiucpyMr4LZxSGn3fUOgaWN
-         MB546udpmn7GTMK6FamliZ6yOM0xFmEaWZ0FAaB8W4Be+RG4HRSwvt+z/ae+viDoe1d+
-         Qu7Ho6EjyR7PZeIMtvE9rLe97vl5MesO8sFGAR3oSQGTsZ5MaYGGtFjOOAVnGRM07NVA
-         UMf92qW+MN7DXOI+1+r2OIb8dwug4ssjZYHyDrtftTuN5USXfRGFq2pZIi/ITtr8c41o
-         GimrzIiUDLZfP8ZrkDLf3BV5vuktAr1HRDJxRJn+SjR41SNt4C5HgciPnj3LgiXPMUVy
-         3yeA==
+        bh=2oDeh8QPxwlUfystIUxy6bEGhHBIAnKFjrido9RSvwE=;
+        b=c1HICuTpLc/CJJlN2iLUwWJYZutv4qlcQPvKUsicIFFtc2gVyTT9zwF59wROLbDdWt
+         qldUP/isckTjSFFCLthOuDd0t9R5GV2RssusE4Vw1sKpHiJ+ZMcpUSyqwmgRnDlq6a5j
+         SOHvgoEF4FarS0ajtd66emH1irmL8vSLm+Xr2ERJE1YHliHwDokscuFUt67ZyQUsMC3t
+         oplgajD2alyXEfSpmMygPATluzDC6XYHCbg2J40ubRoKoiCPFIaHGiWnXXgrlWiOPkvy
+         JuvLqMKz3GygXYhlZ9OatWezZusIGTU34tHQLg3Cxq64dbqmLIcPY+GxLKKc4BOtzsEq
+         DhNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3GYVEqyWRIb5M8DvqDeUYgwKR6PMorbc+DxpJvheRTc=;
-        b=BbYlzW0AdGZjN45PxenSF1MfGMn7Z8UYTXy/II2Iss3Ef0ZONs03dycGf1ECjMdHX0
-         wSHe3qZVRGlQyz2CVs/BIsgVJ4CCwnmZumUm9QUWJZPEkNoN6iKknMq13c/J4jHJW9p0
-         C7qxZHss0Mk4Dri26tVI0wpV2xj+nxJrKx4s3pyZZXNK2w1m/Zl7j6MhoXGV/tx2QKS+
-         PukJnbUxIZ89gP0Vu9op0p/H7Ss+IEM4DJEdlB2zGD+5AfsgKcE7OMuqi/A9+BFN1UOH
-         HiV5cqGFx81PdPXGDiL5hpCNcknApygV9uTb2k3p3f7qE1Rq/gy6vf8A7cxOLADRadTE
-         Po7Q==
-X-Gm-Message-State: ANoB5pmZ9eXResL8+LRf/Wwv3EE3jWkA29KV7IpJeA1tqQ0/wV6jjG42
-        SdRSjBV2j7MLNm8vjweMaQ+b0Q==
-X-Google-Smtp-Source: AA0mqf5MXWb0JfEc/1mOlUnuRhtFp0aaBS83d/Ar8w4XBbipn6uUq0jtPrZD5niyiXlKAQweBcxJ6A==
-X-Received: by 2002:a05:651c:490:b0:277:5f7e:9cad with SMTP id s16-20020a05651c049000b002775f7e9cadmr5055715ljc.420.1668500252199;
-        Tue, 15 Nov 2022 00:17:32 -0800 (PST)
+        bh=2oDeh8QPxwlUfystIUxy6bEGhHBIAnKFjrido9RSvwE=;
+        b=pAs8Xjieq/JvIU4WVtOyQ9RK512fuKkzRh84wsXK4ZUabSBNqybeHm8CRfhlNi4zk9
+         MXjR5H3JOJnrtF69yWKlXsXR2CKhTNFe0Kcr6KQkkt8mUZcY67sYGFItG68r6rDbkDDr
+         Z940oHwdrccUy1ToNvG/lZMoObP/eL5TNCsubSJwhqMOAp/HbYzea01wleIzo+Z1R5yp
+         MkGAt8LRsKJzKte9iWHSgz8BC4iLX0dmoWyr7aPqu+DP08FMkYQQEKphidHX7hdTVFJv
+         kfjIQ6sNWEGaGvPFfdb4km4/uz8TXmg36A0x/+B6aI40+Ykwd/Fyy2OHtg6hdz2gmpm+
+         KzWg==
+X-Gm-Message-State: ANoB5pnvU44lP2AD0+iqmZqb2B6DteHyGEluw3aqsuNowCGyd/riAtLf
+        R8g2jPD4DOm+Me+UtQSXUu30VQ==
+X-Google-Smtp-Source: AA0mqf5QslyE4xNjZT7wN5MLzXeAm1YVoAXp5J/x2SV75kjGSZBz4SBR9jnS8uSCGypyJ6Xe8Zzwrw==
+X-Received: by 2002:a2e:2d09:0:b0:277:72a:41a5 with SMTP id t9-20020a2e2d09000000b00277072a41a5mr5953499ljt.352.1668500475698;
+        Tue, 15 Nov 2022 00:21:15 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512358400b0048b003c4bf7sm2112048lfr.169.2022.11.15.00.17.30
+        by smtp.gmail.com with ESMTPSA id r5-20020a2e8e25000000b0026e059a3455sm2392490ljk.51.2022.11.15.00.21.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 00:17:31 -0800 (PST)
-Message-ID: <09495553-e563-e12b-056e-bed95531ab6b@linaro.org>
-Date:   Tue, 15 Nov 2022 09:17:30 +0100
+        Tue, 15 Nov 2022 00:21:15 -0800 (PST)
+Message-ID: <acd7227f-102e-898b-beaa-b323285aa82d@linaro.org>
+Date:   Tue, 15 Nov 2022 09:21:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 2/9] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: iio: magnetometer: add ti tmag5273
+ documentation file
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-2-5d2bb58e6087@baylibre.com>
- <20221109222916.GA2985917-robh@kernel.org> <Y2wwUOJ0KZdt1tZ6@mail.local>
- <adf8bc44-4cbc-af2a-4ec8-1859a98146d7@linaro.org>
- <Y3LHxDIzfZWhnQJN@mail.local>
- <37dc4e39-8033-a40f-edd7-4bd30f841e23@linaro.org>
- <Y3NIRbyirJjT7xay@mail.local>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20221115073718.2377311-1-gerald.loacker@wolfvision.net>
+ <20221115073718.2377311-2-gerald.loacker@wolfvision.net>
+Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3NIRbyirJjT7xay@mail.local>
+In-Reply-To: <20221115073718.2377311-2-gerald.loacker@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -100,24 +84,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 09:05, Alexandre Belloni wrote:
->>> I checked and it doesn't support it but this needs to be fixed.
->>>
->>>> What about rest of rtc.yaml schema?
->>>>
->>>
->>> wakeup-source would make sense but the driver doesn't support it yet.
->>
->> The question is about hardware - does hardware support waking up the
->> system via interrupt? This is usually a domain of PMICs which still are
->> powered on when system sleeps.
->>
-> 
-> I'd say that it is possible that a PMIC is able to wake up the system
-> with or without having an interrupt wired to the SoC so wakeup-source
-> makes sense. We don't need it if it is interrupt only.
+On 15/11/2022 08:37, Gerald Loacker wrote:
+> Add bindings documentation file for TI TMAG5273.
 
-Then I propose to reference the rtc.yaml.
+Subject - drop "documentation file".
+
+> 
+> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+> ---
+>  .../iio/magnetometer/ti,tmag5273.yaml         | 72 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> new file mode 100644
+> index 000000000000..2f5b0a4d2f40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/ti,tmag5273.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor
+> +
+> +maintainers:
+> +  - Gerald Loacker <gerald.loacker@wolfvision.net>
+> +
+> +description:
+> +  The TI TMAG5273 is a low-power linear 3D Hall-effect sensor. This device
+> +  integrates three independent Hall-effect sensors in the X, Y, and Z axes.
+> +  The device has an integrated temperature sensor available. The TMAG5273
+> +  can be configured through the I2C interface to enable any combination of
+> +  magnetic axes and temperature measurements. An integrated angle calculation
+> +  engine (CORDIC) provides full 360° angular position information for both
+> +  on-axis and off-axis angle measurement topologies. The angle calculation is
+> +  performed using two user-selected magnetic axes.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^magnetometer@[0-9a-f]+$'
+
+Device schemas do not need to enforce the names.
+
+> +
+> +  compatible:
+> +    const: ti,tmag5273
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  ti,angle-enable:
+
+ti,angle-measurement
+
+> +    description:
+> +      Enables angle measurement in the selected plane.
+> +      0 = OFF
+> +      1 = X-Y (default)
+> +      2 = Y-Z
+> +      3 = X-Z
+
+Why not strings which are easier for humans? off/x-y/y-z/x-z? How anyone
+reading DTS can remember what is "3" in this and in thousands of other
+devices?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 3
+
+default: 1
+
+> +
+> +  vcc-supply:
+> +    description:
+> +      A regulator providing 1.7 V to 3.6 V supply voltage on the VCC pin,
+> +      typically 3.3 V.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vcc-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c-0 {
+
+Just: i2c
+
 
 Best regards,
 Krzysztof
