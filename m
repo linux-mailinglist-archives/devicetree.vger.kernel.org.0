@@ -2,119 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8D362AE40
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 23:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D52D62AE5C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 23:29:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231639AbiKOW0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 17:26:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59574 "EHLO
+        id S231410AbiKOW3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 17:29:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231591AbiKOW0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 17:26:03 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 862212C646
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 14:26:02 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id m14-20020a17090a3f8e00b00212dab39bcdso515878pjc.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 14:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y0uftbK3o2kwR2nvD90dsb+LA1y7S9LzGYBR1hgiw/w=;
-        b=3OQE6HZuMO9NsuB8h2KP0ks4Mb7A24Dl/DwHpvYG/zFCCXrHewWatCGCwTqGwtmn96
-         mBwkfuqgJQDAcw/DPMSE0wauiEDF2Aas3AcTCh3s0jdZPEJHrP+YKDTMay2TNcNj/Sc+
-         u9CP4ZeOjWrDvl+1ze/CtjUMH1YuD+UnusJdtetFPFd/zeDNFIIuJJnpuwgeOCJGgWdJ
-         9aamQf0Ca3gzq4PncdDKBBXQswdpvdbTKMfXze2hmxc3ULlBS/Zlie1Ct2MRBQappZtJ
-         cZZnkbGJCKjqRwM6sdbbsD8nP7Edh8MOTIeGoZgn/jaT6/zT6kqLoKGHQPwvx3dsWY2Y
-         gYHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y0uftbK3o2kwR2nvD90dsb+LA1y7S9LzGYBR1hgiw/w=;
-        b=J9HRgMsDr6HocM83hqB2qZXHc6YcawmanScKb9pSLoa0UIIuiVjQgaIm9DGFCnlhFr
-         yztlaeP5/s3NoDcVVy0C6QmEsEzRzj37wATS8lbL7TbHq76QRx/oSYTIHv7AT3NNISa5
-         Uxz9JEN56xs5Wu6SraaMTar12tEEwOr+vGRuC0CDsHiwcdl04Wy4Bjau7t4QtQUKB2Zm
-         PmRpvxSfn7H71d3HX2HoDmOjcugjtJ0KDI44N6iFH0hAdewVQV/h1uXfyJLjBC2alecl
-         gDPDr4G1nwZ3a45WkJcBhGFAHmYj1UF4UCkk9a21YyO9+aS/ScVqJdQklkvMiWYj+o3K
-         i/cQ==
-X-Gm-Message-State: ANoB5pmJxAixF2tPhIFWlPI+fI4jFzQb0bpX1XHYsKZanE+zW3QJ1nXY
-        3V7IZ6MnIxK/tavYmF45XZjuqQ==
-X-Google-Smtp-Source: AA0mqf47a30/4xfvQ8xdYjMqpWcqKOa1MCIfcsC6qf7Cqyo3EXErMIWsi12Jr+Vs1Fztc2Jenh8cUA==
-X-Received: by 2002:a17:903:484:b0:188:82fc:e284 with SMTP id jj4-20020a170903048400b0018882fce284mr5998436plb.76.1668551161846;
-        Tue, 15 Nov 2022 14:26:01 -0800 (PST)
-Received: from localhost ([75.172.139.56])
-        by smtp.gmail.com with ESMTPSA id i8-20020a170902c94800b00187197c4999sm10547723pla.167.2022.11.15.14.26.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 14:26:01 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        shawnguo@kernel.org, geert+renesas@glider.be,
-        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
-        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
-        jeff@labundy.com
-Cc:     afd@ti.com, narmstrong@baylibre.com, msp@baylibre.com,
-        j-keerthy@ti.com, jneanne@baylibre.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v7 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-In-Reply-To: <20221104152311.1098603-5-jneanne@baylibre.com>
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <20221104152311.1098603-5-jneanne@baylibre.com>
-Date:   Tue, 15 Nov 2022 14:26:00 -0800
-Message-ID: <7h1qq3am87.fsf@baylibre.com>
+        with ESMTP id S231166AbiKOW3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 17:29:41 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E23EC;
+        Tue, 15 Nov 2022 14:29:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F2E761A47;
+        Tue, 15 Nov 2022 22:29:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2875C433D6;
+        Tue, 15 Nov 2022 22:29:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668551379;
+        bh=5RTPqbqRHo17DhuTc7evD4YG3pNYusiYUpf6yFn71Rs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YAlCAat6PiIT8BfzXkVnLtXkgTT9/M6YrwN+0+km30efTdPdnaGrliKPnN0RomA61
+         6NXgBR4pb2GZprFVGudycwIM8R0mh3mLUtEv4eVBwGaUMrVJy6xwsiE46FHwKQ4GgE
+         1Lq7t6YSOFPkhCLELvSuQ4y3wXuYEvRc2Q1Q3sk5y7ESy7Bjv0ni/4OTBGAjnpjU2C
+         EhVEEpgzX4zF5iZh9NrKysV7Sk0eX0hdVn52TAgGr5YSc7JEP5542l6jmta69gfyIw
+         jKN/HHNerlPyp0px0Bx9pUZFZQaCK6OzgNoeJ1LGyjABRKYUhdYbIFuUQqSKd/3/Zg
+         7StinEPGyWvow==
+Date:   Tue, 15 Nov 2022 22:29:34 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>, palmer@dabbelt.com
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 8/9] RISC-V: Select APLIC and IMSIC drivers for QEMU virt
+ machine
+Message-ID: <Y3QSzkvV/4UvR1ME@spud>
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-9-apatel@ventanamicro.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111044207.1478350-9-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Hey Anup,
 
-Jerome Neanne <jneanne@baylibre.com> writes:
+On Fri, Nov 11, 2022 at 10:12:06AM +0530, Anup Patel wrote:
+> The QEMU virt machine supports APLIC and IMSIC emulation so let's
+> select APLIC and IMSIC drivers from SOC_VIRT kconfig option.
 
-> The TPS65219 is a power management IC PMIC designed to supply a wide
-> range of SoCs in both portable and stationary applications. Any SoC can
-> control TPS65219 over a standard I2C interface.
->
-> It contains the following components:
-> - Regulators.
-> - Over Temperature warning and Shut down.
-> - GPIOs
-> - Multi Function Pins (MFP)
-> - power-button
->
-> This patch adds support for tps65219 PMIC. At this time only
-> the functionalities listed below are made available:
->
-> - Regulators probe and functionalities
-> - warm and cold reset support
-> - SW shutdown support
-> - Regulator warnings via IRQs
-> - Power-button via IRQ
->
-> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Acked-for-mfd-by: Lee Jones <lee@kernel.org>
+I'm kinda torn with this as I've been trying to get rid of the selects
+from the file in the first place. As Maz seems to have decided that the
+SiFive plic driver is really the RISC-V plic driver - is there a reason
+not to either:
+- select the sifive plic at an arch level, or
+- put a "default RISCV" type thing in the driver entry?
 
-You've ack'd this for mfd, and Dmitry acked the input one (PATCH 5/6)
-but suggested it be merged via the mfd tree.
+Similarly here, should we default the APLIC and IMSIC drivers to enabled
+for RISCV rather than using selects?
 
-Could you please take patches 4 & 5 of this series? Then the DT
-patch can go via arm-soc.
-
-Thanks,
-
-Kevin
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  arch/riscv/Kconfig.socs | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index 69774bb362d6..c16b32eeadff 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -35,6 +35,8 @@ config SOC_VIRT
+>  	select GOLDFISH
+>  	select RTC_DRV_GOLDFISH if RTC_CLASS
+>  	select SIFIVE_PLIC
+> +	select RISCV_APLIC
+> +	select RISCV_IMSIC
+>  	select PM_GENERIC_DOMAINS if PM
+>  	select PM_GENERIC_DOMAINS_OF if PM && OF
+>  	select RISCV_SBI_CPUIDLE if CPU_IDLE && RISCV_SBI
+> -- 
+> 2.34.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
