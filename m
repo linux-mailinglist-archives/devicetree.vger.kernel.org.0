@@ -2,164 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F8E262956B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:11:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5242D629571
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238327AbiKOKLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:11:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60496 "EHLO
+        id S238300AbiKOKMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:12:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238296AbiKOKLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:11:42 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 983C9F3E;
-        Tue, 15 Nov 2022 02:11:41 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 751E66602980;
-        Tue, 15 Nov 2022 10:11:39 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668507100;
-        bh=nr11OW0GjXZZd+uqu9pF2DuJ8K92kyYL5cWgAQ18zqQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kKPZyci6AotvDeCWL9iM2NEBpE7Z8BD20eVo35ib98AltVwiFBcwZmfIMnMFF1XPr
-         5vlVtGEjd11fz+YRLkMmUhn97qlpsdkc4DL6NhgMm7Mkwyq1oicoTZ7ILmmgDzuhjM
-         ze0fKEDW33y8MZR0UepcThvIbFu3/lAeZE00q+cOipZQ8Lcqot9TRVnTyQN8HPCKck
-         pMryKWdgZqXUNVnkCcUcU72ywyTz5g2+BhbOUwbY61ixF1hwqgKC+NR2GZoEY2LovL
-         adOi8bpXpHWwZ9iuBZ2twoRkkWBhNpLm4nS9wufTfY8QLx9jZPPZJENuxux6eG7vRa
-         qdyNF8dFcgZWw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
-        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        marijn.suijten@somainline.org, kernel@collabora.com,
-        luca@z3ntu.xyz, a39.skl@gmail.com, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 6/6] iommu/qcom: Add support for QSMMUv2 and QSMMU-500 secured contexts
-Date:   Tue, 15 Nov 2022 11:11:22 +0100
-Message-Id: <20221115101122.155440-7-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
-References: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S238356AbiKOKMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:12:13 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C5724F21
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:11 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id j4so23733310lfk.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YawYGMNwk0lz5irnjO3Ci3Kzm3in8Mf7sW9hSPleXyg=;
+        b=Rc8oKB8U198WQWIqvUNHlOw+MWLNLE+nRar20x2oKeiAPcmPpjL2XI+L7+xxVvwRmk
+         5GNa6elcozne7vKIi8xb2UgoSI6pO/ryifl1MPqb1tG8jRZ1ruUaAq6sG3mtKDN43wY8
+         yLmhoa6cb75zSyYU26jGCv1seNpDkia9DQcUTVZn9D8huZPrrFdJAWU/gyiJTp5CJaz+
+         +PRMSGZXpFfb+yBxpEwsgIM6kvoU8/XBMLcESeFnwIhMSpRrhvEithfDN9zIME09l3Px
+         /sGx9/QXrULpN3nsXKS3np+5i+8X1YJuam0z/sGXX99EpUl/TVekLi+jJdnouQvVlsBI
+         wqBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YawYGMNwk0lz5irnjO3Ci3Kzm3in8Mf7sW9hSPleXyg=;
+        b=WoFjAeSPVMcfPhIcVcZswi2O0OFSNoHAFOY1LDHjIE/Q/yhr7/hH+9gi9Sz093Hl24
+         KDgI66BnDmHfJkgavQ3Sym1aQQNjsHvtzQ/r4vCSd2duqk1ONzC0PXs3TQKnpZqUn0Yd
+         N1R4cHrsyjA6nPsDl4ZK7aQoc8aNpZWzZ+OS/OsDggttoFITciJ1qx7NWQRN4vdCL93D
+         dodqdZQKdM2tpW8mC3bYpVDlYG1DgBIqIA2yb5ySQlNjeGnxsZEAAGw7g5cQByIxbALc
+         TLsPfKh3XUU+H6NinrIXzkmUeNc/YDDqQEe9Q6OI5FitrUh2Hhxrk8ZzA8rScFrrg8uA
+         8U+w==
+X-Gm-Message-State: ANoB5plMbq95z1skKhGcBxtjLiCV05IGpK2ZMhdMuN8A1XweZDcAb1tR
+        oC8X4noG/LOM5MzZ3/1N+vrRaw==
+X-Google-Smtp-Source: AA0mqf7p9AgPiCAOIaG+ECvuhU2pkosG4asy/jxfgRKwaoWuwTp9cjS7RxMPDbWQPh5hZoftcaFLog==
+X-Received: by 2002:a05:6512:3a96:b0:4a2:2bac:e4fb with SMTP id q22-20020a0565123a9600b004a22bace4fbmr6197345lfu.297.1668507129567;
+        Tue, 15 Nov 2022 02:12:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f2-20020a056512360200b004ae24559388sm2147963lfs.111.2022.11.15.02.12.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 02:12:09 -0800 (PST)
+Message-ID: <9f17e519-b3fb-2ec6-7b49-70ee29d9b71d@linaro.org>
+Date:   Tue, 15 Nov 2022 11:12:07 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: ad74413r: add optional
+ reset-gpios
+Content-Language: en-US
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
+ <20221115095517.1008632-1-linux@rasmusvillemoes.dk>
+ <20221115095517.1008632-3-linux@rasmusvillemoes.dk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115095517.1008632-3-linux@rasmusvillemoes.dk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some SoCs like MSM8956, MSM8976 and others, secure contexts are
-also secured: these get programmed by the bootloader or TZ (as usual)
-but their "interesting" registers are locked out by the hypervisor,
-disallowing direct register writes from Linux and, in many cases,
-completely disallowing the reprogramming of TTBR, TCR, MAIR and other
-registers including, but not limited to, resetting contexts.
-This is referred downstream as a "v2" IOMMU but this is effectively
-a "v2 firmware configuration" instead.
+On 15/11/2022 10:55, Rasmus Villemoes wrote:
+> The ad74412 and ad74413 devices have an active-low reset pin. Add a
+> binding allowing one to specify a gpio tied to that.
+> 
+> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 
-Luckily, the described behavior of version 2 is effective only on
-secure contexts and not on non-secure ones: add support for that,
-finally getting a completely working IOMMU on at least MSM8956/76.
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-[Marijn: Rebased over next-20221111]
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/iommu/arm/arm-smmu/qcom_iommu.c | 22 +++++++++++++++++++---
- 1 file changed, 19 insertions(+), 3 deletions(-)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-index 94f51cafee17..db7d7cf5cc7d 100644
---- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-+++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-@@ -59,6 +59,7 @@ struct qcom_iommu_ctx {
- 	struct device		*dev;
- 	void __iomem		*base;
- 	bool			 secure_init;
-+	bool			 secured_ctx;
- 	u8			 asid;      /* asid and ctx bank # are 1:1 */
- 	struct iommu_domain	*domain;
- };
-@@ -287,6 +288,12 @@ static int qcom_iommu_init_domain(struct iommu_domain *domain,
- 			ctx->secure_init = true;
- 		}
- 
-+		/* Secured QSMMU-500/QSMMU-v2 contexts cannot be programmed */
-+		if (ctx->secured_ctx) {
-+			ctx->domain = domain;
-+			continue;
-+		}
-+
- 		qcom_iommu_reset_ctx(ctx);
- 
- 		/* TTBRs */
-@@ -418,7 +425,8 @@ static void qcom_iommu_detach_dev(struct iommu_domain *domain, struct device *de
- 		struct qcom_iommu_ctx *ctx = to_ctx(qcom_domain, fwspec->ids[i]);
- 
- 		/* Disable and reset the context bank */
--		qcom_iommu_reset_ctx(ctx);
-+		if (!ctx->secured_ctx)
-+			qcom_iommu_reset_ctx(ctx);
- 
- 		ctx->domain = NULL;
- 	}
-@@ -699,10 +707,14 @@ static int qcom_iommu_ctx_probe(struct platform_device *pdev)
- 	if (irq < 0)
- 		return -ENODEV;
- 
-+	if (of_device_is_compatible(dev->of_node, "qcom,msm-iommu-v2-sec"))
-+		ctx->secured_ctx = true;
-+
- 	/* clear IRQs before registering fault handler, just in case the
- 	 * boot-loader left us a surprise:
- 	 */
--	iommu_writel(ctx, ARM_SMMU_CB_FSR, iommu_readl(ctx, ARM_SMMU_CB_FSR));
-+	if (!ctx->secured_ctx)
-+		iommu_writel(ctx, ARM_SMMU_CB_FSR, iommu_readl(ctx, ARM_SMMU_CB_FSR));
- 
- 	ret = devm_request_irq(dev, irq,
- 			       qcom_iommu_fault,
-@@ -744,6 +756,8 @@ static int qcom_iommu_ctx_remove(struct platform_device *pdev)
- static const struct of_device_id ctx_of_match[] = {
- 	{ .compatible = "qcom,msm-iommu-v1-ns" },
- 	{ .compatible = "qcom,msm-iommu-v1-sec" },
-+	{ .compatible = "qcom,msm-iommu-v2-ns" },
-+	{ .compatible = "qcom,msm-iommu-v2-sec" },
- 	{ /* sentinel */ }
- };
- 
-@@ -761,7 +775,8 @@ static bool qcom_iommu_has_secure_context(struct qcom_iommu_dev *qcom_iommu)
- 	struct device_node *child;
- 
- 	for_each_child_of_node(qcom_iommu->dev->of_node, child) {
--		if (of_device_is_compatible(child, "qcom,msm-iommu-v1-sec")) {
-+		if (of_device_is_compatible(child, "qcom,msm-iommu-v1-sec") ||
-+		    of_device_is_compatible(child, "qcom,msm-iommu-v2-sec")) {
- 			of_node_put(child);
- 			return true;
- 		}
-@@ -909,6 +924,7 @@ static const struct dev_pm_ops qcom_iommu_pm_ops = {
- 
- static const struct of_device_id qcom_iommu_of_match[] = {
- 	{ .compatible = "qcom,msm-iommu-v1" },
-+	{ .compatible = "qcom,msm-iommu-v2" },
- 	{ /* sentinel */ }
- };
- 
--- 
-2.38.1
+Best regards,
+Krzysztof
 
