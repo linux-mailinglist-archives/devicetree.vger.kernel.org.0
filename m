@@ -2,227 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8D862965B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB13629664
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:53:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238235AbiKOKwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59480 "EHLO
+        id S238380AbiKOKxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:53:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238368AbiKOKvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:10 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C2926554
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:56 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id c1so23804080lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:56 -0800 (PST)
+        with ESMTP id S238434AbiKOKw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:52:28 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A422714E;
+        Tue, 15 Nov 2022 02:51:48 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id t25-20020a1c7719000000b003cfa34ea516so776323wmi.1;
+        Tue, 15 Nov 2022 02:51:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=k9ZjfVH6jTu5bXNrF+XB875QGxc7652/pclh4N/Z5xQ=;
-        b=EyzBV46MfhFXmlHWdMTPkpFJQuzZCFfss5Hh/kVHC/PKRUnABUtqkUO++wp4zEszO/
-         qU2YCuVj/RjqWKEyaV2vo9bSoiAPwK4kaiH8hsp+1w5651zS/PHwms/9q7CqFXdEXBZH
-         aylGTWX+IwEpSehuBS7mi86RLkZ2+ZFvsFqrBYY3pRQqXcWnuESCdWQ1EEL7ohJ0GdnD
-         G4Otry8cz7oVrJprGOCMfDL02gZAAdsfI+uEXI0IaZP3foOUtQOp4uPth66TKAUKNYS5
-         dAErJdD39fPeDu0UFCcCXr/yk9o8doAwnAt7Jq7/eGVhyfPK0N1YWkf+40C2uHO5TBqg
-         t13A==
+        bh=/TDg3jButA61q6p3uGjmgDDrbdJSU8F6g2ZLke3odgw=;
+        b=X0R1NAZVLu4RBi5KgXypsvFBIg5QEFrylN7vFWF46f0VM1D7heC03jvVAYs8/RfUUE
+         ZZUOiudVLMASxhStB1tFkgdOZl6Q284Wcct13khDndPxOAAUSwxIFTXN0vatgn6eqm+x
+         wEa7a5ilhSjng5A5vAcvJdfdive6xOiVWg6DFMez3jEJkBdElUQ69+wFKoP6A9VsG0oR
+         8vmTcSyqjrbY9INzbMykMohisfBoPUAazRc8lD3lTRS4TUTdoxFEOKNBeVRZ+xdwS7qT
+         sa2EsEBZ1biakUh2yiaK5JgBXGlbPkyN4NK31EOohzsxU043oqLzjGXiDJwGPNp4SB4D
+         kD2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=k9ZjfVH6jTu5bXNrF+XB875QGxc7652/pclh4N/Z5xQ=;
-        b=4Zv7fMBGiIuTNsNunt2ByAON5WKT+bDRke3nFwNDVeiMQs2iT5edPypMjm7YPP/4Tg
-         LW/GXsjLuCzS8tjQ+bNI0r29szLrYIqUn8e8W4m/sKs/jgkb2l4XugIh6iAWvQCahC7l
-         5mQt/LEkIkMdPT2nwbzybJZ5QNMWttyHZNexKxtxYm8R4UF6clpOae2p0LDI/tI0xF/O
-         jF+ed5qnnxKbUsYtZnElovxgz3uu5AwJsJkyn7xufFeHFEAymN4sduk7X4RvZcREQDii
-         NhuC5sCmZdmipn+CwjYUSkljXsw7/xNWIQ4BZkn0Yi4HtyqktbzNhCfQp+9RWj7QFGFj
-         iMrQ==
-X-Gm-Message-State: ANoB5pnLLfSaSpzpeyuS82SQuYaH6P0fNsW+ClNRh2f18J2796t+/gxg
-        G8R5742zrMPr16P6L5DE35djvA==
-X-Google-Smtp-Source: AA0mqf4bjEJfIVjFBb6mjsBSOPGtmgdvodsi52JsbMsEFcgBlCA8PCq8LsKmLSK2voBWiexU1aR/vA==
-X-Received: by 2002:ac2:5cc3:0:b0:4b1:3931:af with SMTP id f3-20020ac25cc3000000b004b1393100afmr6074287lfq.394.1668509455096;
-        Tue, 15 Nov 2022 02:50:55 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id r17-20020a2e8e31000000b0027740a1b854sm2454692ljk.52.2022.11.15.02.50.54
+        bh=/TDg3jButA61q6p3uGjmgDDrbdJSU8F6g2ZLke3odgw=;
+        b=491Z73HBUG6xmfBpNUwH47j4Qsqq0ayJyJZydvt/9TgY2j0nnyrwaYOMq0/ofYJr75
+         UcxSGP93jVY/eMS+EsTPf+OxIqgh7KXPLuMFEK3Zo48zjf3a7xQcU5J/3XOZdxwccCCJ
+         Pn1OrwDx738o0Lbw/Hf3YBx0Cg2q1Xm4Ev13XQJA0YNbd5fnINC26rbtcgXntS3LlKHN
+         Dc8ws+a/wO5e/EpsM5We1wq0Yfuwqeovj9PHg93vWTLq2bvXJlLJSavmTMx5FLZ5/HxC
+         Yj8npZEqO01Cyuh1OeR5RX4vHpiWZJEZ06tYzUwReNNOo4WxSepWJQ53bB5h0pazsM/N
+         gZVg==
+X-Gm-Message-State: ANoB5pkWcV8P73OELhBWcUNw1cPFaHtswp28pGGpnHOzL8zFSOHoRcg3
+        JozIwuTXt9z1g6SQbHLZlOg=
+X-Google-Smtp-Source: AA0mqf6oFZeyqPUzVDWOKkiLPZSs86RgzmZPi/RIsvMouJL+GjY/VRXUWn9klGYGOgk3BINvu5Uomg==
+X-Received: by 2002:a05:600c:5569:b0:3cf:63fd:cda8 with SMTP id ja9-20020a05600c556900b003cf63fdcda8mr1015353wmb.46.1668509506664;
+        Tue, 15 Nov 2022 02:51:46 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:d94a:6345:c378:e255])
+        by smtp.gmail.com with ESMTPSA id az9-20020adfe189000000b002367ad808a9sm12210528wrb.30.2022.11.15.02.51.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:50:54 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Tue, 15 Nov 2022 02:51:45 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: omap: trim addresses to 8 digits
-Date:   Tue, 15 Nov 2022 11:50:53 +0100
-Message-Id: <20221115105053.95430-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] RZ/Five: Enable ADC/CANFD/I2C/OPP/Thermal Zones/TSU
+Date:   Tue, 15 Nov 2022 10:51:32 +0000
+Message-Id: <20221115105135.1180490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hex numbers in addresses and sizes should be rather eight digits, not
-nine.  Drop leading zeros.  No functional change (same DTB).
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/am335x-evm.dts         | 2 +-
- arch/arm/boot/dts/am335x-igep0033.dtsi   | 4 ++--
- arch/arm/boot/dts/am437x-idk-evm.dts     | 2 +-
- arch/arm/boot/dts/am437x-sk-evm.dts      | 2 +-
- arch/arm/boot/dts/am43x-epos-evm.dts     | 2 +-
- arch/arm/boot/dts/am57xx-idk-common.dtsi | 2 +-
- arch/arm/boot/dts/dra7-evm-common.dtsi   | 2 +-
- arch/arm/boot/dts/dra7-evm.dts           | 2 +-
- arch/arm/boot/dts/dra72-evm-common.dtsi  | 4 ++--
- 9 files changed, 11 insertions(+), 11 deletions(-)
+Hi All,
 
-diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
-index 6e34161d327b..5beabaa5ff6a 100644
---- a/arch/arm/boot/dts/am335x-evm.dts
-+++ b/arch/arm/boot/dts/am335x-evm.dts
-@@ -544,7 +544,7 @@ nand@0,0 {
- 		#size-cells = <1>;
- 		partition@0 {
- 			label = "NAND.SPL";
--			reg = <0x00000000 0x000020000>;
-+			reg = <0x00000000 0x00020000>;
- 		};
- 		partition@1 {
- 			label = "NAND.SPL.backup1";
-diff --git a/arch/arm/boot/dts/am335x-igep0033.dtsi b/arch/arm/boot/dts/am335x-igep0033.dtsi
-index cc14415a4eb9..3fddf80dcf71 100644
---- a/arch/arm/boot/dts/am335x-igep0033.dtsi
-+++ b/arch/arm/boot/dts/am335x-igep0033.dtsi
-@@ -168,7 +168,7 @@ nand@0,0 {
- 		/* MTD partition table */
- 		partition@0 {
- 			label = "SPL";
--			reg = <0x00000000 0x000080000>;
-+			reg = <0x00000000 0x00080000>;
- 		};
- 
- 		partition@1 {
-@@ -188,7 +188,7 @@ partition@3 {
- 
- 		partition@4 {
- 			label = "File System";
--			reg = <0x00780000 0x007880000>;
-+			reg = <0x00780000 0x07880000>;
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/am437x-idk-evm.dts b/arch/arm/boot/dts/am437x-idk-evm.dts
-index 123a95f87554..e46cf2a9d075 100644
---- a/arch/arm/boot/dts/am437x-idk-evm.dts
-+++ b/arch/arm/boot/dts/am437x-idk-evm.dts
-@@ -452,7 +452,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.U_BOOT";
--			reg = <0x00000000 0x000080000>;
-+			reg = <0x00000000 0x00080000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.U_BOOT.backup";
-diff --git a/arch/arm/boot/dts/am437x-sk-evm.dts b/arch/arm/boot/dts/am437x-sk-evm.dts
-index 036f3831dc26..511a02e13e2c 100644
---- a/arch/arm/boot/dts/am437x-sk-evm.dts
-+++ b/arch/arm/boot/dts/am437x-sk-evm.dts
-@@ -763,7 +763,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.U_BOOT";
--			reg = <0x00000000 0x000080000>;
-+			reg = <0x00000000 0x00080000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.U_BOOT.backup";
-diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
-index 27f4ce855549..9fc915a2582e 100644
---- a/arch/arm/boot/dts/am43x-epos-evm.dts
-+++ b/arch/arm/boot/dts/am43x-epos-evm.dts
-@@ -919,7 +919,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.U_BOOT";
--			reg = <0x00000000 0x000080000>;
-+			reg = <0x00000000 0x00080000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.U_BOOT.backup";
-diff --git a/arch/arm/boot/dts/am57xx-idk-common.dtsi b/arch/arm/boot/dts/am57xx-idk-common.dtsi
-index c06eda817242..7f092a8811e8 100644
---- a/arch/arm/boot/dts/am57xx-idk-common.dtsi
-+++ b/arch/arm/boot/dts/am57xx-idk-common.dtsi
-@@ -542,7 +542,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.SPL";
--			reg = <0x00000000 0x000040000>;
-+			reg = <0x00000000 0x00040000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.u-boot";
-diff --git a/arch/arm/boot/dts/dra7-evm-common.dtsi b/arch/arm/boot/dts/dra7-evm-common.dtsi
-index 68c43eb12c1a..4cdffd6db740 100644
---- a/arch/arm/boot/dts/dra7-evm-common.dtsi
-+++ b/arch/arm/boot/dts/dra7-evm-common.dtsi
-@@ -151,7 +151,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.SPL";
--			reg = <0x00000000 0x000010000>;
-+			reg = <0x00000000 0x00010000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.SPL.backup1";
-diff --git a/arch/arm/boot/dts/dra7-evm.dts b/arch/arm/boot/dts/dra7-evm.dts
-index 87deb6a76eff..8cbcf55a5a33 100644
---- a/arch/arm/boot/dts/dra7-evm.dts
-+++ b/arch/arm/boot/dts/dra7-evm.dts
-@@ -483,7 +483,7 @@ nand@0,0 {
- 		#size-cells = <1>;
- 		partition@0 {
- 			label = "NAND.SPL";
--			reg = <0x00000000 0x000020000>;
-+			reg = <0x00000000 0x00020000>;
- 		};
- 		partition@1 {
- 			label = "NAND.SPL.backup1";
-diff --git a/arch/arm/boot/dts/dra72-evm-common.dtsi b/arch/arm/boot/dts/dra72-evm-common.dtsi
-index 8948e10dbeb8..c79ba671ec2b 100644
---- a/arch/arm/boot/dts/dra72-evm-common.dtsi
-+++ b/arch/arm/boot/dts/dra72-evm-common.dtsi
-@@ -356,7 +356,7 @@ nand@0,0 {
- 		#size-cells = <1>;
- 		partition@0 {
- 			label = "NAND.SPL";
--			reg = <0x00000000 0x000020000>;
-+			reg = <0x00000000 0x00020000>;
- 		};
- 		partition@1 {
- 			label = "NAND.SPL.backup1";
-@@ -490,7 +490,7 @@ flash@0 {
- 		 */
- 		partition@0 {
- 			label = "QSPI.SPL";
--			reg = <0x00000000 0x000010000>;
-+			reg = <0x00000000 0x00010000>;
- 		};
- 		partition@1 {
- 			label = "QSPI.SPL.backup1";
+This patch series aims to enable support for below blocks
+on RZ/Five SoC/SMARC EVK:
+- ADC
+- CANFD
+- I2C
+- OPP
+- Thermal Zones
+- TSU
+
+Note, patches apply on top of [0].
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/log/?h=renesas-riscv-dt-for-v6.2
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  riscv: Kconfig: Enable cpufreq kconfig menu
+  riscv: dts: renesas: r9a07g043f/rzfive-smarc-som: Enable
+    ADC/OPP/Thermal Zones/TSU
+  riscv: dts: renesas: rzfive-smarc: Enable CANFD/I2C
+
+ arch/riscv/Kconfig                            |  2 ++
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |  2 ++
+ .../boot/dts/renesas/rzfive-smarc-som.dtsi    | 11 --------
+ arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 27 -------------------
+ 4 files changed, 4 insertions(+), 38 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
