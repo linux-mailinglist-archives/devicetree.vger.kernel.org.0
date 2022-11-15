@@ -2,425 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3EA62934D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:34:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC11662938D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 09:48:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbiKOIep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 03:34:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
+        id S236559AbiKOIsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 03:48:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbiKOIeo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:34:44 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A89FBA5;
-        Tue, 15 Nov 2022 00:34:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S236567AbiKOIso (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 03:48:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D7213DDE;
+        Tue, 15 Nov 2022 00:48:43 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C5919CE1278;
-        Tue, 15 Nov 2022 08:34:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08456C433D6;
-        Tue, 15 Nov 2022 08:34:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668501277;
-        bh=RPhqxSuLjnoiovOxDmBnRxxubrALwemxcVdK+oIlxZ4=;
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D5BE46602A38;
+        Tue, 15 Nov 2022 08:48:40 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668502121;
+        bh=afh5nLCtMvnV2dhw8HFhFnQfG2zyHLlOoAj39CkXeNk=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZxcbK3mdK8q8mIY2JhKtNMQANaAT7TAyWUjq6xQqsHSC00w57hBhfyMVzWq4SefVb
-         B/esnMw2OEpMe03ez0T+VXMtyrfFGBgbSmBFWLZxYStg4jKw3dc9dWDHyIdk4hyZme
-         dBrj28MKfIaqt/h7UPpv8BoxTpcAlAjned58VHChlSn5ZqEF4zJLqUgj0Wqgoalzj0
-         oQQ3Ceo4teWy6/ZAs25fEAs1XgJKJ6nl65m6ZlBATwOtLP6jh6kOkHTabQGpeF2gqT
-         EM7n/WwPgmunZyCKSkJotFbmpTbYXolDmAgbo2fOazghk4VXb2Tgeq5iue9jKzDJPy
-         RkrYN2Xryh/dA==
-Message-ID: <9a1d6524-05b3-11f7-4f3b-794a3a44b5b8@kernel.org>
-Date:   Tue, 15 Nov 2022 10:34:30 +0200
+        b=YWidoY67PPOWtdw1B2RBEp7e2W05Cld19Ygu8m29KXI8Yztk5n10AzbdLNtdVPlzo
+         1ruqRz5fhHMRokmnt7h0Wg7FI9lv2BdW2PXdshiilurmQ4LJ6401qIlgi459j6vls7
+         knmEx4+hUn0HqggWooB5FO/1htfNhQ6mzGn5maGvUrE5tb/RLE4+epChr5eU7Amrnk
+         MTwtQ0u5PKXmFfQ8jMiNz4q+fhxQQEYRqy+iN0M5GLBZlmVCVSgE+S63CcKwS8d8KQ
+         A8hG90hX49AK7QCFLBu/4+35xzLp+P68udhaOQ2DMiN5bWP9NgWtWWruBcyszDMmPZ
+         JuzSCLvOYgzeQ==
+Message-ID: <75d967f0-f200-da86-868d-7f85a56371aa@collabora.com>
+Date:   Tue, 15 Nov 2022 09:48:38 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [EXTERNAL] Re: [PATCH v7 2/5] remoteproc: pru: Add APIs to get
- and put the PRU cores
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2] media: mediatek: vcodec: fix h264 cavlc bitstream fail
 Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
-        nm@ti.com, vigneshr@ti.com, srk@ti.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221031073801.130541-1-danishanwar@ti.com>
- <20221031073801.130541-3-danishanwar@ti.com>
- <a729e4e2-2f2e-8c3e-af45-3b8276bc6522@kernel.org>
- <10c7731d-c776-15ee-50e7-406a40e657c3@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <10c7731d-c776-15ee-50e7-406a40e657c3@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
+        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
+Cc:     =?UTF-8?B?WGlhb3lvbmcgTHUgKOWNouWwj+WLhyk=?= 
+        <Xiaoyong.Lu@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?R2VvcmdlIFN1biAo5a2Z5p6XKQ==?= <George.Sun@mediatek.com>,
+        "frkoenig@chromium.org" <frkoenig@chromium.org>,
+        "stevecho@chromium.org" <stevecho@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20221018114122.26785-1-yunfei.dong@mediatek.com>
+ <f301a43a-5d55-1607-b8d3-5cd057977397@collabora.com>
+ <2d7212e96ca2b80934cc5b53300f46e0454085a3.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <2d7212e96ca2b80934cc5b53300f46e0454085a3.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Danish,
-
-On 15/11/2022 07:53, Md Danish Anwar wrote:
+Il 15/11/22 03:00, Yunfei Dong (董云飞) ha scritto:
+> Hi AngeloGioacchino,
 > 
-> Hi Roger,
-> 
-> I had responded to two of your comments on this patch earlier but missed one
-> comment. Responding to that comment now.
-> 
-> On 04/11/22 18:25, Roger Quadros wrote:
->> Hi Danish,
+> Thanks for your detail suggestion.
+> On Mon, 2022-11-14 at 12:08 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 18/10/22 13:41, Yunfei Dong ha scritto:
+>>> Some cavlc bistream will decode fail when the frame size is small
+>>> than
 >>
->> On 31/10/2022 09:37, MD Danish Anwar wrote:
->>> From: Tero Kristo <t-kristo@ti.com>
+>> s/small/smaller/g
+> 
+> Will fix in next patch.
+>>
+>>> 20 bytes. Need to add pending data at the end of the bitstream.
 >>>
->>> Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
->>> driver to allow client drivers to acquire and release the remoteproc
->>> device associated with a PRU core. The PRU cores are treated as
->>> resources with only one client owning it at a time.
+>>> For the minimum size of mapped memory is 256 bytes(16x16), adding
+>>> four bytes data
+>>> won't lead to access unknown virtual memory.
 >>>
->>> The pru_rproc_get() function returns the rproc handle corresponding
->>> to a PRU core identified by the device tree "ti,prus" property under
->>> the client node. The pru_rproc_put() is the complementary function
->>> to pru_rproc_get().
->>>
->>> Co-developed-by: Suman Anna <s-anna@ti.com>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
->>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless
+>>> H.264 decoding for mt8192")
+>>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 >>> ---
->>>  drivers/remoteproc/pru_rproc.c | 142 +++++++++++++++++++++++++++++++--
->>>  include/linux/pruss.h          |  56 +++++++++++++
->>>  2 files changed, 193 insertions(+), 5 deletions(-)
->>>  create mode 100644 include/linux/pruss.h
+>>> compared with v1:
+>>> - add detail comments for function: vdec_h264_insert_startcode.
+>>> - re-write commit message.
+>>> ---
+>>>    .../vcodec/vdec/vdec_h264_req_multi_if.c      | 32
+>>> +++++++++++++++++--
+>>>    1 file changed, 29 insertions(+), 3 deletions(-)
 >>>
->>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
->>> index 128bf9912f2c..9ba73cfc29e2 100644
->>> --- a/drivers/remoteproc/pru_rproc.c
->>> +++ b/drivers/remoteproc/pru_rproc.c
->>> @@ -2,12 +2,14 @@
->>>  /*
->>>   * PRU-ICSS remoteproc driver for various TI SoCs
->>>   *
->>> - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
->>> + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
->>>   *
->>>   * Author(s):
->>>   *	Suman Anna <s-anna@ti.com>
->>>   *	Andrew F. Davis <afd@ti.com>
->>>   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
->>> + *	Puranjay Mohan <p-mohan@ti.com>
->>> + *	Md Danish Anwar <danishanwar@ti.com>
->>>   */
->>>  
->>>  #include <linux/bitops.h>
->>> @@ -16,6 +18,7 @@
->>>  #include <linux/module.h>
->>>  #include <linux/of_device.h>
->>>  #include <linux/of_irq.h>
->>> +#include <linux/pruss.h>
->>>  #include <linux/pruss_driver.h>
->>>  #include <linux/remoteproc.h>
->>>  
->>> @@ -111,6 +114,8 @@ struct pru_private_data {
->>>   * @rproc: remoteproc pointer for this PRU core
->>>   * @data: PRU core specific data
->>>   * @mem_regions: data for each of the PRU memory regions
->>> + * @client_np: client device node
->>> + * @lock: mutex to protect client usage
->>>   * @fw_name: name of firmware image used during loading
->>>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
->>>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
->>> @@ -126,6 +131,8 @@ struct pru_rproc {
->>>  	struct rproc *rproc;
->>>  	const struct pru_private_data *data;
->>>  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
->>> +	struct device_node *client_np;
->>> +	struct mutex lock; /* client access lock */
->>>  	const char *fw_name;
->>>  	unsigned int *mapped_irq;
->>>  	struct pru_irq_rsc *pru_interrupt_map;
->>> @@ -146,6 +153,127 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
->>>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
->>>  }
->>>  
->>> +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+>>> diff --git
+>>> a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
+>>> f.c
+>>> b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
+>>> f.c
+>>> index 4cc92700692b..18e048755d11 100644
+>>> ---
+>>> a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
+>>> f.c
+>>> +++
+>>> b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_i
+>>> f.c
+>>> @@ -539,6 +539,29 @@ static int vdec_h264_slice_core_decode(struct
+>>> vdec_lat_buf *lat_buf)
+>>>    	return 0;
+>>>    }
+>>>    
+>>> +static void vdec_h264_insert_startcode(struct mtk_vcodec_dev
+>>> *vcodec_dev, unsigned char *buf,
+>>> +				       size_t *bs_size, struct
+>>> mtk_h264_pps_param *pps)
 >>> +{
->>> +	struct rproc *rproc;
->>> +	phandle rproc_phandle;
->>> +	int ret;
+>>> +	struct device *dev = &vcodec_dev->plat_dev->dev;
 >>> +
->>> +	ret = of_property_read_u32_index(np, "ti,prus", index, &rproc_phandle);
->>> +	if (ret)
->>> +		return ERR_PTR(ret);
->>> +
->>> +	rproc = rproc_get_by_phandle(rproc_phandle);
->>> +	if (!rproc) {
->>> +		ret = -EPROBE_DEFER;
->>> +		goto err_no_rproc_handle;
->>> +	}
->>> +
->>> +	/* make sure it is PRU rproc */
->>> +	if (!is_pru_rproc(rproc->dev.parent)) {
->>> +		rproc_put(rproc);
->>> +		return ERR_PTR(-ENODEV);
->>> +	}
->>> +
->>> +	get_device(&rproc->dev);
+>>> +	/* Need to add pending data at the end of bitstream when bs_sz
+>>> is small than
+>>> +	 * 20 bytes for cavlc bitstream, or lat will decode fail. This
+>>> pending data is
+>>> +	 * useful for mt8192 and mt8195 platform.
 >>
->> Why do you need a get_device() here?
->> rproc_get_by_phandle() does it right?
+>> What is the reason why other SoCs don't need this?
 >>
->>> +
->>> +	return rproc;
->>> +
->>> +err_no_rproc_handle:
->>> +	rproc_put(rproc);
->>> +	return ERR_PTR(ret);
->>> +}
->>> +
->>> +/**
->>> + * pru_rproc_get() - get the PRU rproc instance from a device node
->>> + * @np: the user/client device node
->>> + * @index: index to use for the ti,prus property
->>> + * @pru_id: optional pointer to return the PRU remoteproc processor id
->>> + *
->>> + * This function looks through a client device node's "ti,prus" property at
->>> + * index @index and returns the rproc handle for a valid PRU remote processor if
->>> + * found. The function allows only one user to own the PRU rproc resource at a
->>> + * time. Caller must call pru_rproc_put() when done with using the rproc, not
->>> + * required if the function returns a failure.
->>> + *
->>> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
->>> + * returned.
->>> + *
->>> + * Return: rproc handle on success, and an ERR_PTR on failure using one
->>> + * of the following error values
->>> + *    -ENODEV if device is not found
->>> + *    -EBUSY if PRU is already acquired by anyone
->>> + *    -EPROBE_DEFER is PRU device is not probed yet
->>> + */
->>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
->>> +			    enum pruss_pru_id *pru_id)
->>> +{
->>> +	struct rproc *rproc;
->>> +	struct pru_rproc *pru;
->>> +	struct device *dev;
->>> +	int ret;
->>> +
->>> +	rproc = __pru_rproc_get(np, index);
->>> +	if (IS_ERR(rproc))
->>> +		return rproc;
+> For the hardware not add this feature, and will add in the future Soc.
+>>> +	 *
+>>> +	 * cavlc bitstream when entropy_coding_mode_flag is false.
+>>> +	 */
+>>> +	if (pps->entropy_coding_mode_flag || *bs_size > 20 ||
+>>> +	    !(of_device_is_compatible(dev->of_node, "mediatek,mt8192-
+>>> vcodec-dec") ||
+>>> +	    of_device_is_compatible(dev->of_node, "mediatek,mt8195-
+>>> vcodec-dec")))
 >>
->> Why bother doing __pru_rproc_get() if pru->client_np exists?
+>> I'm not comfortable seeing of_device_is_compatible... this list will
+>> grow whenever
+>> a new SoC needing this appears.
+>> Please think about a good name for a flag/quirk, or a bool, in the
+>> platform data
+>> for these two SoCs and use it.
 >>
->> You could do the below if check first and exit if pru->client_np exists.
->>
->>> +
->>> +	pru = rproc->priv;
->>> +	dev = &rproc->dev;
->>> +
->>> +	mutex_lock(&pru->lock);
->>> +
->>> +	if (pru->client_np) {
->>> +		mutex_unlock(&pru->lock);
->>> +		put_device(dev);
->>> +		ret = -EBUSY;
->>> +		goto err_no_rproc_handle;
->>> +	}
->>> +
->>> +	pru->client_np = np;
->>> +
->>> +	mutex_unlock(&pru->lock);
->>> +
->>> +	if (pru_id)
->>> +		*pru_id = pru->id;
->>> +
->>> +	return rproc;
->>> +
->>> +err_no_rproc_handle:
->>> +	rproc_put(rproc);
->>> +	return ERR_PTR(ret);
->>> +}
->>> +EXPORT_SYMBOL_GPL(pru_rproc_get);
->>> +
->>> +/**
->>> + * pru_rproc_put() - release the PRU rproc resource
->>> + * @rproc: the rproc resource to release
->>> + *
->>> + * Releases the PRU rproc resource and makes it available to other
->>> + * users.
->>> + */
->>> +void pru_rproc_put(struct rproc *rproc)
->>> +{
->>> +	struct pru_rproc *pru;
->>> +
->>> +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
->>> +		return;
->>> +
->>> +	pru = rproc->priv;
->>> +
->>> +	mutex_lock(&pru->lock);
->>> +
->>> +	if (!pru->client_np) {
->>> +		mutex_unlock(&pru->lock);
->>> +		return;
->>> +	}
->>> +
->>> +	pru->client_np = NULL;
->>> +	mutex_unlock(&pru->lock);
->>> +
->>> +	rproc_put(rproc);
->>> +}
->>> +EXPORT_SYMBOL_GPL(pru_rproc_put);
->>> +
->>>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
->>>  {
->>>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
->>> @@ -438,7 +566,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
->>>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
->>>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
->>>  	/* PRU1 has its local RAM addresses reversed */
->>> -	if (pru->id == 1)
->>> +	if (pru->id == PRUSS_PRU1)
->>
->> Introduction of PRUSS_PRU0/1 enum could have been a separate patch.
->>
+> For this feature only need to add in these two Socs, and won't grow
+> anymore. So just want to use compatible to separate, not add one flags.
 > 
-> Yes, Introduction of PRUSS_PRU0/1 enum could have been a separated patch in the
-> same series. But from the v1 of this series, this enum has been part of this
-> patch and that's why I kept it that way. We can introduce a new patch for this
-> enum (and the APIs that are using the enum) in next version of the series if
-> it's okay with you and Mathieu.
+> So you think that using one flag to separate much better?
 > 
 
-Yes please. Thanks!
+A flag is better: please remember that calls to of_device_is_compatible()
+will perform a string comparison which, as you know, as much optimized as
+it can be, it's always going to be slower than a simple integer/bool/flag
+check.
 
->>>  		swap(dram0, dram1);
->>>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
->>>  
->>> @@ -747,14 +875,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
->>>  	case RTU0_IRAM_ADDR_MASK:
->>>  		fallthrough;
->>>  	case PRU0_IRAM_ADDR_MASK:
->>> -		pru->id = 0;
->>> +		pru->id = PRUSS_PRU0;
->>>  		break;
->>>  	case TX_PRU1_IRAM_ADDR_MASK:
->>>  		fallthrough;
->>>  	case RTU1_IRAM_ADDR_MASK:
->>>  		fallthrough;
->>>  	case PRU1_IRAM_ADDR_MASK:
->>> -		pru->id = 1;
->>> +		pru->id = PRUSS_PRU1;
->>>  		break;
->>>  	default:
->>>  		ret = -EINVAL;
->>> @@ -816,6 +944,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
->>>  	pru->pruss = platform_get_drvdata(ppdev);
->>>  	pru->rproc = rproc;
->>>  	pru->fw_name = fw_name;
->>> +	pru->client_np = NULL;
->>> +	mutex_init(&pru->lock);
->>>  
->>>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
->>>  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
->>> @@ -904,7 +1034,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
->>>  
->>>  static struct platform_driver pru_rproc_driver = {
->>>  	.driver = {
->>> -		.name   = "pru-rproc",
->>> +		.name   = PRU_RPROC_DRVNAME,
->>>  		.of_match_table = pru_rproc_match,
->>>  		.suppress_bind_attrs = true,
->>>  	},
->>> @@ -916,5 +1046,7 @@ module_platform_driver(pru_rproc_driver);
->>>  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
->>>  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
->>>  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
->>> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
->>> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
->>>  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
->>>  MODULE_LICENSE("GPL v2");
->>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
->>> new file mode 100644
->>> index 000000000000..fdc719b43db0
->>> --- /dev/null
->>> +++ b/include/linux/pruss.h
->>> @@ -0,0 +1,56 @@
->>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>> +/**
->>> + * PRU-ICSS Subsystem user interfaces
->>> + *
->>> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
->>> + *	Suman Anna <s-anna@ti.com>
->>> + */
->>> +
->>> +#ifndef __LINUX_PRUSS_H
->>> +#define __LINUX_PRUSS_H
->>> +
->>> +#include <linux/device.h>
->>> +#include <linux/types.h>
->>> +
->>> +#define PRU_RPROC_DRVNAME "pru-rproc"
->>> +
->>> +/*
->>> + * enum pruss_pru_id - PRU core identifiers
->>> + */
->>> +enum pruss_pru_id {
->>> +	PRUSS_PRU0 = 0,
->>> +	PRUSS_PRU1,
->>> +	PRUSS_NUM_PRUS,
->>> +};
->>> +
->>> +struct device_node;
->>> +
->>> +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
->>> +
->>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
->>> +			    enum pruss_pru_id *pru_id);
->>> +void pru_rproc_put(struct rproc *rproc);
->>> +
->>> +#else
->>> +
->>> +static inline struct rproc *
->>> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
->>> +{
->>> +	return ERR_PTR(-EOPNOTSUPP);
->>> +}
->>> +
->>> +static inline void pru_rproc_put(struct rproc *rproc) { }
->>> +
->>> +#endif /* CONFIG_PRU_REMOTEPROC */
->>> +
->>> +static inline bool is_pru_rproc(struct device *dev)
->>> +{
->>> +	const char *drv_name = dev_driver_string(dev);
->>> +
->>> +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
->>> +		return false;
->>> +
->>> +	return true;
->>> +}
->>> +
->>> +#endif /* __LINUX_PRUSS_H */
->>
->> cheers,
->> -roger
-> 
-> Thanks,
-> Danish.
+This means that even for functional (not just cosmetic) reasons we should
+not use of_device_is_compatible() here :-)
 
-cheers,
--roger
+Cheers,
+Angelo
+
+
