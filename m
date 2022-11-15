@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A6B6297FA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B366297FF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237921AbiKOMDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 07:03:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
+        id S238123AbiKOMDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 07:03:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236156AbiKOMCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:02:52 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254BE220C0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:02:51 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id s24so17204268ljs.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:02:51 -0800 (PST)
+        with ESMTP id S232453AbiKOMDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:03:02 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BEA25EB3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:02:52 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id a29so24068037lfj.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:02:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VRDkbLdN3Hk4s8rRHjrRfrub5qJgUXRitpmo0hUp4NU=;
-        b=rqbfqgqXihYdyms1FEfA31MAYyeJnGOJoDb9UKZBBZc5U+dwLrFNFHrjzA2t/riwJc
-         2YaeZJKCFP7hXfbnl2W24Le5sOiH8Hf9+kp9siQ6Asm6HGUft4YTm8p7atixX5KkPxc3
-         LS9AjpvccnBXvCZrQZJzXQc1W2rWwPK0TQd9xjZRM86eTr0OJ5xyE41xrhkGmuQu5LO4
-         nPjmqBYRgyXiBXjf1SQZkHmvzO+TIZJFAwIewgUu9keEQDtn5gW27JFgyE0vNIYeYTSq
-         8RIpAkL0xBkIR+kPk5bBHW13bDmBFf0V+MKG5DyOU0kydJThn3f8woFWDlSQNFzZ9xtI
-         JHBQ==
+        bh=mhFQwDZN5tKwjWiBCGVlIG1S7K2/rpG/m674X3+lJKs=;
+        b=EvegI737vrbQhgSyJLIHL1krdI+z+24UywT80kcn6a1GsEnibbvC/pwMF24JxHW85G
+         85/86KRy9xZZ5WsSDGgpIuIf91KGNFgQEo1jU1URVPbP8QvLwMYJW23mqc/KoJJMCV42
+         QuSww7Hl647mCYMV6/1RZX6Jx2KwwiqcQnb0B7ueXyUiKJPW5enLxzf2jLdN9hFzZp55
+         ecdqNG5W25vMc0a+c1DRx3zUY1CnLyxVS25/TfXw4cdr4XJJVSFehFWh15ReKG8dpyvd
+         yQLFvt6KQcsehry2ZiVGUSGc1tzvusm/hTloql/zNAmniN8Mca4OYu6fqt/gJ7YptUMD
+         1Pmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VRDkbLdN3Hk4s8rRHjrRfrub5qJgUXRitpmo0hUp4NU=;
-        b=rApg2H4dYjpcK8ECJ9eLVS9gGl2q52f/WTq57NzIzEkz7+6dJVC6rfqdSEBNTMKkl2
-         3snKcNonsr8clr+4mqlL/m77dCsCeZxnj0Tai1upY3SOGmp7C/4Hm47Ovoc9p+POTQtz
-         B/MgERLi0JQ5RLMZhjU+IdejlyxeU8Jsuh2mwwhHiQz07aIquZJG43a2aAhHTINs6jgn
-         AO4k71gwPCPv1jF2yX5Mx/K1xYJx/moUqBPT3N2co3r9rKjVLZMvAQd0LeJVVVWx3qtt
-         /8SpiC8qY5f1YqUYyBmkNMZVagxc3qK/iZMFnIfyxul1PRV81qVfXXRisrIAmbAYyjnZ
-         Ps/w==
-X-Gm-Message-State: ANoB5pkiyRZy5iMB8d4kV3CdvZgn5nRvzKt/TCDah8DqaJKNxlbQar6z
-        JM+kAw/aVr/LaZ98OsRzyxHQsw==
-X-Google-Smtp-Source: AA0mqf53KFS2L0LpS7xLPyVFNfySVDUtL9HkQX/tAIiQBVms2FOnxbLG1YfpPKw2QDkQrhul/g/FJg==
-X-Received: by 2002:a2e:a54a:0:b0:26c:5db6:cd84 with SMTP id e10-20020a2ea54a000000b0026c5db6cd84mr5637666ljn.114.1668513769294;
-        Tue, 15 Nov 2022 04:02:49 -0800 (PST)
+        bh=mhFQwDZN5tKwjWiBCGVlIG1S7K2/rpG/m674X3+lJKs=;
+        b=ogu6BCAXCUt6pBfGGuuMS8VQK3a6WLMktIs48mtrFVzHA38EsaxCm0v4ZTULUe7N1T
+         nNHktxg/kIyraIV+deiRJDzGI1CBUlFLJf2wMPhfD9iVZ4R2iCsyQnUfPshfx2kKmir+
+         vH6iW2xKc4GKbHOSSuN6ev7LmX7H+Wl8o8JcmIztIDz2DZ1TLgOKa2haGYOjgdXheFMV
+         XMT0u5Vwz7IjwVJpqJ/dAKwJjVxPT8A2xeawR5fTb7pE+vVZ8Y4cifCqLIg6y3cHnfRx
+         wv/AoNgdljV4TFI2CkMrOYSVp8iSNv9uzGNxmK+bYDinzukjHkqIwk4DQP+/qxdQBiF1
+         ZWWg==
+X-Gm-Message-State: ANoB5pl7MSrL4oo4vplkIEAv9TwH6g2Pmio4BftVdbANHGV824/Ctp4F
+        yFJRfNDuZfpoda9XNK0XoT2pQw==
+X-Google-Smtp-Source: AA0mqf5Avjze8mJqpmB/otxRNftLEtkt0pNU9EgD3UC/DTHK4bAdhHeRlo0WGXs0v9Syhhvw9l9iyw==
+X-Received: by 2002:ac2:5487:0:b0:4a2:4b1b:6ad9 with SMTP id t7-20020ac25487000000b004a24b1b6ad9mr6206908lfk.296.1668513771211;
+        Tue, 15 Nov 2022 04:02:51 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i13-20020ac25d2d000000b004b0b2212315sm2176233lfb.121.2022.11.15.04.02.47
+        by smtp.gmail.com with ESMTPSA id i13-20020ac25d2d000000b004b0b2212315sm2176233lfb.121.2022.11.15.04.02.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 04:02:48 -0800 (PST)
+        Tue, 15 Nov 2022 04:02:50 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Banajit Goswami <bgoswami@quicinc.com>,
@@ -63,9 +63,9 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         quic_srivasam@quicinc.com, quic_plai@quicinc.com
-Subject: [PATCH v2 04/11] ASoC: dt-bindings: qcom,q6afe: Split to separate schema
-Date:   Tue, 15 Nov 2022 13:02:28 +0100
-Message-Id: <20221115120235.167812-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 05/11] ASoC: dt-bindings: qcom,q6apm: Split to separate schema
+Date:   Tue, 15 Nov 2022 13:02:29 +0100
+Message-Id: <20221115120235.167812-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221115120235.167812-1-krzysztof.kozlowski@linaro.org>
 References: <20221115120235.167812-1-krzysztof.kozlowski@linaro.org>
@@ -81,7 +81,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The APR/GPR bindings with services got complicated so move out the Q6AFE
+The APR/GPR bindings with services got complicated so move out the Q6APM
 service to its own binding.  Previously the compatible was documented in
 qcom,apr.yaml.  Move most of the examples from its children to this new
 file.
@@ -93,25 +93,52 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: quic_srivasam@quicinc.com
 Cc: quic_plai@quicinc.com
 ---
- .../devicetree/bindings/sound/qcom,q6afe.yaml | 68 +++++++++++++++++++
- .../sound/qcom,q6dsp-lpass-clocks.yaml        | 40 +----------
- .../sound/qcom,q6dsp-lpass-ports.yaml         | 56 +++------------
- 3 files changed, 80 insertions(+), 84 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
+ .../bindings/sound/qcom,q6apm-dai.yaml        | 19 ++-----
+ .../devicetree/bindings/sound/qcom,q6apm.yaml | 51 +++++++++++++++++++
+ 2 files changed, 54 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6afe.yaml b/Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
+diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+index 24f7bf2bfd95..73a4afad5a74 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+@@ -27,20 +27,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/soc/qcom,gpr.h>
+-    gpr {
+-        compatible = "qcom,gpr";
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+-
+-        service@1 {
+-            compatible = "qcom,q6apm";
+-            reg = <1>;
+-
+-            dais {
+-                compatible = "qcom,q6apm-dais";
+-                iommus = <&apps_smmu 0x1801 0x0>;
+-            };
+-        };
++    dais {
++        compatible = "qcom,q6apm-dais";
++        iommus = <&apps_smmu 0x1801 0x0>;
+     };
+diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
 new file mode 100644
-index 000000000000..297aa362aa54
+index 000000000000..7acb832aa557
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6afe.yaml
-@@ -0,0 +1,68 @@
++++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+@@ -0,0 +1,51 @@
 +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/qcom,q6afe.yaml#
++$id: http://devicetree.org/schemas/sound/qcom,q6apm.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Audio FrontEnd (Q6AFE)
++title: Qualcomm Audio Process Manager (Q6APM)
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
@@ -123,16 +150,11 @@ index 000000000000..297aa362aa54
 +properties:
 +  compatible:
 +    enum:
-+      - qcom,q6afe
-+
-+  clock-controller:
-+    $ref: /schemas/sound/qcom,q6dsp-lpass-clocks.yaml#
-+    unevaluatedProperties: false
-+    description: Qualcomm DSP LPASS clock controller
++      - qcom,q6apm
 +
 +  dais:
 +    type: object
-+    $ref: /schemas/sound/qcom,q6dsp-lpass-ports.yaml#
++    $ref: /schemas/sound/qcom,q6apm-dai.yaml#
 +    unevaluatedProperties: false
 +    description: Qualcomm DSP audio ports
 +
@@ -144,152 +166,23 @@ index 000000000000..297aa362aa54
 +
 +examples:
 +  - |
-+    #include <dt-bindings/soc/qcom,apr.h>
-+    #include <dt-bindings/sound/qcom,q6afe.h>
-+    apr {
++    #include <dt-bindings/soc/qcom,gpr.h>
++
++    gpr {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +
-+        service@4 {
-+            compatible = "qcom,q6afe";
-+            reg = <APR_SVC_AFE>;
++        service@1 {
++            reg = <GPR_APM_MODULE_IID>;
++            compatible = "qcom,q6apm";
 +            qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
 +
-+            clock-controller {
-+                compatible = "qcom,q6afe-clocks";
-+                #clock-cells = <2>;
-+            };
-+
 +            dais {
-+                compatible = "qcom,q6afe-dais";
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                #sound-dai-cells = <1>;
-+
-+                dai@22 {
-+                    reg = <QUATERNARY_MI2S_RX>;
-+                    qcom,sd-lines = <0 1 2 3>;
-+                };
++                compatible = "qcom,q6apm-dais";
++                iommus = <&apps_smmu 0x1801 0x0>;
 +            };
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-index fd567d20417d..aa6c0ecba5cf 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-@@ -35,41 +35,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/soc/qcom,apr.h>
--    #include <dt-bindings/sound/qcom,q6afe.h>
--    apr {
--        compatible = "qcom,apr-v2";
--        qcom,domain = <APR_DOMAIN_ADSP>;
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        service@4 {
--            compatible = "qcom,q6afe";
--            reg = <APR_SVC_AFE>;
--            qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
--
--            clock-controller {
--                compatible = "qcom,q6afe-clocks";
--                #clock-cells = <2>;
--            };
--        };
--    };
--
--  - |
--    #include <dt-bindings/soc/qcom,gpr.h>
--    gpr {
--        compatible = "qcom,gpr";
--        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        service@2 {
--            reg = <GPR_PRM_MODULE_IID>;
--            compatible = "qcom,q6prm";
--
--            clock-controller {
--                compatible = "qcom,q6prm-lpass-clocks";
--                #clock-cells = <2>;
--            };
--        };
-+    clock-controller {
-+        compatible = "qcom,q6afe-clocks";
-+        #clock-cells = <2>;
-     };
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
-index e53fc0960a14..b202692f1756 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
-@@ -150,54 +150,16 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/soc/qcom,apr.h>
--    #include <dt-bindings/sound/qcom,q6afe.h>
--    apr {
--        compatible = "qcom,apr-v2";
--        #address-cells = <1>;
--        #size-cells = <0>;
--        qcom,domain = <APR_DOMAIN_ADSP>;
--
--        service@4 {
--            compatible = "qcom,q6afe";
--            reg = <APR_SVC_AFE>;
--            qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
--
--            dais {
--                compatible = "qcom,q6afe-dais";
--                #address-cells = <1>;
--                #size-cells = <0>;
--                #sound-dai-cells = <1>;
--
--                dai@22 {
--                    reg = <QUATERNARY_MI2S_RX>;
--                    qcom,sd-lines = <0 1 2 3>;
--                };
--            };
--        };
--    };
--  - |
--    #include <dt-bindings/soc/qcom,gpr.h>
--    gpr {
--        compatible = "qcom,gpr";
-+    #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
-+
-+    dais {
-+        compatible = "qcom,q6afe-dais";
-         #address-cells = <1>;
-         #size-cells = <0>;
--        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
--
--        service@1 {
--            compatible = "qcom,q6apm";
--            reg = <GPR_APM_MODULE_IID>;
--
--            dais {
--                compatible = "qcom,q6apm-lpass-dais";
--                #address-cells = <1>;
--                #size-cells = <0>;
--                #sound-dai-cells = <1>;
--
--                dai@22 {
--                    reg = <QUATERNARY_MI2S_RX>;
--                    qcom,sd-lines = <0 1 2 3>;
--                };
--            };
-+        #sound-dai-cells = <1>;
-+
-+        dai@22 {
-+            reg = <QUATERNARY_MI2S_RX>;
-+            qcom,sd-lines = <0 1 2 3>;
-         };
-     };
 -- 
 2.34.1
 
