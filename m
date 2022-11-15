@@ -2,99 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2753D62AF23
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 00:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3656562AF47
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 00:15:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiKOXKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 18:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
+        id S238684AbiKOXPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 18:15:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238570AbiKOXKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 18:10:40 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B9F2E680;
-        Tue, 15 Nov 2022 15:10:38 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AFNAMUf026650;
-        Tue, 15 Nov 2022 17:10:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668553822;
-        bh=gtf+eQVCKgSWi792JEHOnuPGmozhEm9qEIoe9H4zdgg=;
-        h=From:To:CC:Subject:Date;
-        b=jPOIf5AiID8XwK+J8AuyetpqXxWKUGmBI60zIdnA5pUEQuUDX1GraE7PofICp5cpl
-         2GTScVC8OVpS0cM89NgCFLNXP2zI0koT5k5qAN7+n6tBvDvm9q1so80pz4IdpYD1Ys
-         xeWV5K2St+L8tN+Peeql1IJJxlxUexN+MQD7sZ5w=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AFNAMej019020
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Nov 2022 17:10:22 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 15
- Nov 2022 17:10:22 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 15 Nov 2022 17:10:22 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AFNAMhV115002;
-        Tue, 15 Nov 2022 17:10:22 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Keerthy <j-keerthy@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH] dt-bindings: gpio: gpio-davinci: Increase maxItems in gpio-line-names
-Date:   Tue, 15 Nov 2022 17:10:21 -0600
-Message-ID: <20221115231021.2389-1-nm@ti.com>
-X-Mailer: git-send-email 2.31.1
+        with ESMTP id S229831AbiKOXO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 18:14:57 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB33E64E8
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 15:14:54 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id 136so15000803pga.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 15:14:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y0uftbK3o2kwR2nvD90dsb+LA1y7S9LzGYBR1hgiw/w=;
+        b=rkBJzaguJ6AEhOpAcCRXOuIVWePbPATZpT6hYsVnbgEBV4uTLmp9hwmT0L4e8j87RT
+         BGqhP6xWQdS8tQmzJ/UDv1U3liafAUoBr7jefjPhP5mxcHNP7/frHIPMqG8fUvI+txfp
+         Jfs5Xh04jxxNV6GnM/xPV7BQwp4Y1YXkE35H8PWUTh6LvLe1YwcFiF+/4LAPsQv3XHpi
+         KY1TTsosAsu456FszOqpHMf2zn32coJHYgCxbgnX6oog7MP4Ps9R7iPkYK+g2ghZaNjx
+         BrjxCiPbFZtr03FfC40lJ/JeIpU7os/T1ZfHUOnjHqfnb9OSIHmiivRs4IyivGnmA4SV
+         HMFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y0uftbK3o2kwR2nvD90dsb+LA1y7S9LzGYBR1hgiw/w=;
+        b=pfxn36PGJJNRV+0XEeUlMBLLKuTdOnfdFDWMDqzW5hbhBV7aMME98TFnZzNbLXYM6A
+         h8cZuVllJT+uMB6KzQcjhDMq+AGH37iVNW7inrlSnX8cc+optMQZRXMmOGAA2jf/Vqfi
+         Z54P4hUFFPVCxwRExgKKYLcz473lyNoS1hev+Q4jGoYMplIKpodNE9RCSid0ztbW13Oj
+         aqGNQbu4gk9f5b1NrufXoWhoFMKPrP62LEPR87mBTy6iFbU2ScL9dqDaxWMRwCsE/cUq
+         HlQPHzzI4ye/i0BzH8RTldw9+QBqO4BbxGgUhowS2o8jqRYQUGiPKAfum3o7Z/xMhjVR
+         cR7g==
+X-Gm-Message-State: ANoB5pm3u0hUuyq41N72aVt0jQYtxJE9peUUHsq5iAw/i08ymI21hdgN
+        54xCKBYlgjNMNhNfadKpf2aHow==
+X-Google-Smtp-Source: AA0mqf4CKlVKX8SbFuD7sRH7eqvZK1DoM8NYkkY4a5A2CELaFOotf4CiY3Oh1enmQw4eR8TqSghhbA==
+X-Received: by 2002:a63:1949:0:b0:46f:38ad:de99 with SMTP id 9-20020a631949000000b0046f38adde99mr18267574pgz.218.1668554094371;
+        Tue, 15 Nov 2022 15:14:54 -0800 (PST)
+Received: from localhost ([75.172.139.56])
+        by smtp.gmail.com with ESMTPSA id w13-20020a627b0d000000b0056ee49d6e95sm9291846pfc.86.2022.11.15.15.14.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 15:14:53 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        shawnguo@kernel.org, geert+renesas@glider.be,
+        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
+        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
+        jeff@labundy.com, afd@ti.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH v7 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
+In-Reply-To: <20221104152311.1098603-5-jneanne@baylibre.com>
+References: <20221104152311.1098603-1-jneanne@baylibre.com>
+ <20221104152311.1098603-5-jneanne@baylibre.com>
+Date:   Tue, 15 Nov 2022 15:14:53 -0800
+Message-ID: <7hr0y395ea.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-line-names really depends on ti,ngpios. However, the maximum value
-we have seen across the board is on K2G and da850 platforms where it can
-be upto 144.
+Hi Lee,
 
-Link: https://lore.kernel.org/linux-arm-kernel/20221115200357.qa2rvw3clbz7unzq@symptom/T/#u
-Fixes: c830b87a761b ("dt-bindings: gpio: gpio-davinci: Convert to json-schema")
-Reported-by: Robert Nelson <robertcnelson@gmail.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
+Jerome Neanne <jneanne@baylibre.com> writes:
 
-I dont see a practical scheme to set the maxItems based on ti,ngpios,
-but deleting the maxItems was softening the check as well.
+> The TPS65219 is a power management IC PMIC designed to supply a wide
+> range of SoCs in both portable and stationary applications. Any SoC can
+> control TPS65219 over a standard I2C interface.
+>
+> It contains the following components:
+> - Regulators.
+> - Over Temperature warning and Shut down.
+> - GPIOs
+> - Multi Function Pins (MFP)
+> - power-button
+>
+> This patch adds support for tps65219 PMIC. At this time only
+> the functionalities listed below are made available:
+>
+> - Regulators probe and functionalities
+> - warm and cold reset support
+> - SW shutdown support
+> - Regulator warnings via IRQs
+> - Power-button via IRQ
+>
+> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Acked-for-mfd-by: Lee Jones <lee@kernel.org>
 
- Documentation/devicetree/bindings/gpio/gpio-davinci.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+You've ack'd this for mfd, and Dmitry acked the input one (PATCH 5/6)
+but suggested it be merged via the mfd tree.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-index f32e09ef937c..10e56cf306db 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-@@ -35,7 +35,7 @@ properties:
-   gpio-line-names:
-     description: strings describing the names of each gpio line.
-     minItems: 1
--    maxItems: 100
-+    maxItems: 144
- 
-   "#gpio-cells":
-     const: 2
--- 
-2.31.1
+Could you please take patches 4 & 5 of this series? Then the DT
+patch can go via arm-soc.
 
+Thanks,
+
+Kevin
