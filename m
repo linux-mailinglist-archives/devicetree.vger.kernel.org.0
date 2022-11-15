@@ -2,113 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0C8629CC4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F058629CCD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:59:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiKOO7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:59:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41400 "EHLO
+        id S229915AbiKOO75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:59:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbiKOO7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:59:04 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0537523175
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:59:03 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id t10so17884615ljj.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:59:02 -0800 (PST)
+        with ESMTP id S229598AbiKOO74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:59:56 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6227B1E3F9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:59:55 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id o4so24621102wrq.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:59:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HYHQt7itCTdM7tQOSkDoNSdG5hIzfOsUcZ1K9F1d7kA=;
-        b=LtsVRkRE1USanAXoAUY0HXOCia6YZE6iTd+CQirhwunvmvRlEW6plP+M+7xV7+c1NU
-         H9x+dfDPNkZ44zLwCsh5R8rIKIW/4RoJeWuCf/fCqC+aHiFdjCm6xpmR28RhEMzpHaG0
-         TIt7GgjxJmTWRDnfC8I3iu7pVawIUuP8NNrxDHUEDdlz1xZXkvxS+0eIPhsHLRkBWUxG
-         VTljnD+7H6uK/1t05D2GvVLdOY02hL0SUhnsw33VigEey0T3Bgl1EMEXqN5RuuNfmk1X
-         Do8cu4B7K+L7x0tPxXpmgWskVpfgTtZ/Rk1MAUaUrP7qXiN9dTGjHqUHQWkHfQ0bKz9g
-         znsQ==
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VZvJ6/3BqvyPf+pzGos2oDLHrGIaz7vagLhxMIbbdag=;
+        b=E7xm6VJfsawpfWB8Jt6W2hrRrvISw4FVgxyFm6Edw2eInKscMIixwZ3hHVYzm+tnel
+         YuVb6XV4vthoKczmyW/ItA5ljymXLJ9q5rYVpNoWpXztFZFNkZY7Tj0uVOi4YrOxahIz
+         SRxtpwhfQ4XdRkxvSESf31Ycj/DziujLUelMamVZ/8PlOkhm5/tKcirB7NtNIKu2bhyR
+         x8FlWyhT9sVwQkfAzkS0mM/kWNh1BrkBQvSGxP9Y29S+W1p3chilLv7+OzltJ21b9lWs
+         CSzGfWRv5Gu+MztMbcrW3LYuVJ1A4j9Vh32T+SH8ka97F9u0pKeDDtECMmqEfrybhyrX
+         t6xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HYHQt7itCTdM7tQOSkDoNSdG5hIzfOsUcZ1K9F1d7kA=;
-        b=zRnRcuI2+57G28TZiUUdl1wlplVG8XtAlW+Z70N2O/qCSN4YwErdzccmkqN4fcFf3W
-         fEkKml2ZGs8m+4jO8m61w0aqsr9B4HbSP/OfnX9Fa750SWljelH0YJZ8vfRNbhaDoK2q
-         +IqYBVsdHakDaL0+08Z+4CFP6j/eqSekOm/ODwddtSXprJSOknoREhEU7M06x2cHd8Xm
-         s2I8/NwwATxnlbx/2h3sMf66r/WCFZPEZ+O/xp5Y0sfSxu/T9eU1H7eyto97fL2YURT6
-         8epBIYD4hQLznEI6fTLAklxSWujrCfpymco7GS36bvT3fTQXSXER1FD7BttI/acetjtK
-         zBuA==
-X-Gm-Message-State: ANoB5pl2drdU9jjspvDV6IYrgaA4tbLD4cEyVJZdAYxJZnsOwMV5xpvB
-        d91QAvpNXB40G0TYCkUDk91WtQ==
-X-Google-Smtp-Source: AA0mqf6I+kq7LIwQ7yhfRgW226duI2RLRbLmoUqTaDpTnaJXSf412EiQOBpBpv+DuPqS3XN22Nlikg==
-X-Received: by 2002:a2e:7217:0:b0:277:2f73:9f7a with SMTP id n23-20020a2e7217000000b002772f739f7amr5682701ljc.448.1668524341362;
-        Tue, 15 Nov 2022 06:59:01 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y20-20020ac24214000000b004b384ae61absm2235672lfh.198.2022.11.15.06.58.59
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VZvJ6/3BqvyPf+pzGos2oDLHrGIaz7vagLhxMIbbdag=;
+        b=EUVW0z5x8rlljej3+/yTtbBj62b71XMphuxXbhCrBja3uitTq2/7jlxfzsD6H9SzAF
+         0ev3myQphulXiN19QNeneFct8YiYZ0vZ2NriKQznxbONEIvJHWjcNZKR8JVHeZOQYf+W
+         9Gwmxs+dSpbqaKw/941cSZTuJK2d5x3qlP/Z/r5AmSIPcwFF2Hy89iYsej9Z29I5J+nF
+         tQRuUXwtCtbR9iTjXRfXTsoq4y76G9AfNe8Pgf3JOqCJtjLDSwA4uwLTj30P1HZlJPxO
+         EvAqUIJRYwdRMiUKzXdefpTE67zEgLNLbe+ATVSIdz+JGU1fojkv4vsmKSE4tN8Wpbd1
+         qUhw==
+X-Gm-Message-State: ANoB5pk3YP3irtFz1Jsx27OvLiEHfGQB30Xb59VvB74zfEFExl1qh2uI
+        Ox4934npNwyRHOyrfb00shKMDQ==
+X-Google-Smtp-Source: AA0mqf6Jor9LYoLr9QBx6i0iQ3nk/BYX/fdO0UrwfcTyHitEt0Gq4DsOS2gB8DRtRgiEpkmPPcG4qQ==
+X-Received: by 2002:a5d:604c:0:b0:22e:7630:dfa with SMTP id j12-20020a5d604c000000b0022e76300dfamr11357620wrt.1.1668524393957;
+        Tue, 15 Nov 2022 06:59:53 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:fcf3:1c15:2e51:def7? ([2a01:e0a:982:cbb0:fcf3:1c15:2e51:def7])
+        by smtp.gmail.com with ESMTPSA id b13-20020adff90d000000b0022584c82c80sm12485483wrr.19.2022.11.15.06.59.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 06:59:00 -0800 (PST)
-Message-ID: <cca63c93-afd7-12ba-b73f-f7d28870074d@linaro.org>
-Date:   Tue, 15 Nov 2022 15:58:59 +0100
+        Tue, 15 Nov 2022 06:59:53 -0800 (PST)
+Message-ID: <0b5ad94a-c470-422d-45eb-1ec0e77a27da@linaro.org>
+Date:   Tue, 15 Nov 2022 15:59:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v4 1/2] dt-bindings: regulators: convert non-smd RPM
+ Regulators bindings to dt-schema
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-7-herve.codina@bootlin.com>
- <51d42fc2-0492-9077-302d-5c3be4b45cd1@linaro.org>
- <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdUHEc6XYcdrcZ=H_wjBy4vFBTRjUDE2rRmGd+Jyg7BzDQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+References: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v4-1-463523919c19@linaro.org>
+ <166851961643.867594.12105329661363857830.robh@kernel.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <166851961643.867594.12105329661363857830.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 15:11, Geert Uytterhoeven wrote:
->>> +             udc: usb@4001e000 {
->>> +                     compatible = "renesas,r9a06g032-usbf", "renesas,rzn1-usbf";
->>> +                     reg = <0x4001e000 0x2000>;
->>> +                     interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
->>> +                                  <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
->>> +                     clocks = <&sysctrl R9A06G032_HCLK_USBF>,
->>> +                              <&sysctrl R9A06G032_HCLK_USBPM>;
->>> +                     clock-names = "hclkf", "hclkpm";
->>> +                     power-domains = <&sysctrl>;
->>> +                     status = "disabled";
+On 15/11/2022 15:11, Rob Herring wrote:
+> 
+> On Tue, 15 Nov 2022 11:12:35 +0100, Neil Armstrong wrote:
+>> Convert the non-SMD Regulators bindings to dt-schema, the old text based
+>> bindings will be deleted later since the RPM bindings are not yet converted.
 >>
->> If you provided all resources (clocks, power domains etc), why disabling it?
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 +++++++++++++++++++++
+>>   1 file changed, 128 insertions(+)
+>>
 > 
-> Doesn't this depend on wiring on the board, and providing pin control
-> in the board DTS?
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml: $id: relative path/filename doesn't match actual path or filename
+> 	expected: http://devicetree.org/schemas/regulator/qcom,rpm-regulator.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml: Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 > 
 
-Yes, that could be the reason, so if this was the intention, it's fine.
+Damn, will fix in v5.
 
-Best regards,
-Krzysztof
-
+Neil
