@@ -2,77 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B4F6629810
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ACB4629828
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 13:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232880AbiKOMEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 07:04:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
+        id S230472AbiKOMIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 07:08:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232856AbiKOMDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:03:35 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867EC29367
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:03:01 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id j4so24139040lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 04:03:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zaNhfP/nOLQ48+6TzTDF7R1fJQ8t4XkKM7Atq6L3Heg=;
-        b=HhMszbCidv1BjEeyqH+iNPff0dj/tzcenSFpriNx7CLV7PYZcTWKIBiTzXwk/EFCsp
-         EjH4nFNH23GhDS2LQpa3VgHid3bsULTh7Lg4AZsAVoniu2iAB4ZDu9+CrqsqZznzVlFE
-         CRp9DQL9qlF57NJCWaOva57ewkY5k6csI80ofKF31GymsI4VipYOkKmDKjuxSDm2i4FR
-         G3SpZ5cnGmwUzEcn9jaf103ccLQUdiZeW/w9yT/O3+ZC3ACpYIWi58VtTYFPDlM0tBX7
-         KZ9XcDCMr4qMVYILY3MAuaL4Ml5s1bzPlIJhg0hOK6rZcWbZoCFVQ1vuakZtLCsbp5UE
-         kM2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zaNhfP/nOLQ48+6TzTDF7R1fJQ8t4XkKM7Atq6L3Heg=;
-        b=NFnOyipWpCu+2MyfvBVLkiJta8fHdG2mEar3NsY3KPA8eCVbljTnXztDDsH61vQ3x7
-         NConBfZ6ZQiQQFBMTM41W1ydqLsEsC+6znFqsZh5MwN6nLfCB2WKOiURr+8fC/uoRBRD
-         xu4yTU28yrCTqXeNF21c2n9ixmqYzPUCGM5zXmExX1nogGkVQUg7BvW8QelXq2hrGcFM
-         xU+T4lRhKe9ma01O2zWezZC5HuAViTS/qv6nZskNkZkwCMXAkgyElnpC7ZKITn5n5h8V
-         xromoLfqwViDM4VFjhM9HhRmFdGzY8WmwI/Ob85Sor9RkNlrWxjV+sWJx3QrR0T2b9I1
-         gnSg==
-X-Gm-Message-State: ANoB5plqby9Zz0YXo+bPcHbUERBkpd087DNc34shjnKhOT+87deKfbRq
-        LGzHBD3Yqr5l31PUtV8yytnKZA==
-X-Google-Smtp-Source: AA0mqf64kKT0ofbo54DaUnDY+YBs9l9fHXVwodgpsd+Yh1/Ebzr2T12keDq5/AyUp3Ez7jpQaMZxUQ==
-X-Received: by 2002:ac2:4f15:0:b0:4ad:23ac:94ef with SMTP id k21-20020ac24f15000000b004ad23ac94efmr5961832lfr.510.1668513781099;
-        Tue, 15 Nov 2022 04:03:01 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i13-20020ac25d2d000000b004b0b2212315sm2176233lfb.121.2022.11.15.04.02.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 04:03:00 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230036AbiKOMIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 07:08:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D30334;
+        Tue, 15 Nov 2022 04:08:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66794B816D6;
+        Tue, 15 Nov 2022 12:08:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38644C433D6;
+        Tue, 15 Nov 2022 12:08:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668514100;
+        bh=R61j7XvFsjKOIGH8lnB32pQtEXr+vA8qj1O0QUXEaRc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Hx/O2XaWQYMEROQxzdBxuKSHYCYl34im56uhTkwbkT21OFS9IwoWQRYp1PmJY5HkB
+         YR7MiU/850/8oDiOu9aVDg5JYBDly1HQIP9h/BTy4exS3wfQA1lZ3kEIQ/hVFCJMl5
+         wyxkt6zwCd4D0d5biedQF78/hMGeYjESNsfD/Tn7rx6rbmudi60ALNz/U3NRMKenU6
+         9cBHCsQJ5oqRYWWm2xQnEe2gTgPTNdM/jyOfggZgCmEgBwhBd3E/KGLnE+1SbhylOC
+         MpiB1tPiI3u4JWe9N+A9Dpsn4hkaciDWC2fuMOnAegvb3VWbhI0khGYwa2GqEypvxK
+         2zGJgQZfo1mRg==
+Date:   Tue, 15 Nov 2022 12:08:13 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        quic_srivasam@quicinc.com, quic_plai@quicinc.com
-Subject: [PATCH v2 11/11] ASoC: dt-bindings: qcom,q6apm: Add SM8450 bedais node
-Date:   Tue, 15 Nov 2022 13:02:35 +0100
-Message-Id: <20221115120235.167812-12-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221115120235.167812-1-krzysztof.kozlowski@linaro.org>
-References: <20221115120235.167812-1-krzysztof.kozlowski@linaro.org>
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        Chris Healy <healych@amzon.com>
+Subject: Re: [PATCH v9 1/4] perf/amlogic: Add support for Amlogic meson G12
+ SoC DDR PMU driver
+Message-ID: <20221115120812.GF32523@willie-the-truck>
+References: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221109015818.194927-1-jiucheng.xu@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,67 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8450 and SC8280XP, the Q6APM is a bit different:
-1. It is used as a platform DAI link, so it needs #sound-dai-cells.
-2. It has two DAI children, so add new "bedais" node.
+On Wed, Nov 09, 2022 at 09:58:15AM +0800, Jiucheng Xu wrote:
+> This patch adds support Amlogic meson G12 series SoC
+> DDR bandwidth PMU driver framework and interfaces.
+> 
+> The PMU not only can monitor the total DDR bandwidth,
+> but also the bandwidth which is from individual IP module.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This doesn't apply on top of 6.1-rc4.
 
----
+Please can you send a rebased version for me to pick up, excluding the
+final .dts changes as they'll need to go via the respective SoC tree.
 
-Cc: quic_srivasam@quicinc.com
-Cc: quic_plai@quicinc.com
----
- .../devicetree/bindings/sound/qcom,q6apm.yaml    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Cheers,
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-index 7acb832aa557..cd434e8268ce 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-@@ -18,14 +18,24 @@ properties:
-     enum:
-       - qcom,q6apm
- 
-+  bedais:
-+    type: object
-+    $ref: /schemas/sound/qcom,q6apm-lpass-dais.yaml#
-+    unevaluatedProperties: false
-+    description: Qualcomm DSP audio ports
-+
-   dais:
-     type: object
-     $ref: /schemas/sound/qcom,q6apm-dai.yaml#
-     unevaluatedProperties: false
-     description: Qualcomm DSP audio ports
- 
-+  '#sound-dai-cells':
-+    const: 0
-+
- required:
-   - compatible
-+  - bedais
-   - dais
- 
- unevaluatedProperties: false
-@@ -41,11 +51,17 @@ examples:
-         service@1 {
-             reg = <GPR_APM_MODULE_IID>;
-             compatible = "qcom,q6apm";
-+            #sound-dai-cells = <0>;
-             qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
- 
-             dais {
-                 compatible = "qcom,q6apm-dais";
-                 iommus = <&apps_smmu 0x1801 0x0>;
-             };
-+
-+            bedais {
-+                compatible = "qcom,q6apm-lpass-dais";
-+                #sound-dai-cells = <1>;
-+            };
-         };
-     };
--- 
-2.34.1
-
+Will
