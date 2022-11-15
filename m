@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5242D629571
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65FFC629576
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238300AbiKOKMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:12:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
+        id S238425AbiKOKNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:13:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238356AbiKOKMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:12:13 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C5724F21
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:11 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id j4so23733310lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:11 -0800 (PST)
+        with ESMTP id S238354AbiKOKNY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:13:24 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C412624F35
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:38 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so12740401wmb.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:12:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YawYGMNwk0lz5irnjO3Ci3Kzm3in8Mf7sW9hSPleXyg=;
-        b=Rc8oKB8U198WQWIqvUNHlOw+MWLNLE+nRar20x2oKeiAPcmPpjL2XI+L7+xxVvwRmk
-         5GNa6elcozne7vKIi8xb2UgoSI6pO/ryifl1MPqb1tG8jRZ1ruUaAq6sG3mtKDN43wY8
-         yLmhoa6cb75zSyYU26jGCv1seNpDkia9DQcUTVZn9D8huZPrrFdJAWU/gyiJTp5CJaz+
-         +PRMSGZXpFfb+yBxpEwsgIM6kvoU8/XBMLcESeFnwIhMSpRrhvEithfDN9zIME09l3Px
-         /sGx9/QXrULpN3nsXKS3np+5i+8X1YJuam0z/sGXX99EpUl/TVekLi+jJdnouQvVlsBI
-         wqBg==
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=HYUPzUV+S9Fy+mYwzh6CSP3umqa+7In6uixG2u9bF/E=;
+        b=a0+qfMKXjIvovlIGHjkV1WfW7ga7PZy0Eqh9MfJis5SerHAAdrfO/Ln3EtAEoo5TOA
+         NQb7EA5x5abu8j73no53C9tyB4hAw0HJBzCNTCZfLloLil87NNOiG+wXo6CiMEIwFCZ/
+         FwbNptzJsJUShD3S+B6D6PWEBtDIP/d8ftIhU5qqlMnOSiaR9vtbrnhmUJ8xoRe9rU7x
+         xiJTFkXDspL5NEyspZtI7Y9/ZVHGLzpU2jVUTg86Pz+ma1hog9R/WXgxyg4p3xoP+Duu
+         kSBpMX1LF5nd3+hWLuux0lCHjIqyHdm0Tsa2kSlD7gdAqf8eR2qjpQ6O9KdswyQyOwrT
+         v0rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YawYGMNwk0lz5irnjO3Ci3Kzm3in8Mf7sW9hSPleXyg=;
-        b=WoFjAeSPVMcfPhIcVcZswi2O0OFSNoHAFOY1LDHjIE/Q/yhr7/hH+9gi9Sz093Hl24
-         KDgI66BnDmHfJkgavQ3Sym1aQQNjsHvtzQ/r4vCSd2duqk1ONzC0PXs3TQKnpZqUn0Yd
-         N1R4cHrsyjA6nPsDl4ZK7aQoc8aNpZWzZ+OS/OsDggttoFITciJ1qx7NWQRN4vdCL93D
-         dodqdZQKdM2tpW8mC3bYpVDlYG1DgBIqIA2yb5ySQlNjeGnxsZEAAGw7g5cQByIxbALc
-         TLsPfKh3XUU+H6NinrIXzkmUeNc/YDDqQEe9Q6OI5FitrUh2Hhxrk8ZzA8rScFrrg8uA
-         8U+w==
-X-Gm-Message-State: ANoB5plMbq95z1skKhGcBxtjLiCV05IGpK2ZMhdMuN8A1XweZDcAb1tR
-        oC8X4noG/LOM5MzZ3/1N+vrRaw==
-X-Google-Smtp-Source: AA0mqf7p9AgPiCAOIaG+ECvuhU2pkosG4asy/jxfgRKwaoWuwTp9cjS7RxMPDbWQPh5hZoftcaFLog==
-X-Received: by 2002:a05:6512:3a96:b0:4a2:2bac:e4fb with SMTP id q22-20020a0565123a9600b004a22bace4fbmr6197345lfu.297.1668507129567;
-        Tue, 15 Nov 2022 02:12:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056512360200b004ae24559388sm2147963lfs.111.2022.11.15.02.12.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 02:12:09 -0800 (PST)
-Message-ID: <9f17e519-b3fb-2ec6-7b49-70ee29d9b71d@linaro.org>
-Date:   Tue, 15 Nov 2022 11:12:07 +0100
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HYUPzUV+S9Fy+mYwzh6CSP3umqa+7In6uixG2u9bF/E=;
+        b=Sj2avQDs+sQqI11UHNokjnnc36WQ36YSlej5fsATCx12sXUt7XyDDNWbGA/ZfXeaQc
+         RggcKxA0x6KKcGeGGKR56nWIjjAmzTGH3eLKin4WVQQR2tD4uQmLdVQHZClZhDEwR7gK
+         ricJakcaEv18jeTcsyzRZmo+Rub+/KvHUWCIbbA6JhysvWIOEN57JFliW1ZhE7DVIxJN
+         KsHGgI35v5s4b1wzWB+uKojvonDRdLT9a81UXfDIzyPm/uKsTcqSKQy+sqYoboRAEeOA
+         X2p+f6HSfiAa6f2ZGlzEmXSs1sqHIf/87CNy1yGkSOwfBVlK9ljk3bOXMR2I1c7FJm43
+         q/Jw==
+X-Gm-Message-State: ANoB5pmdmry15mqg+BkpRKX/8iG+dUrVcEuz4k7kiKzMUXS2cScJODXi
+        p5afObbpmD6W9eFq33pZ+7k4gw==
+X-Google-Smtp-Source: AA0mqf6cqFMpLe4sdsSvweZOEAkruMlMvbfcomg5LEJX/mo3qjW1mryzLkhdNwpXKrX1k455qG5wHg==
+X-Received: by 2002:a7b:cb89:0:b0:3cf:8a44:e1eb with SMTP id m9-20020a7bcb89000000b003cf8a44e1ebmr891215wmi.189.1668507157277;
+        Tue, 15 Nov 2022 02:12:37 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id az40-20020a05600c602800b003b492753826sm15165154wmb.43.2022.11.15.02.12.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 02:12:36 -0800 (PST)
+Subject: [PATCH v4 0/2] arm: qcom: mdm9615: second round of bindings and DT fixes
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: ad74413r: add optional
- reset-gpios
-Content-Language: en-US
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
- <20221115095517.1008632-1-linux@rasmusvillemoes.dk>
- <20221115095517.1008632-3-linux@rasmusvillemoes.dk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115095517.1008632-3-linux@rasmusvillemoes.dk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIABJmc2MC/43NTQrCMBAF4KtI1kYmv1pX3kNcTNPRBtJUEi1I6d0d3IkLuxreg/fNLCqVSFUcN7
+ MoNMUax8zBbjci9JhvJGPHWWjQWgE4OXRD45WT95jDoyT5wiFJZa4uqAPazqDgaYuVZFswh57H+ZkS
+ l32sj7G8Pq8mxef8R52UBAmhDQCeNBo4pZixjLux3MSFxUmvUTQr3jRX8nsE29KPYtYohhVyBNZ5a5 u9+lKWZXkDb0ygeUoBAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Tue, 15 Nov 2022 11:12:34 +0100
+Message-Id: <20221005-mdm9615-pinctrl-yaml-v4-0-463523919c19@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,15 +79,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 10:55, Rasmus Villemoes wrote:
-> The ad74412 and ad74413 devices have an active-low reset pin. Add a
-> binding allowing one to specify a gpio tied to that.
-> 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+This is a second round of bindings & DT fixes for the MDM9615 platform.
 
+This second round focuses on less trivial changes like pinctrl & regulators bindings,
+the remaining work will mainly be fixing the qcom,kpss-timer/qcom,msm-timer situation and
+add bindings for qcom,lcc-mdm9615, qcom,kpss-gcc & swir,mangoh-iotport-spi.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Dependencies: None
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Lee Jones <lee@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v4:
+- Removed applied patches
+- Removed "-ipc" from bindings file name and removed IPC from title & description
+- Added the review tags from v3 after file renaming & title/description change, after Lee's acceptation
+- Link to v3: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org
+
+Changes in v3:
+- Path 1: Removed from serie because applied
+- Path 2: None
+- Path 3: Added reviewed-by tag
+- Path 4: Fixed dt-schema title and added unevaluatedProperties
+- Path 5: Various schema fixes, uses same naming as other dt-schema for qcom regulators
+- New patch added changing regulators names of msm8660 to conform to bindings
+- Link to v2: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v2-0-639fe67a04be@linaro.org
+
+Changes in v2:
+- Rebased on v6.1-rc1
+- Patch 1: Fixed bindings and aligned with Krysztof's series
+- Patch 2: Rewrote patch title and added reviewed-by tag
+- Patch 3: Added reviewed-by tag
+- Patch 4: Moved to end, added support for (regulators|-regulators) sudnode
+- Patch 5: Fixed schema description and added missing unevaluatedProperties in patternProperties
+- Patch 6: Dropped & squashed with patch 4
+- Link to v1: https://lore.kernel.org/r/20221005-mdm9615-pinctrl-yaml-v1-0-0cbc006e2a30@linaro.org
+
+---
+Neil Armstrong (2):
+      dt-bindings: regulators: convert non-smd RPM Regulators bindings to dt-schema
+      dt-bindings: soc: qcom: convert non-smd RPM bindings to dt-schema
+
+ Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 283 ---------------------
+ .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 ++++++++++
+ .../devicetree/bindings/soc/qcom/qcom,rpm.yaml     | 101 ++++++++
+ 3 files changed, 229 insertions(+), 283 deletions(-)
+---
+base-commit: 19d64985796125c5e3820c3db995c5df6d13d6dc
+change-id: 20221005-mdm9615-pinctrl-yaml-13f5c18a4d3a
 
 Best regards,
-Krzysztof
-
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
