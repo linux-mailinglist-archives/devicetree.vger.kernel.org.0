@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 535F762A2B6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 21:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2925E62A2B8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 21:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiKOUWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 15:22:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
+        id S229553AbiKOUXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 15:23:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbiKOUWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 15:22:47 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3AD2CE1E;
-        Tue, 15 Nov 2022 12:22:46 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKMfdZ119957;
-        Tue, 15 Nov 2022 14:22:41 -0600
+        with ESMTP id S230472AbiKOUXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 15:23:09 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3503A2CDF5
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 12:23:09 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKN5tL012173;
+        Tue, 15 Nov 2022 14:23:05 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668543761;
-        bh=fxqH4stTU56BjQ2STtiKC3aRArMdnSggWJaOnyPIREM=;
+        s=ti-com-17Q1; t=1668543785;
+        bh=6f7LiAhpG5Hii1ndKZ/WGVi0ywic75RT+UpVk/HuO6U=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=w3XQUP3evDODxV/VHAsREE8ZHMJlYjqvaAmx6N169EJl+EgM6leT8AA6ngVMHlUW2
-         wcpTebZZ6kU5Q5NVogy0ZVCRx7c9On0X3RuSEfPkYt8k7xtlwE8z3e5uHD/1eBducr
-         /o4HTW3XF25V5o3K+cDHFp1ulsB8iZi/xrJpALr0=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AFKMfY0061835
+        b=Ym12zvIRyTxp1gdl8rsTix107oZi1xnJGwpsh6b2D3a0d4eiMIefRg6Z7s7pOXYp9
+         JaoxLZLHGRpLYDL54O6AmUYfahMfP1xs6gvIcktapz/cxpBd8RsArkU5LuBhYaoqsR
+         oD3Me7sebKO/D50SdxRQEtgv/+5Z869+O+Go6VkI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AFKN5mW053890
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Nov 2022 14:22:41 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 15 Nov 2022 14:23:05 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 15
- Nov 2022 14:22:41 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2022 14:23:05 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 15 Nov 2022 14:22:41 -0600
+ Frontend Transport; Tue, 15 Nov 2022 14:23:05 -0600
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKMeKr108659;
-        Tue, 15 Nov 2022 14:22:40 -0600
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AFKN5Rw069046;
+        Tue, 15 Nov 2022 14:23:05 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     <j-choudhary@ti.com>, <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <j-keerthy@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
-        <devicetree@vger.kernel.org>, <afd@ti.com>, <robh+dt@kernel.org>
-Subject: Re: [PATCH 0/3] Drop dma-coherent property from SA2UL
-Date:   Tue, 15 Nov 2022 14:22:40 -0600
-Message-ID: <166854370828.11536.1320576078226919032.b4-ty@ti.com>
+To:     <tony@atomide.com>, <vigneshr@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <j-keerthy@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <g-vlaev@ti.com>
+Subject: Re: [PATCH v3 0/3] Collected pending TI dmtimer dts changes
+Date:   Tue, 15 Nov 2022 14:23:04 -0600
+Message-ID: <166854376727.11677.14097105577577542690.b4-ty@ti.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20221031152520.355653-1-j-choudhary@ti.com>
-References: <20221031152520.355653-1-j-choudhary@ti.com>
+In-Reply-To: <20221115154842.7755-1-tony@atomide.com>
+References: <20221115154842.7755-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -64,30 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jayesh Choudhary,
+Hi Tony Lindgren,
 
-On Mon, 31 Oct 2022 20:55:17 +0530, Jayesh Choudhary wrote:
-> crypto driver itself is not dma-coherent. It is the system-dma
-> that moves data and so 'dma-coherent' property should be dropped.
+On Tue, 15 Nov 2022 17:48:39 +0200, Tony Lindgren wrote:
+> Here are the pending TI dmtimer dts changes posted earlier. The related
+> driver and binding changes are now in the mainline Linux. There has been
+> no changes to these patches, I just updated them against current Linux
+> next and added the tags from Georgi.
 > 
-> This series drop it from the crypto nodes for the J7 family of
-> TI SoCs.
-> 
-> DT binding fixes have already been merged[0].
+> Regards,
 > 
 > [...]
-
-(note: I picked up Manorit's reviewed-by as well)
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/3] arm64: dts: ti: k3-am65-main: drop dma-coherent in crypto node
-      commit: b86833ab3653dbb0dc453eec4eef8615e63de4e2
-[2/3] arm64: dts: ti: k3-j721e-main: drop dma-coherent in crypto node
-      commit: 26c5012403f3f1fd3bf8f7d3389ee539ae5cc162
-[3/3] arm64: dts: ti: k3-j7200-mcu-wakeup: drop dma-coherent in crypto node
-      commit: f00f26711d7183f8675c5591ba8daaabe94be452
+[1/3] arm64: dts: ti: k3-am65: Configure pinctrl for timer IO pads
+      commit: 7928c712e2d6666a1816d5182038436902f57380
+[2/3] arm64: dts: ti: k3-am65: Add general purpose timers for am65
+      commit: cdbaf880b440287f56bc7dc58c4362b6bebb64e4
+[3/3] arm64: dts: ti: k3-am62: Add general purpose timers for am62
+      commit: 3308a31c507cacff94dc4c55f8402de1f9102621
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
