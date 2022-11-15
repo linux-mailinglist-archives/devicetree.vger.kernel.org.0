@@ -2,147 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BDC629B73
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ECFE629B7B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 15:05:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238524AbiKOOEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 09:04:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60620 "EHLO
+        id S229843AbiKOOFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 09:05:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231294AbiKOOEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:04:34 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246AD2B249;
-        Tue, 15 Nov 2022 06:04:27 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 80E43240007;
-        Tue, 15 Nov 2022 14:04:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1668521066;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=m52RNtELDDNqeiQtokfOg67uyM39sRsLuDiZvZRE3B0=;
-        b=NudmAyB06AsNNnCsJt4iwJTc6oYb518K4zCuIOTgbH8Jph8xyl9lERBCB2rnRwhIGlKBQp
-        0SCkDrVS9j7Y6KCJBn7R/kjc9dvG7aYqFHfIRuJSmjqhK2bOqQeAl44Si8MpfBCh22fcNk
-        NlRqtIHOgh45m2guJrdSSJ7SxCHrVVUvxxzkG6xjm6yA9uxRs9d4YUexh8zpT6WRdv0RTk
-        PGhDPkAejvpA8OGDZ98Mz+prO9BXnSRl7YWadgkJb8aicuF1+vFP11gcp+xcyUH9SQ0rym
-        SAsKehe8H7y8d99gTxn8KMhegCxtNBHK1+2Xsdo4DLgiWtxwdUHLQ2QRvebGqQ==
-Date:   Tue, 15 Nov 2022 15:04:17 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl:
- Add h2mode property
-Message-ID: <20221115150417.513955a7@bootlin.com>
-In-Reply-To: <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
-        <20221114111513.1436165-3-herve.codina@bootlin.com>
-        <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
-        <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        with ESMTP id S238587AbiKOOFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 09:05:01 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0D92C130
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:04:50 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id d20so17599235ljc.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 06:04:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zUNMs9VUAYdzsYfZj27O2GLpDUkgxaYUW8ObUFHeds0=;
+        b=u+QFzxo8dFM9n5LLms3vKX6AtCaWd9OUiB7ag8+KWKx1CJUazR4DjCML3W1oZb91kc
+         j3mSyC5JgKEPhMjJ0ny11pXN9q0MGzqOqea72A4Ziu8gxD4wfaRRTcJ7P/HcBLGU7Ivo
+         pGvjLZ8yFAeBfpoixuMWYEFN0aGCxWdnHb0aVDb7moBqo9j7RMtt3+6+5A9DYerreadD
+         7PxuRTaB5is6gL0yqGbJfHBpo6v09b0iFuSKyWg6sukt+Lz7tgdKiB6XyE95E5s6/xCY
+         u90JEPg7X14bdlqR7Rbusxvo6DYLXCYbOlJ407ALJxDnAj9OIYzcTPxy8vCoqYvmzOJf
+         zQsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zUNMs9VUAYdzsYfZj27O2GLpDUkgxaYUW8ObUFHeds0=;
+        b=lcm89jbs0nNKQi7RP+qw/pCkldoXmTnFnAcacYMLiOKPbpkU+H1J9k/PP8XC3Bu/vr
+         naUGK+jLXG5zH7QlrrockksqZ+7O9ZD9Dd75mbJfbhSA4jnQefztK9Ii4Ni2JYi3zhpF
+         y/yWMAc69rVEDari7+vRIUA2Dge08aOB4URUqgOkkZRvWOROSaYLtCoDe2eaC+sWjL8+
+         fgkG4hpH+LCyJyPiXpoetaKso3cdzOs59mOI2Q9nK/lzSrDHnVthNX9mmkkrOYmYATc9
+         vRf5tPOUexqOLrmLh3WWWiZJxxZ0Q+UdIIRp21m0mflsR4D1uGEPTEHQrja9KAQJa6U+
+         kAgg==
+X-Gm-Message-State: ANoB5pm9Hqf9wYsuC4tclqkHrAb0NSFth2lP2yofIP/lWzZLaCfXRT3w
+        CAkJ26E3y0JJSRsgaAe7c7toQg==
+X-Google-Smtp-Source: AA0mqf7tUo+4QoipSM45XImyjkR2A/it5s5rIMCeuLa9TU6VpMwLpU2oNRM6yJWAb9NGweATnPCL+w==
+X-Received: by 2002:a2e:9904:0:b0:277:8d3:4298 with SMTP id v4-20020a2e9904000000b0027708d34298mr5475696lji.302.1668521089181;
+        Tue, 15 Nov 2022 06:04:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s7-20020a056512314700b004946b549a19sm2203167lfi.45.2022.11.15.06.04.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 06:04:48 -0800 (PST)
+Message-ID: <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
+Date:   Tue, 15 Nov 2022 15:04:46 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v10 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221115110932.637091-1-Naresh.Solanki@9elements.com>
+ <20221115110932.637091-2-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221115110932.637091-2-Naresh.Solanki@9elements.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 15/11/2022 12:09, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+> 
+> The MAX597x is a hot swap controller with configurable fault protection.
+> It also has 10bit ADC for current & voltage measurements.
+> 
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../bindings/mfd/maxim,max5970.yaml           | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> new file mode 100644
+> index 000000000000..edf0c23db4ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +
+> +description: |
+> +  The smart switch provides no output regulation, but independent fault protection
+> +  and voltage and current sensing.
+> +  Programming is done through I2C bus.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max5970
+> +      - maxim,max5978
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  leds:
+> +    type: object
+> +    description:
+> +      Properties for four LEDS.
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        $ref: /schemas/leds/common.yaml#
+> +        type: object
+> +
+> +    additionalProperties: false
+> +
+> +  vss1-supply:
+> +    description: Supply of the first channel.
+> +
+> +  vss2-supply:
+> +    description: Supply of the second channel.
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      Properties for both regulators. Also set value for shunt resistor used.
 
-On Tue, 15 Nov 2022 14:07:52 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+You should explain not the syntax,  but what part of hardware this nodes
+represents. Therefore "Also set value" does not fit at all. Hardware
+sets value?
 
-> On 15/11/2022 14:05, Krzysztof Kozlowski wrote:
-> > On 14/11/2022 12:15, Herve Codina wrote: =20
-> >> Add the h2mode property to force the USBs mode ie:
-> >>  - 2 hosts
-> >> or
-> >>  - 1 host and 1 device
-> >>
-> >> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> >> ---
-> >>  .../bindings/clock/renesas,r9a06g032-sysctrl.yaml      | 10 ++++++++++
-> >>  1 file changed, 10 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032=
--sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-s=
-ysctrl.yaml
-> >> index 95bf485c6cec..f9e0a58aa4fb 100644
-> >> --- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctr=
-l.yaml
-> >> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctr=
-l.yaml
-> >> @@ -39,6 +39,16 @@ properties:
-> >>    '#power-domain-cells':
-> >>      const: 0
-> >> =20
-> >> +  renesas,h2mode:
-> >> +    description: |
-> >> +      Configure the USBs mode.
-> >> +        - <0> : the USBs are in 1 host and 1 device mode.
-> >> +        - <1> : the USBs are in 2 host mode.
-> >> +      If the property is not present, the value used is the one alrea=
-dy present
-> >> +      in the CFG_USB register (from reset or set by the bootloader).
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [0, 1] =20
-> >=20
-> > 0/1 are quite cryptic. Why not making it a string which is easy to read
-> > and understand? Can be something like "two-hosts" and "one-host". Or
-> > anything you find more readable... =20
->=20
-> ...but actually you should rather make it a property of your USB
-> controller, not clock controller. You have two controllers and we have a
-> generic property for them - dr_mode.
->=20
-> Best regards,
-> Krzysztof
->=20
+I looked at datasheets to figure it out but they do not refer to any
+configurable regulator, LDO nor "sw0/sw1/sw2". Therefore I have no clue
+what to expect here...
 
-IMHO, this property in the USB controllers does not make sense.
-Indeed each controller cannot have a different 'mode'.
-Some controllers are USB host only (EHCI and OHCI) and the USBF
-controller I worked on is device only.
-'h2mode' allows to choose between host or device on one of the USB
-but not at the USB controller level.
+> +
+> +    patternProperties:
+> +      "^sw[0-1]$":
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +        properties:
+> +          shunt-resistor-micro-ohms:
+> +            description: |
+> +              The value of current sense resistor in microohms.
+> +
+> +        required:
+> +          - shunt-resistor-micro-ohms
+> +
+> +      unevaluatedProperties: false
 
-This property should be handle outside the USB controller nodes.
+I don't think it has proper indentation. Did you test the binding?
 
-Currently, this node (declared as a clock node) is in fact a sysctrl
-node and can do some configuration not related to clocks.
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +  - vss1-supply
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - maxim,max5970
+> +    then:
+> +      required:
+> +        - vss2-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        regulator@3a {
+> +            compatible = "maxim,max5978";
+> +            reg = <0x3a>;
+> +            vss1-supply = <&p3v3>;
+> +
+> +            regulators {
+> +                sw0_ref_0: sw0 {
+> +                    regulator-compatible = "SW0";
+> +                    shunt-resistor-micro-ohms = <12000>;
+> +                };
+> +            };
+> +
+> +            leds {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                led@0 {
+> +                    reg = <0>;
+> +                    label = "led0";
+> +                    default-state = "on";
+> +                };
+> +                led@1 {
+> +                    reg = <1>;
+> +                    label = "led1";
+> +                    default-state = "on";
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        regulator@3a {
+> +            compatible = "maxim,max5970";
+> +            reg = <0x3a>;
+> +            vss1-supply = <&p3v3>;
+> +            vss2-supply = <&p5v>;
+> +
+> +            regulators {
+> +                sw0_ref_1: sw0 {
+> +                    regulator-compatible = "SW0";
 
-I agree with you something related to choosing USB Host/Device in
-a clock node seems strange.
+This property is deprecated, isn't it? Again - did you test this?
 
-Some discussion were already opened related to this property and how
-to handle it:
-  https://lore.kernel.org/all/20221107182642.05a09f2f@bootlin.com/
-  https://lore.kernel.org/all/20221107173614.474707d7@bootlin.com/
+Best regards,
+Krzysztof
 
-Regards,
-Herv=C3=A9
-
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
