@@ -2,215 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B66629AED
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D77C1629AF7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:46:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbiKONpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:45:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46514 "EHLO
+        id S231168AbiKONq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbiKONpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:45:23 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE811BE94
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:45:22 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id c1so24471514lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:45:22 -0800 (PST)
+        with ESMTP id S231132AbiKONq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:46:27 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B3120BFA
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:46:25 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id r12so24493502lfp.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:46:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x6C4qzSxJODnTx3c8m8GXC7Qrtvk8RrOjz6X2ODydhg=;
-        b=pY51M7M/UwSYTsg5DV+5DQ0w5thPCNM1RQxRVuzP/72UBvJa5K+Bucxwuqg3K79Ldd
-         zqv6vBDd7GKivSGkZ/+tsIY6CEMrfYkCD13XZdlrfMb76O4a69jbmDl/Bl6/ZgmX5j3K
-         oys37HLAi70w/78m+g/BNjvYiyEXeKTfwmN3E1a1fOyFLtSibgwNLG+54huhseb4bBWq
-         z3k9ZR0/o8xKHoTzfuWtWGW393iIb5nRMDAK9xIj6Pd7wILhXcqHosFvYrb/VLxCaSeo
-         VbQdUoCUYkcRd6i7tI3y3Xt10hRW0U/5itOGHh9jOqnOFUP8vygd+WoFS923DPBK8HpQ
-         ofGA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iVWBDh2ESILH47IArWNXnpY9VbwBg6U8zn7yHMsyUzo=;
+        b=uGUu0NJDpOuNSGlrvQR6PGvysE+8Y0TqlO6B5BSNh5Vg//TseHeAUUTZ3t4pNX0LGr
+         Cs5CsALf5rSlwuLpVKmNoQAL71yC2LUaSpTEX+UllfKTncfrJ2Hh2J22u1gcCTN1vF0r
+         U9LtmUWpOkjIISnUV9jxNEJKMqmu7Z+4TSAUgZnvQaTjHz0StT+B5ACs4oKYvlad0sN2
+         XkDJ8Xcflxa59q1aftKR4CALKdB/JJGQD3e32XzR/eJrGqNRqHecM0YUVUWZnVYbHmdT
+         u33HeoZvCNWIWAMwsmxpL5PDGk/pYP+XvpOl9yFXQkD4GCAT0zgbXEns7mTnVo5kqRQU
+         meyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=x6C4qzSxJODnTx3c8m8GXC7Qrtvk8RrOjz6X2ODydhg=;
-        b=q0BZW9lfAodBtGoXbqUbJlGEP29vWF9uQOr6nCshQDi+0oCh+EbJ7AP+o4a5/y2MEs
-         ZNEF1F+1KK814HOrVzn9ZGlUmEm30LUZs6JuCZsB5zqMCD6V0K5eKT1B+Qh4EluI4HJh
-         wDwde1sl23Dcl4C7Pbu2RvkwGUd7XNOo4pWI4/TJWwBxJWNiBalmjNqGCDOafD5ipqOJ
-         +gKuoROWoIvjvtrd7T4cOKmy9EAuPcd79yiFNqZz6392TmW4oeNlgD6BFytmA8A2Lm6c
-         HsxPA+yNUqpUhqNHFi42xHUXWORS1MFL+2JMHjROXlVa0Ku4GLTZjGJQDFGG2Lz8Aenf
-         IFTg==
-X-Gm-Message-State: ANoB5pmm/BXpfWFb9K1ItZmHYMlerdkDMUaMqIFfVO3FIZBHutJ0M3+i
-        QuEg+oKr/cFSDS/8W6cPh9fQKg==
-X-Google-Smtp-Source: AA0mqf50TlTdoUfXi64mbj+svVdUrwEsS9ZdgXwMQ5nQHsStzJxYzvsyunoaUV6LQ6PAUzgSkSY0rg==
-X-Received: by 2002:a05:6512:3766:b0:4ac:2fae:8a9e with SMTP id z6-20020a056512376600b004ac2fae8a9emr5404754lft.413.1668519920779;
-        Tue, 15 Nov 2022 05:45:20 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id a19-20020a2eb553000000b002776eb5b1cesm2530344ljn.8.2022.11.15.05.45.18
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iVWBDh2ESILH47IArWNXnpY9VbwBg6U8zn7yHMsyUzo=;
+        b=4G6x9K6LGPqHjZS4dnpDmnUONirjD4i+UYqivl0+FMkjosiaG40F3LYV7xVzUkT5fE
+         n+3EdCqnfYTRX+aN5eKgwzZkX1OrJvXDTDlQrCN31wrV5vgocx1dForuFN30cpluZINa
+         He2jwFEJzHLRE2X9x9a0XZG1UOtPaYrXW1WhiJVPy8mRslI7Z5hYx8VRJbq6M5sEnABP
+         eLy8tgPuwl4p9aDdJL8jowWPkzXQOSf/zmv7Hy1OttI0jha9blx2zZLxOhASiDsgYBW8
+         +zxNhFvv55pkTTyuwgN5TcTzxHRAcX/Zs/RWJ6t/9F7MfWwbncgYBQWOrOo9BW9Hqd0k
+         /W/Q==
+X-Gm-Message-State: ANoB5pk2zERWNiLd93CKTSGC3xTAm4/9YWeZU74iPkkP5WclSm7jaZLR
+        ehRXOzDEDNW3g6+X4/1ymWn7uA==
+X-Google-Smtp-Source: AA0mqf5F8qJ3Cj6P8s51T4MgO4sCnx0c/8riCXL/dp3sp7p845uTgzNI2vcXAhDiaa9kdTdmAdAxKQ==
+X-Received: by 2002:a05:6512:794:b0:4b3:ac9d:9354 with SMTP id x20-20020a056512079400b004b3ac9d9354mr5410403lfr.85.1668519983370;
+        Tue, 15 Nov 2022 05:46:23 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y20-20020ac24214000000b004b384ae61absm2214656lfh.198.2022.11.15.05.46.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:45:20 -0800 (PST)
-Message-ID: <760918b4-e94e-38b0-8a66-629f2eaf89af@linaro.org>
-Date:   Tue, 15 Nov 2022 14:45:14 +0100
+        Tue, 15 Nov 2022 05:46:23 -0800 (PST)
+Message-ID: <417bfdea-ed41-6468-ec16-f54480cfe2f6@linaro.org>
+Date:   Tue, 15 Nov 2022 14:46:21 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v2 09/12] arm64: dts: qcom: sm8350: Use 2 interconnect
- cells
-To:     Robert Foss <robert.foss@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        quic_kalyant@quicinc.com, swboyd@chromium.org,
-        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
-        quic_khsieh@quicinc.com, quic_vpolimer@quicinc.com,
-        vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
-        andersson@kernel.org
-References: <20221115133105.980877-1-robert.foss@linaro.org>
- <20221115133105.980877-10-robert.foss@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221115133105.980877-10-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2] dt-bindings: spi: convert Freescale DSPI to dt-schema
+Content-Language: en-US
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        linux-spi@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+References: <20221111224651.577729-1-vladimir.oltean@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221111224651.577729-1-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 15/11/2022 14:31, Robert Foss wrote:
-> Use two interconnect cells in order to optionally
-> support a path tag.
+On 11/11/2022 23:46, Vladimir Oltean wrote:
+> From: Kuldeep Singh <kuldeep.singh@nxp.com>
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Convert the Freescale DSPI binding to DT schema format.
+> 
+> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->   arch/arm64/boot/dts/qcom/sm8350.dtsi | 28 ++++++++++++++--------------
->   1 file changed, 14 insertions(+), 14 deletions(-)
+> v1 (from more than 1 year ago) at:
+> https://patchwork.kernel.org/project/spi-devel-general/patch/20210315121518.3710171-1-kuldeep.singh@nxp.com/
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 805d53d91952..434f8e8b12c1 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -1543,56 +1543,56 @@ apps_smmu: iommu@15000000 {
->   		config_noc: interconnect@1500000 {
->   			compatible = "qcom,sm8350-config-noc";
->   			reg = <0 0x01500000 0 0xa580>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		mc_virt: interconnect@1580000 {
->   			compatible = "qcom,sm8350-mc-virt";
->   			reg = <0 0x01580000 0 0x1000>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		system_noc: interconnect@1680000 {
->   			compatible = "qcom,sm8350-system-noc";
->   			reg = <0 0x01680000 0 0x1c200>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		aggre1_noc: interconnect@16e0000 {
->   			compatible = "qcom,sm8350-aggre1-noc";
->   			reg = <0 0x016e0000 0 0x1f180>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		aggre2_noc: interconnect@1700000 {
->   			compatible = "qcom,sm8350-aggre2-noc";
->   			reg = <0 0x01700000 0 0x33000>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		mmss_noc: interconnect@1740000 {
->   			compatible = "qcom,sm8350-mmss-noc";
->   			reg = <0 0x01740000 0 0x1f080>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		lpass_ag_noc: interconnect@3c40000 {
->   			compatible = "qcom,sm8350-lpass-ag-noc";
->   			reg = <0 0x03c40000 0 0xf080>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		compute_noc: interconnect@a0c0000{
->   			compatible = "qcom,sm8350-compute-noc";
->   			reg = <0 0x0a0c0000 0 0xa180>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> @@ -1620,8 +1620,8 @@ ipa: ipa@1e40000 {
->   			clocks = <&rpmhcc RPMH_IPA_CLK>;
->   			clock-names = "core";
->   
-> -			interconnects = <&aggre2_noc MASTER_IPA &mc_virt SLAVE_EBI1>,
-> -					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
-> +			interconnects = <&aggre2_noc MASTER_IPA 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_IPA_CFG 0>;
->   			interconnect-names = "memory",
->   					     "config";
->   
-> @@ -1661,7 +1661,7 @@ mpss: remoteproc@4080000 {
->   					<&rpmhpd SM8350_MSS>;
->   			power-domain-names = "cx", "mss";
->   
-> -			interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
-> +			interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1 0>;
->   
->   			memory-region = <&pil_modem_mem>;
->   
-> @@ -2239,7 +2239,7 @@ cdsp: remoteproc@98900000 {
->   					<&rpmhpd SM8350_MXC>;
->   			power-domain-names = "cx", "mxc";
->   
-> -			interconnects = <&compute_noc MASTER_CDSP_PROC &mc_virt SLAVE_EBI1>;
-> +			interconnects = <&compute_noc MASTER_CDSP_PROC 0 &mc_virt SLAVE_EBI1 0>;
->   
->   			memory-region = <&pil_cdsp_mem>;
->   
-> @@ -2421,14 +2421,14 @@ usb_2_ssphy: phy@88ebe00 {
->   		dc_noc: interconnect@90c0000 {
->   			compatible = "qcom,sm8350-dc-noc";
->   			reg = <0 0x090c0000 0 0x4200>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
->   		gem_noc: interconnect@9100000 {
->   			compatible = "qcom,sm8350-gem-noc";
->   			reg = <0 0x09100000 0 0xb4000>;
-> -			#interconnect-cells = <1>;
-> +			#interconnect-cells = <2>;
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
+>  .../fsl,spi-fsl-dspi-peripheral-props.yaml    |  28 +++++
+>  .../bindings/spi/fsl,spi-fsl-dspi.yaml        | 118 ++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-fsl-dspi.txt  |  65 ----------
+>  .../bindings/spi/spi-peripheral-props.yaml    |   1 +
+>  MAINTAINERS                                   |   3 +-
+>  5 files changed, 149 insertions(+), 66 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi-peripheral-props.yaml
+>  create mode 100644 Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi-peripheral-props.yaml
+> new file mode 100644
+> index 000000000000..d15f77c040d1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi-peripheral-props.yaml
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/fsl,spi-fsl-dspi-peripheral-props.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Peripheral-specific properties for Freescale DSPI controller
+> +
+> +maintainers:
+> +  - Vladimir Oltean <olteanv@gmail.com>
+> +
+> +description:
+> +  See spi-peripheral-props.yaml for more info.
+> +
+> +properties:
+> +  fsl,spi-cs-sck-delay:
+> +    description:
+> +      Delay in nanoseconds between activating chip select and the start of
+> +      clock signal, at the start of a transfer.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  fsl,spi-sck-cs-delay:
+> +    description:
+> +      Delay in nanoseconds between stopping the clock signal and
+> +      deactivating chip select, at the end of a transfer.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
+> new file mode 100644
+> index 000000000000..8a790c0ed95f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
+> @@ -0,0 +1,118 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/fsl,spi-fsl-dspi.yaml#
+
+Why second "fsl" in file name? It does not patch compatibles and
+duplicates the vendor. We do not have compatibles "nxp,imx6-nxp".
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale DSPI Controller
+> +
+> +maintainers:
+> +  - Vladimir Oltean <olteanv@gmail.com>
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+
+Drop quotes.
+
+> +
+> +properties:
+> +  compatible:
+> +    description:
+> +      Some integrations can have a single compatible string containing their
+> +      SoC name (LS1012A, LS1021A, ...). Others require their SoC compatible
+> +      string, plus a fallback compatible string (either on LS1021A or on
+> +      LS2085A).
+
+Why? The fsl,ls1012a-dspi device is either compatible with
+fsl,ls1021a-v1.0-dspi or not. It cannot be both - compatible and not
+compatible.
+
+
+> +    oneOf:
+> +      - enum:
+> +          - fsl,ls1012a-dspi
+> +          - fsl,ls1021a-v1.0-dspi
+> +          - fsl,ls1028a-dspi
+> +          - fsl,ls2085a-dspi
+> +          - fsl,lx2160a-dspi
+> +          - fsl,vf610-dspi
+> +      - items:
+> +          - enum:
+> +              - fsl,ls1012a-dspi
+> +              - fsl,ls1028a-dspi
+> +              - fsl,ls1043a-dspi
+> +              - fsl,ls1046a-dspi
+> +              - fsl,ls1088a-dspi
+> +          - const: fsl,ls1021a-v1.0-dspi
+> +      - items:
+> +          - enum:
+> +              - fsl,ls2080a-dspi
+> +              - fsl,lx2160a-dspi
+> +          - const: fsl,ls2085a-dspi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dspi
+> +
+> +  dmas:
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+> +  spi-num-chipselects:
+
+Would be nice to deprecated it in separate patches. There is num-cs
+property.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Number of available native Chip Select signals
+> +
+> +  bus-num:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: SoC-specific identifier for the SPI controller
+> +
+> +  little-endian: true
+> +  big-endian: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - spi-num-chipselects
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        spi@2100000 {
+> +            compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x0 0x2100000 0x0 0x10000>;
+
+reg by convention is a second property.
+
+> +            interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> +            clock-names = "dspi";
+> +            clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL QORIQ_CLK_PLL_DIV(2)>;
+> +            dmas = <&edma0 0 62>, <&edma0 0 60>;
+> +            dma-names = "tx", "rx";
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pinctrl_dspi0_1>;
+> +            spi-num-chipselects = <4>;
+> +            little-endian;
+> +
+> +            flash@0 {
+> +                compatible = "jedec,spi-nor";
+> +                spi-max-frequency = <10000000>;
+> +                fsl,spi-cs-sck-delay = <100>;
+> +                fsl,spi-sck-cs-delay = <100>;
+> +                reg = <0>;
+
+Ditto.
+
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt b/Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt
+> deleted file mode 100644
+
+(...)
+
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index dca677f9e1b9..a475e757f8da 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -101,6 +101,7 @@ properties:
+>  # The controller specific properties go here.
+>  allOf:
+>    - $ref: cdns,qspi-nor-peripheral-props.yaml#
+> +  - $ref: fsl,spi-fsl-dspi-peripheral-props.yaml#
+>    - $ref: samsung,spi-peripheral-props.yaml#
+>    - $ref: nvidia,tegra210-quad-peripheral-props.yaml#
+>  
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c242098a34f9..c75ae49c85b5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8160,7 +8160,8 @@ FREESCALE DSPI DRIVER
+>  M:	Vladimir Oltean <olteanv@gmail.com>
+>  L:	linux-spi@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt
+> +F:	Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi.yaml
+
+Instead: Documentation/devicetree/bindings/spi/fsl,spi-fsl-dspi*
+
+Best regards,
+Krzysztof
+
