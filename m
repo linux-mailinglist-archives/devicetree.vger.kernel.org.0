@@ -2,146 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A972362966E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E04362967A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:56:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232276AbiKOKy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:54:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
+        id S237742AbiKOK4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:56:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238454AbiKOKwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:52:44 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9628326AEF;
-        Tue, 15 Nov 2022 02:51:52 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so12819734wmb.2;
-        Tue, 15 Nov 2022 02:51:52 -0800 (PST)
+        with ESMTP id S237900AbiKOKzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:55:52 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8521926AC3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:54:45 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id u24so21257694edd.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:54:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m6dU/Bx1osZzG21UnwcwV2rTzixGC6UyL/zax73qVqY=;
-        b=coeAHHTiZnzhSuWRrVEWJ5btrTlpR33RRLweMGg/vQN0g7FFzx5w4Ts2g+zVBNDC3l
-         YOXoy8WVAvgwZ7tq84pptBuGlqbVerWmHCBmkyHDJyRhAFw+16W/Ll6kLL/4ieikpxuO
-         uaJSzkG7owP/UzEXpK2BVzvrzdS1chGBtp84iA9oT0BRUPg9D6fqw7Lm6HMxSvuGITqp
-         lBQMCmiex4NpwOoQ9HvyOUIQnMw26qWFxvslmkJckg51KBkmGj+hGCXcBH0A/vA/lk4p
-         Xoux833W8LBTaIRevp9rgp67JQHkzl4XDnFhethMRdweJIOUDXCoze4iLyKtDmjxN504
-         9P1Q==
+        bh=STCseqBeumLrOdVh7UvgB2Ay2MTVH9P0vNgf9xHTWBw=;
+        b=ntLgssdCHP4/yICRYTfHHAT/ANwhDVnvRGKKG3prnOBZw8/RXh5tmnzo0gEa3f5rt2
+         rl5HPtCJ55ij3NYj4xEvZoR5k8gLO7TBrq+Qzj9O6uVlZh7Y1HkwWx1kwY9Yi1ihYG3q
+         e0TLZtyZpVHTUW8X1fmAtkFO2pi705QvSSLTLeGjc1nNbn5YCRECXi78/bFbd5qLzHIk
+         vhEz0n+U6NKoY2wSJ2XDPAEj7ouLDVrrPXuQXuMgHHsOxYC4EaZuNl+1xouRqpD1ylSG
+         lzdJznRyZTlRYO4u8MDxh93PvUawuNpFcrsQexgXIl5DV9pNZn3jkN0JEqlpNssw904R
+         qMDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m6dU/Bx1osZzG21UnwcwV2rTzixGC6UyL/zax73qVqY=;
-        b=ui5vzh09fkeyrEh5xpCFHmbF8eTdlpBICUJqTy9dN+9bj1mvdml6WITRykACxEZYKZ
-         WDHTrjNQ4RBZf72gamiuxQPpHuRDzOCiapAijxT23UCRHv9BOCHWE+/0YyWuqan46piE
-         dq2A9PVRLzTnv5WZ+yWTzAyqbQPF2s8a+xD/QmS1D1NL7Dq0me9HlTfaiYBaICb3zp8a
-         vX6sQ65sboJof2op0K291iMSc4EKfsKuoWB/LiiRkW9BDeVqu/LZVuzvtKIo+JzOlCNK
-         wifzVaUPsmb9gZXZnERcC4TB2g1u7m4/XnL/NoH384Po/r52E2/zVdwQJVkK6BmmBQR+
-         5OHQ==
-X-Gm-Message-State: ANoB5plkIOd+8l8NYwAoWCRVpLMddDF4xw5FczN4YvYRNhd79zHFgDGs
-        4yF8CZnOac6DIOuw3EX6YhE=
-X-Google-Smtp-Source: AA0mqf5DbSzMeqirjdTo+p/jMZ6gN9pMRHlG+eDHmsb2GaCzMNehiZJUo7UX9/gkkl8dVBvo8+e32A==
-X-Received: by 2002:a05:600c:510b:b0:3cf:cfea:904c with SMTP id o11-20020a05600c510b00b003cfcfea904cmr267230wms.33.1668509511094;
-        Tue, 15 Nov 2022 02:51:51 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:d94a:6345:c378:e255])
-        by smtp.gmail.com with ESMTPSA id az9-20020adfe189000000b002367ad808a9sm12210528wrb.30.2022.11.15.02.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:51:50 -0800 (PST)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 3/3] riscv: dts: renesas: rzfive-smarc: Enable CANFD/I2C
-Date:   Tue, 15 Nov 2022 10:51:35 +0000
-Message-Id: <20221115105135.1180490-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221115105135.1180490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221115105135.1180490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=STCseqBeumLrOdVh7UvgB2Ay2MTVH9P0vNgf9xHTWBw=;
+        b=8PEeBV+2wfg/82HaXQQIDhKlVqpz4iFld6QqpRjIwmZGe2liThXdhwK8cSh0i7Xf+K
+         BtUzNBrWb/n88NaFVYrNzxJb687MAZ5FfVxhoiG8WP//TqCsl3MNv1cUgr5tYLwb87ye
+         6RZfRg+nynGh9yiYhpfIeCBcvnD7HPbkoOETOF4mzUn8PXWSBxC0DUlZUQB/gm1NuL+A
+         RokV808+D/xUi9KJAHElsZjNuLDlfa9InyaEg8jzoYv796aS4uTqPdZBxPzUbhuxncL2
+         ITKn21D22J4Tf6tfAUXB8faM0ShNCEzRAiGb7gwtj4yW6djW3kRek/+d06C2R7E8NdqF
+         +V6Q==
+X-Gm-Message-State: ANoB5pmikX6vtgsBsbHHhlKotodVt/OYhE/jYrqpxGazT2Al6kckkHw6
+        uwM1ejdhc57EuH7o/BLuvn2L0g==
+X-Google-Smtp-Source: AA0mqf4NGbAsjL19QSemz5ve9dp5mGxy46cp0UW92fcY+6m9Qr8eZR0Ye3dgPsDb3LpfkHm/57L6qQ==
+X-Received: by 2002:aa7:c603:0:b0:460:fab2:c31f with SMTP id h3-20020aa7c603000000b00460fab2c31fmr14873392edq.335.1668509683855;
+        Tue, 15 Nov 2022 02:54:43 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id k17-20020aa7c391000000b00467cc919072sm3076443edq.17.2022.11.15.02.54.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 02:54:43 -0800 (PST)
+Message-ID: <1329f006-9253-0db7-f88e-115187782bca@linaro.org>
+Date:   Tue, 15 Nov 2022 11:54:37 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH] arm64: dts: qcom: trim addresses to 8 digits
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221115105046.95254-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221115105046.95254-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Enable CANFD and I2C on RZ/Five SMARC EVK.
 
-Note, these blocks are enabled in RZ/G2UL SMARC EVK DTSI [0] hence
-deleting these disabled nodes from RZ/Five SMARC EVK DTSI enables them
-here too as we include [0] in RZ/Five SMARC EVK DTSI.
+On 15/11/2022 11:50, Krzysztof Kozlowski wrote:
+> Hex numbers in addresses and sizes should be rather eight digits, not
+> nine.  Drop leading zeros.  No functional change (same DTB).
+> 
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[0] arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 27 -------------------
- 1 file changed, 27 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-index e64f0e5f8e30..c07a487c4e5a 100644
---- a/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-+++ b/arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
-@@ -7,25 +7,6 @@
- 
- #include <arm64/renesas/rzg2ul-smarc.dtsi>
- 
--/ {
--	aliases {
--		/delete-property/ i2c0;
--		/delete-property/ i2c1;
--	};
--};
--
--&canfd {
--	status = "disabled";
--
--	channel0 {
--		status = "disabled";
--	};
--
--	channel1 {
--		status = "disabled";
--	};
--};
--
- &ehci0 {
- 	status = "disabled";
- };
-@@ -38,14 +19,6 @@ &hsusb {
- 	status = "disabled";
- };
- 
--&i2c0 {
--	status = "disabled";
--};
--
--&i2c1 {
--	status = "disabled";
--};
--
- &ohci0 {
- 	status = "disabled";
- };
--- 
-2.25.1
-
+Konrad
+>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+>   2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 552c0da3c479..49db223a0777 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -2222,7 +2222,7 @@ compute-cb@3 {
+>   
+>   		cdsp: remoteproc@98900000 {
+>   			compatible = "qcom,sm8350-cdsp-pas";
+> -			reg = <0 0x098900000 0 0x1400000>;
+> +			reg = <0 0x98900000 0 0x1400000>;
+>   
+>   			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
+>   					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 19a0f5033cc9..f20db5456765 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2091,7 +2091,7 @@ compute-cb@3 {
+>   
+>   		remoteproc_adsp: remoteproc@30000000 {
+>   			compatible = "qcom,sm8450-adsp-pas";
+> -			reg = <0 0x030000000 0 0x100>;
+> +			reg = <0 0x30000000 0 0x100>;
+>   
+>   			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
+>   					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> @@ -2157,7 +2157,7 @@ compute-cb@5 {
+>   
+>   		remoteproc_cdsp: remoteproc@32300000 {
+>   			compatible = "qcom,sm8450-cdsp-pas";
+> -			reg = <0 0x032300000 0 0x1400000>;
+> +			reg = <0 0x32300000 0 0x1400000>;
+>   
+>   			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
+>   					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
