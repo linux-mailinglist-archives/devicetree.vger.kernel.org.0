@@ -2,194 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9CB629A3E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:30:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E47A0629A43
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:31:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbiKON37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:29:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59428 "EHLO
+        id S229628AbiKONbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:31:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238130AbiKON3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:29:51 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A2F108B;
-        Tue, 15 Nov 2022 05:29:49 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id m14-20020a17090a3f8e00b00212dab39bcdso16933413pjc.0;
-        Tue, 15 Nov 2022 05:29:49 -0800 (PST)
+        with ESMTP id S229509AbiKONbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:31:13 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7F5E94
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:11 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id s12so21838328edd.5
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:31:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8xk+OpOZEAXUa3Tyg2mS46z4nyFJq+12Wxup6TV57oo=;
-        b=Jwh3aB+V0BzxXaySqVdjDWDSrUrnMmOHgU1BcepLC9kdfOFndgdB4iv6uRFc7k+dNe
-         YcvZ9NUT6NYQzq7NlAMqUMv0uHW4/zoxHr+4K1rcLVfTJaBR07Si4FHs10ipGtNryS8J
-         E8t3gKTx0RgG/JVff4Ua56QCnkr6s3BEkNFdK6GKcYmvRBOKZIy25jLRj2T14bPIyHgZ
-         rQLsQvwDLWyU4Mo3aq96VkeLWyCLl7E9GQZ+f1TPvtZU2uPiPtHxtLrxD1oKOMkBcTJg
-         uylpUMUy1QfQIQGMkDXQT1rEehWS9hz7xPaaVqysAEWOVmuVPsl5z/+qE8cowIC/Dy1f
-         uEAw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IiZNPefqWsmH3ZBwLzJSiNW009NxhDiT7gHxpkwTECI=;
+        b=kyMm9dzGTmkggekSl/fhsLsfuT8amxXO4nXvV3egvBQEdesRVsaWe8PtW5bKNQvtKm
+         utNBsudX6+R6JDFrkZCybji7HWB8/tc0MHD87PCqLk/h61ijC7HJKGcEUxmay3sa+cYN
+         n94o9hzrHBxHETnHy879umkzFz+aBDQ65gsP1w5ULcp+P5IiRCbdmVbWrUxNK3iRD32S
+         6uNLZKvcQrqOEVOeaE7cs7wef+HXgW67h6WfduQWqzK82mpvdy8OqN6K6sDOg7qc+SJc
+         DqNz44GQIefFBkAF8dFb6LiNt/u33l9YxlUbqzQcClLerQrklw8+wJYBbuot3F+kcjwS
+         Y+CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8xk+OpOZEAXUa3Tyg2mS46z4nyFJq+12Wxup6TV57oo=;
-        b=sdUBjX/LgnhyOmZZ8yOEO/4Gj4jkP29BxUS1VTIAsrez7m1aZ+6r2TEew78Lkexve9
-         TLiuwhh3GUydrXXcxce0TmhSur1smLRlzvKqaO/cf09bRNxb7AlRHbZhna7v3Io4cWzk
-         Kqot8h6PxRFiOgYHvAETnmv9+pbnjPKr1maNzgyD8Of0sqyasKaFBueHzTzsWVCxex/K
-         U/nSNr/PpBNCwtxIiQcPVm5x6HaU5+D6DFKRwAJ7B0/JdU3KmMmIeyjh9VL8stP5g6mV
-         h0EO14Ly9/+wmAAx+3LuqLfyCLeLH6y3FDgoiWVW2vPh1nj5ekdRvnHyebj8SrAFV4+e
-         /SmA==
-X-Gm-Message-State: ANoB5pkV4mga8Ksv77f3dkyAKt1rwntQa8ALJYl0oBfh+HH3lTw2yD/u
-        PY0jI9wBnLMGb/41d3VdKs4=
-X-Google-Smtp-Source: AA0mqf5odsnNn6PmZPgMQGKC1R7U+FfL4zlUUlWIDd5CUb3EUGbqei55Lf+V3rZ1sajQcAeYCJyhVw==
-X-Received: by 2002:a17:90a:fd12:b0:218:494d:e9d2 with SMTP id cv18-20020a17090afd1200b00218494de9d2mr605916pjb.50.1668518988996;
-        Tue, 15 Nov 2022 05:29:48 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k13-20020a170902ce0d00b0017f5ad327casm9787344plg.103.2022.11.15.05.29.47
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IiZNPefqWsmH3ZBwLzJSiNW009NxhDiT7gHxpkwTECI=;
+        b=joCbls3qQXVE/HLyeXAmkp447HY/gIK+dXo76y87xO4oUZykoGrlUgkR6MOc2X4B7y
+         mcKnoDYjvmqtFD881MfGUUzTfQIZne6X+tAabn5YvF819RuoexmnryHsQdddALOtQ3aA
+         fzuciezL7+sxP4MFZULDG4Y1BAd82+nOUMliWU0qYVCj4f1ZgKXV8DIEIDa82Lpk0n5W
+         OmN7+uYGzLcuprRqsfiWmzBu0xhu30eN2IsnlMInz+Vl7LxMueOpQm8Yh8ZeCL+0EuQb
+         7oT+feak3lRQMbHLq1YiPCVuKU92gvqEy4c7lHFu6BqjTgEKe+yj1iobD0vn9m3fbRJF
+         dRvw==
+X-Gm-Message-State: ANoB5pmuPdKd/SFJ7OY5FwQrxeSkRSKBE/Q98f6zJuGT+uRfaOoN22AC
+        eerGox/CaMggtaXimoqTCbuvqg==
+X-Google-Smtp-Source: AA0mqf4dpx4w6x/phoewqJ5Ke40pRyOHvvagLP/cl7aCR6H+XDSla2FPNOiX4W017H1HCmTjVHDr0A==
+X-Received: by 2002:a05:6402:f19:b0:461:a1c1:b667 with SMTP id i25-20020a0564020f1900b00461a1c1b667mr15330299eda.191.1668519070263;
+        Tue, 15 Nov 2022 05:31:10 -0800 (PST)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id q22-20020aa7d456000000b004618f2127d2sm6162176edr.57.2022.11.15.05.31.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 05:29:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 15 Nov 2022 05:29:47 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: watchdog: gpio: Convert bindings to YAML
-Message-ID: <20221115132947.GB4189373@roeck-us.net>
-References: <20221107160338.27910-1-marex@denx.de>
+        Tue, 15 Nov 2022 05:31:09 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        quic_kalyant@quicinc.com, swboyd@chromium.org,
+        robert.foss@linaro.org, angelogioacchino.delregno@somainline.org,
+        loic.poulain@linaro.org, quic_khsieh@quicinc.com,
+        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
+        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
+        andersson@kernel.org
+Subject: [PATCH v2 00/12] Enable Display for SM8350
+Date:   Tue, 15 Nov 2022 14:30:53 +0100
+Message-Id: <20221115133105.980877-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221107160338.27910-1-marex@denx.de>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 05:03:38PM +0100, Marek Vasut wrote:
-> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Dependencies:
+https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Branch:
+https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v2
 
-> ---
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: linux-watchdog@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Add missing required: properties
->     - Drop quotes around ref: referenced schema file name
-> V3: - Add Guenter as maintainer of the bindings
->     - Add RB from Rob
-> ---
->  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 -----------
->  .../bindings/watchdog/linux,wdt-gpio.yaml     | 47 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-> deleted file mode 100644
-> index 198794963786b..0000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -* GPIO-controlled Watchdog
-> -
-> -Required Properties:
-> -- compatible: Should contain "linux,wdt-gpio".
-> -- gpios: From common gpio binding; gpio connection to WDT reset pin.
-> -- hw_algo: The algorithm used by the driver. Should be one of the
-> -  following values:
-> -  - toggle: Either a high-to-low or a low-to-high transition clears
-> -    the WDT counter. The watchdog timer is disabled when GPIO is
-> -    left floating or connected to a three-state buffer.
-> -  - level: Low or high level starts counting WDT timeout,
-> -    the opposite level disables the WDT. Active level is determined
-> -    by the GPIO flags.
-> -- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
-> -
-> -Optional Properties:
-> -- always-running: If the watchdog timer cannot be disabled, add this flag to
-> -  have the driver keep toggling the signal without a client. It will only cease
-> -  to toggle the signal when the device is open and the timeout elapsed.
-> -
-> -Example:
-> -	watchdog: watchdog {
-> -		/* ADM706 */
-> -		compatible = "linux,wdt-gpio";
-> -		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
-> -		hw_algo = "toggle";
-> -		hw_margin_ms = <1600>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> new file mode 100644
-> index 0000000000000..c729c96a5dc75
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/linux,wdt-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO-controlled Watchdog
-> +
-> +maintainers:
-> +  - Guenter Roeck <linux@roeck-us.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: linux,wdt-gpio
-> +
-> +  gpios:
-> +    description: gpio connection to WDT reset pin
-> +    maxItems: 1
-> +
-> +  hw_algo:
-> +    description: The algorithm used by the driver.
-> +    enum: [ level, toggle ]
-> +
-> +  hw_margin_ms:
-> +    description: Maximum time to reset watchdog circuit (milliseconds).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-> +  - gpios
-> +  - hw_algo
-> +  - hw_margin_ms
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    watchdog {
-> +        compatible = "linux,wdt-gpio";
-> +        gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
-> +        hw_algo = "toggle";
-> +        hw_margin_ms = <1600>;
-> +    };
-> -- 
-> 2.35.1
-> 
+This series implements display support for SM8350 and
+enables HDMI output for the SM8350-HDK platform.
+
+
+Changes from v1:
+ - Added R-b tags from v1
+ - Added qcom,sm8350-dpu binding patch
+ - Added qcom,sm8350-mdss binding patch
+ - Corrected sm8350.dtsi according to new dpu/mdss bindings
+ - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
+ - Bjorn: Moved lt9611 pinctl pins into a common node
+ - Bjorn/Krzysztof: Moved status property to last in node
+ - Krzysztof: Changed hdmi-out to hdmi-connector
+ - Krzysztof: Fixed regulator node name
+ - Krzysztof: Changed &mdss to status=disabled as default
+ - Krzysztof: Changed &mdss_mdp node name to display-controller
+ - Krzysztof: Fixed opp-table node name
+ - Krzysztof: Fixed phy node name
+ - Dmitry: Split commit containing dpu & mdss compatibles string
+ - Dmitry: Added msm_mdss_enable case
+ - Dmitry: Fixed dpu ctl features
+ 
+
+
+Robert Foss (12):
+  dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+  dt-bindings: display: msm: Add qcom,sm8350-mdss binding
+  drm/msm/dpu: Refactor sc7280_pp location
+  drm/msm/dpu: Add SM8350 to hw catalog
+  drm/msm/dpu: Add support for SM8350
+  drm/msm: Add support for SM8350
+  arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
+  arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
+  arm64: dts: qcom: sm8350: Use 2 interconnect cells
+  arm64: dts: qcom: sm8350: Add display system nodes
+  arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
+  arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
+
+ .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
+ .../display/msm/qcom,sm8350-mdss.yaml         | 240 +++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 226 +++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 210 ++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   4 +
+ 8 files changed, 1108 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+
+-- 
+2.34.1
+
