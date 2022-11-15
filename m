@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB5662964E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD6F629653
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 11:51:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238082AbiKOKvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 05:51:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59798 "EHLO
+        id S238401AbiKOKvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 05:51:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238400AbiKOKvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:04 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28712648C
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:51 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id c25so16991012ljr.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:51 -0800 (PST)
+        with ESMTP id S238407AbiKOKvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 05:51:05 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E23264B1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:53 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id d20so16950085ljc.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 02:50:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UGjykOjceH4eYkA7OZEc1299a3XbmJI2Br4/Li5jEVM=;
-        b=cBr/yYY16FlBIk3qt3jawqz+aPmJnbY0pIyIaUIaC7Rtk6pnVEY+LQRpkjN/ea2Nz5
-         DjWZcwrOEdPVVnXCACMW8wOuTZD+pLY9FTpyDWesS9nyP7p/qwEZMAwmOHWIOcrWz3oF
-         yfAqFpVBEpRlY4RVQGQF433onjyEpReK6C1JekAtImZMjYTANSX+QllIPzkEB1u8pbK3
-         Jt3EX5gXA42IKRG8/2JKVdT9xiQY4e7Rft60LJZ9z5gUB2Dl3DZ1rRQ1pz+uV9eOBn2P
-         kTJi2KE9iw450+Flkg5irVl0qxJlNUfut0KaoR1msv7OqRqjB6b2Eh3D4QIuWuHx56X/
-         746g==
+        bh=9AkXa8WASg2o20B38YfuT9CNbMMG+KNJdLwQnLsBLC8=;
+        b=KF3oYHtY/AOseanOMalftIkuvxiap2NGqO5oGJgIhVPScZHSoNNfq77wKVTQkyUIAt
+         HpT6XPGUKAHtnoFrMsIPuZTkapyoOp/LN7ErtxZggFVjVdi/sq4+JGP87mx8mahoxH+R
+         nsN6qoIet921XSg0v4kA302fSixwq4JnTtRZosjYP0dzv09UjTzmPt5NfPytjkaN5Wp1
+         6I/w8NCtDtFPWjHZB7IuK8dGFQD3e3VbB98WUNUfXpBv72koXp8rjrVYa9Z86MAKpsS2
+         ZmgAvBgAktcPtI5kUa9wltdD4qklmGDHMU16KCXdrnnlnHW4TxY1igM+7WksngbdR+Jv
+         g5cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UGjykOjceH4eYkA7OZEc1299a3XbmJI2Br4/Li5jEVM=;
-        b=XMbGdQXLiD1x91UpdKffFzKsWXHcai5PUYWLDUehMi3jY/ZgB+824m8YFrswveiVG8
-         QWFPU+nOOmDxNAC4oNtTqaGXAn4/3PIbERqRM8NMUyNwjbODBn1huaV+XmHjt9y/GTNZ
-         qoOJQ2XzFewx2c+XPHhuC6S0LEzvW59U1r5AeDKVHCdCDaXRH9Vdhc+rerwtjkHVKhrm
-         Cge6ab83QQEI+PqTyotBUvNZgyT/VRaNTYxC7edWRYJjYbTwMskpaJ1SUFRzqyXcOD2c
-         PMD/nLEmcl1KAhbU6PsT6yFgG2L/jRrxhlfoFXXXBXdfRpYjWYD2vXAZN/aOpwgKkPad
-         HlyQ==
-X-Gm-Message-State: ANoB5pnLZV8JNiUEzESAP9DIGS34idRGIn9zR3z92keMsP7FSlWfWJP1
-        XcJLNJQ+lXldnp4LJ42a2xtSUw==
-X-Google-Smtp-Source: AA0mqf6e3Kr3P7XLgfpzxF2LZl6/IBo6LGm0frKLjBHLqkLntXEDdNgjrK38Vf9CriEVLAdkbdvhlQ==
-X-Received: by 2002:a2e:b706:0:b0:277:d75:f1de with SMTP id j6-20020a2eb706000000b002770d75f1demr6035466ljo.272.1668509451209;
-        Tue, 15 Nov 2022 02:50:51 -0800 (PST)
+        bh=9AkXa8WASg2o20B38YfuT9CNbMMG+KNJdLwQnLsBLC8=;
+        b=zTjtV30uw/oo1EOmcO0jaWDkUDNVtDC1PevoFxV4gVwagZYF5N5Zx0xjyA9M7Ixp6O
+         76UaF4eiDdmurLT+oFZ10Rmb4+lMboTbvt+hg1/z27PrTcVckUijKPdMYq6iunQw2oI7
+         PGqdinWb2MXuPXSAnapHNcJP5ukiykb8obmniDdjafCtpeltVVP8bna6GQXgDiRRBMB1
+         s+AoqHz/c1aNAvEs43rUtBxC87DxFckcRiPiRIX2zVFmeQJ7OUKdyMpEY2pigk1Q0gKb
+         gxYY0HD9SCPEbWF7d+XkFdTtGfBo1JLDfizr53zl8tiP04HxUPXHTZ17MYIbUd/DKg8S
+         bQeQ==
+X-Gm-Message-State: ANoB5pmEMyYRl1fGO4RK2MGtYePMwayI7GJqxMU2nv16yPCI9DZ2axZn
+        bqInCsGLWLtm6adf3iuuyvLIcQ==
+X-Google-Smtp-Source: AA0mqf4MCEywNz5iPN9zNdMtIyVMELylIg+cGIcnfhhvmDnGxCBrQxIXjrEiHs7J90AFG9VKx65I4A==
+X-Received: by 2002:a2e:9857:0:b0:277:eba:852 with SMTP id e23-20020a2e9857000000b002770eba0852mr5993560ljj.31.1668509452968;
+        Tue, 15 Nov 2022 02:50:52 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id n25-20020a2e86d9000000b0026dcfc2bf4csm2468872ljj.57.2022.11.15.02.50.50
+        by smtp.gmail.com with ESMTPSA id d14-20020a2eb04e000000b0026fb1c3e6ddsm2364808ljl.62.2022.11.15.02.50.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 02:50:50 -0800 (PST)
+        Tue, 15 Nov 2022 02:50:52 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vladimir Zapolskiy <vz@mleia.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: lpc32xx: trim addresses to 8 digits
-Date:   Tue, 15 Nov 2022 11:50:49 +0100
-Message-Id: <20221115105049.95313-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: imx: trim addresses to 8 digits
+Date:   Tue, 15 Nov 2022 11:50:51 +0100
+Message-Id: <20221115105051.95345-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -74,22 +79,22 @@ nine.  Drop leading zeros.  No functional change (same DTB).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/lpc32xx.dtsi | 2 +-
+ arch/arm/boot/dts/imx6sx.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
-index c87066d6c995..974410918f35 100644
---- a/arch/arm/boot/dts/lpc32xx.dtsi
-+++ b/arch/arm/boot/dts/lpc32xx.dtsi
-@@ -315,7 +315,7 @@ fab {
- 			/* System Control Block */
- 			scb {
- 				compatible = "simple-bus";
--				ranges = <0x0 0x040004000 0x00001000>;
-+				ranges = <0x0 0x40004000 0x00001000>;
- 				#address-cells = <1>;
- 				#size-cells = <1>;
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index abc3572d699e..80f5efd65c2f 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -1391,7 +1391,7 @@ pwm7: pwm@22ac000 {
  
+ 			pwm8: pwm@22b0000 {
+ 				compatible = "fsl,imx6sx-pwm", "fsl,imx27-pwm";
+-				reg = <0x0022b0000 0x4000>;
++				reg = <0x022b0000 0x4000>;
+ 				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clks IMX6SX_CLK_PWM8>,
+ 					 <&clks IMX6SX_CLK_PWM8>;
 -- 
 2.34.1
 
