@@ -2,115 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E30629E24
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:54:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4B2629E43
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 16:58:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbiKOPyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 10:54:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50770 "EHLO
+        id S238391AbiKOP6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 10:58:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbiKOPyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:54:32 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4262CDEF
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:54:30 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 21so22520094edv.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:54:30 -0800 (PST)
+        with ESMTP id S231687AbiKOP61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 10:58:27 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A778D2ED49
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:58:17 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id a5so22472967edb.11
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 07:58:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MXw2DcIrd4sYwZp2Qf6GO0lRe5Jh56EBfVUnFYKu6RE=;
-        b=VdrMWd2C0zRlIU+FT+lgMorBgLSdXIaGdRiqQEjfe8ICZQFWZbSQJdhtD35B6a6TBT
-         esMxNNkTUrQltwheZBCw0jpTcMirEaF3UBLCAQJNGSC5SvqsykCjHUMWADXOU4zkzN3N
-         zRcvodFQ2fJTRSA/8SKxycjIaZ3P/YHyvJCNDYCbN9ow9C19ZSnTmkk8bvOL0M3lRLf8
-         gtDCM0hKPwxajoUeptIpXUgt8dlhddD74sFXXX+qYapzoehSlThwIpxBYUp3g2URDHqf
-         VdCp91/IM06Ap6P8h7XkNAyZa/Qo7AIm/hG/vv/5oRLcpePO4Rzhv5JYp3oS756qwqg/
-         M58A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGWW/MIEHrCQNewHhRIGxXTQAeOC4rpUnCL7BHFVFTI=;
+        b=Lwa63gbzI5j9Db9s8Tqo3pXxDn8bTBGC+950ifG8Uz2bpbSF1oscH0frYnjYaR0ERK
+         rDu3aYe+mm6brSi6rKtOcMBnJ9aG/H3G7JvqcGPn5GtdshRIgHy4g4hmF93ikZW4SVpA
+         S69zH9z1s3Vfgxx16h6OQrZY0S7AR+Yso0IeaJmQNX5kFV8kpYNKE7Ru9QSKuorHdyes
+         NwIhpnoBQbknI85fF5KIuFzVVcERf1c4v97jTRYlWJo4cyXXG+10oHZZCiVMEScM5el/
+         Gcl3jjD1tQCTTPVPgNU+lFj2mHwYv2xlruI3BlcfDHuMW5E1jPCPWAP1d+3absNiOqGs
+         aVkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MXw2DcIrd4sYwZp2Qf6GO0lRe5Jh56EBfVUnFYKu6RE=;
-        b=mDG1vGMLGgeAcE8o2NwjGFub75/UFm9Rk61g6DELdEh/B/uK2AZ+AOGZSWCJ8MTO5h
-         gwSH4biBKXYJ7lOmxeOwDKoUjjxwhaa2SYaaq03OASlTO5j9T0Lohotx4JByrMKXwu9G
-         eCKbyyMCAMhfcZsLc0/qyhsumz3Sf4yp6aPNitlm9qfa0bUuOKUTvPEsdwEYI1WHpUFu
-         mhr/qHrNIkL+nSSeabWyzemYdAhdYQw2Oz3O6TmapfqXlsaQmvHYghTQDi013WbMv17C
-         69hjxNLlfQ1480A1+nJQeSXkazcJId7ZrhHt6kSY+OFfzI1aDscujT+0LBp/fzHcHNhM
-         r5/g==
-X-Gm-Message-State: ANoB5pmNjOnHubqEJp8oCfASXv4YCC74JPJG3yG0bcmBoXjUeq/mIUy5
-        br+Kc7syFwAQ40QMmhOPeJWk/FM8lWDpeZybC9RxHQ==
-X-Google-Smtp-Source: AA0mqf5TE5bV3zOgHOtylol+IUxKYYKrgvfQtjxF4BS+55SiwwnZkcIcQo0LiUhdzLshA1UMU7fopza3TqY0XOlXoGY=
-X-Received: by 2002:a50:fd9a:0:b0:461:b279:1175 with SMTP id
- o26-20020a50fd9a000000b00461b2791175mr15686083edt.124.1668527668323; Tue, 15
- Nov 2022 07:54:28 -0800 (PST)
-MIME-Version: 1.0
-References: <20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com>
- <20221005-mt6357-support-v4-5-5d2bb58e6087@baylibre.com> <fe898d24-54fa-56bb-8067-b422a3a52ff5@collabora.com>
- <CAFGrd9r70XRd=4Ogei+U2QXQny7LhWr9bDCRNYco+Bsy+2XqrA@mail.gmail.com> <c426918a-8d63-5c40-4340-6c918296814f@linaro.org>
-In-Reply-To: <c426918a-8d63-5c40-4340-6c918296814f@linaro.org>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 15 Nov 2022 16:54:17 +0100
-Message-ID: <CAFGrd9o5GmqMS=MRq+EM+_T5kcHS2qftP0g0smu2W4QXBLozLA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/9] dt-bindings: soc: mediatek: convert pwrap documentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hGWW/MIEHrCQNewHhRIGxXTQAeOC4rpUnCL7BHFVFTI=;
+        b=pDYapR0NHK5ldpEsJiFGHnbeZQ+f0kwCGVRkkS79QadsxhYlZQ/Twu6ODUL7vFwNV3
+         2rphrOT3ytIJrJrtgpbapTP845SZsJwKGzRSHngPPqKsNiEG6Kp2CeGcZFiWxHlpc3fC
+         6B4zIzNKTyttbzpLIzug6eq/ODIOOYERvX93G8i0CyC/y61TBEsu3IEHhJhnV2m8ZnCG
+         LHmXaIwaplvCfVteG0xx+LHe+GCR7uijYUTAJz3GPHWFlpVa6teOcNPC8uJl+jaIc9GP
+         bQLrRCok8Bh8l7oqN3dNZhTZmXPp5qUbOaJR4EaSN9xybn4ob6LP8SVvQbSHycF6qrX1
+         EzJA==
+X-Gm-Message-State: ANoB5pmZjV0G7w1DRHPkYe9cZa5PxsffMtJGN+311qIi2l052BSVKXvp
+        VGl53OGNmh76xXpRrShsxi/MmA==
+X-Google-Smtp-Source: AA0mqf7luJopzkTusEkfEOC8tAcynClaHNm8M2ztZoZ1CBg7umddLW94rNC65M0BYZxMvfKkgbqhTw==
+X-Received: by 2002:aa7:cd15:0:b0:458:5987:7203 with SMTP id b21-20020aa7cd15000000b0045859877203mr15005315edw.161.1668527896175;
+        Tue, 15 Nov 2022 07:58:16 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id ky4-20020a170907778400b0077b523d309asm5648085ejc.185.2022.11.15.07.58.14
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 15 Nov 2022 07:58:15 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: clock: add QCOM SM6375 display clock bindings
+Date:   Tue, 15 Nov 2022 16:58:04 +0100
+Message-Id: <20221115155808.10899-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mar. 15 nov. 2022 =C3=A0 15:18, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
-> >>> +maintainers:
-> >>> +  - Alexandre Mergnat <amergnat@baylibre.com>
-> >>
-> >> I say that the maintainer for pwrap is Flora Fu <flora.fu@mediatek.com=
->....
-> >
-> > Flora Fu is the driver maintainer. As described in
-> > Documentation/devicetree/bindings/writing-schema.rst:
-> > maintainers
-> >   A DT specific property. Contains a list of email address(es)
-> >   for maintainers of this binding.
-> >
-> > My  understanding is this field is only for binding maintainers, but
-> > not related driver maintainers. Are we aligned ?
->
-> Usually driver maintainer should be also binding maintainer. You can
-> have more binding maintainers than drivers (and vice versa), but it's
-> less usual to maintain driver and do not care about its Devicetree
-> binding (unless driver is also for ACPI etc. but that's not the case here=
-?).
+Add device tree bindings for display clock controller for
+Qualcomm Technology Inc's SM6375 SoC.
 
-Ok, thanks for the explanations
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Switch to dual licensing in both files
+- Adjust the wording with the recent refactoring
+- use qcom,gcc.yaml for common properties
 
-Regards,
-Alex
+ .../bindings/clock/qcom,sm6375-dispcc.yaml    | 54 +++++++++++++++++++
+ .../dt-bindings/clock/qcom,sm6375-dispcc.h    | 42 +++++++++++++++
+ 2 files changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,sm6375-dispcc.h
+
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
+new file mode 100644
+index 000000000000..183b1c75dbdf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sm6375-dispcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Display Clock & Reset Controller on SM6375
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  Qualcomm display clock control module provides the clocks, resets and power
++  domains on SM6375.
++
++  See also:: include/dt-bindings/clock/qcom,dispcc-sm6375.h
++
++allOf:
++  - $ref: qcom,gcc.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm6375-dispcc
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: GPLL0 source from GCC
++      - description: Byte clock from DSI PHY
++      - description: Pixel clock from DSI PHY
++
++required:
++  - compatible
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,sm6375-gcc.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++
++    clock-controller@5f00000 {
++      compatible = "qcom,sm6375-dispcc";
++      reg = <0x05f00000 0x20000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++               <&gcc GCC_DISP_GPLL0_CLK_SRC>,
++               <&dsi_phy 0>,
++               <&dsi_phy 1>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,sm6375-dispcc.h b/include/dt-bindings/clock/qcom,sm6375-dispcc.h
+new file mode 100644
+index 000000000000..1cb0bed004bd
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,sm6375-dispcc.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2022, Linaro Limited
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6375_H
++#define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6375_H
++
++/* Clocks */
++#define DISP_CC_PLL0					0
++#define DISP_CC_MDSS_AHB_CLK				1
++#define DISP_CC_MDSS_AHB_CLK_SRC			2
++#define DISP_CC_MDSS_BYTE0_CLK				3
++#define DISP_CC_MDSS_BYTE0_CLK_SRC			4
++#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC			5
++#define DISP_CC_MDSS_BYTE0_INTF_CLK			6
++#define DISP_CC_MDSS_ESC0_CLK				7
++#define DISP_CC_MDSS_ESC0_CLK_SRC			8
++#define DISP_CC_MDSS_MDP_CLK				9
++#define DISP_CC_MDSS_MDP_CLK_SRC			10
++#define DISP_CC_MDSS_MDP_LUT_CLK			11
++#define DISP_CC_MDSS_NON_GDSC_AHB_CLK			12
++#define DISP_CC_MDSS_PCLK0_CLK				13
++#define DISP_CC_MDSS_PCLK0_CLK_SRC			14
++#define DISP_CC_MDSS_ROT_CLK				15
++#define DISP_CC_MDSS_ROT_CLK_SRC			16
++#define DISP_CC_MDSS_RSCC_AHB_CLK			17
++#define DISP_CC_MDSS_RSCC_VSYNC_CLK			18
++#define DISP_CC_MDSS_VSYNC_CLK				19
++#define DISP_CC_MDSS_VSYNC_CLK_SRC			20
++#define DISP_CC_SLEEP_CLK				21
++#define DISP_CC_XO_CLK					22
++
++/* Resets */
++#define DISP_CC_MDSS_CORE_BCR				0
++#define DISP_CC_MDSS_RSCC_BCR				1
++
++/* GDSCs */
++#define MDSS_GDSC					0
++
++#endif
+-- 
+2.38.1
+
