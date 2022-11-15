@@ -2,126 +2,378 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B468628E77
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 01:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5937628EC1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 01:56:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbiKOAfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Nov 2022 19:35:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40872 "EHLO
+        id S236879AbiKOA4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Nov 2022 19:56:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231169AbiKOAfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 19:35:14 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94712FD2A
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 16:35:13 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id n12so32339363eja.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Nov 2022 16:35:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NGk2wPhs4slpmIs2T/eEbmhJ9ilny1GSUlC3zed5xiw=;
-        b=Z3jJvxeYRd4c0jHP+1+QDjte8JAOp+spYi5rntloiM7sZDttF2eoJHrKt6l0FP5I9T
-         jrhpajrWrAZYoXBU1h+TRwV2Nj0Lh43+Ovim3FJTWamcxUrcZW/puSbwXjpRmLAbE89A
-         H8ROt8gU2TRQAw+6rtiSD+MXn9gIgWbfCnsTphWIXWXijJUzGyLiAJRJwscvP0WvteL2
-         AP1Xg/jOkjAdGR4e73pLS85mEr1rLpkozhuFBhIgbgkBP/e/c+ga1YcLdqBOmPZhMhf6
-         MBJ8L19sMYR1U0FuRPN8d+qJDD94wUU1ndktcqPA7FOWw2jlzGLpG3zvqVsK6o38yLxy
-         C/JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NGk2wPhs4slpmIs2T/eEbmhJ9ilny1GSUlC3zed5xiw=;
-        b=wVrBOZ3ofk8Z2IVR9Ldcwmf3KfwAAUpPvR8spni+dNppGS85OelYV5Msi84X2kXAbj
-         aOcbBjpvirCKTg8rgz0gOlEqJe0pDIPIUIGiTMxqlQMRXV0CGhshfPk1QPLMjhUfktTz
-         jOpyr1CnkYCxxN2MVWELrl4LBUOCagUBBCb0nbA2xTNvlBahJIRzUX1DsjyMRll9JRxu
-         UZpoXACvtuD7OJHtUgsBAToH2q8G7Sw0bRUebj/tMg8Rg7/la3xDkps/Kk5YbbtCR414
-         e61EqebXxRGYGQiSYn8lPKEKdJkAMkjhUwWdj3flLSDMn7SjuwLXZM58MVsZymDH9nVR
-         78Yw==
-X-Gm-Message-State: ANoB5plLOLbUYfgyajXM67uzf5VPkT4m9karN3azXj2Qbycy9QxRXC3v
-        bvTsZG15sCo0x9Xz19x7e9EI9g==
-X-Google-Smtp-Source: AA0mqf518cSWdLBM0HNyX7S9x0osj7z+VM1L2SvKr2vazdoHWfnwwnhkyLhPgRNiDXXMfDeUBF9UDA==
-X-Received: by 2002:a17:906:cb85:b0:7ad:beb3:91b6 with SMTP id mf5-20020a170906cb8500b007adbeb391b6mr11928100ejb.159.1668472512122;
-        Mon, 14 Nov 2022 16:35:12 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id r18-20020a17090609d200b0077f324979absm4789795eje.67.2022.11.14.16.35.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Nov 2022 16:35:11 -0800 (PST)
-Message-ID: <a724efdc-f35a-8320-f2e1-0078198408d4@linaro.org>
-Date:   Tue, 15 Nov 2022 01:35:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Make herobrine-audio-rt5682 mic
- dtsi's match more
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        judyhsiao@chromium.org, Andy Gross <agross@kernel.org>,
+        with ESMTP id S237135AbiKOA4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Nov 2022 19:56:08 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4518A1C41A;
+        Mon, 14 Nov 2022 16:56:07 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E928ED1;
+        Mon, 14 Nov 2022 16:56:13 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E673B3F663;
+        Mon, 14 Nov 2022 16:55:58 -0800 (PST)
+Date:   Tue, 15 Nov 2022 00:54:29 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Martin Botka <martin.botka1@gmail.com>
+Cc:     Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114162807.1.I0900b97128f9bb03e5f96fcb3068c227a33f143a@changeid>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221114162807.1.I0900b97128f9bb03e5f96fcb3068c227a33f143a@changeid>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Conley Lee <conleylee@foxmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: Add basic support for BIQU CB1
+Message-ID: <20221115005429.57d72f64@slackpad.lan>
+In-Reply-To: <CADQ2G_HXx59YYjNvhcNRonahgT3AcE_2BiU43vDJ3CRUGKwAKA@mail.gmail.com>
+References: <20221114214452.1993744-1-martin.botka@somainline.org>
+        <20221114214452.1993744-2-martin.botka@somainline.org>
+        <20221114233102.3b1f96cc@slackpad.lan>
+        <CADQ2G_HXx59YYjNvhcNRonahgT3AcE_2BiU43vDJ3CRUGKwAKA@mail.gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 15 Nov 2022 00:44:46 +0100
+Martin Botka <martin.botka1@gmail.com> wrote:
 
-On 15/11/2022 01:28, Douglas Anderson wrote:
-> The 1-mic and 3-mic dtsi still had two minor cosmetic differences
-> after commit 3d11e7e120ee ("arm64: dts: qcom: sc7280: sort out the
-> "Status" to last property with
-> sc7280-herobrine-audio-rt5682.dtsi"). Let's fix them so the two files
-> diff better. This is expected to have no effect though it will
-> slightly change the generated dtb by removing an unnecessary 'status =
-> "okay"' from the sound node.
+Hi Martin,
 
-Also known as "no functional change"!
+> I can totally understand how this can get confusing.
+> 
+> Basically because of the Rpi shortage biqu decided to make an Rpi
+> alternative.
+> 
+> So they made CB1 which is compute module style board.
+> 
+> And they made 3 other boards where CB1 or Rpi CM4 can be plugged in. The 3
+> boards are:
+> 
+> Rpi adapter which takes the Compute module style boards and turns them into
+> SBC style with basically identical size and etc to Rpi 4.
+> 
+> Then we have Manta M8P and M4P. These boards are MCUs for a 3D printer. But
+> they were made for Klipper use case which requires a computer or SBC
+> (Usually Rpi4). They combined it into 1 board.
+> Where you get the MCU and you can plug in CM4 or CB1
 
+Thanks for the explanations! I was guessing along those shortage lines,
+since the H616 is quite a step down from the RPi4CM, though probably
+still enough for driving a 3D printer.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> All these boards are basically taking the pins and routing them to ports.
 
+Yes, this is what those SoM carrier boards do ;-)
 
-Konrad
+> There is nearly 0 chips for conversion or processing of the pins from CB1
+> or CM4 thus i do not see a reason for having parent dtsi and dts for the
+> adapter and Manta boards.
 
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
->   arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-> index fc7a659dfe4a..af685bc35e10 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-> @@ -19,8 +19,6 @@ sound: sound {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   
-> -		status = "okay";
-> -
->   		dai-link@0 {
->   			link-name = "MAX98360";
->   			reg = <0>;
-> @@ -96,6 +94,8 @@ dai-link@1 {
->   	};
->   };
->   
-> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
-> +
->   &mi2s0_data0 {
->   	drive-strength = <6>;
->   	bias-disable;
+And the DT does not need to describe "chips" only, a lot of DT nodes
+are about connectors, and which ports and which exact pins (out of the
+possible pinmuxes) are actually used. The SoM itself mostly exposes
+just pins, and the board DT describes how these pins are used (GPIO or
+special function, for instance).
+
+So did you try to split this up? How would that look?
+
+Cheers,
+Andre
+
+> The only exception to conversion are the LEDs on the boards but since both
+> adapter and manta boards have them this yet again eliminates need for
+> parent style DT.
+> 
+> Best regards,
+> Martin
+> 
+> On Tue, Nov 15, 2022, 12:32 AM Andre Przywara <andre.przywara@arm.com>
+> wrote:
+> 
+> > On Mon, 14 Nov 2022 22:44:49 +0100
+> > Martin Botka <martin.botka@somainline.org> wrote:
+> >  
+> > > CB1 is Compute Module style board that plugs into Rpi board style  
+> > adapter or  
+> > > Manta 3D printer boards (M4P/M8P).
+> > >
+> > > The board has:
+> > >       H616 SoC
+> > >       1GB of RAM
+> > >       AXP313A PMIC
+> > >
+> > > And the actual boards that CB1 plugs in are just extension to it with  
+> > ports and  
+> > > thus are not split in DT.  
+> >
+> > I don't really understand that sentence. There is some precedent for a
+> > SoM/board split, look at the sun50i-a64-sopine or
+> > sun50i-h5-emlid-neutis-n5 files. And if I see this correctly, then
+> > there are *two* boards available for the same CB1 SoM, the PI4B and the
+> > Manta board? Which would a strong case for a SoM .dtsi, plus the one
+> > or two board .dts files.
+> > I am just not sure whether that relation to the Pi4-CM is helpful or
+> > just complicates things...
+> >
+> > Cheers,
+> > Andre
+> >  
+> > >
+> > > Boards have:
+> > >       4x (3x for Manta boards) USB and 1 USB OTG.
+> > >       SDcard slot for loading images.
+> > >       Ethernet port wired to the internal PHY.
+> > >       2x HDMI 2.0.
+> > >       Power and Status LEDs.
+> > >
+> > > Currently working:
+> > >       Booting
+> > >       USB
+> > >       UART
+> > >
+> > > Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> > > ---
+> > > Changes in V2:
+> > > Add proper board compatible
+> > > Add regulator prefix for vcc5v
+> > > Drop okay status from PMIC
+> > > Drop standby_param
+> > > Changes in V3:
+> > > Change copyright to me
+> > > regulator_vcc5v to regulator-vcc5v
+> > > Drop ehci0 and ohci0
+> > >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+> > >  .../dts/allwinner/sun50i-h616-biqu-cb1.dts    | 178 ++++++++++++++++++
+> > >  2 files changed, 179 insertions(+)
+> > >  create mode 100644  
+> > arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile  
+> > b/arch/arm64/boot/dts/allwinner/Makefile  
+> > > index 6a96494a2e0a..223f1be73541 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > > @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
+> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-biqu-cb1.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts  
+> > > new file mode 100644
+> > > index 000000000000..86b5aca9b53e
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-biqu-cb1.dts
+> > > @@ -0,0 +1,178 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > > +/*
+> > > + * Copyright (C) 2022 Martin Botka <martin.botka@somainline.org>.
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +
+> > > +#include "sun50i-h616.dtsi"
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +#include <dt-bindings/leds/common.h>
+> > > +
+> > > +/ {
+> > > +     model = "BIQU CB1";
+> > > +     compatible = "biqu,cb1", "allwinner,sun50i-h616";
+> > > +
+> > > +     aliases {
+> > > +             serial0 = &uart0;
+> > > +     };
+> > > +
+> > > +     chosen {
+> > > +             stdout-path = "serial0:115200n8";
+> > > +     };
+> > > +
+> > > +     leds {
+> > > +             compatible = "gpio-leds";
+> > > +
+> > > +             led-0 {
+> > > +                     function = LED_FUNCTION_POWER;
+> > > +                     color = <LED_COLOR_ID_RED>;
+> > > +                     gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
+> > > +                     default-state = "on";
+> > > +             };
+> > > +
+> > > +             led-1 {
+> > > +                     function = LED_FUNCTION_STATUS;
+> > > +                     color = <LED_COLOR_ID_GREEN>;
+> > > +                     gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
+> > > +             };
+> > > +     };
+> > > +
+> > > +     reg_vcc5v: regulator-vcc5v {
+> > > +             /* board wide 5V supply directly from the USB-C socket */
+> > > +             compatible = "regulator-fixed";
+> > > +             regulator-name = "vcc-5v";
+> > > +             regulator-min-microvolt = <5000000>;
+> > > +             regulator-max-microvolt = <5000000>;
+> > > +             regulator-always-on;
+> > > +     };
+> > > +
+> > > +     reg_usb1_vbus: regulator-usb1-vbus {
+> > > +             compatible = "regulator-fixed";
+> > > +             regulator-name = "usb1-vbus";
+> > > +             regulator-min-microvolt = <5000000>;
+> > > +             regulator-max-microvolt = <5000000>;
+> > > +             vin-supply = <&reg_vcc5v>;
+> > > +             enable-active-high;
+> > > +             gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
+> > > +     };
+> > > +};
+> > > +
+> > > +&ehci1 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&ehci2 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&ehci3 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&mmc0 {
+> > > +     vmmc-supply = <&reg_dldo1>;
+> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
+> > > +     no-1-8-v;
+> > > +     bus-width = <4>;
+> > > +     status = "disabled";
+> > > +};
+> > > +
+> > > +&ohci1 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&ohci2 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&ohci3 {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&r_i2c {
+> > > +     status = "okay";
+> > > +
+> > > +     axp1530: pmic@36 {
+> > > +             compatible = "x-powers,axp1530";
+> > > +             reg = <0x36>;
+> > > +             wakeup-source;
+> > > +
+> > > +             regulators{
+> > > +                     reg_dcdc1: dcdc1 {
+> > > +                             regulator-name = "axp1530-dcdc1";
+> > > +                             regulator-min-microvolt = <500000>;
+> > > +                             regulator-max-microvolt = <3400000>;
+> > > +                             regulator-step-delay-us = <25>;
+> > > +                             regulator-final-delay-us = <50>;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_dcdc2: dcdc2 {
+> > > +                             regulator-name = "axp1530-dcdc2";
+> > > +                             regulator-min-microvolt = <500000>;
+> > > +                             regulator-max-microvolt = <1540000>;
+> > > +                             regulator-step-delay-us = <25>;
+> > > +                             regulator-final-delay-us = <50>;
+> > > +                             regulator-ramp-delay = <200>;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_dcdc3: dcdc3 {
+> > > +                             regulator-name = "axp1530-dcdc3";
+> > > +                             regulator-min-microvolt = <500000>;
+> > > +                             regulator-max-microvolt = <1840000>;
+> > > +                             regulator-step-delay-us = <25>;
+> > > +                             regulator-final-delay-us = <50>;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_aldo1: ldo1 {
+> > > +                             regulator-name = "axp1530-aldo1";
+> > > +                             regulator-min-microvolt = <1800000>;
+> > > +                             regulator-max-microvolt = <1800000>;
+> > > +                             regulator-step-delay-us = <25>;
+> > > +                             regulator-final-delay-us = <50>;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +
+> > > +                     reg_dldo1: ldo2 {
+> > > +                             regulator-name = "axp1530-dldo1";
+> > > +                             regulator-min-microvolt = <3300000>;
+> > > +                             regulator-max-microvolt = <3300000>;
+> > > +                             regulator-step-delay-us = <25>;
+> > > +                             regulator-final-delay-us = <50>;
+> > > +                             regulator-always-on;
+> > > +                     };
+> > > +             };
+> > > +     };
+> > > +};
+> > > +
+> > > +&uart0 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&uart0_ph_pins>;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&usbotg {
+> > > +     /*
+> > > +      * PHY0 pins are connected to a USB-C socket, but a role switch
+> > > +      * is not implemented: both CC pins are pulled to GND.
+> > > +      * The VBUS pins power the device, so a fixed peripheral mode
+> > > +      * is the best choice.
+> > > +      * The board can be powered via GPIOs, in this case port0 *can*
+> > > +      * act as a host (with a cable/adapter ignoring CC), as VBUS is
+> > > +      * then provided by the GPIOs. Any user of this setup would
+> > > +      * need to adjust the DT accordingly: dr_mode set to "host",
+> > > +      * enabling OHCI0 and EHCI0.
+> > > +      */
+> > > +     dr_mode = "peripheral";
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&usbphy {
+> > > +     usb1_vbus-supply = <&reg_usb1_vbus>;
+> > > +     status = "okay";
+> > > +};  
+> >
+> >  
+
