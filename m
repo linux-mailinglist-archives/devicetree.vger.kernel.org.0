@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 298896299A8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C3A6299B1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Nov 2022 14:09:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238283AbiKONIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 08:08:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41474 "EHLO
+        id S230006AbiKONJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 08:09:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238137AbiKONH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:07:57 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B462A411
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:07:56 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id j4so24385409lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:07:56 -0800 (PST)
+        with ESMTP id S229990AbiKONJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 08:09:46 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6EF266C
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:09:45 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id f27so35946443eje.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 05:09:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UBJBQbBMlMmd7V0JpeZBtsA3DhYWso8sxLsDK2tqGUs=;
-        b=ZJq/7J3mBFpZpKRcyciB8c3k9If8s4TJ9Fs/6Gdk/OSb6dj9ULeJBxvRGZxYZAL3SS
-         btx+DG0MOtdXsRe3PXjzE6HcsK5pW+yEOprjXjTV2r8jMf4Ueiqh8gIz0FatRiE9ZNO1
-         VsKaV8wQLgRt8Z14GBjhG9aUsZW7bqi3WJsND8dlpH9BlzfWIelDkLo74WE3Nr1kyPGB
-         8ZRAF/FCAWqt15DJAzJpF/KaPSbAUybsLNW1vbJ1PKRlzLO6k5eX3zz2HCprQpLnMefV
-         9HvmntHWFXavknrll/SHKAk17FQSrH/m2wWyybn8HgAxF7X9y+eeh45AvY2XxbGUZxb4
-         4K/A==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sb7kVf2+cqbh9c9psQ+6IfpJ5bt8QizDspR3uCbRadE=;
+        b=Ash/+IeUau8JlbOAS5SVeURaST37KmVAeD66Hu+ndKpbBAcHA+66DJ3syXsFz2fJzd
+         GdNYqZYvBMXvlmrFxevapGYxwlBaCDHlyxP8+P2TX+Zn49hgN00hTALMJsM/Lzsbag5P
+         WJpE3hCVHCh/yCEZkTnhTUajf9seqyhLyqO2igOX5yliYFf9j1KDz6DvGA2WQlDOiMfM
+         jBM33M6saVOzMGYmp5Duf81TCCnvrF5uk8/+fMvv/aSOHzX92OdeuF42cllG82fM69tR
+         0sNrxMUA+K3m5upwZua154rca5QZ4OWzYw4FEq9W7Ne1tFZqf9oMbxxdHX9b1h04ajco
+         E9Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UBJBQbBMlMmd7V0JpeZBtsA3DhYWso8sxLsDK2tqGUs=;
-        b=tYQyNaozr9WwrXRUihWd0407F5vh8Ox89p1AvGpid3Zv0/LjCppR5k7hqN//p6UG1W
-         asf319EHlLcvhg5nFVZSskoMU4CNP3j9a0Gz97/7GVk2JbcqH0JLZSNXhPcldS/1UVSC
-         nrdomgoRyLW5k2uBLtvNh4F/rJg9+wP4tQtDamGlheqHW6gv0R5h8M68sg+CdnAUMqnP
-         uTZAqMsy1PVro8n/P53Y7K/SAiDArqxPd61IVng72iTpnNZSF3lqu7f5TD/15Rj4HzPn
-         9uPfWssXdJBbS0J/rflnMDdnxNeyvSwTNgTPvmPn9X5jfEp3100C6esL9PEwe+WHfYpE
-         /NkQ==
-X-Gm-Message-State: ANoB5pnlvvouA6I+lJBt4XAbv9U0VqJDY3y8EBc1R2oOkbqflBoi1Lz2
-        indcAXpSjbjR5HtXRYBU5E7Jmg==
-X-Google-Smtp-Source: AA0mqf4gbD4DD6OxXBHy5q68FOYR9L+0Cf+XWUOqhm+ul9x3BuzZfPL1VH2lsviiirfkCFxML6tXtA==
-X-Received: by 2002:a05:6512:3f2:b0:4a2:3e6c:a32b with SMTP id n18-20020a05651203f200b004a23e6ca32bmr5413822lfq.54.1668517674600;
-        Tue, 15 Nov 2022 05:07:54 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t23-20020a2e8e77000000b0026c2d2a9b92sm2426054ljk.101.2022.11.15.05.07.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 05:07:53 -0800 (PST)
-Message-ID: <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
-Date:   Tue, 15 Nov 2022 14:07:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
- h2mode property
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sb7kVf2+cqbh9c9psQ+6IfpJ5bt8QizDspR3uCbRadE=;
+        b=cwQjA5RzC1N0CjuVwflBw+l53ZI4JXhYDhc3a5m7s7HDNBaLvCmBl8+MPyQ90qPe3b
+         0jOuu9VtQUza+uhrX65RMaMbRknG7nDNKqJPxTXLeY2djKtS0iCh+2fW7vODFuWwISZA
+         Mr59tJgy5dIdRS9PhfvPwgQRUoyw2/X0EL3A4z/eCicx6nNVu4fNkt+buohdfqd7vNiF
+         oYCrAehaN/JvR6uvn38W/ZjEXNvTYm4OGKFx1htlKnmk8OuQUMGnPfj2xZGKiN0TgHEm
+         WwdzqXn3yH8pALqkwCEuNWxs56+mD1h+hkH7134jh3Z0/Q1Vlvir+YaUL/HoWDSMEOYw
+         dzaQ==
+X-Gm-Message-State: ANoB5plvnyr0nlvb1pRLPUM/y4r4ZdzbKCAyH1v3iRySY6Y+kUddpYij
+        lHIEqcjDB4N/5VA6/izEfZO4OQ==
+X-Google-Smtp-Source: AA0mqf4468CWGLHs6W4KOti6ysoSWIH4+Xunqum1zCCfrea6gy8s1qhIVS6jvy5k4sVqJzva+Xl7eA==
+X-Received: by 2002:a17:906:53c7:b0:780:8144:a41f with SMTP id p7-20020a17090653c700b007808144a41fmr14284415ejo.189.1668517783752;
+        Tue, 15 Nov 2022 05:09:43 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id ay26-20020a056402203a00b00461816beef9sm6093260edb.14.2022.11.15.05.09.42
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 15 Nov 2022 05:09:43 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-3-herve.codina@bootlin.com>
- <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
-In-Reply-To: <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8450: Use defines for power domain indices
+Date:   Tue, 15 Nov 2022 14:09:35 +0100
+Message-Id: <20221115130936.6830-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,44 +72,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 14:05, Krzysztof Kozlowski wrote:
-> On 14/11/2022 12:15, Herve Codina wrote:
->> Add the h2mode property to force the USBs mode ie:
->>  - 2 hosts
->> or
->>  - 1 host and 1 device
->>
->> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->> ---
->>  .../bindings/clock/renesas,r9a06g032-sysctrl.yaml      | 10 ++++++++++
->>  1 file changed, 10 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
->> index 95bf485c6cec..f9e0a58aa4fb 100644
->> --- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
->> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
->> @@ -39,6 +39,16 @@ properties:
->>    '#power-domain-cells':
->>      const: 0
->>  
->> +  renesas,h2mode:
->> +    description: |
->> +      Configure the USBs mode.
->> +        - <0> : the USBs are in 1 host and 1 device mode.
->> +        - <1> : the USBs are in 2 host mode.
->> +      If the property is not present, the value used is the one already present
->> +      in the CFG_USB register (from reset or set by the bootloader).
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1]
-> 
-> 0/1 are quite cryptic. Why not making it a string which is easy to read
-> and understand? Can be something like "two-hosts" and "one-host". Or
-> anything you find more readable...
+Use the defines from qcom-rpmpd.h instead of bare numbers for
+readability.
 
-...but actually you should rather make it a property of your USB
-controller, not clock controller. You have two controllers and we have a
-generic property for them - dr_mode.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 19a0f5033cc9..705e05588941 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2277,8 +2277,8 @@ remoteproc_mpss: remoteproc@4080000 {
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>;
+ 			clock-names = "xo";
+ 
+-			power-domains = <&rpmhpd 0>,
+-					<&rpmhpd 12>;
++			power-domains = <&rpmhpd SM8450_CX>,
++					<&rpmhpd SM8450_MSS>;
+ 			power-domain-names = "cx", "mss";
+ 
+ 			memory-region = <&mpss_mem>;
+-- 
+2.38.1
 
