@@ -2,122 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4329C62B9D6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D7A62B9E6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:47:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233387AbiKPKps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:45:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52032 "EHLO
+        id S231197AbiKPKrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238811AbiKPKof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:44:35 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DD23E0A6
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:32:48 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id s8so11663691lfc.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:32:48 -0800 (PST)
+        with ESMTP id S239009AbiKPKrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:47:06 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B148145A02
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:34:57 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id a13-20020a9d6e8d000000b00668d65fc44fso10139441otr.9
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:34:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oOHDUKetXbquoF6rjSkZdyFBCGGAbYCnf7e6hUKdFrE=;
-        b=WLpJi3JcWVBgWisNzho4+Wf5a8Y9OalXRQn/Rh2bCuyE8OKcQB5bi2GoJFmx5JGdWn
-         /TY2qx1KGejWBeS2s70GyyO/BtRvE+O4Dn2iJQSIepvm7ookyIjENy6avzyhnfSrddlV
-         6pGqnFNcAHMBl/n9m58IR1ohYILQmRJY/7imUiynjryGDisEOHKa7c1d0oe1nB36E7H3
-         nfrMboRDYRrIPc9Rl2mbTNBsyOkn5Bt7sJ7i5wjDARXLCl84txK/6VIDLSyJEQ2jLCzT
-         WgKIQR45KojIWLlMEP4Sm3pEYFMphVeio2b4W+hq98MXOv8lZ8FjmJBjyyVRmPzNobIr
-         C26Q==
+        d=ventanamicro.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UvHDrdWNJq6p+2GYaU9sc6HRRjXg7yWYn54epDm0dHI=;
+        b=jknnzhc7h4x3wJA9jBdy+65pzdGdPdyylHFCtOvxW3Pw3KIbBsGz4fzgSZKDPXIVT1
+         6a9ICbrfUODfviJcHgaGZMccDge6RvyanNLFQA9uCgSuKDQphcEvySdWLLi0YEwp+u0j
+         G6qOGHBnddoo3cKZUIERPjc+tTuafkkcU85wvS23YhoZHjkw1pLJJRgvrP/O3EnlhABj
+         Po/1o37x1riM7S3DbmQ8FG7LBL1BhD8sYhKwL84s9kX5vVVbDkOczE98D4JvkfsXUVi7
+         H+e2g4jCLHMMpTD1hscvLtVJezH30OGiZRNecLgQwvmSfhxEbWvfYVkvGBGDhTIXnuGU
+         n6Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oOHDUKetXbquoF6rjSkZdyFBCGGAbYCnf7e6hUKdFrE=;
-        b=pb8QveBTtz+iCgIv2jZgVRwFJ3ZgG1IXynlaojaztKhNjevXiWG2pux1rFwRsT69T1
-         I9wIfuXxhoUktx/yG27elP6gKRbP0p5dJ+tmzzHQ0DFLxLdBhoBpD7VYvCqEYePL4GN6
-         92PgfbYXR20ZHHU4DmK25wkd4NYLNFdB2mS+lrSQaLHYS7x3zzAih3X0fIc84cMCMkwZ
-         vtJSkXU6um8ZdD2PVuyQDeLVCd0exd41Ym8purYFzW7IPGLNkiuTiHeEOdfFWeEnh5B6
-         NxmzGx1TOtrDV27esXXU3aRTArklPYcgCRZZo1uEOLJX1myq2DkwYx52SXFlTt4BLrGk
-         IE2A==
-X-Gm-Message-State: ANoB5pk7rNFUUVcLTwyfPFvC/IP+c0TqEc8M7Eg7t3f5MfqaS/NZwcr5
-        DLL6G93uTAc83leIfRU++Ji5OQ==
-X-Google-Smtp-Source: AA0mqf7CWMlw4VeAF0f/wy6kDEyOsFD5FT+ac2NoilUfXgWdkWSRvuwfNjCeTVKYa9xMN3q+iAKrgg==
-X-Received: by 2002:a05:6512:1dc:b0:4a2:8836:c07d with SMTP id f28-20020a05651201dc00b004a28836c07dmr6619708lfp.661.1668594766437;
-        Wed, 16 Nov 2022 02:32:46 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id v26-20020ac2593a000000b00492b494c4e8sm2541052lfi.298.2022.11.16.02.32.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 02:32:46 -0800 (PST)
-Message-ID: <3c2b2155-c4a5-306e-87a2-396eecdc239b@linaro.org>
-Date:   Wed, 16 Nov 2022 11:32:39 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UvHDrdWNJq6p+2GYaU9sc6HRRjXg7yWYn54epDm0dHI=;
+        b=LGahB3Z8EtrisF08kEhkD0GUBH17fpc9iFAqaeUleGDFuH2w8BBCcqOHXnyiIPY54A
+         RKj2k5bvVhpW3L2MQGfaX2em+f1wUjLXP+5PjxYXaf81v9mVpCa3XG9SGNKVwRG36+H6
+         mKvZZWoe/uWp2NUPwP9ooNTF7S7YLx89YaKw/znAWk2kmqxzECMUrWtNNlNtfzxTkZkJ
+         FnIlx1gpWmfiQ8HEgCDasSAKxo0SmSnncSLPPZ5+GS0j6mz13SrIhWXLdkMmfzQ36EuE
+         pLGq86zOYGlPbg3diCF5tBcU9IVwcW+lyydC+GA/7gKqmN4IF/+AL5FZqxuK3m916bES
+         LgNw==
+X-Gm-Message-State: ANoB5plAEeLkBV+WumSYsXHc9/BdHiVjuAs/I6XX3ED0EqWUFuah3Zhl
+        3VyS9Kjg8Gk2/HHgLO/xb3D0bDcdKo+0a+kT4JnFNA==
+X-Google-Smtp-Source: AA0mqf5uFDJIvoKh6oYwXem2Bw2v5rzobdymFcZkJUXvQ91kXntl6fLIfQ3vmWssZKwMpNvuUR9ZNcYbLbUc+9rEpA0=
+X-Received: by 2002:a9d:3e4:0:b0:662:2458:3ef7 with SMTP id
+ f91-20020a9d03e4000000b0066224583ef7mr10654090otf.150.1668594896741; Wed, 16
+ Nov 2022 02:34:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 4/6] soc: qcom: geni-se: add support for I2C Master Hub
- wrapper variant
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-5-apatel@ventanamicro.com> <Y3EDuaW0zQSSfiQ/@spud>
+ <CAK9=C2WDQCnVnxKR6SFspdwope2KffyASLJDF_Ygo_417ekJ5w@mail.gmail.com>
+ <Y3QT5Vy3RnIXobHz@spud> <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
+In-Reply-To: <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Wed, 16 Nov 2022 16:04:45 +0530
+Message-ID: <CAK9=C2UpiM=UC27Bgm+QqSc=27g__QLL3y-wMVJGjO-N-XKThw@mail.gmail.com>
+Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v1-0-64449106a148@linaro.org>
- <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v1-4-64449106a148@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v1-4-64449106a148@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 16, 2022 at 2:30 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 15/11/2022 23:34, Conor Dooley wrote:
+> > On Mon, Nov 14, 2022 at 05:59:00PM +0530, Anup Patel wrote:
+> >> On Sun, Nov 13, 2022 at 8:18 PM Conor Dooley <conor@kernel.org> wrote:
+> >
+> >>> Also, the file name says "riscv,imsic", the description says "IMSIC" but
+> >>> you've used "imsics" in the compatible. Is this a typo, or a plural?
+> >>
+> >> Yes, the file name should be consistent. I will update the file name.
+> >
+> > Is there a reason why the compatible is plural when all of the other
+> > mentions etc do not have an "s"? It really did look like a typo to me.
+> >
+> > It's the "incoming MSI controller", so I am unsure as to where the "s"
+> > actually even comes from. Why not just use "riscv,imsic"?
+>
+> Yep, should be rather consistent with all others, and IMSIC stands for
+> Integrated Circuit?
 
+This is intentionally plural because even though we have one
+IMSIC per-CPU, Linux (and various OSes) expect one DT node
+as MSI controller targeting all CPUs.
 
-On 16/11/2022 11:21, Neil Armstrong wrote:
-> The I2C Master Hub is a stripped down version of the GENI Serial Engine
-> QUP Wrapper Controller but only supporting I2C serial engines without
-> DMA support.
-> 
-> This adds the clock list for the I2C Master Hub variant to a new desc
-> struct then passes it through the I2C Master Hub compatible match data.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+The plural compatible string "riscv,imsics" was chosen based
+on consensus on RISC-V AIA Task Group meetings.
 
-Konrad
->   drivers/soc/qcom/qcom-geni-se.c | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-> index f4f54d92a01a..8430a0192bb9 100644
-> --- a/drivers/soc/qcom/qcom-geni-se.c
-> +++ b/drivers/soc/qcom/qcom-geni-se.c
-> @@ -930,8 +930,18 @@ static const struct geni_se_desc qup_desc = {
->   	.num_clks = ARRAY_SIZE(qup_clks),
->   };
->   
-> +static const char * const i2c_master_hub_clks[] = {
-> +	"s-ahb",
-> +};
-> +
-> +static const struct geni_se_desc i2c_master_hub_desc = {
-> +	.clks = i2c_master_hub_clks,
-> +	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
-> +};
-> +
->   static const struct of_device_id geni_se_dt_match[] = {
->   	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
-> +	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
-> 
+Regards,
+Anup
