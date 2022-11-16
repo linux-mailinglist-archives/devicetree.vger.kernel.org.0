@@ -2,209 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 563A762B44F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BC962B45E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:58:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232859AbiKPHyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 02:54:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60498 "EHLO
+        id S233103AbiKPH6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 02:58:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232704AbiKPHyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:54:43 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E220101D5
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:54:42 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id s8so11105412lfc.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:54:42 -0800 (PST)
+        with ESMTP id S233104AbiKPH6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:58:14 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DE724BC9;
+        Tue, 15 Nov 2022 23:58:11 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id mi9so11410072qvb.8;
+        Tue, 15 Nov 2022 23:58:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KmcXTCHKzz3DR46ClTN3tRFjXZaO4YMglWFF7gGQ/G8=;
-        b=t3M5YQ0/9r8qNkSYncPQY1AbqnrIE06HFWD0E9iRczDVRHlWm0zOpuJYmhH0VFg/Dq
-         jT9BsKwbMU8rKLswklCQnzPXY3OUs1x1GQB8/n6nq8ICb35php7B769e28fAlWB+Kfwk
-         KM5dJLp0W+3DKwJN6Ra/cUuZJUFZSzeGpnomKP7B3ZZc6CQzob6TWDP0taK03ERa7Em2
-         Zlfw2MJPLHR0i8oXsA8LS7BffHi4nhMGagmCwk4amI660QMVh/iUJzAM88X0mLedu+JM
-         2F+Yc7DeIsKYMhaAtoGBIMX8io8+x9vNEVtmbuLD3XFsQCDUBKsJ11mNzkTgW/LQ7BAl
-         K/Zw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mgGyuenVtFXuCVHks+5NNuVlkc2b6o69ZD4m/QGfTIs=;
+        b=pu2FcKNnKmYX8n8ReZH0BUxp8JnZXV8eos5dZGhtCG5CWtOBuPPD4F4nWNrYze0RR1
+         6y7cMVsZPR2aVAbxBEYu37bOWJKK7bDZyoyPjcFhxubcPGAzoosnfKviwCxF/Yp5nByO
+         PWMZIuqzLGPKKDkf5HCP6Qfep9jh4rpSiivrZM/B3LtEAxH2v21PwLMubC72O0CeIAwQ
+         ITchSaF6Dt++GaIS/lHpqxvs9cOryvVxazw+rlgdwz/kaYWakTJBcsIWAvuBFetWDWwi
+         P0bl4++dn6PY46ZevmrDf6w+wKLv8iy5qrfR+9EIBjCN0FRgWmNZClMN9NJV9nLicbCP
+         auLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KmcXTCHKzz3DR46ClTN3tRFjXZaO4YMglWFF7gGQ/G8=;
-        b=wOBJ7a3bqqkW5jfa0Df3SQzqMVQqcpLoj9ywOjFFYCdIybYZ8eDx7PyJImSJIFZXfy
-         kE2dnEC0mlS3VqUq4LcIPLGyQZjOHAM9ZTQn74qN/1FzooMkL9bch+RsMuNWleRAID1S
-         h6H8iyLgDZpkbmC2kc5CYpPA50xcfQIYKmZKryjQ81KIJBWXrplfPugwGcMrdfy7N7A/
-         ziSGGdiMqISy/a4LrmmpwuqwQ39sHwLQGNzNzSl9kDL3li0cxWPS6jiHWgRxd1n4L2l5
-         BpZwy9O1iZPSE9pepW7K8hPVGg3Jqa17I0CXOWduwwxulJrg6IfI/jVqsaSZCuH5c4O+
-         E/dQ==
-X-Gm-Message-State: ANoB5pmsxk+oV8NPxpVbWXVQeVeEHBA3OZXyc+Y4y7ffE6mkQ+ScIeE9
-        4BvMBQcbXI48iXHItBbJwmaJKA==
-X-Google-Smtp-Source: AA0mqf5x7/6WU/xrYlS2suy3JdSdQNzG8ZLQHmAqV8cjJUYzmDUfoKdg5YuZO+nlI0S3V1/uD740Nw==
-X-Received: by 2002:a05:6512:3415:b0:4a2:6df5:edb9 with SMTP id i21-20020a056512341500b004a26df5edb9mr7164379lfr.675.1668585280846;
-        Tue, 15 Nov 2022 23:54:40 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z18-20020a056512371200b00498f77cfa63sm2487286lfr.280.2022.11.15.23.54.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Nov 2022 23:54:40 -0800 (PST)
-Message-ID: <fd108794-5ba0-91c5-b3b6-4376226a6828@linaro.org>
-Date:   Wed, 16 Nov 2022 08:54:39 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mgGyuenVtFXuCVHks+5NNuVlkc2b6o69ZD4m/QGfTIs=;
+        b=5KkIwMhEYw7LzLrPBeZjFSJGL7hl+ls7coYuW9TRk5EOUzjxlWhP2odja5B+x/F/4j
+         yfJbvhVEjMjqUqvWXGhay7YaSLofs5Lz0TzHwZyNFOkWa1/BHx+/e3zN1kV8OZwM07ZH
+         y82VCdMAMlNLLD1prq8VNoXX+eTq248puXmHMM8sRC3vD7xtoF0L7G5C1WyS/+PWX+34
+         TuVKBmdD++Atvy0bja20FBz+yzr+M8EllbnANzAk2Gg0OMGL9dHDRyoJkSEeU2MjCqqr
+         Mlxhb1FWvPNLEwQO2NLxGHQ8sbjnOU5JEN49HPt1+G9yOHfvi17zP6Lr6c3vuU9A5Su4
+         Zfzg==
+X-Gm-Message-State: ANoB5pmxq+jRMqvJWwvMZJ65sqSbxbUOo5ehPD2gFstKaoWf3+qUOe6W
+        6AW/2g7CMRoeRm0RhWtR7SBoMHJcR8sRUxs3Jkg=
+X-Google-Smtp-Source: AA0mqf59/oE5htmWmVTO0J+J3GfnZeKnwkr103ntUrrNiEoJMv8reHdQpR1d8lcUI8ApFf7xkEp+4hpiffBVAiXP8rw=
+X-Received: by 2002:a0c:ed34:0:b0:4bb:73a4:c1dc with SMTP id
+ u20-20020a0ced34000000b004bb73a4c1dcmr20026016qvq.41.1668585491008; Tue, 15
+ Nov 2022 23:58:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v10 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221115110932.637091-1-Naresh.Solanki@9elements.com>
- <20221115110932.637091-2-Naresh.Solanki@9elements.com>
- <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
- <d6be0d25-b7a2-fe6a-f653-d3b583c7202a@9elements.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d6be0d25-b7a2-fe6a-f653-d3b583c7202a@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-4-JJLIU0@nuvoton.com>
+ <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
+ <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
+ <CACRpkdYW0P8gqtGdiRX_frP32WF2W=NVg1JTu1fVMBXxEL0-WA@mail.gmail.com>
+ <CAKUZ0+Hy5suFg9VZ8-+cH7kGc5KLqUnf9hjnT+iaw+a1HF8x0A@mail.gmail.com>
+ <CACRpkdYbS_syVwgc=YndkV-DpEF0K8NpH6WzP=g0AFpN+OTN8A@mail.gmail.com>
+ <CAKUZ0+FD=x8s+vqUpYwsuRUw-yTHQjtTFzWDwW=d4k8X1x1LoQ@mail.gmail.com> <168ed6e6-21bf-f034-504e-6da36842f4bc@linaro.org>
+In-Reply-To: <168ed6e6-21bf-f034-504e-6da36842f4bc@linaro.org>
+From:   Jim Liu <jim.t90615@gmail.com>
+Date:   Wed, 16 Nov 2022 15:57:59 +0800
+Message-ID: <CAKUZ0+Hu4C9qfSZ+zw4eVtWpYF9pr5c6nBAWTt2ehmnf+-j5BA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
+ expansion interface(SGPIO)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>, JJLIU0@nuvoton.com,
+        KWLIU@nuvoton.com, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 21:30, Naresh Solanki wrote:
-> Hi Krzysztof,
-> 
-> On 15-11-2022 07:34 pm, Krzysztof Kozlowski wrote:
->> On 15/11/2022 12:09, Naresh Solanki wrote:
->>> From: Marcello Sylvester Bauer <sylv@sylv.io>
->>>
->>> The MAX597x is a hot swap controller with configurable fault protection.
->>> It also has 10bit ADC for current & voltage measurements.
->>>
->>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->>> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>> ---
->>>   .../bindings/mfd/maxim,max5970.yaml           | 154 ++++++++++++++++++
->>>   1 file changed, 154 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->>> new file mode 100644
->>> index 000000000000..edf0c23db4ca
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
->>> @@ -0,0 +1,154 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
->>> +
->>> +maintainers:
->>> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
->>> +
->>> +description: |
->>> +  The smart switch provides no output regulation, but independent fault protection
->>> +  and voltage and current sensing.
->>> +  Programming is done through I2C bus.
->>> +
->>> +  Datasheets:
->>> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
->>> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - maxim,max5970
->>> +      - maxim,max5978
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  leds:
->>> +    type: object
->>> +    description:
->>> +      Properties for four LEDS.
->>> +
->>> +    properties:
->>> +      "#address-cells":
->>> +        const: 1
->>> +
->>> +      "#size-cells":
->>> +        const: 0
->>> +
->>> +    patternProperties:
->>> +      "^led@[0-3]$":
->>> +        $ref: /schemas/leds/common.yaml#
->>> +        type: object
->>> +
->>> +    additionalProperties: false
->>> +
->>> +  vss1-supply:
->>> +    description: Supply of the first channel.
->>> +
->>> +  vss2-supply:
->>> +    description: Supply of the second channel.
->>> +
->>> +  regulators:
->>> +    type: object
->>> +    description:
->>> +      Properties for both regulators. Also set value for shunt resistor used.
->>
->> You should explain not the syntax,  but what part of hardware this nodes
->> represents. Therefore "Also set value" does not fit at all. Hardware
->> sets value?
-> You mean something like: Properties for power switch
->>
->> I looked at datasheets to figure it out but they do not refer to any
->> configurable regulator, LDO nor "sw0/sw1/sw2". Therefore I have no clue
->> what to expect here...
-> Yes this is for power switch part of max5970/8
+Hi Krzysztof
 
-Nothing in max5970 datasheet about "power switch". "switch" fives two
-results, not really related/explaining.
+Thanks for your reply.
 
-Bindings, your naming and explanation use terms not existing in
-datasheet, so it does not look like you are describing hardware.
+Our sgpio has 8  regs to control output and 8 regs to control input.
+Each reg size is one byte.
+and the sgpio interface has 4 pins(s_clk, d_out, d_in, LDSH).
 
->>
->>> +
->>> +    patternProperties:
->>> +      "^sw[0-1]$":
->>> +        $ref: /schemas/regulator/regulator.yaml#
->>> +        type: object
->>> +        properties:
->>> +          shunt-resistor-micro-ohms:
->>> +            description: |
->>> +              The value of current sense resistor in microohms.
->>> +
->>> +        required:
->>> +          - shunt-resistor-micro-ohms
->>> +
->>> +      unevaluatedProperties: false
->>
->> I don't think it has proper indentation. Did you test the binding?
-> Definitely tested the bindings before I push the patch.
+The clock is generated by APB3, and one operation cycle includes input
+and output
+beginning the signal, the  LDSH is low and now will send output serial data ,
+after finished output serial data the LDSH will be high and get serial
+input data.
 
-Anyway it is wrong. It must be on the level of properties.
+The in/out serial data size is byte * ports , and direct to update the regs.
 
+> the driver will open the ports to use.
+> ex: if  i set d_out=9   and d_in=20
+
+The Soc is controlled by port, not by each bit.
+So if users need 9 output pins, the driver needs to open two ports,
+because each reg is one byte.
+if users need 20 input pins ,the driver needs to open three ports.
+
+The list has some rules for use, The first half is the output and the
+second half is the input.
+the example as below:
+if i set d_out=8  d_in=8
+
+root@buv-runbmc:~# gpioinfo 8
+gpiochip8 - 16 lines:
+        line   0:      unnamed       unused  output  active-high
+        line   1:      unnamed       unused  output  active-high
+        line   2:      unnamed       unused  output  active-high
+        line   3:      unnamed       unused  output  active-high
+        line   4:      unnamed       unused  output  active-high
+        line   5:      unnamed       unused  output  active-high
+        line   6:      unnamed       unused  output  active-high
+        line   7:      unnamed       unused  output  active-high
+        line   8:      unnamed       unused   input  active-high
+        line   9:      unnamed       unused   input  active-high
+        line  10:      unnamed       unused   input  active-high
+        line  11:      unnamed       unused   input  active-high
+        line  12:      unnamed       unused   input  active-high
+        line  13:      unnamed       unused   input  active-high
+        line  14:      unnamed       unused   input  active-high
+        line  15:      unnamed       unused   input  active-high
+
+the line0~line7 will map to output reg1 and line8~line15 will map to
+input reg1 and so on.
+
+and thanks again for your suggestions and information for dts naming.
+So I need to modify it from sgpio1 to gpio8
+am i correct?
 
 Best regards,
-Krzysztof
+Jim
 
+
+
+
+
+
+On Tue, Nov 15, 2022 at 5:58 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 15/11/2022 10:21, Jim Liu wrote:
+> > Hi Linus and Krzysztof
+> >
+> > Thanks for your understanding and your suggestion.
+> > I will follow your suggestion to modify the yaml file.
+> > -> nuvoton,input-ngpios = <...>
+> > -> nuvoton,output-ngpios = <...>
+> >
+> > And I don't think the node name needs to use gpio.
+> > because it's not a general gpio, so I reference aspeed dts and use sgpio.
+> > Could I use the sgpio node name or could you provide some suggestions?
+>
+> Aspeed DTS has poor code readability (not following several common DT
+> conventions), so using it as an example or argument is not correct
+> approach. Nodes have name "gpio" for GPIO controllers or one of
+> pinctrl.yaml for pin controllers.
+>
+> Best regards,
+> Krzysztof
+>
