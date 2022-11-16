@@ -2,117 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 656BB62B1DA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 04:34:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 730C362B1E7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 04:46:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231638AbiKPDe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 22:34:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43714 "EHLO
+        id S232075AbiKPDq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 22:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiKPDez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 22:34:55 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C06623EA3;
-        Tue, 15 Nov 2022 19:34:52 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8AxDdlbWnRjV5YHAA--.22024S3;
-        Wed, 16 Nov 2022 11:34:51 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx9VZYWnRj314UAA--.35734S2;
-        Wed, 16 Nov 2022 11:34:50 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] gpio: loongson: add dts/acpi gpio support
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Linus Walleij <linus.walleij@linaro.org>, zhuyinbo@loongson.cn,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229495AbiKPDq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 22:46:27 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7129712AB8;
+        Tue, 15 Nov 2022 19:46:26 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id CA9B85C018C;
+        Tue, 15 Nov 2022 22:46:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 15 Nov 2022 22:46:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1668570383; x=1668656783; bh=98Wqu6kwTkpQx0diKFaT1wM6I
+        4WeLKlWxy3HOKKiaiw=; b=f2dnLkFhJVUrqrjGX0/qdstmEFGgn+VxQmigbZZPB
+        FnayAaZGHGOaoBv0ZxdmsdA92zKkBOreIe8TiuK2FK7J54QwcfbAPu/BBWmOukSi
+        am6T93Vwl7m/EU3NwezMVyDyeO28vd0kSP1E5sXAAUPMnTmfJRQ+ZAOPbZY0eDWo
+        uW6pbAeXdhmJYFMcoXH30Q47AR3eeMkCKcMNxwEPVCS/1tDETXHQyGCY+JXA/+Pt
+        UumYQA4d6NEchsbfd7xmVlDadh/N9vV75IPbi5UsH8iIqBw/Rb3OuEjuPwDqHV3P
+        spros1h6uO6TFd6AmRkuiojXaTJ696ywRZAFx3DFoiM7Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1668570383; x=1668656783; bh=98Wqu6kwTkpQx0diKFaT1wM6I4WeLKlWxy3
+        HOKKiaiw=; b=kC8zSkhNKfuHZORd/Hu+Qa/racxzvBAmNX+Oz9VyIT0CoJUExfR
+        cwOHzGgz/0OZgJQRjzRBJiM1D46IQ+n6eeD8nxOt8Xv0IeQQR02Vga1/WDCsNEs5
+        v3l3hpyh3D5rxwZ6h16SJJs7vKE07iXVgw0G/1cVekRQLqzoYyLnI/qmtkLnWjzx
+        wPb0y/XNs4A6ILifWLiZY7jK3pjQzM/QavGOj5zkfmB/r33Q1NYzQPxzTfU5dHaY
+        uTHkeIdiHzorKhXTJbCGdwVS7C8aeuEvevwlIhJoV52A7r9NtjCcdiowPEVKvLOp
+        hFOKbcC8BBwIyckGqlQFckZ5h4t9WLqLHhA==
+X-ME-Sender: <xms:D110Yzp5saybWSvKd9XP3Ui_OCEOEZuEhtp6qYbDVIJ6te_XNC0piQ>
+    <xme:D110Y9rV6E9Uhl-57QnRq2ALFkXWIZ_3Cl8aojjPTwht-NI2GpzMPRQD2-zeX5La2
+    7TmJ69felIhi10-Hw>
+X-ME-Received: <xmr:D110YwNCnV7hUClUYsSCSF2HDy-IZ8aOq1DqaqxHL1gaxhJyGfy27vajiysW0_A7J0MytOhoUkk4CpWxR73IN2Qd_sndY3swFxZ0R3wBTFoe1gLqnwODYtl4QVeImx7-oZWjPA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeehgdeivdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeehhffh
+    keekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:D110Y24560usaTLVIht-_dnsK5ZG8aLHjMX01d8JwBK8AE4eV4-fig>
+    <xmx:D110Yy4MbDqv2BpA1rkX80wWEBtYkmOwEYYzVGhZz55Wj9q-iIeD_A>
+    <xmx:D110Y-gfQZKz3-TJaMNZeSXJ4YijeyefH-K7u7Oep7MqGSp7SDfgCw>
+    <xmx:D110Y6j8flhLVh8U5IinzOVINi9l5vaeA32U7GAjamV5-zhAHssuTg>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 15 Nov 2022 22:46:22 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Ban Tao <fengzheng923@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        lvjianmin <lvjianmin@loongson.cn>,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-References: <20221114095332.21079-1-zhuyinbo@loongson.cn>
- <CAMRc=McnEiSj1Q51pG3Lc8e+HcXE_uU7dm=1VoOa__xOgyoZPg@mail.gmail.com>
- <8b24e3df-8c22-bd09-cfc1-b27e39a05c25@loongson.cn>
- <20221115102050.GA3167@alpha.franken.de>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <1bcc9fa5-c701-758d-c241-88c7b5d0216a@loongson.cn>
-Date:   Wed, 16 Nov 2022 11:34:48 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH] ASoC: dt-bindings: sun50i-dmic: Add D1 compatible string
+Date:   Tue, 15 Nov 2022 21:46:21 -0600
+Message-Id: <20221116034621.37762-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-In-Reply-To: <20221115102050.GA3167@alpha.franken.de>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx9VZYWnRj314UAA--.35734S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoWrZF43ZFy5ur4DZr4kArWDJwb_yoWfurb_u3
-        4I9FW8Jr48Zr1kJwn5try3Jasrtr98JF18ZrW0vr42qwsYya1SkryUCrySya1kWw1xKrn8
-        Zr4kWw1fA34fWjkaLaAFLSUrUUUUeb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        17CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
-        0_Jw0_GFyl42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
-        c4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
-        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
-        6xIIjxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU86yIUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Allwinner D1 SoC has a DMIC codec like the one in the H6. It appears
+to be register-compatible with the H6 variant, and the existing Linux
+driver has been tested on a D1-based board, the Lichee RV 86 Panel.
 
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
 
-ÔÚ 2022/11/15 ÏÂÎç6:20, Thomas Bogendoerfer Ð´µÀ:
-> On Tue, Nov 15, 2022 at 05:53:26PM +0800, Yinbo Zhu wrote:
->>>> +/* ============== Data structrues =============== */
->>>> +
->>>> +/* gpio data */
->>>> +struct platform_gpio_data {
->>>> +       u32 gpio_conf;
->>>> +       u32 gpio_out;
->>>> +       u32 gpio_in;
->>>> +       u32 support_irq;
->>>> +       char *label;
->>>> +       int gpio_base;
->>>> +       int ngpio;
->>>> +};
->>>
->>> No idea why you would need to duplicate it like this either. And why
->>> put it in arch/.
->> because loongson platform include mips and loongarch, and the gpio device
->> data was defined in arch/ in leagcy loongson gpio driver.  so the
->> latest loongson gpio drvier add platform_gpio_data in same dir.
-> 
-> put the struct into a new file in  include/linux/platform_data and
-> use that.
-> 
-> Thomas.
-Hi Thomas,
+ .../bindings/sound/allwinner,sun50i-h6-dmic.yaml           | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-I think it is okay for me about your advice. I will move gpio platform
-data in include/linux/platform_data.
-
-Thanks
-Yinbo.
-
-> 
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+index 2f12cabe4c71..0920f2f81a1c 100644
+--- a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+@@ -11,7 +11,12 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: allwinner,sun50i-h6-dmic
++    oneOf:
++      - items:
++          - enum:
++              - allwinner,sun20i-d1-dmic
++          - const: allwinner,sun50i-h6-dmic
++      - const: allwinner,sun50i-h6-dmic
+ 
+   "#sound-dai-cells":
+     const: 0
+-- 
+2.37.3
 
