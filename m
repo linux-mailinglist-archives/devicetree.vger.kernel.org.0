@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 477B862B24D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 05:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D96B562B2C2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 06:30:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiKPE1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 23:27:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
+        id S229460AbiKPFa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 00:30:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiKPE1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 23:27:42 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78CCEC;
-        Tue, 15 Nov 2022 20:27:40 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG4RLGq112791;
-        Tue, 15 Nov 2022 22:27:21 -0600
+        with ESMTP id S229456AbiKPFa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 00:30:27 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BDDB23E85;
+        Tue, 15 Nov 2022 21:30:26 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG5UAKW101176;
+        Tue, 15 Nov 2022 23:30:10 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668572841;
-        bh=C/X7s6SVt6zu2Xe45YtuDhssIAYdMIz7Oczws4SA7iw=;
+        s=ti-com-17Q1; t=1668576610;
+        bh=Gihq/JvfYiDTTgL4mbNXyfH9/8O3NIuNT2JbrKVK3+g=;
         h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=jbbJyjBOYBy4/3ugbZ+2n57OOFuZX4KjDuQG8LZ43WVUZtCv7SP84BUfVcB0V1vc/
-         3lHq9LzhE5GoIHQPpaa11maKG/wHPrETDUDev0NgxNdxNIjUnN+l1s30akmT/I9BVI
-         5WJwc2DfzI74T+EZKMzLwg0RuDYjnFxWpPy/szLY=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG4RLcV021881
+        b=FC3Hl5nHr61fBE+UWGGwlY/ffMUN5vWP+FIiylcnsTn21CaXBjebJzi0IadkVcd4M
+         Vjpt2+l6FZZHzaW2JlRK45o4U284yqw+wdOHZ7JquXj5F1E7qiS0Z9JaOubYgFT4lt
+         gmZHJ3RJxaKaojffuq4LrYacY9NnCpKOatz55CCY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG5UANE048844
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Nov 2022 22:27:21 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 15 Nov 2022 23:30:10 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 15
- Nov 2022 22:27:20 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2022 23:30:10 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 15 Nov 2022 22:27:20 -0600
-Received: from [172.24.222.97] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG4RFWX042886;
-        Tue, 15 Nov 2022 22:27:16 -0600
-Message-ID: <38247c21-647c-2778-c105-b94fa344b27a@ti.com>
-Date:   Wed, 16 Nov 2022 09:57:14 +0530
+ Frontend Transport; Tue, 15 Nov 2022 23:30:10 -0600
+Received: from [172.24.222.97] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG5U553019521;
+        Tue, 15 Nov 2022 23:30:06 -0600
+Message-ID: <278df800-85e9-99f6-e25f-fd5363bdd300@ti.com>
+Date:   Wed, 16 Nov 2022 11:00:05 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 0/3] RNG clock property cleanup
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721s2-main: Enable crypto
+ accelerator
 Content-Language: en-US
 To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
         <vigneshr@ti.com>
 CC:     <kristo@kernel.org>, <robh+dt@kernel.org>, <afd@ti.com>,
-        <j-keerthy@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-anna@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221107110607.59216-1-j-choudhary@ti.com>
+References: <20221031200633.26997-1-j-choudhary@ti.com>
 From:   Manorit Chawdhry <m-chawdhry@ti.com>
-In-Reply-To: <20221107110607.59216-1-j-choudhary@ti.com>
+In-Reply-To: <20221031200633.26997-1-j-choudhary@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -69,28 +70,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 07/11/22 16:36, Jayesh Choudhary wrote:
-> This series removes the clock property from the rng node of
-> K3 devices for TI SoCs as that clock is not dedicated to RNG
-> module and it cannot be controlled by the rng driver.
+On 01/11/22 01:36, Jayesh Choudhary wrote:
+> Add the node for SA2UL for supporting hardware crypto algorithms,
+> including SHA1, SHA256, SHA512, AES, 3DES and AEAD suites.
+> Add rng node for hardware random number generator.
 >
-> DT binding fix:
-> <https://lore.kernel.org/all/20220901171041.32056-1-afd@ti.com/>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Acked-by: Matt Ranostay <mranostay@ti.com>
+> Acked-by: Andrew Davis <afd@ti.com>
+> ---
+>
+> Changes have been tested on local j721s2-evm board. Tcrypt tests
+> and crypto self-tests were passing.
+>
+> Changelog v2 -> v3:
+> - remove the clock property from rng node
+>    (<https://lore.kernel.org/all/20220901171041.32056-1-afd@ti.com/>)
 >
 > Changelog v1 -> v2:
-> - Update the commit description properly for each patch
+> - change the TI_SCI flag from shared to exclusive as OP-TEE uses MCU
+>    domain SA2UL instance and not the main domain instance
+> - remove the 'dma-coherent' property (Binding changes are merged)
+> - add the rng node which can be used as well for hwrng along with
+>    optee-rng
 >
-> Jayesh Choudhary (3):
->    arm64: dts: ti: k3-am65-main: drop RNG clock
->    arm64: dts: ti: k3-j721e-main: drop RNG clock
->    arm64: dts: ti: k3-am64-main: drop RNG clock
+> v2 patch: https://lore.kernel.org/all/20221031135416.350010-1-j-choudhary@ti.com/
 >
->   arch/arm64/boot/dts/ti/k3-am64-main.dtsi  | 1 -
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 1 -
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
->   3 files changed, 3 deletions(-)
+> Testing log: https://gist.github.com/Jayesh2000/26acf0e63f7edcd4b267122e4c73b9a8
 >
-For the whole series,
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index d1ec26110376..2e0ba2262e77 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -72,6 +72,25 @@ main_pmx0: pinctrl@11c000 {
+>   		pinctrl-single,function-mask = <0xffffffff>;
+>   	};
+>   
+> +	main_crypto: crypto@4e00000 {
+> +		compatible = "ti,j721e-sa2ul";
+> +		reg = <0x00 0x4e00000 0x00 0x1200>;
+> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x04e00000 0x00 0x04e00000 0x00 0x30000>;
+> +
+> +		dmas = <&main_udmap 0xca40>, <&main_udmap 0x4a40>,
+> +				<&main_udmap 0x4a41>;
+> +		dma-names = "tx", "rx1", "rx2";
+> +
+> +		rng: rng@4e10000 {
+> +			compatible = "inside-secure,safexcel-eip76";
+> +			reg = <0x0 0x4e10000 0x0 0x7d>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +	};
+> +
 
 Reviewed-by: Manorit Chawdhry <m-chawdhry@ti.com>
 
+>   	main_uart0: serial@2800000 {
+>   		compatible = "ti,j721e-uart", "ti,am654-uart";
+>   		reg = <0x00 0x02800000 0x00 0x200>;
