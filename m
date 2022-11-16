@@ -2,117 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3C362BA3A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDAA62BA42
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232195AbiKPKyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:54:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34650 "EHLO
+        id S238991AbiKPKyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:54:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238920AbiKPKxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:53:13 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9970B56572;
-        Wed, 16 Nov 2022 02:42:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668595356; x=1700131356;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AbTmtEPvkOM3n+TxYy670hFEqjcGp/xBnFYxhsbQLGw=;
-  b=I9keWFvm4n/NUIGD8xKPtcWWc0eQtywx2eBy+bTmFT1uo/yo8ec9JcXR
-   MB97zuTMQQCRQPnzaquKH/+whqnZ2h7BgWhIPQsn4hA+41eIp1lPfwrAe
-   +G/xiYbKAZBRu6yVF0ew/9a8BZTBwjnWPHBmdubhVvVDBGsL1DE0oBoJZ
-   DQY52qxerVkf29ZDGprbaeUahMLa4TdJ5yoDwjTbWk6QW4MXQoMC9qKQR
-   JzQw6/vpdOG9OkkqPr9qI7k6tIzmHbYp1DxmSEeVJFGNJIbC8yKiscNj4
-   bUwIUBPzIZ9QA5+A2M77ozJOCfk2N/QHnryPK+VPdl1poIfWHE7YEsrnz
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="339325438"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
-   d="scan'208";a="339325438"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2022 02:42:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="672350117"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
-   d="scan'208";a="672350117"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga001.jf.intel.com with ESMTP; 16 Nov 2022 02:42:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ovFsD-00D5jS-0Z;
-        Wed, 16 Nov 2022 12:42:29 +0200
-Date:   Wed, 16 Nov 2022 12:42:28 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>
-Cc:     devicetree@vger.kernel.org, robh@kernel.org, tglx@linutronix.de,
-        mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
-        x86@kernel.org, linux-kernel@vger.kernel.org, hpa@zytor.com,
-        alan@lxorguk.ukuu.org.uk, dirk.brandewie@gmail.com,
-        grant.likely@secretlab.ca, sodaville@linutronix.de,
-        devicetree-discuss@lists.ozlabs.org, linux-lgm-soc@maxlinear.com
-Subject: Re: [PATCH v2 1/2] x86/of: Add support for boot time interrupt
- delivery mode configuration
-Message-ID: <Y3S+lLzcmytKHLRq@smile.fi.intel.com>
-References: <cover.1668589253.git.rtanwar@maxlinear.com>
- <9114810c7af7fbaf9d0b2823752afcef865bdda0.1668589253.git.rtanwar@maxlinear.com>
+        with ESMTP id S237493AbiKPKyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:54:22 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1242540450
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:43:14 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id h9so29243194wrt.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:43:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=okM9Wiovfxx2M89jLoRegEEMGS+MvapreaG9LEAz58o=;
+        b=d2piSQ/40HvtMwtfAwnyDyxe3TYG3DctQms+bf0T4E0Ix9PSsX1/ounfD6Gx6WGw2p
+         nhgY3OGm8JCHgqCsCAwi5cAR7ygYpgrfQp+50+vzxEq52Lc8z5KpCp/jdRL87pLPb5/w
+         76Fji47KDrSApPjR0dHJOsxVQieT9V/1+l/D6k8NAptQ4IACVCQ0SI0VK0xVlDN1gnqc
+         0O801DnzltiZSj/yjOfeR5R4fslNZg7ZtdLOOBQR/+D2xOnJKOIgjVXpXi2BG8XBeMKs
+         ssQLOf5+ecGAaF3PWEQKKAon4PvLBuLLmKdmXA4WkBb8kzXWqJ6fZmC8TUZRDpPskQwI
+         x0oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=okM9Wiovfxx2M89jLoRegEEMGS+MvapreaG9LEAz58o=;
+        b=Og4LI2ayta4ncJZT8+AzHOWX8dELWiqdO45lpXfpyJ9ov9srcCQbG3vaUMBUJwDaED
+         GJE0OC2DoadhVVNielB+OSYJHudWXTjbdzv7xrnZIB2c0at1KkbHAKetPXI/XMvnzDjy
+         y4JQqCDwZfRaL6VnAWU6bb3zR9GAeFsjfjhZyNWPH+i6qqLu/cBvoOcbNulGp2n/hhPB
+         +XRPkski69tKNS9ZtsdX/tQQqpxHGgg9QpySH0zwl+WQiNroMUDc3WvmTzjqw+Nc1rXT
+         amgpCMe29dFJr2YYt0bJvCb4ddiYC7Xb39hr+VtmtTg3ojGeHPKmoM7dmujc/MfLTzSR
+         tSPA==
+X-Gm-Message-State: ANoB5pnSvYaPxnre5FlJn5xy6gB4KCEgeFjAMDlgi0sk3kyIRG1wVW4j
+        UgBu1sT+Jt9I3anXteVMvT6K6A==
+X-Google-Smtp-Source: AA0mqf5cBNvOEYTLCSWxA180ibJxOfn0Al19NUVt6kYS0j9LSgcAoNL0kd0Ax8bi3ymr4mhhPjMYag==
+X-Received: by 2002:a5d:4a4d:0:b0:241:784b:1e2e with SMTP id v13-20020a5d4a4d000000b00241784b1e2emr11615361wrs.434.1668595392560;
+        Wed, 16 Nov 2022 02:43:12 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id t8-20020adff048000000b002238ea5750csm18010846wro.72.2022.11.16.02.43.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 02:43:12 -0800 (PST)
+Subject: [PATCH 0/3] arm64: dts: qcom: Add ADSP, CDSP & MDSS support to SM8550 and MTP board
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9114810c7af7fbaf9d0b2823752afcef865bdda0.1668589253.git.rtanwar@maxlinear.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAL2+dGMC/w3MOw7DIAwA0KtEnmsJqKzQ3oaAlSCFj2zSJcrdy/iWd4OyZFb4LjcI/7LmVifsa4
+ F4hLoz5jQNzjhnrSUcreeIWjyRwavrEA4F01AULm1wlxaRnKe0Guv5/YFZbUEZNwk1HjOr13k+zx/Z cYVCewAAAA==
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 16 Nov 2022 11:43:09 +0100
+Message-Id: <20221115-topic-sm8550-upstream-dts-remoteproc-v1-0-379eec11d841@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 06:28:20PM +0800, Rahul Tanwar wrote:
-> Presently, init/boot time interrupt delivery mode is enumerated
-> only for ACPI enabled systems by parsing MADT table or for older
-> systems by parsing MP table. But for OF based x86 systems, it is
-> assumed & hardcoded to legacy PIC mode. This is a bug for
-> platforms which are OF based but do not use 8259 compliant legacy
-> PIC interrupt controller. Such platforms can not even boot because
-> of this bug/hardcoding.
-> 
-> Fix this bug by adding support for configuration of init time
-> interrupt delivery mode for x86 OF based systems by introducing a
-> new optional boolean property 'intel,virtual-wire-mode' for
-> interrupt-controller node of local APIC. This property emulates
-> IMCRP Bit 7 of MP feature info byte 2 of MP floating pointer
-> structure [1].
-> 
-> Defaults to legacy PIC mode if absent. Configures it to virtual
-> wire compatibility mode if present.
+This adds support for the aDSP, cDSP and MPSS Subsystems found in
+the SM8550 SoC.
 
-> [1] https://www.manualslib.com/manual/77733/Intel-Multiprocessor.html?page=40#manual
+The aDSP, cDSP and MPSS needs:
+- smp2p support nodes to get event back from the subsystems
+- remoteproc nodes with glink-edge subnodes providing all needed
+resources to start and run the subsystems
 
-Link: ?
+In addition, the MPSS Subsystem needs a rmtfs_mem dedicated
+memory zone.
 
-...
+Finally the firmwares file paths are added in the MTP board DT.
 
-> +	if (of_property_read_bool(dn, "intel,virtual-wire-mode")) {
+For the MPSS to successfully start the MPSS DSM driver [3]
+will be needed.
 
-You need a separate patch to show this property being added (yes,
-I have just commented on your patch 2).
+This patchset depends on:
+- bindings changes at [1]
+- base SM8550 DT at [2]
 
-> +		printk(KERN_NOTICE "Virtual Wire compatibility mode.\n");
-> +		pic_mode = 0;
-> +	} else {
-> +		printk(KERN_NOTICE "IMCR and PIC compatibility mode.\n");
-> +		pic_mode = 1;
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Abel Vesa <abel.vesa@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Why not pr_notice()  in both cases?
+[1] https://lore.kernel.org/all/20221114-narmstrong-sm8550-upstream-remoteproc-v1-0-104c34cb3b91@linaro.org/
+[2] https://lore.kernel.org/all/20221116103146.2556846-1-abel.vesa@linaro.org/
+[3] https://lore.kernel.org/all/20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org/
 
-> +	}
+---
+Abel Vesa (1):
+      arm64: dts: qcom: sm8550: Add interconnect path to SCM node
 
+Neil Armstrong (2):
+      arm64: dts: qcom: sm8550: add adsp, cdsp & mdss support nodes
+      arm64: dts: qcom: sm8550-mtp: enable adsp, cdsp & mdss
+
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  18 ++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 338 ++++++++++++++++++++++++++++++++
+ 2 files changed, 356 insertions(+)
+---
+base-commit: a237afe452d9079aa024e465642b4cde0a04c7ff
+change-id: 20221115-topic-sm8550-upstream-dts-remoteproc-5285d7018e39
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Neil Armstrong <neil.armstrong@linaro.org>
