@@ -2,69 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5961562CB21
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A0562CB29
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:38:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbiKPUhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:37:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53544 "EHLO
+        id S232377AbiKPUiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:38:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234356AbiKPUgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:36:50 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922FE65E6E;
-        Wed, 16 Nov 2022 12:36:38 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id v1so31899051wrt.11;
-        Wed, 16 Nov 2022 12:36:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0IcH5gFiwo2T5jEqATk0ifRG4QlIgMjRCMEKXYZaC28=;
-        b=K30djvpRBS+52IixL7ukZ+0jdbjNIQmzHPRzhFd/anfccasAqrR++8AAu1D2Rvo91N
-         gUsrV56AcZQ77FR7TOGtE8tv7pstD4I8jBjpFi6104beoj8rZ9t1x1MKGKV/cARyUxdy
-         1b2iOkowkFU20taFzrFt4U0K2KgMceRSfCzSUFlvHY0m765sBa5HXw8vaazf90bnDqgp
-         sInfNWcrOu9xV6306OpEx1xwn6pWa7mOff/SE+9hsNP430Zm/fzSspy8RwygAZ5qPXSt
-         kdhj9mVLX8Pe0Hz6id9j4Gb63BP2CDOu8Lk71wKQIkVWzwfgAzQ5quGeYx+EHEuwmY6T
-         f62g==
+        with ESMTP id S229446AbiKPUiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:38:12 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21584CE1C;
+        Wed, 16 Nov 2022 12:38:12 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso21466420fac.13;
+        Wed, 16 Nov 2022 12:38:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0IcH5gFiwo2T5jEqATk0ifRG4QlIgMjRCMEKXYZaC28=;
-        b=XbEtlIsCyliiaAcwBaAUSehvv0mlWn1EOD+X2ImoMDRGtIrjMvnVvjO+ObdoUQMQ/B
-         m05ukYSKIDVXfF+EHe6NLwRXrpzSRphKksnTQkF1yOuasRIy47+D1jZ9QkLXyh6AXSHU
-         DqHrb88hJ4OK0EsFeXE4XsUo1FaCIEJZqvOfDDDMPjbf1IhFq3rPi58PVXEjrn9V2KDa
-         JNJ4bmuas1qreS3a2pFZW/X9BAxUFusQHrWa6Rk4cUvr7Bb4JtEqZiMNlUrCHz9hZArB
-         uescDmLT9lc2SmWW3aVB+Anu8DGiL1nosr64LtZL0o9BMGbF5uITWiCwvJjRrvPI9gWH
-         9N+w==
-X-Gm-Message-State: ANoB5pmh6EN5tD16Njfar2HZM1z30+k9wA6kx0Jg6HfXs+UiwMXmGMRz
-        N1Njd/chAvtm2fBUOeIyyu5GWsTNGrk/idYmhmrOlsIj
-X-Google-Smtp-Source: AA0mqf5/qvPoxAdwcYY6fUPkyWyWz+qeGrX/B7SAMbTEW+Ju9vU/fYPg1UsuNtRk2tQOOmsjgygqX9sl0CbgiY33+JM=
-X-Received: by 2002:adf:fec8:0:b0:228:d897:228 with SMTP id
- q8-20020adffec8000000b00228d8970228mr14745392wrs.539.1668630996952; Wed, 16
- Nov 2022 12:36:36 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HnRJq35FU5K24iT24xDh+k9lk7y71HZpwcz02Kh7y6Q=;
+        b=5KZ0Bl8iLmn4yQOpsEV9X3s0uKBiHZCs8qAunv6F+ecYzd539vXhKdLfZQohuGf41j
+         2v5U++XNu89bX1Hu9dJ40lvgrcCRipz2pptxYqR6gB1xo+rz/jE7WLwHZKexTB6OsUbi
+         EUtLVRmeLVix0+2fkePt2TiccwszQRHdkBVVC4+U10c/uHlWqe5BON1J7/jYAI7bg6Q/
+         AFjoh2iCQI34Rfk9ZiouL/1+h8Ai7iU+bNYCgMSYSrgfNFpFinseHXiDYpKoJ54h4xte
+         mPDTnJ5VOzIm8kur4U2cBu5NnM22CcUjUUMW4x6K8Xdvss6ej+u8Mk5h5hqMm7fYIKtV
+         Rf9Q==
+X-Gm-Message-State: ANoB5pm9WxQP/FNHXXW2lZjr2JTSDSdX7EAm82Lp4+v9FfqxkpSW0Qrs
+        sMV6sYna1k2fCbX91UhAPw==
+X-Google-Smtp-Source: AA0mqf52E+J+ZVB9pFbQk8/8PdLI5NNCFohvwi6r1HMLDxt2gQKSZNLlLScuDKeTerUJmBdidzgYQw==
+X-Received: by 2002:a05:6870:d69c:b0:13b:ac28:c61a with SMTP id z28-20020a056870d69c00b0013bac28c61amr2733059oap.219.1668631091289;
+        Wed, 16 Nov 2022 12:38:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z9-20020a4ade49000000b0049eedb106e2sm6490658oot.15.2022.11.16.12.38.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 12:38:10 -0800 (PST)
+Received: (nullmailer pid 845059 invoked by uid 1000);
+        Wed, 16 Nov 2022 20:38:12 -0000
+Date:   Wed, 16 Nov 2022 14:38:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v7 01/20] dt-bindings: imx6q-pcie: Fix clock names for
+ imx6sx and imx8mq
+Message-ID: <20221116203812.GA834519-robh@kernel.org>
+References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
+ <20221113191301.5526-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <20221116200150.4657-1-linux.amoon@gmail.com> <20221116200150.4657-2-linux.amoon@gmail.com>
-In-Reply-To: <20221116200150.4657-2-linux.amoon@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 16 Nov 2022 15:36:24 -0500
-Message-ID: <CAMdYzYrgtzeP2OL2Vw0pDHQuJDhRbUy3X4xq9+XchgTGB9dqpg@mail.gmail.com>
-Subject: Re: [linux-next-v2 1/5] arm64: dts: rockchip: Fix gmac phy mode to
- rgmii on Rock 3A SBC.
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221113191301.5526-2-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,70 +87,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 3:02 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> On rk356x ethernet phy support reduced media independent interface (RMII)
-> and reduced gigabit media independent interface (RGMII).
-> So set the phy mode to rgmii to support clock delay, also
-> add TX and RX delay for phy-mode.
-
-Controller based clock delay, the various rgmii-id modes (rgmii-txid
-and rgmii-rxid are also valid) apply the delays in the phy. They are
-usually at a fixed amount, but some phys support variable delays.
-
-You want your commit message to accurately describe the problem, such
-as "In rgmii-id mode, the phy on the rock-3a is unreliable due to
-incorrect delays. Switch to rgmii mode in order to handle the delays
-in the controller."
-
->
-> Fix following warning
->
-> [    7.365215] rk_gmac-dwmac fe010000.ethernet: Can not read property: tx_delay.
-> [    7.365219] rk_gmac-dwmac fe010000.ethernet: set tx_delay to 0x30
-> [    7.365224] rk_gmac-dwmac fe010000.ethernet: Can not read property: rx_delay.
-> [    7.365228] rk_gmac-dwmac fe010000.ethernet: set rx_delay to 0x10
-
-I've been meaning to make this a dev_debug message, because in the
-various rgmii-id modes it is feasible for these to be non-existent in
-the device-tree. In rgmii-id mode these are disabled, no matter what
-they are set to in the dt.
-
->
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+On Sun, Nov 13, 2022 at 10:12:42PM +0300, Serge Semin wrote:
+> Originally as it was defined the legacy bindings the pcie_inbound_axi and
+> pcie_aux clock names were supposed to be used in the fsl,imx6sx-pcie and
+> fsl,imx8mq-pcie devices respectively. But the bindings conversion has been
+> incorrectly so now the fourth clock name is defined as "pcie_inbound_axi
+> for imx6sx-pcie, pcie_aux for imx8mq-pcie", which is completely wrong.
+> Let's fix that by conditionally apply the clock-names constraints based on
+> the compatible string content.
+> 
+> Fixes: 751ca492f131 ("dt-bindings: PCI: imx6: convert the imx pcie controller to dtschema")
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> 
 > ---
-> V2: Fix commit message and added the RX and TX clock delay.
+> 
+> Changelog v5:
+> - This is a new patch added on the v5 release of the patchset.
+> 
+> Changelog v7:
+> - Move the allOf clause to the bottom of the bindings. (@Krzysztof)
+> - Get back the names to the clock-names property and make sure the
+>   platform-specific name constraint is applied in the allOf clause.
+>   (@Rob)
 > ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> index ea74ba32fbbd..e1c75532dcee 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -253,13 +253,16 @@ &gmac1 {
->         assigned-clock-rates = <0>, <125000000>;
->         clock_in_out = "output";
->         phy-handle = <&rgmii_phy1>;
-> -       phy-mode = "rgmii-id";
-> +       phy-mode = "rgmii";
->         pinctrl-names = "default";
->         pinctrl-0 = <&gmac1m1_miim
->                      &gmac1m1_tx_bus2
->                      &gmac1m1_rx_bus2
->                      &gmac1m1_rgmii_clk
->                      &gmac1m1_rgmii_bus>;
-> +
-> +       tx_delay = <0x4f>;
-> +       rx_delay = <0x26>;
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 46 +++++++++++++++++--
+>  1 file changed, 42 insertions(+), 4 deletions(-)
 
-These are pretty far off from the default, have you verified the upper
-and lower bounds for the rock-3a? These should be roughly in the
-middle of that range.
+We have 2 patches doing the same thing:
 
->         status = "okay";
->  };
->
-> --
-> 2.38.1
->
+https://lore.kernel.org/all/20221109002449.35936-1-marex@denx.de/
+
+Please hash out which one you all want. Both seem to have clock 
+warnings still...
+
+Reviewed-by: Rob Herring <robh@kernel.org>
