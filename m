@@ -2,97 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC0362B5CE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FFA62B5D1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238957AbiKPJA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 04:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54894 "EHLO
+        id S233059AbiKPJAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 04:00:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232973AbiKPI74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:59:56 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6BD25EB9
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:59:00 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id u2so20946523ljl.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:59:00 -0800 (PST)
+        with ESMTP id S233263AbiKPJAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:00:32 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111AB2180
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:00:31 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id l12so28458042lfp.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:00:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=I4IfNeC1Qcq4fPLdPB19ZJ1fa7AFFBmM6/Rey4bmXio=;
-        b=OGoju5uX3y8iIKX9U8A6GzDLoWbtUcScchGeoye14nl6MlB84bERq48ZRCd+yfeLTZ
-         MgNKXX80x9CfJFl06epbK2NwP25K4YRyHPc5SdsEnb4ZqIra2mLPmgdgPHgKf93TQP8C
-         EIt9KV1sY3mdjCMTO8pPcGHc1pK3yMuv8lsrsEnyVfBwC73+llrHxJFRGDqHsTGkeMH4
-         6e/A6f3TBKcrR8d0L0pQk6QXu0rQumEy6wtiHW29Mo6jnJ9wnT9RvGklmNcE+q3ObsXX
-         m0Y+iCKdts5XqyR6TTLnrNiQGLQOoI1SZV+YEIRjRjrqFUiuZakH5ODsdv5vbMOBY6zl
-         LnDQ==
+        bh=FVdV6LebjwCpmwDk6trJqC8cySRjktuHUoTqdWNdcms=;
+        b=khTlLRnGvCZXS8zSbmdGUxyvWawM2fSnfv8ljuguxkvPyAT5UUql0SYa5oohRXhQTd
+         I88GbIyvvk7Q5jqHMKbJtEm/uFyFy0ZmiUAnPm0/uFL+innZxOko6G7JEv2kZT/9hERJ
+         th/tEufxqaMEx421Dyo6sxDbbABvx6rLxB997bMfwk+g/1DjUf9UXDUNk3t8XsM2WT4j
+         pgG/vIRMFhV+6XQSwNYnzaAenrqk7fU49GBqbb0pPU13Q/4+JDNkIL0Y9u6ZoZmE8dQc
+         Lm2pM5RzmBs8uGXIir8fPW7SJvcdkVYnEwLBs0Ajo6yXndizM7u2F1/Xes/K5ILVZPOB
+         9+4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I4IfNeC1Qcq4fPLdPB19ZJ1fa7AFFBmM6/Rey4bmXio=;
-        b=8Q1KmqhU88VKSRqn8nIJOXwLeuBXCyOl/ODsZsm71pm8PUB/plbwGp4/oeV4yE/5tV
-         DHPS4i4kwkhLSeqMijmQZ0iF/f0+tpdCT0aqQeRrc7qqC65Ir/w2gpL55kSluyAkxR8H
-         QTSZSrMk86dIfUAoruMmpRJLkVnahlcEqIy2oY6JqROikvY+DGuK2NwEmASiQdtBFQd8
-         R5uZKt9Lh/6FHHcBYdXEZ2C4eqBQm/8NqtBWPy5jtmnlds/FUZVXXrPir1Cv+y1T3Gjk
-         +JqdiXNjgwbwjR6Gj80pCr7RSymqfgEikvTfNz5QS9al8cDujzNgqpBaXbAk6Kk6DiKo
-         ZmIQ==
-X-Gm-Message-State: ANoB5pm/4k7ChoJOoE+LQdgj7OM3hWg9PgkYEm2GZGtcdgzVqgyv37jV
-        cPOZNjrF0eV5qdtwwu2OSstqXw==
-X-Google-Smtp-Source: AA0mqf702DWyhH86Tvlj4FTgeDoZA52uJlESfzCus0o2RqxEEzZNDQ5Cnm1E4Zu/AO72TkjpWZH2Xw==
-X-Received: by 2002:a2e:99ce:0:b0:279:1349:b2e2 with SMTP id l14-20020a2e99ce000000b002791349b2e2mr2454667ljj.382.1668589138928;
-        Wed, 16 Nov 2022 00:58:58 -0800 (PST)
+        bh=FVdV6LebjwCpmwDk6trJqC8cySRjktuHUoTqdWNdcms=;
+        b=pF32Ni/PKplneLNTp91zT6Ry1S4IxhP1dyna9i4Y0b41Hg+qCLNe2y98vcbvAWb5wt
+         h5+reSx3Ba7Iq4TflzHXO8WNFPGJukGbbh1sBNVpsEYfkCuPy8VZ9K9T8ufQc8jcBXJM
+         DaB/NhE8bCc1y0ZcjwNN/dXUfAYfGpd5qs9+58CDai+QNJ7L24tfzWo571WlOeqp4VJa
+         PUhj0dcXyYNpR5KkD6CPqeSy4smoAj5L/Zl0DFm/xnk3zUhOFd9pDYOFb93FYion/iEd
+         6Go19G1pMKbd6zVNGIl/3ZrnJ606brbN9fpFMFQ0IVbek21C6HJFECtG/pS5JADWuF0c
+         LjOg==
+X-Gm-Message-State: ANoB5pnTUXw+hvVWQxltHWKMUbBJY7gXt1LUuY5sGV2BmKIewxfKbzx3
+        6y0LC48wPXwl0oQVL3qvS4EZYw==
+X-Google-Smtp-Source: AA0mqf4ACaYKe07LviNcmJVRzmLlpSA+Y194j1OxaF80zT6bNeKpJkTnKfKaXj01iJCNB7gYnIy8Pg==
+X-Received: by 2002:a05:6512:239d:b0:4a2:7574:b64a with SMTP id c29-20020a056512239d00b004a27574b64amr6712826lfv.336.1668589229325;
+        Wed, 16 Nov 2022 01:00:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q26-20020a2eb4ba000000b0026e0434eb1esm2806109ljm.67.2022.11.16.00.58.58
+        by smtp.gmail.com with ESMTPSA id q21-20020a0565123a9500b0048afb8b8e53sm2510621lfu.80.2022.11.16.01.00.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 00:58:58 -0800 (PST)
-Message-ID: <c1745278-9ae1-81a4-7775-0289e9ce5b76@linaro.org>
-Date:   Wed, 16 Nov 2022 09:58:57 +0100
+        Wed, 16 Nov 2022 01:00:28 -0800 (PST)
+Message-ID: <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
+Date:   Wed, 16 Nov 2022 10:00:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-davinci: Increase maxItems in
- gpio-line-names
+Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller
+ bindings
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Conor Dooley <conor@kernel.org>,
+        Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Keerthy <j-keerthy@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Robert Nelson <robertcnelson@gmail.com>
-References: <20221115231021.2389-1-nm@ti.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-5-apatel@ventanamicro.com> <Y3EDuaW0zQSSfiQ/@spud>
+ <CAK9=C2WDQCnVnxKR6SFspdwope2KffyASLJDF_Ygo_417ekJ5w@mail.gmail.com>
+ <Y3QT5Vy3RnIXobHz@spud>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115231021.2389-1-nm@ti.com>
+In-Reply-To: <Y3QT5Vy3RnIXobHz@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 00:10, Nishanth Menon wrote:
-> gpio-line-names really depends on ti,ngpios. However, the maximum value
-> we have seen across the board is on K2G and da850 platforms where it can
-> be upto 144.
+On 15/11/2022 23:34, Conor Dooley wrote:
+> On Mon, Nov 14, 2022 at 05:59:00PM +0530, Anup Patel wrote:
+>> On Sun, Nov 13, 2022 at 8:18 PM Conor Dooley <conor@kernel.org> wrote:
 > 
-> Link: https://lore.kernel.org/linux-arm-kernel/20221115200357.qa2rvw3clbz7unzq@symptom/T/#u
-> Fixes: c830b87a761b ("dt-bindings: gpio: gpio-davinci: Convert to json-schema")
-> Reported-by: Robert Nelson <robertcnelson@gmail.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
+>>> Also, the file name says "riscv,imsic", the description says "IMSIC" but
+>>> you've used "imsics" in the compatible. Is this a typo, or a plural?
+>>
+>> Yes, the file name should be consistent. I will update the file name.
+> 
+> Is there a reason why the compatible is plural when all of the other
+> mentions etc do not have an "s"? It really did look like a typo to me.
+> 
+> It's the "incoming MSI controller", so I am unsure as to where the "s"
+> actually even comes from. Why not just use "riscv,imsic"?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yep, should be rather consistent with all others, and IMSIC stands for
+Integrated Circuit?
 
 Best regards,
 Krzysztof
