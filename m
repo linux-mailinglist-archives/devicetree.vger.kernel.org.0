@@ -2,109 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D7A62B9E6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:47:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34DDF62B9E2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231197AbiKPKrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:47:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59028 "EHLO
+        id S230314AbiKPKrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:47:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239009AbiKPKrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:47:06 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B148145A02
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:34:57 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id a13-20020a9d6e8d000000b00668d65fc44fso10139441otr.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:34:57 -0800 (PST)
+        with ESMTP id S239108AbiKPKrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:47:21 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AFB45EE4
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:35:10 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id h9so29209216wrt.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:35:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UvHDrdWNJq6p+2GYaU9sc6HRRjXg7yWYn54epDm0dHI=;
-        b=jknnzhc7h4x3wJA9jBdy+65pzdGdPdyylHFCtOvxW3Pw3KIbBsGz4fzgSZKDPXIVT1
-         6a9ICbrfUODfviJcHgaGZMccDge6RvyanNLFQA9uCgSuKDQphcEvySdWLLi0YEwp+u0j
-         G6qOGHBnddoo3cKZUIERPjc+tTuafkkcU85wvS23YhoZHjkw1pLJJRgvrP/O3EnlhABj
-         Po/1o37x1riM7S3DbmQ8FG7LBL1BhD8sYhKwL84s9kX5vVVbDkOczE98D4JvkfsXUVi7
-         H+e2g4jCLHMMpTD1hscvLtVJezH30OGiZRNecLgQwvmSfhxEbWvfYVkvGBGDhTIXnuGU
-         n6Wg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=sQgFoK8cOPk+aS6uvHgGsxqyaP/eeSCg5EmIN7/zyIQ=;
+        b=oSgWTksrFOQyCIHLqT1fD98tKsflrC4rq+dc06OSRC7CEnIttQYkvjcdc+ebABf4Sm
+         TjDupkAZLp/9qwNBxz/zpjab+P2h+MnZ7hZIk/NA3LtTgcoBkPWRVntiHRZ+K4uSg74/
+         wTSOpg0Mm8xTryJ4ML4Ld5jxZ3fBG6PtPqRhVrplc1NaKxuGlHC7FPaIQOYk8V9YMsSD
+         +SIT2ra6pqrLlkPAk2qp+XmM/l0qf1wsRDiT/sshQn+bWVlO8FZazH1t3E9PCCEi64Yy
+         LrFLB+6vtbuc0FyPvUdLJXEGXV8gtvxdfhyRG4xyRKtwfWZI/SPT6wLtMZH46bI8uTNA
+         mqiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UvHDrdWNJq6p+2GYaU9sc6HRRjXg7yWYn54epDm0dHI=;
-        b=LGahB3Z8EtrisF08kEhkD0GUBH17fpc9iFAqaeUleGDFuH2w8BBCcqOHXnyiIPY54A
-         RKj2k5bvVhpW3L2MQGfaX2em+f1wUjLXP+5PjxYXaf81v9mVpCa3XG9SGNKVwRG36+H6
-         mKvZZWoe/uWp2NUPwP9ooNTF7S7YLx89YaKw/znAWk2kmqxzECMUrWtNNlNtfzxTkZkJ
-         FnIlx1gpWmfiQ8HEgCDasSAKxo0SmSnncSLPPZ5+GS0j6mz13SrIhWXLdkMmfzQ36EuE
-         pLGq86zOYGlPbg3diCF5tBcU9IVwcW+lyydC+GA/7gKqmN4IF/+AL5FZqxuK3m916bES
-         LgNw==
-X-Gm-Message-State: ANoB5plAEeLkBV+WumSYsXHc9/BdHiVjuAs/I6XX3ED0EqWUFuah3Zhl
-        3VyS9Kjg8Gk2/HHgLO/xb3D0bDcdKo+0a+kT4JnFNA==
-X-Google-Smtp-Source: AA0mqf5uFDJIvoKh6oYwXem2Bw2v5rzobdymFcZkJUXvQ91kXntl6fLIfQ3vmWssZKwMpNvuUR9ZNcYbLbUc+9rEpA0=
-X-Received: by 2002:a9d:3e4:0:b0:662:2458:3ef7 with SMTP id
- f91-20020a9d03e4000000b0066224583ef7mr10654090otf.150.1668594896741; Wed, 16
- Nov 2022 02:34:56 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sQgFoK8cOPk+aS6uvHgGsxqyaP/eeSCg5EmIN7/zyIQ=;
+        b=oJxQr2LZK5nIqHaXNIHBMz239+P6WbmbI7EMNVPB07v9GHrZ6uaU6jbwW12+gnRYuR
+         EHK9+fRf16Cd4BJgR8v8FLPPpfORLOtPRvfe3b4AOX+EzuUbWckuWV4yDbm+qt+zJdpZ
+         G+hI8l6DeTVpxiIyKGszXYAFQ9zqLOn3/tJY8+G+viO3WEaya4e6YGirB6fs/mUT7lte
+         E+O0GqnpiekPC7dOA+pUr6Hoab3e3wsedm1TBSsxAx152RuqMdepre6dEKgahkbOq1G7
+         DiOztHsADWU3coXJ2a1Hc7uDBQxMlLaiMllME3KQ86qMdhj1Mk3FcAjoezUgUoHCT1pQ
+         Qywg==
+X-Gm-Message-State: ANoB5pkja+iAOuFM7qnd7KLr0/LHIGvGEi4MLS5OnUOQ46blvP9k9eQ4
+        XWIDpAGEvg7VuU8aw14/GnX/0Q==
+X-Google-Smtp-Source: AA0mqf71a/71TLKyRyM8vG9iLuHPkKm/gjm9e18hX4KS/ptMHJEPv25qtY7A4tiwpbqv5x9+ukzfmA==
+X-Received: by 2002:a05:6000:1373:b0:236:c206:b2b1 with SMTP id q19-20020a056000137300b00236c206b2b1mr13293273wrz.624.1668594908845;
+        Wed, 16 Nov 2022 02:35:08 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:2a03:71a6:7a9d:9c71? ([2a01:e0a:982:cbb0:2a03:71a6:7a9d:9c71])
+        by smtp.gmail.com with ESMTPSA id by11-20020a056000098b00b002258235bda3sm14842417wrb.61.2022.11.16.02.35.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 02:35:08 -0800 (PST)
+Message-ID: <9572fc1b-3b13-bb7b-bfdd-3e06a46dedf0@linaro.org>
+Date:   Wed, 16 Nov 2022 11:35:07 +0100
 MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-5-apatel@ventanamicro.com> <Y3EDuaW0zQSSfiQ/@spud>
- <CAK9=C2WDQCnVnxKR6SFspdwope2KffyASLJDF_Ygo_417ekJ5w@mail.gmail.com>
- <Y3QT5Vy3RnIXobHz@spud> <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
-In-Reply-To: <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Wed, 16 Nov 2022 16:04:45 +0530
-Message-ID: <CAK9=C2UpiM=UC27Bgm+QqSc=27g__QLL3y-wMVJGjO-N-XKThw@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 7/7] pinctrl: qcom: spmi-gpio: add support for pmr735d
+ gpio control
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Bjorn Andersson <andersson@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-spmi-v1-0-6338a2b4b241@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-spmi-v1-7-6338a2b4b241@linaro.org>
+ <16de0a02-e7d7-87d1-c877-e32de46bfc28@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <16de0a02-e7d7-87d1-c877-e32de46bfc28@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 2:30 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/11/2022 23:34, Conor Dooley wrote:
-> > On Mon, Nov 14, 2022 at 05:59:00PM +0530, Anup Patel wrote:
-> >> On Sun, Nov 13, 2022 at 8:18 PM Conor Dooley <conor@kernel.org> wrote:
-> >
-> >>> Also, the file name says "riscv,imsic", the description says "IMSIC" but
-> >>> you've used "imsics" in the compatible. Is this a typo, or a plural?
-> >>
-> >> Yes, the file name should be consistent. I will update the file name.
-> >
-> > Is there a reason why the compatible is plural when all of the other
-> > mentions etc do not have an "s"? It really did look like a typo to me.
-> >
-> > It's the "incoming MSI controller", so I am unsure as to where the "s"
-> > actually even comes from. Why not just use "riscv,imsic"?
->
-> Yep, should be rather consistent with all others, and IMSIC stands for
-> Integrated Circuit?
+Hi,
 
-This is intentionally plural because even though we have one
-IMSIC per-CPU, Linux (and various OSes) expect one DT node
-as MSI controller targeting all CPUs.
+On 16/11/2022 11:22, Konrad Dybcio wrote:
+> 
+> 
+> On 16/11/2022 11:11, Neil Armstrong wrote:
+>> Add support for the pmr735d gpio controller providing GPIO control over SPMI.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> Any particular reason this could not be a part of the previous patch?
 
-The plural compatible string "riscv,imsics" was chosen based
-on consensus on RISC-V AIA Task Group meetings.
+I thought it would be cleaner splitting them by family names, but yeah they could be squashed, same for bindings.
 
-Regards,
-Anup
+> 
+> For the addition itself:
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Thanks!
+Neil
+> 
+> Konrad
+>>   drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+>> index f758522d035e..66d6d7ffbd43 100644
+>> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+>> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+>> @@ -1242,6 +1242,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
+>>       { .compatible = "qcom,pmp8074-gpio", .data = (void *) 12 },
+>>       { .compatible = "qcom,pmr735a-gpio", .data = (void *) 4 },
+>>       { .compatible = "qcom,pmr735b-gpio", .data = (void *) 4 },
+>> +    { .compatible = "qcom,pmr735d-gpio", .data = (void *) 2 },
+>>       /* pms405 has 12 GPIOs with holes on 1, 9, and 10 */
+>>       { .compatible = "qcom,pms405-gpio", .data = (void *) 12 },
+>>       /* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
+>>
+
