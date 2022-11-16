@@ -2,108 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 922CD62BCFB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:05:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB4C262BD11
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232009AbiKPME5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:04:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48188 "EHLO
+        id S232929AbiKPMHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:07:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233482AbiKPMD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:03:56 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856E540472
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:55:32 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id bp15so29040091lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:55:32 -0800 (PST)
+        with ESMTP id S233299AbiKPMHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:07:31 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71F611179
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:02:01 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id j15so29579996wrq.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:02:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rfLbodZyN74OlW0fHxrGtLIy7WkT5ufiJ1ZQXyiLZg8=;
-        b=KNiyFKTSSrMYybD64ySLswEdRPlf8yMAWSL07lBU4mobn/x8iaqAFWJczlT5/nuDXF
-         hEvXhFzhJ7ivbnTqKstK2P0StLtZYWxt7nhl1+v3Th7mdh7gOYkwf1rny6Ywer8rfp8+
-         6PH+TAZuehie5mz6bdEfuMkbe1HNPu8ReQHIBLb4Z7yXoEi22L2805Q/4iPy0T2ANs9S
-         Axji9nb+WkI0Kj3C9wLk0uWVxxMm1cEkrzSlGUMJh+qszlIDBO4y5mjUnvG11nsjtpYs
-         OfLxET10Rq8jDerNzf0FFdySV6GoPfdJqiIO3VxSI7dMLl0vNNvZj2GG5enThhla6PiX
-         LWvw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dpRgnbMi8qckAARNiFgw/+KtlyEj1vTV5D3PXlU2xTg=;
+        b=vj3zT89Y9w4Wmm6PjLwvVOBkxfmwSg71xksovxuPW14LdTfbw12qfIabfdtDu/+qt7
+         C2IfBL6jUaK0shIZ3cf0uxGE+cqEBdowBAsxePJ+8ThqoPH8NFcfPV3ULp4EWnZmM8gp
+         B9zCTYy7S3Z7mlFNGzu6LiTvfhs608kKx0bLOK/nFdC2ct9N/qnpIGVNidhHyuopolWW
+         Whq3XkSZb8P57pXpoERARY90aPcOBPXZLiiN1VaZtLB+CTro6HdiPDJbFhXUgTKDi4xm
+         vp/wrHyTJmWfp1pOXCeri51IyaCGZJNP8gsnTEKpZFS3fPSROCHDDcbSGEkTrt8aqIgD
+         jgIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rfLbodZyN74OlW0fHxrGtLIy7WkT5ufiJ1ZQXyiLZg8=;
-        b=vX5auFwyhiug2XRoX4lPRGC//1cG7Fu58lTA58+v3rEHmUmsNTd0W2XTy5hFV5rOay
-         49AHJSKrqXRuew2phEVdPU8hgkqI8MNd9iFTyaFhlXhl8yECHvT3IX+h512vV1OBhRP4
-         PCSRkCZHVxgpXVvowaKg8cmeqOjwgGj4NoRyfl8354MCmn4Q4bnX4TldFdZyeBtylosF
-         4qRtylAtYm4OFdOL/QBedfqkMf4REG78wqEZ9WaTfhO5zvO+UkYvR3MWAZ+1UJqgD2W7
-         +JMTGjC2WiUIPPITMWe/FQUV0KSTWJnehJQ6FU37PmkgIt5LCqoC97OtjQUIyyd3D9tq
-         /eKw==
-X-Gm-Message-State: ANoB5pmVzPCtMb75yODGTJo6APT+DZybApIqgsOGyWQmS1LMPudZxfVu
-        d0Kvl5fRDDDg8RHiwhRLc9GKKw==
-X-Google-Smtp-Source: AA0mqf5KzB6TgQN02BtYUHtFhcnG9qFoNCWT8HkdjZpVteEAUvk4mELslcDcOwbuxUQJM4Z9zdiXYw==
-X-Received: by 2002:a05:6512:10c8:b0:499:d6f9:5b3d with SMTP id k8-20020a05651210c800b00499d6f95b3dmr6754511lfg.69.1668599730915;
-        Wed, 16 Nov 2022 03:55:30 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j9-20020a056512344900b004b1907d85e9sm2564046lfr.161.2022.11.16.03.55.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 03:55:30 -0800 (PST)
-Message-ID: <96c05268-d0c8-ddfe-ecae-28df16743054@linaro.org>
-Date:   Wed, 16 Nov 2022 12:55:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 4/4] crypto: qce: core: Add new compatibles for SM8550
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dpRgnbMi8qckAARNiFgw/+KtlyEj1vTV5D3PXlU2xTg=;
+        b=U8pqtVpZJ6dVEUarUK/ZhrLA2BjNmwItKQZpYMWfHsWUq1Hsi+CwmgC/ZN7I/Sk9R4
+         SHUcoHM1fHB5kPQXauz0KZyga6hZBRfuw7G2XZLjQRZ4w5fYCoXJexO+Kd/0T77u4hxC
+         XKhxjsO5LwlWJUU6drc3nIQ6DcnC5t+iNO9zKOaVEWi2ANgWSs3vmMXm+6twAW7oX7vk
+         q6QkxGaCLr0vBkFTgA4hy2M1gik/qoO15SD+GXLzzGr6IVctVkCOjMJF+jJqEbTFvb3Y
+         q4RI643Ar4vtZc1//G4pugRjvXRFuQL72XpR1w+/CsLw/TxnyU9+/oQ9pvw+A97ZkvIc
+         Hxvw==
+X-Gm-Message-State: ANoB5pnJ/NdwR/xWOOKCZWGKSrQWF9tbY0lwJAM+oQcZUZhzKJGS0xEA
+        VuQ9mCU0zOzJfUwTr0/UHJLvLw==
+X-Google-Smtp-Source: AA0mqf6ixmpppWedB5Oh+piLn1Omme6b6zbkSxNf6UmceeGl0ZaoCF8e8wNiQu1SaTCKMsF8koLSlw==
+X-Received: by 2002:a05:6000:181c:b0:236:60ce:7c10 with SMTP id m28-20020a056000181c00b0023660ce7c10mr13546096wrh.440.1668600120343;
+        Wed, 16 Nov 2022 04:02:00 -0800 (PST)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id r8-20020a056000014800b002206203ed3dsm15120109wrx.29.2022.11.16.04.01.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 04:01:59 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
- <20221114-narmstrong-sm8550-upstream-qce-v1-4-31b489d5690a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-qce-v1-4-31b489d5690a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: [PATCH 00/10] phy: qualcomm: Add support for SM8550
+Date:   Wed, 16 Nov 2022 14:01:47 +0200
+Message-Id: <20221116120157.2706810-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 11:23, Neil Armstrong wrote:
-> Add the compatible for the Qualcomm Crypto core found in the SM8550 SoC.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/crypto/qce/core.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index ef774f6edb5a..fae578ba3e30 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -302,6 +302,7 @@ static const struct of_device_id qce_crypto_of_match[] = {
->  	{ .compatible = "qcom,sdm845-qce", },
->  	{ .compatible = "qcom,sm8150-qce", },
->  	{ .compatible = "qcom,sm8250-qce", },
-> +	{ .compatible = "qcom,sm8550-qce", },
+This patchset adds PHY support for the PCIe, UFS and USB found in
+the new Qualcomm SM8550 SoC. Since the SM8550 bumps the HW version
+to 6.0 (respectively, 6.20 for PCIe G4), add support for it beforehand.
+The SM8550 also uses Synopsis eUSB2 PHY, so add a dedicated driver
+for it.
 
-The same problem as in your dependency. No need for this. Use fallbacks.
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Best regards,
-Krzysztof
+
+Abel Vesa (9):
+  phy: qcom-qmp: qserdes-com: Add v6 register offsets
+  dt-bindings: phy: Add QMP UFS PHY comptible for SM8550
+  phy: qcom-qmp-ufs: Add SM8550 support
+  dt-bindings: phy: qcom,qmp-usb: Document SM8550 compatible
+  phy: qualcomm: qmp-usb: Add support for SM8550
+  dt-bindings: phy: qcom,qmp-pcie: Document SM8550 compatible
+  phy: qualcomm: qmp-pcie: Add support for SM8550 g3x2 and g4x2 PCIEs
+  dt-bindings: phy: Add qcom,snps-eusb2-phy schema file
+  phy: qualcomm: Add QCOM SNPS eUSB2 driver
+
+Neil Armstrong (1):
+  phy: qualcomm: phy-qcom-snps-eusb2: Add support for eUSB2 repeater
+
+ .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        |  38 +-
+ .../phy/qcom,msm8996-qmp-ufs-phy.yaml         |  24 +
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        |   1 +
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml     |  84 ++++
+ drivers/phy/qualcomm/Kconfig                  |   9 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 354 +++++++++++++
+ .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6.h   |  15 +
+ .../qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h    |  23 +
+ .../phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h    |  31 ++
+ .../phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h    |  31 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6.h    |  16 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h |  18 +
+ .../qualcomm/phy-qcom-qmp-qserdes-com-v6.h    |  75 +++
+ .../phy-qcom-qmp-qserdes-ln-shrd-v6.h         |  32 ++
+ .../phy-qcom-qmp-qserdes-txrx-ufs-v6.h        |  30 ++
+ .../qualcomm/phy-qcom-qmp-qserdes-txrx-v6.h   |  68 +++
+ .../phy-qcom-qmp-qserdes-txrx-v6_20.h         |  45 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       |  91 ++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 171 +++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |  13 +
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 467 ++++++++++++++++++
+ 22 files changed, 1634 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-ufs-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_20.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-ln-shrd-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v6_20.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+
+-- 
+2.34.1
 
