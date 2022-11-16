@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 131F362C282
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6194262C2AF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:35:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232190AbiKPP3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 10:29:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
+        id S231706AbiKPPf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 10:35:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232009AbiKPP3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:29:23 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BF313F1B;
-        Wed, 16 Nov 2022 07:29:22 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id q83so18829784oib.10;
-        Wed, 16 Nov 2022 07:29:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iW/ybSGmTCskTFR64A0b0L70Ao9zf2GvBC3xQZ80pys=;
-        b=wq8FczOT3fAOQGhE1N8Q0w2Dym7T2oSE5bzCvuD55znMUR+FY+7jwcqSIBaIVPIHnr
-         3bTVIQoDzr1kaKLfc6KiOQ5YXnSx0VLJV6F9iJpp3V/rrO4EEOgIQSnJ95DwRaCGi8QX
-         29P1Q5VuimDDakG/PE6k1E+lkPW/G9cvIilNfarutvEwd+GombCil9WLMe/O6dp2TCx/
-         fHVfTx6eoqnUDCTJ8k6Y5ZhjnijRdEzSBOpn90sjFYrgM2c38KU5IGYAFPIBADQR5WZR
-         Rrl17gBhSH+V72SKrg7BV5rF8Z38TsUk7Vj+yU0QSTPJsUVQAHtTjvqBhVHWDuZXnXPy
-         2WqA==
-X-Gm-Message-State: ANoB5pmEETVVwjV4KqZqg/0qtCwxicoXNUHUk9821X7tSPABORP7lx61
-        WNuq41dREF0etyVDVVGgpQ==
-X-Google-Smtp-Source: AA0mqf62YVrOxytQa+a7xX5Izc1s4Dv3ieKb4mPE1NfKggBAwx1b7iUvlvCslVVQ1IKWk+8lfEr/Yg==
-X-Received: by 2002:a05:6808:23ca:b0:359:bf56:504f with SMTP id bq10-20020a05680823ca00b00359bf56504fmr1838071oib.139.1668612561657;
-        Wed, 16 Nov 2022 07:29:21 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v4-20020acade04000000b00359ba124b07sm6127286oig.36.2022.11.16.07.29.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 07:29:21 -0800 (PST)
-Received: (nullmailer pid 4083485 invoked by uid 1000);
-        Wed, 16 Nov 2022 15:29:23 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229489AbiKPPf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:35:28 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0F11180B;
+        Wed, 16 Nov 2022 07:35:27 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AGDFiDp027890;
+        Wed, 16 Nov 2022 15:35:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=4bgSVWe2DupxOwRr4EOFbsHDsofmk+PFg9oISOvq07w=;
+ b=AcC0d+H6Ykx45QyKTs91JvR5oMly//xnEMmuafbJ+4j5AFxQqRpBhfUI3lY3qBvo35U+
+ w2tVbt3T66tD+Ep+qW3ZkpgjSikFo66wyZtdYgGVaD8PwpvmkCCd336cOSdWyxZfnQ4M
+ Ar3WwuMqL9aOOQhxnO41GD6zp+hpdLrdriRjtnOdgSkQj4uC7LndSiM0kvzTHbMqXHzZ
+ XVR9iQerh42i3I0+TNT2BrflTvF4cOOEGaFDyOhGC8PPouo4Op2/OMHyryA6juE16+27
+ Vxnx1ZDH/LaQunuf9GW73GokZgHsU1esihFCQnR4bvRdhIBM/6n/Bcl6DxIl7L3kXSd1 Dw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kw03a8bcj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 15:35:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AGFZNNY015031
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 15:35:23 GMT
+Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
+ 2022 07:35:19 -0800
+Message-ID: <0dd3e096-84ac-da81-ad43-bf07485e7b65@quicinc.com>
+Date:   Wed, 16 Nov 2022 07:35:16 -0800
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>
-Cc:     dave.hansen@linux.intel.com, hpa@zytor.com,
-        dirk.brandewie@gmail.com, bp@alien8.de, tglx@linutronix.de,
-        devicetree@vger.kernel.org, alan@lxorguk.ukuu.org.uk,
-        devicetree-discuss@lists.ozlabs.org, linux-lgm-soc@maxlinear.com,
-        bigeasy@linutronix.de, x86@kernel.org, mingo@redhat.com,
-        sodaville@linutronix.de, grant.likely@secretlab.ca,
-        linux-kernel@vger.kernel.org, andriy.shevchenko@linux.intel.com
-In-Reply-To:  =?utf-8?q?=3C5ba7963fbd82a859ffd99c6d8edb4d717fce0e6c=2E166858?=
- =?utf-8?q?9253=2Egit=2Ertanwar=40maxlinear=2Ecom=3E?=
-References: <cover.1668589253.git.rtanwar@maxlinear.com>  =?utf-8?q?=3C5ba79?=
- =?utf-8?q?63fbd82a859ffd99c6d8edb4d717fce0e6c=2E1668589253=2Egit=2Ertanwar?=
- =?utf-8?q?=40maxlinear=2Ecom=3E?=
-Message-Id: <166861224872.4037672.9128953354385138473.robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] x86/of: Convert & update Intel's APIC related
- binding schemas
-Date:   Wed, 16 Nov 2022 09:29:23 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v2 2/3] drm/msm/disp/dpu1: add helper to know if display
+ is pluggable
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Kalyan Thota <quic_kalyant@quicinc.com>,
+        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <robdclark@chromium.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <quic_vpolimer@quicinc.com>
+References: <1668609040-2549-1-git-send-email-quic_kalyant@quicinc.com>
+ <1668609040-2549-3-git-send-email-quic_kalyant@quicinc.com>
+ <e049f5b1-da41-6854-4731-b6697770ffde@linaro.org>
+ <6b1907db-3fdb-8fe0-e5e3-21ea17021925@quicinc.com>
+ <bf14540a-745c-c378-520a-f8edfd3e3adf@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <bf14540a-745c-c378-520a-f8edfd3e3adf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: nvibYndKs-Sx2SNACmfVRs8TtFf1DTqK
+X-Proofpoint-ORIG-GUID: nvibYndKs-Sx2SNACmfVRs8TtFf1DTqK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-16_03,2022-11-16_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 mlxlogscore=999 bulkscore=0 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211160107
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,53 +87,98 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 16 Nov 2022 18:41:02 +0800, Rahul Tanwar wrote:
-> Intel's APIC family of interrupt controllers support local APIC
-> (lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
-> & ioapic from text to YAML schema. Separate lapic & ioapic schemas.
+
+On 11/16/2022 7:18 AM, Dmitry Baryshkov wrote:
+> On 16/11/2022 18:11, Abhinav Kumar wrote:
+>>
+>>
+>> On 11/16/2022 7:08 AM, Dmitry Baryshkov wrote:
+>>> On 16/11/2022 17:30, Kalyan Thota wrote:
+>>>> Since DRM encoder type for few encoders can be similar
+>>>> (like eDP and DP) find out if the interface supports HPD
+>>>> from encoder bridge to differentiate between builtin
+>>>> and pluggable displays.
+>>>>
+>>>> Changes in v1:
+>>>> - add connector type in the disp_info (Dmitry)
+>>>> - add helper functions to know encoder type
+>>>> - update commit text reflecting the change
+>>>>
+>>>> Changes in v2:
+>>>> - avoid hardcode of connector type for DSI as it may not be true 
+>>>> (Dmitry)
+>>>> - get the HPD information from encoder bridge
+>>>>
+>>>> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+>>>> ---
+>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 16 ++++++++++++++++
+>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  6 ++++++
+>>>>   2 files changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c 
+>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> index 9c6817b..be93269 100644
+>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> @@ -15,6 +15,7 @@
+>>>>   #include <drm/drm_crtc.h>
+>>>>   #include <drm/drm_file.h>
+>>>>   #include <drm/drm_probe_helper.h>
+>>>> +#include <drm/drm_bridge.h>
+>>>>   #include "msm_drv.h"
+>>>>   #include "dpu_kms.h"
+>>>> @@ -217,6 +218,21 @@ static u32 dither_matrix[DITHER_MATRIX_SZ] = {
+>>>>       15, 7, 13, 5, 3, 11, 1, 9, 12, 4, 14, 6, 0, 8, 2, 10
+>>>>   };
+>>>> +bool dpu_encoder_is_pluggable(struct drm_encoder *encoder)
+>>>> +{
+>>>> +    struct drm_bridge *bridge;
+>>>> +    int ops = 0;
+>>>> +
+>>>> +    if (!encoder)
+>>>> +        return false;
+>>>> +
+>>>> +    /* Get last bridge in the chain to determine pluggable state */
+>>>> +    drm_for_each_bridge_in_chain(encoder, bridge)
+>>>> +        if (!drm_bridge_get_next_bridge(bridge))
+>>>> +            ops = bridge->ops;
+>>>> +
+>>>> +    return ops & DRM_BRIDGE_OP_HPD;
+>>>
+>>> No. This is not what you should be checking (hint: polled connectors 
+>>> also can be pluggable).
+>>>
+>>> Please check the type of the actual connector connected to this encoder.
+>>>
+>>
+>> Even if we check the connector type as DSI or eDP that does not 
+>> necessarily mean its built-in.
+>>
+>> We can even use DSI or eDP as a pluggable display.
 > 
-> Also, update more info and newly introduced optional property for
-> lapic to choose legacy PIC or virtual wire compatibility interrupt
-> delivery mode.
-> 
-> Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
-> ---
->  .../intel,ce4100-ioapic.txt                   | 26 --------
->  .../intel,ce4100-ioapic.yaml                  | 62 ++++++++++++++++++
->  .../intel,ce4100-lapic.yaml                   | 63 +++++++++++++++++++
->  3 files changed, 125 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml
+> Well, I don't think so. eDP and DSI connectors are not pluggable per 
+> design. One can use them so, but they are not thought to be used this 
+> way. Unlike e.g. HDMI, DP, VGA, etc.
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+We have had many products where we used HDMI as the primary display 
+where the HPD line was disconnected in the design, so now if we 
+generalize all HDMI connectors to be pluggable we can never enable color 
+management on those even though DSI is not even used in that product.
 
-yamllint warnings/errors:
+Thats why I felt we should rely on the HPD_OPS as that way we know that 
+it will be set only if HPD will be used.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml: properties:compatible: [{'const': 'intel,ce4100-lapic'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml: properties:compatible: [{'const': 'intel,ce4100-ioapic'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml: ignoring, error in schema: properties: compatible
-Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.example.dtb:0:0: /example-0/interrupt-controller@fee00000: failed to match any schema with compatible: ['intel,ce4100-lapic']
-Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.example.dtb:0:0: /example-0/interrupt-controller@fec00000: failed to match any schema with compatible: ['intel,ce4100-ioapic']
+Wouldnt it be just better to also check polling displays to complete 
+this check? Is there a way to do it?
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> I would say LVDS, eDP, DSI, DPI and SPI can be assumed to be constantly 
+> plugged.
+> 
+> Compare this with Composite, SVIDEO, 9PinDIN, TV. They can be assumed to 
+> be external even if they do not have the HPD (or even polling). And 
+> these connectors usually don't have it.
+> 
+>>
+>> Thats why we thought of this check.
+>>
