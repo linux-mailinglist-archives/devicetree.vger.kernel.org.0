@@ -2,118 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 730C362B1E7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 04:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 477B862B24D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 05:27:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232075AbiKPDq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 22:46:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46416 "EHLO
+        id S230175AbiKPE1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 23:27:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiKPDq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 22:46:27 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7129712AB8;
-        Tue, 15 Nov 2022 19:46:26 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id CA9B85C018C;
-        Tue, 15 Nov 2022 22:46:23 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 15 Nov 2022 22:46:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm2; t=1668570383; x=1668656783; bh=98Wqu6kwTkpQx0diKFaT1wM6I
-        4WeLKlWxy3HOKKiaiw=; b=f2dnLkFhJVUrqrjGX0/qdstmEFGgn+VxQmigbZZPB
-        FnayAaZGHGOaoBv0ZxdmsdA92zKkBOreIe8TiuK2FK7J54QwcfbAPu/BBWmOukSi
-        am6T93Vwl7m/EU3NwezMVyDyeO28vd0kSP1E5sXAAUPMnTmfJRQ+ZAOPbZY0eDWo
-        uW6pbAeXdhmJYFMcoXH30Q47AR3eeMkCKcMNxwEPVCS/1tDETXHQyGCY+JXA/+Pt
-        UumYQA4d6NEchsbfd7xmVlDadh/N9vV75IPbi5UsH8iIqBw/Rb3OuEjuPwDqHV3P
-        spros1h6uO6TFd6AmRkuiojXaTJ696ywRZAFx3DFoiM7Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:message-id
-        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1668570383; x=1668656783; bh=98Wqu6kwTkpQx0diKFaT1wM6I4WeLKlWxy3
-        HOKKiaiw=; b=kC8zSkhNKfuHZORd/Hu+Qa/racxzvBAmNX+Oz9VyIT0CoJUExfR
-        cwOHzGgz/0OZgJQRjzRBJiM1D46IQ+n6eeD8nxOt8Xv0IeQQR02Vga1/WDCsNEs5
-        v3l3hpyh3D5rxwZ6h16SJJs7vKE07iXVgw0G/1cVekRQLqzoYyLnI/qmtkLnWjzx
-        wPb0y/XNs4A6ILifWLiZY7jK3pjQzM/QavGOj5zkfmB/r33Q1NYzQPxzTfU5dHaY
-        uTHkeIdiHzorKhXTJbCGdwVS7C8aeuEvevwlIhJoV52A7r9NtjCcdiowPEVKvLOp
-        hFOKbcC8BBwIyckGqlQFckZ5h4t9WLqLHhA==
-X-ME-Sender: <xms:D110Yzp5saybWSvKd9XP3Ui_OCEOEZuEhtp6qYbDVIJ6te_XNC0piQ>
-    <xme:D110Y9rV6E9Uhl-57QnRq2ALFkXWIZ_3Cl8aojjPTwht-NI2GpzMPRQD2-zeX5La2
-    7TmJ69felIhi10-Hw>
-X-ME-Received: <xmr:D110YwNCnV7hUClUYsSCSF2HDy-IZ8aOq1DqaqxHL1gaxhJyGfy27vajiysW0_A7J0MytOhoUkk4CpWxR73IN2Qd_sndY3swFxZ0R3wBTFoe1gLqnwODYtl4QVeImx7-oZWjPA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeehgdeivdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
-    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
-    htthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeehhffh
-    keekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:D110Y24560usaTLVIht-_dnsK5ZG8aLHjMX01d8JwBK8AE4eV4-fig>
-    <xmx:D110Yy4MbDqv2BpA1rkX80wWEBtYkmOwEYYzVGhZz55Wj9q-iIeD_A>
-    <xmx:D110Y-gfQZKz3-TJaMNZeSXJ4YijeyefH-K7u7Oep7MqGSp7SDfgCw>
-    <xmx:D110Y6j8flhLVh8U5IinzOVINi9l5vaeA32U7GAjamV5-zhAHssuTg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 15 Nov 2022 22:46:22 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Ban Tao <fengzheng923@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH] ASoC: dt-bindings: sun50i-dmic: Add D1 compatible string
-Date:   Tue, 15 Nov 2022 21:46:21 -0600
-Message-Id: <20221116034621.37762-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229495AbiKPE1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 23:27:42 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78CCEC;
+        Tue, 15 Nov 2022 20:27:40 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG4RLGq112791;
+        Tue, 15 Nov 2022 22:27:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668572841;
+        bh=C/X7s6SVt6zu2Xe45YtuDhssIAYdMIz7Oczws4SA7iw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=jbbJyjBOYBy4/3ugbZ+2n57OOFuZX4KjDuQG8LZ43WVUZtCv7SP84BUfVcB0V1vc/
+         3lHq9LzhE5GoIHQPpaa11maKG/wHPrETDUDev0NgxNdxNIjUnN+l1s30akmT/I9BVI
+         5WJwc2DfzI74T+EZKMzLwg0RuDYjnFxWpPy/szLY=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG4RLcV021881
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Nov 2022 22:27:21 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 15
+ Nov 2022 22:27:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 15 Nov 2022 22:27:20 -0600
+Received: from [172.24.222.97] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG4RFWX042886;
+        Tue, 15 Nov 2022 22:27:16 -0600
+Message-ID: <38247c21-647c-2778-c105-b94fa344b27a@ti.com>
+Date:   Wed, 16 Nov 2022 09:57:14 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 0/3] RNG clock property cleanup
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>, <afd@ti.com>,
+        <j-keerthy@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-anna@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221107110607.59216-1-j-choudhary@ti.com>
+From:   Manorit Chawdhry <m-chawdhry@ti.com>
+In-Reply-To: <20221107110607.59216-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner D1 SoC has a DMIC codec like the one in the H6. It appears
-to be register-compatible with the H6 variant, and the existing Linux
-driver has been tested on a D1-based board, the Lichee RV 86 Panel.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+On 07/11/22 16:36, Jayesh Choudhary wrote:
+> This series removes the clock property from the rng node of
+> K3 devices for TI SoCs as that clock is not dedicated to RNG
+> module and it cannot be controlled by the rng driver.
+>
+> DT binding fix:
+> <https://lore.kernel.org/all/20220901171041.32056-1-afd@ti.com/>
+>
+> Changelog v1 -> v2:
+> - Update the commit description properly for each patch
+>
+> Jayesh Choudhary (3):
+>    arm64: dts: ti: k3-am65-main: drop RNG clock
+>    arm64: dts: ti: k3-j721e-main: drop RNG clock
+>    arm64: dts: ti: k3-am64-main: drop RNG clock
+>
+>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi  | 1 -
+>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 1 -
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
+>   3 files changed, 3 deletions(-)
+>
+For the whole series,
 
- .../bindings/sound/allwinner,sun50i-h6-dmic.yaml           | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-index 2f12cabe4c71..0920f2f81a1c 100644
---- a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-@@ -11,7 +11,12 @@ maintainers:
- 
- properties:
-   compatible:
--    const: allwinner,sun50i-h6-dmic
-+    oneOf:
-+      - items:
-+          - enum:
-+              - allwinner,sun20i-d1-dmic
-+          - const: allwinner,sun50i-h6-dmic
-+      - const: allwinner,sun50i-h6-dmic
- 
-   "#sound-dai-cells":
-     const: 0
--- 
-2.37.3
+Reviewed-by: Manorit Chawdhry <m-chawdhry@ti.com>
 
