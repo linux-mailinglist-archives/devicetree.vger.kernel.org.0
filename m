@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D88262BC55
+	by mail.lfdr.de (Postfix) with ESMTP id 1777462BC54
 	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:46:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233406AbiKPLp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232991AbiKPLp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 16 Nov 2022 06:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60634 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbiKPLpY (ORCPT
+        with ESMTP id S230387AbiKPLpY (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:45:24 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773B8EE25
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:30:25 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id l14so29426063wrw.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:30:25 -0800 (PST)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D2CF5B7
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:30:26 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso1371543wme.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:30:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S/T1k1/h1SVcFtI7d/+OZBX9Dlc5dYWuYExgqp9aLiI=;
-        b=XrX4QtGWWk0zDYz+B3AIDFQk7tL9vbFPyrTaoTaHlZeSCTquETGRrnjP3+6gktpBHi
-         +3n5Xhwc1mgEHhTeF8+PTfwv/SiAUNnVqtIzvdrpmnOZyBMzKKTDaaqXqMRX3w1s//3/
-         GZKV1TS/MyTY/dNqjyTOPMuAEYXJ1ZoujLuKqX6cUOH/QA46vxj63/HgUvmFL3j3syH3
-         +p++ruOhg0i/E6Ea1ctumT/g/1MrUUeD3Gdm68275kweI93pvbNWH0TPzcuoqZ5g+BoR
-         ebb6bbRSGjbylbAExRYrxE2jksSmFsXMM2G/v+IkMprlY8jUBkofHO/eiMh04Z+q1Jbc
-         XDVw==
+        bh=8qxHyJFGHhLk0RSYc9bAx1DwP95osQN3qHY27P7is5w=;
+        b=oXzbOeUJBhkDcNQNA+LhGQ1ejuw2y8CDvdSn4hdT6xOBu5ml37hUeNo5dhXoNEKXnx
+         v3drru72QOYiwlCDwdZsiMVEH0kkIhKoXQOCztFdFqTEm5yOU3519rWbuw2bMype3EOU
+         FSvkP60h0IAJgQQTP4Kk+tMm1iwZHIoSGr11285KT9FYqPunL+jBnly0If7dP5fhyVYz
+         ihG01bfR+ja3QsLVdnShTflno3TxXfWjomIPG5nwQejLrsGmdDyMN95CmOCAS4uldAUu
+         oG6PSfrtl7s0PdVQJ9227dwxTFgkWhPEUYSEBPPrRnbCIfwK0USXke0Jc3LyCbit0Des
+         Cclw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=S/T1k1/h1SVcFtI7d/+OZBX9Dlc5dYWuYExgqp9aLiI=;
-        b=5Zd7+0oDSakBlqYvtvADeXzJnWfoAQoDMRpgUMVHxWt/Q13VeAUCR7kRovf0EB+Z1h
-         kQbnSfFXQainyxedQ5lp4mgngxmWEpNcyjkpKPeRQeLGD1Xd/fck6wcLUDA4ZGIPd8z0
-         4YA3RaUZdjsDD+uSaVCUW8NyY1RTgzJzzN7fc6ZO6iEXv2NhjE/u37rD0FPkFbHLppwW
-         2iPIHs6SokT2vdXZEQPKcWdKcfuYeJ+LtF6Ufv7xk7DDXgHebVNzSNERg+3IfzHHU/k/
-         Q3q3ng+IFDC+b9tW4DW0fVB8nrh8NPM6sWegK8frSGnxCCndV2ZxtA7SdTagPJRwL0fS
-         kY3Q==
-X-Gm-Message-State: ANoB5pmzs4zORQ3d6QTqHZxA2XtMY4KwB/pNjYcAxbDyGWTARKPd03Pb
-        N+pSZe8IiqqrM2K+WuuhvQ6wow==
-X-Google-Smtp-Source: AA0mqf7oMX9VTcsoXvVGbn2G8v/eLbToNisfTbwhnZSi8DgrHYBu9C4TBXsRomh54pJFbil27iaC1g==
-X-Received: by 2002:adf:f04f:0:b0:22e:391c:6192 with SMTP id t15-20020adff04f000000b0022e391c6192mr13377437wro.104.1668598224051;
-        Wed, 16 Nov 2022 03:30:24 -0800 (PST)
+        bh=8qxHyJFGHhLk0RSYc9bAx1DwP95osQN3qHY27P7is5w=;
+        b=nYNxahUK/5Y5z+57tzvClivug+yhzTQUXa62ET9FqQiV2mB/EF3/Xrb0qbQ5J4kTKL
+         sE4cpPJJuyA19MI/gEUlLSVnUhxN8+Uc8uk9YPtNuJ/4ogJhAmPKwVwU1WIY9T7sCPNp
+         9qPbfssEqjZibCqKLdpk9PM6MAZQbafd1MIB84SB4/ZkInpxnP3vYgO3a7da7Gs2UWvc
+         59sQEow9Tf7py+S/VSQMl4TtC5U6KTbs+5/ygXygi6/hi9lFiVLykzPhl8KmVY+ODAKW
+         beJlqNhA6p+Wa7T1H7ILYeo4zkpbTWi8YYGzUNxCj6BtPprj75sischMzac/0B9+8j9s
+         eFjA==
+X-Gm-Message-State: ANoB5pmzuxcjntdcp5PhqhOIZlI9X1QTM422liPZa9orr3m05Q2jspVB
+        AD+7GnurPw5ThDLIaAJqF1rZug==
+X-Google-Smtp-Source: AA0mqf53s6hdtUjVxn0hzNTqWjfDRkrSsNRMEisRxC+l7E6DfsJo4bGF9C+kFq2+PPTdKR7YqSXd9Q==
+X-Received: by 2002:a7b:cbc3:0:b0:3cf:a83d:28d1 with SMTP id n3-20020a7bcbc3000000b003cfa83d28d1mr1883235wmi.57.1668598225101;
+        Wed, 16 Nov 2022 03:30:25 -0800 (PST)
 Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p15-20020a05600c1d8f00b003b3307fb98fsm1929489wms.24.2022.11.16.03.30.23
+        by smtp.gmail.com with ESMTPSA id p15-20020a05600c1d8f00b003b3307fb98fsm1929489wms.24.2022.11.16.03.30.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 03:30:23 -0800 (PST)
+        Wed, 16 Nov 2022 03:30:24 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: arm: msm: Add LLCC compatible for SM8550
-Date:   Wed, 16 Nov 2022 13:30:04 +0200
-Message-Id: <20221116113005.2653284-3-abel.vesa@linaro.org>
+Subject: [PATCH 3/3] soc: qcom: llcc: Add configuration data for SM8550
+Date:   Wed, 16 Nov 2022 13:30:05 +0200
+Message-Id: <20221116113005.2653284-4-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221116113005.2653284-1-abel.vesa@linaro.org>
 References: <20221116113005.2653284-1-abel.vesa@linaro.org>
@@ -75,25 +75,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LLCC compatible for SM8550 SoC.
+Add LLCC configuration data for SM8550 SoC.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/qcom/llcc-qcom.c       | 41 ++++++++++++++++++++++++++++++
+ include/linux/soc/qcom/llcc-qcom.h | 12 +++++++++
+ 2 files changed, 53 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-index 5ea506412b4e..38efcad56dbd 100644
---- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-+++ b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-@@ -31,6 +31,7 @@ properties:
-       - qcom,sm8250-llcc
-       - qcom,sm8350-llcc
-       - qcom,sm8450-llcc
-+      - qcom,sm8550-llcc
+diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+index 6bb88816958e..23ce2f78c4ed 100644
+--- a/drivers/soc/qcom/llcc-qcom.c
++++ b/drivers/soc/qcom/llcc-qcom.c
+@@ -318,6 +318,38 @@ static const struct llcc_slice_config sm8450_data[] =  {
+ 	{LLCC_AENPU,     8, 2048, 1, 1, 0xFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0 },
+ };
  
-   reg:
-     items:
++static const struct llcc_slice_config sm8550_data[] =  {
++	{LLCC_CPUSS,     1, 5120, 1, 0, 0xFFFFFF, 0x0,   0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_VIDSC0,    2,  512, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_AUDIO,     6, 1024, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_MDMHPGRW, 25, 1024, 4, 0, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_MODHW,    26, 1024, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CMPT,     10, 4096, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_GPUHTW,   11,  512, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_GPU,       9, 3096, 1, 0, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_MMUHWT,   18,  768, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_DISP,     16, 6144, 1, 1, 0xFFFFFF, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_MDMPNG,   27, 1024, 0, 1, 0xF00000, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_AUDHW,    22, 1024, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CVP,       8,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_MODPE,    29,   64, 1, 1, 0xF00000, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, },
++	{LLCC_WRCACHE,  31,  512, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CAMEXP0,   4,  256, 4, 1,      0xF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CPUHWT,    5,  512, 1, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CAMEXP1,   7, 3200, 3, 1, 0xFFFFF0, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CMPTHCP,  17,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_LCPDARE,  30,  128, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, },
++	{LLCC_AENPU,     3, 3072, 1, 1, 0xFE01FF, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_ISLAND1,  12, 1792, 7, 1,   0xFE00, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_ISLAND4,  15,  256, 7, 1,  0x10000, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CAMEXP2,  19, 3200, 3, 1, 0xFFFFF0, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CAMEXP3,  20, 3200, 2, 1, 0xFFFFF0, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_CAMEXP4,  21, 3200, 2, 1, 0xFFFFF0, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_DISP_WB,  23, 1024, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_DISP_1,   24, 6144, 1, 1, 0xFFFFFF, 0x0,   2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
++};
++
+ static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
+ 	.trp_ecc_error_status0 = 0x20344,
+ 	.trp_ecc_error_status1 = 0x20348,
+@@ -464,6 +496,14 @@ static const struct qcom_llcc_config sm8450_cfg = {
+ 	.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
+ };
+ 
++static const struct qcom_llcc_config sm8550_cfg = {
++	.sct_data       = sm8550_data,
++	.size           = ARRAY_SIZE(sm8550_data),
++	.need_llcc_cfg	= true,
++	.reg_offset	= llcc_v2_1_reg_offset,
++	.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
++};
++
+ static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
+ 
+ /**
+@@ -986,6 +1026,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
+ 	{ .compatible = "qcom,sm8250-llcc", .data = &sm8250_cfg },
+ 	{ .compatible = "qcom,sm8350-llcc", .data = &sm8350_cfg },
+ 	{ .compatible = "qcom,sm8450-llcc", .data = &sm8450_cfg },
++	{ .compatible = "qcom,sm8550-llcc", .data = &sm8550_cfg },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, qcom_llcc_of_match);
+diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+index bc2fb8343a94..ad1fd718169d 100644
+--- a/include/linux/soc/qcom/llcc-qcom.h
++++ b/include/linux/soc/qcom/llcc-qcom.h
+@@ -42,7 +42,19 @@
+ #define LLCC_CPUHWT      36
+ #define LLCC_MDMCLAD2    37
+ #define LLCC_CAMEXP1     38
++#define LLCC_CMPTHCP     39
++#define LLCC_LCPDARE     40
+ #define LLCC_AENPU       45
++#define LLCC_ISLAND1     46
++#define LLCC_ISLAND2     47
++#define LLCC_ISLAND3     48
++#define LLCC_ISLAND4     49
++#define LLCC_CAMEXP2	 50
++#define LLCC_CAMEXP3	 51
++#define LLCC_CAMEXP4	 52
++#define LLCC_DISP_WB	 53
++#define LLCC_DISP_1	 54
++#define LLCC_VIDVSP	 64
+ 
+ /**
+  * struct llcc_slice_desc - Cache slice descriptor
 -- 
 2.34.1
 
