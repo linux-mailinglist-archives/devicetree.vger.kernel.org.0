@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B6062CCD5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 22:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09A1E62CCFD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 22:49:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234464AbiKPVio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 16:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42244 "EHLO
+        id S231634AbiKPVtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 16:49:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234460AbiKPViP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 16:38:15 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33F65D6BB;
-        Wed, 16 Nov 2022 13:38:02 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-13bd19c3b68so21692839fac.7;
-        Wed, 16 Nov 2022 13:38:02 -0800 (PST)
+        with ESMTP id S238577AbiKPVtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 16:49:21 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE1B623B3;
+        Wed, 16 Nov 2022 13:48:46 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id f27so450871eje.1;
+        Wed, 16 Nov 2022 13:48:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4IVGXMtPYSMA+UPtByWaNjM4ICyi94eVWXqaBEQoY40=;
+        b=QUQHMkopSuXeB2TzlkJM9ohIeMlxgnTox/jLzWwWhgsxVzj4Wz7gXr3r3uqFbj2HwU
+         cZLAxzpF4VQK6ABEdtyQGJDsNCmoRTnDFk++cWa7dtprGufW2d27O18CjzQWaryNsFut
+         R0xVsc8Q34X29Rv8QEilFa7VBgzWffAsjRpvNCgmYKGvd9FqIrwNe8efHS0aDRgXWaq0
+         hq1ISQhVigLh1y3i0C5LIIKtzvwfwoV6khOeHyey/e1phgT57IhhBFN5JLRVIqB7zIzm
+         sHHMMq+1ZDY1wIRkXttT3Jm23Ib7ZzcPgQOlJlCxrGLEjOVY0M5SWi2V5IVwYf4n9HcK
+         oHFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3+ajJyywD/4DGN7+ib3OOlpxn9zCtQP+kRRJV3rgQd0=;
-        b=p0W/LGzDkzmVqVc9g/mWPEAgxlNnadVHvNwuAGnWuWS+qT4pZFFhx+bKe9KOr5mEAl
-         rYzZJzDetQvAwL3Wcy29vkN7cuLsrAtmNj1qDZ485lyQv7x7lj962j8uSYwz1hNYf/6/
-         Vv8YBF0zD/4t2smIqLT7Y432q9uOzzhUbH4mvc7w9itMyJryxHKvRBIeFIBg/GB6dP6N
-         fMa+ajEK7meYoe8CZAYk0AIvDXHXoSOhJoM0HHG5wjjr9w+sBUikqU2gtPx38kldoFaD
-         vwGcIazRjryg7k/37SgpQzh7pdOYDqssAwbz3r/Pv52UbIc+RsrVafHF7T4bacmbzmgc
-         7YZg==
-X-Gm-Message-State: ANoB5pnsbqlfROnjHP2u29S0F0SBN6jU0SOXeruSk8ZfU+fkReVQE8Pa
-        /mWYoW6Sp1F57yTRwQWO+Q==
-X-Google-Smtp-Source: AA0mqf61GFUFznefT2AM9Xs0EbuM8eP+CfmSUS4C466SPnx22nhb6x9TE9+WNDPceqqxiBupty8BHQ==
-X-Received: by 2002:a05:6870:42cd:b0:132:fd69:b244 with SMTP id z13-20020a05687042cd00b00132fd69b244mr2746255oah.275.1668634682120;
-        Wed, 16 Nov 2022 13:38:02 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d11-20020a056830044b00b0066c15490a55sm7067428otc.19.2022.11.16.13.38.01
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4IVGXMtPYSMA+UPtByWaNjM4ICyi94eVWXqaBEQoY40=;
+        b=xb1Wtcx4qkB+g+WrSxXIleqgJ+SmK0WMpyYJYw0vAcO5II/YkrZPDxZHX4eGj/Xixe
+         cv2BUnYKpZSYWUPRdBeIe2SomlCY+t0P/iZvw9hrJUCKFtz8wkezqtNrrxtXMFfs3nq6
+         TMXgHBgeoiR84ATE+oLaPWNw0UkHofFWic6iDA3F2MK54xbps6Ir+0t00E/W1LFfiRmB
+         rldlExddD/urHOQ+IXmf97w0ymKfV2lAdut0StuwNNwX2xnuf/BW2rWH4tK0fZDP5Dyk
+         06UyZKJtp/BAx18hY1ddBBJ9TBAuIDikirr0F0FX6F6HUrEyPcSgYQ6rhuVKsNPa+/p0
+         1wEQ==
+X-Gm-Message-State: ANoB5pnRAyZUrld9h0mjiNycy1KdoO7AsMp/LEresfFTCNLnN0T2Y4qD
+        wYAK6GQd3J2/gEvQuJdfu5A=
+X-Google-Smtp-Source: AA0mqf4gmyDBFFr9+aiyhdhMvqgDms3n+9Y48UvNXNTuI4hNYWAln/gD0HZjt6jh2xsE5DAvH5XgAA==
+X-Received: by 2002:a17:906:7f92:b0:78d:4e5b:ffaa with SMTP id f18-20020a1709067f9200b0078d4e5bffaamr18365714ejr.455.1668635324556;
+        Wed, 16 Nov 2022 13:48:44 -0800 (PST)
+Received: from fedora.. (dh207-99-145.xnet.hr. [88.207.99.145])
+        by smtp.googlemail.com with ESMTPSA id b14-20020aa7dc0e000000b00462e1d8e914sm7931341edu.68.2022.11.16.13.48.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 13:38:01 -0800 (PST)
-Received: (nullmailer pid 1016743 invoked by uid 1000);
-        Wed, 16 Nov 2022 21:38:03 -0000
-Date:   Wed, 16 Nov 2022 15:38:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        linux-iio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH] dt-bindings: iio: adc: renesas,rzg2l-adc: Document
- RZ/Five SoC
-Message-ID: <166863468321.1016692.3662033617872440170.robh@kernel.org>
-References: <20221115124128.1183144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Wed, 16 Nov 2022 13:48:44 -0800 (PST)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        bhelgaas@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, svarbanov@mm-sol.com,
+        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/9] arm64: dts: qcom: ipq8074: fix Gen2 PCIe QMP PHY
+Date:   Wed, 16 Nov 2022 22:48:33 +0100
+Message-Id: <20221116214841.1116735-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221115124128.1183144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,21 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Serdes register space sizes are incorrect, update them to match the
+actual sizes from downstream QCA 5.4 kernel.
 
-On Tue, 15 Nov 2022 12:41:28 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> The ADC block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-> SoC. "renesas,r9a07g043-adc" compatible string will be used on the RZ/Five
-> SoC so to make this clear, update the comment to include RZ/Five SoC.
-> 
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-adc" will be used as a fallback on RZ/Five SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Fixes: 942bcd33ed45 ("arm64: dts: qcom: Fix IPQ8074 PCIe PHY nodes")
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 4b4cd3eaf6c8..6649a758d8df 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -277,9 +277,9 @@ pcie_qmp1: phy@8e000 {
+ 			status = "disabled";
+ 
+ 			pcie_phy1: phy@8e200 {
+-				reg = <0x8e200 0x16c>,
++				reg = <0x8e200 0x130>,
+ 				      <0x8e400 0x200>,
+-				      <0x8e800 0x4f4>;
++				      <0x8e800 0x1f8>;
+ 				#phy-cells = <0>;
+ 				#clock-cells = <0>;
+ 				clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
+-- 
+2.38.1
+
