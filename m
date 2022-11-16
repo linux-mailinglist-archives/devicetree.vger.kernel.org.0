@@ -2,68 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A3462CEDB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 00:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B16262CEF9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 00:43:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234544AbiKPXjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 18:39:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60726 "EHLO
+        id S231688AbiKPXnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 18:43:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234139AbiKPXjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 18:39:07 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38D5686B9;
-        Wed, 16 Nov 2022 15:39:06 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id b124so136333oia.4;
-        Wed, 16 Nov 2022 15:39:06 -0800 (PST)
+        with ESMTP id S234363AbiKPXmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 18:42:44 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20AA5686B9;
+        Wed, 16 Nov 2022 15:42:22 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id h132so155507oif.2;
+        Wed, 16 Nov 2022 15:42:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u6s4tcWtAUFsjBroYlDd5s5GJKQQ4LPC5QVVgj8A4GM=;
-        b=61ocBYGJheDSkzwtDRw71g0Ogtkj8JijAeBhbIcHTJSx51iosnQVhlfdMwL2SAmtL6
-         lH9cCH6SZ91jIhCa81YKxZzV90rBNaMx1oZJ8qsnhsC3ekOq3cMew3br/3qkQMTOiZuk
-         whxQZ4miNrUZIBBt8GOI7GUzyH0alOoPEBoF9WAxuvSOeuoSEw9aqakZRl3YSxx09Bk6
-         0gKgOz2OZdISae2//bjkMG5Xvv962qXTEqjTD7WDQGMU2dW8hqs9fq9WUNnMo/LC1pek
-         mpeGovpycum/BfQhKAPkZ5l35wsQy0N6M/8mz+RICJnIFMhCNQ3JK66HKwa3j5y9JMQv
-         ALZw==
-X-Gm-Message-State: ANoB5pl/BDdBb9jxSaovSJHnVluJUb8VFqYsphXv7VHB4qai01lKhxXX
-        aluPYXwmJiFBpgdyLCKTQw==
-X-Google-Smtp-Source: AA0mqf43xzoJ1xe+xrzJTvE2+mSfCD0TR8MqUBpy7LYxQ5OW20eQB64dUgBVeHO3fzRjLq2NPU751g==
-X-Received: by 2002:a05:6808:688:b0:35a:2de8:70b1 with SMTP id k8-20020a056808068800b0035a2de870b1mr41051oig.94.1668641945606;
-        Wed, 16 Nov 2022 15:39:05 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5LdKOGlH65lOSoImyTv5F76TVsoyOjJ93aGKFHERCSs=;
+        b=EQsSr8LdDDVDrlPDdDAswEBYh6O9Fpn5eD76wTEQm0fV8/QF2UAfQtIXpj6K8qtJh5
+         IEKkg2D7lXHdwzUYRs6NMTzLgVJgPpPGs0QHLVXq4sCht1tF4iz5UgI4uaPDhieQy16X
+         gPF3DPPafTH5BiRxP0J+Jw7j23P5Tlbs5X6+MKk/fkEL89j2p+2dkgbXIv20Gr3jCBUl
+         El+U6u4A5CJUsnH7/QtbNssZ8s4TAcQxKEPfKzC8zn/2MLc/L5DEcducHxS6PGPvszK3
+         w24nnktv57V7nSdPu9QTdFJ3RMbrjVQRW3B1NKAkFmYz9GWyVxP5Ihl4RgsKgnVydzRO
+         NM3w==
+X-Gm-Message-State: ANoB5pl83nFu1xDeL5TGAK7oEDS0bjtzNhXosL7cOTsE8uRiS9svlVrr
+        FuI89WZjDxEPzIWXHlI+7euB/rUktg==
+X-Google-Smtp-Source: AA0mqf6FgriVlXfvMJ9LHdjfinowMEqzwwe+lERbtwJvX0bDChLkPIPUTIL+nJTeLRlM0Zj9da+qXg==
+X-Received: by 2002:a05:6808:ec9:b0:34d:d3a5:b2d with SMTP id q9-20020a0568080ec900b0034dd3a50b2dmr2771547oiv.224.1668642141339;
+        Wed, 16 Nov 2022 15:42:21 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s1-20020a4aad41000000b004968311a31asm6616574oon.39.2022.11.16.15.39.04
+        by smtp.gmail.com with ESMTPSA id w13-20020a9d450d000000b00661948e6119sm7300245ote.47.2022.11.16.15.42.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 15:39:04 -0800 (PST)
-Received: (nullmailer pid 1231200 invoked by uid 1000);
-        Wed, 16 Nov 2022 23:39:07 -0000
-Date:   Wed, 16 Nov 2022 17:39:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: qcom: adsp: document sm8550
- adsp, cdsp & mpss compatible
-Message-ID: <20221116233907.GA1227164-robh@kernel.org>
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v1-0-104c34cb3b91@linaro.org>
- <20221114-narmstrong-sm8550-upstream-remoteproc-v1-1-104c34cb3b91@linaro.org>
- <b6eac577-f3a7-d1a4-f492-74782c2e5ff1@linaro.org>
+        Wed, 16 Nov 2022 15:42:20 -0800 (PST)
+Received: (nullmailer pid 1236701 invoked by uid 1000);
+        Wed, 16 Nov 2022 23:42:22 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b6eac577-f3a7-d1a4-f492-74782c2e5ff1@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        samuel@sholland.org, linux-media@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, mchehab@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, wens@csie.org
+In-Reply-To: <20221116193105.363297-2-jernej.skrabec@gmail.com>
+References: <20221116193105.363297-1-jernej.skrabec@gmail.com>
+ <20221116193105.363297-2-jernej.skrabec@gmail.com>
+Message-Id: <166864203895.1233471.6009951127753236678.robh@kernel.org>
+Subject: Re: [PATCH 1/2] media: dt-bindings: allwinner: video-engine: Fix
+ number of IOMMU channels
+Date:   Wed, 16 Nov 2022 17:42:22 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -74,49 +66,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 01:28:11PM +0100, Krzysztof Kozlowski wrote:
-> On 16/11/2022 11:20, Neil Armstrong wrote:
-> > This documents the compatible for the component used to boot the
-> > aDSP, cDSP and MPSS on the SM8550 SoC.
-> > 
-> > The SM8550 boot process on SM8550 now requires a secondary "Devicetree"
-> > firmware to be passed along the main Firmware, and the cDSP a new power
-> > domain named "NSP".
-> > 
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> >  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 60 +++++++++++++++++++++-
-> >  1 file changed, 59 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> > index db9e0f0c2bea..678cb73f10de 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> > @@ -55,6 +55,9 @@ properties:
-> >        - qcom,sm8450-cdsp-pas
-> >        - qcom,sm8450-mpss-pas
-> >        - qcom,sm8450-slpi-pas
-> > +      - qcom,sm8550-adsp-pas
-> > +      - qcom,sm8550-cdsp-pas
-> > +      - qcom,sm8550-mpss-pas
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -116,8 +119,13 @@ properties:
-> >      $ref: /schemas/types.yaml#/definitions/string
-> >      description: Firmware name for the Hexagon core
-> >  
-> > +  qcom,dtb-firmware-name:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: Devicetree Firmware name for the Hexagon core
-> 
-> Not sure about this one.
-> 
-> Rob,
-> Don't we want rather to have multiple items in firmware-name?
 
-Yes, I think we already have that for some users. Should have been 
-'firmware-names' I guess but I don't think it's worth dealing with 
-another case of handling both (forever).
+On Wed, 16 Nov 2022 20:31:04 +0100, Jernej Skrabec wrote:
+> Cedrus (video engine) on Allwinner H6 actually uses two IOMMU channel,
+> not just one. However, Cedrus on SoCs like D1 only uses one channel.
+> 
+> Allow up to 2 IOMMU channels.
+> 
+> Fixes: 62a8ccf3a248 ("arm64: dts: allwinner: h6: Fix Cedrus IOMMU usage")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml        | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Rob
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+video-codec@1c0e000: iommus: [[10, 3]] is too short
+	arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dtb
+
+video-codec@1c0e000: iommus: [[12, 3]] is too short
+	arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dtb
+	arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6-mini.dtb
+
