@@ -2,118 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352AA62BF78
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:29:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD5862BF7C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbiKPN32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:29:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
+        id S229463AbiKPNaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:30:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237831AbiKPN3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:29:12 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB3845A1D
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:29:04 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id t25so44025882ejb.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:29:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5Y2SGednwLIUSWdrpvgLWaQ6UAl5Le0cnjzvD5yy46M=;
-        b=JCNclK2gNzC41DQ8q1ZbV2nxR/c5phT/+CDQW78qsnklM345zzEIIdvyZMgkv8LpNt
-         9Ha7nFeMx73VBl7x+5eLkwW7lruwL/EHgpk8OCmcago07Cv05QVu5h2LI+3t3TRCVHaC
-         oydyMW/wkwEyZ3wpji6+TZbhjmzi5wjl7zorJNm1FML+qdZOeukwcVB1FpYvyO10uBTh
-         HAkcygEcPUK0Xiba/V1bPUUIUX5yLpcKPITB3HX9m+THhOY5gHUXTKexHvjCjNYWwGs0
-         fM+I/w2wKc9G8Y7MTCCS7OIwTPUTRcC3zpV7CfpmnsJD5v4FvQQ94x167KNvEP0TwpEH
-         PzBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5Y2SGednwLIUSWdrpvgLWaQ6UAl5Le0cnjzvD5yy46M=;
-        b=UW1y2C4h0456tXwv85iN2FjwpIFCmKvIkPTuv8dXLQulTa5na2Qg4Zji69P1PZsMHy
-         Y/RlkZJsBGns0K8c+eU8QmtOoChcOVNUBGwdveNUVWubvTH+RrlHp4oeqNooXg/8VFxj
-         AkbgpS7FUqMf0rddz42hRk4BPL6okVqgmvGuX1OqLDB8XJ67vdwKtsvFLLCzW5VGk1mF
-         mF9ApFLmfngtB6k6ghJfegPCE14VqpNP4TE+1odMNgqCfagiPtkdjePpM2QEVxa/q013
-         RvCIXX8J1fpqLQhhWLPXuOTuZ8puaKqxAe5Ch8EydZG858C1LCaLVNzOHjIT4z9if4/3
-         S30w==
-X-Gm-Message-State: ANoB5pk5MS8A6uKuLVtZs/e2TlYkOXfN43hDiFXWnhxoytJrIiNzxr0I
-        zy3/dynbnc5aR75z/qVslOZ6Bg==
-X-Google-Smtp-Source: AA0mqf59MDU3xxTRXgfl/y/PUh85AeEcGstGKV8g5HmAmf/TsCjtbzIdV8DUTbekr2DETvf6fDkcJg==
-X-Received: by 2002:a17:906:8385:b0:7ad:8035:ae3d with SMTP id p5-20020a170906838500b007ad8035ae3dmr17696538ejx.46.1668605343152;
-        Wed, 16 Nov 2022 05:29:03 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id e20-20020a170906315400b0077b2b0563f4sm6946476eje.173.2022.11.16.05.29.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 05:29:02 -0800 (PST)
-Message-ID: <9666803c-2f9f-04b2-9bb8-2fec8231a324@linaro.org>
-Date:   Wed, 16 Nov 2022 14:28:56 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater
- node
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S233210AbiKPN35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:29:57 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847137662;
+        Wed, 16 Nov 2022 05:29:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1668605394; x=1700141394;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pW7nWcHcRlPbZUbml/VKsh4NmRLOoeC1fsUj+ROfVX4=;
+  b=uc1+qfxyST4945nnvTWVfoprV5eIQkN+zZ8D/f+7n+Kbwz5MmDlvgB3Q
+   hjEpD+NVPq96rEOyXxmRoPhjBuuadoyOG3sU8Vd8czmvPEKGEdUNUmu0l
+   tkbjHbprntPfKlPFRogphnECUgtu5uvPN7/bfNiI1olDpvQfEMV1jZltB
+   lJY9fPCxe2m8lVB7tgTeqMt9ipt8KBA2/2SRCeeB649YgL9PIlCA9FnJt
+   fvhPuBvLlki/RLqxgnzzomFWMiemp5WFWp+2SKwOJG92bFI4Y5j+dRhsv
+   S0TYT1VkNKZ5FC1f3jjGv/1Ad+QJdheXXvIOqDdFXhT0zAljH62h/FG3z
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
+   d="scan'208";a="187259614"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Nov 2022 06:29:53 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 16 Nov 2022 06:29:53 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 16 Nov 2022 06:29:50 -0700
+Date:   Wed, 16 Nov 2022 13:29:33 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Anup Patel <apatel@ventanamicro.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221116132706.2852434-1-abel.vesa@linaro.org>
- <20221116132706.2852434-3-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116132706.2852434-3-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller
+ bindings
+Message-ID: <Y3TlvSG0tmZSl8/2@wendy>
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-5-apatel@ventanamicro.com>
+ <Y3EDuaW0zQSSfiQ/@spud>
+ <CAK9=C2WDQCnVnxKR6SFspdwope2KffyASLJDF_Ygo_417ekJ5w@mail.gmail.com>
+ <Y3QT5Vy3RnIXobHz@spud>
+ <3037b4f9-268d-df03-380c-393a5d01f3ba@linaro.org>
+ <CAK9=C2UpiM=UC27Bgm+QqSc=27g__QLL3y-wMVJGjO-N-XKThw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2UpiM=UC27Bgm+QqSc=27g__QLL3y-wMVJGjO-N-XKThw@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/11/2022 14:27, Abel Vesa wrote:
-> Add the PMIC eUSB2 repeater node and add the usb-repeater
-> property to the eUSB2 PHY to allow it to be controlled by the
-> PHY driver.
+On Wed, Nov 16, 2022 at 04:04:45PM +0530, Anup Patel wrote:
+> On Wed, Nov 16, 2022 at 2:30 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 15/11/2022 23:34, Conor Dooley wrote:
+> > > On Mon, Nov 14, 2022 at 05:59:00PM +0530, Anup Patel wrote:
+> > >> On Sun, Nov 13, 2022 at 8:18 PM Conor Dooley <conor@kernel.org> wrote:
+> > >
+> > >>> Also, the file name says "riscv,imsic", the description says "IMSIC" but
+> > >>> you've used "imsics" in the compatible. Is this a typo, or a plural?
+> > >>
+> > >> Yes, the file name should be consistent. I will update the file name.
+> > >
+> > > Is there a reason why the compatible is plural when all of the other
+> > > mentions etc do not have an "s"? It really did look like a typo to me.
+> > >
+> > > It's the "incoming MSI controller", so I am unsure as to where the "s"
+> > > actually even comes from. Why not just use "riscv,imsic"?
+> >
+> > Yep, should be rather consistent with all others, and IMSIC stands for
+> > Integrated Circuit?
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 757cf4f7f195..539d75c0566f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -414,6 +414,11 @@ data-pins {
->   	};
->   };
->   
-> +&pm8550b_eusb2_repeater {
-Sorting is off.
+> This is intentionally plural because even though we have one
+> IMSIC per-CPU, Linux (and various OSes) expect one DT node
+> as MSI controller targeting all CPUs.
 
-Konrad
-> +	vdd18-supply = <&vreg_l15b_1p8>;
-> +	vdd3-supply = <&vreg_l5b_3p1>;
-> +};
-> +
->   &uart7 {
->   	status = "okay";
->   };
-> @@ -429,6 +434,8 @@ &usb_1_dwc3 {
->   &usb_1_hsphy {
->   	status = "okay";
->   
-> +	usb-repeater = <&pm8550b_eusb2_repeater>;
-> +
->   	vdd-supply = <&vreg_l1e_0p88>;
->   	vdda12-supply = <&vreg_l3e_1p2>;
->   };
+Even still, calling it "riscv,imsic" would seem fair to me given the
+multiple regs make the distinct regions clear.
+
+I think I must have missed the bit at the end of the description though:
+
++  The device tree of a RISC-V platform will have one IMSIC device tree node
++  for each privilege level (machine or supervisor) which collectively describe
++  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
+
+Perhaps, for eejits like me, that paragraph should become paragraph 3
+instead of hiding it below the register layout etc?
+
+Anyways, existing name seems fine to me then w/ the filename update &
+increased prominence of the many-controllers-in-one statement.
+
+Maybe the devicetree gods think differently!
+
+> The plural compatible string "riscv,imsics" was chosen based
+> on consensus on RISC-V AIA Task Group meetings.
+
+btw, I see the following in the example:
+
++      reg = <0x28000000 0x2000>, /* Group0 IMSICs */
++            <0x29000000 0x2000>; /* Group1 IMSICs */
+
+And in the property:
++  reg:
++    minItems: 1
++    maxItems: 128
++    description:
++      Base address of each IMSIC group.
+
+It would appear that the comment there conflicts with the description of
+the reg property itself & it's that lack of consistency me confused (:
+Should the comments be in the singular form?
+
+Thanks,
+Conor.
+
