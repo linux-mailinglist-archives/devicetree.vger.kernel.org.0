@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA2C562B444
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 563A762B44F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:54:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiKPHxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 02:53:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59722 "EHLO
+        id S232859AbiKPHyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 02:54:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231912AbiKPHxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:53:42 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D43D2D8;
-        Tue, 15 Nov 2022 23:53:40 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AG5Z17C026572;
-        Wed, 16 Nov 2022 07:53:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=iJPGR1E5nESplzHJv/A6eUe5ebBGIUXq6dq1YrmP4Rc=;
- b=DzAbqvt7lK7qgp2SvvWvLP9jKtBuUfwYcBsAy56d5SvMNT0fb1uQxNNcmS/DbLmzX1uY
- 49ZW9aR+FiCXmjR43aLF+C9JaIYYQ8ODh/deMX+sj9Mz5DuKntOniCpr9PtNcBGoPMUv
- gqCo3ONCbjNlMeqxXIVobZ3JB1bfU1JzzddfpBiLEGyiLZW+66XKjHgiiyML2yX6hckq
- 2cCpDp3OuVj2DouzaMEGlaOJtxI5jDBti883EOXkaOGzVcPvHip4lycspeeBslQQwhb1
- ORqkgOwWD0HBPFTaTp+VQ4yFI5zpNsGDsLZrTJXcMODU7aDv2F7Lpn5CVnI9Ip6keDDm bQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kvsud8cm0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 07:53:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AG7rViA002494
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 07:53:31 GMT
-Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 15 Nov
- 2022 23:53:26 -0800
-Message-ID: <fc4300c8-8aef-1c99-4b67-41f0bbb95688@quicinc.com>
-Date:   Tue, 15 Nov 2022 23:53:23 -0800
+        with ESMTP id S232704AbiKPHyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:54:43 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E220101D5
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:54:42 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id s8so11105412lfc.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:54:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KmcXTCHKzz3DR46ClTN3tRFjXZaO4YMglWFF7gGQ/G8=;
+        b=t3M5YQ0/9r8qNkSYncPQY1AbqnrIE06HFWD0E9iRczDVRHlWm0zOpuJYmhH0VFg/Dq
+         jT9BsKwbMU8rKLswklCQnzPXY3OUs1x1GQB8/n6nq8ICb35php7B769e28fAlWB+Kfwk
+         KM5dJLp0W+3DKwJN6Ra/cUuZJUFZSzeGpnomKP7B3ZZc6CQzob6TWDP0taK03ERa7Em2
+         Zlfw2MJPLHR0i8oXsA8LS7BffHi4nhMGagmCwk4amI660QMVh/iUJzAM88X0mLedu+JM
+         2F+Yc7DeIsKYMhaAtoGBIMX8io8+x9vNEVtmbuLD3XFsQCDUBKsJ11mNzkTgW/LQ7BAl
+         K/Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KmcXTCHKzz3DR46ClTN3tRFjXZaO4YMglWFF7gGQ/G8=;
+        b=wOBJ7a3bqqkW5jfa0Df3SQzqMVQqcpLoj9ywOjFFYCdIybYZ8eDx7PyJImSJIFZXfy
+         kE2dnEC0mlS3VqUq4LcIPLGyQZjOHAM9ZTQn74qN/1FzooMkL9bch+RsMuNWleRAID1S
+         h6H8iyLgDZpkbmC2kc5CYpPA50xcfQIYKmZKryjQ81KIJBWXrplfPugwGcMrdfy7N7A/
+         ziSGGdiMqISy/a4LrmmpwuqwQ39sHwLQGNzNzSl9kDL3li0cxWPS6jiHWgRxd1n4L2l5
+         BpZwy9O1iZPSE9pepW7K8hPVGg3Jqa17I0CXOWduwwxulJrg6IfI/jVqsaSZCuH5c4O+
+         E/dQ==
+X-Gm-Message-State: ANoB5pmsxk+oV8NPxpVbWXVQeVeEHBA3OZXyc+Y4y7ffE6mkQ+ScIeE9
+        4BvMBQcbXI48iXHItBbJwmaJKA==
+X-Google-Smtp-Source: AA0mqf5x7/6WU/xrYlS2suy3JdSdQNzG8ZLQHmAqV8cjJUYzmDUfoKdg5YuZO+nlI0S3V1/uD740Nw==
+X-Received: by 2002:a05:6512:3415:b0:4a2:6df5:edb9 with SMTP id i21-20020a056512341500b004a26df5edb9mr7164379lfr.675.1668585280846;
+        Tue, 15 Nov 2022 23:54:40 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z18-20020a056512371200b00498f77cfa63sm2487286lfr.280.2022.11.15.23.54.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Nov 2022 23:54:40 -0800 (PST)
+Message-ID: <fd108794-5ba0-91c5-b3b6-4376226a6828@linaro.org>
+Date:   Wed, 16 Nov 2022 08:54:39 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v3 8/8] drm/msm: mdss: add support for SM8450
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v10 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221115110932.637091-1-Naresh.Solanki@9elements.com>
+ <20221115110932.637091-2-Naresh.Solanki@9elements.com>
+ <87ba1b05-5b10-1925-838e-0099dabe0703@linaro.org>
+ <d6be0d25-b7a2-fe6a-f653-d3b583c7202a@9elements.com>
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>
-References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-9-dmitry.baryshkov@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20221104130324.1024242-9-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d6be0d25-b7a2-fe6a-f653-d3b583c7202a@9elements.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tJ08oKT9Tj5sUta2CEOkgxG56rZJhqbj
-X-Proofpoint-GUID: tJ08oKT9Tj5sUta2CEOkgxG56rZJhqbj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-15_08,2022-11-15_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- impostorscore=0 spamscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
- adultscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211160054
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -88,39 +79,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/11/2022 21:30, Naresh Solanki wrote:
+> Hi Krzysztof,
+> 
+> On 15-11-2022 07:34 pm, Krzysztof Kozlowski wrote:
+>> On 15/11/2022 12:09, Naresh Solanki wrote:
+>>> From: Marcello Sylvester Bauer <sylv@sylv.io>
+>>>
+>>> The MAX597x is a hot swap controller with configurable fault protection.
+>>> It also has 10bit ADC for current & voltage measurements.
+>>>
+>>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>>> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>> ---
+>>>   .../bindings/mfd/maxim,max5970.yaml           | 154 ++++++++++++++++++
+>>>   1 file changed, 154 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>> new file mode 100644
+>>> index 000000000000..edf0c23db4ca
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>> @@ -0,0 +1,154 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+>>> +
+>>> +maintainers:
+>>> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+>>> +
+>>> +description: |
+>>> +  The smart switch provides no output regulation, but independent fault protection
+>>> +  and voltage and current sensing.
+>>> +  Programming is done through I2C bus.
+>>> +
+>>> +  Datasheets:
+>>> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+>>> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - maxim,max5970
+>>> +      - maxim,max5978
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  leds:
+>>> +    type: object
+>>> +    description:
+>>> +      Properties for four LEDS.
+>>> +
+>>> +    properties:
+>>> +      "#address-cells":
+>>> +        const: 1
+>>> +
+>>> +      "#size-cells":
+>>> +        const: 0
+>>> +
+>>> +    patternProperties:
+>>> +      "^led@[0-3]$":
+>>> +        $ref: /schemas/leds/common.yaml#
+>>> +        type: object
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +  vss1-supply:
+>>> +    description: Supply of the first channel.
+>>> +
+>>> +  vss2-supply:
+>>> +    description: Supply of the second channel.
+>>> +
+>>> +  regulators:
+>>> +    type: object
+>>> +    description:
+>>> +      Properties for both regulators. Also set value for shunt resistor used.
+>>
+>> You should explain not the syntax,  but what part of hardware this nodes
+>> represents. Therefore "Also set value" does not fit at all. Hardware
+>> sets value?
+> You mean something like: Properties for power switch
+>>
+>> I looked at datasheets to figure it out but they do not refer to any
+>> configurable regulator, LDO nor "sw0/sw1/sw2". Therefore I have no clue
+>> what to expect here...
+> Yes this is for power switch part of max5970/8
+
+Nothing in max5970 datasheet about "power switch". "switch" fives two
+results, not really related/explaining.
+
+Bindings, your naming and explanation use terms not existing in
+datasheet, so it does not look like you are describing hardware.
+
+>>
+>>> +
+>>> +    patternProperties:
+>>> +      "^sw[0-1]$":
+>>> +        $ref: /schemas/regulator/regulator.yaml#
+>>> +        type: object
+>>> +        properties:
+>>> +          shunt-resistor-micro-ohms:
+>>> +            description: |
+>>> +              The value of current sense resistor in microohms.
+>>> +
+>>> +        required:
+>>> +          - shunt-resistor-micro-ohms
+>>> +
+>>> +      unevaluatedProperties: false
+>>
+>> I don't think it has proper indentation. Did you test the binding?
+> Definitely tested the bindings before I push the patch.
+
+Anyway it is wrong. It must be on the level of properties.
 
 
-On 11/4/2022 6:03 AM, Dmitry Baryshkov wrote:
-> Add support for the MDSS block on SM8450 platform.
-> 
-> Tested-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/msm_mdss.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-> index 6a4549ef34d4..5602fbaf6e0e 100644
-> --- a/drivers/gpu/drm/msm/msm_mdss.c
-> +++ b/drivers/gpu/drm/msm/msm_mdss.c
-> @@ -283,6 +283,10 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
->   	case DPU_HW_VER_720:
->   		msm_mdss_setup_ubwc_dec_40(msm_mdss, UBWC_3_0, 6, 1, 1, 1);
->   		break;
-> +	case DPU_HW_VER_810:
-> +		/* TODO: highest_bank_bit = 2 for LP_DDR4 */
-> +		msm_mdss_setup_ubwc_dec_40(msm_mdss, UBWC_4_0, 6, 1, 3, 1);
-> +		break;
->   	}
->   
->   	return ret;
-> @@ -511,6 +515,7 @@ static const struct of_device_id mdss_dt_match[] = {
->   	{ .compatible = "qcom,sc8180x-mdss" },
->   	{ .compatible = "qcom,sm8150-mdss" },
->   	{ .compatible = "qcom,sm8250-mdss" },
-> +	{ .compatible = "qcom,sm8450-mdss" },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, mdss_dt_match);
+Best regards,
+Krzysztof
+
