@@ -2,155 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 839B562C490
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:35:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F43F62C497
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236162AbiKPQfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:35:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47902 "EHLO
+        id S234358AbiKPQgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238416AbiKPQfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:35:12 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B7868C61;
-        Wed, 16 Nov 2022 08:27:00 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id s206so19069328oie.3;
-        Wed, 16 Nov 2022 08:27:00 -0800 (PST)
+        with ESMTP id S233564AbiKPQfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:35:33 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871545B5A2
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:28:06 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id a14so30796070wru.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:28:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pNFHDkn6ncnlygTA2saZMCRROi8LNNLnuC/3Q5k3vSo=;
+        b=bfLhrL4tNGeDEAWaOYNAAs4mUSpqOy0W5a3lbFF6EQS8ojp3Zy28i8NkTB2/D1fhr0
+         2ly8RziHT+jwoTKMxAYR9aSzn9GzU0PvhIk5OOQE0jTlvru3M20k0pQt2in1p6C4tvMt
+         EfbuU+Zt2r8WmUSXsrIHoHTwNfQpAuLThC9WuNEOd/+tlN5lP5CaEQKtCPSp92at1+/J
+         Gn2mT9KZcGHaewqAMcXixD5memmT3Wqqj7sGQ9mhFb2jeuUDQ4bRcf4S4orn3To2s+zE
+         Pjb2Ggk4A3i1kkx8gw7csGx3sjWKnTcJfmMNK6Q/7vsALiKHNKD0bnD2DTxiIVy12sw0
+         +yvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T7R0vGsL7LQXAd+8RrIgaa2Mm2aDxGNcrTPJcHCRSSc=;
-        b=w4A0crxd6OEjF5JAiqd3EMm0AgLB3Nvq1Gkmrf6E8ZT5FHWAU/r3o1cLBxgX2tZAaF
-         jA7KNsR+7n+vhXKNYOsHsDw83xmnhxTCtUAy8lSoR1zJLOBRawF9owUrEcAY4Xndq/18
-         BDKwG59l6a0Nk8j+NKNMn1qkezL+zqCQHN19EtoDKcILVFqq00dPKm6/2+GkWUjbArou
-         KCL5CEqkZaxcCRAyAW8OlPmoybW1fo1rBFE+YhYDyMRBVjHXdN/wVT0din25GCu+1/NU
-         J2RxUVXbkscoD3iglJOMNr/jDwdM/BdOiC/QVJHkzzfRURQ3LZJGJT70GB947aWJlFhz
-         xZcw==
-X-Gm-Message-State: ANoB5pkwIyzzF+XySaMCgUtURNOHj2QNw20W6i/sLLx1mbbMgATZsF/p
-        cOycp2HNkJabuesqHApOtQ==
-X-Google-Smtp-Source: AA0mqf6DuVjSc+cQ/7WdXNB0o3vYI1ZmEO1IYWfqq/XpJfoZgtGhCe/tYutIIhoKvZH3xOlKIRWMGA==
-X-Received: by 2002:aca:db06:0:b0:359:e535:84a2 with SMTP id s6-20020acadb06000000b00359e53584a2mr2020406oig.59.1668616019885;
-        Wed, 16 Nov 2022 08:26:59 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m13-20020a9d73cd000000b006621427ecc7sm6667434otk.60.2022.11.16.08.26.58
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pNFHDkn6ncnlygTA2saZMCRROi8LNNLnuC/3Q5k3vSo=;
+        b=RLZvUE0+oNn+PhSLXOJI//po8KBsUzB/59V7PzQ+0R6LxduQdDd/fK5NXzu85m9Swy
+         uM1ryDS4VsVIqVtpFKU2xLBOmMFb9SAWewOw0XVlcJX945rUTXtA/lq8424SJkrlsz/O
+         InS8LYkezuVTDjD9zCos+OfN7Y8Zr3Z5TPG3njTBoltohSxvod+vNvJuhTVYcwUUOdP5
+         AEAuANeJphndDmtjb6TdUE6pG1FKVGRPfeHyQn50A4WhC54IQUH88zedPySTHum+E+As
+         5QWsyzqbY7Bsns16ndFyXGvoIbSocCYpP2kr96XuuYwq0rpFMioBkE0mVwnp6hp2toVa
+         QKRA==
+X-Gm-Message-State: ANoB5plhhTpoo4YqY+/fU07tC/jJOS891IGCtGTxFbmPrOl0JccI2LRP
+        P3Q57HAJ4V92uTzYuDCQlbXJ4g==
+X-Google-Smtp-Source: AA0mqf7+DB0FtqxZYnK760Z7jKL2/gwCEwPmIAXMya3QlVEVEgd48oqgym6b/T4Tt32gfWmyG825kQ==
+X-Received: by 2002:adf:e892:0:b0:228:c1a8:6ef0 with SMTP id d18-20020adfe892000000b00228c1a86ef0mr14267698wrm.584.1668616085099;
+        Wed, 16 Nov 2022 08:28:05 -0800 (PST)
+Received: from localhost.localdomain (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id s3-20020adfecc3000000b0022e653f5abbsm15459168wro.69.2022.11.16.08.28.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 08:26:59 -0800 (PST)
-Received: (nullmailer pid 196659 invoked by uid 1000);
-        Wed, 16 Nov 2022 16:27:01 -0000
-Date:   Wed, 16 Nov 2022 10:27:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sandor Yu <Sandor.yu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
-        tzimmermann@suse.de, lyude@redhat.com, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, sam@ravnborg.org,
-        jani.nikula@intel.com, maxime@cerno.tech,
-        penguin-kernel@i-love.sakura.ne.jp, oliver.brown@nxp.com
-Subject: Re: [PATCH v3 05/10] dt-bindings: display: bridge: Add MHDP DP for
- i.MX8MQ
-Message-ID: <20221116162701.GA195244-robh@kernel.org>
-References: <cover.1667911321.git.Sandor.yu@nxp.com>
- <71c504aeb11f55e9dca533cc1b490b8e069c7b7b.1667911321.git.Sandor.yu@nxp.com>
+        Wed, 16 Nov 2022 08:28:04 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 0/7] CAMSS fixes for rb3, switch on IMX577 for RB5
+Date:   Wed, 16 Nov 2022 16:27:54 +0000
+Message-Id: <20221116162801.546737-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <71c504aeb11f55e9dca533cc1b490b8e069c7b7b.1667911321.git.Sandor.yu@nxp.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 08, 2022 at 09:00:08PM +0800, Sandor Yu wrote:
-> Add bindings for i.MX8MQ MHDP DisplayPort.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  .../display/bridge/cdns,mhdp-imx8mq-dp.yaml   | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> new file mode 100644
-> index 000000000000..c4d5362db2b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-dp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MHDP Displayport bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
-> +
-> +description:
-> +  The Cadence MHDP Displayport TX interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,mhdp-imx8mq-dp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Hotplug detect interrupter for cable plugin event.
-> +      - description: Hotplug detect interrupter for cable plugout event.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      A port node pointing to the output port of a display controller.
+V6:
+- Squashes down ok/okay disable/disabled
+- Adds Rb as indicated by Laurent, Konrad
+- Alphabetizes existing rb3 dts and new rb5 dts for camera
+- Adds in ports@ definition per Laurent's suggestion for sm8250
+- Adds in ports@ in dtsi for sdm845
+- Drops reg = <x> in port definition of sdm845-db845c
+- ov9282 for rb5 is omitted as more work needs to be done to
+  get this sensor delivering CSI data.
+- ov7251 left as-is upstream, disabled on rb3
+- Plan to look at overlaying both of these in the future
+  but there may be bootloader blockages for that so left alone
+  for the moment.
+- Tested on linux-next as at today
 
-Similarly, you need an output port to DP (or USB-C) connector.
+Previous
+https://lore.kernel.org/all/20221112172650.127280-1-bryan.odonoghue@linaro.org/
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mhdp_dp: dp-bridge@32c00000 {
-> +        compatible = "cdns,mhdp-imx8mq-dp";
-> +        reg = <0x32c00000 0x100000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "plug_in", "plug_out";
-> +        phys = <&dp_phy>;
-> +
-> +        port {
-> +            mhdp_in: endpoint {
-> +                remote-endpoint = <&dcss_out>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
-> 
+Bootable
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-22-11-15-sm8250-camss-vc
+
+V5:
+- Rolls three identified dts non-confirmances into three separate patches - Konrad
+- Fixes the "both" left in the git log - Konrad
+
+Previous
+https://lore.kernel.org/all/20221112124126.86815-1-bryan.odonoghue@linaro.org/
+
+V4:
+- Rebases on top of Konrad's comment fixes to migrate into rb3 mezz.dts -Bjorn
+- Adds -state suffix - Bjorn
+- Adds -pins suffix - Bjorn
+- Removes redundant newline - Krzysztof
+
+Previous
+https://lore.kernel.org/all/20221108021816.213084-1-bryan.odonoghue@linaro.org/
+
+Dependency for the imx577 should be merged in 6.2
+https://git.linuxtv.org/sailus/media_tree.git/log/?h=for-6.2-2-signed&ofs=50
+
+V3:
+- Ordering patch was applied separately, now dropped from this series.
+- camcc disable patch similarly is already applied, dropped here.
+- RB5 and RB3 now have separate camera specific DTSI files
+  per perferences expressed on the mailing list by Konrad, Vladimir and
+  Bjorn.
+- Agreeing a imx412 change spiralled a bit into a wider discussion however
+  after a good bit of debate and testing on different hardware there is a
+  series to add imx577 as a compat string to the imx412.c driver.
+  So this series depends on that series being merged.
+  https://www.spinics.net/lists/linux-media/msg219989.html
+
+  Given the addition of mezzanine specific dtsi I thought it was worthwhile
+  to kick off a review now since the sensor name change is agreed but not
+  yet applied and all other outstanding comments have been addressed.
+ 
+V2:
+
+- Adds fix for bug identified by Vladimir
+  The CCI i2c_adapter_add() and pm_runtime_enable() are racy.
+  This is a generic problem not related to the rb5/imx577 but, for the sake
+  of our conversation/review's context I'll add it into this series.
+- Include Vladimir's camcc patch
+  I've also opted to include Vladimir's disable of camcc to make the enable
+  of it in my patchset logical.
+- Move address/size cells Konrad
+- Remove newline in pin definitions - Konrad
+- Remove sensor 'status = "okay"' - Konrad
+- Add comment to qrb5165-rb5.dts re: imx412 and imx577 difference - Konrad
+- Move pin definitions to 8250 dtsi - Vladimir
+- Drop power domain from sensor definition - Vladimir
+- Correct to "add to cam2" not "cam1" in commit log - bod
+
+To make verification of the CCI race eaiser I've provided a defconfig both
+with and without modules enabled.
+
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5-compiled-in
+
+git diff linaro/linux-next-22-05-22+imx577-rb5 linaro/linux-next-24-05-22+imx577-rb5
+
+V1:
+Linux-next now has everything we need to switch on this sensor both in the
+qcom DTS and in the imx412 driver.
+
+After this, no further dts or driver work is required to capture images on
+the RB5.
+
+Here's a bootable linux-next with a kernel config. I added Vladimir's
+power-domain changes on-top to verify nothing breaks for me.
+
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-18-05-22%2bimx577-rb5
+
+Bryan O'Donoghue (7):
+  arm64: dts: qcom: sdm845: Define the number of available ports
+  arm64: dts: qcom: sdm845-db845c: Drop redundant address-cells,
+    size-cells declaration
+  arm64: dts: qcom: sdm845-db845c: Drop redundant reg = in port
+  arm64: dts: qcom: sdm845-db845c: Use okay not ok, disabled not disable
+    for status
+  arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Add navigation
+    mezzanine dts
+  arm64: dts: qcom: sm8250: camss: Define ports and ports address/size
+    cells
+  arm64: dts: qcom: qrb5165-rb5-vision-mezzanine: Add vision mezzanine
+
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ .../dts/qcom/qrb5165-rb5-vision-mezzanine.dts |  62 +++++++++++
+ .../sdm845-db845c-navigation-mezzanine.dts    | 104 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    | 101 -----------------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  16 +++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  62 +++++++++++
+ 6 files changed, 246 insertions(+), 101 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb5165-rb5-vision-mezzanine.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dts
+
+-- 
+2.34.1
+
