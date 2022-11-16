@@ -2,255 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB11062C63F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A02862C646
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:23:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232915AbiKPRVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 12:21:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37696 "EHLO
+        id S230205AbiKPRW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 12:22:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233207AbiKPRVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:21:32 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F7C2626
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:21:31 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id s206so19255589oie.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:21:30 -0800 (PST)
+        with ESMTP id S238691AbiKPRWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:22:04 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 219694AF30
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:22:02 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id be13so30638162lfb.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:22:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kOMV24mvT6Z+gChaVzQ2FKjnamE1RqSiBkM5c6Q63Ew=;
+        b=VhC2ELA7YYwkUZb3bqvYlfuPX+1ULotkPGoE39eo+LnfGVW7aZ8ljsvZE+z0Vpmi7F
+         b1KPQ+MrZ46lUHBr0s8t8z4SWSgod9aMHBfYI3VA5/ES2GgKDuWV4nGV4sLoPpQVY4Wc
+         kJvjktAmoH2Ot9PNLco7SBm+dJbX+EcejjFR/UTsst0qCIwt6W4XtTDFp9ktv3bOO4FT
+         CWhfZNm/DFDTbLH6X4+rT9UfZ39SCBOdq1SWE2VP2x6SI/Rundva8d/OFdeoKXCxTcQg
+         QqLIl0ac8Y780hl/qi9f1f5mIXblSuLsUWef1q4XyKpriHxBlKPwhbwxIR25EmwdEiFc
+         bWYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u0aHWwdqWKvjf68O7GGCNZFTg5GEvXPm/cg6lj7q+VA=;
-        b=r3KomTTM3ROnuIbvjSZcAdxcKHn3HDT0sfYwy7TS3VcX5LWi55QctjUoE7dBy7mHl0
-         GnXp9yEn/ye22xo0i3ruSBMRK/iGOSqnfnBbpy5Um8LhnzR44WYIG0RIaZpvHBCfD7bi
-         26fqrPRZZQRqVQUAygQysb/7EX22+VQJm5MHg8VuLEAXZtDgU/RbZ9QdBEnYN/6cYJ+x
-         C8UEhzvv6EWuerhXiuf9293QBpoVrPP1KnWQytKTpr2BplCrLmPd0HpZaIJv7vPoLxOd
-         2C8MM7qqJIzYmvd1QeUSw6wD65bFQFzi0AX8KPNLBlwY8rEbzS3NPndHqXbfNfbqfJIl
-         RVjQ==
-X-Gm-Message-State: ANoB5pmjV/tk0hjRbMeEewvejwoZjgvC8HLtVkSGiaTmWCSB93TIUZQC
-        ulpxBqFCmNu13t1Of2i+FA==
-X-Google-Smtp-Source: AA0mqf6nGzisXh0hM36zvzwkmmNGXArbBmyM7V1+NM74TWMT5T+z1nIwTHkJbspJ92SV80qQ51+zAQ==
-X-Received: by 2002:aca:913:0:b0:359:568c:176 with SMTP id 19-20020aca0913000000b00359568c0176mr2084710oij.110.1668619290175;
-        Wed, 16 Nov 2022 09:21:30 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f14-20020a9d5f0e000000b0066cc88749f8sm6798419oti.68.2022.11.16.09.21.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 09:21:29 -0800 (PST)
-Received: (nullmailer pid 460260 invoked by uid 1000);
-        Wed, 16 Nov 2022 17:21:31 -0000
-Date:   Wed, 16 Nov 2022 11:21:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to
- dt-schema
-Message-ID: <20221116172131.GA233356-robh@kernel.org>
-References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
+        bh=kOMV24mvT6Z+gChaVzQ2FKjnamE1RqSiBkM5c6Q63Ew=;
+        b=oB771NbM4iU6t8tPCmeAkeJRAWT500XAAzzYiiMCRNKLClNhniwEljCGGF7zNUFr/B
+         Rsr02XjyAVYF2YUVQWR9ainh3qSMHI8vJUn1RdN7d9tCGQnxIjsJhw1e32LCHOXsPgtW
+         sJoZCFNggEhkKDaOUmnpUFKGtWfVcMyBkv8vFPrhNDYtXwpEgl9oVJtfEi76gQeGLuw0
+         LxUspOlwu0IHg65kG/bQYsE2Ry+txqopw/GRprCk2X0dzja/A8RPGfZOXHVtNi+S8Mi3
+         EKKEimORoPiK/wHnX2m9uFmJJZNLOVh2heFtiKib+KlLhvAJxC+Cbqi5ZpoBiKCS/y1b
+         +nqg==
+X-Gm-Message-State: ANoB5pkUMdClMjqACNLbS4CrMHLX0FmkynVYZO8hPRFYimrAY9NHm286
+        m3w3qk7g5nRXtpNI2Da6xRXqOQ==
+X-Google-Smtp-Source: AA0mqf7ZXR3rHAMssv+XBEoFFz7RGw+jMe1K+n1jByylzWyEXI9ntbh5qO3dWE1n3vDXUPNbpNKRfQ==
+X-Received: by 2002:a05:6512:252b:b0:4b4:b20c:4b7 with SMTP id be43-20020a056512252b00b004b4b20c04b7mr990804lfb.201.1668619320495;
+        Wed, 16 Nov 2022 09:22:00 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k16-20020a05651c10b000b0026bf43a4d72sm3085645ljn.115.2022.11.16.09.21.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 09:21:59 -0800 (PST)
+Message-ID: <b0fdd995-85c8-0833-9d94-918812005d3a@linaro.org>
+Date:   Wed, 16 Nov 2022 18:21:58 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Remove unused sleep pin
+ control nodes
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org
+References: <1668591184-21099-1-git-send-email-quic_srivasam@quicinc.com>
+ <CAD=FV=Uzky4uxs+qwSH9d7MBBWbXe8sMdvB_-Lqkq+6jbTCciQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=Uzky4uxs+qwSH9d7MBBWbXe8sMdvB_-Lqkq+6jbTCciQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-König wrote:
-> This is a straight forward conversion. Note that fsl,imx-lcdc was picked
-> as the new name as this is the compatible that should supersede the
-> legacy fb binding.
+On 16/11/2022 17:51, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
-> Hello,
+> On Wed, Nov 16, 2022 at 1:33 AM Srinivasa Rao Mandadapu
+> <quic_srivasam@quicinc.com> wrote:
+>>
+>> Remove unused and redundant sleep pin control entries as they are
+>> not referenced anywhere in sc7280 based platform's device tree variants.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> ---
+>> Chnges Since v1:
+>>     -- Update subject prefixes and commit message.
+>>
+>>  .../qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi   |  8 -----
+>>  .../dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi   | 20 -----------
+>>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           | 20 -----------
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 40 ----------------------
+>>  4 files changed, 88 deletions(-)
 > 
-> the eventual goal is to add drm support for this hardware. That one will
-> use a different (and more sensible) binding. However fsl,imx*-fb won't
-> go away directly, and Rob requested to describe both bindings in the
-> same file given that it describes a single hardware type.
-> 
-> As a first step I convert the old binding to yaml. I tried to put the
-> new binding on top of that but I'm not sure about a few things in this
-> patch and so post only this first patch and once it's accepted add the
-> new binding which I guess is less overall work.
-> 
-> What I'm unsure about is the description of the display node (Is there a
-> better description? I didn't find a schema for that.)
+> Reported-by: Douglas Anderson <dianders@chromium.org>
 
-That's going to be a challenge to describe because every panel binding 
-will need a reference to those custom properties. It's a similar problem 
-that spi-peripheral-props.yaml solved. But here, there may not be enough 
-instances to do such a general solution. Do the panels used even have 
-schemas yet?
+I guess rather:
+Suggested-by: Douglas Anderson <dianders@chromium.org>
 
-It's kind of a separate problem. You could start with just creating a 
-schema just listing the custom properties.
+It's not a bug, no Fixes tag.
 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-> Further I didn't find documentation about additionalProperties and
-> unevaluatedProperties. Did I pick the right one here?
+Best regards,
+Krzysztof
 
-example-schema.yaml talks about it some. In general, if there's a 
-$ref to other properties for a node not defined locally, then you need 
-unevaluatedProperties. Otherwise, additionalProperties is fine.
-
-
-> Best regards
-> Uwe
-> 
->  .../bindings/display/imx/fsl,imx-fb.txt       |  57 ---------
->  .../bindings/display/imx/fsl,imx-lcdc.yaml    | 110 ++++++++++++++++++
->  2 files changed, 110 insertions(+), 57 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-
-[...]
-
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-> new file mode 100644
-> index 000000000000..c3cf6f92a766
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 and i.MX27
-> +
-> +maintainers:
-> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx1-fb
-> +              - fsl,imx21-fb
-> +      - items:
-> +          - enum:
-> +              - fsl,imx25-fb
-> +              - fsl,imx27-fb
-> +          - const: fsl,imx21-fb
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ipg
-> +      - const: ahb
-> +      - const: per
-> +
-> +  display:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Display hardware node
-> +      It needs to define the following properties:
-> +        - bits-per-pixel
-> +        - fsl,pcr: LCDC PCR value
-> +      And optionally:
-> +        - fsl,aus-mode: boolean to enable AUS mode (only for imx21)
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  lcd-supply:
-> +    description:
-> +      Regulator for LCD supply voltage.
-> +
-> +  fsl,dmacr:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-
-Drop quotes.
-
-> +    description:
-> +      Override value for DMA Control Register
-> +
-> +  fsl,lpccr:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-
-Drop quotes.
-
-> +    description:
-> +      Contrast Control Register value.
-> +
-> +  fsl,lscr1:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-
-Drop quotes.
-
-> +    description:
-> +      LCDC Sharp Configuration Register value.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - display
-> +  - interrupts
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    imxfb: fb@10021000 {
-
-lcd-controller@...
-
-> +        compatible = "fsl,imx21-fb";
-> +        interrupts = <61>;
-> +        reg = <0x10021000 0x1000>;
-> +        display = <&display0>;
-> +        clocks = <&clks 103>, <&clks 49>, <&clks 66>;
-> +        clock-names = "ipg", "ahb", "per";
-> +    };
-> +
-> +    display0: display0 {
-> +        model = "Primeview-PD050VL1";
-> +        bits-per-pixel = <16>;
-> +        fsl,pcr = <0xf0c88080>; /* non-standard but required */
-> +
-> +        display-timings {
-> +            native-mode = <&timing_disp0>;
-> +            timing_disp0: timing0 {
-> +                hactive = <640>;
-> +                vactive = <480>;
-> +                hback-porch = <112>;
-> +                hfront-porch = <36>;
-> +                hsync-len = <32>;
-> +                vback-porch = <33>;
-> +                vfront-porch = <33>;
-> +                vsync-len = <2>;
-> +                clock-frequency = <25000000>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.38.1
-> 
-> 
