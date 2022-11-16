@@ -2,163 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BC962B45E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8267F62B473
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233103AbiKPH6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 02:58:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
+        id S232964AbiKPIDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:03:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233104AbiKPH6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:58:14 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DE724BC9;
-        Tue, 15 Nov 2022 23:58:11 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id mi9so11410072qvb.8;
-        Tue, 15 Nov 2022 23:58:11 -0800 (PST)
+        with ESMTP id S232951AbiKPIDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:03:04 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6398925C55
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:03:01 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id p8so28260033lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:03:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mgGyuenVtFXuCVHks+5NNuVlkc2b6o69ZD4m/QGfTIs=;
-        b=pu2FcKNnKmYX8n8ReZH0BUxp8JnZXV8eos5dZGhtCG5CWtOBuPPD4F4nWNrYze0RR1
-         6y7cMVsZPR2aVAbxBEYu37bOWJKK7bDZyoyPjcFhxubcPGAzoosnfKviwCxF/Yp5nByO
-         PWMZIuqzLGPKKDkf5HCP6Qfep9jh4rpSiivrZM/B3LtEAxH2v21PwLMubC72O0CeIAwQ
-         ITchSaF6Dt++GaIS/lHpqxvs9cOryvVxazw+rlgdwz/kaYWakTJBcsIWAvuBFetWDWwi
-         P0bl4++dn6PY46ZevmrDf6w+wKLv8iy5qrfR+9EIBjCN0FRgWmNZClMN9NJV9nLicbCP
-         auLg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wPMDtos2j4aykEy41/Mx5XsfSYAWFrCJwAqrA1+vLB8=;
+        b=Vbf+3SJjn+cqpz+LdY9z/6r5cEJHr1+1UchnsnMsjymxGs3YX4A1/qMU+wq6PmD38S
+         jn9VjKeA/BYPVDYcYaAOsH8ce3BIfl4EwVOEqvcoDl+bz9a3J9NOFmqjodPX7OSErHfH
+         E6DYWl8rdfVkhxVF3nUCD1GrootUNkarZ37/ytXIkdr0R5PECXLglLAkEAqHeJ8IdFIC
+         syCp+lxEgoLpeaaAX9+q7hIf4IBdV69vEeaJlfqAI6ejh53p/0efb4n5rhXUJVaA4/I9
+         V2VxBuLMKkL13/qokqD+edICj1WiwepmD09zH0mSqYdMpt7A73TRqQwmGQg9/i9txPA7
+         wh3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mgGyuenVtFXuCVHks+5NNuVlkc2b6o69ZD4m/QGfTIs=;
-        b=5KkIwMhEYw7LzLrPBeZjFSJGL7hl+ls7coYuW9TRk5EOUzjxlWhP2odja5B+x/F/4j
-         yfJbvhVEjMjqUqvWXGhay7YaSLofs5Lz0TzHwZyNFOkWa1/BHx+/e3zN1kV8OZwM07ZH
-         y82VCdMAMlNLLD1prq8VNoXX+eTq248puXmHMM8sRC3vD7xtoF0L7G5C1WyS/+PWX+34
-         TuVKBmdD++Atvy0bja20FBz+yzr+M8EllbnANzAk2Gg0OMGL9dHDRyoJkSEeU2MjCqqr
-         Mlxhb1FWvPNLEwQO2NLxGHQ8sbjnOU5JEN49HPt1+G9yOHfvi17zP6Lr6c3vuU9A5Su4
-         Zfzg==
-X-Gm-Message-State: ANoB5pmxq+jRMqvJWwvMZJ65sqSbxbUOo5ehPD2gFstKaoWf3+qUOe6W
-        6AW/2g7CMRoeRm0RhWtR7SBoMHJcR8sRUxs3Jkg=
-X-Google-Smtp-Source: AA0mqf59/oE5htmWmVTO0J+J3GfnZeKnwkr103ntUrrNiEoJMv8reHdQpR1d8lcUI8ApFf7xkEp+4hpiffBVAiXP8rw=
-X-Received: by 2002:a0c:ed34:0:b0:4bb:73a4:c1dc with SMTP id
- u20-20020a0ced34000000b004bb73a4c1dcmr20026016qvq.41.1668585491008; Tue, 15
- Nov 2022 23:58:11 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wPMDtos2j4aykEy41/Mx5XsfSYAWFrCJwAqrA1+vLB8=;
+        b=4zZ8l7LXrZCE8kyhSpH7rLIwEURTvt1oeGZ8co9bmrxjXip+doOikoG+QDh9SE1UgB
+         u+1RiuXwkb3SkNi6BTfIjpSgWsLVIgDvxwKktuX0lVMht6YZuwnWf9NPeNo8J1Qz3yNp
+         AsQqYq4jDVdoZQQd2HLn1QG5cHDWRqFCRX4i2X3QbvW6kjtq1MOCk82f5as+5+Rgi4LJ
+         SEHAylyfgDpC7h4aqliIEAg5WQjRhBjvEs2BDoNyHz9tUeJkqlBmrXav/MlAZSRXP1I6
+         IMfUb4BB16wLh+6FrCXXXOTAd4GpnnF8fYP1G3NRkEFWOPB5aGW5uLWLMkxSoev71lGi
+         pj8Q==
+X-Gm-Message-State: ANoB5plYrPU81aO8ZIbBluh5leioZbYhffP157/jWhXRwZmlNB5NytWb
+        s3juFEkGwQX6kPacZHSze1DCug==
+X-Google-Smtp-Source: AA0mqf6amq0LaL/3NgcdvuzYJ/+yws2jhZw2TtQulS8lyZ6z3icivHA4KAo9VicLYX+cy3R2fBjCkw==
+X-Received: by 2002:a19:f703:0:b0:4aa:a6f8:f042 with SMTP id z3-20020a19f703000000b004aaa6f8f042mr6309329lfe.405.1668585779635;
+        Wed, 16 Nov 2022 00:02:59 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a17-20020a056512201100b0049d83646ce7sm2483365lfb.110.2022.11.16.00.02.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 00:02:59 -0800 (PST)
+Message-ID: <8368b30c-26d5-c7b1-ceab-77df1163cbcc@linaro.org>
+Date:   Wed, 16 Nov 2022 09:02:58 +0100
 MIME-Version: 1.0
-References: <20221108092840.14945-1-JJLIU0@nuvoton.com> <20221108092840.14945-4-JJLIU0@nuvoton.com>
- <CACRpkdb+Bkwa8yCKGtRcsJ6KnJh+RUuz_gOrQV63pcYQLaHCaw@mail.gmail.com>
- <CAKUZ0+GCf_Zv=VhnY5Z=yYAfR1=_ha98BVVxRGVy8ui6so_Yrg@mail.gmail.com>
- <CACRpkdYW0P8gqtGdiRX_frP32WF2W=NVg1JTu1fVMBXxEL0-WA@mail.gmail.com>
- <CAKUZ0+Hy5suFg9VZ8-+cH7kGc5KLqUnf9hjnT+iaw+a1HF8x0A@mail.gmail.com>
- <CACRpkdYbS_syVwgc=YndkV-DpEF0K8NpH6WzP=g0AFpN+OTN8A@mail.gmail.com>
- <CAKUZ0+FD=x8s+vqUpYwsuRUw-yTHQjtTFzWDwW=d4k8X1x1LoQ@mail.gmail.com> <168ed6e6-21bf-f034-504e-6da36842f4bc@linaro.org>
-In-Reply-To: <168ed6e6-21bf-f034-504e-6da36842f4bc@linaro.org>
-From:   Jim Liu <jim.t90615@gmail.com>
-Date:   Wed, 16 Nov 2022 15:57:59 +0800
-Message-ID: <CAKUZ0+Hu4C9qfSZ+zw4eVtWpYF9pr5c6nBAWTt2ehmnf+-j5BA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: gpio: Add Nuvoton NPCM750 serial I/O
- expansion interface(SGPIO)
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>, JJLIU0@nuvoton.com,
-        KWLIU@nuvoton.com, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 2/2] dt-bindings: gpio: add loongson series gpio
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+References: <20221116065335.8823-1-zhuyinbo@loongson.cn>
+ <20221116065335.8823-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116065335.8823-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On 16/11/2022 07:53, Yinbo Zhu wrote:
+> Add the Loongson series gpio binding with DT schema format using
+> json-schema.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v3:
+> 		1. Separate some changes of MAINTAINERS file and enter the first patch.
+> Change in v2:
 
-Thanks for your reply.
 
-Our sgpio has 8  regs to control output and 8 regs to control input.
-Each reg size is one byte.
-and the sgpio interface has 4 pins(s_clk, d_out, d_in, LDSH).
-
-The clock is generated by APB3, and one operation cycle includes input
-and output
-beginning the signal, the  LDSH is low and now will send output serial data ,
-after finished output serial data the LDSH will be high and get serial
-input data.
-
-The in/out serial data size is byte * ports , and direct to update the regs.
-
-> the driver will open the ports to use.
-> ex: if  i set d_out=9   and d_in=20
-
-The Soc is controlled by port, not by each bit.
-So if users need 9 output pins, the driver needs to open two ports,
-because each reg is one byte.
-if users need 20 input pins ,the driver needs to open three ports.
-
-The list has some rules for use, The first half is the output and the
-second half is the input.
-the example as below:
-if i set d_out=8  d_in=8
-
-root@buv-runbmc:~# gpioinfo 8
-gpiochip8 - 16 lines:
-        line   0:      unnamed       unused  output  active-high
-        line   1:      unnamed       unused  output  active-high
-        line   2:      unnamed       unused  output  active-high
-        line   3:      unnamed       unused  output  active-high
-        line   4:      unnamed       unused  output  active-high
-        line   5:      unnamed       unused  output  active-high
-        line   6:      unnamed       unused  output  active-high
-        line   7:      unnamed       unused  output  active-high
-        line   8:      unnamed       unused   input  active-high
-        line   9:      unnamed       unused   input  active-high
-        line  10:      unnamed       unused   input  active-high
-        line  11:      unnamed       unused   input  active-high
-        line  12:      unnamed       unused   input  active-high
-        line  13:      unnamed       unused   input  active-high
-        line  14:      unnamed       unused   input  active-high
-        line  15:      unnamed       unused   input  active-high
-
-the line0~line7 will map to output reg1 and line8~line15 will map to
-input reg1 and so on.
-
-and thanks again for your suggestions and information for dts naming.
-So I need to modify it from sgpio1 to gpio8
-am i correct?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Jim
+Krzysztof
 
-
-
-
-
-
-On Tue, Nov 15, 2022 at 5:58 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/11/2022 10:21, Jim Liu wrote:
-> > Hi Linus and Krzysztof
-> >
-> > Thanks for your understanding and your suggestion.
-> > I will follow your suggestion to modify the yaml file.
-> > -> nuvoton,input-ngpios = <...>
-> > -> nuvoton,output-ngpios = <...>
-> >
-> > And I don't think the node name needs to use gpio.
-> > because it's not a general gpio, so I reference aspeed dts and use sgpio.
-> > Could I use the sgpio node name or could you provide some suggestions?
->
-> Aspeed DTS has poor code readability (not following several common DT
-> conventions), so using it as an example or argument is not correct
-> approach. Nodes have name "gpio" for GPIO controllers or one of
-> pinctrl.yaml for pin controllers.
->
-> Best regards,
-> Krzysztof
->
