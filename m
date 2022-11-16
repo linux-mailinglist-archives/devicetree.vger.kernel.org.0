@@ -2,111 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F2062BCBC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD9762BCC7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233583AbiKPL5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 06:57:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
+        id S232584AbiKPL7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 06:59:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239269AbiKPL5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:57:24 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243FB2CDF7
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:49:33 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id l8so21462583ljh.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:49:33 -0800 (PST)
+        with ESMTP id S231622AbiKPL7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:59:21 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DCAD69
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:50:57 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id l14so29511592wrw.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:50:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=D4yQuD++gHc/GHIwBktSITQt5Jig/BfC/opKH/PnkSM=;
-        b=BX2kZt1rlLhnmA9uX9tCVWARUnGOnsUT/L56si9opqSB0mmmkQ+Rgd0KfWXSOMl0zO
-         vZW57IhT79BFGGV0yfoKw7Cra9dYPt6soKnGIA+D+HA9OvXSxm+c7TE4o6bs5kGVtA0L
-         5dJavtQwH+jaPJdV8X74Gbb5OwAYFQxf7cTnbQ1oLGKaZuJivFaSt37yjZ8y3RW8jMdh
-         10hVfO+993wwv6bJ3K6L4zmbL2nXwOTPtXHDGJgjWjmjRT7pDRWFPaw3sImKXAkAReOd
-         U6Na5K2H7pXhWAXb9XWnPGk/aQDy1ctat+OCF5Tu2GwbWV/MovuiaPLqlacF0AQ0QOat
-         fKvQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6jPDIKJUZBHxGJeoj0/C8sMbmIsMxr7SVE4DgWHm9YY=;
+        b=dauxGlns5AnwTSHimiJFbk2VzkM5bX2Y+sYb38tBg5HSxuqB0sGlwju7x1JvwbDOu7
+         GiBgGnUmSKtcz0gx4DeKjsoAtUIaiaeQ5IR0npjRXZbRVquF/qoHo/K/eXTWi324r50m
+         b794EDP0Qrmk0gGsdvjkvrCOz6+hdFtxvrUY6wgp/fPEJ95jU2Wbdo+xDkaff7Aw3b1d
+         vsbW/7d3RcWHjZkIIXy2pJaZenGV5s9ptFPgzb0BvRrKv9/NHcwuHH2k7W0oxrH97r3Y
+         zEPPr0aXHFQBK32sUy3Foyf3p4CeHsE3LzyVLcGAX002uSgUTN/QjIJXrYxqEBz1zuQo
+         8s0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D4yQuD++gHc/GHIwBktSITQt5Jig/BfC/opKH/PnkSM=;
-        b=IUTcPXhk6spHW9pWV6dV7JS67rBlJuBQzfiyHhbOBgq89QzLCEA3lDgdvHzTRxcFdG
-         83lKS5Bir2zTwE4POezF3xWsR1cxnif+OzPD6GeP0xk5Hfnn6AB0V7JmXWAzBa3pkI0e
-         +DRbJm9XAiOHf0u8HWTZ+2sd8308l0kY99Adnwg49yo5irsf4ij3Ut2iYUZE/wCOGc+o
-         oUYAQXmvW5m9O3mkPHVix+WxaI+qAUONkLSod3lxsm6wV/uwWKOhjbRyJNsfMyBKRXhU
-         ZGpwy4ihzkmcqBFbP7JPearkq7DwWZS5u+ly+ZRmo9NiKZTs6KQRUPH66DDE3QxOgcoH
-         bT2g==
-X-Gm-Message-State: ANoB5pmC0ULvDWI8JI4hqt7pGEWT+bt7CUkMk891cSP8blK3Mxj3h3Ua
-        5z79cPqZTAiVkwG/Coo3rbLNmA==
-X-Google-Smtp-Source: AA0mqf76HRCov0FT6yjAI+NG83nlIDMQsyrRZ3GksITd7qJmgy2BlU2UzFWnoblRuWHCEm/1/NrGVg==
-X-Received: by 2002:a05:651c:1308:b0:277:70fb:8576 with SMTP id u8-20020a05651c130800b0027770fb8576mr7038093lja.106.1668599371557;
-        Wed, 16 Nov 2022 03:49:31 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 24-20020ac24838000000b004a2550db9ddsm2543692lft.245.2022.11.16.03.49.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 03:49:31 -0800 (PST)
-Message-ID: <97cd880f-c51c-67f5-eb33-4c211e862e73@linaro.org>
-Date:   Wed, 16 Nov 2022 12:49:29 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6jPDIKJUZBHxGJeoj0/C8sMbmIsMxr7SVE4DgWHm9YY=;
+        b=C06OeTerXLbTwv/RF4h128mj3OOXSTzeZhs1/nSvEjM7xRt4dx2dNZaXyhE5kgo2gf
+         hwJNDmq94WUA/t1R2Jf8P3D9dc4inyC4nRGxiqdWHDnW0QzOLuTYxeL0k7kh2jT8h3vR
+         qsJFt9ybzwGtUrs4xLTkjGwxAp06Kox2l3fF+UzPzQO8nSVhWysOpagb//VZpJ0fyb7Y
+         9Z/gv6pJAsJPD4IqRYJMw8M4HNISDB3NX6vN6Bf31n7otKSFP+cMugGs6zfaU3uS9b11
+         a2lMlX1d6fM6SzkRqjaNe48YZs1jplhxQJX6Xji7oIdspt05wbtcYX9Ia7tn2sxKTd8A
+         UR+Q==
+X-Gm-Message-State: ANoB5pnFec2AZNofIyXFaGKqhC8tw/VCfrMsvpA1sKqj13W7us2asi3v
+        UeJd0MDHYIJSbdZM+uEe1VBCtw==
+X-Google-Smtp-Source: AA0mqf6M3TtLZSiU426echhPBBPflnFXiIKqSaDZH0CekD01/gfMNW/Ls51osoSBqsH2dX2DuBBeFw==
+X-Received: by 2002:adf:decc:0:b0:236:69fd:643e with SMTP id i12-20020adfdecc000000b0023669fd643emr13006031wrn.560.1668599455528;
+        Wed, 16 Nov 2022 03:50:55 -0800 (PST)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003cf774c31a0sm1745029wmh.16.2022.11.16.03.50.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 03:50:54 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SM8550 compatible
+Date:   Wed, 16 Nov 2022 13:50:46 +0200
+Message-Id: <20221116115046.2687244-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/4] dt-bindings: dma: qcom,bam-dma: Add 'interconnects'
- and 'interconnect-names'
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
- <20221114-narmstrong-sm8550-upstream-qce-v1-1-31b489d5690a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-qce-v1-1-31b489d5690a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 11:23, Neil Armstrong wrote:
-> From: Abel Vesa <abel.vesa@linaro.org>
+Add compatible for EPSS CPUFREQ-HW on SM8550.
+Also document the interrupts.
 
-Subject is precious, so after prefixes (these are good) just "Add
-interconnects".
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ .../devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml       | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-> 
-> Add 'interconnects' and 'interconnect-names' as optional properties
-> to the device-tree binding documentation for BAM DMA IP.
-> 
-> These properties describe the interconnect path between BAM and main
-> memory and the interconnect type respectively.
-
-Where is the type described? What is an "interconnect type"?
-
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+index e58c55f78aaa..83d814afc780 100644
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
++++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+@@ -27,6 +27,7 @@ properties:
+           - enum:
+               - qcom,sm6375-cpufreq-epss
+               - qcom,sm8250-cpufreq-epss
++              - qcom,sm8550-cpufreq-epss
+           - const: qcom,cpufreq-epss
+ 
+   reg:
+@@ -53,6 +54,12 @@ properties:
+       - const: xo
+       - const: alternate
+ 
++  interrupts:
++    maxItems: 3
++
++  interrupt-names:
++    maxItems: 3
++
+   '#freq-domain-cells':
+     const: 1
+ 
+-- 
+2.34.1
 
