@@ -2,145 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 951C462B550
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2166E62B552
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231989AbiKPIdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:33:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
+        id S231937AbiKPIeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:34:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231955AbiKPIdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:33:43 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BDBD5A
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:33:40 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8XT3N009462;
-        Wed, 16 Nov 2022 02:33:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668587609;
-        bh=XjOHtNrOf8HqRYKVWe9IBmH1R2nMKSYnjVtm0LReeRc=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=BRPp+24DiBiKt5wQXHi2GCL+Lvx5UNHeV21R6F3DoegGEPZChIR8ZeXVzNm4/a36p
-         H/T9ltKMfiNrn0UCs2m7Rp0h7icLQ6Gv1nxD+LiF30Q1w2Q8/ay6eSFtM3l7vgZsxz
-         /JB45Hsj/DktL5Ul3IyiQOD/kFdd3pQf/sj6hsaA=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG8XTfI070712
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Nov 2022 02:33:29 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 16
- Nov 2022 02:33:28 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 16 Nov 2022 02:33:28 -0600
-Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8XP3r055297;
-        Wed, 16 Nov 2022 02:33:26 -0600
-Message-ID: <eac6b79f-fc0f-5e8b-4bd2-7dbb6c159bf8@ti.com>
-Date:   Wed, 16 Nov 2022 14:03:25 +0530
+        with ESMTP id S229942AbiKPIeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:34:44 -0500
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386EEF29;
+        Wed, 16 Nov 2022 00:34:43 -0800 (PST)
+Received: by mail-qv1-f42.google.com with SMTP id mi9so11453889qvb.8;
+        Wed, 16 Nov 2022 00:34:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wJK9b4B7NWAtgof3K5gbwAvDcs0xP62iIN8fCNsFCJk=;
+        b=8RxxdvuBGtbhM2CGKbUq5wQQcC40IGXjF6b3nzQpm9ooy0hXhxNtOA+DvrvefL6ijf
+         Vc8E/xx5kHuQAom2y98UPbi0G3YngvJGY3k8Nl8LUj+bbfNzeXKVmas/vmUamcV8Enhw
+         jL2DHaUfFA9iZJUyFQr8eZodESmDgeRLtjTmE/rMpL179Kt5fPV0GNM5TOMtJFISW/Wc
+         LmiB5vO4T0FTGSc1qIGovyOa+8qSfKYscncs1F3ui8Q+GLZoy1vHArJYAFvaC7IGeVeA
+         zPpJzo90148YFaHJSpBKmsOrcyFXleYTWY6ijrE/bdAiO7mar6OQd5xtQ5kXiFxNDaZE
+         UBzA==
+X-Gm-Message-State: ANoB5pl0cuK7e/OnMF3aGzYiBf4uPXpncKJbLg70W+lpKGsqiAFC+1rz
+        ITn8jjye+/kFnZZ+yjiTFC4l9vxHjXx/eQ==
+X-Google-Smtp-Source: AA0mqf5aSw1ewdDDHXoaTchUWFQNPxoquCEmartcZ11rgaNikOEntsuHw/7C/GsDditnMKitGI2Yhw==
+X-Received: by 2002:a0c:9042:0:b0:4bb:e74a:f63b with SMTP id o60-20020a0c9042000000b004bbe74af63bmr20387656qvo.15.1668587682148;
+        Wed, 16 Nov 2022 00:34:42 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id w8-20020a05620a444800b006fb7f94a65bsm4985318qkp.44.2022.11.16.00.34.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 00:34:41 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 136so4485957ybn.1;
+        Wed, 16 Nov 2022 00:34:41 -0800 (PST)
+X-Received: by 2002:a25:cb4a:0:b0:6dd:b521:a8f2 with SMTP id
+ b71-20020a25cb4a000000b006ddb521a8f2mr19813619ybg.380.1668587681340; Wed, 16
+ Nov 2022 00:34:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
- of OSPI
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, vaishnav Achath <vaishnav.a@ti.com>
-References: <20221103044125.172864-1-mranostay@ti.com>
- <20221103044125.172864-4-mranostay@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20221103044125.172864-4-mranostay@ti.com>
+References: <20221115192625.9410-1-alexander.helms.jy@renesas.com>
+ <20221115192625.9410-2-alexander.helms.jy@renesas.com> <e9fd112f-0fd2-e833-8687-9a256c307842@linaro.org>
+In-Reply-To: <e9fd112f-0fd2-e833-8687-9a256c307842@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 16 Nov 2022 09:34:30 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX-tziOhCLi-_s_MjPcHr4OW9=xA9xDVgf+fUya1R6TzA@mail.gmail.com>
+Message-ID: <CAMuHMdX-tziOhCLi-_s_MjPcHr4OW9=xA9xDVgf+fUya1R6TzA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dtbindings: clock: Add bindings for Renesas PhiClock
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Alex Helms <alexander.helms.jy@renesas.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        geert+renesas@glider.be
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+On Wed, Nov 16, 2022 at 9:20 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 15/11/2022 20:26, Alex Helms wrote:
+> > Add dt bindings for the Renesas PhiClock clock generator.
+> >
+>
+> Subject: drop second, redundant "bindings"
+>
+> > Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+> > ---
+> >  .../bindings/clock/renesas,phiclock.yaml      | 81 +++++++++++++++++++
+> >  MAINTAINERS                                   |  5 ++
+> >  2 files changed, 86 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml b/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
+> > new file mode 100644
+> > index 000000000..2b36534d3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
+>
+> Filename based on compatible.
 
-On 03/11/22 10:11, Matt Ranostay wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> Add support for two instance of OSPI in J721S2 SoC.
-> 
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 3264b8e8faea..034122be2ed5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -306,4 +306,44 @@ cpts@3d000 {
->  			ti,cpts-periodic-outputs = <2>;
->  		};
->  	};
-> +
-> +	fss: syscon@47000000 {
-> +		compatible = "syscon", "simple-mfd";
+Looks like there are more of them, so I guess the family name is fine?
 
-Looks like the update here to add "ti,j721e-system-controller" compatible is in
-PATCH 6/8, it could have been in the same patch here instead of editing the same
-node again in the series.
+Gr{oetje,eeting}s,
 
-> +		reg = <0x0 0x47000000 0x0 0x100>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		ospi0: spi@47040000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47040000 0x00 0x100>,
-> +			      <0x5 0x0000000 0x1 0x0000000>;
-> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 109 5>;
-> +			assigned-clocks = <&k3_clks 109 5>;
-> +			assigned-clock-parents = <&k3_clks 109 7>;
-> +			assigned-clock-rates = <166666666>;
-> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		ospi1: spi@47050000 {
-> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-> +			reg = <0x00 0x47050000 0x00 0x100>,
-> +			      <0x7 0x0000000 0x1 0x0000000>;
-> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
-> +			clocks = <&k3_clks 110 5>;
-> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +	};
->  };
+                        Geert
 
-Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
--- 
-Regards,
-Vaishnav
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
