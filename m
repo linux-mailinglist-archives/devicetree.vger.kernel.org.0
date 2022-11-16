@@ -2,212 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC1462C0AE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:17:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6D262C0C0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233556AbiKPORK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 09:17:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49388 "EHLO
+        id S231437AbiKPO1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 09:27:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233509AbiKPORH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 09:17:07 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C67DF57;
-        Wed, 16 Nov 2022 06:17:06 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p8so29699153lfu.11;
-        Wed, 16 Nov 2022 06:17:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=03AO/d+34sX5YN3fjNIOuZvahaBINhyoO8pKIANrSLg=;
-        b=FdKmOSWs5xFN+58wikER67yYa5Vny4ZcI3G1EZaRA47K3g3cxQSoYX2Rf5H2vc84iv
-         5hYP4a1AOLTId+qe9ZTmuf6dKhq+6CqIPWkHjQFgCulwkXfOlrbnkEV/t+MAbPVoG0hk
-         d8k2SKK1PsulPklunT7RtLkWS560LFjyi1EGSVvH4ymKDViaJdZXdz6xk9ZguePd1R0/
-         s8Nq3AkP+h/E8dzSguyzN0C4v3NzhkyF/xmfOoJzWprJC14pMjq47vQkuQZNU0ECOGG5
-         ePrAG4QUC+b9qEwIvud9lAp0SnxJtnfwGagSY3+BwLIrtQh7Uy55vM1BPeHJi2LDK67b
-         urAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=03AO/d+34sX5YN3fjNIOuZvahaBINhyoO8pKIANrSLg=;
-        b=uIEU2ylqpDpOdFvv6TlvplLzLphvri+Qm5xnwZeN/coGyrYua96+X6HmZyMgLoyrls
-         x/1/Mtz77vaQwVPBoCpXQMwg9ZSbEXFkrRyWcB7wV3dc+Ynz7iXQA33ersiut10Ygs0k
-         T0Fppz+W35viJvruKMk1IWxYtvqCmXc8JUPNT59I9z7Qj0dhHkQO6aH+kACGDgNcbBS1
-         2zog/+RNuI907e3/wL/Y5ENT/1gZN5L0a3YStSR124zwzA6UFM6RrhEzi80r3y1ZIVo8
-         MfwTDdeU0qMWzqugjSaAfJulWwoUsxsMDqzaK6ONCcueUPA+NpZaD6U56X84V118gHAk
-         kriw==
-X-Gm-Message-State: ANoB5plcIR+QZ/ECPHC49H5tOcD5uy5dTBTKYwLFWXuvpQ35YIIKXxgg
-        E/ABGVR1fpbY9d30RUyPr00=
-X-Google-Smtp-Source: AA0mqf6JWruVUZBOSSlDanBIhDMGzTs2Upx3yEKchOpWuoY6srpCJEpuwyeVU+HZlq5crpJBj2gaAw==
-X-Received: by 2002:a05:6512:3ba8:b0:4b0:7a03:60dc with SMTP id g40-20020a0565123ba800b004b07a0360dcmr6789861lfv.567.1668608224875;
-        Wed, 16 Nov 2022 06:17:04 -0800 (PST)
-Received: from ?IPV6:2001:14ba:16f3:4a00::7? (dc75zzyyyyyyyyyyyyydt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::7])
-        by smtp.gmail.com with ESMTPSA id v15-20020a2ea44f000000b0027738fd1eb6sm3018470ljn.110.2022.11.16.06.17.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 06:17:04 -0800 (PST)
-Message-ID: <d61d8c22-fce5-74d5-6d2b-0eda6f2ace9e@gmail.com>
-Date:   Wed, 16 Nov 2022 16:17:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
+        with ESMTP id S231403AbiKPO1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 09:27:10 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55E2111C08;
+        Wed, 16 Nov 2022 06:27:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C0BC7CE1B7C;
+        Wed, 16 Nov 2022 14:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5C3EC433C1;
+        Wed, 16 Nov 2022 14:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668608826;
+        bh=ahD/4zXE9e7nQQFpuuGPjNGZrn9Bn9hkwL74eBJbe6E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=awj+6z41L1DfkGwzD4PaNsEiwuZfb+t8R/qG3aZnN0T6WrOsKuGBYvcdv3MFnY8TJ
+         sMFb6ZSe3HKal8nvKxDy3qshp+B3QzMSeJQSwzhaUZqdUnoHrKSBBFqivM3hQuiIjW
+         qam7sO/VH+Y1+eo8s80gTJOykJ60EcBp82vdJ9pmJQXePAhvasf/KLV+j0lf6Fd4zZ
+         TzZKCZ7H8HZZuLkH+LVE82OWp3qCXG3Pky7rqENj9lTOMtxCYrNwJkPx/BxBRmgxpC
+         /uMARJaiMXTWm6YL6PWJ3jJUBlqoecwVkhWFmA20PNTf0kq70/SUfgY1bF2joN5jWA
+         ZJ+fQCfA/NaXg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ovJN5-00038I-Hs; Wed, 16 Nov 2022 15:26:36 +0100
+Date:   Wed, 16 Nov 2022 15:26:35 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-9-8210d955dd3d@baylibre.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v5 09/10] regulator: add mt6357 regulator
-In-Reply-To: <20221005-mt6357-support-v5-9-8210d955dd3d@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8350: add PCIe devices
+Message-ID: <Y3TzG4HGsFSU3sky@hovoldconsulting.com>
+References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
+ <20221110103345.729018-8-dmitry.baryshkov@linaro.org>
+ <Y2zYHEZDbNoGumTl@hovoldconsulting.com>
+ <37fe9a22-7ca0-e4e5-ebff-4eb56dbb74eb@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <37fe9a22-7ca0-e4e5-ebff-4eb56dbb74eb@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre, All
-
-Please, treat my review more as initiation for discussion than 'hard 
-requirements' for this driver. I am in no point or no "confidence level" 
-to give you any requirements ;)
-
-On 11/16/22 14:33, Alexandre Mergnat wrote:
-> From: Fabien Parent <fparent@baylibre.com>
+On Thu, Nov 10, 2022 at 05:20:11PM +0300, Dmitry Baryshkov wrote:
+> On 10/11/2022 13:53, Johan Hovold wrote:
+> > On Thu, Nov 10, 2022 at 01:33:44PM +0300, Dmitry Baryshkov wrote:
+> >> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
+> >> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
+> >>
+> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
+> >>   1 file changed, 244 insertions(+), 2 deletions(-)
+> > 
+> >> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
+> >>   			gpio-ranges = <&tlmm 0 0 204>;
+> >>   			wakeup-parent = <&pdc>;
+> >>   
+> >> +			pcie0_default_state: pcie0-default-state {
+> >> +				perst-pins {
+> >> +					pins = "gpio94";
+> >> +					function = "gpio";
+> >> +					drive-strength = <2>;
+> >> +					bias-pull-down;
+> >> +				};
+> >> +
+> >> +				clkreq-pins {
+> >> +					pins = "gpio95";
+> >> +					function = "pcie0_clkreqn";
+> >> +					drive-strength = <2>;
+> >> +					bias-pull-up;
+> >> +				};
+> >> +
+> >> +				wake-pins {
+> >> +					pins = "gpio96";
+> >> +					function = "gpio";
+> >> +					drive-strength = <2>;
+> >> +					bias-pull-up;
+> >> +				};
+> >> +			};
+> > 
+> > The pinconfig should go in the board file.
 > 
-> Add regulator driver for the MT6357 PMIC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
+> Usually yes. However for the PCIe we usually put them into the main 
+> .dtsi. See sm8[124]50.dtsi.
 
-//snip
+Yeah, I noticed that too and had this discussion with Bjorn for
+sc8280xp some months ago. Even if you may save a few lines by providing
+defaults in a dtsi, the pin configuration is board specific and belongs
+in the dts.
 
-> +/*
-> + * MT6357 regulators' information
-> + *
-> + * @desc: standard fields of regulator description.
-> + * @da_vsel_reg: Monitor register for query buck's voltage.
-> + * @da_vsel_mask: Mask for query buck's voltage.
-> + */
-> +struct mt6357_regulator_info {
-> +	struct regulator_desc desc;
-> +	u32 da_vsel_reg;
-> +	u32 da_vsel_mask;
-> +};
-> +
+Also note that 'perst' and 'wake' above could in principle be connected
+to other GPIOs on different boards.
 
-//snip
-
-> +/**
-> + * mt6357_get_buck_voltage_sel - get_voltage_sel for regmap users
-> + *
-> + * @rdev: regulator to operate on
-> + *
-> + * Regulators that use regmap for their register I/O can set the
-> + * da_vsel_reg and da_vsel_mask fields in the info structure and
-> + * then use this as their get_voltage_vsel operation.
-> + */
-> +static int mt6357_get_buck_voltage_sel(struct regulator_dev *rdev)
-> +{
-> +	int ret, regval;
-> +	struct mt6357_regulator_info *info = rdev_get_drvdata(rdev);
-> +
-> +	ret = regmap_read(rdev->regmap, info->da_vsel_reg, &regval);
-> +	if (ret != 0) {
-> +		dev_err(&rdev->dev,
-> +			"Failed to get mt6357 Buck %s vsel reg: %d\n",
-> +			info->desc.name, ret);
-> +		return ret;
-> +	}
-> +
-> +	regval &= info->da_vsel_mask;
-> +	regval >>= ffs(info->da_vsel_mask) - 1;
-> +
-> +	return regval;
-> +}
-
-If I read this right, the device has separate register(s) for writing 
-and reading the voltage? I wonder if this is a completely unique setup?
-
-If this is not unique, then it might be worth adding another field for 
-'vsel_get' register and a flag in regulator desc - and modify the 
-generic regmap helpers to handle this in common code if the special 
-register? Not sure if this HW design is common enough to warrant the 
-added confusion though. You and Mark may have more insight.
-
-> +
-> +static const struct linear_range buck_volt_range1[] = {
-> +	REGULATOR_LINEAR_RANGE(518750, 0, 0x7f, 6250),
-> +};
-> +
-> +static const struct linear_range buck_volt_range2[] = {
-> +	REGULATOR_LINEAR_RANGE(500000, 0, 0x7f, 6250),
-> +};
-> +
-> +static const struct linear_range buck_volt_range3[] = {
-> +	REGULATOR_LINEAR_RANGE(500000, 0, 0x3f, 50000),
-> +};
-> +
-> +static const struct linear_range buck_volt_range4[] = {
-> +	REGULATOR_LINEAR_RANGE(1200000, 0, 0x7f, 12500),
-> +};
-
-I am unsure if we should aim for dropping the REGULATOR_LINEAR_RANGE() 
-and using the LINEAR_RANGE(). If yes, then it might simplify things if 
-new drivers used LINEAR_RANGE() from the day 1. If we don't, then it 
-makes sense to keep consistently using REGULATOR_LINEAR_RANGE() for all 
-of the drivers. I am not sure which way is the right way.
-
-> +static int mt6357_regulator_probe(struct platform_device *pdev)
-> +{
-> +	struct mt6397_chip *mt6357 = dev_get_drvdata(pdev->dev.parent);
-
-I am unsure what data do you need from the parent. If it is just the 
-regmap / device-tree node / device, then it does not (in my opinion) 
-really warrant using parent's drvdata. One can often get away with the
-dev_get_regmap(pdev->dev.parent, NULL).
-
-Anyways, the driver looks good to me.
-
-Yours,
-	-- Matti Vaittinen
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Johan
