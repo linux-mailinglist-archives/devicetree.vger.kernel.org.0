@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C729562C396
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:10:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 132A562C3DA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:18:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232557AbiKPQKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:10:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48508 "EHLO
+        id S234352AbiKPQSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:18:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234075AbiKPQJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:09:48 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E7A56EC7;
-        Wed, 16 Nov 2022 08:09:47 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso4353899otl.13;
-        Wed, 16 Nov 2022 08:09:47 -0800 (PST)
+        with ESMTP id S234360AbiKPQSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:18:11 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFC757B62
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:09 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id h193so17086970pgc.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=U+6kofWK+lAk9nYMdFCTFYyZyxlN1y4m9eqx3Qu6bH8=;
+        b=J6QmENGbkz8JaelIwNWSJ8l299ttLiHNHQJbCutNLWXPp7HMamJ0nxlXFphKb5OFaC
+         cNygK5/QTbSUGOeFzpo0kXYYztKZpAwspryVy6TEKqFcPFI9jDBBSb8CZ5ucaBTQzqom
+         w1ckAJmV0OkD0oeTRLj3s8GjRwb7D7gq95HJwGYtjybJzDRUnVPNwr+JSFEBlchYhAvK
+         LGJK8+IKVMPEkojNgT7uG9WNA2Iq//VYKMFaCjp/+FFRlT4oge1JJCGlm6t/+2Vq4mvA
+         TmEBOpYcrquiRPrwE0C57a3LkkFXOKaDSsxk25BkjvxyXaUlmJXwp8x6Ul39kX8wkHQG
+         RMpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/+pQLTJDyany4akW+PaBhrVtLiRkHQTFMc51rgLCGdE=;
-        b=NBIMCMOgv9SZu6Ma78SOb4s5P1ECYc3UTIk7gfUiK/oHCbPzaP04cA1eqbd6ExE7Es
-         HKgQRDgSPi/3w940lhuzvr6Db/Ni4RioSsCVnAr7o+JXwfRv/ZW7HYcuBmBLm728UgI1
-         Hu+Q9lR4S/qW9BcS8PBsDZVE/cbIpFrxB2T0wzZKRH5jh4PnawYfKxwe9NLpAv8x+O81
-         OssljI1dIXXLKkYhkZ5hD5Ysrc8M/yv69pr/IWW9kVxcWUFGDFudCbHcF4GIfXerz6eC
-         WnpwME7xHIeqIuvsv5d1dadTN+4o573PkNooP/kdBEUJh63TcG7Vzc0iKHzzLSIT+iUL
-         Wn+w==
-X-Gm-Message-State: ANoB5pk2FllhqsQrWPXEQI2okYEU5WiOc+HvOHHTrgYlD5t4WkDrVCo5
-        ugOOZMKzWpWIdfERf8w4zw==
-X-Google-Smtp-Source: AA0mqf4OznSLbOeIc6lNTE63nxdYlw3lA+2jVJt8wh+vbSgDsrvWW02+YGXOmIbRh6PjRFSHOst4Bw==
-X-Received: by 2002:a9d:480f:0:b0:66c:6cf1:7967 with SMTP id c15-20020a9d480f000000b0066c6cf17967mr11384658otf.139.1668614986560;
-        Wed, 16 Nov 2022 08:09:46 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v4-20020acade04000000b00359ba124b07sm6165743oig.36.2022.11.16.08.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 08:09:46 -0800 (PST)
-Received: (nullmailer pid 170698 invoked by uid 1000);
-        Wed, 16 Nov 2022 16:09:48 -0000
-Date:   Wed, 16 Nov 2022 10:09:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
-        srk@ti.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 1/6] dt-bindings: remoteproc: Add PRU consumer bindings
-Message-ID: <20221116160948.GA169555-robh@kernel.org>
-References: <20221116121634.2901265-1-danishanwar@ti.com>
- <20221116121634.2901265-2-danishanwar@ti.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U+6kofWK+lAk9nYMdFCTFYyZyxlN1y4m9eqx3Qu6bH8=;
+        b=aP8V0M/g4zVrF7YqkqGytMpKkk21vLG2O4inZPRAaZBOjXk693Kf46F1noTxd2m3sJ
+         uEguMGrTgI5X+uGoIcp9nd1LvRGfR9HNBKZi+akJH9saIafSt7VQlZyqAqFbe2SDj/Ah
+         KydgQIMpEXpvt+ttb6bUvjo7URBLwf3rBAtCGZrXbktAHqChPHtRZJ9EuNoAqVSVU//G
+         EpX4xOXwB1PyUleNvNcgNEQUhTdowHCZXn4ngipYSKml0MXguy+MTN/UI8OcALV1tbWz
+         2yyylgs5R2FVUmR0GVTnwBXALdjNcliXl9qKPTkD+KzX3lw8qsYoabeZvvt5mWaEyZpM
+         wn7w==
+X-Gm-Message-State: ANoB5pkGX2AH84rP16HbKVK8lgAJ5ihZoeRSYj5iMVY59iyjDEJKkIos
+        ja0E/fPRll59rGLwCpakbLwK/xzYBlwqpfnm+gJ+/Q==
+X-Google-Smtp-Source: AA0mqf7Yk01flNfOp6SxymOc+XEuglm7jqex2dsSPKvWtWPa80gI4EKbAlDuk8r2R4WzOyG+XpbjS2afb54fviVWB8w=
+X-Received: by 2002:a63:db03:0:b0:470:4f30:f743 with SMTP id
+ e3-20020a63db03000000b004704f30f743mr21500123pgg.434.1668615489044; Wed, 16
+ Nov 2022 08:18:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116121634.2901265-2-danishanwar@ti.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221114105043.36698-1-konrad.dybcio@linaro.org> <20221114105043.36698-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20221114105043.36698-2-konrad.dybcio@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 16 Nov 2022 17:17:30 +0100
+Message-ID: <CAPDyKFq391+dvG-R=5S7RkW03hWvP2c+WEAvYLPhaoVUasm1VQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: sdhci-msm: Document the SM6375 compatible
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patch@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 05:46:29PM +0530, MD Danish Anwar wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> Add DT schema binding for PRU consumers. The binding includes
-> all the common properties that can be used by different PRU consumer
-> or application nodes and supported by the PRU remoteproc driver.
-> These are used to configure the PRU hardware for specific user
-> applications.
-> 
-> The application nodes themselves should define their own bindings.
-> 
-> Co-developed-by: Tero Kristo <t-kristo@ti.com>
-> Co-developed-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+On Mon, 14 Nov 2022 at 11:50, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Document the compatible for SDHCI on SM6375.
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Run checkpatch.pl and fix the warnings with the tags.
+Applied for next, thanks!
 
-You didn't add review/ack tags either.
+Kind regards
+Uffe
+
 
 > ---
->  .../bindings/remoteproc/ti,pru-consumer.yaml  | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> No changes in v3.
+>
+> Changes in v2:
+> - pick up rb
+>
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index fc8a6b345d97..12def0f57e3e 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -46,6 +46,7 @@ properties:
+>                - qcom,sm6115-sdhci
+>                - qcom,sm6125-sdhci
+>                - qcom,sm6350-sdhci
+> +              - qcom,sm6375-sdhci
+>                - qcom,sm8150-sdhci
+>                - qcom,sm8250-sdhci
+>                - qcom,sm8450-sdhci
+> --
+> 2.38.1
+>
