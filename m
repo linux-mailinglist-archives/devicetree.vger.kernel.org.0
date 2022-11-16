@@ -2,77 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF9962C536
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AEC162C53A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:46:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239088AbiKPQqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:46:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58850 "EHLO
+        id S239153AbiKPQqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:46:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239108AbiKPQpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:45:41 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411A8B2C
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:41:24 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id v17so27396921edc.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:41:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qfEqfWb4S4QQRZovl4owq6EOl4TWjyh9fFDZbiC99/k=;
-        b=VH2BUl96aKSFaXzH4xkmIQMjktn7QQDQPTSGmky2rdvjv2Ii+lLodTr/zgN9Cdaf93
-         GjAPFo1C64Akyx9RmMZnle8C5GK9MxOru48gGlvH79LsllgYBKqiErCxZL9aoVzhZoK4
-         QTIVVYaAoXj6QOIGqTxGsr7f1Fy2HKh3T3jli8UtgCQV79pvVqIedCwv4s9HsZ7mvOOQ
-         oS7Jc+ZVbiZOgjBYMq6M+Vm+mwtJbEtmtR6S7MZgWinI8VCdH+58MtA/azawQLHTjWa8
-         kiIXAStpY55pC9n4lAIycCiOkzWdMtdc0WmMuoTNYUiuGasEY11FA6ygD1nb99UjcPae
-         UkYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qfEqfWb4S4QQRZovl4owq6EOl4TWjyh9fFDZbiC99/k=;
-        b=kS7U+IPowKt08oGPD1F0h3bOqDqhUk9Rk+Ro3xV7QyXf7uDseDhqV3LKH3VJR3rH1t
-         WNOOvISG1gEVp5WuewdIgYvEamzgKxkuwBRMQyMM0b83hEB4MH97MMIs2jFzRxDp+dDr
-         BjpG4PVNV0w36lm2vZhjI1Z+q/eYlzLgaNVJINLaX1pnnaMM8jX0h533wOZs9cSQ16Ok
-         tG5BwxeAOeEr1uHZsSAxuIwcmgxVwwtySlP5MNtpudrlk5qWLqTh+T8y84lTQLBZUixS
-         1EF+0p466ls06KCE3DDXJYRVUxWFg61HHXG0+4Y6d7Q0oigwNbyuJ3g+/B/pYDpLTTP+
-         JDxw==
-X-Gm-Message-State: ANoB5pk8wETpIIw3FaF7P3jK2Qh9fmC7wBRF3YRXw7lStx0JLhLdNlEP
-        09v11WtQYRhCVJ5nY6aVj0Eepg==
-X-Google-Smtp-Source: AA0mqf5F+cnYkIVG+duzFg5GNkZYks309GT8+62xkuGdPi8Nuj6dV9p+gFPsLXvcgR2HQThjtvh2vA==
-X-Received: by 2002:a05:6402:17c2:b0:459:443a:faf4 with SMTP id s2-20020a05640217c200b00459443afaf4mr19867200edy.297.1668616882919;
-        Wed, 16 Nov 2022 08:41:22 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id r18-20020a1709061bb200b0077d37a5d401sm7089741ejg.33.2022.11.16.08.41.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 08:41:22 -0800 (PST)
-Message-ID: <05a9c6b5-0a78-d2c2-8916-5f659ff527a2@linaro.org>
-Date:   Wed, 16 Nov 2022 17:41:14 +0100
+        with ESMTP id S234128AbiKPQp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:45:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1DA22535;
+        Wed, 16 Nov 2022 08:41:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3475FB81DFA;
+        Wed, 16 Nov 2022 16:41:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61B9C433C1;
+        Wed, 16 Nov 2022 16:41:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668616896;
+        bh=HYpEHb458ynbxAKabjr4uSIFgXP6E7ARKUixQ37JNbw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=S/lCORL+53IpIORWuv0CT/72nB3+aH4UbStCBy4xwsYjjw4GUO8DNw9wiX0aCYBJv
+         44M6dGbkGYQ1nqWANg80A18EwFOThv8MtqErFQzOapPuV34rA3s/z2Pj+oiMbdU1AT
+         j/eS9WvY21WPImy8rEgcqNW1oP9aVEWqNdxX4kdtLnqBg9YbxE7OYinnA4x2fDdiy9
+         Ogg5vgo7wZetuRfoSbP85mfnJEIZ572r0M0uwLEHvfWz4+iCq7RfXvg21K2YziZ71s
+         M2JHkDmN9hS/0+np3KsulIQvrt6ZyMLqFNqWhSpF3JNzok4R7bYl0XPjxPJWAOv5sz
+         B26h4thcE9Chw==
+Date:   Wed, 16 Nov 2022 10:41:35 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 5/9] PCI: microchip: Gather MSI information from
+ hardware config registers
+Message-ID: <20221116164135.GA1117054@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v6 6/7] arm64: dts: qcom: sm8250: camss: Define ports and
- ports address/size cells
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        andersson@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
-        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221116162801.546737-1-bryan.odonoghue@linaro.org>
- <20221116162801.546737-7-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116162801.546737-7-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116135504.258687-6-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,60 +55,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/11/2022 17:28, Bryan O'Donoghue wrote:
-> Define the set of possible ports, one for each CSI PHY along with the port
-> address and size cells @ the SoC dtsi level.
+On Wed, Nov 16, 2022 at 01:55:00PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Suggested-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> The PCIe root complex on PolarFire SoC is configured at bitstream creation
+> time using Libero.  Key MSI-related parameters include the number of
+> MSIs (1/2/4/8/16/32) and the MSI address. In the device driver, extract
+> this information from hw registers at init time, and use it to configure
+> MSI system, including configuring MSI capability structure correctly in
+> configuration space.
 
-Konrad
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 29 ++++++++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index d517d6a80bdcb..806aa19ad93ce 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3412,6 +3412,35 @@ camss: camss@ac6a000 {
->   					     "cam_hf_0_mnoc",
->   					     "cam_sf_0_mnoc",
->   					     "cam_sf_icp_mnoc";
+Minor nits for v2.
+
+> +	/* fixup msi enable flag */
+
+s/msi/MSI/ here and comments below to match other usage.
+
+> +	reg = readw_relaxed(ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
+> +	reg |= PCI_MSI_FLAGS_ENABLE;
+> +	writew_relaxed(reg, ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
 > +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+> +	/* fixup msi queue flags */
+> +	queue_size = reg & PCI_MSI_FLAGS_QMASK;
+> +	queue_size >>= 1;
+> +	reg &= ~PCI_MSI_FLAGS_QSIZE;
+> +	reg |= queue_size << 4;
+> +	writew_relaxed(reg, ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
 > +
-> +				port@0 {
-> +					reg = <0>;
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +				};
-> +
-> +				port@3 {
-> +					reg = <3>;
-> +				};
-> +
-> +				port@4 {
-> +					reg = <4>;
-> +				};
-> +
-> +				port@5 {
-> +					reg = <5>;
-> +				};
-> +			};
->   		};
->   
->   		camcc: clock-controller@ad00000 {
+> +	/* fixup msi addr fields */
+
+> +	/* allow enabling msi by disabling msi-x */
+
+s/msi-x/MSI-X/
