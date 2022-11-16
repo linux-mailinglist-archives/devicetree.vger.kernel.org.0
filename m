@@ -2,85 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E17B662B864
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E88662B990
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:43:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiKPKar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:30:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38480 "EHLO
+        id S238581AbiKPKnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:43:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiKPKaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:30:14 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A7D117C
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:26:55 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AGAQmXE047760;
-        Wed, 16 Nov 2022 04:26:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668594408;
-        bh=jClSXlVOw1pLKJYmkJUIYTHDz6gocU+BCNRujBuVklw=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=NgoK5yQwxxgiHqk1tvKAD8+50Mr2InyLIwOqWgXXpcf0YHt/215+GNeS7vmyKiTSR
-         CMth74Uc1n7gpM1jMmY2m1ZMEiiCu+M6jgy5+hzc0Dw0IpsTV3nb6CbcfrFhuQJI6O
-         YLbC8p46HieXZWjzfSy9EFKBTMqctu3Ebx/tKEo8=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AGAQmtv008380
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Nov 2022 04:26:48 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 16
- Nov 2022 04:26:48 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 16 Nov 2022 04:26:48 -0600
-Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AGAQjqQ087564;
-        Wed, 16 Nov 2022 04:26:45 -0600
-Message-ID: <1d7eb5dc-701b-5830-37ac-1dcd6091f835@ti.com>
-Date:   Wed, 16 Nov 2022 15:56:44 +0530
+        with ESMTP id S238605AbiKPKm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:42:57 -0500
+Received: from us-smtp-delivery-115.mimecast.com (us-smtp-delivery-115.mimecast.com [170.10.129.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8D540474
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:30:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
+        s=selector; t=1668594601;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=/gE01YR1VoS3Sv/S7ZKZi1MOxZyMrH2MOmc3kbSaN0Q=;
+        b=IPWbQjXYV71iXpoCuHeQKikD/eu9iFD/04U5sGwl+ovKPXuPsN8xdxKYtjINHUu5sH56Zl
+        xsTTqibjJwndOBU1olGltCla0afauzekTZaTF7zAyARNsdUEFUiJHthEH1lldsW+/qBzgK
+        SlHOwNSLkY4y59fTXUbomld0g0j4qZQYQaKg0iC5dmH4nOLi/waJ90IoLGLDgSHqkMXYxD
+        cd6vQ2PcyQ2SiJlx7R9QsRo6lKznmkk/OnmFZwVoPuYjkQTxsi78LPY3TYfbWKqIIDTMdH
+        Zar9qYoP38VqK1+xqEJSZ21zjVyfGORw6Un+XBWIAax19hRyrrnCaiAU2EsvBA==
+Received: from mail.maxlinear.com (174-47-1-83.static.ctl.one [174.47.1.83])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ us-mta-314-Tpq0nae2NIO1dmxz6cOAWQ-1; Wed, 16 Nov 2022 05:28:31 -0500
+X-MC-Unique: Tpq0nae2NIO1dmxz6cOAWQ-1
+Received: from sgsxdev001.isng.phoenix.local (10.226.81.111) by
+ mail.maxlinear.com (10.23.38.120) with Microsoft SMTP Server id 15.1.2375.24;
+ Wed, 16 Nov 2022 02:28:25 -0800
+From:   Rahul Tanwar <rtanwar@maxlinear.com>
+To:     <devicetree@vger.kernel.org>, <robh@kernel.org>,
+        <andriy.shevchenko@linux.intel.com>, <tglx@linutronix.de>,
+        <mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+        <x86@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <hpa@zytor.com>,
+        <alan@lxorguk.ukuu.org.uk>, <dirk.brandewie@gmail.com>,
+        <grant.likely@secretlab.ca>, <sodaville@linutronix.de>,
+        <devicetree-discuss@lists.ozlabs.org>,
+        <linux-lgm-soc@maxlinear.com>,
+        "Rahul Tanwar" <rtanwar@maxlinear.com>
+Subject: [PATCH v2 0/2]  x86/of: Fix a bug in x86 arch OF support
+Date:   Wed, 16 Nov 2022 18:28:19 +0800
+Message-ID: <cover.1668589253.git.rtanwar@maxlinear.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v5 8/8] arm64: dts: ti: k3-j721s2-common-proc-board:
- Enable PCIe
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20221103044125.172864-1-mranostay@ti.com>
- <20221103044125.172864-9-mranostay@ti.com>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20221103044125.172864-9-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: maxlinear.com
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/22 10:11, Matt Ranostay wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> x1 lane PCIe slot in the common processor board is enabled and connected to
-> J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-> same.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  .../boot/dts/ti/k3-j721s2-common-proc-board.dts    | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
++ devicetree@vger.kernel.org
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Hi Sebastian,
+
+All touched part in this patch series was added by you. Hoping for
+concerns/comments or best case ACK, reviewed-by tag from you.
+I have CCed all others who were involved with you when you added
+this changes.
+
+Hi devicetree@vger.kernel.org, Rob,
+
+Since this appears to be entrirely in devicetree domain. Hoping
+for feedback, concerns, mistakes or improvement feedbacks from
+you.
+
+Hi Andy,
+
+Hoping for a reviewed-by tag from you once you think it is ready
+to go. Thanks.
+
+
+Hi Thomas, Ingo, Boris, Andy, Dave & all x86@kernel.org maintainers,
+
+Resending below details hoping to figure out if the changes are
+logically aligned with your understanding & that it will not break
+any x86/arch concerns that you might have. Shooting on any mistakes
+welcomed :-).
+
+
+I sent this patch 3 times but for some reasons, never got any response or
+attention from anybody so far. Hence, resending with a cover letter to
+explain the rationale behind it in detail & to justify the need to add
+this fix. Also, hoping to get some feedback in-case i am mistaken in my
+understanding which might be the reason why i never got any response.
+
+Background (baseline understanding - pls correct if mistaken anywhere):
+
+References [1], [2] & [6]
+
+For SMP systems, Intel defines three (logically four) interrupt modes
+during boot/init time while BIOS/bootloader boots & switches to linux
+kernel.
+
+  1. PIC mode - Legacy 8259 PIC interrupt controller.
+  2. Virtual wire mode via Local APIC - uses local APIC as virtual wire
+  3. Virtual wire mode via I/O APIC - uses I/O APIC as virtual wire
+  4. Symmetric I/O mode - final one used by linux for SMP systems.=20
+
+BIOS/bootloaders are supposed to boot in either #1 or #2 or #3 and then
+switch to #4 in linux for SMP systems.
+
+For our platform, we use #2.
+
+Detection of which interrupt mode the system is booting in is made by using
+below global variable in apic.c
+
+int pic_mode __ro_after_init;=20
+
+Here pic_mode =3D 1 means #1 (PIC mode) above.
+And pic_mode =3D 0 means #2 or #3 (basically virtual wire mode via apic).
+
+And apic.c while doing setup_local_APIC() uses below code [3]:
+
+        value =3D apic_read(APIC_LVT0) & APIC_LVT_MASKED;
+        if (!cpu && (pic_mode || !value || skip_ioapic_setup)) {
+                value =3D APIC_DM_EXTINT;
+                apic_printk(APIC_VERBOSE, "enabled ExtINT on CPU#%d\n", cpu=
+);
+        } else {
+                value =3D APIC_DM_EXTINT | APIC_LVT_MASKED;
+                apic_printk(APIC_VERBOSE, "masked ExtINT on CPU#%d\n", cpu)=
+;
+        }
+        apic_write(APIC_LVT0, value);
+
+What i understand from above is that if at this point of time, as long as
+it is cpu0 & pic_mode=3D1, it will set delivery mode to ExtINT (causes the
+processor to respond to the interrupt as if the interrupt originated in an
+externally connected (8259A-compatible) interrupt controller) and enables/
+unmask the interrupts.
+
+pic_mode is presently set/populated/initialized at only two places:
+ 1. In  mpparse.c [4]
+ 2. In devicetree.c [7]
+
+For #1 MPPARSE Kconfig definition is as below:
+
+=09config X86_MPPARSE
+        =09bool "Enable MPS table" if ACPI
+        =09default y
+        =09depends on X86_LOCAL_APIC
+        =09help
+          =09For old smp systems that do not have proper acpi support. Newe=
+r systems
+          =09(esp with 64bit cpus) with acpi support, MADT and DSDT will ov=
+erride it
+
+As seen above, if ACPI is not enabled, then mpparse by default is always
+enabled. Presently, there is no way to disable MPPARSE (if ACPI is not
+enabled). This to me appears to be another bug which needs fixing. As per
+theory, MPPARSE was to support MPS spec [1] as a temporary solution to
+support SMP systems until a final ACPI standard was added. But now if ACPI
+is not enabled, it will rely on MPPARSE driver to read MP floating pointer
+structure's IMCRP Bit 7 of MP feature info byte 2 [5] to figure out if it
+supports PIC mode or virtual wire mode and initialize pic_mode variable
+accordingly. If ACPI is enabled, the ACPI code overrides it by using the
+MADT table spec'ed in ACPI spec [2].=20
+
+For #2 devicetree.c presently hardcodes pic_mode =3D 1 (PIC Mode). There is
+no support to configure virtual wire mode via devicetree path for OF based
+systems.
+
+Now we have a platform which is OF based & does not use legacy 8259 PIC
+interrupt controller. Non ACPI compliant as well as non MPPARSE compliant.
+
+For such platforms, it appears to me that hardcoding pic_mode =3D 1 (PIC Mo=
+de)
+and giving no other choice to choose virtual wire mode is a bug for OF
+based x86 platforms.=20
+
+Just like mpparse relies on IMCRP bit 7 of MP feature info byte2 [5] to
+select pic_mode to PIC mode or virtual wire mode. arch/x86/kernel/devicetre=
+e.c
+should also provide some similar configurability to choose interrupt
+delivery mode & not hardcode it to PIC mode.
+
+This patch is to fix above explained bug in x86/of support for interrupt
+delivery mode configuration. Please let me know if you find any mistake
+in above understanding or if you have a alternative better suggestion to
+solve it or if you find anything odd here in our platform/system. TIA.
+
+The patch is baselined on below git tree:
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git x86/core
+
+[1] https://pdos.csail.mit.edu/6.828/2008/readings/ia32/MPspec.pdf
+[2] https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
+[3] https://elixir.bootlin.com/linux/v6.1-rc5/source/arch/x86/kernel/apic/a=
+pic.c#L1691
+[4] https://elixir.bootlin.com/linux/v6.1-rc5/source/arch/x86/kernel/mppars=
+e.c#L517
+[5] https://www.manualslib.com/manual/77733/Intel-Multiprocessor.html?page=
+=3D40#manual
+[6] https://www.intel.com/content/www/us/en/developer/articles/technical/in=
+tel-sdm.html
+[7] https://elixir.bootlin.com/linux/v6.1-rc5/source/arch/x86/kernel/device=
+tree.c#L170
+
+v2:
+- Address review concern from Andy - rename property name to make
+  it a bit more positive & self explanatory.
+- Found that the bindings document for these HW's (APIC) are a bit
+  off/obsolete and still in text format. Created new YAML schemas
+  one for each - lapic & ioapic. Updated these schemas with latest
+  info and add in new optional property details in the updated
+  schema for lapic. Delete/let go of the text binding doc.
+- CC devicetree@vger.kernel.org as these changes appear to be
+  mainly targeted for devicetree maintainers review & approval.
+- Increase CCed list to include all possible people who touched
+  and were involved this part of code/feature addition.
+
+v1:
+- Initial draft
+
+
+
+Rahul Tanwar (2):
+  x86/of: Add support for boot time interrupt delivery mode
+    configuration
+  x86/of: Convert & update Intel's APIC related binding schemas
+
+ .../intel,ce4100-ioapic.txt                   | 26 --------
+ .../intel,ce4100-ioapic.yaml                  | 62 ++++++++++++++++++
+ .../intel,ce4100-lapic.yaml                   | 63 +++++++++++++++++++
+ arch/x86/kernel/devicetree.c                  |  9 ++-
+ 4 files changed, 133 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
+intel,ce4100-ioapic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
+intel,ce4100-ioapic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
+intel,ce4100-lapic.yaml
+
+--=20
+2.17.1
+
