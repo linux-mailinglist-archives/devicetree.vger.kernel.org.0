@@ -2,380 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4412662BDEE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 430B662BDFC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238998AbiKPMbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:31:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46628 "EHLO
+        id S233305AbiKPMdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:33:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238910AbiKPMbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:31:02 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56DE62FD
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:30:38 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id k8so29694456wrh.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:30:38 -0800 (PST)
+        with ESMTP id S231197AbiKPMdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:33:41 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE2E2728
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:33:37 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id v7so11808892wmn.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:33:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=giz1O34wJy7wAaesQ+FF9P4d8dC3HL0qQyzf5aCfDtI=;
-        b=f629j43mafTaOsWIuSAx2miVnTB7i3LJ4zxycA8qlKgosC41Di6RVChbXNnhQ6zpLk
-         CkylExavPLU0yzIZi6p9QV5xdTc8x3OBqWRKGM3yXzkvmz/+V+OKPyag10pzQBq7FxQl
-         pzm1+iG7natxVG/vrjkQYvUlt03U8VkrZ7WtjRO8xuwsUHrhQvBwnmEp3Lf3Hqrbz8NH
-         Ie+VikfwnaeJpb/1x89S9pGE4Uo4dFXU8m+V7P36iHWnle2khpHtN4tNROZZasCtyFju
-         NzEpnyavk4UvkFFEuxuQ5XxEZ7/0NbXMrMv4V+j5jqwxq71AQiyuM8ZMuXDkEqLoIMoK
-         ClQw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0mtcbapNc12SG7qveDyhHcRn237sKO8IzVL/uWZIsQ=;
+        b=v5UzEkcqZrK1gREL0R7n3vJHHAKiPtDlOhGN4U6SBY4aJMbxeWegynJS1VWBR0z3yn
+         8lGwmhPeJ7fNydUP9xWQUogS8iToX2ihEVd+9yF6fa56JNewQOFwlVwY4FGHWEQ2QiP4
+         DP3JD9psfPG9M3kjGtjLeqlD6EH4YoX0YQAiECnVWHL/x4WxxwaXJHPw9WnBaL0f+ks6
+         RXRpaBJgI2pmKV4Kh5MaUMV4PXoQdLN6rHpIDBOZpIzOS4gX/LJIltwoSWyLjMHkuQzk
+         jBQ+mnTMeBHkW04FITUsM09dD55Fka4uUKqewnvA4hWOn+ss0tXYObudLu70worG6MjS
+         VWvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=giz1O34wJy7wAaesQ+FF9P4d8dC3HL0qQyzf5aCfDtI=;
-        b=GhtSY+oe5PPI9mYZnjnx3Ow64B4N8x/SeIDlScBhD2y3+PkjYjav9Nw+1LAkxY6LD+
-         29xSQ1Pmf/tY1ww8yGHoeWMGQvaOzZCA1odiJPecexI/xpWQDOL1l78581dR/qwoZu7w
-         9qZ9qr7xWYjx2nTxBAq431pjmi2Z2DWHDkItvJx/CixW8pj7qHLTZXVcLJrdUZUYixAt
-         y3DcI9x5IWducMVGwXXs/0cCcbjcZBHrcvk4+gKFixosHwF4RScDUvJASkttfZRfBxd1
-         cvInfYJr+kFz4FBUr1+u96n9lhqyDubYmqI4Z8uXey5VHn6Kffa2dg2AuLe8DEjsSDe6
-         xVFA==
-X-Gm-Message-State: ANoB5pndcPDblFQ73GDLxfvShglck3xTLpBmozHN9qPnF/LYCNRx4pdr
-        yB9GtPqPsM+IUiY5ENI/dBErig==
-X-Google-Smtp-Source: AA0mqf6uMeRIj4E2S0KLJgtKri2ZHqr04fidakEuU8TfyVjypeu/CWYCHR1kRZY8YCx/wmWIwy9yyg==
-X-Received: by 2002:a05:6000:12cf:b0:236:6e75:dc37 with SMTP id l15-20020a05600012cf00b002366e75dc37mr12858672wrx.504.1668601838129;
-        Wed, 16 Nov 2022 04:30:38 -0800 (PST)
-Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cf4eac8e80sm2870991wms.23.2022.11.16.04.30.36
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R0mtcbapNc12SG7qveDyhHcRn237sKO8IzVL/uWZIsQ=;
+        b=h2+4WENfbnbLQYOykAiBfxdCE+mkZTjl86ln3QD70l/zKVzESSufQC56Nlv7/eB1n/
+         QSy63sM2TfEIIJMX3MmtuSwZ6cYy/XWHFoeN1hretgeHF/CroO4fn2bVpuZHMG7+7y0p
+         4ukwqBgKe3izAQnnLnfchp/NCRta9asbmKIwASegg4TgH6nN0bvM9WcYbBtRKOL7Nco5
+         s2yYO/Bhb7FmssRfOV83NIJQqcbwGZ1IvSqu4A/O+FncT60ViJhJtRz6VIlOOGZqZBSs
+         60EDo1+xl/TG6f4RJOQMyNRjx8i+SHExx/ogIYLvlLWJdltuGnp/wbHKNaKSZiWCgI3S
+         B+qQ==
+X-Gm-Message-State: ANoB5pnALQkdR7evfqjv1HycvIHIV5n0wTPIx7KxEL7lPf4neuXqHLA2
+        AR+1aDt2v3vOP7R2sgyhnfWxnw==
+X-Google-Smtp-Source: AA0mqf6bkONAJxgcou0DSMhPWfx1UdDKPf6SpVqbRBgR3aToSPxhVHiVXmce2GONDgjiznl0+Ydj7g==
+X-Received: by 2002:a1c:7715:0:b0:3cf:d18d:3bfe with SMTP id t21-20020a1c7715000000b003cfd18d3bfemr1911593wmi.203.1668602015855;
+        Wed, 16 Nov 2022 04:33:35 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id z13-20020adff1cd000000b0024166413a4fsm15051607wro.37.2022.11.16.04.33.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 04:30:37 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: [RFC PATCH 3/3] usb: repeater: Add Qualcomm PMIC eUSB2 driver
-Date:   Wed, 16 Nov 2022 14:30:19 +0200
-Message-Id: <20221116123019.2753230-4-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221116123019.2753230-1-abel.vesa@linaro.org>
-References: <20221116123019.2753230-1-abel.vesa@linaro.org>
+        Wed, 16 Nov 2022 04:33:35 -0800 (PST)
+Subject: [PATCH v5 00/10] Add MediaTek MT6357 PMIC support
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-b4-tracking: H4sIAHbYdGMC/33NTQqDMBAF4KuUrJsSJ8bYrnqP0kXGjDXgH4kKIt69Q5eldTW8B++bTSSKgZK4nT
+ YRaQkpDD0Hcz6JqnH9i2TwnAUogEwpI7up0MbKNI/jECdpjFYllkBa14JH6BJJjK6vGp71c9ty2YQ0
+ DXH9PFmAz+Ovt4BUss4sOvDglbve0a1twEiXaujEk7VFHwuaBUsKva10ZhB+CPmxkLNgPCCakgpV2i 9h3/c3/ajz7DgBAAA=
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Wed, 16 Nov 2022 13:32:54 +0100
+Message-Id: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
+To:     Flora Fu <flora.fu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+        Fabien Parent <fparent@baylibre.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6543; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=NshVBYuu9TdFHoEf91yvknNPpw+L+ZYKe9wp64lvKjA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjdNie1B6xTOBloeueoPhUeiyM2FvEnzXWytPapQme
+ PGuEqP+JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY3TYngAKCRArRkmdfjHURSX1D/
+ 0fhbES4V/OF3JKAj0wIXtjekYXEENu8Ek/sh0BTttoOWTT/l+wSs3JuPLNRQSzYd6ZAYSnD3oXqmpW
+ fZUBJpAwl3u62M5f2TRAclh5DFhhST0H0WxP2NMH2zY8hjEBfx+DGjSf7shTr+2Mxd+7ir10KZ8UqS
+ ILGXk4OgR9QdVRUInFinKR94s4X0756dL3Ubz/9pCgRap7DGUKLKHnMYClWsu1Wp56uhelinkO7/9s
+ UxA/VQb9dTz3Yss0eQ6UIFQKNkcrH4P3xLCtTMvEhBfV1V+kZl48k0LLYitK48GVhKR6RIRFhmasKm
+ AdRlxx2DWiBSfkBYz3lNT1NEXamtskZq9BrLz8PjJiAWzH0AWPuo8o3jVPVI4nWqX9XDMEAhvrzI9A
+ 2bMYnKuN2fOgKHeyhVx7jEqeHB4iL4u/Me+DHf8yikRD+tizkfg5KBgH9uvS+S48aMi69EoRvNulNX
+ cU1CgWiu3JE6WT0aecpyWwGQ3gftWGbLRKcI5s8FksefCCv1xHrVhnjTqBe3GdIH38Y4zvaS30CGXH
+ I+pVlNpyn3Cs6MD449VPZaUgRyBO/gE1cu326LLNJo12+wBD0TyGVtbXBIy6pz9JNOmCO5aPofdWLq
+ ihF2gc+fFwJci1VnHrXUG6a1BQZ8UYH2mRszp0+RqcApuhopFKGyzgkl/EzQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PM8550B contains a eUSB2 repeater used for making the eUSB2 from
-SM8550 USB 2.0 compliant.
+Hi,
+This patch series adds MFD, PMIC keys, and regulator support for MT6357.
+MT6357 is a MediaTek PMIC very similar to MT6358.
 
-Add a platform specific repeater driver. It implements ops for init,
-reset and power on/off. On init, there is a configuration table that
-needs to be written to the repeater's registers.
+Currently, MTK bindings related to the PMICs are not converted yet (still .txt):
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+soc/mediatek/pwrap.txt (all PMIC parent)
+      |
+      V
+mfd/mt6397.txt (support lot of mt63XX PMIC)
+      +---------------+----------------+---...
+      V               V                V
+regulator/...      rtc/...          codec/...
+
+1) Convert pwrap to yaml is ok.
+
+2) For the PMIC bindings, there are two option:
+- Convert mt6397.txt to mediatek,mt6397.yaml and continue to support multiple
+  PMIC with only one file. IMO, the file will be hard to read because
+  the supported features aren't the same for each PMIC.
+
+- Make a binding file for each PMIC ref:
+    - mfd/mediatek,mt6357.yaml
+    - mfd/mediatek,mt6358.yaml
+    - ...
+
+3) All PMIC daughter bindings (regulator, rtc, codec, led, ...) aren't fully
+converted yet. Refering to the two PMIC convertion options above:
+- To be clean, all daughter bindings should be converted. This is hard because
+  a good understanding of each device is requiered to write efficient bindings.
+- Only daughter bindings supported by the added PMIC should be converted, that
+  allows to do the task conversion step by step.
+
+In the V4 of this serie, I chose the second option.
+
+Regards,
+Alex
+
+Changes in v5:
+- Add missing maintainers
+- Improve RTC binding by adding rtc.yaml ref and start-year property
+- Split the txt->yaml conversion in one commit and the addition of the
+  new mt6357-rtc compatible in another commit.
+- Improve PWRAP binding:
+  - clocks and clock-name have been refactored.
+  - reset-names is now properly dependent to resets.
+  - additionalProperties change from true to false.
+  - change example for a most recent and popular SoC.
+  - "allOf" part has been simplified.
+- Pass binding tests with the updated tools. Here the command:
+  "make DT_CHECKER_FLAGS=-m dt_binding_check"
+- Link to v4: https://lore.kernel.org/r/20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com
+
+Changes in v4:
+- "dt-bindings: mfd: mt6397: add binding for MT6357" has been applied
+  by Lee Jones
+- All fixed regulator are now refering to fixed-regulator.yaml
+- vfe28 and vcamio18 regulators have been added
+- pwrap binding has been converted and mt8365 support has been added
+- Change node names for mt8173 and mt6358 SoC to be consistent with
+  pwrap documentation.
+- mt6357 PMIC binding has been created
+- mt6397 RTC binding has been converted and mt6357 support has been added
+- Link to v3: https://lore.kernel.org/r/20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com
+
+Changes in v3:
+- To be consistent with regulator/driver.h and helper.c, shift
+  variables have been removed and the mask values have been directly shifted.
+- Remove index tables and rework volt tables to use set/get helper functions.
+- Add comment to structure and function.
+- Fix Fabien Parent mail address.
+- Link to v2: https://lore.kernel.org/r/20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com
+
+Changes in v2:
+- Rebase
+- Fix typo
+- Remove dependencies with https://lore.kernel.org/all/20220415153629.1817202-1-fparent@baylibre.com/
+  which is no longer relevant.
+
+Previous versions:
+v1 - https://lore.kernel.org/all/20220531124959.202787-1-fparent@baylibre.com/
+
+To: Lee Jones <lee@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Chen Zhong <chen.zhong@mediatek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Fabien Parent <fabien.parent@linaro.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Sean Wang <sean.wang@mediatek.com>
+To: Pavel Machek <pavel@ucw.cz>
+To: Tianping Fang <tianping.fang@mediatek.com>
+To: Flora Fu <flora.fu@mediatek.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: Fabien Parent <fparent@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: linux-rtc@vger.kernel.org
+Cc: linux-leds@vger.kernel.org
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
 ---
- drivers/usb/repeater/Kconfig                  |  11 +
- drivers/usb/repeater/Makefile                 |   1 +
- .../usb/repeater/repeater-qcom-pmic-eusb2.c   | 251 ++++++++++++++++++
- 3 files changed, 263 insertions(+)
- create mode 100644 drivers/usb/repeater/repeater-qcom-pmic-eusb2.c
+Alexandre Mergnat (6):
+      dt-bindings: rtc: mediatek: convert MT6397 rtc documentation
+      dt-bindings: rtc: mediatek: add MT6357 support
+      dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+      dt-bindings: soc: mediatek: convert pwrap documentation
+      arm64: dts: mt6358: change node names
+      arm64: dts: mt8173: change node name
 
-diff --git a/drivers/usb/repeater/Kconfig b/drivers/usb/repeater/Kconfig
-index e12cd22c0adb..20baeb8f950c 100644
---- a/drivers/usb/repeater/Kconfig
-+++ b/drivers/usb/repeater/Kconfig
-@@ -7,3 +7,14 @@ config USB_REPEATER
- 	  driver to bind together and to provide the USB driver ways to perform
- 	  set of operations with repeater for USB2 functionality using PHY and
- 	  controller driver.
-+
-+config QCOM_PMIC_EUSB2_REPEATER
-+	tristate "USB eUSB2 Repeater driver"
-+	select USB_REPEATER
-+	help
-+	  Enable this to support the USB eUSB2 repeater on Qualcomm PMIC chips.
-+	  This driver provides support to reset, initialize, power up and configure
-+	  the eUSB2 repeater for USB HS/FS/LS functionality where eUSB2 repeater
-+	  is used.
-+
-+	  To compile the driver as a module, choose M here.
-diff --git a/drivers/usb/repeater/Makefile b/drivers/usb/repeater/Makefile
-index 2d1b5f348976..fed128407315 100644
---- a/drivers/usb/repeater/Makefile
-+++ b/drivers/usb/repeater/Makefile
-@@ -4,3 +4,4 @@
- #
- 
- obj-$(CONFIG_USB_REPEATER)		+= repeater.o
-+obj-$(CONFIG_QCOM_PMIC_EUSB2_REPEATER)	+= repeater-qcom-pmic-eusb2.o
-diff --git a/drivers/usb/repeater/repeater-qcom-pmic-eusb2.c b/drivers/usb/repeater/repeater-qcom-pmic-eusb2.c
-new file mode 100644
-index 000000000000..1b6d46c28da4
---- /dev/null
-+++ b/drivers/usb/repeater/repeater-qcom-pmic-eusb2.c
-@@ -0,0 +1,251 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regmap.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+
-+#include <linux/usb/repeater.h>
-+
-+/* eUSB2 status registers */
-+#define EUSB2_RPTR_STATUS		0x08
-+#define	RPTR_OK				BIT(7)
-+
-+/* eUSB2 control registers */
-+#define EUSB2_EN_CTL1			0x46
-+#define EUSB2_RPTR_EN			BIT(7)
-+
-+#define PHY_HOST_MODE			BIT(0)
-+#define EUSB2_FORCE_EN_5		0xE8
-+#define F_CLK_19P2M_EN			BIT(6)
-+#define F_CLK_19P2M_EN_SHIFT		6
-+
-+#define EUSB2_FORCE_VAL_5		0xED
-+#define V_CLK_19P2M_EN			BIT(6)
-+#define V_CLK_19P2M_EN_SHIFT		6
-+
-+#define EUSB2_TUNE_IUSB2		0x51
-+#define EUSB2_TUNE_SQUELCH_U		0x54
-+#define EUSB2_TUNE_USB2_PREEM		0x57
-+
-+#define QCOM_EUSB2_REPEATER_INIT_CFG(o, v)	\
-+	{					\
-+		.offset = o,			\
-+		.val = v,			\
-+	}
-+
-+#define to_qcom_eusb2_repeater(x) \
-+	container_of((x), struct qcom_eusb2_repeater, repeater)
-+
-+struct qcom_eusb2_repeater_init_tbl {
-+	unsigned int offset;
-+	unsigned int val;
-+};
-+
-+struct qcom_eusb2_repeater {
-+	struct usb_repeater	repeater;
-+	struct regmap		*regmap;
-+	u16			base;
-+	struct regulator_bulk_data *vregs;
-+	const struct qcom_eusb2_repeater_cfg *cfg;
-+};
-+
-+struct qcom_eusb2_repeater_cfg {
-+	const struct qcom_eusb2_repeater_init_tbl *init_tbl;
-+	int init_tbl_num;
-+	/* regulators to be requested */
-+	const char * const *vreg_list;
-+	int num_vregs;
-+};
-+
-+static const char * const pm8550b_vreg_l[] = {
-+	"vdd18", "vdd3",
-+};
-+
-+static const struct qcom_eusb2_repeater_init_tbl pm8550b_init_tbl[] = {
-+	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_IUSB2, 0x8),
-+	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_SQUELCH_U, 0x3),
-+	QCOM_EUSB2_REPEATER_INIT_CFG(EUSB2_TUNE_USB2_PREEM, 0x5),
-+};
-+
-+static const struct qcom_eusb2_repeater_cfg pm8550b_eusb2_cfg = {
-+	.init_tbl	= pm8550b_init_tbl,
-+	.init_tbl_num	= ARRAY_SIZE(pm8550b_init_tbl),
-+	.vreg_list	= pm8550b_vreg_l,
-+	.num_vregs	= ARRAY_SIZE(pm8550b_vreg_l),
-+};
-+
-+static int qcom_eusb2_repeater_init_vregs(struct qcom_eusb2_repeater *rptr)
-+{
-+	int num = rptr->cfg->num_vregs;
-+	struct device *dev = rptr->repeater.dev;
-+	int i;
-+
-+	rptr->vregs = devm_kcalloc(dev, num, sizeof(*rptr->vregs), GFP_KERNEL);
-+	if (!rptr->vregs)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < num; i++)
-+		rptr->vregs[i].supply = rptr->cfg->vreg_list[i];
-+
-+	return devm_regulator_bulk_get(dev, num, rptr->vregs);
-+}
-+
-+static int qcom_eusb2_repeater_cfg_init(struct qcom_eusb2_repeater *rptr)
-+{
-+	const struct qcom_eusb2_repeater_init_tbl *init_tbl = rptr->cfg->init_tbl;
-+	int num = rptr->cfg->init_tbl_num;
-+	int i;
-+
-+	for (i = 0; i < num; i++)
-+		regmap_update_bits(rptr->regmap, rptr->base + init_tbl[i].offset,
-+					init_tbl[i].val, init_tbl[i].val);
-+	return 0;
-+}
-+
-+static int qcom_eusb2_repeater_init(struct usb_repeater *r)
-+{
-+	struct qcom_eusb2_repeater *rptr = to_qcom_eusb2_repeater(r);
-+	int ret = 0;
-+	u32 val;
-+
-+	qcom_eusb2_repeater_cfg_init(rptr);
-+
-+	if (r->flags & PHY_HOST_MODE) {
-+		/*
-+		 * CM.Lx is prohibited when repeater is already into Lx state as
-+		 * per eUSB 1.2 Spec. Below implement software workaround until
-+		 * PHY and controller is fixing seen observation.
-+		 */
-+		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_EN_5,
-+				F_CLK_19P2M_EN, F_CLK_19P2M_EN);
-+		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_VAL_5,
-+				V_CLK_19P2M_EN, V_CLK_19P2M_EN);
-+	} else {
-+		/*
-+		 * In device mode clear host mode related workaround as there
-+		 * is no repeater reset available, and enable/disable of
-+		 * repeater doesn't clear previous value due to shared
-+		 * regulators (say host <-> device mode switch).
-+		 */
-+		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_EN_5,
-+				F_CLK_19P2M_EN, 0);
-+		regmap_update_bits(rptr->regmap, rptr->base + EUSB2_FORCE_VAL_5,
-+				V_CLK_19P2M_EN, 0);
-+	}
-+
-+	ret = regmap_read_poll_timeout(rptr->regmap, rptr->base + EUSB2_RPTR_STATUS, val,
-+					val & RPTR_OK, 10, 5);
-+	if (ret)
-+		dev_err(r->dev, "initialization timed-out\n");
-+
-+	return ret;
-+}
-+
-+static int qcom_eusb2_repeater_reset(struct usb_repeater *r, bool assert)
-+{
-+	struct qcom_eusb2_repeater *rptr = to_qcom_eusb2_repeater(r);
-+
-+	return regmap_update_bits(rptr->regmap, rptr->base + EUSB2_EN_CTL1,
-+				EUSB2_RPTR_EN, assert ? EUSB2_RPTR_EN : 0x0);
-+}
-+
-+static int qcom_eusb2_repeater_power_on(struct usb_repeater *r)
-+{
-+	struct qcom_eusb2_repeater *rptr = to_qcom_eusb2_repeater(r);
-+
-+	return regulator_bulk_enable(rptr->cfg->num_vregs, rptr->vregs);
-+}
-+
-+static int qcom_eusb2_repeater_power_off(struct usb_repeater *r)
-+{
-+	struct qcom_eusb2_repeater *rptr = to_qcom_eusb2_repeater(r);
-+
-+	return regulator_bulk_disable(rptr->cfg->num_vregs, rptr->vregs);
-+}
-+
-+static int qcom_eusb2_repeater_probe(struct platform_device *pdev)
-+{
-+	struct qcom_eusb2_repeater *rptr;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node;
-+	u32 res;
-+	int ret;
-+
-+	node = dev->of_node;
-+
-+	rptr = devm_kzalloc(dev, sizeof(*rptr), GFP_KERNEL);
-+	if (!rptr)
-+		return -ENOMEM;
-+
-+	rptr->repeater.dev = dev;
-+	dev_set_drvdata(dev, rptr);
-+
-+	/* Get the specific init parameters of QMP phy */
-+	rptr->cfg = of_device_get_match_data(dev);
-+	if (!rptr->cfg)
-+		return -EINVAL;
-+
-+	rptr->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!rptr->regmap)
-+		return -ENXIO;
-+
-+	ret = of_property_read_u32(node, "reg", &res);
-+	if (ret < 0)
-+		return ret;
-+
-+	rptr->base = res;
-+
-+	ret = qcom_eusb2_repeater_init_vregs(rptr);
-+	if (ret < 0) {
-+		dev_err(dev, "unable to get supplies\n");
-+		return ret;
-+	}
-+
-+	rptr->repeater.init		= qcom_eusb2_repeater_init;
-+	rptr->repeater.reset		= qcom_eusb2_repeater_reset;
-+	rptr->repeater.power_on		= qcom_eusb2_repeater_power_on;
-+	rptr->repeater.power_off	= qcom_eusb2_repeater_power_off;
-+
-+	return usb_add_repeater_dev(&rptr->repeater);
-+}
-+
-+static int qcom_eusb2_repeater_remove(struct platform_device *pdev)
-+{
-+	struct qcom_eusb2_repeater *rptr = platform_get_drvdata(pdev);
-+
-+	if (!rptr)
-+		return 0;
-+
-+	usb_remove_repeater_dev(&rptr->repeater);
-+	qcom_eusb2_repeater_power_off(&rptr->repeater);
-+	return 0;
-+}
-+
-+static const struct of_device_id qcom_eusb2_repeater_id_table[] = {
-+	{
-+		.compatible = "qcom,pm8550b-eusb2-repeater",
-+		.data = &pm8550b_eusb2_cfg,
-+	},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, qcom_eusb2_repeater_id_table);
-+
-+static struct platform_driver qcom_eusb2_repeater_driver = {
-+	.probe		= qcom_eusb2_repeater_probe,
-+	.remove		= qcom_eusb2_repeater_remove,
-+	.driver = {
-+		.name	= "qcom-pmic-eusb2-repeater",
-+		.of_match_table = of_match_ptr(qcom_eusb2_repeater_id_table),
-+	},
-+};
-+
-+module_platform_driver(qcom_eusb2_repeater_driver);
-+MODULE_DESCRIPTION("Qualcomm PMIC eUSB2 repeater driver");
-+MODULE_LICENSE("GPL");
+Fabien Parent (4):
+      dt-bindings: input: mtk-pmic-keys: add binding for MT6357 PMIC
+      regulator: dt-bindings: Add binding schema for mt6357 regulators
+      regulator: add mt6357 regulator
+      Input: mtk-pmic-keys: add MT6357 support
+
+ .../bindings/input/mediatek,pmic-keys.yaml         |   1 +
+ .../devicetree/bindings/leds/leds-mt6323.txt       |   2 +-
+ .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 105 +++++
+ Documentation/devicetree/bindings/mfd/mt6397.txt   |   4 +-
+ .../regulator/mediatek,mt6357-regulator.yaml       | 293 +++++++++++++
+ .../bindings/rtc/mediatek,mt6397-rtc.yaml          |  44 ++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt         |  31 --
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml      | 145 +++++++
+ .../devicetree/bindings/soc/mediatek/pwrap.txt     |  75 ----
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi           |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi       |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts        |   2 +-
+ drivers/input/keyboard/mtk-pmic-keys.c             |  17 +
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/mt6357-regulator.c               | 454 +++++++++++++++++++++
+ include/linux/regulator/mt6357-regulator.h         |  51 +++
+ 17 files changed, 1128 insertions(+), 114 deletions(-)
+---
+base-commit: e7f535c0775b896befb4f6765c02bc065fd26156
+change-id: 20221005-mt6357-support-55308b82e33f
+
+Best regards,
 -- 
-2.34.1
-
+Alexandre Mergnat <amergnat@baylibre.com>
