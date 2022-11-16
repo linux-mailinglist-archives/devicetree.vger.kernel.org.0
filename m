@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1435A62B598
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B04462B5A2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:53:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232934AbiKPIv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:51:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48902 "EHLO
+        id S232434AbiKPIxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:53:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232045AbiKPIv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:51:26 -0500
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A18C19C17;
-        Wed, 16 Nov 2022 00:51:25 -0800 (PST)
-Received: by mail-qk1-f170.google.com with SMTP id x21so11219429qkj.0;
-        Wed, 16 Nov 2022 00:51:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bQu4Kk2VsAJA/MwzBFNdfwCCKiskjqEECAV5YXUKBl0=;
-        b=3+SdDdWVIdgHg+BPtj0En8ex0aZMy0RY/vOFu35sOKrh/n9NOTngM87XsiVq/11cIf
-         myAQoz7gL8gydwPjj1s1LD9CrSlPyZJCwlzrDoU2cPZZXSU1ZJRf7b0PJO3/iFlVK+J5
-         27TUyBzpJFPtLEYMiaJsztNRVuUmDiAuoLAwiv471dbF+ztDs/8t9uuwvGDxZ9EELUIz
-         9+ciYFMRAlHqz1Vs9shyF1OFmftD5r2bJYSPCykECOa5kPYsyktHscXWGLOL6MYWdqeM
-         BXNCE08TueczSxcrm58lCamlLwNd03xfxMURFIgUjvTdkqKJxvK1gYuq1RE1oa0YbeIV
-         BnuQ==
-X-Gm-Message-State: ANoB5pm1LusAugHc//IVHMzczl+2bxDAUxMDp2kcz4MKZ36vzzFmluJJ
-        xH2TpXzRSIzsZ+G2TJWEWkvUtldHjkwKSA==
-X-Google-Smtp-Source: AA0mqf7xKyaPimgenMIqplwMStWHpyoWD+X4MgPtzcG2aaUVND4AHhhfv37J5ZPzn/Gb0nkCRZxQ6Q==
-X-Received: by 2002:a05:620a:15ae:b0:6ea:3fa0:bbfb with SMTP id f14-20020a05620a15ae00b006ea3fa0bbfbmr18218551qkk.473.1668588684352;
-        Wed, 16 Nov 2022 00:51:24 -0800 (PST)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id bp32-20020a05620a45a000b006fbaf9c1b70sm376197qkb.133.2022.11.16.00.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 00:51:24 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-382f0906929so69848417b3.10;
-        Wed, 16 Nov 2022 00:51:23 -0800 (PST)
-X-Received: by 2002:a81:4ed2:0:b0:370:202b:f085 with SMTP id
- c201-20020a814ed2000000b00370202bf085mr20953147ywb.502.1668588683661; Wed, 16
- Nov 2022 00:51:23 -0800 (PST)
+        with ESMTP id S232714AbiKPIxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:53:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1D671AF0C;
+        Wed, 16 Nov 2022 00:52:58 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 836136602A81;
+        Wed, 16 Nov 2022 08:52:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668588777;
+        bh=R54KFgfJ4OyE41N0DG1cL5j9FFmQznXDsqIoA3UGQDY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=c6Jn+VDJtkIr5H1tDQxeKd+KUFZByR+oF+vyiouOd36xqQmoQIZ7LoDbwbhLcxnPu
+         8h0IT31HYSMWn7EUUsQGY6PaiRVPmsuJm4qVGFlwTL/OLODlDIZTuSgA0NOUJZXjX6
+         I58WUBSs3XzrTAWN6i0j//d+s7FEkweMhXRWboLNz/CYg13LVQoVRL/mvo2/dQONfi
+         cXz3udX/DAzhDaJ2byyD160sgrzblRMUKPzYEp5LxZ52yQ2EgRah4Dgnqh7IX+p2Hf
+         J3x+NpMUT7hehLLK1q19Pw6gTW8MXUCXv4vRFkCkJgU1UnZa/5U38scPNvCv2gWRoC
+         2Fptt47jpO4vQ==
+Message-ID: <9f3e88fa-0aaf-2edd-366e-c3f5b2269dba@collabora.com>
+Date:   Wed, 16 Nov 2022 09:52:54 +0100
 MIME-Version: 1.0
-References: <20221114111513.1436165-1-herve.codina@bootlin.com> <20221114111513.1436165-7-herve.codina@bootlin.com>
-In-Reply-To: <20221114111513.1436165-7-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 16 Nov 2022 09:51:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUzRqaAYZou5y6GivUcTfSAOx=ETDZXHhdK=iTGohUZNQ@mail.gmail.com>
-Message-ID: <CAMuHMdUzRqaAYZou5y6GivUcTfSAOx=ETDZXHhdK=iTGohUZNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] ARM: dts: r9a06g032: Add the USBF controller node
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 05/11] dt-bindings: mailbox: qcom: Allow syscon on
+ qcom,msm8976-apcs-kpss-global
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
+        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        evgreen@chromium.org, gregkh@linuxfoundation.org,
+        a39.skl@gmail.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-iio@vger.kernel.org, linux-hardening@vger.kernel.org,
+        marijn.suijten@somainline.org, kernel@collabora.com, luca@z3ntu.xyz
+References: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
+ <20221111120156.48040-6-angelogioacchino.delregno@collabora.com>
+ <14947ae2-c8d4-de86-ce9e-29175e73cbb2@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <14947ae2-c8d4-de86-ce9e-29175e73cbb2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 12:15 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> Add the USBF controller available in the r9a06g032 SoC.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Il 15/11/22 17:44, Krzysztof Kozlowski ha scritto:
+> On 11/11/2022 13:01, AngeloGioacchino Del Regno wrote:
+>> MSM8976 supports SMSM, which needs this node to also be a syscon:
+>> move the compatible to allow that.
+>>
+>> Fixes: bcc8d70f912d ("dt-bindings: mailbox: Add compatible for the MSM8976")
+> 
+> I am not sure if this is still a bug. Maybe just a missing feature?
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This changes how you use this mailbox across the entire devicetree (as other
+nodes will not use mboxes = xxxx, but qcom,ipc = xxxx as syscon), so I think
+that this is not a missing feature?
 
-Gr{oetje,eeting}s,
+Cheers,
+Angelo
 
-                        Geert
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+> Best regards,
+> Krzysztof
+> 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
