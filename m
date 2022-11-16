@@ -2,156 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3951562C04F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1607F62C052
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233324AbiKPOA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 09:00:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37824 "EHLO
+        id S233719AbiKPOAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 09:00:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233712AbiKPN6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:58:20 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DDC419B4;
-        Wed, 16 Nov 2022 05:55:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1668606948; x=1700142948;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2JheLyRTgEp/3V42HChIgGKvaXCBJQLuWjCkgE/1vaY=;
-  b=BoNQr3m+TkjmLWiTOpUobVVwnSZiJb70sK3DanlV5lMEC/lbOYOischw
-   vuiLckEyUFRBJUoIoWu7wWViY5Yk4edLhYp2EsBqb/d2J7TI/C+FjeFB+
-   bpI9M86su9noWL7QYKxpWjin83i2SGwKAuXj6A8FV5ft9hP56e+12PqoO
-   1pH7j1Mmytko+sRepZi1FS9D3p++ip16sMxNhcc7EEqC51Sg5hYQbEP0m
-   cZXQap6SFAltn+Vy6D5bQSR+03aTRBITL72NpmBaspzN1cesCzxoCIPp3
-   Voiyp9ms35bZ+wP98shQdoN6eyNLpdAMIQ/+DJdP4gvuyXeNslhkIOGD5
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
-   d="scan'208";a="189213731"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Nov 2022 06:55:47 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 16 Nov 2022 06:55:38 -0700
-Received: from daire-X570.amer.actel.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Wed, 16 Nov 2022 06:55:36 -0700
-From:   <daire.mcnamara@microchip.com>
-To:     <conor.dooley@microchip.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <paul.walmsley@sifive.com>,
-        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>
-Subject: [PATCH v1 9/9] riscv: dts: microchip: add parent ranges and dma-ranges for IKRD v2022.09
-Date:   Wed, 16 Nov 2022 13:55:04 +0000
-Message-ID: <20221116135504.258687-10-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221116135504.258687-1-daire.mcnamara@microchip.com>
-References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+        with ESMTP id S233391AbiKPN6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:58:18 -0500
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF981EC40
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:55:08 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id C320C3EBDC;
+        Wed, 16 Nov 2022 14:55:05 +0100 (CET)
+Date:   Wed, 16 Nov 2022 14:55:04 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] docs: dt: writing-schema: Document usage of CHECK_DTBS
+ make flag
+Message-ID: <20221116135504.mdmgm6ce2cynt5yt@SoMainline.org>
+References: <20221102214300.309347-1-nfraprado@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221102214300.309347-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Nícolas,
 
-we have replaced the "microchip,matro0" hack property with what was
-suggested by Rob - create a parent bus and use ranges and dma-ranges in
-the parent bus and pcie device to achieve the address translations we
-need. Add the appropriate ranges and dma-ranges for the v2022.09 IKRD
-so that it remains functional.
+On 2022-11-02 17:43:00, Nícolas F. R. A. Prado wrote:
+> It is possible to run checks on a Devicetree by passing the CHECK_DTBS
+> flag when building. This is a useful shortcut to the dtbs_check make
+> target since it avoids checking unrelated Devicetrees, which can take
+> some time and is unnecessary if no bindings were modified. Document it.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> ---
+> 
+>  Documentation/devicetree/bindings/writing-schema.rst | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+> index 4a381d20f2b4..55ad556472b4 100644
+> --- a/Documentation/devicetree/bindings/writing-schema.rst
+> +++ b/Documentation/devicetree/bindings/writing-schema.rst
+> @@ -167,6 +167,13 @@ setting the ``DT_SCHEMA_FILES`` variable to a specific schema file or pattern.
+>      make dt_binding_check DT_SCHEMA_FILES=/gpio/
+>      make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
+>  
+> +Note that ``make dtbs_check`` will validate every DT source file that is
+> +enabled. When making changes to a DT but not to the bindings, a possible
+> +shortcut to validate only the DT in question is to explicitly build it with
+> +the ``CHECK_DTBS`` flag enabled. For example::
+> +
+> +    make CHECK_DTBS=y mediatek/mt8192-evb.dtb
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
----
- .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 62 +++++++++++--------
- 1 file changed, 35 insertions(+), 27 deletions(-)
+I have a bit of trouble getting this to work on a _clean_ out directory
+(perhaps this should have been reported at the original patch, I had
+always been using Dmitry's version [1] which didn't suffer from this
+problem).
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-index 1069134f2e12..51ce87e70b33 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-@@ -26,33 +26,41 @@ i2c2: i2c@40000200 {
- 		status = "disabled";
- 	};
- 
--	pcie: pcie@3000000000 {
--		compatible = "microchip,pcie-host-1.0";
--		#address-cells = <0x3>;
--		#interrupt-cells = <0x1>;
--		#size-cells = <0x2>;
--		device_type = "pci";
--		reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
--		reg-names = "cfg", "apb";
--		bus-range = <0x0 0x7f>;
--		interrupt-parent = <&plic>;
--		interrupts = <119>;
--		interrupt-map = <0 0 0 1 &pcie_intc 0>,
--				<0 0 0 2 &pcie_intc 1>,
--				<0 0 0 3 &pcie_intc 2>,
--				<0 0 0 4 &pcie_intc 3>;
--		interrupt-map-mask = <0 0 0 7>;
--		clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
--		clock-names = "fic1", "fic3";
--		ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
--		dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x1 0x00000000>;
--		msi-parent = <&pcie>;
--		msi-controller;
--		status = "disabled";
--		pcie_intc: interrupt-controller {
--			#address-cells = <0>;
--			#interrupt-cells = <1>;
--			interrupt-controller;
-+	fabric-pcie-bus {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>,
-+			 <0x30 0x0 0x30 0x0 0x10 0x0>;
-+		dma-ranges = <0x0 0x0 0x10 0x0 0x0 0x80000000>;
-+		pcie: pcie@3000000000 {
-+			compatible = "microchip,pcie-host-1.0";
-+			#address-cells = <0x3>;
-+			#interrupt-cells = <0x1>;
-+			#size-cells = <0x2>;
-+			device_type = "pci";
-+			reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
-+			reg-names = "cfg", "apb";
-+			bus-range = <0x0 0x7f>;
-+			interrupt-parent = <&plic>;
-+			interrupts = <119>;
-+			interrupt-map = <0 0 0 1 &pcie_intc 0>,
-+					<0 0 0 2 &pcie_intc 1>,
-+					<0 0 0 3 &pcie_intc 2>,
-+					<0 0 0 4 &pcie_intc 3>;
-+			interrupt-map-mask = <0 0 0 7>;
-+			clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
-+			clock-names = "fic1", "fic3";
-+			ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
-+			dma-ranges = <0x3000000 0x10 0x0 0x0 0x0 0x0 0x80000000>;
-+			msi-parent = <&pcie>;
-+			msi-controller;
-+			status = "disabled";
-+			pcie_intc: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
- 		};
- 	};
- 
--- 
-2.25.1
+Consider running with the following:
 
+    rm out -r
+    make ARCH=arm64 O=out defconfig
+    make ARCH=arm64 O=out CHECK_DTBS=y qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+
+After compiling preliminaries, it exits with:
+
+    make[3]: *** No rule to make target 'arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb'.  Stop.
+    make[2]: *** [../scripts/Makefile.build:500: arch/arm64/boot/dts/qcom] Error 2
+    make[1]: *** [/kernel/Makefile:1460: qcom/sm8450-sony-xperia-nagara-pdx223.dtb] Error 2
+    make[1]: Leaving directory '/kernel/out'
+    make: *** [Makefile:231: __sub-make] Error 2
+
+However, if I lint all DTBs first by running `dtbs_check`, it seems the
+schema preliminaries are built:
+
+      LINT    Documentation/devicetree/bindings
+      CHKDT   Documentation/devicetree/bindings/processed-schema.json
+    ... bunch of warnings
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+
+And here I ctrl+c the build so that it doesn't run DTC_CHK over every
+dts.  If I now re-run the original command on my .dtb of choice, it
+completes successfully with the warnings that I expect.  Is the logic
+behind `CHECK_DTBS=y` simply missing a step to make sure SCHEMA is built
+and up-to-date?
+
+Aside from not working in a clean output directly, could this imply
+schema changes (edits in Documentation/devicetree/bindings) _are not_
+propagated when running with `CHECK_DTBS=y?
+
+At the same time running this command twice results in no output the
+second time around, supposedly because the dtb has "already been built".
+Is that also something we can improve?
+
+[1]: https://lore.kernel.org/linux-arm-msm/20220623144357.297252-1-dmitry.baryshkov@linaro.org/
+
+Thanks!
+- Marijn
