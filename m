@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 545CE62BBE8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:27:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF95A62BBED
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239079AbiKPL1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 06:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42334 "EHLO
+        id S232714AbiKPL2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 06:28:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239345AbiKPL1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:27:09 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C42FE2CC80
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:52 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id w14so29352196wru.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:52 -0800 (PST)
+        with ESMTP id S239365AbiKPL1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:27:13 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0E549B5B
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:55 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id u2so21392270ljl.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xv65Uj0lvJ7ZIlYIMtfh5eKQNGbhyUH7PS0XoMqmdlg=;
-        b=dC8T0lJ8VNoqDp/KEM31NZucVyyaplfQBRTiy2+x1bxi2bSQak4K/bh1RZ2H3MAy/i
-         sox0U5wyiwIVfBI/nfXe03k10vwb+UKs/2L0CPzmZ2cQSPLWENHKxntGWgZ4qd5Udrdx
-         tzvbbd3Q09qlvLup+uikNp1oK1NR1/J4EgTSmsBSsLSfNZOewYuMhPAj2MRc1fnnJGJ5
-         5XY1DQ+CM40+mldq+RR1DyyNH1ZS16kl+BaOZA9UXBuiHYh9IJTVOF7A/zf03l9tvCjX
-         ANY9Gbz3vibVWoV6tS1V453ibdiCaZizsK6GBCPxk6+n8yEByrUO54v4wzNHoqV8fEp1
-         ADbw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HNTQm918GnzrVFvHaG2cCX0HljXizRwtvL1RYr9iO4o=;
+        b=jP/Joglg3jT+bC9iKaZOesQ16dI3pfrJrjdjpwitrzJhWlMSHCXDcNMyJ/dyiiue9N
+         u3/e/OGXJpKGo3rSk13PzWA6RhicMVpEv9T1rt5RncZcd2zuGoM8C1exKlqwBDNWcho8
+         4reOruQZpTVCSoh/O3Bo1GSS2VMkyQZma5UmPR4ct1UjRw8mmCj9I9xohc2ngGtcGlsF
+         T30BBHqWQY7UcB9RdZpf/6aMf1LYM4jlRFlHttdZsarD2Va0CLYpbOM4N39mKrGLsy4P
+         qey1/qcF5WlF6wRQACZjJ85Sy+urPCPkMFhhYjyMWoJb5fCgrj/cbnkPyXSvx1oLmx5j
+         Pw2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xv65Uj0lvJ7ZIlYIMtfh5eKQNGbhyUH7PS0XoMqmdlg=;
-        b=UIdnWf0t2AydmDuzKd1YD65mQ3iTmrn0x8CiRT8FT0MFHs1vkEeSIH5s7938VvXbln
-         T3iClYMUunoTIZhBFBcIDLBTd4qjIBGYDUxxfQrwCV2jVWNb70/QT3YuTW6wEa7LX5T6
-         GaAoWRoaa0CNec7hKT4oh/Boo4VliJ4c1NFIEL1Vgvb3WKLvjRwpciiYwOY7G43dP2OQ
-         1eSCEXs2JCNlrvz0cYPzCc3a2tP77oDBbp7nkatUj4RFOP8eGrUUDLJO5tTiv1S1lmmj
-         f1hMw9w9PXg24AgTgjRHI6fVMgZho74/dA1NQFC3Z8GfmpdkSgwXNuwuhJ+jS2Fsp5v4
-         HA7A==
-X-Gm-Message-State: ANoB5pkwa9crmHOmk2g74U1s9NZ5Tg48eXtDauvSDeNohGYkFvF2WbuB
-        8v78GDZrUuXA9ZwMSDKd+5kVSg==
-X-Google-Smtp-Source: AA0mqf4LgI5U0WpW7diSpCRvNaeoXqO1OTmQkqBgDOFAvexpGou/te6aXT2KUA8xGTq6CCmCfCp+5w==
-X-Received: by 2002:adf:a51d:0:b0:236:6302:2237 with SMTP id i29-20020adfa51d000000b0023663022237mr13831237wrb.519.1668597471298;
-        Wed, 16 Nov 2022 03:17:51 -0800 (PST)
-Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b003c6f8d30e40sm1875870wmq.31.2022.11.16.03.17.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 03:17:50 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 2/2] soc: qcom: rpmhpd: Add SM8550 power domains
-Date:   Wed, 16 Nov 2022 13:17:45 +0200
-Message-Id: <20221116111745.2633074-3-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221116111745.2633074-1-abel.vesa@linaro.org>
-References: <20221116111745.2633074-1-abel.vesa@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HNTQm918GnzrVFvHaG2cCX0HljXizRwtvL1RYr9iO4o=;
+        b=0Px0loqwayUw/f4n15JK0PW1slEk1wuZuT0FtghHNcnYtyKWjvGTQhfhAY53FLxuEd
+         jON9f+pcecCwx4lqkyxf0wRY1Xe5/2XNIG9Mtgakqqdar25qpaD3+RxFnh0kr6vpwhFa
+         T+mQOj4tgZ0VRgrKND403j3IFC4m/vnYrwYLhqa4+FC7V3kcZ0jOQF/QCUOqymJFrc/J
+         wTd+J9TyyrjGwBhbyLpAV6Yy0zO0eCKp8Dz/pYOTMLRotwveWXfb/qvE4NzrRh+28MAu
+         cltl6lM0V6JrOiIk4VSNnWDXV4/re/gBBmzUNFKRnxf3x0BucSFJK1LQXvG41f+Xhj5D
+         uDhQ==
+X-Gm-Message-State: ANoB5plxI9Lqd4Nf6bcamo9356jmfofQmhVtQxt3UQCO/HWmVyDGYqp2
+        rHrwdq9JSqrA6jVCCFX5VW914g==
+X-Google-Smtp-Source: AA0mqf4OeDMDDKMmNxiPmB+hOjZtrn0d0m8kifVb6QElvA/0XKadCTFgrZzAQ7sy+8Gb8IFKWMdzcA==
+X-Received: by 2002:a2e:7219:0:b0:277:5e9d:508a with SMTP id n25-20020a2e7219000000b002775e9d508amr8051775ljc.191.1668597473995;
+        Wed, 16 Nov 2022 03:17:53 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b41-20020a0565120ba900b004aa255e2e66sm2536474lfv.241.2022.11.16.03.17.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 03:17:53 -0800 (PST)
+Message-ID: <2ca3260e-f3f6-cd69-96c7-e971fa757968@linaro.org>
+Date:   Wed, 16 Nov 2022 12:17:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 5/7] dt-bindings: pinctrl: qcom,pmic-gpio: document
+ pmr735d
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-spmi-v1-0-6338a2b4b241@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-spmi-v1-5-6338a2b4b241@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-spmi-v1-5-6338a2b4b241@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,55 +84,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the power domains exposed by RPMH in the Qualcomm SM8550 platform.
+On 16/11/2022 11:11, Neil Armstrong wrote:
+> Document compatible, pin count & pin names for pmr735d.
+> 
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/soc/qcom/rpmhpd.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Squash with previous.
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index 7af68cd720f5..4c2d2c296790 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -372,6 +372,29 @@ static const struct rpmhpd_desc sm8450_desc = {
- 	.num_pds = ARRAY_SIZE(sm8450_rpmhpds),
- };
- 
-+/* SM8550 RPMH powerdomains */
-+static struct rpmhpd *sm8550_rpmhpds[] = {
-+	[SM8550_CX] = &cx,
-+	[SM8550_CX_AO] = &cx_ao,
-+	[SM8550_EBI] = &ebi,
-+	[SM8550_GFX] = &gfx,
-+	[SM8550_LCX] = &lcx,
-+	[SM8550_LMX] = &lmx,
-+	[SM8550_MMCX] = &mmcx_w_cx_parent,
-+	[SM8550_MMCX_AO] = &mmcx_ao_w_cx_parent,
-+	[SM8550_MSS] = &mss,
-+	[SM8550_MX] = &mx,
-+	[SM8550_MX_AO] = &mx_ao,
-+	[SM8550_MXC] = &mxc,
-+	[SM8550_MXC_AO] = &mxc_ao,
-+	[SM8550_NSP] = &nsp,
-+};
-+
-+static const struct rpmhpd_desc sm8550_desc = {
-+	.rpmhpds = sm8550_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sm8550_rpmhpds),
-+};
-+
- /* QDU1000/QRU1000 RPMH powerdomains */
- static struct rpmhpd *qdu1000_rpmhpds[] = {
- 	[QDU1000_CX] = &cx,
-@@ -477,6 +500,7 @@ static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sm8250-rpmhpd", .data = &sm8250_desc },
- 	{ .compatible = "qcom,sm8350-rpmhpd", .data = &sm8350_desc },
- 	{ .compatible = "qcom,sm8450-rpmhpd", .data = &sm8450_desc },
-+	{ .compatible = "qcom,sm8550-rpmhpd", .data = &sm8550_desc },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, rpmhpd_match_table);
--- 
-2.34.1
+Best regards,
+Krzysztof
 
