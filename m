@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96BD062C351
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9E262C35A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233207AbiKPQBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:01:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        id S230109AbiKPQDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233700AbiKPQB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:01:29 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8557153EF4
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:01:24 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id x102so11999966ede.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:01:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VIV75wNnCPbzwvH7ChYo7kSS0/eQ3KOW9AfeTJ6iGkc=;
-        b=FrLLVNjTm4SqrVKr+XuSt7/T63gbvCEBLNffS8eurew5YXwp8dSbM6qWjPf2R+qRxM
-         evhqVXYtbyvuc8I0qtzi/bzBHD5qLur7CxBuVV2R4JIR6BcIF+SuTh/tD/URKNRtY2JT
-         RsFvGiiwBB2xNAkrhqYhKY22RB7+G6Nrh7p5MKs0FIkDP66B/uk7+YVB6EZ41dXSBlRY
-         Yk2dd6krHNLkdefhgzPjPB2J83Qj/LGRW6Ps0l7b7WrZ1xWleCvldL7HQUkda4OYFJpM
-         3rmZI7jn7JSa1+O/nZVwwOxvIz1Z/GfvqA4ldPmD5zywQfhC2XHC+0ckrsRang2p/Fp7
-         DkOg==
+        with ESMTP id S233743AbiKPQDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:03:19 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFE9651C01;
+        Wed, 16 Nov 2022 08:03:17 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so20579058fac.5;
+        Wed, 16 Nov 2022 08:03:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=VIV75wNnCPbzwvH7ChYo7kSS0/eQ3KOW9AfeTJ6iGkc=;
-        b=z1YDyoMX+mbtf4067oSMT37pRrVejpHZO2wvnWcXVRP6Uuns6JaR8d2BXrxDKWBVV+
-         R6aRM4mIFKNWiiKOht05GpgjAqUgEw+DDOkmcxAdNEkgmVOjCt+9ZDGHivv556T5DLvQ
-         BYlV7ajqiIoWvCGl+6yp8oIPEJqC9KalwCeaIeencEyt4RVEyIlREiwHuEi1R2twB0+4
-         SIzQivbfOyr/5u4/BRwCED+Z7xzDbaIQXr7Xqi6xgBeRPC6IKAQuK0DP0S3WY0dG+wsJ
-         EbyfFqoewYM2Srt39I0PyrJaJHy2m6fR4spTz2Dm+GbtvWabie1KGZdlkPL/jKsDb0T9
-         EOjA==
-X-Gm-Message-State: ANoB5pnvTLKe+RG0QMcmqXLmCaw+dl+3RLcVnSOpqzHWi3e9C09DiDLe
-        spjPWLd7AeYw5qlwQcoUzJxHCA==
-X-Google-Smtp-Source: AA0mqf6BXOrEVM2K+Vd+t/gDm6LdCdIqqZ49jzDZrRXjHcilB7s2fKW+8tFqgFtUCZws1HXnb05rDQ==
-X-Received: by 2002:aa7:c446:0:b0:468:74:9820 with SMTP id n6-20020aa7c446000000b0046800749820mr10284055edr.288.1668614482738;
-        Wed, 16 Nov 2022 08:01:22 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id lv18-20020a170906bc9200b007415f8ffcbbsm7056799ejb.98.2022.11.16.08.01.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 08:01:22 -0800 (PST)
-Message-ID: <df407bc1-63af-c188-3ae2-622641abcbf6@linaro.org>
-Date:   Wed, 16 Nov 2022 17:01:14 +0100
+        bh=GFur9ztajNJgyC/h1WU/MLh+XU5LTzLRomeO0X20AEM=;
+        b=nAdYWgu6ksaQGxmZLQFkwfjolPuBZ7h+7Qjy+RGp7YW4fdB+l9la2fjNrTSPFTM3Ox
+         hffAH4WeZJnW80YnkMqa6bBg8xITtdpgqSRplGkIYAlZnQ6zrsWvRuCRf3a3l2lV6rYy
+         slEMig4m76eyXS/mgL8aJuvlPjPyu1qW3H/uiscDkBewiO7k6XmYZbMJibi1kt0KFWzC
+         Plmua8VsHFcWIH0z/KHSxECdg4Zr2RFoRrhCXL6o6GnTEtWHNSsygRUkBVAcY0Om6UDf
+         oET7HoN6XuTJs1yXeVNgTs7pixu93cleyDBhO7ZzZiCxVcRRJ7xo+xIx6v59Wja9fzm7
+         8c7A==
+X-Gm-Message-State: ANoB5plset6OgEQjCViql+3+SgVap61xyZmNPy/NVAJv1aJbJOVXwNcw
+        0ecUCGr9r/pCYOr2r/ftJw==
+X-Google-Smtp-Source: AA0mqf5XdhzHlaYo1ZV4BEyVQHRU/bRF0T8tEBEf7/gwzL9OR8nfhFXlbYyBvHSwysBdzNF8BwK8yQ==
+X-Received: by 2002:a05:6870:f10f:b0:137:5344:7776 with SMTP id k15-20020a056870f10f00b0013753447776mr2013082oac.208.1668614596948;
+        Wed, 16 Nov 2022 08:03:16 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n19-20020a9d7413000000b0066cb9069e0bsm6863694otk.42.2022.11.16.08.03.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 08:03:16 -0800 (PST)
+Received: (nullmailer pid 158015 invoked by uid 1000);
+        Wed, 16 Nov 2022 16:03:18 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     linux-input@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        linux-leds@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Flora Fu <flora.fu@mediatek.com>, Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tianping Fang <tianping.fang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Brian Masney <bmasney@redhat.com>,
-        Johan Hovold <johan@kernel.org>
-References: <20221116154932.17127-1-quic_ppareek@quicinc.com>
- <20221116154932.17127-3-quic_ppareek@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116154932.17127-3-quic_ppareek@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chen Zhong <chen.zhong@mediatek.com>
+In-Reply-To: <20221005-mt6357-support-v5-5-8210d955dd3d@baylibre.com>
+References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
+ <20221005-mt6357-support-v5-5-8210d955dd3d@baylibre.com>
+Message-Id: <166861435469.151514.16192567175686360100.robh@kernel.org>
+Subject: Re: [PATCH v5 05/10] dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+Date:   Wed, 16 Nov 2022 10:03:18 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,355 +86,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 16/11/2022 16:49, Parikshit Pareek wrote:
-> Introduce the Qualcomm SA8540P ride automotive platform, also known as
-> Qdrive-3 development board.
+On Wed, 16 Nov 2022 13:32:59 +0100, Alexandre Mergnat wrote:
+> Currently, almost all MT63XX PMIC are documented mfd/mt6397.txt.
+> Unfortunately, the PMICs haven't always similar HW sub-features.
+> To have a better human readable schema, I chose to make one PMIC schema
+> to match the exact HW capabilities instead of convert mt6397.txt to
+> mediatek,mt63xx.yaml and put a bunch of properties behind
+> "if contain ... then ..."
 > 
-> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-> regulators, debug UART, PMICs, remoteprocs and USB.
+> - add interrupt property
+> - change property refs to match with new yaml documentation
 > 
-> The SA8540P ride contains four PM8450 PMICs. A separate DTSI file has
-> been created for PMIC, so that it can be used for future SA8540P based
-> boards.
-> 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> Tested-by: Brian Masney <bmasney@redhat.com>
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
-> Tested-by: Eric Chanudet <echanude@redhat.com>
-> Reviewed-by: Eric Chanudet <echanude@redhat.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile         |   1 +
->   arch/arm64/boot/dts/qcom/pm8450a.dtsi     |  77 ++++++++
->   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 219 ++++++++++++++++++++++
->   3 files changed, 297 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/pm8450a.dtsi
->   create mode 100644 arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+>  .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 105 +++++++++++++++++++++
+>  1 file changed, 105 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index afe496a93f94..87a681f15643 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -56,6 +56,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/pm8450a.dtsi b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
-> new file mode 100644
-> index 000000000000..34fc72896761
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
-> @@ -0,0 +1,77 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +&spmi_bus {
-> +	pm8450a: pmic@0 {
-> +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pm8450a_gpios: gpio@c000 {
-> +			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pm8450a_gpios 0 0 10>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pm8450c: pmic@4 {
-> +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-> +		reg = <0x4 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pm8450c_gpios: gpio@c000 {
-> +			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pm8450c_gpios 0 0 10>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pm8450e: pmic@8 {
-> +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-> +		reg = <0x8 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pm8450e_gpios: gpio@c000 {
-> +			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pm8450e_gpios 0 0 10>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pm8450g: pmic@c {
-> +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-> +		reg = <0xc SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pm8450g_gpios: gpio@c000 {
-> +			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pm8450g_gpios 0 0 10>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> new file mode 100644
-> index 000000000000..5262a7cc7fcd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -0,0 +1,219 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "sa8540p.dtsi"
-> +#include "pm8450a.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm SA8540P Ride";
-> +	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
-> +
-> +	aliases {
-> +		serial0 = &qup2_uart17;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm8150-rpmh-regulators";
-> +		qcom,pmic-id = "a";
-> +
-> +		vreg_l3a: ldo3 {
-> +			regulator-name = "vreg_l3a";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1208000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5a: ldo5 {
-> +			regulator-name = "vreg_l5a";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7a: ldo7 {
-> +			regulator-name = "vreg_l7a";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13a: ldo13 {
-> +			regulator-name = "vreg_l13a";
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pm8150-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vreg_l1c: ldo1 {
-> +			regulator-name = "vreg_l1c";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2c: ldo2 {
-> +			regulator-name = "vreg_l2c";
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l4c: ldo4 {
-> +			regulator-name = "vreg_l4c";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1208000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6c: ldo6 {
-> +			regulator-name = "vreg_l6c";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l7c: ldo7 {
-> +			regulator-name = "vreg_l7c";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l17c: ldo17 {
-> +			regulator-name = "vreg_l17c";
-> +			regulator-min-microvolt = <2504000>;
-> +			regulator-max-microvolt = <2504000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +
-> +	regulators-2 {
-> +		compatible = "qcom,pm8150-rpmh-regulators";
-> +		qcom,pmic-id = "g";
-> +
-> +		vreg_l3g: ldo3 {
-> +			regulator-name = "vreg_l3g";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7g: ldo7 {
-> +			regulator-name = "vreg_l7g";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8g: ldo8 {
-> +			regulator-name = "vreg_l8g";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +};
-> +
-> +&qup2 {
-> +	status = "okay";
-> +};
-> +
-> +&qup2_uart17 {
-> +	compatible = "qcom,geni-debug-uart";
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_nsp0 {
-> +	firmware-name = "qcom/sa8540p/cdsp.mbn";
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_nsp1 {
-> +	firmware-name = "qcom/sa8540p/cdsp1.mbn";
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l17c>;
-> +	vcc-max-microamp = <800000>;
-These -microamp properties do not exist upstream.
 
-With that fixed:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+yamllint warnings/errors:
 
-Konrad
-> +	vccq-supply = <&vreg_l6c>;
-> +	vccq-max-microamp = <900000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l8g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_0_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_0_hsphy {
-> +	vdda-pll-supply = <&vreg_l5a>;
-> +	vdda18-supply = <&vreg_l7a>;
-> +	vdda33-supply = <&vreg_l13a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_0_qmpphy {
-> +	vdda-phy-supply = <&vreg_l3a>;
-> +	vdda-pll-supply = <&vreg_l5a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy0 {
-> +	vdda-pll-supply = <&vreg_l5a>;
-> +	vdda18-supply = <&vreg_l7g>;
-> +	vdda33-supply = <&vreg_l13a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_qmpphy0 {
-> +	vdda-phy-supply = <&vreg_l3a>;
-> +	vdda-pll-supply = <&vreg_l5a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&xo_board_clk {
-> +	clock-frequency = <38400000>;
-> +};
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml references a file that doesn't exist: Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml: Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
