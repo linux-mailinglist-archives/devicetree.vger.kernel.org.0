@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CD9762BCC7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A65DD62BCCD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:00:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232584AbiKPL7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 06:59:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46766 "EHLO
+        id S233683AbiKPMA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:00:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231622AbiKPL7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:59:21 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DCAD69
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:50:57 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id l14so29511592wrw.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:50:56 -0800 (PST)
+        with ESMTP id S233912AbiKPMAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:00:02 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2367C5289F
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:52:09 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id a15so21484739ljb.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6jPDIKJUZBHxGJeoj0/C8sMbmIsMxr7SVE4DgWHm9YY=;
-        b=dauxGlns5AnwTSHimiJFbk2VzkM5bX2Y+sYb38tBg5HSxuqB0sGlwju7x1JvwbDOu7
-         GiBgGnUmSKtcz0gx4DeKjsoAtUIaiaeQ5IR0npjRXZbRVquF/qoHo/K/eXTWi324r50m
-         b794EDP0Qrmk0gGsdvjkvrCOz6+hdFtxvrUY6wgp/fPEJ95jU2Wbdo+xDkaff7Aw3b1d
-         vsbW/7d3RcWHjZkIIXy2pJaZenGV5s9ptFPgzb0BvRrKv9/NHcwuHH2k7W0oxrH97r3Y
-         zEPPr0aXHFQBK32sUy3Foyf3p4CeHsE3LzyVLcGAX002uSgUTN/QjIJXrYxqEBz1zuQo
-         8s0A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9l4mQv9bpo9LzKh5UykNs3/PvBpNgjAZ8H6ymHxaNGo=;
+        b=qJGuaKdHbo2gV1Gg1Uu5x7IHAm1tLva5UrbbDI5QDEjpDJYvJHijTlpFVbK1gEkx/Y
+         DEFQ6wW6A+vms0D3V1CU3c7sF10nXfSNZU25BKvbRbZSU8fOnBGu7gutvlqYG5S0qWdU
+         iPoNYwJ7rtkPoLsB5NCV9BbJcoZAbRxt39pTOC0hNjktdM2edzn/JXrpiK7nsBcLqNnL
+         T7Ci7ZLV3l48QSTP1/24oWiGROfwbh+8Mp2JPDUYHvalzjVRFDqmR0o44EmCeT/qStE8
+         q2+6An13wpGskmpS3lsmuKE2IodXou4oQRCI0OtUEEoFw27OrdIdbardCIU7ne6Ii0zo
+         OUZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6jPDIKJUZBHxGJeoj0/C8sMbmIsMxr7SVE4DgWHm9YY=;
-        b=C06OeTerXLbTwv/RF4h128mj3OOXSTzeZhs1/nSvEjM7xRt4dx2dNZaXyhE5kgo2gf
-         hwJNDmq94WUA/t1R2Jf8P3D9dc4inyC4nRGxiqdWHDnW0QzOLuTYxeL0k7kh2jT8h3vR
-         qsJFt9ybzwGtUrs4xLTkjGwxAp06Kox2l3fF+UzPzQO8nSVhWysOpagb//VZpJ0fyb7Y
-         9Z/gv6pJAsJPD4IqRYJMw8M4HNISDB3NX6vN6Bf31n7otKSFP+cMugGs6zfaU3uS9b11
-         a2lMlX1d6fM6SzkRqjaNe48YZs1jplhxQJX6Xji7oIdspt05wbtcYX9Ia7tn2sxKTd8A
-         UR+Q==
-X-Gm-Message-State: ANoB5pnFec2AZNofIyXFaGKqhC8tw/VCfrMsvpA1sKqj13W7us2asi3v
-        UeJd0MDHYIJSbdZM+uEe1VBCtw==
-X-Google-Smtp-Source: AA0mqf6M3TtLZSiU426echhPBBPflnFXiIKqSaDZH0CekD01/gfMNW/Ls51osoSBqsH2dX2DuBBeFw==
-X-Received: by 2002:adf:decc:0:b0:236:69fd:643e with SMTP id i12-20020adfdecc000000b0023669fd643emr13006031wrn.560.1668599455528;
-        Wed, 16 Nov 2022 03:50:55 -0800 (PST)
-Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id v3-20020a1cf703000000b003cf774c31a0sm1745029wmh.16.2022.11.16.03.50.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 03:50:54 -0800 (PST)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SM8550 compatible
-Date:   Wed, 16 Nov 2022 13:50:46 +0200
-Message-Id: <20221116115046.2687244-1-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9l4mQv9bpo9LzKh5UykNs3/PvBpNgjAZ8H6ymHxaNGo=;
+        b=Oc/X87UvaHLIdjQ2vPry3q/EqEbGU3/vx0e4waBxViGhJ3/A6vikn4TDFCYygo07Nh
+         CnlFrwhSgc0QcWZHNtpbUlRi9wdW3WppcXHKauku0vGmwAy2ap28DSc+bqsYaPkKZWBs
+         +wVm5WN3GrGxGpRcDziATwp73iCqL4hwjN0gs26Lr74Ls14U73ceXF7zBaX0nxnbkpju
+         uS9diMStFJQ0SDx11jrliuv8lwo3WHKhyv434nYOIiCTw4aMl7L5NuWoSnKX/4SffxMe
+         fc468df+JYqSb0BjmF+YXO9B+rMEfJiHM0pg3arJ+/1vTKgqFzf+4CsiUzJTXx72WXfR
+         V3ag==
+X-Gm-Message-State: ANoB5pkCny0MwP2DZ/mWRCPMTz8C7tXELxpK0WNrO8t+AQIlRuaTCafY
+        WbAnimNvSHPE2ZzVxwhDuzjj7cJqc/g4wOzF
+X-Google-Smtp-Source: AA0mqf40ymbSD4mZc17qz9uvVeqDU4zca4rDxD4azyNRwWW2p6AjRfYwkg5vNSqxHP173tFCRMK7Og==
+X-Received: by 2002:a05:651c:14d:b0:277:6c39:e543 with SMTP id c13-20020a05651c014d00b002776c39e543mr8173866ljd.513.1668599527466;
+        Wed, 16 Nov 2022 03:52:07 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b3b2a9f506sm2542947lfg.4.2022.11.16.03.52.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 03:52:07 -0800 (PST)
+Message-ID: <9c787dcf-f294-a93e-b357-2c04177b15ba@linaro.org>
+Date:   Wed, 16 Nov 2022 12:52:05 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/4] dt-bindings: qcom-qce: document clocks and
+ clock-names as optional
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-qce-v1-2-31b489d5690a@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-qce-v1-2-31b489d5690a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,39 +86,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for EPSS CPUFREQ-HW on SM8550.
-Also document the interrupts.
+On 16/11/2022 11:23, Neil Armstrong wrote:
+> On certain Snapdragon processors, the crypto engine clocks are enabled by
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- .../devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml       | 7 +++++++
- 1 file changed, 7 insertions(+)
+If by "enabled" you mean "controlled", then looks fine. Otherwise
+without exclusive control by firmware, clock enabled e.g. by firmware or
+bootloader might still be disabled by SoC. Which case is here?
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-index e58c55f78aaa..83d814afc780 100644
---- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-@@ -27,6 +27,7 @@ properties:
-           - enum:
-               - qcom,sm6375-cpufreq-epss
-               - qcom,sm8250-cpufreq-epss
-+              - qcom,sm8550-cpufreq-epss
-           - const: qcom,cpufreq-epss
- 
-   reg:
-@@ -53,6 +54,12 @@ properties:
-       - const: xo
-       - const: alternate
- 
-+  interrupts:
-+    maxItems: 3
-+
-+  interrupt-names:
-+    maxItems: 3
-+
-   '#freq-domain-cells':
-     const: 1
- 
--- 
-2.34.1
+Probably we should have dedicated compatibles for that.
+
+Best regards,
+Krzysztof
 
