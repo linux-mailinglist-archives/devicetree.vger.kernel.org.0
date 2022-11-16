@@ -2,191 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F25962B4EA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D1362B4EE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:20:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233085AbiKPITm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:19:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52038 "EHLO
+        id S231733AbiKPIUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:20:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238629AbiKPITX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:19:23 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CFD12D35
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:19:14 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id l8so20799076ljh.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:19:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s3hmYFJCkTtn3TM6dsGaEPzkn+DVUmQOcvxVNta5NVs=;
-        b=zMdllhrGlGLzNtwjILPgItD3ZBxIAkcTMw7pPs/bw7bvKWrAtrWp6hiduO7xoSROqK
-         ijZD6Lf32PjqTtHwXUolAWJ74/zG3m24/+56zP70itbyj7sFyCMTuNz4qVIryI/xecjW
-         aVmky5mrlC28MzF1rXcT/bkQySdSuGZft4VlvRQ92SuO9rURGJsvMslWtJSYxB89Cgrj
-         H+sJUCf7OJRnCCc1awaGCLpRx2xISkmrEWA+HbxdsZl0I4o9ejpL/31Qz/uS8CRa0eU4
-         jGs9w7Vpblnph8dhPlEfNtohebPYzRsGjU8KU5PQS+WuYUlFBt3zja0dpvalVpNj5nhe
-         uhMQ==
+        with ESMTP id S233230AbiKPIUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:20:19 -0500
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42423266C;
+        Wed, 16 Nov 2022 00:20:17 -0800 (PST)
+Received: by mail-qk1-f173.google.com with SMTP id d7so8762547qkk.3;
+        Wed, 16 Nov 2022 00:20:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3hmYFJCkTtn3TM6dsGaEPzkn+DVUmQOcvxVNta5NVs=;
-        b=dc9QEJjt8+ZRcJzMF8V1pYzAVHYw7HtwuGyXN0fFadYUW1rGNPM5az3No31aC4zoGK
-         cOiBabs5NQft7fekaCXnoh0tx7e5fvqLzInP14MS3v7b2p5MJB+OZVw8dVjRGvm2J7mm
-         QEpjib3hM1dz45bdmFLzkb6ss+dNj6p329KXBXjD4uOshmH2agSF7jqUposB++JVhXrE
-         X7v+nP3KAyx1sYG+8ChIY+49NWCPVfVb7MIvjFO2bhMNoHcB1X/dPjOfsbUvmzcSE94C
-         vo9/tPHQwlZOBzVmWpjtea7Qsn9XsscuIHm3qmne+dEJzEgj8yhvh1Ago6yIfa/4T3GC
-         d0iA==
-X-Gm-Message-State: ANoB5pllTjz9Aex0ICKL6KWY5iCo6Y8hJxC68n223fKHOpaR3l1+kKdB
-        +NcU036Sd4EYRjIFKmciBR98jQ==
-X-Google-Smtp-Source: AA0mqf7xhOCjW3QufeE804S/cxln/uZai7wNh/XLBauOT9JBywuiFQolclvFiIZKXUz31tEmZWpHYg==
-X-Received: by 2002:a2e:9b84:0:b0:277:a3d:6fb6 with SMTP id z4-20020a2e9b84000000b002770a3d6fb6mr7621591lji.514.1668586752273;
-        Wed, 16 Nov 2022 00:19:12 -0800 (PST)
-Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id w26-20020ac254ba000000b0049c29389b98sm2487698lfk.151.2022.11.16.00.19.11
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KpNV/keBaXqaNpZhY/+e1TqwmQLarEqHOjxiEedGqUQ=;
+        b=7imilWnOB+g/pd1sqVFxYu/c93uUMY/5JA5HyAcB3FM8Kjmz/bEtF0A4h7gQklNG5M
+         X5ca/WSiQ/8uzWXvd2yA2S1vNyqcT74eCL/JA28nnIiiHIdpmkPkKUJ5HVBNLbkOCCfV
+         UteDvvEDjb+mfntWvpXO9LkKoQxkaRQb4cHoiwq3jTBRkNE/V1+ZO9d4Fr0LRQBDX/v3
+         GcNMb+wvT/Q5+wOHD1Jj0rpfL2+XPxUqgMOe1Elv8oY5xGrWUyo69UTtUZbNMuEAezdM
+         Xi9zap5W425VZvULQQvZ8fiKjSgDUtAZz34S9wCZu8P2lI5MofRSxnbDC5SiC2+Euhg9
+         6FSw==
+X-Gm-Message-State: ANoB5pl3W8Hb1/qz53di0GPCi6KqHHdLASdcd3MvzAQ1IxkNxSCG2HWj
+        aXiBVlocMNLUrTh97dUUMyKtMsZjgxOY6w==
+X-Google-Smtp-Source: AA0mqf4R1L4Z3YJp4b7RYt89GQNMLUIqGMHqcRMGjT1vsosimw2xSZ+JRV0TxNVU8wrpYJe87TsIig==
+X-Received: by 2002:a37:5d8:0:b0:6fb:8036:25ea with SMTP id 207-20020a3705d8000000b006fb803625eamr10518889qkf.246.1668586816125;
+        Wed, 16 Nov 2022 00:20:16 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id s4-20020ac87584000000b003a5092ed8cdsm8463911qtq.9.2022.11.16.00.20.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 00:19:11 -0800 (PST)
-Message-ID: <e53520b4-65da-d183-c3bf-65dc16c59358@linaro.org>
-Date:   Wed, 16 Nov 2022 11:19:10 +0300
+        Wed, 16 Nov 2022 00:20:15 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id e68so17249487ybh.2;
+        Wed, 16 Nov 2022 00:20:15 -0800 (PST)
+X-Received: by 2002:a25:cb4a:0:b0:6dd:b521:a8f2 with SMTP id
+ b71-20020a25cb4a000000b006ddb521a8f2mr19781076ybg.380.1668586815236; Wed, 16
+ Nov 2022 00:20:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
-Content-Language: en-GB
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+References: <20221110162126.103437-1-biju.das.jz@bp.renesas.com>
+ <20221110162126.103437-2-biju.das.jz@bp.renesas.com> <ae35fd75-64d3-3ab9-8cc0-3cbcc9c34b78@linaro.org>
+ <OS0PR01MB59229179DE3D3D00C4963F3186009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <a7bbfdd1-1abd-2ee5-1d32-47d0bcb7e1f2@linaro.org> <OS0PR01MB5922863B8EC8DF54D8E881FE86009@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB5922C8A590502C8820B05A7186059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <839d9740-e814-897e-d484-ded3d531a97a@linaro.org> <OS0PR01MB59226FC7CA88208AB5C0AED586059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <a3e5d695-535e-8587-6ccc-4c65fbeba278@linaro.org> <OS0PR01MB5922FB7D32AEC159234037D886059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdU=h_0Ay4U+PkzNQLE6nHP0UQ19fCdN4WPeh6e1H5TBZw@mail.gmail.com>
+ <OS0PR01MB59220BB367224A4215365F0E86059@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdV3K9kSvp3_7L+v9Lw2rUPzXS-Ocd=9k4pQQYioCdGoyQ@mail.gmail.com> <OS0PR01MB59227B0B3BC90248373E062986079@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB59227B0B3BC90248373E062986079@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 16 Nov 2022 09:20:02 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX0iH9KMOhT_jFk_ZmjTObOyzfw3ZnYP75X4JPLBoPc-g@mail.gmail.com>
+Message-ID: <CAMuHMdX0iH9KMOhT_jFk_ZmjTObOyzfw3ZnYP75X4JPLBoPc-g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
-References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
- <3429c5a5-084d-919c-5c3f-5e12f447c931@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <3429c5a5-084d-919c-5c3f-5e12f447c931@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 10:50, Abhinav Kumar wrote:
-> 
-> 
-> On 11/4/2022 6:03 AM, Dmitry Baryshkov wrote:
->> On sm8450 a register block was removed from MDP TOP. Accessing it during
->> snapshotting results in NoC errors / immediate reboot. Skip accessing
->> these registers during snapshot.
->>
->> Tested-by: Vinod Koul <vkoul@kernel.org>
->> Reviewed-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> I am confused with both the ordering and the split of this patch.
-> 
-> You have defined DPU_MDP_PERIPH_0_REMOVED in the catalog header file in 
-> this patch but used it in the next.
-> 
-> But you also have code in this patch which relies on setting of this bit.
-> 
-> So if this patch is taken without the next, it will still crash.
+Hi Biju,
 
-It will not crash if this patch is taken without the next one. Without 
-the next patch the DPU driver will not match and bind against the 
-qcom,sm8450-dpu device.
+On Wed, Nov 16, 2022 at 9:14 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document Renesas
+> > RZ/V2M System Configuration
+> > On Mon, Nov 14, 2022 at 8:22 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > > Subject: Re: [PATCH v2 1/3] dt-bindings: arm: renesas: Document
+> > > > Renesas RZ/V2M System Configuration On Mon, Nov 14, 2022 at 6:05 PM
+> > > > Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > > > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> On
+> > > > > > 14/11/2022 17:44, Biju Das wrote:
+> > > > > > >>>>> If the hardware manual said this is called "foo-whatever-
+> > name"
+> > > > > > >>>>> or "rz85736dfnx2", you would use it as well?
+> > > > > > >>>>>
+> > > > > > >>>>> Node names should be generic.
+> > > > > > >>>
+> > > > > > >>> I got the following feedback from LSI team.
+> > > > > > >>>
+> > > > > > >>> *The reason why we use "configuration" and not "controller"
+> > > > > > >>> is the possibility that users might take it to mean
+> > > > > > >>> "control" of system operation (product operation). This unit
+> > > > > > >>> determines how the whole LSI
+> > > > > > >> configure to operate LSI, so we use "configuration" for this
+> > IP name.
+> > > > > > >>>
+> > > > > > >>> As per this it is not a controller. It is a Configuration
+> > IP.
+> > > > > > >>>
+> > > > > > >>> What should be generic node name for system configuration
+> > IP?
+> > > > > > >>
+> > > > > > >> Then it's closer to chipid and should be in hwinfo?
+> > > > > > >
+> > > > > > > You mean, sys: hwinfo@a3f03000 instead of sys: system-
+> > > > > > configuration@a3f03000 ??
+> > > > > >
+> > > > > > Rather be put in hwinfo directory. Typical name is "chipid", but
+> > > > > > I don't know if your device is a chipid.
+> > > > >
+> > > > > This IP is for sure not a chipid. We can detect SoC version. That
+> > > > > is one of the functions provided by this IP.
+> > > > >
+> > > > > > > Also the same IP block is present on rz/v2ma as well?
+> > > > > > >
+> > > > > > > Shall I use the same file renesas,rzv2m-sys.yaml for both
+> > > > > > > r9a09g011-sys and
+> > > > > > r9a09g055-sys?
+> > > >
+> > > > Are they sufficiently similar? E.g. we have renesas,rst.yaml for the
+> > > > various R-Car reset controllers, which have different register
+> > layouts.
+> > >
+> > > I have been told both RZ/V2M and RZ/V2MA are exactly same, but later
+> > does not have ISP module.
+> >
+> > OK...
+> >
+> > > > If the SoC version register is located at the same offset, it might
+> > > > be worthwhile to add a family-specific compatible value, too, so the
+> > > > soc_device driver doesn't have to contain a big list to match
+> > against.
+> > >
+> > > The SoC version registers are located at the same offset.
+> > > But there is no way to distinguish both the SoCs.
+> >
+> > So they really are the same SoC, with the ISP disabled (by fuses?).
+> >
+> > Then I guess the most sensible thing to do is to just use
+> >
+> >     compatible = "renesas,r9a09g055", "renesas,r9a09g011"
+> >
+> > at the top level, and keep all other compatible values unchanged?
+> > Cfr. what we did for R-Car Gen3e (r8a779mX).
+>
+> I started looking into PWM driver for V2M. For Linux we can use 7 channels
+> Out of 16 as other 9 channels are reserved for ISP.  Where as V2MA we can use all the 16 channels.
+>
+> So for clk, we need to use separate compatible, as we don't want to register clocks
+> assigned for ISP to Linux.
+>
+> That is ok right??
 
-So, the ordering is quite logical from my point of view:
-- add support for all the features required for the device
-- add the device compat string & catalog entry
+Yes, that's fine.
 
-> 
-> Rather, you should combine the define part of this patch to the next 
-> patch in the series 
-> https://patchwork.freedesktop.org/patch/510114/?series=108883&rev=3 , 
-> then move that one in front of this patch.
+Gr{oetje,eeting}s,
 
-No. This way we'll have a state (after adding the next patch) when the 
-sm8450 support is enabled, but the top-hole is not handled, leading to a 
-crash.
+                        Geert
 
-> 
-> So that its much more coherent that you defined DPU_MDP_PERIPH_0_REMOVED 
-> both in the catalog header and used it in the catalog.c file and the in 
-> the next change you used the caps to avoid touching that register.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-I'd say it's rather strange way. When I see a define/feature addition, 
-I'd prefer to seethe implementation too.
-
-> Regarding the TOP hole itself, I need one day to investigate this. I am 
-> waiting for permissions to the documentation.
-> 
-> If i cannot get access by the time you have re-ordered this, I will ack 
-> this once the reorder is done within a day.
-
-
-For the reference: [1]
-
-[1] 
-https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-drivers/-/commit/f9ff8af5b640147f3651c23551c60f81f62874b1
-
-> 
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
->>   2 files changed, 10 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> index 38aa38ab1568..4730f8268f2a 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> @@ -92,6 +92,7 @@ enum {
->>       DPU_MDP_UBWC_1_0,
->>       DPU_MDP_UBWC_1_5,
->>       DPU_MDP_AUDIO_SELECT,
->> +    DPU_MDP_PERIPH_0_REMOVED,
->>       DPU_MDP_MAX
->>   };
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> index f3660cd14f4f..95d8765c1c53 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
->> msm_disp_state *disp_state, struct msm_k
->>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
->>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
->> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->> -            dpu_kms->mmio + cat->mdp[0].base, "top");
->> +    if (dpu_kms->hw_mdp->caps->features & 
->> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
->> +        msm_disp_snapshot_add_block(disp_state, 0x380,
->> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 0x3a8,
->> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
->> +    } else {
->> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->> +    }
->>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
->>   }
-
--- 
-With best wishes
-Dmitry
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
