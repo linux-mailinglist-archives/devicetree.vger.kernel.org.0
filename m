@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ADE962CC76
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 22:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2307C62CCA2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 22:28:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbiKPVRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 16:17:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33738 "EHLO
+        id S231734AbiKPV2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 16:28:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233325AbiKPVRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 16:17:32 -0500
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A49814C258;
-        Wed, 16 Nov 2022 13:17:31 -0800 (PST)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-13bd19c3b68so21632693fac.7;
-        Wed, 16 Nov 2022 13:17:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iFbeydjmafazamckda29Ec7TpL8TX/UzHz/OV+Cb/pI=;
-        b=SIVJ++0a+Va9WZoE9ciytetP6hx6BRPHG8cXNCW7+VxSaVc1+y3QtRLkWVfWfjrR70
-         2yoXeoTqVaQ3FDmdg1YjxCVfhVm3nH2E8dk1Wg+43nKyer9AZd3xI0Eww1Z6N8hmibvH
-         hTk94Rx1FE/BIoz2QQXRJXpTFfJ6slpSYrReAyqjlGt3hz45QSQa1FMZD0rqDolrWFCU
-         PJfKHP8JhGpHJ0GYib33fIWbjURd3tD5ns0zQEavsL4zK09eAwywpXQFrfBsDnhNliwa
-         4gQvHo0acJsZ1z7EEhkXGCB0D6792ftot32L5RmwvRdLLqZyp5QiSc7o1BPyxV/eDim2
-         NnkQ==
-X-Gm-Message-State: ANoB5pnb+aui3QL1VC3//Wnwa3+ciHoSCy2+FPSu4Wq0XH7y82ANv4UQ
-        iG/ffCOtVBqgM6NuDB3/qg==
-X-Google-Smtp-Source: AA0mqf7Fvq4+4BfEj8VjAgTJEjpVpR/1J2CXpxAJH21NTCNakxajv6nOhX03c79a2hoNrx3oOyW8Dw==
-X-Received: by 2002:a05:6870:4625:b0:132:93d1:5f5 with SMTP id z37-20020a056870462500b0013293d105f5mr2778151oao.133.1668633450919;
-        Wed, 16 Nov 2022 13:17:30 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 72-20020a9d034e000000b0066c45517c8fsm6996737otv.52.2022.11.16.13.17.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 13:17:30 -0800 (PST)
-Received: (nullmailer pid 957190 invoked by uid 1000);
-        Wed, 16 Nov 2022 21:17:32 -0000
-Date:   Wed, 16 Nov 2022 15:17:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     robh+dt@kernel.org, linux-mmc@vger.kernel.org,
-        jh80.chung@samsung.com, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        ulf.hansson@linaro.org, mturquette@baylibre.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCHv9 1/6] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-Message-ID: <166863345158.957115.1717628011449402421.robh@kernel.org>
-References: <20221114230217.202634-1-dinguyen@kernel.org>
+        with ESMTP id S231342AbiKPV2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 16:28:18 -0500
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E3F1016;
+        Wed, 16 Nov 2022 13:28:17 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1A213100002;
+        Wed, 16 Nov 2022 21:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1668634095;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ltzh9/l6lO1+cC4vvPq/qAQhaS+jbpgx9OzaL7mBjUc=;
+        b=QnWrcUEujfbcQQ4c4G087swN9OF2fjWn6FETtVjI43Kxdd05+ggkpjiRaynpHUZZe0eswi
+        K2CRQzI/ZIctaCIEUisW7qAOmIf5NnnW3gA9t7wA8fWHi44nqfzuyix8h+FCHU9WUKQjGF
+        HISHtb0uep8KJFawdhWk3cth+JDuxzdcP6LxfsV/lHrJjihpX7PSN06pDVzfOg5vOMIQoF
+        e2FnS4hLcy9Uh5gYZLfsdNZSI4+09o3ey0+j/7uBrN2D5omwPqll/o/MQPyHOKH4g4C+I9
+        tdIO/J5iij7xw3z7PIkLTMQHTHpUJ6X4NzhpV3b79+VFjq+uwYtoTqTUdHTklg==
+Date:   Wed, 16 Nov 2022 22:28:12 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: nvmem: add YAML schema for the sl28
+ vpd layout
+Message-ID: <20221116222812.45dbbcf9@xps-13>
+In-Reply-To: <20221116205203.GA846642-robh@kernel.org>
+References: <20221114085659.847611-1-miquel.raynal@bootlin.com>
+        <20221114085659.847611-4-miquel.raynal@bootlin.com>
+        <20221116205203.GA846642-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221114230217.202634-1-dinguyen@kernel.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,26 +62,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob, Srinivas,
 
-On Mon, 14 Nov 2022 17:02:12 -0600, Dinh Nguyen wrote:
-> Document the optional "altr,sysmgr-syscon" binding that is used to
-> access the System Manager register that controls the SDMMC clock
-> phase.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v9: remove required for "altr,sysmgr-syscon"
-> v8: remove "" around synopsys-dw-mshc-common.yaml#
-> v7: and "not" for the required "altr,sysmgr-syscon" binding
-> v6: make "altr,sysmgr-syscon" optional
-> v5: document reg shift
-> v4: add else statement
-> v3: document that the "altr,sysmgr-syscon" binding is only applicable to
->     "altr,socfpga-dw-mshc"
-> v2: document "altr,sysmgr-syscon" in the MMC section
-> ---
->  .../bindings/mmc/synopsys-dw-mshc.yaml        | 32 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 3 deletions(-)
-> 
+robh@kernel.org wrote on Wed, 16 Nov 2022 14:52:03 -0600:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On Mon, Nov 14, 2022 at 09:56:57AM +0100, Miquel Raynal wrote:
+> > From: Michael Walle <michael@walle.cc>
+> >=20
+> > Add a schema for the NVMEM layout on Kontron's sl28 boards.
+> >=20
+> > Signed-off-by: Michael Walle <michael@walle.cc>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 62 +++++++++++++++++++
+> >  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
+> >  2 files changed, 65 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kon=
+tron,sl28-vpd.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl=
+28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-=
+vpd.yaml
+> > new file mode 100644
+> > index 000000000000..fef795e79c36
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.=
+yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
+> > +
+> > +maintainers:
+> > +  - Michael Walle <michael@walle.cc>
+> > +
+> > +description:
+> > +  The vital product data (VPD) of the sl28 boards contains a serial
+> > +  number and a base MAC address. The actual MAC addresses for the
+> > +  on-board ethernet devices are derived from this base MAC address by
+> > +  adding an offset.
+> > +
+> > +select: false
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: kontron,sl28-vpd
+> > +
+> > +  serial-number:
+> > +    type: object =20
+>=20
+>        additionalProperties: false
+
+Right, I missed that one.
+
+> With that,
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Thanks for all the reviews!
+
+Srinivas, would you add the above property while applying or do you
+prefer me to send a v5?
+
+Thanks,
+Miqu=C3=A8l
