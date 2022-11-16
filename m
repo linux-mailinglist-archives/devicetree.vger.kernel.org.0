@@ -2,72 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8967C62B05D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 02:05:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3D162B076
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 02:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiKPBFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Nov 2022 20:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43336 "EHLO
+        id S231286AbiKPBS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Nov 2022 20:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbiKPBFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 20:05:02 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C280232043
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 17:05:00 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id c15-20020a17090a1d0f00b0021365864446so861518pjd.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 17:05:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=27UddYJQC31d4E1orvFluo6m1mDuIp+0WFHUDVsxN30=;
-        b=TtD/vMEaApxvczspGq7Q4L7MmCIGTX0MxhgMsE6Rn5M5JwKv9nChzsklrQS6R2GKcQ
-         kHZCjZZfavysaxdONVUy/HuusWGt4zgTt3ZKYsTbBZAHffonQxwknk85SCbfOEAywx8U
-         TMcvnsv7kLIi04/cYrxdqRg4tjF/KoUYYeGeLnY8VGNnMxLH5dl874MpXWwcShs4qrsH
-         lfcoEmOPnBPM0NU9vsRb0ZkecDX6inWIglaJ56JWPO4kGHuYcZ0emNVrKp6mLGlptMq/
-         RCdktHoIKReuUPMh12QBP0tqIyZKgRo9Rl7uqN8HlY6EEJOHj3mjVx8pVMZK7kGlvvFF
-         yWPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=27UddYJQC31d4E1orvFluo6m1mDuIp+0WFHUDVsxN30=;
-        b=rNzfXUq9e9MpVWnMYrmvR4zqt8juI60wZEhRwmBoiJytwoxWFDECD3WDIfPd8M+fqN
-         4QHBnsIPdWY0hUtQUDAsG3H2CWT2oipshpFqaBHAaz9F9ISCZZBIFKDlzcwRXOqOH1sX
-         GVJRgYxcimAqEwk27slwhTZHOd28CxJ+6Vnj33GohwvArIWBv9GR4/ymjRJWiK5b/WPA
-         Q0tr/uqlGJRje2jTPknsRbrpotyhzSKioFYhxgXAMRUExM7MC81WebldgShTJ+Rf0u2W
-         CwXZddfbXi4Ik9wKxyj1WKeK4APakzmwW/PeIs41x1bJL6HOjIjgewcGAEKzIE1nkovE
-         yXpw==
-X-Gm-Message-State: ANoB5plkVWz/oomH0wOQ+BQH0J/SKjIpCBIhIK4UIej/Mrg6oRbbkMv9
-        0DkEsB4sDFB05H8DwPciy2YqSA==
-X-Google-Smtp-Source: AA0mqf6mEgn6u2/xNi5LaQMqkpaErJ/cgxiNwhjcWn9g3AA2nM10Mx9Pwg3rfO1JOoALDg3jbk2SyA==
-X-Received: by 2002:a17:90a:3d49:b0:213:9458:8a93 with SMTP id o9-20020a17090a3d4900b0021394588a93mr1020153pjf.233.1668560699966;
-        Tue, 15 Nov 2022 17:04:59 -0800 (PST)
-Received: from platform-dev1.pensando.io ([12.226.153.42])
-        by smtp.gmail.com with ESMTPSA id f14-20020a170902ce8e00b00186b6bb2f48sm10688518plg.129.2022.11.15.17.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Nov 2022 17:04:58 -0800 (PST)
-From:   Brad Larson <brad@pensando.io>
-X-Google-Original-From: Brad Larson <blarson@amd.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de, blarson@amd.com,
-        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
-        gsomlo@gmail.com, gerg@linux-m68k.org, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        broonie@kernel.org, yamada.masahiro@socionext.com,
-        p.zabel@pengutronix.de, piotrs@cadence.com, p.yadav@ti.com,
-        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
-        fancer.lancer@gmail.com, suravee.suthikulpanit@amd.com,
-        thomas.lendacky@amd.com, ulf.hansson@linaro.org, will@kernel.org,
+        with ESMTP id S231668AbiKPBS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Nov 2022 20:18:26 -0500
+Received: from out29-97.mail.aliyun.com (out29-97.mail.aliyun.com [115.124.29.97])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4733DB08;
+        Tue, 15 Nov 2022 17:18:24 -0800 (PST)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08475289|-1;BR=01201311R171S32rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0157553-0.00302169-0.981223;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047211;MF=lee@arducam.com;NM=1;PH=DS;RN=6;RT=6;SR=0;TI=SMTPD_---.Q8Gf5A3_1668561500;
+Received: from localhost(mailfrom:lee@arducam.com fp:SMTPD_---.Q8Gf5A3_1668561500)
+          by smtp.aliyun-inc.com;
+          Wed, 16 Nov 2022 09:18:21 +0800
+Date:   Wed, 16 Nov 2022 09:18:19 +0800
+From:   lee <lee@arducam.com>
+To:     linux-media@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
         devicetree@vger.kernel.org
-Subject: [PATCH v7 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD Pensando Elba System Resource chip
-Date:   Tue, 15 Nov 2022 17:04:53 -0800
-Message-Id: <20221116010453.41320-1-blarson@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Subject: [PATCH v3 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
+ binding
+Message-ID: <20221116091819.00005eec@arducam.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,111 +40,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the AMD Pensando Elba SoC System Resource chip
-using the SPI interface.
+Add YAML device tree binding for IMX519 CMOS image sensor, and
+the relevant MAINTAINERS entries.
 
-Signed-off-by: Brad Larson <blarson@amd.com>
+Signed-off-by: Lee <lee@arducam.com>
 ---
+ .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   8 ++
+ 2 files changed, 115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
 
-v7:
- - Use system-controller for the device with four chip-selects
-   connected over spi.
- - Delete child by moving reset-controller into the parent.
- - Updated and used dtschema-2022.11 and yamllint-1.28.0
-
-v6:
- - Expand description, rename nodes and change compatible usage
-
-v5:
- - Change to AMD Pensando instead of Pensando
-
-v4:
- - Change Maintained to Supported
-
- .../bindings/mfd/amd,pensando-elbasr.yaml     | 74 +++++++++++++++++++
- 1 file changed, 74 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-
-diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
 new file mode 100644
-index 000000000000..ac44d7d0a91a
+index 000000000000..d7ca16cfbacc
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mfd/amd,pensando-elbasr.yaml#
++$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: AMD Pensando Elba SoC Resource Controller bindings
-+
-+description: |
-+  AMD Pensando Elba SoC Resource Controller functions are
-+  accessed with four chip-selects.  Reset control is on CS0.
++title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
 +
 +maintainers:
-+  - Brad Larson <blarson@amd.com>
++  - Lee <lee@arducam.com>
++
++description: |-
++  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
++  with an active array size of 4656H x 3496V. It is programmable through
++  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
++  Image data is sent through MIPI CSI-2, which is configured as either 2 or
++  4 data lanes.
 +
 +properties:
 +  compatible:
-+    items:
-+      - enum:
-+          - amd,pensando-elbasr
++    const: sony,imx519
 +
-+  "#reset-cells":
-+    const: 1
-+
-+  interrupts:
++  reg:
 +    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  vdig-supply:
++    description:
++      Digital I/O voltage supply, 1.05 volts
++
++  vana-supply:
++    description:
++      Analog voltage supply, 2.8 volts
++
++  vddl-supply:
++    description:
++      Digital core voltage supply, 1.8 volts
++
++  reset-gpios:
++    description: |-
++      Reference to the GPIO connected to the xclr pin, if any.
++      Must be released (set high) after all supplies and INCK are applied.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            anyOf:
++              - items:
++                  - const: 1
++                  - const: 2
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++        required:
++          - data-lanes
++          - link-frequencies
 +
 +required:
 +  - compatible
 +  - reg
-+  - spi-max-frequency
++  - clocks
++  - vana-supply
++  - vdig-supply
++  - vddl-supply
++  - port
 +
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    spi {
++    i2c {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
-+        num-cs = <4>;
-+        status = "okay";
 +
-+        rstc: system-controller@0 {
-+            compatible = "amd,pensando-elbasr";
-+            reg = <0>;
-+            spi-max-frequency = <12000000>;
-+            #reset-cells = <1>;
-+        };
++        imx519: sensor@1a {
++            compatible = "sony,imx519";
++            reg = <0x1a>;
++            clocks = <&imx519_clk>;
++            vana-supply = <&imx519_vana>;   /* 2.8v */
++            vdig-supply = <&imx519_vdig>;   /* 1.05v */
++            vddl-supply = <&imx519_vddl>;   /* 1.8v */
 +
-+        system-controller@1 {
-+            compatible = "amd,pensando-elbasr";
-+            reg = <1>;
-+            spi-max-frequency = <12000000>;
-+        };
-+
-+        system-controller@2 {
-+            compatible = "amd,pensando-elbasr";
-+            reg = <2>;
-+            spi-max-frequency = <12000000>;
-+            interrupt-parent = <&porta>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+
-+        system-controller@3 {
-+            compatible = "amd,pensando-elbasr";
-+            reg = <3>;
-+            spi-max-frequency = <12000000>;
++            port {
++                imx519_0: endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
++                    link-frequencies = /bits/ 64 <493500000>;
++                };
++            };
 +        };
 +    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 046ff06ff97f..1fe906632209 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19232,6 +19232,14 @@ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+ F:	drivers/media/i2c/imx412.c
+ 
++SONY IMX519 SENSOR DRIVER
++M:	Arducam Kernel Maintenance <info@arducam.com>
++M:	Lee <lee@arducam.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
++
+ SONY MEMORYSTICK SUBSYSTEM
+ M:	Maxim Levitsky <maximlevitsky@gmail.com>
+ M:	Alex Dubov <oakad@yahoo.com>
 -- 
-2.17.1
-
+2.34.1
