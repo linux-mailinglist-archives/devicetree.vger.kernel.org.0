@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B26D762BDD8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:30:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F7562BDDD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238948AbiKPMaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:30:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
+        id S233767AbiKPMat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:30:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238955AbiKPM3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:29:46 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB9C5CFE
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:29:02 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id m22so43622933eji.10
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:29:02 -0800 (PST)
+        with ESMTP id S232689AbiKPM3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:29:44 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E8D22BED
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:28:58 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id t10so21653932ljj.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:28:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xg7dVOaFDd0a/VPutRddYPoMuVIlvBiMVnsUwJAfSmM=;
-        b=Ungyqh/SYtSuUEiiQBC4ocLKvXefZa5gWgeDZSoEyHPd9uX+Tq4n/Xn8Plpo+fVsQN
-         sULodzXKU8p2tLh/5H4umzlfeylwfrIBYhgaVQOYMAW5D34afJuE/Vmve3bj3nbgyx3K
-         9VJeID3ERHJeoldPze0EOufSmP8V9yKiyXP8Dh3lB5u1Cc7jbsMD4MPtwzh6c2t3Ch7C
-         0T0Qv2Igu/L5rRQBuqtgsW+jgnZR4gFm19N/p5dZpdoDZH+Ip43uTkV0eA5RKwD+yqNV
-         8B7hNkjI8HtiUC+SmZFQnai21IMZI/Wht/RvIQ/k4A4kRyKIXkiZYngkkozHzuMoyKbo
-         Fnug==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EM+UUNvI62fvBl2ABljWnGH5FDgLl/RuZAz74vYQ8Ds=;
+        b=OeFrUQHLuPSTX33nejrDUgEyc89gWQm46awDXacUkP+cCuFehbFltJrU/GARwxILZ0
+         T8MmaSXOtU3VgPCCVn625kulB2mrYdnaOaRqRN78+Jc44v2NNJHKJ58cP9avp93oVDdK
+         n7SBVpemRZMF5rhdjSEHCnbNIfBR2hzeeA+MdibLjf28EG7S5hbs6H/exlc72Jo/gT2q
+         5MJRQ7a4l/T/i0wGNZDEbLpglRkXEeKsw4jbJSVjlkzTpncmuBbZMTIRqUEv/HZZN9ZW
+         hRJlkO+YJXH5T+lRmHUAm6q7cRiUcZ7l+vnl/0Og4jRulremIyO6Q/IzqtBJm8cA54hA
+         8xHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Xg7dVOaFDd0a/VPutRddYPoMuVIlvBiMVnsUwJAfSmM=;
-        b=xaseizmVu6fbSTqE3VycPA5Qr2H95gXaPvfDpcv5FH3XuCqt6Z59pZxMAffYTdEc+J
-         BH+JkFgksf/jRtDH3Z18Em+1HaH06Phs4pmbrODRZoMSB9X7WszZyuYvuPjbzMWukaSi
-         2oKRAeFd+X5rIYBPr4ohEXKEu+vhz46FvqTe/z8A+33PH5H4gbL7/uzAcod74CxUIQvL
-         RO7E/1zdqlA+PzSlevMGmIWhXw0ciDoBEriYr84Vg5CLGlDdx4CjrO45auVdQHwfIrBM
-         ROWtZP0rZeIb1wAjqPC7pMV/0yaaMRg2lJb5KFUTuRiMNX5jHqStPQgHQzlpjeP7isdG
-         ghxA==
-X-Gm-Message-State: ANoB5pmY9XWpI5/UnPMzj93Qm27qUNYvVuDwnGGoCHOxUJtWgaU0rXkK
-        I3i3W6ZvVgjGakhXrHSnu/XBjw==
-X-Google-Smtp-Source: AA0mqf7qjYNJT6DAUPODOJytyXYvsHi572/YCcomACyd0Ftvk6pSCMlUafeu7D1HU5Zv9UfKrRvWkA==
-X-Received: by 2002:a17:907:2123:b0:7a2:335e:90e2 with SMTP id qo3-20020a170907212300b007a2335e90e2mr17241409ejb.712.1668601741252;
-        Wed, 16 Nov 2022 04:29:01 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id g17-20020aa7c851000000b0046383354bf9sm7466281edt.40.2022.11.16.04.28.59
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EM+UUNvI62fvBl2ABljWnGH5FDgLl/RuZAz74vYQ8Ds=;
+        b=szl7wYX6l1jUF1p6e4DjPKzxkdo46bwvPyaq6ZV0SwPKpyi2aJ6R5oLGp+g4Zym0AF
+         tMDqKJ7xoFvPwkLw6k0rIkJBYajUOYekzAlGh+I3pcMkU8lKSs/vD3IyM1ZrmlYWIFdl
+         PccPHooImt4G1XcpAnfm2Y8AVUUDzrv4odk2+YKrk1f+KB2bzfG8wxC2tD1Fms8RJZs0
+         FGuAxRUIzpdTN5e6194ZfE/XO/m+7iV0u5Mxe2hEeCP/TGsFOxU9DaLnXj+8ypuC2oV2
+         /ifYyXy5X4stnsw9n176q8625wg13cXoVIj4I6bZmg5ninx5gi253YfwbhU3VeYCUV5g
+         SsrQ==
+X-Gm-Message-State: ANoB5pksA7Ml9AXoshrGTPu2hM7lc6WE46ubeXQBrKxrA6wxSGshPyWt
+        /8aUK4apAARYxv3bSg0Q25VeGg==
+X-Google-Smtp-Source: AA0mqf46L1d+SwCvylCbn4fqHasxuHODF5mxI1wukp65UUC4e+36ehSHttdXWM9aJ10uU2raGqOKqw==
+X-Received: by 2002:a2e:7310:0:b0:277:d86:a36d with SMTP id o16-20020a2e7310000000b002770d86a36dmr7480255ljc.288.1668601736917;
+        Wed, 16 Nov 2022 04:28:56 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b13-20020a2eb90d000000b0027781448499sm2990701ljb.85.2022.11.16.04.28.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 04:29:00 -0800 (PST)
-Message-ID: <57b0669c-3826-dc33-36a4-2d8220da768a@linaro.org>
-Date:   Wed, 16 Nov 2022 13:28:53 +0100
+        Wed, 16 Nov 2022 04:28:56 -0800 (PST)
+Message-ID: <fcdf33fe-2ed8-1ec5-af6c-e3332b8bc75c@linaro.org>
+Date:   Wed, 16 Nov 2022 13:28:54 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] ufs: host: ufs-qcom: Clear qunipro_g4_sel for HW
- version major 5
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/4] dt-bindings: misc: qcom,fastrpc: increase allowed
+ iommus entries
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-References: <20221116121732.2731448-1-abel.vesa@linaro.org>
- <20221116121732.2731448-2-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116121732.2731448-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-remoteproc-v1-0-104c34cb3b91@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-remoteproc-v1-2-104c34cb3b91@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v1-2-104c34cb3b91@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -85,55 +86,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/11/2022 13:17, Abel Vesa wrote:
-> On SM8550, depending on the Qunipro, we can run with G5 or G4.
-> For now, when the major version is 5 or above, we go with G5.
-> Therefore, we need to specifically tell UFS HC that.
+On 16/11/2022 11:20, Neil Armstrong wrote:
+> From: Abel Vesa <abel.vesa@linaro.org>
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   drivers/ufs/host/ufs-qcom.c | 4 ++++
->   drivers/ufs/host/ufs-qcom.h | 2 ++
->   2 files changed, 6 insertions(+)
+> The fastrpc components on the SM8550 SoC can require up to 3 IOMMU
+> entries, this bumps the maxItems to 3 for this purpose.
 > 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index ca60a5b0292b..72334aefe81c 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -227,6 +227,10 @@ static void ufs_qcom_select_unipro_mode(struct ufs_qcom_host *host)
->   	ufshcd_rmwl(host->hba, QUNIPRO_SEL,
->   		   ufs_qcom_cap_qunipro(host) ? QUNIPRO_SEL : 0,
->   		   REG_UFS_CFG1);
-> +
-> +	if (host->hw_ver.major == 0x05)
-> +		ufshcd_rmwl(host->hba, QUNIPRO_G4_SEL, 0, REG_UFS_CFG0);
-> +
->   	/* make sure above configuration is applied before we return */
->   	mb();
->   }
-> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-> index 751ded3e3531..10621055bf7f 100644
-> --- a/drivers/ufs/host/ufs-qcom.h
-> +++ b/drivers/ufs/host/ufs-qcom.h
-> @@ -36,6 +36,7 @@ enum {
->   	/* On older UFS revisions, this register is called "RETRY_TIMER_REG" */
->   	REG_UFS_PARAM0                      = 0xD0,
->   	REG_UFS_PA_LINK_STARTUP_TIMER       = 0xD8,
-> +	REG_UFS_CFG0                        = 0xD8,
-Are you sure these two should point to the same register? Maybe it 
-deserves some kind of a comment?
 
-Konrad
->   	REG_UFS_CFG1                        = 0xDC,
->   	REG_UFS_CFG2                        = 0xE0,
->   	REG_UFS_HW_VERSION                  = 0xE4,
-> @@ -75,6 +76,7 @@ enum {
->   
->   /* bit definitions for REG_UFS_CFG1 register */
->   #define QUNIPRO_SEL		BIT(0)
-> +#define QUNIPRO_G4_SEL		BIT(5)
->   #define UFS_PHY_SOFT_RESET	BIT(1)
->   #define UTP_DBG_RAMS_EN		BIT(17)
->   #define TEST_BUS_EN		BIT(18)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
