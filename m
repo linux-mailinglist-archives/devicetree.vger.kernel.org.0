@@ -2,138 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B7862B3EC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8A962B3F1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 08:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiKPHcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 02:32:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47688 "EHLO
+        id S231890AbiKPHdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 02:33:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232500AbiKPHcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:32:00 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C98B1F6
-        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:31:59 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id D39B714C1;
-        Wed, 16 Nov 2022 08:31:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1668583917;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=piDfn64ODAtoaZKFwAql8Y2/q2UocH9lkh4rRnP9hco=;
-        b=vEv6i7pNqUD1YJqyKPKHL6S+GfFWxCp3JCNxh2zDhn2j6jzSrGYH8tbOfYbS+hHzey3J8j
-        yerF9dZ+i4nEFBNDjigRrxfsERL+u/WVqM8NfzMH0aYYF7ZVFCvMLufQnOKtgEguC2+TUn
-        GWgx8pWeyW7ikqXdhnX2M20WspRrcmsj1WtI/uBPMzVLxQVeWuKg6qQw2S1hsob6Dku26R
-        VQBW+Iwbc2uAZbn2Xmdu9sXeWORAELzkbh9lwu/gxp5PlE/M00rgJAU8KnQSZtVUxD+Hv8
-        7yZTefX9Oq+i0JlyYjBvrXviM9fAwyJCXn3wIClMG/IEPQ5CHKJ26AI3zlaBTQ==
+        with ESMTP id S232546AbiKPHdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 02:33:04 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB97C2E
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:33:02 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id cl5so28437547wrb.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 23:33:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gVVk4rPqVJ+nI9+Wk7suoLY9Sdv75O8vEmrQasB0XMM=;
+        b=ezU1MOhuwcskDPEe2bAhdvR+saE8yzF7v50He6N3NYDA1e9oyfiK0xPq/mtJzqf6zo
+         hV3LIOzYgJ+2LZlLEk3wlsgHkCYlPabAM7ejHya7guA8ZshDLICtfFxKM4yrLtRZq4uD
+         j38fLLpxY20S+xJ3DHEGn1kCYmVZWlu0QPjNEyxYCQ4ecRCiwQLryn153Ovy0t6Y0Ig0
+         uQ28ddCIkeDEAWhkqWiSezzs98gD2fGopOKA+jM++ODFnhHLL9W3XnWOtF6pGZC3Qo9f
+         danLss66FfMq0m2B3K+UzXK8FxXcU64qZhuwzodNH2l7NTEaJ8FPhTEOeyfNRUe5mG5G
+         427w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gVVk4rPqVJ+nI9+Wk7suoLY9Sdv75O8vEmrQasB0XMM=;
+        b=VDgNDI1QR3rYbwDCUr1IPparP2XSQQzq0hjZR3PkWKLNNwQSg0U9eZd0OITi+j5tOA
+         n62inaNRq83snbiYeOEdbGbClufMiPudzXLuZp15s5Va+lKGnonpQptrw7ojvkiGrNhr
+         UeF3b5c27QGYPn+KpSWoCgsntwQxSTUsHtNHNcZ1eXGlLqHld5jD82SsnqMa5RCEz9ps
+         AIgn6QODfK18TNXHre4lRpJLNWuKbxN2W+kAkV3D3sVD1QkTzobGO4QnX8oCN84K+X26
+         QHAcNfY3vtteRedLnvDr1NLdI6EJRoCd7e1IkwHYWmLgZEJOvvC2RyawHWRyiY9o8jtZ
+         dMAw==
+X-Gm-Message-State: ANoB5pkoPRteq/CoFFCQkuMH6AUnn4TM6ah1wChIL8atjUCj67mp2t4X
+        UpKbhfcV7ckY8U0TYWr8KG/DYw==
+X-Google-Smtp-Source: AA0mqf5x3z6lTJoUgZpWStT49LW4IwwLma+kYAXJ24eaiJV/S+x5T+thpkd8IXxjYf33veA4Ud8BIQ==
+X-Received: by 2002:a05:6000:24f:b0:232:eb2:6a33 with SMTP id m15-20020a056000024f00b002320eb26a33mr13198010wrz.325.1668583981057;
+        Tue, 15 Nov 2022 23:33:01 -0800 (PST)
+Received: from zoltan.localdomain ([167.98.215.174])
+        by smtp.gmail.com with ESMTPSA id g34-20020a05600c4ca200b003cfd4e6400csm1058823wmp.19.2022.11.15.23.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Nov 2022 23:32:59 -0800 (PST)
+From:   Alex Elder <elder@linaro.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v3 0/5] net: ipa: change GSI firmware load specification
+Date:   Wed, 16 Nov 2022 01:32:51 -0600
+Message-Id: <20221116073257.34010-1-elder@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Date:   Wed, 16 Nov 2022 08:31:57 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>, brgl@bgdev.pl,
-        lee@kernel.org, kristo@kernel.org, alexandre.belloni@bootlin.com,
-        a.zummo@towertech.it, krzysztof.kozlowski+dt@linaro.org,
-        robh@kernel.org, vigneshr@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Keerthy <j-keerthy@ti.com>
-Subject: Re: [PATCH v3 4/7] gpio: tps6594x: add GPIO support for TPS6594x PMIC
-In-Reply-To: <Y24OuHmXCV/5HuEY@ubuntu>
-References: <20221109065546.24912-1-mranostay@ti.com>
- <20221109065546.24912-5-mranostay@ti.com>
- <CACRpkdaTV6unVsfNj+M39jLn5FLTnhryjuzF4EB6Ytds9R1nEQ@mail.gmail.com>
- <Y2zOhf8lqVLyLn+A@ubuntu>
- <CACRpkdZOR4Hcyv=bO7=rJERJK7JbCoS0_dvWj0K=YZC6Nsozdw@mail.gmail.com>
- <Y24OuHmXCV/5HuEY@ubuntu>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <91b51ffaadaa4c3d5ca46dc252d641c6@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Version 3 just adds reviewed-by tags for Krzysztof Kozlowski.
 
-Am 2022-11-11 09:58, schrieb Matt Ranostay:
-> On Thu, Nov 10, 2022 at 11:15:22AM +0100, Linus Walleij wrote:
->> On Thu, Nov 10, 2022 at 11:12 AM Matt Ranostay <mranostay@ti.com> 
->> wrote:
->> > On Wed, Nov 09, 2022 at 10:59:08AM +0100, Linus Walleij wrote:
->> > > On Wed, Nov 9, 2022 at 7:56 AM Matt Ranostay <mranostay@ti.com> wrote:
->> > >
->> > > > Add support for TPS6594X PMICs GPIO interface that has 11 that can be
->> > > > configured as input or outputs.
->> > > >
->> > > > Tested-by: Keerthy <j-keerthy@ti.com>
->> > > > Signed-off-by: Matt Ranostay <mranostay@ti.com>
->> > >
->> > > (...)
->> > > > +config GPIO_TPS6594X
->> > > > +       tristate "TI TPS6594X GPIO driver"
->> > > > +       depends on MFD_TPS6594X
->> > > > +       help
->> > > > +         Select this option to enable GPIO driver for the TPS6954X
->> > > > +         PMIC chip family. There are 11 GPIOs that can be configured.
->> > >
->> > > select GPIO_REGMAP
->> > >
->> > > This driver is an archetypical example of a driver that can make great
->> > > use of GPIO_REGMAP helpers, so rewrite it to use them.
->> > > Look in drivers/gpio/gpio-sl28cpld.c for an example.
->> >
->> > Linus,
->> >
->> > Those helpers look great for this usecase on the surface but however I think there could be some issues.
->> > For GPIO direction it isn't configured by a bitmap on a register(s) but by a bit on a range of
->> > registers (with a register for each GPIOx).
+Version 2 of this series modifies the first patch only.  One section
+in the description is reworded, and the example now consistenly
+describes the SC7180 SoC, both as suggested by Krzysztof.
 
-As long as there is only one register to be changed per pin/action,
-.reg_mask_xlate should work, as you've already found out.
+Currently, GSI firmware must be loaded for IPA before it can be
+used--either by the modem, or by the AP.  New hardware supports a
+third option, with the bootloader taking responsibility for loading
+GSI firmware.  In that case, neither the AP nor the modem needs to
+do that.
 
->> > For set/get values the gpio helper would work though.
->> 
->> Isn't is possible to just use parts of the GPIO_REGMAP
->> helpers? I thought it's designed like such.
+The first patch in this series deprecates the "modem-init" Device
+Tree property in the IPA binding, using a new "qcom,gsi-loader"
+property instead.  The second and third implement logic in the code
+to support either the "old" or the "new" way of specifying how GSI
+firmware is loaded.
 
-No, you can't use them as they are kept private, along with
-the needed struct gpio_regmap. Which was intentional back then
-as it should be easier to change the implementation or add features
-without its use being spread all over the gpio drivers.
+The last two patches implement a new value for the "qcom,gsi-loader"
+property.  If the value is "skip", neither the AP nor modem needs to
+load the GSI firmware.  The first of these patches implements the
+change in the IPA binding; the second implements it in the code.
 
-We could change that though - or just add the needed feature to
-gpio-regmap if it looks generic enough.
+					-Alex
 
->> 
->> Michael Walle will know what to do with your usecase, and
->> whether to use it or not, let's page him!
->> 
-> 
-> So after looking around a bit and digging into the helper code I found 
-> this
-> drivers/pinctrl/bcm/pinctrl-bcm63xx.c which has a example on how to 
-> override
-> the reg_mask_xlate function which could be used for changing the
-> stride, and mask
-> based on the base address.
-> 
-> Currently have coded up using the gpio regmap helper. Will run through
-> some testing
-> first and then submit for review.
+Alex Elder (5):
+  dt-bindings: net: qcom,ipa: deprecate modem-init
+  net: ipa: encapsulate decision about firmware load
+  net: ipa: introduce "qcom,gsi-loader" property
+  dt-bindings: net: qcom,ipa: support skipping GSI firmware load
+  net: ipa: permit GSI firmware loading to be skipped
 
-Sounds promising.
+ .../devicetree/bindings/net/qcom,ipa.yaml     | 78 +++++++++++----
+ drivers/net/ipa/ipa_main.c                    | 95 +++++++++++++++----
+ 2 files changed, 135 insertions(+), 38 deletions(-)
 
--michael
+-- 
+2.34.1
+
