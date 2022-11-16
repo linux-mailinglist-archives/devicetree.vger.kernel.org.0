@@ -2,48 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8411262C071
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AD2A62C077
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232580AbiKPOHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 09:07:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41854 "EHLO
+        id S233837AbiKPOHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 09:07:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbiKPOGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 09:06:51 -0500
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 450404FF9E
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 06:01:43 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S233880AbiKPOHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 09:07:19 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3221B9EB;
+        Wed, 16 Nov 2022 06:05:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1627C3F308;
-        Wed, 16 Nov 2022 15:01:41 +0100 (CET)
-Date:   Wed, 16 Nov 2022 15:01:39 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E19B61E15;
+        Wed, 16 Nov 2022 14:05:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E94B6C433C1;
+        Wed, 16 Nov 2022 14:05:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668607521;
+        bh=R8UCmC2PII2RGSBxpsMRtJ4RLUVrVzZ8ARuUjOc0CLo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bfG1n1t/4pXfJpmdenAxdRhMapuo09xYup27Ck8KCVIhUwO+IbhstQSbmy8bk5bRQ
+         sVouTNIntNsthevLuBt4FBh6N5oAww7Nyfhm2bnk9oFiIWZc/xWMhoHST1dpMRB3MZ
+         xpJjWB+0579QwIScULLQ1M0WdDlDwgUncCYiM43QyUkI/JI5rXV1UEhpG0c/rP9cQK
+         +67hv8F5FH5kmvBmXmY21DpLq6A3S/xQTP+AOGwSPkmB6uHWJOu73xJwRVLABOUaJm
+         6pyDtcuK2msLIhbvL63deTiclPQoDyd8e5eKjPAiZ6WpClAOMaBhxzErV36C3alZq7
+         O+Euh/xk09Vrg==
+Date:   Wed, 16 Nov 2022 14:05:15 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afd@ti.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH] docs: dt: writing-schema: Document usage of CHECK_DTBS
- make flag
-Message-ID: <20221116140139.gjfsgekz4t4pxekz@SoMainline.org>
-References: <20221102214300.309347-1-nfraprado@collabora.com>
- <20221116135504.mdmgm6ce2cynt5yt@SoMainline.org>
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,spmi-pmic: rename extcon node
+ name
+Message-ID: <Y3TuGzPnU6LTWzSm@google.com>
+References: <20221031175717.942237-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221116135504.mdmgm6ce2cynt5yt@SoMainline.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20221031175717.942237-1-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,82 +61,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+CC Konrad and Dmitry whom I discussed this with before.
+On Mon, 31 Oct 2022, Luca Weiss wrote:
 
-On 2022-11-16 14:55:04, Marijn Suijten wrote:
-> Hi NÌcolas,
+> extcon is a Linux-specific name and shouldn't be a part of the dts. Make
+> it be called usb-detect@ instead.
 > 
-> On 2022-11-02 17:43:00, NÌcolas F. R. A. Prado wrote:
-> > It is possible to run checks on a Devicetree by passing the CHECK_DTBS
-> > flag when building. This is a useful shortcut to the dtbs_check make
-> > target since it avoids checking unrelated Devicetrees, which can take
-> > some time and is unnecessary if no bindings were modified. Document it.
-> > 
-> > Signed-off-by: NÌcolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> > ---
-> > 
-> >  Documentation/devicetree/bindings/writing-schema.rst | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
-> > index 4a381d20f2b4..55ad556472b4 100644
-> > --- a/Documentation/devicetree/bindings/writing-schema.rst
-> > +++ b/Documentation/devicetree/bindings/writing-schema.rst
-> > @@ -167,6 +167,13 @@ setting the ``DT_SCHEMA_FILES`` variable to a specific schema file or pattern.
-> >      make dt_binding_check DT_SCHEMA_FILES=/gpio/
-> >      make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
-> >  
-> > +Note that ``make dtbs_check`` will validate every DT source file that is
-> > +enabled. When making changes to a DT but not to the bindings, a possible
-> > +shortcut to validate only the DT in question is to explicitly build it with
-> > +the ``CHECK_DTBS`` flag enabled. For example::
-> > +
-> > +    make CHECK_DTBS=y mediatek/mt8192-evb.dtb
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+> This patch builds on top of
+> https://lore.kernel.org/linux-arm-msm/20221031173933.936147-1-luca@z3ntu.xyz/
+> But could also be applied without, if conflicts are resolved.
 > 
-> I have a bit of trouble getting this to work on a _clean_ out directory
-> (perhaps this should have been reported at the original patch, I had
-> always been using Dmitry's version [1] which didn't suffer from this
-> problem).
-> 
-> Consider running with the following:
-> 
->     rm out -r
->     make ARCH=arm64 O=out defconfig
->     make ARCH=arm64 O=out CHECK_DTBS=y qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-> 
-> After compiling preliminaries, it exits with:
-> 
->     make[3]: *** No rule to make target 'arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb'.  Stop.
->     make[2]: *** [../scripts/Makefile.build:500: arch/arm64/boot/dts/qcom] Error 2
->     make[1]: *** [/kernel/Makefile:1460: qcom/sm8450-sony-xperia-nagara-pdx223.dtb] Error 2
->     make[1]: Leaving directory '/kernel/out'
->     make: *** [Makefile:231: __sub-make] Error 2
-> 
-> However, if I lint all DTBs first by running `dtbs_check`, it seems the
-> schema preliminaries are built:
-> 
->       LINT    Documentation/devicetree/bindings
->       CHKDT   Documentation/devicetree/bindings/processed-schema.json
->     ... bunch of warnings
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> 
-> And here I ctrl+c the build so that it doesn't run DTC_CHK over every
-> dts.  If I now re-run the original command on my .dtb of choice, it
-> completes successfully with the warnings that I expect.  Is the logic
-> behind `CHECK_DTBS=y` simply missing a step to make sure SCHEMA is built
-> and up-to-date?
-> 
-> Aside from not working in a clean output directly, could this imply
-> schema changes (edits in Documentation/devicetree/bindings) _are not_
-> propagated when running with `CHECK_DTBS=y?
-> 
-> At the same time running this command twice results in no output the
-> second time around, supposedly because the dtb has "already been built".
-> Is that also something we can improve?
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/20220623144357.297252-1-dmitry.baryshkov@linaro.org/
-> 
-> Thanks!
-> - Marijn
-> 
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+
+Applied, thanks.
+
+-- 
+Lee Jones [ÊùéÁêºÊñØ]
