@@ -2,62 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF0EF62B98E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A677462B9A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:44:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238200AbiKPKnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:43:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52110 "EHLO
+        id S237885AbiKPKoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:44:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238603AbiKPKm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:42:57 -0500
-Received: from us-smtp-delivery-115.mimecast.com (us-smtp-delivery-115.mimecast.com [170.10.129.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C14A4047B
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:30:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
-        s=selector; t=1668594601;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BxEZuRkRGD62WXnjbjEacCdYU53Qf097NU8Yuqsm2b8=;
-        b=HypGX/embZ7IIAfsjlKpfwOFNDiDoH4N9gG4HXEwKkdXBsHjnlJVHX0fVJdoOWG+otXTPE
-        9kRez5v8R5PzxTAmSm/RizfjL1gOmgycDHQIP1CEot5dk0RoaOOkoQRvkipo270GC8amXh
-        8AVXQPaveI1WQrHql6aXLeW6qHLsdu7eRNcIcMlY7SA3eFBUAbLYbpZmlKz0+RjS9wQQlj
-        FbjsNf0w/jYfZ0g6maIW/NZFGJbv1MdTTGMTdddl9RsBNMHEcolrloROwZIDM/UYqnzBx4
-        CwWdeObFzktZ+QWY0DOtALKhMIz4fok84ZdOlBsBrbB7g5cOa3Wzty4SU+gxDg==
-Received: from mail.maxlinear.com (174-47-1-83.static.ctl.one [174.47.1.83])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- us-mta-160-OxDfw-HvPhmT22pZa4OKpg-1; Wed, 16 Nov 2022 05:28:41 -0500
-X-MC-Unique: OxDfw-HvPhmT22pZa4OKpg-1
-Received: from sgsxdev001.isng.phoenix.local (10.226.81.111) by
- mail.maxlinear.com (10.23.38.120) with Microsoft SMTP Server id 15.1.2375.24;
- Wed, 16 Nov 2022 02:28:35 -0800
-From:   Rahul Tanwar <rtanwar@maxlinear.com>
-To:     <devicetree@vger.kernel.org>, <robh@kernel.org>,
-        <andriy.shevchenko@linux.intel.com>, <tglx@linutronix.de>,
-        <mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-        <x86@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <hpa@zytor.com>,
-        <alan@lxorguk.ukuu.org.uk>, <dirk.brandewie@gmail.com>,
-        <grant.likely@secretlab.ca>, <sodaville@linutronix.de>,
-        <devicetree-discuss@lists.ozlabs.org>,
-        <linux-lgm-soc@maxlinear.com>,
-        "Rahul Tanwar" <rtanwar@maxlinear.com>
-Subject: [PATCH v2 2/2] x86/of: Convert & update Intel's APIC related binding schemas
-Date:   Wed, 16 Nov 2022 18:28:21 +0800
-Message-ID: <5ba7963fbd82a859ffd99c6d8edb4d717fce0e6c.1668589253.git.rtanwar@maxlinear.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1668589253.git.rtanwar@maxlinear.com>
-References: <cover.1668589253.git.rtanwar@maxlinear.com>
+        with ESMTP id S238496AbiKPKnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:43:21 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E405730F58
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:31:35 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id j4so28855150lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:31:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Tmbfh1WVbfQ1CxANG3LWdUaNW2xXxnk6OP5I/SiHoqQ=;
+        b=Ii5yWdXpRvIeKUwFh+G+w7l4ImMz1za7x2GtYWLNZTt0iK8ooqW/3PBeCKo3rWTNDF
+         Ky6vpVbOB3mGvrygUeo7oWjyROpZvCu8cB1oyG+FmkZxVTqH5936gcQkk782PIsgt2Kh
+         ZITXIYdA7xmY50dFwXpKSOpfw2dOqxlGK0LOfHgxxDP7nOsEKoCEWw8sOT8pbuSXBYIw
+         YmsOWPGn6hraMkaBcn0VgDeaqwmMdlEGKpEzVvuaGxUZtXn+/4LCTpd5fHLUn1AYdlIW
+         JeiPWxa6A3JFFrac5WbHXrpE/5acQeuN8y9XV5vR8vgF12u9XbhurzbF/ZD2nDzG+YL3
+         NlIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tmbfh1WVbfQ1CxANG3LWdUaNW2xXxnk6OP5I/SiHoqQ=;
+        b=2LdtM6TiluHHokXKR29lOpo3CitSmSR22LoQaUPw7OO2uPVl1eZDEu0r/GYdsMEzhC
+         dMSpsUNe4YwadyBDsH+XJuY58/+CKyfOWXqJDmplXAxLdFDez2iD/SnDewLY/5B8qzmB
+         82HtoTfmPGOeKmQKQ6xR/3itV1S+Tww0qCYMLxAC5kulHd5bB5FXkgmyXeIG8FedBvIe
+         owuh/pc8ifQm/Mmua1InJonvtTtddvUCmjZyzjSUqPhvqcJvqDSgir5+Q8i+yfM91KNN
+         KcIPgaWaWFJ3EWJnwSk/7vGgHaajMetrgvkhMLWXE+WmCT7E29k2Lv8vxMcrVlT0S+1d
+         4L8g==
+X-Gm-Message-State: ANoB5pn9BmBoyA9mm16F8ZXgaqqshdQCq9iqsfJ9bwTcIdWp+BBD74NN
+        vz3ZxJPpWwCqOqgHvqDsHWUfyQ==
+X-Google-Smtp-Source: AA0mqf6hlz01gAPME7ihSspi7xB+EbsERsLFpWZyqMysHgKXZ7emPnC3hw/0rQ1Vd8mBo1qsh29uhA==
+X-Received: by 2002:ac2:5ded:0:b0:4a2:b387:8b19 with SMTP id z13-20020ac25ded000000b004a2b3878b19mr6699305lfq.284.1668594694293;
+        Wed, 16 Nov 2022 02:31:34 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f15-20020a05651c160f00b002770f0a742bsm2915094ljq.41.2022.11.16.02.31.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 02:31:33 -0800 (PST)
+Message-ID: <a171d20f-5491-f660-939a-82795063b06c@linaro.org>
+Date:   Wed, 16 Nov 2022 11:31:32 +0100
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: maxlinear.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: interconnect: qcom-bwmon: document SM8550
+ compatibles
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-bwmon-v1-0-b6dd08927f35@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-bwmon-v1-0-b6dd08927f35@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,211 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Intel's APIC family of interrupt controllers support local APIC
-(lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
-& ioapic from text to YAML schema. Separate lapic & ioapic schemas.
+On 16/11/2022 11:14, Neil Armstrong wrote:
+> This documents the compatibles used to describe the Bandwidth Monitors
+> present on the SM8550 platform.
 
-Also, update more info and newly introduced optional property for
-lapic to choose legacy PIC or virtual wire compatibility interrupt
-delivery mode.
+Do not use "This commit/patch", so just "Document the ...."
 
-Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
----
- .../intel,ce4100-ioapic.txt                   | 26 --------
- .../intel,ce4100-ioapic.yaml                  | 62 ++++++++++++++++++
- .../intel,ce4100-lapic.yaml                   | 63 +++++++++++++++++++
- 3 files changed, 125 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
-intel,ce4100-ioapic.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
-intel,ce4100-ioapic.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
-intel,ce4100-lapic.yaml
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/intel,c=
-e4100-ioapic.txt b/Documentation/devicetree/bindings/interrupt-controller/i=
-ntel,ce4100-ioapic.txt
-deleted file mode 100644
-index 7d19f494f19a..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-i=
-oapic.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Interrupt chips
-----------------
--
--* Intel I/O Advanced Programmable Interrupt Controller (IO APIC)
--
--  Required properties:
--  --------------------
--     compatible =3D "intel,ce4100-ioapic";
--     #interrupt-cells =3D <2>;
--
--  Device's interrupt property:
--
--     interrupts =3D <P S>;
--
--  The first number (P) represents the interrupt pin which is wired to the
--  IO APIC. The second number (S) represents the sense of interrupt which
--  should be configured and can be one of:
--    0 - Edge Rising
--    1 - Level Low
--    2 - Level High
--    3 - Edge Falling
--
--* Local APIC
--  Required property:
--
--     compatible =3D "intel,ce4100-lapic";
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/intel,c=
-e4100-ioapic.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
-intel,ce4100-ioapic.yaml
-new file mode 100644
-index 000000000000..537bb69cf2d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-i=
-oapic.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/interrupt-controller/intel,ce4100-ioap=
-ic.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel I/O Advanced Programmable Interrupt Controller (I/O APIC)
-+
-+maintainers:
-+  - Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-+
-+
-+description: |
-+  Intel's Advanced Programmable Interrupt Controller (APIC) is a
-+  family of interrupt controllers. The APIC is a split
-+  architecture design, with a local component (LAPIC) integrated
-+  into the processor itself and an external I/O APIC. Local APIC
-+  (lapic) receives interrupts from the processor's interrupt pins,
-+  from internal sources and from an external I/O APIC (ioapic).
-+  And it sends these to the processor core for handling.
-+  See https://pdos.csail.mit.edu/6.828/2008/readings/ia32/IA32-3A.pdf
-+  Chapter 8 for more details.
-+
-+  Many of the Intel's generic devices like hpet, ioapic, lapic have
-+  the ce4100 name in their compatible property names because they
-+  first appeared in CE4100 SoC. See bindings/x86/ce4100.txt for more
-+  details on it.
-+
-+  This schema defines bindings for I/O APIC interrupt controller.
-+ =20
-+properties:
-+  compatible:
-+    - const: intel,ce4100-ioapic
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ioapic1: interrupt-controller@fec00000 {
-+        compatible =3D "intel,ce4100-ioapic";
-+        reg =3D <0xfec00000 0x1000>;
-+        #interrupt-cells =3D <2>;
-+        #address-cells =3D <0>;
-+        interrupt-controller;
-+    };
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/intel,c=
-e4100-lapic.yaml b/Documentation/devicetree/bindings/interrupt-controller/i=
-ntel,ce4100-lapic.yaml
-new file mode 100644
-index 000000000000..890e07351506
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-l=
-apic.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/interrupt-controller/intel,ce4100-lapi=
-c.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel Local Advanced Programmable Interrupt Controller (LAPIC)
-+
-+maintainers:
-+  - Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-+
-+
-+description: |
-+  Intel's Advanced Programmable Interrupt Controller (APIC) is a
-+  family of interrupt controllers. The APIC is a split
-+  architecture design, with a local component (LAPIC) integrated
-+  into the processor itself and an external I/O APIC. Local APIC
-+  (lapic) receives interrupts from the processor's interrupt pins,
-+  from internal sources and from an external I/O APIC (ioapic).
-+  And it sends these to the processor core for handling.
-+  See https://pdos.csail.mit.edu/6.828/2008/readings/ia32/IA32-3A.pdf
-+  Chapter 8 for more details.
-+
-+  Many of the Intel's generic devices like hpet, ioapic, lapic have
-+  the ce4100 name in their compatible property names because they
-+  first appeared in CE4100 SoC. See bindings/x86/ce4100.txt for more
-+  details on it.
-+
-+  This schema defines bindings for local APIC interrupt controller.
-+ =20
-+properties:
-+  compatible:
-+    - const: intel,ce4100-lapic
-+
-+  reg:
-+    maxItems: 1
-+
-+  intel,virtual-wire-mode:
-+    description: Intel defines a few possible interrupt delivery
-+      modes. With respect to boot/init time, mainly two interrupt
-+      delivery modes are possible.
-+      PIC Mode - Legacy external 8259 compliant PIC interrupt controller.
-+      Virtual Wire Mode - use lapic as virtual wire interrupt delivery mod=
-e.
-+      For ACPI or MPS spec compliant systems, it is figured out by some re=
-ad
-+      only bit field/s available in their respective defined data structur=
-es.
-+      For OF based systems, it is by default set to PIC mode.
-+      But if this optional boolean property is set, then the interrupt del=
-ivery
-+      mode is configured to virtual wire compatibility mode.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    lapic0: interrupt-controller@fee00000 {
-+        compatible =3D "intel,ce4100-lapic";
-+        reg =3D <0xfee00000 0x1000>;
-+        intel,virtual-wire-mode;
-+    };
---=20
-2.17.1
+> 
+> A BWMON v4 IP monitors the CPU bandwidth, and a v5 does the LLCC
+> bandwidth monitoring.
+> 
+> This is described this by adding "llcc" and "cpu" into the compatible
+
+One "this" too many.
+
+> strings to differentiate the BWMON IPs.
+> 
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
