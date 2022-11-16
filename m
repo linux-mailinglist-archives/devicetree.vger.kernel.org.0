@@ -2,182 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE70862BECB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:58:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B83B62BED3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:03:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbiKPM6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:58:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48136 "EHLO
+        id S232718AbiKPNDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:03:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233496AbiKPM6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:58:42 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B919C659D
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:58:40 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id kt23so43878339ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:58:40 -0800 (PST)
+        with ESMTP id S231565AbiKPNC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:02:59 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCBB10568
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:02:57 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id bp15so29302631lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:02:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nDvwwXEV44aTmmIoKPH7bc6LqlZ8E4Ob4p52TWVGvr4=;
-        b=cekHUYpnORylDQCbKrdKPLGkpBFRddBfMwumZYLprtEW+p5C2UDnouejqfjrWJzI4J
-         8OhYuUwZdDjveaJCpvi4j6DWMB+mJpJleUVnpDYxrs7maHuyry3aSib5+qOmaXyhXA/n
-         nK5vSoTK719b4vBpZ5r30dGWC8GtvYGZd3dMtsrL+D993WOv8adOqln8zPKUBqclhdMb
-         ZCeXycgrStly31vJKY4Gx1CcZ85xGMPfETqaRZH/fqXXUST7pOXM2/r4BVJRiLfeECAV
-         qkNbie+sL3F4spPeYk+5l8oRjv8RzOcmibjoMAcZoNeO69YRhujrnBKd+QuqMiTozStj
-         iWGw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6nFImyqcjOCw0VPGt4sM3tOy2kTrCbLPrbHyGVMhwtU=;
+        b=IElGtUKfWsETwq7XYWaSaFYsjCaNOE6bA7mNckgqHVfZvqPotujU9CCPPMMCyEO6L3
+         3yaoOGxAAMXPg15J44rMU9G3wCInMNhvs68nBoaEvSmuAuvlyedSuqOfYYqM64dYLyZJ
+         NWeeYz/MeTYj7EpYnBfqosVV/kajQ3xmBnLJNTphmlDgDw+5oMxzIaMPRxoB0R6b2MUC
+         xI6OirpvcBQCrSDYBeDgnXQVIdJaI3b48wykYi+16A4Ii4+Rt2TBiW4Ah7LLM/mVbM34
+         79dTUx4oyOS0oA+KQLtWiorNnHQ4vbXwgu+OR2pMfMIbcudxl+KRkuLcpSVlevIHwXIU
+         l7Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=nDvwwXEV44aTmmIoKPH7bc6LqlZ8E4Ob4p52TWVGvr4=;
-        b=QW3ge9KddOKJnAZqz73FfTAarMh0WAGw0v0itWd5LgePC7fMvPokzeJC4qkuM2v30Q
-         Hc+WS5/Mj5FeV8Qm6MHIjKG1WscfXXBj2GMf3Q+b/ue38q3GBQ/w9jHLH5O+ScvkcztV
-         9UgUwNi6y6BS5lY26C68ZwSAQQXwqj0yB1VJoODBoZhVIVpI40QuYHGezTl2SIBwLX9q
-         IvZgQq30+xkKFCPUv3dUMOSa9jhd6wiuf26JGIitSqTZAkCtlgB7pEHYGEKn/myyvYe1
-         sbQdzURsJcn8GBUaSMYAOGJo5z+av2LgVKY02QaZ+dul+pOY9lzi0n0wFS2J6UvBur31
-         Rv6w==
-X-Gm-Message-State: ANoB5pm93xyBN7mcSrKEPb/DBBdK8ksD1ne50g/weNJRLXqptf0AMRLu
-        EN1ZbAD85d46ZatKF+wDU5JTQQ==
-X-Google-Smtp-Source: AA0mqf56KN02I0QAyi1K7BJ8yHmTXAi5FUUAmYTDqbHwTr24Kj7vjxOkDm2xehoN6rUfBRJ6JRfEHg==
-X-Received: by 2002:a17:906:1d08:b0:7a9:ecc1:2bd2 with SMTP id n8-20020a1709061d0800b007a9ecc12bd2mr17517688ejh.545.1668603519342;
-        Wed, 16 Nov 2022 04:58:39 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id we10-20020a170907234a00b00782fbb7f5f7sm6844407ejb.113.2022.11.16.04.58.38
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6nFImyqcjOCw0VPGt4sM3tOy2kTrCbLPrbHyGVMhwtU=;
+        b=foyG3WDPzGiwGgtjFRVhOCIx8bV5hL6hhf93gL2pg2OAgibmj6f0T5Oal9wuR1HhYV
+         mXDCVcmOCVMrTRWDi0+YlJzTAL3v8kCFZ7L1DxbB0soRcrgOrAzwvaLxxy7hhmL47U2y
+         dW9XYpGadhgcii4RhWPxTKgTBIAfrEB0R5U8c+p6ab2l+KBCcc/dHZSNpQDCCFXldWvT
+         jWVNpWA/n3DFU/oA1Tsew9iGMtAawNRS4wimHq3y87IIDktk0wyWwMebfWqFt0xKgVMD
+         vB7/NlhCMNwvOO5ozjGlTj23FjZHhVmcnrVUQhDC8+B+uBsmIouB/fdYNlFTO1v17Eqq
+         eNVQ==
+X-Gm-Message-State: ANoB5pmMH3QYqRwbEGEdypPdq++TtohjWCHoFeZqzbQOR44aOW9NQtFH
+        /06V+rj65MMq0i9gZ8KTwkaJbw==
+X-Google-Smtp-Source: AA0mqf6L57yaZbDI7JLgcUwp7oyX1I57dd8iaDteJ1PsHvhCaFEWWDBvj2/9TxT13FHctPmfH8JcSw==
+X-Received: by 2002:a05:6512:1398:b0:4b1:df29:b9ee with SMTP id p24-20020a056512139800b004b1df29b9eemr7695595lfa.160.1668603775702;
+        Wed, 16 Nov 2022 05:02:55 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f16-20020a05651c02d000b0027708c94c9bsm2976409ljo.79.2022.11.16.05.02.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 04:58:38 -0800 (PST)
-Message-ID: <2b5f65f9-99d0-4ce6-da18-c1d9c8898d70@linaro.org>
-Date:   Wed, 16 Nov 2022 13:58:32 +0100
+        Wed, 16 Nov 2022 05:02:55 -0800 (PST)
+Message-ID: <79d783a0-b9cc-9093-6f76-0d50b9b81247@linaro.org>
+Date:   Wed, 16 Nov 2022 14:02:53 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550: Add UFS host controller and
- phy nodes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom: Add SM8550 to binding
+Content-Language: en-US
 To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, kw@linux.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221116125112.2788318-1-abel.vesa@linaro.org>
- <20221116125112.2788318-2-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116125112.2788318-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20221116123505.2760397-1-abel.vesa@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116123505.2760397-1-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/11/2022 13:35, Abel Vesa wrote:
+> Add the SM8550 platform to the binding.
 
+Subject: Drop redundant, second "binding"
 
-On 16/11/2022 13:51, Abel Vesa wrote:
-> Add UFS host controller and PHY nodes.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 76 ++++++++++++++++++++++++++++
->   1 file changed, 76 insertions(+)
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 07ba709ca35f..27ce382cb594 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1372,6 +1372,82 @@ mmss_noc: interconnect@1780000 {
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> +		ufs_mem_phy: phy@1d80000 {
-> +			compatible = "qcom,sm8550-qmp-ufs-phy";
-> +			reg = <0x0 0x01d80000 0x0 0x200>;
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index 54f07852d279..efa01a8411c4 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -34,6 +34,8 @@ properties:
+>        - qcom,pcie-sm8250
+>        - qcom,pcie-sm8450-pcie0
+>        - qcom,pcie-sm8450-pcie1
+> +      - qcom,pcie-sm8550-pcie0
+> +      - qcom,pcie-sm8550-pcie1
 
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-These three can go at the bottom.
+I am not sure what's the benefit of encoding arbitrary IDs to compatible
+just to differentiate by clocks. The devices are basically the same, so
+compatible should be the same.
 
+>        - qcom,pcie-ipq6018
+>  
+>    reg:
+> @@ -92,6 +94,10 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  enable-gpios:
+> +    description: GPIO controlled connection to ENABLE# signal
+> +    maxItems: 1
 
-> +			clock-names = "ref", "qref";
-> +			clocks = <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> +				 <&tcsr TCSR_UFS_CLKREF_EN>;
-> +
-> +			power-domains = <&gcc UFS_MEM_PHY_GDSC>;
-> +
-> +			resets = <&ufs_mem_hc 0>;
-> +			reset-names = "ufsphy";
-> +			status = "disabled";
-> +
-> +			ufs_mem_phy_lanes: phy@1d80400 {
-> +				reg = <0x0 0x01d81000 0x0 0x134>,
-> +				      <0x0 0x01d81200 0x0 0x3d8>,
-> +				      <0x0 0x01d80400 0x0 0x258>,
-> +				      <0x0 0x01d81800 0x0 0x134>,
-> +				      <0x0 0x01d81a00 0x0 0x3d8>;
-> +				#phy-cells = <0>;
-> +			};
-> +		};
-> +
-> +		ufs_mem_hc: ufshc@1d84000 {
-> +			compatible = "qcom,sm8550-ufshc", "qcom,ufshc",
-> +				     "jedec,ufs-2.0";
-> +			reg = <0x0 0x01d84000 0x0 0x3000>;
-> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> +			phys = <&ufs_mem_phy_lanes>;
-> +			phy-names = "ufsphy";
-> +			lanes-per-direction = <2>;
-> +			#reset-cells = <1>;
-> +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> +			reset-names = "rst";
-> +
-> +			power-domains = <&gcc UFS_PHY_GDSC>;
-> +
-> +			iommus = <&apps_smmu 0x60 0x0>;
-> +
-> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
-> +
-> +			interconnect-names = "ufs-ddr", "cpu-ufs";
-> +			clock-names =
-Why break the line before adding any entries?
+Does not look like used property...
 
-Konrad
-> +				"core_clk",
-> +				"bus_aggr_clk",
-> +				"iface_clk",
-> +				"core_clk_unipro",
-> +				"ref_clk",
-> +				"tx_lane0_sync_clk",
-> +				"rx_lane0_sync_clk",
-> +				"rx_lane1_sync_clk";
-> +			clocks =
-> +				<&gcc GCC_UFS_PHY_AXI_CLK>,
-> +				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> +				<&gcc GCC_UFS_PHY_AHB_CLK>,
-> +				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> +				<&rpmhcc RPMH_LN_BB_CLK3>,
-> +				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> +			freq-table-hz =
-> +				<75000000 300000000>,
-> +				<0 0>,
-> +				<0 0>,
-> +				<75000000 300000000>,
-> +				<100000000 403000000>,
-> +				<0 0>,
-> +				<0 0>,
-> +				<0 0>;
-> +			status = "disabled";
-> +		};
 > +
->   		tcsr_mutex: hwlock@1f40000 {
->   			compatible = "qcom,tcsr-mutex";
->   			reg = <0x0 0x01f40000 0x0 0x20000>;
+>    perst-gpios:
+>      description: GPIO controlled connection to PERST# signal
+>      maxItems: 1
+> @@ -187,6 +193,8 @@ allOf:
+>                - qcom,pcie-sm8250
+>                - qcom,pcie-sm8450-pcie0
+>                - qcom,pcie-sm8450-pcie1
+> +              - qcom,pcie-sm8550-pcie0
+> +              - qcom,pcie-sm8550-pcie1
+>      then:
+>        properties:
+>          reg:
+> @@ -601,6 +609,92 @@ allOf:
+>            items:
+>              - const: pci # PCIe core reset
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-sm8550-pcie0
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 11
+> +          maxItems: 11
+> +        clock-names:
+> +          items:
+> +            - const: pipe # PIPE clock
+> +            - const: pipe_mux # PIPE MUX
+> +            - const: phy_pipe # PIPE output clock
+> +            - const: ref # REFERENCE clock
+> +            - const: aux # Auxiliary clock
+> +            - const: cfg # Configuration clock
+> +            - const: bus_master # Master AXI clock
+> +            - const: bus_slave # Slave AXI clock
+> +            - const: slave_q2a # Slave Q2A clock
+> +            - const: ddrss_sf_tbu # PCIe SF TBU clock
+> +            - const: aggre0 # Aggre NoC PCIe0 AXI clock
+> +        interconnects:
+> +          maxItems: 1
+> +        interconnect-names:
+> +          const: icc_path
+
+Keep existing pattern of allOf:if:then or change entire file to a
+different style.
+
+Best regards,
+Krzysztof
+
