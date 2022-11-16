@@ -2,121 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21FA962B6D5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CAC362B6D9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:46:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232785AbiKPJpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 04:45:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
+        id S233171AbiKPJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 04:46:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233314AbiKPJo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:44:59 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12DC1E0A3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:44:58 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id a29so28624540lfj.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:44:57 -0800 (PST)
+        with ESMTP id S232501AbiKPJqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:46:04 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B12DEE
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:46:03 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id x21so21083968ljg.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 01:46:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pgS+Ovv0eXOJwFTViusXUlwcEa0Tx7ZA7lRyTAv8k4w=;
-        b=RCe4P4IceE6ZUqJglE+YVt+Dny9tnUgYpgasdp8+S6rXcaCc7k9FtCvWd5x2Bj/sBV
-         NAVASAdFtSlrI+TrToOf3ARBu7wuCOzIF7KDffariJDavuOisxcP1b+91qua69biztg0
-         uGsemHhaMQ0pBs0UcTft6qARg9oiPnZVW2nn5ja8UU27z4v/vz42rv/nV2f2ZxqLyCMp
-         77qSLcgHngG/Eoh2HjSHgQY/VWAvQWZANyGvy/SbToN+hIU8RQN/ULzpAzOZk0n5d1Vr
-         AhDCUuR7iP8in6MICx3X2fC71sp1qR/COkLRjG4njZ8KAuK8zy1cbCpLq1uvSaWGwgS4
-         emEA==
+        bh=VlPvJofxjAbwn4jWtFmNQoJ3cJnk9d0bOElPfxM86N4=;
+        b=E3PnT/l7Vbdcya0LkTfpalx3KDHcE8+grtNXIocnzLJb72/zjxl0OlFVqUOVrQD7em
+         bukGFwoPjXdd6AJCfbxICBfzG198Y/aACcd8lFl/B0GZWruO+RARLy57Oen8MqhFCIh+
+         gVktML98QEkkuRP9gnKXVjPwL/BsgYApVXD8l33lGlyUwEzz/wx8bWvY+yM6EfG8tHp3
+         PFC9CK0jqu0lL4pNBZMH5rKdWKktirQC3Z430b2EHTWHNNHsZuyqDmp643b/StIDrWRV
+         +qGRAn5DymULk6l5IfafFWCHXNyjU8blgsNsLsSLyzMrZotPgTuJ6Xpvpd/FmOH0owSi
+         YiTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pgS+Ovv0eXOJwFTViusXUlwcEa0Tx7ZA7lRyTAv8k4w=;
-        b=TBHouLNCzQoYcQCekjZt3eeB3zkQxLVlW+t8by1On9jieGsCumUp0N9Kj4GbR4zcdw
-         o1rgdawoe813OVtdhgqGS41Stxa/ntJoJgm6DgTbSwkoXaNjFpWLpcQ+lqKHyDwLPk7A
-         ecLKDK1sTc4H2iXe6f3yggmPIT6DkTjCST/qoLASSVwyIeV1cJ/pI9SHhaRegRGLsuer
-         DjRDf3TA/O9gtgukecM/1N+Nwuc12gc/fM0+1hjEVosZ+zlTqy/zScNdxSZW0ks/uEKQ
-         s1gtchkoefCaBbo3pw9nV4Fthyw1jJs5eDj6VQ0SbxKJOrhCqkBuB0Xf680bpzWH7vHa
-         78hQ==
-X-Gm-Message-State: ANoB5png4AW5noXEK/2uXS8wN0b8o8WCwxwr0r7lqjoiplpbqobHAKyt
-        gaHC/wYcEomHrQqqTVltKMPx5w==
-X-Google-Smtp-Source: AA0mqf6rTJFMk6b2mLxnOY8Sft920fWk28nxriGe7jyDuJtMB+LZZKA6WnYqmqoNq3pFIBP+3eFblg==
-X-Received: by 2002:a05:6512:308a:b0:4a2:39e6:4d48 with SMTP id z10-20020a056512308a00b004a239e64d48mr6999988lfd.234.1668591896428;
-        Wed, 16 Nov 2022 01:44:56 -0800 (PST)
+        bh=VlPvJofxjAbwn4jWtFmNQoJ3cJnk9d0bOElPfxM86N4=;
+        b=h9i6OBuMmfg7BlPBEOq/GUPqjcyE8mLCZxd7wRZFs8/FVj5tThjsJ5/TOzBqRawK1M
+         U5u+w9uOb3HNpt53tZF4e30rZf3BWAqBunyk0vB2wDhAezVUscLgarGyrzBvMeHgJBjh
+         lQIXIwFBrhKTy69WYAS46J6+FfVv/YcJpx8rzyKcA+yT+mRFNehLiwK08U50e7/MsGWV
+         J8KEfejJXUAkgzcBkpSFPxAGwP5WIfeGrzn/YFUc30DVRcydO19pvLlAdZlNEi1oBVRm
+         jZP5abz3gRS+HoEtOJKeXlCWWccg44vI1DP5cxRqmd8H51Eb5zbCsD9gPzGahghuilPH
+         hYNw==
+X-Gm-Message-State: ANoB5pndwm7TLFzrSsnZ27HtaYlJ0mBs7zn2K46sUB3eUhuA+UV2ud0R
+        jTaTid+2Q5F5pnr0eD2ehSR2bg==
+X-Google-Smtp-Source: AA0mqf4aktk2UYPioPNM9N7IXXS8kx14IfoPMBd8ybNvIAoa1znMcPZnBHancmUOaXr52g14tbLgcQ==
+X-Received: by 2002:a05:651c:2c9:b0:26f:ebb8:7a0d with SMTP id f9-20020a05651c02c900b0026febb87a0dmr7636826ljo.474.1668591961602;
+        Wed, 16 Nov 2022 01:46:01 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g5-20020a056512118500b00496693860dcsm2516397lfr.232.2022.11.16.01.44.54
+        by smtp.gmail.com with ESMTPSA id c14-20020a056512074e00b004afeacffb84sm2530195lfs.98.2022.11.16.01.46.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 01:44:56 -0800 (PST)
-Message-ID: <0ac1f247-be87-0f92-9ef0-c653bcdb6c1f@linaro.org>
-Date:   Wed, 16 Nov 2022 10:44:54 +0100
+        Wed, 16 Nov 2022 01:46:01 -0800 (PST)
+Message-ID: <2a1af80b-cb1a-6d87-689d-bed8ac53bff7@linaro.org>
+Date:   Wed, 16 Nov 2022 10:46:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 05/11] dt-bindings: mailbox: qcom: Allow syscon on
- qcom,msm8976-apcs-kpss-global
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        evgreen@chromium.org, gregkh@linuxfoundation.org,
-        a39.skl@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-hardening@vger.kernel.org,
-        marijn.suijten@somainline.org, kernel@collabora.com, luca@z3ntu.xyz
-References: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
- <20221111120156.48040-6-angelogioacchino.delregno@collabora.com>
- <14947ae2-c8d4-de86-ce9e-29175e73cbb2@linaro.org>
- <9f3e88fa-0aaf-2edd-366e-c3f5b2269dba@collabora.com>
- <513a2dc3-d053-6e4b-a125-394cf1f6c81b@linaro.org>
- <f60ccd79-9c82-0844-2c5f-21ec29c14dcf@collabora.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20221115123827.736141-1-biju.das.jz@bp.renesas.com>
+ <20221115123827.736141-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f60ccd79-9c82-0844-2c5f-21ec29c14dcf@collabora.com>
+In-Reply-To: <20221115123827.736141-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 10:00, AngeloGioacchino Del Regno wrote:
-> Il 16/11/22 09:57, Krzysztof Kozlowski ha scritto:
->> On 16/11/2022 09:52, AngeloGioacchino Del Regno wrote:
->>> Il 15/11/22 17:44, Krzysztof Kozlowski ha scritto:
->>>> On 11/11/2022 13:01, AngeloGioacchino Del Regno wrote:
->>>>> MSM8976 supports SMSM, which needs this node to also be a syscon:
->>>>> move the compatible to allow that.
->>>>>
->>>>> Fixes: bcc8d70f912d ("dt-bindings: mailbox: Add compatible for the MSM8976")
->>>>
->>>> I am not sure if this is still a bug. Maybe just a missing feature?
->>>>
->>>
->>> This changes how you use this mailbox across the entire devicetree (as other
->>> nodes will not use mboxes = xxxx, but qcom,ipc = xxxx as syscon), so I think
->>> that this is not a missing feature?
->>
->> Whether it is a bug depends on existing usage. If none of msm8976 DTSes
->> use it the other way, then it is just incomplete or missing support. Not
->> a bug. If existing DTSes use it as syscon, thus you need to add syscon
->> to compatible, then it would be a bugfix.
->>
+On 15/11/2022 13:38, Biju Das wrote:
+> From: Phil Edworthy <phil.edworthy@renesas.com>
 > 
-> It's not a bugfix then. The Fixes tag shall be dropped.
-> 
-> Same question like the other commit, should I send a v3 or can it be dropped while
-> applying?
+> Add DT binding documentation for System Configuration (SYS) found on
+> RZ/V2M SoC's.
 
-Maybe better send a v3.
+Thank you for your patch. There is something to discuss/improve.
+
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a09g011-sys
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sys: system-controller@a3f03000 {
+> +       compatible = "renesas,r9a09g011-sys";
+> +       reg = <0xa3f03000 0x400>;
+
+Use 4 spaces for example indentation (two is also okay, but not three).
+
+With this fixed:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
