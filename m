@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CCEF62B4F1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D368062B50D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:23:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbiKPIUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:20:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55464 "EHLO
+        id S238857AbiKPIXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:23:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232678AbiKPIU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:20:27 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0906260FB
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:20:25 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id c1so28322814lfi.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:20:24 -0800 (PST)
+        with ESMTP id S238813AbiKPIXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:23:20 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B8213F1E
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:21:35 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id d20so20805852ljc.12
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:21:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=20QIWTDhxs5zpxfjzQDwrXucngPgVQ+JOvZAayYi6hk=;
-        b=ddqPFfDM59WUbI9URyKo7Wu9Vum3BpFnaox+hRouL9QzJqOse+muzQwkNGtVMlZ5Zs
-         wxElcJ87TL+rGlJ73eCySG5L4L9VBc9asBWfuy/rfOgkkHWrPqbRH/BESzcX51Mj1xoG
-         BclxmopYl0NXcYviJ9ogHWuvf80+psdHS8TUSzN6d+dDX/sKSrcDpp9rjzl1gWQ0yF2Q
-         bnRxatjHV7HgjKNp3lhDacF8O9SNnoyyEke2jZeDhcOtRMuTwR6xyKtR7/lmDwoqBNJp
-         E42sIi/PYUnzUulpPUoVshXgVheNlYOClOs6YSF+l/ndAZE5Ilq6VP9kEj33+/VK9ngm
-         Zy4g==
+        bh=hOhON3c92uOQG/q5cu0aF5WgWtMVsl/yA7D31IBRUvA=;
+        b=v3xeJRqsQ25HIf13rxAwKE+/6/K6rqVfZRhQyECOPVLQ7icsDHkVtYjpCaFYlBRba+
+         NnfDliMvRv8EowYlm8UwXF9AIhq8ryISGJdbQenYBhP6zVJtE0p+U4akJ5FyAwrVvi7r
+         55VMwNJQKFbqLHdk7qLf7DSYhxiny765h7f/AVAYyeLz7eQ4wT0uUBXajTaiLoQi/2IX
+         bhUnvVgWKY9wzj4ijwOxGT+VGTI9msc9yehCwaf5tJArF+DEerMe+OtlIyXDwqItc81r
+         OyU0W+2HuIm03oNHNP07ue7gC/NBDMUE/Tjj4xxMFKKsFBuNZlrTpwIia4lUGEVlYQdQ
+         6q9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=20QIWTDhxs5zpxfjzQDwrXucngPgVQ+JOvZAayYi6hk=;
-        b=R9790G42eSNecTQhpCrG3VH2VgNE49tD7uKwQXj3PtWcd2Tq/iX5YZKgN44hE/b0aP
-         c/aUWGXmnNMIHsTC2t+KeNKec40XBAZ8CcBN9nW2+ukBQ3C/ep7Adk2V+Y8g/ndQnBMm
-         0zOw8dQck8HvFhTUSS8M9Iejzb/kperl4Pqy9bdg7sZN/76DjP5H60+tfQEtRMT93Wyq
-         OYr0Jf4U8ciYggkEL3/tYaF6hPlZqVIUSsSZsMkaWlss635vlQLFINGrTz9A0tWw/8rv
-         vd2DFpvWvHHqBpWfSMS8iDSWZif2XfJI3fkRjIHGhp+K7syrfn+aVkAwrsvVYajTGuvX
-         BooA==
-X-Gm-Message-State: ANoB5pkZyd41QG4xmZ+Wh5nuEtlJaLtPb+ZCV496V+Zl0mT5y8/uoWDK
-        iOrp8uTS+pcEn1PBjiMm7QXgsQ==
-X-Google-Smtp-Source: AA0mqf6Z7C14uz2nU+dWtpSFYMdf+a93HGeoSotCFIFvFrqMsbC8WgrVJY+5FdIxsakJ8XPLIIzwQQ==
-X-Received: by 2002:ac2:4ac9:0:b0:4ac:102e:5c93 with SMTP id m9-20020ac24ac9000000b004ac102e5c93mr7889381lfp.352.1668586823210;
-        Wed, 16 Nov 2022 00:20:23 -0800 (PST)
+        bh=hOhON3c92uOQG/q5cu0aF5WgWtMVsl/yA7D31IBRUvA=;
+        b=nvlZnx5VRQyvWPpKZ+pibSrdtD3CsvL48k8e5mTiwiojN8SIHiQ1Kie2dFswLj8XWe
+         p69+vYTVYZ2GjGlxU0uH3ibmRxfvYLBx5Qz1RVdSJGk+aa31sD2q5CCDoFM4PoniD2rp
+         JvfExdMpY2JA85JTRwOo3BG5fdtsUQGgRUJHfkMBtrM4EmiQC8QzLFm5nasC+eBMI1Ay
+         mvaj5oF8ZAoF6cHYytFzQOyWdM0cv8hQZbEMevwlrPia+CW39qYqlGEP1cbiu8CyFiFQ
+         W/3mDRLnDiL6uoOom+Y6x+j5qlQxFSW39nM18xG5pGCp69LVYPzTIoH7JAF97a+xmBQG
+         nd/A==
+X-Gm-Message-State: ANoB5pkP6V0ieY2xl1B8psTHAyf8P0RTrdoGQCfzMxEVthFnoroCiz/f
+        0XZJjk8mc+A4Ga1YVd8K8aPhBQ==
+X-Google-Smtp-Source: AA0mqf7D9jtRcm31IK4h9nEOJcLgzidioIPjn0kKfE18WRLFBDH5aYRGy0EDuLZaRrezjI86pj58Ig==
+X-Received: by 2002:a2e:94cb:0:b0:277:3df:90d0 with SMTP id r11-20020a2e94cb000000b0027703df90d0mr7184219ljh.234.1668586893685;
+        Wed, 16 Nov 2022 00:21:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g16-20020a19e050000000b00494a11c5f52sm2503698lfj.256.2022.11.16.00.20.22
+        by smtp.gmail.com with ESMTPSA id e5-20020ac25465000000b00492dbf809e8sm2485379lfn.118.2022.11.16.00.21.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 00:20:22 -0800 (PST)
-Message-ID: <e9fd112f-0fd2-e833-8687-9a256c307842@linaro.org>
-Date:   Wed, 16 Nov 2022 09:20:21 +0100
+        Wed, 16 Nov 2022 00:21:33 -0800 (PST)
+Message-ID: <a7dac56d-0fb0-b45f-a722-4cac8d1f777e@linaro.org>
+Date:   Wed, 16 Nov 2022 09:21:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dtbindings: clock: Add bindings for Renesas PhiClock
+Subject: Re: [PATCH 1/4] dt-bindings: mmc: sdhci-msm: Document SM8350 SDHCI
 Content-Language: en-US
-To:     Alex Helms <alexander.helms.jy@renesas.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com, geert+renesas@glider.be
-References: <20221115192625.9410-1-alexander.helms.jy@renesas.com>
- <20221115192625.9410-2-alexander.helms.jy@renesas.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221115172828.14372-1-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221115192625.9410-2-alexander.helms.jy@renesas.com>
+In-Reply-To: <20221115172828.14372-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,118 +79,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 20:26, Alex Helms wrote:
-> Add dt bindings for the Renesas PhiClock clock generator.
+On 15/11/2022 18:28, Konrad Dybcio wrote:
+> Document the SDHCI on SM8350.
 > 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Subject: drop second, redundant "bindings"
 
-> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> ---
->  .../bindings/clock/renesas,phiclock.yaml      | 81 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml b/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
-> new file mode 100644
-> index 000000000..2b36534d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/renesas,phiclock.yaml
-
-Filename based on compatible.
-
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/renesas,phiclock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas PhiClock Clock Generator Device Tree Bindings
-
-Drop "Device Tree Bindings"
-
-> +
-> +maintainers:
-> +  - Alex Helms <alexander.helms.jy@renesas.com>
-> +
-> +description: |
-> +  The Renesas PhiClock is a programmable I2C clock generator that provides
-> +  1 reference output and 2 clock outputs.
-> +
-> +  The driver supports spread spectrum but only if all configurations use the
-
-Driver as in Linux driver? Drop entire paragraph. Bindings are about
-hardware, not driver.
-
-> +  same spread spectrum parameters. If your configuration uses spread spectrum,
-> +  you must include renesas,ss-amount-percent, renesas,ss-modulation-hz, and
-> +  renesas,ss-direction in the device tree.
-> +
-> +properties:
-
-compatible goes always first. Start your schema from example-schema.yaml.
-
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xin-clkin
-
-Just "xin" or entirely drop.
-
-> +
-> +  clocks:
-> +    const: 1
-> +
-> +  compatible:
-> +    enum:
-> +      - renesas,9fgv1006
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  renesas,ss-amount-percent:
-> +    description: Spread spectrum absolute amount as hundredths of a percent, e.g. 150 is 1.50%.
-
-What? If this is percent then it cannot be hundreds of percent. Percent
-is percent. Use appropriate units.
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-
-> +    minimum: 0
-> +    maximum: 500
-> +
-> +  renesas,ss-modulation-hz:
-> +    description: Spread spectrum modulation rate in Hz
-> +    minimum: 30000
-> +    maximum: 63000
-> +
-> +  renesas,ss-direction:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Spread spectrum direction
-> +    enum: [ down, center ]
-> +
-> +required:
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ref25: ref25m {
-> +      compatible = "fixed-clock";
-> +      #clock-cells = <0>;
-> +      clock-frequency = <25000000>;
-> +    };
-
-Drop, it's obvious, isn't it?
-
-> +
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
