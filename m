@@ -2,74 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0649762C97E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D55A762C990
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:07:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbiKPUDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:03:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34326 "EHLO
+        id S229758AbiKPUHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:07:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238534AbiKPUDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:03:08 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AACA66C8F;
-        Wed, 16 Nov 2022 12:02:58 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id y13so18511999pfp.7;
-        Wed, 16 Nov 2022 12:02:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dU5Mwb4CLrFeMhe4gtPSXHFZzIZzSCF10R2Jay+I0+Y=;
-        b=fZt/DptU/WyyXomIIYhusRu/ggtb7lQmge+tN9aC26JOHUiotfJ6pNPE0sOZsXFlHA
-         SgeDoeiwbjAZfkgqTVCECcv7sWywKNuPLRdXB2lRWWgg1k051QO2wO27w3GpXYG67DmI
-         FBc61+kKx9u3T8aPUbm4mWTchGz3YT6lsXgp6Ikq8d/gCmzPV1sum84ZZ8KtlSWELjkp
-         s9JSmZIn2Qu5zRciJVrRw9g0Br1hI3QpPZLRyl6iZ3/4k0Cy16ZuG9/RVTWW1T4dZMma
-         PQENYUq9QG6GJX+VI+8yQwhjbChPWtHurVy20PsG4eSo+W5qreGGu90lFrtHhMBdfTj2
-         NvrQ==
+        with ESMTP id S233419AbiKPUH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:07:29 -0500
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77A565E6E;
+        Wed, 16 Nov 2022 12:07:28 -0800 (PST)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-13b103a3e5dso21442831fac.2;
+        Wed, 16 Nov 2022 12:07:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dU5Mwb4CLrFeMhe4gtPSXHFZzIZzSCF10R2Jay+I0+Y=;
-        b=55UlpKXrU8s5UcfxL/7xezdkkYCL50giCgRA5XsLitFXUKTQi3q6alnVv+8WLTnxLg
-         vhDJtqFmCkju5qyu9Y17XH3L1UNwHqvog2tP/xmp/tTcpT/O4o71ctDgXCi2V3Pu8qmd
-         GjGQ58tsMmigC9pZhKKwanR82vBkiLYTbW3nqz3o/SVjHmQ6bgeLLQA0sxqpFUCkoq/Y
-         rqDsqnVdqiTA42/hYrnIJzlbdFTG9/x7j1TT92I04/XeMe2ku5E0jUlnJYg/GRWuEVVL
-         XGudCLiwQBtG0Duxyu1KgHRb5lqpcgZXadNcBaHWpWsDpGOVGWKkq4ID0LCDNvIJxs8V
-         qWpQ==
-X-Gm-Message-State: ANoB5plAM/M29ka4M9tdqEPEknhTasR5sUb/5eMfOJcASDaV0sDPOGN2
-        hM+MdYC8DYrfNFa9f/N6DNw=
-X-Google-Smtp-Source: AA0mqf65fkbouqf7pu70romJDYuiqQRkWpQa9l+BjQMgcgn/bj4rOIJ3+Bmx2ZNSZkKx+2HoKXBR6A==
-X-Received: by 2002:a05:6a00:3689:b0:563:3d81:7faf with SMTP id dw9-20020a056a00368900b005633d817fafmr24476557pfb.45.1668628978034;
-        Wed, 16 Nov 2022 12:02:58 -0800 (PST)
-Received: from localhost.localdomain ([103.51.72.182])
-        by smtp.gmail.com with ESMTPSA id s18-20020a170903215200b00186a6b6350esm12423950ple.268.2022.11.16.12.02.54
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X3o0hIsvJFOLcZ8ESMlVcurvtD+mmqbtLVyGcl/sY54=;
+        b=26fupIloWNZ+QSC+uZMJM03bzNYdaZsLotSM05rWRF//exfuk2f8Q0eh6SQxBwE3Jv
+         Z4b0ZVSXJkEs7w5nn5CqIas1PaUthonIzmrxAZZGv0BmDa/o8CfugY3wUrk63v7wk50C
+         iJ2H69l/hDmvTh2Mb4yalXbg7iqyQgSlkIsLPlRQA9dllqdXI6H8uUug6OKDzd7ELRwS
+         74YNh/sopES43wDxA5iwVVPxKvFdVdlGxONLiJ240QNdrBwnOu0vcISL23xdRrk3FIpx
+         FN809AR3CmSrAr1mC6rUgqpMWA0PCFzkJZtc/PLt03lJGt7YkaJfeJmYxKd9CR3etL3w
+         uXjg==
+X-Gm-Message-State: ANoB5pkSy53nC1xOyunURz5ELV+cf15JYYLaJzgtSUh78cO60Wezz9A6
+        B019iqeZWqsF8UYsm5Fctzm/ucjGRQ==
+X-Google-Smtp-Source: AA0mqf7Y5mayIIOJnRs5fm9MG6XmlJ2p14iimv18HohLuyFxhN240z+lGGHwegz/4DlOh0LhyYyflg==
+X-Received: by 2002:a05:6870:ad06:b0:13b:158f:8dad with SMTP id nt6-20020a056870ad0600b0013b158f8dadmr2598703oab.253.1668629248109;
+        Wed, 16 Nov 2022 12:07:28 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f23-20020a9d7b57000000b00661a3f4113bsm6911392oto.64.2022.11.16.12.07.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 12:02:57 -0800 (PST)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [linux-next-v2 5/5] arm64: dts: rockchip: Add missing of ethernet-phy-id to reset the phy on Rock 3A SBC
-Date:   Wed, 16 Nov 2022 20:01:48 +0000
-Message-Id: <20221116200150.4657-7-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221116200150.4657-1-linux.amoon@gmail.com>
-References: <20221116200150.4657-1-linux.amoon@gmail.com>
+        Wed, 16 Nov 2022 12:07:27 -0800 (PST)
+Received: (nullmailer pid 806612 invoked by uid 1000);
+        Wed, 16 Nov 2022 20:07:29 -0000
+Date:   Wed, 16 Nov 2022 14:07:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Erling Ljunggren <hljunggr@cisco.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
+Message-ID: <20221116200729.GA761467-robh@kernel.org>
+References: <20221111132906.2212662-1-hljunggr@cisco.com>
+ <20221111132906.2212662-4-hljunggr@cisco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221111132906.2212662-4-hljunggr@cisco.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,48 +62,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MDIO description with ethernet-phy-id compatible string
-which enable calling reset of the phy. The PHY will then be probed,
-independent of if it can be found on the bus or not,
-and that probing will enable the GPIO.
+On Fri, Nov 11, 2022 at 02:29:04PM +0100, Erling Ljunggren wrote:
+> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+> 
+> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+> ---
+>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> new file mode 100644
+> index 000000000000..492eecb3ab7c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
+> +
+> +maintainers:
+> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> +
+> +description: |
+> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
+> +
+> +properties:
+> +  compatible:
+> +    const: onnn,cat24c208
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  input-connector:
+> +    description: |
+> +      Phandle to the video input connector, used to find
+> +      the HPD gpio and the connector label, both optional.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-ethernet-phy-id is read from ethenet register dump reg2 and reg3.
+The binding and driver feel the wrong way around to me. It seems 
+like you should have a driver for the connector and it needs HPD GPIO, 
+label, and EEPROM. The driver instead looks mostly like an EEPROM driver 
+that hooks into a few connector properties.
 
-Fix following warning.
-[   12.323417] rk_gmac-dwmac fe010000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-[   12.324078] rk_gmac-dwmac fe010000.ethernet eth0: no phy at addr -1
-[   12.324099] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+Reading the datasheet, I don't see anything special about accessing the 
+EEPROM from the host (DSP) side. Wouldn't the default at24 driver work? 
+It exposes regmap and nvmem.
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-V2: new to the patch series.
-
-alarm@rock-3a:~$ sudo ethtool -d eth0
-[sudo] password for alarm:
-ST GMAC Registers
-GMAC Registers
-Reg0  0x08072203
-Reg1  0x00000000
-Reg2  0x00000404
-Reg3  0x00000000
-Reg4  0x00000002
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-index 9f84a23a8789..fe36156a5017 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-@@ -585,7 +585,7 @@ &i2s2_2ch {
- 
- &mdio1 {
- 	rgmii_phy1: ethernet-phy@0 {
--		compatible = "ethernet-phy-ieee802.3-c22";
-+		compatible = "ethernet-phy-id0000.0404", "ethernet-phy-ieee802.3-c22";
- 		reg = <0x0>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&eth_phy_rst>, <&eth_phy_int>;
--- 
-2.38.1
-
+Rob
