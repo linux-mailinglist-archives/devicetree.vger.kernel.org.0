@@ -2,452 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C08062C248
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 717C762C24F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:20:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233463AbiKPPTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 10:19:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37092 "EHLO
+        id S234881AbiKPPUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 10:20:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234620AbiKPPTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:19:06 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC434FFAB
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 07:18:58 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id gv23so12145543ejb.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 07:18:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zuH42ufaSzhajw7Xy1jUqHmnzYywK6C3V2BH/2bvta8=;
-        b=fAsa6I6/Vq4izM6ZGZcGoekN95SbrvyhEpsdZTygiB+2I4dWunQ4658X3/Pbm1Upq1
-         gkLYD9KOeMFnDZJELi4WScqoZ9EU9BJ/TE3c0HqvsL2t7QfwyJcD94NUFJD7ZoJYA14V
-         E1QhmuWvo9jwxeQQMKS0s0grnFUaHykhgtIK0EdW0dXDQprpWdiNdKK/1AK3Yqck2BmP
-         5bOhaxqlBWnDVaDxOhvK0OcaLWXJZcZouUUnw01j1xvBfQ03DQtIDGOFhCZ6QErFtQ+f
-         6ydAF5/XTliXacRiIhmBvsOgc0XPNPhXRVaLw0EDUWLfQnuxKfOGwiIiw5fC2zU4oDDz
-         KMMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zuH42ufaSzhajw7Xy1jUqHmnzYywK6C3V2BH/2bvta8=;
-        b=XjLXSOibSFawxS3YRldkUUX5GbtH+LTwFaDhonLIHDE9UIGX1d0sHM7ep55v+4u04i
-         UXTCX9RBS/VVh0naAr1wwTiqriOwxQu8mAW48EFKwLMPUbjECzBYEBHYm4z0jcSbFw3G
-         hys0saGr2RbfnSs1JJWPH28Xyg/hHyrJLYzFGN0XZmFs9fFfCOV2IMvkojOwktfoPstC
-         KvMHWzfLqwVfac0C7odJFzQSHw8uLBoT4YV1qLhTlPWJM7SoHqhjQNnYnhWjQyDb76Ff
-         4Ns8ibzDu4Tl/KW6wsOax9BnKZAfr4v18Uw6XCU6+0uS1VKPZHSTTZOAsz1vH/mAXBOF
-         6+bA==
-X-Gm-Message-State: ANoB5pkaaA5xB4I6AVvVz8YQACN5smts7WdGRnV3U75jmdeuAHE+SanH
-        JcaqT10D0NhP8afGMzps/ymq3g==
-X-Google-Smtp-Source: AA0mqf7oF1LWJ0m/v3eooetvgwxFjx1JUobCATXyHvBF86II18hdUlHXyWcszTrVUXWd43bsbbLqGA==
-X-Received: by 2002:a17:906:5a6f:b0:7ad:8bd5:b7df with SMTP id my47-20020a1709065a6f00b007ad8bd5b7dfmr17526090ejc.57.1668611937400;
-        Wed, 16 Nov 2022 07:18:57 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id k15-20020a1709063fcf00b007ae32daf4b9sm6937286ejj.106.2022.11.16.07.18.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 07:18:56 -0800 (PST)
-Message-ID: <67c8fa77-410f-2c28-c635-e6d4da41e218@linaro.org>
-Date:   Wed, 16 Nov 2022 16:18:49 +0100
+        with ESMTP id S234075AbiKPPTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:19:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DAB5289C;
+        Wed, 16 Nov 2022 07:19:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C023DB81DBA;
+        Wed, 16 Nov 2022 15:19:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E83D0C433C1;
+        Wed, 16 Nov 2022 15:19:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668611988;
+        bh=lqmI8EdUh2H0o0VABEygiFBMe3KsYR9v64AOL7Is7Dc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J7jIYwWIlBlxBCL6G3scI/5BVg4tzIbThr4qXSItYpTx99xvJ7x0NWi59cr3t6/81
+         7/QhBJ8SC7zhcwLB8N9Y6ag78d8DxTNTHkNL7FSXoz14JTeO9ngLvBQkVnx+JLtVQl
+         hcF/U93KSkA5Ic5pMGxNKnwnJ8ozxURCBqepygR539gFXdN81Jyf1IxGUXlXOkaruj
+         /SWLYhdRnfLM16UJYmra1IUtgVmJasbfKjemoh6C6LY1JYupH9E9z4daswz6wUp2zh
+         an8Qdujmu9x9nqjISnjLjIfyYcYdy/LnQ0NIscAdsqhGH/8WHy6v7Rj/wZZl0ueFfZ
+         bC8bs3n/hB5Kw==
+Date:   Wed, 16 Nov 2022 15:19:43 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 2/9] PCI: microchip: Correct the DED and SEC interrupt
+ bit offsets
+Message-ID: <Y3T/j4P6SERh5O4j@spud>
+References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+ <20221116135504.258687-3-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 5/8] arm64: dts: qcom: msm8953: Add device tree for Xiaomi
- Redmi Note 4X
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org
-References: <20221116145616.17884-1-luca@z3ntu.xyz>
- <20221116145616.17884-6-luca@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116145616.17884-6-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116135504.258687-3-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/11/2022 15:56, Luca Weiss wrote:
-> From: Adam Skladowski <a39.skl@gmail.com>
+On Wed, Nov 16, 2022 at 01:54:57PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Add device tree for the Xiaomi Redmi Note 4X (mido) smartphone. This
-> device is based on Snapdragon 625 (msm8953) SoC.
+> The SEC and DED interrupt bits were the wrong way round so the SEC
+> interrupt handler attempted to mask, unmask, and clear the DED interrupt
+> and vice versa. Correct the bit offsets so each interrupt handler
+> operates properly.
 > 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+Hey Daire,
+I assume my SoB here is a hang over from me applying to our tree?
+It'll need dropping for whenever you send a v2, sorry for not noticing
+when you sent it to me before sending here.
+Conor.
+
 > ---
-Same comments: delete nodes by label reference, possibly licensing
-
-Konrad
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../boot/dts/qcom/msm8953-xiaomi-mido.dts     | 331 ++++++++++++++++++
->   2 files changed, 332 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
+>  drivers/pci/controller/pcie-microchip-host.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6a80a36465f7..229fa48c8006 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
-> new file mode 100644
-> index 000000000000..dc0228c06e3b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
-> @@ -0,0 +1,331 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> + */
-> +/dts-v1/;
-> +
-> +#include "msm8953.dtsi"
-> +#include "pm8953.dtsi"
-> +#include "pmi8950.dtsi"
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "Xiaomi Redmi Note 4X";
-> +	compatible = "xiaomi,mido", "qcom,msm8953";
-> +	chassis-type = "handset";
-> +	qcom,msm-id = <293 0>;
-> +	qcom,board-id = <11 0>;
-> +
-> +	aliases {
-> +		mmc0 = &sdhc_1;
-> +		mmc1 = &sdhc_2;
-> +	};
-> +
-> +	speaker_amp: audio-amplifier {
-> +		compatible = "awinic,aw8738";
-> +		mode-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +		awinic,mode = <5>;
-> +		sound-name-prefix = "Speaker Amp";
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer@90001000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x90001000 0 (1920 * 1080 * 3)>;
-> +
-> +			width = <1080>;
-> +			height = <1920>;
-> +			stride = <(1080 * 3)>;
-> +			format = "r8g8b8";
-> +
-> +			power-domains = <&gcc MDSS_GDSC>;
-> +
-> +			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_MDSS_AXI_CLK>,
-> +				 <&gcc GCC_MDSS_VSYNC_CLK>,
-> +				 <&gcc GCC_MDSS_MDP_CLK>,
-> +				 <&gcc GCC_MDSS_BYTE0_CLK>,
-> +				 <&gcc GCC_MDSS_PCLK0_CLK>,
-> +				 <&gcc GCC_MDSS_ESC0_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_key_default>;
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		/delete-node/ memory@85b00000;
-> +
-> +		memory@84a00000 {
-> +			reg = <0x0 0x84a00000 0x0 0x1900000>;
-> +			no-map;
-> +		};
-> +
-> +		memory@90001000 {
-> +			reg = <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@9ff00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0x9ff00000 0x0 0x00100000>;
-> +			console-size = <0x100000>;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&hsusb_phy {
-> +	vdd-supply = <&pm8953_l3>;
-> +	vdda-pll-supply = <&pm8953_l7>;
-> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c_2 {
-> +	status = "okay";
-> +
-> +	led-controller@45 {
-> +		compatible = "awinic,aw2013";
-> +		reg = <0x45>;
-> +
-> +		vcc-supply = <&pm8953_l10>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		led@0 {
-> +			reg = <0>;
-> +			color = <LED_COLOR_ID_RED>;
-> +			function = LED_FUNCTION_INDICATOR;
-> +			led-max-microamp = <5000>;
-> +		};
-> +
-> +		led@1 {
-> +			reg = <1>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_INDICATOR;
-> +			led-max-microamp = <5000>;
-> +		};
-> +
-> +		led@2 {
-> +			reg = <2>;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_INDICATOR;
-> +			led-max-microamp = <5000>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c_3 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		compatible = "edt,edt-ft5406";
-> +		reg = <0x38>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <65 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ts_int_active>;
-> +
-> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-> +
-> +		vcc-supply = <&pm8953_l10>;
-> +
-> +		touchscreen-size-x = <1080>;
-> +		touchscreen-size-y = <1920>;
-> +	};
-> +};
-> +
-> +&pm8953_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators {
-> +		compatible = "qcom,rpm-pm8953-regulators";
-> +
-> +		vdd_s1-supply = <&vph_pwr>;
-> +		vdd_s2-supply = <&vph_pwr>;
-> +		vdd_s3-supply = <&vph_pwr>;
-> +		vdd_s4-supply = <&vph_pwr>;
-> +		vdd_s5-supply = <&vph_pwr>;
-> +		vdd_s6-supply = <&vph_pwr>;
-> +		vdd_s7-supply = <&vph_pwr>;
-> +		vdd_l1-supply = <&pm8953_s3>;
-> +		vdd_l2_l3-supply = <&pm8953_s3>;
-> +		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-> +		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-> +		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-> +		vdd_l23-supply = <&pm8953_s3>;
-> +
-> +		pm8953_s1: s1 {
-> +			regulator-min-microvolt = <863000>;
-> +			regulator-max-microvolt = <1152000>;
-> +		};
-> +
-> +		pm8953_s3: s3 {
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1224000>;
-> +		};
-> +
-> +		pm8953_s4: s4 {
-> +			regulator-min-microvolt = <1896000>;
-> +			regulator-max-microvolt = <2048000>;
-> +		};
-> +
-> +		pm8953_l1: l1 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1100000>;
-> +		};
-> +
-> +		pm8953_l2: l2 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +
-> +		pm8953_l3: l3 {
-> +			regulator-min-microvolt = <925000>;
-> +			regulator-max-microvolt = <925000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm8953_l5: l5 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l6: l6 {
-> +			regulator-always-on;
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l7: l7 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1900000>;
-> +		};
-> +
-> +		pm8953_l8: l8 {
-> +			regulator-min-microvolt = <2900000>;
-> +			regulator-max-microvolt = <2900000>;
-> +		};
-> +
-> +		pm8953_l9: l9 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3300000>;
-> +		};
-> +
-> +		pm8953_l10: l10 {
-> +			regulator-always-on;
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l11: l11 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l12: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l13: l13 {
-> +			regulator-min-microvolt = <3125000>;
-> +			regulator-max-microvolt = <3125000>;
-> +		};
-> +
-> +		pm8953_l16: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l17: l17 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l19: l19 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1350000>;
-> +		};
-> +
-> +		pm8953_l22: l22 {
-> +			regulator-always-on;
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l23: l23 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	vmmc-supply = <&pm8953_l8>;
-> +	vqmmc-supply = <&pm8953_l5>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	cd-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-> +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-> +
-> +	vmmc-supply = <&pm8953_l11>;
-> +	vqmmc-supply = <&pm8953_l12>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <135 4>;
-> +
-> +	ts_int_active: ts-int-active-state {
-> +		pins = "gpio65";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
+> index 80e7554722ca..30153fd1a2b3 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -165,12 +165,12 @@
+>  #define EVENT_PCIE_DLUP_EXIT			2
+>  #define EVENT_SEC_TX_RAM_SEC_ERR		3
+>  #define EVENT_SEC_RX_RAM_SEC_ERR		4
+> -#define EVENT_SEC_AXI2PCIE_RAM_SEC_ERR		5
+> -#define EVENT_SEC_PCIE2AXI_RAM_SEC_ERR		6
+> +#define EVENT_SEC_PCIE2AXI_RAM_SEC_ERR		5
+> +#define EVENT_SEC_AXI2PCIE_RAM_SEC_ERR		6
+>  #define EVENT_DED_TX_RAM_DED_ERR		7
+>  #define EVENT_DED_RX_RAM_DED_ERR		8
+> -#define EVENT_DED_AXI2PCIE_RAM_DED_ERR		9
+> -#define EVENT_DED_PCIE2AXI_RAM_DED_ERR		10
+> +#define EVENT_DED_PCIE2AXI_RAM_DED_ERR		9
+> +#define EVENT_DED_AXI2PCIE_RAM_DED_ERR		10
+>  #define EVENT_LOCAL_DMA_END_ENGINE_0		11
+>  #define EVENT_LOCAL_DMA_END_ENGINE_1		12
+>  #define EVENT_LOCAL_DMA_ERROR_ENGINE_0		13
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
