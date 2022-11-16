@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF0BB62BBD5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1208B62BBE2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:27:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbiKPL10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 06:27:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42094 "EHLO
+        id S233135AbiKPL1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 06:27:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239250AbiKPL0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:26:51 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A248745
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:36 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id l12so28960787lfp.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:36 -0800 (PST)
+        with ESMTP id S239336AbiKPL1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:27:08 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 637F849B49
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:50 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso1347414wme.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:17:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TW4xcY4nHnWk9kRggu8CtKt6pRiyYODi2/2Q5SmOTJI=;
-        b=MM2CtdsNxD8PWnHMoqIB9i8OajlPSeVVH/xvi44hbD5p4kL5OSZbTzCIpuKH9KSr3F
-         LadrTFQUPJDNmKXF7yVvhujZ7vSShLfZcu3Xfc3XxN3rVx7stX4q01I4c3A5ZA0tiaYO
-         LmPu0p+qc97g2oYymrXb4UtyUJgLaD3gSbAMEtT2hRBMw7CEFjHLK8jG+LoLaugghZhe
-         8UKguZcmHtWP0UPK2FMRIFBy9iNTrsEvsUr0hAbdV+MYWXeDwLs3Rs/u13MfA7TOa9TB
-         uKv6DOOLLBq2r6MsyepHYkKLLS2hWWWC6GLAVNZ+dz808koCY0Czk1iVbz41zYO6eoMh
-         cy3A==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uJNbm/BEq4BvvQJ4DuY+WTXZwxIzZg57cNF+UvFbOgQ=;
+        b=UvOPKeUkvHAHNER8lGOSCTiFAHtG2KmO2hU6Wr09tjcNAIHiT5WOaLrQ7dh0qeAOix
+         fcgxSz7naOCBEGS3K8BVRLNaA2Slymjnz8+iDIJfafGXweRJl4uR1BE7Tm0DMIUalrwJ
+         qPbb+P5scivk1Ulj/IOwsK3fC3DQOaElqjsilXl0UHE86xw+LtTcSsjmqIYKXzbkFcEV
+         xMNQRv/uCmG/pflYhpZFmlZI51i2dq2ziUsPOgQGy1KWp9a1L+xpNrgrpnz1Yway+LpV
+         CnoORtUIJY5mMBFH2G6LA3cGReWag+wrfGjTiWHDA+WjWKgcRxQOWb9KDTGqUPZBByAQ
+         pA3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TW4xcY4nHnWk9kRggu8CtKt6pRiyYODi2/2Q5SmOTJI=;
-        b=Ck+R3g7AuDJ5hjFBIgbKa/60V3sKz3mVD/rNKiGaLAEYN5rgFyKWUQ3+dpcm/LR1Iq
-         dWhMP1ssR2ft9V6naPDpKx4LFByaMvPgzJ/uABFrGyI27PDB0IE8cu89/yaqh7liwwpV
-         vzdFv0USNqFoL2s3IpYBfZpvUw6Anf/5CRtcG6AM8syecB+TC9Zr2Nj2Rtji5qlGCy41
-         YDDc1wtV53iHU7hJa0GdzCX7sp91NSimuAwKz7pgqBDfP5WopPgqfJCGhSdOHzrzEqoI
-         PqnfSVUJJ+hmvs7HP2AVVODqaSoUpSf0yTu9LOd044xTvnIYLTkSN7eYkIGaRlV4RuY+
-         zSeg==
-X-Gm-Message-State: ANoB5pngFd0BleEH9+GbfoeowSK2C/fx0Z5gypmU/pjx0DWYByl4HcZ6
-        pwGYHxTUSEqOGwQYWvrchGG2kw==
-X-Google-Smtp-Source: AA0mqf4DJVH9xhA+RGcPuHY5/k0KNunM6j6tIlBOc7xyYha8nMq4p44CztKtyiToOtBRueAtZGlJyg==
-X-Received: by 2002:a19:380a:0:b0:4b4:a5c8:cc0b with SMTP id f10-20020a19380a000000b004b4a5c8cc0bmr2099270lfa.332.1668597455295;
-        Wed, 16 Nov 2022 03:17:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id r17-20020a2e8e31000000b0027740a1b854sm2959498ljk.52.2022.11.16.03.17.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 03:17:34 -0800 (PST)
-Message-ID: <93238bc8-8508-b5e8-8b43-b292a2b9a633@linaro.org>
-Date:   Wed, 16 Nov 2022 12:17:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 4/7] dt-bindings: pinctrl: qcom,pmic-gpio: document
- pm8550, pm8550b, pm8550ve, pm8550vs & pmk8550
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uJNbm/BEq4BvvQJ4DuY+WTXZwxIzZg57cNF+UvFbOgQ=;
+        b=1wSImxMWc8dQtGLzbYaFpAacME/1ikW/DVVGwWCi9n3/JDC8ln2JPqiVyfiIOTyp9p
+         AJmDFmetxwz7khETdUlv5SmfdnPn4VSvWtRBOYV/27s+muAT4fCc6dgE6jzWvuDOZ9qU
+         ucfsAXJy7pDv6/ivFdeWk8gjM5ddwDzpQ9F2tvKL7vz/wPzw1BLTxUcsg6uTq4Mgz/50
+         AgLBu9+cpQOGQyd21fTbZ/Lg/xzx4etLxXSqYvitpB7PZG24zu5VnB2LMP2Y+AoSrWKu
+         opjvRJKlyVFIzKxJI4dP/X38P888YotPg6T2DmMe1inqwBRhc+0g2kTS70x822kdjgAj
+         kYyw==
+X-Gm-Message-State: ANoB5pk/YI5iBrNq8g236SPMHK2PohPx8cHGXWREaDCkew51cQO6qX8I
+        i9aZTxUvhIWUQLtZD2lTstGJFA==
+X-Google-Smtp-Source: AA0mqf4EfVmC3Ny/bNTCXXIYrw8XbIEbanKNFwWg+XY5cSND/ooSla/q7HqiZKwf5xpEezo5rxl5JQ==
+X-Received: by 2002:a05:600c:54ec:b0:3cf:8443:e4a with SMTP id jb12-20020a05600c54ec00b003cf84430e4amr1838789wmb.27.1668597468977;
+        Wed, 16 Nov 2022 03:17:48 -0800 (PST)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b003c6f8d30e40sm1875870wmq.31.2022.11.16.03.17.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 03:17:48 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-spmi-v1-0-6338a2b4b241@linaro.org>
- <20221114-narmstrong-sm8550-upstream-spmi-v1-4-6338a2b4b241@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-spmi-v1-4-6338a2b4b241@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/2] soc: rpmhpd: Add support for SM8550
+Date:   Wed, 16 Nov 2022 13:17:43 +0200
+Message-Id: <20221116111745.2633074-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,15 +72,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 11:11, Neil Armstrong wrote:
-> Document compatible, pin count & pin names for pm8550, pm8550b, pm8550ve,
-> pm8550vs & pmk8550 SPMI GPIO controllers.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+This patchset adds RPMh power domains support for the new
+Qualcomm SM8550 SoC.
 
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Abel Vesa (2):
+  dt-bindings: power: rpmpd: Add SM8550 to rpmpd binding
+  soc: qcom: rpmhpd: Add SM8550 power domains
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+ drivers/soc/qcom/rpmhpd.c                     | 24 +++++++++++++++++++
+ include/dt-bindings/power/qcom-rpmpd.h        | 16 +++++++++++++
+ 3 files changed, 41 insertions(+)
+
+-- 
+2.34.1
 
