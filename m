@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B83B62BED3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:03:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C43FB62BEEC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:04:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232718AbiKPNDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:03:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
+        id S233767AbiKPNEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:04:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231565AbiKPNC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:02:59 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCBB10568
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:02:57 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id bp15so29302631lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:02:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6nFImyqcjOCw0VPGt4sM3tOy2kTrCbLPrbHyGVMhwtU=;
-        b=IElGtUKfWsETwq7XYWaSaFYsjCaNOE6bA7mNckgqHVfZvqPotujU9CCPPMMCyEO6L3
-         3yaoOGxAAMXPg15J44rMU9G3wCInMNhvs68nBoaEvSmuAuvlyedSuqOfYYqM64dYLyZJ
-         NWeeYz/MeTYj7EpYnBfqosVV/kajQ3xmBnLJNTphmlDgDw+5oMxzIaMPRxoB0R6b2MUC
-         xI6OirpvcBQCrSDYBeDgnXQVIdJaI3b48wykYi+16A4Ii4+Rt2TBiW4Ah7LLM/mVbM34
-         79dTUx4oyOS0oA+KQLtWiorNnHQ4vbXwgu+OR2pMfMIbcudxl+KRkuLcpSVlevIHwXIU
-         l7Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6nFImyqcjOCw0VPGt4sM3tOy2kTrCbLPrbHyGVMhwtU=;
-        b=foyG3WDPzGiwGgtjFRVhOCIx8bV5hL6hhf93gL2pg2OAgibmj6f0T5Oal9wuR1HhYV
-         mXDCVcmOCVMrTRWDi0+YlJzTAL3v8kCFZ7L1DxbB0soRcrgOrAzwvaLxxy7hhmL47U2y
-         dW9XYpGadhgcii4RhWPxTKgTBIAfrEB0R5U8c+p6ab2l+KBCcc/dHZSNpQDCCFXldWvT
-         jWVNpWA/n3DFU/oA1Tsew9iGMtAawNRS4wimHq3y87IIDktk0wyWwMebfWqFt0xKgVMD
-         vB7/NlhCMNwvOO5ozjGlTj23FjZHhVmcnrVUQhDC8+B+uBsmIouB/fdYNlFTO1v17Eqq
-         eNVQ==
-X-Gm-Message-State: ANoB5pmMH3QYqRwbEGEdypPdq++TtohjWCHoFeZqzbQOR44aOW9NQtFH
-        /06V+rj65MMq0i9gZ8KTwkaJbw==
-X-Google-Smtp-Source: AA0mqf6L57yaZbDI7JLgcUwp7oyX1I57dd8iaDteJ1PsHvhCaFEWWDBvj2/9TxT13FHctPmfH8JcSw==
-X-Received: by 2002:a05:6512:1398:b0:4b1:df29:b9ee with SMTP id p24-20020a056512139800b004b1df29b9eemr7695595lfa.160.1668603775702;
-        Wed, 16 Nov 2022 05:02:55 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f16-20020a05651c02d000b0027708c94c9bsm2976409ljo.79.2022.11.16.05.02.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 05:02:55 -0800 (PST)
-Message-ID: <79d783a0-b9cc-9093-6f76-0d50b9b81247@linaro.org>
-Date:   Wed, 16 Nov 2022 14:02:53 +0100
+        with ESMTP id S233324AbiKPNEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:04:47 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFAAF2FC30;
+        Wed, 16 Nov 2022 05:04:42 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AGD4XuG060612;
+        Wed, 16 Nov 2022 07:04:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668603873;
+        bh=W9LOsNQ3d8aW/4MtosEUbpffw4i6MSxRHD13/xiBvdo=;
+        h=From:To:CC:Subject:Date;
+        b=DPFc+wfRpk0FLQuKPt58FUb4GpSpVvOxsQiHJFMIv0jjx8DK/Nbv5RpoJZl37ZvCn
+         eiJ8xf1hAJBxta5fIPY1DicWWBwGnahEYSdhwdhECAUxlVlIWu69n5B+zyFI7sgQDl
+         Xf1Zi8xdQCnWfaMOVt/vKpwX6FhNTtltynh4zRVc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AGD4XBP018474
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Nov 2022 07:04:33 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 16
+ Nov 2022 07:04:32 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 16 Nov 2022 07:04:32 -0600
+Received: from LT5CD112GSQZ.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AGD4TbZ121231;
+        Wed, 16 Nov 2022 07:04:29 -0600
+From:   Apurva Nandan <a-nandan@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Apurva Nandan <a-nandan@ti.com>, Hari Nagalla <hnagalla@ti.com>
+Subject: [PATCH v3 0/4] Add initial support for J784S4 SoC
+Date:   Wed, 16 Nov 2022 18:34:24 +0530
+Message-ID: <20221116130428.161329-1-a-nandan@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom: Add SM8550 to binding
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, kw@linux.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20221116123505.2760397-1-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116123505.2760397-1-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,94 +67,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 13:35, Abel Vesa wrote:
-> Add the SM8550 platform to the binding.
+The J784S4 SoC belongs to the K3 Multicore SoC architecture
+platform, providing advanced system integration in automotive,
+ADAS and industrial applications requiring AI at the network edge.
+This SoC extends the K3 Jacinto 7 family of SoCs with focus on
+raising performance and integration while providing interfaces,
+memory architecture and compute performance for multi-sensor, high
+concurrency applications.
 
-Subject: Drop redundant, second "binding"
+Some highlights of this SoC are:
+* Up to 8 Cortex-A72s, four clusters of lockstep capable dual Cortex-R5F MCUs,
+  4 C7x floating point vector DSPs with Matrix Multiply Accelerator(MMA) for
+  deep learning and CNN.
+* 3D GPU: Automotive grade IMG BXS-4-64
+* Vision Processing Accelerator (VPAC) with image signal processor and Depth
+  and Motion Processing Accelerator (DMPAC)
+* Three CSI2.0 4L RX plus two CSI2.0 4L TX, two DSI Tx, one eDP/DP and one
+  DPI interface.
+* Integrated gigabit ethernet switch, up to 8 ports (TDA4VH), two ports
+  support 10Gb USXGMII; Two 4 lane PCIe-GEN3 controllers, USB3.0 Dual-role
+  device subsystems, Up to 20 MCANs, among other peripherals.
 
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 54f07852d279..efa01a8411c4 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -34,6 +34,8 @@ properties:
->        - qcom,pcie-sm8250
->        - qcom,pcie-sm8450-pcie0
->        - qcom,pcie-sm8450-pcie1
-> +      - qcom,pcie-sm8550-pcie0
-> +      - qcom,pcie-sm8550-pcie1
+See J784S4 Technical Reference Manual (SPRUJ52 - JUNE 2022)
+for further details: http://www.ti.com/lit/zip/spruj52
 
-I am not sure what's the benefit of encoding arbitrary IDs to compatible
-just to differentiate by clocks. The devices are basically the same, so
-compatible should be the same.
+bootlog: https://pastebin.ubuntu.com/p/DtmGZgzR6v/plain/
 
->        - qcom,pcie-ipq6018
->  
->    reg:
-> @@ -92,6 +94,10 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  enable-gpios:
-> +    description: GPIO controlled connection to ENABLE# signal
-> +    maxItems: 1
+Changes in v3:
+- Enabled hwspinlock, main_ringacc, main_udmap, cpts, and mcu_navss in
+  the dtsi
+- Removed alignment in secure_ddr optee
+- Changed the assigned clock parent in main and mcu cpts to main pll0, hsdiv6
+  from pll3, hsdiv1
+- Removed few signed-off by
+- Formatting fixes at some places
+- Corrected link to EVM board schmatics in the commit
 
-Does not look like used property...
+Changes in v2:
+- Disabled all the IPs that are not mandatory for booting up the SoC by
+  default in the dtsi, and thus this gives a minimal SoC boot devicetree.
+- Moved no-1-8-v property from the k3-j784s4-evm.dts file to
+  k3-j784s4-main.dtsi file.
+- Naming changes (hwlock, regulator) and commit description changes.
+- Added device specific compatible for j721e system controller.
+- Dropped bootargs completely.
 
-> +
->    perst-gpios:
->      description: GPIO controlled connection to PERST# signal
->      maxItems: 1
-> @@ -187,6 +193,8 @@ allOf:
->                - qcom,pcie-sm8250
->                - qcom,pcie-sm8450-pcie0
->                - qcom,pcie-sm8450-pcie1
-> +              - qcom,pcie-sm8550-pcie0
-> +              - qcom,pcie-sm8550-pcie1
->      then:
->        properties:
->          reg:
-> @@ -601,6 +609,92 @@ allOf:
->            items:
->              - const: pci # PCIe core reset
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-sm8550-pcie0
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 11
-> +          maxItems: 11
-> +        clock-names:
-> +          items:
-> +            - const: pipe # PIPE clock
-> +            - const: pipe_mux # PIPE MUX
-> +            - const: phy_pipe # PIPE output clock
-> +            - const: ref # REFERENCE clock
-> +            - const: aux # Auxiliary clock
-> +            - const: cfg # Configuration clock
-> +            - const: bus_master # Master AXI clock
-> +            - const: bus_slave # Slave AXI clock
-> +            - const: slave_q2a # Slave Q2A clock
-> +            - const: ddrss_sf_tbu # PCIe SF TBU clock
-> +            - const: aggre0 # Aggre NoC PCIe0 AXI clock
-> +        interconnects:
-> +          maxItems: 1
-> +        interconnect-names:
-> +          const: icc_path
+Apurva Nandan (4):
+  dt-bindings: arm: ti: Add bindings for J784s4 SoC
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for J784s4
+  arm64: dts: ti: Add initial support for J784S4 SoC
+  arm64: dts: ti: Add support for J784S4 EVM board
 
-Keep existing pattern of allOf:if:then or change entire file to a
-different style.
+ .../devicetree/bindings/arm/ti/k3.yaml        |    6 +
+ arch/arm64/boot/dts/ti/Makefile               |    2 +
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  197 ++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 1008 +++++++++++++++++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  316 ++++++
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi         |  286 +++++
+ include/dt-bindings/pinctrl/k3.h              |    3 +
+ 7 files changed, 1818 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4.dtsi
 
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
