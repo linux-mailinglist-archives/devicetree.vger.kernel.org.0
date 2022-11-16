@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF83062BEC2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:56:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE70862BECB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:58:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiKPM4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:56:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46436 "EHLO
+        id S233638AbiKPM6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:58:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231231AbiKPM4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:56:47 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E5E1E3DD
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:56:45 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id s5so10196555edc.12
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:56:45 -0800 (PST)
+        with ESMTP id S233496AbiKPM6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:58:42 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B919C659D
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:58:40 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id kt23so43878339ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:58:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FpXPXex2pj+shAOqQ1Qkj2iiHvrTjroDhyNWQJmN94Y=;
-        b=uwAyUynBI4H0SytHKL+axjOZPqeGxypmmWoN1PVWXgo2T915dI6384z7FSwUV024hy
-         cy7/wxG94xGD/dy6UADeaz9JgEqWhCfiQ64qZW0bPLfWSXTo+hPEB/H/y9UOuvpJk+xT
-         xGgJjrblQ0vXWIKJ/GjIcn8KVZn1UHvNn4tqdJj2ChPWa/Zjgu5JdeOLoW7uPfIaRvEc
-         Cqs6eSv39AuGnUF8cxG3gg+sWRQ5cab0ZwhsteIwk7p/0taYb3twBj3+G9ZXdjasIkvV
-         3n6mLodYblv70Xe/0dx36ut3qEe61uaB1V+DIwbedhtCgFPQtRXkA9v8jGbSI+DHC4zP
-         0f6A==
+        bh=nDvwwXEV44aTmmIoKPH7bc6LqlZ8E4Ob4p52TWVGvr4=;
+        b=cekHUYpnORylDQCbKrdKPLGkpBFRddBfMwumZYLprtEW+p5C2UDnouejqfjrWJzI4J
+         8OhYuUwZdDjveaJCpvi4j6DWMB+mJpJleUVnpDYxrs7maHuyry3aSib5+qOmaXyhXA/n
+         nK5vSoTK719b4vBpZ5r30dGWC8GtvYGZd3dMtsrL+D993WOv8adOqln8zPKUBqclhdMb
+         ZCeXycgrStly31vJKY4Gx1CcZ85xGMPfETqaRZH/fqXXUST7pOXM2/r4BVJRiLfeECAV
+         qkNbie+sL3F4spPeYk+5l8oRjv8RzOcmibjoMAcZoNeO69YRhujrnBKd+QuqMiTozStj
+         iWGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=FpXPXex2pj+shAOqQ1Qkj2iiHvrTjroDhyNWQJmN94Y=;
-        b=v0WVuSq5P9G5v3D4QspCIZqsrxNzXWAQG1rtJqOaVShprD/mQpcN+r2JQuOWInqMDx
-         /f34IB6zV2qi5khGXfKCxKUhPD8gDLwjGNZXV/wCqSyRuviqy8Y2Agw5l8HYln42Ta53
-         BRATuaD4YBW/32wQVfPsiq13Y9Lay0/yXN1KqTDGrAWSjVvlbjZjS5DLzzrCwCkNOJWC
-         VphLtkA+iLZTNEPUXLCXiQgFxVuOuJKdrV1p6vilQeB/ccVtuRyLN+72e+iWoVWOVIMM
-         BBeys+qhemuyfjGf8rq/z5SqbXqFGlg1+COOOUVm5fsG2PrJvx+HaZvUYBJkz7IgpiNk
-         tP9g==
-X-Gm-Message-State: ANoB5pmT5rrdA5SZkzFYoOmi0C+yTOQsQXw8TpDM40Xck2CP8XLoHfND
-        9EEQG2IFX7ZPA4zjgTz+MigURw==
-X-Google-Smtp-Source: AA0mqf7lWA/QwqvzGcqFNDfNRicifSvvzr+7KxdPHa48eaUPqyAWOlh4cLsWjWIdcLTzBewgPlGhdQ==
-X-Received: by 2002:a50:fe19:0:b0:462:70ee:fdb8 with SMTP id f25-20020a50fe19000000b0046270eefdb8mr19532589edt.66.1668603403903;
-        Wed, 16 Nov 2022 04:56:43 -0800 (PST)
+        bh=nDvwwXEV44aTmmIoKPH7bc6LqlZ8E4Ob4p52TWVGvr4=;
+        b=QW3ge9KddOKJnAZqz73FfTAarMh0WAGw0v0itWd5LgePC7fMvPokzeJC4qkuM2v30Q
+         Hc+WS5/Mj5FeV8Qm6MHIjKG1WscfXXBj2GMf3Q+b/ue38q3GBQ/w9jHLH5O+ScvkcztV
+         9UgUwNi6y6BS5lY26C68ZwSAQQXwqj0yB1VJoODBoZhVIVpI40QuYHGezTl2SIBwLX9q
+         IvZgQq30+xkKFCPUv3dUMOSa9jhd6wiuf26JGIitSqTZAkCtlgB7pEHYGEKn/myyvYe1
+         sbQdzURsJcn8GBUaSMYAOGJo5z+av2LgVKY02QaZ+dul+pOY9lzi0n0wFS2J6UvBur31
+         Rv6w==
+X-Gm-Message-State: ANoB5pm93xyBN7mcSrKEPb/DBBdK8ksD1ne50g/weNJRLXqptf0AMRLu
+        EN1ZbAD85d46ZatKF+wDU5JTQQ==
+X-Google-Smtp-Source: AA0mqf56KN02I0QAyi1K7BJ8yHmTXAi5FUUAmYTDqbHwTr24Kj7vjxOkDm2xehoN6rUfBRJ6JRfEHg==
+X-Received: by 2002:a17:906:1d08:b0:7a9:ecc1:2bd2 with SMTP id n8-20020a1709061d0800b007a9ecc12bd2mr17517688ejh.545.1668603519342;
+        Wed, 16 Nov 2022 04:58:39 -0800 (PST)
 Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id qq18-20020a17090720d200b0078df3b4464fsm6939633ejb.19.2022.11.16.04.56.42
+        by smtp.gmail.com with ESMTPSA id we10-20020a170907234a00b00782fbb7f5f7sm6844407ejb.113.2022.11.16.04.58.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 04:56:43 -0800 (PST)
-Message-ID: <22a41a8c-9b4a-ecca-ddd2-5e217d00d20c@linaro.org>
-Date:   Wed, 16 Nov 2022 13:56:36 +0100
+        Wed, 16 Nov 2022 04:58:38 -0800 (PST)
+Message-ID: <2b5f65f9-99d0-4ce6-da18-c1d9c8898d70@linaro.org>
+Date:   Wed, 16 Nov 2022 13:58:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-mtp: Add UFS host controller
- and PHY node
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550: Add UFS host controller and
+ phy nodes
 To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,9 +63,9 @@ To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
 References: <20221116125112.2788318-1-abel.vesa@linaro.org>
- <20221116125112.2788318-3-abel.vesa@linaro.org>
+ <20221116125112.2788318-2-abel.vesa@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116125112.2788318-3-abel.vesa@linaro.org>
+In-Reply-To: <20221116125112.2788318-2-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,46 +80,104 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 16/11/2022 13:51, Abel Vesa wrote:
-> Enable UFS host controller and PHY node on SM8550 MTP board.
+> Add UFS host controller and PHY nodes.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 76 ++++++++++++++++++++++++++++
+>   1 file changed, 76 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index d4c8d5b2497e..fef7793a7dec 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -417,3 +417,25 @@ data-pins {
->   &uart7 {
->   	status = "okay";
->   };
-> +
-> +&ufs_mem_hc {
-> +	status = "okay";
-Status last, please.
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 07ba709ca35f..27ce382cb594 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -1372,6 +1372,82 @@ mmss_noc: interconnect@1780000 {
+>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>   		};
+>   
+> +		ufs_mem_phy: phy@1d80000 {
+> +			compatible = "qcom,sm8550-qmp-ufs-phy";
+> +			reg = <0x0 0x01d80000 0x0 0x200>;
 
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+These three can go at the bottom.
+
+
+> +			clock-names = "ref", "qref";
+> +			clocks = <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+> +				 <&tcsr TCSR_UFS_CLKREF_EN>;
 > +
-> +	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
+> +			power-domains = <&gcc UFS_MEM_PHY_GDSC>;
 > +
-> +	vcc-supply = <&vreg_l17b_2p5>;
-> +	vcc-max-microamp = <1300000>;
-All these -microamp properties are downstream and do not exist in the 
-mainline kernel. Remove them.
+> +			resets = <&ufs_mem_hc 0>;
+> +			reset-names = "ufsphy";
+> +			status = "disabled";
+> +
+> +			ufs_mem_phy_lanes: phy@1d80400 {
+> +				reg = <0x0 0x01d81000 0x0 0x134>,
+> +				      <0x0 0x01d81200 0x0 0x3d8>,
+> +				      <0x0 0x01d80400 0x0 0x258>,
+> +				      <0x0 0x01d81800 0x0 0x134>,
+> +				      <0x0 0x01d81a00 0x0 0x3d8>;
+> +				#phy-cells = <0>;
+> +			};
+> +		};
+> +
+> +		ufs_mem_hc: ufshc@1d84000 {
+> +			compatible = "qcom,sm8550-ufshc", "qcom,ufshc",
+> +				     "jedec,ufs-2.0";
+> +			reg = <0x0 0x01d84000 0x0 0x3000>;
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> +			phys = <&ufs_mem_phy_lanes>;
+> +			phy-names = "ufsphy";
+> +			lanes-per-direction = <2>;
+> +			#reset-cells = <1>;
+> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> +			reset-names = "rst";
+> +
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> +
+> +			iommus = <&apps_smmu 0x60 0x0>;
+> +
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+> +
+> +			interconnect-names = "ufs-ddr", "cpu-ufs";
+> +			clock-names =
+Why break the line before adding any entries?
 
 Konrad
-> +	vccq-supply = <&vreg_l1g_1p2>;
-> +	vccq-max-microamp = <1200000>;
-> +	vccq2-supply = <&vreg_l3g_1p2>;
-> +	vccq2-max-microamp = <100>;
-> +};
+> +				"core_clk",
+> +				"bus_aggr_clk",
+> +				"iface_clk",
+> +				"core_clk_unipro",
+> +				"ref_clk",
+> +				"tx_lane0_sync_clk",
+> +				"rx_lane0_sync_clk",
+> +				"rx_lane1_sync_clk";
+> +			clocks =
+> +				<&gcc GCC_UFS_PHY_AXI_CLK>,
+> +				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				<&gcc GCC_UFS_PHY_AHB_CLK>,
+> +				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> +				<&rpmhcc RPMH_LN_BB_CLK3>,
+> +				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> +				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> +			freq-table-hz =
+> +				<75000000 300000000>,
+> +				<0 0>,
+> +				<0 0>,
+> +				<75000000 300000000>,
+> +				<100000000 403000000>,
+> +				<0 0>,
+> +				<0 0>,
+> +				<0 0>;
+> +			status = "disabled";
+> +		};
 > +
-> +&ufs_mem_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l1d_0p88>;
-> +	vdda-phy-max-microamp = <188000>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +	vdda-pll-max-microamp = <18300>;
-> +};
+>   		tcsr_mutex: hwlock@1f40000 {
+>   			compatible = "qcom,tcsr-mutex";
+>   			reg = <0x0 0x01f40000 0x0 0x20000>;
