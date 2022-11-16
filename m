@@ -2,190 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AF8662CDB2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A103462CDF9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231871AbiKPWas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 17:30:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
+        id S238990AbiKPWpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 17:45:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232985AbiKPWaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:30:46 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7F25656E;
-        Wed, 16 Nov 2022 14:30:45 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id v81so20208651oie.5;
-        Wed, 16 Nov 2022 14:30:45 -0800 (PST)
+        with ESMTP id S234224AbiKPWoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:44:30 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8336344
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:44:29 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id o4so32439167wrq.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:44:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kRxksnFA86+EN227UVABkfWLW0/VetsRVg3/grhnVYQ=;
+        b=tAuxEW+h+XIdry5tJCylxmmKwcdk3lrynLVXVNyDNl9biFUIwCoujPerXSHCCjgFM2
+         M2qinH76hgn6+T697Cwbulu/QxBGdUieOqawYbVX1lD860bdFQCmfb1t1soRIJ1Xl7xk
+         sm4qPqULVaeqUDobhQaGHtN6NK5foYsISBpTvpDLwx6521DkgySeGiNpMlK8cRdWZFoo
+         xs3LKyW6D8EVSO1Ts4yTGB9dPklE5iWNZ935Fkt/7loSaxtejgMVeUIF/AqYfc+Pp2sn
+         Q91HMxkLDy9o7BCVsqqrWoUh/ZpJujpcAgr+43XuT7h4RRi2sRNwO9ZR/z1Vd8RAGAbI
+         9/aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hbpACnaXmrPREOrzmgwFDvqtUVn/DHRnFRgcTOhyLb8=;
-        b=Ia0Claf+K+ZMOHC6Gv+4kGq19jjgDXHzMLXaNSzalUIMMJ7taQ32jJFPWVE0347Dm1
-         f2KOGOQqk2NNfRJwhDeA1aceDHX4rLrXl7m838HuUbk+gAuNQ2YvS1YWpLMCZ5HxQaz6
-         FYnmIyxr4MpG2yPdUaHRR/4vFagpDAJ0CcTUrxkzDKI/KVeFiVdrBnapy4NAc8eg52kg
-         FWB3XMFDuqziPfQGKtJgM/KxzfCz1o/VZOtq/JIs535xydhs5f7jJUJZwAzhcWDbJhls
-         lMk1bj7fyCsKN7IasM96Unm2DYH4i5o9+p7KeiQvDZBv3YBc1FYd3W9z2p96M0I64L6b
-         O4/A==
-X-Gm-Message-State: ANoB5plRxL70LXj9A/MuHKIt4Om9LzS+NAL5dN3L3gFynWBlWBaRuuNo
-        DeAV44dnotPjf+c376If5Q==
-X-Google-Smtp-Source: AA0mqf697XFyAspx8GJWNLHGqzqrI1rGojs7MliM5qrGwGc7c97ydk3ctzaQesak540j/eDZCFheTw==
-X-Received: by 2002:a05:6808:17a6:b0:35b:13ca:23a0 with SMTP id bg38-20020a05680817a600b0035b13ca23a0mr2844923oib.12.1668637844468;
-        Wed, 16 Nov 2022 14:30:44 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c25-20020a9d6c99000000b0066c73061d4bsm7074041otr.54.2022.11.16.14.30.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 14:30:43 -0800 (PST)
-Received: (nullmailer pid 1144141 invoked by uid 1000);
-        Wed, 16 Nov 2022 22:30:45 -0000
-Date:   Wed, 16 Nov 2022 16:30:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Brad Larson <brad@pensando.io>
-Cc:     krzysztof.kozlowski@linaro.org, adrian.hunter@intel.com,
-        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
-        blarson@amd.com, brijeshkumar.singh@amd.com, broonie@kernel.org,
-        catalin.marinas@arm.com, devicetree@vger.kernel.org,
-        fancer.lancer@gmail.com, gerg@linux-m68k.org, gsomlo@gmail.com,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        p.yadav@ti.com, p.zabel@pengutronix.de, piotrs@cadence.com,
-        rdunlap@infradead.org, samuel@sholland.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        ulf.hansson@linaro.org, will@kernel.org,
-        yamada.masahiro@socionext.com
-Subject: Re: [PATCH v8 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
- Pensando Elba System Resource chip
-Message-ID: <20221116223045.GA1130586-robh@kernel.org>
-References: <e9d8c14d-38b3-0401-7bfc-b2bd7ab36c52@linaro.org>
- <20221116193940.67445-1-blarson@amd.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kRxksnFA86+EN227UVABkfWLW0/VetsRVg3/grhnVYQ=;
+        b=GVtEmJlxnae2IzI5pcJnJz8sxEq4+IH7+B2gr0F+PQdj56S/0D3iyUXmOJKieVnd0b
+         M6Ib3ImEj/OulFWfnIiYgOtJXfMNa6owIukUiWUw7iGg+nK6i71v0pu+JUHCn6TZ8vaY
+         hxki9FRXCnoYG5eHBVZ4FWIzW53DFpkRWPKHYXeFJsgArr3A0Wux3f3O++b+z9fyiVfb
+         SuPkOcJ8tvy224DTm+vZ8P0K3H1tKD9tC0wa0fjxXn+G6ZRurgFy3X5PcL2ozdsWZL9B
+         tKwa3B6+Zqyk3kpnhiOkT7F9udNgVGO25yKyfMKkW+y02aP+52uA7f9TThbwx6/8Mr+o
+         rzcw==
+X-Gm-Message-State: ANoB5plGFwRqswu3cfhlGqILOhwb0ySOUTdXFVCJYV5SKXLV0WTAIuJ6
+        a1v984QDWuSMqLMBiLK30PCENg==
+X-Google-Smtp-Source: AA0mqf7MSFvQaTYnmCJP6JzGSmABB2sfc4sCIDg8p0Pjg7/qmy8fVBGg4A8E2yUQsr6MbZaLd3ig/g==
+X-Received: by 2002:a5d:52c6:0:b0:236:754e:f8b4 with SMTP id r6-20020a5d52c6000000b00236754ef8b4mr14939207wrv.478.1668638668347;
+        Wed, 16 Nov 2022 14:44:28 -0800 (PST)
+Received: from [192.168.22.132] ([167.98.215.174])
+        by smtp.googlemail.com with ESMTPSA id t8-20020adff048000000b002238ea5750csm19765783wro.72.2022.11.16.14.44.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 14:44:27 -0800 (PST)
+Message-ID: <aba64f1d-043e-4dc5-f70a-e8a6ab99fabf@linaro.org>
+Date:   Wed, 16 Nov 2022 22:44:26 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116193940.67445-1-blarson@amd.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 3/5] dt-bindings: nvmem: add YAML schema for the sl28
+ vpd layout
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org
+References: <20221114085659.847611-1-miquel.raynal@bootlin.com>
+ <20221114085659.847611-4-miquel.raynal@bootlin.com>
+ <20221116205203.GA846642-robh@kernel.org> <20221116222812.45dbbcf9@xps-13>
+Content-Language: en-US
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221116222812.45dbbcf9@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 11:39:40AM -0800, Brad Larson wrote:
-> Add support for the AMD Pensando Elba SoC System Resource chip
-> using the SPI interface.
-> 
-> Signed-off-by: Brad Larson <blarson@amd.com>
-> ---
-> 
-> v8:
->  - Apply review request changes and picked the two unique examples
->    for the 4 chip-selects as one has the reset control support and
->    the other an interrupt.  Missed the --in-reply-to in git
->    send-email for v7, included in this update.
 
-No, you haven't. By default in git, you don't have to do anything. See 
---thread and --no-chain-reply-to options. If you are messing with 
---in-reply-to, you are doing it wrong.
 
-Please resend the whole series properly threaded.
+On 16/11/2022 21:28, Miquel Raynal wrote:
+> Hi Rob, Srinivas,
+> 
+> robh@kernel.org wrote on Wed, 16 Nov 2022 14:52:03 -0600:
+> 
+>> On Mon, Nov 14, 2022 at 09:56:57AM +0100, Miquel Raynal wrote:
+>>> From: Michael Walle <michael@walle.cc>
+>>>
+>>> Add a schema for the NVMEM layout on Kontron's sl28 boards.
+>>>
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+>>> ---
+>>>   .../nvmem/layouts/kontron,sl28-vpd.yaml       | 62 +++++++++++++++++++
+>>>   .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
+>>>   2 files changed, 65 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>> new file mode 100644
+>>> index 000000000000..fef795e79c36
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>> @@ -0,0 +1,62 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
+>>> +
+>>> +maintainers:
+>>> +  - Michael Walle <michael@walle.cc>
+>>> +
+>>> +description:
+>>> +  The vital product data (VPD) of the sl28 boards contains a serial
+>>> +  number and a base MAC address. The actual MAC addresses for the
+>>> +  on-board ethernet devices are derived from this base MAC address by
+>>> +  adding an offset.
+>>> +
+>>> +select: false
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: kontron,sl28-vpd
+>>> +
+>>> +  serial-number:
+>>> +    type: object
+>>
+>>         additionalProperties: false
+> 
+> Right, I missed that one.
+> 
+>> With that,
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> Thanks for all the reviews!
+> 
+> Srinivas, would you add the above property while applying or do you
+> prefer me to send a v5?
 
-> 
-> v7:
->  - Use system-controller for the device with four chip-selects
->    connected over spi.
->  - Delete child by moving reset-controller into the parent.
->  - Updated and used dtschema-2022.11 and yamllint-1.28.0
-> 
-> v6:
->  - Expand description, rename nodes and change compatible usage
-> 
-> v5:
->  - Change to AMD Pensando instead of Pensando
-> 
-> v4:
->  - Change Maintained to Supported
-> 
->  .../bindings/mfd/amd,pensando-elbasr.yaml     | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> new file mode 100644
-> index 000000000000..622c93402a86
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/amd,pensando-elbasr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD Pensando Elba SoC Resource Controller
-> +
-> +description: |
-> +  AMD Pensando Elba SoC Resource Controller functions are
-> +  accessed with four chip-selects.  Reset control is on CS0.
+Applied the series after adding the property.
 
-One device with 4 chip-selects? Then I'd expect 'reg = <0 1 2 3>;'
-
-Hard to say more because I don't have the whole thread nor remember what 
-exactly we discussed before. That was 100s of bindings ago...
-
-> +
-> +maintainers:
-> +  - Brad Larson <blarson@amd.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amd,pensando-elbasr
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        num-cs = <4>;
-> +
-> +        system-controller@0 {
-> +            compatible = "amd,pensando-elbasr";
-> +            reg = <0>;
-> +            spi-max-frequency = <12000000>;
-> +            #reset-cells = <1>;
-> +        };
-> +
-> +        system-controller@2 {
-> +            compatible = "amd,pensando-elbasr";
-> +            reg = <2>;
-> +            spi-max-frequency = <12000000>;
-> +            interrupt-parent = <&porta>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> -- 
-> 2.17.1
+--srini
 > 
-> 
+> Thanks,
+> Miquèl
