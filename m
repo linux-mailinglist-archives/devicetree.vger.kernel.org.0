@@ -2,220 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E496B62B55D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:36:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3DFA62B561
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:39:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbiKPIgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:36:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41326 "EHLO
+        id S230075AbiKPIjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:39:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238779AbiKPIgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:36:41 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4175F6A
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:36:40 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8aRX0015862;
-        Wed, 16 Nov 2022 02:36:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668587787;
-        bh=/my08oCPPBageL4gNTgC+mRraAUXh5FHHUgS+e1v6QM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=NJ9EuVLTy/gBzL5vnaIIXdm9Ifybsc+TlDJLUqQRsi0HNp3U2Vp1s3nEefH2I1pq0
-         ygWV61YObLKBIJHoJaaOxZ0tjYF1p9sgPIbpA5DO/P7lBBZVkr530a4A2RejoYWUAO
-         fAMENQP7gYHV19z7jGJh+gHf0uQVBPvo4mAYt5Rw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG8aRjF084859
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Nov 2022 02:36:27 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 16
- Nov 2022 02:36:26 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 16 Nov 2022 02:36:26 -0600
-Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8aN5j120997;
-        Wed, 16 Nov 2022 02:36:24 -0600
-Message-ID: <6b238fb8-c188-bdee-dcf6-f8867f19258e@ti.com>
-Date:   Wed, 16 Nov 2022 14:06:23 +0530
+        with ESMTP id S229942AbiKPIjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:39:12 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D3865FE;
+        Wed, 16 Nov 2022 00:39:11 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DEF1E6602A83;
+        Wed, 16 Nov 2022 08:39:08 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1668587949;
+        bh=xqWKxOEqVNkY175Qvpn8lbAyWJPaRCsExy9oPiB7P+4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gvTqOxIzkBgDghiNiAFzxCeuyZIT74hFkxzRGdyjVBeSS2vbEL9b3Xn6Nny/XIYIQ
+         Jaz1baC4GVF40hgw/Dwoixaw3VpekB2l6aSQs6bTZs88MomC3ghx6R8c7VFs7yHMHm
+         s++wH48khIvhmZ7uRNCYa4fBpYH9DKuAmf6ZzSWLVBqn2EZDN30wMqwwmkMsBqUTdT
+         3fyQzupGuwyMbU4HeIt8k+AWd4P+vQKsw9DBbZ8adWHfpJN//qM+stjep68LUN3b55
+         gu/0bi89Ba8ofQzc9SghjH5B72HEpYwk7mNWxDJMZva/R8SIAH/wxty79pknb6KPmW
+         gk/3KTgNisX3A==
+Message-ID: <5a1c9206-03b1-8ee7-546b-7981fc4294f1@collabora.com>
+Date:   Wed, 16 Nov 2022 09:39:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 6/8] arm64: dts: ti: k3-j721s2: Add support for OSPI
- Flashes
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3] media: mediatek: vcodec: fix h264 cavlc bitstream fail
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221116055613.13991-1-yunfei.dong@mediatek.com>
 Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20221103044125.172864-1-mranostay@ti.com>
- <20221103044125.172864-7-mranostay@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20221103044125.172864-7-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221116055613.13991-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 03/11/22 10:11, Matt Ranostay wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
+Il 16/11/22 06:56, Yunfei Dong ha scritto:
+> Some cavlc bistream will decode fail when the frame size is smaller than
+> 20 bytes. Need to add pending data at the end of the bitstream.
 > 
-> J721S2 has an OSPI NOR flash on its SOM connected the OSPI0 instance and a
-> QSPI NOR flash on the common processor board connected to the OSPI1
-> instance. Add support for the same
+> For the minimum size of mapped memory is 256 bytes(16x16), adding four bytes data
+> won't lead to access unknown virtual memory.
 > 
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 34 +++++++++++++++
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  4 +-
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 42 +++++++++++++++++++
->  3 files changed, 78 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index c787d46f89de..0503e690cfaf 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -206,6 +206,20 @@ mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-pins-default {
->  			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
->  		>;
->  	};
-> +
-> +	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
-> +			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
-> +			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
-> +			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
-> +			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
-> +			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
-> +			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
-> +			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
-> +			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
-> +		>;
-> +	};
->  };
->  
->  &main_gpio2 {
-> @@ -340,6 +354,26 @@ &usb0 {
->  	maximum-speed = "high-speed";
->  };
->  
-> +&ospi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
-> +
-> +	flash@0{
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-max-frequency = <40000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +};
-> +
->  &mcu_mcan0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 034122be2ed5..95013908048d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -308,8 +308,8 @@ cpts@3d000 {
->  	};
->  
->  	fss: syscon@47000000 {
-> -		compatible = "syscon", "simple-mfd";
-> -		reg = <0x0 0x47000000 0x0 0x100>;
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> +		reg = <0x00 0x47000000 0x00 0x100>;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  		ranges;
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> index 6930efff8a5a..2ffea00e19d7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> @@ -39,6 +39,28 @@ transceiver0: can-phy0 {
->  	};
->  };
->  
-> +&wkup_pmx0 {
-> +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
-> +			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
-> +			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
-> +			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-> +			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
-> +			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
-> +			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
-> +			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-> +			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
-> +			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
-> +			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
-> +			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
-> +			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
-> +			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
-> +			J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
-> +		>;
-> +	};
-> +};
-> +
->  &main_pmx0 {
->  	main_i2c0_pins_default: main-i2c0-pins-default {
->  		pinctrl-single,pins = <
-> @@ -79,3 +101,23 @@ &main_mcan16 {
->  	pinctrl-names = "default";
->  	phys = <&transceiver0>;
->  };
-> +
-> +&ospi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <8>;
-> +		spi-rx-bus-width = <8>;
-> +		spi-max-frequency = <25000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <4>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
+> Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless H.264 decoding for mt8192")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +};
 
--- 
-Regards,
-Vaishnav
