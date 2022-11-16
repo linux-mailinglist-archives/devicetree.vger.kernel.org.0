@@ -2,97 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7D9A62CABC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 897D262CAC9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:27:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234119AbiKPUWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:22:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46922 "EHLO
+        id S233700AbiKPU1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:27:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234037AbiKPUWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:22:50 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5BFC63CF5;
-        Wed, 16 Nov 2022 12:22:46 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-13c2cfd1126so21441420fac.10;
-        Wed, 16 Nov 2022 12:22:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WgK1rUnmFyPXMa4kFguFgRQCBODLxAzA5c3KNx4CYyA=;
-        b=I3LZEcnmFsaXXGIx3ZzzK0T9hDM0BA0B3eUw9KWnxgyr1ba9q3PyA/hAMcH/U9+O8i
-         +rQ/HLk0bGgIjGgyAQKYQ0TftRIOF6MOQBoJaHjY4u360eZ3O0SmT9Rft2XQnWvqnDhB
-         84gOXP6AYU8YI/8PN82nwUEgKwY/lYI+ajZ0uQcyLGcOsuPOYP/0o98a3yJmlg5uQSc+
-         jPCFolT0L03l/k5Xv2z091MVm5YheP5pmMFYQwXTf5W6bnWd+MrU5o8KHZp6YggyczQJ
-         jtnCAacBjCbAK4ub8fYnKqZV35Mj4cVpD2/R2c4O8B7QIQJlRb1+dfRlRGxrj0r4041j
-         4OZQ==
-X-Gm-Message-State: ANoB5pm9eXbGKogCxfOHCoH3DeRkv+yWx7PjVieQaEXD9/ntxkLCNXtH
-        fV9+EpfJMAy1JoA49GW0JQ==
-X-Google-Smtp-Source: AA0mqf6Zz+aI/iuvrsoTgE0DD8XHfnfXOCIxD7/a202TUht3yY/MjAgq/K+lsqKSP6eH9QbNcQQfOQ==
-X-Received: by 2002:a05:6870:6a98:b0:136:66d0:b853 with SMTP id mv24-20020a0568706a9800b0013666d0b853mr2596240oab.161.1668630165974;
-        Wed, 16 Nov 2022 12:22:45 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e11-20020a056870238b00b00136f3e4bc29sm5007128oap.9.2022.11.16.12.22.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 12:22:45 -0800 (PST)
-Received: (nullmailer pid 826080 invoked by uid 1000);
-        Wed, 16 Nov 2022 20:22:47 -0000
-Date:   Wed, 16 Nov 2022 14:22:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Sven Peter <sven@svenpeter.dev>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Hector Martin <marcan@marcan.st>, Will Deacon <will@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Drop type from 'cpus' property
-Message-ID: <166863016450.825960.2284429197449442060.robh@kernel.org>
-References: <20221111212857.4104308-1-robh@kernel.org>
+        with ESMTP id S229617AbiKPU1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:27:34 -0500
+Received: from smtpcmd0642.aruba.it (smtpcmd0642.aruba.it [62.149.156.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B9E25EE38
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 12:27:31 -0800 (PST)
+Received: from [192.168.50.220] ([146.241.88.137])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id vP0KouklmEclovP0LoJbVb; Wed, 16 Nov 2022 21:27:29 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1668630449; bh=+JRtOayWKQNzm8a7ydAMoZlnFkRlaIc41mGw4qjaIcg=;
+        h=Date:MIME-Version:Subject:To:From:Content-Type;
+        b=Jc967SzOu/+JXcL+rDLtzghtLQemHymhCNUkM1LC8qNXTXAOLw+WwT7B2WhYy9JpH
+         K/xpY/hUPBie2CO+4m0KLzjj27C2rHILmX0nnp7xT7OVABjsyJaJ3ZArmlZEV7ehcy
+         n597koKqMI853DvvvcZSYBmgK+eHqr8XJm0v3PW6jQRCWozoW0eqDiYYV3oD4BJ775
+         udUcnRS1+bubwimb4iDg5bK4dq/UOrq9XqCvbYOZ+wLiPAiLAP6J2ngz5GiFLyoNy3
+         qxYYtUJP7rOqFEZB00sa9DFmmABSeT3Zo+9W5yTB6Ud5Nw8WkNTgcfqOZrunHqF/IQ
+         q3vIZwkI/6SLQ==
+Message-ID: <4a31d860-0bd0-e1df-2b0a-93cad42d59f4@benettiengineering.com>
+Date:   Wed, 16 Nov 2022 21:27:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221111212857.4104308-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/4] clk: imx: imxrt1050: add IMXRT1050_CLK_LCDIF_PIX
+ clock gate
+To:     Jesse Taube <mr.bossman075@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bough Chen <haibo.chen@nxp.com>
+References: <20221115193244.10484-1-giulio.benetti@benettiengineering.com>
+ <20221115193244.10484-2-giulio.benetti@benettiengineering.com>
+ <b09ead30-3fc6-f00b-e157-8c753358d5d4@gmail.com>
+Content-Language: en-US
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+In-Reply-To: <b09ead30-3fc6-f00b-e157-8c753358d5d4@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfE99GrT/syc0EXpp6Wjlrx6BMuFyfuaOS/bjNjHK2raoUdS/3sfzW0/J/EkBR0XtCEM2VcEo4VaU2QJ98dMxOVID3SgfylaBkF5nXwb1gK5MzQ0mGo8q
+ pxhJmztbWZerTvlqYeNa3jwkbB4Nk50OvnFoThxFAqVfGlO3b4XOdtdUsI2bCYtOtVLPdJJxOoVR/3m3X7jqbUh4Sshp2ZeRj3u2FGlGophPVWMS1lm4a6BK
+ O/Iz6qZ+ulYBBcqXjP1XvdQjCppiBz7lVYooXf6lj1vd71kD8iNSbIFmMg4mbwrhJok7feU9cqZtv4Ze8ieN8fqtsVguugVU5Mef29qZO/iXNe0CdD8Ujrjg
+ vOKcv2G10ebQ+0RRX7bRdq/MW9AEJ5b/O/l2DaFOCXPTsvZixCZBOfpf0ygJqZUgH3nAoOCBZXQdjJZBPFrvSsToQ7mw/m2hgjG/8dlsNRO9lYsyNqn7A+fZ
+ AybtBfZXdRUSgJwiRzDcGOG/khrWpmfwTHn60Gi5NhrgS/IWpAURqgiolAQfPmvH0PmCwsZLU0dksq9RzKAkbbH07nlHVeDzVQvbWE7ntBLNyjCaC/lk7vXQ
+ CgP5YThxSSXYvbI6m8iWE+DCW5mpCjM1yHp5nQ8hmHzqeuV58MvCWGNFk8l4ikr9jB6r7bwk47FPLTYZN755zVuT9SOfiHGx3qUlAUPsmE/tCqpP6oVBnr0F
+ Dr1c60IkoMYYJkNGJjnIDLIcWKgEYg3fnyToksthLkORIk1+DEL9cg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jesse,
 
-On Fri, 11 Nov 2022 15:28:56 -0600, Rob Herring wrote:
-> 'cpus' is a common property, and it is now defined in dtschema schemas,
-> so drop the type references in the tree.
+On 15/11/22 21:43, Jesse Taube wrote:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/interrupt-controller/apple,aic.yaml | 1 -
->  Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml     | 3 ---
->  Documentation/devicetree/bindings/power/renesas,apmu.yaml   | 6 ++----
->  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml     | 2 +-
->  4 files changed, 3 insertions(+), 9 deletions(-)
 > 
+> On 11/15/22 14:32, Giulio Benetti wrote:
+>> Cc: Jesse Taube <mr.bossman075@gmail.com>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> ---
+>> V1->V2:
+>> * nothing done
+>> ---
+>>   drivers/clk/imx/clk-imxrt1050.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/clk/imx/clk-imxrt1050.c 
+>> b/drivers/clk/imx/clk-imxrt1050.c
+>> index 26108e9f7e67..39f77c03b892 100644
+>> --- a/drivers/clk/imx/clk-imxrt1050.c
+>> +++ b/drivers/clk/imx/clk-imxrt1050.c
+>> @@ -141,6 +141,7 @@ static int imxrt1050_clocks_probe(struct 
+>> platform_device *pdev)
+>>       hws[IMXRT1050_CLK_USDHC2] = imx_clk_hw_gate2("usdhc2", 
+>> "usdhc2_podf", ccm_base + 0x80, 4);
+>>       hws[IMXRT1050_CLK_LPUART1] = imx_clk_hw_gate2("lpuart1", 
+>> "lpuart_podf", ccm_base + 0x7c, 24);
+>>       hws[IMXRT1050_CLK_LCDIF_APB] = imx_clk_hw_gate2("lcdif", 
+>> "lcdif_podf", ccm_base + 0x70, 28);
+>> +    hws[IMXRT1050_CLK_LCDIF_PIX] = imx_clk_hw_gate2("lcdif_pix", 
+>> "lcdif", ccm_base + 0x74, 10);
+> I think it makes sense to squash this with PATCH1 because it changes the 
+> same file. It also will make the change more understandable as I swapped 
+> the offsets for PIX clock and APB clock accidentally. 
 
-Applied, thanks!
+I would not squash them since on "Patch 1/4" fixes something, while
+"Patch 2/4" adds something.
+
+> I'm not sure if 
+> this is necessary but I think there should be a commit description. 
+
+You're right and same goes for all patches, I keep forgetting.
+
+Sorry for the noise.
+
+Thank you
+Best regards
+-- 
+Giulio Benetti
+CEO/CTO@Benetti Engineering sas
+
+> Otherwise
+> Acked-by: Jesse Taube <mr.bossman075@gmail.com>
+> 
+> Thanks,
+> Jesse Taube
+>>       hws[IMXRT1050_CLK_DMA] = imx_clk_hw_gate("dma", "ipg", ccm_base 
+>> + 0x7C, 6);
+>>       hws[IMXRT1050_CLK_DMA_MUX] = imx_clk_hw_gate("dmamux0", "ipg", 
+>> ccm_base + 0x7C, 7);
+>>       imx_check_clk_hws(hws, IMXRT1050_CLK_END);
+
