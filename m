@@ -2,118 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C79062C3E2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 209E562C3E6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:18:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234196AbiKPQS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:18:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
+        id S231421AbiKPQSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:18:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233204AbiKPQSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:18:16 -0500
+        with ESMTP id S233506AbiKPQS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:18:26 -0500
 Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B23857B4B
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:15 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id v4-20020a17090a088400b00212cb0ed97eso2841553pjc.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:15 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5DE27F
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:23 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id v4-20020a17090a088400b00212cb0ed97eso2841892pjc.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Lor3rulwbXv5cvKmMp9W8Gkpke6RAbR94pio1OJ5+w=;
-        b=Ztv59t+sdJ8FDfj0AqsB1lXlLXAtn8P7awrZ7yCvTLOkTg0lsq+Ek2oma5rc554bNg
-         x4GrCoZdi3HhPQW5u0gbcggxJlB65GP2LPJZHAA7oFXHE5BIkss6BlVwRC/ryCuAeITY
-         FIxSccjwIKCeOW139gY1Yc4PKCVA5mHIYwlDDxDnVcvxnnQcPR5kjt4JyvXQ2MXhOlAV
-         ZOsI6d/v8BOukvO/Hgoy6ZyoCTjzjW9ATKpea4JcPTxtX+rFYWpliefucNAzuuALx5yM
-         a4czvMF88oyT5jpfc7hjmjNAlYhYnPFMUOf+JrdVsfgfzInYGG40QKA5iFrEq/MmzBD+
-         ftiQ==
+        bh=dvp6aPXdskWw22vG4cUG9Anh9RZtqEUkN6NF3CqRa8Q=;
+        b=zpHnP80Iv3WZA6SVm3xPJnPQZCfK12IBMTkLXrlkuH80NZN/zL31xOP4zW7lMISEBP
+         hlvBx6riNPPdVLgNqK05axXDOKJnPqIaUaXO1GmB1lp/oAfvvAROfxO9CXLY48qc3Rfc
+         n7i3VBAZo85JR/ChhWXjItUuDb1HAI0g8lR23WI2qgefq0mYD9lg4Q3A84yAOpRVMcRf
+         svfKUD0dh/FcyQS8+wMTedCkBrOx0mzYsEVIZ5+H3aBbqveAGiCbbEJQomP2bNAYBbaN
+         3iORzlI7ZVPv6AtS5evEMNcmNlCJyjJ5NIoV3BEhVkDRXF4V36N0OrfuVL5bcGuhniYb
+         vc9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6Lor3rulwbXv5cvKmMp9W8Gkpke6RAbR94pio1OJ5+w=;
-        b=hQVrku8P4I348kc92lVJ4GuZnFMrA3kTOgVEzMWU4PtdTOBNOZiylpSKK+VVFL7SXi
-         EO0TOgee5aJiH9udGEnNOnFqaCH/A4Fw5jNBjLNTGYMMj3AnqF40FbccX2QvcUwNC4MH
-         BwReztIbLh7YSDtI3yQpqVDql9zifUP3zT5I/oKnE25iRkWhB0mnF5U3/m+oT/1Z2mCx
-         WXqS69i5gYvndXC00NtqFeKGUJQYTh4UQjBV2nBrJiprP6S0GRWqwhDnz8v/POelki5g
-         0rpjE0GU5GfZhe3ZkDCOdIpL6VIRwSVaDtNqp2P7vP2JQBYbHpszD+0LPZ+9+1oxXYvj
-         o+XA==
-X-Gm-Message-State: ANoB5pnrgCd1HlameexzzMlUZzp+vmRtzsDhS2vumkQD6iabp9ISKRDy
-        qEoaQej5OzvEwFSa7A13jQ1fQ1RrgwvCtWwNrX5y7DNhh3I=
-X-Google-Smtp-Source: AA0mqf6BBuCK/2Uwy7g0M6z08aNUdokEWMht3+/108Ulon6FcDnZllT4TN9FRoe6hk47Scp5HBb3W1Myuqkmr4XZKnM=
-X-Received: by 2002:a17:902:d386:b0:188:cca8:df29 with SMTP id
- e6-20020a170902d38600b00188cca8df29mr9787748pld.148.1668615495048; Wed, 16
- Nov 2022 08:18:15 -0800 (PST)
+        bh=dvp6aPXdskWw22vG4cUG9Anh9RZtqEUkN6NF3CqRa8Q=;
+        b=oTLJe4Ih9J0MYU+/3Wo5n/6Idhiz7KxvlUm0IVKiK4D0fXCzneT79+qvlk9CsZzmR2
+         LU+8PhTdLWoBAtQHR/SczidmkeV7iuS7S7+p5D6kQbZP2ISuHIlkjoO3CzdotgORuaLC
+         k4wqO1B2kkvZbVlPs+oB7JnyTFRQPbxqCcgk+WuJ+w1n5culF/k4+MviAoO7B1PR9X8C
+         c95f0CXh4y/LSuAbThNG6RyH0bjLxBPb06H/sUeZlEiES34Owyz1Ckti4A/q5lzdJEZm
+         863tG344BbClAB67gsV+qqyOnLBXtvi5hjb08pMT9Kjep9ak6cTUUWBMOVKZgDFWU5XM
+         I+IA==
+X-Gm-Message-State: ANoB5plL02GlGWAyULTAOVMtAlWlx9j2jyxkx23TfZXh4L3wit1jNsAJ
+        ZEz9E8oP+hkucwNLuzw4/VzW/ZEk9DWUHpRD38QPUQ==
+X-Google-Smtp-Source: AA0mqf6xMkxT9E7DWq3Ng6vFjK9UXooF5beAHY5gscd/9HrAj272x6MYVDzSbamQoScAHq+qHs5RibHKN1fmpEb5Z+o=
+X-Received: by 2002:a17:902:a584:b0:186:be05:798e with SMTP id
+ az4-20020a170902a58400b00186be05798emr9544083plb.37.1668615503443; Wed, 16
+ Nov 2022 08:18:23 -0800 (PST)
 MIME-Version: 1.0
-References: <20221114-narmstrong-sm8550-upstream-sdhci-v1-0-797864a30e71@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-sdhci-v1-0-797864a30e71@linaro.org>
+References: <20221111081033.3813-1-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20221111081033.3813-1-hayashi.kunihiko@socionext.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 16 Nov 2022 17:17:37 +0100
-Message-ID: <CAPDyKFqKvpMYBqySP=jo_5ZFmcqh6mNQbXTXxjz9fDkfC966cw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-msm: Document the SM8550 compatible
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+Date:   Wed, 16 Nov 2022 17:17:45 +0100
+Message-ID: <CAPDyKFpLVH1fEwKzjd8RP2NP0ZpEjo66XxvL5VVnCWMyS0dw4Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] mmc: sdhci-fujitsu: Add some features and support
+ for F_SDH30_E51
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Nov 2022 at 11:15, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+On Fri, 11 Nov 2022 at 09:10, Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
 >
-> From: Abel Vesa <abel.vesa@linaro.org>
+> This series adds some additional features such as reset control,
+> non-removable media, and quirks for broken timeout clock.
 >
-> Document the compatible for SDHCI on SM8550.
+> And this adds support for F_SDH30_E51 IP that is a higher version
+> of F_SDH30 and supports eMMC 5.1.
 >
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> The above features are not specific to this IP directly, but are
+> affected by IP configuration and external wiring.
+>
+> Changes since v1:
+> - Add conversion and additional compatible patch for DT bindings
+> - Add description for F_SDH30_E51 to the commit message
+> - Append vendor name to MODULE_AUTHOR
+>
+> Kunihiko Hayashi (6):
+>   dt-bindings: mmc: Convert sdhci-fujitsu to JSON schema
+>   mmc: f-sdh30: Add reset control support
+>   dt-bindings: sdhci-fujitsu: Add compatible string for F_SDH30_E51
+>   mmc: f-sdh30: Add compatible string for Socionext F_SDH30_E51
+>   mmc: f-sdh30: Add support for non-removable media
+>   mmc: f-sdh30: Add quirks for broken timeout clock capability
+>
+>  .../bindings/mmc/fujitsu,sdhci-fujitsu.yaml   | 57 +++++++++++++++++++
+>  .../devicetree/bindings/mmc/sdhci-fujitsu.txt | 32 -----------
+>  drivers/mmc/host/sdhci_f_sdh30.c              | 31 +++++++++-
+>  drivers/mmc/host/sdhci_f_sdh30.h              |  3 +
+>  4 files changed, 89 insertions(+), 34 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
+>
 
 Applied for next, thanks!
 
 Kind regards
 Uffe
-
-
-> ---
-> To: Ulf Hansson <ulf.hansson@linaro.org>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Cc: linux-mmc@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index fc8a6b345d97..f0b7e6d0ecbf 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -49,6 +49,7 @@ properties:
->                - qcom,sm8150-sdhci
->                - qcom,sm8250-sdhci
->                - qcom,sm8450-sdhci
-> +              - qcom,sm8550-sdhci
->            - const: qcom,sdhci-msm-v5 # for sdcc version 5.0
->
->    reg:
->
-> ---
-> base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
-> change-id: 20221114-narmstrong-sm8550-upstream-sdhci-1ae5ac4924e5
->
-> Best regards,
-> --
-> Neil Armstrong <neil.armstrong@linaro.org>
