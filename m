@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F3F62BEA7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4579762BEAA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbiKPMvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42486 "EHLO
+        id S231421AbiKPMvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:51:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232739AbiKPMvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:51:37 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD5619C2C
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:51:36 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id h186-20020a1c21c3000000b003cfe48519a6so1570519wmh.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:51:36 -0800 (PST)
+        with ESMTP id S233299AbiKPMvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:51:38 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635C31B9D2
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:51:37 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id r127-20020a1c4485000000b003cfdd569507so513920wma.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:51:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fOWAJTGxhSL0kzCH0VY3KqRez3fd+24sQZ4yenpGyEQ=;
-        b=g6Q+rbay9BJpPOEEEKnz7T2521ZOOmuBq9KNeyTLjAGMgjIdYgRtmWuzXoLRwZf46H
-         zaNae2SONwU+XnkDrmd8e7fkI4dtUjqQvYNaZbbENgAMB9YQC+bk6JXzgdpMHsYi2MF/
-         YMt7VHfT2FvbsWrT+Skft5/WucdM2rI253XJ9C+WQyBEZr2sbKBSrGfGyKpY73Xt6DTR
-         Tl/iCmDkQMqknSYEYq9U1Z4IGSlLBcNULpGZr50ThmlLYeHQi4UB7ce1of5HWQOlhJvB
-         q7Nmk7ZhDcsvIQLZaHc23ZRJOnlyqlw0Pb/rRzdVf7i6gwMnTDPI0Uv/CtkR1OeCnDYZ
-         6StA==
+        bh=H2H1d5sAZJ+t9NwoF1iOHgYCETQzv/jXX7CIaFm3b3E=;
+        b=gGxjSUZpAml1aIyqHw3VVmLjwPSVVASQetUasiWHCeAesZswbx+yYG2gYgnO4+3WqF
+         rODtwr/NO5kVFQQBcZfxlOe56Wi9hWxGXuAEe6RNhHS47BlNaDIvZj5KFlSF4VWWdD6k
+         XsqcQyzTl3KryVtnlovRE5RlktX5W7UmqLt+Y/AGIijJ7j4PvNzA/nlEJsX8lmSw+v9Q
+         2bZ1nc46gKq9Q639tmsMTWiEmfy3JiphjugAX6sLrqFc4JqOMD9NCT4xvWdolKMuk2T0
+         eNupuvbpBoCqju2TFAynQQX5pk11MeDw0uW/2TYMIBb268xjoWaL/2MOgxUxzKaO4JET
+         iL/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fOWAJTGxhSL0kzCH0VY3KqRez3fd+24sQZ4yenpGyEQ=;
-        b=k4odYqY6j9P/JEpgfkOdDrNzg2iifzm4hNKsyQ+jalsyTl2NZvq1v2Vl9aZmuyZaW9
-         SPA2wpbmVGiLTti5ofWQCRHEU3ICclU5yNX7laRAUGOz4Ddv17I+LkPWRuBP19/wR8o3
-         MdLjuDXyjIiw97ppDzNrIllPUQSmkyukDb6AcTj8l43yI8IAt4Xi7B/FL8ihIyxVa5i+
-         4QvEIuFqOj3mB1v6uzYFYlbT9xSmulZKSXAOMwT8gDCfaOomqLcT1t7rDQXEmSL1rtwe
-         xovDk18z/2IzIXssGhgQTBqnlWZ66AEgnF8YGTWy9TkNm6Te+BJTBWqgPEppy3Fj08C5
-         AVgA==
-X-Gm-Message-State: ANoB5pmq7mZvfFgbaC0YWM2L94FcwD/p2+KzifnwrMxS/p9WoNyim2h9
-        a4TzGF0xTCLZIQ6FFRo/A3leaw==
-X-Google-Smtp-Source: AA0mqf6YrPAUzRYEaAN56cmDPKqfBWKc2j8FnP/tKu9PVQ60qFgHgK7c6JDWN8e4a2F1naVI/X0R4w==
-X-Received: by 2002:a05:600c:1d94:b0:3cf:7385:7621 with SMTP id p20-20020a05600c1d9400b003cf73857621mr2057220wms.62.1668603094819;
-        Wed, 16 Nov 2022 04:51:34 -0800 (PST)
+        bh=H2H1d5sAZJ+t9NwoF1iOHgYCETQzv/jXX7CIaFm3b3E=;
+        b=jwZ1TdBQppUbGhpOJtJSRVHPdsCse7Ls9/27ZGHlMiFEcQ2Kkqy6kLOJdkjwrHQ4rD
+         Qs7LmzQU2k4P+RDkJ08zd6NHOIUD0boyfiEcfCAPIPJ0p2PQ8w73uFPJaDqb4/6AbsNW
+         CJ6rw6+xhKBN5dV56gG/wCz1VjxaEAQfai1o1hCO+VcJwxCiH2p2BIbTN9Td8MclDjL7
+         XT85eJzTn9Aasl9MX5QEPnWEuJDSwpRR/SSXg3Xnl68r+MojZcPHbks34VuSa/qtUiJJ
+         ILLAdi8KmUQkEPft11lsLxvvCK1gWX/PxUIEoakc/ZMLYkc+uM/m7BXvt2mZ1v6Z9HNB
+         xgBw==
+X-Gm-Message-State: ANoB5pnpHrJQC02KzvQ5qXdiNiu8+xS/JxI3I9HjK7xFtqdb5pr+t1IX
+        J9+9J31vQ9KK77vK3tLsFpDOIw==
+X-Google-Smtp-Source: AA0mqf6ZCGHBWAq3ypZIp2xmZ7qCZ6qMlmTRzbjQrzJx1q0F7LLrgc+J+/K0e5AsgXDRTCr013tlSA==
+X-Received: by 2002:a05:600c:17cf:b0:3cf:608b:1b6a with SMTP id y15-20020a05600c17cf00b003cf608b1b6amr2077711wmo.20.1668603095928;
+        Wed, 16 Nov 2022 04:51:35 -0800 (PST)
 Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id d16-20020a5d6450000000b0022cc0a2cbecsm15386776wrw.15.2022.11.16.04.51.33
+        by smtp.gmail.com with ESMTPSA id d16-20020a5d6450000000b0022cc0a2cbecsm15386776wrw.15.2022.11.16.04.51.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 04:51:34 -0800 (PST)
+        Wed, 16 Nov 2022 04:51:35 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8550: Add UFS host controller and phy nodes
-Date:   Wed, 16 Nov 2022 14:51:11 +0200
-Message-Id: <20221116125112.2788318-2-abel.vesa@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sm8550-mtp: Add UFS host controller and PHY node
+Date:   Wed, 16 Nov 2022 14:51:12 +0200
+Message-Id: <20221116125112.2788318-3-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221116125112.2788318-1-abel.vesa@linaro.org>
 References: <20221116125112.2788318-1-abel.vesa@linaro.org>
@@ -75,100 +75,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add UFS host controller and PHY nodes.
+Enable UFS host controller and PHY node on SM8550 MTP board.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 76 ++++++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 07ba709ca35f..27ce382cb594 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1372,6 +1372,82 @@ mmss_noc: interconnect@1780000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		ufs_mem_phy: phy@1d80000 {
-+			compatible = "qcom,sm8550-qmp-ufs-phy";
-+			reg = <0x0 0x01d80000 0x0 0x200>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			clock-names = "ref", "qref";
-+			clocks = <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-+				 <&tcsr TCSR_UFS_CLKREF_EN>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index d4c8d5b2497e..fef7793a7dec 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -417,3 +417,25 @@ data-pins {
+ &uart7 {
+ 	status = "okay";
+ };
 +
-+			power-domains = <&gcc UFS_MEM_PHY_GDSC>;
++&ufs_mem_hc {
++	status = "okay";
 +
-+			resets = <&ufs_mem_hc 0>;
-+			reset-names = "ufsphy";
-+			status = "disabled";
++	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
 +
-+			ufs_mem_phy_lanes: phy@1d80400 {
-+				reg = <0x0 0x01d81000 0x0 0x134>,
-+				      <0x0 0x01d81200 0x0 0x3d8>,
-+				      <0x0 0x01d80400 0x0 0x258>,
-+				      <0x0 0x01d81800 0x0 0x134>,
-+				      <0x0 0x01d81a00 0x0 0x3d8>;
-+				#phy-cells = <0>;
-+			};
-+		};
++	vcc-supply = <&vreg_l17b_2p5>;
++	vcc-max-microamp = <1300000>;
++	vccq-supply = <&vreg_l1g_1p2>;
++	vccq-max-microamp = <1200000>;
++	vccq2-supply = <&vreg_l3g_1p2>;
++	vccq2-max-microamp = <100>;
++};
 +
-+		ufs_mem_hc: ufshc@1d84000 {
-+			compatible = "qcom,sm8550-ufshc", "qcom,ufshc",
-+				     "jedec,ufs-2.0";
-+			reg = <0x0 0x01d84000 0x0 0x3000>;
-+			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&ufs_mem_phy_lanes>;
-+			phy-names = "ufsphy";
-+			lanes-per-direction = <2>;
-+			#reset-cells = <1>;
-+			resets = <&gcc GCC_UFS_PHY_BCR>;
-+			reset-names = "rst";
++&ufs_mem_phy {
++	status = "okay";
 +
-+			power-domains = <&gcc UFS_PHY_GDSC>;
-+
-+			iommus = <&apps_smmu 0x60 0x0>;
-+
-+			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
-+					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
-+
-+			interconnect-names = "ufs-ddr", "cpu-ufs";
-+			clock-names =
-+				"core_clk",
-+				"bus_aggr_clk",
-+				"iface_clk",
-+				"core_clk_unipro",
-+				"ref_clk",
-+				"tx_lane0_sync_clk",
-+				"rx_lane0_sync_clk",
-+				"rx_lane1_sync_clk";
-+			clocks =
-+				<&gcc GCC_UFS_PHY_AXI_CLK>,
-+				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-+				<&gcc GCC_UFS_PHY_AHB_CLK>,
-+				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-+				<&rpmhcc RPMH_LN_BB_CLK3>,
-+				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-+				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-+				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-+			freq-table-hz =
-+				<75000000 300000000>,
-+				<0 0>,
-+				<0 0>,
-+				<75000000 300000000>,
-+				<100000000 403000000>,
-+				<0 0>,
-+				<0 0>,
-+				<0 0>;
-+			status = "disabled";
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x20000>;
++	vdda-phy-supply = <&vreg_l1d_0p88>;
++	vdda-phy-max-microamp = <188000>;
++	vdda-pll-supply = <&vreg_l3e_1p2>;
++	vdda-pll-max-microamp = <18300>;
++};
 -- 
 2.34.1
 
