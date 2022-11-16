@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA09662BF0F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D212762BF14
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:09:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233290AbiKPNJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:09:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58022 "EHLO
+        id S233785AbiKPNJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:09:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233846AbiKPNJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:09:17 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3518921835
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:09:16 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id s12so26435626edd.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:09:16 -0800 (PST)
+        with ESMTP id S233757AbiKPNJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:09:30 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0E621252
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:09:25 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id c25so21756522ljr.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qgEG92Xup3/mVDZ3A5sVas1YVywyNuVA0qoL/v6KQmE=;
-        b=cOwmbyq4DhKgMTF18V6U3k9aZx4YLgaaythcJQ8VKb30g6Uh7uSNr+hXEmgJs+vc22
-         cCuqKX7/N9fxy8YbmS7jFkpB0IQ3voiVruO1GSyzIk9ZYSh1obIR38pU9lVutFeIVljk
-         bh8WnLpwr8uX/Uy98Ek72lU7Yb218NXhwjZFvNiiKJhoLcx1B5iKX+wDE5FT4fKwzt1X
-         jybBX4wpKQdI/ueKz/lEGU076TE92mVUPWnIv1QeVdD1xzib7PjdT7Enx1Jsbxq5yZUX
-         Rrz3AxKwzGokqWhMDpKlJtlP5x84eG/+YTYyv/UQ7DAg99eQ3xgz510FuAkpHdqVdJR/
-         IwLg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WbWsVVvvla4ZyjvxuI958uCgMeUv+QgqXIjV0v5B5j8=;
+        b=hlT+0awlk21JqAY0t7sdACERZ/Rh/3WbdNwQmbuJoz+9ZcWm/dYyLXunZTEx4z9qD0
+         HaARc+hXgplE3+b64yWyOSKmlt4qLzpCVGG8R1b/hi+qS51ISsPLljWWr5ZjBGzdK2xG
+         gBLoS3BFdjARCGCGVBZKqbN/nvALcjcVnE7dOXCe7TQylMyJMdaauJZL1C76hEloWObk
+         yiPw6mgx8dOwsBSwB6nzBkjvhTW6G5nSYr776EGGwsYgctnSIh/jezuxBVg8Y3UrEZVp
+         c0kcn0aK6eCi+ec5qzxwkCfcGwM16BXeN4H3lGq42niBH8oHs83j5LeKPPVPDOATJzaN
+         2u6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qgEG92Xup3/mVDZ3A5sVas1YVywyNuVA0qoL/v6KQmE=;
-        b=kyQcgpYkckB6Huh30yPxJ9yY2r5aho0nvqIzFCB2XP83Q0a+4neJzCYYT0VAtRxwrc
-         av4u87FJmWrBmtQANII0Ajv3ox1jCoYANDJ2PaIcVmXFccnIOQ4mH/mMG2h4VfsjJJiR
-         lAocr3vNJB2awKZ2bj5eX6VpD5zZqyKR5DeUJBRLhVocOb0x83fCaG+5+GmQDJ2+bU7K
-         L+LDmlRxhITK7KSQkxk3ziLkGMwhqcvLeekC6nE+JHPW0II7/OJrkMxzsEDGgHN1gVfx
-         AgHrgja/OC5U+AUG6LruClwGgEzckS/Ib9NiqKqNIJi5zd4FArvHyQMGrZzImhaaVycQ
-         gZAA==
-X-Gm-Message-State: ANoB5pltFFlTnGMk0fBpyVE8pReM9wpaksc+tP7Z1VIoYJ0SY1i18nFn
-        t/UkRWzI73Xap1DkxWog1KzzLw==
-X-Google-Smtp-Source: AA0mqf6L7Mza3E/jBqky69qnp6QiDfXFXHjWoXZBBVdm93LL2vifNyClCRElRyHQAuOU7LZ1+o9YUA==
-X-Received: by 2002:a05:6402:1204:b0:461:e3f2:38bc with SMTP id c4-20020a056402120400b00461e3f238bcmr19406728edw.149.1668604154720;
-        Wed, 16 Nov 2022 05:09:14 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id n11-20020a170906118b00b0078cb06c2ef9sm6824283eja.8.2022.11.16.05.09.13
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WbWsVVvvla4ZyjvxuI958uCgMeUv+QgqXIjV0v5B5j8=;
+        b=aiwkNhq8O60FQEHzFOdqJuiJ0RHzfilkgRoFYHufC8I0wBuJvokuq2emKciqVYeETA
+         wzZcYis088xgPl/fn+0/vatmIRbt7prBK4/VbweLMwLI6hq7M8bt0TEBHfFfhC2E3Vje
+         dzChz6o7S7ZeXPs0k2sD+jLn31TsSusv9E3jQ+m769o7g6I/9Mf7hbS0OGxxEJ1AGn6g
+         t+UDyiafeY/Xgn4ZlSbiG0bPZWZSGysPJtFaNzV9lC8FeWwMRdbzGep1jQgX7clQb+zH
+         QgozcKTrxtMXGn5YGatQOVAZ/E+UzXf31FrzblesQTaaNKD2edGIWGtwrenLCU6OTWqb
+         LwBg==
+X-Gm-Message-State: ANoB5pluNZv+yUkgckHDl0hSb0B4LgXVcc78mYM0y05WqDOIFwpDfrFe
+        RULHNFS0Cnt2wncOWsoBniZBHMbDhcmhyGGA
+X-Google-Smtp-Source: AA0mqf6dSXETAjpox56eXLxZovfOBRxk/X/cGShtHWKRxaNtWZBHRFLmuAmvWniTTBdFrnwmg7FMIA==
+X-Received: by 2002:a2e:7314:0:b0:277:9c2:7c3e with SMTP id o20-20020a2e7314000000b0027709c27c3emr7230435ljc.99.1668604163626;
+        Wed, 16 Nov 2022 05:09:23 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bp3-20020a056512158300b00494643db68fsm2590049lfb.81.2022.11.16.05.09.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 05:09:14 -0800 (PST)
-Message-ID: <f584a204-db03-cf16-2db5-5cce1f3bf538@linaro.org>
-Date:   Wed, 16 Nov 2022 14:09:07 +0100
+        Wed, 16 Nov 2022 05:09:23 -0800 (PST)
+Message-ID: <5dc315c8-fc59-3aab-88c8-b95b6d9d5267@linaro.org>
+Date:   Wed, 16 Nov 2022 14:09:22 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-mtp: Add PCIe PHYs and
- controllers nodes
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/2] iommu: arm-smmu-impl: Add SM8550 qcom iommu
+ implementation
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20221116130430.2812173-1-abel.vesa@linaro.org>
- <20221116130430.2812173-3-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116130430.2812173-3-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-kernel@lists.infradead.org
+References: <20221116114001.2669003-1-abel.vesa@linaro.org>
+ <20221116114001.2669003-2-abel.vesa@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116114001.2669003-2-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -79,54 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/11/2022 14:04, Abel Vesa wrote:
-> Enable PCIe controllers and PHYs nodes on SM8550 MTP board.
+On 16/11/2022 12:40, Abel Vesa wrote:
+> Add SM8550 qcom iommu implementation to the table of
+> qcom_smmu_impl_of_match table which brings in iommu support for
+> SM8550 SoC
 > 
-> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 25 +++++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index d4c8d5b2497e..93a676754666 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -414,6 +414,31 @@ data-pins {
->   	};
->   };
->   
-> +&pcie0 {
-> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-These references should come before tlmm alphabetically.
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index b2708de25ea3..3a029f26642d 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -439,6 +439,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+>  	{ .compatible = "qcom,sm8250-smmu-500" },
+>  	{ .compatible = "qcom,sm8350-smmu-500" },
+>  	{ .compatible = "qcom,sm8450-smmu-500" },
+> +	{ .compatible = "qcom,sm8550-smmu-500" },
 
-Konrad
-> +
-> +&pcie0_phy {
-> +	vdda-phy-supply = <&vreg_l1e_0p88>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1 {
-> +	wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> +	perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1_phy {
-> +	vdda-phy-supply = <&vreg_l3c_0p91>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +	vdda-qref-supply = <&vreg_l1e_0p88>;
-> +	status = "okay";
-> +};
-> +
->   &uart7 {
->   	status = "okay";
->   };
+This should be rebased on Dmitry's refactor.
+
+Best regards,
+Krzysztof
+
