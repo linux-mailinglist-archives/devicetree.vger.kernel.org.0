@@ -2,156 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88E0C62B705
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C7562B713
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231418AbiKPJ4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 04:56:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39374 "EHLO
+        id S229715AbiKPJ7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 04:59:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbiKPJ4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:56:31 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2094.outbound.protection.outlook.com [40.107.113.94])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4369118351;
-        Wed, 16 Nov 2022 01:56:27 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JcvbD5zymsudelhBoKVNtuazUEbH5/RkuLeUvGB/CumwlnG37zKAq2P4d5CCUZ/mlkGGJnK06MP8xbgRq65iNmeXdzi+3qGEflBtRcm9OEd+DmTQ+kBs/iCofBlJIZYiuu4tC6zrHr0VtdCR2wVkAvzF/qQaRKWM+Ob9pSf920QefO1efYFjtK0GcL5fpIgoQNCgfExgb+ULTtbWurv1vGGKFipHw+oTjyd5xzUOuJeMt3ExqpN244TA2wuGFdsNuooqd9Ca2UPmo6Uebp75RdkLYTem7ydhLotLOBLv8zjPVD5ZcQwGURujhmEqpFqYxmRciLoBq3xd3Xw2nQzxPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u575Cunu4Fhu4U4zzxibjc5CL+Rwa0LkxL41XHzQgy4=;
- b=LCSmuBmrgCalNhOw96j296VwzqivAK7ioBlusunOtJYEwSDfdrn+ZRGipswM9+RuAd05ffrpJLZ2Km2YgZQGvv/5jBwlvZVecmKLkdtm9dJ/Lo0PkhOpxW7MN419c9jEl1T6koieG+8IMBJSDy5N8QzuwUiZ7+I2PwpolMhaep9a77q8G0bQp4Ix1k0GgsSva126zwbw218Y2xaz9W9PfhTU1bXNPDIA0vadwA78JcbhHvy/4SWx+ytTyCqDZUC86MJid9EXM8G/nUqr+iIIG1qDE6+knyFBYSgsNvMJoLy45PIq4KWKM1Is6w/N9bZi8egF7171WBsxMYb/1VtaNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u575Cunu4Fhu4U4zzxibjc5CL+Rwa0LkxL41XHzQgy4=;
- b=YFiw5+lJjDHuadW07ZzpH/5Rm4h7n9zyZvpRPO7fPCwJ37zmBmo8W0FnncVb0Dl9jpA3zWMwZQpWHUcCnS1SPHfAym7lZZcTrNc+vXxraBgrpu/rK1X1nSOk26VhYPFKw+27XTV+pzt1AKboyfVLpPkB7gbcsEHztYrHOhSvSbg=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYCPR01MB6031.jpnprd01.prod.outlook.com (2603:1096:400:4c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Wed, 16 Nov
- 2022 09:56:25 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::5b24:f581:85bd:6ce2%3]) with mapi id 15.20.5813.018; Wed, 16 Nov 2022
- 09:56:25 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229531AbiKPJ7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:59:52 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC76C25;
+        Wed, 16 Nov 2022 01:59:51 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AG9c7wN021157;
+        Wed, 16 Nov 2022 09:59:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=SGCkg9WHx8cRwzVOhdfoyqf7nLEK13rKpP68ultRMDM=;
+ b=U0wXknfMGSTNbsFbKneHByXilYE5Y0OwXu1ecaL4noYHp9SB0CXWmmfUtvDSH1pS4MAn
+ IIWv3bxKP5VAK5O8VL/i2pffA9l9sCI63LoM/gWCco25WVVyIh9mh4np2agXTDZEa30u
+ 099IcyuNeY+GM55XCWWN4YF8/0Cg4eCjV7NxFeyHzOYJ/aEyeEy2UgBdoFveHzqwjF5U
+ cy9bjzNDpf/fm72upoVpyQT1F6AehEZ0YW42gDpPAFP6bsO/M+uCbSqOIneKPGTEFXM6
+ GzaPZRMrpzievEs174hAP8SJDr+yP9HUvPeO9fsfdPGgDnwDcj7vuIMDJ1mb8DEsxmQB Rg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kvt8g8kq9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 09:59:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AG9xeWZ019549
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 09:59:40 GMT
+Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
+ 2022 01:59:34 -0800
+Message-ID: <0a183ed0-e83e-ad9d-7313-892eab96532c@quicinc.com>
+Date:   Wed, 16 Nov 2022 01:59:29 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH v3 1/3] dt-bindings: arm: renesas: Document Renesas RZ/V2M
- System Configuration
-Thread-Topic: [PATCH v3 1/3] dt-bindings: arm: renesas: Document Renesas
- RZ/V2M System Configuration
-Thread-Index: AQHY+O8vAwTDQ9Y/OEClJtUrcUwIK65BTpkAgAACqFA=
-Date:   Wed, 16 Nov 2022 09:56:25 +0000
-Message-ID: <OS0PR01MB592229D1D85FBC6699924CD186079@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20221115123827.736141-1-biju.das.jz@bp.renesas.com>
- <20221115123827.736141-2-biju.das.jz@bp.renesas.com>
- <2a1af80b-cb1a-6d87-689d-bed8ac53bff7@linaro.org>
-In-Reply-To: <2a1af80b-cb1a-6d87-689d-bed8ac53bff7@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYCPR01MB6031:EE_
-x-ms-office365-filtering-correlation-id: 09ccb9a5-9291-4f43-0426-08dac7b8d2e0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YwNH8SRMUjKWCUNVjuIJGmVScWwOR8b9GyVvmMXRs0sHTQWuJ6vJvLrFV5iqRlnExeZaqiDi1fG9RT3OFzGhR3Mbze2mdBiMvUSKc4zVOherSMJlqLc89mOeJvkiRqq+yTwrHFJU1mLs0AR/Ie4QXWBY8p/bqskCUpxIW9TruU1OL9IHekgzrhhDI+nB7LciHNr6UA4uPlIcUdTKYyYCY5oSZ6vljO0XMpAxufcun5hID2+tfFJEDJlEwlUIYKOqoULWqVLe3b2iUWGKxTrbDoy8uI6McXPwZ5vhOd4FxXqY1xBciST42ye9n8K2V5hcxt4e9NkVBO8/VE0QAkB47xS+xCfSxWOiT1mQtZ4WWBR0vlAWTCszhSO5f00Wyngt/NXfa8uvr6ZlGa5HZd/Tc5HNpTW30QWLPkRAeWL3QqXdnB94kYTWmZFTRXFvKy2pC3k4NR7yn7+7i8wOwgJDaTtX5HzmEBATaLOT49OnXJhRa/Kar+YSDvvBWHKzKdJcTioKZ1ak9JXyXCzO6JxiS+Ly2+AQIOhK+NvK1t45YoH5wgqG0+dGsariglhW62D7Sg00VID8mNfUF81FFrOmq+/lOCiT6nCYCzsp3bJArh/F4CuU0QROn2TWTAk+TKbXomSyv0zmZvkTbk9o9BkRHRHHdm0x8zGAlDSre8yYzuT2w7MXBpCYLYADUHZ0bDZTS89I+wYHjGmwbC1q9D7pvtqzgRcJZzEy8EGveiU6INL4lDtj7Rd8FPM2PbTUsN10ybC/sYtFMBAb5Y2g7pw7Hw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(451199015)(33656002)(54906003)(86362001)(38070700005)(4744005)(6506007)(55016003)(5660300002)(2906002)(186003)(53546011)(9686003)(38100700002)(26005)(7696005)(122000001)(66946007)(66556008)(110136005)(71200400001)(66446008)(76116006)(107886003)(66476007)(4326008)(8936002)(8676002)(478600001)(52536014)(316002)(64756008)(41300700001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MkVFV0xKYS8ybVZyc3lPSVB6QnE1UmtaYTVrazc2d2J5VkQ2TzM2L2lOc2dC?=
- =?utf-8?B?aExpa0R3ZnIrUlRyVGcxYXRZR3Z2Z1dVNEhuRW5Qd1g3T3k3aGpEWU1HanQ5?=
- =?utf-8?B?RkRIZEY3c3ZNdTMzN1pJWTc2UVdoTlZqWTJWVWErUnRLSzVVRXNaZVBzQWFI?=
- =?utf-8?B?UlFlcTVxcHVlZmNtdXRJUUZaU2Jkc080N0pHOHp3ckxKQmZITGhxZnFTdzBG?=
- =?utf-8?B?QUNCM05rQzVUbkhBNWdKRUlTNmc4ZjJVeWFuNlQxNER0SXpNb3lPY2ErQWlE?=
- =?utf-8?B?TStsV3p1TGxaR25QTzBqVlJnTGNYakZsNFo5UThEN210alNXYXVvaTIyb1lT?=
- =?utf-8?B?Zkk3bkdETU15RlZjTndUcGJxZVUwZklxNU02azFWUlRKQTljdUFoWXdhOGhR?=
- =?utf-8?B?RjY5aVZzT3prSlRsUHg4RmxSMWk4SDRZRDQ4a2pkV3M5VlExUytiU056RThD?=
- =?utf-8?B?aE01KzFkeVh1L2t4ejhLSmEreWErRlZGczlwWmhreUJUZWRkZkRPOE50d1h6?=
- =?utf-8?B?MVJYRmM3TzB5L0wya1BLa1RUZFUvbXBVV0xtTkRPL2U0SDUrWW16WHdRY0JD?=
- =?utf-8?B?dE1xYjBOZUxtTm5XeU1iZGNHQ0FOcGVoVzRhUEVoMUpPWWRsdVN4bGVFaGpq?=
- =?utf-8?B?UmVrTXl5emNYMXAzYkV2LzdUZXNvSFI4ODd1RHhHNW1jSjYzLzB4bzcvYkt6?=
- =?utf-8?B?ZVppUFZJcm5QZGl4QUF5S0VodmRsMWxkcWVMNGt3R1pJZW9uZXN3SDl2akxr?=
- =?utf-8?B?aktLMkcrWExFYkdnOFZhWWF5VElSKzUvU2szS21OdmpvODVTSGZZbGdHZzgw?=
- =?utf-8?B?Wk81c1VBZ25mQk5Yd2tWRS9ZVXFzMWFqcWVzNGExcWl4ZlNmcWRVM3pOVlJw?=
- =?utf-8?B?RlQ3TGFLbDgzWi9aejhCbVRWbHA2UHJ0eDdVUUF3YXhkSXpyRjQ1TGVzajJE?=
- =?utf-8?B?VVhPb1hydUlPTGNMVUJiazQ0bGxIRHRoOGhRb2lqOG1wUlBPc3k3ZnI1YjJX?=
- =?utf-8?B?UlVmNVRvd20wYTVCQmtFV2YwQjY2V0U0T2tjK1YzdmUwMnQzTUljS2E1M2Uz?=
- =?utf-8?B?OUtmOWNBSnVzZmN1VXVFRmRTbzZVcnRET3VWVktqcFdOMFR3Vy9tN0JFQUZx?=
- =?utf-8?B?OHlZTSs1TlU2WTFIeHVsbVdPODJOdHdxZEhDUVdtMis1TzBENy9QTHZlWmhx?=
- =?utf-8?B?ZVJzN1RlNlVHZmJHRlhjbXhqeUltaGhqKzgvK0N1NmVudUJkaWtYNVFrWWpz?=
- =?utf-8?B?dzU1S2p4YVlQbk1pdzdvR0d1YnF4MXgyVmRzODFGSEZCS0ZZaElzQ1VIRTdq?=
- =?utf-8?B?bmtPSitrQ1lzMlNqZWZwQzZZNVlxZEJGbDhyS2laQ3JVZ2tyTnRweWwrTFF3?=
- =?utf-8?B?SFhvQ3FHMFJWeWNKdHdmVlZUQTVxWWZITlZYdzQwcnR4N0hJR1dKM1lXVk1l?=
- =?utf-8?B?b0lsNFZMRW9WdjFOV1RVdXh5aGJ5eCtTbS94ZzRmaUVUWFNBTXk3ZmV2TFZt?=
- =?utf-8?B?Um82aHNuQ1JvM0gzYk95TzFvYkhWUGtHLzVybmh2V0kxWkNGNGw3d3VONlpB?=
- =?utf-8?B?YW9mTXhxV3RSZEcrZloyVzJmTkhseTBzMDh2emVHRFRVaCtjMUIrWEkvVVM3?=
- =?utf-8?B?OU52aWErSTYvUUoybTVEUWRGbUM4cDRlejRxeEJFMktlY2pqeEk3b0lHVlNq?=
- =?utf-8?B?QkRBbzRqSmY1SU9XdENYSHNGVGJwV0lsZGR4R3VBU1hvaHVaVWR0LzBGd2pX?=
- =?utf-8?B?U2hpVEpTRnZjTDcxbm0vTTAwa2RCRGg2aFRSdEtwelhiVGlJOXFZVHpPZFdt?=
- =?utf-8?B?SjdJZTlLRWZjb2p1NEVOUDNFa09TdCtsZUNmcjBQczdTU25yQTVBVWd0TzF3?=
- =?utf-8?B?ZVQ4VHBPVzhOY1duSmo5V3YvYWppTnlrK1FUZG45WmJ3dCtmSFdlMTBHbm96?=
- =?utf-8?B?cGV2dXpaWFlSYTg2Z0lUMjJRTHFQbFZ2V3A0NnZTU3g2cDIyOWxTd3lkZUla?=
- =?utf-8?B?TDJyVUozNTFVVVZJSnNYRysxZVR2eDFmQjJ3YXRBOTZNYWtWNnUveTluTTJy?=
- =?utf-8?B?WmF5dXVETys5Rnk5Y3pzWWd2T3ZaQ1FOODZSRUIybEZyQzlLYytSYWgwWGc3?=
- =?utf-8?B?TFUrekJicU9jK2F4V0dhWnVnZ3NCREtnU0xWSm5KR2ZNSGJmNktBT0pDQkhk?=
- =?utf-8?B?Mmc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09ccb9a5-9291-4f43-0426-08dac7b8d2e0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2022 09:56:25.1780
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yKn2Vc5eIBQmUwZRQO6HVNX6akNkYSMHHl8C9PxLxOuVs15mfbiEktCPtQwtJP2Qp3a/R9OW3BIZx/rFuC0BKVWq9EDIkXADK0E2R7fiyyA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6031
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+CC:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>
+References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
+ <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
+ <3429c5a5-084d-919c-5c3f-5e12f447c931@quicinc.com>
+ <e53520b4-65da-d183-c3bf-65dc16c59358@linaro.org>
+ <c23b1bc2-6477-a125-7ad9-11dfec6fed55@quicinc.com>
+ <65ab13cb-93ae-eb71-531a-79cf99c7fcdd@linaro.org>
+ <3041e527-f955-3582-e41f-5f5dc4d04e26@quicinc.com>
+ <5bfaae9f-2d71-a69a-59e6-c4adf5d929da@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <5bfaae9f-2d71-a69a-59e6-c4adf5d929da@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Slr8duni86GhHtJJufOsb5SnChCarFOh
+X-Proofpoint-GUID: Slr8duni86GhHtJJufOsb5SnChCarFOh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-15_08,2022-11-15_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 phishscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211160070
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDEvM10g
-ZHQtYmluZGluZ3M6IGFybTogcmVuZXNhczogRG9jdW1lbnQgUmVuZXNhcw0KPiBSWi9WMk0gU3lz
-dGVtIENvbmZpZ3VyYXRpb24NCj4gDQo+IE9uIDE1LzExLzIwMjIgMTM6MzgsIEJpanUgRGFzIHdy
-b3RlOg0KPiA+IEZyb206IFBoaWwgRWR3b3J0aHkgPHBoaWwuZWR3b3J0aHlAcmVuZXNhcy5jb20+
-DQo+ID4NCj4gPiBBZGQgRFQgYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBTeXN0ZW0gQ29uZmln
-dXJhdGlvbiAoU1lTKSBmb3VuZCBvbg0KPiA+IFJaL1YyTSBTb0Mncy4NCj4gDQo+IFRoYW5rIHlv
-dSBmb3IgeW91ciBwYXRjaC4gVGhlcmUgaXMgc29tZXRoaW5nIHRvIGRpc2N1c3MvaW1wcm92ZS4N
-Cj4gDQo+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGNvbnN0
-OiByZW5lc2FzLHI5YTA5ZzAxMS1zeXMNCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+ICsgICAgbWF4
-SXRlbXM6IDENCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+
-ICsgIC0gcmVnDQo+ID4gKw0KPiA+ICthZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4gPiAr
-DQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0KPiA+ICsgICAgc3lzOiBzeXN0ZW0tY29udHJv
-bGxlckBhM2YwMzAwMCB7DQo+ID4gKyAgICAgICBjb21wYXRpYmxlID0gInJlbmVzYXMscjlhMDln
-MDExLXN5cyI7DQo+ID4gKyAgICAgICByZWcgPSA8MHhhM2YwMzAwMCAweDQwMD47DQo+IA0KPiBV
-c2UgNCBzcGFjZXMgZm9yIGV4YW1wbGUgaW5kZW50YXRpb24gKHR3byBpcyBhbHNvIG9rYXksIGJ1
-dCBub3QgdGhyZWUpLg0KDQpTdXJlLCB3aWxsIGZpeCBpdCB0byAyIHNwYWNlcy4NCg0KQ2hlZXJz
-LA0KQmlqdQ0KPiANCj4gV2l0aCB0aGlzIGZpeGVkOg0KPiANCj4gUmV2aWV3ZWQtYnk6IEtyenlz
-enRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gDQo+IEJl
-c3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
+
+
+On 11/16/2022 1:43 AM, Dmitry Baryshkov wrote:
+> On 16/11/2022 12:29, Abhinav Kumar wrote:
+>>
+>>
+>> On 11/16/2022 1:18 AM, Dmitry Baryshkov wrote:
+>>> On 16/11/2022 11:30, Abhinav Kumar wrote:
+>>>>
+>>>>
+>>>> On 11/16/2022 12:19 AM, Dmitry Baryshkov wrote:
+>>>>> On 16/11/2022 10:50, Abhinav Kumar wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 11/4/2022 6:03 AM, Dmitry Baryshkov wrote:
+>>>>>>> On sm8450 a register block was removed from MDP TOP. Accessing it 
+>>>>>>> during
+>>>>>>> snapshotting results in NoC errors / immediate reboot. Skip 
+>>>>>>> accessing
+>>>>>>> these registers during snapshot.
+>>>>>>>
+>>>>>>> Tested-by: Vinod Koul <vkoul@kernel.org>
+>>>>>>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>>>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>>
+>>>>>> I am confused with both the ordering and the split of this patch.
+>>>>>>
+>>>>>> You have defined DPU_MDP_PERIPH_0_REMOVED in the catalog header 
+>>>>>> file in this patch but used it in the next.
+>>>>>>
+>>>>>> But you also have code in this patch which relies on setting of 
+>>>>>> this bit.
+>>>>>>
+>>>>>> So if this patch is taken without the next, it will still crash.
+>>>>>
+>>>>> It will not crash if this patch is taken without the next one. 
+>>>>> Without the next patch the DPU driver will not match and bind 
+>>>>> against the qcom,sm8450-dpu device.
+>>>>
+>>>> Ah okay, I just now saw that you have the compatible change also in 
+>>>> the next patch.
+>>>>
+>>>>>
+>>>>> So, the ordering is quite logical from my point of view:
+>>>>> - add support for all the features required for the device
+>>>>> - add the device compat string & catalog entry
+>>>>>
+>>>>>>
+>>>>>> Rather, you should combine the define part of this patch to the 
+>>>>>> next patch in the series 
+>>>>>> https://patchwork.freedesktop.org/patch/510114/?series=108883&rev=3 , 
+>>>>>> then move that one in front of this patch.
+>>>>>
+>>>>> No. This way we'll have a state (after adding the next patch) when 
+>>>>> the sm8450 support is enabled, but the top-hole is not handled, 
+>>>>> leading to a crash.
+>>>>>
+>>>>
+>>>> What if you split the compatible to a separate patch like what 
+>>>> SM8350 did.
+>>>>
+>>>> https://patchwork.freedesktop.org/patch/511659/?series=110924&rev=1
+>>>>
+>>>> So, we have hw catalog changes ---> snapshot fix ---> add the 
+>>>> compatible.
+>>>
+>>> I don't see any good reason to do this. Adding a define without 
+>>> backing implementation is a bad idea in my opinion.
+>>>
+>>
+>> The define is used in two places today. First in the catalog and 
+>> second in the snapshot (which is your change).
+>>
+>> Even with the split i am suggesting the define and usage will be 
+>> together.
+>>
+>> In fact, in my opinion thats more coherent because you defined the 
+>> macro, used it to show that sm8450 has this TOP_HOLE.
+>>
+>> Then, you are using the hw->caps which will be set in the previous 
+>> patch to avoid that region in the snapshot.
+>>
+>> The good reason to do it this way is that, with this current ordering 
+>> of patch, this patch is essentially a dummy patch because technically 
+>> no chipset has set this capability.
+> 
+> It's not dummy, because it clearly shows, what really is beyond this 
+> capability. A feature without a backing implementation would be a dummy 
+> patch (even if it's mentioned in the hw catalog entry).
+> 
+> Just a simple check. If we use a guillotine and cut the patch series in 
+> the middle, which one will make more sense:
+> 
+> - #define DPU_MDP_TOP_UGLY
+>    add DPU_MDP_TOP_UGLY to sdm999's features
+> 
+> - #define DPU_MDP_TOP_UGLY
+>    add an implementation of DPU_MDP_TOP_UGLY describing what it does
+> 
+> With the first approach the MDP_TOP_UGLY is an ugly define without any 
+> particular meaning. Mentioning it in the hw_catalog doesn't bring us any 
+> additional information (in other words, what does it mean that sdm999 
+> has MDP_TOP_UGLY feature?).
+
+Okay, one last point about this.
+
+Your response actually brought up another comment on this patch.
+
+You have not documented what this macro does in this enum either in this 
+patch or the next.
+
+78  * MDP TOP BLOCK features
+79  * @DPU_MDP_PANIC_PER_PIPE Panic configuration needs to be be done 
+per pipe
+80  * @DPU_MDP_10BIT_SUPPORT, Chipset supports 10 bit pixel formats
+81  * @DPU_MDP_BWC,           MDSS HW supports Bandwidth compression.
+82  * @DPU_MDP_UBWC_1_0,      This chipsets supports Universal Bandwidth
+83  *                         compression initial revision
+84  * @DPU_MDP_UBWC_1_5,      Universal Bandwidth compression version 1.5
+85  * @DPU_MDP_MAX            Maximum value
+86
+87  */
+88 enum {
+89 	DPU_MDP_PANIC_PER_PIPE = 0x1,
+90 	DPU_MDP_10BIT_SUPPORT,
+91 	DPU_MDP_BWC,
+92 	DPU_MDP_UBWC_1_0,
+93 	DPU_MDP_UBWC_1_5,
+94 	DPU_MDP_AUDIO_SELECT,
+95 	DPU_MDP_MAX
+96 };
+
+If that was done, that would certainly clear the doubts about what this 
+does.
+
+Snapshot is just one usage of this enum. We are advertizing this enum as 
+a chipset level capability. So if we group it the way you mentioned as 
+incorrect, lets view it another way.
+
+- #define DPU_MDP_TOP_UGLY AND document what it means as we are supposed to
+
+     add DPU_MDP_TOP_UGLY to sdm999's features
+
+Now, we know what it means and also which chipset it applies to in the 
+same change rather than looking at two changes to achieve this.
+
+Lastly, we are using this capability to avoid access to the snapshot.
+
+That may not be the only usage of that capability.
+
+> 
+> The second approach doesn't bind any chipset to use MDP_TOP_UGLY. But 
+> knowing the implementation, one can check whether it applies to his 
+> chipset or not.
+> 
+> Yes, I must admit, this case is a little bit odd. Regularly I'd have 
+> added the sm8450's compat string and catalog entries, then I'd have 
+> populated the catalog with new features one by one (using implementation 
+> + define + hw_catalog patch), like we do e.g. for DSC, WB, 
+> DSPP_sub_flush, etc. In this particular case, sm8450 will not work 
+> without PERIPH_0_REMOVED, as the first DSI underrun, which can easily 
+> happen while turning on the INTF, will reboot the board.
+
+I am not going to hold off this patch for this reason but like I have 
+said before, even if the order is maintained the way I mentioned by 
+splitting the compatible similar to the SM8350 series, it will not cause 
+reboot.
+
+Yes, I do recall the first DSI underrun issue on the SM8450 board so i 
+certainly realize we cannot let it boot without blocking access to the hole.
+
+> 
+>>
+>> But if you follow the order i am suggesting, it actually has more 
+>> meaning because we know sm8450 has set it in its caps before you use it.
+>>
+>>> Regarding splitting the hw_catalog and compat. I have always 
+>>> considered the hw catalog entry as of_device_id.data. In other words, 
+>>> a devices' match data, which makes a little sense without compat entry.
+>>>
+>>> With the current approach each patch is atomic, it changes single 
+>>> point or adds a single feature, etc.
+>>>
+>>>>
+>>>> That will make both of us happy?
+>>>>
+>>>>>>
+>>>>>> So that its much more coherent that you defined 
+>>>>>> DPU_MDP_PERIPH_0_REMOVED both in the catalog header and used it in 
+>>>>>> the catalog.c file and the in the next change you used the caps to 
+>>>>>> avoid touching that register.
+>>>>>
+>>>>> I'd say it's rather strange way. When I see a define/feature 
+>>>>> addition, I'd prefer to seethe implementation too.
+>>>>>
+>>>>>> Regarding the TOP hole itself, I need one day to investigate this. 
+>>>>>> I am waiting for permissions to the documentation.
+>>>>>>
+>>>>>> If i cannot get access by the time you have re-ordered this, I 
+>>>>>> will ack this once the reorder is done within a day.
+>>>>>
+>>>>>
+>>>>> For the reference: [1]
+>>>>>
+>>>>> [1] 
+>>>>> https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-drivers/-/commit/f9ff8af5b640147f3651c23551c60f81f62874b1 
+>>>>>
+>>>>>
+>>>>>>
+>>>>>>> ---
+>>>>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
+>>>>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
+>>>>>>>   2 files changed, 10 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
+>>>>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>>>> index 38aa38ab1568..4730f8268f2a 100644
+>>>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>>>> @@ -92,6 +92,7 @@ enum {
+>>>>>>>       DPU_MDP_UBWC_1_0,
+>>>>>>>       DPU_MDP_UBWC_1_5,
+>>>>>>>       DPU_MDP_AUDIO_SELECT,
+>>>>>>> +    DPU_MDP_PERIPH_0_REMOVED,
+>>>>>>>       DPU_MDP_MAX
+>>>>>>>   };
+>>>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
+>>>>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>>>> index f3660cd14f4f..95d8765c1c53 100644
+>>>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>>>> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
+>>>>>>> msm_disp_state *disp_state, struct msm_k
+>>>>>>>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
+>>>>>>>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
+>>>>>>> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>>>>>>> -            dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>>>> +    if (dpu_kms->hw_mdp->caps->features & 
+>>>>>>> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
+>>>>>>> +        msm_disp_snapshot_add_block(disp_state, 0x380,
+>>>>>>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>>>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len 
+>>>>>>> - 0x3a8,
+>>>>>>> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
+>>>>>>> +    } else {
+>>>>>>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>>>>>>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>>>> +    }
+>>>>>>>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>>>>>>>   }
+>>>>>
+>>>
+> 
