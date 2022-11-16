@@ -2,139 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC9E62B679
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BC662B682
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232501AbiKPJ0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 04:26:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
+        id S229942AbiKPJ31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 04:29:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231622AbiKPJ0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:26:53 -0500
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1126389;
-        Wed, 16 Nov 2022 01:26:51 -0800 (PST)
-Received: by mail-qv1-f41.google.com with SMTP id j6so11506015qvn.12;
-        Wed, 16 Nov 2022 01:26:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EGSh9ezbCO5Cs+0MRBpsxP1k4L0kzxgW9LPRl1yAGr0=;
-        b=aM9QqSWGeOYDmyN8URcMvMR54HYgT1P0VvS7/MjVpF9mtIvl2J8j/YVV7pRwStmXzD
-         5x/vuh63SElEqPyxY1dP9w/wY4+OmVGxiW/JjNScbLluVLIZQL6mZYcFLhE1p8ks4Opw
-         vExf2bbMMEyQcSWllO2Dmhw75zvw2JdM22IiyUv3tlvkfeBnFs61kEj/TNhrwhFwRdeg
-         nS58D86MGBXpZjajwn6CaBT+fVeZPYqkfsgwctKHUPQDoRJd75XAgxLpuGoO4fXI7B39
-         q7ZXuGxUa1hLgcdhS0nYTysal14THY4mJtaJBKlOlS0Dg1+O8TnznIKyobvv4hk3M1OW
-         EevQ==
-X-Gm-Message-State: ANoB5pljt6Uvqx/DGS+SyXLVM3JU/fjadLxY/bPw3Zd7fA/ccV5n5yVe
-        o+56g0EhSlWcSBi7/0GT1U3MGXMb98JxyA==
-X-Google-Smtp-Source: AA0mqf6fBAwvGqt56oKbe3Lz4ohnPt2TdWkor/DN4WZjNpawqRlRfRgXloX01JLyjKy/pv73ajKMQw==
-X-Received: by 2002:a05:6214:10c1:b0:4bb:e74a:f640 with SMTP id r1-20020a05621410c100b004bbe74af640mr20131742qvs.36.1668590809921;
-        Wed, 16 Nov 2022 01:26:49 -0800 (PST)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id k1-20020ac81401000000b0035cf31005e2sm8431011qtj.73.2022.11.16.01.26.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 01:26:49 -0800 (PST)
-Received: by mail-yb1-f170.google.com with SMTP id 63so20278654ybq.4;
-        Wed, 16 Nov 2022 01:26:48 -0800 (PST)
-X-Received: by 2002:a25:844b:0:b0:6de:6c43:3991 with SMTP id
- r11-20020a25844b000000b006de6c433991mr19268568ybm.604.1668590808744; Wed, 16
- Nov 2022 01:26:48 -0800 (PST)
+        with ESMTP id S229826AbiKPJ30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:29:26 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A324912088;
+        Wed, 16 Nov 2022 01:29:23 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AG8I4i9022554;
+        Wed, 16 Nov 2022 09:29:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Sn2Rwg8Ovu5uRdzho4YFoTsFPAoN8+w2c+IpVXlzcXg=;
+ b=ZWjHWCY5dntJqQb4HPwkC5vEQ9GRIYPR/yLY3emQCsdB6NzdbEhynW488Xbr07LMt9wN
+ YGyLxgmG6GP3JTH2Lju2n4SLyV46Miy+Z7dvQhxwfAcAx44cJd0iHJwg7PQn2qCz6gFe
+ ZHHCcp2wXg5NWD86y0MTh2shf5rOwU5syXFM4/hMKNwxVB1xEarcEju/zrkeC2qSceks
+ I1xZK3PFWvohSRiWgvHnwfxKbcEW/Rf+nXvG5FvMlDPoRpIqv1kGWKxGczUmMrG0+0fE
+ 2XQNeAw4Ku/Npt/+0cTL8onpjqMXgMUXQttxVT4xvqJUpOpjWYawowwl4t7uWL8S487c 7g== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kvt8g8hbt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 09:29:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AG9TB2X000714
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 09:29:11 GMT
+Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
+ 2022 01:29:05 -0800
+Message-ID: <3041e527-f955-3582-e41f-5f5dc4d04e26@quicinc.com>
+Date:   Wed, 16 Nov 2022 01:29:01 -0800
 MIME-Version: 1.0
-References: <20221115105135.1180490-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y3OgSAnst0qt5WSk@wendy> <CA+V-a8vL5r-xMeCiYRax-dM2Uo0ghgzRiyY99nNn089CjJwoBg@mail.gmail.com>
-In-Reply-To: <CA+V-a8vL5r-xMeCiYRax-dM2Uo0ghgzRiyY99nNn089CjJwoBg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 16 Nov 2022 10:26:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXquU632vu37WkewmashjSxV8f8J6WGawAD4uL3B=6pHA@mail.gmail.com>
-Message-ID: <CAMuHMdXquU632vu37WkewmashjSxV8f8J6WGawAD4uL3B=6pHA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] RZ/Five: Enable ADC/CANFD/I2C/OPP/Thermal Zones/TSU
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>
+References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
+ <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
+ <3429c5a5-084d-919c-5c3f-5e12f447c931@quicinc.com>
+ <e53520b4-65da-d183-c3bf-65dc16c59358@linaro.org>
+ <c23b1bc2-6477-a125-7ad9-11dfec6fed55@quicinc.com>
+ <65ab13cb-93ae-eb71-531a-79cf99c7fcdd@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <65ab13cb-93ae-eb71-531a-79cf99c7fcdd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: EJMxyt6UQbcsXYw1XDHgLKWLQK5-8sOw
+X-Proofpoint-GUID: EJMxyt6UQbcsXYw1XDHgLKWLQK5-8sOw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-15_08,2022-11-15_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 phishscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211160066
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 15, 2022 at 7:23 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Tue, Nov 15, 2022 at 2:21 PM Conor Dooley <conor.dooley@microchip.com> wrote:
-> > On Tue, Nov 15, 2022 at 10:51:32AM +0000, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Hi All,
-> > >
-> > > This patch series aims to enable support for below blocks
-> > > on RZ/Five SoC/SMARC EVK:
-> > > - ADC
-> > > - CANFD
-> > > - I2C
-> > > - OPP
-> > > - Thermal Zones
-> > > - TSU
-> > >
-> > > Note, patches apply on top of [0].
-> > >
-> > > [0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/log/?h=renesas-riscv-dt-for-v6.2
-> > >
-> > > Cheers,
-> > > Prabhakar
-> > >
-> > > Lad Prabhakar (3):
-> > >   riscv: Kconfig: Enable cpufreq kconfig menu
-> > >   riscv: dts: renesas: r9a07g043f/rzfive-smarc-som: Enable
-> > >     ADC/OPP/Thermal Zones/TSU
-> > >   riscv: dts: renesas: rzfive-smarc: Enable CANFD/I2C
-> >
-> > I know ~nothing about your SoC so idk if the values are correct, but I
-> > did give it a go earlier to see if it did anything warning wise. Seeing
-> > that it didn't cause any I am curious - how come these didn't land in
-> > the original dts? Just waiting for driver stuff to land to support it?
-> >
-> I wanted bare minimal stuff in the initial patchset.
->
-> > Anyway, no new warnings which is what I care about - I suppose that
-> > makes it an acked-by?
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Can include that tag if you like. Either way, nice to see some of the
-> > /delete-node/s etc being removed.
-> >
-> Thanks, Geert should pick the tag while picking the DTS/I patches.
->
-> For the Kconfig patch it needs to go via the RISCV tree or can that be
-> picked by Geert too with the rest of the other patches?
 
-IMHO the Kconfig patch (or Conor's earlier version) should go through
-the RISCV tree, as there is no hard dependency.
 
-Yes, I can take it with an Acked-by, if all else fails, but the soc deadline
-is near.
+On 11/16/2022 1:18 AM, Dmitry Baryshkov wrote:
+> On 16/11/2022 11:30, Abhinav Kumar wrote:
+>>
+>>
+>> On 11/16/2022 12:19 AM, Dmitry Baryshkov wrote:
+>>> On 16/11/2022 10:50, Abhinav Kumar wrote:
+>>>>
+>>>>
+>>>> On 11/4/2022 6:03 AM, Dmitry Baryshkov wrote:
+>>>>> On sm8450 a register block was removed from MDP TOP. Accessing it 
+>>>>> during
+>>>>> snapshotting results in NoC errors / immediate reboot. Skip accessing
+>>>>> these registers during snapshot.
+>>>>>
+>>>>> Tested-by: Vinod Koul <vkoul@kernel.org>
+>>>>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>
+>>>> I am confused with both the ordering and the split of this patch.
+>>>>
+>>>> You have defined DPU_MDP_PERIPH_0_REMOVED in the catalog header file 
+>>>> in this patch but used it in the next.
+>>>>
+>>>> But you also have code in this patch which relies on setting of this 
+>>>> bit.
+>>>>
+>>>> So if this patch is taken without the next, it will still crash.
+>>>
+>>> It will not crash if this patch is taken without the next one. 
+>>> Without the next patch the DPU driver will not match and bind against 
+>>> the qcom,sm8450-dpu device.
+>>
+>> Ah okay, I just now saw that you have the compatible change also in 
+>> the next patch.
+>>
+>>>
+>>> So, the ordering is quite logical from my point of view:
+>>> - add support for all the features required for the device
+>>> - add the device compat string & catalog entry
+>>>
+>>>>
+>>>> Rather, you should combine the define part of this patch to the next 
+>>>> patch in the series 
+>>>> https://patchwork.freedesktop.org/patch/510114/?series=108883&rev=3 
+>>>> , then move that one in front of this patch.
+>>>
+>>> No. This way we'll have a state (after adding the next patch) when 
+>>> the sm8450 support is enabled, but the top-hole is not handled, 
+>>> leading to a crash.
+>>>
+>>
+>> What if you split the compatible to a separate patch like what SM8350 
+>> did.
+>>
+>> https://patchwork.freedesktop.org/patch/511659/?series=110924&rev=1
+>>
+>> So, we have hw catalog changes ---> snapshot fix ---> add the compatible.
+> 
+> I don't see any good reason to do this. Adding a define without backing 
+> implementation is a bad idea in my opinion.
+> 
 
-Gr{oetje,eeting}s,
+The define is used in two places today. First in the catalog and second 
+in the snapshot (which is your change).
 
-                        Geert
+Even with the split i am suggesting the define and usage will be together.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+In fact, in my opinion thats more coherent because you defined the 
+macro, used it to show that sm8450 has this TOP_HOLE.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Then, you are using the hw->caps which will be set in the previous patch 
+to avoid that region in the snapshot.
+
+The good reason to do it this way is that, with this current ordering of 
+patch, this patch is essentially a dummy patch because technically no 
+chipset has set this capability.
+
+But if you follow the order i am suggesting, it actually has more 
+meaning because we know sm8450 has set it in its caps before you use it.
+
+> Regarding splitting the hw_catalog and compat. I have always considered 
+> the hw catalog entry as of_device_id.data. In other words, a devices' 
+> match data, which makes a little sense without compat entry.
+> 
+> With the current approach each patch is atomic, it changes single point 
+> or adds a single feature, etc.
+> 
+>>
+>> That will make both of us happy?
+>>
+>>>>
+>>>> So that its much more coherent that you defined 
+>>>> DPU_MDP_PERIPH_0_REMOVED both in the catalog header and used it in 
+>>>> the catalog.c file and the in the next change you used the caps to 
+>>>> avoid touching that register.
+>>>
+>>> I'd say it's rather strange way. When I see a define/feature 
+>>> addition, I'd prefer to seethe implementation too.
+>>>
+>>>> Regarding the TOP hole itself, I need one day to investigate this. I 
+>>>> am waiting for permissions to the documentation.
+>>>>
+>>>> If i cannot get access by the time you have re-ordered this, I will 
+>>>> ack this once the reorder is done within a day.
+>>>
+>>>
+>>> For the reference: [1]
+>>>
+>>> [1] 
+>>> https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-drivers/-/commit/f9ff8af5b640147f3651c23551c60f81f62874b1 
+>>>
+>>>
+>>>>
+>>>>> ---
+>>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
+>>>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
+>>>>>   2 files changed, 10 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
+>>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>> index 38aa38ab1568..4730f8268f2a 100644
+>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>>>>> @@ -92,6 +92,7 @@ enum {
+>>>>>       DPU_MDP_UBWC_1_0,
+>>>>>       DPU_MDP_UBWC_1_5,
+>>>>>       DPU_MDP_AUDIO_SELECT,
+>>>>> +    DPU_MDP_PERIPH_0_REMOVED,
+>>>>>       DPU_MDP_MAX
+>>>>>   };
+>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
+>>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>> index f3660cd14f4f..95d8765c1c53 100644
+>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>>>>> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
+>>>>> msm_disp_state *disp_state, struct msm_k
+>>>>>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
+>>>>>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
+>>>>> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>>>>> -            dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>> +    if (dpu_kms->hw_mdp->caps->features & 
+>>>>> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
+>>>>> +        msm_disp_snapshot_add_block(disp_state, 0x380,
+>>>>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 
+>>>>> 0x3a8,
+>>>>> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
+>>>>> +    } else {
+>>>>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+>>>>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
+>>>>> +    }
+>>>>>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>>>>>   }
+>>>
+> 
