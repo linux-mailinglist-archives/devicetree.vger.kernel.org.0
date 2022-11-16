@@ -2,123 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A0562CB29
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:38:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB3462CB3E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:41:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232377AbiKPUiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:38:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54938 "EHLO
+        id S233641AbiKPUlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:41:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiKPUiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:38:12 -0500
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21584CE1C;
-        Wed, 16 Nov 2022 12:38:12 -0800 (PST)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso21466420fac.13;
-        Wed, 16 Nov 2022 12:38:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HnRJq35FU5K24iT24xDh+k9lk7y71HZpwcz02Kh7y6Q=;
-        b=5KZ0Bl8iLmn4yQOpsEV9X3s0uKBiHZCs8qAunv6F+ecYzd539vXhKdLfZQohuGf41j
-         2v5U++XNu89bX1Hu9dJ40lvgrcCRipz2pptxYqR6gB1xo+rz/jE7WLwHZKexTB6OsUbi
-         EUtLVRmeLVix0+2fkePt2TiccwszQRHdkBVVC4+U10c/uHlWqe5BON1J7/jYAI7bg6Q/
-         AFjoh2iCQI34Rfk9ZiouL/1+h8Ai7iU+bNYCgMSYSrgfNFpFinseHXiDYpKoJ54h4xte
-         mPDTnJ5VOzIm8kur4U2cBu5NnM22CcUjUUMW4x6K8Xdvss6ej+u8Mk5h5hqMm7fYIKtV
-         Rf9Q==
-X-Gm-Message-State: ANoB5pm9WxQP/FNHXXW2lZjr2JTSDSdX7EAm82Lp4+v9FfqxkpSW0Qrs
-        sMV6sYna1k2fCbX91UhAPw==
-X-Google-Smtp-Source: AA0mqf52E+J+ZVB9pFbQk8/8PdLI5NNCFohvwi6r1HMLDxt2gQKSZNLlLScuDKeTerUJmBdidzgYQw==
-X-Received: by 2002:a05:6870:d69c:b0:13b:ac28:c61a with SMTP id z28-20020a056870d69c00b0013bac28c61amr2733059oap.219.1668631091289;
-        Wed, 16 Nov 2022 12:38:11 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z9-20020a4ade49000000b0049eedb106e2sm6490658oot.15.2022.11.16.12.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 12:38:10 -0800 (PST)
-Received: (nullmailer pid 845059 invoked by uid 1000);
-        Wed, 16 Nov 2022 20:38:12 -0000
-Date:   Wed, 16 Nov 2022 14:38:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
+        with ESMTP id S231221AbiKPUlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:41:18 -0500
+Received: from smtpcmd0642.aruba.it (smtpcmd0642.aruba.it [62.149.156.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 08C432126A
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 12:41:16 -0800 (PST)
+Received: from [192.168.50.220] ([146.241.88.137])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id vPDfousiuEclovPDfoJfGd; Wed, 16 Nov 2022 21:41:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1668631276; bh=ua4Hct9zgOjT9Ac685aAx6spkrDlHZGn59ZRs5eaYP0=;
+        h=Date:MIME-Version:Subject:To:From:Content-Type;
+        b=jKjnFGcRyeZJ8+3/LauE7ThKXsIBtvJmfbj4n020e6kUu7hTuyMnqRCUzQNvd/pnR
+         bSZkq6vBJfJRQANaxJrD3tQW1A2Lt2HOjI/tAuyOn8QY06Ol1UEUywS/rdEGQGZzU4
+         ImexpHOdcsVfJqNePa10tSkhRwneJXIxbiGiF/I8sYMBJPj21ccpu+kPOSVQcYP3yC
+         HW6F/fS1u/xrL9NYFt2U2KrX915YywKvEugziM6jtfwvByEt+lUZVY7rNzRrbig+I5
+         ceHelVRPgWOfmRndQ9QhoRKl2xIeXS2/V220Z1jqnAT4voGzm/NES+MZNV/BH054Hv
+         mhazheT2kGAcA==
+Message-ID: <3149ce35-14bb-7df0-b578-b426b8e365fa@benettiengineering.com>
+Date:   Wed, 16 Nov 2022 21:41:15 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 3/4] ARM: dts: imxrt1050: increase mmc max-frequency
+ property
+Content-Language: en-US
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v7 01/20] dt-bindings: imx6q-pcie: Fix clock names for
- imx6sx and imx8mq
-Message-ID: <20221116203812.GA834519-robh@kernel.org>
-References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
- <20221113191301.5526-2-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221113191301.5526-2-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bough Chen <haibo.chen@nxp.com>,
+        Jesse Taube <mr.bossman075@gmail.com>
+References: <20221116203520.8300-1-giulio.benetti@benettiengineering.com>
+ <20221116203520.8300-3-giulio.benetti@benettiengineering.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+In-Reply-To: <20221116203520.8300-3-giulio.benetti@benettiengineering.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfPVpncSEOCCHpzyD8TvUG1v+Q4+0n/jgcG/RkU/q3r1jBC4VIBiGT9ANThQyvIMtxM6agnBjalzv3sYR8xWmpVtvKfyAY4J3+DdPF28FhLW3D73/x2Jt
+ WbCypBvZfIg+inE5SunvSuoHSmfhG0Rbh/Wrj+Qv35iXBWwRv0Hf37gNyceMvoM0jVB69kkdHJfqXEOESDjg2MDA32vJCmMp7j5WeT1S7HWMaihZZkqaSGts
+ 7kwmbtQ12auHH05PgI/iy3lk/gXny06MupIirDs73nhokfbfljAK1j8NagcuilFySOrzPYxonBDcBkRjiVV/TIgA1wG4D3NuEYatNBPmgPfSBCtkiVHuDa8K
+ gZqGJIXvWTNviNG+wf0jkHcvBpgQKBvrLYX8udm/KrfYwl/yzOsY4Ey12gIKFaIRHjEpRkvZc1gPHoIThxPUjakg5uepFD5HNYtiBR9Rt1WJze8mMgLdiPGj
+ H2nuauIp4KhOmzRyxd5m16wCWTF6CVIrNnd89HoerhOWQdAYuJ6+n5vOjiymaHrNl34SRk7WW/RpVQ82XJKftuNYkoZtxnnilMyp48FFRpkpJ9CTV2+kvimK
+ EGOUXJnUhP4OTljepZ5QPT4cGisKGKYH7HZma2TjHj9XfZVIM9qYRvNBwKlbel4S75WYkDoAM60C1W1aCRZ+VJoobx/usJW+m40/MkamtuzSJs9c7CThBjuW
+ H4G5lsOy0+4BbUt7kOnzU4G6tI1J7dXcIRBA6f64dLmmytAMquRoyw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 13, 2022 at 10:12:42PM +0300, Serge Semin wrote:
-> Originally as it was defined the legacy bindings the pcie_inbound_axi and
-> pcie_aux clock names were supposed to be used in the fsl,imx6sx-pcie and
-> fsl,imx8mq-pcie devices respectively. But the bindings conversion has been
-> incorrectly so now the fourth clock name is defined as "pcie_inbound_axi
-> for imx6sx-pcie, pcie_aux for imx8mq-pcie", which is completely wrong.
-> Let's fix that by conditionally apply the clock-names constraints based on
-> the compatible string content.
+On 16/11/22 21:35, Giulio Benetti wrote:
+> According to i.MXRT1050 Datasheet usdhc supports up to 200Mhz clock so
+> let's increase max-frequency property to 200Mhz.
 > 
-> Fixes: 751ca492f131 ("dt-bindings: PCI: imx6: convert the imx pcie controller to dtschema")
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> 
+> Cc: Jesse Taube <mr.bossman075@gmail.com>
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Acked-by: Jesse Taube <mr.bossman075@gmail.com>
 > ---
-> 
-> Changelog v5:
-> - This is a new patch added on the v5 release of the patchset.
-> 
-> Changelog v7:
-> - Move the allOf clause to the bottom of the bindings. (@Krzysztof)
-> - Get back the names to the clock-names property and make sure the
->   platform-specific name constraint is applied in the allOf clause.
->   (@Rob)
+> V1->V2:
+> * nothing done
+
+Pardon:
+V1->V2:
+* set max-frequency to 200Mhz instead of removing it as suggested by
+   Bough Chen
+
+-- 
+Giulio Benetti
+CEO/CTO@Benetti Engineering sas
+
+> V2->V3:
+> * added Jesse Taube's Acked-by:
 > ---
->  .../bindings/pci/fsl,imx6q-pcie.yaml          | 46 +++++++++++++++++--
->  1 file changed, 42 insertions(+), 4 deletions(-)
+>   arch/arm/boot/dts/imxrt1050.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/imxrt1050.dtsi b/arch/arm/boot/dts/imxrt1050.dtsi
+> index 114465e4dde6..5b1991c32748 100644
+> --- a/arch/arm/boot/dts/imxrt1050.dtsi
+> +++ b/arch/arm/boot/dts/imxrt1050.dtsi
+> @@ -93,7 +93,7 @@ usdhc1: mmc@402c0000 {
+>   			bus-width = <4>;
+>   			fsl,wp-controller;
+>   			no-1-8-v;
+> -			max-frequency = <4000000>;
+> +			max-frequency = <200000000>;
+>   			fsl,tuning-start-tap = <20>;
+>   			fsl,tuning-step = <2>;
+>   			status = "disabled";
 
-We have 2 patches doing the same thing:
-
-https://lore.kernel.org/all/20221109002449.35936-1-marex@denx.de/
-
-Please hash out which one you all want. Both seem to have clock 
-warnings still...
-
-Reviewed-by: Rob Herring <robh@kernel.org>
