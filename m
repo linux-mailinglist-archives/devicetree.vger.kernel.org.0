@@ -2,97 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC2B62C027
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D16762C046
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 15:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233143AbiKPNwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36432 "EHLO
+        id S233666AbiKPOAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 09:00:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233132AbiKPNwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:52:18 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738BF3B9
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:52:17 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bp15so29521221lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:52:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3/sN5vMqqZJd47ORA+vw4SJ22RY5WmlWa/SLNGxSvwM=;
-        b=Oq3dUlyrys9vxonQC4MsTkZ21x8iJwr+9O5UJ9iP8CU0Alz8/1hHv47Ez1S22GeT2W
-         +jlBY7Hagz82mxhRCRWgFIlKZdCCgep9yuirytiypk/m0+C9iVQaK34h3uRRiew64F5y
-         DGLsF0jSXwsSDoYTA7Q81jdnPyZeXNtA8dzrfKeNNC9HCNuxr9k3nth6zicyw6xiZT4m
-         LZdbD/AXmim9FVjSaAcSSyIXdpZ1QUYy3r8IF3QWtW5D5GZH9nZbZNUvXmrzVEBay88/
-         RgaZz7vZ0/R+jD6aiZyFbjLlwaYWFlzu1lRhMox12anb6orTQZmR4AYEkpUVi1SJrVS5
-         3iog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3/sN5vMqqZJd47ORA+vw4SJ22RY5WmlWa/SLNGxSvwM=;
-        b=l9ST2wROum4nNFfUOg9U8k+0z1vrNfRi6YkOnnSB9dwb5o9Cdy2YIgA6bLK/Kxp/lL
-         i+sLBWu3J++MMezUH+FxiTrUDsqgqu9qT/bBvBHQF53VAkRCXQnuz8nCzKt1lpAbyobz
-         2Y6dXiEE6VTUPmaEp8zC2+vU0/TmRGOSWxEC7VIbB5GvoLBBj57gT1CD304ioes5MiqI
-         2z8dNO5yklUHIJVG9I+cpc7jJLboJTWIykUY80cL6q1j0+WGpQH+k8LnEdstVYQlZMF4
-         5X1y4fY1VnigGVp7NsgM7gbcJoewlAb5s/TdMqc1GUlGro8H7Ikx8h11P8RakjC0WsTP
-         D44w==
-X-Gm-Message-State: ANoB5pmijEc7JypUGouCsJm0d8Wva0OUwv00uhh+EvNJkg8TaH9zf4yr
-        5CfEkRgxNkVJy/LXqw93RHHRgg==
-X-Google-Smtp-Source: AA0mqf5+Aaf1IJii/g8amoHIECoguxNGsuytXSKTayNUMZBmyuc3V/oB/+JDgp0I9wUAKbgx6gpyDg==
-X-Received: by 2002:a05:6512:2387:b0:4a4:7f36:c62e with SMTP id c7-20020a056512238700b004a47f36c62emr6914841lfv.389.1668606735855;
-        Wed, 16 Nov 2022 05:52:15 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z18-20020a056512371200b00498f77cfa63sm2606448lfr.280.2022.11.16.05.52.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 05:52:15 -0800 (PST)
-Message-ID: <7e55b085-ae60-22c8-d961-9bced1edcb02@linaro.org>
-Date:   Wed, 16 Nov 2022 16:52:14 +0300
+        with ESMTP id S233406AbiKPN6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:58:19 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83348303C0;
+        Wed, 16 Nov 2022 05:55:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1668606930; x=1700142930;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=gnyeTosH+4bNeTqmiTiA3jrblmnF4auGWZMR6U3XjvQ=;
+  b=BHTisShogmS6l79GHc/bQ9MjXPg9vKuSZhuzEjuIQqQo/DwulRh4IoIW
+   0C6J/3bFeNnJcIyzGpVxpf3INyiF4PxxOK1n8KvSdqN/KPsN7FU/Md4hj
+   j2MKZUvcsZALuY1CFe29/2ov9De+7psPRDlJ0MBgvioUWrc+5mcfRx1Jq
+   WTbpugjUWsGLj+CUfBc8rlk0XXz9cHNL1KUi0VcKRq/xzdjh7cRp/zma0
+   2a40MKOFVgtH+Da/qD6pPIU0hSTxwnggP+P3idN3qS9FG2P6hgHMuYLBV
+   9N3go/TaQdrSlnRWxGfBZZDX6zk7AI6JyCl4Cs6c1tO/kWIMriyjoRt1j
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
+   d="scan'208";a="183798607"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Nov 2022 06:55:15 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 16 Nov 2022 06:55:09 -0700
+Received: from daire-X570.amer.actel.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Wed, 16 Nov 2022 06:55:06 -0700
+From:   <daire.mcnamara@microchip.com>
+To:     <conor.dooley@microchip.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <paul.walmsley@sifive.com>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>
+CC:     Daire McNamara <daire.mcnamara@microchip.com>
+Subject: [PATCH v1 0/9] PCI: microchip: Partition address translations
+Date:   Wed, 16 Nov 2022 13:54:55 +0000
+Message-ID: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v2 15/15] arm64: dts: qcom: sc8280xp: fix USB-DP PHY nodes
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221115144005.2478-1-johan+linaro@kernel.org>
- <20221115144005.2478-16-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221115144005.2478-16-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 17:40, Johan Hovold wrote:
-> Update the USB4-USB3-DP QMP PHY nodes to match the new binding which
-> specifically includes the missing register regions (e.g. DP_PHY) and
-> allows for supporting DisplayPort Alternate Mode.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 77 ++++++++------------------
->   1 file changed, 23 insertions(+), 54 deletions(-)
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Microchip PolarFire SoC is a 64-bit device and has DDR starting at
+0x80000000 and 0x1000000000. Its PCIe rootport is connected to the CPU
+Coreplex via an FPGA fabric. The AXI connections between the Coreplex and
+the fabric are 64-bit and the AXI connections between the fabric and the
+rootport are 32-bit.  For the CPU CorePlex to act as an AXI-Master to the
+PCIe devices and for the PCIe devices to act as bus masters to DDR at these
+base addresses, the fabric can be customised to add/remove offsets for bits
+38-32 in each direction. These offsets, if present, vary with each
+customer's design.
 
+To support this variety, the rootport driver must know how much address
+translation (both inbound and outbound) is performed by a particular
+customer design and how much address translation must be provided by the
+rootport.
+
+This patchset contains a parent/child dma-ranges scheme suggested by Rob
+Herring. It creates an FPGA PCIe parent bus which wraps the PCIe rootport
+and implements a parsing scheme where the root port identifies what address
+translations are performed by the FPGA fabric parent bus, and what
+address translations must be done by the rootport itself.
+
+See https://lore.kernel.org/linux-pci/20220902142202.2437658-1-daire.mcnamara@microchip.com/
+for the relevant previous patch submission discussion.
+
+It also re-partitions the probe() and init() functions as suggested by
+Bjorn Helgaas to make them more maintainable as the init() function had
+become too large.
+
+It also contains some minor fixes and clean-ups that are pre-requisites:
+- to align register, offset, and mask names with the hardware documentation
+  and to have the register definitions appear in the same order as in the
+  hardware documentation;
+- to harvest the MSI information from the hardware configuration register
+  as these depend on the FPGA fabric design and can vary with different
+  customer designs;
+- to clean up interrupt initialisation to make it more maintainable;
+- to fix SEC and DED interrupt handling.
+
+I expect Conor will take the dts patch via the soc tree once the PCIe parts
+of the series are accepted.
+
+Conor Dooley (1):
+  riscv: dts: microchip: add parent ranges and dma-ranges for IKRD
+    v2022.09
+
+Daire McNamara (8):
+  PCI: microchip: Align register, offset, and mask names with hw docs
+  PCI: microchip: Correct the DED and SEC interrupt bit offsets
+  PCI: microchip: Enable event handlers to access bridge and ctrl ptrs
+  PCI: microchip: Clean up initialisation of interrupts
+  PCI: microchip: Gather MSI information from hardware config registers
+  PCI: microchip: Re-partition code between probe() and init()
+  PCI: microchip: Partition outbound address translation
+  PCI: microchip: Partition inbound address translation
+
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  62 +-
+ drivers/pci/controller/pcie-microchip-host.c  | 676 +++++++++++++-----
+ 2 files changed, 522 insertions(+), 216 deletions(-)
+
+
+base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
 -- 
-With best wishes
-Dmitry
+2.25.1
 
