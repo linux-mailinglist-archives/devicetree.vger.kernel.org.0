@@ -2,84 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 584F162B7E0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9170F62B7C5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:22:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238755AbiKPKWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:22:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
+        id S238704AbiKPKWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:22:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238117AbiKPKV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:21:57 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E9E4C22BF7;
-        Wed, 16 Nov 2022 02:21:55 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,167,1665414000"; 
-   d="scan'208";a="140240162"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 16 Nov 2022 19:21:55 +0900
-Received: from localhost.localdomain (unknown [10.226.92.242])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id EE74E40029A5;
-        Wed, 16 Nov 2022 19:21:52 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: [PATCH v4 3/3] arm64: dts: renesas: r9a09g011: Add system controller node
-Date:   Wed, 16 Nov 2022 10:21:40 +0000
-Message-Id: <20221116102140.852889-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221116102140.852889-1-biju.das.jz@bp.renesas.com>
-References: <20221116102140.852889-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S236345AbiKPKVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:21:52 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD27D201A8
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:21:50 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso1259795wma.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:21:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ch6qlE2H6eWivI1iYixGP1nvnJivcKTHhhIdL803mS4=;
+        b=Gegj85974dHQ3ALoNF5h58og/vfKR+g6/c8piu1+PsjfFYhKrNaZHgaS0vgXeYHOah
+         KNlliW3WFFMsuP3TApwszDH4uu3opAdPR57FktR9uch5icYp5Y/D4JHoJw8XBQfmzSTq
+         tPGB2XDRMJLbX4/pRdsvYZ0QBPsiaKgBg7c39/89cj6eaFhsJM7M2VpdWHU9POoXRgVe
+         Mxp83v2fCKfot0kXH9vQLEVTNiLFbWpSkRf8UlZyBK4N9ROlufuVF1KzBQbze/04nDSh
+         2tsp54oZrbiL9A4sN7T39C5AxM6WzYIM68IqvmDNXdvsx2vjoEgzn0fMYH3iV5A+vSJ4
+         050A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ch6qlE2H6eWivI1iYixGP1nvnJivcKTHhhIdL803mS4=;
+        b=e9BfUM1ysJ3PFOurY4I1WlMxzNIsLo+WodkpQFkxEUyYxod1T1GWM2pWBpM/LZ6UzU
+         jME2gF6a5Y+dHe6FlRR4qdrOqZoCpr7PcDsW5JoeICUpBRnWoYNcrsZFSpRcKC/MFBK5
+         MMCJ+HrSBGDGND9x5gGJ7bRglSG0kSZ34WhAYaljCVVkcz52ve6q2Wpw4baMaeqwFW8Q
+         qfn5RBiYH0UGhdPl1ylcQCYMUrrek4qTOgBiU+j8A7+8IoKdDHZGhtXOF2HwzLnQxM2G
+         XDUeYP20JnhfXL9hM2lSd5zvaoDa3iejSAScOePHl1L8EjxSLvs3Q2XGhS8vGPbE2bqz
+         2Jww==
+X-Gm-Message-State: ANoB5plF8Ba2Va59WTecgINmoA5DyhU1/F4sKEd36JSBNhEOn+Vo28oh
+        tlZQvbDD2L/KXXCtJ7h3Jkcvzg==
+X-Google-Smtp-Source: AA0mqf4cINNrB95H2GFdZYu1GsZ6SkAk61zC6JdZ2bBVQkBeeoiArn90jUB7RR1wHvMj19nhZWFhuA==
+X-Received: by 2002:a05:600c:2057:b0:3cf:6ab3:49ce with SMTP id p23-20020a05600c205700b003cf6ab349cemr1614164wmg.137.1668594109257;
+        Wed, 16 Nov 2022 02:21:49 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003b4ff30e566sm6133615wms.3.2022.11.16.02.21.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 02:21:48 -0800 (PST)
+Subject: [PATCH 0/6] soc: qcom: add support for the I2C Master Hub
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-b4-tracking: H4sIALu5dGMC/w3MwQ6DIAwA0F8xPa+JEIjb/qawTkikLq14Mf77OL7Lu8BYKxu8pwuUz2p1lwH3mC
+ AXkpWxfobBz9475wIKabNDd1nR2jPGGftvmKlh9Rkb2cGKpScMgZZvcq+wRIbxJTLGpCS5jFH6tt33 HzZs0xGAAAAA
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 16 Nov 2022 11:21:47 +0100
+Message-Id: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v1-0-64449106a148@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add system controller node to RZ/V2M SoC dtsi.
+The I2C Master Hub is a stripped down version of the GENI Serial Engine
+QUP Wrapper Controller but only supporting I2C serial engines without
+DMA support.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v3->v4:
- * Added Rb tag from Geert.
-v2->v3:
- * Updated commit header and description 
- * Updated label and node-names
- * system-controller node is enabled by default as it do not need external
-   resources from board.
-v2:
- * New patch
----
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+The I2C Master Hub only supports a variant of the I2C serial engine with:
+- a separate "core" clock
+- no DMA support
+- non discoverable fixed FIFO size
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index ca9f022d6632..0373ec409d54 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -130,6 +130,11 @@ cpg: clock-controller@a3500000 {
- 			#power-domain-cells = <0>;
- 		};
- 
-+		sys: system-controller@a3f03000 {
-+			compatible = "renesas,r9a09g011-sys";
-+			reg = <0 0xa3f03000 0 0x400>;
-+		};
-+
- 		i2c0: i2c@a4030000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
+and the iommus property neither.
+
+This patchset adds the bindings changes to the QUPv3 wrapper and I2C serial
+element bindings to reflect the different resources requirements.
+
+In order to reuse the QUPv3 wrapper and I2C serial element driver support,
+the I2C Master Hub requirements are expressed in new desc structs passed
+as device match data.
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+---
+Neil Armstrong (6):
+      dt-bindings: qcom: geni-se: document I2C Master Hub wrapper variant
+      dt-bindings: i2c: qcom-geni: document I2C Master Hub serial I2C engine
+      soc: qcom: geni-se: add desc struct to specify clocks from device match data
+      soc: qcom: geni-se: add support for I2C Master Hub wrapper variant
+      i2c: qcom-geni: add desc struct to prepare support for I2C Master Hub variant
+      i2c: qcom-geni: add support for I2C Master Hub variant
+
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml           | 61 ++++++++++++++++----
+ .../devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 43 +++++++++++---
+ drivers/i2c/busses/i2c-qcom-geni.c                 | 58 ++++++++++++++++++-
+ drivers/soc/qcom/qcom-geni-se.c                    | 67 +++++++++++++++++-----
+ 4 files changed, 192 insertions(+), 37 deletions(-)
+---
+base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
+change-id: 20221114-narmstrong-sm8550-upstream-i2c-master-hub-44a7fb19475e
+
+Best regards,
 -- 
-2.25.1
-
+Neil Armstrong <neil.armstrong@linaro.org>
