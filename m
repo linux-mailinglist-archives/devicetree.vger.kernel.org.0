@@ -2,112 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F6962BF9E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75CDA62BFA3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:38:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbiKPNhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:37:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50882 "EHLO
+        id S233759AbiKPNiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:38:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233955AbiKPNgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:36:53 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E710564EA;
-        Wed, 16 Nov 2022 05:36:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668605813; x=1700141813;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JELkfQUrNNjTFHvCmopSzT6F8rwD4FHhQPiEyR2Qkz0=;
-  b=fiRd22VUhcPlY+LYsrYNBJDYtHtrC5Nh2hArsGJuSV6n2wAiWN3vN4u3
-   CXArsMogFjGFBqprITbvHdiyteCJVMq8wSkETrIXt5X8Dabb9hrQKV4P7
-   OpEy81KoHLOImPO6K4lMC2dqBvNNvL393oDC+D27FfYzv0JfwOHD1viEW
-   i98ixEhWce1v22tBNoL3oClxvjoeseoD3+wBVhZj0Et4gmQlRkR9zhEkC
-   fsHYjMpVWkCbbjthWbGkZVjyQsXYr7ZTq8OcwDVnI34iFlzoeTa5dSI8/
-   KY82FdnVW/bRuZdRXh3h1wpx5LeQPGIQxymkNqiHLePfOh2UQc0adRCeu
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="312549354"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
-   d="scan'208";a="312549354"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2022 05:36:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10532"; a="968424218"
-X-IronPort-AV: E=Sophos;i="5.96,167,1665471600"; 
-   d="scan'208";a="968424218"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP; 16 Nov 2022 05:36:40 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ovIak-00D90f-0E;
-        Wed, 16 Nov 2022 15:36:38 +0200
-Date:   Wed, 16 Nov 2022 15:36:37 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "mingo@redhat.com" <mingo@redhat.com>,
-        "bp@alien8.de" <bp@alien8.de>,
-        "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
-        "x86@kernel.org" <x86@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "hpa@zytor.com" <hpa@zytor.com>,
-        "alan@lxorguk.ukuu.org.uk" <alan@lxorguk.ukuu.org.uk>,
-        "dirk.brandewie@gmail.com" <dirk.brandewie@gmail.com>,
-        "grant.likely@secretlab.ca" <grant.likely@secretlab.ca>,
-        "sodaville@linutronix.de" <sodaville@linutronix.de>,
-        "devicetree-discuss@lists.ozlabs.org" 
-        <devicetree-discuss@lists.ozlabs.org>,
-        linux-lgm-soc <linux-lgm-soc@maxlinear.com>
-Subject: Re: [PATCH v2 2/2] x86/of: Convert & update Intel's APIC related
- binding schemas
-Message-ID: <Y3TnZYjD9fZ74wOK@smile.fi.intel.com>
-References: <cover.1668589253.git.rtanwar@maxlinear.com>
- <5ba7963fbd82a859ffd99c6d8edb4d717fce0e6c.1668589253.git.rtanwar@maxlinear.com>
- <Y3S+cgOm1vHq/kv9@smile.fi.intel.com>
- <db4c2ec5-d4ac-c2b8-0b6f-89ae926ac1ee@maxlinear.com>
+        with ESMTP id S233816AbiKPNiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:38:07 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C828064EA;
+        Wed, 16 Nov 2022 05:38:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6748561DF7;
+        Wed, 16 Nov 2022 13:38:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0649C433D6;
+        Wed, 16 Nov 2022 13:38:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668605885;
+        bh=o/L5hTRc+UROCPzDc8twMJIeoNJhL9dYAFN5gGbF/ys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hrtvOzGSvYBUFutZQ+KypZZeCpGv/fPgPfPcvp/TkSik12NueTES6wZAI4hc90+J7
+         rImtebSIpqDL79fuJMoZ5WhFXFaVgWjSjCpMcy+HYwOuxfFM0yUffCFy6+0CL0cKOD
+         PGI8L+CVmQYSvFSzSgCeeOL3tcNDEb9UbqU5Jxbon/rAPfi/E69VIvKiKS3ijr/zkm
+         xtA5a8m91OJ1yLTX96YW6Wo6M4+qWDkgOgRpnB04Q9+RpjaQaIKRNBppzieCY6rOri
+         tQ4y8oFfkt5MqfZmE2X9jLfn+M5XNXtn8LYyLKle7TmKkPPxUack3AC+dXToHuoYMO
+         FZSZfg3ML8m2g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ovIbg-0002eD-9g; Wed, 16 Nov 2022 14:37:36 +0100
+Date:   Wed, 16 Nov 2022 14:37:36 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550: Add PCIe PHYs and
+ controllers nodes
+Message-ID: <Y3TnoIqXSSimqySN@hovoldconsulting.com>
+References: <20221116130430.2812173-1-abel.vesa@linaro.org>
+ <20221116130430.2812173-2-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db4c2ec5-d4ac-c2b8-0b6f-89ae926ac1ee@maxlinear.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221116130430.2812173-2-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 10:52:59AM +0000, Rahul Tanwar wrote:
-> On 16/11/2022 6:42 pm, Andy Shevchenko wrote:
-> > On Wed, Nov 16, 2022 at 06:28:21PM +0800, Rahul Tanwar wrote:
-> >> Intel's APIC family of interrupt controllers support local APIC
-> >> (lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
-> >> & ioapic from text to YAML schema. Separate lapic & ioapic schemas.
-> >>
-> >> Also, update more info and newly introduced optional property for
-> >> lapic to choose legacy PIC or virtual wire compatibility interrupt
-> >> delivery mode.
-> > 
-> > Conversion should be split from a new property addition.
-> > 
+On Wed, Nov 16, 2022 at 03:04:29PM +0200, Abel Vesa wrote:
+> Add PCIe controllers and PHY nodes.
 > 
-> Do you mean, i first update older text file with new property addition
-> and then later convert it into YAML i.e. for now i just update existing 
-> text file with new addition and later convert them to YAML schema ? Thanks.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 245 +++++++++++++++++++++++++++
+>  1 file changed, 245 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 07ba709ca35f..5c274d0372ad 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+ 				 <&ufs_phy_rx_symbol_1_clk>,
+> @@ -1372,6 +1376,247 @@ mmss_noc: interconnect@1780000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		pcie0: pci@1c00000 {
+> +			compatible = "qcom,pcie-sm8550-pcie0";
+> +			reg = <0 0x01c00000 0 0x3000>,
+> +			      <0 0x60000000 0 0xf1d>,
+> +			      <0 0x60000f20 0 0xa8>,
+> +			      <0 0x60001000 0 0x1000>,
+> +			      <0 0x60100000 0 0x100000>;
+> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
+> +			device_type = "pci";
+> +			linux,pci-domain = <0>;
+> +			bus-range = <0x00 0xff>;
+> +			num-lanes = <2>;
+> +
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+> +
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi";
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +			interconnect-names = "icc_path";
+> +			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>;
+> +
+> +			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
+> +				 <&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
+> +				 <&pcie0_lane>,
+> +				 <&rpmhcc RPMH_CXO_CLK>,
 
-Patch 1: Convert to YAML (no content changes except its format)
-Patch 2: Introducing a new property
-Patch 3: Updating code in x86
+As I mentioned in my comment to the binding, the above three clocks
+should not be here but rather be handled by the clock driver.
 
-First two must be send to the DT people and have their Acks/Rb after all.
+> +				 <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+> +				 <&gcc GCC_DDRSS_PCIE_SF_QTB_CLK>,
+> +				 <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>;
+> +			clock-names = "pipe",
+> +					"pipe_mux",
+> +					"phy_pipe",
+> +					"ref",
+> +					"aux",
+> +					"cfg",
+> +					"bus_master",
+> +					"bus_slave",
+> +					"slave_q2a",
+> +					"ddrss_sf_tbu",
+> +					"aggre0";
+> +
+> +			iommus = <&apps_smmu 0x1400 0x7f>;
+> +			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+> +				    <0x100 &apps_smmu 0x1401 0x1>;
+> +
+> +			resets = <&gcc GCC_PCIE_0_BCR>;
+> +			reset-names = "pci";
+> +
+> +			power-domains = <&gcc PCIE_0_GDSC>;
+> +			power-domain-names = "gdsc";
+> +
+> +			phys = <&pcie0_lane>;
+> +			phy-names = "pciephy";
+> +
+> +			perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +			wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pcie0_default_state>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		pcie0_phy: phy@1c06000 {
+> +			compatible = "qcom,sm8550-qmp-gen3x2-pcie-phy";
 
--- 
-With Best Regards,
-Andy Shevchenko
+Where's the corresponding binding update?
 
+> +			reg = <0 0x01c06000 0 0x200>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&tcsr TCSR_PCIE_0_CLKREF_EN>,
+> +				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
+> +
+> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
+> +			reset-names = "phy";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>;
+> +			assigned-clock-rates = <100000000>;
+> +
+> +			power-domains = <&gcc PCIE_0_PHY_GDSC>;
+> +			power-domain-names = "gdsc";
+> +
+> +			status = "disabled";
+> +
+> +			pcie0_lane: phy@1c06200 {
+> +				reg = <0 0x1c06e00 0 0x200>, /* tx0 */
+> +				      <0 0x1c07000 0 0x200>, /* rx0 */
+> +				      <0 0x1c06200 0 0x200>, /* pcs */
+> +				      <0 0x1c07600 0 0x200>, /* tx1 */
+> +				      <0 0x1c07800 0 0x200>, /* rx1 */
+> +				      <0 0x1c06600 0 0x200>; /* pcs_pcie */
+> +				clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +
+> +				#clock-cells = <0>;
+> +				#phy-cells = <0>;
+> +				clock-output-names = "pcie_0_pipe_clk";
+> +			};
 
+These PHY nodes should also be updated to the new binding scheme which
+drops the child node and individual register descriptions (cf.
+sc8280xp).
+
+Johan
