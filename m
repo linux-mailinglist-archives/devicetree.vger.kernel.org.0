@@ -2,74 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68AA62C593
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E9962C5B1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:02:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbiKPQ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:56:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
+        id S233843AbiKPRB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 12:01:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233207AbiKPQ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:56:21 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E12263F
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:56:19 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id k19so22601489lji.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:56:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pkLNVvHASHqZcTebyy5tVyUYdsKotfecdoBFq+Dtmdo=;
-        b=p1Lt5LCrAsBUK5rj+wnqR0c0u0kRvaSb6Z31UgEuf6Ub3C+nml/n2NxZrQauhQDAEy
-         wXN5+bxHkViQ1B8hVGLMVZX5jHVDHtgzOCj24odPkiPf4u0vrNtzWIySUqi6JVqvuWyZ
-         bKXE4JMUkjH0jbJ1m7VWVDTSTSxCIn1UFOq+qzZRmKyNwzPuSc8TdlW98GBUjfcyuM7T
-         Uh7728zM286BWlsqcKyL10S/HYw7PrAs/50cI7rTsKo8kLrgJL2bOWn0Pz8JcHKL/9Qz
-         Xs4vjyPQrSYIPT0Il3KA+spF+54VTQ+t6NH9tFZbtxj2Q0wngO4sRnHsnGTgBmfxqxCI
-         WoPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pkLNVvHASHqZcTebyy5tVyUYdsKotfecdoBFq+Dtmdo=;
-        b=rRgHSKtRsfZaoCdwFEwqCpprlBA6fEB9bAGdnLb+H9VOxUGzStxPD/awXjrdRR5F3I
-         lvD7vCwsNeQg4lptNVPkyEKDXSfmfgwWyWxWBs1XFlZ4TNOsyOkJG8vJ/MB6bDBJ2AxE
-         5CW2Qki3ypJp0S3YGAoklyGNP7jSKpONNd32GIFB5kUfiMFzPipoDOq6BgZDKBps63WN
-         sFr3J8NceIhnsirAeP1xGD9cBGrd3uUcKope+j0uCxEht5Spm8gT7N6JoD634Heyj7aB
-         ka3qRxIao7HevSiiGPYE1D+n7B+0Aq52nKBFYzfXJ+bTqd2Cg1oPRRwfhTZszZREV0Sk
-         4pbA==
-X-Gm-Message-State: ANoB5pmOrMsGuAVhk8i9Swkz4owt+vIgXaa9fPKoEOVrXa8grn1R5x5B
-        9rs5PhrEBb73mVzYw02CHNlkbA==
-X-Google-Smtp-Source: AA0mqf4qz0wdd3bH3kS6HyvslILNr0JyLbduilo1AzB2JCo8My2WYZZziGDMHsS6aT7Ie3dGKWlvKw==
-X-Received: by 2002:a2e:8711:0:b0:277:92e:976c with SMTP id m17-20020a2e8711000000b00277092e976cmr7572747lji.306.1668617778192;
-        Wed, 16 Nov 2022 08:56:18 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q23-20020a056512211700b0049e9122bd1bsm2675766lfr.164.2022.11.16.08.56.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 08:56:17 -0800 (PST)
-Message-ID: <65a00619-93e2-05f4-990e-0d335878627a@linaro.org>
-Date:   Wed, 16 Nov 2022 17:56:16 +0100
+        with ESMTP id S234362AbiKPRBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:01:30 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C062324F10;
+        Wed, 16 Nov 2022 09:01:29 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F00961EE6;
+        Wed, 16 Nov 2022 17:01:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5287C433C1;
+        Wed, 16 Nov 2022 17:01:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668618088;
+        bh=NgoF6H00h3ybNCo6l/K8tFBS2V1ks1ySzik7gT4hXNg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iRoPIvZpsWLj/7UGSIdWIPvQjcFJalHa573TZ/VHCv4kLyK287rBf6Z1Xqy7Dc7RQ
+         7+TjvseRIv9wT9LpnMD52pFutfEuKT0QHDyZav2PKs+gFCG28hGSj1Qy1lYur1Jw6x
+         15B5y5ElxGxS6OVvFMWFZfjCsnQlUVEDT/P+GwI1sqRCuniXNLzVZfkP0JTJQ8qblq
+         MdTs48N9/9C1PNgkpN8FJgX1/TAl3oBnRdZvUVF1l6Oz60WDsEGObd9wJNoa64gN2g
+         /J7VNSVF+ezMZx1AAAPOJ9/rfI0OqFlqZjJ99CZuU1vY0mAuvyvHSkyCTP9r0ndMu8
+         JbduaOG9bh5Fg==
+Date:   Wed, 16 Nov 2022 17:01:23 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Bjorn Helgaas <helgaas@kernel.org>, daire.mcnamara@microchip.com
+Cc:     daire.mcnamara@microchip.com, conor.dooley@microchip.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, lpieralisi@kernel.org, kw@linux.com,
+        bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 8/9] PCI: microchip: Partition inbound address
+ translation
+Message-ID: <Y3UXYyyJUE0WexxD@spud>
+References: <20221116135504.258687-9-daire.mcnamara@microchip.com>
+ <20221116164933.GA1117375@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM8550 SCM
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221116124038.2769028-1-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116124038.2769028-1-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116164933.GA1117375@bhelgaas>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,15 +58,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 13:40, Abel Vesa wrote:
-> Document the compatible for Qualcomm SM8550 SCM.
+On Wed, Nov 16, 2022 at 10:49:33AM -0600, Bjorn Helgaas wrote:
+> On Wed, Nov 16, 2022 at 01:55:03PM +0000, daire.mcnamara@microchip.com wrote:
+> > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > 
+> > On Microchip PolarFire SoC the PCIe rootport is behind a set of fabric
+> > inter connect (fic) busses that encapsulate busses like ABP/AHP, AXI-S
+> > and AXI-M. Depending on which fic(s) the rootport is wired through to
+> > cpu space, the rootport driver needs to take account of the address
+> > translation done by a parent (e.g. fabric) node before setting up its
+> > own inbound address translation tables from attached devices.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+> Hi Daire, minor nits:
+> 
+> s/inter connect/interconnect/
+> s/fic/FIC/ ?  Sounds like an initialism similar to ABP, AHP, etc?
 
-Missing allOf:if:then entry.
-
-Best regards,
-Krzysztof
+Daire, we've been living a lie. The TRM says "Fabric Interface
+Controllers (FICs)" so I think we should switch the that wording.
+Fits the acronym better too..
 
