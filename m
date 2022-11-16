@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8D762B806
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:26:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F5562B809
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 11:26:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238351AbiKPK0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 05:26:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        id S238551AbiKPK0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 05:26:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238536AbiKPKZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:25:54 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D9410F9
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:23:30 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id w14so29115273wru.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:23:30 -0800 (PST)
+        with ESMTP id S233360AbiKPKZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 05:25:58 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9025E270C
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:23:32 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id d9so24413827wrm.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 02:23:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cvE5SovEDJCGF/rawmWEv+LBNoAcghIphpP6V/P6V0A=;
-        b=fltpn0kAZk73fsa6sh+pSvQk1/yfT+g4cRlZgJncX7GlU7W1j178/oQzUHZjST8sC2
-         YC3Bya1IBgqvQ7frC5sYX3gKFxyb291EssE6REMN9KGKaHsM0+rp8V1m3ndZS0+UVZ8a
-         LJ5aDTtuBLJt8SNDCCbiNgpgAzP08yWrUL3Qtm7ecFyi/IP9cE+Ap2cnsEW/jL0eU0fw
-         aZJhbZk2Fry6VpXaWCge6fS6J9TAGUR5mSbiGBcHiq8HPda76b/RRztBctyA/wFiTKWp
-         NyQ7RxX9RiHMj6hDa8werbvZxNDBzZNKgnjUhfSSk7wF3bqbFCh2oKJ3AWMe/858m42b
-         bYXw==
+        bh=7vNIlS80kI1g8+qpgwOwxCzQSIw/iF68yTj9CQJk6jc=;
+        b=Bxsr3i43QperYujsQtXipOC905fXuVERDgusSJIvEtaTQ68Vf0jd9PCrODZ+fyxjDR
+         iA0Vnq5qlE2yi/za2uQeLdUNeEPhdIWqO7m78jkfZj58Pu99og/hLBHbeDl/QpKMYnsP
+         XzdAid08n1klbkzVjV0qrW+zGW3E5+AvI5gYEEUa0LgrTxeoCVTXZ+MKWiRIVQ9gtHDS
+         qar1/O6Yl9vXfu+eo/++l+XXM4koB4lwwUNNea13xLKIxp53iHIKpW5kzfuKZMhQ/4m5
+         ozc9jdpJb1VdzG1BJNY+I3xYMbGzQEZC68SM9zjqY4wfndLuu6w/u/Gl+Y4tZX2Jwtfj
+         sZsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cvE5SovEDJCGF/rawmWEv+LBNoAcghIphpP6V/P6V0A=;
-        b=rb9Eip4/UYXcdL33hOYRs7JvBgAdaJPN0LlTwusTHN0BHGYvpODi8R0dJUNdr/SIJC
-         +GsLxszvF9bQzaLb2wZ+CpqrdCZUzGjIt1izGC3h1yPOApvSnjC5BA65ES3kAzxlzh6d
-         kndDilgAHZXDqquKAlNVCYk7yciP32O8Jheb25rerPpLbZvEUhIfmmRZkTlf0BccyKUe
-         GM0Wr34ZyrwUHzvN+Dsu4+SXtBQ+DGoTVuwGuzB04z+uARm1GaUOSB/zHXAqRG6eSnGY
-         BLlA++TE5d0BsWUcfpxJEydK6G8HJytPqmSVKL6NI8nLAAXGcbe0ZL1YypW4CfgggsaD
-         i+ug==
-X-Gm-Message-State: ANoB5pm1rHNx5pE6trxtA6vqmuIkXIM1MQLrhS2mNIUN9TtNahYqTO26
-        oHMiGZo5b3al22YOB5GkblX6Sw==
-X-Google-Smtp-Source: AA0mqf5v4bQjBjkLpiFWrtD7U4f1kmffpiBLeWwKJC8c5qO7nx54jMdrGd+eCWZfA45L4eymlZiL0A==
-X-Received: by 2002:a5d:514b:0:b0:236:7921:e10e with SMTP id u11-20020a5d514b000000b002367921e10emr13159994wrt.61.1668594190881;
-        Wed, 16 Nov 2022 02:23:10 -0800 (PST)
+        bh=7vNIlS80kI1g8+qpgwOwxCzQSIw/iF68yTj9CQJk6jc=;
+        b=hl52uleELGRm38a36OOPyDOQ9TizzKzNnluZD3iQ83t11PTJMj20Znjl7IP1Er4kvJ
+         6gz4SBlsuFovxJ0aipJjxNCqa1PxmciK569ZOGujpNk3BhkotTcsuYfkypfuDdgOpAwJ
+         nlnm+1FMjoVMukWm6MMCNnn6LpOcu9mKzxVg2C7Oe3fstUy2kt+v+YOSAe497KTH1hEF
+         k3tRV+NDfO41OdUHkF529KAlgxHl6f267QpUnjxfw8QoWZhmqFTmDHKmHt/1UQJpRWxm
+         2gSGI4CMk7RiEycO0KlnhVwXti8+sgng1Rl2F/RClpu8+5SjU9UfFvRoMZv6nX2fZeaQ
+         yN4A==
+X-Gm-Message-State: ANoB5pmazj6V1sltF0M+2I9KyOBUHOUCs8dtA9vgV/NyJ6abj92FnIcT
+        FZzq7ltUFQNT90X21hTna343dg==
+X-Google-Smtp-Source: AA0mqf4aCq3gfSN0xjPybxVilQeFWq0t3p4Q22xrVpZc1FMzU+XToiawOAMTArWuFmxIBWKZiHBGKQ==
+X-Received: by 2002:a05:6000:691:b0:241:7e9f:8afd with SMTP id bo17-20020a056000069100b002417e9f8afdmr10325981wrb.228.1668594191959;
+        Wed, 16 Nov 2022 02:23:11 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
         by smtp.gmail.com with ESMTPSA id i9-20020adfefc9000000b00228dbf15072sm14927047wrp.62.2022.11.16.02.23.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 02:23:10 -0800 (PST)
+        Wed, 16 Nov 2022 02:23:11 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 16 Nov 2022 11:23:08 +0100
-Subject: [PATCH 1/4] dt-bindings: dma: qcom,bam-dma: Add 'interconnects' and
- 'interconnect-names'
+Date:   Wed, 16 Nov 2022 11:23:09 +0100
+Subject: [PATCH 2/4] dt-bindings: qcom-qce: document clocks and clock-names as
+ optional
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221114-narmstrong-sm8550-upstream-qce-v1-1-31b489d5690a@linaro.org>
+Message-Id: <20221114-narmstrong-sm8550-upstream-qce-v1-2-31b489d5690a@linaro.org>
 References: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
 In-Reply-To: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
@@ -83,39 +83,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Abel Vesa <abel.vesa@linaro.org>
+On certain Snapdragon processors, the crypto engine clocks are enabled by
+default by security firmware.
 
-Add 'interconnects' and 'interconnect-names' as optional properties
-to the device-tree binding documentation for BAM DMA IP.
+Drop clocks and clock-names from the required properties list.
 
-These properties describe the interconnect path between BAM and main
-memory and the interconnect type respectively.
-
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-index 003098caf709..ce8bbb2de4c5 100644
---- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-@@ -36,6 +36,14 @@ properties:
-   interrupts:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+index aa2f676f5382..f25089bf9a2b 100644
+--- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
++++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+@@ -67,8 +67,6 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - clocks
+-  - clock-names
+   - dmas
+   - dma-names
  
-+  interconnects:
-+    maxItems: 1
-+    description:
-+      Interconnect path between bam and main memory.
-+
-+  interconnect-names:
-+    const: memory
-+
-   iommus:
-     minItems: 1
-     maxItems: 4
 
 -- 
 b4 0.10.1
