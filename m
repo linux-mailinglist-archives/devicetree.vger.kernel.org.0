@@ -2,121 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E60562CDA8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AF8662CDB2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:30:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234174AbiKPW3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 17:29:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49890 "EHLO
+        id S231871AbiKPWas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 17:30:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231564AbiKPW3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:29:15 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BEF4B9B0
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:29:13 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id gv23so695677ejb.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:29:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ijwqsMZNVxRbKwR3V0sBgPywqQx2GGbr1+5JUnnvQWQ=;
-        b=Cbyc454qj0zzyHWbx+Ki5coBgfNlJH1D9b54oPuiRIgZawoPu1QH+wqQKWhrH2+w3E
-         u6uqSwDkrbTuxKHDHO6WpKQNW6vw4ObKRUgoSS/eyxcw8IKSu7mizTqqmMXluxQsaJZ5
-         tNI1FOGtPvEhnM4RwhjuY4CyB0IuK22+8yThAMZUgxaoMO/u9BPEgdtNe/SdxEzMb7L1
-         aI/PEMKq3cEFK5XARrRPbpdWFHMymnvl387GVIMg2AVRgNRqjmeBtMozEnYXlAYOgJf/
-         vNMV8WS0apBMA+t4ee/tvk3LeHWDET6JyFH8iFrEyG+f7TFZ4UoRSP7STbtyXLTNK2Ub
-         Aexg==
+        with ESMTP id S232985AbiKPWaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:30:46 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7F25656E;
+        Wed, 16 Nov 2022 14:30:45 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id v81so20208651oie.5;
+        Wed, 16 Nov 2022 14:30:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ijwqsMZNVxRbKwR3V0sBgPywqQx2GGbr1+5JUnnvQWQ=;
-        b=ERv+F28YIbkedPOV+WORoNiKW6P+t5WupDVKo8NS4W8sV3KG5Fdq3YratG5ICGQHr+
-         +M5zHSCDn9IJSIyXqdcfOKqCzzsCnheAD1Zu4E8o5TQoZVZT1hXAGLeXOgy6+RbGRJNp
-         J+of7T36/mPDxUnDA5Uuk7RcflInPBmb+2IsQqiSb9hqWC5sE61vG6J7AJ7PR7U8vPad
-         tUhAiwdyRs99X9cSm1MaHXWYUs6y9fcVJdiGND1h1nWDW3nVxF2x3eod/FV/yCX6iW0Y
-         Ntg5g/EudeA2lHpp3wh5AuOyECDYZ0FdhirHKm4J86VGSpAepsr9BZhgFF1dg4ZBC0+s
-         zXrw==
-X-Gm-Message-State: ANoB5pl/lSqEgIly4gQsImwwlhZusidfaBowjcg2EMhjZzBTVwx+b3dY
-        SDcYVRrjLEX1MRrHAN1NioUF5aACZsgAZNtiUqQ=
-X-Google-Smtp-Source: AA0mqf6re5b4tGWKaQ2Jnrnmp7C0N6ewMk6Wn5/mn+MapeCzy73uIwL9LXKsb/UalTamiWOf3jLkxaxTHdRFX3JTPf0=
-X-Received: by 2002:a17:906:8d06:b0:78d:8d70:8bf8 with SMTP id
- rv6-20020a1709068d0600b0078d8d708bf8mr18544382ejc.15.1668637752191; Wed, 16
- Nov 2022 14:29:12 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hbpACnaXmrPREOrzmgwFDvqtUVn/DHRnFRgcTOhyLb8=;
+        b=Ia0Claf+K+ZMOHC6Gv+4kGq19jjgDXHzMLXaNSzalUIMMJ7taQ32jJFPWVE0347Dm1
+         f2KOGOQqk2NNfRJwhDeA1aceDHX4rLrXl7m838HuUbk+gAuNQ2YvS1YWpLMCZ5HxQaz6
+         FYnmIyxr4MpG2yPdUaHRR/4vFagpDAJ0CcTUrxkzDKI/KVeFiVdrBnapy4NAc8eg52kg
+         FWB3XMFDuqziPfQGKtJgM/KxzfCz1o/VZOtq/JIs535xydhs5f7jJUJZwAzhcWDbJhls
+         lMk1bj7fyCsKN7IasM96Unm2DYH4i5o9+p7KeiQvDZBv3YBc1FYd3W9z2p96M0I64L6b
+         O4/A==
+X-Gm-Message-State: ANoB5plRxL70LXj9A/MuHKIt4Om9LzS+NAL5dN3L3gFynWBlWBaRuuNo
+        DeAV44dnotPjf+c376If5Q==
+X-Google-Smtp-Source: AA0mqf697XFyAspx8GJWNLHGqzqrI1rGojs7MliM5qrGwGc7c97ydk3ctzaQesak540j/eDZCFheTw==
+X-Received: by 2002:a05:6808:17a6:b0:35b:13ca:23a0 with SMTP id bg38-20020a05680817a600b0035b13ca23a0mr2844923oib.12.1668637844468;
+        Wed, 16 Nov 2022 14:30:44 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c25-20020a9d6c99000000b0066c73061d4bsm7074041otr.54.2022.11.16.14.30.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 14:30:43 -0800 (PST)
+Received: (nullmailer pid 1144141 invoked by uid 1000);
+        Wed, 16 Nov 2022 22:30:45 -0000
+Date:   Wed, 16 Nov 2022 16:30:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Brad Larson <brad@pensando.io>
+Cc:     krzysztof.kozlowski@linaro.org, adrian.hunter@intel.com,
+        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
+        blarson@amd.com, brijeshkumar.singh@amd.com, broonie@kernel.org,
+        catalin.marinas@arm.com, devicetree@vger.kernel.org,
+        fancer.lancer@gmail.com, gerg@linux-m68k.org, gsomlo@gmail.com,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        p.yadav@ti.com, p.zabel@pengutronix.de, piotrs@cadence.com,
+        rdunlap@infradead.org, samuel@sholland.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        ulf.hansson@linaro.org, will@kernel.org,
+        yamada.masahiro@socionext.com
+Subject: Re: [PATCH v8 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
+ Pensando Elba System Resource chip
+Message-ID: <20221116223045.GA1130586-robh@kernel.org>
+References: <e9d8c14d-38b3-0401-7bfc-b2bd7ab36c52@linaro.org>
+ <20221116193940.67445-1-blarson@amd.com>
 MIME-Version: 1.0
-Received: by 2002:a17:906:3148:b0:78d:d03e:9587 with HTTP; Wed, 16 Nov 2022
- 14:29:11 -0800 (PST)
-Reply-To: constance01castelein44@aol.com
-From:   constance castelein <constancec4u@gmail.com>
-Date:   Wed, 16 Nov 2022 22:29:11 +0000
-Message-ID: <CAFDMXCDFuM3HK4xQRsRde8kzFf+adGcxjQx=Tth=gau-5qu=vg@mail.gmail.com>
-Subject: Od Gospe Constance Castelein
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116193940.67445-1-blarson@amd.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Od Gospe Constance Castelein
+On Wed, Nov 16, 2022 at 11:39:40AM -0800, Brad Larson wrote:
+> Add support for the AMD Pensando Elba SoC System Resource chip
+> using the SPI interface.
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
+> 
+> v8:
+>  - Apply review request changes and picked the two unique examples
+>    for the 4 chip-selects as one has the reset control support and
+>    the other an interrupt.  Missed the --in-reply-to in git
+>    send-email for v7, included in this update.
 
-Najdra=C5=BEji v Gospodu,
+No, you haven't. By default in git, you don't have to do anything. See 
+--thread and --no-chain-reply-to options. If you are messing with 
+--in-reply-to, you are doing it wrong.
 
-Z vsem spo=C5=A1tovanjem in =C4=8Dlove=C4=8Dnostjo sem bil prisiljen v napi=
-sati a
-humanitarnem podro=C4=8Dju.
+Please resend the whole series properly threaded.
 
-Sem vdova Constance Castelein, staram se dolgotrajno bolna (rak). Trenutno =
-tako
-sprejet v zasebno bolni=C5=A1nico. Imam nekaj sredstev, ki sem jih podedova=
-l
-moj mo=C5=BE Anthony Castelein,, ki je kasneje umrl v prometni nesre=C4=8Di=
-.
+> 
+> v7:
+>  - Use system-controller for the device with four chip-selects
+>    connected over spi.
+>  - Delete child by moving reset-controller into the parent.
+>  - Updated and used dtschema-2022.11 and yamllint-1.28.0
+> 
+> v6:
+>  - Expand description, rename nodes and change compatible usage
+> 
+> v5:
+>  - Change to AMD Pensando instead of Pensando
+> 
+> v4:
+>  - Change Maintained to Supported
+> 
+>  .../bindings/mfd/amd,pensando-elbasr.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+> new file mode 100644
+> index 000000000000..622c93402a86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/amd,pensando-elbasr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AMD Pensando Elba SoC Resource Controller
+> +
+> +description: |
+> +  AMD Pensando Elba SoC Resource Controller functions are
+> +  accessed with four chip-selects.  Reset control is on CS0.
 
-Ko je bil moj mo=C5=BE =C5=BEiv, je polo=C5=BEil vsega 4.500.000.00 =E2=82=
-=AC
-(4.500.000,00 evrov) v banki. Trenutno je ta denar =C5=A1e vedno v
-banka.
+One device with 4 chip-selects? Then I'd expect 'reg = <0 1 2 3>;'
 
-Zdravnik mi je rekel, da zaradi tega ne bo trajalo naslednje 3 mesece
-problem z rakom. Potrebujem nekoga zelo po=C5=A1tenega in bogaboje=C4=8Dega=
- in
-organizacijo, ki lahko ta sredstva uporabi za delo Bo=C5=BEjega pokojnega
-mo=C5=BE je nau=C4=8Dil, da ga je treba ta sklad uporabiti v dobrodelne nam=
-ene,
-kot so gradnja =C5=A1ol, siroti=C5=A1nic, bolni=C5=A1nic itd.
+Hard to say more because I don't have the whole thread nor remember what 
+exactly we discussed before. That was 100s of bindings ago...
 
-Tako sem se odlo=C4=8Dila, ker nimam otroka, ki bi dedoval
-ta denar in =C5=BEelim, da se mi Bog usmili in upo=C5=A1tevam mojo du=C5=A1=
-o.
-Z Bogom so vse stvari mo=C5=BEne. Prosim, =C4=8De bi lahko uporabili
-ta sredstva za bo=C5=BEje delo, prijazno
-
-=C5=BDelim, da mi po=C5=A1ljete naslednje podatke, navedene spodaj.
-
-Tvoje polno ime ----------------------
-Tvoja dr=C5=BEava ------------------------
-Va=C5=A1 naslov ---------------------------
-Tvoja starost ------------------------------
-Va=C5=A1a zaposlitev ----------------------
-Telefon ------------------------
-Takoj ko prejmem va=C5=A1 odgovor, bom posredoval kontakt
-Banka in jaz vam bova izdala tudi pooblastilo, ki bo
-poka=C5=BEite, da ste trenutni upravi=C4=8Denec tega sklada.
-
-V upanju na va=C5=A1 odgovor. Ostanite bla=C5=BEeni v Gospodu.
-
-Hvala vam
-
-S spo=C5=A1tovanjem
-
-Gospa Constance Castelein
+> +
+> +maintainers:
+> +  - Brad Larson <blarson@amd.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amd,pensando-elbasr
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        num-cs = <4>;
+> +
+> +        system-controller@0 {
+> +            compatible = "amd,pensando-elbasr";
+> +            reg = <0>;
+> +            spi-max-frequency = <12000000>;
+> +            #reset-cells = <1>;
+> +        };
+> +
+> +        system-controller@2 {
+> +            compatible = "amd,pensando-elbasr";
+> +            reg = <2>;
+> +            spi-max-frequency = <12000000>;
+> +            interrupt-parent = <&porta>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +        };
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
