@@ -2,118 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5643E62C744
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 19:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A698862C748
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 19:11:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233883AbiKPSJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 13:09:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50048 "EHLO
+        id S233202AbiKPSL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 13:11:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233941AbiKPSJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 13:09:54 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4195660E8A
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 10:09:53 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id j12so17161769plj.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 10:09:53 -0800 (PST)
+        with ESMTP id S234028AbiKPSL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 13:11:26 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24ACB6176A;
+        Wed, 16 Nov 2022 10:11:24 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id s5so11583157edc.12;
+        Wed, 16 Nov 2022 10:11:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uha19DGn1cipYAwBOyrw3AdHNrtOnbopGJxC7rXrQ/k=;
-        b=ZDqc3cq8Ax6Pt6u3GCJwqCQZVVe1CuQQnKni3FkP4DUVLls/bdpD3QXrmfOOLJ/OU+
-         Jfv4C5/TqWM2DDHgO720x5Xcq/Vqfv1/a4KOb90OGfQ6qrkPrsaGi1fUvHiX1KF9glmC
-         8V3yRUNVIGVUj/LQvT73c5YIIXHdiXQoBUdeFQJKy7n2L+ovNz88ysop7e8LvEn3+Ec+
-         +tg1la6B4pqMhnJR9x0Enmk075wDgOrbqks9VPnVj0POpmGvJTxRzOJCu4SjKweioIIE
-         8iBf5mr2Vlg8QBQllPtwzgMOAOEmnyoevookW7dt2aNmmznrCk+id7Mq9hj3iZ6GWgTQ
-         5UHA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z2yhRXVWHTwKqB0FAJ5JUXE/Hz7ioVpMavCshhyMXsA=;
+        b=RPE8BLJERTy3CP/G8HJ1kDaEpVIZsegVbKYnKx/AsCuLJM4ebPoHnNLJdGYsLQGA5j
+         HiQ1nbJMi6MP66u3GGqNocQJFZV42ApmRmmXLV5DlO5eRvjykAWwU7OZDzdORScHJMuy
+         0QBgsp73dq2+23N0GSicJ7YrVPGatFPWaSs6+4nMO0tdY0RICfRt4B4gJZPEN8l400ty
+         FGBphV6hwkp2pmtZyUcdj5qu+NDPEDhgAJQgUwcy7qXY3PRwZ9mQu/Xbbh7SYDMRHLjl
+         PsCqL6kUbodcXQpdoJmlD2YPZTKCO6gVkVtQGSoT7/4cNlg377eVFay+bUuWqdi9YDKv
+         Mf9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Uha19DGn1cipYAwBOyrw3AdHNrtOnbopGJxC7rXrQ/k=;
-        b=XGm6xwbrIndJAtpWVtvBGog3aAXWhKa4lHnFthek0lGpJ34khv3WnfHFHnHmRrlLO6
-         cmut6yb9he5Yvtodab202wjORs/rRcteB0z8PhsjbIjqcEOCzfw/sRhT02GenCREnFiq
-         AfEQuZ8q/jyP/TI4z1m8usQAmRInSMuQR0RNXVwFqZMwjqucuyY/9t8S7+jaTLnfGm6y
-         RvG1mlrY8TOJDhHnvmGDn/sICJiYoJclHIevOq2wSAfkTfPEb/0Ymbi7P3a7kkfMOdtS
-         s8r2qFResD4ocvGx+QE8c98i/x6aMsoSY7LQ/05iDTSlAVTfnTBHz4yQp3/212jgC+zC
-         9A0w==
-X-Gm-Message-State: ANoB5pku/A3MMP6sxKlfv2IAMR99gUo83ndt5+1ly4kwYiVhDOQ/95AU
-        pFhkfvSh9swzPFPQ3BhX6NYI6A==
-X-Google-Smtp-Source: AA0mqf4faQyRgiiosbyugC6bNzLWoQKMwQYCzT7xgnogs350R64d9WVcRuMgRBcxR8HLMnc+FSrCWw==
-X-Received: by 2002:a17:90a:6049:b0:218:4d16:cecf with SMTP id h9-20020a17090a604900b002184d16cecfmr4799475pjm.96.1668622192609;
-        Wed, 16 Nov 2022 10:09:52 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id 16-20020a17090a19d000b0020ad53b5883sm1917200pjj.14.2022.11.16.10.09.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 10:09:51 -0800 (PST)
-Date:   Wed, 16 Nov 2022 11:09:49 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     MD Danish Anwar <danishanwar@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
-        srk@ti.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 1/6] dt-bindings: remoteproc: Add PRU consumer bindings
-Message-ID: <20221116180949.GC61935@p14s>
-References: <20221116121634.2901265-1-danishanwar@ti.com>
- <20221116121634.2901265-2-danishanwar@ti.com>
- <20221116160948.GA169555-robh@kernel.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z2yhRXVWHTwKqB0FAJ5JUXE/Hz7ioVpMavCshhyMXsA=;
+        b=dwhcihbE4eqjRnTY0u+OsAKaZFTKUYo8ybANvyI/K0zw1BLlu/OFThaJZwBUJYAKL4
+         ksxoZ49Kox3Gmu1CYYutZM4objBKLIOSle+EWlndabXO5MtMWytzvgxYd5QZwF8eODlS
+         LeeI1zhn3p6rVX/RSK/c6SkLU+ypdqvYzKtFboeduxZbXLlMD8eFD8LqbNfM1woannav
+         W8WDbVMGLchVFEg6R4U6Tn5/a6sZh4dSJPYcQC6QlxsGXBpPC1X5l9fu235//QvBN8Ey
+         gkWvQdul1WPvFUTDc5FeSevhE8IzAcprBOmsS/ZZTig+onkWdH1RE8vR/AKPXNbfvhQy
+         ErwQ==
+X-Gm-Message-State: ANoB5plIyzbQVjsVVKivOVZJCU8g/dMtbNg/FZmJS8X8TdH2StbLC5N3
+        iGEXB6Hd7spkQN0dYlbpN/it9sc0lrPtCrMKrXk=
+X-Google-Smtp-Source: AA0mqf6gDG3miNAiZS+xe0nj1OeHIg9P1WFIChg40NgZQaIuVQPE7S24TE+7gcWVGhg13lPy618bdkXQL5++ztKW7wg=
+X-Received: by 2002:a05:6402:f19:b0:461:a1c1:b667 with SMTP id
+ i25-20020a0564020f1900b00461a1c1b667mr20586171eda.191.1668622283369; Wed, 16
+ Nov 2022 10:11:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116160948.GA169555-robh@kernel.org>
+References: <20221111094238.1640-1-linux.amoon@gmail.com> <CAMdYzYp2wSrkOEh-v6Wye32TA9imfNF4CrUdKL7q8pOCQU307g@mail.gmail.com>
+In-Reply-To: <CAMdYzYp2wSrkOEh-v6Wye32TA9imfNF4CrUdKL7q8pOCQU307g@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Wed, 16 Nov 2022 23:41:07 +0530
+Message-ID: <CANAwSgTNYDrkvUw_r_CQbgQ9KpzMqi9NP5Wfx5UvJeDvsyrTcQ@mail.gmail.com>
+Subject: Re: [linux-next-v1 1/3] arm64: dts: rockchip: Fix gmac phy mode to
+ rgmii on Rock 3A sbc
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Chukun Pan <amadeus@jmu.edu.cn>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 10:09:48AM -0600, Rob Herring wrote:
-> On Wed, Nov 16, 2022 at 05:46:29PM +0530, MD Danish Anwar wrote:
-> > From: Suman Anna <s-anna@ti.com>
-> > 
-> > Add DT schema binding for PRU consumers. The binding includes
-> > all the common properties that can be used by different PRU consumer
-> > or application nodes and supported by the PRU remoteproc driver.
-> > These are used to configure the PRU hardware for specific user
-> > applications.
-> > 
-> > The application nodes themselves should define their own bindings.
-> > 
-> > Co-developed-by: Tero Kristo <t-kristo@ti.com>
-> > Co-developed-by: Suman Anna <s-anna@ti.com>
-> > Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> > Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
-> > Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> 
-> Run checkpatch.pl and fix the warnings with the tags.
+ Hi Petter / Michael.
 
-My bad - I asked Danish to remove the SoBs to lighten the changelog
-presentation.  Danish, do you absolutely need to list everyone that touched that
-patchset?  If so I suppose just listing the SoBs would be a compromise.
+Thanks for your review comments.
 
-> 
-> You didn't add review/ack tags either.
+On Fri, 11 Nov 2022 at 18:26, Peter Geis <pgwipeout@gmail.com> wrote:
+>
+> On Fri, Nov 11, 2022 at 4:43 AM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > On rk356x ethernet phy support reduced media independent interface (RMII)
+> > and reduced gigabit media independent interface (RGMII).
+> > So set the phy mode to rgmii.
+>
+> The RTL8211 supports rgmii-id just fine, you only need to go to rgmii
+> on these boards if you need to tune the delays manually.
 
-Those are important.  
+Ok rgmii supports internal rx and tx clock delay
+whereas rgmii-id does not supports internal clock delay.
 
-Please send another patchset that clears checkpatch with review/acks and I'll
-look at it.
-
-Thanks,
-Mathieu
-
-> 
+>
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > > ---
-> >  .../bindings/remoteproc/ti,pru-consumer.yaml  | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > index ea74ba32fbbd..72e410e3aca8 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > @@ -253,7 +253,7 @@ &gmac1 {
+> >         assigned-clock-rates = <0>, <125000000>;
+> >         clock_in_out = "output";
+> >         phy-handle = <&rgmii_phy1>;
+> > -       phy-mode = "rgmii-id";
+> > +       phy-mode = "rgmii";
+>
+> You should be setting the delay tuning in this patch as well.
+
+I will try to fix this in the next version.
+
+>
+> >         pinctrl-names = "default";
+> >         pinctrl-0 = <&gmac1m1_miim
+> >                      &gmac1m1_tx_bus2
+> > --
+> > 2.38.1
+Thanks
+
+
+-Anand
