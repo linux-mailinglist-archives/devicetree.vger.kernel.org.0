@@ -2,88 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1493D62B54D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 951C462B550
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 09:33:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238978AbiKPIc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 03:32:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
+        id S231989AbiKPIdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 03:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239013AbiKPIcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:32:02 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FAA51740F;
-        Wed, 16 Nov 2022 00:30:35 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AG6ADwN018283;
-        Wed, 16 Nov 2022 08:30:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=tOxaG25yh/89EQX6yJEvXStzKioKLgBIzLt7zDEL/js=;
- b=O9fcLuDerY+b6jmhcjcCEg2UF4RiaTXVJjT9ZntZUrQQz4QuEMPopWXTBUIUKMchX07N
- 77pPk9N9wt+dFninSUy9H5Rc+JyFmlNoK8iSN7upWYL4JJy/EEM80AIuz48j8QsEenm2
- BHOZMWUbvFBVeefllxRchIYJDtT6COPCPdPQRxja8fc9ofTWsSTaipLSCD63ie7mWUCm
- CDI5HmgUtnGy28M+qae2IZVD3KinpAEg8JYHqt3ZCZuZiIIDDGfzkdm0x02CNu7MVOGY
- eQ7SWb5Xv4145nmkKnNRd5uLFTNAoY1Ytz3Usi4f7hcPnVKvbU9krmnkTghYeKpSBfa9 BA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kvsq6rfuv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 08:30:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AG8UJ1F012731
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 08:30:19 GMT
-Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
- 2022 00:30:13 -0800
-Message-ID: <c23b1bc2-6477-a125-7ad9-11dfec6fed55@quicinc.com>
-Date:   Wed, 16 Nov 2022 00:30:10 -0800
+        with ESMTP id S231955AbiKPIdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 03:33:43 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BDBD5A
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 00:33:40 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8XT3N009462;
+        Wed, 16 Nov 2022 02:33:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668587609;
+        bh=XjOHtNrOf8HqRYKVWe9IBmH1R2nMKSYnjVtm0LReeRc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=BRPp+24DiBiKt5wQXHi2GCL+Lvx5UNHeV21R6F3DoegGEPZChIR8ZeXVzNm4/a36p
+         H/T9ltKMfiNrn0UCs2m7Rp0h7icLQ6Gv1nxD+LiF30Q1w2Q8/ay6eSFtM3l7vgZsxz
+         /JB45Hsj/DktL5Ul3IyiQOD/kFdd3pQf/sj6hsaA=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AG8XTfI070712
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Nov 2022 02:33:29 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 16
+ Nov 2022 02:33:28 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 16 Nov 2022 02:33:28 -0600
+Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AG8XP3r055297;
+        Wed, 16 Nov 2022 02:33:26 -0600
+Message-ID: <eac6b79f-fc0f-5e8b-4bd2-7dbb6c159bf8@ti.com>
+Date:   Wed, 16 Nov 2022 14:03:25 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v3 6/8] drm/msm/dpu: add support for MDP_TOP blackhole
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
+ of OSPI
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>
-References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-7-dmitry.baryshkov@linaro.org>
- <3429c5a5-084d-919c-5c3f-5e12f447c931@quicinc.com>
- <e53520b4-65da-d183-c3bf-65dc16c59358@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <e53520b4-65da-d183-c3bf-65dc16c59358@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: AbsETHNNkdnssB73R800gQnYc3lsTjBP
-X-Proofpoint-GUID: AbsETHNNkdnssB73R800gQnYc3lsTjBP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-15_08,2022-11-15_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- bulkscore=0 mlxlogscore=999 clxscore=1015 malwarescore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211160059
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, vaishnav Achath <vaishnav.a@ti.com>
+References: <20221103044125.172864-1-mranostay@ti.com>
+ <20221103044125.172864-4-mranostay@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20221103044125.172864-4-mranostay@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,121 +71,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11/16/2022 12:19 AM, Dmitry Baryshkov wrote:
-> On 16/11/2022 10:50, Abhinav Kumar wrote:
->>
->>
->> On 11/4/2022 6:03 AM, Dmitry Baryshkov wrote:
->>> On sm8450 a register block was removed from MDP TOP. Accessing it during
->>> snapshotting results in NoC errors / immediate reboot. Skip accessing
->>> these registers during snapshot.
->>>
->>> Tested-by: Vinod Koul <vkoul@kernel.org>
->>> Reviewed-by: Vinod Koul <vkoul@kernel.org>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>
->> I am confused with both the ordering and the split of this patch.
->>
->> You have defined DPU_MDP_PERIPH_0_REMOVED in the catalog header file 
->> in this patch but used it in the next.
->>
->> But you also have code in this patch which relies on setting of this bit.
->>
->> So if this patch is taken without the next, it will still crash.
+On 03/11/22 10:11, Matt Ranostay wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
 > 
-> It will not crash if this patch is taken without the next one. Without 
-> the next patch the DPU driver will not match and bind against the 
-> qcom,sm8450-dpu device.
+> Add support for two instance of OSPI in J721S2 SoC.
+> 
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 3264b8e8faea..034122be2ed5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -306,4 +306,44 @@ cpts@3d000 {
+>  			ti,cpts-periodic-outputs = <2>;
+>  		};
+>  	};
+> +
+> +	fss: syscon@47000000 {
+> +		compatible = "syscon", "simple-mfd";
 
-Ah okay, I just now saw that you have the compatible change also in the 
-next patch.
+Looks like the update here to add "ti,j721e-system-controller" compatible is in
+PATCH 6/8, it could have been in the same patch here instead of editing the same
+node again in the series.
 
-> 
-> So, the ordering is quite logical from my point of view:
-> - add support for all the features required for the device
-> - add the device compat string & catalog entry
-> 
->>
->> Rather, you should combine the define part of this patch to the next 
->> patch in the series 
->> https://patchwork.freedesktop.org/patch/510114/?series=108883&rev=3 , 
->> then move that one in front of this patch.
-> 
-> No. This way we'll have a state (after adding the next patch) when the 
-> sm8450 support is enabled, but the top-hole is not handled, leading to a 
-> crash.
-> 
+> +		reg = <0x0 0x47000000 0x0 0x100>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ospi0: spi@47040000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47040000 0x00 0x100>,
+> +			      <0x5 0x0000000 0x1 0x0000000>;
+> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 109 5>;
+> +			assigned-clocks = <&k3_clks 109 5>;
+> +			assigned-clock-parents = <&k3_clks 109 7>;
+> +			assigned-clock-rates = <166666666>;
+> +			power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		ospi1: spi@47050000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47050000 0x00 0x100>,
+> +			      <0x7 0x0000000 0x1 0x0000000>;
+> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 110 5>;
+> +			power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +	};
+>  };
 
-What if you split the compatible to a separate patch like what SM8350 did.
+Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
 
-https://patchwork.freedesktop.org/patch/511659/?series=110924&rev=1
-
-So, we have hw catalog changes ---> snapshot fix ---> add the compatible.
-
-That will make both of us happy?
-
->>
->> So that its much more coherent that you defined 
->> DPU_MDP_PERIPH_0_REMOVED both in the catalog header and used it in the 
->> catalog.c file and the in the next change you used the caps to avoid 
->> touching that register.
-> 
-> I'd say it's rather strange way. When I see a define/feature addition, 
-> I'd prefer to seethe implementation too.
-> 
->> Regarding the TOP hole itself, I need one day to investigate this. I 
->> am waiting for permissions to the documentation.
->>
->> If i cannot get access by the time you have re-ordered this, I will 
->> ack this once the reorder is done within a day.
-> 
-> 
-> For the reference: [1]
-> 
-> [1] 
-> https://git.codelinaro.org/clo/la/platform/vendor/opensource/display-drivers/-/commit/f9ff8af5b640147f3651c23551c60f81f62874b1 
-> 
-> 
->>
->>> ---
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
->>>   2 files changed, 10 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> index 38aa38ab1568..4730f8268f2a 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->>> @@ -92,6 +92,7 @@ enum {
->>>       DPU_MDP_UBWC_1_0,
->>>       DPU_MDP_UBWC_1_5,
->>>       DPU_MDP_AUDIO_SELECT,
->>> +    DPU_MDP_PERIPH_0_REMOVED,
->>>       DPU_MDP_MAX
->>>   };
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c 
->>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> index f3660cd14f4f..95d8765c1c53 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->>> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct 
->>> msm_disp_state *disp_state, struct msm_k
->>>           msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
->>>                   dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
->>> -    msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->>> -            dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +    if (dpu_kms->hw_mdp->caps->features & 
->>> BIT(DPU_MDP_PERIPH_0_REMOVED)) {
->>> +        msm_disp_snapshot_add_block(disp_state, 0x380,
->>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 
->>> 0x3a8,
->>> +                dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
->>> +    } else {
->>> +        msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
->>> +                dpu_kms->mmio + cat->mdp[0].base, "top");
->>> +    }
->>>       pm_runtime_put_sync(&dpu_kms->pdev->dev);
->>>   }
-> 
+-- 
+Regards,
+Vaishnav
