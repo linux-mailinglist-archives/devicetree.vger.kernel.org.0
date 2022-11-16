@@ -2,55 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E9962C5B1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E10362C5D0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:04:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233843AbiKPRB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 12:01:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47956 "EHLO
+        id S237845AbiKPREL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 12:04:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234362AbiKPRBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:01:30 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C062324F10;
-        Wed, 16 Nov 2022 09:01:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F00961EE6;
-        Wed, 16 Nov 2022 17:01:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5287C433C1;
-        Wed, 16 Nov 2022 17:01:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668618088;
-        bh=NgoF6H00h3ybNCo6l/K8tFBS2V1ks1ySzik7gT4hXNg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iRoPIvZpsWLj/7UGSIdWIPvQjcFJalHa573TZ/VHCv4kLyK287rBf6Z1Xqy7Dc7RQ
-         7+TjvseRIv9wT9LpnMD52pFutfEuKT0QHDyZav2PKs+gFCG28hGSj1Qy1lYur1Jw6x
-         15B5y5ElxGxS6OVvFMWFZfjCsnQlUVEDT/P+GwI1sqRCuniXNLzVZfkP0JTJQ8qblq
-         MdTs48N9/9C1PNgkpN8FJgX1/TAl3oBnRdZvUVF1l6Oz60WDsEGObd9wJNoa64gN2g
-         /J7VNSVF+ezMZx1AAAPOJ9/rfI0OqFlqZjJ99CZuU1vY0mAuvyvHSkyCTP9r0ndMu8
-         JbduaOG9bh5Fg==
-Date:   Wed, 16 Nov 2022 17:01:23 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>, daire.mcnamara@microchip.com
-Cc:     daire.mcnamara@microchip.com, conor.dooley@microchip.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, lpieralisi@kernel.org, kw@linux.com,
-        bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 8/9] PCI: microchip: Partition inbound address
- translation
-Message-ID: <Y3UXYyyJUE0WexxD@spud>
-References: <20221116135504.258687-9-daire.mcnamara@microchip.com>
- <20221116164933.GA1117375@bhelgaas>
+        with ESMTP id S234249AbiKPREF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:04:05 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B4F28727
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:03:55 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id a15so22608728ljb.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:03:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n2wcVN4J1tlPV+AnzZftcSxUop+5QUHzY6UpVrjVgB4=;
+        b=qSCI/Ap9+bY+OClBVM/hGbIgAW6bxfs6GLL/gFVLdw0rg+e4T5y9bro336vZFMXwWr
+         ejPJs6VxMDFRuBGn2xoWXrTUalv6MedN0AZNl0IXkUAvIk9AGllsl0dyLYjXZ7g7gRB7
+         gDaRwXl1HUK80QoVZw673BHz1azHO8rNimQhtxkJMC6FfgcewCJTMuVmtZY2dXaOEIDg
+         6AQyBOiIyu1tIb8BYrt3rNgThGagWxbj1bXhUUjO4/1g9p10usSa85nDzOiLhzpitPsK
+         /3k+9sSviOMDHkKAVN6FE4POlEPUQaKUnWc+MtUEkAKaZvIvdiCGy6dXu5K9GTg3Jc0Z
+         N7BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n2wcVN4J1tlPV+AnzZftcSxUop+5QUHzY6UpVrjVgB4=;
+        b=4NsvwCiooSeKAT3/C86w0JOe4BuABT6cX3D2AoYPvgMykQuew5n11fpobCRtfLFeeG
+         u/EmCQ5Ps+ChcEpeHJTsPtPcm5aWe5C3vrmV6lYpAlQ7ZLV2k+o/UabIWxw4/DsPTAvA
+         HKRyiZxIW5Ff/mv1EFUiiIwMNXhhOIIar9I54Uv41L1YealQlRIV4fwTvLzxtLkTOAml
+         buo36aMeKuAuFdWIIcQy40/vY9DidRJjJ5zosXOMhVRryovbAJgO+fTbBU/EiVSSvo6n
+         XGQ/GfIj4+ffnUm9oC6tr6KuZKt26yyHW1Ci49AuyWBprk+uCV50fLfVoJcQdpY2VrY8
+         ZW4A==
+X-Gm-Message-State: ANoB5plGkYHddxbiFj5Cg2y5RPIPwXZtfrGduM8kHUmaHqCnRgHaURBJ
+        LXLMiaM61f4n2bf9EIMTz5ydqQ==
+X-Google-Smtp-Source: AA0mqf43BimP4m8KN0QSNc/gcqbkkuIydkNRTjo8awyHvTjZCw6qIVb6HTwXZGJIOSBtyCiP0FXF6A==
+X-Received: by 2002:a2e:9941:0:b0:277:5059:82c9 with SMTP id r1-20020a2e9941000000b00277505982c9mr8606686ljj.218.1668618234274;
+        Wed, 16 Nov 2022 09:03:54 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id cf30-20020a056512281e00b00492ca820e15sm2671479lfb.270.2022.11.16.09.03.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 09:03:53 -0800 (PST)
+Message-ID: <87312b40-548d-dc60-588f-3583e496dcb3@linaro.org>
+Date:   Wed, 16 Nov 2022 18:03:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116164933.GA1117375@bhelgaas>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Add document for Unisoc UFS host
+ controller
+Content-Language: en-US
+To:     Zhe Wang <zhe.wang1@unisoc.com>, martin.petersen@oracle.com,
+        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com
+Cc:     linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
+References: <20221116133131.6809-1-zhe.wang1@unisoc.com>
+ <20221116133131.6809-2-zhe.wang1@unisoc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116133131.6809-2-zhe.wang1@unisoc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,23 +78,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 10:49:33AM -0600, Bjorn Helgaas wrote:
-> On Wed, Nov 16, 2022 at 01:55:03PM +0000, daire.mcnamara@microchip.com wrote:
-> > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > 
-> > On Microchip PolarFire SoC the PCIe rootport is behind a set of fabric
-> > inter connect (fic) busses that encapsulate busses like ABP/AHP, AXI-S
-> > and AXI-M. Depending on which fic(s) the rootport is wired through to
-> > cpu space, the rootport driver needs to take account of the address
-> > translation done by a parent (e.g. fabric) node before setting up its
-> > own inbound address translation tables from attached devices.
+On 16/11/2022 14:31, Zhe Wang wrote:
+> Add Unisoc ums9620 ufs host controller devicetree document.
 > 
-> Hi Daire, minor nits:
-> 
-> s/inter connect/interconnect/
-> s/fic/FIC/ ?  Sounds like an initialism similar to ABP, AHP, etc?
+> Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
 
-Daire, we've been living a lie. The TRM says "Fabric Interface
-Controllers (FICs)" so I think we should switch the that wording.
-Fits the acronym better too..
+Thank you for your patch. There is something to discuss/improve.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ufs_eb
+> +      - const: ufs_cfg_eb
+> +      - const: ufsh
+> +      - const: ufsh_source
+> +
+> +  resets:
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: ufs
+> +      - const: ufsdev
+
+Both clock names and resets are still not useful. "ufs" is the name of
+the block, so reset name of "ufs" and "ufsdev" says nothing. This is the
+dev right?
+
+> +
+> +  vdd-mphy-supply:
+> +    description:
+> +      Phandle to vdd-mphy supply regulator node.
+> +
+> +  sprd,ufs-anlg-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle of syscon used to control ufs analog regs.
+> +
+> +  sprd,aon-apb-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle of syscon used to control always-on regs.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ufs: ufs@22000000 {
+> +        compatible = "sprd,ums9620-ufs";
+> +        reg = <0x22000000 0x3000>;
+> +        interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
+> +        vcc-supply = <&vddemmccore>;
+> +        vdd-mphy-supply = <&vddufs1v2>;
+> +        clock-names = "ufs_eb", "ufs_cfg_eb", "ufsh", "ufsh_source";
+> +        clocks = <&apahb_gate 5>, <&apahb_gate 22>, <&aonapb_clk 52>, <&g5l_pll 12>;
+
+First clocks, then names.
+
+> +        reset-names = "ufs", "ufsdev";
+> +        resets = <&apahb_gate 4>, <&aonapb_gate 69>;
+
+First resets, then names.
+
+> +        sprd,ufs-anlg-syscon = <&anlg_phy_g12_regs>;
+> +        sprd,aon-apb-syscon = <&aon_apb_regs>;
+> +    };
+
+Best regards,
+Krzysztof
 
