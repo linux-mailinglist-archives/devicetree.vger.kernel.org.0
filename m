@@ -2,109 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 209E562C3E6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:18:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E5D62C468
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:30:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231421AbiKPQSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:18:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
+        id S239127AbiKPQaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233506AbiKPQS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:18:26 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5DE27F
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:23 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id v4-20020a17090a088400b00212cb0ed97eso2841892pjc.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:18:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dvp6aPXdskWw22vG4cUG9Anh9RZtqEUkN6NF3CqRa8Q=;
-        b=zpHnP80Iv3WZA6SVm3xPJnPQZCfK12IBMTkLXrlkuH80NZN/zL31xOP4zW7lMISEBP
-         hlvBx6riNPPdVLgNqK05axXDOKJnPqIaUaXO1GmB1lp/oAfvvAROfxO9CXLY48qc3Rfc
-         n7i3VBAZo85JR/ChhWXjItUuDb1HAI0g8lR23WI2qgefq0mYD9lg4Q3A84yAOpRVMcRf
-         svfKUD0dh/FcyQS8+wMTedCkBrOx0mzYsEVIZ5+H3aBbqveAGiCbbEJQomP2bNAYBbaN
-         3iORzlI7ZVPv6AtS5evEMNcmNlCJyjJ5NIoV3BEhVkDRXF4V36N0OrfuVL5bcGuhniYb
-         vc9g==
+        with ESMTP id S233475AbiKPQ3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:29:50 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E79C35EF96
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:24:06 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id n205so19071202oib.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:24:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dvp6aPXdskWw22vG4cUG9Anh9RZtqEUkN6NF3CqRa8Q=;
-        b=oTLJe4Ih9J0MYU+/3Wo5n/6Idhiz7KxvlUm0IVKiK4D0fXCzneT79+qvlk9CsZzmR2
-         LU+8PhTdLWoBAtQHR/SczidmkeV7iuS7S7+p5D6kQbZP2ISuHIlkjoO3CzdotgORuaLC
-         k4wqO1B2kkvZbVlPs+oB7JnyTFRQPbxqCcgk+WuJ+w1n5culF/k4+MviAoO7B1PR9X8C
-         c95f0CXh4y/LSuAbThNG6RyH0bjLxBPb06H/sUeZlEiES34Owyz1Ckti4A/q5lzdJEZm
-         863tG344BbClAB67gsV+qqyOnLBXtvi5hjb08pMT9Kjep9ak6cTUUWBMOVKZgDFWU5XM
-         I+IA==
-X-Gm-Message-State: ANoB5plL02GlGWAyULTAOVMtAlWlx9j2jyxkx23TfZXh4L3wit1jNsAJ
-        ZEz9E8oP+hkucwNLuzw4/VzW/ZEk9DWUHpRD38QPUQ==
-X-Google-Smtp-Source: AA0mqf6xMkxT9E7DWq3Ng6vFjK9UXooF5beAHY5gscd/9HrAj272x6MYVDzSbamQoScAHq+qHs5RibHKN1fmpEb5Z+o=
-X-Received: by 2002:a17:902:a584:b0:186:be05:798e with SMTP id
- az4-20020a170902a58400b00186be05798emr9544083plb.37.1668615503443; Wed, 16
- Nov 2022 08:18:23 -0800 (PST)
-MIME-Version: 1.0
-References: <20221111081033.3813-1-hayashi.kunihiko@socionext.com>
-In-Reply-To: <20221111081033.3813-1-hayashi.kunihiko@socionext.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 16 Nov 2022 17:17:45 +0100
-Message-ID: <CAPDyKFpLVH1fEwKzjd8RP2NP0ZpEjo66XxvL5VVnCWMyS0dw4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] mmc: sdhci-fujitsu: Add some features and support
- for F_SDH30_E51
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nf9WQg2FkfIb1IV76Hu2KxdCX8Rw6eiA2sNg43ap2ik=;
+        b=moI+wnrvcoNSnli8hpS8X83tzzQCEEn1+t24jmHux3ozuo2xO02oxfwh/RjD0N3CKT
+         IMXe9ZU3EzF5p/8olc5NPR5OqF4Y75vNabdEeeZgBg7+E1gO/15UWhT/L2SwvSddNpN8
+         9jar1MxGSfJu8LzaMqASrcrFwH/5BMLZLy5uH6Uv8I+B9NARDVZlfWZMOCe966iTnl6l
+         n6xMKqJeVOQUWVsFQ9DpM3yTDuCYLujeUevS0PuJwdG4aLou5YnMaOKY0efC73b5eSLx
+         b5NM+/9GreYMDCuX6e0uLiy8q+vPhRcgPL07tCcjS188vJ6h01xB4qS/VcW/uiKktH5w
+         jQNg==
+X-Gm-Message-State: ANoB5pk3+lHvDY5/q1vsZGZb+519lJSO8hyL7KVhP43rb0BFE5INQCAT
+        XxBduAdgUAzJPCwSUmZ1og==
+X-Google-Smtp-Source: AA0mqf63F8fJfNFaCeq//Z+5DQukbsqhZ1K2yR/pTOP8NP0eL3/E7c3SIt1g0qkbgVYaDx0ITpquyA==
+X-Received: by 2002:aca:b4c5:0:b0:35a:cf84:d834 with SMTP id d188-20020acab4c5000000b0035acf84d834mr2071107oif.41.1668615845549;
+        Wed, 16 Nov 2022 08:24:05 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s17-20020a056830439100b006619533d1ddsm6717938otv.76.2022.11.16.08.24.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 08:24:05 -0800 (PST)
+Received: (nullmailer pid 193065 invoked by uid 1000);
+        Wed, 16 Nov 2022 16:24:07 -0000
+Date:   Wed, 16 Nov 2022 10:24:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH mtd/next] dt-bindings: mtd: partitions: allow SafeLoader
+ dynamic subpartitions
+Message-ID: <166861584651.193009.6897512029403663195.robh@kernel.org>
+References: <20221108093102.8360-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221108093102.8360-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Nov 2022 at 09:10, Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
->
-> This series adds some additional features such as reset control,
-> non-removable media, and quirks for broken timeout clock.
->
-> And this adds support for F_SDH30_E51 IP that is a higher version
-> of F_SDH30 and supports eMMC 5.1.
->
-> The above features are not specific to this IP directly, but are
-> affected by IP configuration and external wiring.
->
-> Changes since v1:
-> - Add conversion and additional compatible patch for DT bindings
-> - Add description for F_SDH30_E51 to the commit message
-> - Append vendor name to MODULE_AUTHOR
->
-> Kunihiko Hayashi (6):
->   dt-bindings: mmc: Convert sdhci-fujitsu to JSON schema
->   mmc: f-sdh30: Add reset control support
->   dt-bindings: sdhci-fujitsu: Add compatible string for F_SDH30_E51
->   mmc: f-sdh30: Add compatible string for Socionext F_SDH30_E51
->   mmc: f-sdh30: Add support for non-removable media
->   mmc: f-sdh30: Add quirks for broken timeout clock capability
->
->  .../bindings/mmc/fujitsu,sdhci-fujitsu.yaml   | 57 +++++++++++++++++++
->  .../devicetree/bindings/mmc/sdhci-fujitsu.txt | 32 -----------
->  drivers/mmc/host/sdhci_f_sdh30.c              | 31 +++++++++-
->  drivers/mmc/host/sdhci_f_sdh30.h              |  3 +
->  4 files changed, 89 insertions(+), 34 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
->
 
-Applied for next, thanks!
+On Tue, 08 Nov 2022 10:31:02 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> TP-Link SafeLoader partitioning means flash contains multiple partitions
+> defined in the on-flash table. Some of those partitions may have a
+> special meaning and may require describing additionally. Allow that.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../mtd/partitions/tplink,safeloader-partitions.yaml      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-Kind regards
-Uffe
+Reviewed-by: Rob Herring <robh@kernel.org>
