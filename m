@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9E262C35A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C729562C396
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:10:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbiKPQDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:03:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42820 "EHLO
+        id S232557AbiKPQKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:10:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233743AbiKPQDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:03:19 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFE9651C01;
-        Wed, 16 Nov 2022 08:03:17 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so20579058fac.5;
-        Wed, 16 Nov 2022 08:03:17 -0800 (PST)
+        with ESMTP id S234075AbiKPQJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:09:48 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E7A56EC7;
+        Wed, 16 Nov 2022 08:09:47 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso4353899otl.13;
+        Wed, 16 Nov 2022 08:09:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GFur9ztajNJgyC/h1WU/MLh+XU5LTzLRomeO0X20AEM=;
-        b=nAdYWgu6ksaQGxmZLQFkwfjolPuBZ7h+7Qjy+RGp7YW4fdB+l9la2fjNrTSPFTM3Ox
-         hffAH4WeZJnW80YnkMqa6bBg8xITtdpgqSRplGkIYAlZnQ6zrsWvRuCRf3a3l2lV6rYy
-         slEMig4m76eyXS/mgL8aJuvlPjPyu1qW3H/uiscDkBewiO7k6XmYZbMJibi1kt0KFWzC
-         Plmua8VsHFcWIH0z/KHSxECdg4Zr2RFoRrhCXL6o6GnTEtWHNSsygRUkBVAcY0Om6UDf
-         oET7HoN6XuTJs1yXeVNgTs7pixu93cleyDBhO7ZzZiCxVcRRJ7xo+xIx6v59Wja9fzm7
-         8c7A==
-X-Gm-Message-State: ANoB5plset6OgEQjCViql+3+SgVap61xyZmNPy/NVAJv1aJbJOVXwNcw
-        0ecUCGr9r/pCYOr2r/ftJw==
-X-Google-Smtp-Source: AA0mqf5XdhzHlaYo1ZV4BEyVQHRU/bRF0T8tEBEf7/gwzL9OR8nfhFXlbYyBvHSwysBdzNF8BwK8yQ==
-X-Received: by 2002:a05:6870:f10f:b0:137:5344:7776 with SMTP id k15-20020a056870f10f00b0013753447776mr2013082oac.208.1668614596948;
-        Wed, 16 Nov 2022 08:03:16 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/+pQLTJDyany4akW+PaBhrVtLiRkHQTFMc51rgLCGdE=;
+        b=NBIMCMOgv9SZu6Ma78SOb4s5P1ECYc3UTIk7gfUiK/oHCbPzaP04cA1eqbd6ExE7Es
+         HKgQRDgSPi/3w940lhuzvr6Db/Ni4RioSsCVnAr7o+JXwfRv/ZW7HYcuBmBLm728UgI1
+         Hu+Q9lR4S/qW9BcS8PBsDZVE/cbIpFrxB2T0wzZKRH5jh4PnawYfKxwe9NLpAv8x+O81
+         OssljI1dIXXLKkYhkZ5hD5Ysrc8M/yv69pr/IWW9kVxcWUFGDFudCbHcF4GIfXerz6eC
+         WnpwME7xHIeqIuvsv5d1dadTN+4o573PkNooP/kdBEUJh63TcG7Vzc0iKHzzLSIT+iUL
+         Wn+w==
+X-Gm-Message-State: ANoB5pk2FllhqsQrWPXEQI2okYEU5WiOc+HvOHHTrgYlD5t4WkDrVCo5
+        ugOOZMKzWpWIdfERf8w4zw==
+X-Google-Smtp-Source: AA0mqf4OznSLbOeIc6lNTE63nxdYlw3lA+2jVJt8wh+vbSgDsrvWW02+YGXOmIbRh6PjRFSHOst4Bw==
+X-Received: by 2002:a9d:480f:0:b0:66c:6cf1:7967 with SMTP id c15-20020a9d480f000000b0066c6cf17967mr11384658otf.139.1668614986560;
+        Wed, 16 Nov 2022 08:09:46 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n19-20020a9d7413000000b0066cb9069e0bsm6863694otk.42.2022.11.16.08.03.15
+        by smtp.gmail.com with ESMTPSA id v4-20020acade04000000b00359ba124b07sm6165743oig.36.2022.11.16.08.09.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 08:03:16 -0800 (PST)
-Received: (nullmailer pid 158015 invoked by uid 1000);
-        Wed, 16 Nov 2022 16:03:18 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
+        Wed, 16 Nov 2022 08:09:46 -0800 (PST)
+Received: (nullmailer pid 170698 invoked by uid 1000);
+        Wed, 16 Nov 2022 16:09:48 -0000
+Date:   Wed, 16 Nov 2022 10:09:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     linux-input@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        linux-leds@vger.kernel.org,
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Flora Fu <flora.fu@mediatek.com>, Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chen Zhong <chen.zhong@mediatek.com>
-In-Reply-To: <20221005-mt6357-support-v5-5-8210d955dd3d@baylibre.com>
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-5-8210d955dd3d@baylibre.com>
-Message-Id: <166861435469.151514.16192567175686360100.robh@kernel.org>
-Subject: Re: [PATCH v5 05/10] dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
-Date:   Wed, 16 Nov 2022 10:03:18 -0600
+        Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
+        srk@ti.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 1/6] dt-bindings: remoteproc: Add PRU consumer bindings
+Message-ID: <20221116160948.GA169555-robh@kernel.org>
+References: <20221116121634.2901265-1-danishanwar@ti.com>
+ <20221116121634.2901265-2-danishanwar@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116121634.2901265-2-danishanwar@ti.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -85,46 +68,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 16, 2022 at 05:46:29PM +0530, MD Danish Anwar wrote:
+> From: Suman Anna <s-anna@ti.com>
+> 
+> Add DT schema binding for PRU consumers. The binding includes
+> all the common properties that can be used by different PRU consumer
+> or application nodes and supported by the PRU remoteproc driver.
+> These are used to configure the PRU hardware for specific user
+> applications.
+> 
+> The application nodes themselves should define their own bindings.
+> 
+> Co-developed-by: Tero Kristo <t-kristo@ti.com>
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Co-developed-by: Puranjay Mohan <p-mohan@ti.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
-On Wed, 16 Nov 2022 13:32:59 +0100, Alexandre Mergnat wrote:
-> Currently, almost all MT63XX PMIC are documented mfd/mt6397.txt.
-> Unfortunately, the PMICs haven't always similar HW sub-features.
-> To have a better human readable schema, I chose to make one PMIC schema
-> to match the exact HW capabilities instead of convert mt6397.txt to
-> mediatek,mt63xx.yaml and put a bunch of properties behind
-> "if contain ... then ..."
-> 
-> - add interrupt property
-> - change property refs to match with new yaml documentation
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Run checkpatch.pl and fix the warnings with the tags.
+
+You didn't add review/ack tags either.
+
 > ---
->  .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 105 +++++++++++++++++++++
->  1 file changed, 105 insertions(+)
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml references a file that doesn't exist: Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml: Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  .../bindings/remoteproc/ti,pru-consumer.yaml  | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
