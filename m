@@ -2,125 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A4F62CB5A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D3F62CB7F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:52:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233946AbiKPUqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:46:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
+        id S234378AbiKPUwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:52:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234139AbiKPUq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:46:27 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7058A5D68C;
-        Wed, 16 Nov 2022 12:46:25 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id j15so32004644wrq.3;
-        Wed, 16 Nov 2022 12:46:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OB7wrdvxiJFRvhmiue8jC5Fpuj0dFMnx5brAbEwXVA=;
-        b=pUKnaYduYgV1XUs2jZu2mdRajyGhoNshkA/qoMX6esDtu5Kqtpy768+SqB+HO0jnqj
-         L+m6wiKPXyyNfvVQSBgj1W8pAHury2R+0ytWYBC3WD0FLAyTbpcnd3biN7qULdrEpkd+
-         NE9mzT8sSo1tmoyo3p8eO7qwBobD3rJ2PQpkV9qbHQm1rW/eOhy92hhrjlNipEpAld/C
-         IvQ5PSHX7kC1tDc7w81UJEmSmv7Zq5pS95eGZEXx/U4S63fWvB7698yg2Is/1xxCPNb0
-         u3XlN6gC/bAKZr5pE/WZAGeTIzlfcZA/JYZZ4rjkFzWkKKwh47zlIZd5NFLLsVcb6xcP
-         NIUw==
+        with ESMTP id S234571AbiKPUwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:52:12 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EA865E7B;
+        Wed, 16 Nov 2022 12:52:02 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id q83so19903220oib.10;
+        Wed, 16 Nov 2022 12:52:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3OB7wrdvxiJFRvhmiue8jC5Fpuj0dFMnx5brAbEwXVA=;
-        b=bSWUS9hDGEat1YdyrsudSfjNIMi0ijEqBmzA5c+/TrOeiwKS1l3DLP7vVR/dbMniy3
-         yF+0jVjoCizCLtS333qKfkc/cFUAH8ZoMtbMmD6rIufcKd0PXLzW9tubDkL/WlyTJoYb
-         tPqzclSzStqGXHjpe5zUn6vERsKGvIajnzd4si3pelxPkiC7Ju+kuH4eEbtAdqnQTgLM
-         L7dSzrr5kZbcIAPQALCb1sq4x8AvXYfZ21Cv1FQHBmfmhdfT+98HkGr31cekOrPhOhGr
-         JJh+ddNDYykjiLo6sPYXd3ajvIahuB116ix4qXljrx3IudusbRw8cuL0FvVwfexFQICY
-         KgOg==
-X-Gm-Message-State: ANoB5pnux5NaMToTxua8dcJmFuLMlVdlYtqe2Dxt4muK5qDQ2TmSURbe
-        MTb4BkFEOubMefNMXpyWgskVgRdgA7SBfj84oDaefXce
-X-Google-Smtp-Source: AA0mqf5V8tXQyCU5dBQqIqiDBcoHdqGQFIeI614+qSzsagnrGq2cT8NBNg6JJ8/wb6ovyMf0bPbapdaxs+ObqZxrr+Q=
-X-Received: by 2002:a5d:490a:0:b0:234:ee55:a8a8 with SMTP id
- x10-20020a5d490a000000b00234ee55a8a8mr14595128wrq.689.1668631584012; Wed, 16
- Nov 2022 12:46:24 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jNs3dmKw7nmk2FDDih1lJS6XwxqcCdzu4CVibDAnn08=;
+        b=M5c1ulnFTeXRc79HkiEXF26NTSl3mI9tJdFp1r8bNQxXWAwknRwE6UmlOPx9phsyk1
+         b8+gmsq2kn46AOULqTTQfbTyiOB8J8POFHuO9boVSGlvA/Ptx7BOQN6wGu+p2/GpRDKZ
+         gR6YxcJxiULjA7mzi8gIrAV7Q6f1YuUwhOI2KVZ6Syv/oO+uuku91Qtx/FSjRhygtQts
+         yp9yF3o0rG9Sn0BM5B7j55m0MmJ6MniFK9ljC2I1qKrbyIPnORD/PAjeC9Qf4BgeIjY4
+         CRQhNvN+2S44iADNk3jhUGgOh5g/O4gpfvuFVcTocyKI+1aPjxjx6gZwLFpD/cSh85jI
+         S3wA==
+X-Gm-Message-State: ANoB5pnl626cQHWacjiGMalP5etN0EvC+RXAMnrsxlL2SBh29pU+7vMS
+        SwHulHZYvos4O3HF8akjSA==
+X-Google-Smtp-Source: AA0mqf6ZtFlNK7bNHkj1ZklctN9SGFMbHDZY9jHWFCMMGP2vveAOhQQ41HGL597nAKsv4OpT1As1kg==
+X-Received: by 2002:a05:6808:3af:b0:359:fcae:7c3f with SMTP id n15-20020a05680803af00b00359fcae7c3fmr2641623oie.68.1668631922066;
+        Wed, 16 Nov 2022 12:52:02 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w6-20020a056808018600b003458d346a60sm6508941oic.25.2022.11.16.12.52.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 12:52:01 -0800 (PST)
+Received: (nullmailer pid 861574 invoked by uid 1000);
+        Wed, 16 Nov 2022 20:52:03 -0000
+Date:   Wed, 16 Nov 2022 14:52:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: nvmem: add YAML schema for the sl28
+ vpd layout
+Message-ID: <20221116205203.GA846642-robh@kernel.org>
+References: <20221114085659.847611-1-miquel.raynal@bootlin.com>
+ <20221114085659.847611-4-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-References: <20221116200150.4657-1-linux.amoon@gmail.com> <20221116200150.4657-7-linux.amoon@gmail.com>
-In-Reply-To: <20221116200150.4657-7-linux.amoon@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 16 Nov 2022 15:46:11 -0500
-Message-ID: <CAMdYzYo_DGiO0UxJEb3xues7Um=X9AgPvz+Xp_YWb9pp9HaScg@mail.gmail.com>
-Subject: Re: [linux-next-v2 5/5] arm64: dts: rockchip: Add missing of
- ethernet-phy-id to reset the phy on Rock 3A SBC
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221114085659.847611-4-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 3:02 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Add MDIO description with ethernet-phy-id compatible string
-> which enable calling reset of the phy. The PHY will then be probed,
-> independent of if it can be found on the bus or not,
-> and that probing will enable the GPIO.
->
-> ethernet-phy-id is read from ethenet register dump reg2 and reg3.
->
-> Fix following warning.
-> [   12.323417] rk_gmac-dwmac fe010000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> [   12.324078] rk_gmac-dwmac fe010000.ethernet eth0: no phy at addr -1
-> [   12.324099] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
->
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+On Mon, Nov 14, 2022 at 09:56:57AM +0100, Miquel Raynal wrote:
+> From: Michael Walle <michael@walle.cc>
+> 
+> Add a schema for the NVMEM layout on Kontron's sl28 boards.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> V2: new to the patch series.
->
-> alarm@rock-3a:~$ sudo ethtool -d eth0
-> [sudo] password for alarm:
-> ST GMAC Registers
-> GMAC Registers
-> Reg0  0x08072203
-> Reg1  0x00000000
-> Reg2  0x00000404
-> Reg3  0x00000000
-> Reg4  0x00000002
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> index 9f84a23a8789..fe36156a5017 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -585,7 +585,7 @@ &i2s2_2ch {
->
->  &mdio1 {
->         rgmii_phy1: ethernet-phy@0 {
-> -               compatible = "ethernet-phy-ieee802.3-c22";
-> +               compatible = "ethernet-phy-id0000.0404", "ethernet-phy-ieee802.3-c22";
->                 reg = <0x0>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&eth_phy_rst>, <&eth_phy_int>;
+>  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 62 +++++++++++++++++++
+>  .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
+>  2 files changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> new file mode 100644
+> index 000000000000..fef795e79c36
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
+> +
+> +maintainers:
+> +  - Michael Walle <michael@walle.cc>
+> +
+> +description:
+> +  The vital product data (VPD) of the sl28 boards contains a serial
+> +  number and a base MAC address. The actual MAC addresses for the
+> +  on-board ethernet devices are derived from this base MAC address by
+> +  adding an offset.
+> +
+> +select: false
+> +
+> +properties:
+> +  compatible:
+> +    const: kontron,sl28-vpd
+> +
+> +  serial-number:
+> +    type: object
 
-Have you tried instead moving the reset to the mdio bus? I've had
-success with this, though you'll need to change the reset assert and
-deassert timing handles, they are different for the bus.
+       additionalProperties: false
 
-> --
-> 2.38.1
->
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +    description: The board's serial number
+> +
+> +  base-mac-address:
+> +    type: object
+> +    description:
+> +      Base MAC address for all on-module network interfaces. The first
+> +      argument of the phandle will be treated as an offset.
+> +
+> +    properties:
+> +      "#nvmem-cell-cells":
+> +        const: 1
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      otp-1 {
+> +          compatible = "user-otp";
+> +
+> +          nvmem-layout {
+> +              compatible = "kontron,sl28-vpd";
+> +
+> +              serial_number: serial-number {
+> +              };
+> +
+> +              base_mac_address: base-mac-address {
+> +                  #nvmem-cell-cells = <1>;
+> +              };
+> +          };
+> +      };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> index ecc7c37cbc1f..f64ea2fa362d 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+> @@ -17,6 +17,9 @@ description: |
+>    define and might require dynamic reading of the NVMEM device in order to
+>    perform their parsing. The nvmem-layout container is here to describe these.
+>  
+> +oneOf:
+> +  - $ref: kontron,sl28-vpd.yaml
+> +
+>  properties:
+>    compatible: true
+>  
+> -- 
+> 2.34.1
+> 
+> 
