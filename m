@@ -2,83 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8B562C57F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:55:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D5DA62C589
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233835AbiKPQzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:55:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36554 "EHLO
+        id S234599AbiKPQ4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:56:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233846AbiKPQyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:54:41 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B47644F
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:53:38 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id p8so30457154lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:53:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iszrNYzajn9WkIQ37uHceVXicqY4KT0BT10PEKA+Zi0=;
-        b=OvzBYo54+ajLTkRMVCCCunE5slbY8tg3GAkBYO6qtSuk0nb6E4/LzpHQFMznXu/lR6
-         4eCeMhlvV6I9ZQ86Wn0o7TVW2YphQFKDdKzw1orUXtdfmIq2xvQyxW96NeY+3t3xdSy6
-         YAdBOV1qVTjOmRtgggbUMsRtvGGMq1+1xwRMOI0RUF9oJsXh2vRa4hHVK3DFQM+PuJuD
-         0VVxlBV92zYfqCObSeZ50UC/ytpRE6sTRs1zv6TSCPdtdvfCVPZEDAEBo0fWEXYQ28RB
-         dHMZfienVtWZl9X18qR9uGoUlG1WrRQZWVcbGbFwRoznNlk/Vvx71PISG5Soob2Os+F1
-         tKeQ==
+        with ESMTP id S232190AbiKPQzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:55:39 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA3AB3E;
+        Wed, 16 Nov 2022 08:55:27 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id q186so19131756oia.9;
+        Wed, 16 Nov 2022 08:55:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iszrNYzajn9WkIQ37uHceVXicqY4KT0BT10PEKA+Zi0=;
-        b=4nDEuxZoGlG22fvZwlCaxRHUu5AQm8X8fyD6fRmjD1jgVRjQJDC71aT1UTocxLujoH
-         wbq4yAPoP4yRfSP4i++FUxVGk/GkM4l14u9fzRO7gvqzWkKk7PtjS7dEXlm5VJuiVvyU
-         NK/UDwXEl5PSPbCKXkaytvUkiw0YP30aW0abD6OvfQv5xKXZMM2pPa0gDFsvu0DZFh70
-         vx1tdOuK6Lv5Bl/GBwNgV3UqIYTUdrOIKi+7C9zHDI0Upri/XHbK/HxYP1vfbR2evb7M
-         KTdvNgwHGrQamCrb6+Gl3uqibuWvfGNA1i2E3piTtRmVvniirkyRfE5YrzgtxWyRHIQu
-         tbHA==
-X-Gm-Message-State: ANoB5pkDIRURCMt32YVDJDv0qrZjRjqJAX4Rr3NsqqaIQQepZ5w5V+rn
-        CAXdt9fgvG83YsVfCtvcYeG6Dw==
-X-Google-Smtp-Source: AA0mqf6bwZzX7JUtRpxWrXYoVsJirzxUmGBYecHGrzlqrH3xShFnLBYgDd0VG7ilbfz8e++SjBO5rQ==
-X-Received: by 2002:ac2:4bcb:0:b0:4b4:210d:7d2e with SMTP id o11-20020ac24bcb000000b004b4210d7d2emr7888934lfq.450.1668617616960;
-        Wed, 16 Nov 2022 08:53:36 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id k4-20020a05651239c400b0048a934168c0sm2690947lfu.35.2022.11.16.08.53.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 08:53:36 -0800 (PST)
-Message-ID: <d73ee3aa-6957-6bcb-5053-1002255d6446@linaro.org>
-Date:   Wed, 16 Nov 2022 17:53:29 +0100
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kiEBJO/YjcMAZi1EqUusiIE2D8QfFJq7eZwFhwMPZso=;
+        b=XUhd1YZINCqUB9+lROHYSr+aR4vQtsGz9YdpG0pjowKyb8r4RcNe13HUxe0q/9E34p
+         kWJY9YLy4JO5fbk7VYMBZohgKhb9oTXOcNKH4HSpfXWTb3Z7wmpWqUnuaPrWWIxwWga+
+         o/+3+VNM2rYqU1HoYen4IuNca3+H4gMW0SlJRVnLk8bajQm+iqjbRaChf7E0LTbxWdp4
+         CkjkivKlZ90PtxWS2olXw7TodOHAuzYjr7ZFk09wKCzH0NxlJDXsirGSxj0dihFPzx/0
+         Zxar/1QF8VyBVKnID3qDjwVV8H+3UZo67IyPrQmgzAyy31GJ9ki0VC4w30ZKVUSTmeXO
+         eAnQ==
+X-Gm-Message-State: ANoB5plir3BqjLx4WAp13yijubhaDGmqzBBYKC+MQ9ehNYzYWJfegn9w
+        N53zbSGjAWrzO1kwu4CZ/g==
+X-Google-Smtp-Source: AA0mqf64Fje3bdOgJ5mS0w+P3LsDO8E8DUlCW+fnA4tU3JbGCGhrmcJnW4mo3simdTwRehr0cYgx7Q==
+X-Received: by 2002:a05:6808:688:b0:354:e358:ad2c with SMTP id k8-20020a056808068800b00354e358ad2cmr2056255oig.130.1668617725518;
+        Wed, 16 Nov 2022 08:55:25 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bg2-20020a056808178200b0034fd36e95bfsm6367551oib.31.2022.11.16.08.55.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 08:55:25 -0800 (PST)
+Received: (nullmailer pid 231353 invoked by uid 1000);
+        Wed, 16 Nov 2022 16:55:27 -0000
+Date:   Wed, 16 Nov 2022 10:55:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, linux-bluetooth@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: Document Bluetooth and WLAN triggers
+Message-ID: <166861772609.231295.14812410099261417331.robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH v6 5/7] arm64: dts: qcom:
- sdm845-db845c-navigation-mezzanine: Add navigation mezzanine dts
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        andersson@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
-        vladimir.zapolskiy@linaro.org
-Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
-        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221116162801.546737-1-bryan.odonoghue@linaro.org>
- <20221116162801.546737-6-bryan.odonoghue@linaro.org>
- <730467dc-419f-bcb6-c4d8-24951b4dde62@linaro.org>
- <6fe6723b-842e-7a56-a15c-6b7e044c7d45@linaro.org>
- <5298da29-4f97-5bab-7252-380a15c06b71@linaro.org>
- <3f5af01e-8d7d-bab1-b6bf-e1d6fc8e4f33@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <3f5af01e-8d7d-bab1-b6bf-e1d6fc8e4f33@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,26 +64,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 16/11/2022 17:48, Bryan O'Donoghue wrote:
-> On 16/11/2022 16:45, Konrad Dybcio wrote:
->> Ok, but is there anything special preventing you from adding
->>
->> csiphy3_ep: endpoing {
->> };
->>
->> under port@3 in 845 and have it working? Does it need more driver 
->> changes?
->>
->> Konrad
+On Wed, 09 Nov 2022 15:46:06 +0100, Geert Uytterhoeven wrote:
+> Add the missing trigger patterns for Bluetooth and WLAN activity, which
+> are already in active use.
 > 
-> I've tried switching it on and it doesn't "just work".
+> While at it, move the mmc pattern comment where it belongs, and restore
+> alphabetical sort order.
 > 
-> Removing it seems like overkill to me and to be honest feels like a 
-> retrograde step.
-Yeah I wouldn't remove it now.
-
-Konrad
-> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> bod
+> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: bt_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'hci0-power' does not match '^mmc[0-9]+$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: wlan_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'phy0tx' does not match '^mmc[0-9]+$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
