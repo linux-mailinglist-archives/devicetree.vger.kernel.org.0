@@ -2,231 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D9162BBFE
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B485B62BC08
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 12:34:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232000AbiKPLdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 06:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51224 "EHLO
+        id S233647AbiKPLeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 06:34:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231672AbiKPLcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:32:46 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E422229D;
-        Wed, 16 Nov 2022 03:22:30 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AGBMBO4068195;
-        Wed, 16 Nov 2022 05:22:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668597731;
-        bh=b5rxEYxHIZSog+pEIX12FfPsa4+nipZLRNYveMgztU8=;
-        h=Date:To:CC:References:From:Subject:In-Reply-To;
-        b=tVTN3oMa7waWhIRi8V+u6mqXXAyLJbjfsNemQd9MVTwT/K8pzZQlWvINPOWqzn588
-         U+M2gBa7UzZ7+jUad9QLw13GYrwEb8M/Sywgqemq92+Kb6HPQ019JOijxm2gZuKk1/
-         xb/Lk6I8y4EZdf/k/8kOOMQjyXD8TJxthSCBKoGM=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AGBMBuf052796
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Nov 2022 05:22:11 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 16
- Nov 2022 05:22:10 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 16 Nov 2022 05:22:10 -0600
-Received: from [172.24.222.56] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AGBM4Zp003245;
-        Wed, 16 Nov 2022 05:22:05 -0600
-Message-ID: <e64f8b3e-c6e6-ddc7-aa79-b641bb1043a4@ti.com>
-Date:   Wed, 16 Nov 2022 16:51:57 +0530
+        with ESMTP id S233513AbiKPLd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 06:33:28 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B06725F6
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:23:21 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id l11so26101990edb.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:23:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j+J/SdbEViUXyY/VUeChCmLVo4mO3vOtwEtzDloRYdM=;
+        b=okELnb8eaaNB4E50NsZrZ3lFPDMdazxFdqdxxo7Mlbjixnr+uCKtrFGa19w9DSkMGb
+         R+/WVwkLC2gtw9QJOAbw79wc2iQZJ+RoYQOiLgCJtsB/l1WQs4llY0gH1gYO5yc8qFO6
+         771fN2VMS8hM+U24hy+Fgx/iXkJ6fkL6AnDoaf/wm0k56hN7AlnFadAAtitTFpo0Oy0m
+         iXIsUvu8vxF/RqJlToxl5kxYCKy6ChSbESvptsvf5X/revOnbLZ4KtSCeB54xsjGB829
+         HCQKmJcSmEhnl0rP78HyOrQh1axS6PwrsR2LyNZcdSxS2yk21ob1EYxhiyEcFe/RXCTG
+         OcFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=j+J/SdbEViUXyY/VUeChCmLVo4mO3vOtwEtzDloRYdM=;
+        b=bUDovBMqB6H5tQndWR4OZOdnVuHW1GZmKp491aEJWD4XtBPVoQ7E56XLLLS1T2m7XW
+         OayH4LvvcXFyQF9KEsnatnTFwP+4TFEhS8eXrXTZpJf1N5S6qaB40Um1PWdcEEzHN3/A
+         xtoO5qWsb4BDVohEFwwUNUWzyUQXo5Q455np0b9wpcje51rbMI0z6/MZN/9RP8qsQMgB
+         Eg55mkWUlGCowReRm5zT6srBF5uszPIaj6cUm4vXaRtT45cYJTBcK6S6+RvxXjNeehcC
+         28KWYkthxsmTknakeF4mkaNw3q2NixbCUlM3/X7oslZpwbIjkk0/UnQ4i+DQHIkV0btj
+         N1WQ==
+X-Gm-Message-State: ANoB5pmphaYfkxXkQe2fROYSTh0sC03D3IvArTFdgjYWBaWwXAVwffTo
+        uuccVWt2czxJMWDHTzs2jrQGGw==
+X-Google-Smtp-Source: AA0mqf6L3j4K6l4ggeXY5ki7+jE24lD4ek/f3w9lIh1wqj/7sbPQNOdA2Ov7fo0tAySe3mJw9qGO1A==
+X-Received: by 2002:a05:6402:1495:b0:461:b506:6b8a with SMTP id e21-20020a056402149500b00461b5066b8amr18646832edv.208.1668597799798;
+        Wed, 16 Nov 2022 03:23:19 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id 2-20020a170906218200b007aed2057ea1sm6151124eju.167.2022.11.16.03.23.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 03:23:19 -0800 (PST)
+Message-ID: <9472d09b-b586-a687-86e9-feb0ad5972b6@linaro.org>
+Date:   Wed, 16 Nov 2022 12:23:12 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-To:     Wadim Egorov <w.egorov@phytec.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <upstream@phytec.de>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-References: <20221108175050.285340-1-w.egorov@phytec.de>
- <20221108175050.285340-2-w.egorov@phytec.de>
-Content-Language: en-US
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add support for
- phyBOARD-Electra-AM642
-In-Reply-To: <20221108175050.285340-2-w.egorov@phytec.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH 3/9] clk: qcom: Add LUCID_OLE PLL type for SM8550
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20221116104716.2583320-1-abel.vesa@linaro.org>
+ <20221116104716.2583320-4-abel.vesa@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221116104716.2583320-4-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, 
 
-Few comments
 
-On 08/11/22 11:20 pm, Wadim Egorov wrote:
-> Add basic support for phyCORE-AM64x SoM & phyBOARD-Electra-AM642 CB.
+On 16/11/2022 11:47, Abel Vesa wrote:
+> Add a LUCID_OLE PLL type for SM8550 SoC from Qualcomm.
 > 
-> The phyCORE-AM64x [1] is a SoM (System on Module) featuring TI's AM64x SoC.
-> It can be used in combination with different carrier boards.
-> This module can come with different sizes and models for
-> DDR, eMMC, SPI NOR Flash and various SoCs from the AM64x family.
-> 
-> A development Kit, called phyBOARD-Electra [2] is used as a carrier board
-> reference design around the AM64x SoM.
-> 
-> Supported features:
->   * Debug UART
->   * Heartbeat LED
->   * GPIO buttons & LEDs
->   * SPI NOR flash
->   * SPI TPM Chip
->   * eMMC
->   * CAN
->   * Ethernet
->   * Micro SD card
->   * I2C EEPROM
->   * I2C RTC
->   * I2C LED Dimmer
->   * USB
-> 
-> For more details, see:
-> 
-> [1] Product page SoM: https://www.phytec.com/product/phycore-am64x
-> [2] Product page CB: https://www.phytec.com/product/phyboard-am64x
-> 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
-> v2:
->   - Update commit message
->   - Add links to product pages for SoM & CB
->   - Drop "fixed" from regulator node names
->   - Use generic node names for pmic, tpm, leds & keys
->   - Update compatible of som.dtsi
->   - Remove not needed node labels for pmic, tpm
->   - Remove not needed R5 core mailbox & reserved memory definitions
->     This is use case specific and should not be defined in the som.dtsi
->   - Provide aliases for used devices by SoM & CB
->   - Fixed led definition: Provide proper default-trigger, function & color
->   - Renamed rtc label to i2c_som_rtc
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |   1 +
->  .../boot/dts/ti/k3-am64-phycore-som.dtsi      | 286 ++++++++++++++++
->  .../dts/ti/k3-am642-phyboard-electra-rdk.dts  | 321 ++++++++++++++++++
->  3 files changed, 608 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>   drivers/clk/qcom/clk-alpha-pll.c | 16 ++++++++++++++++
+>   drivers/clk/qcom/clk-alpha-pll.h |  5 +++++
+>   2 files changed, 21 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 4555a5be2257..79331f16cd4b 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> new file mode 100644
-> index 000000000000..86e6b87b826a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> @@ -0,0 +1,286 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021 PHYTEC America, LLC - https://www.phytec.com
-> + * Author: Matt McKee <mmckee@phytec.com>
-> + *
-> + * Copyright (C) 2022 PHYTEC Messtechnik GmbH
-> + * Author: Wadim Egorov <w.egorov@phytec.de>
-> + *
-> + * Product homepage:
-> + * https://www.phytec.com/product/phycore-am64x
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +
-> +/ {
-> +	model = "PHYTEC phyCORE-AM64x";
-> +	compatible = "phytec,am64-phycore-som", "ti,am642";
-> +
-> +	aliases {
-> +		ethernet0 = &cpsw_port1;
-> +		mmc0 = &sdhci0;
-> +		rtc0 = &i2c_som_rtc;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-> +			alignment = <0x1000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&leds_pins_default>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&main_gpio0 12 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +			function = LED_FUNCTION_HEARTBEAT;
-> +		};
-> +	};
-> +
-> +	vcc_5v0_som: vcc-5v0-som {
-
-Please use generic node names where specific in DT spec [0]
-
-[0] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.4-rc1 2.2.2 Generic Names Recommendation
-
-This should be
- regulator-<xyz> {};
-
-
-> +		/* VIN / VCC_5V0_SOM */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_5V0_SOM";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-
-Few nodes dont really have YAML schemas to validate against:
-
-+arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dtb:0:0: /bus@f4000/i2c@20000000/pmic@61: failed to match any schema with compatible: ['ti,lp8733']
-+arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dtb:0:0: /bus@f4000/i2c@20010000/leds@62: failed to match any schema with compatible: ['nxp,pca9533']
-+arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dtb:0:0: /bus@f4000/spi@20100000/tpm@1: failed to match any schema with compatible: ['infineon,slb9670']
-
-
-Rest looks good to me.
-
-[...]
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index 1973d79c9465..f9e4cfd7261c 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -155,6 +155,22 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+>   		[PLL_OFF_TEST_CTL_U] = 0x30,
+>   		[PLL_OFF_TEST_CTL_U1] = 0x34,
+>   	},
+> +	[CLK_ALPHA_PLL_TYPE_LUCID_OLE] = {
+> +		[PLL_OFF_OPMODE] = 0x04,
+> +		[PLL_OFF_STATE] = 0x08,
+> +		[PLL_OFF_STATUS] = 0x0c,
+> +		[PLL_OFF_L_VAL] = 0x10,
+> +		[PLL_OFF_ALPHA_VAL] = 0x14,
+> +		[PLL_OFF_USER_CTL] = 0x18,
+> +		[PLL_OFF_USER_CTL_U] = 0x1c,
+> +		[PLL_OFF_CONFIG_CTL] = 0x20,
+> +		[PLL_OFF_CONFIG_CTL_U] = 0x24,
+> +		[PLL_OFF_CONFIG_CTL_U1] = 0x28,
+> +		[PLL_OFF_TEST_CTL] = 0x2c,
+> +		[PLL_OFF_TEST_CTL_U] = 0x30,
+> +		[PLL_OFF_TEST_CTL_U1] = 0x34,
+> +		[PLL_OFF_TEST_CTL_U2] = 0x38,
+> +	},
+>   	[CLK_ALPHA_PLL_TYPE_RIVIAN_EVO] = {
+>   		[PLL_OFF_OPMODE] = 0x04,
+>   		[PLL_OFF_STATUS] = 0x0c,
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index f9524b3fce6b..2bdae362c827 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -18,6 +18,7 @@ enum {
+>   	CLK_ALPHA_PLL_TYPE_AGERA,
+>   	CLK_ALPHA_PLL_TYPE_ZONDA,
+>   	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
+> +	CLK_ALPHA_PLL_TYPE_LUCID_OLE,
+>   	CLK_ALPHA_PLL_TYPE_RIVIAN_EVO,
+>   	CLK_ALPHA_PLL_TYPE_DEFAULT_EVO,
+>   	CLK_ALPHA_PLL_TYPE_BRAMMO_EVO,
+> @@ -38,6 +39,8 @@ enum {
+>   	PLL_OFF_TEST_CTL,
+>   	PLL_OFF_TEST_CTL_U,
+>   	PLL_OFF_TEST_CTL_U1,
+> +	PLL_OFF_TEST_CTL_U2,
+> +	PLL_OFF_STATE,
+>   	PLL_OFF_STATUS,
+>   	PLL_OFF_OPMODE,
+>   	PLL_OFF_FRAC,
+> @@ -160,7 +163,9 @@ extern const struct clk_ops clk_alpha_pll_zonda_ops;
+>   extern const struct clk_ops clk_alpha_pll_lucid_evo_ops;
+>   extern const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops;
+>   extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
+> +#define clk_alpha_pll_fixed_lucid_ole_ops clk_alpha_pll_fixed_lucid_evo_ops
+>   extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
+> +#define clk_alpha_pll_postdiv_lucid_ole_ops clk_alpha_pll_postdiv_lucid_evo_ops
+>   
+>   extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+>   #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
