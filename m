@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A103462CDF9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A8F62CE1A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238990AbiKPWpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 17:45:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60222 "EHLO
+        id S234506AbiKPWzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 17:55:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234224AbiKPWoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:44:30 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8336344
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:44:29 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id o4so32439167wrq.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kRxksnFA86+EN227UVABkfWLW0/VetsRVg3/grhnVYQ=;
-        b=tAuxEW+h+XIdry5tJCylxmmKwcdk3lrynLVXVNyDNl9biFUIwCoujPerXSHCCjgFM2
-         M2qinH76hgn6+T697Cwbulu/QxBGdUieOqawYbVX1lD860bdFQCmfb1t1soRIJ1Xl7xk
-         sm4qPqULVaeqUDobhQaGHtN6NK5foYsISBpTvpDLwx6521DkgySeGiNpMlK8cRdWZFoo
-         xs3LKyW6D8EVSO1Ts4yTGB9dPklE5iWNZ935Fkt/7loSaxtejgMVeUIF/AqYfc+Pp2sn
-         Q91HMxkLDy9o7BCVsqqrWoUh/ZpJujpcAgr+43XuT7h4RRi2sRNwO9ZR/z1Vd8RAGAbI
-         9/aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRxksnFA86+EN227UVABkfWLW0/VetsRVg3/grhnVYQ=;
-        b=GVtEmJlxnae2IzI5pcJnJz8sxEq4+IH7+B2gr0F+PQdj56S/0D3iyUXmOJKieVnd0b
-         M6Ib3ImEj/OulFWfnIiYgOtJXfMNa6owIukUiWUw7iGg+nK6i71v0pu+JUHCn6TZ8vaY
-         hxki9FRXCnoYG5eHBVZ4FWIzW53DFpkRWPKHYXeFJsgArr3A0Wux3f3O++b+z9fyiVfb
-         SuPkOcJ8tvy224DTm+vZ8P0K3H1tKD9tC0wa0fjxXn+G6ZRurgFy3X5PcL2ozdsWZL9B
-         tKwa3B6+Zqyk3kpnhiOkT7F9udNgVGO25yKyfMKkW+y02aP+52uA7f9TThbwx6/8Mr+o
-         rzcw==
-X-Gm-Message-State: ANoB5plGFwRqswu3cfhlGqILOhwb0ySOUTdXFVCJYV5SKXLV0WTAIuJ6
-        a1v984QDWuSMqLMBiLK30PCENg==
-X-Google-Smtp-Source: AA0mqf7MSFvQaTYnmCJP6JzGSmABB2sfc4sCIDg8p0Pjg7/qmy8fVBGg4A8E2yUQsr6MbZaLd3ig/g==
-X-Received: by 2002:a5d:52c6:0:b0:236:754e:f8b4 with SMTP id r6-20020a5d52c6000000b00236754ef8b4mr14939207wrv.478.1668638668347;
-        Wed, 16 Nov 2022 14:44:28 -0800 (PST)
-Received: from [192.168.22.132] ([167.98.215.174])
-        by smtp.googlemail.com with ESMTPSA id t8-20020adff048000000b002238ea5750csm19765783wro.72.2022.11.16.14.44.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 14:44:27 -0800 (PST)
-Message-ID: <aba64f1d-043e-4dc5-f70a-e8a6ab99fabf@linaro.org>
-Date:   Wed, 16 Nov 2022 22:44:26 +0000
+        with ESMTP id S238819AbiKPWze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:55:34 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBE96B23E;
+        Wed, 16 Nov 2022 14:55:31 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AGLJh6W029063;
+        Wed, 16 Nov 2022 22:55:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=3yEu/KpX2Z69PcMkvPCwi808XfPo3JBnARa9aFt/nO0=;
+ b=ivZb2fqs2uT86XjgZ1I0H5CEpAzd5LvRCCtgl4OfpM1YRQb7QWO583MKC5mzdNHk2/mS
+ nPsGUvl4nFgPpbja46cBEfoY2BCzH1FsPsdS9wjGolohQ0HgFf1KhrRZIdzUTyMJz58e
+ uS74HhZy2L5QCg0tzhqTEin1g4RST5LCy6fSff+QkTF9XlMe9TdfCCHBNcWM4nEz68tW
+ ZRRTJGrLg1W0moupnYVGgJJ5WP48MQqeqn0mdAYFcTHQVzP4WsIge42JCDN+eo6m5bWe
+ VtlR1pgkgSQLH6LhTWAlucEFGXVnd83bmoTjuSfM0r+++qlCJ0DTcbeRo7Gg7klkHorW dQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kw0f5s5wn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 22:55:24 +0000
+Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AGMtKSV025948
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Nov 2022 22:55:20 GMT
+Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
+ 2022 14:55:20 -0800
+Date:   Wed, 16 Nov 2022 14:55:18 -0800
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+CC:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <agross@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <konrad.dybcio@somainline.org>,
+        <robimarko@gmail.com>, <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH V4 2/2] firmware: qcom: scm: Add wait-queue handling logic
+Message-ID: <20221116225518.GA14011@quicinc.com>
+References: <20221114082644.28739-1-quic_sibis@quicinc.com>
+ <20221114082644.28739-3-quic_sibis@quicinc.com>
+ <20221115053336.GA29781@quicinc.com>
+ <1b462f1a-327b-4a8f-8de7-909dbad0ddf8@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 3/5] dt-bindings: nvmem: add YAML schema for the sl28
- vpd layout
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-kernel@vger.kernel.org
-References: <20221114085659.847611-1-miquel.raynal@bootlin.com>
- <20221114085659.847611-4-miquel.raynal@bootlin.com>
- <20221116205203.GA846642-robh@kernel.org> <20221116222812.45dbbcf9@xps-13>
-Content-Language: en-US
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20221116222812.45dbbcf9@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1b462f1a-327b-4a8f-8de7-909dbad0ddf8@quicinc.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SVM3yGXHAjs4FOV9cC5L2J3JSgeh1y2o
+X-Proofpoint-GUID: SVM3yGXHAjs4FOV9cC5L2J3JSgeh1y2o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-16_03,2022-11-16_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 impostorscore=0 mlxscore=0 spamscore=0 mlxlogscore=933
+ phishscore=0 adultscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211160157
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,74 +80,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Nov 16 2022 12:11, Sibi Sankar wrote:
+> Hey Guru,
+> 
+> Thanks for taking time to review the series.
+> 
+> On 11/15/22 11:03, Guru Das Srinagesh wrote:
+> >On Nov 14 2022 13:56, Sibi Sankar wrote:
+> >
+> >(snip)
+> >
+> >>+static irqreturn_t qcom_scm_irq_handler(int irq, void *data)
+> >>+{
+> >>+	int ret;
+> >>+	struct qcom_scm *scm = data;
+> >>+	struct completion *wq_to_wake;
+> >>+	u32 wq_ctx, flags, more_pending = 0;
+> >>+
+> >>+	do {
+> >>+		ret = scm_get_wq_ctx(&wq_ctx, &flags, &more_pending);
+> >>+		if (ret) {
+> >>+			dev_err(scm->dev, "GET_WQ_CTX SMC call failed: %d\n", ret);
+> >>+			goto out;
+> >>+		}
+> >>+
+> >>+		wq_to_wake = qcom_scm_lookup_wq(scm, wq_ctx);
+> >>+		if (IS_ERR_OR_NULL(wq_to_wake)) {
+> >>+			dev_err(scm->dev, "No waitqueue found for wq_ctx %d: %ld\n",
+> >>+				wq_ctx, PTR_ERR(wq_to_wake));
+> >>+			goto out;
+> >>+		}
+> >>+
+> >>+		if (flags != QCOM_SMC_WAITQ_FLAG_WAKE_ONE &&
+> >>+		    flags != QCOM_SMC_WAITQ_FLAG_WAKE_ALL) {
+> >>+			dev_err(scm->dev, "Invalid Flags found for wq_ctx: %u\n", flags);
+> >>+			goto out;
+> >>+		}
+> >>+
+> >>+		complete(wq_to_wake);
+> >
+> >Need to call complete() or complete_all() based on the flags.
+> 
+> with the current implementation we should get away with
+> just complete for now but I can add them back in the way
+> Bjorn wanted i.e. with the bool wake_all in the next
+> re-spin.
 
+Sounds good, let's consume the flags according to their intended purpose. 
 
-On 16/11/2022 21:28, Miquel Raynal wrote:
-> Hi Rob, Srinivas,
-> 
-> robh@kernel.org wrote on Wed, 16 Nov 2022 14:52:03 -0600:
-> 
->> On Mon, Nov 14, 2022 at 09:56:57AM +0100, Miquel Raynal wrote:
->>> From: Michael Walle <michael@walle.cc>
->>>
->>> Add a schema for the NVMEM layout on Kontron's sl28 boards.
->>>
->>> Signed-off-by: Michael Walle <michael@walle.cc>
->>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
->>> ---
->>>   .../nvmem/layouts/kontron,sl28-vpd.yaml       | 62 +++++++++++++++++++
->>>   .../bindings/nvmem/layouts/nvmem-layout.yaml  |  3 +
->>>   2 files changed, 65 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
->>> new file mode 100644
->>> index 000000000000..fef795e79c36
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
->>> @@ -0,0 +1,62 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
->>> +
->>> +maintainers:
->>> +  - Michael Walle <michael@walle.cc>
->>> +
->>> +description:
->>> +  The vital product data (VPD) of the sl28 boards contains a serial
->>> +  number and a base MAC address. The actual MAC addresses for the
->>> +  on-board ethernet devices are derived from this base MAC address by
->>> +  adding an offset.
->>> +
->>> +select: false
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: kontron,sl28-vpd
->>> +
->>> +  serial-number:
->>> +    type: object
->>
->>         additionalProperties: false
-> 
-> Right, I missed that one.
-> 
->> With that,
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Thanks for all the reviews!
-> 
-> Srinivas, would you add the above property while applying or do you
-> prefer me to send a v5?
+Thank you.
 
-Applied the series after adding the property.
-
---srini
-> 
-> Thanks,
-> Miquèl
+Guru Das.
