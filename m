@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E732B62C54A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2DD62C54E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:49:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239129AbiKPQsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:48:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
+        id S239176AbiKPQtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:49:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239131AbiKPQrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:47:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0E15E3DF;
-        Wed, 16 Nov 2022 08:44:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 451B0B81DFB;
-        Wed, 16 Nov 2022 16:44:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A1D0C433D6;
-        Wed, 16 Nov 2022 16:44:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668617052;
-        bh=Nc8GXmqJbp7UfwY7PkJLkx/x8A/bzoUp01OtoRt312I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PYVs2Z9iQvYDW2RRW5c7a/P0Jl8PlczcLUUj19tNQ6f3+8osJ/Mj/89xlqOMNoy9H
-         YIq5BMbvTRWImJ39nj5qdbh2l1pUy6odl6Ct2pG2S/qkqXm1hMR3x/FYjF3vcSlxDQ
-         1bfC6VPgf2IbBu+7t+YpT2eba8NyVq1iIqs+xbYcxogD0E8EU2ICUS2oA0L/WAxHaR
-         dXyfdsO4JlYRXB8V7KEJI4A0LAbJ0dD5Db8xVMf7XU087LFcwpSh/l0wpFixftW7fL
-         YjRv9/LNj6brw2RJqWSYdJK0xdNT5ONAvk17yPPyqXFitvWWVO2iy3L0MStxXO/XWj
-         +1t79CGlAIKxw==
-Date:   Wed, 16 Nov 2022 16:44:05 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Richard Fitzgerald <rf@opensource.cirrus.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, tglx@linutronix.de,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        patches@opensource.cirrus.com
-Subject: Re: [PATCH 09/12] irqchip: cirrus: Add driver for Cirrus Logic
- CS48L31/32/33 codecs
-Message-ID: <Y3UTVVHiri1xEdi1@sirena.org.uk>
-References: <20221109165331.29332-10-rf@opensource.cirrus.com>
- <87mt8zutib.wl-maz@kernel.org>
- <c0c05799-6424-7edf-01b3-e28a10907b2c@opensource.cirrus.com>
- <86pmdvow5y.wl-maz@kernel.org>
- <ef60cbdb-f506-7bd6-a8e1-c92b6963a0f4@opensource.cirrus.com>
- <86k042q1uc.wl-maz@kernel.org>
- <05ae0e20-b472-f812-1afc-ef8c2a97cdeb@opensource.cirrus.com>
- <87iljmve87.wl-maz@kernel.org>
- <Y21gwGDb5CFft0kp@sirena.org.uk>
- <87h6z5vs39.wl-maz@kernel.org>
+        with ESMTP id S239179AbiKPQsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:48:52 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CE148773
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:45:38 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id d3so22576292ljl.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:45:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lpHyPkDpsRozn0AtOsKM9S7D+d9GvrcKAUSTyqZHDGg=;
+        b=fmapstHOEOOXztW3n9wWjB69xQ8C+4OEi/RhLBWvn5thfb0TR8UOWwocX2j6cCizkg
+         MFLZdVAfENfCbW5FClp1uZNCifu6470eP8rbm/prBV2Mlnh6iO3OAEEyyOSP9UHfiYNn
+         mz9MT96rdE4vVtoFrjVKqDQZRc3hMj8fNDO1uPSZe2PPh6jRCQbY39MGKWlQAZm4OmMj
+         PBnjs1+B2OaQ6W8BoKEU8dB2f1HjLGDyEiGgGhXwVBOvmDGMICA+65W2bCSBj7duMj04
+         4BTfNaBqGq42nURcc7QAyiATV2tQahwI/ez3PKdvRznFgw0VgH01Han9ObhmXEbh7skl
+         64Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lpHyPkDpsRozn0AtOsKM9S7D+d9GvrcKAUSTyqZHDGg=;
+        b=5HVUHumPdhbmr75m5Y3LJFu4sJ9zYhl3zua1CAaZfJj0lqFQsriRU4y/2i/cvvX9Rn
+         rgcV6w4FJwsSKt5V2aFm5jmhBWXlhk8wLdcvTOJpEvvJ64j+LlxHqG+NhWwrLCAOwh4g
+         rtUPPrcrfFqziEoZ1Pj5xmmJtAIIHJnyqyRH7xnvm9ZIwbXzZrFRrEbLktZTlQkFaYCc
+         nL0Zhl4b5uETkFtZGR0J9khfTnc07zpXEXQye0WkLu89ExUzzNI0pRfPe1wpkZS9Bcx4
+         JXFqnxoa/wmahbHwbsURGOwsrQJjW9OqU8XH81VLEFjYS1Qp6bZYaDxVflhNK5k3I81k
+         LwUw==
+X-Gm-Message-State: ANoB5pn5tyod4u2wgod9YNg2ZEmtt/7B5ZWBkHrEo7FCuJKR5PLWOXHT
+        /iYa9napfsycLHIWZgzZ/VcHPw==
+X-Google-Smtp-Source: AA0mqf6SsU5kpjeZhugqBx765fzZIdK7aLH98X2Kk2/h9+YJ0GzILaHOZKbvd3izXsXKVWPoOw3i+Q==
+X-Received: by 2002:a2e:a4a4:0:b0:26e:61e:af25 with SMTP id g4-20020a2ea4a4000000b0026e061eaf25mr8779183ljm.275.1668617137298;
+        Wed, 16 Nov 2022 08:45:37 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id q23-20020a056512211700b004a2588520f5sm2676238lfr.166.2022.11.16.08.45.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 08:45:36 -0800 (PST)
+Message-ID: <5298da29-4f97-5bab-7252-380a15c06b71@linaro.org>
+Date:   Wed, 16 Nov 2022 17:45:29 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="EkEOai4hb/anVZ7n"
-Content-Disposition: inline
-In-Reply-To: <87h6z5vs39.wl-maz@kernel.org>
-X-Cookie: Ego sum ens omnipotens.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH v6 5/7] arm64: dts: qcom:
+ sdm845-db845c-navigation-mezzanine: Add navigation mezzanine dts
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        andersson@kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org,
+        vladimir.zapolskiy@linaro.org
+Cc:     sakari.ailus@iki.fi, hverkuil@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, quic_mmitkov@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221116162801.546737-1-bryan.odonoghue@linaro.org>
+ <20221116162801.546737-6-bryan.odonoghue@linaro.org>
+ <730467dc-419f-bcb6-c4d8-24951b4dde62@linaro.org>
+ <6fe6723b-842e-7a56-a15c-6b7e044c7d45@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <6fe6723b-842e-7a56-a15c-6b7e044c7d45@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,85 +83,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---EkEOai4hb/anVZ7n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Fri, Nov 11, 2022 at 08:00:10AM +0000, Marc Zyngier wrote:
-> Mark Brown <broonie@kernel.org> wrote:
-> > On Thu, Nov 10, 2022 at 06:47:20PM +0000, Marc Zyngier wrote:
+On 16/11/2022 17:43, Bryan O'Donoghue wrote:
+> On 16/11/2022 16:39, Konrad Dybcio wrote:
+>> I know you're just moving things around, but.. any reason this thing 
+>> is still disabled?
+>>
+>> Konrad
+>>> +
+>>> +        port {
+>>> +            ov7251_ep: endpoint {
+>>> +                data-lanes = <0 1>;
+>>> +/*                remote-endpoint = <&csiphy3_ep>; */ 
+> 
+> Because so is the remote-endpoint here.
+Ok, but is there anything special preventing you from adding
 
-> > > Either you describe the internal structure of your device in DT or
-> > > ACPI, and make all client drivers use the standard API, or you make
-> > > this a codec library, purely specific to your device and only used by
-> > > it. But the current shape is not something I'm prepared to accept.
+csiphy3_ep: endpoing {
+};
 
-> > ACPI gets to be a lot of fun here, it's just not idiomatic to describe
-> > the internals of these devices in firmware there and a lot of the
-> > systems shipping this stuff are targeted at other OSs and system
-> > integrators are therefore not in the least worried about Linux
-> > preferences.
+under port@3 in 845 and have it working? Does it need more driver changes?
 
-> Let me reassure the vendors that I do not care about them either. By
-> this standard, we'd all run Windows on x86.
-
-It turns out a bunch of these systems are intended to be used
-with Linux, and even where the vendor does care about Linux we
-also have to consider what's tasteful for ACPI.
-
-> > You'd need to look at having the MFD add additional
-> > description via swnode or something to try to get things going.  MFD
-
-...
-
-> > Given that swnode is basically DT written out in C code I'm not actually
-> > convinced it's that much of a win, unless someone writes some tooling to
-> > generate swnode data from DT files you're not getting the benefit of any
-
-...
-
-> > I do also have other concerns in the purely DT case, especially with
-> > chip functions like the CODEC where there's a very poor mapping between
-> > physical IPs and how Linux is tending to describe things internally at
-> > the minute.  In particular these devices often have a clock tree
-
-> I don't think this is a reason to continue on the current path that
-> pretends to have something generic, but instead is literally a board
-> file fragment with baked-in magic numbers.
-
-> An irqchip is supposed to offer services to arbitrary clients
-> (endpoint drivers) that are oblivious of the irqchip itself, of the
-> hwirq mapping, and use the standard APIs to obtain a virtual interrupt
-> number. None of that here. This is a monolithic driver, only split
-> across multiple subsystem to satisfy a "not in my backyard"
-> requirement.
-
-> If the vendors/authors want to keep the shape of the code as is, they
-> can do it outside of the irqchip code and have some library code with
-> an internal API. At least they will stop pretending that this is a
-> general purpose driver. And the existing madera code can also go in
-> the process.
-
-Yeah, I'm definitely not in the least bit convinced that the
-irqchip code is a good home for this sort of glue (especially the
-interrupt consumers) for the reasons you mention - my concern was
-more that the firmware interface also has issues, and that
-putting things into firmware is also putting them into ABI which
-is much harder to do a good job with later.
-
---EkEOai4hb/anVZ7n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmN1E1QACgkQJNaLcl1U
-h9DPewf8CpoDHHCI0FeSVsd2KhNQL3i/PMHFhg4eDzaVGsgA0IyP1yvktpJ7cS+b
-Y4n2L6pA3jUqkU3VtSsXtayGbhBSKxPnMWYIMlquLTu7Kh+09T9djk/XnLokBbnC
-V3RWe28DpZEgb+PJ9m5tjCBS9TlrqN0nHq4zpypLxMnJBS34BHweexzeT1O45o4v
-7vcHxpbnKjeruo2dXCSXdt1kt3T0DOqsYSkh0l5rsj9mv30mnjUogcwIlTeK/7CF
-BRiM9I5rEdpqO+Q656jBVuBafKBVaUlmbmIxuEFHvOYIQ7u4CjDx8pXyTLI1FMXd
-N5s5licXyOd59BWkTOMo/uWD16eJZw==
-=5F+X
------END PGP SIGNATURE-----
-
---EkEOai4hb/anVZ7n--
+Konrad
+> 
+> ---
+> bod
