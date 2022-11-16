@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF9D62BF62
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 478B462BF63
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 14:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232496AbiKPN1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 08:27:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
+        id S232974AbiKPN1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 08:27:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbiKPN1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:27:17 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B9A6557
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:27:15 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h9so29937525wrt.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:27:15 -0800 (PST)
+        with ESMTP id S232584AbiKPN1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 08:27:18 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2ADC101CC
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:27:16 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id a14so29933848wru.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 05:27:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=79X4mvUkSDO2GIWyfQ/uVOL0ox4FD7HfQwYq5sKfqpw=;
-        b=HqZs9cR09FUQo2fjDNltumJBgGtIzdcx9KC3Ausf/rXusZPUbo/tcsmj3dF0YgncUQ
-         hLag64l87Wi1TOJlHCa0qcc2j8P699zDULuIO1O7sd5qJ65l3KYs0KuvyG7Eva6sac8X
-         qSxoxcQdZvg+YUAFGR1uSUGAF1bFEyaQ+Hm9ee0oBh8NvZ7eWVteApVgKhlf/IqlVehT
-         loG22iVA57CwXoj4JXAs7klVM/aoj2BjSMIlLbWuwglTPi0L7qchWied1jAcIqgIlsxt
-         vjky5enc9pygHK3qhY0dNeVxo7Ogl4F5icqc5FCQ1FaC1TsSthqSEVBKJr/5RxMAwNQh
-         sLaQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mBRqWnCeQXInJiVIgel6GnGGi/k91jgap3VPQWddO6c=;
+        b=hbos4SMALGfn+HhAolqrMFSmMt4LinBrAODNq7G5MeG/aM1mCi1IpmtNJpYdkxbcyn
+         Ndt3tcZyFAexSG6rnsUSAX3sUH3xXiQNp7S0/DXKoxBXbVhkqOsc2dHCxd13IPnm2l6q
+         KZwetd52afKGON+kv1BglKOhrxQiCoFWU54aRXh7Hff1Xv0nXBckvVp2CLrF/Ebbbz1n
+         rXolLOsdjtXUIUH9nHgaFgE9U1x/tfCMSjRlRQPsd7fQ9YxXfIh1kEujRQIU0bP2KEWo
+         j1exyR8wmrNBBGs8+aqMzaFL31fhuNVMeNGHkViAxI1z79qH5bHAcYgqRSD8Fb5oOdWP
+         7yBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=79X4mvUkSDO2GIWyfQ/uVOL0ox4FD7HfQwYq5sKfqpw=;
-        b=NUBHLrOFgkdbzuOvr3VtLCMNEtyENFO6N1lmxqhM3WLxRYk0MAxkYetUaIaAcfyhJX
-         aPRegVaVVuUXCtH5w1+4HwNtoSbPgk6iPkiH0ZYtGci+vMWMJ/Mb+wYO+ffqnKrfQ7Jy
-         T2kj5w+Z7ckm8RFRnEsz91zR2+Nk2fNbVGP4DH8c1SLvioWbntg7eBpVZgiDAS7LLyen
-         3I7vOPDSyrPOWH82ppDTif2uEhDuK9ou7TZm6EykasJrAZT/4PWyBxuDXaTdWnXQF6XA
-         c8/0wqSepjuxo4qHPEf6pM0j9oy2nSWYZHl+hELyiUBGkEXYqnNblQBi5NrZphcWk8Ns
-         ZY0g==
-X-Gm-Message-State: ANoB5pkqTnkd45O7v6G/mm/kvceyjQOhOeUOT/VKbm99y2aXFfovfuhX
-        tY0OxxVwhTK2qhzkvrT8syTM/Z+kGWKgXw==
-X-Google-Smtp-Source: AA0mqf6EJ88AVHmgVrucPAHzCduRu/Jk8rVuOe2mSMLkBqqhdPWzD1uNA1xLwSwpYNs3DyxScE35tQ==
-X-Received: by 2002:adf:e9cc:0:b0:236:75a8:58d with SMTP id l12-20020adfe9cc000000b0023675a8058dmr14286551wrn.295.1668605234208;
-        Wed, 16 Nov 2022 05:27:14 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mBRqWnCeQXInJiVIgel6GnGGi/k91jgap3VPQWddO6c=;
+        b=w1vEojqcWIJ6ShYIC2AKdIOMLre/VzaBUY6IBdiZbF0eEVjPB6cmxq3ofoBg177yrI
+         duQWlewB2zEX0zJNR+TaGe0Aoqn+XzSzRCYPV9cmcZ1LwVvRJQYeBaITzTPm7sJNAxQx
+         1Rr6iNj/Wsyxj26i2tLBomI106lBFFNKNxT92nIyAkvpA/NjE103TX0lE3+2nS/RbELw
+         lHBFXStarXdcZhLOqkOY1QTeTSp0PWwIht2hmzFYKbw+M2aNRcLGlk+kj1i2SpebSFj/
+         KH91YyOOyNIdKB/1bLSW8vkayL1/8kfc9mDfEoHCSgv3AnDrffXz6X3zG8rc5GykOcpB
+         80jw==
+X-Gm-Message-State: ANoB5pnlTFpqBwo4IoqAtOB41Gvywt+RvxlDCNNyr+Prw/+Pxf08ij/G
+        LROJMpm+nFF4XuDuksKMhlNqhg==
+X-Google-Smtp-Source: AA0mqf4ExGpMw0FDlzzqQwlTo/pJFzVqxX+CmrbxmdoS/MOasH7ds2hbUWAGhf5hJbaooLWQuf8eWQ==
+X-Received: by 2002:a5d:6909:0:b0:23a:5a31:29eb with SMTP id t9-20020a5d6909000000b0023a5a3129ebmr13556350wru.679.1668605235346;
+        Wed, 16 Nov 2022 05:27:15 -0800 (PST)
 Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id k25-20020a05600c1c9900b003cf4d99fd2asm2425710wms.6.2022.11.16.05.27.13
+        by smtp.gmail.com with ESMTPSA id k25-20020a05600c1c9900b003cf4d99fd2asm2425710wms.6.2022.11.16.05.27.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 05:27:13 -0800 (PST)
+        Wed, 16 Nov 2022 05:27:14 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,42 +56,50 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [RFC PATCH 0/2] arm64: dts: qcom: sm8550: Add eUSB2 repeater
-Date:   Wed, 16 Nov 2022 15:27:04 +0200
-Message-Id: <20221116132706.2852434-1-abel.vesa@linaro.org>
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [RFC PATCH 1/2] arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
+Date:   Wed, 16 Nov 2022 15:27:05 +0200
+Message-Id: <20221116132706.2852434-2-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221116132706.2852434-1-abel.vesa@linaro.org>
+References: <20221116132706.2852434-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds the PMIC eUSB2 repeater and references it via
-usb-repeater property in the MTP's eUSB2 PHY.
+From: Neil Armstrong <neil.armstrong@linaro.org>
 
-This patchset depends following patchsets:
-[1] https://lore.kernel.org/all/20221116103146.2556846-1-abel.vesa@linaro.org/
-[2] https://lore.kernel.org/all/20221116114526.2679041-1-abel.vesa@linaro.org/
-[3] https://lore.kernel.org/all/20221116123019.2753230-1-abel.vesa@linaro.org/
-[4] https://lore.kernel.org/all/20221116132212.2842655-1-abel.vesa@linaro.org/
+Add nodes for the eUSB2 repeater found on the pm8550b SPMI PMIC.
 
-Abel Vesa (1):
-  arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Neil Armstrong (1):
-  arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
-
- arch/arm64/boot/dts/qcom/pm8550b.dtsi   | 5 +++++
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 7 +++++++
- 2 files changed, 12 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/qcom/pm8550b.dtsi b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
+index 16bcfb64d735..a15fab7c238b 100644
+--- a/arch/arm64/boot/dts/qcom/pm8550b.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
+@@ -55,5 +55,10 @@ pm8550b_gpios: gpio@8800 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 		};
++
++		pm8550b_eusb2_repeater: usb-repeater@fd00 {
++			compatible = "qcom,pm8550b-eusb2-repeater";
++			reg = <0xfd00>;
++		};
+ 	};
+ };
 -- 
 2.34.1
 
