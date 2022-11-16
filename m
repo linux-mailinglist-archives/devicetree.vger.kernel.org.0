@@ -2,187 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 316C762B303
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 06:56:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E0262B33D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 07:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231995AbiKPF42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 00:56:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
+        id S232197AbiKPGZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 01:25:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiKPF41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 00:56:27 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2E821837;
-        Tue, 15 Nov 2022 21:56:24 -0800 (PST)
-X-UUID: c6593fea7943441485e5496de840b9cf-20221116
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=q44V2KOaAYcD/N+xk+VWumpglKqAK6Nls/jOUYK03DQ=;
-        b=vFGnSrW4nJV/bfqQNcxabBjTXcTUmPtijIvXK8SG1rLpoCjm6BjEcFKFLLxm5tIaLdBw6OaxVoKZg8Oe4oEQ34G3lVYyODCzYLkGspO1riVmBDx5A3G2H3AbX1qvBFLp+Z2aZUPsMPlaHcwVMUJf1f0lWgQYvTKK3qvgotaBEdE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:9d3af225-3a5a-427c-a451-6988505c6a19,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACT
-        ION:release,TS:75
-X-CID-INFO: VERSION:1.1.12,REQID:9d3af225-3a5a-427c-a451-6988505c6a19,IP:0,URL
-        :0,TC:0,Content:-25,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACT
-        ION:quarantine,TS:75
-X-CID-META: VersionHash:62cd327,CLOUDID:7af24b28-7328-4d53-af97-37d3ca89e562,B
-        ulkID:2211161356190S8IP0MV,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: c6593fea7943441485e5496de840b9cf-20221116
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1930682219; Wed, 16 Nov 2022 13:56:17 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 16 Nov 2022 13:56:16 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Wed, 16 Nov 2022 13:56:15 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S232515AbiKPGZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 01:25:17 -0500
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AED31D0D3
+        for <devicetree@vger.kernel.org>; Tue, 15 Nov 2022 22:25:16 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20221116062514epoutp013b11adf173aaf02fdddfbc1eaab11248~n-JeCNND72118621186epoutp01K
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 06:25:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20221116062514epoutp013b11adf173aaf02fdddfbc1eaab11248~n-JeCNND72118621186epoutp01K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1668579914;
+        bh=qWpc8qcl6AwBZWNvnl+aNRw7/66rtCCP1RYlKzpi1rQ=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=FFBLrsKVxPw+bD8lIUJrgbbpjYJJcH0r/9iKDw8/rxzoY9TD7/T6CeI4KJqvK8nX+
+         gQXL9aaNOiYiFZ66medO+oAv7iKhM62INUS3bWEW2FksmVs2qxPVjDg/N12lNsnXBf
+         UnBYxZ9H1cfYAHx+0DtocvmVvka1cvKaQtdixfbc=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20221116062513epcas5p32ce682c3909c593bc6026d32fdb2c951~n-JdWALtG1579815798epcas5p3e;
+        Wed, 16 Nov 2022 06:25:13 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.180]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4NBtMC6F1Lz4x9Q9; Wed, 16 Nov
+        2022 06:25:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        66.48.56352.74284736; Wed, 16 Nov 2022 15:25:11 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221116061735epcas5p2dc6b5e49a6794c1b2171bc75a9789a1b~n-CylGthA1186411864epcas5p2b;
+        Wed, 16 Nov 2022 06:17:35 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221116061735epsmtrp17832c3949fbc652bae12508b13e3f78d~n-CykHNa33179531795epsmtrp1l;
+        Wed, 16 Nov 2022 06:17:35 +0000 (GMT)
+X-AuditID: b6c32a4b-5f7fe7000001dc20-33-63748247a2ef
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        20.11.14392.F7084736; Wed, 16 Nov 2022 15:17:35 +0900 (KST)
+Received: from FDSFTE302 (unknown [107.122.81.78]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221116061732epsmtip14cd11451f2b9b8c136b91b6a4caa6072~n-CvvUOiA0670206702epsmtip18;
+        Wed, 16 Nov 2022 06:17:32 +0000 (GMT)
+From:   "Sriranjani P" <sriranjani.p@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <peppe.cavallaro@st.com>, <alexandre.torgue@foss.st.com>,
+        <joabreu@synopsys.com>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <mcoquelin.stm32@gmail.com>, <richardcochran@gmail.com>
+Cc:     <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3] media: mediatek: vcodec: fix h264 cavlc bitstream fail
-Date:   Wed, 16 Nov 2022 13:56:13 +0800
-Message-ID: <20221116055613.13991-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        <linux-kernel@vger.kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        "'Pankaj Dubey'" <pankaj.dubey@samsung.com>,
+        "'Jayati Sahu'" <jayati.sahu@samsung.com>, <ravi.patel@samsung.com>
+In-Reply-To: <82801ce8-3a25-3174-65bb-239875065761@linaro.org>
+Subject: RE: [PATCH 4/4] arm64: dts: fsd: Add Ethernet support for PERIC
+ Block of FSD SoC
+Date:   Wed, 16 Nov 2022 11:47:29 +0530
+Message-ID: <04ad01d8f983$1e770c20$5b652460$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHa0oM14/tprCIIIJ9eaP02I486nwEn6ORUAXidpdkB2+iDwq4ZfYRQ
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf1DTdRjH77PvfgEtvs4JnxbZ+l4/DhLGcOAHY1Rq8jXq4tCru6xojS8b
+        ML7b7Tv80dXJaQJD5VdhuFtK/FLghIJNhYECIRyCZmloQgQIF8L8EXQcU4Q2Nov/Xs9z7+d5
+        P8/ncw8fEy5xxfxU2kgZaKWW4Pqyz/wU/Epo3H6jKry7SYqcd44CZPn5KzY60XWFgya6x3io
+        61IlCw2X3+Og/MlRDLVN23jo6pl8Dmq8PcBB11osXJQ3MM5Bxx+f5qDusgA01+cAqNz2Dw8t
+        TdsAGn3Q6mrSP4mhg21dvDdEpLXmdxY5UWDjkc3mP3hkWWMm2Vhr4pJDA61csqlyH3n//G9c
+        Mt9aC8iO8zJyYr4NI60XZgE527g2QfBheoyGUiZTBglFq3TJqbRaQcRvT9qcFBkVLguVRaMN
+        hIRWZlAKYss7CaFbU7WuXQnJLqU205VKUDIMIY2NMegyjZREo2OMCoLSJ2v1cn0Yo8xgMml1
+        GE0ZN8rCwyMiXcJP0zUTzilMXyTYk+ts4GaBo355gM+HuBx+d3JXHvDlC3E7gPllh3meYAbA
+        63WjrDzg4wrmABy2K9zsLnA4ir2iNgBnDvWwPaK/AFwa1LmZi0vh9KkTXLdIhFexYF3+98sB
+        hh/B4I2TxcDt7YPHwqEF6C5Yje+E9x7WcN3Mxl+C1SWLy84CPBr+0H7Zy6tg77HxZTMMfx6e
+        vWvBPBNJoHOimuNmEb4VPp6r9moC4UXnYcztC/EKHzg0NMDzFGyBhd3HWB5eDad6rN68GN4p
+        yPayGjZ1NXE8rIW5+w94zV6H7dctbPf8GB4MG1qknvRzsORSPcvj+zQ88mjc214Azx1/wi/D
+        ijGTl4Pg6bEZTiEgzCtWM69YzbxiBfP/bmWAXQueofRMhppiIvXraWr3f/+t0mU0guVLCIk/
+        B8ZGHoR1AhYfdALIxwiRoCrLqBIKkpV7P6cMuiRDppZiOkGk672LMPEalc51SrQxSSaPDpdH
+        RUXJo9dHyYhAQUVpiEqIq5VGKp2i9JThSR2L7yPOYq3Vf9w1MLXhVoNxzRdz2/a2d6RdnRdW
+        fDZi2+gXVFnlCOBsj0gNWTiVrfAzjTd/1OwvVC/MXriv/ib1295rLTn1HTtuOmLEBXE34qq2
+        2a9YUgLHEgsPRK5a+OTXoWE/q6Jo8JHI9DBwvMY/rsfueG123Z/v5uTe/Lr+4O7b+E77W77l
+        v7xaWDS41FtroS9/eSjlxxfv1klKzQYptlQdgXLRs31OU9v8+/bYlKCnguVZfR3FFW/3XyzI
+        VncGB9iCqJLWpH36NFvw383xIyJfS+IwnVg4rLHWLuxgzo40+NtKHXpTqXhx8c20zZN7RuSD
+        eH9MizWl5lY5Lh18YdMHqpx1Ie8RbEajlIVgBkb5L+myFPGSBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa2xLYRjHveec9pyVytHVvDZGGhO3XSoSL+YSSzixJa4JQ9B0Ry3Wbms7
+        jKCRTaamRmahma2WWrSZbLq1NbuaKcMQbDIbsdmZSzssZVPMpVPJvv3++V/yfHgoXPSBCKWS
+        VVpWrZKlSPgCwnFLEh55VKeVx+SYJcj3vgCgwkdZBCpufshDnKuHRM33zBh6VfKRhwzvunFU
+        57aT6LHDwEO2N+089PRGIR/p23t5qGj4Kg+5TCFo8L4HoBL7FxL9dtsB6v5c+3fkwTscZdc1
+        kyvETJWlA2O403aSqTa+JBmTLYOxWU/wma72Wj5TaT7KfKpv4zOGKitgbtZLGe5bHc5UNXgB
+        47WFrxNuFcQmsSnJ+1h19LJdgj2c7wOedkZ4IMdXzteBgrF6EERBegH0eM6SeiCgRHQNgJd6
+        HeQ/YwpseW3G/3EwtPx6GwhxADaed44YfDoauq8U8/2GmC7HYF9uPs8vcPocDh+06gMVL4Bl
+        lX1/BUUF0ctg10/obwfTifDY7V7MzwQdAUvP/RphIb0IVjS2BngCbLnQS/gZp+dCroML8DTo
+        7C8MnDcd+rhSnp/F9Co4PFgayEyCt325eB4INo6aMo6aMo6aMo6qmABhBZPZNI1SodRI06Qq
+        dn+URqbUZKgUUfJUpQ2MvMOc2deB0/o5qglgFGgCkMIlYuGWAo1cJEySZR5k1ak71RkprKYJ
+        hFGEZJLwsb5lp4hWyLTsXpZNY9X/XYwKCtVhrduQb9rz7Iy4MaeXK1oTGXfuE5P0R9K6yIH5
+        oBI7lVxhL+vk0AbPnajU1e71RVLnzIiwiOXtTQOJjWZtTc6n9Nl9Dme8607c3bVKcVYX12AK
+        G2dxD8THvljcYZhyrLhSTqY8MsyYt4QQyF+sWRmZ4EpIEClruovCdQt15Ue0xT1LT876EpSd
+        uik0ZGN4tOXQgk5L2YHv6f2ZnomTCWTYPV4cP5Rn0yryQy7CanzVs4Vg8/bysPWqr3GzVmJW
+        Z2RJbObU2jwVuPbVUWGcf3bo8hWTJLYaDJWtSO8cFAzEMPks7vIeieg5v+Mg2lvd8dp7+GZ/
+        Qtvx4aGi9M3BWRJCs0cmnYOrNbI/nuYZSH0DAAA=
+X-CMS-MailID: 20221116061735epcas5p2dc6b5e49a6794c1b2171bc75a9789a1b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221104115909epcas5p25a8a564cd18910ec2368341855c1a6a2
+References: <20221104120517.77980-1-sriranjani.p@samsung.com>
+        <CGME20221104115909epcas5p25a8a564cd18910ec2368341855c1a6a2@epcas5p2.samsung.com>
+        <20221104120517.77980-5-sriranjani.p@samsung.com>
+        <82801ce8-3a25-3174-65bb-239875065761@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some cavlc bistream will decode fail when the frame size is smaller than
-20 bytes. Need to add pending data at the end of the bitstream.
 
-For the minimum size of mapped memory is 256 bytes(16x16), adding four bytes data
-won't lead to access unknown virtual memory.
 
-Fixes: 59fba9eed5a7 ("media: mediatek: vcodec: support stateless H.264 decoding for mt8192")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
----
-changed with v2:
-- using flag to separate, not compatible name.
-- replace small with smaller.
----
- .../vcodec/vdec/vdec_h264_req_multi_if.c      | 33 +++++++++++++++++--
- 1 file changed, 30 insertions(+), 3 deletions(-)
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+> Sent: 04 November 2022 18:17
+> To: Sriranjani P <sriranjani.p@samsung.com>; peppe.cavallaro@st.com;
+> alexandre.torgue@foss.st.com; joabreu@synopsys.com;
+> davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+> pabeni@redhat.com; mcoquelin.stm32@gmail.com;
+> richardcochran@gmail.com
+> Cc: netdev@vger.kernel.org; linux-stm32@st-md-mailman.stormreply.com;
+> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Rob
+> Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; devicetree@vger.kernel.org; Pankaj
+> Dubey <pankaj.dubey@samsung.com>; Jayati Sahu
+> <jayati.sahu@samsung.com>
+> Subject: Re: [PATCH 4/4] arm64: dts: fsd: Add Ethernet support for PERIC
+> Block of FSD SoC
+> 
+> On 04/11/2022 08:05, Sriranjani P wrote:
+> > The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP,
+> > one in
+> > FSYS0 block and other in PERIC block.
+> >
+> > Adds device tree node for Ethernet in PERIC Block and enables the same
+> > for FSD platform.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Richard Cochran <richardcochran@gmail.com>
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> > Signed-off-by: Jayati Sahu <jayati.sahu@samsung.com>
+> > Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> > ---
+> 
+> Same comment apply.
+[Sriranjani P] Will be fixed in the next version.
+> 
+> Best regards,
+> Krzysztof
+[Sriranjani P] Thank you for the review comments.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-index 2b7576265f48..0e7a70862525 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-@@ -150,6 +150,7 @@ struct vdec_h264_slice_share_info {
-  * @dpb:		decoded picture buffer used to store reference
-  *			buffer information
-  *@is_field_bitstream:	is field bitstream
-+ * @is_need_pending_data: add startcode for cavlc bistream when bs size is smaller than 20 bytes
-  */
- struct vdec_h264_slice_inst {
- 	unsigned int slice_dec_num;
-@@ -169,6 +170,7 @@ struct vdec_h264_slice_inst {
- 
- 	struct v4l2_h264_dpb_entry dpb[16];
- 	bool is_field_bitstream;
-+	bool is_need_pending_data;
- };
- 
- static int vdec_h264_slice_fill_decode_parameters(struct vdec_h264_slice_inst *inst,
-@@ -395,6 +397,7 @@ static void vdec_h264_slice_get_crop_info(struct vdec_h264_slice_inst *inst,
- 
- static int vdec_h264_slice_init(struct mtk_vcodec_ctx *ctx)
- {
-+	struct device *dev = &ctx->dev->plat_dev->dev;
- 	struct vdec_h264_slice_inst *inst;
- 	int err, vsi_size;
- 
-@@ -423,6 +426,16 @@ static int vdec_h264_slice_init(struct mtk_vcodec_ctx *ctx)
- 	inst->resolution_changed = true;
- 	inst->realloc_mv_buf = true;
- 
-+	/* Need to add pending data at the end of bitstream when bs_sz is small than
-+	 * 20 bytes for cavlc bitstream, or lat will decode fail. This pending data is
-+	 * useful for mt8192 and mt8195 platform.
-+	 *
-+	 * cavlc bitstream when entropy_coding_mode_flag is false.
-+	 */
-+	if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec") ||
-+	    of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
-+		inst->is_need_pending_data = true;
-+
- 	mtk_vcodec_debug(inst, "lat struct size = %d,%d,%d,%d vsi: %d\n",
- 			 (int)sizeof(struct mtk_h264_sps_param),
- 			 (int)sizeof(struct mtk_h264_pps_param),
-@@ -545,6 +558,19 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 	return 0;
- }
- 
-+static void vdec_h264_insert_startcode(struct vdec_h264_slice_inst *inst, unsigned char *buf,
-+				       size_t *bs_size, struct mtk_h264_pps_param *pps)
-+{
-+	if (!inst->is_need_pending_data || pps->entropy_coding_mode_flag || *bs_size > 20)
-+		return;
-+
-+	buf[*bs_size] = 0;
-+	buf[*bs_size + 1] = 0;
-+	buf[*bs_size + 2] = 1;
-+	buf[*bs_size + 3] = 0xff;
-+	(*bs_size) += 4;
-+}
-+
- static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 				      struct vdec_fb *fb, bool *res_chg)
- {
-@@ -588,9 +614,6 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	}
- 
- 	inst->vsi->dec.nal_info = buf[nal_start_idx];
--	inst->vsi->dec.bs_buf_addr = (u64)bs->dma_addr;
--	inst->vsi->dec.bs_buf_size = bs->size;
--
- 	lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
- 	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
- 
-@@ -598,6 +621,10 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	if (err)
- 		goto err_free_fb_out;
- 
-+	vdec_h264_insert_startcode(inst, buf, &bs->size, &share_info->h264_slice_params.pps);
-+	inst->vsi->dec.bs_buf_addr = (uint64_t)bs->dma_addr;
-+	inst->vsi->dec.bs_buf_size = bs->size;
-+
- 	*res_chg = inst->resolution_changed;
- 	if (inst->resolution_changed) {
- 		mtk_vcodec_debug(inst, "- resolution changed -");
--- 
-2.18.0
 
