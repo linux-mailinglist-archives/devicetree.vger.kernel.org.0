@@ -2,82 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8D6762C263
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 923DD62C283
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 16:29:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234099AbiKPPXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 10:23:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42032 "EHLO
+        id S234589AbiKPP3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 10:29:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233087AbiKPPXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:23:01 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0274FF9C
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 07:22:59 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id t25so44850655ejb.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 07:22:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zq32idYhytase3b+qGwHGuurayWxlLOgtL0nhKOUPZw=;
-        b=SD1QmYdEeGeZkRRlfzP1WDK6gZbqXe+Rc0b/4skmq1BGZUXJEwjvrRmKqnl73yirK5
-         0v0G95fVtjdkaWCOJZt8Y6TU3kJtJtH1IYUOK91P8TL69q4bvL/44YdN6W5MSoEkbvjh
-         R48xLNh6d6uiwKzEtYtcsaMVvaGhVGsqVhSq6TgAGABArSQV7vFgvswuMEe4/MiSCyix
-         ro6Jzhck2qEUO2lVxYwY4RWQNUSnHy3wGvBAEt6ygYN53hVZlj/wlhdRlQqqtUEeGrRR
-         B2I6rCp1q/j4XRNHTp1og00Ncf2U4hRSRqd0PKc2QsIb7gMEBsHhYyPcKUBYDK3x9Qju
-         vlJA==
+        with ESMTP id S232125AbiKPP3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 10:29:24 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60FE13F29;
+        Wed, 16 Nov 2022 07:29:23 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id m204so18859326oib.6;
+        Wed, 16 Nov 2022 07:29:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=zq32idYhytase3b+qGwHGuurayWxlLOgtL0nhKOUPZw=;
-        b=E26FDnDSnf2dT5XTRDlPN+y4Pj9d3c1/IxvmfMIFT7VnywKPwM0bZ+xc3Gb7iP9KfT
-         49xhLX1NtFIiwAApCmG/k45a7gKvVbKJZpCuxnpscSjPHN2NSoCmxrT4c7XJ02wCUjSG
-         rtZI2ZMG6+GzHocdPH5sOyaPel2I/tjTf5klEJjSLG4leRuvo4ViIoMD2eJZWGkPcV21
-         BQrpxyKNTxqVLMJuu9fGXiU4snTF8xsHfrqTiMbwbO0mPfSX5Br9d43siU8rFvh5O3kP
-         RBEPm6cz0SK4uLw52Q7J4dQCIUrrOEdf0I177kT+7uZsKnHMltJSMXwq/MaqEZMW7CG1
-         Emrg==
-X-Gm-Message-State: ANoB5pmP/6BC8NtaFv0s3LZzk6a+g/zOZbBJ9Aak4/tBXq2jYa3nQq9f
-        gd+T4Gmk1RFDWREy/yuooAi2S4kInZsYQKoh
-X-Google-Smtp-Source: AA0mqf4I3JZIMtbUB5DE0eyTSH8bZV5es/Xu7YAZ3I6Y7sgJ5deGux9Vp+UzHNb6PaneVhFeE3mtmA==
-X-Received: by 2002:a17:906:4e0b:b0:7ad:7d4a:ec2c with SMTP id z11-20020a1709064e0b00b007ad7d4aec2cmr17811442eju.710.1668612177865;
-        Wed, 16 Nov 2022 07:22:57 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id s1-20020a056402164100b004616cce0a26sm7570818edx.24.2022.11.16.07.22.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 07:22:57 -0800 (PST)
-Message-ID: <744d3b6b-8543-0cec-da3b-3a08e2892103@linaro.org>
-Date:   Wed, 16 Nov 2022 16:22:50 +0100
+        bh=lhDySqSDSUYsaxWCzXj2OJlpzivhZzIQphmJiTKHg0M=;
+        b=0oXJfsvTUCwbVrp+1rg2DKXfHT1Ctp4GWH5Q0NW0sNvjiB45lmxubZhCLclotcdE1O
+         X1cO8wxZcwUgceSdiwHzr7fkHBlUBvKZxPFQbx09GEiu+uttSaGdbT8Xb7Gj3Q0+XcUY
+         e0S3y22+tB7HNhy+qpK0lAKCaU1XRggE0VbQyq1jNVNgx1U71EbBypRh7+QSEHpk3ugz
+         2zUmOhV06EufaP3ZBdD36oybzrjRKKgBHb5WiDBdBJy/ia4JwXxwCOrLl/qiEyalrXOM
+         p6fp/hbL+AmeXcDTPlyvK7Bm7RitqhPFxVaMBlKqcZnPPd5DIU+jS7NprwFs3FeCq/c7
+         Jgzg==
+X-Gm-Message-State: ANoB5pmRNartTgRWXrhFBiJcEZnI6d6F0QhlO2wapLwB6OfJ10KYMT5m
+        UrpEcNggSL8dHMPTqiKnz6jj0KLH+Q==
+X-Google-Smtp-Source: AA0mqf7hFogxRunHKFn+f7/1NLzXGKAXDF5UC4vKAZPSXWwAD9p3mulacMhR4rahSSQ8O8MFvcgiVA==
+X-Received: by 2002:aca:3442:0:b0:359:ca6a:7fc0 with SMTP id b63-20020aca3442000000b00359ca6a7fc0mr1869973oia.215.1668612563175;
+        Wed, 16 Nov 2022 07:29:23 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 33-20020a9d0124000000b0066c495a651dsm6635906otu.38.2022.11.16.07.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 07:29:22 -0800 (PST)
+Received: (nullmailer pid 4083499 invoked by uid 1000);
+        Wed, 16 Nov 2022 15:29:23 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: sdm632: Add device tree for
- Motorola G7 Power
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Gabriela David <ultracoolguy@disroot.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org
-References: <20221116145616.17884-1-luca@z3ntu.xyz>
- <20221116145616.17884-9-luca@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221116145616.17884-9-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+In-Reply-To: <20221116115046.2687244-1-abel.vesa@linaro.org>
+References: <20221116115046.2687244-1-abel.vesa@linaro.org>
+Message-Id: <166861229241.4046311.14461609241498645073.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Add SM8550 compatible
+Date:   Wed, 16 Nov 2022 09:29:23 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,328 +66,88 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 16/11/2022 15:56, Luca Weiss wrote:
-> From: Gabriela David <ultracoolguy@disroot.org>
+On Wed, 16 Nov 2022 13:50:46 +0200, Abel Vesa wrote:
+> Add compatible for EPSS CPUFREQ-HW on SM8550.
+> Also document the interrupts.
 > 
-> Add device tree for the Motorola G7 Power (ocean) smartphone. This
-> device is based on Snapdragon 632 (sdm632) SoC which is a variant of
-> MSM8953.
-> 
-> Signed-off-by: Gabriela David <ultracoolguy@disroot.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../boot/dts/qcom/sdm632-motorola-ocean.dts   | 287 ++++++++++++++++++
->   2 files changed, 288 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sdm632-motorola-ocean.dts
+>  .../devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml       | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index bed490c095dd..d125ea98ce3b 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -126,6 +126,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm632-motorola-ocean.dts b/arch/arm64/boot/dts/qcom/sdm632-motorola-ocean.dts
-> new file mode 100644
-> index 000000000000..7ec7ec0ef2d5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm632-motorola-ocean.dts
-> @@ -0,0 +1,287 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/dts-v1/;
-> +
-> +#include "sdm632.dtsi"
-> +#include "pm8953.dtsi"
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "Motorola G7 Power";
-> +	compatible = "motorola,ocean", "qcom,sdm632";
-> +	chassis-type = "handset";
-> +	qcom,msm-id = <349 0>;
-> +	qcom,board-id = <0x141 0xc100>;
-> +	qcom,pmic-id = <0x10016 0x25 0x00 0x00>;
-> +
-> +	backlight: backlight {
-> +		compatible = "led-backlight";
-> +		leds = <&led>;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer@90001000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x90001000 0 (720 * 1520 * 3)>;
-> +
-> +			width = <720>;
-> +			height = <1520>;
-> +			stride = <(720 * 3)>;
-> +			format = "r8g8b8";
-> +
-> +			power-domains = <&gcc MDSS_GDSC>;
-> +
-> +			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_MDSS_AXI_CLK>,
-> +				 <&gcc GCC_MDSS_VSYNC_CLK>,
-> +				 <&gcc GCC_MDSS_MDP_CLK>,
-> +				 <&gcc GCC_MDSS_BYTE0_CLK>,
-> +				 <&gcc GCC_MDSS_PCLK0_CLK>,
-> +				 <&gcc GCC_MDSS_ESC0_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_key_default>;
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		/delete-node/ memory@85b00000;
-> +
-> +		memory@84300000 {
-> +			reg = <0x0 0x84300000 0x0 0x2000000>;
-> +			no-map;
-> +		};
-> +
-> +		memory@90001000 {
-> +			reg = <0x0 0x90001000 0x0 (720 * 1520 * 3)>;
-> +			no-map;
-> +		};
-> +
-> +		memory@eefa1800 {
-> +			reg = <0x00 0xeefa1800 0x00 0x5e800>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@ef000000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xef000000 0x0 0xbf800>;
-> +			console-size = <0x40000>;
-> +			pmsg-size = <0x40000>;
-> +			record-size = <0x3f800>;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&hsusb_phy {
-> +	vdd-supply = <&pm8953_l3>;
-> +	vdda-pll-supply = <&pm8953_l7>;
-> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c_3 {
-> +	status = "okay";
-> +
-> +	touchscreen@41 {
-> +		compatible = "ilitek,ili2117";
-> +		reg = <0x41>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <65 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		touchscreen-inverted-x;
-> +	};
-> +};
-> +
-> +&i2c_5 {
-> +	status = "okay";
-> +
-> +	led-controller@36 {
-> +		compatible = "ti,lm3697";
-> +		reg = <0x36>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		led: led@1 {
-> +			reg = <1>;
-> +			default-trigger = "backlight";
-> +			function = LED_FUNCTION_BACKLIGHT;
-> +			led-sources = <0 1 2>;
-> +		};
-> +	};
-> +};
-> +
-> +&pm8953_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators {
-> +		compatible = "qcom,rpm-pm8953-regulators";
-> +
-> +		vdd_l1-supply = <&pm8953_s3>;
-> +		vdd_l2_l3-supply = <&pm8953_s3>;
-> +		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-> +		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-> +		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-> +
-> +		pm8953_s3: s3 {
-> +			regulator-min-microvolt = <984000>;
-> +			regulator-max-microvolt = <1240000>;
-> +		};
-> +
-> +		pm8953_s4: s4 {
-> +			regulator-min-microvolt = <1036000>;
-> +			regulator-max-microvolt = <2040000>;
-> +		};
-> +
-> +		pm8953_l1: l1 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1050000>;
-> +		};
-> +
-> +		pm8953_l2: l2 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1175000>;
-> +		};
-> +
-> +		pm8953_l3: l3 {
-> +			regulator-min-microvolt = <925000>;
-> +			regulator-max-microvolt = <925000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm8953_l5: l5 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l6: l6 { // other ocean models use l22 instead
-/* C-style comments, please */
-+ please clarify what it is used for
-+ all the comments I made to the previous 6 DTs
 
-Konrad
-> +			regulator-always-on;
-> +			regulator-boot-on;
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l7: l7 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1900000>;
-> +		};
-> +
-> +		pm8953_l8: l8 {
-> +			regulator-min-microvolt = <2900000>;
-> +			regulator-max-microvolt = <2900000>;
-> +		};
-> +
-> +		pm8953_l9: l9 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3300000>;
-> +		};
-> +
-> +		pm8953_l10: l10 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <3000000>;
-> +		};
-> +
-> +		pm8953_l11: l11 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l12: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l13: l13 {
-> +			regulator-min-microvolt = <3125000>;
-> +			regulator-max-microvolt = <3125000>;
-> +		};
-> +
-> +		pm8953_l16: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l17: l17 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l18: l18 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2700000>;
-> +			regulator-always-on;
-> +			regulator-boot-on;
-> +		};
-> +
-> +		pm8953_l19: l19 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1350000>;
-> +		};
-> +
-> +		pm8953_l22: l22 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-always-on;
-> +		};
-> +
-> +		pm8953_l23: l23 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	vmmc-supply = <&pm8953_l8>;
-> +	vqmmc-supply = <&pm8953_l5>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-> +
-> +	vmmc-supply = <&pm8953_l11>;
-> +	vqmmc-supply = <&pm8953_l12>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <96 4>;
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+cpufreq@17d43000: interrupts-extended: [[215, 0], [216, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
+	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
+	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
+
+cpufreq@17d43000: interrupts-extended: [[221, 0], [222, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
+
+cpufreq@17d43000: interrupts-extended: [[223, 0], [224, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
+
+cpufreq@17d43000: interrupts-extended: [[226, 0], [227, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
+
+cpufreq@17d43000: interrupts-extended: [[227, 0], [228, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
+
+cpufreq@17d43000: interrupts-extended: [[228, 0], [229, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
+
+cpufreq@17d43000: interrupts-extended: [[229, 0], [230, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
+
+cpufreq@17d43000: interrupts-extended: [[230, 0], [231, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
+
+cpufreq@17d43000: interrupts-extended: [[231, 0], [232, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
+
+cpufreq@17d43000: interrupts-extended: [[234, 0], [235, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
+
+cpufreq@17d43000: interrupts-extended: [[235, 0], [236, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
+
+cpufreq@17d43000: interrupts-extended: [[256, 0], [257, 0]] is too short
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
+
+cpufreq@17d91000: compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+
+cpufreq@18591000: compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+	arch/arm64/boot/dts/qcom/sm8350-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dtb
+	arch/arm64/boot/dts/qcom/sm8350-mtp.dtb
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dtb
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dtb
+
