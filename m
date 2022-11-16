@@ -2,99 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65DD62BCCD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AEF662BCDD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:02:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233683AbiKPMA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45332 "EHLO
+        id S231985AbiKPMCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:02:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233912AbiKPMAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:00:02 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2367C5289F
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:52:09 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id a15so21484739ljb.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 03:52:09 -0800 (PST)
+        with ESMTP id S233504AbiKPMBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:01:43 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C42DD17591;
+        Wed, 16 Nov 2022 03:54:08 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id j5-20020a05600c410500b003cfa9c0ea76so1283553wmi.3;
+        Wed, 16 Nov 2022 03:54:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9l4mQv9bpo9LzKh5UykNs3/PvBpNgjAZ8H6ymHxaNGo=;
-        b=qJGuaKdHbo2gV1Gg1Uu5x7IHAm1tLva5UrbbDI5QDEjpDJYvJHijTlpFVbK1gEkx/Y
-         DEFQ6wW6A+vms0D3V1CU3c7sF10nXfSNZU25BKvbRbZSU8fOnBGu7gutvlqYG5S0qWdU
-         iPoNYwJ7rtkPoLsB5NCV9BbJcoZAbRxt39pTOC0hNjktdM2edzn/JXrpiK7nsBcLqNnL
-         T7Ci7ZLV3l48QSTP1/24oWiGROfwbh+8Mp2JPDUYHvalzjVRFDqmR0o44EmCeT/qStE8
-         q2+6An13wpGskmpS3lsmuKE2IodXou4oQRCI0OtUEEoFw27OrdIdbardCIU7ne6Ii0zo
-         OUZw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7wEkV2c3AfMucGlumus3cVjWRFFJNhVHrUv2f8wN7nw=;
+        b=grgLt3sVh7wjmdJbHY/NRs3ddxoX97jlWnK/a7aKZJ/UAyVoz1fjYCGnIunNcjaqF/
+         z6G/Ek8IwLPoJNEC8ODeU0I3/CHbRerA4YWs/PJkEcFciv7LS/KXfqa3f9LOhr5CjVSm
+         dSlG/WbS901ud0Sq1ZmBwfkqzKKcaZ0rqaDj7xag14hVP9XENprCLPGs/3FTo2pfLCsM
+         ZvRSlNxtNvzegfLzmHx4oMdMHnldjn8abMmelVcvk1QHyOk2yJFFKG+B5sU4vH1a7qb2
+         tapChOVKtfIueChWVw8V9bzp6Bp94wVVgMi/xJle0BpxINy8ijlteNhvfJTm5kkZERfX
+         ULiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9l4mQv9bpo9LzKh5UykNs3/PvBpNgjAZ8H6ymHxaNGo=;
-        b=Oc/X87UvaHLIdjQ2vPry3q/EqEbGU3/vx0e4waBxViGhJ3/A6vikn4TDFCYygo07Nh
-         CnlFrwhSgc0QcWZHNtpbUlRi9wdW3WppcXHKauku0vGmwAy2ap28DSc+bqsYaPkKZWBs
-         +wVm5WN3GrGxGpRcDziATwp73iCqL4hwjN0gs26Lr74Ls14U73ceXF7zBaX0nxnbkpju
-         uS9diMStFJQ0SDx11jrliuv8lwo3WHKhyv434nYOIiCTw4aMl7L5NuWoSnKX/4SffxMe
-         fc468df+JYqSb0BjmF+YXO9B+rMEfJiHM0pg3arJ+/1vTKgqFzf+4CsiUzJTXx72WXfR
-         V3ag==
-X-Gm-Message-State: ANoB5pkCny0MwP2DZ/mWRCPMTz8C7tXELxpK0WNrO8t+AQIlRuaTCafY
-        WbAnimNvSHPE2ZzVxwhDuzjj7cJqc/g4wOzF
-X-Google-Smtp-Source: AA0mqf40ymbSD4mZc17qz9uvVeqDU4zca4rDxD4azyNRwWW2p6AjRfYwkg5vNSqxHP173tFCRMK7Og==
-X-Received: by 2002:a05:651c:14d:b0:277:6c39:e543 with SMTP id c13-20020a05651c014d00b002776c39e543mr8173866ljd.513.1668599527466;
-        Wed, 16 Nov 2022 03:52:07 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b3b2a9f506sm2542947lfg.4.2022.11.16.03.52.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 03:52:07 -0800 (PST)
-Message-ID: <9c787dcf-f294-a93e-b357-2c04177b15ba@linaro.org>
-Date:   Wed, 16 Nov 2022 12:52:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 2/4] dt-bindings: qcom-qce: document clocks and
- clock-names as optional
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7wEkV2c3AfMucGlumus3cVjWRFFJNhVHrUv2f8wN7nw=;
+        b=YE03+4Z479ZGahhpHquLc/9xidNXy5DUhQLV1ftejWKzcuKlppMw0o/JnGSXg7Z/1i
+         tpu+JH8E4z0sLvCd7E5S9AC0CLmC76BSOqzWnhU9n6P5PAXMYRKTLXvXXqeKzu9fTPND
+         MBkYizzslW7XFBZeeKqM06eg9q5/xYWeWwjhhLkuWXK8IRrVUBo+esGEQv7MgI0/Kh5J
+         KjkjCelWsU0dZxS7HF6DIE0BGtsE6ia17/FDpp/m3OjyK39zQWcSbdVROVSTGqn7tUwH
+         mU+hVnxN9RCXk8eu7sgLcsUwSYrdct0n8KDZr3Apyv9qSTj4+Rz08z5bJFoRO7ezCVxB
+         zdPQ==
+X-Gm-Message-State: ANoB5pmmJDk1jJ2KqUwLPaVVt7lYCF4bxPusNI/xQSf/9MzHC8LreDaJ
+        k5b7Imvm/tqx8s+NpLUjG18=
+X-Google-Smtp-Source: AA0mqf7tDkB72ajHvvjpyiY0tN+GQDsl7h9BnPwo5djqndGf+647IY0mPyIrBH6UMTljX67Pkt/0RQ==
+X-Received: by 2002:a05:600c:42d2:b0:3cf:c907:a05a with SMTP id j18-20020a05600c42d200b003cfc907a05amr1823902wme.177.1668599647192;
+        Wed, 16 Nov 2022 03:54:07 -0800 (PST)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id bt14-20020a056000080e00b002417e7f0685sm14576047wrb.9.2022.11.16.03.54.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 03:54:06 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-qce-v1-0-31b489d5690a@linaro.org>
- <20221114-narmstrong-sm8550-upstream-qce-v1-2-31b489d5690a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-qce-v1-2-31b489d5690a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] Misc SOQuartz Enablement
+Date:   Wed, 16 Nov 2022 12:53:33 +0100
+Message-Id: <20221116115337.541601-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 11:23, Neil Armstrong wrote:
-> On certain Snapdragon processors, the crypto engine clocks are enabled by
+This series adds the following:
+ * SOQuartz Blade bindings (patch 1)
+ * SOQuartz Blade device tree (patch 2)
+ * SOQuartz Model A bindings (patch 3)
+ * SOQuartz Model A device tree (patch 4)
 
-If by "enabled" you mean "controlled", then looks fine. Otherwise
-without exclusive control by firmware, clock enabled e.g. by firmware or
-bootloader might still be disabled by SoC. Which case is here?
+The name of this patch series is a bit inaccurate as it has
+evolved, now entirely consisting of new baseboards for the
+SOQuartz. Nevertheless I chose to keep it as to make it easier
+for maintainers to track what this is a follow-up to.
 
-Probably we should have dedicated compatibles for that.
+In V3, we add another official PINE64 baseboard (I'm sorry),
+as it depended on the now merged patches, and I didn't want
+to needlessly cause conflicts with the blade patches, so it
+goes in the same series. The added baseboard is the SOQuartz
+"Model A", which is not to be confused with the Quartz64 Model A.
 
-Best regards,
-Krzysztof
+This will be the last new board added through this series as I
+don't want to keep expanding it. Any prospective v4 will only
+contain fixes in response to reviews.
+
+For anyone fancying a deeper dive during a review, the schematics
+for Blade[1] and Model A[2] are publicly available. The SoM
+schematics are also officially released[3].
+
+[1]: https://files.pine64.org/doc/quartz64/SOQuartz-BLADE-Baseboard-Schematic-20220522.pdf
+[2]: https://files.pine64.org/doc/quartz64/SOQuartz-Model-A-Baseboard-Schematic-20220522.pdf
+[3]: https://files.pine64.org/doc/quartz64/SOQuartz_SOM_schematic_v1.1_20210816.pdf
+
+Changes to v2:
+ - alphabetically sort blade binding
+ - add git commit message to blade binding
+ - add SOQuartz Model A bindings
+ - add SOQuartz Model A device tree
+ - drop patches that have been applied by Heiko
+Changes to v1:
+ - added pcie-clkreq-h to soquartz pinctrl
+ - added blade base board (by Andrew "neggles" Powers-Holmes)
+
+Andrew Powers-Holmes (2):
+  arm64: dts: rockchip: Add SOQuartz blade board
+  arm64: dts: rockchip: rk3566: Add SOQuartz Model A baseboard
+
+Nicolas Frattaroli (2):
+  dt-bindings: arm: rockchip: Add SOQuartz Blade
+  dt-bindings: arm: rockchip: Add SOQuartz Model A
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/rk3566-soquartz-blade.dts    | 194 +++++++++++++++
+ .../dts/rockchip/rk3566-soquartz-model-a.dts  | 232 ++++++++++++++++++
+ 4 files changed, 430 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts
+
+-- 
+2.38.1
 
