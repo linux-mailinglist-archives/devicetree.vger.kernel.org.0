@@ -2,155 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E10362C5D0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA77762C5F8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237845AbiKPREL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 12:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
+        id S232958AbiKPRKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 12:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234249AbiKPREF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:04:05 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B4F28727
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:03:55 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id a15so22608728ljb.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:03:55 -0800 (PST)
+        with ESMTP id S233533AbiKPRKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:10:02 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A4CB30F42
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:09:59 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id z24so22669203ljn.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n2wcVN4J1tlPV+AnzZftcSxUop+5QUHzY6UpVrjVgB4=;
-        b=qSCI/Ap9+bY+OClBVM/hGbIgAW6bxfs6GLL/gFVLdw0rg+e4T5y9bro336vZFMXwWr
-         ejPJs6VxMDFRuBGn2xoWXrTUalv6MedN0AZNl0IXkUAvIk9AGllsl0dyLYjXZ7g7gRB7
-         gDaRwXl1HUK80QoVZw673BHz1azHO8rNimQhtxkJMC6FfgcewCJTMuVmtZY2dXaOEIDg
-         6AQyBOiIyu1tIb8BYrt3rNgThGagWxbj1bXhUUjO4/1g9p10usSa85nDzOiLhzpitPsK
-         /3k+9sSviOMDHkKAVN6FE4POlEPUQaKUnWc+MtUEkAKaZvIvdiCGy6dXu5K9GTg3Jc0Z
-         N7BA==
+        bh=1r4D8rfU1yDWW4dWo6ifO0ci3Mgqwv1FlOWu/XE/YOw=;
+        b=G1FxQufYFuB4pLtu9UXpQOAAM8HrhD3xOV3pzYACokkQ1QMPy7Mgfw2xw4Q7hEuSQP
+         L0ocuI43O8YbZNeKeMNKVjI36i4GQj169v4C2XqrfIUL4gzsRyJixe+V3zhinBCzxl6v
+         Ld8m4ZUH2qHxAHsoUhMjQxHMMFAhNkblj6HwhZ69mb6bsZxMt7dU/EYfW8accfSX3ucy
+         QbSDN7wmgjt0oMk+bcysUKWQ7p0NFU+yQBUmlZa/4h3snT2JjWXEyAFzBUjVt1eR7YFj
+         5pHFZFQ42RtIexX62TZa40kn7bqMOWtchDlll45/6NXIWfmvg1g+bLUQ3M0QnCySVyP3
+         ISsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n2wcVN4J1tlPV+AnzZftcSxUop+5QUHzY6UpVrjVgB4=;
-        b=4NsvwCiooSeKAT3/C86w0JOe4BuABT6cX3D2AoYPvgMykQuew5n11fpobCRtfLFeeG
-         u/EmCQ5Ps+ChcEpeHJTsPtPcm5aWe5C3vrmV6lYpAlQ7ZLV2k+o/UabIWxw4/DsPTAvA
-         HKRyiZxIW5Ff/mv1EFUiiIwMNXhhOIIar9I54Uv41L1YealQlRIV4fwTvLzxtLkTOAml
-         buo36aMeKuAuFdWIIcQy40/vY9DidRJjJ5zosXOMhVRryovbAJgO+fTbBU/EiVSSvo6n
-         XGQ/GfIj4+ffnUm9oC6tr6KuZKt26yyHW1Ci49AuyWBprk+uCV50fLfVoJcQdpY2VrY8
-         ZW4A==
-X-Gm-Message-State: ANoB5plGkYHddxbiFj5Cg2y5RPIPwXZtfrGduM8kHUmaHqCnRgHaURBJ
-        LXLMiaM61f4n2bf9EIMTz5ydqQ==
-X-Google-Smtp-Source: AA0mqf43BimP4m8KN0QSNc/gcqbkkuIydkNRTjo8awyHvTjZCw6qIVb6HTwXZGJIOSBtyCiP0FXF6A==
-X-Received: by 2002:a2e:9941:0:b0:277:5059:82c9 with SMTP id r1-20020a2e9941000000b00277505982c9mr8606686ljj.218.1668618234274;
-        Wed, 16 Nov 2022 09:03:54 -0800 (PST)
+        bh=1r4D8rfU1yDWW4dWo6ifO0ci3Mgqwv1FlOWu/XE/YOw=;
+        b=gHANFkIrNMnvunePgQA7aqtGr28KZZvwZ4CLtzfFljPser+j1oZwbzz6BGtZlbRI5Y
+         oi41qdgE3JIaBfY4DjxvZQKkFtz1ImeiAy+jxlQa6zMBa0FMLBulh6IhxsBfYDtU9oCt
+         le9Ft9qMUMmxJoejPQxKFLh/BVSc7XsUTTwf2SmF/bIfjKbtO17ouWeS52Nv/O09DfJ9
+         0jwD+vK4I1r3cLhqPTSD55sR5ulBIC/4oBHOIkzPRv8PRZujKb4womadaZs+6wIDhWj7
+         bKL4g+I+L5LS1IgZ3GwFnTR8QnDt7MBSGEFD98FZms6eCAnFuZwJPKpnU98+HplRSddB
+         9K+w==
+X-Gm-Message-State: ANoB5pmq3aTHWp5+1pBNLVM1yduPe7BDIEb3AT67JI4o276ChWsspmJB
+        mvyelVW2NVDfAIyLtKz2KWzNJg==
+X-Google-Smtp-Source: AA0mqf729AblIIVVU3rMV2SnXkffUGszfKYygmHz7Fv7TNmIRxLyRPgqhficbC5G+GEZ70l6ikejow==
+X-Received: by 2002:a2e:8892:0:b0:277:9847:286a with SMTP id k18-20020a2e8892000000b002779847286amr7546321lji.309.1668618597885;
+        Wed, 16 Nov 2022 09:09:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id cf30-20020a056512281e00b00492ca820e15sm2671479lfb.270.2022.11.16.09.03.53
+        by smtp.gmail.com with ESMTPSA id a19-20020a2eb553000000b002776eb5b1cesm3110526ljn.8.2022.11.16.09.09.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 09:03:53 -0800 (PST)
-Message-ID: <87312b40-548d-dc60-588f-3583e496dcb3@linaro.org>
-Date:   Wed, 16 Nov 2022 18:03:52 +0100
+        Wed, 16 Nov 2022 09:09:57 -0800 (PST)
+Message-ID: <48989f14-e377-0fa3-fd9e-69d3d5d77c25@linaro.org>
+Date:   Wed, 16 Nov 2022 18:09:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Add document for Unisoc UFS host
- controller
+Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add SM8550 compatible
 Content-Language: en-US
-To:     Zhe Wang <zhe.wang1@unisoc.com>, martin.petersen@oracle.com,
-        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com
-Cc:     linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
-References: <20221116133131.6809-1-zhe.wang1@unisoc.com>
- <20221116133131.6809-2-zhe.wang1@unisoc.com>
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20221116150600.3011160-1-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116133131.6809-2-zhe.wang1@unisoc.com>
+In-Reply-To: <20221116150600.3011160-1-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 14:31, Zhe Wang wrote:
-> Add Unisoc ums9620 ufs host controller devicetree document.
+On 16/11/2022 16:06, Abel Vesa wrote:
+> Document the SM8550 dwc3 compatible.
 > 
-> Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Thank you for your patch. There is something to discuss/improve.
 
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ufs_eb
-> +      - const: ufs_cfg_eb
-> +      - const: ufsh
-> +      - const: ufsh_source
-> +
-> +  resets:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: ufs
-> +      - const: ufsdev
-
-Both clock names and resets are still not useful. "ufs" is the name of
-the block, so reset name of "ufs" and "ufsdev" says nothing. This is the
-dev right?
-
-> +
-> +  vdd-mphy-supply:
-> +    description:
-> +      Phandle to vdd-mphy supply regulator node.
-> +
-> +  sprd,ufs-anlg-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle of syscon used to control ufs analog regs.
-> +
-> +  sprd,aon-apb-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle of syscon used to control always-on regs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    ufs: ufs@22000000 {
-> +        compatible = "sprd,ums9620-ufs";
-> +        reg = <0x22000000 0x3000>;
-> +        interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> +        vcc-supply = <&vddemmccore>;
-> +        vdd-mphy-supply = <&vddufs1v2>;
-> +        clock-names = "ufs_eb", "ufs_cfg_eb", "ufsh", "ufsh_source";
-> +        clocks = <&apahb_gate 5>, <&apahb_gate 22>, <&aonapb_clk 52>, <&g5l_pll 12>;
-
-First clocks, then names.
-
-> +        reset-names = "ufs", "ufsdev";
-> +        resets = <&apahb_gate 4>, <&aonapb_gate 69>;
-
-First resets, then names.
-
-> +        sprd,ufs-anlg-syscon = <&anlg_phy_g12_regs>;
-> +        sprd,aon-apb-syscon = <&aon_apb_regs>;
-> +    };
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
