@@ -2,95 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C795D62BE5A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E3262BE60
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 13:40:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238774AbiKPMj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 07:39:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55688 "EHLO
+        id S229666AbiKPMkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 07:40:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239011AbiKPMjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:39:07 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A68391FCEA;
-        Wed, 16 Nov 2022 04:38:35 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01AD4150C;
-        Wed, 16 Nov 2022 04:38:41 -0800 (PST)
-Received: from [10.57.70.190] (unknown [10.57.70.190])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2AD043F663;
-        Wed, 16 Nov 2022 04:38:31 -0800 (PST)
-Message-ID: <d63b59c3-f67d-e5ee-6cbf-9f97eec0aeaa@arm.com>
-Date:   Wed, 16 Nov 2022 12:38:19 +0000
+        with ESMTP id S230115AbiKPMkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 07:40:41 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6FBD54
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:40:37 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id l8so21626495ljh.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 04:40:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sMjAMULuhwmDIgOqqM6Vxh3iSZko0vN2QO1sVbdLZnY=;
+        b=NexxzSeDuKbt0dBCKsAH4EWx2N6qgaOdGHpylos+4JEYagbKQR1elSGsqbnb98Sfm/
+         hRRefVKhjQEe6sIpSVHIty4vvJ8QiBgyBT/va8/k/SiywVrLO+UAmtPwHf0CC83VheQn
+         edcscXtI8HYxm1DJ82CSdTCWNXwA+GjzQc661J2/T5ke6CyChb9utMUIlbdvyC6uoVDm
+         LTF1Kc7YH7plOXwNli2oj/143LSv2h8lqv0ukyBjCnxWXizP6OO00+7x9MxN8JFEivt9
+         sM7mMKVElpePl6K/TRk5L+YKyvbAD232eAd+VQcXKAK2RQNYwQCXtTHsGTXyjED+YNSH
+         6EEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sMjAMULuhwmDIgOqqM6Vxh3iSZko0vN2QO1sVbdLZnY=;
+        b=Y+kgh4FYM/nEQgk/RW67W3ni5w3WpUTDoHlg/Igj2jSK4f02POymaWljCsbiQixhBo
+         Rmxe6nsY/nFAfwbhQoRxcqUK68JmuUqg4sd22GHHJyfizAB9asC/MoE+BCk53o8hqBuL
+         852nXDMErK+dfeKMZN91lmb1rQ8GpTc5WvRo3ItR+kFEdlzwVG5i6aBz+BbKbx3HA/1O
+         jIKCsREfRBnlOWQNYgLltW7rUf7HtHMHUfvXnswXVwlaaKl7kUgvDBVlCynHV6E7vjAW
+         ODLdpETrQcWhXdvo60uilTn6fCCO+s1nuyOk4SWJAUACtNfNnJfZR2K6deQ6Xu3ExUO0
+         GvDA==
+X-Gm-Message-State: ANoB5pnjDdOfjHxYKD9a40mmI+SksP13bp5wjf1o2CsUiby6uoji60J8
+        NZK2WbpnVlyvqWHK9TjXosgTQA==
+X-Google-Smtp-Source: AA0mqf6OQIkDD7uLzdcLyX23N1wL0jBRn9QYH4+ABWy3AdhumuX5CFlmGxNSu0QxK39eGh2K/ihMwQ==
+X-Received: by 2002:a2e:920e:0:b0:26f:c0f4:2360 with SMTP id k14-20020a2e920e000000b0026fc0f42360mr7291571ljg.374.1668602435603;
+        Wed, 16 Nov 2022 04:40:35 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b13-20020ac25e8d000000b00497ac6b2b15sm2569769lfq.157.2022.11.16.04.40.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 04:40:34 -0800 (PST)
+Message-ID: <d73e2390-1449-a355-72c0-0184fb87d864@linaro.org>
+Date:   Wed, 16 Nov 2022 13:40:33 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH] arm64: dts: fsd: Change the reg properties from 64-bit to
- 32-bit
-Content-Language: en-GB
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Vivek Yadav <vivek.2311@samsung.com>, rcsekar@samsung.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-fsd@tesla.com, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        aswani.reddy@samsung.com, sriranjani.p@samsung.com,
-        ajaykumar.rs@samsung.com
-References: <CGME20221116090644epcas5p3a0fa6d51819a2b2a9570f236191748ea@epcas5p3.samsung.com>
- <20221116091247.52388-1-vivek.2311@samsung.com>
- <37d42235-1960-4001-9be9-20a85de54730@app.fastmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <37d42235-1960-4001-9be9-20a85de54730@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/8] dt-bindings: PCI: qcom: Add sm8350 to bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221110183158.856242-1-dmitry.baryshkov@linaro.org>
+ <20221110183158.856242-2-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221110183158.856242-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-11-16 11:16, Arnd Bergmann wrote:
-> On Wed, Nov 16, 2022, at 10:12, Vivek Yadav wrote:
->> Change the reg properties from 64-bit to 32-bit for all IPs, as none of
->> the nodes are above 32-bit range in the fsd SoC.
->>
->> Since dma-ranges length does not fit into 32-bit size, keep it 64-bit
->> and move it to specific node where it is used instead of SoC section.
+On 10/11/2022 19:31, Dmitry Baryshkov wrote:
+> Add bindings for two PCIe hosts on SM8350 platform. The only difference
+> between them is in the aggre0 clock, which warrants the oneOf clause for
+> the clocks properties.
 > 
-> I don't think that works, the dma-ranges property is part of the
-> bus, not a particular device:
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
 > 
->   		mdma0: dma-controller@10100000 {
->   			compatible = "arm,pl330", "arm,primecell";
-> -			reg = <0x0 0x10100000 0x0 0x1000>;
-> +			reg = <0x10100000 0x1000>;
->   			interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
->   			#dma-cells = <1>;
->   			clocks = <&clock_imem IMEM_DMA0_IPCLKPORT_ACLK>;
->   			clock-names = "apb_pclk";
->   			iommus = <&smmu_imem 0x800 0x0>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x0 0x0 0x0 0x10 0x0>;
->   		};
-> 
-> Since the dma-controller has no children, I don't see how this has
-> any effect. Also, translating a 36-bit address into a 32-bit
-> address just means it gets truncated anyway, so there is no
-> point in making it appear to have a larger address range.
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index 54f07852d279..502c15f7dd96 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -32,6 +32,7 @@ properties:
+>        - qcom,pcie-sdm845
+>        - qcom,pcie-sm8150
+>        - qcom,pcie-sm8250
+> +      - qcom,pcie-sm8350
+>        - qcom,pcie-sm8450-pcie0
+>        - qcom,pcie-sm8450-pcie1
+>        - qcom,pcie-ipq6018
+> @@ -185,6 +186,7 @@ allOf:
+>                - qcom,pcie-sc8180x
+>                - qcom,pcie-sc8280xp
+>                - qcom,pcie-sm8250
+> +              - qcom,pcie-sm8350
+>                - qcom,pcie-sm8450-pcie0
+>                - qcom,pcie-sm8450-pcie1
+>      then:
+> @@ -540,6 +542,49 @@ allOf:
+>            items:
+>              - const: pci # PCIe core reset
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-sm8350
+> +    then:
+> +      oneOf:
+> +          # Unfortunately the "optional" aggre0 clock is used in the middle of the list
 
-Yes, this is definitely bogus on both counts.
+It's a new device, new support, so you can put it everywhere you wish,
+can't you? Just put at the and and add minItems:8
 
-Thanks,
-Robin.
+Best regards,
+Krzysztof
+
