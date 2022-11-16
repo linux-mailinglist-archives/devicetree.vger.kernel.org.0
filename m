@@ -2,132 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A8F62CE1A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D957B62CE7B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 00:06:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234506AbiKPWzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 17:55:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38958 "EHLO
+        id S233204AbiKPXGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 18:06:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238819AbiKPWze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:55:34 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBE96B23E;
-        Wed, 16 Nov 2022 14:55:31 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AGLJh6W029063;
-        Wed, 16 Nov 2022 22:55:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=3yEu/KpX2Z69PcMkvPCwi808XfPo3JBnARa9aFt/nO0=;
- b=ivZb2fqs2uT86XjgZ1I0H5CEpAzd5LvRCCtgl4OfpM1YRQb7QWO583MKC5mzdNHk2/mS
- nPsGUvl4nFgPpbja46cBEfoY2BCzH1FsPsdS9wjGolohQ0HgFf1KhrRZIdzUTyMJz58e
- uS74HhZy2L5QCg0tzhqTEin1g4RST5LCy6fSff+QkTF9XlMe9TdfCCHBNcWM4nEz68tW
- ZRRTJGrLg1W0moupnYVGgJJ5WP48MQqeqn0mdAYFcTHQVzP4WsIge42JCDN+eo6m5bWe
- VtlR1pgkgSQLH6LhTWAlucEFGXVnd83bmoTjuSfM0r+++qlCJ0DTcbeRo7Gg7klkHorW dQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kw0f5s5wn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 22:55:24 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AGMtKSV025948
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Nov 2022 22:55:20 GMT
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 16 Nov
- 2022 14:55:20 -0800
-Date:   Wed, 16 Nov 2022 14:55:18 -0800
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-CC:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <konrad.dybcio@somainline.org>,
-        <robimarko@gmail.com>, <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH V4 2/2] firmware: qcom: scm: Add wait-queue handling logic
-Message-ID: <20221116225518.GA14011@quicinc.com>
-References: <20221114082644.28739-1-quic_sibis@quicinc.com>
- <20221114082644.28739-3-quic_sibis@quicinc.com>
- <20221115053336.GA29781@quicinc.com>
- <1b462f1a-327b-4a8f-8de7-909dbad0ddf8@quicinc.com>
+        with ESMTP id S229641AbiKPXGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 18:06:23 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B67832B86;
+        Wed, 16 Nov 2022 15:06:22 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id F355832009A0;
+        Wed, 16 Nov 2022 18:06:19 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 16 Nov 2022 18:06:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1668639979; x=
+        1668726379; bh=KFtL7NqTvZI+19d8wSLjfwbpth3MGn8P3Kyk3c2j8uk=; b=Y
+        /2hKiOIIFYsfIXg0J5dZKNKvzMp9OWgrntt40C+kQzXVR1e7YchwUqrBeXu/1fyw
+        iR7sRMez5kZ7XAECqIc8PEZ34q/YGeTIn5eotuwcmo/mBnSACJcElJ60e4IKHxWp
+        iAVzx93t2AkJSQKSrIXhFoBQdpBtp1zi5Be/x/C/D/pB93xxiZtWqzsG+i9vXi1i
+        C5XvH8xe/sAcJHdJbULQTZh/QotZHWnphJGSlUdgwuSDAWWFJ4HHUy/D1Dk5ZKNw
+        4686jozx1olB7vAxIZa6F6ZxZwS1GCAea06DOkhL13srusZkenJ+7eNV0Hrgs8Ea
+        N7s2IzLKO6wr3m2aKK4yA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1668639979; x=
+        1668726379; bh=KFtL7NqTvZI+19d8wSLjfwbpth3MGn8P3Kyk3c2j8uk=; b=p
+        4H5UU8OWML9T4zxjTvCNG0VDoU/eIqvLh37jaQA1fonADnS7T8Ie9j++2aJnhk6j
+        LDzb5w2Osj9Qid/pQjCNNCWwmEq8iiJ5K0qsTGHiC5uQ73KC3XAK3ue546EoPNRq
+        Pcj9MtA6fIRZoCo4fP40xVYWUnr9zQTkMGYJN6twucfB/gyNRfORndwKTRsqVGSQ
+        19bJQrHpsDEhunWFfegDyD6KKdoOhDCYE5ap8e4oNIRHwQTckvT97wNGQgdhRXgG
+        BDv7L+mzuMc433fyn1s0OozIfv8NL+eMpdk9iOfY6AHPt6jOaed6/eCqNGfMBfVu
+        m8sRsSgglgSt6z4UaLJ5w==
+X-ME-Sender: <xms:6mx1Y3SOTuoXLCcmFztQqqhbzuYh7ViHGBdTH7Z5y_xsqKaHvXJVZg>
+    <xme:6mx1Y4z7VIpTFMP9eqeQsS-hpQq2Esz1oSnZNNG4Z25j6dBkSaM79pTfrhRQShL-r
+    P36nRMcJAtyIs5ftQ>
+X-ME-Received: <xmr:6mx1Y806n4QRQ6ImNnqOrCG4t_EC5dZsYYIDSGLw8aCo_IB75i20IZYktRKi655VWeQNApnuH3UD1PKvcNTVhdA8RmkbW7MTAovIdqGb5BhSgRwFJxgG-edsUg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeejgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
+    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:6mx1Y3Cjf8YLOykp9SXvg66qy0tr21N39MVl18UlsEefSh2mqBjoiw>
+    <xmx:6mx1Ywj7sjhQhwWqz76_J26sNkZVKNNbOwX8XorFzDEBGn_KFzfYIw>
+    <xmx:6mx1Y7quBM6C0R-VlzqKu6hQAr4E2rUdH5s5AP8_VsR5EZ7FjNHLOQ>
+    <xmx:62x1Y5VwdqdwV8gxgtyobO0f2VKwGn-wjEJJa7MscNhxpM95FwKsiw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 16 Nov 2022 18:06:18 -0500 (EST)
+Message-ID: <d58b5b89-380a-d967-9cd0-6dcf1bb9fe4d@sholland.org>
+Date:   Wed, 16 Nov 2022 17:06:17 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1b462f1a-327b-4a8f-8de7-909dbad0ddf8@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SVM3yGXHAjs4FOV9cC5L2J3JSgeh1y2o
-X-Proofpoint-GUID: SVM3yGXHAjs4FOV9cC5L2J3JSgeh1y2o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-16_03,2022-11-16_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 impostorscore=0 mlxscore=0 spamscore=0 mlxlogscore=933
- phishscore=0 adultscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211160157
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 1/2] media: dt-bindings: allwinner: video-engine: Fix
+ number of IOMMU channels
+Content-Language: en-US
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20221116193105.363297-1-jernej.skrabec@gmail.com>
+ <20221116193105.363297-2-jernej.skrabec@gmail.com>
+From:   Samuel Holland <samuel@sholland.org>
+In-Reply-To: <20221116193105.363297-2-jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Nov 16 2022 12:11, Sibi Sankar wrote:
-> Hey Guru,
+On 11/16/22 13:31, Jernej Skrabec wrote:
+> Cedrus (video engine) on Allwinner H6 actually uses two IOMMU channel,
+> not just one. However, Cedrus on SoCs like D1 only uses one channel.
 > 
-> Thanks for taking time to review the series.
+> Allow up to 2 IOMMU channels.
 > 
-> On 11/15/22 11:03, Guru Das Srinagesh wrote:
-> >On Nov 14 2022 13:56, Sibi Sankar wrote:
-> >
-> >(snip)
-> >
-> >>+static irqreturn_t qcom_scm_irq_handler(int irq, void *data)
-> >>+{
-> >>+	int ret;
-> >>+	struct qcom_scm *scm = data;
-> >>+	struct completion *wq_to_wake;
-> >>+	u32 wq_ctx, flags, more_pending = 0;
-> >>+
-> >>+	do {
-> >>+		ret = scm_get_wq_ctx(&wq_ctx, &flags, &more_pending);
-> >>+		if (ret) {
-> >>+			dev_err(scm->dev, "GET_WQ_CTX SMC call failed: %d\n", ret);
-> >>+			goto out;
-> >>+		}
-> >>+
-> >>+		wq_to_wake = qcom_scm_lookup_wq(scm, wq_ctx);
-> >>+		if (IS_ERR_OR_NULL(wq_to_wake)) {
-> >>+			dev_err(scm->dev, "No waitqueue found for wq_ctx %d: %ld\n",
-> >>+				wq_ctx, PTR_ERR(wq_to_wake));
-> >>+			goto out;
-> >>+		}
-> >>+
-> >>+		if (flags != QCOM_SMC_WAITQ_FLAG_WAKE_ONE &&
-> >>+		    flags != QCOM_SMC_WAITQ_FLAG_WAKE_ALL) {
-> >>+			dev_err(scm->dev, "Invalid Flags found for wq_ctx: %u\n", flags);
-> >>+			goto out;
-> >>+		}
-> >>+
-> >>+		complete(wq_to_wake);
-> >
-> >Need to call complete() or complete_all() based on the flags.
+> Fixes: 62a8ccf3a248 ("arm64: dts: allwinner: h6: Fix Cedrus IOMMU usage")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml        | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> with the current implementation we should get away with
-> just complete for now but I can add them back in the way
-> Bjorn wanted i.e. with the bool wake_all in the next
-> re-spin.
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> index 541325f900a1..257bb372d166 100644
+> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> @@ -55,7 +55,7 @@ properties:
+>      description: Phandle to the device SRAM
+>  
+>    iommus:
+> -    maxItems: 1
+> +    maxItems: 2
 
-Sounds good, let's consume the flags according to their intended purpose. 
+You need to add minItems: 1, or else this will require two items.
 
-Thank you.
+Regards,
+Samuel
 
-Guru Das.
+>  
+>    memory-region:
+>      maxItems: 1
+
