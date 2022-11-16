@@ -2,98 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F43E62B5DF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8774162B5E8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 10:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237368AbiKPJCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 04:02:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55300 "EHLO
+        id S231547AbiKPJEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 04:04:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232130AbiKPJBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:01:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3921AF33;
-        Wed, 16 Nov 2022 01:00:59 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 176E26602A81;
-        Wed, 16 Nov 2022 09:00:57 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1668589258;
-        bh=GuVy2p92QW9W2mJLHekEdzZ8JahojsK0Oac56TKj1HU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CXKCdNla+P8jvn7BrlpAFuFlr4aWU/rubMcEDE6lQ78vXLYnSbQhRUVbqYgagAS6n
-         Ps0XyzQuavM0yLSNpKvlEm1Kdalv2t4TzYJe5fdFt3lsvSv0Aq0DSC8pkqoWGEHePW
-         0+lemygkwEauNI6ATm/uWO5fXjB3FuZaVUQ7SYERjpK3VSZjJapV/OV63IrvEbR5eV
-         XOSkFymt4UtY9OJ9NEqMGmYq1jSIYmkZQ6e4j0sLotYcsL+ZRfmuwsmwjDOZgFyC4N
-         dl7LGj37drAlcyXM5c4eOaTYCUA5IGp0xifi+8FtUrx6MvvUEMEBap9XTq38A7tUNT
-         U29nwQVQ2klnA==
-Message-ID: <f60ccd79-9c82-0844-2c5f-21ec29c14dcf@collabora.com>
-Date:   Wed, 16 Nov 2022 10:00:54 +0100
+        with ESMTP id S233059AbiKPJEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 04:04:07 -0500
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B2A2181;
+        Wed, 16 Nov 2022 01:04:06 -0800 (PST)
+Received: by mail-qk1-f178.google.com with SMTP id x21so11233589qkj.0;
+        Wed, 16 Nov 2022 01:04:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hmIeQZARSPuMEBQfP7VelxzQDQAJgpM+Uez3QuwZD1U=;
+        b=WvJfIbqzh1VzKKrxFqDvjpkA1xx1Xa7q6Hx3P0/VH86bLEZHGIZVih9ffPhpFYmKq4
+         iA6OjnFxRolg6ekR867TiBQAfv6okrMcljziquHjOwKunPWPdhWAc4Gt7a+IaaiOZV7j
+         5N5/ghhNTgszURwtzL5hZA1PEZk4DVTgvZkN7lNMBR+PYsk+9R8ovb6Kn2FbXxVROvoX
+         YrVpqQwbzYjl2upVxA7FJmhsVxgWqXtWCsX+Qw6mcREZAoCulofP8gDNBC9QWA0ieejP
+         cMPXo7/ErHcK7mZBzyPs3hr7CIZTevBeeVddd1KZvuFoewkVagnjBFIAdjfNJ9H0mV21
+         ch3w==
+X-Gm-Message-State: ANoB5pl1IGpktcENemFWi9+diORfL6Bs1GOStGBJkPa8vCxQDJQiOvL5
+        xx4CdpV5Y8FgGMGzDCyy9peVxk/vPuCIAQ==
+X-Google-Smtp-Source: AA0mqf6Gz6PqC8rtjnxkEwCYYASm0cLGmBoPL/sU4BTw/PjY4T4xXaQHzhEFSxfDoF6eLcUrrBUyYQ==
+X-Received: by 2002:a05:620a:9c6:b0:6fa:59b4:f37b with SMTP id y6-20020a05620a09c600b006fa59b4f37bmr17928140qky.349.1668589445371;
+        Wed, 16 Nov 2022 01:04:05 -0800 (PST)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id ay42-20020a05622a22aa00b0039a08c0a594sm8399285qtb.82.2022.11.16.01.04.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 01:04:04 -0800 (PST)
+Received: by mail-yb1-f176.google.com with SMTP id e68so17362527ybh.2;
+        Wed, 16 Nov 2022 01:04:04 -0800 (PST)
+X-Received: by 2002:a25:258d:0:b0:6ca:3b11:8d76 with SMTP id
+ l135-20020a25258d000000b006ca3b118d76mr20609898ybl.202.1668589444351; Wed, 16
+ Nov 2022 01:04:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 05/11] dt-bindings: mailbox: qcom: Allow syscon on
- qcom,msm8976-apcs-kpss-global
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        evgreen@chromium.org, gregkh@linuxfoundation.org,
-        a39.skl@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-hardening@vger.kernel.org,
-        marijn.suijten@somainline.org, kernel@collabora.com, luca@z3ntu.xyz
-References: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
- <20221111120156.48040-6-angelogioacchino.delregno@collabora.com>
- <14947ae2-c8d4-de86-ce9e-29175e73cbb2@linaro.org>
- <9f3e88fa-0aaf-2edd-366e-c3f5b2269dba@collabora.com>
- <513a2dc3-d053-6e4b-a125-394cf1f6c81b@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <513a2dc3-d053-6e4b-a125-394cf1f6c81b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221115105135.1180490-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221115105135.1180490-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221115105135.1180490-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 16 Nov 2022 10:03:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWEnd1A3s6iPAqB_+78Q_Sx73XQBW5wU9Mtouw4EiOmJQ@mail.gmail.com>
+Message-ID: <CAMuHMdWEnd1A3s6iPAqB_+78Q_Sx73XQBW5wU9Mtouw4EiOmJQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] riscv: dts: renesas: r9a07g043f/rzfive-smarc-som:
+ Enable ADC/OPP/Thermal Zones/TSU
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/11/22 09:57, Krzysztof Kozlowski ha scritto:
-> On 16/11/2022 09:52, AngeloGioacchino Del Regno wrote:
->> Il 15/11/22 17:44, Krzysztof Kozlowski ha scritto:
->>> On 11/11/2022 13:01, AngeloGioacchino Del Regno wrote:
->>>> MSM8976 supports SMSM, which needs this node to also be a syscon:
->>>> move the compatible to allow that.
->>>>
->>>> Fixes: bcc8d70f912d ("dt-bindings: mailbox: Add compatible for the MSM8976")
->>>
->>> I am not sure if this is still a bug. Maybe just a missing feature?
->>>
->>
->> This changes how you use this mailbox across the entire devicetree (as other
->> nodes will not use mboxes = xxxx, but qcom,ipc = xxxx as syscon), so I think
->> that this is not a missing feature?
-> 
-> Whether it is a bug depends on existing usage. If none of msm8976 DTSes
-> use it the other way, then it is just incomplete or missing support. Not
-> a bug. If existing DTSes use it as syscon, thus you need to add syscon
-> to compatible, then it would be a bugfix.
-> 
+Hi Prabhakar,
 
-It's not a bugfix then. The Fixes tag shall be dropped.
+On Tue, Nov 15, 2022 at 11:51 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable support for below blocks found on RZ/Five SMARC EVK SoC/SoM:
+> - ADC
+> - OPP
+> - Thermal Zones
+> - TSU
+>
+> Note, these blocks are enabled in RZ/G2UL SMARC SoM DTSI [0] hence
+> deleting these disabled nodes from RZ/Five SMARC SoM DTSI enables them
+> here too as we include [0] in RZ/Five SMARC SoM DTSI.
+>
+> [0] arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Same question like the other commit, should I send a v3 or can it be dropped while
-applying?
+Thanks for your patch!
 
+> --- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+> +++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+> @@ -16,13 +16,6 @@ aliases {
+>         chosen {
+>                 bootargs = "ignore_loglevel";
+>         };
+> -
+> -       /delete-node/opp-table-0;
+> -       /delete-node/thermal-zones;
+> -};
+> -
+> -&adc {
+> -       status = "disabled";
 
+I believe this is not sufficient to enable the ADC, as it is disabled
+by default?
+So this needs to set the status to "okay" and configure pin
+control, depending on SW_SW0_DEV_SEL, just like in
+arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi?
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
