@@ -2,88 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5DA62C589
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E68AA62C593
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234599AbiKPQ4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:56:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
+        id S231688AbiKPQ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:56:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232190AbiKPQzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:55:39 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA3AB3E;
-        Wed, 16 Nov 2022 08:55:27 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id q186so19131756oia.9;
-        Wed, 16 Nov 2022 08:55:27 -0800 (PST)
+        with ESMTP id S233207AbiKPQ4V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:56:21 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E12263F
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:56:19 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id k19so22601489lji.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:56:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pkLNVvHASHqZcTebyy5tVyUYdsKotfecdoBFq+Dtmdo=;
+        b=p1Lt5LCrAsBUK5rj+wnqR0c0u0kRvaSb6Z31UgEuf6Ub3C+nml/n2NxZrQauhQDAEy
+         wXN5+bxHkViQ1B8hVGLMVZX5jHVDHtgzOCj24odPkiPf4u0vrNtzWIySUqi6JVqvuWyZ
+         bKXE4JMUkjH0jbJ1m7VWVDTSTSxCIn1UFOq+qzZRmKyNwzPuSc8TdlW98GBUjfcyuM7T
+         Uh7728zM286BWlsqcKyL10S/HYw7PrAs/50cI7rTsKo8kLrgJL2bOWn0Pz8JcHKL/9Qz
+         Xs4vjyPQrSYIPT0Il3KA+spF+54VTQ+t6NH9tFZbtxj2Q0wngO4sRnHsnGTgBmfxqxCI
+         WoPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kiEBJO/YjcMAZi1EqUusiIE2D8QfFJq7eZwFhwMPZso=;
-        b=XUhd1YZINCqUB9+lROHYSr+aR4vQtsGz9YdpG0pjowKyb8r4RcNe13HUxe0q/9E34p
-         kWJY9YLy4JO5fbk7VYMBZohgKhb9oTXOcNKH4HSpfXWTb3Z7wmpWqUnuaPrWWIxwWga+
-         o/+3+VNM2rYqU1HoYen4IuNca3+H4gMW0SlJRVnLk8bajQm+iqjbRaChf7E0LTbxWdp4
-         CkjkivKlZ90PtxWS2olXw7TodOHAuzYjr7ZFk09wKCzH0NxlJDXsirGSxj0dihFPzx/0
-         Zxar/1QF8VyBVKnID3qDjwVV8H+3UZo67IyPrQmgzAyy31GJ9ki0VC4w30ZKVUSTmeXO
-         eAnQ==
-X-Gm-Message-State: ANoB5plir3BqjLx4WAp13yijubhaDGmqzBBYKC+MQ9ehNYzYWJfegn9w
-        N53zbSGjAWrzO1kwu4CZ/g==
-X-Google-Smtp-Source: AA0mqf64Fje3bdOgJ5mS0w+P3LsDO8E8DUlCW+fnA4tU3JbGCGhrmcJnW4mo3simdTwRehr0cYgx7Q==
-X-Received: by 2002:a05:6808:688:b0:354:e358:ad2c with SMTP id k8-20020a056808068800b00354e358ad2cmr2056255oig.130.1668617725518;
-        Wed, 16 Nov 2022 08:55:25 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg2-20020a056808178200b0034fd36e95bfsm6367551oib.31.2022.11.16.08.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 08:55:25 -0800 (PST)
-Received: (nullmailer pid 231353 invoked by uid 1000);
-        Wed, 16 Nov 2022 16:55:27 -0000
-Date:   Wed, 16 Nov 2022 10:55:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>, linux-bluetooth@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: Document Bluetooth and WLAN triggers
-Message-ID: <166861772609.231295.14812410099261417331.robh@kernel.org>
+        bh=pkLNVvHASHqZcTebyy5tVyUYdsKotfecdoBFq+Dtmdo=;
+        b=rRgHSKtRsfZaoCdwFEwqCpprlBA6fEB9bAGdnLb+H9VOxUGzStxPD/awXjrdRR5F3I
+         lvD7vCwsNeQg4lptNVPkyEKDXSfmfgwWyWxWBs1XFlZ4TNOsyOkJG8vJ/MB6bDBJ2AxE
+         5CW2Qki3ypJp0S3YGAoklyGNP7jSKpONNd32GIFB5kUfiMFzPipoDOq6BgZDKBps63WN
+         sFr3J8NceIhnsirAeP1xGD9cBGrd3uUcKope+j0uCxEht5Spm8gT7N6JoD634Heyj7aB
+         ka3qRxIao7HevSiiGPYE1D+n7B+0Aq52nKBFYzfXJ+bTqd2Cg1oPRRwfhTZszZREV0Sk
+         4pbA==
+X-Gm-Message-State: ANoB5pmOrMsGuAVhk8i9Swkz4owt+vIgXaa9fPKoEOVrXa8grn1R5x5B
+        9rs5PhrEBb73mVzYw02CHNlkbA==
+X-Google-Smtp-Source: AA0mqf4qz0wdd3bH3kS6HyvslILNr0JyLbduilo1AzB2JCo8My2WYZZziGDMHsS6aT7Ie3dGKWlvKw==
+X-Received: by 2002:a2e:8711:0:b0:277:92e:976c with SMTP id m17-20020a2e8711000000b00277092e976cmr7572747lji.306.1668617778192;
+        Wed, 16 Nov 2022 08:56:18 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q23-20020a056512211700b0049e9122bd1bsm2675766lfr.164.2022.11.16.08.56.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Nov 2022 08:56:17 -0800 (PST)
+Message-ID: <65a00619-93e2-05f4-990e-0d335878627a@linaro.org>
+Date:   Wed, 16 Nov 2022 17:56:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM8550 SCM
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20221116124038.2769028-1-abel.vesa@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116124038.2769028-1-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 09 Nov 2022 15:46:06 +0100, Geert Uytterhoeven wrote:
-> Add the missing trigger patterns for Bluetooth and WLAN activity, which
-> are already in active use.
+On 16/11/2022 13:40, Abel Vesa wrote:
+> Document the compatible for Qualcomm SM8550 SCM.
 > 
-> While at it, move the mmc pattern comment where it belongs, and restore
-> alphabetical sort order.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
-> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: bt_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
-> 	'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
-> 	'hci0-power' does not match '^mmc[0-9]+$'
-> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
-> arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-rev2.dtb: leds: wlan_active_led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
-> 	'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
-> 	'phy0tx' does not match '^mmc[0-9]+$'
-> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
-> ---
->  Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Missing allOf:if:then entry.
+
+Best regards,
+Krzysztof
+
