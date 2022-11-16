@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E919962CBB6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E28BD62CBC5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 21:59:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238854AbiKPU41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 15:56:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35920 "EHLO
+        id S238905AbiKPU75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 15:59:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238873AbiKPU4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:56:11 -0500
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B9168C47;
-        Wed, 16 Nov 2022 12:54:19 -0800 (PST)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-13b103a3e5dso21592021fac.2;
-        Wed, 16 Nov 2022 12:54:19 -0800 (PST)
+        with ESMTP id S234788AbiKPU7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 15:59:43 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E574B69DD1;
+        Wed, 16 Nov 2022 12:56:43 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id r76so19911050oie.13;
+        Wed, 16 Nov 2022 12:56:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xKjlsGpIZRtExAkk23Ms1E3ikS5e/TUS1Bw6/GljMhQ=;
-        b=y1aezILj/ppVEBoZJIsJ9RBTrlQhxkK3eUBtvwJch0vZDjsqBoTiW/SPfQxT+JDZYC
-         PGcWQ83B7XZ+hgJ/UP7hVlNDhPf284EMFnpcsgqjLZGAHUlMRRK668P7ktN1Y+bJRpcX
-         8ahtnfBBjZJ1sAy/ZEth539ikTTlz+WBF/6mjalrd0YvD6O5Jgku7XrvWvhyD+rzNGZO
-         AOdrt3jJYoBRItvg7Vj+G38Azzj4dx8kD/7M0SJc6Qo5IwkZotbD3YopyLD+vNf4UMnO
-         bc2BEeh5foIx2j4Cbke2iYuEDlFhglCJDFqbf1IRS7xqGhH/GLC5FAj+AGp4/EJSefFe
-         EESQ==
-X-Gm-Message-State: ANoB5pmTNq0xvmlG0jh+RAC/hlpX5kfPrp35XSyG4G0beByM9eiFY7Do
-        DDzQIpz69r3dNQq8YsCqt5aOkiRi5g==
-X-Google-Smtp-Source: AA0mqf6/P7js/6CRjiPs3vFVuN9a7lA3l/+c269RWxMf5ik5/33cadQR0sOvDTie62yIY/0q/wgMbQ==
-X-Received: by 2002:a05:6871:b1f:b0:13c:9414:5c46 with SMTP id fq31-20020a0568710b1f00b0013c94145c46mr2867994oab.79.1668632058648;
-        Wed, 16 Nov 2022 12:54:18 -0800 (PST)
+        bh=/aYRQELqghd3olCWrn6RVp8hDiY21bGgrNc5ikJRp1Y=;
+        b=S+vPzl7mPI8HDq0vvNQmn7opqag67D0UI4d6B1aQ5CpQ8vYZe7wd+zYgOfnqurhW19
+         UcOYO56BHK1T6QD+BOzb+olyYbAxJKXdi1fWxGIY+MsPfYLaaDOzw/D8lGvIF+ONZPUw
+         azfiojtO5FSpsL+7tagnUk/T42JW+GSc6jcEDOCvg3lQ4wTHOZH3qJPAgb8u5YwqCd73
+         UrPaCXfcRprplvfYjF3N+cjxXOPP4xAT5OmVatJ/bz6ABgHUVuyXNzo5XSOrJaINueza
+         3zY+hZZeLykcFwpvgK6AFQ9b4JjbUcJ6yPolHK9NSlt5vh5mBAsfkH2U0uXZEPc+I56v
+         GXDg==
+X-Gm-Message-State: ANoB5plsA8FVSolhn/5GNiw2UOBiYb2XqSgcjlkie3R49VTYn6j3AxZ+
+        P1Xg/dRs4eWsIGTQBEIgl2/g3aGVVQ==
+X-Google-Smtp-Source: AA0mqf4QUudAXVd8BEXK9yUDRkBWJk4n/c3YPupaLw41GSxMen3W9MWBN7DVlKtuHc0/u7QNydq/8A==
+X-Received: by 2002:aca:1208:0:b0:355:8873:40b2 with SMTP id 8-20020aca1208000000b00355887340b2mr2587774ois.50.1668632203193;
+        Wed, 16 Nov 2022 12:56:43 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg2-20020a056808178200b0034fd36e95bfsm6622149oib.31.2022.11.16.12.54.17
+        by smtp.gmail.com with ESMTPSA id v13-20020a05683011cd00b00661b5e95173sm6989940otq.35.2022.11.16.12.56.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 12:54:18 -0800 (PST)
-Received: (nullmailer pid 864688 invoked by uid 1000);
-        Wed, 16 Nov 2022 20:54:20 -0000
-Date:   Wed, 16 Nov 2022 14:54:20 -0600
+        Wed, 16 Nov 2022 12:56:42 -0800 (PST)
+Received: (nullmailer pid 867646 invoked by uid 1000);
+        Wed, 16 Nov 2022 20:56:44 -0000
+Date:   Wed, 16 Nov 2022 14:56:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Michael Walle <michael@walle.cc>,
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        linux-kernel@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] dt-bindings: nvmem: add YAML schema for the ONIE
- tlv layout
-Message-ID: <166863205977.864630.6987238461166944132.robh@kernel.org>
-References: <20221114085659.847611-1-miquel.raynal@bootlin.com>
- <20221114085659.847611-6-miquel.raynal@bootlin.com>
+        Pratyush Yadav <pratyush@kernel.org>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Michael Walle <michael@walle.cc>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 13/17] dt-bindings: mtd: nvmem-cells: Drop range
+ property from example
+Message-ID: <166863220434.867607.9322853555110461989.robh@kernel.org>
+References: <20221114090315.848208-1-miquel.raynal@bootlin.com>
+ <20221114090315.848208-14-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221114085659.847611-6-miquel.raynal@bootlin.com>
+In-Reply-To: <20221114090315.848208-14-miquel.raynal@bootlin.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,19 +72,23 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 14 Nov 2022 09:56:59 +0100, Miquel Raynal wrote:
-> Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
-> compatible networking device.
+On Mon, 14 Nov 2022 10:03:11 +0100, Miquel Raynal wrote:
+> Memory mapped devices such as parallel NOR flash could make use of the
+> 'ranges' property to translate a nvmem 'reg' cell address to a CPU
+> address but in practice there is no upstream user nor any declaration of
+> this property being valid in this case yet, leading to a warning when
+> constraining a bit more the schema:
 > 
-> Describe all the possible NVMEM cells that can be produced by this
-> layout parser.
+> 	.../mtd/partitions/nvmem-cells.example.dtb: calibration@f00000:
+> 	Unevaluated properties are not allowed ('ranges' was unexpected)
+> 
+> So let's drop the property from the example, knowing that someone might
+> actually properly define it some day.
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../bindings/nvmem/layouts/nvmem-layout.yaml  |   1 +
->  .../nvmem/layouts/onie,tlv-layout.yaml        | 147 ++++++++++++++++++
->  2 files changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
+>  .../devicetree/bindings/mtd/partitions/nvmem-cells.yaml          | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
