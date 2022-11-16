@@ -2,155 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E795362C480
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3006662C48A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 17:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233026AbiKPQdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 11:33:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
+        id S238618AbiKPQfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 11:35:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbiKPQdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:33:00 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE3659867;
-        Wed, 16 Nov 2022 08:25:43 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id h132so19074136oif.2;
-        Wed, 16 Nov 2022 08:25:43 -0800 (PST)
+        with ESMTP id S234131AbiKPQe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 11:34:56 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27AF68AE7
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:26:39 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id i21so27357337edj.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 08:26:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/GcqxyNxQ2i04UVF1iE2MHRUWTa6OtN0e3MQ8qjNro8=;
+        b=gqXs9ZRxNaAaMLsaERJlYwPG7r3b24XDY6OQOS3QsEXqGfhw9X43KJLNreM1IYIqub
+         dB9lv/Zk0WN3SHi2xzGk7psL5/Xve6O5ukGpax0UM9QS/C6fKwUSKbS4Y6M67r6NjKBW
+         FLC1c65yVmMR/AkRMoxpEZRWWBFKb+6QVYIAwA/kYTcg2gsgamaq7fgMACv/9AF4mkda
+         J+6xOJpes4DCcqAheTEJJgJQ8KQJKg1pQ8tE80PNT5gvkJlBbe9ActINJEfnUepyRvHw
+         nWZV73NRAvGO7al24DAUSqf6co6okGZYqcgs64bKZfAy7HPZZXYfaA23JVTEJp/vuh9W
+         qpng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=59o3Mlg3Bt4WsmBYPeaPa7JMIRGNco3k9zIgaMmG37k=;
-        b=djCPK2VSBfqwTbgOMQSRSsNCIisUTEdniPKjVD7Ji5ezcP7hb+jRTXU5qWcr32BcW/
-         5ko0WPP5KZR80utNukjtXBsriZb1XpWZfXl417/gtosOpeJzR0pq+pY8Pb9puD8nhmDb
-         ez1Fhzbw4L3dm6dLDkoepE+RKBFB3SUfJzqN25+q/JXuYOHfDtQEcade72WPczOu5N3c
-         FdsBXZaSfsw45wnQuIqHZ/+HWc76nPKnKz65rQORMSXsec/WDkXXFR0sAEEOupxJy6h5
-         g9BGWI/uhbDHAQEePUDmAZfxYNk17YYcEyyAsDprVFQdK8vWfDEYN2ZblP4WS4x9KL3x
-         9fcw==
-X-Gm-Message-State: ANoB5plO01VErlQP9kTspb6XPjFG0P/VLCxCcKSKUVO9p5QkznDfhH3+
-        d+cvPJTdntlk3PF7HhKVJg==
-X-Google-Smtp-Source: AA0mqf4IlcgAmzvLCHRHAVt7/LkJvqiP7OkXi3KiD6BfWcE1SyNP3xSxg6GNLTLHKGjFi1iLqbQAow==
-X-Received: by 2002:a05:6808:18a8:b0:35a:79fd:fc8b with SMTP id bi40-20020a05680818a800b0035a79fdfc8bmr2040722oib.231.1668615942969;
-        Wed, 16 Nov 2022 08:25:42 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u38-20020a05687100a600b00141e56210b2sm3750550oaa.57.2022.11.16.08.25.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 08:25:42 -0800 (PST)
-Received: (nullmailer pid 195051 invoked by uid 1000);
-        Wed, 16 Nov 2022 16:25:44 -0000
-Date:   Wed, 16 Nov 2022 10:25:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sandor Yu <Sandor.yu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
-        tzimmermann@suse.de, lyude@redhat.com, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, sam@ravnborg.org,
-        jani.nikula@intel.com, maxime@cerno.tech,
-        penguin-kernel@i-love.sakura.ne.jp, oliver.brown@nxp.com
-Subject: Re: [PATCH v3 02/10] dt-bindings: display: bridge: Add MHDP HDMI for
- i.MX8MQ
-Message-ID: <20221116162544.GA193163-robh@kernel.org>
-References: <cover.1667911321.git.Sandor.yu@nxp.com>
- <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/GcqxyNxQ2i04UVF1iE2MHRUWTa6OtN0e3MQ8qjNro8=;
+        b=MfDUKO/wfw0CcGVGj5jnZcRD3HIne7HAv9N+PRO8U8/FK+SgC6FWF5olowRrqcI65N
+         NSIGyUJ1EeX2Kt4Y31a1pCYM64NgwRkGjyVKQ7pE0l7cJtNvfOiipG7H819FTnVJD/O5
+         5GR4bXsFMgZpJz7rIrOiF6pT0FBlSIcLMSdAXZScacfX/oU/RNgoaY/cWvkn4qEDRR0B
+         oFZvjWGptIDt1PVhyTkpb5rz5wXrw2nXZQEeFnuB3vvUm8Zc1Lcstymf/nmEm6+tNnqy
+         DNzTJ3Ey55Y/21/3vQYAaBa5eKOX+HrFaR4clJt1qHaVDLiMz4mKh60vm16BoksKTKmA
+         kiDQ==
+X-Gm-Message-State: ANoB5pk4y6GJhh+4OOvvIzhOU1sJvC6iW1NkjYh20gikT6iuwDMxBd+Q
+        uFTUeYdq5BsL/jP2iUDXc3/JDy7OPNhOqompS9uQsQ==
+X-Google-Smtp-Source: AA0mqf5yB4S9XPGZ42v1UMyUILQ/PUGJvppH/sS1fbiyT79Tdf9o/FqO2PJG27Yz+Fnrnz8ST33S7OTxVys2IUPOPzU=
+X-Received: by 2002:a50:fd9a:0:b0:461:b279:1175 with SMTP id
+ o26-20020a50fd9a000000b00461b2791175mr19892498edt.124.1668615998007; Wed, 16
+ Nov 2022 08:26:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9ccf53cad7f735f985f4ca37b3b0159ef78a2103.1667911321.git.Sandor.yu@nxp.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
+ <20221005-mt6357-support-v5-5-8210d955dd3d@baylibre.com> <166861435469.151514.16192567175686360100.robh@kernel.org>
+In-Reply-To: <166861435469.151514.16192567175686360100.robh@kernel.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Wed, 16 Nov 2022 17:26:27 +0100
+Message-ID: <CAFGrd9qz7w=aqiDjfdi_pM_y_1hiRoLs_AJVbptChs8=U66+aA@mail.gmail.com>
+Subject: Re: [PATCH v5 05/10] dt-bindings: mfd: mediatek: Add bindings for
+ MT6357 PMIC
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-input@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        linux-leds@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Flora Fu <flora.fu@mediatek.com>, Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chen Zhong <chen.zhong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 08, 2022 at 09:00:05PM +0800, Sandor Yu wrote:
-> Add bindings for i.MX8MQ MHDP HDMI.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  .../display/bridge/cdns,mhdp-imx8mq-hdmi.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
-> new file mode 100644
-> index 000000000000..8c0afef157aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MHDP HDMI bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
-> +
-> +description:
-> +  The Cadence MHDP TX HDMI interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,mhdp-imx8mq-hdmi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Hotplug detect interrupter for cable plugin event.
-> +      - description: Hotplug detect interrupter for cable plugout event.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      A port node pointing to the output port of a display controller.
+Le mer. 16 nov. 2022 =C3=A0 17:03, Rob Herring <robh@kernel.org> a =C3=A9cr=
+it :
 
-You also need an output port to an HDMI connector node.
+> doc reference errors (make refcheckdocs):
+> Warning: Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml refer=
+ences a file that doesn't exist: Documentation/devicetree/bindings/soc/medi=
+atek/mediatek,pwrap.yaml
+> Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml: Documentation=
+/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mhdp_hdmi: hdmi-bridge@32c00000 {
-> +        compatible = "cdns,mhdp-imx8mq-hdmi";
-> +        reg = <0x32c00000 0x100000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "plug_in", "plug_out";
-> +        phys = <&hdmi_phy>;
-> +
-> +        port {
-> +            mhdp_in: endpoint {
-> +                remote-endpoint = <&dcss_out>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
-> 
+Ok, This should be fixed by swapping the order of the 2 following commits:
+[PATCH v5 05/10] dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+[PATCH v5 06/10] dt-bindings: soc: mediatek: convert pwrap documentation
+
+Regards,
+Alex
