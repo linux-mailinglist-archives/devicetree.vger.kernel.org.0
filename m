@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1B0C62C62F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B1662C63B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 18:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbiKPRTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 12:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
+        id S238806AbiKPRU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 12:20:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234138AbiKPRT0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:19:26 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63491CD3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:19:22 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id l12so30582297lfp.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:19:22 -0800 (PST)
+        with ESMTP id S234037AbiKPRUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 12:20:38 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D84525B86C
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:20:34 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id s24so22684370ljs.11
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 09:20:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UCpMqcRT8DeY5MXJCLiKIz5Im5PIOy+nnF0pses3NRo=;
-        b=gPP/YC7RcqXib2XtCBKhb344QqRcr2tCekCF3H6g0DbHMXM4BhF+AYi7kbOqwzduc1
-         3Nci/kOMGv5CP1o5EcR/uksu0p+DQ1m2pB/gPAPIJ41aKwBUyDOCxBpVgybBC/qaRQga
-         T3RREKedJitX+tZgbKXiRYFLTT+UhTcWyWU/SmhiHj57cdAf7pxa5HNvQ4I2SYeFTVPe
-         hwd9U5GXn3E2GS3Eakoa0GH8ZR3mS3C+DQkxZAzSXLcPeG/Pdzdn2nGBPyD2iT60PZDX
-         NIB8D8lpfsyt/RpG+EaZvK2Nv0GLHktVnskYmOD64WMfMkltDs0AtnMchbWTlVb+L9sT
-         fNuw==
+        bh=acJhybBz2M2PO5pOvU8Ug1ztLmaLScMlQ7teD+cQGJU=;
+        b=hiV0KLmAfXFXsByk8dO+7osbJAdckZA7x/kQYvBGviDWaMCyd5JgkCQe3rC4MXjRQ6
+         vdiiYG62vzpwuweR73j5H9pfVp0zHqYU4tScoBgIVlhtb6HOQ3bmPKWWBx5KwMI76elv
+         nDlztn51gUgD+yNCPzyyqJDQMe9E+7CAk4rJTAPR9o3iZKogr+bAUxbIFWz3SBgrcAyM
+         O937IZT10rekVeV3lsRJKOp+bTIdMJKwSauIbZBJ/yt3VVtvwrpLoxrBrXPJdhlUy2xX
+         X7RLmH84oGVm0Qf+fetgfI+yMTJd1mKVClJ+ohdZ2XOriTqLzAxPLK3uHEliQE89yvUS
+         fJ8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UCpMqcRT8DeY5MXJCLiKIz5Im5PIOy+nnF0pses3NRo=;
-        b=eVryXCqmh9iQg1f1IhksZQya91FAhg/PKgX7dhG3fdKp4WgBvGGwMf4cPIXhX6Uw7u
-         xNdDXSD7s0SpYSS3w4T0cy0k8dXFxh2zm0q0yGoAb8apUmXWR0b0h+CwzYMoXCqRbD7v
-         dBeRLjAEu47v6pOO55Vt1CyyeOosdnjbDo/YszzASsTnKyviYk63qxoKGCBk7QTenG9p
-         q96uL36AWhRwOk+lHIO3+HwIv43x0XToGE5OvhEPJJWH5lM+ZLTjkNCkSLWwm3sBVZti
-         syTWpTWdriHW0a9bPQLJbF9KytpKqt8P6OaluC+hYQAZB0JnViWKxmb2TZbSouhutltu
-         yXrQ==
-X-Gm-Message-State: ANoB5pny7DME/m5cICem04BIDtGBnUDXkbJFOGRWp8jVgyn0reojvCLC
-        4mkYXCr83wDgT+H5EFlMwL+mQw==
-X-Google-Smtp-Source: AA0mqf61LBMQcDDOdERra618Gul2RXMcG5LraXEgHjg7sKKHhpXJP2KJpVLUcPqjo1eEivEm8tnoHw==
-X-Received: by 2002:ac2:5093:0:b0:4b1:753b:e66f with SMTP id f19-20020ac25093000000b004b1753be66fmr8351806lfm.276.1668619160736;
-        Wed, 16 Nov 2022 09:19:20 -0800 (PST)
+        bh=acJhybBz2M2PO5pOvU8Ug1ztLmaLScMlQ7teD+cQGJU=;
+        b=iUvf16MxdXeA6+RhMA9G0S99Na50PB7ClK1tnPaE+W+M7hso729ICxiWlUz4VWnYX3
+         C30nhNI9pqfiqiuLiVhtqGlJBFlsGl4YCs/jCHZvSx0kfbmJCcAxNtBxIJXr9XZzuvGz
+         SEJ55xziy3oojbkGcGER9uHspIJ9iRej9nDAMikwHrpNtW5zUJiq1lGsOAZ9q3uamHZL
+         +fkT8ChZ6TtU8a1SDF1kLWUGJmq+h1akmQYjY0UYgla+xn2pGsxb/Hf/2XXAs6WMMXu+
+         DXkQk7nAlvbiGH/R//wrwntFcXCmBXPsWmjt8y+eBJKYWIiCYpAphadRbgIr0uAf4pcL
+         69RQ==
+X-Gm-Message-State: ANoB5pkpyARUYb8AsLoOgJSiwmW1OIOHoPK4UMIOECKZ469Adbs8bVzX
+        uy0h84zho4ExcqUVmmWJNa5X5A==
+X-Google-Smtp-Source: AA0mqf4SK9I+HKA5odf+PVVX3WuF39aVw5jxyOM1F9BP4tEwGynMOy3xZISLSjzEDF6aLD86VBrWnA==
+X-Received: by 2002:a2e:be8a:0:b0:277:a9d:9370 with SMTP id a10-20020a2ebe8a000000b002770a9d9370mr7528427ljr.103.1668619233275;
+        Wed, 16 Nov 2022 09:20:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac24d4b000000b004a62ff61b3dsm2676326lfp.252.2022.11.16.09.19.19
+        by smtp.gmail.com with ESMTPSA id p25-20020a056512139900b0048af397c827sm2696685lfa.218.2022.11.16.09.20.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Nov 2022 09:19:20 -0800 (PST)
-Message-ID: <891e51f0-af46-6150-ba4e-807f00cc8e63@linaro.org>
-Date:   Wed, 16 Nov 2022 18:19:18 +0100
+        Wed, 16 Nov 2022 09:20:32 -0800 (PST)
+Message-ID: <7080e8c8-4bb8-a328-5c2a-28510a7e3b49@linaro.org>
+Date:   Wed, 16 Nov 2022 18:20:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/8] arm64: dts: qcom: sdm450: Add device tree for
- Motorola Moto G6
+Subject: Re: [PATCH 3/8] arm64: dts: qcom: msm8953: Add device tree for
+ Motorola G5 Plus
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Julian Braha <julianbraha@gmail.com>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
@@ -71,9 +71,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-hardening@vger.kernel.org
 References: <20221116145616.17884-1-luca@z3ntu.xyz>
- <20221116145616.17884-3-luca@z3ntu.xyz>
+ <20221116145616.17884-4-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116145616.17884-3-luca@z3ntu.xyz>
+In-Reply-To: <20221116145616.17884-4-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,44 +87,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 16/11/2022 15:56, Luca Weiss wrote:
-> From: Julian Braha <julianbraha@gmail.com>
+> From: Sireesh Kodali <sireeshkodali1@gmail.com>
 > 
-> Add device tree for the Motorola Moto G6 (ali) smartphone. This device
-> is based on Snapdragon 450 (sdm450) SoC which is a variant of MSM8953.
+> Add device tree for the Motorola G5 Plus (potter) smartphone. This
+> device is based on Snapdragon 625 (msm8953) SoC.
 > 
-> Signed-off-by: Julian Braha <julianbraha@gmail.com>
+> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
 
 Missing SoB.
 
-Please run scripts/checkpatch.pl and fix reported warnings.
-
 > ---
 >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sdm450-motorola-ali.dts     | 256 ++++++++++++++++++
->  2 files changed, 257 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
+>  .../boot/dts/qcom/msm8953-motorola-potter.dts | 306 ++++++++++++++++++
+>  2 files changed, 307 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dts
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d7669a7cee9f..a0b537414593 100644
+> index a0b537414593..21a6a7b5a2cf 100644
 > --- a/arch/arm64/boot/dts/qcom/Makefile
 > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -115,6 +115,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sda660-inforce-ifc6560.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm450-motorola-ali.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts b/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
+> @@ -21,6 +21,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-grandmax.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-10.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-lg-bullhead-rev-101.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dts b/arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dts
 > new file mode 100644
-> index 000000000000..62874306fc24
+> index 000000000000..3957dabf651e
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
-> @@ -0,0 +1,256 @@
+> +++ b/arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dts
+> @@ -0,0 +1,306 @@
 > +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022 The Linux Foundation. All rights reserved.
 > + */
 > +/dts-v1/;
 > +
@@ -133,25 +131,16 @@ Please run scripts/checkpatch.pl and fix reported warnings.
 > +#include "pmi8950.dtsi"
 > +
 > +/ {
-> +	model = "Motorola Moto G6";
-> +	compatible = "motorola,ali", "qcom,sdm450";
+> +	model = "Motorola G5 Plus";
+> +	compatible = "motorola,potter", "qcom,msm8953";
 > +	chassis-type = "handset";
-> +	qcom,msm-id = <338 0>;
-> +	qcom,board-id = <0x41 0xb1a0>,
-> +			<0x42 0xb1a0>,
-> +			<0x43 0xc100>,
-> +			<0x42 0xb1b0>,
-> +			<0x43 0xc200>,
-> +			<0x44 0xc200>,
-> +			<0x42 0xb200>,
-> +			<0x43 0xb200>;
+> +	qcom,msm-id = <293 0>;
+> +	qcom,board-id = <0x46 0x83a0>;
 
-Both properties are not allowed, unless exception list is extended.
+Not allowed currently.
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
+> +
+> +	chosen {
 
 Best regards,
 Krzysztof
