@@ -2,142 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D3A62CD80
-	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E60562CDA8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Nov 2022 23:29:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231734AbiKPWTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 17:19:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43268 "EHLO
+        id S234174AbiKPW3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 17:29:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234789AbiKPWTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:19:14 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089516A68E;
-        Wed, 16 Nov 2022 14:19:13 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id a7-20020a056830008700b0066c82848060so11334552oto.4;
-        Wed, 16 Nov 2022 14:19:13 -0800 (PST)
+        with ESMTP id S231564AbiKPW3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 17:29:15 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BEF4B9B0
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:29:13 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id gv23so695677ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 14:29:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ijwqsMZNVxRbKwR3V0sBgPywqQx2GGbr1+5JUnnvQWQ=;
+        b=Cbyc454qj0zzyHWbx+Ki5coBgfNlJH1D9b54oPuiRIgZawoPu1QH+wqQKWhrH2+w3E
+         u6uqSwDkrbTuxKHDHO6WpKQNW6vw4ObKRUgoSS/eyxcw8IKSu7mizTqqmMXluxQsaJZ5
+         tNI1FOGtPvEhnM4RwhjuY4CyB0IuK22+8yThAMZUgxaoMO/u9BPEgdtNe/SdxEzMb7L1
+         aI/PEMKq3cEFK5XARrRPbpdWFHMymnvl387GVIMg2AVRgNRqjmeBtMozEnYXlAYOgJf/
+         vNMV8WS0apBMA+t4ee/tvk3LeHWDET6JyFH8iFrEyG+f7TFZ4UoRSP7STbtyXLTNK2Ub
+         Aexg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C1BseCQ919mBRDJ4MavG4MG7H9ttIbDk/xHMoGJiS7w=;
-        b=7O72zFjzF+EjbNtsilcSLKtz2441KmRTBcoHm0UXf68n4CjKGQagdqQSueQpfIx0NU
-         48O7cRHvMSR9wuMkhXuJlyGUMI6M0LKgU1FVt+j5L9S4rYSeGmOqZBaJRKM83m0OaMU+
-         CHL1hHCoG+YFyfEQvlDp55ZNCNBz8edGO0raqoXGxOcApwqi9kiqsFw7oSdz0Frwm+Oa
-         4Nw/HtM1A/BbKfFcolGclTTJzVXM813S9FYdtGbO0JlchLC7SPtZgJPKdTYv9kCI6kPO
-         2tD4Rrx46kh600jBvcJaBxk9pnj52P2NHFKIH1qzmAHswU+aNwm4doc+mKOPygo0JVQi
-         uerg==
-X-Gm-Message-State: ANoB5pmIXLfjYgrHDIisrOxCLKDTs9O0aclEmZIfyWLY0GcnA2t10x2n
-        a6kRETZ5wsoriLfRHxIJlg==
-X-Google-Smtp-Source: AA0mqf6Eebdg5PeMSU93AwHCbQ145qDurdgn9Iyf/Z25WtRx17/SMhDd27vWtGm1avZsTvXXn+MsOA==
-X-Received: by 2002:a9d:730d:0:b0:661:a568:7b27 with SMTP id e13-20020a9d730d000000b00661a5687b27mr118701otk.28.1668637152220;
-        Wed, 16 Nov 2022 14:19:12 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h12-20020a056870538c00b0013ae39d0575sm8623086oan.15.2022.11.16.14.19.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 14:19:11 -0800 (PST)
-Received: (nullmailer pid 1130415 invoked by uid 1000);
-        Wed, 16 Nov 2022 22:19:13 -0000
-Date:   Wed, 16 Nov 2022 16:19:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Helms <alexander.helms.jy@renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@kernel.org, mturquette@baylibre.com, geert+renesas@glider.be
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
-Message-ID: <20221116221913.GA1122997-robh@kernel.org>
-References: <20221115233749.10161-1-alexander.helms.jy@renesas.com>
- <20221115233749.10161-2-alexander.helms.jy@renesas.com>
- <83492f7f-1217-69aa-8b38-ec1f08995832@linaro.org>
- <abc55598-8833-c4b2-aadc-c4e589aa775a@renesas.com>
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ijwqsMZNVxRbKwR3V0sBgPywqQx2GGbr1+5JUnnvQWQ=;
+        b=ERv+F28YIbkedPOV+WORoNiKW6P+t5WupDVKo8NS4W8sV3KG5Fdq3YratG5ICGQHr+
+         +M5zHSCDn9IJSIyXqdcfOKqCzzsCnheAD1Zu4E8o5TQoZVZT1hXAGLeXOgy6+RbGRJNp
+         J+of7T36/mPDxUnDA5Uuk7RcflInPBmb+2IsQqiSb9hqWC5sE61vG6J7AJ7PR7U8vPad
+         tUhAiwdyRs99X9cSm1MaHXWYUs6y9fcVJdiGND1h1nWDW3nVxF2x3eod/FV/yCX6iW0Y
+         Ntg5g/EudeA2lHpp3wh5AuOyECDYZ0FdhirHKm4J86VGSpAepsr9BZhgFF1dg4ZBC0+s
+         zXrw==
+X-Gm-Message-State: ANoB5pl/lSqEgIly4gQsImwwlhZusidfaBowjcg2EMhjZzBTVwx+b3dY
+        SDcYVRrjLEX1MRrHAN1NioUF5aACZsgAZNtiUqQ=
+X-Google-Smtp-Source: AA0mqf6re5b4tGWKaQ2Jnrnmp7C0N6ewMk6Wn5/mn+MapeCzy73uIwL9LXKsb/UalTamiWOf3jLkxaxTHdRFX3JTPf0=
+X-Received: by 2002:a17:906:8d06:b0:78d:8d70:8bf8 with SMTP id
+ rv6-20020a1709068d0600b0078d8d708bf8mr18544382ejc.15.1668637752191; Wed, 16
+ Nov 2022 14:29:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abc55598-8833-c4b2-aadc-c4e589aa775a@renesas.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Received: by 2002:a17:906:3148:b0:78d:d03e:9587 with HTTP; Wed, 16 Nov 2022
+ 14:29:11 -0800 (PST)
+Reply-To: constance01castelein44@aol.com
+From:   constance castelein <constancec4u@gmail.com>
+Date:   Wed, 16 Nov 2022 22:29:11 +0000
+Message-ID: <CAFDMXCDFuM3HK4xQRsRde8kzFf+adGcxjQx=Tth=gau-5qu=vg@mail.gmail.com>
+Subject: Od Gospe Constance Castelein
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 01:17:54PM -0700, Alex Helms wrote:
-> On 11/16/2022 1:50 AM, Krzysztof Kozlowski wrote:
-> > On 16/11/2022 00:37, Alex Helms wrote:
-> >> Add dt bindings for the Renesas ProXO oscillator.
-> >>
-> >> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> >> ---
-> >>  .../bindings/clock/renesas,proxo.yaml         | 51 +++++++++++++++++++
-> >>  MAINTAINERS                                   |  5 ++
-> >>  2 files changed, 56 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/clock/renesas,proxo.yaml b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> >> new file mode 100644
-> >> index 000000000..ff960196d
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> >> @@ -0,0 +1,51 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Frenesas%2Cproxo.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C248dc84dbca44a4013d408dac7af9cf1%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C638041854305996374%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=iGbtWJLjV%2FM%2Fps0lPk7f40bMzX8qdt8VZBtH9J4LdOw%3D&amp;reserved=0
-> >> +$schema: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C248dc84dbca44a4013d408dac7af9cf1%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C638041854305996374%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=zYh4aHuw6G6A35rXBD7FTKeFrC7Hfcxag60ghkKUaGA%3D&amp;reserved=0
-> >> +
-> >> +title: Renesas ProXO Oscillator Device Tree Bindings
-> > 
-> > Same comments as for your other patch. All the same...
-> > 
-> >> +
-> >> +maintainers:
-> >> +  - Alex Helms <alexander.helms.jy@renesas.com>
-> >> +
-> >> +description:
-> >> +  Renesas ProXO is a family of programmable ultra-low phase noise
-> >> +  quartz-based oscillators.
-> >> +
-> >> +properties:
-> >> +  '#clock-cells':
-> >> +    const: 0
-> >> +
-> >> +  compatible:
-> >> +    enum:
-> >> +      - renesas,proxo-xp
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  clock-output-names:
-> >> +    maxItems: 1
-> >> +
-> >> +  renesas,crystal-frequency-hz:
-> >> +    description: Internal crystal frequency, default is 50000000 (50MHz)
-> > 
-> > If it is internal, then it is fixed, right? Embedded in the chip, always
-> > the same. Why do you need to specify it?
-> > 
-> 
-> Yes, it is embedded in the package but there are different values
-> depending on what chip is ordered and therefore must be specified for
-> some configurations.
-> 
-> I'm also not sure what you mean by me ignoring Rob's comment. I
-> explained my case for calling it "crystal-frequency-hz" and moved
-> forward. I can call it "clock-frequency" if you want but I find that
-> more confusing. Yes it is a built-in name in the schema but it seems to
-> be used in a variety of ways. Some devices use it as a crystal input,
-> but most seem to use it as the desired output frequency of the device
-> which is not how it is used here. Therefore I chose a more clear name
-> that better reflects what it is doing.
+Od Gospe Constance Castelein
 
-I think it is fine as-is. But you should have 'default: 50000000' 
-instead of prose.
+Najdra=C5=BEji v Gospodu,
 
-Rob
+Z vsem spo=C5=A1tovanjem in =C4=8Dlove=C4=8Dnostjo sem bil prisiljen v napi=
+sati a
+humanitarnem podro=C4=8Dju.
+
+Sem vdova Constance Castelein, staram se dolgotrajno bolna (rak). Trenutno =
+tako
+sprejet v zasebno bolni=C5=A1nico. Imam nekaj sredstev, ki sem jih podedova=
+l
+moj mo=C5=BE Anthony Castelein,, ki je kasneje umrl v prometni nesre=C4=8Di=
+.
+
+Ko je bil moj mo=C5=BE =C5=BEiv, je polo=C5=BEil vsega 4.500.000.00 =E2=82=
+=AC
+(4.500.000,00 evrov) v banki. Trenutno je ta denar =C5=A1e vedno v
+banka.
+
+Zdravnik mi je rekel, da zaradi tega ne bo trajalo naslednje 3 mesece
+problem z rakom. Potrebujem nekoga zelo po=C5=A1tenega in bogaboje=C4=8Dega=
+ in
+organizacijo, ki lahko ta sredstva uporabi za delo Bo=C5=BEjega pokojnega
+mo=C5=BE je nau=C4=8Dil, da ga je treba ta sklad uporabiti v dobrodelne nam=
+ene,
+kot so gradnja =C5=A1ol, siroti=C5=A1nic, bolni=C5=A1nic itd.
+
+Tako sem se odlo=C4=8Dila, ker nimam otroka, ki bi dedoval
+ta denar in =C5=BEelim, da se mi Bog usmili in upo=C5=A1tevam mojo du=C5=A1=
+o.
+Z Bogom so vse stvari mo=C5=BEne. Prosim, =C4=8De bi lahko uporabili
+ta sredstva za bo=C5=BEje delo, prijazno
+
+=C5=BDelim, da mi po=C5=A1ljete naslednje podatke, navedene spodaj.
+
+Tvoje polno ime ----------------------
+Tvoja dr=C5=BEava ------------------------
+Va=C5=A1 naslov ---------------------------
+Tvoja starost ------------------------------
+Va=C5=A1a zaposlitev ----------------------
+Telefon ------------------------
+Takoj ko prejmem va=C5=A1 odgovor, bom posredoval kontakt
+Banka in jaz vam bova izdala tudi pooblastilo, ki bo
+poka=C5=BEite, da ste trenutni upravi=C4=8Denec tega sklada.
+
+V upanju na va=C5=A1 odgovor. Ostanite bla=C5=BEeni v Gospodu.
+
+Hvala vam
+
+S spo=C5=A1tovanjem
+
+Gospa Constance Castelein
