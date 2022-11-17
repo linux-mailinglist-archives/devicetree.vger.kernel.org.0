@@ -2,134 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7EA462D94D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F7762D956
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239251AbiKQLUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 06:20:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36978 "EHLO
+        id S239445AbiKQLYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 06:24:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239221AbiKQLUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:20:35 -0500
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70B013EBC;
-        Thu, 17 Nov 2022 03:20:34 -0800 (PST)
-Received: by mail-qv1-f47.google.com with SMTP id h10so948914qvq.7;
-        Thu, 17 Nov 2022 03:20:34 -0800 (PST)
+        with ESMTP id S234769AbiKQLYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:24:09 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52AE3E0A8
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:24:07 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id k7so1330810pll.6
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:24:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=i+s6Ug5M5MNLeX0nDma7SaMLHMCJkt7UhOngWgPpU1U=;
+        b=wNNgQ/ujNH4aMiqD04braFOKKTznPN8QXWqPUL3WqXaFDSCXmvcc72WiGKxO5PEz36
+         xr/Fsvt7CyfIlnQTopNyjDouuyuKapNzxa5lfXtmpt2sycPaGWyX0EdziRTw7AeU7bDh
+         Ux9A5wbvnBFZRUGKmZW+3Jl6qaDWzrIylvnwr8ybkHCNkYKgqJ7scbe2Y2GLWKqi0kYZ
+         b9bicqYYE5bY0OT0dnHBY7WtfjClSSQnDvQBc1TUuPHwgyYdGL5p8mciOmma+hF6g9Ua
+         NSa0LHXavdxR3GUMlBJkUCnAUEMYheSUTtC21D2raVEAXfdVDkMFi1qniRW9Mrk7RPDg
+         fEXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u3UsUK/TjT1z93KhLxxghxMW8cugHnHa5KSXtnbw2b0=;
-        b=taT7a/3Zt2Qr1IFRaUCiypjwG0bz83jtmD+LIn94Wm6f/n3WBiP9/jTvD6GkZT+8eV
-         SD4CCWdkW4k3Qz9pxdRjtMaym8FVqGgjhQw1q9hhmfTzlG3xdIcfZl1yxZQSBycE8nDX
-         tEFZxBbpkvetcjTijkN2FdIzvQ1S4DrYD9XfTK3gr9CaJl0qtP1rcHjYfPfjkNCer/pk
-         ivaeWMtqlirh7gjFk0IgN7K2p6sLItGs51OF8hoeCnuiOOFGJR0Bq/gAlOrpMhHEvfsi
-         dd1pnxNVGeo3430BXpbTN5kZOgo46W7alge/3IUzsYOpo/zrlfBLnTxpPa5+4TZiYFUm
-         MA9w==
-X-Gm-Message-State: ANoB5pkVD2s2jgrTvZ0xKL3euNHfK6X+zO1WK1tOoVRYK1FKjQBg1h7p
-        tgLfY/FuW74QEQuUkS3mPj4Im/SMdQU4cQ==
-X-Google-Smtp-Source: AA0mqf7WnwyRV+YFnDFvVJeBBQuruMbxHSBY02Z3yqXpSM6qbitVAP4qUu1h3ZYxLBj+H7VHap+hLw==
-X-Received: by 2002:a05:6214:5649:b0:4af:ad6e:9ac9 with SMTP id mh9-20020a056214564900b004afad6e9ac9mr1992223qvb.22.1668684033528;
-        Thu, 17 Nov 2022 03:20:33 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id d12-20020ac8060c000000b0039d085a2571sm219318qth.55.2022.11.17.03.20.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 03:20:33 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-3691e040abaso15476707b3.9;
-        Thu, 17 Nov 2022 03:20:33 -0800 (PST)
-X-Received: by 2002:a05:690c:b81:b0:37e:6806:a5f9 with SMTP id
- ck1-20020a05690c0b8100b0037e6806a5f9mr1541973ywb.47.1668684033193; Thu, 17
- Nov 2022 03:20:33 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i+s6Ug5M5MNLeX0nDma7SaMLHMCJkt7UhOngWgPpU1U=;
+        b=ljg/uNq+0UTRHKcna/AjjUzOzaoPhwVxWGddgyQtQKz2EfEPuPoeZr8s8e3vwtNI7h
+         OjOWXJlnEHkflsSp8L2v9PfjErbmA/R1OTk2g7wWJK5cPwtIl5bZGZLliVkbPOKhna59
+         wAi30Nx3D2tJ1g+wqTQyZrGJDkGDWufEwuMnkbextX54shZgHsHYo5+HP1UWzLebpRC+
+         JoFjU2TyK33yEd9VUdC+Rw7Y/lrxEKceGEXM7LaviVF4M9uW8prsJeHv5KYeS1zOzkSl
+         9Vs7ZOOO643xjVPfWlRIP4f79Rrn/KJunD4qqqcb0njV+Z592YmhTIBUvnRE1MhiYb/l
+         6bdg==
+X-Gm-Message-State: ANoB5pnw7fYE6JPVhrh8pcclAmpWyQPPChfdpKiSVHpmXzDp4aWD2FnV
+        BH4TQWYLc0Iebq2o5Ir04t7hbw==
+X-Google-Smtp-Source: AA0mqf560Kd2vqBW3wj4OBZezqM8uLWOdkM4wwz1Qay/d9Jm9v2iltTJxm4b4e7pw4JfhJOSm6zreg==
+X-Received: by 2002:a17:90a:62c2:b0:20d:bc7f:4fee with SMTP id k2-20020a17090a62c200b0020dbc7f4feemr8385860pjs.168.1668684247332;
+        Thu, 17 Nov 2022 03:24:07 -0800 (PST)
+Received: from localhost ([122.172.85.60])
+        by smtp.gmail.com with ESMTPSA id iz9-20020a170902ef8900b001754cfb5e21sm1062247plb.96.2022.11.17.03.24.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 03:24:05 -0800 (PST)
+Date:   Thu, 17 Nov 2022 16:54:03 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221117112403.haffuclwooudvgwz@vireshk-i7>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+ <20221117101903.sw3hxaruj5sfhybw@bogus>
 MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221107175305.63975-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221107175305.63975-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 17 Nov 2022 12:20:21 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV+e63iW2yCNaTqYv6_b7zSnok-1i07sbNfgJvq5vGUCQ@mail.gmail.com>
-Message-ID: <CAMuHMdV+e63iW2yCNaTqYv6_b7zSnok-1i07sbNfgJvq5vGUCQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 4/5] arm64: dts: renesas: r9a07g043[u]: Update pinctrl
- node to handle GPIO interrupts
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221117101903.sw3hxaruj5sfhybw@bogus>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On 17-11-22, 10:19, Sudeep Holla wrote:
+> Why do you need the above 3 changes if the below(4/4) will ensure
+> cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
+> whole "confusing" clock bindings and the unnecessary clock provider.
+> 
+> Can't we just use cpufreq_get(cpu) ?
 
-On Mon, Nov 7, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add required properties in pinctrl node to handle GPIO interrupts.
->
-> Note as IRQC is not enabled in RZ/Five the phandle for interrupt-parent
-> is added in RZ/G2UL specific dtsi so that RZ/Five pinctrl driver
-> continues without waiting for IRQC to probe.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+https://lore.kernel.org/lkml/cover.1657695140.git.viresh.kumar@linaro.org/
 
-Thanks for your patch!
+The basic idea (need) here was to fix the DT and let the CPU nodes have clock
+related properties, which are missing currently.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> @@ -531,6 +531,8 @@ pinctrl: pinctrl@11030000 {
->                         gpio-controller;
->                         #gpio-cells = <2>;
->                         gpio-ranges = <&pinctrl 0 0 152>;
-> +                       #interrupt-cells = <2>;
-> +                       interrupt-controller;
->                         clocks = <&cpg CPG_MOD R9A07G043_GPIO_HCLK>;
->                         power-domains = <&cpg>;
->                         resets = <&cpg R9A07G043_GPIO_RSTN>,
-> diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> index 7a8ed7ae253b..65e7b029361e 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> @@ -98,6 +98,10 @@ &irqc {
->         resets = <&cpg R9A07G043_IA55_RESETN>;
->  };
->
-> +&pinctrl {
-> +       interrupt-parent = <&irqc>;
-> +};
+The context can be seen in the above thread.
 
-Do you plan to move it back to the common r9a07g043.dtsi later?
-Perhaps it makes sense to move the full irqc node to r9a07g043[uf].dtsi?
-There is not that much common left, even the compatible value differs.
-We don't keep the few common properties of the cpu0 node in
-r9a07g043.dtsi neither.
-
-> +
->  &soc {
->         interrupt-parent = <&gic>;
->
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+viresh
