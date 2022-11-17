@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCA762DC2E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E0762DC3C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239501AbiKQNDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 08:03:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55632 "EHLO
+        id S239572AbiKQNFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 08:05:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239305AbiKQNDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:03:00 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F32E654D2
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:02:59 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id a29so2640722lfj.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:02:59 -0800 (PST)
+        with ESMTP id S234693AbiKQNFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:05:13 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B95449085
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:05:12 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id k19so2635194lji.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:05:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YPiJ7os7PhEqrWGvtI8HCACMGN0RvPMekiv79MxyVqE=;
-        b=rb1lpgP+fARO/6FtRRzLWhf1wyTHfYMbmqIXevWEuMS94ujwYdhoe7VQAH/Hs7wYyG
-         pYwovs9TxBIwqW5zZR702ZamIB42qBnxhfyAW6T1JJUDbMD7PqFwCTDldyXg3NZnuhWq
-         mjU0PtqlfwMYyFbquOQWCWndXRTU7i2XG6cZuCFoMRsXZU9X/3ElM+HV/GG14lsCCIOu
-         /pgIGIhPo1HUHgs638m/yuf3SH02fZxkXo1Ew2rWyFgNKZYAzB/trAgdcGxYOfD+dXOM
-         c6TyjbWA21lopFHHBaeaMUTgGzAUWK4oEE2TQHGQlIw23WuRRj0CUJkGeNajcBylR1kd
-         Wq5A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6o6875WgReRaHrL7mfmplhzccEYmNiHd+KnxOuIwE1k=;
+        b=oGIGoKNZWt+TEvSGwX2huvWOYzkp/PzuBLlXqfNHLAqtbjhmLefFKPJO6BKqk7cw0E
+         f3UWAYwYIxbV82Zbsom1piXdothmHlenjh6V0kXM6sWlSzfG5hA7AcgKI9T2Op5ARSow
+         tI2DA+ND1mmWacjMpUgbQ0Voth0SWudHATKqlGnrhTs2+nFxm5SlLFXlPStz0DJoXKwr
+         DRJsTIvaE1Fjdcyu4lp3LjGxiLHXuvLASw6J9d9VF+i+QWc+I7yW8lP38sxH2MVbO+sv
+         h42zmLCkuHo+QcKUkmcXfh0tmmKsrWZPWCjGsrpr79zc/HRgtrbgM62XD5YxWyX8EVN1
+         HKuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YPiJ7os7PhEqrWGvtI8HCACMGN0RvPMekiv79MxyVqE=;
-        b=WVnbWbit0VX/KZ/XT9FXR8HMg+uR7JC/UPi2grlhVPozLmese5ThCyuZwR6IP8hX+i
-         VeNdX3Ex2wxLY/8OIF+Y75X3xq6MF3tRCZssIUso115RnEymtEjxLnLffjl0pIS4cGwc
-         bF1z/SdU50639uj8cf3TIiZigVkNFqAfVOdLZp7WtGRPyzCVSZSrvsytoxxfysk9/+uE
-         5NVC8LsMKM+M0sf4jGom5OaK54HA/NWr1t1gwI3SY5L3aLQSn974BE8niYApJUXdzgIr
-         rTMHh6ZhIWKwIXPyGfWd9dqv63p3bpFVWvbFY23u2Dh22DcSzNxe7cs9EWU/nOhiBAQe
-         7yOQ==
-X-Gm-Message-State: ANoB5pmWWp71L2cvdpLiRZsY0geNW0fDQMVFr8LODbTfV8ZgDHNms9YN
-        UJEb9w8etwCcg708KI+jwIwxlw==
-X-Google-Smtp-Source: AA0mqf4ACSvvgnA3OevUWAqQJmbuiVpzqjBLDs6tP3CCwp3fODm5slkGppX+15vDxgXXVaFEUgTOFQ==
-X-Received: by 2002:a05:6512:25a0:b0:4a2:bbdc:1430 with SMTP id bf32-20020a05651225a000b004a2bbdc1430mr813519lfb.404.1668690177498;
-        Thu, 17 Nov 2022 05:02:57 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v6-20020a2ea606000000b0026c4c1a0b4dsm186982ljp.126.2022.11.17.05.02.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 05:02:56 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH] dt-bindings: thermal: qcom-tsens: simplify if:then: clauses
-Date:   Thu, 17 Nov 2022 14:02:54 +0100
-Message-Id: <20221117130254.378109-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6o6875WgReRaHrL7mfmplhzccEYmNiHd+KnxOuIwE1k=;
+        b=D/tpNLFCwgAyPOUc2AFGXGQkW+u/RyxZU4+DQJH3J7TpsJkgm7UjDkkVv+QI5uaNZe
+         EOe1i/4aRljfT3reihdUvLkeRXBQXqrM/pTJv/jw034Ij6wAB/zwdJJdyuwrbjyq681M
+         SRNfRfvd6k8kD1vLJHqSIjARgWKKNCI6lIrcaJdwmy0QQO2V0RmKZK1bjQEWfWg6cus7
+         YtHkxPAdiJ2EZox9czJ/g+2Cbi5+HjyGwQl9g30coulOWfLPoLjSIxDSYZjpEMC226X+
+         fDRP1wqQvNFirwTaENw9B87sAQlh1T7ceTo+WybzbHuDObptwVmLq2094bL7ylckcg0i
+         Lmdg==
+X-Gm-Message-State: ANoB5pkHRzrlQT9mvUDYbblZxxUkRhAwOac7qdfuDs5cc7OEesxoLKmT
+        KUtzREbj9DpdEb3JQiDcOTkuHg==
+X-Google-Smtp-Source: AA0mqf5FeNxtFGS0rsYMZmkU3OkAGojteHdSJx0Ua6wFXCuYC9bMdmq8MmOjgUCvWnQIG50eLPE1Nw==
+X-Received: by 2002:a05:651c:2cb:b0:277:746:62c2 with SMTP id f11-20020a05651c02cb00b00277074662c2mr1068450ljo.236.1668690310730;
+        Thu, 17 Nov 2022 05:05:10 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q3-20020ac246e3000000b004b19f766b07sm142467lfo.91.2022.11.17.05.05.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 05:05:10 -0800 (PST)
+Message-ID: <0e3ec86f-2a2b-bdb9-09b2-db720b5af435@linaro.org>
+Date:   Thu, 17 Nov 2022 14:05:08 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02
+ boards for the DHCOM i.MX6ULL SoM
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel@dh-electronics.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221117103134.6452-1-cniedermaier@dh-electronics.com>
+ <20221117103134.6452-2-cniedermaier@dh-electronics.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221117103134.6452-2-cniedermaier@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,54 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of the device-specific compatibles have generic fallbacks like
-qcom,tsens-v1 or qcom,tsens-v2.  The if:then: block mentions these
-fallbacks, so drop redundant entries for specific compatibles.
+On 17/11/2022 11:31, Christoph Niedermaier wrote:
+> Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
+> for the DHCOM i.MX6ULL SoM.
+> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> ---
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/thermal/qcom-tsens.yaml  | 16 ----------------
- 1 file changed, 16 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index f0bd4b979e28..c9949713f714 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -118,12 +118,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,ipq8064-tsens
--              - qcom,mdm9607-tsens
--              - qcom,msm8916-tsens
-               - qcom,msm8960-tsens
--              - qcom,msm8974-tsens
--              - qcom,msm8976-tsens
--              - qcom,qcs404-tsens
-               - qcom,tsens-v0_1
-               - qcom,tsens-v1
-     then:
-@@ -140,17 +135,6 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - qcom,msm8953-tsens
--              - qcom,msm8996-tsens
--              - qcom,msm8998-tsens
--              - qcom,sc7180-tsens
--              - qcom,sc7280-tsens
--              - qcom,sc8180x-tsens
--              - qcom,sdm630-tsens
--              - qcom,sdm845-tsens
--              - qcom,sm8150-tsens
--              - qcom,sm8250-tsens
--              - qcom,sm8350-tsens
-               - qcom,tsens-v2
-     then:
-       properties:
--- 
-2.34.1
+Best regards,
+Krzysztof
 
