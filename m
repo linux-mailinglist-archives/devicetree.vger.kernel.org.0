@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ABD762D3FA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 08:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A77D62D408
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 08:26:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239221AbiKQHU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 02:20:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55854 "EHLO
+        id S233220AbiKQH0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 02:26:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239302AbiKQHUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 02:20:48 -0500
+        with ESMTP id S234615AbiKQH0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 02:26:45 -0500
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51FBB2F001;
-        Wed, 16 Nov 2022 23:20:47 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AH7KXmt050883;
-        Thu, 17 Nov 2022 01:20:33 -0600
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D36A4299C;
+        Wed, 16 Nov 2022 23:26:45 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AH7QasS051985;
+        Thu, 17 Nov 2022 01:26:36 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668669633;
-        bh=GbhEspxYtZvsVIkMe3h+Fk8YTaJfyuiLvBfhQnpj3K8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=tKSYrM6S/nhDUKN8fQQog7hfarmnKVUeckQY70GVNx+JkhoL/kZk2s/4WkrZ6wACk
-         arSDwM/SXGL9H3pvtTFdXKzEMh07KWw2DTRVVAwXg6wzTm/vZGfWGAjRi2MoPU9cCm
-         ZGI4LxIFQ2jOe8Dgy8eWT4vJdWcszM5pKqq5drw8=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AH7KXQM008956
+        s=ti-com-17Q1; t=1668669996;
+        bh=eqQ/3cCLrSuzVZEUFTNhVlp1S92E4HYsYV7v9SonXn8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=fNQufl1//OH+DxPdwyri9aYKsr69ShdyqndU96TP7c0OaMGwnxMlv4bZQ0S0OPi0t
+         8aXSH/QA5hKeEyMkAcRqjT49mJqbtZ1m9kfUw7aTbdWUuL4+x6+/Mc5jXP41WuCeWU
+         klbgiMjKj0uaoxnWaea8duEHuRYQ7RedBEZOuq8E=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AH7QZGd017005
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Nov 2022 01:20:33 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 17 Nov 2022 01:26:36 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 17
- Nov 2022 01:20:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 17 Nov 2022 01:20:32 -0600
+ Nov 2022 01:26:35 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 17 Nov 2022 01:26:35 -0600
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AH7KWH5037519;
-        Thu, 17 Nov 2022 01:20:32 -0600
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AH7QZ9u012868;
+        Thu, 17 Nov 2022 01:26:35 -0600
+Date:   Thu, 17 Nov 2022 01:26:35 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     <vigneshr@ti.com>, <j-choudhary@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+To:     Bhavya Kapoor <b-kapoor@ti.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <kristo@kernel.org>
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721s2-main: Enable crypto accelerator
-Date:   Thu, 17 Nov 2022 01:20:32 -0600
-Message-ID: <166866942229.20019.9156819999833538961.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20221031200633.26997-1-j-choudhary@ti.com>
-References: <20221031200633.26997-1-j-choudhary@ti.com>
+        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <piyali_g@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel
+ property
+Message-ID: <20221117072635.k4fmjqcnw3kcjrc4@precinct>
+References: <20221116091652.112620-1-b-kapoor@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221116091652.112620-1-b-kapoor@ti.com>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -65,44 +65,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jayesh Choudhary,
+On 14:46-20221116, Bhavya Kapoor wrote:
+> According to latest errata of J721e [1], HS400 mode is not supported
+> in MMCSD0 subsystem (i2024) .  Speed modes supported has been already
+			     ^^ space before "."
 
-On Tue, 1 Nov 2022 01:36:33 +0530, Jayesh Choudhary wrote:
-> Add the node for SA2UL for supporting hardware crypto algorithms,
-> including SHA1, SHA256, SHA512, AES, 3DES and AEAD suites.
-> Add rng node for hardware random number generator.
+btw, "The MMCSD peripherals do not support the Multimedia Card HS400
+mode." is the exact text of the erratum. Even though it applies to
+instance 0. I think minor rewording will probably help people from
+running to search for which specific instances.
+
+> updated in commit eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+
+Please format this correctly.
+
+> but it missed dropping 'ti,strobe-sel' property which is
+> only required by HS400 speed mode.
 > 
+> Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e SoC.
+> 
+> [1] https://www.ti.com/lit/er/sprz455/sprz455.pdf
+> 
+> Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+> 
+> Changelog v1 -> v2 :
+> 	- Updated Commit Message based on what Nishanth Menon has told
+> 		in https://lore.kernel.org/all/20221115034324.6qpxl2774bzwbl3t@acorn/
+> 
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 917c9dc99efa..e4748a838d83 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1094,7 +1094,6 @@
+>  		ti,itap-del-sel-mmc-hs = <0xa>;
+>  		ti,itap-del-sel-ddr52 = <0x3>;
+>  		ti,trm-icp = <0x8>;
+> -		ti,strobe-sel = <0x77>;
+>  		dma-coherent;
+>  	};
+>  
+> -- 
+> 2.20.1
 > 
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-For the next time around:
-Maintain consistent formatting 0x%08x for addresses, formatting to line
-things up etc. I have manually edited to do that for this time.
-
-[1/1] arm64: dts: ti: k3-j721s2-main: Enable crypto accelerator
-      commit: 027b85ca972f321629af85793bb49d45382e9006
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
 Regards,
 Nishanth Menon
 Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
