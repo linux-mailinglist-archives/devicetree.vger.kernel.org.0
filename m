@@ -2,74 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4332262DA1F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 452E962DA25
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:04:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239895AbiKQMCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:02:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33622 "EHLO
+        id S239912AbiKQMEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:04:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239917AbiKQMBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:01:55 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 184555B846;
-        Thu, 17 Nov 2022 04:01:50 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3748813D5;
-        Thu, 17 Nov 2022 04:01:56 -0800 (PST)
-Received: from bogus (unknown [10.57.6.137])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D32B53F663;
-        Thu, 17 Nov 2022 04:01:47 -0800 (PST)
-Date:   Thu, 17 Nov 2022 12:01:45 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221117120145.ou2pg7obxnwlsc36@bogus>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221117101903.sw3hxaruj5sfhybw@bogus>
- <20221117112403.haffuclwooudvgwz@vireshk-i7>
+        with ESMTP id S239894AbiKQMEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:04:14 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7555321B2
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:04:13 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ovdcY-0008LW-Qn; Thu, 17 Nov 2022 13:03:54 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ovdcU-004qCu-Qu; Thu, 17 Nov 2022 13:03:51 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ovdcU-00HGer-Ov; Thu, 17 Nov 2022 13:03:50 +0100
+Date:   Thu, 17 Nov 2022 13:03:50 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 2/9] ARM: dts: suniv: f1c100s: add PWM node
+Message-ID: <20221117120350.kreyg7an5dtuaudr@pengutronix.de>
+References: <20221101141658.3631342-1-andre.przywara@arm.com>
+ <20221101141658.3631342-3-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nykzmius3wydfoj4"
 Content-Disposition: inline
-In-Reply-To: <20221117112403.haffuclwooudvgwz@vireshk-i7>
+In-Reply-To: <20221101141658.3631342-3-andre.przywara@arm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 04:54:03PM +0530, Viresh Kumar wrote:
-> On 17-11-22, 10:19, Sudeep Holla wrote:
-> > Why do you need the above 3 changes if the below(4/4) will ensure
-> > cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
-> > whole "confusing" clock bindings and the unnecessary clock provider.
-> > 
-> > Can't we just use cpufreq_get(cpu) ?
-> 
-> https://lore.kernel.org/lkml/cover.1657695140.git.viresh.kumar@linaro.org/
-> 
-> The basic idea (need) here was to fix the DT and let the CPU nodes have clock
-> related properties, which are missing currently.
-> 
-> The context can be seen in the above thread.
 
-Thanks for the link. Sorry I still don't get the complete picture. Who are
-the consumers of these clock nodes if not cpufreq itself.
+--nykzmius3wydfoj4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I am going to guess, so other device(like inter-connect) with phandle into
-CPU device perhaps ? Also I assume it will have phandle to non-CPU device
-and hence we need generic device clock solution. Sorry for the noise, but
-I still find having both clocks and qcom,freq-domain property is quite
-confusing but I am fine as I understand it bit better now.
+On Tue, Nov 01, 2022 at 02:16:51PM +0000, Andre Przywara wrote:
+> The Allwinner F1C100s family of SoCs contain a PWM controller compatible
+> to the one used in the A20 chip.
+> Add the DT node so that any users can simply enable it in their board
+> DT.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
--- 
-Regards,
-Sudeep
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+I assume this patch will go via an architecture tree (i.e. not PWM).
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--nykzmius3wydfoj4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmN2IyMACgkQwfwUeK3K
+7Akl7AgAlCaC0HMsIKb2oLOmds8MmfyJ0SP9xMHZsX3upV7JTeQdunQ3Al1ZukgU
+xSZKXXXmuiORfqLKKge5k6dTKovJHOu3Oyj9rAFR75rGR3TZnRBXsrOkXSSJeCEy
+2P4GkTUw6rxyxWqq8pfAtuZsFzWjQ86/YRkvEbwDOxoOebZnRMLKLDxeYxD0wFg1
+fPd3zRzj6sF+hgEx85zeDEgsb1j26v5f0XhH44J98JMdBpUAzyvjuhvV/RLoiU8O
+/ESLt7LIyvz1m0F6bInxyHWOpqDd76z0HCgHrK1FPj6bAEl9siDkXDcVPJAtKaag
+TzKdGk7pBXaH5s2Wx4kvd79I59+M5g==
+=iuOn
+-----END PGP SIGNATURE-----
+
+--nykzmius3wydfoj4--
