@@ -2,164 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF23B62E01C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 046A662E024
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239512AbiKQPkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 10:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
+        id S234811AbiKQPkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 10:40:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239776AbiKQPju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:39:50 -0500
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CBEEBD;
-        Thu, 17 Nov 2022 07:39:49 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so1258140otl.10;
-        Thu, 17 Nov 2022 07:39:49 -0800 (PST)
+        with ESMTP id S239586AbiKQPki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:40:38 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CD9632D
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:40:38 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id 130so2296369pgc.5
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:40:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pfRqtRKd8SqE53Bj4VHMwwcbF9sjiMvyrIbl19n+WS8=;
+        b=OWhqxymbjYJcH3uaYprhaap3P+2ad7c1PNYCs86hkhofwJT8At5HiplT7dXLTLWxv9
+         SpIsZK0gglEJMD3eLzaWpz8J75ismL3VcZTdc8JgQbvs6A70sZBI6pbZ6/2gsiKyNTMB
+         pYMMIshXwjt/wtrS+K4us6bU5eIB0gkSWCKFYK8hEA7C+DJOywOP/tLPsWLsDsPM+gYq
+         MNgCVDvHUZqymlsKFlOgif1G17fbLbTAKCg2DQuidep4JqBIJsAj5UEbVsGKLjQhCbrF
+         GmBPK/zqsa/Q//tFcc9d3d98udFwGMVKiPGM9N/dKy8ZkopLxFuNeeWSimE9J6UgdS2L
+         eVdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TVhbvRUqZQu6uk1nSlOpC0Wl3O1+Ha3Mzov9EJw71XE=;
-        b=qZkEGPzBU9nepJmT/trzMGKP66HWNxqpAT29SXCU4qP+k+rf1wQrg3Tu8ttQxffvKQ
-         TtmC1pRWCj72U6ptzNGgf/Bgd9JAuPRTWZq33UO0G8kgQ+bOaZPyqx3LqwipDrnBA/8c
-         99xonw/WuJ8zK3a8QRPuI0oh3q7hVEO09FMby9SXazlHRBUQtgl21pl3Rdh1RcMTomDO
-         e1OFC+alOhpZLDI4/hlxipGlTvz1rVRVbq/j4dKmsJB6BErHvd5ttNGhDHkDMDpVU6bi
-         AtkBsSo7oJxOkU+XveZVeRbZJZeH0w1YOpmc03jHrSA6pMbG70WHSHZO851EWFtOPisV
-         kJkQ==
-X-Gm-Message-State: ANoB5pktJJtd8uZLlo7Sky+8ymTZRfHKA34dbPtAR3WSGv4pFH1FDtXM
-        OjBRT5tdE2TWwnUEXGG5aQ==
-X-Google-Smtp-Source: AA0mqf4f8AEtQBCEXoach04sei0JgrD/an2wLNFUiFJXCBqskIg7Lnw9MEjrMzhIfDsicIRmbX4Fng==
-X-Received: by 2002:a05:6830:1d66:b0:66c:5b70:2396 with SMTP id l6-20020a0568301d6600b0066c5b702396mr1626581oti.357.1668699589169;
-        Thu, 17 Nov 2022 07:39:49 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 44-20020a9d04af000000b0066101e9dccdsm450844otm.45.2022.11.17.07.39.47
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pfRqtRKd8SqE53Bj4VHMwwcbF9sjiMvyrIbl19n+WS8=;
+        b=1AO6RzaIgGs8jaNL9oTQpETfc7nNSW/yMcyBzOP6NuuTXWZGYIR+Bx1oa6NKoj3+B4
+         P/yRjqWsH32/xZG+QsMJ6GUxJ5F4F4tbOnKbvUqcEnOu5u2EWjD4fn6cwDJQS8tw9WBu
+         QIHKwEEq3evB42mi0sGSvuCM4BTxZpW32+5Zqw6GRGwZrEcvVCl6Nj3DDvmdP9/NlZ5R
+         BxK43Rhdgm6VOFJO12uEP9qP7au0hPJiVVPjwOQi1jvxEk1QQnYOlsDzKxHqkpkF3N1d
+         DTYGxArrbjVvpb3FS5Lcx8XIU0y9zlPTrMm2KqaMZYwr8m3GTbbBBPXXFZvKR4xtkLYX
+         lbbw==
+X-Gm-Message-State: ANoB5plTQlbW/yauAiNC4x0JebScExJn6+26YmiSg6B8ZBsJNcQjQhpv
+        P+0KkH/XvbLOYKnJJIrLkJsmuA==
+X-Google-Smtp-Source: AA0mqf6QLQLorHXpp0fOgY/kytwiTqbSgHX1EdM3E1RcZ7RugFQ+bFwkB/NZumxcuJuuF025YMVuPA==
+X-Received: by 2002:a05:6a00:2396:b0:572:698b:5fa9 with SMTP id f22-20020a056a00239600b00572698b5fa9mr3474821pfc.28.1668699637684;
+        Thu, 17 Nov 2022 07:40:37 -0800 (PST)
+Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id b7-20020aa79507000000b0056bcfe015c9sm1252363pfp.204.2022.11.17.07.40.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 07:39:48 -0800 (PST)
-Received: (nullmailer pid 2918390 invoked by uid 1000);
-        Thu, 17 Nov 2022 15:39:50 -0000
-Date:   Thu, 17 Nov 2022 09:39:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Flora Fu <flora.fu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 02/10] dt-bindings: rtc: mediatek: convert MT6397 rtc
- documentation
-Message-ID: <20221117153950.GA2913522-robh@kernel.org>
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-2-8210d955dd3d@baylibre.com>
+        Thu, 17 Nov 2022 07:40:37 -0800 (PST)
+From:   Andy Chiu <andy.chiu@sifive.com>
+To:     davem@davemloft.net, andrew@lunn.ch, kuba@kernel.org,
+        michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
+        greentime.hu@sifive.com
+Subject: [PATCH v5 net-next 0/3] net: axienet: Use a DT property to configure frequency of the MDIO bus
+Date:   Thu, 17 Nov 2022 23:40:11 +0800
+Message-Id: <20221117154014.1418834-1-andy.chiu@sifive.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221005-mt6357-support-v5-2-8210d955dd3d@baylibre.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 01:32:56PM +0100, Alexandre Mergnat wrote:
-> - Convert rtc/rtc-mt6397.txt to rtc/mt6397-rtc.yaml
-> - Add maintainer
-> - Remove the .txt binding file
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt   |  2 +-
->  .../bindings/rtc/mediatek,mt6397-rtc.yaml          | 43 ++++++++++++++++++++++
->  .../devicetree/bindings/rtc/rtc-mt6397.txt         | 31 ----------------
->  3 files changed, 44 insertions(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 0088442efca1..79aaf21af8e9 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -33,7 +33,7 @@ Optional subnodes:
->  		- compatible: "mediatek,mt6331-rtc"
->  		- compatible: "mediatek,mt6358-rtc"
->  		- compatible: "mediatek,mt6397-rtc"
-> -	For details, see ../rtc/rtc-mt6397.txt
-> +	For details, see ../rtc/mediatek,mt6397-rtc.yaml
->  - regulators
->  	Required properties:
->  		- compatible: "mediatek,mt6323-regulator"
-> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> new file mode 100644
-> index 000000000000..f5a323597f1d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6397-rtc.yaml
-> @@ -0,0 +1,43 @@
-> + # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/mediatek,mt6397-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6397/MT6366/MT6358/MT6323 RTC
-> +
-> +maintainers:
-> +  - Tianping Fang <tianping.fang@mediatek.com>
-> +  - Alexandre Mergnat <amergnat@baylibre.com>
-> +
-> +description: |
+Some FPGA platforms have to set frequency of the MDIO bus lower than 2.5
+MHz. Thus, we use a DT property, which is "clock-frequency", to work
+with it at boot time. The default 2.5 MHz would be set if the property
+is not pressent. Also, factor out mdio enable/disable functions due to
+the api change since 253761a0e61b7.
 
-Don't need '|' if no formatting.
+Changelog:
+--- v5 ---
+1. Make dt-binding patch prior to the implementation patch.
+2. Disable mdio bus in error path.
+3. Update description of some functions.
+--- v4 ---
+1. change MAX_MDIO_FREQ to DEFAULT_MDIO_FREQ as suggested by Andrew.
+--- v3 RESEND ---
+1. Repost the exact same patch again
+--- v3 ---
+1. Fix coding style, and make probing of the driver fail if MDC overflow
+--- v2 ---
+1. Use clock-frequency, as defined in mdio.yaml, to configure MDIO
+   clock.
+2. Only print out frequency if it is set to a non-standard value.
+3. Reduce the scope of axienet_mdio_enable and remove
+   axienet_mdio_disable because no one really uses it anymore.
 
-> +  MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
-> +  as a type of multi-function device (MFD). The RTC can be configured and set up
-> +  with PMIC wrapper bus which is a common resource shared with the other
-> +  functions found on the same PMIC.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6323-rtc
-> +      - mediatek,mt6358-rtc
-> +      - mediatek,mt6366-rtc
-> +      - mediatek,mt6397-rtc
-> +
-> +  start-year: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +    pmic {
-> +        rtc {
-> +            compatible = "mediatek,mt6397-rtc";
-> +        };
-> +    };
+Andy Chiu (3):
+  net: axienet: Unexport and remove unused mdio functions
+  dt-bindings: describe the support of "clock-frequency" in mdio
+  net: axienet: set mdio clock according to bus-frequency
 
-Please drop the example here. Just one complete example in the MFD 
-schema.
+ .../bindings/net/xilinx_axienet.txt           |  2 +
+ drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 -
+ .../net/ethernet/xilinx/xilinx_axienet_mdio.c | 79 +++++++++++--------
+ 3 files changed, 50 insertions(+), 33 deletions(-)
+
+-- 
+2.36.0
+
