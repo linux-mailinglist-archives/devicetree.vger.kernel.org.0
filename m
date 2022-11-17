@@ -2,132 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F8C62E34A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF23562E39B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234904AbiKQRjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 12:39:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58074 "EHLO
+        id S234884AbiKQR5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 12:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234969AbiKQRjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:39:18 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922D81EC69;
-        Thu, 17 Nov 2022 09:39:15 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id k2so6947961ejr.2;
-        Thu, 17 Nov 2022 09:39:15 -0800 (PST)
+        with ESMTP id S239919AbiKQRtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:49:07 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B626441
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:49:05 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id h12so3649921ljg.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:49:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XzW5a+qyS3pII/Y84E6OMyCxXa5W5k1vCu/c53UlqCg=;
-        b=p1Hf/qoo+vBPK7V3PvN5MqXkS+vQS16sSNJP5yH/aCdGdhJPJwp4Mqd2y/23cKEj+6
-         B3Pub7IONK3Y231bjpce3brbGpRKouoNqd2n/8RogKGdZkych7VlOkNiHCiJw2hTZKEv
-         io6ttXGOTHItx7vBGj4cCUDcrEUlNYKj5RarAuWei9RcugpHeR8DwBXcOqmo0Sq4RkhR
-         6YqpAJxXLUdEdDq7FHo9GNeiRYkHMTG17ZQna2vup7IopHCWtIY100VEoT+nMQ19pVaT
-         2allkNZmi+H9mzzWNjqRM3HOfRWsUkhkptuhj+FlYx5+ROZItwiTwNZHtmE4fljjhqk1
-         2oGQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oKps2kj8vyioDRFfnDtXuYlVJybPlQiLeu0C1JmglC0=;
+        b=DuNRImNUYAM9cXvN3ZheeodNKt4sZu1SzG7HzaUYBDsffFPakszDtyQfV3nYY103tR
+         TzJJ505h03FRuj0vuH/xW7SU0KKAl++T8l353Opez4Qw68bEokbGrrIpRqL57pqipOaI
+         VBBS27iR0paB2fXDQoJ44ljd8Za65G1HJIyMXU3pdgsKV3vweNf6a+QdDTJdcTSQqBpG
+         iIJSyDMckDE8dXlrm3xL33sVzL80fsncQ6MhRHoJfQ1kPl28jkz3co0531TtU0Ix6C6B
+         f8Ai09k9C1W7dLmoyV8iWp2Wsmw2n6aY48Vvhnerx9qSFjPZBo2TKT+vZpXWCEpG1PNL
+         Sriw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XzW5a+qyS3pII/Y84E6OMyCxXa5W5k1vCu/c53UlqCg=;
-        b=nii4xEmW6pKHcM5unAgVM+GmtfuMmiTnuvVYHUqayeEJJEF8/NKhM4myxcUx+GEfxf
-         q0quy7DphZ8EHhdX+SgkknDjV5ftgmH174A94/+fS8EBZyLMiVHcBoJsqZBVq/XH4HOM
-         dHEUfoHrys/WuAMuzqOJ9YWOr2wr6oBScBpzcBx8t6UVGzRG/7mVFzkCr8VcvaoSzC8K
-         +xBLH1zF+zmIxkBhntS/m/Z0jmMfan5tEzY95HbFxCtMfh0KYBryjxcDQHXvm4u+QHkV
-         3qHd1874uWwFIpXKsRMm3BHux70IbyUMruxWR+L1092HLtt6B8i13IQc1SraxD5AHwKV
-         3EOg==
-X-Gm-Message-State: ANoB5plJQuhZ2Jhg6MpIbOz6OUAEro2pfpH6Pk8cSGYVrMB8H+y6N/w4
-        GNNUaNJu6uEDqnwtDll67VE=
-X-Google-Smtp-Source: AA0mqf7bJLFcDbFlaTdoKU0uNVYRcS/e64hoE4NZJOa/VG7qQrBQVet3EsFiDJodsrmVvu9UII5Dnw==
-X-Received: by 2002:a17:907:8b06:b0:7ae:ccf3:7bf0 with SMTP id sz6-20020a1709078b0600b007aeccf37bf0mr428591ejc.243.1668706753885;
-        Thu, 17 Nov 2022 09:39:13 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id u8-20020a1709067d0800b0077a201f6d1esm632546ejo.87.2022.11.17.09.39.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 09:39:13 -0800 (PST)
-Date:   Thu, 17 Nov 2022 18:39:11 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: tegra124-dfll: Convert to
- json-schema
-Message-ID: <Y3ZxvwlSUdGxNAlE@orome>
-References: <20221111152843.627286-1-thierry.reding@gmail.com>
- <20221115014341.GA3956095-robh@kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oKps2kj8vyioDRFfnDtXuYlVJybPlQiLeu0C1JmglC0=;
+        b=N1Vj9cA+dJCqB/SW6SBsmpsJP17eat11UzAIksIWae/DXmKGKH3Bl6IPSH4xnSLvXr
+         x7VbJqweXphMkSkXtDyFsIP8q4wmIMnxhzOFo9DrjtBQmGSUf2oQJNUuWseicNORoG/4
+         Tehgii/LG51BeiVvv8ZNpZB+orHQSczJsRA87ZwUr09Q/M7QGs/32Fz2ZLR94d6KdLer
+         jROTeBmhTHWMjCwZspx/69xSmZgzP1WV+JP0lHNc0CInqQIa07Jol9E3uVPyPj8gNCn3
+         wqTMweXJkqgwbJMaGQJdCrJEPBEXPtbFtv7Yq7motxsByMLJ9VncTNshLPy+ObRuhOz1
+         irAw==
+X-Gm-Message-State: ANoB5plwByx3wnh7j9a+dsfohy/ECRWU1fy7FaHt1oEOhyFqhK1mA2ve
+        Stz0+dscQG2lycGz5P6t2Mra3E/YV7vK+k1c
+X-Google-Smtp-Source: AA0mqf51Os+HnRrnHg9xxz4KBwdAm2B2vV6ky4H0rkIvKUTHbBLN4yaPF9EoABdMDFxnSPz+8qWbnA==
+X-Received: by 2002:a05:651c:1592:b0:277:b9f:cdbd with SMTP id h18-20020a05651c159200b002770b9fcdbdmr1561707ljq.0.1668707343815;
+        Thu, 17 Nov 2022 09:49:03 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm247258lfh.197.2022.11.17.09.49.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 09:49:03 -0800 (PST)
+Message-ID: <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
+Date:   Thu, 17 Nov 2022 18:49:02 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cShrDqJy1BIc/rmm"
-Content-Disposition: inline
-In-Reply-To: <20221115014341.GA3956095-robh@kernel.org>
-User-Agent: Mutt/2.2.8 (2022-11-05)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to
+ dt-schema
+Content-Language: en-US
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
+ <20221116174921.GA25509@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116174921.GA25509@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/11/2022 18:49, Philipp Zabel wrote:
+> On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-König wrote:
+> [...]
+>> new file mode 100644
+>> index 000000000000..c3cf6f92a766
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+>> @@ -0,0 +1,110 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 and i.MX27
+>> +
+>> +maintainers:
+>> +  - Sascha Hauer <s.hauer@pengutronix.de>
+>> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - fsl,imx1-fb
+>> +              - fsl,imx21-fb
+> 
+> Are the items/enum keywords superfluous here? Couldn't this just be two
+> 
+>          - const: fsl,imx1-fb
+>          - const: fsl,imx21-fb
+> 
+> entries?
 
---cShrDqJy1BIc/rmm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Only "items" is, so should be dropped.
 
-On Mon, Nov 14, 2022 at 07:43:41PM -0600, Rob Herring wrote:
-> On Fri, Nov 11, 2022 at 04:28:42PM +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Convert the Tegra124 (and later) DFLL bindings from the free-form text
-> > format to json-schema.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../bindings/clock/nvidia,tegra124-dfll.txt   | 155 ----------
-> >  .../bindings/clock/nvidia,tegra124-dfll.yaml  | 277 ++++++++++++++++++
-> >  2 files changed, 277 insertions(+), 155 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegr=
-a124-dfll.txt
-> >  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegr=
-a124-dfll.yaml
->=20
-> Looks fine, but you either have to convert the pinctrl binding first or=
-=20
-> drop it from the example.
+Best regards,
+Krzysztof
 
-You recently reviewed the pinctrl bindings and so the plan was to take
-both this conversion and the pinctrl bindings through the Tegra tree so
-that the dependency could be resolved there. But if you prefer I can
-also just drop the pinctrl bits from the example here. It doesn't really
-add anything useful.
-
-Thierry
-
---cShrDqJy1BIc/rmm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN2cbwACgkQ3SOs138+
-s6HAeBAAmmYV1tdhLoVNhIox8B3pNUluZYCiES0o2QXJha2VZbbyU078Zemo05QL
-+icAhNLzwl1pm7bkwTfT/EhEPeBeB/9vcc2hvuC5bF6d72ivpzQ8bmmvZJQQy/Ex
-ueBruKxKQ5CLjwIIvjkhMcTvynQdFvzuJlVLIJt7QaGkoAkdwpH1BF79ZOmZN+T3
-y2nzSP8SXtxOVALhCZeCQYdWN9PIowPTqIKeaCb5WUFdPEYwuptjcAYxpmg+9Vqa
-UYaeDaWPjykpXGHYjBSXb62JOMnRJwnIfuRKMgy6YAXnFPs82durqKMxuyEOz5XD
-rrdfBI6C9Yk3C+0ficnqdhhybbfkC34D4sVK0zOwUpdiqvQT0wCFmDxXgjXlg/xC
-Xcpyb0ShJi3fwezwqu0hE3A0MkNCIdPF6EEztMdOXsxQQIs4oisGe1N9zHGfZbVP
-1lKoXQLdEJGOux1YmtoORQM6VXU8bV64uQtOhrQlliPJCem2yAAI6JwrlV6MP+Ug
-qM6mB0hRhkiI4fx9RJw1ClkmIuXRX3noimgDUxlGtUfSdwt1HlqcQ8a2/xS+GjWV
-r58aNyy5ofhMRw1C/TKHyHKwydpdGz7WMSI67C9r5A4BHCP5sQlCfGpJ9qHAZC+z
-K6M4Thedh/5oeXVgro/zYZDZyTTfvManqZ3A2zjpvn/Zt8pHJVs=
-=4XpO
------END PGP SIGNATURE-----
-
---cShrDqJy1BIc/rmm--
