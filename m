@@ -2,161 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9485562D2C7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 06:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A430B62D30B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 06:57:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239269AbiKQFcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 00:32:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
+        id S239173AbiKQF5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 00:57:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239064AbiKQFcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 00:32:17 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D7EA5E9FF
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 21:32:15 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id k22so746137pfd.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 21:32:15 -0800 (PST)
+        with ESMTP id S239064AbiKQF5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 00:57:42 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D28560369;
+        Wed, 16 Nov 2022 21:57:41 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id k2so2579971ejr.2;
+        Wed, 16 Nov 2022 21:57:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s/wG+QZxohAkdtGSCZUjkm9USP+zFO96InHp16ZHrwI=;
-        b=ixACoPOpJAo1XabXh0ai5MRohX1nfzDnP+c3V/0XnhmxGFg9bQBQKfx+bZehp287Iw
-         tA3P29CfXHaYoVJc84FH804TqJsKSMCHH+XEKIP8es2QGKWIF6FaPN6T06uxw5ElSWor
-         uC858F1alnV9dw8S4CnNniwA4xXYNdRYDBuhKAp/c0zFibfw8o5w5cCUZQ3C2HiVXZXP
-         u7s9g9NjsbtZ6eouMmxS5QE3oG9Q9tb0Mt0azDxuaPIi0uSDAsaDBjil3E/ohOPY1IuR
-         qGu0f/xw32dKzdn6OD6Gso6yELEF3y7GOjJ+3xZj4QZjic7iii/3BT/MwI+xE8deUsnQ
-         A1MQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=S+LEz/hhHmtonDvUYcXa4li5SbcFrrLjSa8WP527O9c=;
+        b=dFwXEMB9YYQ8RIwJ2m1X7CQoM5RJAgmlkQEpuOlk8zwYKmYG0sqQgQ0p/ppFwB+myw
+         l6ZT1S2LOivdX59YdXu8I11iqLKbant+h5Q2kmYLg6LxTjeT5MpRf8CrIA7BOU4eL09R
+         TweuELmj+wOg2wRI50gKOvVoCfF0jWtCaJXUIW3sTQ7o36CBBiEuaTHZyYAJvkDPEDmZ
+         vodw1CyUxgua0gaXVse24oi4s+/GpwhxP0lNYoGTuWBBBwIGN9NllwtsVbX4C+6eR4hE
+         uVCgrRuf2hFZ8XMc3RLoQsF/A+NYldHISaKYm3E/6CW9lZc7Zvj+yT10JGi0r90Y1fvy
+         oGMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s/wG+QZxohAkdtGSCZUjkm9USP+zFO96InHp16ZHrwI=;
-        b=r4jODWF1l5wfEPMjWehYEfkhjkbBNC0Fhnoko+9fP/Cqlq/u1tiWS/g6bQFVpNWigx
-         24KTrxwCORfAQM83NBoug9c3HmQXTlnUxjJ/PgIkwI1lAGYhZnFWkXKobI89YtnIItFH
-         Et87hNjyXCrcbFSFw2+6Iy1LFUoluDGzKKEB45uW3jiynVY0JQH3+sIrc5ew/d52KZo+
-         NqsLtZy2R4nmi2DlgW04hho39zDI4pZMwjdu07AiORcvSZJL1xVqN9SlLKqYbAWZD2l2
-         FYKy4Tpjx8lvxu5PhsTXu8akikZ13WNMfqp5vmkaClnQC5EdvzRXpQ8kbW2pApt12RTR
-         Xczg==
-X-Gm-Message-State: ANoB5pk+yEEuYRSxApfe3+Uu4W2ctQTHRyKWT7KT8WIqN9oYqwOKNP1n
-        fbzMydOv75/aEQ7CqEbvQEUsLqIFKmAY
-X-Google-Smtp-Source: AA0mqf58iastmjBB+zzq+C4PzyZynXX4kCV+//2vj/rUp30PGh3mRnFTGwdxVoLZwfLF7t7g/CesdA==
-X-Received: by 2002:a05:6a00:1a48:b0:56c:b4d3:906e with SMTP id h8-20020a056a001a4800b0056cb4d3906emr1510909pfv.10.1668663134822;
-        Wed, 16 Nov 2022 21:32:14 -0800 (PST)
-Received: from localhost.localdomain ([117.193.208.31])
-        by smtp.gmail.com with ESMTPSA id q4-20020a17090311c400b001865c298588sm96600plh.258.2022.11.16.21.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 21:32:13 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org, viresh.kumar@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org
-Cc:     johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        stable@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>
-Subject: [PATCH v7 4/4] cpufreq: qcom-hw: Fix the frequency returned by cpufreq_driver->get()
-Date:   Thu, 17 Nov 2022 11:01:45 +0530
-Message-Id: <20221117053145.10409-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S+LEz/hhHmtonDvUYcXa4li5SbcFrrLjSa8WP527O9c=;
+        b=hIkHa3zEiCkC2HPYN7XumpqnWf5cto6YF625gvuyjwW1GMbVSAgjtuqAfjDV+qyTnA
+         2/IUKOeSBj3l/wBInICL6rAkElCS/pwSl1ywz3osEsd0ftJ6WCjUKPmE4ZW9CL5P6FbE
+         iZZiMC/bPXODGjXppscgaRtGFqrr2iPmrfcjVoiG0I4PJnwQKbu5I8MrF8m0ldhr8TCX
+         D0w6tOkjtyk4KYiXyJurBc6KpxuGHGJdhD7hXXsCFYjsmpJxNr+447kENIbZp+4qCZ82
+         a9wZbm61xn/h1OT5seUpIXmFsFAsAgEPERTS1S4Y2B46v8Kvf14a4cENeyor0eyKPiZ0
+         E3eg==
+X-Gm-Message-State: ANoB5pnme+PGtQzz7Gi9PWSwrzZN3/bZhdABtUH0uaw332dmn0mYKCVG
+        EfmkclF1UkyPn74XXq69EjwSWrHTJCno6V6b2nUrcytapis=
+X-Google-Smtp-Source: AA0mqf7Jp1N8yqZLiuCXwIWZ4YxY8cPZbqyyMKnYDB9cjGBcZuvarbx6PmspF0ONfUAc3MpnDxzem3xaoTkWoalBSRk=
+X-Received: by 2002:a17:906:b08e:b0:7ad:b9a0:8a9b with SMTP id
+ x14-20020a170906b08e00b007adb9a08a9bmr905174ejy.509.1668664659883; Wed, 16
+ Nov 2022 21:57:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221116200150.4657-1-linux.amoon@gmail.com> <20221116200150.4657-7-linux.amoon@gmail.com>
+ <CAMdYzYo_DGiO0UxJEb3xues7Um=X9AgPvz+Xp_YWb9pp9HaScg@mail.gmail.com>
+In-Reply-To: <CAMdYzYo_DGiO0UxJEb3xues7Um=X9AgPvz+Xp_YWb9pp9HaScg@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Thu, 17 Nov 2022 11:27:24 +0530
+Message-ID: <CANAwSgQJGH-+aXyUF18kGks4YKfBYvQ4-B7S2m8eaAr=yNS7vQ@mail.gmail.com>
+Subject: Re: [linux-next-v2 5/5] arm64: dts: rockchip: Add missing of
+ ethernet-phy-id to reset the phy on Rock 3A SBC
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Chukun Pan <amadeus@jmu.edu.cn>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cpufreq_driver->get() callback is supposed to return the current
-frequency of the CPU and not the one requested by the CPUFreq core.
-Fix it by returning the frequency that gets supplied to the CPU after
-the DCVS operation of EPSS/OSM.
+Hi Peter,
 
-Cc: stable@vger.kernel.org # v5.15
-Fixes: 2849dd8bc72b ("cpufreq: qcom-hw: Add support for QCOM cpufreq HW driver")
-Reported-by: Sudeep Holla <sudeep.holla@arm.com>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/cpufreq/qcom-cpufreq-hw.c | 42 +++++++++++++++++++++----------
- 1 file changed, 29 insertions(+), 13 deletions(-)
+On Thu, 17 Nov 2022 at 02:16, Peter Geis <pgwipeout@gmail.com> wrote:
+>
+> On Wed, Nov 16, 2022 at 3:02 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > Add MDIO description with ethernet-phy-id compatible string
+> > which enable calling reset of the phy. The PHY will then be probed,
+> > independent of if it can be found on the bus or not,
+> > and that probing will enable the GPIO.
+> >
+> > ethernet-phy-id is read from ethenet register dump reg2 and reg3.
+> >
+> > Fix following warning.
+> > [   12.323417] rk_gmac-dwmac fe010000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > [   12.324078] rk_gmac-dwmac fe010000.ethernet eth0: no phy at addr -1
+> > [   12.324099] rk_gmac-dwmac fe010000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > V2: new to the patch series.
+> >
+> > alarm@rock-3a:~$ sudo ethtool -d eth0
+> > [sudo] password for alarm:
+> > ST GMAC Registers
+> > GMAC Registers
+> > Reg0  0x08072203
+> > Reg1  0x00000000
+> > Reg2  0x00000404
+> > Reg3  0x00000000
+> > Reg4  0x00000002
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > index 9f84a23a8789..fe36156a5017 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> > @@ -585,7 +585,7 @@ &i2s2_2ch {
+> >
+> >  &mdio1 {
+> >         rgmii_phy1: ethernet-phy@0 {
+> > -               compatible = "ethernet-phy-ieee802.3-c22";
+> > +               compatible = "ethernet-phy-id0000.0404", "ethernet-phy-ieee802.3-c22";
+> >                 reg = <0x0>;
+> >                 pinctrl-names = "default";
+> >                 pinctrl-0 = <&eth_phy_rst>, <&eth_phy_int>;
+>
+> Have you tried instead moving the reset to the mdio bus? I've had
+> success with this, though you'll need to change the reset assert and
+> deassert timing handles, they are different for the bus.
+>
+No can you share some examples?
+If you got a better way to solve this issue please let me know.
+I will give this a try.
 
-diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-index 1faa325d3e52..62f36c76e26c 100644
---- a/drivers/cpufreq/qcom-cpufreq-hw.c
-+++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-@@ -131,7 +131,35 @@ static int qcom_cpufreq_hw_target_index(struct cpufreq_policy *policy,
- 	return 0;
- }
- 
-+static unsigned long qcom_lmh_get_throttle_freq(struct qcom_cpufreq_data *data)
-+{
-+	unsigned int lval;
-+
-+	if (qcom_cpufreq.soc_data->reg_current_vote)
-+		lval = readl_relaxed(data->base + qcom_cpufreq.soc_data->reg_current_vote) & 0x3ff;
-+	else
-+		lval = readl_relaxed(data->base + qcom_cpufreq.soc_data->reg_domain_state) & 0xff;
-+
-+	return lval * xo_rate;
-+}
-+
-+/* Get the current frequency of the CPU (after throttling) */
- static unsigned int qcom_cpufreq_hw_get(unsigned int cpu)
-+{
-+	struct qcom_cpufreq_data *data;
-+	struct cpufreq_policy *policy;
-+
-+	policy = cpufreq_cpu_get_raw(cpu);
-+	if (!policy)
-+		return 0;
-+
-+	data = policy->driver_data;
-+
-+	return qcom_lmh_get_throttle_freq(data) / HZ_PER_KHZ;
-+}
-+
-+/* Get the frequency requested by the cpufreq core for the CPU */
-+static unsigned int qcom_cpufreq_get_freq(unsigned int cpu)
- {
- 	struct qcom_cpufreq_data *data;
- 	const struct qcom_cpufreq_soc_data *soc_data;
-@@ -292,18 +320,6 @@ static void qcom_get_related_cpus(int index, struct cpumask *m)
- 	}
- }
- 
--static unsigned long qcom_lmh_get_throttle_freq(struct qcom_cpufreq_data *data)
--{
--	unsigned int lval;
--
--	if (qcom_cpufreq.soc_data->reg_current_vote)
--		lval = readl_relaxed(data->base + qcom_cpufreq.soc_data->reg_current_vote) & 0x3ff;
--	else
--		lval = readl_relaxed(data->base + qcom_cpufreq.soc_data->reg_domain_state) & 0xff;
--
--	return lval * xo_rate;
--}
--
- static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
- {
- 	struct cpufreq_policy *policy = data->policy;
-@@ -347,7 +363,7 @@ static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
- 	 * If h/w throttled frequency is higher than what cpufreq has requested
- 	 * for, then stop polling and switch back to interrupt mechanism.
- 	 */
--	if (throttled_freq >= qcom_cpufreq_hw_get(cpu))
-+	if (throttled_freq >= qcom_cpufreq_get_freq(cpu))
- 		enable_irq(data->throttle_irq);
- 	else
- 		mod_delayed_work(system_highpri_wq, &data->throttle_work,
--- 
-2.25.1
-
+Thanks
+-Anand
+> > --
+> > 2.38.1
+> >
