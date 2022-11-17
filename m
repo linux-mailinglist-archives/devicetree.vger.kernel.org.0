@@ -2,837 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CDF962E03D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE5462E040
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:46:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234875AbiKQPqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 10:46:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56178 "EHLO
+        id S239672AbiKQPqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 10:46:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234614AbiKQPqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:46:11 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8338910FC;
-        Thu, 17 Nov 2022 07:46:09 -0800 (PST)
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 951F6929;
-        Thu, 17 Nov 2022 16:46:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1668699967;
-        bh=g8KWtN8u8gEEkqraLYWW0uDFG6o5ieCRjQ7ju5fdUGs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=da5JfzHtA+09qelztiewnxztfRZMwT5f0tS4RAzN3yYuHVnISkHVCigrl+l3Pc41p
-         WxyMdqjRFjhm+bg8uMCUpG1QpEcz52siLdyGbrWoNLu26BygTwki8XbbxazKzddzdy
-         eyGwAml9qEN6YYYTP1Hm2O43cNFGzS/kO8CV22oM=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+        with ESMTP id S239679AbiKQPqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:46:17 -0500
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A997616C;
+        Thu, 17 Nov 2022 07:46:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z8UHU6RI1ym+7N2tLIfE+ec44uRwGAnDX8d3B4ujh9WruCI7NkrTPzRAFDD2fcho37V3DpHpFWrzajp8QjyeUeTWuR2xyHZ3FiYOXqqux+LMaQdiYPLQ46kE2qdeqb3HiV3v9qRL4rD8hxhRARkfXdGKsnhvawaAL0EzAkevfGgG0cUhU53dG3Ew/AoCfSbCosQtJIdTmagJ+466PB76obU7S6JX4vaWABhm4b/XTO+PN03GNywRIL1IunvbJx8G76FVNF2lTszglfWwlsTORRYm4NwW0P8eVp3lGaRSWURHrfyIiRATE1uOIvPev2ubPfZ6E2aVoMY9uVmArbAGiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=egU7Ba1J27tnJsQpoQcccUij53PGcNmxpOqLDO+LQxo=;
+ b=W43DTQIORo5NN98zlaEKrVvB4PyWeN/ToVY9E1/Q9SY00KLm7Uecv5D4yygvj2vir5jY8lsctd28nfdD/FlwxIo6fy/uo8/o45exntDROBgGfkk8Ix1rv971jD8ctGQqo3t6UDQ4r8PNknF2Ga/Ln/xPvqehdVGqDBu9/tk152UmGTUx798xmIYscuUQu9iRYmBxUA+Zvw0wXPgnmKOa7TgKYv26iWdOYciGBYT9SXHGrbJATy2KqwLGdQiZGzIGtBMjGOv80pNYeZgCErIPp1zcg7XpiaHJ5jPy5b95lbfqV82xxi5xpEaWOYaz+wCNSrWUPmy93HBukW+gmdwf+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=egU7Ba1J27tnJsQpoQcccUij53PGcNmxpOqLDO+LQxo=;
+ b=tLKJMAbn68CCEYD9gWoClnmYxdi3RBh/nGAOzdwmtnqR0Jz88JlJ1UZD+njJDOsuD7AecH+ttDzI8/5WM7djGFreJ4r7n35hyJ8PBiRrErDG45CHuxvmaed9oDKalvLYiUuLIe/8545y2ESugKfrJFvjV1gn0GvD2z+Z80QMU8k=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by CH0PR12MB5266.namprd12.prod.outlook.com (2603:10b6:610:d1::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.20; Thu, 17 Nov
+ 2022 15:46:13 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::d6f4:81b:8a69:5b05]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::d6f4:81b:8a69:5b05%3]) with mapi id 15.20.5813.019; Thu, 17 Nov 2022
+ 15:46:12 +0000
+From:   "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To:     Andy Chiu <andy.chiu@sifive.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "greentime.hu@sifive.com" <greentime.hu@sifive.com>
+Subject: RE: [PATCH v5 net-next 3/3] net: axienet: set mdio clock according to
+ bus-frequency
+Thread-Topic: [PATCH v5 net-next 3/3] net: axienet: set mdio clock according
+ to bus-frequency
+Thread-Index: AQHY+pr72wz7G9WmaEql3juQeu6NJK5DQd+A
+Date:   Thu, 17 Nov 2022 15:46:12 +0000
+Message-ID: <MN0PR12MB5953A3D424C01EF52F9D81F3B7069@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <20221117154014.1418834-1-andy.chiu@sifive.com>
+ <20221117154014.1418834-4-andy.chiu@sifive.com>
+In-Reply-To: <20221117154014.1418834-4-andy.chiu@sifive.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|CH0PR12MB5266:EE_
+x-ms-office365-filtering-correlation-id: 3a61f6fd-415c-4c61-9605-08dac8b2dae5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +nQywGlyTT5TOuKCoeTT9BZWPDhdSJo75xS+mv2pHZ0wx62oqb9w/kPsv/rY4klvmUFBYm3807I0HyDN7fOX+VcXCk2txEswMgM6GifRRCXlQBFt5lfWkncL+Z+9ryKzcCWOXAaFlDONS6+r+em8frqUqlky55cxYR1rtxlCZ9w4YiIGsqH9ZIkBzjqoupfE9IckjSaqVglkpCq+M9jr8pM+gDswyq/XU0cV9lfva/tCNl90jAOV1IOTlBtjRJCE+v8+iyWiLscBnB8bRkStfe6zP4SwGBBB9R74D9lZ9oWTH5KYPQ+CPjQkEHudsGStn1dYYDOX2K/F1hLfoZZIO1mv8ExXQVgJCEatFr2JFr4tRrE3RuK4DZLjFQFHnVW48uXCwaK79llciQ8j4U3o9xPKCORit3KyJHVcOveQXiF8SB8YBjGC2y0rHH5b/aScKhIbcfSjrfNYeuo+LCc/gnGi36gUVOiDUePbKeQ7Hu/BUXR0s8RMghHqjy4DY+wzdzaw9n2vM59AC4y7HhB06wjqr8bhWZalA2eyy6Klj8526K6O7fG5DlLNmt0+Ie5SBkvSb6cNUmLmpAlrUjjiwCLoiaV4Rlp5GMsHMp1ZvUbbtwCXSKjAtvhCZN0FrUPHvrqEgRDAqMCFGfCDxDPf6aIHcBHnspF1PBhrUoGmwYaPm8bYNmvOCW5Fod+KI3DPwcv9jdKSc1GQMai+o9sCLg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(451199015)(478600001)(71200400001)(41300700001)(8936002)(66946007)(4326008)(66476007)(66446008)(76116006)(66556008)(8676002)(52536014)(9686003)(7416002)(33656002)(54906003)(5660300002)(186003)(6506007)(7696005)(110136005)(316002)(64756008)(53546011)(83380400001)(2906002)(86362001)(55016003)(122000001)(38070700005)(38100700002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3D6WIfcI7zJXPLK8XUR2xaIC2mXcv28+KJEe407ZWqCgiDPoTnJWgtQ6WmCi?=
+ =?us-ascii?Q?KIBp734keQ3ZrSHsosIlwYWQ3pVz2I3gpjz3VnJUBkvEsGhqZkmVow7A7Ws5?=
+ =?us-ascii?Q?BNTO4l5AWSQI+OAmKWtWHrOH6qt5dXOiseJCsOXeOWqx0ivEjGPVcpfderd/?=
+ =?us-ascii?Q?TWMu0IZavIX0Oqny8oT85tIR5giBWIKH6ABl1mpbg2wo+ss2X3uuPESSGjGo?=
+ =?us-ascii?Q?mtsFIZnRVh7Z+EIlYH2gSBR6QfDaMLpEHmoU+V9dAITsPbqUzZKjEOUW7O9u?=
+ =?us-ascii?Q?zwkHPRt7/eHqlIKllox34C+F02PqG9y5nAeQwp9tn1yIq9yrrtBk5yoOyTOa?=
+ =?us-ascii?Q?vqIHToS/NAOGrvZ2QiSv4+z/UxuyIn7gF/fxRfelINT63YjCvapDIazm1qaa?=
+ =?us-ascii?Q?W2tQTzLaGuyi94AXCUrXqkN64NFIZyagPCTjbitxXKdr3YDBP7em6d9svVQA?=
+ =?us-ascii?Q?7pCNKCMeEBwT12H5yae9GJgwyBp08RBEScF5wlnaegb6L2CSCKBSoT2PBl/c?=
+ =?us-ascii?Q?J0geDmSFIjF/5NWKZruq+sWIbuUJp/XGw+1rnpuRSiaZ0xjslRToZ87z2k5p?=
+ =?us-ascii?Q?B4c5w7sb8apmF4Rc3le6bkdS0LvpyDB4kBGJN7P03CPAQwr9vfOfEDrO9jic?=
+ =?us-ascii?Q?/DPYlGN1oxbws102JMJstH2j4uHq/32Myh0LsZtonU2I3bQfyziFZVR0UrQQ?=
+ =?us-ascii?Q?uCnh1LFK61EuUPwBm5MdSpjaaxrbyU7ZCUSU2jVvgvD33W9OMfMErt52mJa2?=
+ =?us-ascii?Q?HSbArzmkLSbvZFjMMC6zNYW1isPzgnAeSXsJF93OXnhEAnf2Ee+8iqOINx0u?=
+ =?us-ascii?Q?vTMkM+ie9a/36O/oBGJb1qE0LA2vQC1LgYk8VJQCrrVCM1Eifp9x9yjI4eX0?=
+ =?us-ascii?Q?LjuduIrKclI8XNYUktBH5yDnyhq86N/hRETRPSuaYla7H9Xoy1vPO+6e6RAa?=
+ =?us-ascii?Q?2K33ldzpl+j08sNJIlgaNAShsxUm75+UtvOeIdNKbltEe2bwjY0ABf6/SMud?=
+ =?us-ascii?Q?R4Q1sB6Z221w58UW+vSgNyhMlZGFC19rzGE/+3g8n9lVgAsYOZwgeE6TKWxJ?=
+ =?us-ascii?Q?f/FmR0vGJyD3vqk+3Q6NY3c7DBY0c4sfoKggNMH3ZLDkZFN+D4xepfv80Ruv?=
+ =?us-ascii?Q?E0cPGIoeTzPpmAmHuQJotxF/WMEj4f8T6e2AW+gxbbXcqKP9lTDGar/GaX/Y?=
+ =?us-ascii?Q?GpP4X1/BJzyoPGSR21pDYlT3sczBLOELs+6/hYzxAiusCxOuM5dFjsgyuA8q?=
+ =?us-ascii?Q?gBGtn0CLNPyQYI6y/9eKVK1o0MDUK9RtyA5319Qi2RErJ1HDsStu/pEuqxut?=
+ =?us-ascii?Q?YZJM8BpZiNMjXVCeIB5Ee871YMyc230BegRBLE0b92mqMwLdG2SijRdvYeoV?=
+ =?us-ascii?Q?HHS8XzUiFxU/Lbe/HrKDf/LlM4zPIhsK/arJN1vzS8wnrfgRWqHEHDB0Pp2F?=
+ =?us-ascii?Q?8Q0ydn6PgXTO/jjIcv60RevfivW9R1VRDt4MDgKD4JCSlSlIP2HC25S9TWmi?=
+ =?us-ascii?Q?2cprmzYgXII6YUpAbhy0q8fjKfmG5woLO0EHzkmlaq7BotZmolGX9GNGcL7s?=
+ =?us-ascii?Q?LRT1bIYgQYwyh6mlvxN0gSlIy7KaEF44jxU4Yfh4TwRn3NCnTqH4IS/gD0wv?=
+ =?us-ascii?Q?swDkxxB+xkWhTBPe+9pgiu0=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20221117122547.809644-8-tomi.valkeinen@ideasonboard.com>
-References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com> <20221117122547.809644-8-tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH v1 7/8] drm: rcar-du: dsi: Add r8A779g0 support
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Date:   Thu, 17 Nov 2022 15:46:05 +0000
-Message-ID: <166869996543.50677.17182739414507530884@Monstersaurus>
-User-Agent: alot/0.10
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a61f6fd-415c-4c61-9605-08dac8b2dae5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Nov 2022 15:46:12.8247
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ie8vMIRQTWSorVjnyUU0iOoPHrtGrQxjCfy/h3TmPWuTq2TMn80kRkbqQRkESvLK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5266
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Tomi Valkeinen (2022-11-17 12:25:46)
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> -----Original Message-----
+> From: Andy Chiu <andy.chiu@sifive.com>
+> Sent: Thursday, November 17, 2022 9:10 PM
+> To: davem@davemloft.net; andrew@lunn.ch; kuba@kernel.org;
+> michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com
+> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; robh+dt@kernel.org; pabeni@redhat.com;
+> edumazet@google.com; andy.chiu@sifive.com; greentime.hu@sifive.com
+> Subject: [PATCH v5 net-next 3/3] net: axienet: set mdio clock according t=
+o
+> bus-frequency
 >=20
-> Add DSI support for r8a779g0. The main differences to r8a779a0 are in
-> the PLL and PHTW setups.
+> CAUTION: This message has originated from an External Source. Please use
+> proper judgment and caution when opening attachments, clicking links, or
+> responding to this email.
 >=20
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>=20
+> Some FPGA platforms have 80KHz MDIO bus frequency constraint when
+> connecting Ethernet to its on-board external Marvell PHY. Thus, we may ha=
+ve
+> to set MDIO clock according to the DT. Otherwise, use the default
+> 2.5 MHz, as specified by 802.3, if the entry is not present.
+>=20
+> Also, change MAX_MDIO_FREQ to DEFAULT_MDIO_FREQ because we may
+> actually set MDIO bus frequency higher than 2.5MHz if undelying devices
+> support it. And properly disable the mdio bus clock in error path.
+>=20
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
 > ---
->  drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c      | 484 +++++++++++++++----
->  drivers/gpu/drm/rcar-du/rcar_mipi_dsi_regs.h |   6 +-
->  2 files changed, 384 insertions(+), 106 deletions(-)
+>  .../net/ethernet/xilinx/xilinx_axienet_mdio.c | 70 +++++++++++++------
+>  1 file changed, 49 insertions(+), 21 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c b/drivers/gpu/drm/rc=
-ar-du/rcar_mipi_dsi.c
-> index a7f2b7f66a17..723c35726c38 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c
-> @@ -9,6 +9,7 @@
->  #include <linux/delay.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
-> +#include <linux/math64.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> @@ -28,6 +29,20 @@
->  #include "rcar_mipi_dsi.h"
->  #include "rcar_mipi_dsi_regs.h"
-> =20
-> +#define MHZ(v) ((v) * 1000000u)
-> +
-> +enum rcar_mipi_dsi_hw_model {
-> +       RCAR_DSI_R8A779A0,
-> +       RCAR_DSI_R8A779G0,
-> +};
-> +
-> +struct rcar_mipi_dsi_device_info {
-> +       enum rcar_mipi_dsi_hw_model model;
-> +       const struct dsi_clk_config *clk_cfg;
-> +       u8 clockset2_m_offset;
-> +       u8 clockset2_n_offset;
-> +};
-> +
->  struct rcar_mipi_dsi {
->         struct device *dev;
->         const struct rcar_mipi_dsi_device_info *info;
-> @@ -50,6 +65,17 @@ struct rcar_mipi_dsi {
->         unsigned int lanes;
->  };
-> =20
-> +struct dsi_setup_info {
-> +       unsigned long hsfreq;
-> +       u16 hsfreqrange;
-> +
-> +       unsigned long fout;
-> +       u16 m;
-> +       u16 n;
-> +       u16 vclk_divider;
-> +       const struct dsi_clk_config *clkset;
-> +};
-> +
->  static inline struct rcar_mipi_dsi *
->  bridge_to_rcar_mipi_dsi(struct drm_bridge *bridge)
+> diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+> b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+> index e1f51a071888..2f07fde361aa 100644
+> --- a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+> +++ b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+> @@ -17,7 +17,7 @@
+>=20
+>  #include "xilinx_axienet.h"
+>=20
+> -#define MAX_MDIO_FREQ          2500000 /* 2.5 MHz */
+> +#define DEFAULT_MDIO_FREQ      2500000 /* 2.5 MHz */
+>  #define DEFAULT_HOST_CLOCK     150000000 /* 150 MHz */
+>=20
+>  /* Wait till MDIO interface is ready to accept a new transaction.*/ @@ -
+> 147,15 +147,20 @@ static int axienet_mdio_write(struct mii_bus *bus, int
+> phy_id, int reg,
+>  /**
+>   * axienet_mdio_enable - MDIO hardware setup function
+>   * @lp:                Pointer to axienet local data structure.
+> + * @np:                Pointer to mdio device tree node.
+>   *
+> - * Return:     0 on success, -ETIMEDOUT on a timeout.
+> + * Return:     0 on success, -ETIMEDOUT on a timeout, -EOVERFLOW on a
+> clock
+> + *             divisor overflow.
+>   *
+>   * Sets up the MDIO interface by initializing the MDIO clock and enablin=
+g the
+>   * MDIO interface in hardware.
+>   **/
+> -static int axienet_mdio_enable(struct axienet_local *lp)
+> +static int axienet_mdio_enable(struct axienet_local *lp, struct
+> +device_node *np)
 >  {
-> @@ -62,22 +88,6 @@ host_to_rcar_mipi_dsi(struct mipi_dsi_host *host)
->         return container_of(host, struct rcar_mipi_dsi, host);
->  }
-> =20
-> -static const u32 phtw[] =3D {
-> -       0x01020114, 0x01600115, /* General testing */
-> -       0x01030116, 0x0102011d, /* General testing */
-> -       0x011101a4, 0x018601a4, /* 1Gbps testing */
-> -       0x014201a0, 0x010001a3, /* 1Gbps testing */
-> -       0x0101011f,             /* 1Gbps testing */
-> -};
-> -
-> -static const u32 phtw2[] =3D {
-> -       0x010c0130, 0x010c0140, /* General testing */
-> -       0x010c0150, 0x010c0180, /* General testing */
-> -       0x010c0190,
-> -       0x010a0160, 0x010a0170,
-> -       0x01800164, 0x01800174, /* 1Gbps testing */
-> -};
-> -
->  static const u32 hsfreqrange_table[][2] =3D {
->         { 80000000U,   0x00 }, { 90000000U,   0x10 }, { 100000000U,  0x20=
- },
->         { 110000000U,  0x30 }, { 120000000U,  0x01 }, { 130000000U,  0x11=
- },
-> @@ -103,24 +113,53 @@ static const u32 hsfreqrange_table[][2] =3D {
->         { /* sentinel */ },
->  };
-> =20
-> -struct vco_cntrl_value {
-> +struct dsi_clk_config {
->         u32 min_freq;
->         u32 max_freq;
-> -       u16 value;
-> +       u8 vco_cntrl;
-> +       u8 cpbias_cntrl;
-> +       u8 gmp_cntrl;
-> +       u8 int_cntrl;
-> +       u8 prop_cntrl;
->  };
-> =20
-> -static const struct vco_cntrl_value vco_cntrl_table[] =3D {
-> -       { .min_freq =3D 40000000U,   .max_freq =3D 55000000U,   .value =
-=3D 0x3f },
-> -       { .min_freq =3D 52500000U,   .max_freq =3D 80000000U,   .value =
-=3D 0x39 },
-> -       { .min_freq =3D 80000000U,   .max_freq =3D 110000000U,  .value =
-=3D 0x2f },
-> -       { .min_freq =3D 105000000U,  .max_freq =3D 160000000U,  .value =
-=3D 0x29 },
-> -       { .min_freq =3D 160000000U,  .max_freq =3D 220000000U,  .value =
-=3D 0x1f },
-> -       { .min_freq =3D 210000000U,  .max_freq =3D 320000000U,  .value =
-=3D 0x19 },
-> -       { .min_freq =3D 320000000U,  .max_freq =3D 440000000U,  .value =
-=3D 0x0f },
-> -       { .min_freq =3D 420000000U,  .max_freq =3D 660000000U,  .value =
-=3D 0x09 },
-> -       { .min_freq =3D 630000000U,  .max_freq =3D 1149000000U, .value =
-=3D 0x03 },
-> -       { .min_freq =3D 1100000000U, .max_freq =3D 1152000000U, .value =
-=3D 0x01 },
-> -       { .min_freq =3D 1150000000U, .max_freq =3D 1250000000U, .value =
-=3D 0x01 },
-> +static const struct dsi_clk_config dsi_clk_cfg_r8a779a0[] =3D {
-> +       {   40000000u,   55000000u, 0x3f, 0x10, 0x01, 0x00, 0x0b },
-> +       {   52500000u,   80000000u, 0x39, 0x10, 0x01, 0x00, 0x0b },
-> +       {   80000000u,  110000000u, 0x2f, 0x10, 0x01, 0x00, 0x0b },
-> +       {  105000000u,  160000000u, 0x29, 0x10, 0x01, 0x00, 0x0b },
-> +       {  160000000u,  220000000u, 0x1f, 0x10, 0x01, 0x00, 0x0b },
-> +       {  210000000u,  320000000u, 0x19, 0x10, 0x01, 0x00, 0x0b },
-> +       {  320000000u,  440000000u, 0x0f, 0x10, 0x01, 0x00, 0x0b },
-> +       {  420000000u,  660000000u, 0x09, 0x10, 0x01, 0x00, 0x0b },
-> +       {  630000000u, 1149000000u, 0x03, 0x10, 0x01, 0x00, 0x0b },
-> +       { 1100000000u, 1152000000u, 0x01, 0x10, 0x01, 0x00, 0x0b },
-> +       { 1150000000u, 1250000000u, 0x01, 0x10, 0x01, 0x00, 0x0c },
-
-Sigh ... is it this one 0x0c value that means we need to keep all these
-entries repeated ? :-S
-
-If it weren't for that, it seems we could keep just two sets of
-> +       u8 cpbias_cntrl;
-> +       u8 gmp_cntrl;
-> +       u8 int_cntrl;
-> +       u8 prop_cntrl;
-
-One for each of the 9a0, and the 9g0...
-
-But this is fine, and I guess the implication is there may be other
-future differences to come in other platforms.
-
-It could be refactored then when we have more visibility.
-
-
-> +       { /* sentinel */ },
-> +};
-> +
-> +static const struct dsi_clk_config dsi_clk_cfg_r8a779g0[] =3D {
-> +       {   40000000u,   45310000u, 0x2b, 0x00, 0x00, 0x08, 0x0a },
-> +       {   45310000u,   54660000u, 0x28, 0x00, 0x00, 0x08, 0x0a },
-> +       {   54660000u,   62500000u, 0x28, 0x00, 0x00, 0x08, 0x0a },
-> +       {   62500000u,   75000000u, 0x27, 0x00, 0x00, 0x08, 0x0a },
-> +       {   75000000u,   90630000u, 0x23, 0x00, 0x00, 0x08, 0x0a },
-> +       {   90630000u,  109370000u, 0x20, 0x00, 0x00, 0x08, 0x0a },
-> +       {  109370000u,  125000000u, 0x20, 0x00, 0x00, 0x08, 0x0a },
-> +       {  125000000u,  150000000u, 0x1f, 0x00, 0x00, 0x08, 0x0a },
-> +       {  150000000u,  181250000u, 0x1b, 0x00, 0x00, 0x08, 0x0a },
-> +       {  181250000u,  218750000u, 0x18, 0x00, 0x00, 0x08, 0x0a },
-> +       {  218750000u,  250000000u, 0x18, 0x00, 0x00, 0x08, 0x0a },
-> +       {  250000000u,  300000000u, 0x17, 0x00, 0x00, 0x08, 0x0a },
-> +       {  300000000u,  362500000u, 0x13, 0x00, 0x00, 0x08, 0x0a },
-> +       {  362500000u,  455480000u, 0x10, 0x00, 0x00, 0x08, 0x0a },
-> +       {  455480000u,  500000000u, 0x10, 0x00, 0x00, 0x08, 0x0a },
-> +       {  500000000u,  600000000u, 0x0f, 0x00, 0x00, 0x08, 0x0a },
-> +       {  600000000u,  725000000u, 0x0b, 0x00, 0x00, 0x08, 0x0a },
-> +       {  725000000u,  875000000u, 0x08, 0x00, 0x00, 0x08, 0x0a },
-> +       {  875000000u, 1000000000u, 0x08, 0x00, 0x00, 0x08, 0x0a },
-> +       { 1000000000u, 1200000000u, 0x07, 0x00, 0x00, 0x08, 0x0a },
-> +       { 1200000000u, 1250000000u, 0x03, 0x00, 0x00, 0x08, 0x0a },
->         { /* sentinel */ },
->  };
-> =20
-> @@ -144,7 +183,7 @@ static void rcar_mipi_dsi_set(struct rcar_mipi_dsi *d=
-si, u32 reg, u32 set)
->         rcar_mipi_dsi_write(dsi, reg, rcar_mipi_dsi_read(dsi, reg) | set);
->  }
-> =20
-> -static int rcar_mipi_dsi_phtw_test(struct rcar_mipi_dsi *dsi, u32 phtw)
-> +static int rcar_mipi_dsi_write_phtw(struct rcar_mipi_dsi *dsi, u32 phtw)
->  {
->         u32 status;
->         int ret;
-> @@ -163,32 +202,231 @@ static int rcar_mipi_dsi_phtw_test(struct rcar_mip=
-i_dsi *dsi, u32 phtw)
->         return ret;
->  }
-> =20
-> +static int rcar_mipi_dsi_write_phtw_arr(struct rcar_mipi_dsi *dsi,
-> +                                       const u32 *phtw, unsigned int siz=
-e)
-> +{
-> +       for (unsigned int i =3D 0; i < size; i++) {
-> +               int ret =3D rcar_mipi_dsi_write_phtw(dsi, phtw[i]);
-> +
-> +               if (ret < 0)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +#define WRITE_PHTW(...)                                               \
-> +       ({                                                            \
-> +               static const u32 phtw[] =3D { __VA_ARGS__ };            \
-> +               int ret;                                              \
-> +               ret =3D rcar_mipi_dsi_write_phtw_arr(dsi, phtw,         \
-> +                                                  ARRAY_SIZE(phtw)); \
-> +               ret;                                                  \
-> +       })
-> +
-> +static int rcar_mipi_dsi_init_phtw_v3u(struct rcar_mipi_dsi *dsi)
-> +{
-> +       return WRITE_PHTW(0x01020114, 0x01600115, 0x01030116, 0x0102011d,
-> +                         0x011101a4, 0x018601a4, 0x014201a0, 0x010001a3,
-> +                         0x0101011f);
-> +}
-> +
-> +static int rcar_mipi_dsi_post_init_phtw_v3u(struct rcar_mipi_dsi *dsi)
-> +{
-> +       return WRITE_PHTW(0x010c0130, 0x010c0140, 0x010c0150, 0x010c0180,
-> +                         0x010c0190, 0x010a0160, 0x010a0170, 0x01800164,
-> +                         0x01800174);
-> +}
-> +
-> +static int rcar_mipi_dsi_init_phtw_v4h(struct rcar_mipi_dsi *dsi,
-> +                                      const struct dsi_setup_info *setup=
-_info)
-> +{
+> +       u32 mdio_freq =3D DEFAULT_MDIO_FREQ;
+>         u32 host_clock;
+> +       u32 clk_div;
 > +       int ret;
+>=20
+>         lp->mii_clk_div =3D 0;
+>=20
+> @@ -184,6 +189,12 @@ static int axienet_mdio_enable(struct axienet_local
+> *lp)
+>                             host_clock);
+>         }
+>=20
+> +       if (np)
+> +               of_property_read_u32(np, "clock-frequency", &mdio_freq);
+> +       if (mdio_freq !=3D DEFAULT_MDIO_FREQ)
+> +               netdev_info(lp->ndev, "Setting non-standard mdio bus freq=
+uency
+> to %u Hz\n",
+> +                           mdio_freq);
 > +
-> +       if (setup_info->hsfreq < MHZ(450)) {
-> +               ret =3D WRITE_PHTW(0x01010100, 0x011b01ac);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       ret =3D WRITE_PHTW(0x01010100, 0x01030173, 0x01000174, 0x01500175,
-> +                        0x01030176, 0x01040166, 0x010201ad);
-
-Ok - I can see this at 67.3.5.
-
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (setup_info->hsfreq <=3D MHZ(1000))
-> +               ret =3D WRITE_PHTW(0x01020100, 0x01910170, 0x01020171,
-> +                                0x01110172);
-
-The <=3D1Gbps reads:
-
-<=3D1Gbps
-
-Set PHTW=3DH=E2=80=9901020100
-Set PHTW=3DH=E2=80=9901010172
-Set PHTW=3DH=E2=80=9901570170
-Set PHTW=3DH=E2=80=9901060171
-Set PHTW=3DH=E2=80=9901110172
-
-Is it clear why theres a difference here?
-
-> +       else if (setup_info->hsfreq <=3D MHZ(1500))
-> +               ret =3D WRITE_PHTW(0x01020100, 0x01980170, 0x01030171,
-> +                                0x01100172);
-
-And here, it states the following which differs:
-
-1Gbps < and <=3D1.5Gbps
-Set PHTW=3DH=E2=80=9901020100
-Set PHTW=3DH=E2=80=9901000172
-Set PHTW=3DH=E2=80=9901200170
-Set PHTW=3DH=E2=80=9901090171
-Set PHTW=3DH=E2=80=9901100172 ?
-
-> +       else if (setup_info->hsfreq <=3D MHZ(2500))
-> +               ret =3D WRITE_PHTW(0x01020100, 0x0144016b, 0x01000172);
-
-And I believe this is Case 2 on the right...
-
-Set PHTW=3DH=E2=80=9901020100
-Set PHTW=3DH=E2=80=990104016B
-Set PHTW=3DH=E2=80=9901000172
-
-Which has differences in the middle write ?
-
-I expect I'm missing something obvious there as there are lots of key
-differences. So perhaps those are just 'examples'.
-
-> +       else
-> +               return -EINVAL;
-> +
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (dsi->lanes <=3D 1) {
-> +               ret =3D WRITE_PHTW(0x01070100, 0x010e010b);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       if (dsi->lanes <=3D 2) {
-> +               ret =3D WRITE_PHTW(0x01090100, 0x010e010b);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       if (dsi->lanes <=3D 3) {
-> +               ret =3D WRITE_PHTW(0x010b0100, 0x010e010b);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       if (setup_info->hsfreq <=3D MHZ(1500)) {
-> +               ret =3D WRITE_PHTW(0x01010100, 0x01c0016e);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int
-> +rcar_mipi_dsi_post_init_phtw_v4h(struct rcar_mipi_dsi *dsi,
-> +                                const struct dsi_setup_info *setup_info)
-> +{
-> +       u32 status;
-> +       int ret;
-> +
-> +       if (setup_info->hsfreq <=3D MHZ(1500)) {
-> +               WRITE_PHTW(0x01020100, 0x00000180);
-> +
-> +               ret =3D read_poll_timeout(rcar_mipi_dsi_read, status,
-> +                                       status & PHTR_TEST, 2000, 10000, =
-false,
-> +                                       dsi, PHTR);
-> +               if (ret < 0) {
-> +                       dev_err(dsi->dev, "failed to test PHTR\n");
-> +                       return ret;
-> +               }
-> +
-> +               WRITE_PHTW(0x01010100, 0x0100016e);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  /* ---------------------------------------------------------------------=
---------
->   * Hardware Setup
->   */
-> =20
-> -struct dsi_setup_info {
-> -       unsigned long fout;
-> -       u16 vco_cntrl;
-> -       u16 prop_cntrl;
-> -       u16 hsfreqrange;
-> -       u16 div;
-> -       unsigned int m;
-> -       unsigned int n;
-> -};
-> +static void rcar_mipi_dsi_pll_calc_r8a779a0(struct rcar_mipi_dsi *dsi,
-> +                                           struct clk *clk,
-> +                                           unsigned long fout_target,
-> +                                           struct dsi_setup_info *setup_=
-info)
-> +{
-> +       unsigned int best_err =3D -1;
-> +       unsigned long fin;
-> +
-> +       fin =3D clk_get_rate(clk);
-> +
-> +       for (unsigned int n =3D 3; n <=3D 8; n++) {
-> +               unsigned long fpfd;
-> +
-> +               fpfd =3D fin / n;
-> +
-> +               if (fpfd < MHZ(2) || fpfd > MHZ(8))
-> +                       continue;
-> +
-> +               for (unsigned int m =3D 64; m <=3D 625; m++) {
-> +                       unsigned int err;
-> +                       u64 fout;
-> +
-> +                       fout =3D (u64)fpfd * m;
-> +
-> +                       if (fout < MHZ(320) || fout > MHZ(1250))
-> +                               continue;
-> +
-> +                       fout =3D div64_u64(fout, setup_info->vclk_divider=
-);
-> +
-> +                       if (fout < setup_info->clkset->min_freq ||
-> +                           fout > setup_info->clkset->max_freq)
-> +                               continue;
-> +
-> +                       err =3D abs((long)(fout - fout_target) * 10000 /
-> +                                 (long)fout_target);
-> +
-> +                       if (err < best_err) {
-> +                               setup_info->m =3D m;
-> +                               setup_info->n =3D n;
-> +                               setup_info->fout =3D (unsigned long)fout;
-> +                               best_err =3D err;
-> +
-> +                               if (err =3D=3D 0)
-> +                                       return;
-> +                       }
-> +               }
-> +       }
-> +}
-> +
-> +static void rcar_mipi_dsi_pll_calc_r8a779g0(struct rcar_mipi_dsi *dsi,
-> +                                           struct clk *clk,
-> +                                           unsigned long fout_target,
-> +                                           struct dsi_setup_info *setup_=
-info)
-> +{
-> +       unsigned int best_err =3D -1;
-> +       unsigned long fin;
-> +
-> +       fin =3D clk_get_rate(clk);
-> +
-> +       for (unsigned int n =3D 1; n <=3D 8; n++) {
-> +               unsigned long fpfd;
-> +
-> +               fpfd =3D fin / n;
-> +
-> +               if (fpfd < MHZ(8) || fpfd > MHZ(24))
-> +                       continue;
-> +
-> +               for (unsigned int m =3D 167; m <=3D 1000; m++) {
-> +                       unsigned int err;
-> +                       u64 fout;
-> +
-> +                       fout =3D div64_u64((u64)fpfd * m, 2);
-> +
-> +                       if (fout < MHZ(2000) || fout > MHZ(4000))
-> +                               continue;
-> +
-> +                       fout =3D div64_u64(fout, setup_info->vclk_divider=
-);
-> +
-> +                       if (fout < setup_info->clkset->min_freq ||
-> +                           fout > setup_info->clkset->max_freq)
-> +                               continue;
-> +
-> +                       err =3D abs((long)(fout - fout_target) * 10000 /
-> +                                 (long)fout_target);
-> +                       if (err < best_err) {
-> +                               setup_info->m =3D m;
-> +                               setup_info->n =3D n;
-> +                               setup_info->fout =3D (unsigned long)fout;
-> +                               best_err =3D err;
-> +
-> +                               if (err =3D=3D 0)
-> +                                       return;
-> +                       }
-> +               }
-> +       }
-> +}
-> =20
->  static void rcar_mipi_dsi_parameters_calc(struct rcar_mipi_dsi *dsi,
->                                           struct clk *clk, unsigned long =
-target,
->                                           struct dsi_setup_info *setup_in=
-fo)
->  {
-> =20
-> -       const struct vco_cntrl_value *vco_cntrl;
-> +       const struct dsi_clk_config *clkset;
->         unsigned long fout_target;
-> -       unsigned long fin, fout;
-> -       unsigned long hsfreq;
-> -       unsigned int best_err =3D -1;
-> -       unsigned int divider;
-> -       unsigned int n;
->         unsigned int i;
->         unsigned int err;
-> =20
-> @@ -198,70 +436,53 @@ static void rcar_mipi_dsi_parameters_calc(struct rc=
-ar_mipi_dsi *dsi,
+>         /* clk_div can be calculated by deriving it from the equation:
+>          * fMDIO =3D fHOST / ((1 + clk_div) * 2)
+>          *
+> @@ -209,29 +220,42 @@ static int axienet_mdio_enable(struct axienet_local
+> *lp)
+>          * "clock-frequency" from the CPU
 >          */
->         fout_target =3D target * mipi_dsi_pixel_format_to_bpp(dsi->format)
->                     / (2 * dsi->lanes);
-> -       if (fout_target < 40000000 || fout_target > 1250000000)
-> +       if (fout_target < MHZ(40) || fout_target > MHZ(1250))
->                 return;
-> =20
->         /* Find vco_cntrl */
-> -       for (vco_cntrl =3D vco_cntrl_table; vco_cntrl->min_freq !=3D 0; v=
-co_cntrl++) {
-> -               if (fout_target > vco_cntrl->min_freq &&
-> -                   fout_target <=3D vco_cntrl->max_freq) {
-> -                       setup_info->vco_cntrl =3D vco_cntrl->value;
-> -                       if (fout_target >=3D 1150000000)
-> -                               setup_info->prop_cntrl =3D 0x0c;
-> -                       else
-> -                               setup_info->prop_cntrl =3D 0x0b;
-> +       for (clkset =3D dsi->info->clk_cfg; clkset->min_freq !=3D 0; clks=
-et++) {
-> +               if (fout_target > clkset->min_freq &&
-> +                   fout_target <=3D clkset->max_freq) {
-> +                       setup_info->clkset =3D clkset;
->                         break;
->                 }
->         }
-> =20
-> -       /* Add divider */
-> -       setup_info->div =3D (setup_info->vco_cntrl & 0x30) >> 4;
-> +       switch (dsi->info->model) {
-> +       case RCAR_DSI_R8A779A0:
-> +               setup_info->vclk_divider =3D 1 << ((clkset->vco_cntrl >> =
-4) & 0x3);
-> +               rcar_mipi_dsi_pll_calc_r8a779a0(dsi, clk, fout_target, se=
-tup_info);
-> +               break;
+>=20
+> -       lp->mii_clk_div =3D (host_clock / (MAX_MDIO_FREQ * 2)) - 1;
+> +       clk_div =3D (host_clock / (mdio_freq * 2)) - 1;
+>         /* If there is any remainder from the division of
+> -        * fHOST / (MAX_MDIO_FREQ * 2), then we need to add
+> -        * 1 to the clock divisor or we will surely be above 2.5 MHz
+> +        * fHOST / (mdio_freq * 2), then we need to add
+> +        * 1 to the clock divisor or we will surely be
+> +        * above the requested frequency
+>          */
+> -       if (host_clock % (MAX_MDIO_FREQ * 2))
+> -               lp->mii_clk_div++;
+> +       if (host_clock % (mdio_freq * 2))
+> +               clk_div++;
 > +
-> +       case RCAR_DSI_R8A779G0:
-> +               setup_info->vclk_divider =3D 1 << (((clkset->vco_cntrl >>=
- 3) & 0x7) + 1);
-> +               rcar_mipi_dsi_pll_calc_r8a779g0(dsi, clk, fout_target, se=
-tup_info);
-> +               break;
-> +
-> +       default:
-> +               return;
+> +       /* Check for overflow of mii_clk_div */
+> +       if (clk_div & ~XAE_MDIO_MC_CLOCK_DIVIDE_MAX) {
+> +               netdev_warn(lp->ndev, "MDIO clock divisor overflow\n");
+> +               return -EOVERFLOW;
 > +       }
-> =20
->         /* Find hsfreqrange */
-> -       hsfreq =3D fout_target * 2;
-> +       setup_info->hsfreq =3D setup_info->fout * 2;
->         for (i =3D 0; i < ARRAY_SIZE(hsfreqrange_table); i++) {
-> -               if (hsfreqrange_table[i][0] >=3D hsfreq) {
-> +               if (hsfreqrange_table[i][0] >=3D setup_info->hsfreq) {
->                         setup_info->hsfreqrange =3D hsfreqrange_table[i][=
-1];
->                         break;
->                 }
->         }
-> =20
-> -       /*
-> -        * Calculate n and m for PLL clock
-> -        * Following the HW manual the ranges of n and m are
-> -        * n =3D [3-8] and m =3D [64-625]
-> -        */
-> -       fin =3D clk_get_rate(clk);
-> -       divider =3D 1 << setup_info->div;
-> -       for (n =3D 3; n < 9; n++) {
-> -               unsigned long fpfd;
-> -               unsigned int m;
+> +       lp->mii_clk_div =3D (u8)clk_div;
+>=20
+>         netdev_dbg(lp->ndev,
+>                    "Setting MDIO clock divisor to %u/%u Hz host clock.\n"=
+,
+>                    lp->mii_clk_div, host_clock);
+>=20
+> -       axienet_iow(lp, XAE_MDIO_MC_OFFSET, lp->mii_clk_div |
+> XAE_MDIO_MC_MDIOEN_MASK);
+> +       axienet_mdio_mdc_enable(lp);
+>=20
+> -       return axienet_mdio_wait_until_ready(lp);
+> +       ret =3D axienet_mdio_wait_until_ready(lp);
+> +       if (ret)
+> +               axienet_mdio_mdc_disable(lp);
+> +
+> +       return ret;
+>  }
+>=20
+>  /**
+>   * axienet_mdio_setup - MDIO setup function
+>   * @lp:                Pointer to axienet local data structure.
+>   *
+> - * Return:     0 on success, -ETIMEDOUT on a timeout, -ENOMEM when
+> - *             mdiobus_alloc (to allocate memory for mii bus structure) =
+fails.
+> + * Return:     0 on success, -ETIMEDOUT on a timeout, -EOVERFLOW on a
+> clock
+> + *             divisor overflow, -ENOMEM when mdiobus_alloc (to allocate
+> + *             memory for mii bus structure) fails.
+>   *
+>   * Sets up the MDIO interface by initializing the MDIO clock.
+>   * Register the MDIO interface.
+> @@ -242,10 +266,6 @@ int axienet_mdio_setup(struct axienet_local *lp)
+>         struct mii_bus *bus;
+>         int ret;
+>=20
+> -       ret =3D axienet_mdio_enable(lp);
+> -       if (ret < 0)
+> -               return ret;
 > -
-> -               fpfd =3D fin / n;
-> -
-> -               for (m =3D 64; m < 626; m++) {
-> -                       fout =3D fpfd * m / divider;
-> -                       err =3D abs((long)(fout - fout_target) * 10000 /
-> -                                 (long)fout_target);
-> -                       if (err < best_err) {
-> -                               setup_info->m =3D m - 2;
-> -                               setup_info->n =3D n - 1;
-> -                               setup_info->fout =3D fout;
-> -                               best_err =3D err;
-> -                               if (err =3D=3D 0)
-> -                                       goto done;
-> -                       }
-> -               }
+>         bus =3D mdiobus_alloc();
+>         if (!bus)
+>                 return -ENOMEM;
+> @@ -261,15 +281,23 @@ int axienet_mdio_setup(struct axienet_local *lp)
+>         lp->mii_bus =3D bus;
+>=20
+>         mdio_node =3D of_get_child_by_name(lp->dev->of_node, "mdio");
+> +       ret =3D axienet_mdio_enable(lp, mdio_node);
+> +       if (ret < 0)
+> +               goto unregister;
+>         ret =3D of_mdiobus_register(bus, mdio_node);
+> +       if (ret)
+> +               goto unregister_mdio_enabled;
+>         of_node_put(mdio_node);
+> -       if (ret) {
+> -               mdiobus_free(bus);
+> -               lp->mii_bus =3D NULL;
+> -               return ret;
 > -       }
-> +       err =3D abs((long)(setup_info->fout - fout_target) * 10000 / (lon=
-g)fout_target);
-> =20
-> -done:
->         dev_dbg(dsi->dev,
-> -               "%pC %lu Hz -> Fout %lu Hz (target %lu Hz, error %d.%02u%=
-%), PLL M/N/DIV %u/%u/%u\n",
-> -               clk, fin, setup_info->fout, fout_target, best_err / 100,
-> -               best_err % 100, setup_info->m, setup_info->n, setup_info-=
->div);
-> +               "Fout =3D %u * %lu / (2 * %u * %u) =3D %lu (target %lu Hz=
-, error %d.%02u%%)\n",
-> +               setup_info->m, clk_get_rate(clk), setup_info->n, setup_in=
-fo->vclk_divider,
-> +               setup_info->fout, fout_target,
-> +               err / 100, err % 100);
-> +
->         dev_dbg(dsi->dev,
->                 "vco_cntrl =3D 0x%x\tprop_cntrl =3D 0x%x\thsfreqrange =3D=
- 0x%x\n",
-> -               setup_info->vco_cntrl, setup_info->prop_cntrl,
-> +               clkset->vco_cntrl, clkset->prop_cntrl,
->                 setup_info->hsfreqrange);
->  }
-> =20
-> @@ -324,7 +545,7 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_dsi=
- *dsi,
->  {
->         struct dsi_setup_info setup_info =3D {};
->         unsigned int timeout;
-> -       int ret, i;
-> +       int ret;
->         int dsi_format;
->         u32 phy_setup;
->         u32 clockset2, clockset3;
-> @@ -360,10 +581,21 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_d=
-si *dsi,
->         phy_setup |=3D PHYSETUP_HSFREQRANGE(setup_info.hsfreqrange);
->         rcar_mipi_dsi_write(dsi, PHYSETUP, phy_setup);
-> =20
-> -       for (i =3D 0; i < ARRAY_SIZE(phtw); i++) {
-> -               ret =3D rcar_mipi_dsi_phtw_test(dsi, phtw[i]);
-> +       switch (dsi->info->model) {
-> +       case RCAR_DSI_R8A779A0:
-> +               ret =3D rcar_mipi_dsi_init_phtw_v3u(dsi);
-> +               if (ret < 0)
-> +                       return ret;
-> +               break;
-> +
-> +       case RCAR_DSI_R8A779G0:
-> +               ret =3D rcar_mipi_dsi_init_phtw_v4h(dsi, &setup_info);
->                 if (ret < 0)
->                         return ret;
-> +               break;
-> +
-> +       default:
-> +               return -ENODEV;
->         }
-> =20
->         /* PLL Clock Setting */
-> @@ -371,12 +603,13 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_d=
-si *dsi,
->         rcar_mipi_dsi_set(dsi, CLOCKSET1, CLOCKSET1_SHADOW_CLEAR);
->         rcar_mipi_dsi_clr(dsi, CLOCKSET1, CLOCKSET1_SHADOW_CLEAR);
-> =20
-> -       clockset2 =3D CLOCKSET2_M(setup_info.m) | CLOCKSET2_N(setup_info.=
-n)
-> -                 | CLOCKSET2_VCO_CNTRL(setup_info.vco_cntrl);
-> -       clockset3 =3D CLOCKSET3_PROP_CNTRL(setup_info.prop_cntrl)
-> -                 | CLOCKSET3_INT_CNTRL(0)
-> -                 | CLOCKSET3_CPBIAS_CNTRL(0x10)
-> -                 | CLOCKSET3_GMP_CNTRL(1);
-> +       clockset2 =3D CLOCKSET2_M(setup_info.m - dsi->info->clockset2_m_o=
-ffset)
-> +                 | CLOCKSET2_N(setup_info.n - dsi->info->clockset2_n_off=
-set)
-> +                 | CLOCKSET2_VCO_CNTRL(setup_info.clkset->vco_cntrl);
-> +       clockset3 =3D CLOCKSET3_PROP_CNTRL(setup_info.clkset->prop_cntrl)
-> +                 | CLOCKSET3_INT_CNTRL(setup_info.clkset->int_cntrl)
-> +                 | CLOCKSET3_CPBIAS_CNTRL(setup_info.clkset->cpbias_cntr=
-l)
-> +                 | CLOCKSET3_GMP_CNTRL(setup_info.clkset->gmp_cntrl);
->         rcar_mipi_dsi_write(dsi, CLOCKSET2, clockset2);
->         rcar_mipi_dsi_write(dsi, CLOCKSET3, clockset3);
-> =20
-> @@ -407,10 +640,21 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_d=
-si *dsi,
->                 return -ETIMEDOUT;
->         }
-> =20
-> -       for (i =3D 0; i < ARRAY_SIZE(phtw2); i++) {
-> -               ret =3D rcar_mipi_dsi_phtw_test(dsi, phtw2[i]);
-> +       switch (dsi->info->model) {
-> +       case RCAR_DSI_R8A779A0:
-> +               ret =3D rcar_mipi_dsi_post_init_phtw_v3u(dsi);
->                 if (ret < 0)
->                         return ret;
-> +               break;
-> +
-> +       case RCAR_DSI_R8A779G0:
-> +               ret =3D rcar_mipi_dsi_post_init_phtw_v4h(dsi, &setup_info=
-);
-> +               if (ret < 0)
-> +                       return ret;
-> +               break;
-> +
-> +       default:
-> +               return -ENODEV;
->         }
-> =20
->         /* Enable DOT clock */
-> @@ -427,8 +671,21 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_ds=
-i *dsi,
->                 dev_warn(dsi->dev, "unsupported format");
->                 return -EINVAL;
->         }
-> -       vclkset |=3D VCLKSET_COLOR_RGB | VCLKSET_DIV(setup_info.div)
-> -               |  VCLKSET_LANE(dsi->lanes - 1);
-> +
-> +       vclkset |=3D VCLKSET_COLOR_RGB | VCLKSET_LANE(dsi->lanes - 1);
-> +
-> +       switch (dsi->info->model) {
-> +       case RCAR_DSI_R8A779A0:
-> +               vclkset |=3D VCLKSET_DIV_R8A779A0(__ffs(setup_info.vclk_d=
-ivider));
-> +               break;
-> +
-> +       case RCAR_DSI_R8A779G0:
-> +               vclkset |=3D VCLKSET_DIV_R8A779G0(__ffs(setup_info.vclk_d=
-ivider) - 1);
-
-Why is this a -1 here ? Seems an odd difference compared to the A0.
-
-> +               break;
-> +
-> +       default:
-> +               return -ENODEV;
-> +       }
-> =20
->         rcar_mipi_dsi_write(dsi, VCLKSET, vclkset);
-> =20
-> @@ -841,8 +1098,25 @@ static int rcar_mipi_dsi_remove(struct platform_dev=
-ice *pdev)
+>         axienet_mdio_mdc_disable(lp);
 >         return 0;
+> +
+> +unregister_mdio_enabled:
+> +       axienet_mdio_mdc_disable(lp);
+> +unregister:
+> +       of_node_put(mdio_node);
+> +       mdiobus_free(bus);
+> +       lp->mii_bus =3D NULL;
+> +       return ret;
 >  }
-> =20
-> +static const struct rcar_mipi_dsi_device_info r8a779a0_data =3D {
-> +       .model =3D RCAR_DSI_R8A779A0,
-> +       .clk_cfg =3D dsi_clk_cfg_r8a779a0,
-> +       .clockset2_m_offset =3D 2,
-> +       .clockset2_n_offset =3D 1,
-> +
-> +};
-> +
-> +static const struct rcar_mipi_dsi_device_info r8a779g0_data =3D {
-> +       .model =3D RCAR_DSI_R8A779G0,
-> +       .clk_cfg =3D dsi_clk_cfg_r8a779g0,
-> +       .clockset2_m_offset =3D 0,
-> +       .clockset2_n_offset =3D 1,
-> +
-> +};
-> +
->  static const struct of_device_id rcar_mipi_dsi_of_table[] =3D {
-> -       { .compatible =3D "renesas,r8a779a0-dsi-csi2-tx" },
-> +       { .compatible =3D "renesas,r8a779a0-dsi-csi2-tx", .data =3D &r8a7=
-79a0_data },
-> +       { .compatible =3D "renesas,r8a779g0-dsi-csi2-tx", .data =3D &r8a7=
-79g0_data },
->         { }
->  };
-> =20
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_mipi_dsi_regs.h b/drivers/gpu/d=
-rm/rcar-du/rcar_mipi_dsi_regs.h
-> index 2eaca54636f3..608851340acf 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_mipi_dsi_regs.h
-> +++ b/drivers/gpu/drm/rcar-du/rcar_mipi_dsi_regs.h
-> @@ -122,7 +122,8 @@
->  #define VCLKSET_CKEN                   (1 << 16)
->  #define VCLKSET_COLOR_RGB              (0 << 8)
->  #define VCLKSET_COLOR_YCC              (1 << 8)
-> -#define VCLKSET_DIV(x)                 (((x) & 0x3) << 4)
-> +#define VCLKSET_DIV_R8A779A0(x)                (((x) & 0x3) << 4)
-> +#define VCLKSET_DIV_R8A779G0(x)                (((x) & 0x7) << 4)
->  #define VCLKSET_BPP_16                 (0 << 2)
->  #define VCLKSET_BPP_18                 (1 << 2)
->  #define VCLKSET_BPP_18L                        (2 << 2)
-> @@ -166,6 +167,9 @@
->  #define PHTW_CWEN                      (1 << 8)
->  #define PHTW_TESTDIN_CODE(x)           (((x) & 0xff) << 0)
-> =20
-> +#define PHTR                           0x1038
-> +#define PHTR_TEST                      (1 << 16)
-> +
->  #define PHTC                           0x103c
->  #define PHTC_TESTCLR                   (1 << 0)
-> =20
-> --=20
-> 2.34.1
->
+>=20
+>  /**
+> --
+> 2.36.0
+
+Reviewed-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
