@@ -2,107 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9803C62E33C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:38:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F8C62E34A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239870AbiKQRiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 12:38:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56934 "EHLO
+        id S234904AbiKQRjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 12:39:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234455AbiKQRiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:38:16 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525627CBA6
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:38:12 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id d3so3670345ljl.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:38:12 -0800 (PST)
+        with ESMTP id S234969AbiKQRjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:39:18 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922D81EC69;
+        Thu, 17 Nov 2022 09:39:15 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id k2so6947961ejr.2;
+        Thu, 17 Nov 2022 09:39:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dbw2/XXeLln7vDrFafq738GUmCXZ0AXEtj+PRDpKT1E=;
-        b=hQ9lX8JNIWXAUodyaRmLxPAJdg0px72d9/dzwFaory5wXPbFCPfv32g92k+ZVcpanq
-         8bFgh6MoJnqbmWiiiuRSUHXXnwkdwojle+Vth2A4SjG0PUkrp1tKnavpq0SG1owCthYZ
-         M+j784DQwUiORoPcHUPWftjuyyA3wlJg9IFOBI23tZKZFwhyHHDGrp2gx5CtAbwtc6oJ
-         W33t9eyrnFLnczrl6cvlbVWRE3FaOQxi6+Xk8e/m2VRQ+bTMq525+aTzYafZG8ihuDFn
-         zZR6wwOeFF1+EJZm0ip7yEYJ/J3FQmPnJ1uVyX/pxjGnwlE0Ule+jSjgq8Q7PGx74oqG
-         qQgA==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XzW5a+qyS3pII/Y84E6OMyCxXa5W5k1vCu/c53UlqCg=;
+        b=p1Hf/qoo+vBPK7V3PvN5MqXkS+vQS16sSNJP5yH/aCdGdhJPJwp4Mqd2y/23cKEj+6
+         B3Pub7IONK3Y231bjpce3brbGpRKouoNqd2n/8RogKGdZkych7VlOkNiHCiJw2hTZKEv
+         io6ttXGOTHItx7vBGj4cCUDcrEUlNYKj5RarAuWei9RcugpHeR8DwBXcOqmo0Sq4RkhR
+         6YqpAJxXLUdEdDq7FHo9GNeiRYkHMTG17ZQna2vup7IopHCWtIY100VEoT+nMQ19pVaT
+         2allkNZmi+H9mzzWNjqRM3HOfRWsUkhkptuhj+FlYx5+ROZItwiTwNZHtmE4fljjhqk1
+         2oGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dbw2/XXeLln7vDrFafq738GUmCXZ0AXEtj+PRDpKT1E=;
-        b=d0W/s9t76OTzMaCdZyTlxZLnjqLVdNUU4lpJe5D1qZdkPjyr1XX3xZ9NfGk9fEo/x4
-         VpSjrVJd8C/kFMTICOx2YiWtFS9cmzE+6JarDWlxGgIQYSaIyaoDgf3cnB45Rr460BnM
-         mw5/DFI6WC4VfEtbZaXFVdq/y84SJMrZcX9rgTbWYLXSfhYVDJ6B3n115m28ME1ueMNl
-         HB9jvEhqokCUt/2Te2dUXmaz2coD+iIjPL/pL2xgAp2YNFcd2fHx8uBcGZeZqOIY9hq5
-         jSbnXVZ/zDHwmRQfpcG0cm1BoST8jqQcN4Y9vL5i/3VeVNvzsslUK+Vu+P7NiFzlTU8k
-         F7gA==
-X-Gm-Message-State: ANoB5pnWN1YVHConG4LP/A2BICNCjfVGRCFnXpwisleBFIKq5+PZd5hg
-        XaLk7YIUpKntrQ1c98m7LMuNTQ==
-X-Google-Smtp-Source: AA0mqf6Z6xAfpPfyQq1ZNnfmmz/+hTdfCIaaYUwg7Hel8p9ZM3aS2yrhDoEu+n0o+Rfz/XHJI4Eicw==
-X-Received: by 2002:a2e:9d4f:0:b0:277:5928:f2fd with SMTP id y15-20020a2e9d4f000000b002775928f2fdmr1448180ljj.239.1668706690417;
-        Thu, 17 Nov 2022 09:38:10 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f29-20020a05651c02dd00b002778a76a3c3sm301692ljo.112.2022.11.17.09.38.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 09:38:09 -0800 (PST)
-Message-ID: <39383122-414f-f795-ab76-dad206198651@linaro.org>
-Date:   Thu, 17 Nov 2022 18:38:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 1/9] dt-bindings: drop redundant part of title of
- shared bindings
-Content-Language: en-US
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XzW5a+qyS3pII/Y84E6OMyCxXa5W5k1vCu/c53UlqCg=;
+        b=nii4xEmW6pKHcM5unAgVM+GmtfuMmiTnuvVYHUqayeEJJEF8/NKhM4myxcUx+GEfxf
+         q0quy7DphZ8EHhdX+SgkknDjV5ftgmH174A94/+fS8EBZyLMiVHcBoJsqZBVq/XH4HOM
+         dHEUfoHrys/WuAMuzqOJ9YWOr2wr6oBScBpzcBx8t6UVGzRG/7mVFzkCr8VcvaoSzC8K
+         +xBLH1zF+zmIxkBhntS/m/Z0jmMfan5tEzY95HbFxCtMfh0KYBryjxcDQHXvm4u+QHkV
+         3qHd1874uWwFIpXKsRMm3BHux70IbyUMruxWR+L1092HLtt6B8i13IQc1SraxD5AHwKV
+         3EOg==
+X-Gm-Message-State: ANoB5plJQuhZ2Jhg6MpIbOz6OUAEro2pfpH6Pk8cSGYVrMB8H+y6N/w4
+        GNNUaNJu6uEDqnwtDll67VE=
+X-Google-Smtp-Source: AA0mqf7bJLFcDbFlaTdoKU0uNVYRcS/e64hoE4NZJOa/VG7qQrBQVet3EsFiDJodsrmVvu9UII5Dnw==
+X-Received: by 2002:a17:907:8b06:b0:7ae:ccf3:7bf0 with SMTP id sz6-20020a1709078b0600b007aeccf37bf0mr428591ejc.243.1668706753885;
+        Thu, 17 Nov 2022 09:39:13 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id u8-20020a1709067d0800b0077a201f6d1esm632546ejo.87.2022.11.17.09.39.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 09:39:13 -0800 (PST)
+Date:   Thu, 17 Nov 2022 18:39:11 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
 To:     Rob Herring <robh@kernel.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        linux-watchdog@vger.kernel.org
-References: <20221117123850.368213-1-krzysztof.kozlowski@linaro.org>
- <20221117123850.368213-2-krzysztof.kozlowski@linaro.org>
- <20221117171916.GA3116476-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117171916.GA3116476-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: tegra124-dfll: Convert to
+ json-schema
+Message-ID: <Y3ZxvwlSUdGxNAlE@orome>
+References: <20221111152843.627286-1-thierry.reding@gmail.com>
+ <20221115014341.GA3956095-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cShrDqJy1BIc/rmm"
+Content-Disposition: inline
+In-Reply-To: <20221115014341.GA3956095-robh@kernel.org>
+User-Agent: Mutt/2.2.8 (2022-11-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 18:19, Rob Herring wrote:
-> On Thu, Nov 17, 2022 at 01:38:42PM +0100, Krzysztof Kozlowski wrote:
->> The Devicetree bindings document does not have to say in the title that
->> it is a "binding", but instead just describe the hardware.  For shared
->> (re-usable) schemas, name them all as "common properties".
-> 
-> It's titles, so capitalize 'Common Properties'. Someday we may generate 
-> a document from all the schemas.
-> 
 
-Ack.
+--cShrDqJy1BIc/rmm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Mon, Nov 14, 2022 at 07:43:41PM -0600, Rob Herring wrote:
+> On Fri, Nov 11, 2022 at 04:28:42PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Convert the Tegra124 (and later) DFLL bindings from the free-form text
+> > format to json-schema.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../bindings/clock/nvidia,tegra124-dfll.txt   | 155 ----------
+> >  .../bindings/clock/nvidia,tegra124-dfll.yaml  | 277 ++++++++++++++++++
+> >  2 files changed, 277 insertions(+), 155 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegr=
+a124-dfll.txt
+> >  create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegr=
+a124-dfll.yaml
+>=20
+> Looks fine, but you either have to convert the pinctrl binding first or=
+=20
+> drop it from the example.
 
+You recently reviewed the pinctrl bindings and so the plan was to take
+both this conversion and the pinctrl bindings through the Tegra tree so
+that the dependency could be resolved there. But if you prefer I can
+also just drop the pinctrl bits from the example here. It doesn't really
+add anything useful.
+
+Thierry
+
+--cShrDqJy1BIc/rmm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN2cbwACgkQ3SOs138+
+s6HAeBAAmmYV1tdhLoVNhIox8B3pNUluZYCiES0o2QXJha2VZbbyU078Zemo05QL
++icAhNLzwl1pm7bkwTfT/EhEPeBeB/9vcc2hvuC5bF6d72ivpzQ8bmmvZJQQy/Ex
+ueBruKxKQ5CLjwIIvjkhMcTvynQdFvzuJlVLIJt7QaGkoAkdwpH1BF79ZOmZN+T3
+y2nzSP8SXtxOVALhCZeCQYdWN9PIowPTqIKeaCb5WUFdPEYwuptjcAYxpmg+9Vqa
+UYaeDaWPjykpXGHYjBSXb62JOMnRJwnIfuRKMgy6YAXnFPs82durqKMxuyEOz5XD
+rrdfBI6C9Yk3C+0ficnqdhhybbfkC34D4sVK0zOwUpdiqvQT0wCFmDxXgjXlg/xC
+Xcpyb0ShJi3fwezwqu0hE3A0MkNCIdPF6EEztMdOXsxQQIs4oisGe1N9zHGfZbVP
+1lKoXQLdEJGOux1YmtoORQM6VXU8bV64uQtOhrQlliPJCem2yAAI6JwrlV6MP+Ug
+qM6mB0hRhkiI4fx9RJw1ClkmIuXRX3noimgDUxlGtUfSdwt1HlqcQ8a2/xS+GjWV
+r58aNyy5ofhMRw1C/TKHyHKwydpdGz7WMSI67C9r5A4BHCP5sQlCfGpJ9qHAZC+z
+K6M4Thedh/5oeXVgro/zYZDZyTTfvManqZ3A2zjpvn/Zt8pHJVs=
+=4XpO
+-----END PGP SIGNATURE-----
+
+--cShrDqJy1BIc/rmm--
