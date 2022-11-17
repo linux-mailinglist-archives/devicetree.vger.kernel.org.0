@@ -2,130 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6698562E25E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F55E62E265
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:00:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239992AbiKQQ6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 11:58:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59936 "EHLO
+        id S235030AbiKQRAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 12:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240024AbiKQQ6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:58:13 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DDA70A1D;
-        Thu, 17 Nov 2022 08:58:09 -0800 (PST)
-Received: from frapeml100002.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NCmJD4l0cz683hj;
-        Fri, 18 Nov 2022 00:55:40 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- frapeml100002.china.huawei.com (7.182.85.26) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 17 Nov 2022 17:58:07 +0100
-Received: from localhost (10.122.247.231) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 17 Nov
- 2022 16:58:07 +0000
-Date:   Thu, 17 Nov 2022 16:58:06 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: fix PM8350
- define
-Message-ID: <20221117165806.00007f55@huawei.com>
-In-Reply-To: <9ddf7e56-f396-5720-9960-e3ef4aa9a204@linaro.org>
-References: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
-        <20221117122256.GG93179@thinkpad>
-        <a3da2ab9-ad36-2283-0659-ad8ebf877e17@linaro.org>
-        <20221117155658.00005d08@Huawei.com>
-        <9ddf7e56-f396-5720-9960-e3ef4aa9a204@linaro.org>
-Organization: Huawei Technologies R&D (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; x86_64-w64-mingw32)
+        with ESMTP id S240176AbiKQQ7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:59:52 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE9017AAA
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 08:59:51 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id a15so3482665ljb.7
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 08:59:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6xiNwxzl6a3FLqk1cHzSKAf/wTMMZvGRxsQRMjboQAc=;
+        b=ec2Tm8NXWRm0Ewgn0LOGwYlfW4egn/g1bkZ3f6PgKgLau9F9c2Y/GHZgm7Az+7+reI
+         xwMcbdRKEimWu7ElM9deIkBLb+1HSw72RNZQ2i8ScIO1kR5/r3tzyyFYPxmrx+2qbUX7
+         4Bs7FslKnUqLbuyg5u+ymOlseKdQf8TFh5ELwME3XvadiBRC7TSQUx8GC0u18yJ+FeaO
+         TkP4oB0wYwm6vFzyEwKrAfieDKb+vF0jCzGWM3xgxlMvM9wA6/7S7ZYTZG8oyPPmIETt
+         sszKtUTXZUFJxD5N0oFWspHCrsZGfceKUZH7gdX7bwbkHntAVpADlGZzr5t32EVzRHf/
+         XgTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6xiNwxzl6a3FLqk1cHzSKAf/wTMMZvGRxsQRMjboQAc=;
+        b=oTryjK6ERTB9Y9upAef3iBCfpxiD3XNmV3X81W2yWeMFIhKOjGPEMBAQCvs/oP0D/J
+         z1vs5cjgkasx0Vk3vFP48XP1Te+2dI0S4GlH2W8pFhRL+3ohFd89E2Hs+c/Vcv1OWP9M
+         K5Fm2D7dpWwFXWH0ypbyDBrRKmpifZ7qaX+XQwjK8iebb2ILgr18r1flqTL511BDNvfF
+         fq3PZn4cR2op73qeIeEVR2UcZ60Qk/cwvY+jpaRm0vl+G3otbnAkeek6O4bofOwgl/81
+         wN62LCB9jOsuGQ8OjJ0LouzwTiAqQaA37+ZlaRQM34h9Q9f796lpTG5jcLHnL6iO5LP6
+         nVzQ==
+X-Gm-Message-State: ANoB5pmJ27MSGIammGdtgLLaoFP/7x+vywJhDrXowiPiAG2nmMNoM/tV
+        QJQGZ6zrAkReUe1IFii7Gn+6LA==
+X-Google-Smtp-Source: AA0mqf52974ex818Qx2oUR88GJmDRSmA/dU99RAukv1QP6yVE7Ddv9PfGpINQOnSGkwUkXrKQEZU1g==
+X-Received: by 2002:a2e:8e2e:0:b0:276:e452:1213 with SMTP id r14-20020a2e8e2e000000b00276e4521213mr1259959ljk.445.1668704390312;
+        Thu, 17 Nov 2022 08:59:50 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f21-20020a2ea0d5000000b002770a7e320esm288684ljm.81.2022.11.17.08.59.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 08:59:49 -0800 (PST)
+Message-ID: <9eae8400-b800-3476-2d42-34a89b0b7b50@linaro.org>
+Date:   Thu, 17 Nov 2022 17:59:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/4] dt-bindings: pwm: Add Apple PWM controller
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221111173348.6537-1-fnkl.kernel@gmail.com>
+ <20221111173348.6537-2-fnkl.kernel@gmail.com>
+ <20221116202044.GA817431-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116202044.GA817431-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.122.247.231]
-X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Nov 2022 17:21:25 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 17/11/2022 16:56, Jonathan Cameron wrote:
-> > On Thu, 17 Nov 2022 13:28:33 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >> On 17/11/2022 13:22, Manivannan Sadhasivam wrote:  
-> >>> On Thu, Nov 17, 2022 at 01:13:07PM +0100, Krzysztof Kozlowski wrote:    
-> >>>> The defines from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h were
-> >>>> changed to take sid argument:
-> >>>>
-> >>>>   Error: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:99.28-29 syntax error
-> >>>>
-> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>    
-> >>>
-> >>> Looks like I didn't rebase on top of Bjorn's for-next for my series, so didn't
-> >>> see this example.
-> >>>
-> >>> Thanks for fixing!
-> >>>
-> >>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >>>     
-> >>
-> >> This should not go via Bjorn's tree without IIO ack and
-> >> Jonathan/Lars-Peter/IIO lists were not in CC.
-> >>  
-> > Thanks for the heads up. 
-> > 
-> > Not sure I'd have registered there would have been a problem here even
-> > if I had seen original patch.  Anyhow, I assume Bjorn will pick this up
-> > and all will be well again.
-> > 
-> > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>  
+On 16/11/2022 21:20, Rob Herring wrote:
+> On Fri, Nov 11, 2022 at 08:33:45PM +0300, Sasha Finkelstein wrote:
+>> Apple SoCs such as the M1 contain a PWM controller used
+>> among other things to control the keyboard backlight.
+>>
+>> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+>> Reviewed-by: Krzyszstof Kozlowski <krzyszstof.kozlowski@linaro.org>
 > 
-> I am afraid it cannot go via Bjorn's tree, because this depends on a
-> change in your tree:
-> https://lore.kernel.org/all/20221027143411.277980-2-krzysztof.kozlowski@linaro.org/
-> 
-> Can you pick it up instead? This is the only way to fix the linux-next,
-> although your tree will have a dt_binding_check error.
-> 
-> Other way is to have cross-tree merge, but the commit to bindings
-> headers ended up in DTS patch, so it cannot be shared with driver tree.
+> I assume you got a bounce on this as you got Krzysztof's name wrong 
+> (krzysztof.kozlowski@linaro.org). You should have either resent this or 
+> replied pointing out the typo.
 
-Ah. I've sent Greg a pull reuqest including that patch, so this is going to get
-worse and the linux-next intermediate builds are going to fail which is never good.
+Nice...
 
-Best bet at this point may be for Bjorn to also take the dependency 
-you list above and the fix.
+Please do not type my name. It's pretty impossible to get it right, so
+instead copy-paste the tag entirely without changes and addons.
 
-Git will happily unwind the same patch turning up in two trees and
-that way he'll have everything and the IIO tree  + char-misc will
-be fine on their own as well.
+This actually applies to all other tags as well, even with easy-to-type
+names.
 
-That work for everyone?
+Please resend.
 
-Jonathan
-
-
-
-> 
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+Krzysztof
 
