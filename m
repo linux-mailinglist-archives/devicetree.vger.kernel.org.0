@@ -2,172 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171DA62D766
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 10:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AA662D797
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 10:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234693AbiKQJrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 04:47:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36904 "EHLO
+        id S239539AbiKQJ6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 04:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233220AbiKQJrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 04:47:52 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6306D28E
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:47:51 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id t4so977744wmj.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:47:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mJE8bZ1d16Soq/u3zXafNtgnkPdOoiLGxDgt0M+ZXuA=;
-        b=LxuJaGiRi3GBofhyCy0PMCAzPQdVyvyWx9AX37dIms/Xgg/2EH91lE0RW/4HzaaPiJ
-         NDb9kG83yG4+JBTlINwBojFti0v/j+BqGiF3Sv0oRKzvlmuq5aAcJWvO/s72RAy1q8DX
-         d2iqPnmY/rOJ3qvZsVDoe61fCsT2glT6txgpJRgOyFQvzd2TD718M7nsPrkDKcsi3W0g
-         iM8pE2ne9+VDho8RF0CxLtISIKliPqVbpRKuZmIdXGJnfUnZN84tNANhydhNukBD+Qka
-         rdaYy7EqskyGKeC1H2NtefrWLKKy/zYREUJNVv8shrHgwXLCCAY8dSk/wkFY6d4+mg+U
-         1H5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mJE8bZ1d16Soq/u3zXafNtgnkPdOoiLGxDgt0M+ZXuA=;
-        b=CiW1lXYrbyqSiHFGAJOhMajUn6xRKsj1y3auyHKN9btszBvfXT+8EFK+sRiWQDyvP7
-         sjifyALqRByJuQt9kGXlz1vcsqsyTyeBj9N3cpIVibkIQCAsx78i77R/QPFT/CKEdcKC
-         Ootfjb/LxvLprutzeOT2Dqcs1YDG8hgsutK62Fa9+qVX8U+AhvSeMf3S4hBbSSG9WAK8
-         bNBZsleoO3dQx6yfU9J8aIthqicws3RZuUITiBf44m0zy0dFD1c+VHuOijNdQ1tXbNHA
-         yX4DbvHXcGEKYo6EnxBX6VWubgP0Hq5JpzgAkt/SxqLWSrunrjD0dXPguIkdOGyaUz1V
-         Fh7Q==
-X-Gm-Message-State: ANoB5pnJSkapOdGZkJGl3iMXzpeB0Qf8UnBI/GKSCrfl1itO+iu5Gwi2
-        /Gj6qdzBHTjnpHccAoPndUh60w==
-X-Google-Smtp-Source: AA0mqf6GnUIX2gam7adzA/Cn6Eg7pIWME+I/iWVz6m4/uWp50R1x4P8/TKeoURKqMpd7/os5BKfyAw==
-X-Received: by 2002:a7b:c00a:0:b0:3cf:e8f0:ad11 with SMTP id c10-20020a7bc00a000000b003cfe8f0ad11mr4777193wmb.65.1668678469971;
-        Thu, 17 Nov 2022 01:47:49 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:aad5:8d14:a22f:2e8b? ([2a01:e0a:982:cbb0:aad5:8d14:a22f:2e8b])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05600c19d000b003cf37c5ddc0sm726317wmq.22.2022.11.17.01.47.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 01:47:49 -0800 (PST)
-Message-ID: <9aa23650-6ae1-3844-7cf3-6812dc023c11@linaro.org>
-Date:   Thu, 17 Nov 2022 10:47:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: reserved-memory: document Qualcomm MPSS
- DSM memory
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org>
- <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-1-158dc2bb6e96@linaro.org>
- <38fff21b-3e75-13f9-664e-a115bc527b67@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <38fff21b-3e75-13f9-664e-a115bc527b67@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239478AbiKQJ5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 04:57:36 -0500
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BC679E1F;
+        Thu, 17 Nov 2022 01:56:11 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 95EFF2B06834;
+        Thu, 17 Nov 2022 04:56:09 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Thu, 17 Nov 2022 04:56:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1668678969; x=1668686169; bh=n3ozN+W8YF
+        HbndcMAYC2OS8cumH8vJIUWsucZSRoAV0=; b=DcMtPBgL8TjdP2NfUnS40MkbeY
+        qlt/hHvPQWRrV/z+Nr+bpIfXr/GvcoDTiNTEIJNxhOz/bklMG0Ax4PWkfPjGZt+4
+        U0obW7RNPX2TJSAvM2Dl33xSPvY+pguOGGMs3Lupo69sxnm3R+/aBzimG93367Et
+        bVmEaZvJXbEaUzu3UZOZWtZF0EBsLQPcJCoq2mlHbZHl4kym461kkHSSidsyo0V1
+        eKl47Jm2SMUrfomMY/bNrivb5no1IAk3ArHZk/aF7PSchkRb8D9+leizMu+U/MQt
+        Ml1bRehQJO5AOli5iSWewspJYs1h1yZ1XmA6m3NZ9Mu3Ic+ogNJUOpyt/DgA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1668678969; x=1668686169; bh=n3ozN+W8YFHbndcMAYC2OS8cumH8
+        vJIUWsucZSRoAV0=; b=cKMVq+HQ23RRH6MluW7EsSxG/+hlE4vE150eSqzMJ6RV
+        W96xg+vLxnOHJyh0hz0HQpQIG3TOAmSu3Wb+DXVa0dEtyxUHE8fcfda5xEydwhB5
+        xym/u8wS2fSazZh82f8oUW0TpMIgLmj86rgbI3SqAxwvfDslg94SY0OAjR3GFbya
+        suZkVlVCOx8gHQ6nYVyzUOx9r7P6juxaiXcn6tLQownbAk5Y9kgNcrzKhUH32q/P
+        q5T+eZNoUQEM7FugGCis6Jvdr8JKwxwCvAadBBFlkCTFCkXDVra9wYBZ3CzDLmX/
+        Lest2dgL2/lzDAq+Njhim2eZayTsh1Kqc5D82J14nQ==
+X-ME-Sender: <xms:OAV2Y_WFWESNZxVtGWi-2Okemz4il27j1JFDhRSfvGuHMD1zVIDvvQ>
+    <xme:OAV2Y3lD3d3odxKj2y93JaNbggt9D5s8M1xteoFkoEfVZ--jZNv0yTl4lN1EunTBM
+    S8tGw6WOVPPdQv4lNA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrgeekgddtlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:OAV2Y7bIwFpdYNxML9JAFwbj0AoOF-x6sWlNXM46dJsFxLM7xiIqGA>
+    <xmx:OAV2Y6VlFPkvFTyWHH85-yaoO3wcANC-mRsyUlsinW-kCGlABBw5EA>
+    <xmx:OAV2Y5lJYWf0dxv8mn9HZVvtWfb9qjRyixNQVrRtLwnjgoQStjQEpg>
+    <xmx:OQV2Y4cjvBZw3lHJZJLfDfEyXxn9XGMIxJ1J_u7cds0ZhKbaaqJevnRhq9g>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 12A80B60086; Thu, 17 Nov 2022 04:56:08 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <9aa20e9a-92b1-4268-921f-11209785acb7@app.fastmail.com>
+In-Reply-To: <20221117035902.13995-1-zhuyinbo@loongson.cn>
+References: <20221117035902.13995-1-zhuyinbo@loongson.cn>
+Date:   Thu, 17 Nov 2022 10:55:47 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Yinbo Zhu" <zhuyinbo@loongson.cn>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Bartosz Golaszewski" <brgl@bgdev.pl>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "WANG Xuerui" <kernel@xen0n.name>,
+        "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
+        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+        "Juxin Gao" <gaojuxin@loongson.cn>,
+        "Bibo Mao" <maobibo@loongson.cn>,
+        "Yanteng Si" <siyanteng@loongson.cn>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        "Arnaud Patard" <apatard@mandriva.com>,
+        "Huacai Chen" <chenhuacai@kernel.org>
+Cc:     "Jianmin Lv" <lvjianmin@loongson.cn>,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        "Liu Peibao" <liupeibao@loongson.cn>
+Subject: Re: [PATCH v4 1/2] gpio: loongson: add dts and acpi support
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 13:17, Krzysztof Kozlowski wrote:
-> On 16/11/2022 11:16, Neil Armstrong wrote:
->> This documents the Qualcomm Modem Processing SubSystem DSM shared memory.
+On Thu, Nov 17, 2022, at 04:59, Yinbo Zhu wrote:
 > 
-> Do not use "This commit/patch".
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../reserved-memory/qcom,mpss-dsm-mem.yaml         | 37 ++++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
->> new file mode 100644
->> index 000000000000..65f37e1356d4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/reserved-memory/qcom,mpss-dsm-mem.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> 
-> Drop quotes from above.
-> 
-> I know that this and few further pieces came from existing files...
+>  config GPIO_LOONGSON
+> -	bool "Loongson-2/3 GPIO support"
+> -	depends on CPU_LOONGSON2EF || CPU_LOONGSON64
+> +	bool "Loongson series GPIO support"
+> +	depends on LOONGARCH || COMPILE_TEST
 
-Yep sorry, I'll clean it up.
+This looks like it will introduce a regression for users of the
+older machines CPU_LOONGSON2EF and CPU_LOONGSON64 machines.
 
-> 
->> +
->> +title: Qualcomm Modem Processing SubSystem DSM Memory
->> +
->> +description: |
->> +  This binding describes the Qualcomm Modem Processing SubSystem DSM, which serves the
-> 
-> Drop "This binding describes"
-> 
->> +  purpose of describing the shared memory region used for MPSS remote processors.
-> 
-> Entire description seems like not wrapped at 80.
-> 
->> +
->> +maintainers:
->> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> Need to update the address.
+While the driver previously called 'platform_device_register_simple'
+to create the platform device itself, this call is no longer
+done anywhere, so it also cannot work here, but whatever was
+working should not be broken. I can see two possible ways to do
+this:
 
-Argh
+a) create the platform_device in the mips code in a way that
+the driver can handle it as before
 
-> 
->> +
->> +allOf:
->> +  - $ref: "reserved-memory.yaml"
-> 
-> Drop quotes.
-> 
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,mpss-dsm-mem
-> 
-> Why do we need dedicated binding and compatible for it instead of using
-> memory-region phandle in the device?
+b) duplicate the entire driver and leave the old code untouched.
 
-So like rmtfs, this memory zone is shared between APPS and the MPSS subsystem.
+The second one is probably easier here, but the first one would
+be nicer in the end, depending on how much of the original
+code remains.
 
-Like rmtfs it makes no sense to link it to the MPSS PAS, since it's only a launcher,
-it doesn't represent the MPSS subsystem.
+>  	help
+> -	  Driver for GPIO functionality on Loongson-2F/3A/3B processors.
+> +	  Driver for GPIO functionality on Loongson seires processors.
 
-In the PAS startup process, the resources are released from APPS once the MPSS subsystem
-is running, which is not the case with the MPSS DSM where it must be shared during the whole
-lifetime of the system.
+s/seires/series/
 
-Neil
+> +static void of_loongson_gpio_get_props(struct device_node *np,
+> +				  struct loongson_gpio_chip *lgpio)
+> +{
+> +	const char *name;
+> +
+> +	of_property_read_u32(np, "ngpios", (u32 *)&lgpio->chip.ngpio);
 
-> 
->> +
->> +unevaluatedProperties: false
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+This does not work: chip.ngpio is a 16-bit field, so you
+cannot overwrite it using a 32-bit pointer dereference. Just
+use a local variable as an intermediate
 
+> +	of_property_read_string(np, "compatible", &name);
+> +	lgpio->chip.label = kstrdup(name, GFP_KERNEL);
+> +	if (!strcmp(name, "loongson,ls2k-gpio")) {
+> +		lgpio->conf_offset = 0x0;
+
+This probably works, but is not reliable since "compatible"
+is an enumeration rather than a single string. Using
+of_device_is_compatible() would work here, or even better
+you can have a configuration that is referenced from
+the 'data' field of the 'of_device_id'
+
+> +static void acpi_loongson_gpio_get_props(struct platform_device *pdev,
+> +				  struct loongson_gpio_chip *lgpio)
+> +{
+> +
+> +	struct device *dev = &pdev->dev;
+> +	int rval;
+> +
+> +	device_property_read_u32(dev, "ngpios", (u32 *)&lgpio->chip.ngpio);
+> +	device_property_read_u32(dev, "gpio_base", (u32 *)&lgpio->chip.base);
+> +	device_property_read_u32(dev, "conf_offset",
+> +					(u32 *)&lgpio->conf_offset);
+> +	device_property_read_u32(dev, "out_offset",
+> +					(u32 *)&lgpio->out_offset);
+> +	device_property_read_u32(dev, "in_offset", (u32 *)&lgpio->in_offset);
+
+This looks worrying: While you addressed the feedback in the
+DT binding, the ACPI version still uses the old format, which
+the binding is different depending on the firmware.
+
+A modern driver should not set the "gpio_base" any more, and
+the firmware should not care either.
+
+The other fields appear to correspond to the ones that the DT
+version decides based on the device identifier. There isn't
+really a point in doing this differently, so pick one version
+or the other and then use the same method for both DT and ACPI.
+
+> +static void platform_loongson_gpio_get_props(struct platform_device *pdev,
+> +				  struct loongson_gpio_chip *lgpio)
+> +{
+> +}
+
+> +	if (np)
+> +		of_loongson_gpio_get_props(np, lgpio);
+> +	else if (ACPI_COMPANION(&pdev->dev))
+> +		acpi_loongson_gpio_get_props(pdev, lgpio);
+> +	else
+> +		platform_loongson_gpio_get_props(pdev, lgpio);
+
+The third branch is clearly broken now as it fails to assign
+anything. Using device_property_read_u32() etc should really
+work in all three cases, so if you fold the
+of_loongson_gpio_get_props and acpi_loongson_gpio_get_props
+functions into one, that will solve the third case as well.
+
+> +static const struct of_device_id loongson_gpio_dt_ids[] = {
+> +	{ .compatible = "loongson,ls2k-gpio"},
+> +	{ .compatible = "loongson,ls7a-gpio"},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, loongson_gpio_dt_ids);
+> +
+> +static const struct acpi_device_id loongson_gpio_acpi_match[] = {
+> +	{"LOON0002"},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(acpi, loongson_gpio_acpi_match);
+> +
+>  static struct platform_driver loongson_gpio_driver = {
+>  	.driver = {
+>  		.name = "loongson-gpio",
+> +		.owner = THIS_MODULE,
+> +		.of_match_table = loongson_gpio_dt_ids,
+> +		.acpi_match_table = ACPI_PTR(loongson_gpio_acpi_match),
+>  	},
+
+The ACPI_PTR() macro here means that you get an "unused variable"
+warning when the driver is build with CONFIG_ACPI disabled.
+I think you should just reference the variable directly. If you
+want to save a few bytes, you can keep the ACPI_PTR() here
+and enclose the struct definition in #ifdef CONFIG_ACPI.
+
+    Arnd
