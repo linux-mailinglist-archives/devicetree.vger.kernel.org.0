@@ -2,135 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 251DB62DFC5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8A262DFE0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:31:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234000AbiKQPZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 10:25:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
+        id S234602AbiKQPbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 10:31:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240395AbiKQPY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:24:58 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B457C026;
-        Thu, 17 Nov 2022 07:22:05 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id ud5so5899377ejc.4;
-        Thu, 17 Nov 2022 07:22:05 -0800 (PST)
+        with ESMTP id S233886AbiKQPbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:31:24 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC08EDFF7
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:31:22 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g12so3379208lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:31:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kHlNj4O/Pkd3jf55FT+J3SAuNDsxwz0o4xLf5wKOfyc=;
-        b=jwj13zCsqmeLmCJaVaYld5WUp5M3AV3FwuHFjBiio/M3bHvl9dzTcrINTk5mdQOTMc
-         fKFjZ8LumHTOFu7hheBie9CDjxV6MIWNmEdC9tloCRz2dXTAf1QgcateoQyk+cltkuJv
-         3NRQNS4LrkT0FGf9doY0826kfKdrA+YF1zZfn/r9u7l/gJT/W3WN6utU58R/bQY6Xa+g
-         D7jgJZ8tqpGv9n3vyAGo2npvjPtkxqsy3wXPlhPKiuppkZ93ryV7sKsy3Vd6YWiwPj+2
-         JmLVCALOcxu0dBmkFja0aBj/822FE6Usxc4gdFKSiVYlS7D+yg5kAMz/gJPtJrmCaL43
-         spbw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2ZDPP+aUXlZemByZePEOYfbPXmIJ7PrfAxeoclG9vKA=;
+        b=Ls8lqLlbSmZ3nDW91wC00qBfwO+G/ZR0QKdhCiZD8afsSdScPioce3STIi1JipVF2h
+         DWGPr8nO420ko9tRE9jVqbuwSEum10pccwYMckN6j/X6OyMuggrwlUX6grzEdhrftRDt
+         28tuko8xJbX/FXa9eiUwiDWOdbKctULqli4Ax9mdPqQGdqnWaQNSvCovO50aV4mRIKqr
+         8ZwPMo5nHmIqbTy6qK68XSBLNerWnPFtaBWC/64cOmcUs84ZYsH+xXJmxuA4+kdv3rlz
+         +F1GqeQ9ZfqS4bI8SCQXmTaL7KjQoomNKY6C6NHPkqf5wvKTfiUl2S9aqH6txJTiLvAJ
+         qiVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kHlNj4O/Pkd3jf55FT+J3SAuNDsxwz0o4xLf5wKOfyc=;
-        b=jtfqJuO48oF82X65c/vnH92dCeKJwRULVFD4uzPdzU5c3LRumKhGo34h/FdRVeWggi
-         JtmyOXfAJw+PEfQHKRufMmPc5aAtqn+pDG2w2tfBbFM6Prv9ENE+SsEZ6llaXaQh22zF
-         YnFGW5xyGbthK5ekulhuS65NwxH7Uhs2qqpXk15IiEVwkeSdA8Kv2g8eZTvyeAJRwGpn
-         7HL5soazW+a1uRfyPfxgzzF/i91EUVv551sXK8CV+ANPfBDW4oPphRFxWxZKV4RIWhTn
-         WGluEYVICMJVR912J/TbxBm8us2+yLxYHeSgXwN/WD65lGxj0RpfbNpUQCFkih72YEKv
-         mhwA==
-X-Gm-Message-State: ANoB5pkD3gzbb/LrJxkJ07wJyeNnpY05KXkqRGIjKO6Tmetd1o/o6kEP
-        dkoU3ASNHryZv+4y5KnG5YH5hS4c2/NDWc4Vvko=
-X-Google-Smtp-Source: AA0mqf5w2J1tdb1H1EOElNjJmXYe8wvp54py3DQbMGunNSgaTqrGRNvwr/3YTfYQvubV11kel7XDu8fDLN45Tf8OhgI=
-X-Received: by 2002:a17:906:3792:b0:7aa:97c7:2bfe with SMTP id
- n18-20020a170906379200b007aa97c72bfemr2499104ejc.196.1668698523974; Thu, 17
- Nov 2022 07:22:03 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ZDPP+aUXlZemByZePEOYfbPXmIJ7PrfAxeoclG9vKA=;
+        b=ulEFu2nNdbmw6PCWKOFaQo0J2d8C4HMzsJ+EXo3ddeL8DwCIa2XWHvsVXEoROaYBnf
+         1u6P5U0JoIgUaGBVsfv0eP/jQVshw0VB7L8hc1ZE887LzI8ZITJ3oAwmQHeJPzMH1uf4
+         HN95PcRu6LljKYlPh+Fdy3Zsa0u57c1gDdo62AdHbPznT+upYQ6GmmgqRwIXcacJv0lA
+         TH9+zB3Xr3xwdZ4jnU4V1F/dGDFBBrrQhNZTDwDnM3qWLZ8O2SzVEwRK9lbwvneYBuBx
+         fgE37BShsXQmyhZmFFqedroEqSJdJ5DcHoFsLXpQf1/dDcD2ycS/VA/lAGgLOOjxThLb
+         XpFw==
+X-Gm-Message-State: ANoB5pk2gwXAbYIka8r9jpdkqDJFUtqXCU4XgJ5U9pREomtqURyFrDiu
+        ETXULXYd2vk3Mu891CNeyBLtog==
+X-Google-Smtp-Source: AA0mqf6RlDxCX7aqxKe4kbGzIpCYGdKKByTw5/epkfsWWgWGVUK44nQD0oz21XmFFBmgYhkCzfs8Tg==
+X-Received: by 2002:ac2:4843:0:b0:4a2:1169:3934 with SMTP id 3-20020ac24843000000b004a211693934mr1140697lfy.279.1668699081228;
+        Thu, 17 Nov 2022 07:31:21 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id x12-20020a19f60c000000b0048b26d4bb64sm200669lfe.40.2022.11.17.07.31.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 07:31:20 -0800 (PST)
+Message-ID: <89e0f9b7-e06d-ea26-6e45-d22a74371f4b@linaro.org>
+Date:   Thu, 17 Nov 2022 16:31:19 +0100
 MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221107175305.63975-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV+e63iW2yCNaTqYv6_b7zSnok-1i07sbNfgJvq5vGUCQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdV+e63iW2yCNaTqYv6_b7zSnok-1i07sbNfgJvq5vGUCQ@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 17 Nov 2022 15:21:37 +0000
-Message-ID: <CA+V-a8sFfT5eUQaxQWrYraWEBDMhxDcG6fWcioV_i8aJ5Fg+3g@mail.gmail.com>
-Subject: Re: [PATCH RFC 4/5] arm64: dts: renesas: r9a07g043[u]: Update pinctrl
- node to handle GPIO interrupts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: simplify if:then:
+ clauses
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20221117130254.378109-1-krzysztof.kozlowski@linaro.org>
+ <Y3ZFDRI6ypg18S27@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3ZFDRI6ypg18S27@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 17/11/2022 15:28, Stephan Gerhold wrote:
+> On Thu, Nov 17, 2022 at 02:02:54PM +0100, Krzysztof Kozlowski wrote:
+>> Most of the device-specific compatibles have generic fallbacks like
+>> qcom,tsens-v1 or qcom,tsens-v2.  The if:then: block mentions these
+>> fallbacks, so drop redundant entries for specific compatibles.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>  .../devicetree/bindings/thermal/qcom-tsens.yaml  | 16 ----------------
+>>  1 file changed, 16 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>> index f0bd4b979e28..c9949713f714 100644
+>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>> @@ -118,12 +118,7 @@ allOf:
+>>            contains:
+>>              enum:
+>>                - qcom,ipq8064-tsens
+>> -              - qcom,mdm9607-tsens
+>> -              - qcom,msm8916-tsens
+>>                - qcom,msm8960-tsens
+>> -              - qcom,msm8974-tsens
+>> -              - qcom,msm8976-tsens
+>> -              - qcom,qcs404-tsens
+>>                - qcom,tsens-v0_1
+>>                - qcom,tsens-v1
+>>      then:
+> 
+> FWIW: I submitted the same patch for this part a couple of months ago,
+> it was never applied for some reason:
+> https://lore.kernel.org/linux-arm-msm/20220627131415.2868938-2-stephan.gerhold@kernkonzept.com/
 
-Thank you for the review.
+Indeed, somehow Daniel didn't take it. Your patch should go instead, if
+you rebase and include new hunks (like my patch).
 
-On Thu, Nov 17, 2022 at 11:20 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Nov 7, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add required properties in pinctrl node to handle GPIO interrupts.
-> >
-> > Note as IRQC is not enabled in RZ/Five the phandle for interrupt-parent
-> > is added in RZ/G2UL specific dtsi so that RZ/Five pinctrl driver
-> > continues without waiting for IRQC to probe.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> > @@ -531,6 +531,8 @@ pinctrl: pinctrl@11030000 {
-> >                         gpio-controller;
-> >                         #gpio-cells = <2>;
-> >                         gpio-ranges = <&pinctrl 0 0 152>;
-> > +                       #interrupt-cells = <2>;
-> > +                       interrupt-controller;
-> >                         clocks = <&cpg CPG_MOD R9A07G043_GPIO_HCLK>;
-> >                         power-domains = <&cpg>;
-> >                         resets = <&cpg R9A07G043_GPIO_RSTN>,
-> > diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> > index 7a8ed7ae253b..65e7b029361e 100644
-> > --- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> > @@ -98,6 +98,10 @@ &irqc {
-> >         resets = <&cpg R9A07G043_IA55_RESETN>;
-> >  };
-> >
-> > +&pinctrl {
-> > +       interrupt-parent = <&irqc>;
-> > +};
->
-> Do you plan to move it back to the common r9a07g043.dtsi later?
-Yes we should be doing that.
+> 
+>> @@ -140,17 +135,6 @@ allOf:
+>>          compatible:
+>>            contains:
+>>              enum:
+>> -              - qcom,msm8953-tsens
+>> -              - qcom,msm8996-tsens
+>> -              - qcom,msm8998-tsens
+>> -              - qcom,sc7180-tsens
+>> -              - qcom,sc7280-tsens
+>> -              - qcom,sc8180x-tsens
+>> -              - qcom,sdm630-tsens
+>> -              - qcom,sdm845-tsens
+>> -              - qcom,sm8150-tsens
+>> -              - qcom,sm8250-tsens
+>> -              - qcom,sm8350-tsens
+>>                - qcom,tsens-v2
+>>      then:
+>>        properties:
+>>
+> 
+> This part was not present back then though. Looks like this was
+> introduced recently in "dt-bindings: thermal: tsens: Add ipq8074
+> compatible".
+> 
+> I don't mind if you take this patch instead of mine. Feel free to add my
+> 
+> Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+> 
+> Thanks,
+> Stephan
 
-> Perhaps it makes sense to move the full irqc node to r9a07g043[uf].dtsi?
-> There is not that much common left, even the compatible value differs.
-> We don't keep the few common properties of the cpu0 node in
-> r9a07g043.dtsi neither.
->
-Agreed, I will move it in the next version.
+Best regards,
+Krzysztof
 
-Cheers,
-Prabhakar
