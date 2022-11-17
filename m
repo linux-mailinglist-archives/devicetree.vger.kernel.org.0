@@ -2,84 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5233362D9B3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D3A62D9E2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:52:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239785AbiKQLm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 06:42:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S234637AbiKQLwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 06:52:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239506AbiKQLmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:42:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F62719C04
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:42:55 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ovdID-0005Ao-34; Thu, 17 Nov 2022 12:42:53 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ovdIC-0007xX-EO; Thu, 17 Nov 2022 12:42:52 +0100
-Date:   Thu, 17 Nov 2022 12:42:52 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-amarula@amarulasolutions.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, michael@amarulasolutions.com,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Abel Vesa <abelvesa@kernel.org>
-Subject: Re: [PATCH v2 0/5] clk: imx8mn: miscellaneous cleanups and bug fixes
-Message-ID: <20221117114252.g3bcggwzyf4dxa3z@pengutronix.de>
-References: <20221117113637.1978703-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S239478AbiKQLwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:52:09 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F33E93B3;
+        Thu, 17 Nov 2022 03:52:08 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 176D713D5;
+        Thu, 17 Nov 2022 03:52:15 -0800 (PST)
+Received: from bogus (unknown [10.57.6.137])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 33E483F663;
+        Thu, 17 Nov 2022 03:52:06 -0800 (PST)
+Date:   Thu, 17 Nov 2022 11:52:03 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221117115203.356vexlpca746o6m@bogus>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+ <20221117101903.sw3hxaruj5sfhybw@bogus>
+ <20221117111207.GA93179@thinkpad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221117113637.1978703-1-dario.binacchi@amarulasolutions.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20221117111207.GA93179@thinkpad>
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dario,
-
-On 22-11-17, Dario Binacchi wrote:
-> This series has been tested on the BSH SystemMaster (SMM) S2 board.
+On Thu, Nov 17, 2022 at 04:42:07PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Nov 17, 2022 at 10:19:03AM +0000, Sudeep Holla wrote:
+> > 
+> > Why do you need the above 3 changes if the below(4/4) will ensure
+> > cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
+> > whole "confusing" clock bindings and the unnecessary clock provider.
+> > 
+> > Can't we just use cpufreq_get(cpu) ?
+> > 
 > 
-> Changes in v2:
-> - Update the commit message.
-> - Add Fixes tag.
-> - Maintain IMX8MN_VPU_* constants to not break backward compatibility.
-> - Update the commit message.
-> - Add Fixes tag.
-> - Maintain IMX8MN_VIDEO_PLL1* constants to not break backward
->   compatibility.
+> This can be possible for OPP implementations for the CPUs but not for other
+> peripherals making use of OPP framework like GPU etc... Moreover this may end
+> up with different code path for CPUs and other peripherals inside OPP framework.
 > 
-> Dario Binacchi (5):
->   clk: imx8mn: rename vpu_pll to m7_alt_pll
->   clk: imx: replace osc_hdmi with dummy
->   clk: imx: rename video_pll1 to video_pll
->   clk: imx8mn: fix imx8mn_sai2_sels clocks list
->   clk: imx8mn: fix imx8mn_enet_phy_sels clocks list
 
-Whole series lgtm, feel free to add my
+Fair enough, you can use this for non-CPU devices. But you are adding this for
+CPUs here. Is the consumer unaware that this is a CPU or non-CPU device ?
+If so, make sense. Otherwise, it is unnecessary to go through the clk
+framework to get CPU frequency.
 
-Acked-by: Marco Felsch <m.felsch@pengutronix.de>
+-- 
+Regards,
+Sudeep
