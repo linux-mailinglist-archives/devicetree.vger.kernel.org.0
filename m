@@ -2,111 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 908DB62D7E7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:21:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A4262D7D8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233899AbiKQKVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 05:21:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
+        id S239445AbiKQKTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 05:19:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbiKQKVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:21:48 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632FE4D5F3;
-        Thu, 17 Nov 2022 02:21:47 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AHALHI0061122;
-        Thu, 17 Nov 2022 04:21:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668680477;
-        bh=1De6ZNKbg2j0x/QVoDCpW43TacEFtRXxzRB+E01qZxk=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=GIYOHL7lJ67CLhmmWaGmNCj7Gs5FEfQU44qLBl4hzkJ3DNjRShERXiVmFU7qV4ksr
-         KuYcopfDU2Y4Jw3Z0X4JBCWXNRq26scaAwZwHk1Kx1AoEix7M628CjH2wBqdwJeUwJ
-         9VNXV7N38acXTjC5WtGfBhybOPCUp3LGCvEajtVE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AHAGHBA113502
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Nov 2022 04:16:17 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 17
- Nov 2022 04:16:17 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 17 Nov 2022 04:16:17 -0600
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AHAGBQT087369;
-        Thu, 17 Nov 2022 04:16:11 -0600
-Message-ID: <b27f69fb-dd93-c852-01e4-a6346c88e9b3@ti.com>
-Date:   Thu, 17 Nov 2022 15:46:10 +0530
+        with ESMTP id S229931AbiKQKTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:19:09 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7404E4D5ED;
+        Thu, 17 Nov 2022 02:19:08 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5170F13D5;
+        Thu, 17 Nov 2022 02:19:14 -0800 (PST)
+Received: from bogus (unknown [10.57.6.137])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AE583F73B;
+        Thu, 17 Nov 2022 02:19:06 -0800 (PST)
+Date:   Thu, 17 Nov 2022 10:19:03 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        Sudeep Holla <sudeep.holla@arm.com>, robh+dt@kernel.org,
+        johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221117101903.sw3hxaruj5sfhybw@bogus>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH net-next v5 3/3] net: ethernet: ti: am65-cpsw: Add support
- for SERDES configuration
-Content-Language: en-US
-To:     Paolo Abeni <pabeni@redhat.com>
-References: <20221109042203.375042-1-s-vadapalli@ti.com>
- <20221109042203.375042-4-s-vadapalli@ti.com>
- <d5f0dea1b9ce5f8d2187875adb1d73e747e21916.camel@redhat.com>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <d5f0dea1b9ce5f8d2187875adb1d73e747e21916.camel@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Paolo,
+On Thu, Nov 17, 2022 at 11:01:41AM +0530, Manivannan Sadhasivam wrote:
+> Hello,
+> 
+> This series adds clock provider support to the Qcom CPUFreq driver for
+> supplying the clocks to the CPU cores in Qcom SoCs.
+> 
+> The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
+> clocks to the CPU cores. But this is not represented clearly in devicetree.
+> There is no clock coming out of the CPUFreq HW node to the CPU. This created
+> an issue [1] with the OPP core when a recent enhancement series was submitted.
+> Eventhough the issue got fixed in the OPP framework in the meantime, that's
+> not a proper solution and this series aims to fix it properly.
+> 
+> There was also an attempt made by Viresh [2] to fix the issue by moving the
+> clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
+> since those clocks belong to the CPUFreq HW node only.
+> 
+> The proposal here is to add clock provider support to the Qcom CPUFreq HW
+> driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
+> This correctly reflects the hardware implementation.
+> 
+> The clock provider is a simple one that just provides the frequency of the
+> clocks supplied to each frequency domain in the SoC using .recalc_rate()
+> callback. The frequency supplied by the driver will be the actual frequency
+> that comes out of the EPSS/OSM block after the DCVS operation. This frequency
+> is not same as what the CPUFreq framework has set but it is the one that gets
+> supplied to the CPUs after throttling by LMh.
+> 
+> This series has been tested on SM8450 based dev board with the OPP hack removed
+> and hence there is a DTS change only for that platform. Once this series gets
+> accepted, rest of the platform DTS can also be modified and finally the hack on
+> the OPP core can be dropped.
+> 
+> Thanks,
+> Mani
+> 
+> [1] https://lore.kernel.org/lkml/YsxSkswzsqgMOc0l@hovoldconsulting.com/
+> [2] https://lore.kernel.org/lkml/20220801054255.GA12039@thinkpad/t/
+> 
+> Changes in v7:
+> 
+> * Added a patch that returns the throttled frequency for cpufreq_driver->get()
+>   callback (Sudeep & Viresh)
+> * Added error check for kasprintf and allocated the clk name locally
+> 
+> Changes in v6:
+> 
+> * Removed the local variable clk_name (Matthias)
+> * Added the clock id to the error message of devm_clk_hw_register()
+> 
+> Changes in v5:
+> 
+> * Switched to Hz unit for the CPU clocks
+> 
+> Changes in v4:
+> 
+> * Rebased on top of cpufreq/arm/linux-next branch
+> 
+> Changes in v3:
+> 
+> * Submitted the cpufreq driver cleanup patches as a separate series as
+>   suggested by Viresh
+> * Removed static keyword from clk_init_data declaration
+> 
+> Changes in v2:
+> 
+> * Moved the qcom_cpufreq_data allocation to probe
+> * Added single clock provider with multiple clks for each freq domain
+> * Moved soc_data to qcom_cpufreq struct
+> * Added Rob's review for binding
+> 
+> Manivannan Sadhasivam (4):
+>   dt-bindings: cpufreq: cpufreq-qcom-hw: Add cpufreq clock provider
+>   arm64: dts: qcom: sm8450: Supply clock from cpufreq node to CPUs
+>   cpufreq: qcom-hw: Add CPU clock provider support
 
-On 10/11/22 18:36, Paolo Abeni wrote:
-> hello,
-> 
-> On Wed, 2022-11-09 at 09:52 +0530, Siddharth Vadapalli wrote:
-> [...]
-> 
->> +static void am65_cpsw_disable_serdes_phy(struct am65_cpsw_common *common)
->> +{
->> +	struct device_node *node, *port_np;
->> +	struct device *dev = common->dev;
->> +	const char *name = "serdes-phy";
->> +	struct phy *phy;
->> +
->> +	node = of_get_child_by_name(dev->of_node, "ethernet-ports");
->> +
->> +	for_each_child_of_node(node, port_np) {
->> +		phy = devm_of_phy_get(dev, port_np, name);
-> 
-> The above will try to allocate some memory and can fail. Even if the
-> the following code will handle a NULL ptr, the phy will not be
-> disabled.
-> 
-> I think it's better if you cache the serdes phy ptr in
-> am65_cpsw_init_serdes_phy() and you use such reference here, without
-> resorting to devm_of_phy_get().
+Why do you need the above 3 changes if the below(4/4) will ensure
+cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
+whole "confusing" clock bindings and the unnecessary clock provider.
 
-Thank you for reviewing the patch. I plan on creating a new "struct
-phy*" member named "serdes_phy" in the struct "am65_cpsw_slave_data"
-defined in the file "am65-cpsw-nuss.h", and store the SerDes phy in this
-member, during the execution of the am65_cpsw_init_serdes_phy()
-function. Please let me know if I can proceed with this implementation.
+Can't we just use cpufreq_get(cpu) ?
 
+-- 
 Regards,
-Siddharth.
+Sudeep
