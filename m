@@ -2,142 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1282662E4FF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:10:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8A3C62E514
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239999AbiKQTK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 14:10:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56678 "EHLO
+        id S235002AbiKQTPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 14:15:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239817AbiKQTKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:10:52 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2301A7EC99;
-        Thu, 17 Nov 2022 11:10:50 -0800 (PST)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1668712247;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=tjrXRruokzGgz/ctSWFL+NrKW2mSry1KiPurqWuWjbw=;
-        b=KMSmtIAleWNtBdFxTUcXaMFRMKiNeD1hOgnvtm06B3BaPAi/j4w3UXgkmcM2wv3FSHdws0
-        6U+okwIb3G1Ij9S9coJixNtA0pjd7Vj6CGCyfVkF5jiHTRs1kI1Y9cSvLr1fN8/Qnm52zQ
-        Qf5vb9xwZnOKHepuDqNfuo091n4a42pmIyJYnIMVGay6DfmBR8ryAq6c2CWk+yaxZNYr2w
-        oNqj2gXyzIwe7bwQ4i2A5KOD5g6LD9+7zRsrzL+4zIR2aHfvh3ezUq3PktfmeB9+ZT1FcY
-        cCJS4pRJHuts0p1EwJL2UlBUGoryIIvkuB8QkPKLtNEMaOKZFY9EbpbFdSe4nA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1668712247;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=tjrXRruokzGgz/ctSWFL+NrKW2mSry1KiPurqWuWjbw=;
-        b=azUiBcLzwWUHzJmpxY62eu72/tmadiSpzhidNR9/4S05J10g9dHmXwmkSq3LFZ4qhEBbtm
-        DpflEOCjQHao1tCw==
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
-        jeffrey.l.hugo@gmail.com, saravanak@google.com,
-        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
-        jgg@ziepe.ca, jgg@nvidia.com, robin.murphy@arm.com,
-        will@kernel.org, joro@8bytes.org, masahiroy@kernel.org,
-        ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kvm@vger.kernel.org
-Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, aleksandar.radovanovic@amd.com, git@amd.com,
-        Nipun Gupta <nipun.gupta@amd.com>
-Subject: Re: [RFC PATCH v4 7/8] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-In-Reply-To: <20221014044049.2557085-8-nipun.gupta@amd.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20221014044049.2557085-1-nipun.gupta@amd.com>
- <20221014044049.2557085-8-nipun.gupta@amd.com>
-Date:   Thu, 17 Nov 2022 20:10:46 +0100
-Message-ID: <87r0y1l7m1.ffs@tglx>
+        with ESMTP id S234246AbiKQTPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:15:06 -0500
+Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D14910555
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 11:15:05 -0800 (PST)
+Date:   Thu, 17 Nov 2022 19:14:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1668712503; x=1668971703;
+        bh=UHkvVZhelkt87lb5NxW5b94WAvZpnGxgLmfBH+Voh+Y=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=zlZDbCMP+HCK6Gg+23TVi2Euz3znZ6FE+eFeNGK2glZkksObrzW3N5Oy5DAM4VyFL
+         26MxHYtRCjmTxD5yxR8VdszNMsg2CD13DMiaxFXkYI669VV96LG3ICQSp/VRovXHVO
+         dxCktZmUCLNtzynRYqYfW/lek/nNYYzmCNbgfk3t5S6rASEAsc24+BF1F5/AbO6t3G
+         x0iVcaS2V3uNLVntyKDrSIVIZM7r43XzCsdopnHmBAUrK79jAC7sw9mOxgaNpDI2OW
+         gpQADYRuXRILdUAErRVxnHpdtfULUKWF6vAwnapGbKiyawuipcuRdzWXnIaNlaTUQZ
+         Jv3HN+blkTQcw==
+To:     linux-kernel@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [RESEND PATCH 0/3] Add supports for Imagis IST3038 and IST30XXB
+Message-ID: <20221117191436.87938-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 14 2022 at 10:10, Nipun Gupta wrote:
-> Since CDX devices are not linked to of node they need a
-> separate MSI domain for handling device ID to be provided to
-> the GIC ITS domain.
->
-> This also introduces APIs to alloc and free IRQs for CDX domain.
+This series adds supports for Imagis IST3038 and IST30XXB IC, which are
+variants of Imagis IST3038 IC. They have a different register map
+(labeled protocol b), but otherwise it seems to be the same IC.
+It is also possible to support various other Imagis ICs using
+protocol b, such as (but not limited to) IST3044B, IST3026, IST3032,
+IST3026B, IST3032B. However, most of them (all except IST3044B)
+use a different coordinate format, so extra effort would be needed
+to support those.
 
-This is not really much of an explanation.
-
-> +#include "cdx.h"
-> +
-> +#define REQ_ID_SHIFT	10
-> +
-> +/*
-> + * Convert an msi_desc to a globaly unique identifier (per-device
-> + * reqid + msi_desc position in the msi_list).
-> + */
-> +static irq_hw_number_t cdx_domain_calc_hwirq(struct cdx_device *dev,
-> +					     struct msi_desc *desc)
-> +{
-> +	return (dev->req_id << REQ_ID_SHIFT) | desc->msi_index;
-> +}
-> +
-> +static void cdx_msi_set_desc(msi_alloc_info_t *arg,
-> +			     struct msi_desc *desc)
-> +{
-> +	arg->desc = desc;
-> +	arg->hwirq = cdx_domain_calc_hwirq(to_cdx_device(desc->dev), desc);
-> +}
-> +
-> +static void cdx_msi_write_msg(struct irq_data *irq_data,
-> +			      struct msi_msg *msg)
-> +{
-> +	struct msi_desc *msi_desc = irq_data_get_msi_desc(irq_data);
-> +	struct cdx_device *cdx_dev = to_cdx_device(msi_desc->dev);
-> +	struct cdx_controller_t *cdx = cdx_dev->cdx;
-> +	uint64_t addr;
-> +	int ret;
-> +
-> +	addr = ((uint64_t)(msi_desc->msg.address_hi) << 32) |
-> +	       msi_desc->msg.address_lo;
-> +
-> +	ret = cdx->ops.write_msi(cdx, cdx_dev->bus_num, cdx_dev->dev_num,
-> +				 msi_desc->msi_index, msi_desc->msg.data,
-> +				 addr);
-> +	if (ret)
-> +		dev_err(&cdx_dev->dev, "Write MSI failed to CDX controller\n");
-> +}
-
-So this is yet another variant of platform-MSI which is about to be
-kicked from the planet.
-
-Please check:
-
-     https://lore.kernel.org/r/20221111131813.914374272@linutronix.de
-     https://lore.kernel.org/r/20221111133158.196269823@linutronix.de
-
-and the ARM/GIC conversion in:
-
-     https://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git/log/?h=devmsi-arm
-
-The latter is WIP, but functional.
-
-I'm sure you replace your yet another magic MSI domain which only
-provides a device specific MSI write function with the new
-infrastructure trivially.
-
-Thanks,
-
-        tglx
-
+Tested on Samsung Galaxy Core Prime and Grand Max.
 
