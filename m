@@ -2,127 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5568B62DA92
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4129562DAA2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239529AbiKQMXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:23:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49140 "EHLO
+        id S239662AbiKQM0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:26:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239082AbiKQMXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:23:05 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DA36A6A7
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:23:03 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id y4so1476164plb.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:23:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5Z65m0DgunHILIy2ME/mQky7Pas/nTA/BCKHp6AXOSY=;
-        b=Qj3MYPr3dBnSlxUwOIve/Ri50g8A0uPXUF7X+99Is8mVhZSVOhFLCazeEJ0v4UYfyW
-         xJ/Ih267QLKKnZXqWcVQIdPoDU6Jz88En47W3BnahE+TZHL4GIgc27+cWoDEZfcMqa+W
-         b5iPMco4iYPZKZzPJpCjXlgtMphMZPWikQ0J0buq9Il/5lfL0isrPU95rMtD6e/cRLgx
-         RZg1ltn6w+49jcJd8TPB2nllVVeCiDtku7XBmzJeJ734xTdPYQnSLui8eXsXL5PRej5x
-         9acvKWDchlcorpInv8/THpzBp0jqWXZ6SjgGumQg3b8z71GuCqRc3KllwWawzpsxIMcO
-         1YSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Z65m0DgunHILIy2ME/mQky7Pas/nTA/BCKHp6AXOSY=;
-        b=BPHn9UinmhdLGmnBq08ujQleFbh5JhBs68zDWE7eSg+cmWru6CLB2ozaEVoA44hi8U
-         rl0/v649Ry1CkwUdwv05ewMqCaeGUARtFAN4HjoZGoo0dHRctsZrKS/5OvLOiW+7AZY+
-         eujtjWVuVnkuNn+AL06WxDpFxxaSFPSPJwQeeLi78I2fJbn0Q4rJEvdqdkBs6QqHiPHq
-         QWAX1l4swcRpdm0LpewlAsGtR6tnrB7OUjTz+LC8xGdREIRowuy7sQ+Wsmv2Xy/utn1U
-         z7rn3YB3UDL9bYLOUERkN2svytluhC3joXPdwXiA+wnOCjUkeacBaSkXCaa/o7oXL/Id
-         SXfg==
-X-Gm-Message-State: ANoB5pn9VcXfXdjHGbZxqWms4DAaYxccWj6h8m2skOmBz97kFmK4jhEk
-        t+vM5mSrsMTXOVh+Jp2KGWkT
-X-Google-Smtp-Source: AA0mqf4Wo4+kNnV3lxmeTlDpo6H+hjTXpl1VEPBYMQ2o1Sr4hlgXHXt0iXsPG72d8S6WQ9HLfYB96Q==
-X-Received: by 2002:a17:902:bc83:b0:188:eebf:2361 with SMTP id bb3-20020a170902bc8300b00188eebf2361mr2480619plb.125.1668687783183;
-        Thu, 17 Nov 2022 04:23:03 -0800 (PST)
-Received: from thinkpad ([117.193.208.31])
-        by smtp.gmail.com with ESMTPSA id t29-20020aa7947d000000b0056b6d31ac8asm994236pfq.178.2022.11.17.04.22.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 04:23:02 -0800 (PST)
-Date:   Thu, 17 Nov 2022 17:52:56 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S234629AbiKQM0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:26:11 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FBBB56564;
+        Thu, 17 Nov 2022 04:26:10 -0800 (PST)
+Received: from desky.lan (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DD0D06E0;
+        Thu, 17 Nov 2022 13:26:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1668687966;
+        bh=wczldhj/MtZKX+Mqby6sqUs855O+uKSjKoeQPC0x8gI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TqKVjyYKlM0G+jYSUzmR30+1RNKaSMvcMgvqF+eKLVEKvaThE5ZGaH9AROVFoEhoQ
+         hA6kYkhSr36DiCru/QeZVYKqZe5AaiAl0yqE5ABONu8gYlZnrxk2AEqV1Y07y4aMYG
+         dH9G6L78/HAGfEPhBlACHmUC1b8WkTW4Dcwdu6uE=
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-iio@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: fix PM8350 define
-Message-ID: <20221117122256.GG93179@thinkpad>
-References: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v1 0/8] Renesas V4H DSI & DP output support
+Date:   Thu, 17 Nov 2022 14:25:39 +0200
+Message-Id: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 01:13:07PM +0100, Krzysztof Kozlowski wrote:
-> The defines from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h were
-> changed to take sid argument:
-> 
->   Error: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:99.28-29 syntax error
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi,
 
-Looks like I didn't rebase on top of Bjorn's for-next for my series, so didn't
-see this example.
+These add support for DSI on V4H SoC (r8a779g0) and DP for Whitehawk
+board.
 
-Thanks for fixing!
+The last patch is a hack, but needed to get the DSI working. It is still
+unclear what the register write does, and as that patch is needed to get
+the DSI working, this series is not ready yet. But all the rest of the
+patches are ready for review.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+ Tomi
 
-Thanks,
-Mani
+Tomi Valkeinen (8):
+  dt-bindings: display: renesas,du: Provide bindings for r8a779g0
+  dt-bindings: display: bridge: renesas,dsi-csi2-tx: Add r8a779g0
+  clk: renesas: r8a779g0: Add display related clocks
+  arm64: dts: renesas: r8a779g0: Add display related data
+  arm64: dts: renesas: white-hawk-cpu: Add DP output support
+  drm: rcar-du: Add r8a779g0 support
+  drm: rcar-du: dsi: Add r8A779g0 support
+  HACK: drm: rcar-du: dsi: use-extal-clk hack
 
-> 
-> ---
-> 
-> Issue is caused by commit 22f1d06f4f28 ("dt-bindings: iio: qcom:
-> adc7-pm8350: Allow specifying SID for channels") from Bjorn's tree.
-> 
-> Unfortunately get_maintainers.pl were not used, so IIO maintaners were
-> not CCed.
-> ---
->  Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> index f1522196042d..bd6e0d6f6e0c 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> @@ -299,7 +299,7 @@ examples:
->              };
->  
->              conn-therm@47 {
-> -                reg = <PM8350_ADC7_AMUX_THM4_100K_PU>;
-> +                reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
->                  qcom,ratiometric;
->                  qcom,hw-settle-time = <200>;
->              };
-> -- 
-> 2.34.1
-> 
+ .../display/bridge/renesas,dsi-csi2-tx.yaml   |   3 +-
+ .../bindings/display/renesas,du.yaml          |   2 +
+ .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi  |  94 ++++
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 129 +++++
+ drivers/clk/renesas/r8a779g0-cpg-mssr.c       |  14 +
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  22 +
+ drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c       | 488 ++++++++++++++----
+ drivers/gpu/drm/rcar-du/rcar_mipi_dsi_regs.h  |   6 +-
+ 8 files changed, 651 insertions(+), 107 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
