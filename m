@@ -2,219 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 496A262E520
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8FB62E52F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:25:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240787AbiKQTQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 14:16:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32810 "EHLO
+        id S235087AbiKQTZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 14:25:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240797AbiKQTPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:15:43 -0500
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA507EC8B
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 11:15:38 -0800 (PST)
-Date:   Thu, 17 Nov 2022 19:15:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1668712537; x=1668971737;
-        bh=ZA1st/D2bOJO8psxoWwnXrvaoM+06eI7cmwLGnc8W7k=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=x6V6dO5ZKyQP3wPvlBJkZ0hWa/7mXzg+fgUSsArbKZxQZ8FW+kYj8Bi2aLoJpBCDA
-         zvyEqRAzldCdCRHP23nDQ5r4UdQjSNELYk3YnL90lviCMKWkNThCjJmbgsTzQa4wVE
-         +EAUdgKwUhca3Z0lGcAF0SAi1mvbBer8Xk09u9IJ/j/Ah+AXe0117mzvARvehVHWPh
-         BAfvxZNxKqoafwCgdYw5wzHT8tLHIZAmYnnV85mJzFbuRXRYiQ7Drv6GONPNS4tzLj
-         9DBwb/jIPZN+Z1JYVkV0yyI64jBekVN+UJOwkiShsodql+gy3bvhM3wFC/FDqNsoJE
-         0z8IyGk1EYSlg==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [RESNED PATCH 3/3] input/touchscreen: imagis: Add supports for Imagis IST3038 and IST30XXB
-Message-ID: <20221117191436.87938-4-linmengbo0689@protonmail.com>
-In-Reply-To: <20221117191436.87938-1-linmengbo0689@protonmail.com>
-References: <20221117191436.87938-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S234875AbiKQTZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:25:16 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0440DA4;
+        Thu, 17 Nov 2022 11:25:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 35DDBCE1F2B;
+        Thu, 17 Nov 2022 19:25:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B2FC433C1;
+        Thu, 17 Nov 2022 19:25:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668713112;
+        bh=uhIeKvgVfo1hBvIQHkhhEHq38wFUDZbWEAfYIe3i9oU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HieVomyzsdbSRWx0U5g2pOBNo7nWzCg9lLGe83lZ0VPtF1/SWS60bHq1Ye6fEE5ly
+         cIlTuGW9Qz/yncze5gw0YK74M4EXNP7YwDxdoYQ9eRVry+qlROKV+JyWzpdBPJMW6H
+         pCIZAPHau6b+CfwjR56wgrZ60yxP6b+z+rKXwwb/7gYlyyg2kZezn1TbA5wWbX3mwQ
+         6gh4ACyG4a24aja63+UVqlFNI1nWxCv7qp40JkJojqt2jjJsObABHH5sSmyIHmJpzf
+         PgDiieO4PQJkLnbEkzyXIqpMq7dXWtQRBk+LODoYSuSOVcGioKZnWSXLkJ10tqQltt
+         I/55MgDoT5S9A==
+From:   Conor Dooley <conor@kernel.org>
+To:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vattipalli Praveen <praveen.kumar@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/2] riscv: dts: microchip: remove pcie node from the sev kit
+Date:   Thu, 17 Nov 2022 19:24:55 +0000
+Message-Id: <166871307494.3905205.15646099439203275372.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20221115152546.1425309-1-conor.dooley@microchip.com>
+References: <20221115152546.1425309-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markuss Broks <markuss.broks@gmail.com>
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Imagis IST3038 and IST30XXB are other variants of Imagis IST3038 IC, which
-have a different register interface from IST3038C (possibly firmware
-defined).
+On Tue, 15 Nov 2022 15:25:46 +0000, Conor Dooley wrote:
+> The SEV kit reference design does not hook up the PCIe root port to the
+> core complex including it is misleading.
+> The entry is a re-use mistake - I was not aware of this when I moved
+> the PCIe node out of mpfs.dtsi so that individual bistreams could
+> connect it to different fics etc.
+> 
+> 
+> [...]
 
-This should also work for IST3044B (though untested), however other
-variants using this interface/protocol(IST3026, IST3032, IST3026B,
-IST3032B) have a different format for coordinates, and they'd need
-additional effort to be supported by this driver.
+Applied to riscv-dt-for-next, thanks!
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-[Use IST3038C_REG_CHIPID_BASE]
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- drivers/input/touchscreen/imagis.c | 71 +++++++++++++++++++++++++-----
- 1 file changed, 60 insertions(+), 11 deletions(-)
+[1/2] riscv: dts: microchip: remove pcie node from the sev kit
+      https://git.kernel.org/conor/c/1150f4cff831
+[2/2] riscv: dts: microchip: remove unused pcie clocks
+      https://git.kernel.org/conor/c/f4e700fd9466
 
-diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen=
-/imagis.c
-index b667914a44f1..ac07b24496eb 100644
---- a/drivers/input/touchscreen/imagis.c
-+++ b/drivers/input/touchscreen/imagis.c
-@@ -13,7 +13,8 @@
-=20
- #define IST3038C_HIB_ACCESS=09=09(0x800B << 16)
- #define IST3038C_DIRECT_ACCESS=09=09BIT(31)
--#define IST3038C_REG_CHIPID=09=090x40001000
-+#define IST3038C_REG_CHIPID_BASE=090x40001000
-+#define IST3038C_REG_CHIPID(base)=09(base | IST3038C_DIRECT_ACCESS)
- #define IST3038C_REG_HIB_BASE=09=090x30000100
- #define IST3038C_REG_TOUCH_STATUS=09(IST3038C_REG_HIB_BASE | IST3038C_HIB_=
-ACCESS)
- #define IST3038C_REG_TOUCH_COORD=09(IST3038C_REG_HIB_BASE | IST3038C_HIB_A=
-CCESS | 0x8)
-@@ -31,8 +32,24 @@
- #define IST3038C_FINGER_COUNT_SHIFT=0912
- #define IST3038C_FINGER_STATUS_MASK=09GENMASK(9, 0)
-=20
-+#define IST30XX_REG_STATUS=09=090x20
-+#define IST30XXB_REG_CHIPID_BASE=090x40000000
-+#define IST30XX_WHOAMI=09=09=090x30003000
-+#define IST30XXA_WHOAMI=09=09=090x300a300a
-+#define IST30XXB_WHOAMI=09=09=090x300b300b
-+#define IST3038_WHOAMI=09=09=090x30383038
-+
-+struct imagis_properties {
-+=09unsigned int interrupt_msg_cmd;
-+=09unsigned int touch_coord_cmd;
-+=09unsigned int chipid_base;
-+=09unsigned int whoami_val;
-+=09bool protocol_b;
-+};
-+
- struct imagis_ts {
- =09struct i2c_client *client;
-+=09const struct imagis_properties *tdata;
- =09struct input_dev *input_dev;
- =09struct touchscreen_properties prop;
- =09struct regulator_bulk_data supplies[2];
-@@ -84,8 +101,7 @@ static irqreturn_t imagis_interrupt(int irq, void *dev_i=
-d)
- =09int i;
- =09int error;
-=20
--=09error =3D imagis_i2c_read_reg(ts, IST3038C_REG_INTR_MESSAGE,
--=09=09=09=09    &intr_message);
-+=09error =3D imagis_i2c_read_reg(ts, ts->tdata->interrupt_msg_cmd, &intr_m=
-essage);
- =09if (error) {
- =09=09dev_err(&ts->client->dev,
- =09=09=09"failed to read the interrupt message: %d\n", error);
-@@ -104,9 +120,13 @@ static irqreturn_t imagis_interrupt(int irq, void *dev=
-_id)
- =09finger_pressed =3D intr_message & IST3038C_FINGER_STATUS_MASK;
-=20
- =09for (i =3D 0; i < finger_count; i++) {
--=09=09error =3D imagis_i2c_read_reg(ts,
--=09=09=09=09=09    IST3038C_REG_TOUCH_COORD + (i * 4),
--=09=09=09=09=09    &finger_status);
-+=09=09if (ts->tdata->protocol_b)
-+=09=09=09error =3D imagis_i2c_read_reg(ts,
-+=09=09=09=09=09=09    ts->tdata->touch_coord_cmd, &finger_status);
-+=09=09else
-+=09=09=09error =3D imagis_i2c_read_reg(ts,
-+=09=09=09=09=09=09    ts->tdata->touch_coord_cmd + (i * 4),
-+=09=09=09=09=09=09    &finger_status);
- =09=09if (error) {
- =09=09=09dev_err(&ts->client->dev,
- =09=09=09=09"failed to read coordinates for finger %d: %d\n",
-@@ -261,6 +281,12 @@ static int imagis_probe(struct i2c_client *i2c)
-=20
- =09ts->client =3D i2c;
-=20
-+=09ts->tdata =3D device_get_match_data(dev);
-+=09if (!ts->tdata) {
-+=09=09dev_err(dev, "missing chip data\n");
-+=09=09return -EINVAL;
-+=09}
-+
- =09error =3D imagis_init_regulators(ts);
- =09if (error) {
- =09=09dev_err(dev, "regulator init error: %d\n", error);
-@@ -279,15 +305,13 @@ static int imagis_probe(struct i2c_client *i2c)
- =09=09return error;
- =09}
-=20
--=09error =3D imagis_i2c_read_reg(ts,
--=09=09=09IST3038C_REG_CHIPID | IST3038C_DIRECT_ACCESS,
--=09=09=09&chip_id);
-+=09error =3D imagis_i2c_read_reg(ts, IST3038C_REG_CHIPID(ts->tdata->chipid=
-_base), &chip_id);
- =09if (error) {
- =09=09dev_err(dev, "chip ID read failure: %d\n", error);
- =09=09return error;
- =09}
-=20
--=09if (chip_id !=3D IST3038C_WHOAMI) {
-+=09if (chip_id !=3D ts->tdata->whoami_val) {
- =09=09dev_err(dev, "unknown chip ID: 0x%x\n", chip_id);
- =09=09return -EINVAL;
- =09}
-@@ -343,9 +367,34 @@ static int __maybe_unused imagis_resume(struct device =
-*dev)
-=20
- static SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
-=20
-+static const struct imagis_properties imagis_3038_data =3D {
-+=09.interrupt_msg_cmd =3D IST30XX_REG_STATUS,
-+=09.touch_coord_cmd =3D IST30XX_REG_STATUS,
-+=09.chipid_base =3D IST30XXB_REG_CHIPID_BASE,
-+=09.whoami_val =3D IST3038_WHOAMI,
-+=09.protocol_b =3D true,
-+};
-+
-+static const struct imagis_properties imagis_3038c_data =3D {
-+=09.interrupt_msg_cmd =3D IST3038C_REG_INTR_MESSAGE,
-+=09.touch_coord_cmd =3D IST3038C_REG_TOUCH_COORD,
-+=09.chipid_base =3D IST3038C_REG_CHIPID_BASE,
-+=09.whoami_val =3D IST3038C_WHOAMI,
-+};
-+
-+static const struct imagis_properties imagis_30xxb_data =3D {
-+=09.interrupt_msg_cmd =3D IST30XX_REG_STATUS,
-+=09.touch_coord_cmd =3D IST30XX_REG_STATUS,
-+=09.chipid_base =3D IST30XXB_REG_CHIPID_BASE,
-+=09.whoami_val =3D IST30XXB_WHOAMI,
-+=09.protocol_b =3D true,
-+};
-+
- #ifdef CONFIG_OF
- static const struct of_device_id imagis_of_match[] =3D {
--=09{ .compatible =3D "imagis,ist3038c", },
-+=09{ .compatible =3D "imagis,ist3038", .data =3D &imagis_3038_data },
-+=09{ .compatible =3D "imagis,ist3038c", .data =3D &imagis_3038c_data },
-+=09{ .compatible =3D "imagis,ist30xxb", .data =3D &imagis_30xxb_data },
- =09{ },
- };
- MODULE_DEVICE_TABLE(of, imagis_of_match);
---=20
-2.30.2
-
-
+Thanks,
+Conor.
