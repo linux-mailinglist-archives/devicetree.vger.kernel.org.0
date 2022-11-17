@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770A062DC46
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C18862DC61
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239715AbiKQNHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 08:07:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
+        id S239737AbiKQNNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 08:13:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234834AbiKQNHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:07:11 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1CC65133B
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:07:10 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id d20so2580346ljc.12
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:07:10 -0800 (PST)
+        with ESMTP id S239267AbiKQNNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:13:05 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E9F6868A
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:13:04 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id p8so2680701lfu.11
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:13:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mTMuaBfKCMZXSl9LUyd4MIB5DqyeQyzncHYThdTUxqc=;
-        b=FrCOZ6nVXao0w5awL8iRMvlXfEYyNRkTaPpnAujQjsIOw03r6wIvF6HBvR7ZDd2EyM
-         aCROBjtDlRd7G2k4+P4mJDkl1uQsNj2IONW5BiM+a+EJJr9QP6N39PZb0eGaJs8awrB5
-         qIkMrwWAJCjpRU2gWSG40wnLdTjg9i17NsQ6jaS0gOAfDwgh/zns8o1ittbgVaTQ01b8
-         4xI+m78UCRp63u+03o1okyoXjzbYlAK7QqX2TYZeDmBhlvcWGyLjJQXVi5au8TLqasBu
-         3/RlO4q7QDNVwdhP60FwiXTeqNIaJSvEBIJHTRn1Oq1xJhLCAGVz7G4pjI7J4M700S+V
-         UAGQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TvNNhN9Y8CERDACcTQTBMLAUA43DbdubBtZBLlWg5yg=;
+        b=NSII2LFzYkrCXROZWs8qd5ufIxgYuk7sjyYdelVazxg6QrxRFntmhvWP7W2MC9V892
+         K4IZwBSdtcSdikc4XJlyp7OKyaXokTeH/VvNzTrMLVXTKkbrT8OOSEHRUK8ZyW2L5aVc
+         3GMPYtknPagI0xAweCAaDVvo0YdYgc5XVtJuYCnCTtUIUxTieewBxHYDENCXpWPial6z
+         q3/40Ifwi3EoZyMpZxsshg2KHoUrbkSPbzKtl1W/+xaB6fa21vItuP71PM4WvSGFWADW
+         1u1KK7+qlHUaJTDrK0poRBMo8tzKpPxp943JaCCUClEJVWxPByl0tzBMaTfFmwIc72ai
+         qefA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mTMuaBfKCMZXSl9LUyd4MIB5DqyeQyzncHYThdTUxqc=;
-        b=1OHqOo+Wxu6sb424D/M8pqbg7FMxQJEx//m73JCrc1MpEJfU6bC2n82z28fWOS2viL
-         q0vP6mVL1osaZvOxLUt/Qa0fR3tY2nhlM888greqwia0ZPYJWp2DgpO/+oMAJSsWpw4p
-         RVVigUxtQLqwpW52JdLts8rtkwlAYeZp6qBl4EpUaRQ3sRTmuXoVfe7ltcwsg/tCUqFC
-         HsFmzhL1qORpMaXIpXCUEUaepsRgDnncTeJbrdrSku6km6uTxpwIbMe/u/qaECJLjrll
-         /3vRdU6Nnn5WByKmRu0EBsSWRWd3UDdj+mDacB6/RMK3BoO1SSeaGAvg7i+dmrhDK61s
-         Te0w==
-X-Gm-Message-State: ANoB5pmoxVlqB+aPoiL09xSa+p5kghz5x6MNpUL+SMRtiArga5fBHzMe
-        +4pLfst0Ho+kSDOuSqeL+lEXUQ==
-X-Google-Smtp-Source: AA0mqf75w4xQTmMedpWhD/8OvEx6h6E/KKGgAMpDrEd5hZKxX3G1odg3r90a7WzY1EkIFjWmWmh6sA==
-X-Received: by 2002:a2e:a58b:0:b0:277:278:de24 with SMTP id m11-20020a2ea58b000000b002770278de24mr928223ljp.388.1668690429153;
-        Thu, 17 Nov 2022 05:07:09 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id j7-20020ac253a7000000b004acb2adfa21sm136918lfh.297.2022.11.17.05.07.08
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TvNNhN9Y8CERDACcTQTBMLAUA43DbdubBtZBLlWg5yg=;
+        b=KZo6/TzgNBVFmtn6Kn9MigzXddzXLXkxSXo8qQhAPUVB4KUOQOqXKJvrXCykg+qffD
+         yodeB0dBO9eY7rIrgG4NsSg1HD8bS4SIyJbAcbxxkVWkb9QgFTT2GIY5joqhcxotYwaa
+         tfS53aepqkwjY7AHdHTfcGFzpoGq34CklFHgUtT5Wrp1byrqS7jF+ntZsM9yj01L3Rhg
+         t5ar0jL9J5bJj+6o1Zh8wWHsLMnVkatRCcNduvdMtzII9yOc/eYC1FWf6b1ARa0Jt3um
+         MeT3QqiV84vZX19LvpYN91Uuy2JMyb+0dxerevbtF6AhIoo/eqf3fk5/foFEbWAndsrI
+         9iBQ==
+X-Gm-Message-State: ANoB5plSL0RWKet+TgeqmNB5mDP5ii8SiqCuRI/EDQGSN4HTaaqhp+7m
+        g6wCCIvxrFkV/j64o2XTbCY9IA==
+X-Google-Smtp-Source: AA0mqf6dXCtAnwcI18KHJ+hSEK62P7P1YpzMiwZxE1aZLBVxTFepM9qnMh8+tlCk0GT4+V3CThxoww==
+X-Received: by 2002:a05:6512:a93:b0:4a2:6337:872d with SMTP id m19-20020a0565120a9300b004a26337872dmr876100lfu.35.1668690782504;
+        Thu, 17 Nov 2022 05:13:02 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id n4-20020a195504000000b00492ce573726sm147123lfe.47.2022.11.17.05.13.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 05:07:08 -0800 (PST)
-Message-ID: <306064c9-1b8a-03e5-97b5-6cb2dbb6d8a4@linaro.org>
-Date:   Thu, 17 Nov 2022 14:07:05 +0100
+        Thu, 17 Nov 2022 05:13:01 -0800 (PST)
+Message-ID: <b0125ad2-426c-d908-0839-2021bc59d59f@linaro.org>
+Date:   Thu, 17 Nov 2022 14:13:00 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add SM6350 GPU SMMUv2
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221117094422.11000-1-konrad.dybcio@linaro.org>
- <20221117094422.11000-2-konrad.dybcio@linaro.org>
- <77805b04-2724-dc93-eae7-21d9c7caf0a4@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <77805b04-2724-dc93-eae7-21d9c7caf0a4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: allwinner: video-engine: Fix
+ number of IOMMU channels
+Content-Language: en-US
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org, samuel@sholland.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <20221117060704.367945-1-jernej.skrabec@gmail.com>
+ <20221117060704.367945-2-jernej.skrabec@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221117060704.367945-2-jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,25 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/11/2022 07:07, Jernej Skrabec wrote:
+> Cedrus (video engine) on Allwinner H6 actually uses two IOMMU channel,
+> not just one. However, Cedrus on SoCs like D1 only uses one channel.
+> 
+> Allow up to 2 IOMMU channels.
+> 
+> Fixes: 62a8ccf3a248 ("arm64: dts: allwinner: h6: Fix Cedrus IOMMU usage")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml       | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> index 541325f900a1..6446004d59d9 100644
+> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+> @@ -55,7 +55,8 @@ properties:
+>      description: Phandle to the device SRAM
+>  
+>    iommus:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
 
+You have several compatibles in the file, so usually this is further
+constrained per each variant in allOf:if:then:.
 
-On 17/11/2022 13:55, Krzysztof Kozlowski wrote:
-> On 17/11/2022 10:44, Konrad Dybcio wrote:
->> SM6350 has a qcom,smmu-v2-style SMMU just for Adreno and friends.
->> Document it.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> (although this might need rebase later on Dmitry's refactoring)
-Oh, I forgot to mention this patch was made on top of Dmitry's work. But 
-it's good that you pointed that out!
+Best regards,
+Krzysztof
 
-Konrad
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
