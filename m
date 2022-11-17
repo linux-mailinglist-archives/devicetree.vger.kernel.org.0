@@ -2,96 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F6562D509
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 09:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC53C62D523
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 09:38:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239371AbiKQI3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 03:29:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
+        id S232918AbiKQIin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 03:38:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239554AbiKQI2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 03:28:49 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040721F9F6;
-        Thu, 17 Nov 2022 00:28:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1668673727; x=1700209727;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/JCCdl2h5+PM9X0mxvGrky+PhMRG4ua+zibm+Re3NT8=;
-  b=Wqdjb/4pRTJ5Y2l3yw2aliXEnbBKRIzilFltTaxb3hfz/KxgJmvGLaBK
-   CExFWP9X0VBZiFAdcUmyaFWW0dZLygGYMPFK2gbxHWEyU9dNsVVMGoUVX
-   tGd8mfUBZZSQAabZVc2q62wP5iky7/5k6cb0tUTPyRNa1t3DXN5dk5QEf
-   GrNEjuJDkEcEngiIu4Ks+eye+GX6cLQ9oN3dMTiV2FyN6NQ5scOi1gb7y
-   7Lv/MvZImH/l8d4oCaRNg5RdcvIOgFlMn93JeBPHK1cP4o+26hpkbP1MZ
-   lWrYkuO9W5uQS27dATKFf2rgKoNhI2MzjS+6bL4m3vUFhTIYu+IyH/ODk
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="296156411"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; 
-   d="scan'208";a="296156411"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2022 00:28:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10533"; a="745439868"
-X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; 
-   d="scan'208";a="745439868"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP; 17 Nov 2022 00:28:42 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ovaGF-00DUo9-1f;
-        Thu, 17 Nov 2022 10:28:39 +0200
-Date:   Thu, 17 Nov 2022 10:28:39 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        William Zhang <william.zhang@broadcom.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jan Dabros <jsd@semihalf.com>,
-        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] i2c: loongson: add bus driver for the loongson
- i2c controller
-Message-ID: <Y3Xwt2xtAbd8ubkF@smile.fi.intel.com>
-References: <20221117075938.23379-1-zhuyinbo@loongson.cn>
+        with ESMTP id S239261AbiKQIim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 03:38:42 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0351E3F07A;
+        Thu, 17 Nov 2022 00:37:44 -0800 (PST)
+Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Thu, 17 Nov 2022
+ 16:37:42 +0800
+From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v11 3/3] dt-binding: perf: Add Amlogic DDR PMU
+Date:   Thu, 17 Nov 2022 16:34:17 +0800
+Message-ID: <20221117083419.2084264-3-jiucheng.xu@amlogic.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
+References: <20221117083419.2084264-1-jiucheng.xu@amlogic.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221117075938.23379-1-zhuyinbo@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.88.11.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 03:59:37PM +0800, Yinbo Zhu wrote:
-> This bus driver supports the Loongson i2c hardware controller in the
-> Loongson platforms and supports to use DTS and ACPI framework to
-> register i2c adapter device resources.
-> 
-> The Loongson i2c controller supports operating frequencty is 50MHZ
-> and supports the maximum transmission rate is 400kbps.
+Add binding documentation for the Amlogic G12 series DDR
+performance monitor unit.
 
-Can you split slave part as a separate change? It will help to review and
-to understand the code better in the future by browsing the history.
+Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes v10 -> v11:
+  - No change
 
+Changes v9 -> v10:
+  - No change
+
+Changes v8 -> v9:
+  - No change
+
+Changes v7 -> v8:
+  - No change
+
+Changes v6 -> v7:
+  - No change
+
+Changes v5 -> v6:
+  - remove blank line
+
+Changes v4 -> v5:
+  - Remove "items" in compatible since have only one item
+  - Condense description of reg
+  - Rename node
+  - Split one reg into two reg items.
+  - Binding go first
+ 
+Changes v3 -> v4:
+  - Fix "$id: relative path/filename doesn't match actual path or
+    filename" warning
+
+Changes v2 -> v3:
+  - Remove oneOf
+  - Add descriptions
+  - Fix compiling warning
+
+Changes v1 -> v2:
+  - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+  - Delete "model", "dmc_nr", "chann_nr" new properties
+  - Fix compiling error
+---
+ .../bindings/perf/amlogic,g12-ddr-pmu.yaml    | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+
+diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+new file mode 100644
+index 000000000000..50f46a6898b1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic G12 DDR performance monitor
++
++maintainers:
++  - Jiucheng Xu <jiucheng.xu@amlogic.com>
++
++description: |
++  Amlogic G12 series SoC integrate DDR bandwidth monitor.
++  A timer is inside and can generate interrupt when timeout.
++  The bandwidth is counted in the timer ISR. Different platform
++  has different subset of event format attribute.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,g12a-ddr-pmu
++      - amlogic,g12b-ddr-pmu
++      - amlogic,sm1-ddr-pmu
++
++  reg:
++    items:
++      - description: DMC bandwidth register space.
++      - description: DMC PLL register space.
++
++  interrupts:
++    items:
++      - description: The IRQ of the inside timer timeout.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pmu {
++        #address-cells=<2>;
++        #size-cells=<2>;
++
++        pmu@ff638000 {
++            compatible = "amlogic,g12a-ddr-pmu";
++            reg = <0x0 0xff638000 0x0 0x100>,
++                  <0x0 0xff638c00 0x0 0x100>;
++            interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b76c4deddf22..8b102a928081 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1099,6 +1099,7 @@ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+ W:	http://www.amlogic.com
+ F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
++F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
+ F:	drivers/perf/amlogic/
+ F:	include/soc/amlogic/
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
