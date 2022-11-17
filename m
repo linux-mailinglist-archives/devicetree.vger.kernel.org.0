@@ -2,133 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05AC162E4C0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 19:49:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32E5062E4CC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 19:54:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234246AbiKQStW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 13:49:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48856 "EHLO
+        id S239985AbiKQSyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 13:54:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234802AbiKQStV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 13:49:21 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160E81057A
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 10:49:20 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id e189so2089491iof.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 10:49:20 -0800 (PST)
+        with ESMTP id S234418AbiKQSyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 13:54:32 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1989986A48;
+        Thu, 17 Nov 2022 10:54:31 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id l11so3926679edb.4;
+        Thu, 17 Nov 2022 10:54:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q1Iy41MhZ3FqRDS+o4OCXIP3MAQhIgzbJl+JqnbSgTg=;
-        b=NVAIjCoIr/gY3oZpSuV7SLL0QFcamToBZNGZFjyj8wdTwSUsNp+svdXfX1TbEXO3Ts
-         ASj0kombCmsJtGIVLisb2N0pdbwKTtR7hHEwxwvccLERx+spTa+N+Q4ueHn2fuHahW1r
-         NPkl04UJXnGnewPI5Py9iJ950jaEhDxY9Nafo=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lO8iu4sFpajmaNtnRDMO3L66IGHotZL//2Yoi5MNZGw=;
+        b=jfmp3Gx/GKTarItOmR+s898YqSa1TWnozjilCF3nyBAeTxiV3LH8iKBFzoYON0T0f2
+         yiTAa6XvKyptXOVm/UEwSbutWzcCxS5zv3Q6LlYljGhGMG0x0LwbnM6DjbZxdhupoAr8
+         GrLvAQeAfkSLFp4OaULC8rF9XY2MRPYDWqnIEzvwQPsxMpu+P/nmjLSjAi2Ram2LKRxa
+         VhbO6e6kxdjgKNCjUcl85RmGdhyJJzgHbR+mvUZGPSvez/nXnFDFLJrcgLcLCYv+RT8X
+         EddTXBYTWfhXXUpXn37Jdz5A7CYAqSwwlfFtEiMQnKODHk4+R9swGYXrBBn/xr8yUEWu
+         quLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q1Iy41MhZ3FqRDS+o4OCXIP3MAQhIgzbJl+JqnbSgTg=;
-        b=ZRusaCBLEzX69AXF49bOvHmh9G7HX+dA+E4s43W+2goHK0d64f5g37Glz8KtSS3Qr0
-         yx/SMpjSzNYJbclKH91RtAYpZjMzrre1QMJtAsYc2W2IwAxHqbKabEeTXGCk1kZRufGS
-         zNJmz+7L/DFT8iHK4cJx7tGhGB6YF6qWWqBaAICPOV51HZJyFnURrOj50Jn4MRJfVYJ5
-         zPpk9h5jhATyo1oDsLL1hLobVupaQR09ngOcsWOvewriQ9s6AYVAu3GkTuljg7t8SVeq
-         KFmYBcad3mTJA/S+5z3181iFU3ZN4cbOWdWZS7D/K3ZzBwa9+XzckU5WBNWI7anTYfP/
-         tEFQ==
-X-Gm-Message-State: ANoB5pkbP/IF5uCj4uGETPMHJ/xTaS6Pud/zWNq2KIlYZ+vVx9u4K8hi
-        cfcBnhb9nrV83ITLivaw5yijcQ==
-X-Google-Smtp-Source: AA0mqf6vmCAIs3qAaXGbusGYJSfA0ySnQwbOahFjbsIcsmewZddLmRdMGLBKlzld0AnajTBv/k6z0w==
-X-Received: by 2002:a02:7409:0:b0:375:4727:8625 with SMTP id o9-20020a027409000000b0037547278625mr1629567jac.300.1668710959492;
-        Thu, 17 Nov 2022 10:49:19 -0800 (PST)
-Received: from markhas1.corp.google.com ([100.107.108.223])
-        by smtp.gmail.com with ESMTPSA id q6-20020a02a986000000b00363faa1ea9asm503282jam.15.2022.11.17.10.49.18
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lO8iu4sFpajmaNtnRDMO3L66IGHotZL//2Yoi5MNZGw=;
+        b=cJI89Yfnbmoj9hTgzGVIddcIb4lLqQ49rNYMKiadSOWpklA6mdwH8+gAAq48ry+iIW
+         HAJgOS9rsiFVYxPlOL/7nH92Gl50vCWjh6/QPvqmqBz9CIaqDbhrgbeQ5WYYqroxILc/
+         ucozxHXPK/WX0LT+SApiWfN5STeFkR6fbC0qWhhPMXlY31pJU/uDr/8udO2WFOB4If64
+         5XknMX7bs43SnPucK5KrTMnN2Y2/sfDSevoFvd/wCVcAyOHKN3sMTqNlaus0U9yTLsVE
+         jzLHQi9dXcjhadbttDLX1Htu7EKwsFaL+dU2FMYGxWMFtaxrY/Q1QACeOHwmZxsbyli5
+         IRIw==
+X-Gm-Message-State: ANoB5pmh+TPBG86Mrs2iIKwpRnPHJV52z4AU6aZ53VIwmB+2mq/vdMuy
+        53eYU23BGeU7x94LDhM1/X4=
+X-Google-Smtp-Source: AA0mqf7Kl6CgbcMgxqNwKtSmiN6Aj7E6wbC+SmSy5fRDZHYki3xdJx3CDIjnXq3RzE3SsmF8i8hk1w==
+X-Received: by 2002:a05:6402:389:b0:459:2515:b27b with SMTP id o9-20020a056402038900b004592515b27bmr3351323edv.338.1668711269495;
+        Thu, 17 Nov 2022 10:54:29 -0800 (PST)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n22-20020aa7c696000000b00457c85bd890sm874261edq.55.2022.11.17.10.54.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 10:49:19 -0800 (PST)
-From:   Mark Hasemeyer <markhas@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Raul Rangel <rrangel@chromium.org>,
-        Mark Hasemeyer <markhas@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v7 2/3] dt-bindings: mfd: Add DT compatible string "google,cros_ec_uart"
-Date:   Thu, 17 Nov 2022 11:48:47 -0700
-Message-Id: <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
-X-Mailer: git-send-email 2.38.1.584.g0f3c55d4c2-goog
-In-Reply-To: <20221117114818.v7.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-References: <20221117114818.v7.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+        Thu, 17 Nov 2022 10:54:28 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: [PATCH v12 0/4] iommu: Support mappings/reservations in reserved-memory regions
+Date:   Thu, 17 Nov 2022 19:54:20 +0100
+Message-Id: <20221117185424.2359687-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT compatible string in
-Documentation/devicetree/bindings/mfd/cros_ec.txt
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
----
+Hi,
 
-Changes in v7:
-- No change
+This version is a minor update to the previous v11, which can be found
+here:
 
-Changes in v6:
-- No change
+  https://lore.kernel.org/all/20221111161806.630527-1-thierry.reding@gmail.com/
 
-Changes in v5:
-- No change
+The only change here is that the #dma-{address,size}-cells is dropped.
+It turns out to be much simpler to just update #{address,size}-cells to
+what they should be rather than add extra complexity for the DMA work-
+around. There's a minor update to the DT binding so that it can now
+properly validate cases where we have both reg and iommu-addresses
+properties.
 
-Changes in v4:
-- Changes in commit message.
+An example is included in the DT bindings, but here is an extract of
+what I've used to test this:
 
-Changes in v3:
-- Rebased changes on google,cros-ec.yaml
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
 
-Changes in v2:
-- No change
+                /*
+                 * Creates an identity mapping for the framebuffer that
+                 * the firmware has setup to scan out a bootsplash from.
+                 */
+                fb: framebuffer@92cb2000 {
+                        reg = <0x0 0x92cb2000 0x0 0x00800000>;
+                        iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+                };
 
----
- .../devicetree/bindings/mfd/google,cros-ec.yaml       | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+                /*
+                 * Creates a reservation in the IOVA space to prevent
+                 * any buffers from being mapped to that region. Note
+                 * that on Tegra the range is actually quite different
+                 * from this, but it would conflict with the display
+                 * driver that I tested this against, so this is just
+                 * a dummy region for testing.
+                 */
+                adsp: reservation-adsp {
+                        iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+                };
+        };
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 04962bb29576e..26787e4574b8d 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -28,6 +28,9 @@ properties:
-       - description:
-           For implementations of the EC is connected through RPMSG.
-         const: google,cros-ec-rpmsg
-+      - description:
-+          For implementations of the EC is connected through UART.
-+        const: google,cros-ec-uart
- 
-   controller-data:
-     description:
-@@ -222,4 +225,12 @@ examples:
-             compatible = "google,cros-ec-rpmsg";
-         };
-     };
-+
-+  # Example for UART
-+  - |
-+    uart0 {
-+        cros-ec {
-+            compatible = "google,cros-ec-uart";
-+        };
-+    };
- ...
+        host1x@50000000 {
+                dc@54200000 {
+                        memory-region = <&fb>, <&adsp>;
+                };
+        };
+
+This is abbreviated a little to focus on the essentials. Note also that
+the ADSP reservation is not actually used on this device and the driver
+for this doesn't exist yet, but I wanted to include this variant for
+testing, because we'll want to use these bindings for the reservation
+use-case as well at some point.
+
+I've also been able to make use of this binding and the IOMMU code in
+conjunction with the simple-framebuffer driver to hand over a display
+configuration set up by UEFI to the Linux kernel.
+
+Janne has confirmed[0] this to be suitable for indirect mappings as
+well, though these patches don't implement that feature yet. Potential
+extensions to this have been discussed but are not yet included at this
+time to not further complicate things.
+
+Thierry
+
+[0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
+
+Thierry Reding (4):
+  of: Introduce of_translate_dma_region()
+  dt-bindings: reserved-memory: Document iommu-addresses
+  iommu: Implement of_iommu_get_resv_regions()
+  iommu: dma: Use of_iommu_get_resv_regions()
+
+ .../reserved-memory/reserved-memory.yaml      | 89 +++++++++++++++++-
+ drivers/iommu/dma-iommu.c                     |  3 +
+ drivers/iommu/of_iommu.c                      | 94 +++++++++++++++++++
+ drivers/of/address.c                          | 41 ++++++++
+ include/linux/of_address.h                    |  2 +
+ include/linux/of_iommu.h                      |  8 ++
+ 6 files changed, 233 insertions(+), 4 deletions(-)
+
 -- 
-2.38.1.584.g0f3c55d4c2-goog
+2.38.1
 
