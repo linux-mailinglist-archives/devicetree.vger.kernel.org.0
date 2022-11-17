@@ -2,110 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9748C62D857
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA0F62D81B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234116AbiKQKsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 05:48:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
+        id S239524AbiKQKhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 05:37:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233725AbiKQKsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:48:14 -0500
-Received: from mx3.securetransport.de (mx3.securetransport.de [116.203.31.6])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B344A101D2
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:48:10 -0800 (PST)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx3.securetransport.de (Postfix) with ESMTPSA id CE4705DE01;
-        Thu, 17 Nov 2022 11:47:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1668682051;
-        bh=zTSrdS3kM86aKfkHrUEP9OpidG/Duq7+i4ms6qZts9s=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=wFFDvrTaIlQykfDJfW4AJ5q3pHpl0ULIIt3uZiDnzO09nrkDokR2sQXv3yhCLKf4X
-         ap0hLo6zXq/1/4LtEYeNjWAGBDwSGMZmkesNiU3Ozp2lgAKXrGcRqEDhebnzWPvWWB
-         PVTYrKjn0kwBr6Df5uRUovDXqN9QGVO0vsmBTkomjqbTcgY8uOQrVpdvIeNaTTJvZs
-         0L5PmsTFM/EdZIuyh02aHo79crmwMaVpCmktmTfJTzTgSc90e0Eq6bNs616VYsZpb3
-         fLVa37LpTFSMkpWk1GpgYOvCQ2QX4QP+qgJN/7iMzIi7hQ++g2A7MBv6H++mF7WbAa
-         BiuB/TpyUVY7w==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20; Thu, 17 Nov 2022 11:32:21 +0100
-Received: from Stretch-CN.dh-electronics.org (10.64.6.116) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20 via Frontend Transport; Thu, 17 Nov 2022 11:32:20 +0100
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-arm-kernel@lists.infradead.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        with ESMTP id S234602AbiKQKhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:37:05 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A0E84391DF;
+        Thu, 17 Nov 2022 02:37:02 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AB436D6E;
+        Thu, 17 Nov 2022 02:37:08 -0800 (PST)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 94EB63F73B;
+        Thu, 17 Nov 2022 02:37:00 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02 boards for the DHCOM i.MX6ULL SoM
-Date:   Thu, 17 Nov 2022 11:31:31 +0100
-Message-ID: <20221117103134.6452-2-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
-In-Reply-To: <20221117103134.6452-1-cniedermaier@dh-electronics.com>
-References: <20221117103134.6452-1-cniedermaier@dh-electronics.com>
+        Bin Liu <b-liu@ti.com>
+Cc:     Icenowy Zheng <uwu@icenowy.me>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, soc@kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v4 00/11] ARM: suniv: USB and two new boards support
+Date:   Thu, 17 Nov 2022 10:36:45 +0000
+Message-Id: <20221117103656.1085840-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
-for the DHCOM i.MX6ULL SoM.
+This is an update and rebase of the former v3 series.
+It now cleanly applies and builds on top of linux-sunxi/sunxi/for-next,
+this is also the tree those patches should go through.
+To make dtbs_check pass, we need three more binding patches, the LRADC
+and I2C ones are in linux-next, the PHY binding [1] should end up there
+hopefully soon.
+To get a working image, one needs linux-next, plus the PHY support patch
+[2]. Sorry for the mess, this is due to the PHY patches going through a
+different tree, and they depend on the H616 changes only available there.
+If there are any questions or advice how to solve this better, please
+approach me via email or IRC.
+I put a tree with all the requirements on top here:
+https://github.com/apritzel/linux/commits/f1c100s-usb-v4
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
----
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: kernel@dh-electronics.com
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Code-wise there were only smaller changes, see the changelog below.
+I put my Lctech Pi DT series on top, since it has the same USB
+dependencies as the Popstick DT.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 05b5276a0e14..ba7a17d8ec19 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -644,6 +644,16 @@ properties:
-           - const: armadeus,imx6ull-opos6ul     # OPOS6UL (i.MX6ULL) SoM
-           - const: fsl,imx6ull
- 
-+      - description: i.MX6ULL DHCOM SoM based Boards
-+        items:
-+          - enum:
-+              - dh,imx6ull-dhcom-pdk2
-+              - dh,imx6ull-dhcom-picoitx
-+              - dh,imx6ull-dhcom-drc02
-+          - const: dh,imx6ull-dhcom-som # The DHCOR is soldered on the DHCOM
-+          - const: dh,imx6ull-dhcor-som
-+          - const: fsl,imx6ull
-+
-       - description: i.MX6ULL PHYTEC phyBOARD-Segin
-         items:
-           - enum:
+[1] https://lore.kernel.org/linux-arm-kernel/20221116151603.819533-2-andre.przywara@arm.com/
+[2] https://lore.kernel.org/linux-arm-kernel/20221116151603.819533-3-andre.przywara@arm.com/
+
+================
+This patchset introduces support for F1C100s' USB, and the SourceParts
+PopStick and Lctech Pi boards.
+
+The DT binding and driver support for SUNIV USB MUSB device are added, in
+addition to DT changes to the DTSI and Lichee Nano DT. New DTs are added
+for the SourceParts PopStick v1.1 and Lctech Pi boards.
+
+Changelog v3 ... v4:
+- Dropped the PHY patches, they go via a different tree and need a
+  different base
+- rebased on top of linux-sunxi/sunxi/for-next (provides H616 USB)
+- musb DT binding: use enum
+- musb cleanup: use musb_hdrc_config config pointer directly
+- musb cleanup: use const where possible
+- drop partitions from Popstick DTS file
+- clarify Popstick has a USB type-A *plug*
+- add tags
+
+Changelog v2 ... v3:
+- remove redundant "Device Tree Bindings" suffix in DT binding doc title
+- add BSD license to binding doc file (as per checkpatch)
+- fix some commit message title prefixes
+- use proper plural spelling for usb0_id_det-gpios
+- popstick.dts: Reorder otg_sram node reference alphabetically
+- popstick.dts: Add regulator- prefix to 3.3V regulator node name
+- popstick.dts: Fix status, compatible and reg property order
+- popstick.dts: Drop unneeded mmc0 and spi0 aliases
+- add patch to clean up sunxi MUSB driver
+- add Acks and Reviewed-by's
+
+Changelog v1 ... v2:
+- USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+- Add Popstick binding and .dts patches
+
+Andre Przywara (4):
+  usb: musb: sunxi: Introduce config struct
+  dt-bindings: vendor-prefixes: add Lctech name
+  dt-bindings: arm: sunxi: add compatible strings for Lctech Pi
+  ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
+
+Icenowy Zheng (7):
+  dt-bindings: usb: sunxi-musb: add F1C100s MUSB compatible string
+  usb: musb: sunxi: add support for the F1C100s MUSB controller
+  ARM: dts: suniv: add USB-related device nodes
+  ARM: dts: suniv: licheepi-nano: enable USB
+  dt-bindings: vendor-prefixes: add Source Parts
+  dt-binding: arm: sunxi: add compatible strings for PopStick v1.1
+  ARM: dts: suniv: add device tree for PopStick v1.1
+
+ .../devicetree/bindings/arm/sunxi.yaml        | 13 +++
+ .../usb/allwinner,sun4i-a10-musb.yaml         | 10 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |  4 +
+ arch/arm/boot/dts/Makefile                    |  4 +-
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  | 16 +++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          | 32 ++++++
+ arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 76 ++++++++++++++
+ .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 81 +++++++++++++++
+ drivers/usb/musb/sunxi.c                      | 99 +++++++++++++------
+ 9 files changed, 301 insertions(+), 34 deletions(-)
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+
 -- 
-2.11.0
+2.25.1
 
