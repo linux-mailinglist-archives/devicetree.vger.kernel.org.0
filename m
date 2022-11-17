@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B9462DAC9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:28:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF95062DACF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234687AbiKQM2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:28:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
+        id S234017AbiKQM3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:29:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240129AbiKQM1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:27:30 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6DB725E0
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:27:02 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id v4-20020a17090a088400b00212cb0ed97eso1768192pjc.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:27:02 -0800 (PST)
+        with ESMTP id S240187AbiKQM2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:28:48 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813B015FC0
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:28:36 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id p8so2498355lfu.11
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:28:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+rPHgMoeBIfRXBLmmqXq8TEde2WOOk6YMN7EVwcUy60=;
-        b=jraek21ZocfnSN2KKIGasOmN8gKjHqXSUz8NcmyELSBiCWmxen4F2EqzsD08jEgVcH
-         ZtpsK6DVh9mUUeXjmlpJ42VgRm27yJpsZm+zDOYqN9e41mFolyVSokRrXcR2abrA8p9M
-         i+F9IKBVgWsdapAaQQocLaj5ArZPZU5xQiEtITwD8F7bhTB5kWDP9mexfzDA1Imu/Yq4
-         FpAElabcEz306VyQQylkSKk7oKwjRDDZjlFgZAJvGLioBH+UabAx8w4o9TEJ+gLOhW0j
-         4Hyz+zrGHUxTLuo3oBDtciZyvmnVNhZUK1lnCexJqPw/cMiO0JJoGj9uwQ0/8t+Euoqg
-         A8YQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LaV4zTImQ9m6pb9NhstVvLhblGt5Yc3IF7BX7u0m3cA=;
+        b=HZnrzIGAYGbh+QP2qNAap3x2wWoNfEbQisc3dfbYBg9OeECrBvMO5K0IFvBxZZvlUB
+         4CWmeZxBXjNuJzLO15EVRrKZzCWMlV6t58sQ7IN+1+crJm6P4QYKho9KYH3oHZK5LQvO
+         vwn+n/hQSmLSRxoib57GmS9aq30F3PHiP4DiaZuLXKaIegUQSxnt0LJXhCZgTdSVaq8E
+         dKJbfW3rw5b/3mUFq4K6zVUTj0qO03SCHtF+tiNu3rwwIcDLZeIHTnq+/3Ih8L7WsPYy
+         E+A/aVnnUVEwSFTxyBP9ujnMhAUgvY/lTHUQk1cbEae8o//P2MtSBiKyvcl4pjGrVyI9
+         n8Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+rPHgMoeBIfRXBLmmqXq8TEde2WOOk6YMN7EVwcUy60=;
-        b=oelkfBn+/iN4wNedlrmMc8HYvkhxl1Tf+MJ031NdsM0KFCqv/7IBOksk12pRJl4v67
-         chhctaYKdXbQtUmhXj/Arr/LEgZHKbUM8MIC/O4jWRtT8CK6+dTGzSn4oz2lS5LmiT44
-         2ocdy6QMkKIcJJ+93xQyE6QKSLnuHK6Cd4Kb24jPF+Rx39Q5/KuognPanr0bZ2B38D0M
-         I+YKTlofxYUKBPlNuz/sEruwW4sRgwFnsrpEpThGdgY54LIehomrb/84egBHQxsWaQYY
-         s/FLSzskZ5Khskpb/mNjGUtoujAuPlVWNhihoqlx4kh4BhLtnt7qTpcLz74BwpxBsIFj
-         hjnQ==
-X-Gm-Message-State: ANoB5pnyoEeGv8xtHkpXfET1dp1theV0bo/X9KViBLk40caZ8pM2r7Q4
-        5ztxr+kXf+QTc1Vwj9L+2MhL
-X-Google-Smtp-Source: AA0mqf6rUjKuiCOVlt+yrgJUR5Kc/Kug2qkXh0mr42woayKeSiYzvFqGdvDjKpJ7M1KI3ty5P0PH3w==
-X-Received: by 2002:a17:90b:2809:b0:212:e8da:fc3f with SMTP id qb9-20020a17090b280900b00212e8dafc3fmr8269891pjb.189.1668688022120;
-        Thu, 17 Nov 2022 04:27:02 -0800 (PST)
-Received: from thinkpad ([117.193.208.31])
-        by smtp.gmail.com with ESMTPSA id i9-20020a635409000000b00476d1385265sm889905pgb.25.2022.11.17.04.26.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 04:27:01 -0800 (PST)
-Date:   Thu, 17 Nov 2022 17:56:54 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        steev@kali.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh@kernel.org>, andersson@kernel.org
-Subject: Re: [PATCH v4 01/12] dt-bindings: iio: qcom: adc7-pm8350: Allow
- specifying SID for channels
-Message-ID: <20221117122654.GH93179@thinkpad>
-References: <20221103095810.64606-1-manivannan.sadhasivam@linaro.org>
- <20221103095810.64606-2-manivannan.sadhasivam@linaro.org>
- <b97f6cd7-6d4a-f0d6-7aea-bab16de96621@linaro.org>
+        bh=LaV4zTImQ9m6pb9NhstVvLhblGt5Yc3IF7BX7u0m3cA=;
+        b=H1+2c0MVc3zIdIyOsQDOtNZIxVGVBGlmGL0zLxFqH9AbAYLkRP6NbU9ruYvVRIPWP9
+         vaEd8AYHX4KXE+YGfsNUzqz3/uc0QHXR2PC0W8uz7c7VT2xNZ/doOzfw8/yvNdkKvu76
+         DHnNtgm2rMy8CVnNREwlrg4eTm+o/LZC17lcor/41tm1hCTj0/R/EE3/ozQEYvezMHAQ
+         DbT7vYcD3j+/IjqBlGa0y5OzgWU+99Pxa3i0P6xh8VsfNFUfENe/13e53OUh/ef2MV5g
+         lyCMyV2Vg49vJx2efKhv07QYKvPsX72NoTIkZbL9OBQJdXC76IVs70a9U7AjHPSu2Ot2
+         uzCA==
+X-Gm-Message-State: ANoB5plqcXgm7lJ7tyqjLPZNi/48sT+AU4/vcSIR8XRTr/Ydzomhz28S
+        iiD+nb8eyDxWMLxmP6uNFMtcCiyTxptwTmQL
+X-Google-Smtp-Source: AA0mqf5+ZifQCXbi70+2WGQf3dE4b5msdrwfnRA4Y5oqrR/WDBI7n3uYsrARQOWdpgzREgWvze50/w==
+X-Received: by 2002:ac2:4d93:0:b0:4a2:70a5:992f with SMTP id g19-20020ac24d93000000b004a270a5992fmr747564lfe.341.1668688114935;
+        Thu, 17 Nov 2022 04:28:34 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s22-20020a056512315600b00497a0ea92desm126731lfi.135.2022.11.17.04.28.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 04:28:34 -0800 (PST)
+Message-ID: <a3da2ab9-ad36-2283-0659-ad8ebf877e17@linaro.org>
+Date:   Thu, 17 Nov 2022 13:28:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b97f6cd7-6d4a-f0d6-7aea-bab16de96621@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: fix PM8350 define
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
+ <20221117122256.GG93179@thinkpad>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221117122256.GG93179@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,53 +80,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 01:14:00PM +0100, Krzysztof Kozlowski wrote:
-> On 03/11/2022 10:57, Manivannan Sadhasivam wrote:
-> > As per the new ADC7 architecture used by the Qualcomm PMICs, each PMIC
-> > has the static Slave ID (SID) assigned by default. The primary PMIC
-> > PMK8350 is responsible for collecting the temperature/voltage data from
-> > the slave PMICs and exposing them via it's registers.
-> > 
-> > For getting the measurements from the slave PMICs, PMK8350 uses the
-> > channel ID encoded with the SID of the relevant PMIC. So far, the
-> > dt-binding for the slave PMIC PM8350 assumed that there will be only
-> > one PM8350 in a system. So it harcoded SID 1 with channel IDs.
-> > 
-> > But this got changed in platforms such as Lenovo X13s where there are a
-> > couple of PM8350 PMICs available. So to address multiple PM8350s, change
-> > the binding to accept the SID specified by the user and use it for
-> > encoding the channel ID.
-> > 
-> > It should be noted that, even though the SID is static it is not
-> > globally unique. Only the primary PMIC has the unique SID id 0.
-> > 
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
+On 17/11/2022 13:22, Manivannan Sadhasivam wrote:
+> On Thu, Nov 17, 2022 at 01:13:07PM +0100, Krzysztof Kozlowski wrote:
+>> The defines from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h were
+>> changed to take sid argument:
+>>
+>>   Error: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:99.28-29 syntax error
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> This was never sent to IIO maintainers, so now next is failing.
+> Looks like I didn't rebase on top of Bjorn's for-next for my series, so didn't
+> see this example.
+> 
+> Thanks for fixing!
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > 
 
-I missed it since there was only one bindings patch and rest all were dts :/
+This should not go via Bjorn's tree without IIO ack and
+Jonathan/Lars-Peter/IIO lists were not in CC.
 
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
-> 
+Best regards,
+Krzysztof
 
-The problem was that I didn't rebase my patches on top of linux-next/Bjorn's
-for-next at that time but used v6.1-rcX. So I did not see the example in
-spmi-vadc.
-
-Thanks,
-Mani
-
-> Best regards,
-> Krzysztof
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
