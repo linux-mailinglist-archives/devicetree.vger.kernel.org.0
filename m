@@ -2,83 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 636B062DA46
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EEA062DA6A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240120AbiKQMJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:09:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
+        id S240030AbiKQMNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:13:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240131AbiKQMIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:08:54 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 769976EB5E;
-        Thu, 17 Nov 2022 04:08:51 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9481B13D5;
-        Thu, 17 Nov 2022 04:08:57 -0800 (PST)
-Received: from bogus (unknown [10.57.6.137])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0CAE03FA31;
-        Thu, 17 Nov 2022 04:08:48 -0800 (PST)
-Date:   Thu, 17 Nov 2022 12:08:46 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221117120846.yhmilsndw2bmmvnv@bogus>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221117101903.sw3hxaruj5sfhybw@bogus>
- <20221117111207.GA93179@thinkpad>
- <20221117115203.356vexlpca746o6m@bogus>
- <20221117115807.GF93179@thinkpad>
+        with ESMTP id S239980AbiKQMNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:13:14 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6D46F36D
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:13:13 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id g12so2491059lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:13:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QovtdL7BP1h09phxGHQZDMWqvkgGdhA6FAPrdwAQwIY=;
+        b=msBzi3o4FOprNhhufGIQzsDbSw190/zGjGEJk2af23OoiteXJOMOvsx43btiImNDz0
+         FFkO+fjtQcqthSEbuA9ORWG2S/QTGGYyuXKWSBpt1ZfyH0AyuwdYRGVCXYy7hKqMHivF
+         eSp0/k7ltt1i7aC3GSuUef0V93qTFgPACXKiiOVTC0tX7LcgU9rOYk0tD9wRAsh0+Ge9
+         FUVr1qLpjAw9B1usqq7ZYO/eVUh5F4MUTTbVahTLZcesgpoE1WmNLDQZlgKog3F/0r+C
+         GM212jEORbn34mrlVtS4xOkeo9B1ffUi7Ye3TJo0/y8K4FUne6NFlH620YyufBRmQmj/
+         5cQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QovtdL7BP1h09phxGHQZDMWqvkgGdhA6FAPrdwAQwIY=;
+        b=WovEBh96J21/4zVxIGHBvbh2QZ6UvvoNDkwkrhwR9tjTh9MQQIvSjBrVyaU7iBhGRj
+         R5qZb+cDJo/OOef5VNftlar/I73G17VFpuM6k9WK8a2VFvRHQFzGL6Zaqp8aS+92VFUV
+         xgKw7GUUvuqAni3BjLUIU9F15sRE07aAP9zH7QeciRyYn5EyL1CJSR23eotfugsi9Ebu
+         peLvTWAie+XLa5AvAMfbvgC1rN08GxiGMm9QB9xNIk65QxrneX9b1eRFq5R94RiF+dmq
+         3YsLbIIoM7/zSyG1IyJPZfA5qak4+a9+BvYR/hWfQJAOElfteey4NwWzkuS0408opnPa
+         i+jA==
+X-Gm-Message-State: ANoB5pmp1j+046DhOtMGgga+bWW+TjqJBGHF/JpsJxCsVl2sIHoxj3Aq
+        i5klrg72lr8XfuESpd/Uplh6LA==
+X-Google-Smtp-Source: AA0mqf4APpNqBPzjGJhG6F1VrAaSfE31C9oCEqDSSi3aH8ioYbkyL4pH1PWqvn4qQFTFyM1rxgkjYA==
+X-Received: by 2002:a05:6512:3b88:b0:4a3:9533:f4c9 with SMTP id g8-20020a0565123b8800b004a39533f4c9mr836327lfv.615.1668687192074;
+        Thu, 17 Nov 2022 04:13:12 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id x12-20020a19f60c000000b0048b26d4bb64sm125133lfe.40.2022.11.17.04.13.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 04:13:11 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: fix PM8350 define
+Date:   Thu, 17 Nov 2022 13:13:07 +0100
+Message-Id: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221117115807.GF93179@thinkpad>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 05:28:07PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Nov 17, 2022 at 11:52:03AM +0000, Sudeep Holla wrote:
-> > On Thu, Nov 17, 2022 at 04:42:07PM +0530, Manivannan Sadhasivam wrote:
-> > > On Thu, Nov 17, 2022 at 10:19:03AM +0000, Sudeep Holla wrote:
-> > > > 
-> > > > Why do you need the above 3 changes if the below(4/4) will ensure
-> > > > cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
-> > > > whole "confusing" clock bindings and the unnecessary clock provider.
-> > > > 
-> > > > Can't we just use cpufreq_get(cpu) ?
-> > > > 
-> > > 
-> > > This can be possible for OPP implementations for the CPUs but not for other
-> > > peripherals making use of OPP framework like GPU etc... Moreover this may end
-> > > up with different code path for CPUs and other peripherals inside OPP framework.
-> > > 
-> > 
-> > Fair enough, you can use this for non-CPU devices. But you are adding this for
-> > CPUs here. Is the consumer unaware that this is a CPU or non-CPU device ?
-> > If so, make sense. Otherwise, it is unnecessary to go through the clk
-> > framework to get CPU frequency.
-> > 
-> 
-> The consumer here is the OPP framework and yes it doesn't have the knowledge of
-> the device it is dealing with (for this context).
+The defines from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h were
+changed to take sid argument:
 
-Ah OK, I thought it is something else. Does this mean OPP is tied with clk
-framework or clock bindings ? Is this for some specific feature ? Or is it
-compulsory for all the devices using OPP ? Just wondering how this affects
-SCMI which doesn't use or provide clocks yet.
+  Error: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:99.28-29 syntax error
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+Issue is caused by commit 22f1d06f4f28 ("dt-bindings: iio: qcom:
+adc7-pm8350: Allow specifying SID for channels") from Bjorn's tree.
+
+Unfortunately get_maintainers.pl were not used, so IIO maintaners were
+not CCed.
+---
+ Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+index f1522196042d..bd6e0d6f6e0c 100644
+--- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+@@ -299,7 +299,7 @@ examples:
+             };
+ 
+             conn-therm@47 {
+-                reg = <PM8350_ADC7_AMUX_THM4_100K_PU>;
++                reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
+                 qcom,ratiometric;
+                 qcom,hw-settle-time = <200>;
+             };
 -- 
-Regards,
-Sudeep
+2.34.1
+
