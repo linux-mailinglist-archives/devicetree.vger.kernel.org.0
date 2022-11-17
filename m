@@ -2,134 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B69D462D229
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 05:12:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A4562D2B8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 06:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233742AbiKQEMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 23:12:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
+        id S234252AbiKQFb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 00:31:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbiKQEM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 23:12:29 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550B432B8F;
-        Wed, 16 Nov 2022 20:12:28 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id d9so1315708wrm.13;
-        Wed, 16 Nov 2022 20:12:28 -0800 (PST)
+        with ESMTP id S230103AbiKQFb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 00:31:57 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48398532EB
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 21:31:56 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id k5so697216pjo.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Nov 2022 21:31:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gM3PtvPAdYS2cL7GwLPhGFEGDIfhNGK5xW1YKSqAlqI=;
-        b=i7enR9MnStHWDiFeKdWX5LPhsTsRCxiq4GaJlWfecj34xt3cMfTeP5VYwZDz6BN8Go
-         zSiJFITJaa8RhwWFtQbjfwImn4uf4edOeMNSxLLCSf1EtIL4u35IqKUBrTFIo0HbgjJj
-         p3HKVQCzMGWvF4CtF4c3CIWbYkQ0oySnBoxQWk9ZxHEkcFJxPhS1M4x93CDzXFEVhLDG
-         E0IDec710zT71gTUlNXEJtC21QZ/Kc1MPeTw8rfEY4tgiP88EEcnq1kxDl73Xkc19tqy
-         MZsOGkrFHml4Z7oJevYDpGdpPyip1H8o9zhTT9dLDs9EcOUbH2k+3NCtNufvFbPPQRPL
-         p9QA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7oPr2c5sFjkGMsgr2UPxb1pE9bvOecjFKXm2LmIgOts=;
+        b=D156S2K69hV/6I7Gnhas5LRMf/1HeHCRR6mF9kHXuGKmbVj+03aTzr9DUECHUOXQha
+         2Vfu7ELiV13A6ODirlbwv3BmXf6udj+Oe+gQKOOEI05PfKFipqvM8FrFKc1Dw0cXOBhV
+         2HmVnvpEtF3QVsXMIRkNEl+ni+O7w/DPOqyerfNlU0Bt2aldI7MLSwjLevjfvLJKwVEY
+         DQZ7SU/cxtR6L6MyDmT8dicCsfcZP1hk86DbBQG2H4m8u8xk0hHj+BdzwJErD/c3S8fC
+         f+eu5r+uIDGRTBeUwd4jia0qn+v64ncYmMGpoQtzONp+palhU1fRWxds6B3KCTrGsP1p
+         TFhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gM3PtvPAdYS2cL7GwLPhGFEGDIfhNGK5xW1YKSqAlqI=;
-        b=6vxONInLDykO5W+JJw/VPR3xluYAxCe4A7JMxViAx1ZGDtmyG8it+80V64A+AEzwH6
-         /4Qz23/XEi2p3f3nDnljqSiSql13esiwe72YMI+XH15vOJ6nQAnh/3ec/y64Hs7KX3Nk
-         LBhd0GLQ90iAXQlM/dD0OMbdbKsyAQSeogizMJPajNg+WzznCUtObzaoef1lo8o+WwJy
-         6q8jDp/+hY8+2C9xt3jWXAOv+yFd0FjvxvWqKHXxyvZOkw06u+OWdWU82hs7sYfefSGi
-         1B4APbnP0sCC/bgHGSV8mD14daiECrcRoXyUBVUI7j48MpYbo936nJ2Z2PjLIvwcAt3b
-         ZrGw==
-X-Gm-Message-State: ANoB5pmNpyHcwYIBRKVCgm2QkqYSGAQgV/rrrT0D0CJrdlp3hjg2vGS+
-        tQ/zQBwd8YvvxJ9I8zEezAQ=
-X-Google-Smtp-Source: AA0mqf5mLvMwgquR9ICuNaOBwEssOw9+IVyuu28bZWGtGGVsZmBYcoFOd5y45nQljfNsNCS87F7iLg==
-X-Received: by 2002:adf:d84c:0:b0:236:6f1a:955 with SMTP id k12-20020adfd84c000000b002366f1a0955mr283056wrl.111.1668658346920;
-        Wed, 16 Nov 2022 20:12:26 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id x11-20020a5d54cb000000b002415dd45320sm16479931wrv.112.2022.11.16.20.12.25
+        bh=7oPr2c5sFjkGMsgr2UPxb1pE9bvOecjFKXm2LmIgOts=;
+        b=pF017KGbgWAPKV/8FWsL3LADuQRIHmXbMda8q7o2J2fATr/v2Hjr+j/jbaT41zmROh
+         RGoTVFAs1fKDEw7ldEX+GzZ+l66X1lCqCQGmmgvfgdoP13Qzgp3yhTY549aKEy6WkIxa
+         puLcx6oB9YSDB38221+c7cxaJecqpHcP/vWlbhAJQp+YGaKkZQA0XDkFC9ugW8Z3Hg3X
+         2ymfCPBHC4w/sQq+WCHh7RtDEZrCPisLVBjrEdvVELYmqS0RQSfKgsipSew4VzXpnQzJ
+         n+ScxoBHzrLToeAqfQ9H+Q8tzIh+KB0ASOZ2fC2sKqopG6qTL+ZOVXlFzRtIK6WpR/yo
+         RwbQ==
+X-Gm-Message-State: ANoB5pnezjYCz1r2l2kMn/fjXPSvSmz9VkbHSzQ+AA2cMC1Gx9dadL/k
+        Cv24RDB3xEetZtnutaUX1yb2
+X-Google-Smtp-Source: AA0mqf7M4odCBsOw9ycvH+5mwO2zaa78y+/Y+XY0Cny6ZmRSUdTkjtaAoOkKpU93SzgySuz9tG37BA==
+X-Received: by 2002:a17:90a:bb16:b0:200:2d7f:18c2 with SMTP id u22-20020a17090abb1600b002002d7f18c2mr1211167pjr.106.1668663115721;
+        Wed, 16 Nov 2022 21:31:55 -0800 (PST)
+Received: from localhost.localdomain ([117.193.208.31])
+        by smtp.gmail.com with ESMTPSA id q4-20020a17090311c400b001865c298588sm96600plh.258.2022.11.16.21.31.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Nov 2022 20:12:26 -0800 (PST)
-Date:   Thu, 17 Nov 2022 07:12:24 +0300
-From:   Dan Carpenter <error27@gmail.com>
-To:     oe-kbuild@lists.linux.dev, Liu Peibao <liupeibao@loongson.cn>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-        chenhuacai@loongson.cn, lvjianmin@loongson.cn,
-        zhuyinbo@loongson.cn, liupeibao@loongson.cn,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] PCI: loongson: add skip-scan property for child DT
- node
-Message-ID: <202211160131.oycRMuJQ-lkp@intel.com>
+        Wed, 16 Nov 2022 21:31:54 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org, viresh.kumar@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org
+Cc:     johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Date:   Thu, 17 Nov 2022 11:01:41 +0530
+Message-Id: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221103090040.836-1-liupeibao@loongson.cn>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu,
+Hello,
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This series adds clock provider support to the Qcom CPUFreq driver for
+supplying the clocks to the CPU cores in Qcom SoCs.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Liu-Peibao/PCI-loongson-add-skip-scan-property-for-child-DT-node/20221103-170125
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
-patch link:    https://lore.kernel.org/r/20221103090040.836-1-liupeibao%40loongson.cn
-patch subject: [PATCH 1/2] PCI: loongson: add skip-scan property for child DT node
-config: loongarch-randconfig-m041-20221114
-compiler: loongarch64-linux-gcc (GCC) 12.1.0
+The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
+clocks to the CPU cores. But this is not represented clearly in devicetree.
+There is no clock coming out of the CPUFreq HW node to the CPU. This created
+an issue [1] with the OPP core when a recent enhancement series was submitted.
+Eventhough the issue got fixed in the OPP framework in the meantime, that's
+not a proper solution and this series aims to fix it properly.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
+There was also an attempt made by Viresh [2] to fix the issue by moving the
+clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
+since those clocks belong to the CPUFreq HW node only.
 
-smatch warnings:
-drivers/pci/controller/pci-loongson.c:257 setup_masklist() error: not allocating enough for = 'entry' 24 vs 8
+The proposal here is to add clock provider support to the Qcom CPUFreq HW
+driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
+This correctly reflects the hardware implementation.
 
-vim +/entry +257 drivers/pci/controller/pci-loongson.c
+The clock provider is a simple one that just provides the frequency of the
+clocks supplied to each frequency domain in the SoC using .recalc_rate()
+callback. The frequency supplied by the driver will be the actual frequency
+that comes out of the EPSS/OSM block after the DCVS operation. This frequency
+is not same as what the CPUFreq framework has set but it is the one that gets
+supplied to the CPUs after throttling by LMh.
 
-f93e71fb8e65ba Liu Peibao  2022-11-03  242  static int setup_masklist(struct loongson_pci *priv)
-f93e71fb8e65ba Liu Peibao  2022-11-03  243  {
-f93e71fb8e65ba Liu Peibao  2022-11-03  244  	struct device *dev = &priv->pdev->dev;
-f93e71fb8e65ba Liu Peibao  2022-11-03  245  	struct device_node *dn, *parent = dev->of_node;
-f93e71fb8e65ba Liu Peibao  2022-11-03  246  	struct mask_entry *entry;
-f93e71fb8e65ba Liu Peibao  2022-11-03  247  	int devfn;
-f93e71fb8e65ba Liu Peibao  2022-11-03  248  
-f93e71fb8e65ba Liu Peibao  2022-11-03  249  	INIT_LIST_HEAD(&priv->masklist);
-f93e71fb8e65ba Liu Peibao  2022-11-03  250  
-f93e71fb8e65ba Liu Peibao  2022-11-03  251  	for_each_child_of_node(parent, dn) {
-f93e71fb8e65ba Liu Peibao  2022-11-03  252  		if (of_property_read_bool(dn, "skip-scan")) {
-f93e71fb8e65ba Liu Peibao  2022-11-03  253  			devfn = of_pci_get_devfn(dn);
-f93e71fb8e65ba Liu Peibao  2022-11-03  254  			if (devfn < 0)
-f93e71fb8e65ba Liu Peibao  2022-11-03  255  				continue;
-f93e71fb8e65ba Liu Peibao  2022-11-03  256  
-f93e71fb8e65ba Liu Peibao  2022-11-03 @257  			entry = devm_kzalloc(dev, sizeof(entry), GFP_KERNEL);
-                                                                                          ^^^^^^^^^^^^^
-Should be sizeof(*entry)
+This series has been tested on SM8450 based dev board with the OPP hack removed
+and hence there is a DTS change only for that platform. Once this series gets
+accepted, rest of the platform DTS can also be modified and finally the hack on
+the OPP core can be dropped.
 
-f93e71fb8e65ba Liu Peibao  2022-11-03  258  			if (!entry)
-f93e71fb8e65ba Liu Peibao  2022-11-03  259  				return -ENOMEM;
-f93e71fb8e65ba Liu Peibao  2022-11-03  260  
-f93e71fb8e65ba Liu Peibao  2022-11-03  261  			entry->devfn = devfn;
-f93e71fb8e65ba Liu Peibao  2022-11-03  262  			list_add_tail(&entry->entry, &priv->masklist);
-f93e71fb8e65ba Liu Peibao  2022-11-03  263  		}
-f93e71fb8e65ba Liu Peibao  2022-11-03  264  	}
-f93e71fb8e65ba Liu Peibao  2022-11-03  265  
-f93e71fb8e65ba Liu Peibao  2022-11-03  266  	return 0;
-f93e71fb8e65ba Liu Peibao  2022-11-03  267  }
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/lkml/YsxSkswzsqgMOc0l@hovoldconsulting.com/
+[2] https://lore.kernel.org/lkml/20220801054255.GA12039@thinkpad/t/
+
+Changes in v7:
+
+* Added a patch that returns the throttled frequency for cpufreq_driver->get()
+  callback (Sudeep & Viresh)
+* Added error check for kasprintf and allocated the clk name locally
+
+Changes in v6:
+
+* Removed the local variable clk_name (Matthias)
+* Added the clock id to the error message of devm_clk_hw_register()
+
+Changes in v5:
+
+* Switched to Hz unit for the CPU clocks
+
+Changes in v4:
+
+* Rebased on top of cpufreq/arm/linux-next branch
+
+Changes in v3:
+
+* Submitted the cpufreq driver cleanup patches as a separate series as
+  suggested by Viresh
+* Removed static keyword from clk_init_data declaration
+
+Changes in v2:
+
+* Moved the qcom_cpufreq_data allocation to probe
+* Added single clock provider with multiple clks for each freq domain
+* Moved soc_data to qcom_cpufreq struct
+* Added Rob's review for binding
+
+Manivannan Sadhasivam (4):
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add cpufreq clock provider
+  arm64: dts: qcom: sm8450: Supply clock from cpufreq node to CPUs
+  cpufreq: qcom-hw: Add CPU clock provider support
+  cpufreq: qcom-hw: Fix the frequency returned by cpufreq_driver->get()
+
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 12 +++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  9 ++
+ drivers/cpufreq/qcom-cpufreq-hw.c             | 87 ++++++++++++++++---
+ 3 files changed, 95 insertions(+), 13 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
 
