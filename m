@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1F1462DE6B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 15:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2428162DE6F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 15:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240580AbiKQOke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 09:40:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37962 "EHLO
+        id S240297AbiKQOlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 09:41:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239739AbiKQOkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 09:40:09 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83940769ED
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 06:37:32 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g7so3114931lfv.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 06:37:32 -0800 (PST)
+        with ESMTP id S240434AbiKQOkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 09:40:41 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F1D25DB95
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 06:39:40 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id be13so3126856lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 06:39:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fCEfq9NH8Txd9KLNPQmonzMnmxQCy2ftLPqDjx0d1XM=;
-        b=EmA3sjBz5H2yR99JeTN6Vh9iaQ0D5PN7CVH/ibKMUtO5ukBkhdnzTlYizblHm+DJA3
-         JEXolL/JVcfEIaXGpoCPsckYqHMbIkddPZNz8yNhBMOPSQyNDembs5wGkLV+U78ZNo6C
-         qNuS/EC2vCFiqmbuh8/kF1RGpWYdzFntpCyDoNY69pmuKPBNkqF6mF5xwsmdtO90D+M+
-         JXRJlIFtkBRR7i+/PLyYWaVk6z2H1M24zgHhh/IhaKGJ96PBFdjAuDUyqjALa8gXM7bx
-         NdpYk+s8e9vpWIITuX0idcB0/GN0m6VOnpC7n1QHExdvx5W3re5Y2wnj8QVASpSDbKvH
-         0ElA==
+        bh=hhqHTIdakMdpvgIm6p6wrgckSR+qp6nVKOdBw1n2NYA=;
+        b=RJSBSDT6way2QB6z7HOF4VHWQBZ9FM3sbXcO8/5CIix4Mp/vZMTmZLxUkLjNqtf1In
+         0vpKyapKN6tjlgUmXV9npaTLNABbXAkVOWSAeEBCZqbMrofXlF8zh6m6mHHtIV4XgWfB
+         IbXeXtGIaInF3qUbtgheXdOd/AWwMzj8iLF0isC5t5oBmmCQTBy7nklFHT7b0oxn6Yzv
+         1wIsBiVpdUG5vkX+Gy1/dfqhk/S/u5ziz3S82tjNRvMDfCJ59L/R5iJIVB1iuZWBt6FK
+         tH1acOcewQWWB0gA4+iapqwA/CI81cIWsXxy/YP0o+gVyLmpeZl2nGs6H3EthqQSST+a
+         Faow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fCEfq9NH8Txd9KLNPQmonzMnmxQCy2ftLPqDjx0d1XM=;
-        b=SZIA+Fp74Ihj5OFKDi6YihBo3EmTeX/4KK/uhm5Q2d2fEeHioMVoSBCCCcvDuTWh9B
-         +SyN8E8zG1Qa5eWey3VQKJoNkVFnlkkvsliBQ9dMEf2sKb3DKyZZQhY9fJCrcGczz2Sx
-         MEWu+ILk9T+Occb7AF8YauZOx0VQDRiWNZsq7gRc8O7p3L4LS48IhgrasxZiVwTP/4aI
-         GZT22ykMoYVFldWwwVVyv0lQmVyw9PJa5DrEYnhVJZhU9ZoOK8QXLi2TNECzpPjJHH9z
-         TlngSVE7b8vrlMj8WGjo0JDjIL9tIoiexJhVeLUIZECZTdrbkTxU+k+eMqFjpRsTjMlb
-         a14w==
-X-Gm-Message-State: ANoB5pnY6xvSoUQpbw7tSprbvtNu/e9Q7toP3DYf4jXV1jJnu7aovMP3
-        wYfSCjixriuKNSGC9akUXK3raGDic2ksFQ==
-X-Google-Smtp-Source: AA0mqf5IJJ3sM0gyU/Jp9vmJNg3hEnBRN2frLqi3Q2A3yjXYzyZexvnUPndedP1iVI8Kkux+1VRGtw==
-X-Received: by 2002:ac2:4119:0:b0:4b4:6ca6:c658 with SMTP id b25-20020ac24119000000b004b46ca6c658mr1105944lfi.359.1668695850947;
-        Thu, 17 Nov 2022 06:37:30 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id c12-20020ac244ac000000b004b4b5bde0c2sm170860lfm.279.2022.11.17.06.37.30
+        bh=hhqHTIdakMdpvgIm6p6wrgckSR+qp6nVKOdBw1n2NYA=;
+        b=rmwFOfk0AIFP9jo57ICiM++2VD4aieZCAHl01PjtKxpapcWXQwmoa7dNBsP6f+ikAe
+         hsjinbnUjpuBNx+hAgjUUQmME5xuz2xBbM+UvGrrRcs+/2agPHo8WYd0MyW3Yh6GULz2
+         g1Tlgr/QIlI1l1OXSNgq9geW4XAtq44XpRB8OU5J2vF9ZviovvokFp25CsdF+uBA08uk
+         WXuVr5YOjwb12rZmSmuEnybntaqx18FkytxFjCS85acwPVcgqb6ZNciofIrlowSgpNCw
+         Ab2Xg2Y03thNRQ5vI8cjM36e1xd0+fT2O4SR+6JG8AzYgS2ZrEcsvK0XLfTLlSwzDziH
+         Y4/Q==
+X-Gm-Message-State: ANoB5pkj1/vNgUpr6Bl1+oe3NeQAqtMX/BWfmPyFe9boWxijFRqvsmL6
+        6/GLHlZOprk9I3QOQYC/NN11Fw==
+X-Google-Smtp-Source: AA0mqf4NaGpugqjSDrrmrqo3jAPO3q9RsT21DAZOI0kv5akXE5GBfutYL6Bg/02pvozfY5G9BEbmeA==
+X-Received: by 2002:a19:a405:0:b0:4b0:8644:2951 with SMTP id q5-20020a19a405000000b004b086442951mr953840lfc.93.1668695978726;
+        Thu, 17 Nov 2022 06:39:38 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id n25-20020a195519000000b004ae394b6a6fsm173335lfe.246.2022.11.17.06.39.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 06:37:30 -0800 (PST)
-Message-ID: <5215dacb-40b9-c4ff-0768-ba26e486adfd@linaro.org>
-Date:   Thu, 17 Nov 2022 16:37:30 +0200
+        Thu, 17 Nov 2022 06:39:37 -0800 (PST)
+Message-ID: <23a4623d-4bc3-72cf-f56d-ad6737594977@linaro.org>
+Date:   Thu, 17 Nov 2022 15:39:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 2/2] soc: qcom: Add Qualcomm Ramp Controller driver
-Content-Language: en-GB
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-        kernel@collabora.com
-References: <20221117132956.169432-1-angelogioacchino.delregno@collabora.com>
- <20221117132956.169432-3-angelogioacchino.delregno@collabora.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221117132956.169432-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 6/9] dt-bindings: PCI: qcom: document IPQ8074 Gen3 port
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        bhelgaas@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, svarbanov@mm-sol.com,
+        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221116214841.1116735-1-robimarko@gmail.com>
+ <20221116214841.1116735-6-robimarko@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116214841.1116735-6-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 16:29, AngeloGioacchino Del Regno wrote:
-> The Ramp Controller is used to program the sequence ID for pulse
-> swallowing, enable sequence and linking sequence IDs for the CPU
-> cores on some Qualcomm SoCs.
+On 16/11/2022 22:48, Robert Marko wrote:
+> IPQ8074 has one Gen2 and one Gen3 PCIe port, with Gen2 already supported.
+> Document Gen3 port which uses the same controller as IPQ6018.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
->   drivers/soc/qcom/Kconfig           |   9 +
->   drivers/soc/qcom/Makefile          |   1 +
->   drivers/soc/qcom/ramp_controller.c | 342 +++++++++++++++++++++++++++++
->   3 files changed, 352 insertions(+)
->   create mode 100644 drivers/soc/qcom/ramp_controller.c
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
