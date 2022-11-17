@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E0762DC3C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:05:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 770A062DC46
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:07:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239572AbiKQNFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 08:05:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
+        id S239715AbiKQNHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 08:07:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbiKQNFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:05:13 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B95449085
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:05:12 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id k19so2635194lji.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:05:12 -0800 (PST)
+        with ESMTP id S234834AbiKQNHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:07:11 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1CC65133B
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:07:10 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id d20so2580346ljc.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 05:07:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6o6875WgReRaHrL7mfmplhzccEYmNiHd+KnxOuIwE1k=;
-        b=oGIGoKNZWt+TEvSGwX2huvWOYzkp/PzuBLlXqfNHLAqtbjhmLefFKPJO6BKqk7cw0E
-         f3UWAYwYIxbV82Zbsom1piXdothmHlenjh6V0kXM6sWlSzfG5hA7AcgKI9T2Op5ARSow
-         tI2DA+ND1mmWacjMpUgbQ0Voth0SWudHATKqlGnrhTs2+nFxm5SlLFXlPStz0DJoXKwr
-         DRJsTIvaE1Fjdcyu4lp3LjGxiLHXuvLASw6J9d9VF+i+QWc+I7yW8lP38sxH2MVbO+sv
-         h42zmLCkuHo+QcKUkmcXfh0tmmKsrWZPWCjGsrpr79zc/HRgtrbgM62XD5YxWyX8EVN1
-         HKuw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mTMuaBfKCMZXSl9LUyd4MIB5DqyeQyzncHYThdTUxqc=;
+        b=FrCOZ6nVXao0w5awL8iRMvlXfEYyNRkTaPpnAujQjsIOw03r6wIvF6HBvR7ZDd2EyM
+         aCROBjtDlRd7G2k4+P4mJDkl1uQsNj2IONW5BiM+a+EJJr9QP6N39PZb0eGaJs8awrB5
+         qIkMrwWAJCjpRU2gWSG40wnLdTjg9i17NsQ6jaS0gOAfDwgh/zns8o1ittbgVaTQ01b8
+         4xI+m78UCRp63u+03o1okyoXjzbYlAK7QqX2TYZeDmBhlvcWGyLjJQXVi5au8TLqasBu
+         3/RlO4q7QDNVwdhP60FwiXTeqNIaJSvEBIJHTRn1Oq1xJhLCAGVz7G4pjI7J4M700S+V
+         UAGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6o6875WgReRaHrL7mfmplhzccEYmNiHd+KnxOuIwE1k=;
-        b=D/tpNLFCwgAyPOUc2AFGXGQkW+u/RyxZU4+DQJH3J7TpsJkgm7UjDkkVv+QI5uaNZe
-         EOe1i/4aRljfT3reihdUvLkeRXBQXqrM/pTJv/jw034Ij6wAB/zwdJJdyuwrbjyq681M
-         SRNfRfvd6k8kD1vLJHqSIjARgWKKNCI6lIrcaJdwmy0QQO2V0RmKZK1bjQEWfWg6cus7
-         YtHkxPAdiJ2EZox9czJ/g+2Cbi5+HjyGwQl9g30coulOWfLPoLjSIxDSYZjpEMC226X+
-         fDRP1wqQvNFirwTaENw9B87sAQlh1T7ceTo+WybzbHuDObptwVmLq2094bL7ylckcg0i
-         Lmdg==
-X-Gm-Message-State: ANoB5pkHRzrlQT9mvUDYbblZxxUkRhAwOac7qdfuDs5cc7OEesxoLKmT
-        KUtzREbj9DpdEb3JQiDcOTkuHg==
-X-Google-Smtp-Source: AA0mqf5FeNxtFGS0rsYMZmkU3OkAGojteHdSJx0Ua6wFXCuYC9bMdmq8MmOjgUCvWnQIG50eLPE1Nw==
-X-Received: by 2002:a05:651c:2cb:b0:277:746:62c2 with SMTP id f11-20020a05651c02cb00b00277074662c2mr1068450ljo.236.1668690310730;
-        Thu, 17 Nov 2022 05:05:10 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q3-20020ac246e3000000b004b19f766b07sm142467lfo.91.2022.11.17.05.05.09
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mTMuaBfKCMZXSl9LUyd4MIB5DqyeQyzncHYThdTUxqc=;
+        b=1OHqOo+Wxu6sb424D/M8pqbg7FMxQJEx//m73JCrc1MpEJfU6bC2n82z28fWOS2viL
+         q0vP6mVL1osaZvOxLUt/Qa0fR3tY2nhlM888greqwia0ZPYJWp2DgpO/+oMAJSsWpw4p
+         RVVigUxtQLqwpW52JdLts8rtkwlAYeZp6qBl4EpUaRQ3sRTmuXoVfe7ltcwsg/tCUqFC
+         HsFmzhL1qORpMaXIpXCUEUaepsRgDnncTeJbrdrSku6km6uTxpwIbMe/u/qaECJLjrll
+         /3vRdU6Nnn5WByKmRu0EBsSWRWd3UDdj+mDacB6/RMK3BoO1SSeaGAvg7i+dmrhDK61s
+         Te0w==
+X-Gm-Message-State: ANoB5pmoxVlqB+aPoiL09xSa+p5kghz5x6MNpUL+SMRtiArga5fBHzMe
+        +4pLfst0Ho+kSDOuSqeL+lEXUQ==
+X-Google-Smtp-Source: AA0mqf75w4xQTmMedpWhD/8OvEx6h6E/KKGgAMpDrEd5hZKxX3G1odg3r90a7WzY1EkIFjWmWmh6sA==
+X-Received: by 2002:a2e:a58b:0:b0:277:278:de24 with SMTP id m11-20020a2ea58b000000b002770278de24mr928223ljp.388.1668690429153;
+        Thu, 17 Nov 2022 05:07:09 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id j7-20020ac253a7000000b004acb2adfa21sm136918lfh.297.2022.11.17.05.07.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 05:05:10 -0800 (PST)
-Message-ID: <0e3ec86f-2a2b-bdb9-09b2-db720b5af435@linaro.org>
-Date:   Thu, 17 Nov 2022 14:05:08 +0100
+        Thu, 17 Nov 2022 05:07:08 -0800 (PST)
+Message-ID: <306064c9-1b8a-03e5-97b5-6cb2dbb6d8a4@linaro.org>
+Date:   Thu, 17 Nov 2022 14:07:05 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02
- boards for the DHCOM i.MX6ULL SoM
-Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add SM6350 GPU SMMUv2
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        kernel@dh-electronics.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221117103134.6452-1-cniedermaier@dh-electronics.com>
- <20221117103134.6452-2-cniedermaier@dh-electronics.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117103134.6452-2-cniedermaier@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221117094422.11000-1-konrad.dybcio@linaro.org>
+ <20221117094422.11000-2-konrad.dybcio@linaro.org>
+ <77805b04-2724-dc93-eae7-21d9c7caf0a4@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <77805b04-2724-dc93-eae7-21d9c7caf0a4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,16 +81,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 11:31, Christoph Niedermaier wrote:
-> Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
-> for the DHCOM i.MX6ULL SoM.
+
+
+On 17/11/2022 13:55, Krzysztof Kozlowski wrote:
+> On 17/11/2022 10:44, Konrad Dybcio wrote:
+>> SM6350 has a qcom,smmu-v2-style SMMU just for Adreno and friends.
+>> Document it.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> ---
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> (although this might need rebase later on Dmitry's refactoring)
+Oh, I forgot to mention this patch was made on top of Dmitry's work. But 
+it's good that you pointed that out!
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
