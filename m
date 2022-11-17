@@ -2,52 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF17662E214
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F27762E230
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:44:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240731AbiKQQgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 11:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
+        id S235103AbiKQQn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 11:43:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240620AbiKQQfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:35:55 -0500
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04AC5BD5A
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 08:35:08 -0800 (PST)
-Date:   Thu, 17 Nov 2022 16:34:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1668702904; x=1668962104;
-        bh=j/4kwDCI6yUOY0rbKjZzBAtwpPVlmEC4din4OfwGdS4=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=v5piwaPlqFYkj5womeFjfYDC5qiVpMjM7aWis7iwCbg7PT+E2KU9pAFaJ2GkDOW2z
-         uergSTIvPHwyAOKlFp+3VgLV3THaOWMD4v641ZVYlsIRR0Sy3COF40lIg53UJOJ6eP
-         Qc/qJOupnh/TnnVXTXFXFfGRqVI+FY5hEh6QwkT5KpOjRwpHTgz+3/jJOY10LBIgiF
-         AM2ZfJWB3mAHbDJlvekjS7+m6eHTu+Ky46UdJzQqURGvaZL9O8JzHQDff1/HmuGeQI
-         hCB30WO60muixsNzi4m3By9rGjhBwHBrI0uNpxrx0RMGCo3YryVC1F95XfeUkOv+Hj
-         I19FSfScQM02A==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." 
-        <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: [PATCH 1/3] dt-bindings: input/touchscreen: Add compatible for IST3038 and IST30XXB
-Message-ID: <20221117163440.23394-2-linmengbo0689@protonmail.com>
-In-Reply-To: <20221117163440.23394-1-linmengbo0689@protonmail.com>
-References: <20221117163440.23394-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S234550AbiKQQn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:43:58 -0500
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF352657B;
+        Thu, 17 Nov 2022 08:43:57 -0800 (PST)
+Received: by mail-qt1-x82a.google.com with SMTP id jr19so1428385qtb.7;
+        Thu, 17 Nov 2022 08:43:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GggQuWVXiwWxnY25xlzAWAfbbKYugnv9nFXyHH2GBfI=;
+        b=QjIFIX6amaTPJRadtZIsYXyGPIrY/FwW+vxSmdZreQfcTGG3/u16LrJtKAvA4F1zEB
+         +G3Lh+I83x7BB0Ubgl33IweqkZvxhHdUanJ8YN53uTG/Nc6KAUs3vhvsntErlm/qPL3b
+         CiJjpoGtrxBvjhlDYfNKhO3EsGlQH02KpqsXT/xMiE04wmYjwVwrZnJNUSsf+V7mPiI6
+         QHcXMVLDf/8c1LFkc3MzFMLWC22tsKCJAAhL6CdS3RaaXKECemIhhPD2yksoP8K1d0Qz
+         /Jd44+86hJu8x8vte0GCnvxzBg67lZKD6FZx9v2cqaeubZsKc+qzUbMgAbGlwsD4nqlZ
+         20Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GggQuWVXiwWxnY25xlzAWAfbbKYugnv9nFXyHH2GBfI=;
+        b=bCsODV/jMYG4Rdqr1OhT4q4tKCVb4r93jqKm1Jk3YmQyO4s25O6VllCyYGpD/jxdfl
+         1RFCF0s5D6gw9li8aggEB1sKuMdEJ9mPcEKyae0WI06jYJZ5QgVaeETz2W9hqJ0zsBRE
+         w7AaoMiQVcGn6V8auC1ZIQluFXsB2uQCez+W6wxWtKZQiT7KGdj4gLkHijVy0+esIJ05
+         uU/IemATI84tTdy0GwZRPB/1oE/k/vuBXcT52pvrD2VUPNN/RqcB30ZsdByEeC+cViWa
+         n3yO4atJ05+QyQQndblY25amkqXZwWc8GvZfovxQvWLTNfYbxtwYhTtxKOl2zHOHhBeL
+         yYXw==
+X-Gm-Message-State: ANoB5pnRteWqZXNWVChs6cPCwVolzJIMhORUMH1C8WTYddOYhzQ0LLfM
+        HwU/A8Q3NG0PQQVnc82PyMlcIAot+HOJr3MiAqI=
+X-Google-Smtp-Source: AA0mqf7ao1p3NkvFAhoWW33WHgtfzeQG5uWSAjzY9cEiFg0OSuDb2w+JyhvOJqSurhGafC9a9iKElyAytyJxd6b0ZEU=
+X-Received: by 2002:ac8:75c9:0:b0:3a5:4a1a:6ff0 with SMTP id
+ z9-20020ac875c9000000b003a54a1a6ff0mr2957305qtq.481.1668703436729; Thu, 17
+ Nov 2022 08:43:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+References: <20221117160447.294491-1-jjhiblot@traphandler.com> <20221117160447.294491-5-jjhiblot@traphandler.com>
+In-Reply-To: <20221117160447.294491-5-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 17 Nov 2022 18:43:20 +0200
+Message-ID: <CAHp75VfMdGRz5mqhQDZT3ozwmYF2OmT8uk1yGMHXLf5Z-m_tUw@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] leds: class: store the color index in struct led_classdev
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,37 +70,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markuss Broks <markuss.broks@gmail.com>
+On Thu, Nov 17, 2022 at 6:04 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> This information might be useful for more than only deriving the led's
+> name. And since we have this information, we can expose it in the sysfs.
 
-Imagis IST3038 and IST30XXB are variants (firmware?) of Imagis IST3038 IC,
-add the compatible for them to the IST3038C bindings.
+...
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-[Change from IST3038B to IST3038 and IST30XXB]
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml  | 2 ++
- 1 file changed, 2 insertions(+)
+> +What:          /sys/class/leds/<led>/color
+> +Date:          October 2022
+> +KernelVersion: 6.1
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist=
-3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist=
-3038c.yaml
-index e3a2b871e50c..85390f6ffe36 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.y=
-aml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.y=
-aml
-@@ -18,7 +18,9 @@ properties:
-=20
-   compatible:
-     enum:
-+      - imagis,ist3038
-       - imagis,ist3038c
-+      - imagis,ist30xxb
-=20
-   reg:
-     maxItems: 1
---=20
-2.30.2
+6.2
 
+We missed v6.1. And I'm not sure with the current state of affairs
+with LEDS subsystem maintenance we are not going to miss v6.2.
 
+-- 
+With Best Regards,
+Andy Shevchenko
