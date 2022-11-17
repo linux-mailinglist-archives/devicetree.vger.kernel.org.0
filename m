@@ -2,134 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A3F62DAEF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 208AE62DAFF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:34:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240102AbiKQMdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:33:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57810 "EHLO
+        id S234017AbiKQMeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:34:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239529AbiKQMcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:32:47 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE4C0748C6;
-        Thu, 17 Nov 2022 04:31:21 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id s12so2306843edd.5;
-        Thu, 17 Nov 2022 04:31:21 -0800 (PST)
+        with ESMTP id S240117AbiKQMd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:33:56 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C2B1208D
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:33:34 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id s24so2473438ljs.11
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:33:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jNlwoVZ6isbTxQ6Fyi04RsVlWpKWGpVpX4qwF59U3k0=;
-        b=jDqBvSXSDnn5qg+QnHzXcI7c08NsFOOHtVnQ161mlGnRQ5pp6Wj4ihkDz6QZW/II4j
-         qKt3pKxHh6LAlsPJfYa7tWUuRhu4sa8Znh+6AqiR97dQPqz1lxHvGVjLixhapGjyK9iG
-         KUNqf5gm0crsFNa/+zNU30R3ia6+UbeWsa2cAlyQGBKjyJC58NYVkeQOkDSuh/c4ADhZ
-         Kc1X+jEusaPrDtcQwRmnB9hOk629pl6bVCR4YAiJM3mEBZtWKIQLSWUT6Os6xmL1ZRMQ
-         ozVcs1W5F1ZIEn3mzjP4LxTYGnAQQOHjX/Gg7nB9zodbNlxMx+41QNos6ncYoE5g1WyE
-         rL1Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U8TReWwUSXElyK+mKSFqY3hsdNui99iOxPQBAxPdloM=;
+        b=iN5zkrul3GVTJbtunuN2P+DGyoNisIIirJIXG46DwBGW2UJUM3oQNolAtgChfRA9OA
+         crSXiF+AhDjuKPcQY4M9yIAHECG624D4W1zk/dclVc/MPHG6s4/iZpgfEvTORe40iiwz
+         NHvdL5AhNGL9TRu37hB3ly8d/jYzSNkrNGqW5DTKKLs01pnucQCHL186Lc2UrimOZjsp
+         M2CKnx3UilRcN1ro+vBL3UcFT4biumPNqPSD2e5GXYT91QwY//MpWc5bzvt5LtOKSEnO
+         TtWzZCdj189WFYIwv1F5vt9vXmeKfnEDLYoXu4Icsiixv8VMKO/m3E6c29EFiYtjERAP
+         kQcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jNlwoVZ6isbTxQ6Fyi04RsVlWpKWGpVpX4qwF59U3k0=;
-        b=2qLMblnHjOoSidNiw2Oxc++zmTzNOTsFPnQrQic7XrA2Vla53KcJZNYx/0dmBGECut
-         lzncudgn4+5CPpwhgWrgwAQKU1U0otSRivziEa9AMeI7ZJaHR87SiwtGSguHuDTr6tsl
-         R0gKrjmC0DPSr3+LhVcOwJK0oUObinFshxy8pakRZmUmRbi1VSP2+1fqODD6eYbGFx5V
-         /Wx6n9TBsatx1sv4W8xOoju50dCrc/j0Uz562tFL2wU+YBQhEt/udGK1pvvO7grufaga
-         0cxbPhqoOHZCMfZ9TIHFVO0eqvwWetDUkKlBI8caFgQDZTAUtj/n+K0RkxP/HXtIUIfd
-         Dn9A==
-X-Gm-Message-State: ANoB5pm/XZYp6cK2b/h9oRpAC+Cb/MQPQmD8khUVYjbey/XnlCUf8RUY
-        AlJJHsy0IET/raQMKLyu/Qm4LvsVshS+Z69fooYz7GeJNRw=
-X-Google-Smtp-Source: AA0mqf5ojvCHVZasiK8GgXehtbh0pi3YqZa9rEl1/7vRevJBctBpQcu74pPoX3eFtAXLSLJINq0fK7RuissmhP/zdL4=
-X-Received: by 2002:a05:6402:2987:b0:45c:a9d3:d535 with SMTP id
- eq7-20020a056402298700b0045ca9d3d535mr2006776edb.0.1668688280422; Thu, 17 Nov
- 2022 04:31:20 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U8TReWwUSXElyK+mKSFqY3hsdNui99iOxPQBAxPdloM=;
+        b=3syVgcVh8kWyWRMLYrZhIBG1i+WENw6Z+AMKaiF0zQ1KDX2HwJC3Cw7bn5TxVkoOsq
+         eyXnpyXVmmbW5ELVa5bc8NnbDkW2JJ+5diI/BstbmAflauBR93vPZCeXiUrfwXLiQimw
+         SyRl6gLgY5iVwMWd4sPsUkkUpFVs4sUYfAQkvuzDFioRrrJajCOsB5boQ/hBIAcQG8+Z
+         HBZ3tGueyk7N70K2OGXrt+LuOEjfkdQgw6ofl57hMxn//7aq9D7Ip6qjjBr4163GXIxG
+         7/UnASGa+JXTz8ETYdRHLVfRxGgIg8AVbJ/uaCwCTjd82pzFxgJocBGeADwaGgFTewjA
+         pTrQ==
+X-Gm-Message-State: ANoB5pnQg5TEXMX4MtYVwXQ3xkoaewRlwn93tUS27pU2YAfdah0a+NDY
+        qzjLUe+GGBzlzYXAMRZtmpGjmQ==
+X-Google-Smtp-Source: AA0mqf6oN0gZyT7BOI2ieb7TbLqHVSqMfrMq1tn0e4/SzfNYQAMrlGAGjmyLj4/zoCg9egXcn1gJKg==
+X-Received: by 2002:a2e:3512:0:b0:277:c68:874b with SMTP id z18-20020a2e3512000000b002770c68874bmr835701ljz.261.1668688413222;
+        Thu, 17 Nov 2022 04:33:33 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q23-20020ac246f7000000b004a27d2ea029sm128432lfo.172.2022.11.17.04.33.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 04:33:31 -0800 (PST)
+Message-ID: <56e640fe-d3b7-31f1-2171-5040a7e043d2@linaro.org>
+Date:   Thu, 17 Nov 2022 13:33:30 +0100
 MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221107175305.63975-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWgCdR8E+bgAprfSmL3S-1aY2R7frba9du-XfCeEV7T0g@mail.gmail.com>
-In-Reply-To: <CAMuHMdWgCdR8E+bgAprfSmL3S-1aY2R7frba9du-XfCeEV7T0g@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 17 Nov 2022 12:30:54 +0000
-Message-ID: <CA+V-a8soA=7bLXXqJCLtrceNhMCgwnHg9KUOr4m0DkHUuCYi4Q@mail.gmail.com>
-Subject: Re: [PATCH RFC 3/5] arm64: dts: renesas: r9a07g043[u]: Add IRQC node
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v8 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
+ Pensando Elba System Resource chip
+Content-Language: en-US
+To:     "Larson, Bradley" <Bradley.Larson@amd.com>,
+        Rob Herring <robh@kernel.org>, Brad Larson <brad@pensando.io>
+Cc:     "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
+        "gsomlo@gmail.com" <gsomlo@gmail.com>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "p.yadav@ti.com" <p.yadav@ti.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "piotrs@cadence.com" <piotrs@cadence.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "samuel@sholland.org" <samuel@sholland.org>,
+        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
+        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>
+References: <e9d8c14d-38b3-0401-7bfc-b2bd7ab36c52@linaro.org>
+ <20221116193940.67445-1-blarson@amd.com>
+ <20221116223045.GA1130586-robh@kernel.org>
+ <BL0PR12MB2401ECC21B2EA83A5D806E369B069@BL0PR12MB2401.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <BL0PR12MB2401ECC21B2EA83A5D806E369B069@BL0PR12MB2401.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 17/11/2022 01:41, Larson, Bradley wrote:
+> [AMD Official Use Only - General]
+> 
+> From: Rob Herring <robh@kernel.org>
+> Sent: Wednesday, November 16, 2022 2:30 PM
+> 
+>>> v8:
+>>>  - Apply review request changes and picked the two unique examples
+>>>    for the 4 chip-selects as one has the reset control support and
+>>>    the other an interrupt.  Missed the --in-reply-to in git
+>>>    send-email for v7, included in this update.
+>>
+>> No, you haven't. By default in git, you don't have to do anything. See
+>> --thread and --no-chain-reply-to options. If you are messing with
+>> --in-reply-to, you are doing it wrong.
+>>
+>> Please resend the whole series properly threaded.
+> 
+> Will resend the series
+> 
+>>> diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+>>> new file mode 100644
+>>> index 000000000000..622c93402a86
+>>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+>>> @@ -0,0 +1,60 @@
+> ...
+>>> +
+>>> +title: AMD Pensando Elba SoC Resource Controller
+>>> +
+>>> +description: |
+>>> +  AMD Pensando Elba SoC Resource Controller functions are
+>>> +  accessed with four chip-selects.  Reset control is on CS0.
+>>
+>> One device with 4 chip-selects? Then I'd expect 'reg = <0 1 2 3>;'
+>>
+>> Hard to say more because I don't have the whole thread nor remember what
+>> exactly we discussed before. That was 100s of bindings ago...
+> 
+> I agree and the example for v7 had all 4 chip-selects shown.  This is not a pick and
+> choose device on what functions to use for a usable system.  Krzysztof requested
+> only showing two chip-selects in the example.
 
-Thank you for the review.
+The problem is that you describe here SPI controller (and its chip
+selects) but binding is for the SPI device. The example is not the
+problem...
 
-On Thu, Nov 17, 2022 at 11:13 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Nov 7, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add IRQC node to R9A07G043 (RZ/G2UL) SoC DTSI.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > ---
-> > Note,
-> > - clocks and resets are differnt when compared to RZ/Five hence its added
-> >   in r9a07g043u.dtsi
-> > - We have additional interrupt on RZ/Five hence interrupts are added in
-> >   r9a07g043u.dtsi
->
-> Which additional interrupts?
-> Do you already have the r9a06g043f-variant ready, so we can compare?
->
-I missed this RZ/G2UL has this interrupt too. So ignore this point.
+> ...
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +    spi {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +        num-cs = <4>;
 
-> > - clock-names is also added in r9a07g043u.dtsi to avoid dtbs_check warning
->
-> Why does this warn?
->
-If we add the clock-names property in the base dtsi we get a
-dtbs_check warning "clocks is a dependency of clock-names" for RZ/Five
-as we haven't added the clocks property to it.
+Drop this property as well, unless it is necessary to explain
+"amd,pensando-elbasr" device.
 
-> > --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-> > @@ -538,6 +538,14 @@ pinctrl: pinctrl@11030000 {
-> >                                  <&cpg R9A07G043_GPIO_SPARE_RESETN>;
-> >                 };
-> >
-> > +               irqc: interrupt-controller@110a0000 {
-> > +                       #interrupt-cells = <2>;
-> > +                       #address-cells = <0>;
-> > +                       interrupt-controller;
-> > +                       reg = <0 0x110a0000 0 0x10000>;
->
-> The size of the "reg" property will be 0x20000 on RZ/Five, to cover the
-> extra [NIT]MSK registers, so I think this belongs in r9a07g043u.dtsi, too.
->
-Agreed.
+>>> +
+>>> +        system-controller@0 {
+>>> +            compatible = "amd,pensando-elbasr";
+>>> +            reg = <0>;
+>>> +            spi-max-frequency = <12000000>;
+>>> +            #reset-cells = <1>;
+>>> +        };
 
-Cheers,
-Prabhakar
+Best regards,
+Krzysztof
+
