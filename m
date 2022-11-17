@@ -2,107 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D1162E1A4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B274E62E1C1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:28:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240599AbiKQQ0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 11:26:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35104 "EHLO
+        id S240559AbiKQQ2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 11:28:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239820AbiKQQ0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:26:25 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B82BBE33;
-        Thu, 17 Nov 2022 08:25:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D78D3CE1E7F;
-        Thu, 17 Nov 2022 16:25:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BA29C433C1;
-        Thu, 17 Nov 2022 16:25:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668702308;
-        bh=Z0xBqZcccm8SbVQrnC5CSdtczjQ3AfNDFzFjDM6WrAc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZqKl3wWu7HA5rheHtNtCjwIkojZDp/bll/jjsfgjdxy6sMKWqMauxH3cOkjmoIAEA
-         J3t10xflavu1kM/j1mq7Ff8FaoFOLz+TzXDRD1qTmWfvT+HMEDD/ij8GpSznUXEuKR
-         5CAprSniDajdEiztK25t9dOkn6KFkBuuIHYsWQk40xTRnhBZK2RHyBTHoY+oragxER
-         IjNaUEewT4SZkl0FlWR+iCR3Sq8Lxravlzx9jrTWeb46ysi4fkl9hPUjNY5E5gsgg4
-         eM6iuk9VKnL7+wt+HqUDoULRHVDm2ecgJleLrjjgGUyveMvPEosCJqiGDFjXXn2zDo
-         kg4E0vQjnNQMQ==
-Message-ID: <59715ef2-3335-7f8e-54f1-c4315ceba232@kernel.org>
-Date:   Thu, 17 Nov 2022 18:25:03 +0200
-MIME-Version: 1.0
-Subject: Re: [PATCH v2 00/10] interconnect: osm-l3: SC8280XP L3 and DDR
- scaling
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S240596AbiKQQ1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:27:42 -0500
+Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6BC73B8A;
+        Thu, 17 Nov 2022 08:27:35 -0800 (PST)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout3.routing.net (Postfix) with ESMTP id CC97562631;
+        Thu, 17 Nov 2022 16:27:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1668702454;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=gJcKjc3U/1ZgUtZqBtBqjQ25Ma5XTx9jmqwsXvu8sJ8=;
+        b=YF2QEJksGC+YKvEzRPajXrUawr/zW5CrAmEt+nZJ80HVWBJo0fG+WOqRxUVMUPqKt7u+CY
+        E7pwGQ9EGTW9/QTyCIgZfs0icZgE2wHQDsuCE2PsJiUBEvuOZFceN/5Mj5fMm0ODsri6Ln
+        EWy3oCXTXbOVI70qyZ15vfhiVtBectM=
+Received: from frank-G5.. (fttx-pool-80.245.75.65.bambit.de [80.245.75.65])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 40E96100501;
+        Thu, 17 Nov 2022 16:27:32 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     Mike Tipton <quic_mdtipton@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20221111032515.3460-1-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: [PATCH v5 00/11] Add BananaPi R3
+Date:   Thu, 17 Nov 2022 17:27:17 +0100
+Message-Id: <20221117162728.20608-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: ef396687-64f9-4e40-a6f7-12ef3db568a6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.11.22 5:25, Bjorn Andersson wrote:
-> The SC8280XP currently shows depressing results in memory benchmarks.
-> Fix this by introducing support for the platform in the OSM (and EPSS)
-> L3 driver and support for the platform in the bwmon binding.
-> 
-> Then add the necessary nodes and values throughout the sc8280xp and
-> sa8540p dtsi files to make the various devices on these platforms scale
-> both L3, memory bus and DDR.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Good stuff! Thanks Bjorn!
+This Series adds some Nodes to mt7986 devicetree and the BananaPi R3
 
-I plan to merge everything except the dts patches, that should go
-through the qcom tree.
+This version is rebased on Matthias' DTS64 next Branch from 2022/11/11.
 
-BR,
-Georgi
+i included sams series for mt7986 DTS with small changes
+https://patchwork.kernel.org/project/linux-mediatek/cover/20220427124741.18245->
+
+6.2 will support dtso extension for dt overlays:
+
+"kbuild: Allow DTB overlays to built from .dtso named source files"
+https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=363547d2191cbc32ca954ba75d72908712398ff2
+
+There is some discussion about inclusion of dt-overlays and if it is
+better to support mmc also by these:
+
+https://patchwork.kernel.org/comment/25092116/
+https://patchwork.kernel.org/comment/25085681/
+
+i had run full dtbs-check but i end up with some strange warnings in
+ethernet-node that should not come up as phy-handle and sfp/managed
+properties are already defined.
+
+phy-handle made optional
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documen>
+
+property sfp/managed (which is included for mac subnode in yaml above):
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documen>
+
+changes:
+v5:
+- changed usb ranges/reg/unit-adress
+- added reviewd-by's except usb-part due to changes
+
+v4:
+- dropped RFC prefix
+- rebase on matthias' mtk dts-next (for 6.2) branch
+- added author information to overlays
+- fixed sfp binding error
+- added fix for moving wed_pcie node
+- readded missing compatible patches
+
+v3:
+- changed mmc pull-ups
+- added patch for board binding (sent separately before)
+- added pcie node in mt7986 (not yet again in r3)
+- added dt overlays
 
 
-> Bjorn Andersson (10):
->    interconnect: qcom: osm-l3: Use platform-independent node ids
->    interconnect: qcom: osm-l3: Squash common descriptors
->    interconnect: qcom: osm-l3: Add per-core EPSS L3 support
->    interconnect: qcom: osm-l3: Simplify osm_l3_set()
->    dt-bindings: interconnect: Add sm8350, sc8280xp and generic OSM L3
->      compatibles
->    arm64: dts: qcom: Align with generic osm-l3/epss-l3
->    arm64: dts: qcom: sc8280xp: Add epss_l3 node
->    arm64: dts: qcom: sc8280xp: Set up L3 scaling
->    dt-bindings: interconnect: qcom,msm8998-bwmon: Add sc8280xp bwmon
->      instances
->    arm64: dts: qcom: sc8280xp: Add bwmon instances
-> 
->   .../interconnect/qcom,msm8998-bwmon.yaml      |   5 +
->   .../bindings/interconnect/qcom,osm-l3.yaml    |  24 ++-
->   arch/arm64/boot/dts/qcom/sa8540p.dtsi         |  39 +++++
->   arch/arm64/boot/dts/qcom/sc7180.dtsi          |   2 +-
->   arch/arm64/boot/dts/qcom/sc7280.dtsi          |   2 +-
->   arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 152 ++++++++++++++++++
->   arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +-
->   arch/arm64/boot/dts/qcom/sm8150.dtsi          |   2 +-
->   arch/arm64/boot/dts/qcom/sm8250.dtsi          |   2 +-
->   drivers/interconnect/qcom/osm-l3.c            | 126 ++++-----------
->   10 files changed, 252 insertions(+), 104 deletions(-)
-> 
+
+
+
+Frank Wunderlich (7):
+  arm64: dts: mt7986: move wed_pcie node
+  dt-bindings: phy: mediatek,tphy: add support for mt7986
+  dt-bindings: usb: mtk-xhci: add support for mt7986
+  dt-bindings: PCI: mediatek-gen3: add SoC based clock config
+  dt-bindings: PCI: mediatek-gen3: add support for mt7986
+  arm64: dts: mt7986: add Bananapi R3
+  arm64: dts: mt7986: add BPI-R3 nand/nor overlays
+
+Sam Shih (4):
+  arm64: dts: mt7986: add spi related device nodes
+  arm64: dts: mt7986: add usb related device nodes
+  arm64: dts: mt7986: add mmc related device nodes
+  arm64: dts: mt7986: add pcie related device nodes
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  64 ++-
+ .../bindings/phy/mediatek,tphy.yaml           |   1 +
+ .../bindings/usb/mediatek,mtk-xhci.yaml       |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   4 +
+ .../mediatek/mt7986a-bananapi-bpi-r3-emmc.dts |  31 ++
+ .../mediatek/mt7986a-bananapi-bpi-r3-nand.dts |  55 +++
+ .../mediatek/mt7986a-bananapi-bpi-r3-nor.dts  |  69 +++
+ .../mediatek/mt7986a-bananapi-bpi-r3-sd.dts   |  25 +
+ .../dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi | 458 ++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts  | 166 +++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 162 ++++++-
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts  |  63 +++
+ 12 files changed, 1081 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+
+-- 
+2.34.1
 
