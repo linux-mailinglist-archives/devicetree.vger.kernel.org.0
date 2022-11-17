@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F0A62D527
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 09:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62EE562D52D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 09:40:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233394AbiKQIjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 03:39:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S239401AbiKQIkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 03:40:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbiKQIjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 03:39:39 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426D3E9B;
-        Thu, 17 Nov 2022 00:39:37 -0800 (PST)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AH3t39G012367;
-        Thu, 17 Nov 2022 09:39:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Qq3kXihqfEk1AIbvKZAImcsB1VgZAEaIMZ7JwZWPYJc=;
- b=oJ/i4ZLEOnxBgb3yKj8+Mc1Uzcw/tSTF5EjuEIuzDhtiQ7JEIsJJqoZ56aJAoYEDoIev
- ey1oaTRxGb4a4Sc1iaKmiSo8nUaMrA3aAMAjuR+vhPFRqUFWtLUzzwirQEtp3GCcLMtc
- bTAvBDX23geApSfhLH010rllAZcWOTKTtT0dVuB03G7g4d7OXTBP92dn3Pv7Wk4N25qu
- HaeW0VuDKt8LQ4W1I4eZq5g0jjch+1z5Uoa/2aE6y/wenFtTE/fAmq1F4A8RoKqQ+eL7
- 7KbxwTYlAJLv0Y9F4cEuPmOK8sIpDYtSuNLztXE2wLUW3WWKJEAEHypYm2QL2Hvrveuv qQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kv9ydnc4v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 17 Nov 2022 09:39:14 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6E62F10003A;
-        Thu, 17 Nov 2022 09:39:07 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 68605216ED8;
-        Thu, 17 Nov 2022 09:39:07 +0100 (CET)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.32; Thu, 17 Nov
- 2022 09:39:06 +0100
-Message-ID: <04c725a0-1382-10e7-8404-992aad007f78@foss.st.com>
-Date:   Thu, 17 Nov 2022 09:39:06 +0100
+        with ESMTP id S229991AbiKQIkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 03:40:51 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE02553EF8
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 00:40:50 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id r18so1340979pgr.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 00:40:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qplMXaAH/oEU5/8F3cf/ZUOQW9zkLXWofLHcj31TN/s=;
+        b=Vuy2P2T2r6KO/AE/XiLPILumQC7f2JK5sa1C10KBZ1znHMVCPbCzWeKaN25fOw0eKL
+         9SJ+eO/MqGvXQ58PvwxYqVKz+6CyDG+A1uegZU6d8RyaZ28foyko7GwmzJFKSKUC2n+R
+         2KTVJFMA/OYtFbQ7RULhUhx0/GRc+zUcyZlStNw1k4y1qQ9HcpSt/08vQmIFRXW6JUzZ
+         1CxDaQLbCxn+/eYOE2F6oJdWdbvKOeiEmK3xRtjfzsUB+lhAUD33yEjTZ5b4jmUOgz2i
+         yLwZsZ3CNIdWWnim49pScyzm0jEjv/ueOlBYF7iQnL3Q3VVdypZi+D6n+iDINfa4A2Xy
+         ojMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qplMXaAH/oEU5/8F3cf/ZUOQW9zkLXWofLHcj31TN/s=;
+        b=kXkNeDl1y4CBfosA14Jv7x9fsPPjZMUwcdD7pZICJnJn1B4gEjvpvRff3Gi0XeEfvm
+         FEwtmlRN4cNK/zBWVrFAOzIkPTow8fQiLEP/PCNy/wTwkb+GJFfxeMxD0t/whXZmkhFz
+         NXhg/Bw3l7W2mpnVwpkJaccrk8cXFQPf76HXZ+J+8bVGaSumFwUS5r4Y21T5aUzujXYl
+         Pxx3GIxpWPIKJ+HCsgkew/luSWftsytmrSQatQ1Jx3SQ5DA2aYFXRnHOK+DllAFk4OOk
+         psCLH6IiNfJ36WHsu53TEVLeUfStyMFXPqQo/WrXqgkrV6h+d3AjZMBM6rUDKGTGhXRB
+         fOMg==
+X-Gm-Message-State: ANoB5plrF69JYuRsIoS31q4yD1fSDinlPapRtMF4GlLCDVaLO4LqePo1
+        KGcMvAHiUOlGE4n5bDd5bgHr2w==
+X-Google-Smtp-Source: AA0mqf5TDC85f9Z1mBM8VjxRxLxfOytfZLf24tEIgB5ZFuSHvP/eHelRdQ/4T74LRasVrciC6VCbNg==
+X-Received: by 2002:a63:224c:0:b0:46b:8e9:747 with SMTP id t12-20020a63224c000000b0046b08e90747mr1159323pgm.365.1668674450331;
+        Thu, 17 Nov 2022 00:40:50 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id o14-20020a170902d4ce00b00186acb14c4asm693768plg.67.2022.11.17.00.40.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 00:40:49 -0800 (PST)
+Message-ID: <81cd642f-c5fb-77ec-a634-5655d5b6088c@9elements.com>
+Date:   Thu, 17 Nov 2022 14:10:45 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/2] ARM: dts: stm32: add mcp23017 IO expander on I2C1 on
- stm32mp135f-dk
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v6 3/3] hwmon: (max6639) Change from pdata to dt
+ configuration
 Content-Language: en-US
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221024094648.145251-2-amelie.delaunay@foss.st.com>
- <20221024094648.145251-3-amelie.delaunay@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20221024094648.145251-3-amelie.delaunay@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-pwm@vger.kernel.org
+References: <20221116213615.1256297-1-Naresh.Solanki@9elements.com>
+ <20221116213615.1256297-4-Naresh.Solanki@9elements.com>
+ <20221117074510.qqtjc6h3bnh5rccx@pengutronix.de>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <20221117074510.qqtjc6h3bnh5rccx@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-17_04,2022-11-16_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amélie
 
-On 10/24/22 11:46, Amelie Delaunay wrote:
-> MCP23017 is an IO expander offering 16 input/output port expander with
-> interrupt output.
-> On stm32mp135f-dk, only INTA is routed (on PG12), but MCP23017 can mirror
-> the bank B interrupts on INTA, that's why the property microchip,irq-mirror
-> is used.
+
+On 17-11-2022 01:15 pm, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> ---
->   arch/arm/boot/dts/stm32mp135f-dk.dts | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
+> On Wed, Nov 16, 2022 at 10:36:15PM +0100, Naresh Solanki wrote:
+>> max6639_platform_data is not used by any in-kernel driver and does not
+>> address the MAX6639 fans separately.
+>> Move to device tree configuration with explicit properties to configure
+>> each fan.
+>>
+>> Non-DT platform can still use this module with its default
+>> configuration.
+>>
+>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> index a87ab067c955..d5fc6462ba33 100644
-> --- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-> +++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-> @@ -112,6 +112,20 @@ &i2c1 {
->   	/* spare dmas for other usage */
->   	/delete-property/dmas;
->   	/delete-property/dma-names;
-> +
-> +	mcp23017: pinctrl@21 {
-> +		compatible = "microchip,mcp23017";
-> +		reg = <0x21>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-parent = <&gpiog>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcp23017_pins_a>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		microchip,irq-mirror;
-> +	};
->   };
->   
->   &i2c5 {
+> What changed here since v5? Please either add a changelog below the
+> tripple-dash for a new revision, or make sure that all relevant people
+> get the cover letter.
+> 
+> It seems you didn't address my comments for v5 :-\
+Not sure what I missed but did following changes:
+Removed unused header max6639.h
+Used dev_err_probe instead,
+Removed of_pwm_n_cells,
+if condition for freq_table
+removed pwm_get_state & instead use pwm->state
+division/multiplication optimizations,
+indentation of freq_table,
 
-Both patches applied on stm32-next.
+> 
+> Best regards
+> Uwe
+> 
 
-thanks
-Alex
+Thanks,
+Naresh
