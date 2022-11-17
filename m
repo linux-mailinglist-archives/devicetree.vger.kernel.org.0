@@ -2,123 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF23562E39B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 892A162E36D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 18:51:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234884AbiKQR5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 12:57:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
+        id S239809AbiKQRva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 12:51:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239919AbiKQRtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:49:07 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B626441
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:49:05 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id h12so3649921ljg.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 09:49:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oKps2kj8vyioDRFfnDtXuYlVJybPlQiLeu0C1JmglC0=;
-        b=DuNRImNUYAM9cXvN3ZheeodNKt4sZu1SzG7HzaUYBDsffFPakszDtyQfV3nYY103tR
-         TzJJ505h03FRuj0vuH/xW7SU0KKAl++T8l353Opez4Qw68bEokbGrrIpRqL57pqipOaI
-         VBBS27iR0paB2fXDQoJ44ljd8Za65G1HJIyMXU3pdgsKV3vweNf6a+QdDTJdcTSQqBpG
-         iIJSyDMckDE8dXlrm3xL33sVzL80fsncQ6MhRHoJfQ1kPl28jkz3co0531TtU0Ix6C6B
-         f8Ai09k9C1W7dLmoyV8iWp2Wsmw2n6aY48Vvhnerx9qSFjPZBo2TKT+vZpXWCEpG1PNL
-         Sriw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oKps2kj8vyioDRFfnDtXuYlVJybPlQiLeu0C1JmglC0=;
-        b=N1Vj9cA+dJCqB/SW6SBsmpsJP17eat11UzAIksIWae/DXmKGKH3Bl6IPSH4xnSLvXr
-         x7VbJqweXphMkSkXtDyFsIP8q4wmIMnxhzOFo9DrjtBQmGSUf2oQJNUuWseicNORoG/4
-         Tehgii/LG51BeiVvv8ZNpZB+orHQSczJsRA87ZwUr09Q/M7QGs/32Fz2ZLR94d6KdLer
-         jROTeBmhTHWMjCwZspx/69xSmZgzP1WV+JP0lHNc0CInqQIa07Jol9E3uVPyPj8gNCn3
-         wqTMweXJkqgwbJMaGQJdCrJEPBEXPtbFtv7Yq7motxsByMLJ9VncTNshLPy+ObRuhOz1
-         irAw==
-X-Gm-Message-State: ANoB5plwByx3wnh7j9a+dsfohy/ECRWU1fy7FaHt1oEOhyFqhK1mA2ve
-        Stz0+dscQG2lycGz5P6t2Mra3E/YV7vK+k1c
-X-Google-Smtp-Source: AA0mqf51Os+HnRrnHg9xxz4KBwdAm2B2vV6ky4H0rkIvKUTHbBLN4yaPF9EoABdMDFxnSPz+8qWbnA==
-X-Received: by 2002:a05:651c:1592:b0:277:b9f:cdbd with SMTP id h18-20020a05651c159200b002770b9fcdbdmr1561707ljq.0.1668707343815;
-        Thu, 17 Nov 2022 09:49:03 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm247258lfh.197.2022.11.17.09.49.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 09:49:03 -0800 (PST)
-Message-ID: <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
-Date:   Thu, 17 Nov 2022 18:49:02 +0100
+        with ESMTP id S234053AbiKQRva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 12:51:30 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6E17C47F;
+        Thu, 17 Nov 2022 09:51:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2C50DB82135;
+        Thu, 17 Nov 2022 17:51:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CCA7C433C1;
+        Thu, 17 Nov 2022 17:51:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668707485;
+        bh=38koVR43mTOL8jxW346ThSx1pydJmdL3Nwey53jlaPg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=STfxwhRMAZLvUBcGczUXyNf3kUia2dEAGMqx7cdu4bb2aNzRuP18hsHbZppmcGBs/
+         PC8p3121SiKxneBiBS9FAYVyl2+9z4vXcdpOP8ZOtXuQYOr3KGXSQ5a3cwUwwBlJBl
+         wjsbFwjYMfFjRWAUdOfEqTdMTbdVDn41Zj7tLRWjQRUQYSh6/rII1s2zG2xdCrMRyN
+         sQDznbGOU1qX65Amqk7qPKAmPtcw7RelvYzLHZPKdXfnOlY6MHEIf/Dj9Mo0eR33VO
+         Np0TNhXuSPV8DvKMkzUz15sBjH61ePmZPqRIdA7nh/yYgFbNiCIOg9CkVFfLi0JCrn
+         aCj1B3aQJOmhg==
+Message-ID: <4c59027a-7eb1-0e07-e4cc-ecc3541d6c9c@kernel.org>
+Date:   Thu, 17 Nov 2022 18:51:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to
- dt-schema
+Subject: Re: [PATCH v11 2/2] dt-bindings: thermal: Add Sunplus schema
 Content-Language: en-US
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
- <20221116174921.GA25509@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116174921.GA25509@pengutronix.de>
+To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     lh.kuo@sunplus.com
+References: <cover.1665990345.git.lhjeff911@gmail.com>
+ <038211f33e4d5dd5129712aef2738a83577c7745.1665990345.git.lhjeff911@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <038211f33e4d5dd5129712aef2738a83577c7745.1665990345.git.lhjeff911@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 18:49, Philipp Zabel wrote:
-> On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-König wrote:
-> [...]
->> new file mode 100644
->> index 000000000000..c3cf6f92a766
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
->> @@ -0,0 +1,110 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 and i.MX27
->> +
->> +maintainers:
->> +  - Sascha Hauer <s.hauer@pengutronix.de>
->> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - fsl,imx1-fb
->> +              - fsl,imx21-fb
+On 17/11/2022 10:04, Li-hao Kuo wrote:
+> Add bindings for Sunplus thermal driver
 > 
-> Are the items/enum keywords superfluous here? Couldn't this just be two
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> ---
+> Changes in v12:
+>  - no change.
+>  - Reviewed by Mr. Rob Herring <robh+dt@kernel.org>
 > 
->          - const: fsl,imx1-fb
->          - const: fsl,imx21-fb
-> 
-> entries?
 
-Only "items" is, so should be dropped.
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
 
 Best regards,
 Krzysztof
