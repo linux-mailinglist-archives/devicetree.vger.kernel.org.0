@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A772B62DCED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A9C62DCF4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 14:39:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240143AbiKQNhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 08:37:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50796 "EHLO
+        id S240157AbiKQNjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 08:39:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239790AbiKQNhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:37:46 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D75207341C;
-        Thu, 17 Nov 2022 05:37:45 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AHBQYOH015054;
-        Thu, 17 Nov 2022 13:37:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uEplLWzWASejo+99geU63RDGo9jF1pVm8nthEcH5omk=;
- b=MyGn3rXLQ0/hFrhWGxawIT0ptHtF2UJDao6q0iOMa8h3bC1bP19rh7hor4Rfwn83RyRw
- oFO/9pnuOkaG9YV+R2KXKGNHtkB8aD85TYavfuoB9gfWPojWR19w/KIJ227NGz0R3dKk
- zeJ4yhhY25IQ/7hRHpB9BOTrgV6LVcWxEsjo78Nbdp+pi5Gwhw9+7S3C9GAsuQv8WKNw
- I318f+OmIWe4A62a+K4/huR8i9FFGX8SHR0rKfwe8bp+ujqNHxETqb0rbdD3diZLjZ2f
- auP/9ce+t2EN1ciZ0Yl/xS+c4x41bRwFg5qlat1+BhwEDKcsa8u70d9wm3qGc+ZSpEqT yA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kwm36gfep-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 17 Nov 2022 13:37:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AHDbT1q030354
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 17 Nov 2022 13:37:29 GMT
-Received: from [10.216.25.63] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 17 Nov
- 2022 05:37:20 -0800
-Message-ID: <6c45c99c-1c27-8a5b-55d9-5242fdc4d234@quicinc.com>
-Date:   Thu, 17 Nov 2022 05:37:14 -0800
+        with ESMTP id S240154AbiKQNjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 08:39:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E266312D1E;
+        Thu, 17 Nov 2022 05:39:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 75F9561E27;
+        Thu, 17 Nov 2022 13:39:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5066C4314B;
+        Thu, 17 Nov 2022 13:39:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668692348;
+        bh=/UK+9sDrGPjgYtOOoh910+Ifr/UWpMEvVanzIq+snBo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iM5BRIb4wuR5k4Un53xb27JuddLigAwQBtkaGctVlq6BYa4RLyWlNA8DGL9rPM249
+         wi+pLcecfJZOq0WDMGmCgHVksj5jTqKr0Qliy/4zbtVUv5t49Lybv2iO83ulkwxrLO
+         CCEzZNqIIUgtHDBsJag5UxyXwEKOi3tFakAtSGA+wr/cwrowHb3f20aOZ50fkJEtWm
+         rZ0MEjQsoauuoCiGVSlelELIDxMtVXcZVV/71GnM7lD1MWP6XqR6QlNAr/rWJIrZHK
+         WrRgdkVhhTpiV+v4SKZAo9ZxyJCD4FCh29vtEv6y43om+vR7uhlbYyFLzqaVn6G7Rj
+         dlUqzsb/FQeyA==
+Received: by mail-lj1-f182.google.com with SMTP id l8so2688784ljh.13;
+        Thu, 17 Nov 2022 05:39:08 -0800 (PST)
+X-Gm-Message-State: ANoB5pllpQAgGs+Z11h5PvmN4GJ0Pp+n90shTblZ/IYGOW5/kqmfIwqF
+        UlTnI9tMgV9MOH/7wLuYbnS2p1EGMXVayDn2Iw==
+X-Google-Smtp-Source: AA0mqf68l6JlfMAOxB9IAZotx0gr19b4kW6puUPFGWYKGLd9TbYZHrsir62Is5Ol46Kkm065jI97tYyYf0dpuvBsM3M=
+X-Received: by 2002:a05:651c:2328:b0:277:14cf:6da2 with SMTP id
+ bi40-20020a05651c232800b0027714cf6da2mr960398ljb.94.1668692346755; Thu, 17
+ Nov 2022 05:39:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [Freedreno] [PATCH v2 03/12] drm/msm/dpu: Refactor sc7280_pp
- location
-Content-Language: en-US
-To:     Robert Foss <robert.foss@linaro.org>, <robdclark@gmail.com>,
-        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <konrad.dybcio@somainline.org>,
-        <quic_kalyant@quicinc.com>, <swboyd@chromium.org>,
-        <angelogioacchino.delregno@somainline.org>,
-        <loic.poulain@linaro.org>, <quic_khsieh@quicinc.com>,
-        <quic_vpolimer@quicinc.com>, <vkoul@kernel.org>,
-        <dianders@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jonathan Marek <jonathan@marek.ca>,
-        <vinod.koul@linaro.org>, <quic_jesszhan@quicinc.com>,
-        <andersson@kernel.org>
-References: <20221115133105.980877-1-robert.foss@linaro.org>
- <20221115133105.980877-4-robert.foss@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20221115133105.980877-4-robert.foss@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DgjysGU7gCAzOJJtp4-Jp-LiMGlkiHji
-X-Proofpoint-ORIG-GUID: DgjysGU7gCAzOJJtp4-Jp-LiMGlkiHji
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-17_06,2022-11-17_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 clxscore=1011 impostorscore=0 suspectscore=0 malwarescore=0
- bulkscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211170103
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221103210650.2325784-1-sean.anderson@seco.com>
+ <20221109224110.erfaftzja4fybdbc@skbuf> <bcb87445-d80d-fea0-82f2-a15b20baaf06@seco.com>
+ <20221110152925.3gkkp5opf74oqrxb@skbuf> <7b4fb14f-1ca0-e4f8-46ca-3884392627c2@seco.com>
+ <20221110160008.6t53ouoxqeu7w7qr@skbuf> <ce6d6a26-4867-6385-8c64-0f374d027754@seco.com>
+ <20221114172357.hdzua4xo7wixtbgs@skbuf> <209a0d25-f109-601f-d6f6-1adc44103aee@seco.com>
+ <20221114195321.uludij5x747uzcxr@skbuf>
+In-Reply-To: <20221114195321.uludij5x747uzcxr@skbuf>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 17 Nov 2022 07:38:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK+NFL-K6TF+chEFSLh9OuvV+nKUAF5KtO=aBsvqqpd4w@mail.gmail.com>
+Message-ID: <CAL_JsqK+NFL-K6TF+chEFSLh9OuvV+nKUAF5KtO=aBsvqqpd4w@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 00/11] net: pcs: Add support for devices
+ probed in the "usual" manner
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,51 +95,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 14, 2022 at 1:53 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+>
+> On Mon, Nov 14, 2022 at 01:08:03PM -0500, Sean Anderson wrote:
+> > On 11/14/22 12:23, Vladimir Oltean wrote:
+> > > On Thu, Nov 10, 2022 at 11:56:15AM -0500, Sean Anderson wrote:
+> > >> these will probably be in device trees for a year before the kernel
+> > >> starts using them. But once that is done, we are free to require them.
+> > >
+> > > Sorry, you need to propose something that is not "we can break compatibility
+> > > with today's device trees one year from now".
+> >
+> > But only if the kernel gets updated and not the device tree. When can
+> > such a situation occur? Are we stuck with this for the next 10 years all
+> > because someone may have a device tree which they compiled in 2017, and
+> > *insist* on using the latest kernel with? Is this how you run your
+> > systems?
+>
+> I'm a developer (and I work on other platforms than the ones you're
+> planning to break), so the answer to this question doesn't mean a thing.
+>
+> > We don't get the device tree from firmware on this platform; usually it
+> > is bundled with the kernel in a FIT or loaded from the same disk
+> > partition as the kernel. I can imagine that they might not always be
+> > updated at exactly the same time, but this is nuts.
+>
+> What does "this" platform mean exactly? There are many platforms to
+> which you've added compatible strings to keep things working assuming a
+> dtb update, many of them very old. And those to which you did are not by
+> far all that exist. There is no requirement that all platform device
+> trees are upstreamed to the Linux kernel.
+>
+> > The original device tree is broken because it doesn't include compatible
+> > strings for devices on a generic bus. There's no way to fix that other
+> > than hard-coding the driver. This can be done for some buses, but this
+> > is an MDIO bus and we already assume devices without compatibles are
+> > PHYs.
+>
+> Let's be clear about this. It's "broken" in the sense that you don't like
+> the way in which it works, not in the sense that it results in a system
+> that doesn't work. And not having a compatible string is just as broken
+> as it is for other devices with detectable device IDs, like Ethernet
+> PHYs in general, PCI devices, etc.
+>
+> The way in which that works here, specifically, is that a generic PHY driver
+> is bound to the Lynx PCS devices, driver which does nothing since nobody
+> calls phy_attach_direct() to it. Then, using fwnode_mdio_find_device(),
+> you follow the pcsphy-handle and you get a reference to the mdio_device
+> (parent class of phy_device) object that resulted from the generic PHY
+> driver probing on the PCS, and you program the PCS to do what you want.
+>
+> The PHY core does assume that mdio_devices without compatible strings
+> are phy_devices, but also makes exceptions (and warns about it) - see
+> commit ae461131960b ("of: of_mdio: Add a whitelist of PHY compatibilities.").
+> Maybe the reverse exception could also be made, and a warning for that
+> be added as well.
+>
+> > In the next version of this series, I will include a compatibility
+> > function which can bind a driver automatically if one is missing when
+> > looking up a phy. But I would really like to have an exit strategy.
+>
+> You'll have to get agreement from higher level maintainers than me that
+> the strategy "wait one year, break old device trees" is okay. Generally
+> we wouldn't have answers to this kind of questions that depend on whom
+> you ask. Otherwise.. we would all know whom to ask and whom not to ;)
 
+A window of time can work, but only when there's other reasons
+everyone must update the firmware/DT.
 
-On 11/15/2022 5:30 AM, Robert Foss wrote:
-> The sc7280_pp declaration is not located by the other _pp
-> declarations, but rather hidden around the _merge_3d
-> declarations. Let's fix this to avoid confusion.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Sadly I haven't found anything "official" in either Documentation/devicetree/usage-model.rst
+> or Documentation/process/submitting-patches.rst. Maybe I missed it?
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Documentation/devicetree/bindings/ABI.rst
 
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 14 +++++++-------
->   1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> index 4dac90ee5b8a..8f2d634f7b6b 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> @@ -1294,6 +1294,13 @@ static const struct dpu_pingpong_cfg sm8150_pp[] = {
->   			-1),
->   };
->   
-> +static const struct dpu_pingpong_cfg sc7280_pp[] = {
-> +	PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, -1),
-> +	PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, -1),
-> +	PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, -1),
-> +	PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, -1),
-> +};
-> +
->   static struct dpu_pingpong_cfg qcm2290_pp[] = {
->   	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, 0, sdm845_pp_sblk,
->   		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
-> @@ -1352,13 +1359,6 @@ static const struct dpu_merge_3d_cfg sm8450_merge_3d[] = {
->   	MERGE_3D_BLK("merge_3d_3", MERGE_3D_3, 0x65f00),
->   };
->   
-> -static const struct dpu_pingpong_cfg sc7280_pp[] = {
-> -	PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, -1),
-> -	PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, -1),
-> -	PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, -1),
-> -	PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, -1),
-> -};
-> -
->   /*************************************************************
->    * DSC sub blocks config
->    *************************************************************/
+The exact policy depends on the platform (or family of platforms). In
+short, if *anyone* cares, then compatibility should not be broken.
+Vladimir uses platforms in question and cares, so don't break the
+platforms.
+
+Rob
