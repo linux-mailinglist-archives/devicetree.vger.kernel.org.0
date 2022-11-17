@@ -2,119 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8C462D879
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3975762D87C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239310AbiKQKwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 05:52:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41218 "EHLO
+        id S239612AbiKQKxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 05:53:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239414AbiKQKw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:52:29 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68B11CB13
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1668682231;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gjXLVyb6zwFPJe/OWlCp49ZVjP/sJNSDFeUY35Ol3A8=;
-        b=W6q/bekgWbQSZm44C3hxfB2kt2AUHmuMcmOXoSSFzC2B5nbXPVlzQVmMSQYIJ+gX3O6+bL
-        R/FLtYkf6FqHS9l3QpGYHHYiDdAahW1uHpwHjhTl1CwoqXdrjEdqUI5iQY9P+C2LypVg7/
-        pCx7EFofAHyrq71FVD34Sinj4LZPFkM=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-195-qPdNFYQjPtOYep6ljFIzkg-1; Thu, 17 Nov 2022 05:50:30 -0500
-X-MC-Unique: qPdNFYQjPtOYep6ljFIzkg-1
-Received: by mail-qk1-f200.google.com with SMTP id i17-20020a05620a249100b006fa2e10a2ecso1645775qkn.16
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:50:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gjXLVyb6zwFPJe/OWlCp49ZVjP/sJNSDFeUY35Ol3A8=;
-        b=VgNdiwb30kwR0LGBOvvE+B8RYAs317Ysse0S2o1MjJt/J18DeqfJLcwzXS4cKws/bz
-         asTsTqgE54ohWqjOYIQndBRax+uw0w/Am18c0oAJwvW9Yu4fOko+hMq9uuTW5HMsmHGY
-         5OIRNqVOnNdsZ9TfHv2lN77X0bsFBT6jMWoPF44leOFlUtFbxwYPZeC1c9sE7ZWyTOAq
-         vVGF+XligjNsNB4Rk3Axk9rP77VfMVB1/DnCrdv4zKcjSgDLk07S/4225P6/bTSRfEyH
-         jYvrL5QNIjUIVcBJE4eJkS0ryRUM595BzPz4jqgzUV4lpYn3Fd0Hwi/R3xjATRViTSAm
-         OybQ==
-X-Gm-Message-State: ANoB5plljuSVLhZMN1WMc9M9mhPHhgat3gkR1A48mGLbMhcLLj0SfzUh
-        dkUVnNi3KiAQN22Ye3YDqRibHczm2hSktSOXNRUSBXrnIj2WZ/MrB3oQNV6QsrW4enBrTkaG+FA
-        OJKpS3NG+XZX4AyZflYWsDg==
-X-Received: by 2002:a37:5fc2:0:b0:6fa:9812:42f2 with SMTP id t185-20020a375fc2000000b006fa981242f2mr1057166qkb.754.1668682229904;
-        Thu, 17 Nov 2022 02:50:29 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4RXZjMGaetDJxgafbFUWe5YQR5qu294zU1xPcswkZUjgobAH+kXp2W1odUKDMEVqvGYKrhTw==
-X-Received: by 2002:a37:5fc2:0:b0:6fa:9812:42f2 with SMTP id t185-20020a375fc2000000b006fa981242f2mr1057156qkb.754.1668682229703;
-        Thu, 17 Nov 2022 02:50:29 -0800 (PST)
-Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id i15-20020a05620a248f00b006fa9d101775sm236022qkn.33.2022.11.17.02.50.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 02:50:29 -0800 (PST)
-From:   Brian Masney <bmasney@redhat.com>
-To:     andersson@kernel.org
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jejb@linux.ibm.com,
-        martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sc8280xp: add interconnect properties to ufs nodes
-Date:   Thu, 17 Nov 2022 05:49:57 -0500
-Message-Id: <20221117104957.254648-3-bmasney@redhat.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221117104957.254648-1-bmasney@redhat.com>
-References: <20221117104957.254648-1-bmasney@redhat.com>
+        with ESMTP id S232825AbiKQKxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:53:06 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A8C5ADF7;
+        Thu, 17 Nov 2022 02:52:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1668682379; x=1700218379;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PgRUd/gJcLJbdlYAmpEJ7HzosgEa1Fgc6gekCvI/uMM=;
+  b=wc+3Uc0gmuAMn5+RMaPo8J904atdsKv6pGcG5W7gHfmXXVBla4cLO7ww
+   knd6AyHAk+1dUTfR5ZAjU9bv7EowKygpJCpAEld9w85l/OioasazE3N73
+   tG3OoO15DZoh2qYfp+JzdBRRYLhDBu1p5avSDHEfKgV/mjyDlm3ecfOck
+   7eerUdGWZ1VGtuqd4qXO5aTwhMpRy253nGkPy1MomAXdnLbcXBFcy2t7U
+   hty7LtrohVgh2fv6+U4cCsXJMoMnzpqUxqT0cotV2u8SYDL7KOLXTKKmj
+   PZcIVBNSPHEeHOjnmmpdigwc/QjLkVJZSUhJTWIRd7RF7CtTZt080ih+n
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,171,1665471600"; 
+   d="scan'208";a="183965587"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Nov 2022 03:52:58 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 17 Nov 2022 03:52:53 -0700
+Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Thu, 17 Nov 2022 03:52:50 -0700
+From:   Tudor Ambarus <tudor.ambarus@microchip.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mtd@lists.infradead.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+Subject: [PATCH 0/8] spi: Introduce spi-cs-setup-ns dt property
+Date:   Thu, 17 Nov 2022 12:52:41 +0200
+Message-ID: <20221117105249.115649-1-tudor.ambarus@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing interconnects and interconnect-names properties to the
-ufs_mem_hc and ufs_card_hc nodes.
+SPI NOR flashes have specific cs-setup time requirements without which
+they can't work at frequencies close to their maximum supported frequency,
+as they miss the first bits of the instruction command. Unrecognized
+commands are ignored, thus the flash will be unresponsive. Introduce the
+spi-cs-setup-ns property to allow spi devices to specify their cs setup
+time.
 
-Signed-off-by: Brian Masney <bmasney@redhat.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Tudor Ambarus (8):
+  spi: dt-bindings: Introduce spi-cs-setup-ns property
+  spi: Introduce spi-cs-setup-ns property
+  spi: Reintroduce spi_set_cs_timing()
+  spi: atmel-quadspi: Add support for configuring CS timing
+  ARM: dts: at91-sama5d27_wlsom1: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91-sama5d27_som1: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91: sama5d2_icp: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91: sam9x60ek: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 6bc12e507d21..17c8dc8d4767 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -856,6 +856,10 @@ ufs_mem_hc: ufs@1d84000 {
- 
- 			iommus = <&apps_smmu 0xe0 0x0>;
- 
-+			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
-+			                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
-+			interconnect-names = "ufs-ddr", "cpu-ufs";
-+
- 			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
- 				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
- 				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-@@ -924,6 +928,10 @@ ufs_card_hc: ufs@1da4000 {
- 
- 			iommus = <&apps_smmu 0x4a0 0x0>;
- 
-+			interconnects = <&aggre2_noc MASTER_UFS_CARD 0 &mc_virt SLAVE_EBI1 0>,
-+			                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_CARD_CFG 0>;
-+			interconnect-names = "ufs-ddr", "cpu-ufs";
-+
- 			clocks = <&gcc GCC_UFS_CARD_AXI_CLK>,
- 				 <&gcc GCC_AGGRE_UFS_CARD_AXI_CLK>,
- 				 <&gcc GCC_UFS_CARD_AHB_CLK>,
+ .../bindings/spi/spi-peripheral-props.yaml    |  5 +++
+ arch/arm/boot/dts/at91-sam9x60ek.dts          |  3 +-
+ arch/arm/boot/dts/at91-sama5d27_som1.dtsi     |  3 +-
+ arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi   |  3 +-
+ arch/arm/boot/dts/at91-sama5d2_icp.dts        |  3 +-
+ drivers/spi/atmel-quadspi.c                   | 34 +++++++++++++++
+ drivers/spi/spi.c                             | 43 +++++++++++++++++++
+ 7 files changed, 90 insertions(+), 4 deletions(-)
+
 -- 
-2.38.1
+2.25.1
 
