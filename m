@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F27B162E7B6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 23:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6CFC62E7FB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 23:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241224AbiKQWGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 17:06:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
+        id S239518AbiKQWPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 17:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241049AbiKQWFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 17:05:34 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5BB77DEC4;
-        Thu, 17 Nov 2022 14:04:51 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id k2so8639865ejr.2;
-        Thu, 17 Nov 2022 14:04:51 -0800 (PST)
+        with ESMTP id S238729AbiKQWPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 17:15:16 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD90374CCD;
+        Thu, 17 Nov 2022 14:15:15 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id k22so3125695pfd.3;
+        Thu, 17 Nov 2022 14:15:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3haNHYMRPW6WiFon59sm9KfQnepVjzDNjIc2zbZJCx0=;
-        b=E0NZwP6AisbwhAYSoYbaL6OpUuZqp6MhD3s0QUfvNM3jHJ6cQFxK2/mXngpBhihcO7
-         FvlNzbJaifsfpDY0bJbtNUCWymD5LynFJySzEENUnEJZH5uSJqouRn74gMJCdV9H+HHp
-         Z6diOJIThgM8KvXTaaE05Lug//gL4fiC/TFqUrZ7r0e/CU5BGRDuJDYdv02XYPkMFfeU
-         XV1TRwpt95s5HIEMLY8R4LpCPI+yZSWPRzG2Z/L6Rhnbsp1vKNWen68M6sigGa4Aoyun
-         FuAr9lIBKDfT74FEm0k0GPtM/D9FA5AGFNLDBpYoxR5RQe8zVndvHeWwCHl2mzPkKw5v
-         C9Rw==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=N7duF0PlBN6lshFkS+sJiVqebLxCzfkfifRx7exo7Ek=;
+        b=McAXDy1TOpM5aPvG8ZiiqTGYqbwZcW75cWxetdt2nAQxdBw0yaXeZlMhTDO7VEgyXg
+         QzGVfGVn9v8NRKVA/+EjdSI1BRy8puyv95ZkWV893lh7xJMhGvjJU8UYY0K4sgucCA6X
+         3dlEn7C39n7SOsrLeD7yS3eqEmpPKwPaK5yM5ScQCFnKqKOrcwan3ktbubyqGuLO9PVm
+         gxx/97ioLsEMJvx5nP2cBShQyRI/jTuvKhXt1czYcsCaZAXDQY4UP7KRJB92J4UfnU6Q
+         jRsybrijYe0UmFYYeBn9J6bZ2AZltREQo0uYp5+sMqgfwgYiz8YW7chm4QA88VD/xPmU
+         q61w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3haNHYMRPW6WiFon59sm9KfQnepVjzDNjIc2zbZJCx0=;
-        b=jGCEWxiFjTh2QeQWGPsj/M8BeEAxPbuAhunkkx2aDG1kFWh++lxSq89xLYbjZl3DeH
-         ZWJfYwaJWm5KlBLpiZgN0r4LUbCSRQbIjCyEfyB9vrmRQo+eHfiFVqzRenz5plkKoz+3
-         hILti2RFZHoEWYlSXVornaI4WD7S0zq7mvHDu8B//2CDmSY0t1N0KQrzlFjX68M1DL3b
-         pFR7+Q3Z5VrvugLbznOg1+Q+ZaQf178aO93VJdhqoeasq9vwS2/1ZC2sWsvk01Mbvz8/
-         z9UAezFVrKflJQSncDd1xjIQOjk0GWdyepvYb44/SQvHLMH5do/upVMxVl88uNF3Wzm0
-         JZgw==
-X-Gm-Message-State: ANoB5plt1sy3FIU8uyABY/6cagcptScSZy0IKNgMrFY2u3YagVnz9zmt
-        o8Pi0X64rijn6HvA/FPzwWqGmfPFkd0=
-X-Google-Smtp-Source: AA0mqf6JiKtGesCmhiy+n56uKHBKuudhP46oqgu7uN4o9Glfem/gXc6BefeMHK/1uEPIiYau2PPxLg==
-X-Received: by 2002:a17:906:6403:b0:7b2:9667:241e with SMTP id d3-20020a170906640300b007b29667241emr3812019ejm.115.1668722690341;
-        Thu, 17 Nov 2022 14:04:50 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id a10-20020a170906274a00b007b29d292852sm879166ejd.148.2022.11.17.14.04.49
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N7duF0PlBN6lshFkS+sJiVqebLxCzfkfifRx7exo7Ek=;
+        b=0MGz4vEhsv/phHm+RD0NwT85H+d4h8R9C6qZxHrRz10TXilq8P5SH4tYoyZGdzN7eq
+         eZT8zeuNBbWdmfVbYhb2fq2y5dUlu4fl+KY02l1ijLNfEnFB6qS90qBKTDS8SgQf1axv
+         K9jU0VeiLzpXdtxOb5boOs2UUYLgNkdPbJ1/5lr5ZxI7JelgVsFrTHoz9padSqBCudIX
+         bcVhMfY/b75ffMzNL00+nVzsxffW+/1LkCDJ5BxX/ihL1Cz0G83cJUAker/lm+fTbIG1
+         CFi3nulJeO4Pk2/kEjtHyarnYHzWaXUm5bGHfyyFFkfd38MayaeBncr4HdLA6rLi4L5y
+         L/UQ==
+X-Gm-Message-State: ANoB5pmmOPhP7stP5E1HzLKUm+jvFug6eeUi6CKzPhhYLEhy1/QAV6ad
+        xukJyk7jiqy+qjhu6RQ4d5M=
+X-Google-Smtp-Source: AA0mqf4zecntXXKVewH88hqZ02AGSJ09Uw1l40rvqqDZAcis8clBig99HgaKBF70S/DYMZiHRORqhA==
+X-Received: by 2002:a63:5819:0:b0:476:8ce9:be5d with SMTP id m25-20020a635819000000b004768ce9be5dmr3996499pgb.15.1668723315212;
+        Thu, 17 Nov 2022 14:15:15 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:e4c5:c31d:4c68:97a0])
+        by smtp.gmail.com with ESMTPSA id i6-20020a170902c94600b00172e19c5f8bsm1930696pla.168.2022.11.17.14.15.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 14:04:49 -0800 (PST)
-Date:   Thu, 17 Nov 2022 23:04:48 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     vidyas@nvidia.com, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: tegra234-p3701-0000: Remove
- 'enable-active-low'
-Message-ID: <Y3awAIfd6mCcDS1v@orome>
-References: <20220919104350.834777-1-festevam@denx.de>
+        Thu, 17 Nov 2022 14:15:14 -0800 (PST)
+Date:   Thu, 17 Nov 2022 14:15:11 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     linmengbo0689@protonmail.com, alistair@alistair23.me,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH 2/2] Input: cyttsp5 - add vddio regulator
+Message-ID: <Y3ayb8b9vyQHRabc@google.com>
+References: <20221117190507.87535-1-linmengbo0689@protonmail.com>
+ <20221117190507.87535-3-linmengbo0689@protonmail.com>
+ <4fe0c7c3-f5eb-4c01-8607-ce79a768cb06@wanadoo.fr>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dxIzlKQrPY+WnXUo"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220919104350.834777-1-festevam@denx.de>
-User-Agent: Mutt/2.2.8 (2022-11-05)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4fe0c7c3-f5eb-4c01-8607-ce79a768cb06@wanadoo.fr>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -74,47 +76,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 17, 2022 at 10:16:40PM +0100, Christophe JAILLET wrote:
+> Le 17/11/2022 à 20:05, Lin, Meng-Bo a écrit :
+> > The Samsung touchscreen controllers are often used with external pull-up
+> > for the interrupt line and the I2C lines, so we might need to enable
+> > a regulator to bring the lines into usable state. Otherwise, this might
+> > cause spurious interrupts and reading from I2C will fail.
+> > 
+> > Implement support for a "vddio-supply" that is enabled by the cyttsp5
+> > driver so that the regulator gets enabled when needed.
+> > 
+> > Signed-off-by: Lin, Meng-Bo <linmengbo0689-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+> > ---
+> >   drivers/input/touchscreen/cyttsp5.c | 19 ++++++++++++-------
+> >   1 file changed, 12 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/input/touchscreen/cyttsp5.c b/drivers/input/touchscreen/cyttsp5.c
+> > index 24ab1df9fc07..d02fdb940edf 100644
+> > --- a/drivers/input/touchscreen/cyttsp5.c
+> > +++ b/drivers/input/touchscreen/cyttsp5.c
+> > @@ -190,7 +190,7 @@ struct cyttsp5 {
+> >   	int num_prv_rec;
+> >   	struct regmap *regmap;
+> >   	struct touchscreen_properties prop;
+> > -	struct regulator *vdd;
+> > +	struct regulator_bulk_data supplies[2];
+> >   };
+> >   /*
+> > @@ -767,7 +767,7 @@ static void cyttsp5_cleanup(void *data)
+> >   {
+> >   	struct cyttsp5 *ts = data;
+> > -	regulator_disable(ts->vdd);
+> > +	regulator_bulk_disable(ARRAY_SIZE(ts->supplies), ts->supplies);
+> >   }
+> >   static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
+> > @@ -790,9 +790,12 @@ static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
+> >   	init_completion(&ts->cmd_done);
+> >   	/* Power up the device */
+> > -	ts->vdd = devm_regulator_get(dev, "vdd");
+> > -	if (IS_ERR(ts->vdd)) {
+> > -		error = PTR_ERR(ts->vdd);
+> > +	ts->supplies[0].supply = "vdd";
+> > +	ts->supplies[1].supply = "vddio";
+> > +	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(ts->supplies),
+> > +				      ts->supplies);
+> > +	if (error < 0) {
+> > +		dev_err(ts->dev, "Failed to get regulators, error %d\n", error);
+> 
+> Hi,
+> 
+> dev_err_probe()?
+> I think that devm_regulator_bulk_get() can return -EPROBE_DEFER;
 
---dxIzlKQrPY+WnXUo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No, I'd rather we avoid dev_err_probe().
 
-On Mon, Sep 19, 2022 at 07:43:50AM -0300, Fabio Estevam wrote:
-> The 'enable-active-low' property is not a valid one.=20
->=20
-> Only 'enable-active-high' is valid, and when this property is absent
-> the gpio regulator will act as active low by default.
->=20
-> Remove the invalid 'enable-active-low' property.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi | 1 -
->  1 file changed, 1 deletion(-)
+Thanks.
 
-Applied, thanks.
-
-Thierry
-
---dxIzlKQrPY+WnXUo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN2sAAACgkQ3SOs138+
-s6Eo3xAAqUqn7uHA3olojMRQrmWxUUEplKI/Y9vpfLCH+xN3YM7cgBfDkw+AkZgC
-cl1uVz27EHmk+Ke3fP9yXNvjTWvYn+Krifpo0o2c8k+znUObuMJPVt3hJoVHFbXx
-BxtFHgF0oMLeF3XIDqh2aneY5qA2ftCyMlIVR7jBGhsqNsR2D3k01/cBjdkiVEL3
-QXaczJaNy9LuAAHz94x/edIWhxEdVGGdAntGqg0IE+2wCmF+c3QvQOFBVp3w6vtP
-r+nui+cXiR2SdwWMKKceloFJNdA9fM/xQrfUN9ZGXu/gumvR7VfrhfL45VS0JOLB
-MFgC173s/2odzT38yiq0lgpu4UwObvvgW36qZEOZWSClFJ0yc7MIklxd9bpHQCEa
-GEmrvskYG0lcwYXSZ80psOd6r5hmBNqL8hlGhERtUNVs+1V3I/XoKwMkoXODhaw7
-IWgZ0drsH4y4cfB5zNbiRMvP5jbelGh8ajdxNJdu174OEzuZSuLQGwtwNLQjUy5q
-u1RuxLFZwUmWXP41i3lVMcq+WC7kGVaU8B0hUuNsY8QPbW3kg5b78TIOJYATQ8Sw
-xm7M+XHe9zEPCW0lfKLuqecYTb4vRKqeOFA03DhMCNDvu5f6abojUhBPa34OAocs
-F1M0uAWpDtTLv11NvCnbXTwUFZYiSzWCkgCpf0jUGrXn8NyQQF4=
-=nL0o
------END PGP SIGNATURE-----
-
---dxIzlKQrPY+WnXUo--
+-- 
+Dmitry
