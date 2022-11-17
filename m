@@ -2,111 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA5862DF69
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 493CE62DF80
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 16:20:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240131AbiKQPOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 10:14:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56060 "EHLO
+        id S234802AbiKQPUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 10:20:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240478AbiKQPOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:14:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48DA682203
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:10:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8655BB81FAA
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 15:10:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50068C43470
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 15:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668697804;
-        bh=a8oMZAOc9h7O6TsnWfrrI7D4nYK+vWS6IWAXZdvkYzM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gQJMfegqtvoVKsBm4BszG7WjhanJAdAYNHPrq/Usfmqbi8YHGszC8MZytPxIQ+NL9
-         vM+FuTirPUwyn1qzsbzmFwonAcMDPc4ZO/9adjNIOx22XCWAgvgAnLAFTASyzYhLEL
-         DE18Lt4OF9xKgmaLfI8JidddDALtQJCj0Els3J0SZSESshOPptR9q1p569Re6pDNaX
-         SzE9N+3pSyrtTH2upCYuZcUd/YeLvVHMjl4kG5j4rEv0XrmDKylKqzcnT7rPNKeiJT
-         PoltCrGLvZI+LXNC0IyRFekN6rp2B/kijD1lTsAYp0p3qdz5SrK2N/dSf6w4cm+Dlt
-         em6g5doSEVB8A==
-Received: by mail-lj1-f176.google.com with SMTP id c25so3068080ljr.8
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 07:10:04 -0800 (PST)
-X-Gm-Message-State: ANoB5pnkyIKR5oufzcrvd1oQfX4J4tnRuNuXQa1BvTpqtcAZL1Dve1Uq
-        x6ZD1d87JvukRG/NlZtF1/mPSJrZTqNh2zGlHg==
-X-Google-Smtp-Source: AA0mqf6Lz40qWFVeozaj1msGanV43R9/mSdkVIGkUpBQAqbFtT5C7+OwGjSd4nDyemjdt6z0jrkrrad9ufaughNIcO0=
-X-Received: by 2002:a05:651c:333:b0:275:1343:df71 with SMTP id
- b19-20020a05651c033300b002751343df71mr1231501ljp.215.1668697802340; Thu, 17
- Nov 2022 07:10:02 -0800 (PST)
+        with ESMTP id S240609AbiKQPUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 10:20:03 -0500
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE7678D67;
+        Thu, 17 Nov 2022 07:14:34 -0800 (PST)
+Received: by mail-qv1-f45.google.com with SMTP id x13so1366353qvn.6;
+        Thu, 17 Nov 2022 07:14:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SegVnAcLQLaJX7pNjPa5EmAcFg4cHidqxjj8yBrAgQs=;
+        b=Fdf4gck142Pt8jwiiqMGY5l0tETOb4f80DP87uH9w0p3uw//fVxel6ixbiSrxeoo0Z
+         A7DSjMGIZgA3VRauNDyI65+RT4Zm6Mx+A4QQ+bZgCT3/4BFy6NK4/Mfu1wPuOTh7nkLQ
+         IMBTE4yu+Xe1YyGquK0Y99n1JQfFornRg+AFkN689CsIT+7HYvGkghm8JeDgdCiJvGyr
+         oM0cj0VI6gLCyTRLojNN8e7yXDjPjCRnBZLtJPRf8lLi59iAk59lqHPZVmxOFvhHuHff
+         Y0V1aDJZpwnsEZ7fq1/uKfBjZE7m6zhD5ddY8wasXFeEZTN52tN3MNWu1fz4fU76p8lF
+         WcVQ==
+X-Gm-Message-State: ANoB5pki1uEpFp0CEdu7DRJlwT9oCKnzMx7hrtw1DrvcM7EhYGsvrzAQ
+        mMkbP+uDgGj4/6O3NVKQC1cOUNLu9Aeo/g==
+X-Google-Smtp-Source: AA0mqf6BIcZS/ueXyCbM/BFH8nwdL9oBKRqDCZ8xAP+dsNCSYHbGPZBTVm/MfE+3ULlkKSxdxRQ4sA==
+X-Received: by 2002:ad4:590a:0:b0:4bb:4ab2:5138 with SMTP id ez10-20020ad4590a000000b004bb4ab25138mr2679389qvb.114.1668698073611;
+        Thu, 17 Nov 2022 07:14:33 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id bj38-20020a05620a192600b006cbe3be300esm628529qkb.12.2022.11.17.07.14.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 07:14:32 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id v123so2211535ybv.5;
+        Thu, 17 Nov 2022 07:14:32 -0800 (PST)
+X-Received: by 2002:a25:9e84:0:b0:6de:6183:c5c3 with SMTP id
+ p4-20020a259e84000000b006de6183c5c3mr2545467ybq.89.1668698072311; Thu, 17 Nov
+ 2022 07:14:32 -0800 (PST)
 MIME-Version: 1.0
-References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de> <20221116174921.GA25509@pengutronix.de>
-In-Reply-To: <20221116174921.GA25509@pengutronix.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 17 Nov 2022 09:09:53 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL-0G4p_V2+ZNbezbE5V25yvUfcerJAseDODNNP8YSdaA@mail.gmail.com>
-Message-ID: <CAL_JsqL-0G4p_V2+ZNbezbE5V25yvUfcerJAseDODNNP8YSdaA@mail.gmail.com>
-Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to dt-schema
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com> <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 17 Nov 2022 16:14:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWUvLzCtFRXvUpCxczpkpaunb==gjBMwdniXY4UBVuMUw@mail.gmail.com>
+Message-ID: <CAMuHMdWUvLzCtFRXvUpCxczpkpaunb==gjBMwdniXY4UBVuMUw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/8] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
+ Add r8a779g0
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 11:49 AM Philipp Zabel <p.zabel@pengutronix.de> wro=
-te:
->
-> On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-K=C3=B6nig wrote:
-> [...]
-> > new file mode 100644
-> > index 000000000000..c3cf6f92a766
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-> > @@ -0,0 +1,110 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 a=
-nd i.MX27
-> > +
-> > +maintainers:
-> > +  - Sascha Hauer <s.hauer@pengutronix.de>
-> > +  - Pengutronix Kernel Team <kernel@pengutronix.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx1-fb
-> > +              - fsl,imx21-fb
->
-> Are the items/enum keywords superfluous here? Couldn't this just be two
->
->          - const: fsl,imx1-fb
->          - const: fsl,imx21-fb
->
-> entries?
+Hi Tomi,
 
-mx1 is backwards compatible with mx21? No.
+On Thu, Nov 17, 2022 at 1:26 PM Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>
+> Extend the Renesas DSI display bindings to support the r8a779g0 V4H.
+>
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> ---
+>  .../bindings/display/bridge/renesas,dsi-csi2-tx.yaml           | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> index afeeb967393d..bc3101f77e5a 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> @@ -11,13 +11,14 @@ maintainers:
+>
+>  description: |
+>    This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
+> -  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
+> +  R-Car V3U/V4H SoC. The encoder can operate in either DSI or CSI-2 mode, with up
 
-Rob
+Perhaps "R-Car Gen4 SoCs", so we stay within 80 chars, and don't have
+to update this when the next member of the family is around the block?
+
+Is there anything that might be SoC-specific?
+If not, perhaps the time is ripe for a family-specific compatible value?
+
+>    to four data lanes.
+>
+>  properties:
+>    compatible:
+>      enum:
+>        - renesas,r8a779a0-dsi-csi2-tx    # for V3U
+> +      - renesas,r8a779g0-dsi-csi2-tx    # for V4H
+>
+>    reg:
+>      maxItems: 1
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
