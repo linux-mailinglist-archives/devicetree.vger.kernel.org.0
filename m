@@ -2,64 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B277D62E891
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 23:39:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7510C62E9DB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 00:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240260AbiKQWjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 17:39:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43282 "EHLO
+        id S235077AbiKQXtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 18:49:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240006AbiKQWjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 17:39:12 -0500
-Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB5B8DA4B;
-        Thu, 17 Nov 2022 14:39:10 -0800 (PST)
-Date:   Thu, 17 Nov 2022 22:39:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1668724748; x=1668983948;
-        bh=gWBsEHP+8dLHoXfYc95d09Xo3xz2BaOFXCljQcHLH/A=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=qDAGGL1JRa0p73hyKNfJLxJH41zn5VRBVnN5PeGhh8y+bFtADgi38Cmlffn1kkJkF
-         moJPnpF+WczR8idYoulZl0usk7xfXOQABINy3XOBHtGy/ekwiEZaQ2bYpSv4qegImc
-         f4Lo34IG6P9ybvtp6+5qmGMOErScyCKxWTrNTeIvDsLN1q4V1ZNrYJwmTk3EHppSom
-         W37vmUL3lNuZKKg/qEK8/6AZ+2//1PY5j/ihVRM0AiXxonWCww6FKnEDkayhEGNgr6
-         MBlTfwvI+A4uuS+2LCpNSNYP6B1c/1DCAgU7+j0dPvMQfeii0dNBNI5/AHre5wFxow
-         eObpEDmL8lqFA==
-To:     dmitry.torokhov@gmail.com
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     alistair@alistair23.me, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linmengbo0689@protonmail.com,
-        linus.walleij@linaro.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH 2/2] Input: cyttsp5 - add vddio regulator
-Message-ID: <20221117223850.187999-1-linmengbo0689@protonmail.com>
-In-Reply-To: <Y3ay6zgq7JiWDR/Z@google.com>
-References: <20221117190507.87535-1-linmengbo0689@protonmail.com> <20221117190507.87535-3-linmengbo0689@protonmail.com> <Y3ay6zgq7JiWDR/Z@google.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S234724AbiKQXtR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 18:49:17 -0500
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F21532F7;
+        Thu, 17 Nov 2022 15:49:15 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id a13-20020a9d6e8d000000b00668d65fc44fso2103110otr.9;
+        Thu, 17 Nov 2022 15:49:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qMcsFmOL/2GypqX63+TgzuiSSfzo6QHW3VYHiQ5eWyQ=;
+        b=DSzrLDk8NFHkI2fEypEFc0b+PIPx3YitXFvr8DGZN7RBpfqdoauZMQE/Bn8xWWiXiy
+         4jNyBcZqZwOoOgNTtpfn7S7y4ARUeI36zPjovOAyGmIO5y7QrUa1EPfl72yFTSagqDzL
+         dMxwAGnQujKlFxmRlWc6bWw4beM7N2rxzyMCcVDSNfVrqEeDMtQhSy7Bio7O+ZRXIzdG
+         F7EbEP4Q9wCa7SodxGZ39ndOKsxXROw2CLnT8VMMsjkuGBcuX5HtYrJ2nyzzti/1aM94
+         YIvgLHAEW6sgE9rHkyZWVEgWtsE24MsjmZxadKoncxK3SxLWQv1PKJolevroOfw+Fu//
+         /sQg==
+X-Gm-Message-State: ANoB5plE5eVnYKDqPZdx+f0q5ArMOqlbLs5WG9eHYtoFLKUrsLMZt/g5
+        L1OhdK4qZDzK5xqELpmLTQ==
+X-Google-Smtp-Source: AA0mqf70HF0fYopJdR01uFy+Fw0KQgN9VuaGnVLTj/Bb72eE55NhcI4+NXbQu1RE6+w84xfmZ8cONg==
+X-Received: by 2002:a9d:28d:0:b0:66c:cedd:8d0 with SMTP id 13-20020a9d028d000000b0066ccedd08d0mr2629224otl.131.1668728954597;
+        Thu, 17 Nov 2022 15:49:14 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a18-20020a056870d61200b0012b298699dbsm1161400oaq.1.2022.11.17.15.49.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 15:49:14 -0800 (PST)
+Received: (nullmailer pid 13384 invoked by uid 1000);
+        Thu, 17 Nov 2022 23:49:15 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org>
+References: <20221005-mdm9615-pinctrl-yaml-v5-0-910019fb8b9b@linaro.org>
+ <20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org>
+Message-Id: <166872874092.6463.6032366215221969012.robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: regulators: convert non-smd RPM
+ Regulators bindings to dt-schema
+Date:   Thu, 17 Nov 2022 17:49:15 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
 
-> This needs binding update.=20
+On Thu, 17 Nov 2022 18:04:58 +0100, Neil Armstrong wrote:
+> Convert the non-SMD Regulators bindings to dt-schema, the old text based
+> bindings will be deleted later since the RPM bindings are not yet converted.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 +++++++++++++++++++++
+>  1 file changed, 128 insertions(+)
+> 
 
-Please have a look at the binding update in
-https://lore.kernel.org/all/20221117190507.87535-2-linmengbo0689@protonmail=
-.com/
-if you don't receive it.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Regards,
-Lin
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml: Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
 
