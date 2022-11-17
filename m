@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF5062E192
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9D1162E1A4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 17:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240497AbiKQQZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 11:25:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56858 "EHLO
+        id S240599AbiKQQ0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 11:26:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240506AbiKQQZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:25:28 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7BB7D533;
-        Thu, 17 Nov 2022 08:22:42 -0800 (PST)
-Received: from fraeml713-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NClWK0b2Wz67M1h;
-        Fri, 18 Nov 2022 00:20:13 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml713-chm.china.huawei.com (10.206.15.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 17 Nov 2022 17:22:40 +0100
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 17 Nov
- 2022 16:22:39 +0000
-Date:   Thu, 17 Nov 2022 16:22:38 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-CC:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "William Breathitt Gray" <william.gray@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] iio: addac: add AD74115 driver
-Message-ID: <20221117162238.0000224a@Huawei.com>
-In-Reply-To: <20221117080916.411766-3-cosmin.tanislav@analog.com>
-References: <20221117080916.411766-1-cosmin.tanislav@analog.com>
-        <20221117080916.411766-3-cosmin.tanislav@analog.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S239820AbiKQQ0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 11:26:25 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B82BBE33;
+        Thu, 17 Nov 2022 08:25:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D78D3CE1E7F;
+        Thu, 17 Nov 2022 16:25:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BA29C433C1;
+        Thu, 17 Nov 2022 16:25:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668702308;
+        bh=Z0xBqZcccm8SbVQrnC5CSdtczjQ3AfNDFzFjDM6WrAc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZqKl3wWu7HA5rheHtNtCjwIkojZDp/bll/jjsfgjdxy6sMKWqMauxH3cOkjmoIAEA
+         J3t10xflavu1kM/j1mq7Ff8FaoFOLz+TzXDRD1qTmWfvT+HMEDD/ij8GpSznUXEuKR
+         5CAprSniDajdEiztK25t9dOkn6KFkBuuIHYsWQk40xTRnhBZK2RHyBTHoY+oragxER
+         IjNaUEewT4SZkl0FlWR+iCR3Sq8Lxravlzx9jrTWeb46ysi4fkl9hPUjNY5E5gsgg4
+         eM6iuk9VKnL7+wt+HqUDoULRHVDm2ecgJleLrjjgGUyveMvPEosCJqiGDFjXXn2zDo
+         kg4E0vQjnNQMQ==
+Message-ID: <59715ef2-3335-7f8e-54f1-c4315ceba232@kernel.org>
+Date:   Thu, 17 Nov 2022 18:25:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+Subject: Re: [PATCH v2 00/10] interconnect: osm-l3: SC8280XP L3 and DDR
+ scaling
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     Mike Tipton <quic_mdtipton@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20221111032515.3460-1-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Nov 2022 10:09:16 +0200
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-> The AD74115H is a single-channel, software-configurable, input and
-> output device for industrial control applications. The AD74115H
-> provides a wide range of use cases, integrated on a single chip.
+On 11.11.22 5:25, Bjorn Andersson wrote:
+> The SC8280XP currently shows depressing results in memory benchmarks.
+> Fix this by introducing support for the platform in the OSM (and EPSS)
+> L3 driver and support for the platform in the bwmon binding.
 > 
-> These use cases include analog output, analog input, digital output,
-> digital input, resistance temperature detector (RTD), and thermocouple
-> measurement capability. The AD74115H also has an integrated HART modem.
+> Then add the necessary nodes and values throughout the sc8280xp and
+> sa8540p dtsi files to make the various devices on these platforms scale
+> both L3, memory bus and DDR.
+
+Good stuff! Thanks Bjorn!
+
+I plan to merge everything except the dts patches, that should go
+through the qcom tree.
+
+BR,
+Georgi
+
+
+> Bjorn Andersson (10):
+>    interconnect: qcom: osm-l3: Use platform-independent node ids
+>    interconnect: qcom: osm-l3: Squash common descriptors
+>    interconnect: qcom: osm-l3: Add per-core EPSS L3 support
+>    interconnect: qcom: osm-l3: Simplify osm_l3_set()
+>    dt-bindings: interconnect: Add sm8350, sc8280xp and generic OSM L3
+>      compatibles
+>    arm64: dts: qcom: Align with generic osm-l3/epss-l3
+>    arm64: dts: qcom: sc8280xp: Add epss_l3 node
+>    arm64: dts: qcom: sc8280xp: Set up L3 scaling
+>    dt-bindings: interconnect: qcom,msm8998-bwmon: Add sc8280xp bwmon
+>      instances
+>    arm64: dts: qcom: sc8280xp: Add bwmon instances
 > 
-> A serial peripheral interface (SPI) is used to handle all communications
-> to the device, including communications with the HART modem. The digital
-> input and digital outputs can be accessed via the SPI or the
-> general-purpose input and output (GPIO) pins to support higher
-> speed data rates.
+>   .../interconnect/qcom,msm8998-bwmon.yaml      |   5 +
+>   .../bindings/interconnect/qcom,osm-l3.yaml    |  24 ++-
+>   arch/arm64/boot/dts/qcom/sa8540p.dtsi         |  39 +++++
+>   arch/arm64/boot/dts/qcom/sc7180.dtsi          |   2 +-
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi          |   2 +-
+>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 152 ++++++++++++++++++
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +-
+>   arch/arm64/boot/dts/qcom/sm8150.dtsi          |   2 +-
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi          |   2 +-
+>   drivers/interconnect/qcom/osm-l3.c            | 126 ++++-----------
+>   10 files changed, 252 insertions(+), 104 deletions(-)
 > 
-> The device features a 16-bit, sigma-delta analog-to-digital converter
-> (ADC) and a 14-bit digital-to-analog converter (DAC).
-> The AD74115H contains a high accuracy 2.5 V on-chip reference that can
-> be used as the DAC and ADC reference.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-LGTM
-
-Not sure if Linus W wants to take a look at the GPIO chip stuff, but
-we should leave a few days to give him the opportunity + DT review
-needed before I pick this up.
-
-Thanks,
-
-Jonathan
-
 
