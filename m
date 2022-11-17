@@ -2,89 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D5162E579
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB96662E5F3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 21:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240461AbiKQTvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 14:51:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47882 "EHLO
+        id S239211AbiKQUc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 15:32:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240298AbiKQTvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:51:14 -0500
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DD385156;
-        Thu, 17 Nov 2022 11:51:13 -0800 (PST)
-Received: by mail-qk1-f172.google.com with SMTP id x21so2023117qkj.0;
-        Thu, 17 Nov 2022 11:51:13 -0800 (PST)
+        with ESMTP id S234174AbiKQUcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 15:32:39 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E7AD8E299;
+        Thu, 17 Nov 2022 12:31:33 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id d9so5740799wrm.13;
+        Thu, 17 Nov 2022 12:31:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GgNvfOAXHjmuiPC01RZ20qna6kcHy47I8cgRmcZ99PE=;
+        b=GPWC5/m7Uw7YC2i7MtfzvNQKjQj92U/QyivvzOTm8wW2FUYg3zYCbAOehzWCJfG2vN
+         2PG3m0DjUtTAOH8qCf97ydoFXAqbEfo89LgSJ/GIkW7vz3vY4iDW5utlq56CTQ7O8JUx
+         rs98pW7mgYcrl1AJZWJJjAfKWUrtnNX8o1aNj+Bond+O3mo32NnqFpKEt61K7xeXiDmO
+         Cp5ljx/Sjv2W4s9gLRmQ7ngyYLzktfXZufWEmMlIgzsaa/DrDu8i8n48qFkW5d81mnTX
+         KV+sqb8AQYl+absX7x0b0rwu509eKG8ZKFFE54KR+ioE3gc0jWf+Kw9xxK3jwqrqFBLo
+         H6qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aJf7/ggNbO5ptXt326sMe/Qk+cWkkDWccwoW4jqERjQ=;
-        b=QZk8papSIgNWuTAspyxmiFRqOnOtPNyktBbJWcmUdMSz9XEyK5+5wCZmJY3Xwe/CTr
-         gpmhxqpAIi8UIJrrAPYl0hVgkNKUS4b0f3I5LMp/bnUVUkazffPEqD00Dwv4OOxF3OQR
-         qOcTjkPzN0TvptjSDv214Ai9yiM73Cq0jaDL1+IBij4QDe7hDVsX5imjenrLU/l4yOAq
-         BB4yUSSfuT72Qqaurd5OtPYPiOES35LUVU++MV154hVSEocC8avLRM/nPqXlh92DIXel
-         E4zaBC0Izl45BmnaMHtfZ/zvL0j+Ns43hwjcNswVtejib0mYGs7xY8+51+BLZ8KhYn/n
-         6eYg==
-X-Gm-Message-State: ANoB5plbSe8agMJnEoBLFSJoxuhUgMXmveaPNYI5qCI8rWFZ/HDKtKk+
-        T4RkdE9s4UViSTBTFCNru9Z+8+34aJYANg==
-X-Google-Smtp-Source: AA0mqf52Rx4lRV5pLVQ+wHwGHNOE8ctKOGUL1q3e9owobO5CxHg2jSo0PsY7tMfShbH1zw8T0sG7IA==
-X-Received: by 2002:a05:620a:31a0:b0:6fa:c94:5c06 with SMTP id bi32-20020a05620a31a000b006fa0c945c06mr3141054qkb.91.1668714672362;
-        Thu, 17 Nov 2022 11:51:12 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05620a057000b006fb8239db65sm957432qkp.43.2022.11.17.11.51.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 11:51:11 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-37063f855e5so29511047b3.3;
-        Thu, 17 Nov 2022 11:51:11 -0800 (PST)
-X-Received: by 2002:a81:4f4c:0:b0:357:66a5:bb25 with SMTP id
- d73-20020a814f4c000000b0035766a5bb25mr3489069ywb.383.1668714671276; Thu, 17
- Nov 2022 11:51:11 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GgNvfOAXHjmuiPC01RZ20qna6kcHy47I8cgRmcZ99PE=;
+        b=DevplD2mEPdIJDWffcK9YCkDM1JmabL3HpuxNHOif+9a6wVBRcabNEcC8mEf42F9Zp
+         2wm8aavexR5TJcqWXoOg97iwRrARKuFgslhDylrx1kVl1V4Cx6CHWe/eaZ/TBx9AYGWw
+         JjQyTI9sNLENo3bpyGjW5WZB6h2UriYpbRx2oyota7sbZ7yC8Zi1CtaIdpfkcphPNeaX
+         6CA6zKj1SKWel11H5uE90YKHDmIEi0hru3wFekd32kSbnwForh8Vz7PVs6tttM45Tl+E
+         5TvXsPdeuNKNT/CAIFrZsIidur0idCMNmEvtJTaajjbcLQFJULmJjYf94jp9lYFOp2UV
+         Pe5Q==
+X-Gm-Message-State: ANoB5pmr9OyRo7XR3Wq82WcjnODW3yAPSRTDlN0Eiin4cak7Hthkx34+
+        e8sg5A6JTyn+oOOD68o9eAo=
+X-Google-Smtp-Source: AA0mqf7RJtH6v9Zfz+C1oJd50K9FMeHOnHakHTlbrjVBkVMLt5/yV5A7SZvyhJITGCArwqpsEss0YQ==
+X-Received: by 2002:a05:6000:1d97:b0:241:b99a:949f with SMTP id bk23-20020a0560001d9700b00241b99a949fmr2041636wrb.599.1668717092011;
+        Thu, 17 Nov 2022 12:31:32 -0800 (PST)
+Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
+        by smtp.gmail.com with ESMTPSA id e18-20020adfdbd2000000b0022da3977ec5sm1795243wrj.113.2022.11.17.12.31.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 12:31:31 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        samuel@sholland.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: allwinner: video-engine: Fix number of IOMMU channels
+Date:   Thu, 17 Nov 2022 21:31:30 +0100
+Message-ID: <3385828.QJadu78ljV@jernej-laptop>
+In-Reply-To: <b0125ad2-426c-d908-0839-2021bc59d59f@linaro.org>
+References: <20221117060704.367945-1-jernej.skrabec@gmail.com> <20221117060704.367945-2-jernej.skrabec@gmail.com> <b0125ad2-426c-d908-0839-2021bc59d59f@linaro.org>
 MIME-Version: 1.0
-References: <20221116102140.852889-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221116102140.852889-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 17 Nov 2022 20:51:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWC5_+pLbewtSU=DkQ0pepTyjfKa9fx1btLt8=U0Eg=Yw@mail.gmail.com>
-Message-ID: <CAMuHMdWC5_+pLbewtSU=DkQ0pepTyjfKa9fx1btLt8=U0Eg=Yw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] Add SoC identification support for RZ/V2M
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 11:21 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> This patch series aims to add SoC identification support for RZ/V2M.
->
-> v3->v4:
->  * Added Rb tags from Krzysztof and Geert
->  * Fixed the example indentation from 3 spaces-> 2 spaces.
+Dne =C4=8Detrtek, 17. november 2022 ob 14:13:00 CET je Krzysztof Kozlowski=
+=20
+napisal(a):
+> On 17/11/2022 07:07, Jernej Skrabec wrote:
+> > Cedrus (video engine) on Allwinner H6 actually uses two IOMMU channel,
+> > not just one. However, Cedrus on SoCs like D1 only uses one channel.
+> >=20
+> > Allow up to 2 IOMMU channels.
+> >=20
+> > Fixes: 62a8ccf3a248 ("arm64: dts: allwinner: h6: Fix Cedrus IOMMU usage=
+")
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> > ---
+> >=20
+> >  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml       | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-eng=
+in
+> > e.yaml
+> > b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-eng=
+in
+> > e.yaml index 541325f900a1..6446004d59d9 100644
+> > ---
+> > a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-eng=
+in
+> > e.yaml +++
+> > b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-eng=
+in
+> > e.yaml>=20
+> > @@ -55,7 +55,8 @@ properties:
+> >      description: Phandle to the device SRAM
+> >   =20
+> >    iommus:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+>=20
+> You have several compatibles in the file, so usually this is further
+> constrained per each variant in allOf:if:then:.
 
-Thanks, queued in renesas-devel for v6.2.
+Usually, yes. But this whole binding would need update. It has a few option=
+al=20
+properties and none of them is tied to any compatible. Additionally, if I d=
+o=20
+it as you suggest, then Robs automatic test will report the issue, because=
+=20
+existing H6 based boards won't match this binding anymore. I would much rat=
+her=20
+send follow up patch which clears up all optional properties.
 
-Gr{oetje,eeting}s,
+Best regards,
+Jernej
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
