@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B77662DC12
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ACEB62DC1F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 13:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234806AbiKQM4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 07:56:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50720 "EHLO
+        id S234569AbiKQM6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 07:58:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239310AbiKQMz6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:55:58 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B3E2339A
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:55:57 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id be13so2653091lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:55:57 -0800 (PST)
+        with ESMTP id S234845AbiKQM6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 07:58:22 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609DE248C5
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:58:19 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id j4so2718345lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 04:58:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=weF6twQ71pWpDxGcUzWzUjRuKt4zlvZJapX9428bGkM=;
-        b=oMJaEUk7SN6S+W68VImxs6MzLOp4LRttAMZpSdPfxVM2JMza7JDFDWdZZaL0lO9Bx1
-         M8T9iWspwsMr6SYy4ZdUH8T1EQjqBGNOYs9jfZd1kqrL3uBAEHL+e6n9nPOls2DMEwsu
-         wvg1nvOKUUC20InGEspvMCFGtH7OJrPVVthCEovVTkGTnK8vw9BRU7EeZuK0rZ5/1AyO
-         EKXWShLXBF48iiY4KC3ZEn8j7aIErKsaOzHZVLlMaw8d2oia8izerOMPXbNkxf/46jhz
-         5piUjAecz3Nh2BxW5RRbZrNjPM6u51pvU+DDTdhdccIOFz0aDFLLpVskGANGCamJ3OIL
-         up2A==
+        bh=3/Ym4H+GfMviN6/G1FhFGdK0zwCiyAfv5x1OUJDNIlY=;
+        b=ZbxBs8x57tViKk8dVG4W/fkLcsnZT2gppAREc2LdVbeTgxqD/1ZHMkdrZ9I74TzPMY
+         Q9U1yUOTl7P9Od7dwn5G89vjhe79ux2WNr6C2j/1h1C1DVKozMVzAEUA9TApVKROZ15I
+         AH8sJQK2RNJAp8FLKHYxGZmKk4YiHjy7oaAupkkhNGC62r9pSKsmJZQRyA9fL7D0tjT1
+         rOU2ENSFG0Mc5PECnFKIi2f8GOXSBP33jtpsXivaZjDxvxAgKfbkgWSva5zI2DOW3+Tx
+         x2FR3N3WorLmKSZwdYEJIfxhYZ1/JNRrormrp7U3YS2SKdSZnXgf4dV1lsT/md1XnibW
+         fpsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=weF6twQ71pWpDxGcUzWzUjRuKt4zlvZJapX9428bGkM=;
-        b=1/YsXXz8iY9EjJbgI/nobK4yRcLZKFTsGmyc4rybuaKNrpSHB4FO2PEg2iNYCfjiLD
-         AoRw8JFSMVM3z5r3GryK98e5KR7hLRgSghH9MeAY2C3dCO5gpSiWlWRYI5VuOxBOOTb0
-         nKF2IJn/Z6nAYVOoDEhk51zd+dm02BGjoBQT1uQMVpjUa7INpRe+xht8rFnSfgjWztVZ
-         e5hqjztwrhPDC9Ra1N7DO7sS7cChkGdHKk38poPb5jSLPhE00LBcaM5g+syetAmSCb4r
-         5G1ysKIuNaR+PCp3SkdwzJjJUmjbok+j+jdbHv9f4v2yQgQUNcnWwAAiVtxNkMG2IpdR
-         biUw==
-X-Gm-Message-State: ANoB5pnSk8/6ITv+Zw9zYLGd0X/X5JHG4qtDKpm2czFooFguNvWtrzpl
-        IL6rx4wYKjZXLJ+KhJ68ciALMw==
-X-Google-Smtp-Source: AA0mqf6HTkt2Xy7pKPSB5hVlx+Bp1Kn+ts6vBant0J7vRFGKxCmfnqQF/qAUyQQ7iWJ9insch5v5nA==
-X-Received: by 2002:a05:6512:3b12:b0:4b4:686b:4f7 with SMTP id f18-20020a0565123b1200b004b4686b04f7mr773502lfv.256.1668689755798;
-        Thu, 17 Nov 2022 04:55:55 -0800 (PST)
+        bh=3/Ym4H+GfMviN6/G1FhFGdK0zwCiyAfv5x1OUJDNIlY=;
+        b=dXP8lsUcrFU6K8werE+qu3trSjzBBUKgJbXtwAK8slx3E8Pqork1vWdLkXV8X8JgNC
+         lgAVrdpUrKNn6PQEhK2ZN27AAq7HSsIn65Fh89UMxvBCGD16Qgi/iG1R1wHoidoPeB9O
+         HtZ/gtyS3gvdoLFGHkaNFsChUi/mWYHol9mQdZ3cGnslMVB5OvpTkp/EerX71lDDwfbS
+         6WMmc6JMT/4Y0DtVudj7Zw+/Gmzy8fFQ293ptlkZ8JnajvD4DriDPaWjP3pnXETvDCcf
+         k4Np6g/9Xnu3MB9X1LUNoEstX1S5unoHPoTMDRx6nzf/MLU3RRccO9TE7+4uqcjvM4AX
+         Xd+w==
+X-Gm-Message-State: ANoB5pmnMShSjGoTGcJs+LIYt+TdSkexgMBxDdocsLKUucifEBydpyXk
+        H8SjCEoiuSV/fgTqlz9AgCEJ5w==
+X-Google-Smtp-Source: AA0mqf6CahUyXo5c2XC3fgjghDAZPTCYLIkRDSTrxOCJK4a0guVWdA7pQcn0TaJj7XPlFRL86NnNBQ==
+X-Received: by 2002:a19:5e58:0:b0:4a7:5a63:71e1 with SMTP id z24-20020a195e58000000b004a75a6371e1mr873041lfi.399.1668689897798;
+        Thu, 17 Nov 2022 04:58:17 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s3-20020a05651c048300b002770a9ed61bsm181805ljc.66.2022.11.17.04.55.54
+        by smtp.gmail.com with ESMTPSA id m6-20020a056512114600b0048cc076a03dsm135517lfg.237.2022.11.17.04.58.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 04:55:55 -0800 (PST)
-Message-ID: <77805b04-2724-dc93-eae7-21d9c7caf0a4@linaro.org>
-Date:   Thu, 17 Nov 2022 13:55:53 +0100
+        Thu, 17 Nov 2022 04:58:17 -0800 (PST)
+Message-ID: <c818f6d8-94e1-5ac4-ec67-f6f872780c38@linaro.org>
+Date:   Thu, 17 Nov 2022 13:58:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add SM6350 GPU SMMUv2
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: Add compatible for
+ sm8550
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     patches@linaro.org, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221117094422.11000-1-konrad.dybcio@linaro.org>
- <20221117094422.11000-2-konrad.dybcio@linaro.org>
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-tsens-v1-0-0e169822830f@linaro.org>
+ <4dd96db7-b667-7b8f-f80d-a250ac63f223@linaro.org>
+ <cb94a2f5-6521-19b5-ca30-c68ffd2068a4@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117094422.11000-2-konrad.dybcio@linaro.org>
+In-Reply-To: <cb94a2f5-6521-19b5-ca30-c68ffd2068a4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,17 +86,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 10:44, Konrad Dybcio wrote:
-> SM6350 has a qcom,smmu-v2-style SMMU just for Adreno and friends.
-> Document it.
+On 17/11/2022 09:06, Neil Armstrong wrote:
+> Hi,
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> On 16/11/2022 12:26, Krzysztof Kozlowski wrote:
+>> On 16/11/2022 11:09, Neil Armstrong wrote:
+>>> The Qualcomm SM8550 platform has three instances of the tsens block,
+>>> add a compatible for these instances.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>> To: Andy Gross <agross@kernel.org>
+>>> To: Bjorn Andersson <andersson@kernel.org>
+>>> To: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> To: Amit Kucheria <amitk@kernel.org>
+>>> To: Thara Gopinath <thara.gopinath@gmail.com>
+>>> To: "Rafael J. Wysocki" <rafael@kernel.org>
+>>> To: Daniel Lezcano <daniel.lezcano@linaro.org>
+>>> To: Zhang Rui <rui.zhang@intel.com>
+>>> To: Rob Herring <robh+dt@kernel.org>
+>>> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>> Cc: linux-arm-msm@vger.kernel.org
+>>> Cc: linux-pm@vger.kernel.org
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: linux-kernel@vger.kernel.org
+>>> ---
+>>>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> index f0bd4b979e28..09dbd96d380e 100644
+>>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> @@ -58,6 +58,7 @@ properties:
+>>>                 - qcom,sm8250-tsens
+>>>                 - qcom,sm8350-tsens
+>>>                 - qcom,sm8450-tsens
+>>> +              - qcom,sm8550-tsens
+>>
+>> alOf:if:then should be updated.
+> 
+> I thought the -v2 fallback would be enough since 8450 isn't present either in the alOf:if:then either.
+> 
+> Anyway, will fix this.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, you are right. The v2 fallback is already in several allOf:if:then,
+so this should be fine.
 
-(although this might need rebase later on Dmitry's refactoring)
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
