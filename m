@@ -2,119 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33FD762E4D4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 19:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC35662E4EA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 20:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240006AbiKQSym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 13:54:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51148 "EHLO
+        id S235031AbiKQTFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 14:05:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240036AbiKQSyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 13:54:39 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C17B86A6C;
-        Thu, 17 Nov 2022 10:54:37 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id m22so7342406eji.10;
-        Thu, 17 Nov 2022 10:54:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=Pn34Z4Yq7xj76XL1qe8LwsuFOPf2PiJM3KTxbSO6azZ4wFcgWLDo987z7RPekJ9xKc
-         WP4Cqqo3LpV6/KY977VdYFBWmgqlGfPUBFZIVj38k7VdVpfFV9WeLuV9V1k3xrghaADj
-         fPqHvYi0nYPYp7Geh1e0YpDhJBJhuHOC7t+NRrNlQl85KNoh7oVcCGO9ig9CjeG98qzx
-         UYo8BoLnfhYYPZ8KPs4JeRnhHY2rLR4WK1NW4BlORj3+m/sUpUyTH763gkIUxA+lKwkT
-         TzsvCHgu0r5fChY1CW92qCTp7C8fnRdfzI6GiovPTN5hyNSdjh4uz2P+1cEitAhb5scg
-         wuxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=a/uvjwZXT0e1X+0pfmVBBqomgwzTGNZihdqAOO6cqAW8oL9N2Sl7ddvEMtEKfDQL6n
-         c+OV1YEaK12gg1WJeGOLgWA9Irk57mE49UCB1M8YvIPl5Fj+O+jUsknJSEOBWZ8ckMjO
-         WHhON+rtJuAO+2th3l9aSKY/umFT0o9Gl7KxN1IwEQmzPTnPLTJIF+aZ0IzpdZVAchj/
-         8Ud+iwmTAoqdQVunOEqeH5ljckfUtFgnEOtB6w7eBmVl3U4HfARiqOy/hwqP1hLWHl7E
-         Sl/OISmnmD81vziBrFHt0lwxGoAOBPqH1Boc+dSob4A/DkQAfKgfkV9FS3ZPnB/eC3FX
-         /keQ==
-X-Gm-Message-State: ANoB5pncR9TVsPTlzH+cZz2XswILIhHqGqcuR8L5v2hlHsQcP15Vsibb
-        rZEv+0D9kqYTEzjYwZPs5AY=
-X-Google-Smtp-Source: AA0mqf5Q1AD/bfVnQCYn13ClNXUBEq2C/u/JUcTsasZu6feu6Aj9rNJFQ47i4b74DYtq3P1vvn5vog==
-X-Received: by 2002:a17:906:9e20:b0:7af:206:9327 with SMTP id fp32-20020a1709069e2000b007af02069327mr3283113ejc.154.1668711275820;
-        Thu, 17 Nov 2022 10:54:35 -0800 (PST)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id v10-20020a170906292a00b0078e0973d1f5sm732090ejd.0.2022.11.17.10.54.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 10:54:34 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v12 4/4] iommu: dma: Use of_iommu_get_resv_regions()
-Date:   Thu, 17 Nov 2022 19:54:24 +0100
-Message-Id: <20221117185424.2359687-5-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221117185424.2359687-1-thierry.reding@gmail.com>
-References: <20221117185424.2359687-1-thierry.reding@gmail.com>
+        with ESMTP id S234080AbiKQTFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 14:05:30 -0500
+X-Greylist: delayed 9023 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Nov 2022 11:05:29 PST
+Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch [185.70.40.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0028E70A36;
+        Thu, 17 Nov 2022 11:05:29 -0800 (PST)
+Date:   Thu, 17 Nov 2022 19:05:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1668711926; x=1668971126;
+        bh=yPJuCb1OqNQw6Eu8hBP1cJKuQdzd/t0ti673JW0Nunk=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=stmdFS/YayGbVNsPFy2y17n38oNaOmh02vIHxJaQRG9gMYfCbA8UJlpfCh0LpHe6I
+         Awiy1kqL9L6ru+/bhKUVjwldodD1OJi3265FMrA50i22MuNB0nIV8yuhxslRiV1A37
+         LYoCUF6SQiqtoEU5e2vLyxWypIZVhGbZJt61njoUmT8zbYkmzBKG1rTXG3EzhPW268
+         nn9neFCGoHzGuHExTekP3tj604LnGrTPhK9R69HKq9gAepie4geS/kp5Nt72s79aO+
+         mw1DC91CPXJ1xcPipGE4EiB15A5GkU7YRqIYEyQdlBjv4P9Tg6At3UM1TfgJWpT6e1
+         YYzHsc6xY6iqA==
+To:     linux-input@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alistair Francis <alistair@alistair23.me>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Input: cyttsp5 - add vddio regulator
+Message-ID: <20221117190507.87535-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+The Samsung touchscreen controllers are often used with external pull-up
+for the interrupt line and the I2C lines, so we might need to enable
+a regulator to bring the lines into usable state. Otherwise, this might
+cause spurious interrupts and reading from I2C will fail.
 
-For device tree nodes, use the standard of_iommu_get_resv_regions()
-implementation to obtain the reserved memory regions associated with a
-device.
-
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/iommu/dma-iommu.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 9297b741f5e8..709b05d3aad2 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -23,6 +23,7 @@
- #include <linux/memremap.h>
- #include <linux/mm.h>
- #include <linux/mutex.h>
-+#include <linux/of_iommu.h>
- #include <linux/pci.h>
- #include <linux/scatterlist.h>
- #include <linux/spinlock.h>
-@@ -391,6 +392,8 @@ void iommu_dma_get_resv_regions(struct device *dev, struct list_head *list)
- 	if (!is_of_node(dev_iommu_fwspec_get(dev)->iommu_fwnode))
- 		iort_iommu_get_resv_regions(dev, list);
- 
-+	if (dev->of_node)
-+		of_iommu_get_resv_regions(dev, list);
- }
- EXPORT_SYMBOL(iommu_dma_get_resv_regions);
- 
--- 
-2.38.1
+Implement support for a "vddio-supply" that is enabled by the cyttsp5
+driver so that the regulator gets enabled when needed.
 
