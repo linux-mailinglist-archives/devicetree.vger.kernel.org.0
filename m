@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B37BA62D7A7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD4262D7AB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:02:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239379AbiKQKCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 05:02:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
+        id S234793AbiKQKCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 05:02:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239210AbiKQKCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:02:00 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7A6FFF
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:01:59 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id gv23so3822476ejb.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:01:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4p4pVS7VC9TcHDfadK6ymrC4GbUzeVc/hoFGnehieJM=;
-        b=BkCSEu62Aso17tkj5HY+b3mLqNWjlnVAoS9W/e5Qj+5pf8mSShg4dSre7psZxXJz2c
-         Y3LKJOGklyoyZZws4AyYENCWQ3+YjN4BBZnj6Urn1mldtQ9Hovn0yIdXkFgyKcFA+n2f
-         ybTswzzvaUdDKskdql3oD+m7O8CQ9xtEOhp6srVry+M9tlOkBX375O8conVgZYkYoGNT
-         65qZK3scORYeZrmf15TGD8GHrFAp0cjgcTYE5c8aCorXaDKOK42UZlvVGS37VMnyDBko
-         69RxIii8kShJzgP/ZyskJ32IGbg3XF0KrkUcSuTOfu2YOOFZG8oJJn0E9tmU7MYSZh+J
-         lhAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4p4pVS7VC9TcHDfadK6ymrC4GbUzeVc/hoFGnehieJM=;
-        b=bjeV+0mRiEZ2Vous7U83je2R66UDznvoNEe0VMjctMAY5XloNAdQ6JOC5Bzt+cuzz/
-         ZqRB3cHOdL1AyB3Juqr0q9xX9o46ZLDuzsqxg0faC9kCPp9v4659V0pApYD37Z9Z4uu6
-         WlCdwjZY6s1qG3SSEQTFAq2UIN3FpDAxm68gwG+4Yl66/Kb24dWzipzeZzoLsdbWxMQ0
-         kNoaYXN1n0JWOAO2D5/HgHN1mEcMJcxwF7gzpaN4wpirrO2aphfsTswxuoWwpiNMFnui
-         sE8BNW6xuiieoeB1U1vDcUlIyHb0rbRTdMd6/a3oUf999lapkrTPvdINde8a/8QEC2yV
-         /Ihw==
-X-Gm-Message-State: ANoB5pm9VrupWa48hXRNDNMWzPTuYzlxT7iJyqJa0OGAsRd2SzcpBUAb
-        KpGgBeJShXM/F8J/lfYDJB1BNOkdnPUV1BGFllE=
-X-Google-Smtp-Source: AA0mqf66tPOnSRtuyQByMKFq4sOfsiqVgA/s0Wcymot1a7WfrnDzef92LP28Fygf7xorOyGd2nDR9MASC2QA+Wmr1yw=
-X-Received: by 2002:a17:906:b51:b0:7ad:da22:c396 with SMTP id
- v17-20020a1709060b5100b007adda22c396mr1491144ejg.653.1668679318086; Thu, 17
- Nov 2022 02:01:58 -0800 (PST)
+        with ESMTP id S234682AbiKQKCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:02:53 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A75389B;
+        Thu, 17 Nov 2022 02:02:52 -0800 (PST)
+Received: from pyrite.rasen.tech (h175-177-042-159.catv02.itscom.jp [175.177.42.159])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BB2006E0;
+        Thu, 17 Nov 2022 11:02:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1668679370;
+        bh=bkzZmCUyncza07/FkusT0myEfdU5H4/R18tcOdGihw0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Dt8EKBkiSnuErElteUVKM0wA3QLvdZ4TJqx/tYzGmglLBg0Mki60zCLerF3ETuSzZ
+         ROHJzy/Qe654iOodUigOt+p7zId7aCvW5EgfYshHda7AGvRmVO/zdCa9334jc1YNpp
+         pT+SSlrv3SYZ0XfoKZaB3Pl/QgNnsyjg1CAi6aRM=
+Date:   Thu, 17 Nov 2022 19:02:40 +0900
+From:   Paul Elder <paul.elder@ideasonboard.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: media: Add macros for video
+ interface bus types
+Message-ID: <Y3YGwK77j31/8f06@pyrite.rasen.tech>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-Received: by 2002:a05:7208:8304:b0:5c:f162:645e with HTTP; Thu, 17 Nov 2022
- 02:01:57 -0800 (PST)
-Reply-To: alm195517@gmail.com
-From:   Mrs Anna Leszczynska Malgorzata <mcburniep1@gmail.com>
-Date:   Thu, 17 Nov 2022 11:01:57 +0100
-Message-ID: <CAJsjrWQJCjA3nV_VoS9f4dfGsyJ0iS_ShRhfRLcUmAg5+OSXwg@mail.gmail.com>
-Subject: =?UTF-8?Q?Hallo_Auserw=C3=A4hlter?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:643 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5424]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [alm195517[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [mcburniep1[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [mcburniep1[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kontaktieren Sie meine E-Mail alm195517@gmail.com
+On Thu, Jun 16, 2022 at 01:14:05AM +0300, Laurent Pinchart wrote:
+> Add a new dt-bindings/media/video-interfaces.h header that defines
+> macros corresponding to the bus types from media/video-interfaces.yaml.
+> This allows avoiding hardcoded constants in device tree sources.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Gr=C3=BC=C3=9Fe,
-Ich habe Ihnen einen Brief geschickt, aber Sie haben nicht geantwortet
-oder die vorherige Nachricht, die ich Ihnen gesendet habe, nicht
-erhalten? Wenn nicht, antworte bitte, damit ich den Brief erneut
-senden kann
-Gr=C3=BC=C3=9Fe,
-Frau. Anna Leszczynska Malgorzata
+Reviewed-by: Paul Elder <paul.elder@ideasonboard.com>
+
+> ---
+> Changes since v2:
+> 
+> - Go back to PARALLEL
+> 
+> Changes since v1:
+> 
+> - Dual-license under GPL-2.0-only or MIT
+> - Rename PARALLEL TO BT601
+> ---
+>  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>  create mode 100644 include/dt-bindings/media/video-interfaces.h
+> 
+> diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+> new file mode 100644
+> index 000000000000..68ac4e05e37f
+> --- /dev/null
+> +++ b/include/dt-bindings/media/video-interfaces.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (C) 2022 Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> + */
+> +
+> +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> +
+> +#define MEDIA_BUS_TYPE_CSI2_CPHY		1
+> +#define MEDIA_BUS_TYPE_CSI1			2
+> +#define MEDIA_BUS_TYPE_CCP2			3
+> +#define MEDIA_BUS_TYPE_CSI2_DPHY		4
+> +#define MEDIA_BUS_TYPE_PARALLEL			5
+> +#define MEDIA_BUS_TYPE_BT656			6
+> +
+> +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
