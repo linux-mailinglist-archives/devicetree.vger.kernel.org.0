@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7079C62D970
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F6B62D97F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:37:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239305AbiKQLeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 06:34:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
+        id S231480AbiKQLhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 06:37:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233742AbiKQLeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:34:05 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DB44AF10
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:34:04 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id t17so723011pjo.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:34:04 -0800 (PST)
+        with ESMTP id S239717AbiKQLgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:36:48 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629CA6828E
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:36:45 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id f7so2107378edc.6
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:36:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FDkIugz1/mRNVETST6IbQaDgBOb8+GBszmb2VS3UN2s=;
-        b=uw1uKLKp4/MuS9ulsVTuQB6gNAAMwFkV0SDMB2uxUNtfkqKmJDnb3wS+NbJXNsQ3rt
-         /hqM+wGXxku3YrBXawf/qmPZHhcpvvodMK/szk0jElP/8losaFkI2A/tBNPnHEGfXjzB
-         D0OvTS4grLlzwuZZr3GuM2mKFQ1wha78nHjZ3umEw92/EK/y/CTdVjm37Ok7RelVE6vq
-         UaJnmnvSO/RmZT/Gjw+sSgizFBQs7cbfpUA42uI1TScqYEj9AgcsGZLuMmI/Gy//JXyp
-         btTmo4gv4i1lxHUwLKhPvs7gSNgJDifjPJs7TpLlLLWW7c+s3sKr23wpKyU+RSb5my1T
-         rlGA==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5n89bNftvboEAVMXJ3mXkBUp/+egXvwFtqhI+l+Yrhg=;
+        b=LwTHOR/e6UsL0qvDqKfYzZF8rhijfI/1z9hjlJs9jskIsV7PO/SX4Bag1gRZb2CFG9
+         UYQLbHsuEHSsUuoI1DanZNzc/rYAcyFmjeDMSKy5qMZpTgrNsFyknnOHqJnNcX8Ms85+
+         F48rET3GLypNDLOaMcnUHzrBYyhQ063Wqjih8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FDkIugz1/mRNVETST6IbQaDgBOb8+GBszmb2VS3UN2s=;
-        b=Trnm3X98yNqtkqgC/Ew2boO3GBdpSOeyMO67Gjbi1gmPVQm2Mi/Q7J+UX2JhDMnc8d
-         jC6xSU/OHeSodcA13zOGBpIV2PTSMpma2EgLBWaCGa9I/T8VUrUUzLTsx+C/MQwbxD3e
-         FI7w7ppU7BhpQFxV2FIKM7Be0JkXf375ru978658+bw0KFUlggyXQHTYGa957kt6nFWz
-         e4xTFXAUniBAttbGiIYmgHn3LteED91OaRCr2cYXA/7i1xdz1gBC8+Ai7VRSq3ko1Eha
-         3X6AwZycdpJ0Wmj72fjBbPhgoQjwYg7gqpKr2nB5rxXl5vDXmRCRaNBbyIRZS1+J914j
-         jIRA==
-X-Gm-Message-State: ANoB5pm7Orw3UpZv8dFehfYZ7qG3iVn6MubMzUCsNK96m3dqow5Y58gX
-        WARn3X3BjXQAIyx4Rrk2zHN+
-X-Google-Smtp-Source: AA0mqf6AmSKCk80SLfZx3vcFbb0uXwFGb1BSMV8/Q8KtIf65DRNYaiu453V6v/md5Ww30NBrc05rLg==
-X-Received: by 2002:a17:902:7e47:b0:186:944a:2560 with SMTP id a7-20020a1709027e4700b00186944a2560mr2380013pln.84.1668684844024;
-        Thu, 17 Nov 2022 03:34:04 -0800 (PST)
-Received: from thinkpad ([117.193.208.31])
-        by smtp.gmail.com with ESMTPSA id h129-20020a625387000000b00571bdf45888sm881780pfb.154.2022.11.17.03.33.59
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5n89bNftvboEAVMXJ3mXkBUp/+egXvwFtqhI+l+Yrhg=;
+        b=Uwn49SP8KlVAFQvopiaurJj+Bz79rYd8a6MSc/d1f2CXZvIJGDYTBGC8qLUT+nc3Sl
+         TEwabvTR8PRx7ZkEpPlXZTXr8zUxZ82c5zyS6C5yAdpCYJ8XhOAd61hUUMbLG9GUvsV1
+         r9ZUWIo6S0KDNoU/vkGA9EGqBK5sJrvefRqtYbkJlAkLfHvIcZQzr5bWsaCAIpasvuSt
+         dwwEej0HfTadZtmAj4PrDbfvvQPpJqy+ZLsyOefg/ZfONh4rdFCpHsDuuM+zHuBHrwUj
+         bpvqg+NayM2HFfSBerIbQwR9V9Yhse1iLehCx6a2OswyxFrWLObj7TQEAtkLFLeKw1R0
+         WLsg==
+X-Gm-Message-State: ANoB5pn2xRquX4JNaNcy3cHJU0nM4qAeaxGeobTEzlphx+OZpztQPYWh
+        SP8TXOOUaWhWwXLXEyhpBrgbXQ==
+X-Google-Smtp-Source: AA0mqf4YXBXOnH9OsK0TZEMc2PMrRe/jO9oOYIzciaRSm9223UfIZ4ifnE+9p2O77EQgbOCY8uqxKg==
+X-Received: by 2002:aa7:c9cd:0:b0:461:891a:8162 with SMTP id i13-20020aa7c9cd000000b00461891a8162mr1721324edt.398.1668685003881;
+        Thu, 17 Nov 2022 03:36:43 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.amarulasolutions.com (mob-5-90-137-239.net.vodafone.it. [5.90.137.239])
+        by smtp.gmail.com with ESMTPSA id g3-20020aa7c843000000b0043bbb3535d6sm413897edt.66.2022.11.17.03.36.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 03:34:03 -0800 (PST)
-Date:   Thu, 17 Nov 2022 17:03:57 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Brian Masney <bmasney@redhat.com>
-Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [PATCH 1/2] scsi: ufs: ufs-qcom: add basic interconnect support
-Message-ID: <20221117113357.GB93179@thinkpad>
-References: <20221117104957.254648-1-bmasney@redhat.com>
- <20221117104957.254648-2-bmasney@redhat.com>
+        Thu, 17 Nov 2022 03:36:43 -0800 (PST)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-amarula@amarulasolutions.com, michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/5] clk: imx8mn: miscellaneous cleanups and bug fixes
+Date:   Thu, 17 Nov 2022 12:36:32 +0100
+Message-Id: <20221117113637.1978703-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221117104957.254648-2-bmasney@redhat.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -75,87 +76,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 05:49:56AM -0500, Brian Masney wrote:
-> The firmware on the Qualcomm platforms expects the interconnect votes to
-> be present. Let's add very basic support where the maximum throughput is
-> requested to match what's done in a few other drivers.
-> 
-> This will not break boot on systems where the interconnects and
-> interconnect-names properties are not specified in device tree for UFS
-> since the interconnect framework will silently return.
-> 
-> Signed-off-by: Brian Masney <bmasney@redhat.com>
-> ---
->  drivers/ufs/host/ufs-qcom.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 8ad1415e10b6..55bf8dd88985 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -7,6 +7,7 @@
->  #include <linux/time.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> +#include <linux/interconnect.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> @@ -936,6 +937,22 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
->  	.deassert = ufs_qcom_reset_deassert,
->  };
->  
-> +static int ufs_qcom_icc_init(struct device *dev, char *pathname)
-> +{
-> +	struct icc_path *path;
-> +	int ret;
-> +
-> +	path = devm_of_icc_get(dev, pathname);
-> +	if (IS_ERR(path))
-> +		return dev_err_probe(dev, PTR_ERR(path), "failed to acquire interconnect path\n");
-> +
-> +	ret = icc_set_bw(path, 0, UINT_MAX);
+This series has been tested on the BSH SystemMaster (SMM) S2 board.
 
-Please use icc macros for setting the bandwidth. Like, GBps_to_icc(),
-MBps_to_icc() etc...
+Changes in v2:
+- Update the commit message.
+- Add Fixes tag.
+- Maintain IMX8MN_VPU_* constants to not break backward compatibility.
+- Update the commit message.
+- Add Fixes tag.
+- Maintain IMX8MN_VIDEO_PLL1* constants to not break backward
+  compatibility.
 
-Also, during the init stage you can set a minimum bandwidth that will allow the
-controller to get probed successfully. Then, you should update the bandwidth
-based on the gear in pwr_change_notify() callback.
+Dario Binacchi (5):
+  clk: imx8mn: rename vpu_pll to m7_alt_pll
+  clk: imx: replace osc_hdmi with dummy
+  clk: imx: rename video_pll1 to video_pll
+  clk: imx8mn: fix imx8mn_sai2_sels clocks list
+  clk: imx8mn: fix imx8mn_enet_phy_sels clocks list
 
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * ufs_qcom_init - bind phy with controller
->   * @hba: host controller instance
-> @@ -991,6 +1008,14 @@ static int ufs_qcom_init(struct ufs_hba *hba)
->  			err = dev_err_probe(dev, PTR_ERR(host->generic_phy), "Failed to get PHY\n");
->  			goto out_variant_clear;
->  		}
-> +
-> +		err = ufs_qcom_icc_init(dev, "ufs-ddr");
-> +		if (err)
-> +			goto out_variant_clear;
-> +
-> +		err = ufs_qcom_icc_init(dev, "cpu-ufs");
-> +		if (err)
-> +			goto out_variant_clear;
-
-It'd be nice to have a single function that initializes both paths.
-
-Thanks,
-Mani
-
->  	}
->  
->  	host->device_reset = devm_gpiod_get_optional(dev, "reset",
-> -- 
-> 2.38.1
-> 
+ drivers/clk/imx/clk-imx8mn.c             | 116 +++++++++++------------
+ include/dt-bindings/clock/imx8mn-clock.h |  24 +++--
+ 2 files changed, 74 insertions(+), 66 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.32.0
+
