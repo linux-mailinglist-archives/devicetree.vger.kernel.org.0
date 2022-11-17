@@ -2,70 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D3A62D9E2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:52:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCE862D9E9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:53:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234637AbiKQLwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 06:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54956 "EHLO
+        id S231469AbiKQLxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 06:53:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239478AbiKQLwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:52:09 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F33E93B3;
-        Thu, 17 Nov 2022 03:52:08 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 176D713D5;
-        Thu, 17 Nov 2022 03:52:15 -0800 (PST)
-Received: from bogus (unknown [10.57.6.137])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 33E483F663;
-        Thu, 17 Nov 2022 03:52:06 -0800 (PST)
-Date:   Thu, 17 Nov 2022 11:52:03 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221117115203.356vexlpca746o6m@bogus>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221117101903.sw3hxaruj5sfhybw@bogus>
- <20221117111207.GA93179@thinkpad>
+        with ESMTP id S234518AbiKQLxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:53:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A84D1141;
+        Thu, 17 Nov 2022 03:53:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BC58261303;
+        Thu, 17 Nov 2022 11:53:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B06DC433D6;
+        Thu, 17 Nov 2022 11:53:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668685994;
+        bh=ShqTe1CG2H2vpLDKDFV7iYYR2HXYxDuYRyuDgEafb10=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c1BvFloj9U+G4l3s5fB0S3s6wd9nDJWAKF9jgAlxVb07mREgj3TvGzY/NFV8OQxDI
+         55Ub+0cRUU+qG0C85Dh85mLvCZWM+4jKMrHQuP/F+tLn/3OX9E4w08s1R+ENbD6bZz
+         nR/LKmEs0o2k8PNPS1J10WpjgmXNOJWSpVJut5I55oLwVhYUuqjOqcLTT4UV1F+iTh
+         37hpbCxE3i+x2o2Pt5HW0ezQEKQxFff/cJ84NhJkVuZtmrHKMky4DefsVUfZwrg/mw
+         oFrLaOuNUPV3LKC8JOONjknV4SCwOcSFMS7jYQPGQya54TdZrVxUdcstunUlmUi71c
+         XuASjz1yeh7BA==
+Date:   Thu, 17 Nov 2022 11:53:05 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Jerome Neanne <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        shawnguo@kernel.org, geert+renesas@glider.be,
+        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
+        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
+        jeff@labundy.com, afd@ti.com, khilman@baylibre.com,
+        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH v7 5/6] Input: Add tps65219 interrupt driven powerbutton
+Message-ID: <Y3YgocGss54KIMRi@google.com>
+References: <20221104152311.1098603-1-jneanne@baylibre.com>
+ <20221104152311.1098603-6-jneanne@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221117111207.GA93179@thinkpad>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221104152311.1098603-6-jneanne@baylibre.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 04:42:07PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Nov 17, 2022 at 10:19:03AM +0000, Sudeep Holla wrote:
-> > 
-> > Why do you need the above 3 changes if the below(4/4) will ensure
-> > cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
-> > whole "confusing" clock bindings and the unnecessary clock provider.
-> > 
-> > Can't we just use cpufreq_get(cpu) ?
-> > 
-> 
-> This can be possible for OPP implementations for the CPUs but not for other
-> peripherals making use of OPP framework like GPU etc... Moreover this may end
-> up with different code path for CPUs and other peripherals inside OPP framework.
-> 
+On Fri, 04 Nov 2022, Jerome Neanne wrote:
 
-Fair enough, you can use this for non-CPU devices. But you are adding this for
-CPUs here. Is the consumer unaware that this is a CPU or non-CPU device ?
-If so, make sense. Otherwise, it is unnecessary to go through the clk
-framework to get CPU frequency.
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> TPS65219 has different interrupts compared to other TPS6521* chips.
+> TPS65219 defines two interrupts for the powerbutton one for push and one
+> for release.
+> 
+> This driver is very simple in that it maps the push interrupt to a key
+> input and the release interrupt to a key release.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
+> 
+> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
+> Please feel free to merge through MFD tree.
+> ---
+>  drivers/input/misc/Kconfig              |  10 ++
+>  drivers/input/misc/Makefile             |   1 +
+>  drivers/input/misc/tps65219-pwrbutton.c | 148 ++++++++++++++++++++++++
+>  3 files changed, 159 insertions(+)
+>  create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+
+Applied, thanks.
 
 -- 
-Regards,
-Sudeep
+Lee Jones [李琼斯]
