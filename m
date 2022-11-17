@@ -2,243 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F79B62D1ED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 04:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B69D462D229
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 05:12:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbiKQD7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Nov 2022 22:59:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33358 "EHLO
+        id S233742AbiKQEMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Nov 2022 23:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234913AbiKQD7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 22:59:14 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 559794B9B4;
-        Wed, 16 Nov 2022 19:59:11 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Dx_NiOsXVjJSkIAA--.23288S3;
-        Thu, 17 Nov 2022 11:59:10 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_1eIsXVjnacVAA--.57258S3;
-        Thu, 17 Nov 2022 11:59:09 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S233151AbiKQEM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Nov 2022 23:12:29 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550B432B8F;
+        Wed, 16 Nov 2022 20:12:28 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id d9so1315708wrm.13;
+        Wed, 16 Nov 2022 20:12:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gM3PtvPAdYS2cL7GwLPhGFEGDIfhNGK5xW1YKSqAlqI=;
+        b=i7enR9MnStHWDiFeKdWX5LPhsTsRCxiq4GaJlWfecj34xt3cMfTeP5VYwZDz6BN8Go
+         zSiJFITJaa8RhwWFtQbjfwImn4uf4edOeMNSxLLCSf1EtIL4u35IqKUBrTFIo0HbgjJj
+         p3HKVQCzMGWvF4CtF4c3CIWbYkQ0oySnBoxQWk9ZxHEkcFJxPhS1M4x93CDzXFEVhLDG
+         E0IDec710zT71gTUlNXEJtC21QZ/Kc1MPeTw8rfEY4tgiP88EEcnq1kxDl73Xkc19tqy
+         MZsOGkrFHml4Z7oJevYDpGdpPyip1H8o9zhTT9dLDs9EcOUbH2k+3NCtNufvFbPPQRPL
+         p9QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gM3PtvPAdYS2cL7GwLPhGFEGDIfhNGK5xW1YKSqAlqI=;
+        b=6vxONInLDykO5W+JJw/VPR3xluYAxCe4A7JMxViAx1ZGDtmyG8it+80V64A+AEzwH6
+         /4Qz23/XEi2p3f3nDnljqSiSql13esiwe72YMI+XH15vOJ6nQAnh/3ec/y64Hs7KX3Nk
+         LBhd0GLQ90iAXQlM/dD0OMbdbKsyAQSeogizMJPajNg+WzznCUtObzaoef1lo8o+WwJy
+         6q8jDp/+hY8+2C9xt3jWXAOv+yFd0FjvxvWqKHXxyvZOkw06u+OWdWU82hs7sYfefSGi
+         1B4APbnP0sCC/bgHGSV8mD14daiECrcRoXyUBVUI7j48MpYbo936nJ2Z2PjLIvwcAt3b
+         ZrGw==
+X-Gm-Message-State: ANoB5pmNpyHcwYIBRKVCgm2QkqYSGAQgV/rrrT0D0CJrdlp3hjg2vGS+
+        tQ/zQBwd8YvvxJ9I8zEezAQ=
+X-Google-Smtp-Source: AA0mqf5mLvMwgquR9ICuNaOBwEssOw9+IVyuu28bZWGtGGVsZmBYcoFOd5y45nQljfNsNCS87F7iLg==
+X-Received: by 2002:adf:d84c:0:b0:236:6f1a:955 with SMTP id k12-20020adfd84c000000b002366f1a0955mr283056wrl.111.1668658346920;
+        Wed, 16 Nov 2022 20:12:26 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id x11-20020a5d54cb000000b002415dd45320sm16479931wrv.112.2022.11.16.20.12.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Nov 2022 20:12:26 -0800 (PST)
+Date:   Thu, 17 Nov 2022 07:12:24 +0300
+From:   Dan Carpenter <error27@gmail.com>
+To:     oe-kbuild@lists.linux.dev, Liu Peibao <liupeibao@loongson.cn>,
+        Bjorn Helgaas <helgaas@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 2/2] dt-bindings: gpio: add loongson gpio
-Date:   Thu, 17 Nov 2022 11:59:02 +0800
-Message-Id: <20221117035902.13995-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221117035902.13995-1-zhuyinbo@loongson.cn>
-References: <20221117035902.13995-1-zhuyinbo@loongson.cn>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+        chenhuacai@loongson.cn, lvjianmin@loongson.cn,
+        zhuyinbo@loongson.cn, liupeibao@loongson.cn,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] PCI: loongson: add skip-scan property for child DT
+ node
+Message-ID: <202211160131.oycRMuJQ-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx_1eIsXVjnacVAA--.57258S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tFy8Ww43XFy5Gw4xXrb_yoWruF4xp3
-        WDZFZxX3y2grnxtFs8Ka17Zr4xAr1kC3WrurnxC3yxtrWUKwn8XFWfWFykG3Z3WrWUXF17
-        JwsrurWrta43Aw7anT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUAVWUZwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_
-        Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
-        CTnIWIevJa73UjIFyTuYvjxU24EEUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103090040.836-1-liupeibao@loongson.cn>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson platform gpio binding with DT schema format using
-json-schema.
+Hi Liu,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v4:
-		1. Remove the string "series".
-		2. Add the reviewed-by information.
-Change in v3:
-		1. Separate some changes of MAINTAINERS file and enter the first patch.
-Change in v2:
-		1. Drop "loongson,gpio_base" and "gpio-ranges" will cover it.
-		1. Drop "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
-		   "loongson,support_irq" and kernel driver will initial them that depend
-		   compatible in kernel.
-		3. Fixup maintainer for this driver.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
- .../bindings/gpio/loongson,ls-gpio.yaml       | 126 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Liu-Peibao/PCI-loongson-add-skip-scan-property-for-child-DT-node/20221103-170125
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
+patch link:    https://lore.kernel.org/r/20221103090040.836-1-liupeibao%40loongson.cn
+patch subject: [PATCH 1/2] PCI: loongson: add skip-scan property for child DT node
+config: loongarch-randconfig-m041-20221114
+compiler: loongarch64-linux-gcc (GCC) 12.1.0
 
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-new file mode 100644
-index 000000000000..fb86e8ce6349
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-@@ -0,0 +1,126 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson GPIO controller.
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-gpio
-+      - loongson,ls7a-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 64
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 64
-+
-+required:
-+  - compatible
-+  - reg
-+  - ngpios
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - gpio-ranges
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gpio0: gpio@1fe00500 {
-+      compatible = "loongson,ls2k-gpio";
-+      reg = <0x1fe00500 0x38>;
-+      ngpios = <64>;
-+      #gpio-cells = <2>;
-+      gpio-controller;
-+      gpio-ranges = <&pctrl 0 0 15>,
-+                    <&pctrl 16 16 15>,
-+                    <&pctrl 32 32 10>,
-+                    <&pctrl 44 44 20>;
-+      interrupt-parent = <&liointc1>;
-+      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
-+                   <29 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 838b920efcef..62c5499e4159 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12056,6 +12056,7 @@ M:	Huacai Chen <chenhuacai@kernel.org>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
- F:	drivers/gpio/gpio-loongson.c
- F:	include/linux/platform_data/gpio-loongson.h
- 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+
+smatch warnings:
+drivers/pci/controller/pci-loongson.c:257 setup_masklist() error: not allocating enough for = 'entry' 24 vs 8
+
+vim +/entry +257 drivers/pci/controller/pci-loongson.c
+
+f93e71fb8e65ba Liu Peibao  2022-11-03  242  static int setup_masklist(struct loongson_pci *priv)
+f93e71fb8e65ba Liu Peibao  2022-11-03  243  {
+f93e71fb8e65ba Liu Peibao  2022-11-03  244  	struct device *dev = &priv->pdev->dev;
+f93e71fb8e65ba Liu Peibao  2022-11-03  245  	struct device_node *dn, *parent = dev->of_node;
+f93e71fb8e65ba Liu Peibao  2022-11-03  246  	struct mask_entry *entry;
+f93e71fb8e65ba Liu Peibao  2022-11-03  247  	int devfn;
+f93e71fb8e65ba Liu Peibao  2022-11-03  248  
+f93e71fb8e65ba Liu Peibao  2022-11-03  249  	INIT_LIST_HEAD(&priv->masklist);
+f93e71fb8e65ba Liu Peibao  2022-11-03  250  
+f93e71fb8e65ba Liu Peibao  2022-11-03  251  	for_each_child_of_node(parent, dn) {
+f93e71fb8e65ba Liu Peibao  2022-11-03  252  		if (of_property_read_bool(dn, "skip-scan")) {
+f93e71fb8e65ba Liu Peibao  2022-11-03  253  			devfn = of_pci_get_devfn(dn);
+f93e71fb8e65ba Liu Peibao  2022-11-03  254  			if (devfn < 0)
+f93e71fb8e65ba Liu Peibao  2022-11-03  255  				continue;
+f93e71fb8e65ba Liu Peibao  2022-11-03  256  
+f93e71fb8e65ba Liu Peibao  2022-11-03 @257  			entry = devm_kzalloc(dev, sizeof(entry), GFP_KERNEL);
+                                                                                          ^^^^^^^^^^^^^
+Should be sizeof(*entry)
+
+f93e71fb8e65ba Liu Peibao  2022-11-03  258  			if (!entry)
+f93e71fb8e65ba Liu Peibao  2022-11-03  259  				return -ENOMEM;
+f93e71fb8e65ba Liu Peibao  2022-11-03  260  
+f93e71fb8e65ba Liu Peibao  2022-11-03  261  			entry->devfn = devfn;
+f93e71fb8e65ba Liu Peibao  2022-11-03  262  			list_add_tail(&entry->entry, &priv->masklist);
+f93e71fb8e65ba Liu Peibao  2022-11-03  263  		}
+f93e71fb8e65ba Liu Peibao  2022-11-03  264  	}
+f93e71fb8e65ba Liu Peibao  2022-11-03  265  
+f93e71fb8e65ba Liu Peibao  2022-11-03  266  	return 0;
+f93e71fb8e65ba Liu Peibao  2022-11-03  267  }
+
 -- 
-2.31.1
+0-DAY CI Kernel Test Service
+https://01.org/lkp
 
