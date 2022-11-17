@@ -2,93 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCE862D9E9
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E3362DA06
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 12:58:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231469AbiKQLxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 06:53:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55430 "EHLO
+        id S239618AbiKQL60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 06:58:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234518AbiKQLxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:53:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A84D1141;
-        Thu, 17 Nov 2022 03:53:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC58261303;
-        Thu, 17 Nov 2022 11:53:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B06DC433D6;
-        Thu, 17 Nov 2022 11:53:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668685994;
-        bh=ShqTe1CG2H2vpLDKDFV7iYYR2HXYxDuYRyuDgEafb10=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c1BvFloj9U+G4l3s5fB0S3s6wd9nDJWAKF9jgAlxVb07mREgj3TvGzY/NFV8OQxDI
-         55Ub+0cRUU+qG0C85Dh85mLvCZWM+4jKMrHQuP/F+tLn/3OX9E4w08s1R+ENbD6bZz
-         nR/LKmEs0o2k8PNPS1J10WpjgmXNOJWSpVJut5I55oLwVhYUuqjOqcLTT4UV1F+iTh
-         37hpbCxE3i+x2o2Pt5HW0ezQEKQxFff/cJ84NhJkVuZtmrHKMky4DefsVUfZwrg/mw
-         oFrLaOuNUPV3LKC8JOONjknV4SCwOcSFMS7jYQPGQya54TdZrVxUdcstunUlmUi71c
-         XuASjz1yeh7BA==
-Date:   Thu, 17 Nov 2022 11:53:05 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        shawnguo@kernel.org, geert+renesas@glider.be,
-        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
-        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
-        jeff@labundy.com, afd@ti.com, khilman@baylibre.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v7 5/6] Input: Add tps65219 interrupt driven powerbutton
-Message-ID: <Y3YgocGss54KIMRi@google.com>
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <20221104152311.1098603-6-jneanne@baylibre.com>
+        with ESMTP id S239791AbiKQL6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 06:58:21 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6DB6E566
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:58:14 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id w23so1380417ply.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 03:58:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GLoVFChROJ5V36ljC1bNCZRvnBVgO9ssi1DRcUAdvAk=;
+        b=NJGWsdluGlnqtVYNGjjNX1DFoLalmku5FeE/yJwRBIyMjzN4IDelPx29JMqCdCKP78
+         B8y6LxM56UiJqigX7MDHT4BYu56C6F2XUSLBJHvveMztS/lO2u3HCnALmkO9sO1O+WRA
+         mCWXfDQ2QohNau6Qv+0Fk2qOvd4krKcr3VMe/5dv3RHZjiB0q3dzu+w5QBH6iheLztkl
+         UC/Eyfzz6oz9qpvvRFj2lI5SK+IwaN7XZIjO0jWi0fV8YDhYDQueq/6PYt1vTCnZEooN
+         iQ2N89hs4AuIEAvo9fK6z1/eYlgW1IjEkTBU/PZsEtLIhv8GX60uARcUaF7HPW+y7cH2
+         eJPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GLoVFChROJ5V36ljC1bNCZRvnBVgO9ssi1DRcUAdvAk=;
+        b=Opdgz7i9/nSaa6ySsH4iFmaEubQ9h9NJbp1H92J/N0j3/LmJwOQydKYZB+QoZ++96F
+         AurZIG98cyahBbMCx9ZzxFROFSGQn3p122i8HiYzeXIui8pvBmYZTd5a2RvivhOcKEpK
+         EUTSlNP4CBxL5GMCdJGjGbfMEKxICuxcL0yXRjHyOPQZ9E/PRquicTBb4M1JBHNs8rEB
+         rBaxnwsb8jyzL4pVNwzjzByOIg1jtQINqIJpjeHs2j0QVFG6Nrzle0+dxKD7uzdToy+s
+         VDGpN1pfAiraHPvMeTFKdPW5jDdgp50rwtIlrwTx0G1/Hnub9wEUrB4TRgVJVxETuKcu
+         dRcA==
+X-Gm-Message-State: ANoB5pmPgWGeCfc5aD/g7MVHLGOJb5imcU9uSlJVQUmMOjeTctC3VOVH
+        8EuDvzoswf5EZlgDcT2aTgog
+X-Google-Smtp-Source: AA0mqf7s25sxpfJwk+zLTPv7ei4nidM08tgz478Muexp4BmUxkF4n60Adpc43Uzd2cOb0eK8kwVAjQ==
+X-Received: by 2002:a17:90a:398f:b0:213:5a55:7dd2 with SMTP id z15-20020a17090a398f00b002135a557dd2mr2559599pjb.50.1668686293696;
+        Thu, 17 Nov 2022 03:58:13 -0800 (PST)
+Received: from thinkpad ([117.193.208.31])
+        by smtp.gmail.com with ESMTPSA id z4-20020aa79f84000000b005626a1c77c8sm952665pfr.80.2022.11.17.03.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Nov 2022 03:58:12 -0800 (PST)
+Date:   Thu, 17 Nov 2022 17:28:07 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     andersson@kernel.org, viresh.kumar@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221117115807.GF93179@thinkpad>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+ <20221117101903.sw3hxaruj5sfhybw@bogus>
+ <20221117111207.GA93179@thinkpad>
+ <20221117115203.356vexlpca746o6m@bogus>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221104152311.1098603-6-jneanne@baylibre.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221117115203.356vexlpca746o6m@bogus>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Nov 2022, Jerome Neanne wrote:
+On Thu, Nov 17, 2022 at 11:52:03AM +0000, Sudeep Holla wrote:
+> On Thu, Nov 17, 2022 at 04:42:07PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Nov 17, 2022 at 10:19:03AM +0000, Sudeep Holla wrote:
+> > > 
+> > > Why do you need the above 3 changes if the below(4/4) will ensure
+> > > cpufreq_get(cpu) returns the clock frequency. I was expecting to drop the
+> > > whole "confusing" clock bindings and the unnecessary clock provider.
+> > > 
+> > > Can't we just use cpufreq_get(cpu) ?
+> > > 
+> > 
+> > This can be possible for OPP implementations for the CPUs but not for other
+> > peripherals making use of OPP framework like GPU etc... Moreover this may end
+> > up with different code path for CPUs and other peripherals inside OPP framework.
+> > 
+> 
+> Fair enough, you can use this for non-CPU devices. But you are adding this for
+> CPUs here. Is the consumer unaware that this is a CPU or non-CPU device ?
+> If so, make sense. Otherwise, it is unnecessary to go through the clk
+> framework to get CPU frequency.
+> 
 
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> TPS65219 has different interrupts compared to other TPS6521* chips.
-> TPS65219 defines two interrupts for the powerbutton one for push and one
-> for release.
-> 
-> This driver is very simple in that it maps the push interrupt to a key
-> input and the release interrupt to a key release.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> 
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> 
-> Please feel free to merge through MFD tree.
-> ---
->  drivers/input/misc/Kconfig              |  10 ++
->  drivers/input/misc/Makefile             |   1 +
->  drivers/input/misc/tps65219-pwrbutton.c | 148 ++++++++++++++++++++++++
->  3 files changed, 159 insertions(+)
->  create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+The consumer here is the OPP framework and yes it doesn't have the knowledge of
+the device it is dealing with (for this context).
 
-Applied, thanks.
+Thanks,
+Mani
+
+> -- 
+> Regards,
+> Sudeep
 
 -- 
-Lee Jones [李琼斯]
+மணிவண்ணன் சதாசிவம்
