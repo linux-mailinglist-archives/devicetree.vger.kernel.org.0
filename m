@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B74662E3C1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 19:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22A0D62E3D1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 19:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239817AbiKQSID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 13:08:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47134 "EHLO
+        id S233439AbiKQSK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 13:10:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239456AbiKQSID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 13:08:03 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E28C748EA
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 10:08:01 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id d6so4085555lfs.10
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 10:08:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ABvTsAaVT8uEdnB1wnBUP0233+pp89h9PKGzrpb1Gbw=;
-        b=AFMMqZv66bqrJYFluWXzBw2qjrraX1EIjlIoZPqAZCgh4SUhVcd7ivqS6P5k/fcGHM
-         xD/AyeELz57hPpT3juyz2QK8p6MCB/n1ZILs3fC/4RAxaRxUZ/r7n2fBAV4Cf9vvbQjX
-         sNI6OR9Srz4amp8Q4sp4QaozyOHCj84Y6EXlGWJLb9mRogNyjnCOeDSmJek9fsYyFEvh
-         KuG28+f2CZe2f+puIPGq3cZ0q4F+GMZzWIY0lSZ2rdoQ5TOPIJxH7GBjjZgOqzKYAnSa
-         zT0fauHWNnrtxMYKR2aUgWI9AE7CUPGfg9HqQ6XWQLs195iUgSE/L675oNWHEBrONrjN
-         lLRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ABvTsAaVT8uEdnB1wnBUP0233+pp89h9PKGzrpb1Gbw=;
-        b=WjucBoLZ1mBhjJLoruZToReGO03vZD3VDrpH+a2vx/H3RnAVYuvGGR1D5xfWQhfbMi
-         BzJ8NcY6DwcyIC/k0DrWwPzy3FigpLiMsXwjjPG+HYyWYIOuB3BV5IR8HZyimI6rJ1Gs
-         m/49hxsNc7/68VlpvvqyvkPoRx9Ru7cm4aiBKnLru068clChcMbuTLypS1HxAXCXQwjN
-         fq8NLCNObHYT5KfgSf64i8b0EIgl1m+idp1h2dmrv+5csDh150yijH6pb9JtWo3S86XK
-         V33U7uMnRjvsi9hYQMdZYc1ffzBim40bX6RRDfyDDBwMYKiY0OWuhhSoeqzVyxMqeXc2
-         Yz+g==
-X-Gm-Message-State: ANoB5plwICeNf0lEZ4Ho1UA+1heEIteVPXr9vE71C+kqZssSs8c4xNzk
-        9YuKs27cPm/cksSxLXePE8wZcw==
-X-Google-Smtp-Source: AA0mqf6JCWdyhVYcx1o2AIifLbE4I5mtYp/W5qyGJV7q9ik8WmJ6EvWzInclK0E2rdzF+YWlaIPRNg==
-X-Received: by 2002:a05:6512:a83:b0:4aa:f944:f7ec with SMTP id m3-20020a0565120a8300b004aaf944f7ecmr1234490lfu.467.1668708479905;
-        Thu, 17 Nov 2022 10:07:59 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i29-20020a196d1d000000b004a459799bc3sm254028lfc.283.2022.11.17.10.07.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 10:07:59 -0800 (PST)
-Message-ID: <6f6386d0-4489-9e6e-355c-beb223c96684@linaro.org>
-Date:   Thu, 17 Nov 2022 19:07:57 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 2/8] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
- Add r8a779g0
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239402AbiKQSKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 13:10:24 -0500
+Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C913B6BDDA
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 10:10:17 -0800 (PST)
+Received: from localhost.localdomain ([146.241.88.137])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id vjL5ohRGp6OFPvjL5oOWAI; Thu, 17 Nov 2022 19:10:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1668708616; bh=DkD0FT6uYp5PVEwHynX8RbPLNYVMQoXPIJI6hhGbE00=;
+        h=From:To:Subject:Date:MIME-Version;
+        b=bNO8Qyxjl1HcvXCgM+DH7YLuJQNnlJf+GDOGxsMS62ibounZzmUi24sw3G5YVBhcE
+         Q635xLP5MTcuTGzYi+6s4UbeL5eBGnWW3s+hO9slPotM1fI8j3RJ3dBF1cgcuWhGJI
+         ULbttpOLMrPUPqRqS8Rj7QmMxRqhv0ja9qM74XgesaC6ISy2XdpwO4bLsk9aE56Ncy
+         BgpqFim6+V4HfUo5pK1hGD8qhmufcXOHED4Jcdnwj8z+g0YtYTxueOT3jBbBmauNte
+         hfD+B8ZBpOc5VyXDjzDNtxIflKZ3Ytz0z6fPLYTi49zam0OzTdQxolGFCc8FHfOlVB
+         mnQo8JCM0F7LQ==
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     Bough Chen <haibo.chen@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com>
- <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>
+Subject: [PATCH 1/4] clk: imx: imxrt1050: fix IMXRT1050_CLK_LCDIF_APB offsets
+Date:   Thu, 17 Nov 2022 19:10:11 +0100
+Message-Id: <20221117181014.851505-1-giulio.benetti@benettiengineering.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfAT4tLLIX8LwkPEPsgf5zfUM23STm/KarxmCHJZ5jZe3wzxKcQF//zBr0dWDUhOCKovxe5gzDQX8EMNDgLi6HivYqerbbJdRTRHxN77PHACFaRFfxOUt
+ NgagsNVF8AAhylhDkdyqOYeSxK6ayJn62YPHhw7G9Q2+aOPGVLeqifaHhL9kWNyjWzfeUY1Wu8J4WnigiQBQyliIJBzTfzzAGSRMDK+Kg2Klg8OGVr3pqMLL
+ /xeUWkXhRcDoyQMoYnSfEBwBktbpd4WhVrQ58rXgtiIghAnFMxWzYs3SC4paajitxGEhwfsZLhhkZKZJRpbXwGx9HFAG7AAxUQVoiePWheYRfsXxRbD8soXG
+ 6ZCID992Z5Qiel8YvuFPtHOvU0T2AtXkPhD3xCjvOyHkxevvrxRwF7Kz/oQCf5ILZYOqg4gB+vvZ10MzjAinkqpEAvccrZ0qx6I8d45DQ04RvB9JtpITQDof
+ 3nJK9ZgaZDNAFP5TPEk0PJCfkuNoGRg3e1XJ+gD6FxPACC5aWRunLar5W1v9Qr1GnR4onhvJzLiPrh1gMreKlidSbwQ+WmO7IUr55yumjCn0EsenJNaofRFO
+ PVzL/DIVShFor6Mx8XcuVwk2dntqt1SzNo5CU+/eILDdcUvnkHAPEhVimA874GdHOTB0QEw3WnikcTYvZ5c/xytTpDbq2uSeM/yvBTQXvl8dkQqlQ6oHfG3j
+ FNiZQxJmwEQz1FHoDtzClvT59WZ065gcfECv7F5c23MeST4N9HIPiwq2nryqCosPDvsg6VTX/spB4tEGbcO7NBhrdnz8uJSIiDiY4B8kjqomVq+qT/9DYg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 13:25, Tomi Valkeinen wrote:
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> 
-> Extend the Renesas DSI display bindings to support the r8a779g0 V4H.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Fix IMXRT1050_CLK_LCDIF_APB offsets.
 
+Fixes: 7154b046d8f3 ("clk: imx: Add initial support for i.MXRT1050 clock driver")
+Cc: Jesse Taube <mr.bossman075@gmail.com>
+Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+---
+V1->V2:
+* nothing done
+V2->V3:
+* added commit log and not only subject as suggested by Jesse Taube
+V3->V4:
+* added Fixes: as suggested by Fabio Estevam
+---
+ drivers/clk/imx/clk-imxrt1050.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/drivers/clk/imx/clk-imxrt1050.c b/drivers/clk/imx/clk-imxrt1050.c
+index 9539d35588ee..26108e9f7e67 100644
+--- a/drivers/clk/imx/clk-imxrt1050.c
++++ b/drivers/clk/imx/clk-imxrt1050.c
+@@ -140,7 +140,7 @@ static int imxrt1050_clocks_probe(struct platform_device *pdev)
+ 	hws[IMXRT1050_CLK_USDHC1] = imx_clk_hw_gate2("usdhc1", "usdhc1_podf", ccm_base + 0x80, 2);
+ 	hws[IMXRT1050_CLK_USDHC2] = imx_clk_hw_gate2("usdhc2", "usdhc2_podf", ccm_base + 0x80, 4);
+ 	hws[IMXRT1050_CLK_LPUART1] = imx_clk_hw_gate2("lpuart1", "lpuart_podf", ccm_base + 0x7c, 24);
+-	hws[IMXRT1050_CLK_LCDIF_APB] = imx_clk_hw_gate2("lcdif", "lcdif_podf", ccm_base + 0x74, 10);
++	hws[IMXRT1050_CLK_LCDIF_APB] = imx_clk_hw_gate2("lcdif", "lcdif_podf", ccm_base + 0x70, 28);
+ 	hws[IMXRT1050_CLK_DMA] = imx_clk_hw_gate("dma", "ipg", ccm_base + 0x7C, 6);
+ 	hws[IMXRT1050_CLK_DMA_MUX] = imx_clk_hw_gate("dmamux0", "ipg", ccm_base + 0x7C, 7);
+ 	imx_check_clk_hws(hws, IMXRT1050_CLK_END);
+-- 
+2.34.1
 
