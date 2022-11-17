@@ -2,492 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9EE62D7C8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B4D62D7CC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 11:16:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239468AbiKQKNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 05:13:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52226 "EHLO
+        id S234294AbiKQKQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 05:16:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239419AbiKQKNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:13:41 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDEA1056E
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:13:35 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id l14so3000736wrw.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 02:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MGNm9+INncbAj3PVloRV4toI1FS4UuWlLi59o7JDz2M=;
-        b=qNc7fyxitNPVXXgqrEPWvl4LxLCKxEvb8NKKfB//vYWc7DZLYCZo0ke4qY/zZwXoEw
-         9KVa770hR31mIyHoWFRm+Dzx94ONQLDZ2GjPMniKSyJiUce+yh14zLt56VCGJVGKnkjv
-         IBlBLJyVHyzbmckEWQ3eTJHoMT5xAADWi5sDS5ItQALG9T5h/Vo1n4Htk4mKqEMuIr+9
-         t77Q/ko2jazVY3O6D035ODb4cyIAa4qoZ7nNzi39FsF7Hb+G+gP7r2ABlepXXAg6MZKU
-         2SMnuH9lMOEYNeULw6lruoEw+p5aDNB9e+MuN5/6BwV75GrZW4PMPHGeFLJ2Ek4fq8pR
-         XyZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MGNm9+INncbAj3PVloRV4toI1FS4UuWlLi59o7JDz2M=;
-        b=za6cVPzX3Bnb70CBCu2+eTqeC0Y2wzNQm8BHX7+kEsU/c+oX+JO0jF50O8D4wMfxJH
-         b6ye/OCub4JbrLvShHK2gMb/bwyTC29IJg/Wkdtro/37nHobEUSsPZJ85RTtsN1lKWM1
-         yQyaFsxQj/TM8PkdM85FSOQEY9/5NlEK3mkSM79g6ohQgJuKlwoNruBjzhhPUkZarKry
-         NiGXGgUx/s0cUSoam3qT58s78VxYrLxlp1a+u4VOxTKyIJEqDEDpDrLNnnGpB7QMU8nT
-         0iSEkGW+YMv8Hqyt5kX9rM6u/zuriZ+CIs9LsDYE8KgX59/tXsSiaG5QvceFROEep7Hr
-         YGBA==
-X-Gm-Message-State: ANoB5plNTLInhMiT44hNaXvFnI0YrfqRwHYH4FT6maEy4ZZjETh/H5IZ
-        KhlSXtg0XfFGAc6kFw0cg5KsjQ==
-X-Google-Smtp-Source: AA0mqf66AlKmbN0Qd1ghU5kyRXBkz6WsJCdRAU+Msf8wC7/fZQ5PcmUdm6Yo4WZ2PQ0iMlCSQLWEvA==
-X-Received: by 2002:a05:6000:1148:b0:236:71cd:1a71 with SMTP id d8-20020a056000114800b0023671cd1a71mr1003680wrx.712.1668680014355;
-        Thu, 17 Nov 2022 02:13:34 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:aad5:8d14:a22f:2e8b? ([2a01:e0a:982:cbb0:aad5:8d14:a22f:2e8b])
-        by smtp.gmail.com with ESMTPSA id p6-20020a1c5446000000b003b47e75b401sm4956887wmi.37.2022.11.17.02.13.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 02:13:33 -0800 (PST)
-Message-ID: <360dee55-8c40-2d65-ed4a-d14e66c92f9d@linaro.org>
-Date:   Thu, 17 Nov 2022 11:13:33 +0100
+        with ESMTP id S233220AbiKQKQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 05:16:01 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1002AC73;
+        Thu, 17 Nov 2022 02:16:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 78AD2CE1D8F;
+        Thu, 17 Nov 2022 10:15:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209B3C433D6;
+        Thu, 17 Nov 2022 10:15:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668680156;
+        bh=nMX1pmWgMtqMDE+X0xEQhYb2QG4bMnX19JdISdG+DL8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b0dVWZuKE2duBP/h6i0onOn4RoBub/OqNs6M5PLnKvlMI5DSp/xFX5gXHlFSUSdO0
+         bFIBtPZFIA0svwZYeHjpJXTUP60NoLVVB9SfAuKE89Fq89LHo0wrFYuUaaCojlAqYz
+         RPSrfvej7SKX04dbC3gZxeF9RoADm4sdNebXTwSBbSiTueebWlYt8dDJtAkUh7VIxd
+         R3jM+vRZrn1PWdEpTZ/51vdvR20IxTPS3OyoEGfUR44oOva8aM9IB36RTi+qXXsMb1
+         wQLGWRq063EMepjC3AFlDPJIKdrbrZBQwWOe7bMXDuyoFV3HWI+4YzbIXmvXTrpn0b
+         PSWsiCZZpUi1g==
+Date:   Thu, 17 Nov 2022 10:15:52 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+Subject: Re: [PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
+Message-ID: <Y3YJ2EkYNW+gA+/R@google.com>
+References: <20221116205822.1128275-1-Naresh.Solanki@9elements.com>
+ <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550: add adsp, cdsp & mdss
- support nodes
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221115-topic-sm8550-upstream-dts-remoteproc-v1-0-379eec11d841@linaro.org>
- <20221115-topic-sm8550-upstream-dts-remoteproc-v1-2-379eec11d841@linaro.org>
- <f4f53117-7f60-6f22-0e0f-bb4f8ee1ea9f@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <f4f53117-7f60-6f22-0e0f-bb4f8ee1ea9f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 12:45, Konrad Dybcio wrote:
+On Wed, 16 Nov 2022, Naresh Solanki wrote:
+
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
 > 
+> Implement a regulator driver with IRQ support for fault management.
+> Written against documentation [1] and [2] and tested on real hardware.
 > 
-> On 16/11/2022 11:43, Neil Armstrong wrote:
->> This adds support for the aDSP, cDSP and MPSS Subsystems found in
->> the SM8550 SoC.
->>
->> The aDSP, cDSP and MPSS needs:
->> - smp2p support nodes to get event back from the subsystems
->> - remoteproc nodes with glink-edge subnodes providing all needed
->>    resources to start and run the subsystems
->>
->> In addition, the MPSS Subsystem needs a rmtfs_mem dedicated
->> memory zone.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> The title and commit message are misleading, you're either adding support or adding nodes. There is no such thing as "support nodes".
-
-Yep you're right,
-
+> Every channel has its own regulator supplies nammed 'vss1-supply' and
+> 'vss2-supply'. The regulator supply is used to determine the output
+> voltage, as the smart switch provides no output regulation.
+> The driver requires the 'shunt-resistor-micro-ohms' property to be
+> present in Device Tree to properly calculate current related
+> values.
 > 
-> The code looks good though, so with that fixed:
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Will fix for v2.
-
-
-Thanks,
-Neil
-
+> Datasheet links:
+> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
 > 
-> Konrad
-> 
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 337 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 337 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index 9e00778bb600..cac3adc4504f 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -543,6 +543,15 @@ adspslpi_mem: adspslpi-region@9ea00000 {
->>           /* Linux kernel image is loaded at 0xa8000000 */
->> +        rmtfs_mem: rmtfs-region@d4a80000 {
->> +            compatible = "qcom,rmtfs-mem";
->> +            reg = <0x0 0xd4a80000 0x0 0x280000>;
->> +            no-map;
->> +
->> +            qcom,client-id = <1>;
->> +            qcom,vmid = <15>;
->> +        };
->> +
->>           mpss_dsm_mem: mpss-dsm-region@d4d00000 {
->>               compatible = "qcom,mpss-dsm-mem";
->>               reg = <0x0 0xd4d00000 0x0 0x3300000>;
->> @@ -635,6 +644,89 @@ hyp_ext_reserved_mem: hyp-ext-reserved-region@ff700000 {
->>           };
->>       };
->> +    smp2p-adsp {
->> +        compatible = "qcom,smp2p";
->> +        qcom,smem = <443>, <429>;
->> +        interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
->> +                         IPCC_MPROC_SIGNAL_SMP2P
->> +                         IRQ_TYPE_EDGE_RISING>;
->> +        mboxes = <&ipcc IPCC_CLIENT_LPASS
->> +                IPCC_MPROC_SIGNAL_SMP2P>;
->> +
->> +        qcom,local-pid = <0>;
->> +        qcom,remote-pid = <2>;
->> +
->> +        smp2p_adsp_out: master-kernel {
->> +            qcom,entry-name = "master-kernel";
->> +            #qcom,smem-state-cells = <1>;
->> +        };
->> +
->> +        smp2p_adsp_in: slave-kernel {
->> +            qcom,entry-name = "slave-kernel";
->> +            interrupt-controller;
->> +            #interrupt-cells = <2>;
->> +        };
->> +    };
->> +
->> +    smp2p-cdsp {
->> +        compatible = "qcom,smp2p";
->> +        qcom,smem = <94>, <432>;
->> +        interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
->> +                         IPCC_MPROC_SIGNAL_SMP2P
->> +                         IRQ_TYPE_EDGE_RISING>;
->> +        mboxes = <&ipcc IPCC_CLIENT_CDSP
->> +                IPCC_MPROC_SIGNAL_SMP2P>;
->> +
->> +        qcom,local-pid = <0>;
->> +        qcom,remote-pid = <5>;
->> +
->> +        smp2p_cdsp_out: master-kernel {
->> +            qcom,entry-name = "master-kernel";
->> +            #qcom,smem-state-cells = <1>;
->> +        };
->> +
->> +        smp2p_cdsp_in: slave-kernel {
->> +            qcom,entry-name = "slave-kernel";
->> +            interrupt-controller;
->> +            #interrupt-cells = <2>;
->> +        };
->> +    };
->> +
->> +    smp2p-modem {
->> +        compatible = "qcom,smp2p";
->> +        qcom,smem = <435>, <428>;
->> +        interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
->> +                         IPCC_MPROC_SIGNAL_SMP2P
->> +                         IRQ_TYPE_EDGE_RISING>;
->> +        mboxes = <&ipcc IPCC_CLIENT_MPSS
->> +                IPCC_MPROC_SIGNAL_SMP2P>;
->> +
->> +        qcom,local-pid = <0>;
->> +        qcom,remote-pid = <1>;
->> +
->> +        smp2p_modem_out: master-kernel {
->> +            qcom,entry-name = "master-kernel";
->> +            #qcom,smem-state-cells = <1>;
->> +        };
->> +
->> +        smp2p_modem_in: slave-kernel {
->> +            qcom,entry-name = "slave-kernel";
->> +            interrupt-controller;
->> +            #interrupt-cells = <2>;
->> +        };
->> +
->> +        ipa_smp2p_out: ipa-ap-to-modem {
->> +            qcom,entry-name = "ipa";
->> +            #qcom,smem-state-cells = <1>;
->> +        };
->> +
->> +        ipa_smp2p_in: ipa-modem-to-ap {
->> +            qcom,entry-name = "ipa";
->> +            interrupt-controller;
->> +            #interrupt-cells = <2>;
->> +        };
->> +    };
->> +
->>       soc: soc@0 {
->>           #address-cells = <2>;
->>           #size-cells = <2>;
->> @@ -1388,6 +1480,48 @@ tcsr: clock-controller@1fc0000 {
->>               #reset-cells = <1>;
->>           };
->> +        remoteproc_mpss: remoteproc@4080000 {
->> +            compatible = "qcom,sm8550-mpss-pas";
->> +            reg = <0x0 0x04080000 0x0 0x4040>;
->> +
->> +            interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
->> +            interrupt-names = "wdog", "fatal", "ready", "handover",
->> +                      "stop-ack", "shutdown-ack";
->> +
->> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +            clock-names = "xo";
->> +
->> +            power-domains = <&rpmhpd SM8550_CX>,
->> +                    <&rpmhpd SM8550_MSS>;
->> +            power-domain-names = "cx", "mss";
->> +
->> +            interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
->> +
->> +            memory-region = <&mpss_mem &q6_mpss_dtb_mem>;
->> +
->> +            qcom,qmp = <&aoss_qmp>;
->> +
->> +            qcom,smem-states = <&smp2p_modem_out 0>;
->> +            qcom,smem-state-names = "stop";
->> +
->> +            status = "disabled";
->> +
->> +            glink-edge {
->> +                interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
->> +                                 IPCC_MPROC_SIGNAL_GLINK_QMP
->> +                                 IRQ_TYPE_EDGE_RISING>;
->> +                mboxes = <&ipcc IPCC_CLIENT_MPSS
->> +                        IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +                label = "mpss";
->> +                qcom,remote-pid = <1>;
->> +            };
->> +        };
->> +
->>           lpass_lpiaon_noc: interconnect@7400000 {
->>               compatible = "qcom,sm8550-lpass-lpiaon-noc";
->>               reg = <0x0 0x07400000 0x0 0x19080>;
->> @@ -2865,12 +2999,215 @@ system-cache-controller@25000000 {
->>               interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
->>           };
->> +        remoteproc_adsp: remoteproc@30000000 {
->> +            compatible = "qcom,sm8550-adsp-pas";
->> +            reg = <0x0 0x30000000 0x0 0x100>;
->> +
->> +            interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
->> +            interrupt-names = "wdog", "fatal", "ready",
->> +                      "handover", "stop-ack";
->> +
->> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +            clock-names = "xo";
->> +
->> +            power-domains = <&rpmhpd SM8550_LCX>,
->> +                    <&rpmhpd SM8550_LMX>;
->> +            power-domain-names = "lcx", "lmx";
->> +
->> +            interconnects = <&lpass_lpicx_noc MASTER_LPASS_PROC 0 &mc_virt SLAVE_EBI1 0>;
->> +
->> +            memory-region = <&adspslpi_mem &q6_adsp_dtb_mem>;
->> +
->> +            qcom,qmp = <&aoss_qmp>;
->> +
->> +            qcom,smem-states = <&smp2p_adsp_out 0>;
->> +            qcom,smem-state-names = "stop";
->> +
->> +            status = "disabled";
->> +
->> +            remoteproc_adsp_glink: glink-edge {
->> +                interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
->> +                                 IPCC_MPROC_SIGNAL_GLINK_QMP
->> +                                 IRQ_TYPE_EDGE_RISING>;
->> +                mboxes = <&ipcc IPCC_CLIENT_LPASS
->> +                        IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +                label = "lpass";
->> +                qcom,remote-pid = <2>;
->> +
->> +                fastrpc {
->> +                    compatible = "qcom,fastrpc";
->> +                    qcom,glink-channels = "fastrpcglink-apps-dsp";
->> +                    label = "adsp";
->> +                    #address-cells = <1>;
->> +                    #size-cells = <0>;
->> +
->> +                    compute-cb@3 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <3>;
->> +                        iommus = <&apps_smmu 0x1003 0x80>,
->> +                                 <&apps_smmu 0x1063 0x0>;
->> +                    };
->> +
->> +                    compute-cb@4 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <4>;
->> +                        iommus = <&apps_smmu 0x1004 0x80>,
->> +                             <&apps_smmu 0x1064 0x0>;
->> +                    };
->> +
->> +                    compute-cb@5 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <5>;
->> +                        iommus = <&apps_smmu 0x1005 0x80>,
->> +                             <&apps_smmu 0x1065 0x0>;
->> +                    };
->> +
->> +                    compute-cb@6 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <6>;
->> +                        iommus = <&apps_smmu 0x1006 0x80>,
->> +                                 <&apps_smmu 0x1066 0x0>;
->> +                    };
->> +
->> +                    compute-cb@7 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <7>;
->> +                        iommus = <&apps_smmu 0x1007 0x80>,
->> +                                 <&apps_smmu 0x1067 0x0>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->>           nsp_noc: interconnect@320c0000 {
->>               compatible = "qcom,sm8550-nsp-noc";
->>               reg = <0x0 0x320C0000 0x0 0xE080>;
->>               #interconnect-cells = <2>;
->>               qcom,bcm-voters = <&apps_bcm_voter>;
->>           };
->> +
->> +        remoteproc_cdsp: remoteproc@32300000 {
->> +            compatible = "qcom,sm8550-cdsp-pas";
->> +            reg = <0x0 0x32300000 0x0 0x1400000>;
->> +
->> +            interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
->> +                          <&smp2p_cdsp_in 3 IRQ_TYPE_EDGE_RISING>;
->> +            interrupt-names = "wdog", "fatal", "ready",
->> +                      "handover", "stop-ack";
->> +
->> +            clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +            clock-names = "xo";
->> +
->> +            power-domains = <&rpmhpd SM8550_CX>,
->> +                    <&rpmhpd SM8550_MXC>,
->> +                    <&rpmhpd SM8550_NSP>;
->> +            power-domain-names = "cx", "mxc", "nsp";
->> +
->> +            interconnects = <&nsp_noc MASTER_CDSP_PROC 0 &mc_virt SLAVE_EBI1 0>;
->> +
->> +            memory-region = <&cdsp_mem &q6_cdsp_dtb_mem>;
->> +
->> +            qcom,qmp = <&aoss_qmp>;
->> +
->> +            qcom,smem-states = <&smp2p_cdsp_out 0>;
->> +            qcom,smem-state-names = "stop";
->> +
->> +            status = "disabled";
->> +
->> +            glink-edge {
->> +                interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
->> +                                 IPCC_MPROC_SIGNAL_GLINK_QMP
->> +                                 IRQ_TYPE_EDGE_RISING>;
->> +                mboxes = <&ipcc IPCC_CLIENT_CDSP
->> +                        IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +                label = "cdsp";
->> +                qcom,remote-pid = <5>;
->> +
->> +                fastrpc {
->> +                    compatible = "qcom,fastrpc";
->> +                    qcom,glink-channels = "fastrpcglink-apps-dsp";
->> +                    label = "cdsp";
->> +                    #address-cells = <1>;
->> +                    #size-cells = <0>;
->> +
->> +
->> +                    compute-cb@1 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <1>;
->> +                        iommus = <&apps_smmu 0x1961 0x0>,
->> +                             <&apps_smmu 0x0c01 0x20>,
->> +                             <&apps_smmu 0x19c1 0x10>;
->> +                    };
->> +
->> +                    compute-cb@2 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <2>;
->> +                        iommus = <&apps_smmu 0x1962 0x0>,
->> +                             <&apps_smmu 0x0c02 0x20>,
->> +                             <&apps_smmu 0x19c2 0x10>;
->> +                    };
->> +
->> +                    compute-cb@3 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <3>;
->> +                        iommus = <&apps_smmu 0x1963 0x0>,
->> +                             <&apps_smmu 0x0c03 0x20>,
->> +                             <&apps_smmu 0x19c3 0x10>;
->> +                    };
->> +
->> +                    compute-cb@4 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <4>;
->> +                        iommus = <&apps_smmu 0x1964 0x0>,
->> +                             <&apps_smmu 0x0c04 0x20>,
->> +                             <&apps_smmu 0x19c4 0x10>;
->> +                    };
->> +
->> +                    compute-cb@5 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <5>;
->> +                        iommus = <&apps_smmu 0x1965 0x0>,
->> +                             <&apps_smmu 0x0c05 0x20>,
->> +                             <&apps_smmu 0x19c5 0x10>;
->> +                    };
->> +
->> +                    compute-cb@6 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <6>;
->> +                        iommus = <&apps_smmu 0x1966 0x0>,
->> +                             <&apps_smmu 0x0c06 0x20>,
->> +                             <&apps_smmu 0x19c6 0x10>;
->> +                    };
->> +
->> +                    compute-cb@7 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <7>;
->> +                        iommus = <&apps_smmu 0x1967 0x0>,
->> +                             <&apps_smmu 0x0c07 0x20>,
->> +                             <&apps_smmu 0x19c7 0x10>;
->> +                    };
->> +
->> +                    compute-cb@8 {
->> +                        compatible = "qcom,fastrpc-compute-cb";
->> +                        reg = <8>;
->> +                        iommus = <&apps_smmu 0x1968 0x0>,
->> +                             <&apps_smmu 0x0c08 0x20>,
->> +                             <&apps_smmu 0x19c8 0x10>;
->> +                    };
->> +
->> +                    /* note: secure cb9 in downstream */
->> +                };
->> +            };
->> +        };
->>       };
->>       thermal-zones {
->>
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  drivers/mfd/Kconfig         |  12 +++++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
+>  include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 207 insertions(+)
+>  create mode 100644 drivers/mfd/max597x.c
+>  create mode 100644 include/linux/mfd/max597x.h
 
+Ignoring my comments won't make them go away. :)
+
+Please tell me why you need a whole new driver, instead of adding
+support to simple-mfd-i2c?
+
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 8b93856de432..416fe7986b7b 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -253,6 +253,18 @@ config MFD_MADERA_SPI
+>  	  Support for the Cirrus Logic Madera platform audio SoC
+>  	  core functionality controlled via SPI.
+>  
+> +config MFD_MAX597X
+> +	tristate "Maxim 597x Power Switch and Monitor"
+> +	depends on I2C
+> +	depends on OF
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	help
+> +	  This driver controls a Maxim 5970/5978 switch via I2C bus.
+> +	  The MAX5970/5978 is a smart switch with no output regulation, but
+> +	  fault protection and voltage and current monitoring capabilities.
+> +	  Also it supports upto 4 indication LEDs.
+> +
+>  config MFD_CS47L15
+>  	bool "Cirrus Logic CS47L15"
+>  	select PINCTRL_CS47L15
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 7ed3ef4a698c..819d711fa748 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -161,6 +161,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
+>  obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
+>  
+>  obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
+> +obj-$(CONFIG_MFD_MAX597X)	+= max597x.o
+>  obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
+>  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
+>  obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
+> diff --git a/drivers/mfd/max597x.c b/drivers/mfd/max597x.c
+> new file mode 100644
+> index 000000000000..45838413f24a
+> --- /dev/null
+> +++ b/drivers/mfd/max597x.c
+> @@ -0,0 +1,93 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Maxim MAX5970/MAX5978 Power Switch & Monitor
+> + *
+> + * Copyright (c) 2022 9elements GmbH
+> + *
+> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/max597x.h>
+> +#include <linux/regmap.h>
+> +
+> +static const struct regmap_config max597x_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = MAX_REGISTERS,
+> +};
+> +
+> +static const struct mfd_cell max597x_cells[] = {
+> +	{ .name = "max597x-regulator", },
+> +	{ .name = "max597x-iio", },
+> +	{ .name = "max597x-led", },
+> +};
+> +
+> +static int max597x_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+> +{
+> +	struct max597x_data *ddata;
+> +	enum max597x_chip_type chip = id->driver_data;
+> +
+> +	ddata = devm_kzalloc(&i2c->dev, sizeof(*ddata),	GFP_KERNEL);
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	/*
+> +	 * Based on chip type, Initialize the number of switch. This is needed by
+> +	 * regulator & iio cells.
+> +	 */
+> +	switch (chip) {
+> +	case MAX597x_TYPE_MAX5970:
+> +		ddata->num_switches = MAX5970_NUM_SWITCHES;
+> +		break;
+> +	case MAX597x_TYPE_MAX5978:
+> +		ddata->num_switches = MAX5978_NUM_SWITCHES;
+> +		break;
+> +	}
+> +
+> +	ddata->regmap = devm_regmap_init_i2c(i2c, &max597x_regmap_config);
+> +	if (IS_ERR(ddata->regmap)) {
+> +		dev_err(&i2c->dev, "Failed to initialize regmap");
+> +		return PTR_ERR(ddata->regmap);
+> +	}
+> +
+> +	/* IRQ used by regulator cell */
+> +	ddata->irq = i2c->irq;
+> +	ddata->dev = &i2c->dev;
+> +	i2c_set_clientdata(i2c, ddata);
+> +
+> +	return devm_mfd_add_devices(ddata->dev, PLATFORM_DEVID_AUTO,
+> +				    max597x_cells, ARRAY_SIZE(max597x_cells),
+> +				    NULL, 0, NULL);
+> +}
+> +
+> +static const struct i2c_device_id max597x_table[] = {
+> +	{ .name = "max5970", MAX597x_TYPE_MAX5970 },
+> +	{ .name = "max5978", MAX597x_TYPE_MAX5978 },
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, max597x_table);
+> +
+> +static const struct of_device_id max597x_of_match[] = {
+> +	{ .compatible = "maxim,max5970" },
+> +	{ .compatible = "maxim,max5978" },
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, max597x_of_match);
+> +
+> +static struct i2c_driver max597x_driver = {
+> +	.id_table = max597x_table,
+> +	.driver = {
+> +		  .name = "max597x",
+> +		  .of_match_table = of_match_ptr(max597x_of_match),
+> +		  },
+> +	.probe = max597x_probe,
+> +};
+> +module_i2c_driver(max597x_driver);
+> +
+> +MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
+> +MODULE_DESCRIPTION("MAX597X Power Switch and Monitor");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/include/linux/mfd/max597x.h b/include/linux/mfd/max597x.h
+> new file mode 100644
+> index 000000000000..706eff9c50a4
+> --- /dev/null
+> +++ b/include/linux/mfd/max597x.h
+> @@ -0,0 +1,101 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Maxim MAX5970/MAX5978 Power Switch & Monitor
+> + *
+> + * Copyright (c) 2022 9elements GmbH
+> + *
+> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
+> + */
+> +
+> +#ifndef MFD_MAX597X_H
+> +#define MFD_MAX597X_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define MAX5970_NUM_SWITCHES 2
+> +#define MAX5978_NUM_SWITCHES 1
+> +#define MAX597X_NUM_LEDS     4
+> +
+> +enum max597x_chip_type {
+> +	MAX597x_TYPE_MAX5978 = 1,
+> +	MAX597x_TYPE_MAX5970,
+> +};
+> +
+> +#define MAX5970_REG_CURRENT_L(ch)		(0x01 + (ch) * 4)
+> +#define MAX5970_REG_CURRENT_H(ch)		(0x00 + (ch) * 4)
+> +#define MAX5970_REG_VOLTAGE_L(ch)		(0x03 + (ch) * 4)
+> +#define MAX5970_REG_VOLTAGE_H(ch)		(0x02 + (ch) * 4)
+> +#define MAX5970_REG_MON_RANGE			0x18
+> +#define  MAX5970_MON_MASK				0x3
+> +#define  MAX5970_MON(reg, ch)		(((reg) >> ((ch) * 2)) & MAX5970_MON_MASK)
+> +#define  MAX5970_MON_MAX_RANGE_UV		16000000
+> +
+> +#define MAX5970_REG_CH_UV_WARN_H(ch)	(0x1A + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_WARN_L(ch)	(0x1B + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_CRIT_H(ch)	(0x1C + (ch) * 10)
+> +#define MAX5970_REG_CH_UV_CRIT_L(ch)	(0x1D + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_WARN_H(ch)	(0x1E + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_WARN_L(ch)	(0x1F + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_CRIT_H(ch)	(0x20 + (ch) * 10)
+> +#define MAX5970_REG_CH_OV_CRIT_L(ch)	(0x21 + (ch) * 10)
+> +
+> +#define  MAX5970_VAL2REG_H(x)			(((x) >> 2) & 0xFF)
+> +#define  MAX5970_VAL2REG_L(x)			((x) & 0x3)
+> +
+> +#define MAX5970_REG_DAC_FAST(ch)		(0x2E + (ch))
+> +
+> +#define MAX5970_FAST2SLOW_RATIO			200
+> +
+> +#define MAX5970_REG_STATUS0				0x31
+> +#define  MAX5970_CB_IFAULTF(ch)			(1 << (ch))
+> +#define  MAX5970_CB_IFAULTS(ch)			(1 << ((ch) + 4))
+> +
+> +#define MAX5970_REG_STATUS1				0x32
+> +#define  STATUS1_PROT_MASK				0x3
+> +#define  STATUS1_PROT(reg) \
+> +	(((reg) >> 6) & STATUS1_PROT_MASK)
+> +#define  STATUS1_PROT_SHUTDOWN			0
+> +#define  STATUS1_PROT_CLEAR_PG			1
+> +#define  STATUS1_PROT_ALERT_ONLY		2
+> +
+> +#define MAX5970_REG_STATUS2				0x33
+> +#define  MAX5970_IRNG_MASK				0x3
+> +#define  MAX5970_IRNG(reg, ch)	\
+> +						(((reg) >> ((ch) * 2)) & MAX5970_IRNG_MASK)
+> +
+> +#define MAX5970_REG_STATUS3				0x34
+> +#define  MAX5970_STATUS3_ALERT			BIT(4)
+> +#define  MAX5970_STATUS3_PG(ch)			BIT(ch)
+> +
+> +#define MAX5970_REG_FAULT0				0x35
+> +#define  UV_STATUS_WARN(ch)				BIT(ch)
+> +#define  UV_STATUS_CRIT(ch)				BIT(ch + 4)
+> +
+> +#define MAX5970_REG_FAULT1				0x36
+> +#define  OV_STATUS_WARN(ch)				BIT(ch)
+> +#define  OV_STATUS_CRIT(ch)				BIT(ch + 4)
+> +
+> +#define MAX5970_REG_FAULT2				0x37
+> +#define  OC_STATUS_WARN(ch)				BIT(ch)
+> +
+> +#define MAX5970_REG_CHXEN				0x3b
+> +#define  CHXEN(ch)						(3 << (ch * 2))
+> +
+> +#define MAX5970_REG_LED_FLASH			0x43
+> +
+> +#define MAX_REGISTERS					0x49
+> +#define ADC_MASK						0x3FF
+> +
+> +struct max597x_data {
+> +	struct device *dev;
+> +	int irq;
+> +	int num_switches;
+> +	struct regmap *regmap;
+> +	/* Chip specific parameters needed by regulator & iio cells */
+> +	u32 irng[MAX5970_NUM_SWITCHES];
+> +	u32 mon_rng[MAX5970_NUM_SWITCHES];
+> +	u32 shunt_micro_ohms[MAX5970_NUM_SWITCHES];
+> +};
+> +
+> +#endif
+
+-- 
+Lee Jones [李琼斯]
