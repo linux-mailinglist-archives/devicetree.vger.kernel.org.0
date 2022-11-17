@@ -2,83 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3397F62D653
-	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 10:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C6F62D655
+	for <lists+devicetree@lfdr.de>; Thu, 17 Nov 2022 10:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234699AbiKQJTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 04:19:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
+        id S239808AbiKQJTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 04:19:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239478AbiKQJTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 04:19:41 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B86911162
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:19:40 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id n21so3485937ejb.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:19:40 -0800 (PST)
+        with ESMTP id S239478AbiKQJTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 04:19:51 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456D8AF0AE
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:19:50 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id g7so1840145lfv.5
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 01:19:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tE554iAjQ7h+EY98fG7iQCp1+WR6gTDY9R3izQaYbSM=;
-        b=RJhyPa+0sTKDvMNQhGaUZE84gU7cSwkIKl8kF/HVjWq5Kj8MIaUnjuF3vLeI9zmqt5
-         S4s2/BXDCeR0toJbwvrndR8Rf5UdjyCQum80hnZc7NVvKmoSa674I2uUdmUvlens85Oh
-         4IEcYGdVLztzhbGbHqk1ZEtp/QFDREZj6FTRUqRKGVlXFCjQljGRgSSASkya/Vzc8HYK
-         VTCncgrg+fqLRoFnVi4HvY7VC9MQCX+Tm7avrETJiBdVXAgiE7WBypICOwr5fpEwMgS9
-         eeomFvvxoF/uVInIxAoNemvxQI3VF46GvnxUZznQv1ccf6lqUT3r9FGZ2CCBL3f6760M
-         X6DA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PQQyKzEK6pbcrPSZDA9nhPPbff1SP+zOVrULy0x9XLY=;
+        b=oAwLDzt6TSHz3Ex+qKXTZew/CXvHb2mx+XTWiIoSN0zYj3MasQJgm27lnxUqqkMD8z
+         n5C+3Gz3XZ9lowekcTGTzTZxohxtvq7FkQmhP2YhOhUlXlMeXXOom7SvZhhZHcFhrFjG
+         OuXgduSDsTU3JcmFNFMr1bcWcV22EiY/4DI7k6qdOMntmfMUcbjsKKOphd5EfZdQmLGB
+         MMTmZbXONRPmVUq6C7OiBTYJF9jXfdnLAzxFZevZ72jNBSZFWQ9SwmR90HS5SFw8k+Qi
+         GrHpkHYRq9/KiSuVbbOde0+xe0WjBq+NreY81YzxI7Sx6tpVV9Og3D01M+aKeHcJBzjb
+         0phw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tE554iAjQ7h+EY98fG7iQCp1+WR6gTDY9R3izQaYbSM=;
-        b=qn7dSRAl1eUJ1pTGOxTr9QB+Wv+TmEU6gYSDfZWaf/pn1pYZAPxOyEd9uAV+z9YwHy
-         pezTf6o3Fgn+XOHMz/tBIZXTmcFHPQhO80/3e01n1vdK8dxO1mQ8uJS2C2GR9PGLbSWP
-         bzGim4Iof99ZvFZhkKfw4iBWIh/N+E1cisbd2zc0bAK3JvE9zOwnjaSDzdjeyG4x5QCv
-         sjP7Pv7Sgq7W6Z7wLPDV9xuIhg7unxN0bbjDNrkebwb9UhbCuX7MuUKPVJ1ro4RS/CMi
-         wBFqdBoY1kz3YLbu4y1Oo7CIj3Tnc3TuNA8wxxbTDAs1L+4KA3D+mQ9IFTLKTuL4SaaU
-         Bx9Q==
-X-Gm-Message-State: ANoB5pnOTyjRsz3n/MKEzMCFUoK0Jdz39ZVJNHmq0s6JFx6/VpmPe80x
-        HKB4B3sVAiaPhKoSBZm/df2oCa0n4c2ggyY9BoY6oQ==
-X-Google-Smtp-Source: AA0mqf5VrTpLOj4ZlFDKaIXtnaXLgZ0CYm7CAAQQe4DXP0PzbRK8eD99DVN0IU9z/RBBDpyRyd9Mayz9bYXq1N47AjA=
-X-Received: by 2002:a17:906:19d2:b0:78e:11ea:8528 with SMTP id
- h18-20020a17090619d200b0078e11ea8528mr1440243ejd.190.1668676778935; Thu, 17
- Nov 2022 01:19:38 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PQQyKzEK6pbcrPSZDA9nhPPbff1SP+zOVrULy0x9XLY=;
+        b=65VDPM1MnxqsspUdKdJdNWDOI/+ZfzIbu2MIlgJAciMbQMj70tIflJHQnOYFz7kw3J
+         0aAn3n5HQQJn37FwHqBy9ux0r3Wdlv3b+XiVVNMQrT0pro0GzuB5gab3cqCZ+YSBONsA
+         P+dAWk2dYAa8xXCqezUHzRxz0HpYhT7e9dwLctBzyouU8u9s9aVDD4/0qUKhB1b/HDRx
+         38Js/YTfSc8J9Btzh9d+oclMIaX7kVZXHVVMd4qQDjk5g2AvdGNBahjJZDqckVW4Ygon
+         rrSpRAQhhxw8HjejRr7c19fuUuW5OsoOpQNej1rlcx9Lz+/WrO8U0mgKthpqJqSv7IYP
+         O65A==
+X-Gm-Message-State: ANoB5pklSa0VWzy6s/SVf0faqzBPAiE6PEo5BD2m477TV3cOThDkNt2e
+        T5r7K5vDMGDnmhHzr15Fnf/fmQ==
+X-Google-Smtp-Source: AA0mqf5LZrCAZhUuSRm9lU1fBMgWwi7KDQKZzxhK50xwOs3Umx45mgzr5KEPHagIY+r4527NV83F6w==
+X-Received: by 2002:ac2:4558:0:b0:494:6bb2:485f with SMTP id j24-20020ac24558000000b004946bb2485fmr655662lfm.451.1668676788691;
+        Thu, 17 Nov 2022 01:19:48 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c26-20020ac2415a000000b0048a8c907fe9sm56977lfi.167.2022.11.17.01.19.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Nov 2022 01:19:48 -0800 (PST)
+Message-ID: <2c9152a3-f113-093a-57a9-27154529f34a@linaro.org>
+Date:   Thu, 17 Nov 2022 10:19:47 +0100
 MIME-Version: 1.0
-References: <20221021172012.87954-1-sebastian.reichel@collabora.com>
-In-Reply-To: <20221021172012.87954-1-sebastian.reichel@collabora.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 17 Nov 2022 10:19:27 +0100
-Message-ID: <CACRpkdYKdTWAtW_dhCgfja4pNZqNh=ixZ0H36bpFj=x_3t2zXQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: pinctrl: rockchip: further increase max
- amount of device functions
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Add document for Unisoc UFS host
+ controller
+Content-Language: en-US
+To:     Zhe Wang <zhewang116@gmail.com>
+Cc:     Zhe Wang <zhe.wang1@unisoc.com>, martin.petersen@oracle.com,
+        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
+References: <20221116133131.6809-1-zhe.wang1@unisoc.com>
+ <20221116133131.6809-2-zhe.wang1@unisoc.com>
+ <87312b40-548d-dc60-588f-3583e496dcb3@linaro.org>
+ <CAJxzgGoebXFxeWa7TXe5yD+xAme=6YxTC-E9emUw2kG2zpH6+A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJxzgGoebXFxeWa7TXe5yD+xAme=6YxTC-E9emUw2kG2zpH6+A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 7:20 PM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
+On 17/11/2022 09:45, Zhe Wang wrote:
+> hi Krzysztof
+> 
+> On Thu, Nov 17, 2022 at 1:11 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 16/11/2022 14:31, Zhe Wang wrote:
+>>> Add Unisoc ums9620 ufs host controller devicetree document.
+>>>
+>>> Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: ufs_eb
+>>> +      - const: ufs_cfg_eb
+>>> +      - const: ufsh
+>>> +      - const: ufsh_source
+>>> +
+>>> +  resets:
+>>> +    maxItems: 2
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: ufs
+>>> +      - const: ufsdev
+>>
+>> Both clock names and resets are still not useful. "ufs" is the name of
+>> the block, so reset name of "ufs" and "ufsdev" says nothing. This is the
+>> dev right?
+>>
+> 
+> Yes, this means reset on the device side. How about the modification below?
+> 
+> +  clock-names:
+> +    items:
+> +      - const: controller_eb
+> +      - const: cfg_eb
+> +      - const: core
+> +      - const: core_source
+> +
+> +  resets:
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: controller
+> +      - const: device
 
-> Apparently RK3588 pinctrl has 13 different device functions, but dt-validate
-> only checks for pin configuration being referenced so I did not notice.
->
-> Fixes: ed1f77b78322 ("dt-bindings: pinctrl: rockchip: increase max amount of device functions")
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+That's very good, thanks.
 
-Patch applied!
+> 
 
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
+
