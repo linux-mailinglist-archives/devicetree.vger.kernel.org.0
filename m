@@ -2,106 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 878F962FA96
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD21A62FAB9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:47:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242239AbiKRQoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:44:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59210 "EHLO
+        id S241647AbiKRQrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:47:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242259AbiKRQnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:43:53 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477526EB5E;
-        Fri, 18 Nov 2022 08:43:52 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id u6-20020a17090a5e4600b0021881a8d264so3215991pji.4;
-        Fri, 18 Nov 2022 08:43:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xCoTXso4ukr/aOj+PyBLVl50EP6vJzd3ZaoBL6gF4Ig=;
-        b=dPoqJ3Y/oaNVTvWZsCHlXQBdtaybM++8iviOsWxK3/l9G1fysrlgKpeEGTFD1lN9Ic
-         X+IvBJLgo7dld7CFvUQapUsATf14MwxAYiKYEsHQ3MT4+HfBuTG1ZUhcuU+7ZbbNIwjL
-         tbsLwmFIp6r+ORJQRAbsEnK/+Z1jb81kSYLLfA0UaqX7C3APyp3czT7hAgrSxD2PAjBh
-         /1dq5boT1In3A89LYTaHCCgPqmcEDOEDF2XUEWqLXaHlQkuKIk+TC4gfXwhMtGYwv4aH
-         OkXJpOD7jCcmYIokR7IdRpUWuXVRX0evxNlkn+AWeWl9TaVNkKWbGtryz7HAuFNAlH2R
-         qmZQ==
+        with ESMTP id S242258AbiKRQrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:47:41 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2FE561B9D
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:47:40 -0800 (PST)
+Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com [209.85.128.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7459C3F20D
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 16:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1668790059;
+        bh=bqUmREpKqp419mokmhm4Yfd6ZwVhvAs8FgLzRjDgzu8=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=IgxmfyKlG3D42S3z4rPELgYAPSRJyG6yGBGS5MFcLwSi+YyDfFlaT9+3SvSARD2IH
+         evsQrHA3oyySt6W0QcaR3NPRxXyrX5V0UMvmBUFHryVmLO2bc19+YMuq1j9+eS6N2r
+         aGX0CpE4cauKhZz8oJ/Jz/A3x6RVCuDmGOhUZt4cf6Bmc7nK/sff60fO0bgxqI2Cs0
+         AiYXmIsOYQIz3LKUhI1l5Whm0fPsQxBhOXU/aGWEBqGpl1NAwRWk/nGeiXtBeZlm55
+         s0Pe0+YKVzJEzQNUq7U4Ubb2q6C8+bWdSZOSWxxhDWb855RX3LWRWSDsypZVvmbQDN
+         XA+rXzcmBYadg==
+Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-39967085ae9so424747b3.11
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:47:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xCoTXso4ukr/aOj+PyBLVl50EP6vJzd3ZaoBL6gF4Ig=;
-        b=rTce/sT6I88oDa9dyUNQ63te3ihYgh2OdFXxWCKtTCfk2uXeI6HWsNhvKsJKxqG6n4
-         T7kPG8qbYIWKTRZwyQIfngbldA6zENzX/biHxyOTKN/DLe6v5fFILf9o8GFIr/JUQgqd
-         R+OTBonM1wQAjBp6RjVlAmssUkSSOK+ecIwvcDa1WrwTZ2XNphKAbFZzBvuEIlveTzZN
-         zyOe0JXUGKa5+Ks/rEpXxjftUq/hrm0Yk2f93G6q2cntRtVhpq6LfFJ3sAIfQyiJR7IN
-         BAhgGdjlDpQdHA1Fs/Z0xHZwuZHYgMP93Yhgz/oHW91cR8jVAJnD6hj2D5L77a3ZFSTw
-         Fw0Q==
-X-Gm-Message-State: ANoB5pnQ3ea1HhBKDxpyF487GS+i1P5pu0NaW8XW+QS2gu1WnagrvZJy
-        GAdml0FIuCORpoEzPqCjb4A=
-X-Google-Smtp-Source: AA0mqf6SgYNjINnOXfgTSDlQ9zLwcbpiKDFjMVTF2wBATfO0CoNe9plV1D3vCgGvOU1foQNFkKy/qQ==
-X-Received: by 2002:a17:902:e94e:b0:186:5613:becf with SMTP id b14-20020a170902e94e00b001865613becfmr369558pll.46.1668789831601;
-        Fri, 18 Nov 2022 08:43:51 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:e4c5:c31d:4c68:97a0])
-        by smtp.gmail.com with ESMTPSA id c7-20020a170902d48700b0017f72a430adsm4011031plg.71.2022.11.18.08.43.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 08:43:50 -0800 (PST)
-Date:   Fri, 18 Nov 2022 08:43:47 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] MIPS: DTS: CI20: fix reset line polarity of the ethernet
- controller
-Message-ID: <Y3e2Q9jeGotRlwqV@google.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bqUmREpKqp419mokmhm4Yfd6ZwVhvAs8FgLzRjDgzu8=;
+        b=xomcOG3JnD/9FUSO+q1lEX9cF2/NM4L1nHSmtvctGfGeN+EXwepQHOd02YpqVfpfnG
+         EHUUxcrxURKYlgsP2qzydIpgE/Bds9g7xw5GENG7+d6U+mxep9nkIn3N+lV07OG/jSBP
+         BtNzYi6ahyK58X+fS9BNneJVK3MXQmY4ZcbE2Z1rq1PESq1NNX+DFZXcy2hHBKWjFR43
+         3Nc5/SyGfmciW3Chuxyza2MoxErkbbyIT6tVaxvSc7N8Dv6CRa+Eb7z+GbBKjnlDnuzs
+         Ee69eLafMZiWUoWBtg4tpQhd6y56pbgPlqb57gR0EhgeGUWJEaXj0fswN19fxUB9y2pc
+         5hBw==
+X-Gm-Message-State: ANoB5plXxVbm3OFRR13QBgHZTwgAdHan/0BWlGvh7rIecB1jDxsJNH70
+        hiDPhS85rvQjTR5PDFjLgpc6oHsw819d47oHk9ycnJP6IAYoNxC78M7TKczCOVThiiJxv0G6m/b
+        bnUrSSvGxPoa9zwl0jb/UB8mFkSCUdCDg6l6LUM+MwmLAiXMbRo0chBc=
+X-Received: by 2002:a25:7492:0:b0:6d3:6341:2cb2 with SMTP id p140-20020a257492000000b006d363412cb2mr7432023ybc.551.1668790058342;
+        Fri, 18 Nov 2022 08:47:38 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5Zd4kEY4nMPFhuKdN3ImmQqdGWeYpHUC0cuxx5m60Am9dqXXSjTEpe/WBI+epfWbWIt8gub/Cr3c45ZoldbuQ=
+X-Received: by 2002:a25:7492:0:b0:6d3:6341:2cb2 with SMTP id
+ p140-20020a257492000000b006d363412cb2mr7432003ybc.551.1668790058111; Fri, 18
+ Nov 2022 08:47:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221118010627.70576-1-hal.feng@starfivetech.com> <20221118010627.70576-9-hal.feng@starfivetech.com>
+In-Reply-To: <20221118010627.70576-9-hal.feng@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 18 Nov 2022 17:47:21 +0100
+Message-ID: <CAJM55Z80xyve9JHXT__E2FfsLUH5njmj75Wj8B3H81dxp9Zh-w@mail.gmail.com>
+Subject: Re: [PATCH v2 08/14] dt-bindings: reset: Add StarFive JH7110 system
+ and always-on reset definitions
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reset line is called PWRST#, annotated as "active low" in the
-binding documentation, and is driven low and then high by the driver to
-reset the chip. However in device tree for CI20 board it was incorrectly
-marked as "active high". Fix it.
+On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> From: Emil Renner Berthing <kernel@esmil.dk>
+>
+> Add resets for the StarFive JH7110 system (SYS) and always-on (AON)
+> reset controller.
+>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  MAINTAINERS                                 |   5 +-
+>  include/dt-bindings/reset/starfive-jh7110.h | 154 ++++++++++++++++++++
+>  2 files changed, 157 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/starfive-jh7110.h
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e97dac9c0ee4..eeab26f5597c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19614,12 +19614,13 @@ F:    Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
+>  F:     drivers/pinctrl/starfive/
+>  F:     include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
+>
+> -STARFIVE JH7100 RESET CONTROLLER DRIVERS
+> +STARFIVE RESET CONTROLLER DRIVERS
+>  M:     Emil Renner Berthing <kernel@esmil.dk>
+> +M:     Hal Feng <hal.feng@starfivetech.com>
+>  S:     Maintained
+>  F:     Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+>  F:     drivers/reset/starfive/
+> -F:     include/dt-bindings/reset/starfive-jh7100.h
+> +F:     include/dt-bindings/reset/starfive*
+>
+>  STATIC BRANCH/CALL
+>  M:     Peter Zijlstra <peterz@infradead.org>
+> diff --git a/include/dt-bindings/reset/starfive-jh7110.h b/include/dt-bindings/reset/starfive-jh7110.h
+> new file mode 100644
+> index 000000000000..1a5bab671161
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/starfive-jh7110.h
+> @@ -0,0 +1,154 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +/*
+> + * Copyright (C) 2021-2022 Emil Renner Berthing <kernel@esmil.dk>
 
-Because (as far as I know) the ci20.dts is always built in the kernel I
-elected not to also add a quirk to gpiolib to force the polarity there.
+I'm not sure how this ended up here, but I definitely didn't start
+working on this before 2022.
 
-Fixes: db49ca38579d ("net: davicom: dm9000: switch to using gpiod API")
-Reported-by: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
- arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index 37c46720c719..f38c39572a9e 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -438,7 +438,7 @@ dm9000@6 {
- 		ingenic,nemc-tAW = <50>;
- 		ingenic,nemc-tSTRV = <100>;
- 
--		reset-gpios = <&gpf 12 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpf 12 GPIO_ACTIVE_LOW>;
- 		vcc-supply = <&eth0_power>;
- 
- 		interrupt-parent = <&gpe>;
--- 
-2.38.1.584.g0f3c55d4c2-goog
-
-
--- 
-Dmitry
+> + */
+> +
+> +#ifndef __DT_BINDINGS_RESET_STARFIVE_JH7110_H__
+> +#define __DT_BINDINGS_RESET_STARFIVE_JH7110_H__
+> +
+> +/* SYSCRG resets */
+> +#define JH7110_SYSRST_JTAG2APB                 0
+> +#define JH7110_SYSRST_SYSCON                   1
+> +#define JH7110_SYSRST_IOMUX                    2
+> +#define JH7110_SYSRST_BUS                      3
+> +#define JH7110_SYSRST_DEBUG                    4
+> +#define JH7110_SYSRST_CORE0                    5
+> +#define JH7110_SYSRST_CORE1                    6
+> +#define JH7110_SYSRST_CORE2                    7
+> +#define JH7110_SYSRST_CORE3                    8
+> +#define JH7110_SYSRST_CORE4                    9
+> +#define JH7110_SYSRST_CORE0_ST                 10
+> +#define JH7110_SYSRST_CORE1_ST                 11
+> +#define JH7110_SYSRST_CORE2_ST                 12
+> +#define JH7110_SYSRST_CORE3_ST                 13
+> +#define JH7110_SYSRST_CORE4_ST                 14
+> +#define JH7110_SYSRST_TRACE0                   15
+> +#define JH7110_SYSRST_TRACE1                   16
+> +#define JH7110_SYSRST_TRACE2                   17
+> +#define JH7110_SYSRST_TRACE3                   18
+> +#define JH7110_SYSRST_TRACE4                   19
+> +#define JH7110_SYSRST_TRACE_COM                        20
+> +#define JH7110_SYSRST_GPU_APB                  21
+> +#define JH7110_SYSRST_GPU_DOMA                 22
+> +#define JH7110_SYSRST_NOC_BUS_APB_BUS          23
+> +#define JH7110_SYSRST_NOC_BUS_AXICFG0_AXI      24
+> +#define JH7110_SYSRST_NOC_BUS_CPU_AXI          25
+> +#define JH7110_SYSRST_NOC_BUS_DISP_AXI         26
+> +#define JH7110_SYSRST_NOC_BUS_GPU_AXI          27
+> +#define JH7110_SYSRST_NOC_BUS_ISP_AXI          28
+> +#define JH7110_SYSRST_NOC_BUS_DDRC             29
+> +#define JH7110_SYSRST_NOC_BUS_STG_AXI          30
+> +#define JH7110_SYSRST_NOC_BUS_VDEC_AXI         31
+> +
+> +#define JH7110_SYSRST_NOC_BUS_VENC_AXI         32
+> +#define JH7110_SYSRST_AXI_CFG1_DEC_AHB         33
+> +#define JH7110_SYSRST_AXI_CFG1_DEC_MAIN                34
+> +#define JH7110_SYSRST_AXI_CFG0_DEC_MAIN                35
+> +#define JH7110_SYSRST_AXI_CFG0_DEC_MAIN_DIV    36
+> +#define JH7110_SYSRST_AXI_CFG0_DEC_HIFI4       37
+> +#define JH7110_SYSRST_DDR_AXI                  38
+> +#define JH7110_SYSRST_DDR_OSC                  39
+> +#define JH7110_SYSRST_DDR_APB                  40
+> +#define JH7110_SYSRST_DOM_ISP_TOP_N            41
+> +#define JH7110_SYSRST_DOM_ISP_TOP_AXI          42
+> +#define JH7110_SYSRST_DOM_VOUT_TOP_SRC         43
+> +#define JH7110_SYSRST_CODAJ12_AXI              44
+> +#define JH7110_SYSRST_CODAJ12_CORE             45
+> +#define JH7110_SYSRST_CODAJ12_APB              46
+> +#define JH7110_SYSRST_WAVE511_AXI              47
+> +#define JH7110_SYSRST_WAVE511_BPU              48
+> +#define JH7110_SYSRST_WAVE511_VCE              49
+> +#define JH7110_SYSRST_WAVE511_APB              50
+> +#define JH7110_SYSRST_VDEC_JPG_ARB_JPG         51
+> +#define JH7110_SYSRST_VDEC_JPG_ARB_MAIN                52
+> +#define JH7110_SYSRST_AXIMEM0_AXI              53
+> +#define JH7110_SYSRST_WAVE420L_AXI             54
+> +#define JH7110_SYSRST_WAVE420L_BPU             55
+> +#define JH7110_SYSRST_WAVE420L_VCE             56
+> +#define JH7110_SYSRST_WAVE420L_APB             57
+> +#define JH7110_SYSRST_AXIMEM1_AXI              58
+> +#define JH7110_SYSRST_AXIMEM2_AXI              59
+> +#define JH7110_SYSRST_INTMEM                   60
+> +#define JH7110_SYSRST_QSPI_AHB                 61
+> +#define JH7110_SYSRST_QSPI_APB                 62
+> +#define JH7110_SYSRST_QSPI_REF                 63
+> +
+> +#define JH7110_SYSRST_SDIO0_AHB                        64
+> +#define JH7110_SYSRST_SDIO1_AHB                        65
+> +#define JH7110_SYSRST_GMAC1_AXI                        66
+> +#define JH7110_SYSRST_GMAC1_AHB                        67
+> +#define JH7110_SYSRST_MAILBOX                  68
+> +#define JH7110_SYSRST_SPI0_APB                 69
+> +#define JH7110_SYSRST_SPI1_APB                 70
+> +#define JH7110_SYSRST_SPI2_APB                 71
+> +#define JH7110_SYSRST_SPI3_APB                 72
+> +#define JH7110_SYSRST_SPI4_APB                 73
+> +#define JH7110_SYSRST_SPI5_APB                 74
+> +#define JH7110_SYSRST_SPI6_APB                 75
+> +#define JH7110_SYSRST_I2C0_APB                 76
+> +#define JH7110_SYSRST_I2C1_APB                 77
+> +#define JH7110_SYSRST_I2C2_APB                 78
+> +#define JH7110_SYSRST_I2C3_APB                 79
+> +#define JH7110_SYSRST_I2C4_APB                 80
+> +#define JH7110_SYSRST_I2C5_APB                 81
+> +#define JH7110_SYSRST_I2C6_APB                 82
+> +#define JH7110_SYSRST_UART0_APB                        83
+> +#define JH7110_SYSRST_UART0_CORE               84
+> +#define JH7110_SYSRST_UART1_APB                        85
+> +#define JH7110_SYSRST_UART1_CORE               86
+> +#define JH7110_SYSRST_UART2_APB                        87
+> +#define JH7110_SYSRST_UART2_CORE               88
+> +#define JH7110_SYSRST_UART3_APB                        89
+> +#define JH7110_SYSRST_UART3_CORE               90
+> +#define JH7110_SYSRST_UART4_APB                        91
+> +#define JH7110_SYSRST_UART4_CORE               92
+> +#define JH7110_SYSRST_UART5_APB                        93
+> +#define JH7110_SYSRST_UART5_CORE               94
+> +#define JH7110_SYSRST_SPDIF_APB                        95
+> +
+> +#define JH7110_SYSRST_PWMDAC_APB               96
+> +#define JH7110_SYSRST_PDM_DMIC                 97
+> +#define JH7110_SYSRST_PDM_APB                  98
+> +#define JH7110_SYSRST_I2SRX_APB                        99
+> +#define JH7110_SYSRST_I2SRX_BCLK               100
+> +#define JH7110_SYSRST_I2STX0_APB               101
+> +#define JH7110_SYSRST_I2STX0_BCLK              102
+> +#define JH7110_SYSRST_I2STX1_APB               103
+> +#define JH7110_SYSRST_I2STX1_BCLK              104
+> +#define JH7110_SYSRST_TDM_AHB                  105
+> +#define JH7110_SYSRST_TDM_CORE                 106
+> +#define JH7110_SYSRST_TDM_APB                  107
+> +#define JH7110_SYSRST_PWM_APB                  108
+> +#define JH7110_SYSRST_WDT_APB                  109
+> +#define JH7110_SYSRST_WDT_CORE                 110
+> +#define JH7110_SYSRST_CAN0_APB                 111
+> +#define JH7110_SYSRST_CAN0_CORE                        112
+> +#define JH7110_SYSRST_CAN0_TIMER               113
+> +#define JH7110_SYSRST_CAN1_APB                 114
+> +#define JH7110_SYSRST_CAN1_CORE                        115
+> +#define JH7110_SYSRST_CAN1_TIMER               116
+> +#define JH7110_SYSRST_TIMER_APB                        117
+> +#define JH7110_SYSRST_TIMER0                   118
+> +#define JH7110_SYSRST_TIMER1                   119
+> +#define JH7110_SYSRST_TIMER2                   120
+> +#define JH7110_SYSRST_TIMER3                   121
+> +#define JH7110_SYSRST_INT_CTRL_APB             122
+> +#define JH7110_SYSRST_TEMP_APB                 123
+> +#define JH7110_SYSRST_TEMP_CORE                        124
+> +#define JH7110_SYSRST_JTAG_CERTIFICATION       125
+> +
+> +#define        JH7110_SYSRST_END                       126
+> +
+> +/* AONCRG resets */
+> +#define JH7110_AONRST_GMAC0_AXI                        0
+> +#define JH7110_AONRST_GMAC0_AHB                        1
+> +#define JH7110_AONRST_AON_IOMUX                        2
+> +#define JH7110_AONRST_PMU_APB                  3
+> +#define JH7110_AONRST_PMU_WKUP                 4
+> +#define JH7110_AONRST_RTC_APB                  5
+> +#define JH7110_AONRST_RTC_CAL                  6
+> +#define JH7110_AONRST_RTC_32K                  7
+> +
+> +#define        JH7110_AONRST_END                       8
+> +
+> +#endif /* __DT_BINDINGS_RESET_STARFIVE_JH7110_H__ */
+> --
+> 2.38.1
+>
