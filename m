@@ -2,176 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E23F662F50D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:38:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8809962F511
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:38:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241493AbiKRMit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 07:38:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50724 "EHLO
+        id S241364AbiKRMiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 07:38:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240830AbiKRMim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:38:42 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4D126578
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:38:39 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id s8so8001127lfc.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:38:39 -0800 (PST)
+        with ESMTP id S240830AbiKRMiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:38:50 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C3B25EA3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:38:48 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id d20so6569069ljc.12
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:38:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=92k8zjWPhsfe0rApEXv+Yvs9hh9Iy6qzDin6ZXpogUs=;
-        b=CYZJTHEEpam0SbQB1ZDnEb6CoKT+8J/fPyXH2+Ukx13k540BvXB1FvjaCggI0r1c9q
-         nwGXjhFdlbqDBcphCtPCoPUaW2Bh04qaB2Gj5Vbjb73NG7LM39wQGY2QOc1gtLsSMxW3
-         PvzMocDatvQolTvCQBKAdaoKsl7WpMY0ImZzMw6PwFKm+WkaYgKQ3ERGeq/n/SODKypb
-         qUlgEVbqetnZPxXZbyuCsQOAiZflayJduC0l8B/q6KAsqMSlDcqQUv520SnT0ioMelJf
-         L4CX16wis8wgvVFFKQrShVHPHN1riKUN8ikVy1N9gb6EIl/NPrYHjN5MPZasuPdLcaXt
-         8fow==
+        bh=no+H9b9eosuH2qEiOD6KMI4wDDshNFpABjP/G2BO63Y=;
+        b=jppWrMespj1W0x31C9rRdsaH+buh83dd/Gcj7rlLRtIESrlD//bdSWM9+4ikPaNATM
+         3jNHsYnzfIt+1qp93V6OXnhxPO5SNUxRXJ/TWMh0jB8rnvAN/Bn44AAO/yLzhzCdJsuG
+         DguZeIHz+DYm4t6pdwsZB5gtuYIMZaU8yFSrD8Ycim0rDmOfIz8FGLO50T2CTSFKv3LH
+         Oh80rSa6GhGxaEnIuQPwfKoXqHD5jgqlpqmDsi0WdOwZ0TXMPF1FsLhToraw3qbOR6tu
+         PdLgJzSuXcAj6AcIyebrgco2D6UH2F5Y1YrjKqRQhOvfz8cwn6sywTCGsU70k8ptIo7c
+         vbtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=92k8zjWPhsfe0rApEXv+Yvs9hh9Iy6qzDin6ZXpogUs=;
-        b=N0BtcGwc7TCXKMGPEDx27nK5hDrMFZfByqiE92GLU/W3v0BvQqwMEPlXFSIzwVon0c
-         V2AT0/m6YN5bBFLtPnS6C2xCFgDsXp4IuJzIT0YHYQOYNDTMEUappsAOjvyArmkuTKPJ
-         CpbhJNEfWIIG8Gb9+N2u5ZUpIuj8qod/BATd34A1JVDVgfAyWaD5GdzlzFi1qlUVAAJB
-         vFlMA1R2sTydyuSeiC8AwHeEJE7VxgdIbjdzwZrG/wf3CE8l2iywi8eTFW51/uMJ3gIL
-         djtFPhy1Gkol6odQbDZ15mtWIsWitfhr+qTr8omkqZUqdXCyhAZCg9j6tOeaHJDshBus
-         dtYQ==
-X-Gm-Message-State: ANoB5plJqwdGAjUtersOByEJ9jPPLPNCmEMUzO4q6zkPp7yBPNcSwGGd
-        JVP1ei8yMod2K16Mu6+YgQ6xAw==
-X-Google-Smtp-Source: AA0mqf6hFqZTKEPYIQUeAu5R4Lj5+myz5gX+auuNUFHZ4OrOcQPaAjX0A8pMeU4WXvxk5m03gCtozw==
-X-Received: by 2002:a05:6512:2096:b0:498:ec56:8311 with SMTP id t22-20020a056512209600b00498ec568311mr2504959lfr.153.1668775118174;
-        Fri, 18 Nov 2022 04:38:38 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id f26-20020a05651c02da00b0026dee5476d5sm630307ljo.113.2022.11.18.04.38.37
+        bh=no+H9b9eosuH2qEiOD6KMI4wDDshNFpABjP/G2BO63Y=;
+        b=N9HMDIBFCLvwpKl7VevH4xRrFynUaRbhl5AtMeQsePAvGu6mHX6Yoghu2KEzqYMDAQ
+         2lS47IOhvQj68lxqyXYUTvyLs0Sj7jDyhwhJze273VQMwBfOPF2/PnQ/kl1gkLUqCJqf
+         QeelXzIZByduZKtqIZLaGbjPEOpCUFjqTVbjD2lEASJnUqUQQA6C1gAmrE3+pVJGCbfU
+         M28y/CGH5IX6AEsWJryLHBXCqpZyaivjMU5bBcynItFEV42ATDJpiJumXlCBASAgo3eU
+         MmgGFOOqw2PSdkN//c6x/LCET93lBGj+CfYQ9WwkM3oNPIKY+/hG/x9gCagDfGknF5HB
+         NKWQ==
+X-Gm-Message-State: ANoB5pmUkss9EZQ05WEeWJHjtHpdWfzZS1sizVFNhb2cUumb4TwlCj9W
+        tdPZOIW++VpQ+MTvNckYrdxzXw==
+X-Google-Smtp-Source: AA0mqf62h736Id6DM8RIqmZIS9xAsNwoJ77uCAoB61kEqeITqo+LxKOuY7z4FqSEcmCxnj0W6V0Atw==
+X-Received: by 2002:a2e:b529:0:b0:26a:c77f:57f8 with SMTP id z9-20020a2eb529000000b0026ac77f57f8mr2247605ljm.465.1668775127010;
+        Fri, 18 Nov 2022 04:38:47 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u24-20020a2e9b18000000b002637c04b472sm638303lji.83.2022.11.18.04.38.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 04:38:37 -0800 (PST)
-Message-ID: <5dddeaa9-aab1-e437-a3ed-8ad242d50171@linaro.org>
-Date:   Fri, 18 Nov 2022 14:38:37 +0200
+        Fri, 18 Nov 2022 04:38:46 -0800 (PST)
+Message-ID: <947bc72f-2273-9474-9af4-5532d69491b2@linaro.org>
+Date:   Fri, 18 Nov 2022 13:38:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 2/3] drm/msm/disp/dpu1: add helper to know if display
- is builtin
-Content-Language: en-GB
-To:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
-References: <1668773807-19598-1-git-send-email-quic_kalyant@quicinc.com>
- <1668773807-19598-3-git-send-email-quic_kalyant@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1668773807-19598-3-git-send-email-quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 2/2] dt-bindings: gpio: add loongson series gpio
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        richard.liu@st.com, Arnaud Patard <apatard@mandriva.com>,
+        Hongbing Hu <huhb@lemote.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+References: <20221108092107.28996-1-zhuyinbo@loongson.cn>
+ <20221108092107.28996-2-zhuyinbo@loongson.cn>
+ <d9edb6e1-c3da-0f5b-546d-37d8151aaa35@linaro.org>
+ <d5457109-3bcb-e7d3-067d-9e4acd66ac17@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d5457109-3bcb-e7d3-067d-9e4acd66ac17@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 15:16, Kalyan Thota wrote:
-> Since DRM encoder type for few encoders can be similar
-> (like eDP and DP) find out if the interface supports HPD
-> from encoder bridge to differentiate between builtin
-> and pluggable displays.
-> 
-> Changes in v1:
-> - add connector type in the disp_info (Dmitry)
-> - add helper functions to know encoder type
-> - update commit text reflecting the change
-> 
-> Changes in v2:
-> - avoid hardcode of connector type for DSI as it may not be true (Dmitry)
-> - get the HPD information from encoder bridge
-> 
-> Changes in v3:
-> - use bridge type instead of bridge ops in determining connector (Dmitry)
-> 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 27 +++++++++++++++++++++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  6 ++++++
->   2 files changed, 33 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 9c6817b..574f2b0 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -15,6 +15,7 @@
->   #include <drm/drm_crtc.h>
->   #include <drm/drm_file.h>
->   #include <drm/drm_probe_helper.h>
-> +#include <drm/drm_bridge.h>
->   
->   #include "msm_drv.h"
->   #include "dpu_kms.h"
-> @@ -217,6 +218,32 @@ static u32 dither_matrix[DITHER_MATRIX_SZ] = {
->   	15, 7, 13, 5, 3, 11, 1, 9, 12, 4, 14, 6, 0, 8, 2, 10
->   };
->   
-> +bool dpu_encoder_is_builtin(struct drm_encoder *encoder)
-> +{
-> +	struct drm_bridge *bridge;
-> +	int ops = 0;
-> +
-> +	if (!encoder)
-> +		return false;
-> +
-> +	/* Get last bridge in the chain to determine connector type */
-> +	drm_for_each_bridge_in_chain(encoder, bridge)
-> +		if (!drm_bridge_get_next_bridge(bridge))
-> +			ops = bridge->type;
+On 14/11/2022 10:50, Yinbo Zhu wrote:
+>
+>>> +
+>>> +  "#gpio-cells":
+>>> +    const: 2
+>>> +
+>>> +  gpio-controller: true
+>>> +
+>>> +  gpio-ranges: true
+>>> +
+>>> +  loongson,conf_offset:
+>>
+>> No underscores in node names. Plus comments from Linus seem to apply
+>> here as well. Drop it entirely or explain why this is not part of
+>> compatible, why this is needed and why encoding programming model
+>> address in DT matches the DT...
+> Add it is to distinguish differnt address in different platform.
+> and I had drop them and initial them in kernel driver that depend
+> on diffent compatible.
+>>
 
-Why don't we check the connector type directly? You should not assume 
-that connector's type is equal to the latest bridge's type.
+So if you had to drop these, please drop from the bindings.
 
-> +
-> +	switch (ops) {
-> +	case DRM_MODE_CONNECTOR_Unknown:
-> +	case DRM_MODE_CONNECTOR_LVDS:
-> +	case DRM_MODE_CONNECTOR_eDP:
-> +	case DRM_MODE_CONNECTOR_DSI:
-> +	case DRM_MODE_CONNECTOR_DPI:
-> +	case DRM_MODE_CONNECTOR_WRITEBACK:
-> +	case DRM_MODE_CONNECTOR_VIRTUAL:
-
-Unknown, WRITEBACK and VIRTUAL are not builtin (for the point of CTM at 
-least).
-
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
->   
->   bool dpu_encoder_is_widebus_enabled(const struct drm_encoder *drm_enc)
->   {
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> index 9e7236e..7f3d823 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h
-> @@ -224,4 +224,10 @@ void dpu_encoder_cleanup_wb_job(struct drm_encoder *drm_enc,
->    */
->   bool dpu_encoder_is_valid_for_commit(struct drm_encoder *drm_enc);
->   
-> +/**
-> + * dpu_encoder_is_builtin - find if the encoder is of type builtin
-> + * @drm_enc:    Pointer to previously created drm encoder structure
-> + */
-> +bool dpu_encoder_is_builtin(struct drm_encoder *drm_enc);
-> +
->   #endif /* __DPU_ENCODER_H__ */
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
