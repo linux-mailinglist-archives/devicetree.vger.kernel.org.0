@@ -2,179 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC4E662F944
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE6B362F94D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:30:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242071AbiKRP2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
+        id S235243AbiKRPat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:30:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242133AbiKRP2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:28:41 -0500
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AC164A16
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:39 -0800 (PST)
-Received: by mail-il1-x134.google.com with SMTP id m15so2688418ilq.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=V3r1rBEjB59P7Hp9rGdtjQJ0ITi8NZo801rMdyiF4HU=;
-        b=G+PzEFfAhMqQSIaM94usPBm+ze8W/n7MqO76Y1A3SsmdmZNsRJR4K38aX8qjnGNxLe
-         yaHwhUn3hbQVPmGCo96jqLkb3TamQXkTlCN8qtTYA79D8j14Kdlt9KEZE+UvSQrRQwZl
-         XN3osX0KOX7aMFWMp/Hd0xyTG7q+NC2QRuMbE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V3r1rBEjB59P7Hp9rGdtjQJ0ITi8NZo801rMdyiF4HU=;
-        b=5s588cpKuHfJ+zreDk96p52VfogTSdTLTCn8EekFByXF7urwnf7uiBzLDswG2xQt9C
-         hmkZLljUmfm4iWPGDxtAjRj+5+NGGxiShXstNTvmLBH2vB/myK6Fjenn2KJbugrll+hy
-         T1DEHt+6UIyN0xIIOeNh6TuvdM/JgFf78hRwhRfkkHgHFEf6TU1vUVW8VJkEjgpYR+ua
-         UEYKHKNTAjXZTp7WYt7nDT0Y4RxhqyMU1vTPiC7TNVpdON8zuWELUyWNT7KPo4lCGwAE
-         re8TlnWEdKrZZg9TzFZUwsPap8QOIi4gTrH4TevTxytgKPbj+S2IDrD/gawpf3STkMH2
-         GiAg==
-X-Gm-Message-State: ANoB5plggvNRYmSflFMG4GJ3apFdLkSDI8VSQj1+a64wsUweof84f0WD
-        PqiRqMVXlMoyJ5Cchnr27u2O8A==
-X-Google-Smtp-Source: AA0mqf6C3biW+ByQBq4hcoGxLWTV//5gPtXVCzNfAg0J28ZfiqPApQ/2Us66xTCumk0l7fvllDWDPg==
-X-Received: by 2002:a05:6e02:c0d:b0:300:b1ee:c196 with SMTP id d13-20020a056e020c0d00b00300b1eec196mr3614368ile.237.1668785319286;
-        Fri, 18 Nov 2022 07:28:39 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id o7-20020a056e02092700b003027f923d29sm1351073ilt.39.2022.11.18.07.28.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 07:28:38 -0800 (PST)
-Date:   Fri, 18 Nov 2022 15:28:38 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add a new herobrine Pro SKU
-Message-ID: <Y3ekpgpRxgFwEeo0@google.com>
-References: <20221118073017.26128-1-quic_rjendra@quicinc.com>
- <20221118073017.26128-2-quic_rjendra@quicinc.com>
+        with ESMTP id S234124AbiKRPas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:30:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86B81659C;
+        Fri, 18 Nov 2022 07:30:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5C399B8244C;
+        Fri, 18 Nov 2022 15:30:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF1EC433D6;
+        Fri, 18 Nov 2022 15:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668785445;
+        bh=LfiiqbQVgBizYCizUCNHg2IaL0Mi+yMeJ7xdaR4buUo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ElI+i2r3kma/IUDyxlSnThJkl8QTnLeIACfF3w8dM+Px8545hceggGH/r/6fvER2O
+         PqopVu3Q96iNH1klO2wNODhFGrNZsZ9YyZyOAJlg9fokdPVB0Jd8QzZsojTOflQs8F
+         HKURLqFqS/sK3foKVBQTj5IoslV3U1yvZKoXVB03w87lqeA5m4Ch5qiQhrxCsAnfGa
+         5zo06a2+QMoERl2xcfa3cN5XW1YANTTTyfVbbsLccT3+xh4t/BzNURCThgzj3t9BbI
+         kVKaKEfE5sU3Lr2gDyLfoFqfAxrsokTjKQqJ7qETTrTjFT340BSgmuEg4jrHLyqk6D
+         G3t2KN3upPGhA==
+Date:   Fri, 18 Nov 2022 15:30:41 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     tudor.ambarus@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        nicolas.ferre@microchip.com, robh+dt@kernel.org
+Subject: Re: [PATCH 1/8] spi: dt-bindings: Introduce spi-cs-setup-ns property
+Message-ID: <Y3elIdM3Xz1H4kKk@sirena.org.uk>
+References: <20221117105249.115649-2-tudor.ambarus@microchip.com>
+ <20221118141458.954646-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kDV9Vhdp/jBbKORP"
 Content-Disposition: inline
-In-Reply-To: <20221118073017.26128-2-quic_rjendra@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221118141458.954646-1-michael@walle.cc>
+X-Cookie: Ego sum ens omnipotens.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rajendra,
 
-On Fri, Nov 18, 2022 at 01:00:17PM +0530, Rajendra Nayak wrote:
+--kDV9Vhdp/jBbKORP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Subject: arm64: dts: qcom: sc7280: Add a new herobrine Pro SKU
+On Fri, Nov 18, 2022 at 03:14:58PM +0100, Michael Walle wrote:
+> From: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-nit: this adds the herobrine *CRD* Pro SKU (though other Pro SKUs
-might follow), so 'CRD' should be part of the subject
+> > +  spi-cs-setup-ns:
+> > +    description:
+> > +      Delay in nanosecods to be introduced by the controller after CS is
+> > +      asserted.
 
-uber-nit: 'new' is redundant in this context
+> Does this need a type as the spi-cs-setup-ns is apparently just 16bit? At
+> least the driver uses it that way.
 
-> Some of the qualcomm qcard based herobrine devices can come with
-> a Pro variant of the chipset with some qcard level changes like
-> the smps9 from pm8350c which is ganged up with smps7 and smps8,
-> so we just end up removing smps9 from the herobrine pro sku dtsi.
+> But IMHO this should just be a normal uint32 value to be consistent with
+> all the other properties. Also the max value with 16bit will be 'just'
+> 65us.
 
-This is a very long sentence :)
+Making it 32 bit does seem safer.  I've applied the series
+already, mainly for the reintroduction of spi_set_cs_timing()
+since there was another driver that needed it, but we can still
+fix things up until the merge window.
 
-> We then use it to create a new dts for the Pro variant of the
-> herobrine CRD.
+--kDV9Vhdp/jBbKORP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Using 'we' is a a bit colloquial for a commit message, how a about
-something like this: 'Add a .dtsi for pro skus that deletes the
-smps9 node and include it from the new dts for the CRD Pro'.
+-----BEGIN PGP SIGNATURE-----
 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->  .../dts/qcom/sc7280-herobrine-crd-pro.dts     | 35 +++++++++++++++++++
->  .../dts/qcom/sc7280-herobrine-pro-sku.dtsi    |  8 +++++
->  3 files changed, 44 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index afe496a93f94..c5ac51c3a383 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -108,6 +108,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd-pro.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
-> new file mode 100644
-> index 000000000000..fe6b228e9e4b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * sc7280 CRD 3+ Pro board device tree source
-> + *
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include "sc7280-herobrine-crd.dts"
-> +#include "sc7280-herobrine-pro-sku.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. sc7280 CRD Pro platform (rev5+)";
-> +	compatible = "google,hoglin-sku1536", "qcom,sc7280";
-> +
-> +	/* FIXED REGULATORS */
-> +
-> +	/*
-> +	 * On most herobrine boards PPVAR_SYS directly provides VREG_EDP_BL.
-> +	 * However, on CRD there's an extra regulator in the way. Since this
-> +	 * is expected to be uncommon, we'll leave the "vreg_edp_bl" label
-> +	 * in the baseboard herobrine.dtsi point at "ppvar_sys" and then
-> +	 * make a "_crd" specific version here.
-> +	 */
-> +	vreg_edp_bl_crd: vreg-edp-bl-crd-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vreg_edp_bl_crd";
-> +
-> +		gpio = <&pm8350c_gpios 6 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_reg_en>;
-> +
-> +		vin-supply = <&ppvar_sys>;
-> +	};
-> +};
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmN3pSEACgkQJNaLcl1U
+h9AP/wf+OU7ftgSU8x32UiIvVxfKAhXCTN6YUUpN5wJ5rcR6Y/u5C9U4Hz5OvhXt
+iFa2V0T2jjqbu23NzY1vE+1JHj9RDdajNIL6EmY+L/mWhg2zJ9ps6NzDFLKWTP8O
+jq8nKUKOtaaQEqjkf1JEohloqNWFiCeS+ClNGIKEE7mXIijbl40YWZ5+b6pu6Dyh
+RgAFSFvIvZWg4PcHaEipU9uHlkakTTnCFLdyx9IZYsVb/QxmaVtWHdvutod55qyK
+I8ma7ORrkz7xrlS77LyXeNira/4qBuln0QeOf1VRh2pNxOq7MFaiW8TMnSB2pbvp
+iPKEIzUny8D0A1zg1QWzhxfru8Jvcg==
+=PlCP
+-----END PGP SIGNATURE-----
 
-Why is this node needed here, doesn't it already exist by including
-'sc7280-herobrine-crd.dts'?
-
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
-> new file mode 100644
-> index 000000000000..fb4bbe8aeda0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Google Herobrine dts fragment for PRO SKUs
-> + *
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/delete-node/ &vreg_s9c_0p676;
-> -- 
-> 2.17.1
-> 
+--kDV9Vhdp/jBbKORP--
