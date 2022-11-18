@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F45362F81B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF8F62F828
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241783AbiKROtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:49:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
+        id S234724AbiKROuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:50:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235225AbiKROtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:49:06 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21AD025C5
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:05 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p8so8530273lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:05 -0800 (PST)
+        with ESMTP id S241614AbiKROt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:49:58 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4222427B3E
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:56 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id u2so7064489ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+xECLjM+1wJ3tyU5u/WQawVGRXnB8gHjb6MLiqzOmuE=;
-        b=Zs12YmMMSavyYzmNqKcCRYMCcx5tO7qpQ0VvE7hyvFNBku6wyFMWhXNVMlF+Sqg0KT
-         WoIA+w4A8iuBJ/Z1AAHH4aIRydfpKhe7bF24gwy0bRzlEk0jYncnokHI+00AlKhVfGXV
-         JIIp3E5uA+gM7soG5wopEU+Lv1q63Zy9Cg91suTl/dBPE5V24XVYczE01kWsKEHVfQGb
-         dBT162Z4F1TG+7XSK0OcZOSsHy+CA846o55K/WA07GJriE9bcEJQUbPZyZbcV94cF4R/
-         VfK+gBKT/TkzM9E9oq25330xsTCuei+8omVXqqLIW5R7KPXHwfeYtmnlKBMLd61OMOgq
-         UpBg==
+        bh=Xz1fgFvu/EO4HMlO5FNKw0t0f66TQQFrAxbDNME5ooY=;
+        b=mCXlT2aWEXGE5G4/8SDvVW5SPhpQwM/LAmoA1FXKxNWbMaxFQJ6lHchC1gmxGvjB1J
+         qMGDIa/MyDLZ30UfBbe0oP1mkqBrn2eaC3kS9zBv48nUVlW6PMcU6EBTnuDULS6GTCi9
+         e+ez4YhUacjysshZ2bdNrW47yRIj+wJeDXscMFG1mHOGFOWJ1R0r4D1qLEhBBa3s/tVf
+         R2kLqtooeIfLpdqw/eBNUO3n+iKXn8zoetYxIGFw8jm9tUo5j2ff60TbmOi3rJhUrYpr
+         9igjmxpTDX44ZKxpJxrgAGeCRaebTQnTP66S8cOg2pPG57WDFJrGzM4/6L4R/dmm7J3D
+         UkLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+xECLjM+1wJ3tyU5u/WQawVGRXnB8gHjb6MLiqzOmuE=;
-        b=smFVPbi8MZIhHyocHyfyAA96qXZPhjDHC1F9YmGO/QD8cuPE6D0qNFZ0kGc7Drg6GM
-         VQFaglHX7q/cn5LwVP8g+/YphhGz5Y0zIE5mrtY3wLTdMHcWgdpdQl335UVq4r/IMxqL
-         OhvUgKmz8nCIrJXTm/YntXiwJzmdYbiImQ1nZGWzhOaaExQWDSfKusd4e9L6jXOkBD7V
-         2GuJECzQQe5flUZlRh7+QV+LbBI6khwoKeOWVZ0/WJyL1fWbSBiWJIpdbCcxEXgxGdUJ
-         4SqMr28ULertA+86vAnAta3oZ71LLGMx8JmL6ogo5n8f/2T+cEu8HQivHpmUwdE4SvUZ
-         Am4A==
-X-Gm-Message-State: ANoB5pns/+rdg8q9scJVLhmT7f0jZrVYN8zE1hPjK4apZ/kb/pBTQZE1
-        bIhjmQ9yl2gF5GlIOZIi81LZHQ==
-X-Google-Smtp-Source: AA0mqf7ZXIKPBh9Rz/8NI/J74R1K82UMSY4YzepugR6KIDjTrCZkpyZFe0babnYb4sjivNlfYP6QJQ==
-X-Received: by 2002:a19:5019:0:b0:4b4:8d47:7057 with SMTP id e25-20020a195019000000b004b48d477057mr2868955lfb.376.1668782943480;
-        Fri, 18 Nov 2022 06:49:03 -0800 (PST)
+        bh=Xz1fgFvu/EO4HMlO5FNKw0t0f66TQQFrAxbDNME5ooY=;
+        b=FQdfFHkqVWh4OovAr49OS1MD30t7eVh8eS4mdiC2k5HsVmMIN3YPK3pUrRxqioAhWQ
+         PtPzgnwSjq05o+N1pDr9uefsRFOZgiqIR8LCDfPune84Hsgnrl8xJbchIHU5f7l+d0Gy
+         sNjLyxeI9ziu48f/zfbfiHg8uHyQOnoX7PMbEbiWW4/f4ZgOSiL7nhcvEXMmUytx72Uq
+         4DGf/MPqk08BmisDNDSF/AGoP0LNyclbsk4rebDxamtca2099lcNjovEuiVtCGeM6wAe
+         FZk1rjyPalpBkIBYtMhw+Z3jHVreiESIuDCGB5rcvajHH4BeA8idZxIu7tAjge0r09u+
+         U9aw==
+X-Gm-Message-State: ANoB5pmFEA53jp7ZFjmLbC70B8Grbthz+9PGAeNa1A1/QUc5ntRu1nmE
+        U///a5OqGeZNt3KH6tevVVq6NA==
+X-Google-Smtp-Source: AA0mqf6L9W5MCkqEZsf64R6Fo8bZ58XpODRGgBZIIWvJLUKFWkuvQd/iPa+mcXNvtk+PBNvZ12YO+Q==
+X-Received: by 2002:a2e:a4c8:0:b0:26c:4c27:a478 with SMTP id p8-20020a2ea4c8000000b0026c4c27a478mr2420022ljm.92.1668782994596;
+        Fri, 18 Nov 2022 06:49:54 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm685909lfm.186.2022.11.18.06.49.01
+        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm686190lfm.186.2022.11.18.06.49.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:49:03 -0800 (PST)
-Message-ID: <24296f7d-416d-e5f5-ef6a-c960b59513cb@linaro.org>
-Date:   Fri, 18 Nov 2022 15:49:01 +0100
+        Fri, 18 Nov 2022 06:49:53 -0800 (PST)
+Message-ID: <2e10ec36-46a4-020f-34f0-30359001ff43@linaro.org>
+Date:   Fri, 18 Nov 2022 15:49:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to
+Subject: Re: [PATCH 05/12] dt-bindings: media: convert meson-ir.txt to
  dt-schema
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
@@ -88,14 +88,15 @@ Cc:     linux-media@vger.kernel.org, netdev@vger.kernel.org,
         linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-5-3f025599b968@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -103,10 +104,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/11/2022 15:33, Neil Armstrong wrote:
-> Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
+> Convert the Amlogic Meson IR remote control receiver bindings to
+> dt-schema.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
+>  .../bindings/media/amlogic,meson6-ir.yaml          | 43 ++++++++++++++++++++++
+>  .../devicetree/bindings/media/meson-ir.txt         | 20 --------
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
