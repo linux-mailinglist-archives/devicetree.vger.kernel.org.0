@@ -2,194 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1129562F9A1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2F162F9A7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235243AbiKRPpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:45:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        id S235205AbiKRPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:46:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241407AbiKRPpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:45:01 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6347D508;
-        Fri, 18 Nov 2022 07:45:00 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id gv23so14018014ejb.3;
-        Fri, 18 Nov 2022 07:45:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o6L5mgU+JKnbKwI6y15nMhU3sJXrsWXfh8EhGsXVHEM=;
-        b=FtAxkKH1luQM/BxQ7Z67dVxHUCYHZG5WMV5xWEsTi6BHG/mLSSrnCm1V1TFXLPn+V3
-         vuMo7fu6Sa/VGTf73YwH/GDKR0IG0qSxhXTd8sO8rVdh1aBQNzBR7JR0D0XdjIrj3eKy
-         eCTck4ERuXvkffONQsY6Ppb1N/UKi72SQaXjB3vF1hziagGGpiG0t59hc6uJq3stxTCm
-         GXMPkdesN7YEEliMWa1bDDHoHxmxFPygYB6yToMa2Ya0wTPur3IUwWfjvX82ng1I8oCf
-         ZtuU+30muLMICSic2Bx6/1z/GiBcDVfswhkGTz4O4Poy/0bNY95FewuExwf7AgDjz7S5
-         Ol1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o6L5mgU+JKnbKwI6y15nMhU3sJXrsWXfh8EhGsXVHEM=;
-        b=h5YMP92F7zr6utrJxQhRqOxtFdwIQKiFy/4+K8g2+b9E0E8MCUfE88xB7U0cLFs9Fs
-         9yGtPBBrq/LCXtOCSiCqp75/HFm/fG4WEN53GAQeZQadTeRXZIMnvJ+U07Y4Jw7yGxzh
-         tZZEyG0LoHywFfCeSVNa15WAUYXGw32TaNxAMDyOB4yEkOVF9DO1al7OP/RJSHZTyEOh
-         eAwj+gEWR7LxQZfp7XcB0sXZMwQqqZuAoZZAvGpVSR1/Nn1yd8gzUVWoYvcIfOuikO8l
-         dvunIKNxdKhabM4zEv5Fary30XB1yeN0WOrbsCdZOqd/MLTozJ7yv292454PIpUjc+tT
-         dA5A==
-X-Gm-Message-State: ANoB5pm9Qy2JR//ZWomFBVdAQAemVQUECZEDJ6ufJCXWw7KMbQTTk6lc
-        2qJT78siucFh6aNP+WNeC5g=
-X-Google-Smtp-Source: AA0mqf6a7mxrvxb7UFmpnOkrs2KK4TZdU/yC+2D6DmftlrmiOzdJ4WYvQpr1TnQ2XJ8nibIu/iSLcg==
-X-Received: by 2002:a17:906:9457:b0:7ac:db40:7e1 with SMTP id z23-20020a170906945700b007acdb4007e1mr6593275ejx.204.1668786299018;
-        Fri, 18 Nov 2022 07:44:59 -0800 (PST)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id d23-20020a056402001700b00461aca1c7b6sm1957753edu.6.2022.11.18.07.44.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 07:44:58 -0800 (PST)
-Date:   Fri, 18 Nov 2022 16:44:56 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     David Airlie <airlied@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v3 7/8] drm/simpledrm: Support the XB24/AB24 format
-Message-ID: <Y3eoeLLOxHaruPOV@orome>
-References: <20221117184039.2291937-1-thierry.reding@gmail.com>
- <20221117184039.2291937-8-thierry.reding@gmail.com>
- <7018f094-e1f8-d82d-f4b2-b1ae833d1c47@suse.de>
+        with ESMTP id S241407AbiKRPqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:46:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36A17CBAD;
+        Fri, 18 Nov 2022 07:46:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 709AA625E4;
+        Fri, 18 Nov 2022 15:46:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A895EC433D6;
+        Fri, 18 Nov 2022 15:46:14 +0000 (UTC)
+Message-ID: <6243860a-e535-340e-989a-cffbb005bf59@xs4all.nl>
+Date:   Fri, 18 Nov 2022 16:46:11 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vNq/aMDFmk2Q3leG"
-Content-Disposition: inline
-In-Reply-To: <7018f094-e1f8-d82d-f4b2-b1ae833d1c47@suse.de>
-User-Agent: Mutt/2.2.8 (2022-11-05)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Erling Ljunggren <hljunggr@cisco.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221111132906.2212662-1-hljunggr@cisco.com>
+ <20221111132906.2212662-4-hljunggr@cisco.com>
+ <20221116200729.GA761467-robh@kernel.org>
+ <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
+ <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/18/22 16:20, Rob Herring wrote:
+> +Bartosz
+> 
+> On Fri, Nov 18, 2022 at 4:34 AM Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>>
+>> On 11/16/22 21:07, Rob Herring wrote:
+>>> On Fri, Nov 11, 2022 at 02:29:04PM +0100, Erling Ljunggren wrote:
+>>>> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+>>>>
+>>>> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+>>>> ---
+>>>>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
+>>>>  1 file changed, 46 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..492eecb3ab7c
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+>>>> @@ -0,0 +1,46 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
+>>>> +
+>>>> +maintainers:
+>>>> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>>>> +
+>>>> +description: |
+>>>> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: onnn,cat24c208
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  input-connector:
+>>>> +    description: |
+>>>> +      Phandle to the video input connector, used to find
+>>>> +      the HPD gpio and the connector label, both optional.
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>
+>>> The binding and driver feel the wrong way around to me. It seems
+>>> like you should have a driver for the connector and it needs HPD GPIO,
+>>> label, and EEPROM. The driver instead looks mostly like an EEPROM driver
+>>> that hooks into a few connector properties.
+>>
+>> A device like this is typically used next to an HDMI receiver: the DDC
+>> lines and the HPD line are connected to the EDID EEPROM, and the video
+>> is handled by the HDMI receiver.
+>>
+>> Most HDMI receivers will have the EDID part integrated into the chip itself
+>> (see e.g. the adv7604 driver), but that doesn't have to be the case. The EDID
+>> can be completely separate, it doesn't matter for the receiver part.
+>>
+>> In our specific use-case there isn't even an HDMI receiver since the HDMI
+>> video is passed through and this EDID EEPROM is used to help debug HDMI
+>> issues by presenting custom EDIDs, similar to something like this:
+>>
+>> https://www.amazon.com/dp/B0722NVQHX
+>>
+>> The HPD line is controlled by the EDID part since it has to be low if there
+>> is no EDID or pulled low for at least 100ms if the EDID is being modified.
+> 
+> There is no HPD control on the EEPROM itself. So HPD does not belong
+> in the EEPROM node. That is the fundamental problem with the binding.
 
---vNq/aMDFmk2Q3leG
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Perhaps there is a terminology issue here: the input-connector phandle
+points to a connector (an hdmi-connector in our case, but it can also
+be a dvi-connector for example). The driver gets the HPD gpio from
+the connector node. Perhaps the example should be extended with the
+hdmi-connector node?
 
-On Fri, Nov 18, 2022 at 04:08:23PM +0100, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 17.11.22 um 19:40 schrieb Thierry Reding:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add XB24 and AB24 to the list of supported formats. The format helpers
-> > support conversion to these formats and they are documented in the
-> > simple-framebuffer device tree bindings.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > Changes in v2:
-> > - treat AB24 as XB24 and support both at the same time
-> >=20
-> >   drivers/gpu/drm/tiny/simpledrm.c       | 2 ++
-> >   include/linux/platform_data/simplefb.h | 1 +
-> >   2 files changed, 3 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tiny/si=
-mpledrm.c
-> > index 7f39bc58da52..ba1c2057fc65 100644
-> > --- a/drivers/gpu/drm/tiny/simpledrm.c
-> > +++ b/drivers/gpu/drm/tiny/simpledrm.c
-> > @@ -483,6 +483,8 @@ static int simpledrm_device_init_regulators(struct =
-simpledrm_device *sdev)
-> >   static const uint32_t simpledrm_primary_plane_formats[] =3D {
-> >   	DRM_FORMAT_XRGB8888,
-> >   	DRM_FORMAT_ARGB8888,
-> > +	DRM_FORMAT_XBGR8888,
-> > +	DRM_FORMAT_ABGR8888,
->=20
-> Does the hardware *really* support AB42 on its primary plane?
+Or do you mean that the hdmi-connector node should point to the EDID
+driver? In other words, a new property has to be added there to support
+a reference to an EDID device (the hdmi connector bindings are currently written
+for HDMI output and never used with HDMI input drivers).
 
-Yes, Tegra display hardware supports this format on the primary plane.
+Regards,
 
-> We recently had a discussion about the exported formats and the consensus=
- is
-> that we only want the hardware's native formats plus XRGB888. That's not
-> implemented yet in simpledrm, but this format list will soon see a larger
-> cleanup.
->=20
-> So I think ARGB8888 likely shouldn't be on the list here.
+	Hans
 
-This is for consistency with the list below. If a device tree claims
-that the framebuffer is ABGR8888 using the "a8b8g8r8" string, then
-shouldn't we support it?
+> 
+> We've always started bindings without connector nodes and just shove
+> properties into whatever node we do have. Then things evolve to be
+> more complicated with different h/w and that doesn't work. Start with
+> a connector even if you think it is overkill.
+> 
+>>> Reading the datasheet, I don't see anything special about accessing the
+>>> EEPROM from the host (DSP) side. Wouldn't the default at24 driver work?
+>>> It exposes regmap and nvmem.
+>>
+>> No. It is not a regular EEPROM, it is dedicated to store EDIDs. It has to
+>> correctly toggle the HPD line and inform other drivers (specifically HDMI CEC)
+>> of EDID updates.
+>>
+>> I don't see how the at24 could work: besides the eeprom i2c address it has to
+>> deal with two additional i2c devices: the segment address and the config
+>> address of the device itself. Writing to the eeprom from the host side requires
+>> a write to the segment address followed by a write to the eeprom part itself,
+>> and that's not something the at24 can do. And it is also something very specific
+>> to the VESA E-DDC standard (freely downloadable from vesa.org).
+> 
+> The addressing is different on the DSP (as the datasheet calls it)
+> side compared to the DDC side which has the EDID_SEL signal. Linux
+> only sees the DSP side, right? Looking at it a bit more, it looks like
+> the segment addressing is different from at24 which uses an i2c
+> address per segment. It is similar to ee1004 SPD where the segment is
+> selected by a write to a 2nd i2c address.
+> 
+>> Note that historically the first EDID EEPROMs most likely did work like the
+>> at24, but as EDID sizes grew beyond 256 bytes the E-DDC standard was created
+>> and that departed from the normal EEPROMs.
+> 
+> What happens if/when you have more than 1 part to support? Why not
+> provide a regmap or nvmem to the EDID storage and then the backend
+> device can be anything. I could imagine we could have a s/w
+> implementation.
+> 
+> Anyways, I don't really care if you do any of that now, but I still
+> think the binding is backwards. It's the connector you are managing,
+> not just an EEPROM, so you should bind to the connector and from there
+> gather all the resources you need to do that (EEPROM, HPD).
+> 
+> Rob
 
-Thierry
-
->=20
-> Best regards
-> Thomas
->=20
-> >   	DRM_FORMAT_RGB565,
-> >   	//DRM_FORMAT_XRGB1555,
-> >   	//DRM_FORMAT_ARGB1555,
-> > diff --git a/include/linux/platform_data/simplefb.h b/include/linux/pla=
-tform_data/simplefb.h
-> > index 27ea99af6e1d..4f94d52ac99f 100644
-> > --- a/include/linux/platform_data/simplefb.h
-> > +++ b/include/linux/platform_data/simplefb.h
-> > @@ -22,6 +22,7 @@
-> >   	{ "r8g8b8", 24, {16, 8}, {8, 8}, {0, 8}, {0, 0}, DRM_FORMAT_RGB888 }=
-, \
-> >   	{ "x8r8g8b8", 32, {16, 8}, {8, 8}, {0, 8}, {0, 0}, DRM_FORMAT_XRGB88=
-88 }, \
-> >   	{ "a8r8g8b8", 32, {16, 8}, {8, 8}, {0, 8}, {24, 8}, DRM_FORMAT_ARGB8=
-888 }, \
-> > +	{ "x8b8g8r8", 32, {0, 8}, {8, 8}, {16, 8}, {0, 0}, DRM_FORMAT_XBGR888=
-8 }, \
-> >   	{ "a8b8g8r8", 32, {0, 8}, {8, 8}, {16, 8}, {24, 8}, DRM_FORMAT_ABGR8=
-888 }, \
-> >   	{ "x2r10g10b10", 32, {20, 10}, {10, 10}, {0, 10}, {0, 0}, DRM_FORMAT=
-_XRGB2101010 }, \
-> >   	{ "a2r10g10b10", 32, {20, 10}, {10, 10}, {0, 10}, {30, 2}, DRM_FORMA=
-T_ARGB2101010 }, \
->=20
-> --=20
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-> (HRB 36809, AG N=C3=BCrnberg)
-> Gesch=C3=A4ftsf=C3=BChrer: Ivo Totev
-
-
-
-
---vNq/aMDFmk2Q3leG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN3qHgACgkQ3SOs138+
-s6Exkw/+Jt5RZlDy44ERgWiTBxt37qAeKtj5ZY8t5BLUo2Y4Z315h5xpUv3roXJa
-Jz2KB75PxNwp+KdWZQT5HkR3qxDL+Jh2YcX7RDsO/pTfDgfGgz0akwdnpXdpyarM
-MooVEAggH+xP+ASFA38CdwWt3PLqkVM0MWjtcv1bk9d4NXe3MYdgK54To/4FztNF
-162CfjUvVfX/bFpBwsJsS9fY2GQwaGtwd10mP6tS6q5GJapnRffZK0aW5m8d04Ek
-aaaRC2Qf6YrR8CSqjsBRRrVpQ4l0tVRuhAzMPCdr7Py7Hz5tzv/OKxd9Si5HEhhu
-pU8KVa7KGq+6DA07j7y+SJPF9xGK7WpSDlAz3q4Js0Jsr6fYXzk4CVuqEycjai1W
-wbColg/L7GnywWxxEmV7/owzUtPn7fcMJAC8w6hRaTgTEyUa+ZF8rjnObfRYWAhe
-EZo14G+bFhBr28sb26h3Ey8TFddfPSg1t0kPiTn+qk6nDkxse14alwnsO+elOqMH
-3LuByjGsUXeHvN7+o5Qoprm7rxt/0UltuizOjb2BymvqFyTtympwq86tzyYudEU5
-pGm6yMTX/95AkSpPs6nZ7E+JyxM+5e3MLC6UCYdHmRNnvY5qVF2QAy4ia+2p7FLn
-QdYh9Rh53QcdjHJJCeU1zqW7idMWO9NT40Xx0xjPbVw3qwqoY+c=
-=zV7L
------END PGP SIGNATURE-----
-
---vNq/aMDFmk2Q3leG--
