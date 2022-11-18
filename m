@@ -2,108 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F09E662F583
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B0E62F59F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241539AbiKRNGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:06:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
+        id S241750AbiKRNMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:12:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235266AbiKRNGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:06:19 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81818769E7
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:06:18 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id l12so8112105lfp.6
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:06:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SM/Hr9HQlKz57Vtwanp4K4Ls2OlF5cSrPv62Ff71hFg=;
-        b=BOBUo5yrSXCso4IIRkcg0o2teW8R3OqiUdLBb/m9b3VJ7Sh5+1gdMnp9pOxXnvd+Yn
-         jeS6rOMnYc39Qv7akYw16hE8G+rbBHmShmzV8w4wkEK7LDeUWinfdYLU+LaeLoWQoUZQ
-         pI+ZvbcLP5PTS8crCbDRSpjzftHj2eT9RRVk19z6/eVK7fbGk9Okpvh2RH9ftj6H2oCh
-         ho/ium4pBWQlacbK/QGRn1rhqlUiuw3WqXiGsfJyZ3sB2XYYBmgH6qjw0My9EbG308PF
-         of1sU8XAEEUtv/fOBo22tjrmNKJBQfGuLFLLLYC0E/Xc6JPrvWI+SVEf0Iv+0lrwdkVv
-         72cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SM/Hr9HQlKz57Vtwanp4K4Ls2OlF5cSrPv62Ff71hFg=;
-        b=pCw/DQqt6+ToKoPe0AmPbW/6RtBTVi739r6fUdu0ppRl1cPxRK1f1zLxYPjbok4Iap
-         Uo39Fwqb5238IN2dcV2AiFLjfyJRUOzYrhsnKkm+9sbGYoQYK/fpPRIiTzz6XJ+FkuPi
-         IuEtc09Ln8krS7pV5SR8+sCsgMnomT7wAzo1LRp3Zz5ocgLAUfd0/X0sg3LfLPd4av8e
-         Su6kG+0g8sWEQmBXTviZJ8k5yvpLxoSiwmz36fE56aYwoQboNErAd+jOxImTaw3IUl7T
-         u3u+kR4vAj6o+nNzlk3vLCqbNHd0533jdVVQUi4DVRnS8V/nONwRFCPda7faVrzCR2dc
-         WQXg==
-X-Gm-Message-State: ANoB5pkOBr/9WdmtanJY1HAyJ3Risxud1RsH+EmLosUYeTZXAkAN8B6N
-        81mGcGpmAGWdCnVAEUdMpKjYkA==
-X-Google-Smtp-Source: AA0mqf6Eg4ax1bzTHnu/VGLZTHQlm5c/vZt/4qmejF5rjXEdKZfMIwO0spdeu5nCwA4sLgFgaXuX8g==
-X-Received: by 2002:a05:6512:3daa:b0:4a2:ba30:a9a2 with SMTP id k42-20020a0565123daa00b004a2ba30a9a2mr2231992lfv.689.1668776776803;
-        Fri, 18 Nov 2022 05:06:16 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bt26-20020a056512261a00b004ab2cb8deb5sm655889lfb.18.2022.11.18.05.06.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 05:06:16 -0800 (PST)
-Message-ID: <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
-Date:   Fri, 18 Nov 2022 14:06:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
- example
-Content-Language: en-US
-To:     Paul Elder <paul.elder@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S241299AbiKRNMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:12:16 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 890338B13C;
+        Fri, 18 Nov 2022 05:12:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=4Aeu8UwIWgXvC6uSW82BD1GlVbqZxuA9k7NKVXlvkIc=; b=fi6O3mFvI7PWujd16InhbX4q0g
+        OqJCOxeSjTFaJdYdanioee16QbVe7lOlfsyEwIMZg7bqsHhyAuwcHyt0WK7T5I37CekR1LYmgit3E
+        ZXWanr36/Z8VVHi9m2KvzZRLdytQabOIRqzu3bZEQZh4h9CyUkmy4oi/sfFBGsQt6KNo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ow19f-002nPj-PO; Fri, 18 Nov 2022 14:11:39 +0100
+Date:   Fri, 18 Nov 2022 14:11:39 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
- <20221118093931.1284465-3-paul.elder@ideasonboard.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118093931.1284465-3-paul.elder@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 0/3] add dt configuration for dp83867 led modes
+Message-ID: <Y3eEiyUn6DDeUZmg@lunn.ch>
+References: <20221118001548.635752-1-tharvey@gateworks.com>
+ <Y3bRX1N0Rp7EDJkS@lunn.ch>
+ <CAJ+vNU3P-t3Q1XZrNG=czvFBU7UsCOA_Ap47k9Ein_3VQy_tGw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ+vNU3P-t3Q1XZrNG=czvFBU7UsCOA_Ap47k9Ein_3VQy_tGw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 10:39, Paul Elder wrote:
-> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Andrew,
 > 
-> Add an example to the rockchip-isp1 DT binding that showcases usage of
-> the parallel input of the ISP, connected to the CSI-2 receiver internal
-> to the i.MX8MP.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> I completely agree with you but I haven't seen how that can be done
+> yet. What support exists for a PHY driver to expose their LED
+> configuration to be used that way? Can you point me to an example?
 
-Missing SoB.
+Nobody has actually worked on this long enough to get code merged. e.g.
+https://lore.kernel.org/netdev/20201004095852.GB1104@bug/T/
+https://lists.archive.carbon60.com/linux/kernel/3396223
 
-> ---
->  .../bindings/media/rockchip-isp1.yaml         | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
-> 
+This is probably the last attempt, which was not too far away from getting merged:
+https://patches.linaro.org/project/linux-leds/cover/20220503151633.18760-1-ansuelsmth@gmail.com/
 
-I don't know what do you demonstrate there... usage of endpoints? That's
-the only difference. Such usage is the same everywhere, nothing specific
-to this example. You already have two examples, so I don't think this
-brings anything more.
+I seem to NACK a patch like yours every couple of months. If all that
+wasted time was actually spent on a common framework, this would of
+been solved years ago.
 
-Best regards,
-Krzysztof
+How important is it to you to control these LEDs? Enough to finish
+this code and get it merged?
 
+     Andrew
