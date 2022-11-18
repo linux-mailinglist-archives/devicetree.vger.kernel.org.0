@@ -2,202 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FC9D62FA45
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9CC62FA51
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:31:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242022AbiKRQ3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:29:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49284 "EHLO
+        id S229451AbiKRQbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:31:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235362AbiKRQ3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:29:46 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B020FF16
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:29:44 -0800 (PST)
-Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com [209.85.128.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C11873F32C
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 16:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668788982;
-        bh=n1AmhPidXStte0cr7nALfz6QHVHOy3+6QsUv/gwlQZ0=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=NRX9svCKgLumKXTC9eHZmpfHmbspFYcRC920hDYaHtUZqiZodUzP3U3krlpxecu8h
-         7VXC4QYZZJTtIWk7cbO7W3zm3bDs2QxJ6V1VEEGggGb3MGPBDS//Nv5aZtvQyWK/mJ
-         VgGApKq+5nEbeMyfCfp/wn79EpEIpo5cdjMLVnclXsiA1rJBEEd2Qqhwe6vCLSm1Xi
-         zr/ebWh9onAV6u9UNEyG1cZNZjaNt9s/0KRcbTJ5gTGztNkg7zuweAaRPSYlKBO8Gy
-         xR74r/RtCrdwKRfRZ3h4f5p/TCAYas1hCAbkdrB9aBPwst6goEXy9uNApzf2D8s1/s
-         xH0TbHSN9E+0w==
-Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-3691846091fso52912497b3.9
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:29:42 -0800 (PST)
+        with ESMTP id S241904AbiKRQbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:31:45 -0500
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB0393713;
+        Fri, 18 Nov 2022 08:31:44 -0800 (PST)
+Received: by mail-il1-x12d.google.com with SMTP id s17so978784ilp.1;
+        Fri, 18 Nov 2022 08:31:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FP1bUQo+iwkHiXqXdQVRu9FY7LrCRwnTYHQ0qebweZ8=;
+        b=ZgwYNd9F/SaIHfKswk1vi8zPLD3WN1fWCfyHf5F50m884FRLNr8CHNij7vRPBxkEZT
+         USRku8Z4c+EfvVmqus3fg36oHRh0KkQ+fD+usNaT75kD4rPXz3YiTJTL3nOUvUMQO1zJ
+         mpsjEUHmT2T2zdT453Hy4AvmHwG9SKajpELfY10v/BhcTLhvpsc9JTOqjstc/buOJX8p
+         nhyWyFTUDtFkS7hADWgr5cpOlyQI3AQ6OyRF9RApU983kyBLW5EazieoqmlgAY3jsMCa
+         Eiipr27S0+p9+zMN5t/CY2ab1daUYTJaUfFMgeOKghV5cQqHa6Z49o8JK50TWHQmClbW
+         4a4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n1AmhPidXStte0cr7nALfz6QHVHOy3+6QsUv/gwlQZ0=;
-        b=eXnTs3TLxP6tVKX2mjj66WWvNI/Qv4nTGF/mb12DeKa7x1igVBM5+p9SPqvabd+RrH
-         hWGbd9Bncy7Hml/ob+o30dxF6h7QXDDQsemq2sFiQqqpas2zkEoxTb87lpev3tzwjzmv
-         1lJylRfnAsVbUeK4qJJ/Unbe7sdbGP9pIn7nEWzheHX9ju0pTBYWWDjqs/fxT8ByCTvo
-         vQXiqNrxFIszAgaVDACSZazUouTiynpLJ1jUFhnbdYoyFCZ7NvDvyxz+ZRCqBv+uaVdb
-         yNDMsn6B0X7q+P0CYHhmkqJV4db3yGY/55cGCqqfv8EPO7pxadauOvt4tq5/5N+qRmUh
-         oTbw==
-X-Gm-Message-State: ANoB5pnsdEZChmmlb1IDuVoJIwbbsxIEx8LftUb/zEO1AfR5GyKz7ef+
-        DprcQTOtncJBfK9XFfC9Wu+Z+bH+9vQx+TmUzqe6sgZbL8U2meywYLCFB/+vajCx39xM8rj28f6
-        IFo6AEJj58rFsZomr4Uycy2eaYPHZajLw5Xe9Fg7QHCAeXUj9TjTKbHE=
-X-Received: by 2002:a25:abe4:0:b0:6e7:cbc4:1ac3 with SMTP id v91-20020a25abe4000000b006e7cbc41ac3mr5843284ybi.559.1668788981730;
-        Fri, 18 Nov 2022 08:29:41 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf7fF79tJ28ERAh84fO3zpC9Fb4cpHbLnel5aGbro1UBa0wzKWcqUZPvwK4sIlnHd/HGGprh2pvRWohAMVTvypE=
-X-Received: by 2002:a25:abe4:0:b0:6e7:cbc4:1ac3 with SMTP id
- v91-20020a25abe4000000b006e7cbc41ac3mr5843258ybi.559.1668788981430; Fri, 18
- Nov 2022 08:29:41 -0800 (PST)
+        bh=FP1bUQo+iwkHiXqXdQVRu9FY7LrCRwnTYHQ0qebweZ8=;
+        b=7o6lsZ1ZWav3nvMvhX4bfQnniA4SMRqEI4ggDJBXLv6+GWeIDvH9kWAk59J77N63PV
+         XN31dch7Y9R0R3Yx6+7xjwKMaevZHbz3Zzx/XGwtURmtKkDCnuGJ9XIkrE9EshpT3kKN
+         Jj54FtOdbOZVLyv6H3cK3XYE9858Wnt8AC9uxD/T9nWgq5sXSKty6ibLuPkvbQZe5Thr
+         /+mwGNPx1GXlBx2FwWCUgVWV0vaSBbPS6Cvd7rmd8f6KhPJULpvGR6bXxlYsd6aWzAzT
+         exO4hsXLLH8JSyrmdbxadPSnmq77NZGXaV+9qH5eRKGw/79Gl0XGzNWVP6a1qrUrl+sf
+         9Dhg==
+X-Gm-Message-State: ANoB5pkLwy6Pslp9kEuY+r9vYwuTEpSV6qH6j1++aXT2loLt998BiImL
+        UwFtKklXUActIW1V3ZSu7Oc=
+X-Google-Smtp-Source: AA0mqf5uGM/qoxxHmxsD4otzFwgVvp+9Wf+BqmxKS/eXECF0mS2RUVaq9nCkQXkxTspGAjcdw74+jQ==
+X-Received: by 2002:a05:6e02:1210:b0:2f9:aecd:6397 with SMTP id a16-20020a056e02121000b002f9aecd6397mr3695890ilq.100.1668789103458;
+        Fri, 18 Nov 2022 08:31:43 -0800 (PST)
+Received: from hestia.gfnd.rcn-ee.org (208-107-176-7-dynamic.midco.net. [208.107.176.7])
+        by smtp.gmail.com with ESMTPSA id f2-20020a02a102000000b00372412edbc2sm1311128jag.116.2022.11.18.08.31.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 08:31:42 -0800 (PST)
+From:   Robert Nelson <robertcnelson@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Nelson <robertcnelson@gmail.com>,
+        Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v6 1/2] dt-bindings: arm: ti: Add bindings for BeagleBone AI-64
+Date:   Fri, 18 Nov 2022 10:31:38 -0600
+Message-Id: <20221118163139.3592054-1-robertcnelson@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20221118010627.70576-1-hal.feng@starfivetech.com> <20221118010627.70576-4-hal.feng@starfivetech.com>
-In-Reply-To: <20221118010627.70576-4-hal.feng@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 17:29:25 +0100
-Message-ID: <CAJM55Z_f3K43TKpMKH6x8dQOW4jZMtPvHSvzG+Oeh3qWLWoj4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 03/14] reset: Create subdirectory for StarFive drivers
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> From: Emil Renner Berthing <kernel@esmil.dk>
->
-> This moves the StarFive JH7100 reset driver to a new subdirectory in
-> preparation for adding more StarFive reset drivers.
->
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  MAINTAINERS                                          | 4 ++--
->  drivers/reset/Kconfig                                | 8 +-------
->  drivers/reset/Makefile                               | 2 +-
->  drivers/reset/starfive/Kconfig                       | 8 ++++++++
->  drivers/reset/starfive/Makefile                      | 2 ++
->  drivers/reset/{ => starfive}/reset-starfive-jh7100.c | 0
->  6 files changed, 14 insertions(+), 10 deletions(-)
->  create mode 100644 drivers/reset/starfive/Kconfig
->  create mode 100644 drivers/reset/starfive/Makefile
->  rename drivers/reset/{ => starfive}/reset-starfive-jh7100.c (100%)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d43daa89d5f1..e6f1060e7964 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19613,11 +19613,11 @@ F:    Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
->  F:     drivers/pinctrl/starfive/
->  F:     include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
->
-> -STARFIVE JH7100 RESET CONTROLLER DRIVER
-> +STARFIVE JH7100 RESET CONTROLLER DRIVERS
->  M:     Emil Renner Berthing <kernel@esmil.dk>
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
-> -F:     drivers/reset/reset-starfive-jh7100.c
-> +F:     drivers/reset/starfive/
+This board is based on the ti,j721e
 
-When this entry covers all StarFive reset drivers the header should
-also match. Eg.
-STARFIVE RESET CONTROLLER DRIVERS
+https://beagleboard.org/ai-64
+https://git.beagleboard.org/beagleboard/beaglebone-ai-64
 
->  F:     include/dt-bindings/reset/starfive-jh7100.h
->
->  STATIC BRANCH/CALL
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index de176c2fbad9..1e8e1c4954cd 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -232,13 +232,6 @@ config RESET_SOCFPGA
->           This enables the reset driver for the SoCFPGA ARMv7 platforms. This
->           driver gets initialized early during platform init calls.
->
-> -config RESET_STARFIVE_JH7100
-> -       bool "StarFive JH7100 Reset Driver"
-> -       depends on SOC_STARFIVE || COMPILE_TEST
-> -       default SOC_STARFIVE
-> -       help
-> -         This enables the reset controller driver for the StarFive JH7100 SoC.
-> -
->  config RESET_SUNPLUS
->         bool "Sunplus SoCs Reset Driver" if COMPILE_TEST
->         default ARCH_SUNPLUS
-> @@ -320,6 +313,7 @@ config RESET_ZYNQ
->         help
->           This enables the reset controller driver for Xilinx Zynq SoCs.
->
-> +source "drivers/reset/starfive/Kconfig"
->  source "drivers/reset/sti/Kconfig"
->  source "drivers/reset/hisilicon/Kconfig"
->  source "drivers/reset/tegra/Kconfig"
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 3e7e5fd633a8..fee17a0e3a16 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-y += core.o
->  obj-y += hisilicon/
-> +obj-$(CONFIG_SOC_STARFIVE) += starfive/
->  obj-$(CONFIG_ARCH_STI) += sti/
->  obj-$(CONFIG_ARCH_TEGRA) += tegra/
->  obj-$(CONFIG_RESET_A10SR) += reset-a10sr.o
-> @@ -30,7 +31,6 @@ obj-$(CONFIG_RESET_RZG2L_USBPHY_CTRL) += reset-rzg2l-usbphy-ctrl.o
->  obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
->  obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
->  obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
-> -obj-$(CONFIG_RESET_STARFIVE_JH7100) += reset-starfive-jh7100.o
->  obj-$(CONFIG_RESET_SUNPLUS) += reset-sunplus.o
->  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
->  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
-> diff --git a/drivers/reset/starfive/Kconfig b/drivers/reset/starfive/Kconfig
-> new file mode 100644
-> index 000000000000..cddebdba7177
-> --- /dev/null
-> +++ b/drivers/reset/starfive/Kconfig
-> @@ -0,0 +1,8 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config RESET_STARFIVE_JH7100
-> +       bool "StarFive JH7100 Reset Driver"
-> +       depends on SOC_STARFIVE || COMPILE_TEST
-> +       default SOC_STARFIVE
-> +       help
-> +         This enables the reset controller driver for the StarFive JH7100 SoC.
-> diff --git a/drivers/reset/starfive/Makefile b/drivers/reset/starfive/Makefile
-> new file mode 100644
-> index 000000000000..670d049423f5
-> --- /dev/null
-> +++ b/drivers/reset/starfive/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_RESET_STARFIVE_JH7100)            += reset-starfive-jh7100.o
-> diff --git a/drivers/reset/reset-starfive-jh7100.c b/drivers/reset/starfive/reset-starfive-jh7100.c
-> similarity index 100%
-> rename from drivers/reset/reset-starfive-jh7100.c
-> rename to drivers/reset/starfive/reset-starfive-jh7100.c
-> --
-> 2.38.1
->
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+CC: Nishanth Menon <nm@ti.com>
+CC: Jason Kridner <jkridner@beagleboard.org>
+CC: Drew Fustini <drew@beagleboard.org>
+---
+Changes since v5:
+ - no changes
+Changes since v4:
+ - no changes
+Changes since v3:
+ - added Acked-by from Rob Herring
+Changes since v2:
+ - rebased on next after k3.yaml alphabetical sort
+Changes since v1:
+ - added documenation links
+ - add board in alphabetical order
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 28b8232e1c5b..09e6845ff243 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -61,6 +61,7 @@ properties:
+           - const: ti,j721e
+           - items:
+               - enum:
++                  - beagle,j721e-beagleboneai64
+                   - ti,j721e-evm
+                   - ti,j721e-sk
+               - const: ti,j721e
+-- 
+2.30.2
+
