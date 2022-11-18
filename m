@@ -2,100 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C8462F940
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D027462F922
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241949AbiKRP2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:28:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
+        id S241795AbiKRPU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:20:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241532AbiKRP2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:28:32 -0500
-X-Greylist: delayed 525 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Nov 2022 07:28:30 PST
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180D01E72D
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:28 -0800 (PST)
-Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S242101AbiKRPU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99431CB08;
+        Fri, 18 Nov 2022 07:20:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id A6A61348D6E;
-        Fri, 18 Nov 2022 16:19:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1668784780;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3uDpepbDz6oAsPmKRPLYkr5Mx+SABgVzOUZM4/B3U8Q=;
-        b=tWKaide1exK5/CcC1vSdRgb2ES/r1jatqYzrzVo5hm+hvY2Rbap3L0lRxZ58+gbxPQg5du
-        /1Po1XrDzGv/93WQdFwuiSkqAfStM2dB50QnpNwn9DDVs6/hCsUR3YR329ot+1GI4eUW2u
-        wkHjgltOhAlt1VZj6KGy01q2rah0taUqalfP8N87XzLjmzrN2lLiQpxxlTHHkf3mBKy4Tc
-        dqXuLawWIuXCbzl2/cdRHzcuL5qpogatjRxerI8wxyEu4WzYriTtPo3lkw/dLZ978wQ04a
-        amPLfGBKD4NBxMTnV1qVAcKMRhHhDDwTG/5A8Y4Vqnq64bI2ywM1Mw2oIoT13w==
-Message-ID: <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq
- bindings to dt-schema
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
-Date:   Fri, 18 Nov 2022 16:19:39 +0100
-In-Reply-To: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
-References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        by ams.source.kernel.org (Postfix) with ESMTPS id DD06FB82448;
+        Fri, 18 Nov 2022 15:20:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68B9FC433D6;
+        Fri, 18 Nov 2022 15:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668784821;
+        bh=SpvFCOXvPUWOiKQM23aihGopezt0vreTxIsAJdpgDSo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oc7/TRl+C+oGFHGA0/HLwnXKqEXXKpT8Tx1dY16SqJw9lkVcvNICA1XLIGSXswup6
+         ZCR0Dt5ZXnGKfZGGN8GMnfQRp4ozowb3pInAPwMMW9SI47DOhfZruVNKHsQj+Bvr8I
+         L9awqeg9l3UqAcPXsJHTBJ2ld9thZxkgJKn9DlHZDXmRrHBaKLm9WcWc0W5NHCVH5K
+         y59ypGSpQJqGabhYvkUWLvJgWSjzrqjbZEJzjWHm1qRYedZEA4xn2LEiOOKPt8tKJL
+         fLTECJFPPQxv3KvG5674syCZ/4udl0gDwx8cjqsIr/gXJMPeP/2xG0d02Mm20JWI/m
+         ciPdalNuQJJKg==
+Received: by mail-lf1-f52.google.com with SMTP id g7so8722373lfv.5;
+        Fri, 18 Nov 2022 07:20:21 -0800 (PST)
+X-Gm-Message-State: ANoB5pkBof8ICQJ2tjTYSiHW0oglqXBmu7tKpOO6Yj3H9dJRTO5ZpwYv
+        Qkap2Y2FTcQj1unfP1Q6c2siIsYJaNI86D67qA==
+X-Google-Smtp-Source: AA0mqf4EL07ceQCbbxeKyc252T6oLQShTRKBiEUE8bTfHXb2zfJ9zXJeBa/xS2aGnC6wqvpDpDa5FPgo/eVCoOSa/xI=
+X-Received: by 2002:ac2:442f:0:b0:4a2:8d76:abaa with SMTP id
+ w15-20020ac2442f000000b004a28d76abaamr2707645lfl.74.1668784819339; Fri, 18
+ Nov 2022 07:20:19 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221111132906.2212662-1-hljunggr@cisco.com> <20221111132906.2212662-4-hljunggr@cisco.com>
+ <20221116200729.GA761467-robh@kernel.org> <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
+In-Reply-To: <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 18 Nov 2022 09:20:10 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
+Message-ID: <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Erling Ljunggren <hljunggr@cisco.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksCgpPbiBUdWUsIDIwMjItMTEtMTUgYXQgMTE6MDYgKzAxMDAsIE5laWwgQXJtc3Ryb25nIHdy
-b3RlOgo+IFRoaXMgY29udmVydHMgdGhlIFNlbXRlY2ggU1gxNTBYcSBiaW5kaW5ncyB0byBkdC1z
-Y2hlbWFzLCBhZGQgbmVjZXNzYXJ5Cj4gYmluZGluZ3MgZG9jdW1lbnRhdGlvbiB0byBjb3ZlciBh
-bGwgZGlmZmVyZW5jZXMgYmV0d2VlbiBIVyB2YXJpYW50cwo+IGFuZCBjdXJyZW50IGJpbmRpbmdz
-IHVzYWdlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9u
-Z0BsaW5hcm8ub3JnPgo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
-Pgo+IC0tLQo+IFRvOiBMaW51cyBXYWxsZWlqIDxsaW51cy53YWxsZWlqQGxpbmFyby5vcmc+Cj4g
-VG86IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+Cj4gVG86IEtyenlzenRvZiBLb3ps
-b3dza2kgPGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZz4KPiBDYzogbGludXgtZ3Bp
-b0B2Z2VyLmtlcm5lbC5vcmcKPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzog
-bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwo+IC0tLQo+IENoYW5nZXMgaW4gdjM6Cj4gLSBS
-ZXNlbnQgd2l0aCBtaXNzaW5nIFRvOiBMaW51cyBXYWxsZWlqCj4gLSBMaW5rIHRvIHYyOiBodHRw
-czovL2xvcmUua2VybmVsLm9yZy9yLzIwMjIxMDA1LW1kbTk2MTUtc3gxNTA5cS15YW1sLXYyLTAt
-YTRhNWI4ZWVjYzdiQGxpbmFyby5vcmcKPiAKPiBDaGFuZ2VzIGluIHYyOgo+IC0gZml4ZWQgcm9i
-IGNvbW1lbnRzCj4gLSBhZGRlZCByb2IncyBSZXZpZXdlZC1ieQo+IC0gTGluayB0byB2MTogaHR0
-cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDIyMTAwNS1tZG05NjE1LXN4MTUwOXEteWFtbC12MS0w
-LTBjMjY2NDliNjM3Y0BsaW5hcm8ub3JnCj4gLS0tCgpbc25pcF0KCj4gK8KgIC0gaWY6Cj4gK8Kg
-wqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZToKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgIGNvbnRhaW5zOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudW06
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gc2VtdGVjaCxzeDE1MDNxCj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gc2VtdGVjaCxzeDE1MDZxCj4gK8KgwqDCoCB0aGVuOgo+
-ICvCoMKgwqDCoMKgIHBhdHRlcm5Qcm9wZXJ0aWVzOgo+ICvCoMKgwqDCoMKgwqDCoCAnLWNmZyQn
-Ogo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBwaW5zOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdGVtczoKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBhdHRlcm46ICdeZ3Bpb1swLTE1XSQnCgpbc25pcF0K
-Cj4gK8KgIC0gaWY6Cj4gK8KgwqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqAg
-Y29tcGF0aWJsZToKPiArwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnRhaW5zOgo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGNvbnN0OiBzZW10ZWNoLHN4MTUwOXEKPiArwqDCoMKgIHRoZW46Cj4gK8Kg
-wqDCoMKgwqAgcGF0dGVyblByb3BlcnRpZXM6Cj4gK8KgwqDCoMKgwqDCoMKgICctY2ZnJCc6Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoCBwcm9wZXJ0aWVzOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IHBpbnM6Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0ZW1zOgo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgcGF0dGVybjogJ14ob3NjaW98Z3Bpb1swLTE1XSkkJwoKU29y
-cnkgdG8gYmUgc28gbGF0ZSB0byByZXBseSwgYnV0IGRvbid0IHRoZXNlIHBhdHRlcm5zIG9ubHkg
-bWF0Y2ggImdwaW8wIiwgImdwaW8xIiwgYW5kICJncGlvNSI/CgpBIHF1aWNrIHNlYXJjaCBmb3Ig
-c29tZSBkYXRhc2hlZXRzIHR1cm5lZCB1cCB0aGUgU1gxNTAzIGFuZCBTWDE1MDlRIHdpdGggMTYg
-R1BJT3MsIHNvIEkgYXNzdW1lIHRoZQppbnRlbnRpb24gd2FzIHRvIG1hdGNoICJncGlvMCIgdG8g
-ImdwaW8xNSIuIEkgdGhpbmsgdGhpcyBzaG91bGQgYmUgIl4oZ3Bpb1swLTldfGdwaW8xWzAtNV0p
-JCIgKG9yCnNvbWV0aGluZyBlcXVpdmFsZW50KS4KCkJlc3QsClNhbmRlcgo=
++Bartosz
 
+On Fri, Nov 18, 2022 at 4:34 AM Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>
+> On 11/16/22 21:07, Rob Herring wrote:
+> > On Fri, Nov 11, 2022 at 02:29:04PM +0100, Erling Ljunggren wrote:
+> >> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+> >>
+> >> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+> >> ---
+> >>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
+> >>  1 file changed, 46 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> >> new file mode 100644
+> >> index 000000000000..492eecb3ab7c
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+> >> @@ -0,0 +1,46 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
+> >> +
+> >> +maintainers:
+> >> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> >> +
+> >> +description: |
+> >> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: onnn,cat24c208
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  input-connector:
+> >> +    description: |
+> >> +      Phandle to the video input connector, used to find
+> >> +      the HPD gpio and the connector label, both optional.
+> >> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >
+> > The binding and driver feel the wrong way around to me. It seems
+> > like you should have a driver for the connector and it needs HPD GPIO,
+> > label, and EEPROM. The driver instead looks mostly like an EEPROM driver
+> > that hooks into a few connector properties.
+>
+> A device like this is typically used next to an HDMI receiver: the DDC
+> lines and the HPD line are connected to the EDID EEPROM, and the video
+> is handled by the HDMI receiver.
+>
+> Most HDMI receivers will have the EDID part integrated into the chip itself
+> (see e.g. the adv7604 driver), but that doesn't have to be the case. The EDID
+> can be completely separate, it doesn't matter for the receiver part.
+>
+> In our specific use-case there isn't even an HDMI receiver since the HDMI
+> video is passed through and this EDID EEPROM is used to help debug HDMI
+> issues by presenting custom EDIDs, similar to something like this:
+>
+> https://www.amazon.com/dp/B0722NVQHX
+>
+> The HPD line is controlled by the EDID part since it has to be low if there
+> is no EDID or pulled low for at least 100ms if the EDID is being modified.
+
+There is no HPD control on the EEPROM itself. So HPD does not belong
+in the EEPROM node. That is the fundamental problem with the binding.
+
+We've always started bindings without connector nodes and just shove
+properties into whatever node we do have. Then things evolve to be
+more complicated with different h/w and that doesn't work. Start with
+a connector even if you think it is overkill.
+
+> > Reading the datasheet, I don't see anything special about accessing the
+> > EEPROM from the host (DSP) side. Wouldn't the default at24 driver work?
+> > It exposes regmap and nvmem.
+>
+> No. It is not a regular EEPROM, it is dedicated to store EDIDs. It has to
+> correctly toggle the HPD line and inform other drivers (specifically HDMI CEC)
+> of EDID updates.
+>
+> I don't see how the at24 could work: besides the eeprom i2c address it has to
+> deal with two additional i2c devices: the segment address and the config
+> address of the device itself. Writing to the eeprom from the host side requires
+> a write to the segment address followed by a write to the eeprom part itself,
+> and that's not something the at24 can do. And it is also something very specific
+> to the VESA E-DDC standard (freely downloadable from vesa.org).
+
+The addressing is different on the DSP (as the datasheet calls it)
+side compared to the DDC side which has the EDID_SEL signal. Linux
+only sees the DSP side, right? Looking at it a bit more, it looks like
+the segment addressing is different from at24 which uses an i2c
+address per segment. It is similar to ee1004 SPD where the segment is
+selected by a write to a 2nd i2c address.
+
+> Note that historically the first EDID EEPROMs most likely did work like the
+> at24, but as EDID sizes grew beyond 256 bytes the E-DDC standard was created
+> and that departed from the normal EEPROMs.
+
+What happens if/when you have more than 1 part to support? Why not
+provide a regmap or nvmem to the EDID storage and then the backend
+device can be anything. I could imagine we could have a s/w
+implementation.
+
+Anyways, I don't really care if you do any of that now, but I still
+think the binding is backwards. It's the connector you are managing,
+not just an EEPROM, so you should bind to the connector and from there
+gather all the resources you need to do that (EEPROM, HPD).
+
+Rob
