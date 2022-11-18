@@ -2,157 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABB562FCE1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F3D62FCFA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:51:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242444AbiKRSiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 13:38:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46416 "EHLO
+        id S235374AbiKRSu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 13:50:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242000AbiKRSiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:38:22 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D241C7EBFA
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 10:38:21 -0800 (PST)
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com [209.85.128.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A2CDF3F1C2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 18:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668796699;
-        bh=RYI02dFt068UY8kg1Ox7tYgeDjuqkOHogBD3aOmXEwg=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=vutEVjI0ad/P0pPg2V1NRd237Bgq66aqia+K+wjd9uuDGRiFC+4e2HOVUqVq6SCTN
-         w3BDeVBgAV4kO1TCVWk83VmHC3RcyoVzjbtzTJfPwOXRm3s+vW7TCVQzZCgNdHEpvr
-         GUS7IQakhzEVReqjUIUcJFnEdUnrkZxQbjsgJV4xDp28mSoy7mu4Plf7A7x3QcuX/2
-         ZpNkpvlDs65tedn/TxpmdnWWz3WOSRSkX2mkIs/j/8Ss9aqOryAGlEQYRHqZ0sDMGj
-         w4oFwPr6Bmdedku7wC1eHAVvK3J0xWevFe9bj55SDBctRVJhcQxiRHbaSv7dowsQ8S
-         ayxycP5vl539g==
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-385bbf9bc8fso56887857b3.23
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 10:38:19 -0800 (PST)
+        with ESMTP id S235421AbiKRSu6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:50:58 -0500
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6766A684;
+        Fri, 18 Nov 2022 10:50:53 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so3602119otl.10;
+        Fri, 18 Nov 2022 10:50:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RYI02dFt068UY8kg1Ox7tYgeDjuqkOHogBD3aOmXEwg=;
-        b=YRNxcqk1AJRAX0ldwm2V0WxeVAUVvi7UTtxm0n2Lsw+9NltHs4E6ahQ+e+zogmr5vT
-         Tak2PIWvGrkOlCfMWBNxtkkDAhz+yUx0Y6TfPE6vZY7bK6jGIY+0hfdWYooxwK+0DbzE
-         Fm56BLQeH8Mt8BOfUN7C+sK6uG/cyP92/2zEwtEu4wRuDKsN8FIOowzQt/oNU6yoX8Ei
-         8XJD9XdoAZcUjXP4MyqrNsIQfQkccwtzXxfipHUxq+Uxr9SIFCk9NdwPO/OkHcNpOAsh
-         YTnRplO1/FPUAFXcp3OkswCXvaBQpHgupkVLJeZjaneYj0/5HIZKFlKlNzTke9M8ZbLI
-         azFg==
-X-Gm-Message-State: ANoB5plMRY0GQGHaEz+7FUMbUcwJEyOycvwVujcQFFV92QCuop8rYKgK
-        5L6YgxB5BKx5b7zU3m4l4L7wfY7kvlcuqgqbIkV46HCD0+6TubFiaJuQRTmGGuvcWbhAxE+oRMT
-        yCou9qOx/BiEQSTzmcSkDrHJ8hGqq/a0UXJ6e4hbfQqDNcKbaupBf3yo=
-X-Received: by 2002:a25:510:0:b0:6d2:e45c:71c0 with SMTP id 16-20020a250510000000b006d2e45c71c0mr7835989ybf.153.1668796698040;
-        Fri, 18 Nov 2022 10:38:18 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4IKtz+bGERRUU6t0gtG+/NROqFnzOSm0Wda5mFXqM87Jebl5N3WBApoYT3Wr9SjFb4XHz8OAX5vTxVq7XpuhI=
-X-Received: by 2002:a25:510:0:b0:6d2:e45c:71c0 with SMTP id
- 16-20020a250510000000b006d2e45c71c0mr7835971ybf.153.1668796697793; Fri, 18
- Nov 2022 10:38:17 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=JOLYMjkXXvB/weWZsQxyRISw40hXb3p7LqGqtWVTDyk=;
+        b=sTF/mHtX5e0RWJM4kWUnBNqThzunWU5J/qo9/hkGcTQFwClaO9VetXNd8tg5XNR+Bm
+         d5FxSP9Uq3e3SqnBJPBBVBiJGk9P9YmYmEsZneg1rjBFTl8T3HxswfnkmZrHf0hSifWI
+         auhVf/39Nb9clnemKYo46dttBw75Y3yS7xLU0EljSg9EwwS1CdqmlucNVb4sjFcEB263
+         JlI4Waj6sFrHtkELi0sYN9VRV+pZwAYapXVRrIDLeHpieQgACbltPobQ4i+FedlMh2pV
+         uJm5afTPURkRkc25zszPjvN9GLXk2yQ8a+aUCuzSIgGQnZS+LtUpRPmHJTF8UBHveu46
+         0cMQ==
+X-Gm-Message-State: ANoB5pkpChfOo+TPhkgojzaK20crAZceZ6NrLlpbBqo5Y1qyEmnTlXyz
+        njUpllYXDsCm7EG3HtnnyA==
+X-Google-Smtp-Source: AA0mqf7tBcu9Tt0wpRksmHNxtPfG9uapvJ93nee4Ye90gw6t5D9ERUX1LfIp81dsHVG05A5sBN7PqQ==
+X-Received: by 2002:a9d:7e9a:0:b0:66c:6096:1878 with SMTP id m26-20020a9d7e9a000000b0066c60961878mr4549610otp.203.1668797452969;
+        Fri, 18 Nov 2022 10:50:52 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r25-20020a056830135900b00661c0747545sm1889218otq.44.2022.11.18.10.50.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 10:50:52 -0800 (PST)
+Received: (nullmailer pid 856954 invoked by uid 1000);
+        Fri, 18 Nov 2022 18:50:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
-In-Reply-To: <20221118133216.17037-1-walker.chen@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 19:38:01 +0100
-Message-ID: <CAJM55Z_OGDrCHs++9w4FhG-mZzGzOsnHZT77Q6BDJOGWX7eXJQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/4] JH7110 Power Domain Support
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, linux-tegra@vger.kernel.org,
+        treding@nvidia.com, linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        waynec@nvidia.com, Mathias Nyman <mathias.nyman@intel.com>,
+        vkoul@kernel.org, gregkh@linuxfoundation.org
+In-Reply-To: <20221118154006.173082-2-jonathanh@nvidia.com>
+References: <20221118154006.173082-1-jonathanh@nvidia.com>
+ <20221118154006.173082-2-jonathanh@nvidia.com>
+Message-Id: <166879727106.849035.12126185559088998329.robh@kernel.org>
+Subject: Re: [PATCH V4 1/6] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
+ controller binding
+Date:   Fri, 18 Nov 2022 12:50:54 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 14:34, Walker Chen <walker.chen@starfivetech.com> wrote:
->
-> This patchset adds power domain controller driver for the StarFive JH7110 SoC.
-> The series has been tested on the VisionFive 2 board.
 
-Hi Walker,
+On Fri, 18 Nov 2022 15:40:01 +0000, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
+> 
+> Add device-tree binding documentation for the XUSB host controller present
+> on Tegra234 SoC. This controller supports the USB 3.1 specification.
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> V3 -> V4: minor update to the power-domain description
+> V2 -> V3: nothing has changed
+> V1 -> V2: address the issue on phy-names property
+> 
+>  .../bindings/usb/nvidia,tegra234-xusb.yaml    | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
+> 
 
-Thanks for upstreaming this! I've left some comments on the individual patches.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-/Emil
+yamllint warnings/errors:
 
-> This patchset should be applied after the patchset [1], [2], [3]:
-> [1] https://lore.kernel.org/all/20221118010627.70576-1-hal.feng@starfivetech.com/
-> [2] https://lore.kernel.org/all/20221118011108.70715-1-hal.feng@starfivetech.com/
-> [3] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
->
-> Walker Chen (4):
->   dt-bindings: power: Add StarFive JH7110 power domain definitions
->   dt-bindings: power: Add starfive,jh71xx-power bindings
->   soc: starfive: Add StarFive JH71XX pmu driver
->   riscv: dts: starfive: add power controller node
->
->  .../bindings/power/starfive,jh71xx-power.yaml |  46 +++
->  MAINTAINERS                                   |   8 +
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   7 +
->  drivers/soc/Kconfig                           |   1 +
->  drivers/soc/Makefile                          |   1 +
->  drivers/soc/starfive/Kconfig                  |   9 +
->  drivers/soc/starfive/Makefile                 |   3 +
->  drivers/soc/starfive/jh71xx_pmu.c             | 380 ++++++++++++++++++
->  include/dt-bindings/power/jh7110-power.h      |  18 +
->  include/soc/starfive/pm_domains.h             |  15 +
->  10 files changed, 488 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
->  create mode 100644 drivers/soc/starfive/Kconfig
->  create mode 100644 drivers/soc/starfive/Makefile
->  create mode 100644 drivers/soc/starfive/jh71xx_pmu.c
->  create mode 100644 include/dt-bindings/power/jh7110-power.h
->  create mode 100644 include/soc/starfive/pm_domains.h
->
->
-> base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
-> prerequisite-patch-id: 8ebfffa09b478904bf7c516f76e2d824ddb60140
-> prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
-> prerequisite-patch-id: d050d884d7b091ff30508a70f5ce5164bb3b72e5
-> prerequisite-patch-id: 0e41f8cfd4861fcbf6f2e6a2559ce28f0450299e
-> prerequisite-patch-id: 6e1652501859b85f101ff3b15ced585d43c71c1b
-> prerequisite-patch-id: 587628a67adad5c655e5f998bf6c4a368ec07d3c
-> prerequisite-patch-id: 596490c0e397df6c0249c1306fbb1d5bf00b5b83
-> prerequisite-patch-id: dc873317826b50364344b25ac5cd74e811403f3d
-> prerequisite-patch-id: a50150f41d8e874553023187e22eb24dffae8d16
-> prerequisite-patch-id: 735e62255c75801bdc4c0b4107850bce821ff7f5
-> prerequisite-patch-id: 9d2e83a2dd43e193f534283fab73e90b4f435043
-> prerequisite-patch-id: 7a43e0849a9afa3c6f83547fd16d9271b07619e5
-> prerequisite-patch-id: e7aa6fb05314bad6d94c465f3f59969871bf3d2e
-> prerequisite-patch-id: 6276b2a23818c65ff2ad3d65b562615690cffee9
-> prerequisite-patch-id: d834ece14ffb525b8c3e661e78736692f33fca9b
-> prerequisite-patch-id: 4c17a3ce4dae9b788795d915bf775630f5c43c53
-> prerequisite-patch-id: dabb913fd478e97593e45c23fee4be9fd807f851
-> prerequisite-patch-id: ba61df106fbe2ada21e8f22c3d2cfaf7809c84b6
-> prerequisite-patch-id: 287572fb64f83f5d931034f7c75674907584a087
-> prerequisite-patch-id: 536114f0732646095ef5302a165672b3290d4c75
-> prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
-> prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
-> prerequisite-patch-id: e09e995700a814a763aa304ad3881a7222acf556
-> prerequisite-patch-id: 841cd71b556b480d6a5a5e332eeca70d6a76ec3f
-> prerequisite-patch-id: d074c7ffa2917a9f754d5801e3f67bc980f9de4c
-> prerequisite-patch-id: 5f59bc7cbbf1230e5ff4761fa7c1116d4e6e5d71
-> prerequisite-patch-id: d5da3475c6a3588e11a1678feb565bdd459b548e
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.example.dts:36.29-30 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221118154006.173082-2-jonathanh@nvidia.com
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
+
