@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A150262F45C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E585962F481
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbiKRMRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 07:17:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
+        id S240846AbiKRMZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 07:25:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241100AbiKRMRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:17:01 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4B18433E;
-        Fri, 18 Nov 2022 04:17:00 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AIAedc4017791;
-        Fri, 18 Nov 2022 12:16:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=zs+iIabo+a0n5S83frFjyaZWLUp9v9JSbLtqjNPV9Jg=;
- b=L8UT1bA3kBNDMVqQA+iAbVyWcegoXzVwf9hF8JAzik+y3isQayOYVp6SM/KY4w0+wBvC
- sRbYAnHex0W2G6++E/912ufZRaubiAecfSaQIvcfQ2dUAXdVMbHR11hnfJL/E3HlJ+sY
- k1fFlKDbVxIJ9ZoBbGUY9KYcXRLOveH1ev9ivD+TZfnlKodkNRoceN/R9cSuhl+vXxFV
- J8GcMcaM0P609AnLLk1SsLoVPYDhoPMUiCVZitXz1y4hNrBJkOynScXo8AhpJejRNtpW
- GhsG5f/51vAJO1B10swSyOZjtxXFtmOvLUQTm8vjR2Z7Bu8rwqjpA+YDKY/1K0aFQuQ7 Ig== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kx0s5hktg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 12:16:56 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2AICGqRZ013720;
-        Fri, 18 Nov 2022 12:16:52 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3kt4jkkc6t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 18 Nov 2022 12:16:52 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AICGphF013703;
-        Fri, 18 Nov 2022 12:16:52 GMT
-Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2AICGpQO013698;
-        Fri, 18 Nov 2022 12:16:52 +0000
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 8B6D32F35; Fri, 18 Nov 2022 04:16:51 -0800 (PST)
-From:   Kalyan Thota <quic_kalyant@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com
-Subject: [PATCH v3 3/3] drm/msm/disp/dpu1: add color management support for the crtc
-Date:   Fri, 18 Nov 2022 04:16:47 -0800
-Message-Id: <1668773807-19598-4-git-send-email-quic_kalyant@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1668773807-19598-1-git-send-email-quic_kalyant@quicinc.com>
-References: <1668773807-19598-1-git-send-email-quic_kalyant@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YjSIv20B4Ygfz9VaVgcf8W83ppuEq32u
-X-Proofpoint-ORIG-GUID: YjSIv20B4Ygfz9VaVgcf8W83ppuEq32u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-18_02,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 spamscore=0 phishscore=0
- malwarescore=0 bulkscore=0 mlxlogscore=999 suspectscore=0 impostorscore=0
- adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211180073
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
+        with ESMTP id S229753AbiKRMZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:25:07 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE0B970A2;
+        Fri, 18 Nov 2022 04:25:05 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id l14so9069693wrw.2;
+        Fri, 18 Nov 2022 04:25:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j8jWAZeT/8tQ+7MZHeSCpUFaWXiIrHUABkIoYNkKj2s=;
+        b=hdHitXL4yKKPBVo43O3M6muLDkkBGcVb2g9sA6IiaLhMeUqklBiDt9LVLoE6PtCAiu
+         vztyWZLhIrPIWbE8AdwRzOr+EviXevlqDXxNNRqEv1ZlLfRUG3lR1CuCmIkCudC2lpPu
+         F7uCwSivjdOgDpF5VRfqwEiS38m/ypk4hZEK0edkY73aXj1DboZW3w0pkJoPrA9N90Gk
+         mn4ypyyvNueaz2j3qtajdAujHn7bCa0yDJa70GMfAldhkfVXWo2OLzuWPHqmvTrvyk9M
+         ul8UXOZkN3aGbuvM9s77KRCC2eax0ra1uNpJuGuVOK1kje4MWsCGS1WCslMXrD6sBa3Y
+         hnLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j8jWAZeT/8tQ+7MZHeSCpUFaWXiIrHUABkIoYNkKj2s=;
+        b=VHkyxNcjpHLpeEFeenthq3sc7Q7rTtYYalnErvS48Dk9PW9EbYaEJAix9A5OyPLx7v
+         t4cJjoOs/FvFNe1cqEBBFuY9FnZJZax5BAYIL3toguxjihW9KiqklR8tQE19IIo0T4HQ
+         5WDh5IyWhO2niMyT0qN+SCsBAbEOcsYKx241dRduYTZqqW2zg73O8ri/w/5V5WEMulHt
+         OQ7T1j1CBTNe6xn8Ui8tZmWDIVe4r5FEThtO+AD0TY2XHrKfrpI4qzkrclis86Zj0qIP
+         jnxrmIv0+onPFbKo7m0bFxs1xR6BBqSGnWsOTckwz3H/iEmswk5+iQ5YZJk8+jGycmDA
+         7DOA==
+X-Gm-Message-State: ANoB5pmzNVzYKdcnrqZw1TDvkAFulbk8it8ns+5OC4TsRvcRp8N3W90G
+        UzYWovOg2Yk6fTq+CbqrQ10=
+X-Google-Smtp-Source: AA0mqf5Jr1KgblCkqspA/8a28qtmiNPa/PqAblZ8N5/JB8wLk16DG1XFBVSuYKJTnNvb1K/hZw38WA==
+X-Received: by 2002:a5d:4c42:0:b0:236:6f90:3e55 with SMTP id n2-20020a5d4c42000000b002366f903e55mr4196168wrt.374.1668774303668;
+        Fri, 18 Nov 2022 04:25:03 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a8-20020adffb88000000b002383fc96509sm3442198wrr.47.2022.11.18.04.25.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 04:25:02 -0800 (PST)
+Date:   Fri, 18 Nov 2022 13:25:00 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Wayne Chang <waynec@nvidia.com>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: usb: tegra-xusb: Convert to json-schema
+Message-ID: <Y3d5nKMGu5BqzJQC@orome>
+References: <20221103144200.1479640-1-thierry.reding@gmail.com>
+ <20221107195221.GA1462892-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+jaOzxE3K2SX1/b0"
+Content-Disposition: inline
+In-Reply-To: <20221107195221.GA1462892-robh@kernel.org>
+User-Agent: Mutt/2.2.8 (2022-11-05)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,163 +77,598 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add color management support for the crtc provided there are
-enough dspps that can be allocated from the catalog.
 
-Changes in v1:
-- cache color enabled state in the dpu crtc obj (Dmitry)
-- simplify dspp allocation while creating crtc (Dmitry)
-- register for color when crtc is created (Dmitry)
+--+jaOzxE3K2SX1/b0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v2:
-- avoid primary encoders in the documentation (Dmitry)
+On Mon, Nov 07, 2022 at 01:52:21PM -0600, Rob Herring wrote:
+> On Thu, Nov 03, 2022 at 03:42:00PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Convert the Tegra XUSB controller bindings from the free-form text
+> > format to json-schema.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Wayne, going forward it might make sense for you to pick this up into
+> > your Tegra234 series and add the Tegra234 bindings on top of this.
+> >=20
+> > Changes in v2:
+> > - use minItems/maxItems/items instead of contains/anyOf for phy-names
+> > - add missing compatible string to USB device example
+> > - drop unneeded phys property description
+> > - drop unneeded USB bus properties
+> > - add reference to usb-xhci.yaml
+> >=20
+> >  .../bindings/usb/nvidia,tegra124-xusb.txt     | 132 -----------
+> >  .../bindings/usb/nvidia,tegra124-xusb.yaml    | 202 +++++++++++++++++
+> >  .../bindings/usb/nvidia,tegra186-xusb.yaml    | 181 +++++++++++++++
+> >  .../bindings/usb/nvidia,tegra194-xusb.yaml    | 187 ++++++++++++++++
+> >  .../bindings/usb/nvidia,tegra210-xusb.yaml    | 207 ++++++++++++++++++
+> >  5 files changed, 777 insertions(+), 132 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra1=
+24-xusb.txt
+> >  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra1=
+24-xusb.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra1=
+86-xusb.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra1=
+94-xusb.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra2=
+10-xusb.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb=
+=2Etxt b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt
+> > deleted file mode 100644
+> > index 5bfcc0b4d6b9..000000000000
+> > --- a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt
+> > +++ /dev/null
+> > @@ -1,132 +0,0 @@
+> > -NVIDIA Tegra xHCI controller
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> > -
+> > -The Tegra xHCI controller supports both USB2 and USB3 interfaces expos=
+ed by
+> > -the Tegra XUSB pad controller.
+> > -
+> > -Required properties:
+> > ---------------------
+> > -- compatible: Must be:
+> > -  - Tegra124: "nvidia,tegra124-xusb"
+> > -  - Tegra132: "nvidia,tegra132-xusb", "nvidia,tegra124-xusb"
+> > -  - Tegra210: "nvidia,tegra210-xusb"
+> > -  - Tegra186: "nvidia,tegra186-xusb"
+> > -- reg: Must contain the base and length of the xHCI host registers, XU=
+SB FPCI
+> > -  registers and XUSB IPFS registers.
+> > -- reg-names: Must contain the following entries:
+> > -  - "hcd"
+> > -  - "fpci"
+> > -  - "ipfs"
+> > -- interrupts: Must contain the xHCI host interrupt and the mailbox int=
+errupt.
+> > -- clocks: Must contain an entry for each entry in clock-names.
+> > -  See ../clock/clock-bindings.txt for details.
+> > -- clock-names: Must include the following entries:
+> > -   - xusb_host
+> > -   - xusb_host_src
+> > -   - xusb_falcon_src
+> > -   - xusb_ss
+> > -   - xusb_ss_src
+> > -   - xusb_ss_div2
+> > -   - xusb_hs_src
+> > -   - xusb_fs_src
+> > -   - pll_u_480m
+> > -   - clk_m
+> > -   - pll_e
+> > -- resets: Must contain an entry for each entry in reset-names.
+> > -  See ../reset/reset.txt for details.
+> > -- reset-names: Must include the following entries:
+> > -  - xusb_host
+> > -  - xusb_ss
+> > -  - xusb_src
+> > -  Note that xusb_src is the shared reset for xusb_{ss,hs,fs,falcon,hos=
+t}_src.
+> > -- nvidia,xusb-padctl: phandle to the XUSB pad controller that is used =
+to
+> > -  configure the USB pads used by the XHCI controller
+> > -
+> > -For Tegra124 and Tegra132:
+> > -- avddio-pex-supply: PCIe/USB3 analog logic power supply. Must supply =
+1.05 V.
+> > -- dvddio-pex-supply: PCIe/USB3 digital logic power supply. Must supply=
+ 1.05 V.
+> > -- avdd-usb-supply: USB controller power supply. Must supply 3.3 V.
+> > -- avdd-pll-utmip-supply: UTMI PLL power supply. Must supply 1.8 V.
+> > -- avdd-pll-erefe-supply: PLLE reference PLL power supply. Must supply =
+1.05 V.
+> > -- avdd-usb-ss-pll-supply: PCIe/USB3 PLL power supply. Must supply 1.05=
+ V.
+> > -- hvdd-usb-ss-supply: High-voltage PCIe/USB3 power supply. Must supply=
+ 3.3 V.
+> > -- hvdd-usb-ss-pll-e-supply: High-voltage PLLE power supply. Must suppl=
+y 3.3 V.
+> > -
+> > -For Tegra210:
+> > -- dvddio-pex-supply: PCIe/USB3 analog logic power supply. Must supply =
+1.05 V.
+> > -- hvddio-pex-supply: High-voltage PCIe/USB3 power supply. Must supply =
+1.8 V.
+> > -- avdd-usb-supply: USB controller power supply. Must supply 3.3 V.
+> > -- avdd-pll-utmip-supply: UTMI PLL power supply. Must supply 1.8 V.
+> > -- avdd-pll-uerefe-supply: PLLE reference PLL power supply. Must supply=
+ 1.05 V.
+> > -- dvdd-pex-pll-supply: PCIe/USB3 PLL power supply. Must supply 1.05 V.
+> > -- hvdd-pex-pll-e-supply: High-voltage PLLE power supply. Must supply 1=
+=2E8 V.
+> > -
+> > -For Tegra210 and Tegra186:
+> > -- power-domains: A list of PM domain specifiers that reference each po=
+wer-domain
+> > -  used by the xHCI controller. This list must comprise of a specifier =
+for the
+> > -  XUSBA and XUSBC power-domains. See ../power/power_domain.txt and
+> > -  ../arm/tegra/nvidia,tegra20-pmc.txt for details.
+> > -- power-domain-names: A list of names that represent each of the speci=
+fiers in
+> > -  the 'power-domains' property. Must include 'xusb_ss' and 'xusb_host'=
+ which
+> > -  represent the power-domains XUSBA and XUSBC, respectively. See
+> > -  ../power/power_domain.txt for details.
+> > -
+> > -Optional properties:
+> > ---------------------
+> > -- phys: Must contain an entry for each entry in phy-names.
+> > -  See ../phy/phy-bindings.txt for details.
+> > -- phy-names: Should include an entry for each PHY used by the controll=
+er. The
+> > -  following PHYs are available:
+> > -  - Tegra124: usb2-0, usb2-1, usb2-2, hsic-0, hsic-1, usb3-0, usb3-1
+> > -  - Tegra132: usb2-0, usb2-1, usb2-2, hsic-0, hsic-1, usb3-0, usb3-1
+> > -  - Tegra210: usb2-0, usb2-1, usb2-2, usb2-3, hsic-0, usb3-0, usb3-1, =
+usb3-2,
+> > -              usb3-3
+> > -  - Tegra186: usb2-0, usb2-1, usb2-2, hsic-0, usb3-0, usb3-1, usb3-2
+> > -
+> > -Example:
+> > ---------
+> > -
+> > -	usb@0,70090000 {
+> > -		compatible =3D "nvidia,tegra124-xusb";
+> > -		reg =3D <0x0 0x70090000 0x0 0x8000>,
+> > -		      <0x0 0x70098000 0x0 0x1000>,
+> > -		      <0x0 0x70099000 0x0 0x1000>;
+> > -		reg-names =3D "hcd", "fpci", "ipfs";
+> > -
+> > -		interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
+> > -			     <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> > -
+> > -		clocks =3D <&tegra_car TEGRA124_CLK_XUSB_HOST>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_HOST_SRC>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_FALCON_SRC>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_SS>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_SS_DIV2>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_SS_SRC>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_HS_SRC>,
+> > -			 <&tegra_car TEGRA124_CLK_XUSB_FS_SRC>,
+> > -			 <&tegra_car TEGRA124_CLK_PLL_U_480M>,
+> > -			 <&tegra_car TEGRA124_CLK_CLK_M>,
+> > -			 <&tegra_car TEGRA124_CLK_PLL_E>;
+> > -		clock-names =3D "xusb_host", "xusb_host_src", "xusb_falcon_src",
+> > -			      "xusb_ss", "xusb_ss_div2", "xusb_ss_src",
+> > -			      "xusb_hs_src", "xusb_fs_src", "pll_u_480m",
+> > -			      "clk_m", "pll_e";
+> > -		resets =3D <&tegra_car 89>, <&tegra_car 156>, <&tegra_car 143>;
+> > -		reset-names =3D "xusb_host", "xusb_ss", "xusb_src";
+> > -
+> > -		nvidia,xusb-padctl =3D <&padctl>;
+> > -
+> > -		phys =3D <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}>, /* mini-PCI=
+e USB */
+> > -		       <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-2}>, /* USB A */
+> > -		       <&{/padctl@0,7009f000/pads/pcie/lanes/pcie-0}>; /* USB A */
+> > -		phy-names =3D "usb2-1", "usb2-2", "usb3-0";
+> > -
+> > -		avddio-pex-supply =3D <&vdd_1v05_run>;
+> > -		dvddio-pex-supply =3D <&vdd_1v05_run>;
+> > -		avdd-usb-supply =3D <&vdd_3v3_lp0>;
+> > -		avdd-pll-utmip-supply =3D <&vddio_1v8>;
+> > -		avdd-pll-erefe-supply =3D <&avdd_1v05_run>;
+> > -		avdd-usb-ss-pll-supply =3D <&vdd_1v05_run>;
+> > -		hvdd-usb-ss-supply =3D <&vdd_3v3_lp0>;
+> > -		hvdd-usb-ss-pll-e-supply =3D <&vdd_3v3_lp0>;
+> > -	};
+> > diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb=
+=2Eyaml b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml
+> > new file mode 100644
+> > index 000000000000..4a6616bf9bab
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml
+> > @@ -0,0 +1,202 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/nvidia,tegra124-xusb.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra124 xHCI controller
+> > +
+> > +maintainers:
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Jon Hunter <jonathanh@nvidia.com>
+> > +
+> > +description: The Tegra xHCI controller supports both USB2 and USB3 int=
+erfaces
+> > +  exposed by the Tegra XUSB pad controller.
+> > +
+> > +properties:
+> > +  # required
+> > +  compatible:
+> > +    oneOf:
+> > +      - description: NVIDIA Tegra124
+> > +        const: nvidia,tegra124-xusb
+> > +
+> > +      - description: NVIDIA Tegra132
+> > +        items:
+> > +          - const: nvidia,tegra132-xusb
+> > +          - const: nvidia,tegra124-xusb
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: base and length of the xHCI host registers
+> > +      - description: base and length of the XUSB FPCI registers
+> > +      - description: base and length of the XUSB IPFS registers
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: hcd
+> > +      - const: fpci
+> > +      - const: ipfs
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: xHCI host interrupt
+> > +      - description: mailbox interrupt
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: XUSB host clock
+> > +      - description: XUSB host source clock
+> > +      - description: XUSB Falcon source clock
+> > +      - description: XUSB SuperSpeed clock
+> > +      - description: XUSB SuperSpeed clock divider
+> > +      - description: XUSB SuperSpeed source clock
+> > +      - description: XUSB HighSpeed clock source
+> > +      - description: XUSB FullSpeed clock source
+> > +      - description: USB PLL
+> > +      - description: reference clock
+> > +      - description: I/O PLL
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: xusb_host
+> > +      - const: xusb_host_src
+> > +      - const: xusb_falcon_src
+> > +      - const: xusb_ss
+> > +      - const: xusb_ss_div2
+> > +      - const: xusb_ss_src
+> > +      - const: xusb_hs_src
+> > +      - const: xusb_fs_src
+> > +      - const: pll_u_480m
+> > +      - const: clk_m
+> > +      - const: pll_e
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: reset for the XUSB host controller
+> > +      - description: reset for the SuperSpeed logic
+> > +      - description: shared reset for xusb_{ss,hs,fs,falcon,host}_src.
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: xusb_host
+> > +      - const: xusb_ss
+> > +      - const: xusb_src
+> > +
+> > +  nvidia,xusb-padctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle to the XUSB pad controller that is used to co=
+nfigure
+> > +      the USB pads used by the XHCI controller
+> > +
+> > +  # optional
+> > +  phys:
+> > +    minItems: 1
+> > +    maxItems: 7
+> > +
+> > +  phy-names:
+> > +    minItems: 1
+> > +    maxItems: 7
+> > +    items:
+> > +      enum:
+> > +        - usb2-0
+> > +        - usb2-1
+> > +        - usb2-2
+> > +        - hsic-0
+> > +        - hsic-1
+> > +        - usb3-0
+> > +        - usb3-1
+> > +
+> > +  avddio-pex-supply:
+> > +    description: PCIe/USB3 analog logic power supply. Must supply 1.05=
+ V.
+> > +
+> > +  dvddio-pex-supply:
+> > +    description: PCIe/USB3 digital logic power supply. Must supply 1.0=
+5 V.
+> > +
+> > +  avdd-usb-supply:
+> > +    description: USB controller power supply. Must supply 3.3 V.
+> > +
+> > +  avdd-pll-utmip-supply:
+> > +    description: UTMI PLL power supply. Must supply 1.8 V.
+> > +
+> > +  avdd-pll-erefe-supply:
+> > +    description: PLLE reference PLL power supply. Must supply 1.05 V.
+> > +
+> > +  avdd-usb-ss-pll-supply:
+> > +    description: PCIe/USB3 PLL power supply. Must supply 1.05 V.
+> > +
+> > +  hvdd-usb-ss-supply:
+> > +    description: High-voltage PCIe/USB3 power supply. Must supply 3.3 =
+V.
+> > +
+> > +  hvdd-usb-ss-pll-e-supply:
+> > +    description: High-voltage PLLE power supply. Must supply 3.3 V.
+> > +
+> > +allOf:
+> > +  - $ref: usb-xhci.yaml
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - nvidia,xusb-padctl
+> > +  - phys
+> > +  - phy-names
+> > +  - avddio-pex-supply
+> > +  - dvddio-pex-supply
+> > +  - avdd-usb-supply
+> > +  - hvdd-usb-ss-supply
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/tegra124-car.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    usb@70090000 {
+> > +        compatible =3D "nvidia,tegra124-xusb";
+> > +        reg =3D <0x70090000 0x8000>,
+> > +              <0x70098000 0x1000>,
+> > +              <0x70099000 0x1000>;
+> > +        reg-names =3D "hcd", "fpci", "ipfs";
+> > +
+> > +        interrupts =3D <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        clocks =3D <&tegra_car TEGRA124_CLK_XUSB_HOST>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_HOST_SRC>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_FALCON_SRC>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_SS>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_SS_DIV2>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_SS_SRC>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_HS_SRC>,
+> > +                 <&tegra_car TEGRA124_CLK_XUSB_FS_SRC>,
+> > +                 <&tegra_car TEGRA124_CLK_PLL_U_480M>,
+> > +                 <&tegra_car TEGRA124_CLK_CLK_M>,
+> > +                 <&tegra_car TEGRA124_CLK_PLL_E>;
+> > +        clock-names =3D "xusb_host", "xusb_host_src", "xusb_falcon_src=
+",
+> > +                      "xusb_ss", "xusb_ss_div2", "xusb_ss_src",
+> > +                      "xusb_hs_src", "xusb_fs_src", "pll_u_480m",
+> > +                      "clk_m", "pll_e";
+> > +        resets =3D <&tegra_car 89>, <&tegra_car 156>, <&tegra_car 143>;
+> > +        reset-names =3D "xusb_host", "xusb_ss", "xusb_src";
+> > +
+> > +        nvidia,xusb-padctl =3D <&padctl>;
+> > +
+> > +        phys =3D <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}>, /* mi=
+ni-PCIe USB */
+> > +               <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-2}>, /* USB =
+A */
+> > +               <&{/padctl@0,7009f000/pads/pcie/lanes/pcie-0}>; /* USB =
+A */
+> > +        phy-names =3D "usb2-1", "usb2-2", "usb3-0";
+> > +
+> > +        avddio-pex-supply =3D <&vdd_1v05_run>;
+> > +        dvddio-pex-supply =3D <&vdd_1v05_run>;
+> > +        avdd-usb-supply =3D <&vdd_3v3_lp0>;
+> > +        avdd-pll-utmip-supply =3D <&vddio_1v8>;
+> > +        avdd-pll-erefe-supply =3D <&avdd_1v05_run>;
+> > +        avdd-usb-ss-pll-supply =3D <&vdd_1v05_run>;
+> > +        hvdd-usb-ss-supply =3D <&vdd_3v3_lp0>;
+> > +        hvdd-usb-ss-pll-e-supply =3D <&vdd_3v3_lp0>;
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb=
+=2Eyaml b/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml
+> > new file mode 100644
+> > index 000000000000..7126d137133a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml
+> > @@ -0,0 +1,181 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/nvidia,tegra186-xusb.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra186 xHCI controller
+> > +
+> > +maintainers:
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Jon Hunter <jonathanh@nvidia.com>
+> > +
+> > +description: The Tegra xHCI controller supports both USB2 and USB3 int=
+erfaces
+> > +  exposed by the Tegra XUSB pad controller.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nvidia,tegra186-xusb
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: base and length of the xHCI host registers
+> > +      - description: base and length of the XUSB FPCI registers
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: hcd
+> > +      - const: fpci
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: xHCI host interrupt
+> > +      - description: mailbox interrupt
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: XUSB host clock
+> > +      - description: XUSB Falcon source clock
+> > +      - description: XUSB SuperSpeed clock
+> > +      - description: XUSB SuperSpeed source clock
+> > +      - description: XUSB HighSpeed clock source
+> > +      - description: XUSB FullSpeed clock source
+> > +      - description: USB PLL
+> > +      - description: reference clock
+> > +      - description: I/O PLL
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: xusb_host
+> > +      - const: xusb_falcon_src
+> > +      - const: xusb_ss
+> > +      - const: xusb_ss_src
+> > +      - const: xusb_hs_src
+> > +      - const: xusb_fs_src
+> > +      - const: pll_u_480m
+> > +      - const: clk_m
+> > +      - const: pll_e
+> > +
+> > +  interconnects:
+> > +    items:
+> > +      - description: read client
+> > +      - description: write client
+> > +
+> > +  interconnect-names:
+> > +    items:
+> > +      - const: dma-mem # read
+> > +      - const: write
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  nvidia,xusb-padctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle to the XUSB pad controller that is used to co=
+nfigure
+> > +      the USB pads used by the XHCI controller
+> > +
+> > +  phys:
+> > +    minItems: 1
+> > +    maxItems: 7
+> > +
+> > +  phy-names:
+> > +    minItems: 1
+> > +    maxItems: 7
+> > +    items:
+> > +      enum:
+> > +        - usb2-0
+> > +        - usb2-1
+> > +        - usb2-2
+> > +        - hsic-0
+> > +        - usb3-0
+> > +        - usb3-1
+> > +        - usb3-2
+> > +
+> > +  power-domains:
+> > +    description: A list of PM domain specifiers that reference each po=
+wer-
+> > +      domain used by the xHCI controller. This list must comprise of a
+> > +      specifier for the XUSBA and XUSBC power-domains.
+> > +
+> > +      See ../power/power_domain.txt and ../arm/tegra/nvidia,tegra20-pm=
+c.txt
+> > +      for details.
+>=20
+> Drop description.
+>=20
+> > +    items:
+> > +      - description: XUSBC power domain
+> > +      - description: XUSBA power domain
+> > +
+> > +  power-domain-names:
+> > +    description: A list of names that represent each of the specifiers=
+ in the
+> > +      'power-domains' property. See ../power/power_domain.txt for deta=
+ils.
+>=20
+> ditto
+>=20
+> And the same elsewhere.
 
-Changes in v3:
-- add ctm for builtin encoders (Dmitry)
+All of these descriptions are now dropped.
 
-Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 5 +++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    | 6 ++++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 7 +++++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 7 ++++++-
- 4 files changed, 18 insertions(+), 7 deletions(-)
+>=20
+> > +    items:
+> > +      - const: xusb_host
+> > +      - const: xusb_ss
+>=20
+> host/XUSBC and ss/XUSBA don't really correlate. It's all supposed to be=
+=20
+> named relative to the device rather than top-level/source/provider.=20
+> You're stuck with the host/ss names, so maybe improve the descriptions.
+>=20
+> With those fixes,
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-index 4170fbe..6cacaaf 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-@@ -1571,7 +1571,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
- 
- /* initialize crtc */
- struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
--				struct drm_plane *cursor)
-+				struct drm_plane *cursor, bool ctm)
- {
- 	struct drm_crtc *crtc = NULL;
- 	struct dpu_crtc *dpu_crtc = NULL;
-@@ -1583,6 +1583,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
- 
- 	crtc = &dpu_crtc->base;
- 	crtc->dev = dev;
-+	dpu_crtc->color_enabled = ctm;
- 
- 	spin_lock_init(&dpu_crtc->spin_lock);
- 	atomic_set(&dpu_crtc->frame_pending, 0);
-@@ -1604,7 +1605,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
- 
- 	drm_crtc_helper_add(crtc, &dpu_crtc_helper_funcs);
- 
--	drm_crtc_enable_color_mgmt(crtc, 0, true, 0);
-+	drm_crtc_enable_color_mgmt(crtc, 0, dpu_crtc->color_enabled, 0);
- 
- 	/* save user friendly CRTC name for later */
- 	snprintf(dpu_crtc->name, DPU_CRTC_NAME_SIZE, "crtc%u", crtc->base.id);
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-index 539b68b..1ec9517 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-@@ -136,6 +136,7 @@ struct dpu_crtc_frame_event {
-  * @enabled       : whether the DPU CRTC is currently enabled. updated in the
-  *                  commit-thread, not state-swap time which is earlier, so
-  *                  safe to make decisions on during VBLANK on/off work
-+ * @color_enabled : whether crtc supports color management
-  * @feature_list  : list of color processing features supported on a crtc
-  * @active_list   : list of color processing features are active
-  * @dirty_list    : list of color processing features are dirty
-@@ -164,7 +165,7 @@ struct dpu_crtc {
- 	u64 play_count;
- 	ktime_t vblank_cb_time;
- 	bool enabled;
--
-+	bool color_enabled;
- 	struct list_head feature_list;
- 	struct list_head active_list;
- 	struct list_head dirty_list;
-@@ -269,10 +270,11 @@ void dpu_crtc_complete_commit(struct drm_crtc *crtc);
-  * @dev: dpu device
-  * @plane: base plane
-  * @cursor: cursor plane
-+ * @ctm: ctm flag
-  * @Return: new crtc object or error
-  */
- struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
--			       struct drm_plane *cursor);
-+			       struct drm_plane *cursor, bool ctm);
- 
- /**
-  * dpu_crtc_register_custom_event - api for enabling/disabling crtc event
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 574f2b0..102612c 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -572,6 +572,7 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
- static struct msm_display_topology dpu_encoder_get_topology(
- 			struct dpu_encoder_virt *dpu_enc,
- 			struct dpu_kms *dpu_kms,
-+			struct dpu_crtc *dpu_crtc,
- 			struct drm_display_mode *mode)
- {
- 	struct msm_display_topology topology = {0};
-@@ -600,7 +601,7 @@ static struct msm_display_topology dpu_encoder_get_topology(
- 	else
- 		topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
- 
--	if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
-+	if (dpu_crtc->color_enabled) {
- 		if (dpu_kms->catalog->dspp &&
- 			(dpu_kms->catalog->dspp_count >= topology.num_lm))
- 			topology.num_dspp = topology.num_lm;
-@@ -635,6 +636,7 @@ static int dpu_encoder_virt_atomic_check(
- 	struct drm_display_mode *adj_mode;
- 	struct msm_display_topology topology;
- 	struct dpu_global_state *global_state;
-+	struct dpu_crtc *dpu_crtc;
- 	int i = 0;
- 	int ret = 0;
- 
-@@ -645,6 +647,7 @@ static int dpu_encoder_virt_atomic_check(
- 	}
- 
- 	dpu_enc = to_dpu_encoder_virt(drm_enc);
-+	dpu_crtc = to_dpu_crtc(crtc_state->crtc);
- 	DPU_DEBUG_ENC(dpu_enc, "\n");
- 
- 	priv = drm_enc->dev->dev_private;
-@@ -670,7 +673,7 @@ static int dpu_encoder_virt_atomic_check(
- 		}
- 	}
- 
--	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
-+	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, dpu_crtc, adj_mode);
- 
- 	/* Reserve dynamic resources now. */
- 	if (!ret) {
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 4784db8..b57e261 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -747,6 +747,7 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms *dpu_kms)
- 
- 	int primary_planes_idx = 0, cursor_planes_idx = 0, i, ret;
- 	int max_crtc_count;
-+
- 	dev = dpu_kms->dev;
- 	priv = dev->dev_private;
- 	catalog = dpu_kms->catalog;
-@@ -804,7 +805,11 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms *dpu_kms)
- 	/* Create one CRTC per encoder */
- 	i = 0;
- 	drm_for_each_encoder(encoder, dev) {
--		crtc = dpu_crtc_init(dev, primary_planes[i], cursor_planes[i]);
-+		bool _ctm = false;
-+		if (catalog->dspp_count && dpu_encoder_is_builtin(encoder) &&
-+			encoder->encoder_type != DRM_MODE_ENCODER_VIRTUAL)
-+			_ctm = true;
-+		crtc = dpu_crtc_init(dev, primary_planes[i], cursor_planes[i], _ctm);
- 		if (IS_ERR(crtc)) {
- 			ret = PTR_ERR(crtc);
- 			return ret;
--- 
-2.7.4
+I've updated the descriptions to clarify that XUSBC is for host and USB
+2.0 while XUSBA is for SuperSpeed.
 
+I've picked this up into the Tegra tree with the above modifications.
+
+Thanks,
+Thierry
+
+--+jaOzxE3K2SX1/b0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN3eZwACgkQ3SOs138+
+s6EeiQ/+LJ8dCU8YGAK+0shtcgPqX1PenK0Xk1eLpHlUJplGw5ph/Y8mOFnwyLm7
+aIcFvUGoKP03TJkqy2uRKn2jx3ttF5DQCpanlSENJVvJdXvvQPhbSb6VuBaIYTIq
+nRRBBAIqv3N1VhtCrmdJOVJ8HL+5b9wgg5xQ0NEReq9eCaVqFa6jRKee1xVph+hH
+71qYTA6wlLCwOiQllSoRQtYCWft7TPU5qIcLkTjk+amC0eHJjnKkrZUKA1JT1yXy
+nEgxWVcYY7SB6rf60AgWTDS+KfTr6JDHm0oQCERIRQpO3KIRqPp3q0NqdPZfU15V
+RYxuS1WJkvI9ajXP4/qsRUW8cpWw/dacytP6exdkSUXbnYIXUTZHGkJRHEz6A97M
+4gemxzvoQ1t56EfTzr1WuIUVi3JTj/6iMFbYTYGJr5Z1sEij22scNv+plJ0WxXlm
++473PUwwLQEO2iD3vZllLMQ5cYXeTR4zo69e40ZrRLlEzqF5RtuDr4rfeoUSKOeK
+qbEC3qmXXgDwgtuG1XqVIwINOdzUGrtgq8Aoc8eRTE4jJJlVB5I2wVUADKPJaw4T
+EpZSawCfm0iiFUjd21rm6TZJIjbqleq0cjOEYSiB3WfuqtS/JuZTRv45HjN4llKb
+vop9ZEkAmBlIZXhO3tTwE10ZQJRuh5iZz2D58o3dMd/IfrsFf3o=
+=wMpM
+-----END PGP SIGNATURE-----
+
+--+jaOzxE3K2SX1/b0--
