@@ -2,59 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B27E962F61B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:31:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53AE562F618
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:31:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241876AbiKRNbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:31:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
+        id S241578AbiKRNbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:31:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241701AbiKRNbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:31:23 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECBFD67F6C;
+        with ESMTP id S235303AbiKRNbV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:31:21 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0D4713F4D;
         Fri, 18 Nov 2022 05:31:20 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so5933039fac.5;
+Received: by mail-ot1-f51.google.com with SMTP id p10-20020a9d76ca000000b0066d6c6bce58so3044403otl.7;
         Fri, 18 Nov 2022 05:31:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=EfogeLm9YKn41KXzs/CGTbBvXGpNupwTv41nqDxYWRc=;
-        b=Avk7dIxCFQk0G0gCJgSP8hQqIGuOs8CfWSGXLtonIRJdg7PzG5a1T4Dt1oRgulFQ1Z
-         7CqSvotc4vrkbCOg0PyWbzFcoXCEYfIXcycfsVh6TUj4RmCrYGFhj3o6rMMIFKpD9nSE
-         mLc/4mP4X2oi7A1PrpxxzvkFVgzHZ3hodNLPSIadUGGJdms8QW1Szg3EPeIlFsCm/BIt
-         TYslSX4kYWGrlO+Kf6FZB89rvwuy+kURhhXi7GPIjUdsj1IpCdwUayJXc10TZ0RCm4Qk
-         imPiXkoqw9kUo2cohavXXjiLnQ9z0G4D34bk1f/kjVsOAMN3z9rq+utjH7LVel9aC13s
-         nJbw==
-X-Gm-Message-State: ANoB5plihOkJxsUQwtE0lAEpIa1XZnhfh8VAp9wG/fVZyDRRXLOod0Ke
-        r++WyX9zuP9cUT0XiVLfQg==
-X-Google-Smtp-Source: AA0mqf7QRfsdsSbMWIOmsFpInlQ9vxFriR4ebriv3bGHGVpNO2xEQLPYKgVDxvgK/vJX4Yu7Z6iQ0g==
-X-Received: by 2002:a05:6870:40ca:b0:141:e308:fab5 with SMTP id l10-20020a05687040ca00b00141e308fab5mr4049099oal.49.1668778278208;
-        Fri, 18 Nov 2022 05:31:18 -0800 (PST)
+        bh=Q0Mpv79OC10rvhUXLA0ACmvYs6p261vAofPBrF9lFpY=;
+        b=Tj/aorcT5ngzXxbcAtPBrDnQx5m+iH38ovyDGWjcRmYeLbCqFWLnGnXUOIU8yvOtKz
+         Wj7hjJLVB6VBBRV+X5YLY7ZWB/WFzktxO/qVlX9X8qq9GfSYm4M7F/eHKLqh8Vdxl8pY
+         CrceEUHMp+SiZr/1ndrhktzzYF6nymuMqxDwBmKhm9VmMBLwVhiUsGKspBAA8g2odYFq
+         Gp7X6KABeiwLKOdpJ5DKhcrhyXYslBjlc5w6ntUkKJovbrStGauLczvr02HjcVDc6PDs
+         2AX8ur/PtT7XwGJwXu6/lqRcAl10vno4mKyU/Vk0PMI0n+aIlx4qckycyDcJqvpUkg2n
+         56FA==
+X-Gm-Message-State: ANoB5pljhiO3Im9JNL4u/UqK3dWe8To1hQXImkZSqBuVuZU7zd+ZaqqP
+        S0O4d6D5sY0siHkI8LTCsA==
+X-Google-Smtp-Source: AA0mqf4sTJcECMo1xKL09IoTWj/i5Q4HzYzaQhgjRACHz9Us2B9+woBC7DGak4TQZHl4kO19R4t7tA==
+X-Received: by 2002:a05:6830:6407:b0:661:8fc6:2d77 with SMTP id cj7-20020a056830640700b006618fc62d77mr3756668otb.288.1668778279794;
+        Fri, 18 Nov 2022 05:31:19 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id be41-20020a05680821a900b00339befdfad0sm1392635oib.50.2022.11.18.05.31.17
+        by smtp.gmail.com with ESMTPSA id x53-20020a056830247500b0066c7733be43sm1536301otr.30.2022.11.18.05.31.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 05:31:17 -0800 (PST)
-Received: (nullmailer pid 1482189 invoked by uid 1000);
+        Fri, 18 Nov 2022 05:31:19 -0800 (PST)
+Received: (nullmailer pid 1482192 invoked by uid 1000);
         Fri, 18 Nov 2022 13:31:19 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     brgl@bgdev.pl, devicetree@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, a.zummo@towertech.it,
-        vigneshr@ti.com, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        lee@kernel.org, linus.walleij@linaro.org
-In-Reply-To: <20221118092218.480147-2-mranostay@ti.com>
-References: <20221118092218.480147-1-mranostay@ti.com>
- <20221118092218.480147-2-mranostay@ti.com>
-Message-Id: <166877739931.1425860.1214658943409919491.robh@kernel.org>
-Subject: Re: [PATCH v4 1/4] Documentation: ti,tps6594: Add DT bindings for the
- TPS6594x PMIC
+To:     Paul Elder <paul.elder@ideasonboard.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dafna Hirschfeld <dafna@fastmail.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org
+In-Reply-To: <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+ <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+Message-Id: <166877740033.1426068.13359373358036408238.robh@kernel.org>
+Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP example
 Date:   Fri, 18 Nov 2022 07:31:19 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,15 +73,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 18 Nov 2022 01:22:15 -0800, Matt Ranostay wrote:
-> Add documentation for the TPS6594x PMIC including its RTC and GPIO
-> functionalities.
+On Fri, 18 Nov 2022 18:39:19 +0900, Paul Elder wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Add an example to the rockchip-isp1 DT binding that showcases usage of
+> the parallel input of the ISP, connected to the CSI-2 receiver internal
+> to the i.MX8MP.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+>  .../bindings/media/rockchip-isp1.yaml         | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -85,17 +92,17 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/ti,tps6594.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb: pmic@48: gpio: Unevaluated properties are not allowed ('compatible' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb: pmic@48: gpio:compatible:0: 'ti,tps6594x-gpio' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb:0:0: /example-0/i2c0/pmic@48/gpio: failed to match any schema with compatible: ['ti,tps6594-gpio']
+Documentation/devicetree/bindings/media/rockchip-isp1.example.dts:199:18: fatal error: dt-bindings/media/video-interfaces.h: No such file or directory
+  199 |         #include <dt-bindings/media/video-interfaces.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221118092218.480147-2-mranostay@ti.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221118093931.1284465-3-paul.elder@ideasonboard.com
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
