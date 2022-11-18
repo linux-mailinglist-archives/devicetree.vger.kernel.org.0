@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E6AA62F928
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A625562F92B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242198AbiKRPUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:20:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
+        id S242238AbiKRPUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:20:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242166AbiKRPUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:36 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46DA2B26D
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:35 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u2so7179457ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:35 -0800 (PST)
+        with ESMTP id S242242AbiKRPUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:38 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C2E2C671
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:37 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id b3so8725795lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mt1Oc0ujq+8ARYNZpTY4my+ocgdokMPqWBidtFrPicc=;
-        b=veZLUju0OZcLrca1Tev5vJEV7hltIl62XDCxKODQ7PQNYvXwgWv3nvesnEEirRUohl
-         WhWgbXoZbyh1Sg4IMRI9qfX9O/mVR1YpWEeC54qRL0iDTxGVXcOxlhRmOO8DbGV8BZqD
-         0KnQrkXnAQeSXMQGFYN5CW5sude1YMPaEEG9fCmSnJofMGn1ht4V//QLi5osUMWZCwWB
-         RyW6/tBlkq8AvndrloX6PNOGxsmvnKz9nUdsWcbp6NQfepPC4S7EBsNNxoJBKZpicFM1
-         Cdj4D20aEsaeKGjZrQocGO5Fq7gi2PZ1kAVK4sOPQQ/uw9/D1kgkkaalKVvoYQxpqFNQ
-         2Clw==
+        bh=Kb/6Z6Nz1gnb2z7GznvPxvyQcocsubtScHtnufLzpH8=;
+        b=IHUJ4ViWC3qk37qn4GHyU/n75i6gHrjzDdr27nQHRmtg8yU0ept4ffxn0ShutbkedG
+         X74NoeRHZy6eQCVmdZaI9ExK+lFrtN/K1DRB6pTQkNJpdBsxFhlmNduBJJsIFf2OfBMF
+         qOEhH7Yi6iO+kU7ynIF8gxPqfgblX95IgJsb8RhfhkeHvZDiCwN7Jy/GuAzZ6PDiC1Td
+         do5gR14EgDv7tcxzIEMAnAp/sXFuAZAAUKIYkvvXP8Uo/juNRUD1WhsZPNmPyGh/P14p
+         90GvG4by3mFnrwHesXMPMtNyuxSkX4h+y/fH+P/q/K5SA13yLtUa3iCJV2gzvxFUPHAJ
+         hEnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Mt1Oc0ujq+8ARYNZpTY4my+ocgdokMPqWBidtFrPicc=;
-        b=GBBs+jTVLXXIkPM9nBPWbAcWoQKX3fHzRs8phTiMk3hz11HiTTaEg+1E3KB5Ll1gKJ
-         +KniF07w9noGH79PWBprMvh9c5GSb5+zW/lgm5OwZwaCYmwSjKTM07PI4TXaQYnkCozQ
-         p6hyQpnS7fMBh2zirkiHQCuS8LPSLuWH6NFMefsjmmHCYMEFna4HglVqsvOGlNhWA3nh
-         Y3E8e9miBonwwp8yaNYOFaEWFpFvWZmV00xImVyKea9NsUKdqSkKHhxjiXPiZ/5TN7j2
-         APpYBmbNUaCklElu9uaY/0XuV+IwHNOdZCXlbsUscHTSfosGvDheKvOK/Yiwq+9qs0Ck
-         GHpg==
-X-Gm-Message-State: ANoB5pnMMlszTGYIw8YvBGMKAe4293Dg+FAw7aaDUdc1W2qfO7QMfStY
-        d/uux6wUQUiBMHnOVLLGDvwdGg==
-X-Google-Smtp-Source: AA0mqf5hlu4uHwk4LzPNIZkF/atO8Pz4NWHiF2ank783WcL1uP9fp09juYtV0GhRLysjeUsSj3RCug==
-X-Received: by 2002:a05:651c:1250:b0:279:d87:7bc6 with SMTP id h16-20020a05651c125000b002790d877bc6mr2564785ljh.225.1668784834094;
-        Fri, 18 Nov 2022 07:20:34 -0800 (PST)
+        bh=Kb/6Z6Nz1gnb2z7GznvPxvyQcocsubtScHtnufLzpH8=;
+        b=7uurvWDwSMvYl8fnEqg2gOyzzcVytKx8dPpkV7cPy46ttQ9tlnON/MdfMmoCVV2/iF
+         7KyKSUrAfTZnU3YAdrGzjtoJoF2cT7+kGaihWl7Jt+7QQK126AvJY5zjwUMnqaQuL0KQ
+         RX/4Nh2gcr9xeBErWC6vJ1Puha2k8z6WUwCzs1v9POsP8lfhim11iQfeYRq+wVc38kYy
+         FVkgOv8T3/R/ugwsqlt0xvhzDcOUgvlo8W7PgSDBhIOQ6DspHr3Sb7lMG2X+bfLpzGLu
+         tw62yh41eDAPc19Bg4wenBejakBH0q7AuVJxf3JLfBhGodxRB7cIOqtVoEk/HfE75n3T
+         I2pA==
+X-Gm-Message-State: ANoB5pkii7PohSbxZ5ouTFkEVwRrSkU7MJPVx+Sa+yoTXLudb94vvzJk
+        u72zYlmnYm3Q55FKnQeZPc/KCQ==
+X-Google-Smtp-Source: AA0mqf4OcdskkBwdfhW7fzDIEeecphOYfbsANRyvspW90OYHyg0Y408+8wUWBURzNqtp+MYhtMy7xQ==
+X-Received: by 2002:ac2:5de7:0:b0:4af:f58e:a7a0 with SMTP id z7-20020ac25de7000000b004aff58ea7a0mr2457830lfq.507.1668784835927;
+        Fri, 18 Nov 2022 07:20:35 -0800 (PST)
 Received: from localhost.localdomain ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b004948ddb4e4dsm690597lfq.301.2022.11.18.07.20.32
+        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b004948ddb4e4dsm690597lfq.301.2022.11.18.07.20.34
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Fri, 18 Nov 2022 07:20:33 -0800 (PST)
+        Fri, 18 Nov 2022 07:20:35 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -57,9 +57,9 @@ Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8350-sagami: Configure SLG51000 PMIC on PDX215
-Date:   Fri, 18 Nov 2022 16:20:27 +0100
-Message-Id: <20221118152028.59312-2-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sm8350-sagami: Add GPIO line names for PMIC GPIOs
+Date:   Fri, 18 Nov 2022 16:20:28 +0100
+Message-Id: <20221118152028.59312-3-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 In-Reply-To: <20221118152028.59312-1-konrad.dybcio@linaro.org>
 References: <20221118152028.59312-1-konrad.dybcio@linaro.org>
@@ -75,112 +75,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the mention of this PMIC from the common DTSI, as it's not
-used on PDX214. Add the required nodes to support it on PDX215.
+Sony ever so graciously provides GPIO line names in their downstream
+kernel (though sometimes they are not 100% accurate and you can judge
+that by simply looking at them and with what drivers they are used).
+
+Add these to the PDX213&214 DTSIs to better document the hardware.
+
+Diff between 223 and 224:
+
+pm8350b
+< 	gpio-line-names = "NC", /* GPIO_1 */
+> 	gpio-line-names = "CAM_PWR_A_CS", /* GPIO_1 */
+< 			  "NC",
+> 			  "CAM_PWR_LD_EN",
+
+pm8350c
+< 			  "NC",
+> 			  "WLC_TXPWR_EN",
+
+Which is due to different camera power wiring on 213 and lack of an
+additional SLG51000 PMIC on 214.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../qcom/sm8350-sony-xperia-sagami-pdx215.dts | 66 +++++++++++++++++++
- .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |  2 +-
- 2 files changed, 67 insertions(+), 1 deletion(-)
+ .../qcom/sm8350-sony-xperia-sagami-pdx214.dts | 23 +++++++++++++++++++
+ .../qcom/sm8350-sony-xperia-sagami-pdx215.dts | 21 +++++++++++++++++
+ .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 20 ++++++++++++++++
+ 3 files changed, 64 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-index c74c973a69d2..d4afaa393c9a 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-@@ -12,6 +12,72 @@ / {
- 	compatible = "sony,pdx215-generic", "qcom,sm8350";
+diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
+index cc650508dc2d..e6824c8c2774 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
++++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
+@@ -17,3 +17,26 @@ &framebuffer {
+ 	height = <2520>;
+ 	stride = <(1080 * 4)>;
  };
- 
-+&i2c13 {
-+	pmic@75 {
-+		compatible = "dlg,slg51000";
-+		reg = <0x75>;
-+		dlg,cs-gpios = <&pm8350b_gpios 1 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam_pwr_a_cs>;
-+
-+		regulators {
-+			slg51000_a_ldo1: ldo1 {
-+				regulator-name = "slg51000_a_ldo1";
-+				regulator-min-microvolt = <2400000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			slg51000_a_ldo2: ldo2 {
-+				regulator-name = "slg51000_a_ldo2";
-+				regulator-min-microvolt = <2400000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			slg51000_a_ldo3: ldo3 {
-+				regulator-name = "slg51000_a_ldo3";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+
-+			slg51000_a_ldo4: ldo4 {
-+				regulator-name = "slg51000_a_ldo4";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+
-+			slg51000_a_ldo5: ldo5 {
-+				regulator-name = "slg51000_a_ldo5";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+
-+			slg51000_a_ldo6: ldo6 {
-+				regulator-name = "slg51000_a_ldo6";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+
-+			slg51000_a_ldo7: ldo7 {
-+				regulator-name = "slg51000_a_ldo7";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+		};
-+	};
-+};
 +
 +&pm8350b_gpios {
-+	cam_pwr_a_cs: cam-pwr-a-cs-state {
-+		pins = "gpio1";
-+		function = "normal";
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-+		power-source = <1>;
-+		drive-push-pull;
-+		output-high;
-+	};
++	gpio-line-names = "NC", /* GPIO_1 */
++			  "NC",
++			  "NC",
++			  "NC",
++			  "SNAPSHOT_N",
++			  "NC",
++			  "NC",
++			  "FOCUS_N";
++};
++
++&pm8350c_gpios {
++	gpio-line-names = "FL_STROBE_TRIG_WIDE", /* GPIO_1 */
++			  "FL_STROBE_TRIG_TELE",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "RGBC_IR_PWR_EN",
++			  "NC",
++			  "NC",
++			  "WIDEC_PWR_EN";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
+index d4afaa393c9a..c6f402c3ef35 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
++++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
+@@ -68,6 +68,15 @@ slg51000_a_ldo7: ldo7 {
+ };
+ 
+ &pm8350b_gpios {
++	gpio-line-names = "CAM_PWR_A_CS", /* GPIO_1 */
++			  "NC",
++			  "NC",
++			  "NC",
++			  "SNAPSHOT_N",
++			  "CAM_PWR_LD_EN",
++			  "NC",
++			  "FOCUS_N";
++
+ 	cam_pwr_a_cs: cam-pwr-a-cs-state {
+ 		pins = "gpio1";
+ 		function = "normal";
+@@ -78,6 +87,18 @@ cam_pwr_a_cs: cam-pwr-a-cs-state {
+ 	};
+ };
+ 
++&pm8350c_gpios {
++	gpio-line-names = "FL_STROBE_TRIG_WIDE", /* GPIO_1 */
++			  "FL_STROBE_TRIG_TELE",
++			  "NC",
++			  "WLC_TXPWR_EN",
++			  "NC",
++			  "RGBC_IR_PWR_EN",
++			  "NC",
++			  "NC",
++			  "WIDEC_PWR_EN";
 +};
 +
  &tlmm {
  	gpio-line-names = "APPS_I2C_0_SDA", /* GPIO_0 */
  			  "APPS_I2C_0_SCL",
 diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index 6ae700e72d1e..8f32b2799bcb 100644
+index 8f32b2799bcb..d73e1f3fa501 100644
 --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-  */
- 
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sm8350.dtsi"
- #include "pm8350.dtsi"
-@@ -506,7 +507,6 @@ &i2c13 {
- 	clock-frequency = <100000>;
- 
- 	/* Qualcomm PM8008i/PM8008j (?) @ 8, 9, c, d */
--	/* Dialog SLG51000 CMIC @ 75 */
+@@ -534,6 +534,26 @@ &mpss {
+ 	firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
  };
  
- &i2c15 {
++&pm8350_gpios {
++	gpio-line-names = "ASSIGN1_THERM", /* GPIO_1 */
++			  "LCD_ID",
++			  "SDR_MMW_THERM",
++			  "RF_ID",
++			  "NC",
++			  "FP_LDO_EN",
++			  "SP_ARI_PWR_ALARM",
++			  "NC",
++			  "G_ASSIST_N",
++			  "PM8350_OPTION"; /* GPIO_10 */
++};
++
++&pmk8350_gpios {
++	gpio-line-names = "NC", /* GPIO_1 */
++			  "NC",
++			  "VOL_DOWN_N",
++			  "PMK8350_OPTION";
++};
++
+ &pmk8350_rtc {
+ 	status = "okay";
+ };
 -- 
 2.38.1
 
