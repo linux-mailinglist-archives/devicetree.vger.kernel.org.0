@@ -2,103 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164D062F672
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 697B762F67F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241254AbiKRNlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:41:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
+        id S242032AbiKRNon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:44:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235221AbiKRNlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:41:20 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADF9DFFD
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:41:19 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so3058967otl.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:41:19 -0800 (PST)
+        with ESMTP id S241758AbiKRNok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:44:40 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36591781BF
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:44:39 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id s8so8261715lfc.8
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:44:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=a8Ki/ScBkzTDQYA9RR1oC+0keIJYmqZCmxNX7c97+WA=;
-        b=hYwevDUAMXbdQB35sxAwhzB0DGL9y7DdDyniYY3C0+Xs3cFY0NNLQDYlcAYYKAB2b3
-         0kpFtAHC80ypq7n9HzoNcvuc/nx3iqnzqHhG+HrEz4mfBgaccsP0lnW0Jj1VvydnCdbV
-         YFtxnJ83r3IOcVrChrMFw3IgdvtnBc+QFHGq4FVuL5bgEpWBBPneifA2mcQKULqef+FW
-         0qw+a8tpB1Sdjwdj8zvRjRqAB3jH8r8Cl7XzwP6qUAXJwnwUoyoTx4Vt8X7NwR7v4cAl
-         hYHo1lfrtnEuaTvfVjmcPcbgoxn2DfZarEZfC0QZZm5B9hBjcj1c0RZc6Ya+fnbCj7we
-         kIXg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W/+ARMgwEUQ2ZjYV3x5LOp06hHU3gkx8nkJq53hd/AM=;
+        b=HlwyumjJY6+N19ORY47MsA/NLZCIyBuMelPwTJumpvD3CdeEeKejWMop+phGbN/lnH
+         u8ThZeUmpT4qySPgX5osxpPz+SjA0M/sdfJSg8BXMfjv1kXxqhJej+hebhZKpnKS1wze
+         2nxS4pNyZMjCQHnIfdDiBRdHt+a229wdH75J8klEou9kw1B0MPNedyje1utE/Jan8dcv
+         KQ0xUoRpqAhhJ2u4SopjWisKs9uJUFWSZKo9VXNcsAkY9ipoFfgiVTkBUVft8f9XuwJk
+         G2hPXoSe0eqGTZuNgXtPgnZ9bQDkbk6tWyD+CZj/AJi/3Fmq+bheBc1W6mtS/a2Ft2aS
+         /mQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a8Ki/ScBkzTDQYA9RR1oC+0keIJYmqZCmxNX7c97+WA=;
-        b=0UcosBQU3cuIte8sJjExaTUFPoiwZdNLikniQ2YCosnhkyvvQsfpPL6XXkCARYSg2v
-         JE58rXIJBgOu/P8WQKevyXY3CXGkeWGRLqR9qdH5hgcM8ckR8gkXSH7AoND+dtQPSJM3
-         Z5A6SXTLpWIkpV3RwlJCfPx4/0uZD1aa7vKosJExA7/f1fjbqzOrjcCF2s2bSSyEb48R
-         v845kXtZACYr6sAV4FYhz7bn+I476nDDSdldVELJZ2MRdG+5fyWy0dqnyyCs96D0I+xj
-         VK2Ybru/xJUeeLgujmQAXTIxNBKLP2p+4ocwdiC6ocmH0lHtMre3zWBnQnRkTnybD521
-         Esew==
-X-Gm-Message-State: ANoB5pmz2GrT2BmUMJPS6c/P4QzzDXATyokghDlwS9EY69wyb9+Bm+6S
-        k0Md3YrungUN4pBBS1ZVvUo=
-X-Google-Smtp-Source: AA0mqf5g6WFxxPkMnuINXBlIUYG9NkufpNoosA+LFqbk0Z78Y79C5Zk1AIAv0nBQUHFennH1dDtIuQ==
-X-Received: by 2002:a05:6830:2a06:b0:66c:61c8:ceeb with SMTP id y6-20020a0568302a0600b0066c61c8ceebmr3957717otu.12.1668778878638;
-        Fri, 18 Nov 2022 05:41:18 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:485:4b69:5e22:964c:bd31:bca4])
-        by smtp.gmail.com with ESMTPSA id 5-20020a544185000000b0035437f4deefsm1404263oiy.26.2022.11.18.05.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 05:41:18 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx6q-prti6q: Fix ref/tcxo-clock-frequency properties
-Date:   Fri, 18 Nov 2022 10:41:02 -0300
-Message-Id: <20221118134102.1767559-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W/+ARMgwEUQ2ZjYV3x5LOp06hHU3gkx8nkJq53hd/AM=;
+        b=JbrRgCOT6NMLiRiioLu6NbVpTG4iFiGKomUBpvmvFS3rR6fpMrgwDjWy84eUK9TKHt
+         ovY5EOZOlTWPhpKhGCAbMW/C4+Rhhx14i6GqlaP/tb9JDi9kh1Fyje94Y+sZN/nJzE77
+         PSdoxRbX1ZMZ7bQ8Iv6tZWrwPC8FECymLAHcQi0K+eBVImXS8Bvi4ysMmrX6+mjS+65o
+         S+lFhwnvc9nYl4noXhfq6FtCdLtpPWVZjrIVK5PC+8oam+1hqT7LxW7qGwqcVCoHQxl+
+         Pq25Y2PmKfTOIc+mxLX9B5b94hz7FimkzbyjFwZoo0iV9HMwOF88VSeKXAxqN07Fk5VA
+         IR6g==
+X-Gm-Message-State: ANoB5pn9F9PVvCuYJV0TUSsCab/5M2e8pwR4A7hzKWAOQSNFdUdD1qN2
+        x+UFfA6baA/5bOK3GNpCjhQADw==
+X-Google-Smtp-Source: AA0mqf6UKHbjNVtOSotxDXFXi3D4LOpnccqG9/UpcyupKhuED0gX1s7yvo6ndRD72UxCkRYF3S16Sg==
+X-Received: by 2002:ac2:598f:0:b0:4a2:2515:dc59 with SMTP id w15-20020ac2598f000000b004a22515dc59mr2307605lfn.283.1668779077549;
+        Fri, 18 Nov 2022 05:44:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id g2-20020a2eb5c2000000b0025ebaef9570sm658800ljn.40.2022.11.18.05.44.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 05:44:37 -0800 (PST)
+Message-ID: <93fbbe8f-05d7-aa85-5f40-2d15a1b97c01@linaro.org>
+Date:   Fri, 18 Nov 2022 14:44:35 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/Five SoC
+Content-Language: en-US
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 18/11/2022 14:38, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The WDT block on the RZ/Five SoC is identical to one found on the RZ/G2UL
+> SoC. "renesas,r9a07g043-wdt" compatible string will be used on the
+> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
+> SoC.
 
-make dtbs_check gives the following errors:
 
-ref-clock-frequency: size (9) error for type uint32
-tcxo-clock-frequency: size (9) error for type uint32
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Fix it by passing the frequencies inside < > as documented in
-Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/imx6q-prti6q.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6q-prti6q.dts b/arch/arm/boot/dts/imx6q-prti6q.dts
-index b4605edfd2ab..d8fa83effd63 100644
---- a/arch/arm/boot/dts/imx6q-prti6q.dts
-+++ b/arch/arm/boot/dts/imx6q-prti6q.dts
-@@ -364,8 +364,8 @@ wifi {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_wifi>;
- 		interrupts-extended = <&gpio1 30 IRQ_TYPE_LEVEL_HIGH>;
--		ref-clock-frequency = "38400000";
--		tcxo-clock-frequency = "19200000";
-+		ref-clock-frequency = <38400000>;
-+		tcxo-clock-frequency = <19200000>;
- 	};
- };
- 
--- 
-2.25.1
+Best regards,
+Krzysztof
 
