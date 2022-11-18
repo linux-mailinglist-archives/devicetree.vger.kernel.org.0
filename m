@@ -2,117 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3773062F6AA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5353362F6BA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:03:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234213AbiKRN5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:57:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41400 "EHLO
+        id S242065AbiKRODs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:03:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241756AbiKRN5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:57:48 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5288CFD8;
-        Fri, 18 Nov 2022 05:57:47 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id cl5so9355136wrb.9;
-        Fri, 18 Nov 2022 05:57:47 -0800 (PST)
+        with ESMTP id S235313AbiKRODq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:03:46 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A027B0A
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:03:45 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id r12so8381140lfp.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:03:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eWeG46+stoyqg0DxeWDTE3Ia6sRtYUvD/f2AC43whrI=;
-        b=UBy2pMwmY0F9TprKdzF9+oHmuDyYef1NLk4176juESl05IbLKp/9GV1uvwNyE05eZK
-         Z+p4UqW4trGX9r7dbmMuBuftaRQ4LvECgbAC/ityZUzukli41iB650dYXFJgH1YVEbw3
-         anilvPdoIUHL+/519Z4dn9g5IfQiiRtLNH4AmNo9+rZS/xdn2l6s5OlKa7Et9KiQ6ulO
-         wg/8YoszXR0Tuer9L5IYFieHON2rjcYFY533+oLLD4OJnogLo1dw8T+LrUog6HLoC0VC
-         LwD7qSPBu5dMc26l8lV2VfWN+AqetNatAGJVeor5LCkDBvhY2c3wSb8PyU0NMXaTUTdf
-         SmXQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gUxGDXOF5xYSjDRZWvXFS7yq+U+z+lzZT7cIMxCr3pE=;
+        b=h9vFytU4nm3SDaAbfXezc7LzhSkIBsZzYEz5ETdbbBuoIxQVlrWtDgfdPULsTaowYU
+         1Tr9H9+E/aVbFDu/yeEgquYwyebD86/NUpy6Yye+PvNPjQoa8mWG2V1SNsvgqOlwynRK
+         uRUURnSRZvShogeqIzTFGdwWtVqFBLePOwwRnjmxoG64pbmo78xP0bwMmSoE/2ZodzfB
+         nenVIqfSlISk3A7lOHYWUJP+HPc6SMaDQVUdX8r1MRsgk6kZc028SCbaVe+EMY1pJJYw
+         Lt33kE+xHn9w1WSPM6xdjboiEIGZmYNZOeaTngq3DzVjxjRCEUshiaC9YMzWmvO/UW0u
+         JPyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eWeG46+stoyqg0DxeWDTE3Ia6sRtYUvD/f2AC43whrI=;
-        b=SoZQO8rtK0JodtzgGNUrBBDhRDE33UnfjvnNJosXOOYCzkC5HKMFQSBeC2OwrPo6oK
-         AOU14YWjdVz064zsHP7E9Ts3vYNxU4ebUJvUgn9CF39HHmnGpIFnRDGL0YtN6Ftx5laF
-         0Qyt/GcVpOrR30qGtF/Npaw0RbR2wvRXzwyaP91DWQMOZCO2G3FzeGlTArbiJ97td8Xb
-         za9+1V5jz55phCBe87Lyn6Nqb7ooPeTDojlh6v/5YQp2aSYhG4E2FWa0ZAN3R6GRN3z1
-         s2qdPF14xJiraOtE4Q4iq2gdrLejoLKd03gen2TpFAtBwkG/NiQvIPkVfOCmcSP93qy0
-         EqdQ==
-X-Gm-Message-State: ANoB5pmrJe//2TVLLvx02xre+p7hDD78Dk7Cmi66uCQ57Bl/fRnHtlEM
-        dxFn0xLSYhpn8sm6H20+oe+pvLVPz4ogFKnq
-X-Google-Smtp-Source: AA0mqf5ExHBrb9jNKEdMu558qiVQsc11nUOiP0QaPE81UIhiHekyMevzM8kLNpjwRinrrCouduOJ/Q==
-X-Received: by 2002:a5d:6282:0:b0:22e:31a4:2323 with SMTP id k2-20020a5d6282000000b0022e31a42323mr4368273wru.691.1668779866301;
-        Fri, 18 Nov 2022 05:57:46 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:29e1:fee9:75e6:d6ea])
-        by smtp.gmail.com with ESMTPSA id j13-20020a5d604d000000b00236695ff94fsm3638491wrt.34.2022.11.18.05.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 05:57:45 -0800 (PST)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] riscv: dts: renesas: rzfive-smarc-som: Enable WDT
-Date:   Fri, 18 Nov 2022 13:57:15 +0000
-Message-Id: <20221118135715.14410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gUxGDXOF5xYSjDRZWvXFS7yq+U+z+lzZT7cIMxCr3pE=;
+        b=oFPJd93/ZwfFOLpZAGPccHRQeRnMASqGkGCa5CtFmhsztpL9PSFB5Uxv8WGv5ZIMFq
+         u35MhvA3MkWpkNeLq5e+w0IeBf3UTf0D+9RpvJWhTmvOimuJ3PyKdNpk+6HTrBDIfFp2
+         wRbb245czvtVl8u6tS319JHhZ2/QsnZnoeIp/hzYTSD4bx0TylwFJCJXwc5p6ULyz0UT
+         DkF7ELup176hqLKyIa45B6Yw7Vn6WeydHGLBeTCvhusz1pvPIYUV9jeaTB4EiAipWtnS
+         Zx7doFEPd1PWEIrEeoU6nNIgO5QS3bfaoylIdlVAYCutRKYh2TeQBb5qjenHzfkhhuXL
+         sHBw==
+X-Gm-Message-State: ANoB5plr2JMQdrkydbAkWTNi4nqnngW92fGRnk7+oxhctEyUrwhV7sDP
+        aVYJyVLXu/d10QMnMgIiidfR+g==
+X-Google-Smtp-Source: AA0mqf6JVFi5KuAWgUHvL/yiZ1qAdvnG7QM5UfiBcwC90Cx4VmMjybgiI181zGhQK5JJf87MUrJ7nA==
+X-Received: by 2002:a05:6512:3122:b0:497:a17d:d848 with SMTP id p2-20020a056512312200b00497a17dd848mr2365223lfd.381.1668780223705;
+        Fri, 18 Nov 2022 06:03:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v26-20020a056512049a00b0048b365176d9sm665585lfq.286.2022.11.18.06.03.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 06:03:43 -0800 (PST)
+Message-ID: <7b3356a9-8f2b-49de-7ad3-b01c3279eac0@linaro.org>
+Date:   Fri, 18 Nov 2022 15:03:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: reserved-memory: document Qualcomm MPSS
+ DSM memory
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-1-158dc2bb6e96@linaro.org>
+ <38fff21b-3e75-13f9-664e-a115bc527b67@linaro.org>
+ <9aa23650-6ae1-3844-7cf3-6812dc023c11@linaro.org>
+ <dfec6a0b-86c6-fb61-51f6-d1e400a6f5ef@linaro.org>
+ <ad9d2e4f-1d60-15e7-dc2d-e7e32b0ec855@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ad9d2e4f-1d60-15e7-dc2d-e7e32b0ec855@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 18/11/2022 14:30, neil.armstrong@linaro.org wrote:
+> On 18/11/2022 11:45, Krzysztof Kozlowski wrote:
+>> On 17/11/2022 10:47, Neil Armstrong wrote:
+>>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: qcom,mpss-dsm-mem
+>>>>
+>>>> Why do we need dedicated binding and compatible for it instead of using
+>>>> memory-region phandle in the device?
+>>>
+>>> So like rmtfs, this memory zone is shared between APPS and the MPSS subsystem.
+>>>
+>>> Like rmtfs it makes no sense to link it to the MPSS PAS, since it's only a launcher,
+>>> it doesn't represent the MPSS subsystem.
+>>
+>> This also does not represent a device. Memory region is not a device, so
+>> this is as well not correct representation of hardware.
+> 
+> I never used the term device so far, but a shared memory region with a platform
+> specific process to share the region between subsystems.
 
-Enable WDT node on RZ/Five SMARC SoM.
+Yes, but you create a device in patch #2 for this binding.
 
-Note, WDT block is enabled in RZ/G2UL SMARC SoM DTSI [0] hence deleting
-the disabled node from RZ/Five SMARC SoM DTSI enables it here too as we
-include [0] in RZ/Five SMARC SoM DTSI.
+> 
+>>
+>>>
+>>> In the PAS startup process, the resources are released from APPS once the MPSS subsystem
+>>> is running, which is not the case with the MPSS DSM where it must be shared during the whole
+>>> lifetime of the system.
+>>
+>> I don't think that PAS releases the region. I checked the
+>> qcom_q6v5_pas.c and there is only ioremap. The device stays loaded thus
+>> the memory stays mapped.
+> Yes PAS does release the firmware region when the firmware is started,
+> qcom_scm_pas_metadata_release() does that.
 
-[0] arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+Indeed, I see it now.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-Note,
-- For the WDT to correctly on RZ/Five we need a fixup patch [0].
-- Patch applies on top of [1]
+> 
+>>
+>> We have already three of such "memory region devices" and we keep
+>> growing it. It's not scalable.
+> 
+> If we want to properly describe this, we must then represent the MPSS subsystem
+> and associate this memory region.
 
-[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221117114907.138583-2-fabrizio.castro.jz@renesas.com/
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/log/?h=renesas-riscv-dt-for-v6.2
----
- arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+I don't see why. None of devices in your DTS reference this memory
+region, so it is purely to keep it mapped for Modem, right? In such case
+I still do not get why PAS/PIL, who starts and stops the remote
+processor, could not prepare the memory and share it with modem.
 
-diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-index 2b7672bc4b52..fdfd7cd2792b 100644
---- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-+++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-@@ -41,7 +41,3 @@ &ostm2 {
- &sdhi0 {
- 	status = "disabled";
- };
--
--&wdt0 {
--	status = "disabled";
--};
--- 
-2.25.1
+The point is that this memory region is nothing special and does not
+deserve its own compatible. We keep adding here compatibles to fulfill
+some Linux implementation specifics, don't we?
+
+Best regards,
+Krzysztof
 
