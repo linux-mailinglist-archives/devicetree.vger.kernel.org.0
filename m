@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9456862FC3C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 149FD62FC40
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234447AbiKRSN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 13:13:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
+        id S235398AbiKRSPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 13:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232926AbiKRSN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:13:56 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DC97AF6B;
-        Fri, 18 Nov 2022 10:13:54 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso8144656wme.5;
-        Fri, 18 Nov 2022 10:13:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kwXpWHa6FKMsiVUpTzBEVcezafSgFw7qVXGPI1PvE5U=;
-        b=F8adC3rgd5ZZBX8LOJzEVxPFpYCL3cyBxeyrmnqjYQovrdGhmaVcUNf8tT3AoU9BWR
-         KKRjopWoMN6vQc3MTqhJKVQYX3bmX57ElyLlHe4btKjVF5VEwolAV0AP7uf+ShT1l+Sw
-         JxR7fFhjqk7xsgfyqUSEHTAxf0ThLkvKzbGWJhGbDDKUzr2RAUeXNE7SEYsnNELfJxMg
-         Qa1pYIVgRlktE+6D/WJrBSymjfCrZc119LBFmK75Hp1jr7WmauEAlNjVibPgeen0C2HV
-         qvqeeFWxOEZBYPJOFJC6eAvktyxGY4theb/syatWuLbdA/nOwfuEcSzPhE52ozE7tcJy
-         71Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kwXpWHa6FKMsiVUpTzBEVcezafSgFw7qVXGPI1PvE5U=;
-        b=5W4fWnQY/AN1gPQ9Ofmv0hvdFvhyAAFsJMUx2UkNMgtuchT7iL0M63zZwgI7RZauEa
-         QV1Ol39au7bgSUA7xR0PL64eRpVPZL009BWd2Z6VXgMkwl+Ez0lNCFi5d4s7t7TJFr6Q
-         VpN8VfaJy6/Kmad/2qNzXKXDJSm1u+af2tO6pMmLYLZjzET46F1AJKLZCaVDI2lJv0iT
-         Ul7VXaRPbTubEDZFqhHI4aKSSqts3wxWOfoImF9nbilSE0gIRAjiem1Nu4y+sOuHCXm3
-         96XUTCfUUvVi6AOMaWRveD3xdtWLQxUtplvuFBJSvO0XM+eWoxRY1yx6Rrm0HfZhvujb
-         OrOg==
-X-Gm-Message-State: ANoB5plFf1/wzzGsk2tNEYbD9MqCLH6yUcl+E+rbBbGqCCUULjP+I58z
-        a0qDFSlEivjp9vfMlx3eSXnL8SdpmVhiVNrMAdc=
-X-Google-Smtp-Source: AA0mqf4OIz0Wwotp7QZYGy2xN9YzActkzSRmxw5BFgNs0xAhuTuDB247L2qhSwjolHr/pNAerhG3Fv3aeEtT4OZO+jM=
-X-Received: by 2002:a7b:c00a:0:b0:3cf:e8f0:ad11 with SMTP id
- c10-20020a7bc00a000000b003cfe8f0ad11mr9492684wmb.65.1668795233073; Fri, 18
- Nov 2022 10:13:53 -0800 (PST)
+        with ESMTP id S235281AbiKRSPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:15:18 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3DEA898CF;
+        Fri, 18 Nov 2022 10:15:17 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIIFAMg084079;
+        Fri, 18 Nov 2022 12:15:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668795310;
+        bh=JyQb2Ma01x7fRRs7TlYmPzx1wFI4WbhdeZZCWveBKt8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=llEI2xMj14C2NWEoiT0IaTVyryh5KtqoBlJuwZ1FX2zsVpyzEhPwwwYfVEL0VlDhK
+         nwzyRcUhIPKW9gdch92GNlFyx+IXR4dqn36qtBbqxsK2Dm6ei/V/diEByavaYhsBO7
+         t5WO47WiKO5c1n0Gh80vvU8nApYg3zSVhv+Ie7xI=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIIFAPE072009
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 12:15:10 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 12:15:10 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 12:15:10 -0600
+Received: from [10.250.38.44] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIIF9s3014409;
+        Fri, 18 Nov 2022 12:15:09 -0600
+Message-ID: <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
+Date:   Fri, 18 Nov 2022 12:15:09 -0600
 MIME-Version: 1.0
-References: <20221116200150.4657-1-linux.amoon@gmail.com> <20221116200150.4657-2-linux.amoon@gmail.com>
- <bdcd2071-8f56-b829-7e78-3fc9efec09fc@wolfvision.net> <CANAwSgQkwXb0KE+1856egmUyTx_pmr9hq6nk8-0YoMQJdBoDvQ@mail.gmail.com>
-In-Reply-To: <CANAwSgQkwXb0KE+1856egmUyTx_pmr9hq6nk8-0YoMQJdBoDvQ@mail.gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 18 Nov 2022 13:13:41 -0500
-Message-ID: <CAMdYzYp6GPO_mz=ctR7Pgs1iwtNjR0a6_0K492Fy=i55T9DMnQ@mail.gmail.com>
-Subject: Re: [linux-next-v2 1/5] arm64: dts: rockchip: Fix gmac phy mode to
- rgmii on Rock 3A SBC.
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
+References: <20221116130428.161329-1-a-nandan@ti.com>
+ <20221116130428.161329-5-a-nandan@ti.com>
+ <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
+ <20221118174754.y37pq77drvla2uxj@tinderbox>
+ <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
+ <20221118180808.wnel7d6gswsnooww@junkman>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221118180808.wnel7d6gswsnooww@junkman>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,69 +77,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 4:35 AM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Michael,
->
-> On Fri, 18 Nov 2022 at 12:33, Michael Riesch
-> <michael.riesch@wolfvision.net> wrote:
-> >
-> > Hi Anand,
-> >
-> > On 11/16/22 21:01, Anand Moon wrote:
-> > > On rk356x ethernet phy support reduced media independent interface (RMII)
-> > > and reduced gigabit media independent interface (RGMII).
-> > > So set the phy mode to rgmii to support clock delay, also
-> > > add TX and RX delay for phy-mode.
-> >
-> > Based on this commit message I still don't understand what you are
-> > actually trying to fix here. If you encounter network problems/stability
-> > issues, please let me know what test triggers the faulty behavior.
-> > Please describe the problem you are facing in detail here or in the
-> > cover letter.
-> >
->
-> Ok, Ethernet does not work on my Radxa 3A see boot logs.
->
-> [0] https://gist.github.com/moonlinux/bb56c787031226fbb9f69121564e76a2
->
-> Please find this updated commit message.
->
-> As per the schematic and datasheet PHY mode is RGMII
-> Use 2ns clock delay to RXC for RXD and TXC for TXD latching.
+On 11/18/22 12:08 PM, Nishanth Menon wrote:
+> On 11:56-20221118, Andrew Davis wrote:
+>> On 11/18/22 11:47 AM, Nishanth Menon wrote:
+>>> On 11:40-20221118, Andrew Davis wrote:
+>>>> On 11/16/22 7:04 AM, Apurva Nandan wrote:
+>>>
+>>> [...]
+>>>
+>>>>> +#include <dt-bindings/net/ti-dp83867.h>
+>>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>>> +#include "k3-j784s4.dtsi"
+>>>>> +
+>>>>> +/ {
+>>>>> +	compatible = "ti,j784s4-evm", "ti,j784s4";
+>>>>> +	model = "Texas Instruments J784S4 EVM";
+>>>>> +
+>>>>> +	chosen {
+>>>>> +		stdout-path = "serial2:115200n8";
+>>>>> +	};
+>>>>> +
+>>>>> +	aliases {
+>>>>> +		serial2 = &main_uart8;
+>>>>
+>>>> This feels hacky. Your chosen node picks serial2 as that is usually
+>>>> the one that is wired up on K3 boards. But on this board it is main_uart8.
+>>>> So why not have this be serial10, then choose
+>>>>
+>>>> stdout-path = "serial10:115200n8";
+>>>>
+>>>> Also, I've made comments on previous version of this series, it is
+>>>> nice to include folks who have commented before in the CC for future
+>>>> versions, that way our filters don't hide these away and we can more
+>>>> easily check that our comments have been addressed.
+>>>
+>>> Please stick with the standard of serial2 as the linux console standard.
+>>> We ended up with that to ease up capabilities of various distros to
+>>> uniformly work across SoC and board variants.
+>>>
+>>
+>> The chosen "stdout-path" is for setting the kernel's default output terminal.
+>> Distros and other userspaces need to use their own policy mechanisms for
+>> picking what serial port to run getty on or whatever the issue may be.
+>>
+>> Some look at the kernel command line, and our bootloader provides
+>> that too, so still no reason to fake alias names here.
+> 
+> 
+> We have had this conversation earlier as well.
+> 
+> https://lore.kernel.org/linux-arm-kernel/CAK8P3a2VSBvOn1o+q1PYZaQ6LS9U4cz+DZGuDbisHkwNs2dAAw@mail.gmail.com/T/#m4ecb0dc6a78c84631f072faa1b0df0df46333d09
+> 
+> This is also the reason why we picked serial2 as linux console as a
+> standard across the boards based on the ecosystem.
+> 
 
-rgmii-id mode does exactly this in the phy (your realtek chip). By
-setting the mode to rgmii, you're telling the phy that delays are set
-elsewhere, either in hardware or in the controller. You're then
-handling them in the controller. While the delays aren't documented in
-the TRM, I've long suspected that the defaults of 0x30 and 0x10 equate
-to the standard 2ns delay. So you're setting the delays much higher
-than the default means you need to add *more* than the standard 2ns
-delay for your device to work.
+I don't see either of those addressed in that thread, only that
+the aliases should go in the .dts files and be trimmed, nothing
+stops us from:
 
-This is why I've been asking if you have tested these. You need to set
-each value and find the lowest and highest possible values that work,
-then take the median value between those two.
+chosen {
+	stdout-path = "serial10:115200n8";
+};
 
->
-> > > Fix the following warning
-> > >
-> > > [    7.365215] rk_gmac-dwmac fe010000.ethernet: Can not read property: tx_delay.
-> > > [    7.365219] rk_gmac-dwmac fe010000.ethernet: set tx_delay to 0x30
-> > > [    7.365224] rk_gmac-dwmac fe010000.ethernet: Can not read property: rx_delay.
-> > > [    7.365228] rk_gmac-dwmac fe010000.ethernet: set rx_delay to 0x10
-> >
-> > If the only purpose of this patch is to get rid of this warnings, it may
->
-> No, the intent is to fix the PHY mode to RGMII and fix the delay.
-> [ 7.066357] rk_gmac-dwmac fe010000.ethernet: init for RGMII_ID
->
-> > make sense to set them to dev_dbg as Peter pointed out.
-> >
-> Ok, will update this in the next version.
->
-> > Best regards,
-> > Michael
-> >
-> Thanks
-> -Anand
+aliases {
+	serial10 = &main_uart8;
+};
+
+Andrew
