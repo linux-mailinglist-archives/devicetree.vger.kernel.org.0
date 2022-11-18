@@ -2,279 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 167DD62EF31
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:25:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E50062EF43
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241461AbiKRIZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 03:25:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46188 "EHLO
+        id S241428AbiKRI2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 03:28:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241397AbiKRIZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:25:15 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3236593CCB
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:25:07 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id b9so5897474ljr.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:25:07 -0800 (PST)
+        with ESMTP id S240778AbiKRI23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:28:29 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A74BA6
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:28:24 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id l8so5855914ljh.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:28:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=68mrRnkzj3oQa0FLrqBNiAeYRXXNrTvDWJrNGCv156I=;
-        b=IzqPSO7wI+mpoQperr2WdlaDIYaeVBLe62eUhSFFin+LXc/0ZY09BXeSlRIHyIBZ+n
-         g7FfS09ooCDKBkJb3VzV2MqrQtdT9bRKgVdPqIa+gFSkyvXQFEs9kB5y5UFKBRJnHG2Z
-         oDglrrTv6LqEzvWT6rSw9dPDyTbFvQ/oxSZp7/TSivwNybxn4DuF6MRTZwgl3hk4pbvy
-         TpF+1MxxsF2PqrJX20cXYajBdp3sxjAeAqF+ZsauGTn6EuPMLk0x5m9LbUO2RYTpElZ/
-         +TjEyNeqvRV6h/NlVYPBvGZo8qgERFpmdKnEHlmyzi/d8/J/IauvI8LVUL6+8juPiKI+
-         HsnA==
+        bh=MrA5CDs46lQZm6VaAVmPmV1Nyk9XIySNq9lvhXdo7k8=;
+        b=yIT6wd8Tn/4EigMdSev3RTx1dShvONUZ1o2LJic5y3UzW8LgMuG7uFp80Y8Mw7p+2i
+         u+Hx+MWiciMmXSYnrFx98cxa4sbmSAURAUt99p8E3r2tMmF0ygoLGxcFQPJrif3jPMLj
+         y0DxRVohO6j383Jju+uqZkJFVPAKCT7G1d+SNz0aRrDl59ec+iH3SvLunNJnRAN3fFHp
+         uj/yuz8SV/cGRRKi6lGP5BHU+Y9YeVlbn5zwGo+B4clkg1nQfYqsfFdJXz60NiVE7C5x
+         xoWYk/DHjlYtipany3Ms311spap+ZgR86DO9tnSirVslPkUYj7drcMZpd/Ds56w7qUSX
+         eO2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=68mrRnkzj3oQa0FLrqBNiAeYRXXNrTvDWJrNGCv156I=;
-        b=xFhyUFgVVluxbvaLpUwmQ8sJMbRAgLk8WaPalM1BhICGqKZSR5qta98W9LuIDeKfco
-         Krm6PeIpyTlCFCmEGiBXLN8Pnky/Twj25Bki0F6urMtZWDwfSgNJ0KPIQJcoBrUqS5VB
-         d2RPCuMpaTYXX7f0/NLyoMklPxI2IrC+aWrpqNJeztqxtCKN5J+K9qIVHlUOZECq6WEV
-         rHO2qHQweEsgrUkqjexiqIwvgppARxMSwtGEOwvlXSVZFi9fKD0fm3naZjwZJeVaLBSW
-         FQeFg7YzSfNVtMEDPnSgT2Op3a+G6+QzZTJFiWtwwHiOzCFWxjyRxDKmlJYsqCryX/d1
-         k5AA==
-X-Gm-Message-State: ANoB5pmHTuEuz3OzrluOur9fcCx9D7pdQMrjzvttVk5YbjZgYgJdxlTu
-        r8gY8ljwc4xs2rU2XQtsu6lkuLfdILsQnR5e
-X-Google-Smtp-Source: AA0mqf55+6foLHfURtmaNPN8s4c1OC+wlh2VDwlT3S4wWsNp2vY9mkeDoi9EWjoIx5Sxwx9lJ0MJhg==
-X-Received: by 2002:a05:651c:205d:b0:26f:b445:8c8a with SMTP id t29-20020a05651c205d00b0026fb4458c8amr2309527ljo.156.1668759906201;
-        Fri, 18 Nov 2022 00:25:06 -0800 (PST)
+        bh=MrA5CDs46lQZm6VaAVmPmV1Nyk9XIySNq9lvhXdo7k8=;
+        b=ow6yDI9nOCnibLeUqAT8iloHzp5JU/GP2qCFvi+wbM1i723YQsskWrCBDwIV1NjLgZ
+         o449EadeGe44AzCfPpFlqj4uZ2n5twpDC4W4t6iS0+v0AUAgy3b5vQ9pEwUln1ZDIBS0
+         eotCSLF2uMXy8HoB70k1bx8B+vv+3mRH9usyw7dV9rcxZDdyuB1eVjPefE7dBV3Re7ZT
+         kzIZsr0l8U30MlQtFt/Se3fJn3BGVrQlO/qjjh0rle2u/gTCPYMLDqe7L3RncSEB5SEG
+         G0haaWGfDsT7W+hT7Cx2Rb6LwaEfdp+4znf5ApEATAuBCWWAgtAsY6ZQuQQ/KF+DqR6A
+         De8Q==
+X-Gm-Message-State: ANoB5pnKO5LPLGZC+Aoll+g8BXdKvdZFrXrF1gH0LpZ6LZogwSe6v4dU
+        BLGOlm5xM0zbAtiIYOirqMBj8A==
+X-Google-Smtp-Source: AA0mqf4FSTsj7jWLGFDuUM1KolU0pAAAlYx7n+VRF6tfHUnjgf3Tz4kJo9qfndGCbN01BGn3foVCSQ==
+X-Received: by 2002:a2e:9052:0:b0:26e:eeb:f9cf with SMTP id n18-20020a2e9052000000b0026e0eebf9cfmr2211769ljg.480.1668760070041;
+        Fri, 18 Nov 2022 00:27:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o15-20020ac24c4f000000b004a44ffb1050sm565729lfk.171.2022.11.18.00.25.05
+        by smtp.gmail.com with ESMTPSA id g27-20020a2eb0db000000b0026bf0d71b1esm573326ljl.93.2022.11.18.00.27.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 00:25:05 -0800 (PST)
-Message-ID: <06e916b7-f8f2-6de5-f86e-7b020c052451@linaro.org>
-Date:   Fri, 18 Nov 2022 09:25:04 +0100
+        Fri, 18 Nov 2022 00:27:49 -0800 (PST)
+Message-ID: <06ac1c86-22f7-97ff-bf59-6fb0994dfcc5@linaro.org>
+Date:   Fri, 18 Nov 2022 09:27:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 4/7] dt-bindings: pinctrl: add bindings for Mediatek
- MT8365 SoC
+Subject: Re: [RFC PATCH 1/9] dt-bindings: drop redundant part of title of
+ shared bindings
 Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogiocchino.delregno@collabora.com
-References: <20221117210356.3178578-1-bero@baylibre.com>
- <20221117210356.3178578-5-bero@baylibre.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        linux-watchdog@vger.kernel.org
+References: <20221117123850.368213-1-krzysztof.kozlowski@linaro.org>
+ <20221117123850.368213-2-krzysztof.kozlowski@linaro.org>
+ <Y3Z0w6JH1f5zgwvW@spud>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117210356.3178578-5-bero@baylibre.com>
+In-Reply-To: <Y3Z0w6JH1f5zgwvW@spud>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 22:03, Bernhard Rosenkränzer wrote:
-> Add devicetree bindings for Mediatek MT8365 pinctrl driver.
+On 17/11/2022 18:52, Conor Dooley wrote:
+> On Thu, Nov 17, 2022 at 01:38:42PM +0100, Krzysztof Kozlowski wrote:
+>> The Devicetree bindings document does not have to say in the title that
+>> it is a "binding", but instead just describe the hardware.  For shared
+>> (re-usable) schemas, name them all as "common properties".
 > 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> 
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+>> index 1ab416c83c8d..d2de3d128b73 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+>> @@ -4,7 +4,7 @@
+>>  $id: http://devicetree.org/schemas/clock/qcom,gcc.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  
+>> -title: Qualcomm Global Clock & Reset Controller Common Bindings
+>> +title: Qualcomm Global Clock & Reset Controller common parts
+>>  
+>>  maintainers:
+>>    - Stephen Boyd <sboyd@kernel.org>
+> 
+> 
+>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+>> index cf9c2f7bddc2..20ac432dc683 100644
+>> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+>> @@ -4,7 +4,7 @@
+>>  $id: http://devicetree.org/schemas/opp/opp-v2-base.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  
+>> -title: Generic OPP (Operating Performance Points) Common Binding
+>> +title: Generic OPP (Operating Performance Points) common parts
+>>  
+>>  maintainers:
+>>    - Viresh Kumar <viresh.kumar@linaro.org>
+> 
+> Hey Krzysztof,
+> 
+> Hopefully I've not overlooked something obvious, but it wasnt noted in
+> the commit message - how come these two are "parts" rather than
+> "properties"? The opp one at least don't seem to have much more than
+> properties and patterProperties in it.
 
-Thank you for your patch. There is something to discuss/improve.
+They should be properties, will fix in v2.
 
-> +
-> +  pins-are-numbered:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      Specify the subnodes are using numbered pinmux to specify pins.
-
-Why would you name pins differently per board? And why this different
-naming of the same pins is a property of hardware?
-
-This looks like something to drop.
-
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +    description: |
-> +      Number of cells in GPIO specifier. Since the generic GPIO
-> +      binding is used, the amount of cells must be specified as 2. See the below
-> +      mentioned gpio binding representation for description of particular cells.
-> +
-> +  interrupt-controller: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +patternProperties:
-
-patternProperties go before "required:" block.
-
-> +  '-pins$':
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      'pins':
-
-How about anchoring it to either prefix or suffix? ^pins or pins$.
-
-> +        type: object
-> +        additionalProperties: false
-> +        description: |
-> +          A pinctrl node should contain at least one subnode representing the
-> +          pinctrl groups available on the machine. Each subnode will list the
-> +          pins it needs, and how they should be configured, with regard to muxer
-> +          configuration, pullups, drive strength, input enable/disable and input
-> +          schmitt.
-> +        $ref: "/schemas/pinctrl/pincfg-node.yaml"
-
-Drop quotes.
-
-> +
-> +        properties:
-> +          pinmux:
-> +            description:
-> +              integer array, represents gpio pin number and mux setting.
-> +              Supported pin number and mux varies for different SoCs, and are
-> +              defined as macros in <soc>-pinfunc.h directly.
-> +
-> +          bias-disable: true
-> +
-> +          bias-pull-up:
-> +            description: |
-> +              Besides generic pinconfig options, it can be used as the pull up
-> +              settings for 2 pull resistors, R0 and R1. User can configure those
-> +              special pins.
-> +
-> +          bias-pull-down: true
-> +
-> +          input-enable: true
-> +
-> +          input-disable: true
-> +
-> +          output-low: true
-> +
-> +          output-high: true
-> +
-> +          input-schmitt-enable: true
-> +
-> +          input-schmitt-disable: true
-> +
-> +          mediatek,drive-strength-adv:
-> +            description: |
-> +              Describe the specific driving setup property.
-> +              For I2C pins, the existing generic driving setup can only support
-> +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
-> +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
-> +              driving setup, the existing generic setup will be disabled.
-> +              The specific driving setup is controlled by E1E0EN.
-> +              When E1=0/E0=0, the strength is 0.125mA.
-> +              When E1=0/E0=1, the strength is 0.25mA.
-> +              When E1=1/E0=0, the strength is 0.5mA.
-> +              When E1=1/E0=1, the strength is 1mA.
-> +              EN is used to enable or disable the specific driving setup.
-> +              Valid arguments are described as below:
-> +              0: (E1, E0, EN) = (0, 0, 0)
-> +              1: (E1, E0, EN) = (0, 0, 1)
-> +              2: (E1, E0, EN) = (0, 1, 0)
-> +              3: (E1, E0, EN) = (0, 1, 1)
-> +              4: (E1, E0, EN) = (1, 0, 0)
-> +              5: (E1, E0, EN) = (1, 0, 1)
-> +              6: (E1, E0, EN) = (1, 1, 0)
-> +              7: (E1, E0, EN) = (1, 1, 1)
-> +              So the valid arguments are from 0 to 7.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +
-> +          mediatek,pull-up-adv:
-> +            description: |
-> +              Pull up setings for 2 pull resistors, R0 and R1. User can
-> +              configure those special pins. Valid arguments are described as below:
-> +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-> +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-> +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-> +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3]
-> +
-> +          mediatek,pull-down-adv:
-> +            description: |
-> +              Pull down settings for 2 pull resistors, R0 and R1. User can
-> +              configure those special pins. Valid arguments are described as below:
-> +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-> +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-> +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-> +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3]
-> +
-> +          mediatek,tdsel:
-> +            description: |
-> +              An integer describing the steps for output level shifter duty
-> +              cycle when asserted (high pulse width adjustment). Valid arguments
-> +              are from 0 to 15.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +          mediatek,rdsel:
-> +            description: |
-> +              An integer describing the steps for input level shifter duty cycle
-> +              when asserted (high pulse width adjustment). Valid arguments are
-> +              from 0 to 63.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +        required:
-> +          - pinmux
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/pinctrl/mt8365-pinfunc.h>
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pio: pinctrl@1000b000 {
-> +          compatible = "mediatek,mt8365-pinctrl";
-> +          reg = <0 0x1000b000 0 0x1000>;
-> +          mediatek,pctl-regmap = <&syscfg_pctl>;
-> +          pins-are-numbered;
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          interrupt-controller;
-> +          #interrupt-cells = <2>;
-> +          interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-
-Blank line
-
-> +          pio-pins {
-> +            pins {
-> +              pinmux = <MT8365_PIN_59_SDA1__FUNC_SDA1_0>, <MT8365_PIN_60_SCL1__FUNC_SCL1_0>;
-> +              mediatek,pull-up-adv = <3>;
-> +              mediatek,drive-strength-adv = <00>;
-> +              bias-pull-up;
-> +            };
-> +          };
-> +        };
-> +    };
 
 Best regards,
 Krzysztof
