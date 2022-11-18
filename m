@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD80630656
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 01:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B23F763064F
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 01:09:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237553AbiKSAJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 19:09:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
+        id S237490AbiKSAJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 19:09:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234038AbiKSAJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 19:09:37 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410879E974
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:51 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id s8so10610499lfc.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:51 -0800 (PST)
+        with ESMTP id S232364AbiKSAJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 19:09:36 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA8A9E977
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:53 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id s24so8591826ljs.11
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DvnyFdgcWdO/y4g/GZdtkoa/ckJSM/CaYgX7M7Lgruw=;
-        b=Mf6BPIQL3AC+s2O6KnSFxSJ33V9BDuaVz0eE1Iux1WjDj4JJZww5cF088ubioQ65a9
-         vGsrSNMWndMIT+0mXr0Sj6QosszPvs6czfpmW+8yZCOpzMeqhTVd/0jk6ZoXPv8X+iC+
-         xHFPM65rg9ruTjp6wNLmPKEptZJMUaxO5bW0qQX2A9Q4as9kq9ZDxIH5qJiw43o3HjSs
-         7dWktYJvThKbGR0LtxU0O5sAuUMSEwi6eEOL+RQVJl88w21SYJFQK6BCxxHdnRSJgN+C
-         dPzBRSD5C/aZAfqAPzUq+L39wVWzUcjMn3GkttTDkg05SyvpCzp+CmHA9S5QOwXiOIXC
-         oqJw==
+        bh=gC1JYQfoCecKGmw1NdVlsiCw+iUTbqYNq5AbGPIxayA=;
+        b=MfqoiRzTYofGQVZcXORPTFGdr+9epJSWOEQ13gaxNazT7QanZDmp4LLgDgidpnPcQY
+         akKWPRoBlV3bahOt75lUbrUbbMCEwrqAhEXfDLsuoLrTmnCDzJyEg66xAlTYO8/uIf0L
+         AlTJ54umFdfW+fLeJenG6JoMyOJOy0jKicQJTY2BA0Nwm6LlLblhOP1JpcV2KTrqcbw/
+         oX2mDAliNvMwyAfT1I1Qzin0/XqJl6+MC2w1lmaRqreCPasgcG9rkp4L7uq1BsQl2aiA
+         zsmi3rzwoQy8jhMUI0CTN3vUTEeG3VZl0VLqv9MZFxRVZVlcmcKf4oErMbSFrS3Z0gvH
+         +wUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DvnyFdgcWdO/y4g/GZdtkoa/ckJSM/CaYgX7M7Lgruw=;
-        b=A0tMnFXiKo1lqHW1QTo5pk6rl2Z9u+IaYGM76hWO+jWvpTI/MdJwCS2ylYoOOrJ7GC
-         0YZrnofaH6HQwVzfB8/Ai3dAKsxZJbPd+FKe5AKEocEkoGpwUn2mTNzt5o8wGyDwBeg/
-         CmNudef8hGyhBHKzS5RgySp5ofYRjh1zpm4foYj+8EUZtr0RkOW6P8qdAEfj7advas0U
-         o/Fc+wPM+fawJJK4KvyboxFG87My760w2Volla0AM6OCb8D8v3s1oZxxuThLvfcTsj0R
-         QN8mIAfwTazza9LmiYZFKJ+nTWBxwsiSHEnggcVq9CMXFOaCFFZl3qd3tI5Gm0S0hT92
-         0nFw==
-X-Gm-Message-State: ANoB5pmgvjoqGF3QLs6yQQn7sprB70I7xEcK8US0F1vTDfg60hmsmbeX
-        UMkXtfNop9fP9tLkQ0V6NCwmxw==
-X-Google-Smtp-Source: AA0mqf6Znugn88JXILPSHLaNOhRx0k3bTOgt1DQZ1HyWx4qmV0JGOalJkHboO03+sRVZ8iuaxcS2Uw==
-X-Received: by 2002:ac2:4a62:0:b0:4aa:323f:e850 with SMTP id q2-20020ac24a62000000b004aa323fe850mr3123560lfp.492.1668814369953;
-        Fri, 18 Nov 2022 15:32:49 -0800 (PST)
+        bh=gC1JYQfoCecKGmw1NdVlsiCw+iUTbqYNq5AbGPIxayA=;
+        b=wtf82gpQyCggTk5+o6VT0xumyg6CUAb2UkOP+tMiphcPXZzgEY6P0TU3mSyJ8shPHs
+         F0ppuzfcHlZBW3xf5syiTFgsU24xBm9T01Emxz3F2aKkgAi9Pwg0QakSiG9418RDT/Gk
+         QO2o/9D/UTL4JQPerr3tXcNG34qvDn5Ll/jZEMnwfMruGsrI9Okl6IM10KBQxIXHDIPZ
+         ZwEhE4982nfBf2RHjofuRsW05OZqW5mHMMADj40NaxHaTlK6TrO9GtGnw5H8bVUpzvxX
+         /VNHva9bukK7YDUTaBpXQuWV8ow/tNJ2nZxQwODAkC66sMb3usJQTPz7GU97/tkJYkWS
+         bfPQ==
+X-Gm-Message-State: ANoB5plzJNI3PkZks896NDGCMaZjmSmBEbHpvvat+MXR6XUrDHv+731a
+        I5bz3ssyYRQOBOdEDXBvF8tulw==
+X-Google-Smtp-Source: AA0mqf5xkJVLCJ8TjZTzGV/e0MJTNmp6C8bsXgT51CxSeQ+sAETlolX3RqJEn0Mfc1sx9IOsrJ8TCQ==
+X-Received: by 2002:a2e:bd8a:0:b0:277:b4e:6286 with SMTP id o10-20020a2ebd8a000000b002770b4e6286mr3225209ljq.279.1668814371902;
+        Fri, 18 Nov 2022 15:32:51 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([194.204.33.9])
-        by smtp.gmail.com with ESMTPSA id k13-20020ac257cd000000b004947f8b6266sm843900lfo.203.2022.11.18.15.32.48
+        by smtp.gmail.com with ESMTPSA id k13-20020ac257cd000000b004947f8b6266sm843900lfo.203.2022.11.18.15.32.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 15:32:49 -0800 (PST)
+        Fri, 18 Nov 2022 15:32:51 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,11 +65,10 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v4 2/8] dt-bindings: phy: qcom,qmp-pcie: add sm8350 bindings
-Date:   Sat, 19 Nov 2022 01:32:36 +0200
-Message-Id: <20221118233242.2904088-3-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 3/8] PCI: qcom: Add support for SM8350
+Date:   Sat, 19 Nov 2022 01:32:37 +0200
+Message-Id: <20221118233242.2904088-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
 References: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
@@ -85,64 +84,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the PCIe QMP PHYs found on SM8350.
+Add support for the PCIe host on Qualcomm SM8350 platform.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/pci/controller/dwc/pcie-qcom.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-index 80aa8d2507fb..8a85318d9c92 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-@@ -19,15 +19,18 @@ properties:
-       - qcom,sc8280xp-qmp-gen3x1-pcie-phy
-       - qcom,sc8280xp-qmp-gen3x2-pcie-phy
-       - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-+      - qcom,sm8350-qmp-gen3x1-pcie-phy
- 
-   reg:
-     minItems: 1
-     maxItems: 2
- 
-   clocks:
-+    minItems: 5
-     maxItems: 6
- 
-   clock-names:
-+    minItems: 5
-     items:
-       - const: aux
-       - const: cfg_ahb
-@@ -104,6 +107,25 @@ allOf:
-         reg:
-           maxItems: 1
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm8350-qmp-gen3x1-pcie-phy
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 5
-+        clock-names:
-+          maxItems: 5
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 6
-+        clock-names:
-+          minItems: 6
-+
- examples:
-   - |
-     #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index 77e5dc7b88ad..b9350d93b4ba 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -1826,6 +1826,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+ 	{ .compatible = "qcom,pcie-sdm845", .data = &cfg_2_7_0 },
+ 	{ .compatible = "qcom,pcie-sm8150", .data = &cfg_1_9_0 },
+ 	{ .compatible = "qcom,pcie-sm8250", .data = &cfg_1_9_0 },
++	{ .compatible = "qcom,pcie-sm8350", .data = &cfg_1_9_0 },
+ 	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
+ 	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
+ 	{ }
 -- 
 2.35.1
 
