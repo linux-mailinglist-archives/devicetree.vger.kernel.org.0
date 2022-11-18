@@ -2,120 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34BC62FFA6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA0562FFB7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:05:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbiKRWDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 17:03:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57976 "EHLO
+        id S230131AbiKRWF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 17:05:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbiKRWDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:03:04 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A9791C17;
-        Fri, 18 Nov 2022 14:03:03 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 907731CF7;
-        Fri, 18 Nov 2022 23:03:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1668808981;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=z4PQjmkDf85oiVj5jD2DRQqNjG18C4b4h2V2WeJ5MY4=;
-        b=ODR2yWN5w5w5jwnkgMSsMGDtcc1jiRvlZU7nscNfu4vmyW372rvY2OjguxtPMwN+0AXwD9
-        IgpZAq2d4HPPlrQj1crKVUFuDmdfvX49RLVOq0vIIXYTUBzraRb9xNf9+CZnOyHjbdc2QP
-        FGk6AApmCy+2FKdn2dllv5KjMTuLTCXAIPtVBNVghhHhhBHOD0OputSfPEpZwySj6FkvSk
-        JiwInVG9v6c9VMYE6edLifGKp8hhu3utaUVWqzeb/nYwjcOgv631461buoztEJ2cXzyeEh
-        mYRrdKGzCYNUR/GoBN0NMvjtT9Jk8gV41sdicIOkLJGrsLcP5HxVLoo6vyhdGw==
+        with ESMTP id S229933AbiKRWFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:05:55 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9914082236;
+        Fri, 18 Nov 2022 14:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1668809116;
+        bh=hvzsqeW+pZ6aFflH2DeCG+N++nDpjK40B2TbayEPl3E=;
+        h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+         References;
+        b=fxKRAT+HRry568qEjuPyxuqxsmOxh4Ut89W+yMncF4mJNkKMr+YYWLSXrzs8Bhygb
+         gtMmeD8NNRrBa2x/408mJhaEpcv+e7EncaHTSisARCpXGDGqE+Ua78jxcb7qs7fB7v
+         FqSRREPLyy16mkf6slwzRamQdHq7B0MLmBiGY++cvRU/gct7xlgk5a0NONEk7mmiuJ
+         bTMbyOw9Z1x1XJT2wd35t2bO5Tw2ixB0FK1bWOVI+rQL2b3gZ8aZsRWUeC2U9uSdNj
+         MQ2ftGVApLk/FLynG7pklgr0+kBi4vdvKgs2JM71nOCdylNpgdyUN81YUkvaeBuzDK
+         MZ1DqZv4XCJpg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([80.245.77.125]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N49hB-1p5SwP0bLt-0102e6; Fri, 18
+ Nov 2022 23:05:16 +0100
+Date:   Fri, 18 Nov 2022 23:05:11 +0100
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Wunderlich <linux@fw-web.de>
+CC:     linux-mediatek@lists.infradead.org,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v6 11/11] arm64: dts: mt7986: add BPI-R3 nand/nor overlays
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <CAL_JsqKiRzRToSzk3q+csWR5DEZjZpQWChqZ3mH8MLruvfe=Dw@mail.gmail.com>
+References: <20221118190126.100895-1-linux@fw-web.de> <20221118190126.100895-12-linux@fw-web.de> <CAL_JsqKiRzRToSzk3q+csWR5DEZjZpQWChqZ3mH8MLruvfe=Dw@mail.gmail.com>
+Message-ID: <99114D73-22EF-43CD-848E-88A37B29B953@public-files.de>
 MIME-Version: 1.0
-Date:   Fri, 18 Nov 2022 23:03:01 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] of: property: special #nvmem-cell-cells handling
-In-Reply-To: <CAL_JsqKnuycUSHfxxcZMcidELA-ttZUv5NhV5ApkpUQMsc-aQQ@mail.gmail.com>
-References: <8b976cf546bad3aa159a6f05cd3c15d1@walle.cc>
- <20221118214036.1269005-1-michael@walle.cc>
- <CAL_JsqKnuycUSHfxxcZMcidELA-ttZUv5NhV5ApkpUQMsc-aQQ@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <fc101fbe1d8c94587a22d24a96e4dfb7@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ScE/GLdzMud5Wy9dhqxwyzhpkGMvwUQamRc0PAPEshdXTYQ917R
+ W2WaOPx54U0oSso0ZvsU9Tfe7Ytz0Dz0NdoNaAZ3tSrgN3ci493eH4jyax8y3Q2AM8B22Zj
+ jnYHxDKAcHQ5+gC+KekOMWdMimNh0IpbabDtg8O1/GJfsLrV/p3dyUaLAA//2lCcDzbtF90
+ 067bPzcUPbKsFXpppCV2w==
+UI-OutboundReport: notjunk:1;M01:P0:jzrKweSzGSM=;rrPo469rUCAif9db3YD44H+IJFQ
+ RP9TeEEcYoQ9Y15+4Qqqr36r4ytGk/qXf1ndgvE0mvRc9JcwFpicqvMIhnFQoMMj9kFiSVWCY
+ qYOI9NWegO0sFWVYt+uDRy/Vg8oudtQfZqkV1hBdUkCaFtD/j/QUPyk/1ose2PdBVsOwLUVj3
+ dVfDKCq454TfNUe8uyD3UjBY07GTdDH2lpppsaj7Nm4ExwIoyNvI9s25LirIJOy1fkXNJ+oRH
+ /+Su5ti6m1GrodB6ivViUBGMuiYKA39rVD2YA2SRKf5NT5dtxBaoqxeJhl/VtDHfqIjezjhsF
+ MzPbGH+7lFMVCJcUp9O+pvhIU/DR2EXCRmw4YLNz0dfKf02XnNvorFa/Y3Yg7Rk8zYkyVKDMA
+ esE6/FuupmZIj+33R/VDPJlsfzZYT1GVAEloc1gXg7SgA1z6l5YGez7T7O5/qY3WbLRWFQF8U
+ UNvsPnDOSsBlenzsvz8kPyftCqdxm1azeq3S6ACDjTAmwwu0KKe0XAEHLo8nE+gowCCcY4jx/
+ dzXeOiFnVVQOsgNxJ8Ly4abKqimvAav0m2tEywHZBUuKb/H09Dna+GBcCmfkOPRUfOhKozxP+
+ Y5/IqectOej/avAT347nvrLm9Cl4IXPYjzzSj9e4QafM98y6hd1/wJh6orfb+Z1LfeQ18iDm1
+ XEA3kJVKu9rum8z0BDUk1jM7XY74zCuz3p1c5IhGH5WYxQdX0JnLkECXlyy8UIyvU1L/YoQwu
+ iED6oE1g2tVYPQAW8KS0DsuEmrLTF3/B8AHrtZFZvJABhlG4LLOYmumZNrbNbBjb3zlIVK6GG
+ HtrmluWV7dcXPXe1YH/AnUqR2kaZ2scpnDI1fyP8Xd1turb8JZUBcdN/vNqg0qiMRt/JfXzfZ
+ 6YV1DFoB4zYXZxodKoC1hU6hE9xlGtaf3Nlhn6fJjGxSsrLTIwSOXtvQMD/b+msc+b3nhs8bq
+ J2vMfA==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-11-18 22:52, schrieb Rob Herring:
-> On Fri, Nov 18, 2022 at 3:40 PM Michael Walle <michael@walle.cc> wrote:
->> 
->> Since recently, there is a new #nvmem-cell-cells. To be backwards
->> compatible this is optional. Therefore, we need special handling and
->> cannot use DEFINE_SIMPLE_PROP() anymore.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
+Am 18=2E November 2022 22:39:52 MEZ schrieb Rob Herring <robh+dt@kernel=2Eo=
+rg>:
+>On Fri, Nov 18, 2022 at 1:01 PM Frank Wunderlich <linux@fw-web=2Ede> wrot=
+e:
+>>
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>
+>> Add devicetree overlays for using nand and nor on BPI-R3=2E
+>
+>Can you not tell at runtime which one you booted from? If not, how
+>does one choose which overlay to apply? If you can, why not populate
+>both nodes and enable the right one? IMO, if all h/w is present, it
+>should all be in the DT=2E Selecting what h/w to use is a separate
+>problem and overlays aren't a great solution for that=2E
+
+It is not the decision about bootdevice,more available devices=2E
+
+Only 1 spi device (nand OR nor) is available
+at boottime as they share same spi bus and
+chipselect is set via hw jumper=2E
+Both nodes have reg 0,which is imho not
+supported in linux=2E
+
+I choosed overlays to add the right spi
+device on the right mmc device where
+similar selection happens (see patch 10)=2E
+Either sd OR emmc can be used (1 mmc
+controller,first 4bits from bus switched by
+hardware jumper)=2EBut for mmc i use it as
+base fdt because i see mmc as primary
+device which holds rootfs too=2E Nand/nor is
+imho helping device for accessing emmc or
+like rescue system (only uboot)=2E
+
+I probe in uboot if emmc is available (mmc
+ partconf) and choose emmc else sd=2E For
+ spi i try with sf command to check for nor,if
+ this does not work i apply nand overlay=2E
+
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
 >> ---
->> This patch will be part of the following series:
->> https://lore.kernel.org/linux-arm-kernel/20221118185118.1190044-1-michael@walle.cc/
->> 
->>  drivers/of/property.c | 17 ++++++++++++++++-
->>  1 file changed, 16 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/of/property.c b/drivers/of/property.c
->> index 967f79b59016..93c0ea662336 100644
->> --- a/drivers/of/property.c
->> +++ b/drivers/of/property.c
->> @@ -1305,7 +1305,6 @@ DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
->>  DEFINE_SIMPLE_PROP(power_domains, "power-domains", 
->> "#power-domain-cells")
->>  DEFINE_SIMPLE_PROP(hwlocks, "hwlocks", "#hwlock-cells")
->>  DEFINE_SIMPLE_PROP(extcon, "extcon", NULL)
->> -DEFINE_SIMPLE_PROP(nvmem_cells, "nvmem-cells", NULL)
->>  DEFINE_SIMPLE_PROP(phys, "phys", "#phy-cells")
->>  DEFINE_SIMPLE_PROP(wakeup_parent, "wakeup-parent", NULL)
->>  DEFINE_SIMPLE_PROP(pinctrl0, "pinctrl-0", NULL)
->> @@ -1381,6 +1380,22 @@ static struct device_node 
->> *parse_interrupts(struct device_node *np,
->>         return of_irq_parse_one(np, index, &sup_args) ? NULL : 
->> sup_args.np;
->>  }
->> 
->> +static struct device_node *parse_nvmem_cells(struct device_node *np,
->> +                                            const char *prop_name, 
->> int index)
->> +{
->> +       struct of_phandle_args sup_args;
->> +
->> +       if (strcmp(prop_name, "nvmem-cells"))
->> +               return NULL;
->> +
->> +       if (of_parse_phandle_with_optional_args(np, prop_name,
->> +                                               "#nvmem-cell-cells", 
->> index,
->> +                                               &sup_args))
->> +               return NULL;
->> +
->> +       return sup_args.np;
->> +}
-> 
-> There's a couple of other cases like that (MSI IIRC), so can we
-> generalize this to work in more than 1 case?
+>> maybe rename to dtso?
+>>
+>> "kbuild: Allow DTB overlays to built from =2Edtso named source files"
+>> https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/robh/linux=2Egit/co=
+mmit/?h=3Ddt/next&id=3D363547d2191cbc32ca954ba75d72908712398ff2
 
-You mean addding a new DEFINE_SIMPLE_PROP_OPTIONAL_ARGS()?
+Should i do this?
 
--michael
+>> more comments about the dt overlay-support:
+>>
+>> https://patchwork=2Ekernel=2Eorg/comment/25092116/
+>> https://patchwork=2Ekernel=2Eorg/comment/25085681/
+
+Daniel suggest define sd/emmc as overlay too=2E=2E=2Ewith way you mention =
+below we could create 4 full fdt without applying overlays in uboot=2E
+
+>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6797-x20-dev=2Edtb
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-rfb1=2Edtb
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-bananapi-bpi-r64=2Edtb
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-emmc=2Edtb
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nand=2Edtbo
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nor=2Edtbo
+>
+>These need rules to apply them to the base dtb(s)=2E You just need:
+>
+>full=2Edtb :=3D base=2Edtb overlay=2Edtb
+>dtb-y +=3D full=2Edtb
+
+I would prefer to do this in bootloader to allow all 4 possible configurat=
+ions:
+
+Sd+nand
+Sd+nor
+Emmc+nand
+Emmc+nor
+
+>Rob
+
+Hi,
+regards Frank
