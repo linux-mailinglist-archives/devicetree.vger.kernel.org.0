@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C1262ED25
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 06:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF38862ED45
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 06:44:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240724AbiKRFUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 00:20:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49554 "EHLO
+        id S234724AbiKRFoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 00:44:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240580AbiKRFUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 00:20:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE9E6E561;
-        Thu, 17 Nov 2022 21:20:19 -0800 (PST)
+        with ESMTP id S240778AbiKRFoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 00:44:07 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20804AF16;
+        Thu, 17 Nov 2022 21:44:05 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C0C26B82293;
-        Fri, 18 Nov 2022 05:20:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 722FEC433D6;
-        Fri, 18 Nov 2022 05:20:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D6116231D;
+        Fri, 18 Nov 2022 05:44:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DF4C433C1;
+        Fri, 18 Nov 2022 05:44:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668748816;
-        bh=mP4/veKAzM1jDiDRDAX0XkfzBPnPYLCw1dOUugeWDpo=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=D9hxhMiTpI+iOriuyaRd2KaxvFboIuSITuHxF1yFXmNRafc3Dv/ztCi2ztajLuGw5
-         HXmWw1tzBEb+n8xdtZxJxI5kl6eJmaz2not8fz0lg9yYBUfvcJ8PGiKw1B+M1CaxXW
-         NO/5lTEKe2OIuclx7KiF28DZ2VAuA2OjquGtBIsBO44293DjETrmqft6P1IRGCjH01
-         ZQZLIWqcSCY7ZOvbyGRFUCJYLSl6G//DrPoDBoQVTaYgDD+9cJYvdn6OlphH8eiYBU
-         EP48TacITqzHT+bh2/idsFZ72zlN1kjNoEzAGrz16l2f6TQWoaX8g6HdaobCDVnwdH
-         N0gLmGA3Y6Png==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4D480E270D5;
-        Fri, 18 Nov 2022 05:20:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1668750244;
+        bh=26JuICvWqdOYN2lvbjVbjUW2AdARfI5g0RNvblB4jZ4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qKGNpGMGAb0+yRiYMaUC19vV1FAFQ3pR0cN/QQYdry1LPzE0b7yf2yNvNokniOYoC
+         W6izWQbirDEUrmO6BDcBsuhwpcxxkcMfexlDKLV3akFboJMnz840LVlhCAM9V7yA+f
+         IaWM7up5vJPD1qB6iyln+PQ2PX/TizIYviqtyQ75pArhiKOWLqG4x30iXgohTDyF5w
+         jxlymmklX1xuYXUmr1BLphSB/C1txfmC2m2iQ1L8Bh/VxXLPbwFkiQfLWPvNpARPiy
+         9T/HYFHVkajoJoBnaltUDaZv1/qrJ1z1YrtRChOqja8B8ZIE97vf+FkGScdyv3ntiQ
+         9+ubujmrGYYmg==
+Date:   Fri, 18 Nov 2022 13:44:00 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Mark Hasemeyer <markhas@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 2/3] dt-bindings: mfd: Add DT compatible string
+ "google,cros_ec_uart"
+Message-ID: <Y3cboMlFTRzSJyQ8@google.com>
+References: <20221117114818.v7.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 1/5] dt-bindings: net: ipq4019-mdio: document IPQ6018
- compatible
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166874881630.4500.14407842263163608974.git-patchwork-notify@kernel.org>
-Date:   Fri, 18 Nov 2022 05:20:16 +0000
-References: <20221114194734.3287854-1-robimarko@gmail.com>
-In-Reply-To: <20221114194734.3287854-1-robimarko@gmail.com>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,36 +60,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Thu, Nov 17, 2022 at 11:48:47AM -0700, Mark Hasemeyer wrote:
+> Add DT compatible string in
+> Documentation/devicetree/bindings/mfd/cros_ec.txt
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon, 14 Nov 2022 20:47:30 +0100 you wrote:
-> Document IPQ6018 compatible that is already being used in the DTS along
-> with the fallback IPQ4019 compatible as driver itself only gets probed
-> on IPQ4019 and IPQ5018 compatibles.
-> 
-> This is also required in order to specify which platform require clock to
-> be defined and validate it in schema.
-> 
-> [...]
-
-Here is the summary with links:
-  - [v2,1/5] dt-bindings: net: ipq4019-mdio: document IPQ6018 compatible
-    https://git.kernel.org/netdev/net-next/c/cbe5f7c0fbcd
-  - [v2,2/5] dt-bindings: net: ipq4019-mdio: add IPQ8074 compatible
-    https://git.kernel.org/netdev/net-next/c/05c1cbb96f3d
-  - [v2,3/5] dt-bindings: net: ipq4019-mdio: require and validate clocks
-    https://git.kernel.org/netdev/net-next/c/e50c50367d98
-  - [v2,4/5] dt-bindings: net: ipq4019-mdio: document required clock-names
-    https://git.kernel.org/netdev/net-next/c/4a8c14384fa9
-  - [v2,5/5] arm64: dts: qcom: ipq8074: add SoC specific compatible to MDIO
-    (no matching commit)
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+The patch doesn't apply.  Please rebase it.
