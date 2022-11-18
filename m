@@ -2,155 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D611F62FFF9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:23:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E7E630030
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:37:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbiKRWX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 17:23:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45192 "EHLO
+        id S229949AbiKRWhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 17:37:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbiKRWW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:22:57 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD68B08FF
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:22:14 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id u2so8493053ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:22:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YoNPSXK+wcRdMRmvgHL8qJyp7aIYHmPBQaLIexRJUkU=;
-        b=Lwtw+o1CSW5vTgwEV62MVCpfbASyzQP5oi1qPCptojRzLi2J5/4BFTpdmRXkT/kE3q
-         581fBqcYj69ttvdlf5pZ3PaGL+/bQrnwVZANkzaSQyUOWvBylUl8vJ3wV6Mdh318fDz6
-         vTpsvqSN14tw2ZTI7utBW7cN/ft3e0BtAhx7xUAAuYhaQJL3WeugaW1+kGYYxDa8feJU
-         1VvWioswrTuuYwvF2yMwdStQHSNlCQVkSXLbLruAeuA6xZ64StoNuO08L/6PBvmG7Hcl
-         5Wwho1zCjbcUcUUz9stLhyRI9RgJGfLls9LXPgGFscjJbbgLWHHFI+GU5VbFXoVNWJNw
-         BztQ==
+        with ESMTP id S229686AbiKRWhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:37:23 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAACC9CF56;
+        Fri, 18 Nov 2022 14:37:22 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-142306beb9aso7575524fac.11;
+        Fri, 18 Nov 2022 14:37:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YoNPSXK+wcRdMRmvgHL8qJyp7aIYHmPBQaLIexRJUkU=;
-        b=0gSBUPRrIqhvJbLQKfCjqUnpAo6c1qtZVtLRQ5fx2EtYciuv1Pu561DQs2QKV8WXdO
-         8LC3WV+OJ2QF6cKin3OmkqB1eXXMDRyAqk+F1RMmADrWOWT5NOt1D/d2+UWX1e+RnBNP
-         xsLYFUf5u+CA2MG7L9xm2xDY/ely+9sKDnvM+1/ujO+kFfuDN5g/n5ldAnESph/MKBF6
-         g0H0BMnp5JTgLOCoEhT6i4v86ag6lJ7gepHqFooejFC/ZMKXfsUQuIyOGxT4wLARxw0g
-         SeUSZKlGe8eeaaeSwIFwxka4T/SXIm3e1XBMXcI3za7s2rZbiEUFrzS+swdCxYg312q0
-         d99A==
-X-Gm-Message-State: ANoB5pmCf2wvNqQwNGGGLqMQ1Le3qSJT+4q98GkZU3LF02dKy0fSRHyi
-        PMfuyj6iCuMbGeDQcAU5Brw2B9sqS0ZSwnHt
-X-Google-Smtp-Source: AA0mqf4xKLzMyHjJcZVQhYHe2UfYLPh7BuXdM1ZHd3LjrlsM5RJwX4Wn7PSA6vQqB+mkqWcZ8PwJ5g==
-X-Received: by 2002:a2e:b5d3:0:b0:277:c57:e914 with SMTP id g19-20020a2eb5d3000000b002770c57e914mr2924887ljn.53.1668810133015;
-        Fri, 18 Nov 2022 14:22:13 -0800 (PST)
-Received: from [192.168.1.129] ([194.204.33.9])
-        by smtp.gmail.com with ESMTPSA id i5-20020a0565123e0500b004978e51b691sm828413lfv.266.2022.11.18.14.22.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 14:22:12 -0800 (PST)
-Message-ID: <62058431-b2bf-4d1b-df98-2b84adf87a83@linaro.org>
-Date:   Sat, 19 Nov 2022 00:22:10 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6Ty2VrocLp2bLlPjZebG8L9XIVrPCqIEByvMG3rAIeo=;
+        b=lJYRXhCbUvfhqfLgtOsfRWoazgHIxIOeqzaeWboPrj1Sd4MMXXfq9kLngYv+Nk+dWy
+         GSswZwn2U2moZm9+XU3nRcQ+Nru713NHO2YVCUe5GB9QydtY2T8lYhwp/pO35C1WQH78
+         YiknKrODwWYVZPQ6TRtmzwXW7UsT5VN2XEDUT0LphtkwnOYFev7vnfzCRui+g7SVaUnF
+         8Hl6n0ktZpNJkqyzFlxJ0iP6YSKewQlS3tJteIydgENHUfOsaksQC+TWZ6zKvXLq8zWE
+         hTnbZe0yLAHwPzzOrrxyJPEg07KwRaxVNhitjJwCn1WLTzkkC13bOzc1Tz+d9QqyqzRI
+         65Eg==
+X-Gm-Message-State: ANoB5pnq9dduICcY+Gz+jQee3VTCXcHjaDCD4+5uEzp87b/l93UiXQax
+        M6MSmTJjTBnc+GLapSfgAw==
+X-Google-Smtp-Source: AA0mqf5KA6oRNEPIyQHxPlu0P6RyjLJsjmwGgO5GTTQ8syn9I4hRIeraDisFZa93FVBweGZ8ATxWFQ==
+X-Received: by 2002:a05:6870:7d0e:b0:142:821a:590e with SMTP id os14-20020a0568707d0e00b00142821a590emr3600236oab.55.1668811041798;
+        Fri, 18 Nov 2022 14:37:21 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q9-20020a9d7c89000000b0066c495a651dsm2064777otn.38.2022.11.18.14.37.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 14:37:21 -0800 (PST)
+Received: (nullmailer pid 1721500 invoked by uid 1000);
+        Fri, 18 Nov 2022 22:37:23 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jerome Neanne <jerome.neanne@baylibre.com>,
+        Andrew Davis <afd@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: [PATCH] dt-bindings: Move fixed string node names under 'properties'
+Date:   Fri, 18 Nov 2022 16:37:07 -0600
+Message-Id: <20221118223708.1721134-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: sm8350: add PCIe devices
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20221110103345.729018-1-dmitry.baryshkov@linaro.org>
- <20221110103345.729018-8-dmitry.baryshkov@linaro.org>
- <Y2zYHEZDbNoGumTl@hovoldconsulting.com>
- <37fe9a22-7ca0-e4e5-ebff-4eb56dbb74eb@linaro.org>
- <Y3TzG4HGsFSU3sky@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y3TzG4HGsFSU3sky@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 16:26, Johan Hovold wrote:
-> On Thu, Nov 10, 2022 at 05:20:11PM +0300, Dmitry Baryshkov wrote:
->> On 10/11/2022 13:53, Johan Hovold wrote:
->>> On Thu, Nov 10, 2022 at 01:33:44PM +0300, Dmitry Baryshkov wrote:
->>>> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
->>>> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
->>>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
->>>>    1 file changed, 244 insertions(+), 2 deletions(-)
->>>
->>>> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
->>>>    			gpio-ranges = <&tlmm 0 0 204>;
->>>>    			wakeup-parent = <&pdc>;
->>>>    
->>>> +			pcie0_default_state: pcie0-default-state {
->>>> +				perst-pins {
->>>> +					pins = "gpio94";
->>>> +					function = "gpio";
->>>> +					drive-strength = <2>;
->>>> +					bias-pull-down;
->>>> +				};
->>>> +
->>>> +				clkreq-pins {
->>>> +					pins = "gpio95";
->>>> +					function = "pcie0_clkreqn";
->>>> +					drive-strength = <2>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +
->>>> +				wake-pins {
->>>> +					pins = "gpio96";
->>>> +					function = "gpio";
->>>> +					drive-strength = <2>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +			};
->>>
->>> The pinconfig should go in the board file.
->>
->> Usually yes. However for the PCIe we usually put them into the main
->> .dtsi. See sm8[124]50.dtsi.
-> 
-> Yeah, I noticed that too and had this discussion with Bjorn for
-> sc8280xp some months ago. Even if you may save a few lines by providing
-> defaults in a dtsi, the pin configuration is board specific and belongs
-> in the dts.
+Fixed string node names should be under 'properties' rather than
+'patternProperties'. Additionally, without beginning and end of line
+anchors, any prefix or suffix is allowed on the specified node name.
+These cases don't appear to want a prefix or suffix, so move them under
+'properties'.
 
-I see that you've ended up with no pin configuration at all in 
-sc8280xp.dtsi. I must admit, this is an interesting approach. However I 
-fear that this might increase c&p amount. Let's see how it goes in the 
-long term.
+In some cases, the diff turns out to look like we're moving some
+patterns rather than the fixed string properties.
 
-> 
-> Also note that 'perst' and 'wake' above could in principle be connected
-> to other GPIOs on different boards.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../arm/tegra/nvidia,tegra20-pmc.yaml         | 54 ++++++++--------
+ .../bindings/regulator/ti,tps65219.yaml       | 14 ++--
+ .../bindings/sound/tlv320adcx140.yaml         | 64 +++++++++----------
+ 3 files changed, 66 insertions(+), 66 deletions(-)
 
-Yes. Do we see that in wild? No.
-
+diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+index 7fd8d47b1be4..4a00593b9f7f 100644
+--- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+@@ -123,6 +123,33 @@ properties:
+       some PLLs, clocks and then brings up CPU0 for resuming the
+       system.
+ 
++  core-supply:
++    description:
++      Phandle to voltage regulator connected to the SoC Core power rail.
++
++  core-domain:
++    type: object
++    description: |
++      The vast majority of hardware blocks of Tegra SoC belong to a
++      Core power domain, which has a dedicated voltage rail that powers
++      the blocks.
++
++    properties:
++      operating-points-v2:
++        description:
++          Should contain level, voltages and opp-supported-hw property.
++          The supported-hw is a bitfield indicating SoC speedo or process
++          ID mask.
++
++      "#power-domain-cells":
++        const: 0
++
++    required:
++      - operating-points-v2
++      - "#power-domain-cells"
++
++    additionalProperties: false
++
+   i2c-thermtrip:
+     type: object
+     description:
+@@ -300,33 +327,6 @@ patternProperties:
+ 
+     additionalProperties: false
+ 
+-  core-domain:
+-    type: object
+-    description: |
+-      The vast majority of hardware blocks of Tegra SoC belong to a
+-      Core power domain, which has a dedicated voltage rail that powers
+-      the blocks.
+-
+-    properties:
+-      operating-points-v2:
+-        description:
+-          Should contain level, voltages and opp-supported-hw property.
+-          The supported-hw is a bitfield indicating SoC speedo or process
+-          ID mask.
+-
+-      "#power-domain-cells":
+-        const: 0
+-
+-    required:
+-      - operating-points-v2
+-      - "#power-domain-cells"
+-
+-    additionalProperties: false
+-
+-  core-supply:
+-    description:
+-      Phandle to voltage regulator connected to the SoC Core power rail.
+-
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+index 78be79930fda..78e64521d401 100644
+--- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
++++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+@@ -51,13 +51,6 @@ properties:
+       where the board has a button wired to the pin and triggers
+       an interrupt on pressing it.
+ 
+-patternProperties:
+-  "^buck[1-3]-supply$":
+-    description: Input supply phandle of one regulator.
+-
+-  "^ldo[1-4]-supply$":
+-    description: Input supply phandle of one regulator.
+-
+   regulators:
+     type: object
+     description: |
+@@ -82,6 +75,13 @@ patternProperties:
+ 
+     additionalProperties: false
+ 
++patternProperties:
++  "^buck[1-3]-supply$":
++    description: Input supply phandle of one regulator.
++
++  "^ldo[1-4]-supply$":
++    description: Input supply phandle of one regulator.
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+index ee698614862e..6b8214071115 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+@@ -109,38 +109,6 @@ properties:
+       maximum: 7
+     default: [0, 0, 0, 0]
+ 
+-  ti,asi-tx-drive:
+-    type: boolean
+-    description: |
+-      When set the device will set the Tx ASI output to a Hi-Z state for unused
+-      data cycles. Default is to drive the output low on unused ASI cycles.
+-
+-patternProperties:
+-  '^ti,gpo-config-[1-4]$':
+-    $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description: |
+-       Defines the configuration and output driver for the general purpose
+-       output pins (GPO).  These values are pairs, the first value is for the
+-       configuration type and the second value is for the output drive type.
+-       The array is defined as <GPO_CFG GPO_DRV>
+-
+-       GPO output configuration can be one of the following:
+-
+-       0 - (default) disabled
+-       1 - GPOX is configured as a general-purpose output (GPO)
+-       2 - GPOX is configured as a device interrupt output (IRQ)
+-       3 - GPOX is configured as a secondary ASI output (SDOUT2)
+-       4 - GPOX is configured as a PDM clock output (PDMCLK)
+-
+-       GPO output drive configuration for the GPO pins can be one of the following:
+-
+-       0d - (default) Hi-Z output
+-       1d - Drive active low and active high
+-       2d - Drive active low and weak high
+-       3d - Drive active low and Hi-Z
+-       4d - Drive weak low and active high
+-       5d - Drive Hi-Z and active high
+-
+   ti,gpio-config:
+     description: |
+        Defines the configuration and output drive for the General Purpose
+@@ -183,6 +151,38 @@ patternProperties:
+       maximum: 15
+     default: [2, 2]
+ 
++  ti,asi-tx-drive:
++    type: boolean
++    description: |
++      When set the device will set the Tx ASI output to a Hi-Z state for unused
++      data cycles. Default is to drive the output low on unused ASI cycles.
++
++patternProperties:
++  '^ti,gpo-config-[1-4]$':
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++       Defines the configuration and output driver for the general purpose
++       output pins (GPO).  These values are pairs, the first value is for the
++       configuration type and the second value is for the output drive type.
++       The array is defined as <GPO_CFG GPO_DRV>
++
++       GPO output configuration can be one of the following:
++
++       0 - (default) disabled
++       1 - GPOX is configured as a general-purpose output (GPO)
++       2 - GPOX is configured as a device interrupt output (IRQ)
++       3 - GPOX is configured as a secondary ASI output (SDOUT2)
++       4 - GPOX is configured as a PDM clock output (PDMCLK)
++
++       GPO output drive configuration for the GPO pins can be one of the following:
++
++       0d - (default) Hi-Z output
++       1d - Drive active low and active high
++       2d - Drive active low and weak high
++       3d - Drive active low and Hi-Z
++       4d - Drive weak low and active high
++       5d - Drive Hi-Z and active high
++
+ required:
+   - compatible
+   - reg
 -- 
-With best wishes
-Dmitry
+2.35.1
 
