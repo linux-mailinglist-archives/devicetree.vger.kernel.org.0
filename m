@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7579D62FBBC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C540062FBC8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242198AbiKRRdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 12:33:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34738 "EHLO
+        id S235240AbiKRRkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 12:40:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242480AbiKRRdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:33:18 -0500
+        with ESMTP id S234711AbiKRRkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:40:04 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0584A942F5
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:32:29 -0800 (PST)
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com [209.85.128.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E44B201A3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:40:03 -0800 (PST)
+Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com [209.85.219.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1EAE43F32C
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 17:32:28 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0A7533F32C
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 17:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668792748;
-        bh=fj8UhkKeU72W/99qO15nHbhyif25XpeQl7PAW0nT2E8=;
+        s=20210705; t=1668793202;
+        bh=khOfblgst9enibwZtKIhuBZJXCqSZWcWc7io0Y3ec00=;
         h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
          To:Cc:Content-Type;
-        b=POuGlPE+NFJOvhT71OwaT/WzFvptG7faZML0qpUeGl7PGg5rhfnHNuDpr1VUfVg/j
-         EXijm9bIsJbBnu2qunLoz/SjtCw9IKGa2UifsSiaxdzMlvZ+MO/GtAbqgY9MAKb4DB
-         XmcE60U6Ufq3HRrycCX6iexw7qKmeLrRPULJjvqlV5jhrv5znEkXfsYRfZqMUmgf0i
-         IZ2AKO4s0xAGlR6lqHg1Sjc1tLzbdUjD0Hpq1zzdSocnVefEcjQTffKtAOhjL113dy
-         KP6S1eTRT9aE+OZiZcuR7ARf+KVaPkR0LvpUrndkwoIvyupk2NK/6OdP6aTn9XbMBj
-         g0jZKGH2tBA5w==
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-368994f4bc0so55112697b3.14
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:32:28 -0800 (PST)
+        b=uumq2vk7JnGWia1ZBtn9bPg4aXOV5enlAe0VAmpTXaxgH0d8o/yI0/RyY+jYF5GnF
+         Tdti6z6jvtFU+nDE+gZ2iyjt9YrhjLWCnMGAksfpKm7mIsfzo24zpBUXhlDKTxHJES
+         44TDdjeaiz3YRt0zky8zjdrvtrmKtUnPp4cmt8QWNeMZ27yhADBwA69CW0oNGTdUn5
+         3vhx5t6br8ELraGwxzB1zrP+bBvP2Lbn8qnB/yWarUBmpsfmBQFUqOZOUpTMGb2AWG
+         jnoC9MgvljwgX7ntCtAShLfYXX/JvbBpoWFUB7m9BfhjKJ/Gagu7mn8ntKXVzBxC3G
+         DXeTajwDDKiqA==
+Received: by mail-yb1-f200.google.com with SMTP id b17-20020a25b851000000b006e32b877068so5074368ybm.16
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:40:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fj8UhkKeU72W/99qO15nHbhyif25XpeQl7PAW0nT2E8=;
-        b=TQKEx25GAxxwI+96MwdKAQq8IkWMC998zv1htcS/W7NJqaec+5aQyzngLYRELL/wxg
-         xWSf3tVPl95qe2oVgA10fe0S1aHPhWjpjLa40yrh1fYgHYGHdu4mZHkPXGo39yvEcF+n
-         8sBu0BEuWKADU9gOxZgNu/K6xo9g+0KjvKH0U/IKCULsHPMVEN0AE8AJaVsp7FzxMuNb
-         Z7+JLEuCHxy16tbSJfQ+5u5itPi0DWKZX6WB9WkzbmSFNahzTfwL/2e1izh4T7Bj5yB0
-         t2tQR4wvcFm0hxURVuPWMkSW5ovuOoSTLIeHv1ZzfUwqFHufTr04KbQDwEELXa2NBUsA
-         qKtQ==
-X-Gm-Message-State: ANoB5pnagQh/iEQHmsAbZ9BgtmFDPVSLjf4E6OqXPnZHf4+B1NpMvGjP
-        guIasfkcworgT4ZWLn96UMFl5eeC/ul8xHbZSe2+WlpjoAyxJO3gAOnpdK85tyA3O7Ycr/UTO4e
-        q2n7Qxwzm6OdHBQQnc0CWGiPhKZ85esQS2bomcqjQRzf6uqd0lRB8pG8=
-X-Received: by 2002:a81:9a0b:0:b0:370:2d3:c361 with SMTP id r11-20020a819a0b000000b0037002d3c361mr7344325ywg.251.1668792747076;
-        Fri, 18 Nov 2022 09:32:27 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4HcIbrHIRYmL3dgFd+JbwTuttS78s3rG17fVAdC12Ry8v5uY8zZMQE2fsjsQN8AKs73vkYgU2af/B2EOp5ODM=
+        bh=khOfblgst9enibwZtKIhuBZJXCqSZWcWc7io0Y3ec00=;
+        b=Ncg6gVdeBkt2tRUAnSfV6s3DfQcAMAofhApCr52RAZtLZzwPIGN6HkZMuUfWKPhXID
+         Pcq2NuUrWjK3XpV5O5wwK/doidErDhfrL0X6ZB+7p4K/V4kV5DEKJhK1DoNwFI3wpVcD
+         ZhGvRMiXdP/jIadUTcF4o+EMa9zeHGUsYY46aHo3bo9kfT7y7z59Jf+aWxd4uH4fgrgx
+         +zxf4uaF6k2jXzLHmkKJb9Osgtgyj8PhgGfSstoi6FUTbnv6S3T5Gt6JK40MaCGQgHHU
+         ibIV6/9a9S3qFcJ9cCS4yDRUrxUCONrKmL/Tf/oBb5Bm0PX6Fs6GcP+USYGdUeknFOnE
+         BReg==
+X-Gm-Message-State: ANoB5pkkS6X4a/v0Bu2WOU1tnhki79RfUrzhpjSDgk+qFY6zFOM48u0B
+        vyuJpwX+HrmHlLHsgxoENVzgiEtT1ceyu+c9V7DyOi8TDeBgit9o18YOuM/PxaJt2EtrgbDbEU7
+        grV3qWI8TP7d6ydH1L6yYkzTQTPZAMuWjxuupdG4405U+Vf/+0VmIz60=
+X-Received: by 2002:a81:9a0b:0:b0:370:2d3:c361 with SMTP id r11-20020a819a0b000000b0037002d3c361mr7373253ywg.251.1668793199533;
+        Fri, 18 Nov 2022 09:39:59 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5jjAsNvhdPGGqZYsergcF++LvMbbQe3AgNyo2sdT6ZeT0o7tzyhO5uVsz3J8DtAGJMuP52P9lVuRXACQqXzlk=
 X-Received: by 2002:a81:9a0b:0:b0:370:2d3:c361 with SMTP id
- r11-20020a819a0b000000b0037002d3c361mr7344294ywg.251.1668792746848; Fri, 18
- Nov 2022 09:32:26 -0800 (PST)
+ r11-20020a819a0b000000b0037002d3c361mr7373226ywg.251.1668793199261; Fri, 18
+ Nov 2022 09:39:59 -0800 (PST)
 MIME-Version: 1.0
-References: <20221118011714.70877-1-hal.feng@starfivetech.com> <20221118011714.70877-6-hal.feng@starfivetech.com>
-In-Reply-To: <20221118011714.70877-6-hal.feng@starfivetech.com>
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+ <20221118011714.70877-7-hal.feng@starfivetech.com> <Y3d0GE7msiWGlRcd@spud>
+In-Reply-To: <Y3d0GE7msiWGlRcd@spud>
 From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 18:32:10 +0100
-Message-ID: <CAJM55Z-jo4x_qX85uFO0esqVFk12v3fS6H7ryx7-Heq1HEudNA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] soc: sifive: ccache: Add StarFive JH7110 support
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor@kernel.org>,
+Date:   Fri, 18 Nov 2022 18:39:43 +0100
+Message-ID: <CAJM55Z_3m9w83D9J2y+MV8VLc+uU0Gwo8xpD=fnCGZSAGntu7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Hal Feng <hal.feng@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -87,75 +89,495 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 02:17, Hal Feng <hal.feng@starfivetech.com> wrote:
+On Fri, 18 Nov 2022 at 13:01, Conor Dooley <conor@kernel.org> wrote:
 >
-> From: Emil Renner Berthing <kernel@esmil.dk>
+> On Fri, Nov 18, 2022 at 09:17:12AM +0800, Hal Feng wrote:
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> >
+> > Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> > Technology Ltd.
+> >
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 437 +++++++++++++++++++++++
+> >  1 file changed, 437 insertions(+)
+> >  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
+> >
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > new file mode 100644
+> > index 000000000000..c22e8f1d2640
+> > --- /dev/null
+> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > @@ -0,0 +1,437 @@
+> > +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> > +/*
+> > + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> > + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
 >
-> This adds support for the StarFive JH7110 SoC which also
-> features this SiFive cache controller.
->
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
+> @Emil, I feel like I have to ask given the 2022 date, but should this
+> stuff be attributed to your canonical address or is this fine?
 
-I'm fine with this, but it would be great if you could add the jh7100
-support at the same time like the original patch did.
+Yeah, this is fine. I did this on my own time before I was actually
+tasked with working on the JH7110 based boards.
 
->  arch/riscv/Kconfig.socs            | 1 +
->  drivers/soc/Makefile               | 2 +-
->  drivers/soc/sifive/Kconfig         | 2 +-
->  drivers/soc/sifive/sifive_ccache.c | 1 +
->  4 files changed, 4 insertions(+), 2 deletions(-)
+> Other than that, a cursory check /looks/ fine, other than the:
 >
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 69774bb362d6..5a40e05f8cab 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -22,6 +22,7 @@ config SOC_STARFIVE
->         bool "StarFive SoCs"
->         select PINCTRL
->         select RESET_CONTROLLER
-> +       select SIFIVE_CCACHE
->         select SIFIVE_PLIC
->         help
->           This enables support for StarFive SoC platform hardware.
-> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
-> index 69ba6508cf2c..534669840858 100644
-> --- a/drivers/soc/Makefile
-> +++ b/drivers/soc/Makefile
-> @@ -26,7 +26,7 @@ obj-y                         += qcom/
->  obj-y                          += renesas/
->  obj-y                          += rockchip/
->  obj-$(CONFIG_SOC_SAMSUNG)      += samsung/
-> -obj-$(CONFIG_SOC_SIFIVE)       += sifive/
-> +obj-y                          += sifive/
->  obj-y                          += sunxi/
->  obj-$(CONFIG_ARCH_TEGRA)       += tegra/
->  obj-y                          += ti/
-> diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-> index ed4c571f8771..e86870be34c9 100644
-> --- a/drivers/soc/sifive/Kconfig
-> +++ b/drivers/soc/sifive/Kconfig
-> @@ -1,6 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
+> > +       gmac0_rgmii_rxin: gmac0_rgmii_rxin {
+> > +               compatible = "fixed-clock";
+> > +               #clock-cells = <0>;
+> > +               /* This value must be overridden by the board */
+> > +               clock-frequency = <0>;
+> > +       };
 >
-> -if SOC_SIFIVE
-> +if SOC_SIFIVE || SOC_STARFIVE
+> If you remove the clock-frequency = <0> bit, dtb validation will force
+> people to set the value in jh7110-board.dts which I'd prefer to rely on
+> than a comment.
 >
->  config SIFIVE_CCACHE
->         bool "Sifive Composable Cache controller"
-> diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-> index 1c171150e878..9489d1a90fbc 100644
-> --- a/drivers/soc/sifive/sifive_ccache.c
-> +++ b/drivers/soc/sifive/sifive_ccache.c
-> @@ -107,6 +107,7 @@ static const struct of_device_id sifive_ccache_ids[] = {
->         { .compatible = "sifive,fu540-c000-ccache" },
->         { .compatible = "sifive,fu740-c000-ccache" },
->         { .compatible = "sifive,ccache0" },
-> +       { .compatible = "starfive,jh7110-ccache" },
->         { /* end of table */ }
->  };
+> Glad to see you sorted out the clock/reset stuff too!
 >
-> --
-> 2.38.1
+> Thanks,
+> Conor.
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
 >
