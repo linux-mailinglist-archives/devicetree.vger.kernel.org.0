@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18B6162F039
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08EB162F048
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:59:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235025AbiKRI5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 03:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48264 "EHLO
+        id S241648AbiKRI7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 03:59:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241439AbiKRI5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:57:01 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987ED6153C
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:57:00 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id ja4-20020a05600c556400b003cf6e77f89cso6080469wmb.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:57:00 -0800 (PST)
+        with ESMTP id S241655AbiKRI7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:59:07 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D696EB63
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:59:06 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id d20so5931700ljc.12
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:59:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q1kOW8Zv0Np4otaz9P31FD9vjazCm0/Q7hJnXznvk8U=;
-        b=G0t14pfZ6HAEJjoZQjg8wIOPAedDJ+YgOr0BU68ZXxHM8ybVXaOd8SbBTcY+wtIPb+
-         JFSla7CSJ0icoNmtiPN+sxubusDxlueoHtUzTotsucJdUVF/Stp03TJoQ2+giPdIF098
-         I0QMLp2N/s/bnMWMu3WtQ91YGHcdq26coHdL69loeWf0H+nCYJi6+DjJfMRPdh+iPVxv
-         D6UwgcMBz+XmOnitK+rVeWG8t3JZWf08qBjUb7N4+k/I4VWGggaBgpqLKPbuz4tP/asX
-         Tsb36Now+A+t5VljTLdCBqON2DsySMKmqOf2EjTgF9rEMLdsF8eZMeX5/GgO2AB3ihuK
-         umzw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ikLNajhgagvsy8YWu//dBofdaBK+urha+25nG1v92v4=;
+        b=uWO9GE/K9yuumFxgicFZpL7JSyWo8W7Ej0i238IwYtZFHEETQwJtZgtxybnIXhrEdr
+         xWLUoiOeBFDd8kez2EO1LGOA2UYyu11SKNJqfHxoVeGn+yV8rkzYgMNmhzXmRZx8I1O1
+         /LcpYxYskjNhjigedeL2NM99uOJacrfT8tzzu7KKPyko0MX5Qt99Mt0ZK+H7eyqFWDGZ
+         5oZddPqFOyQqP29zlB0TliQYkntCLlJqQ1zQPec6qPjmmtYI4LH9I1wPAYKbLhibTap9
+         VNKMFxCEqT98iaPlQYUPyCFNM9ZV2WmZHi9RJy1Mo07ycwJysmIV3wJk2RJtP7+36n87
+         NaKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q1kOW8Zv0Np4otaz9P31FD9vjazCm0/Q7hJnXznvk8U=;
-        b=uesNikunbgu3xu0qDCS+56LOp6pN6/zYGsKrR97X7p4KXrd+p7AOUtFmPxmL8uHrdq
-         zEpLDnI3ySw8rBUnsLGOMeTVXyrQMtjwXuaFhFg/uZ1Pvwo6K1h4qBzE5M5BYwJ1zk2L
-         QhLp89l7RpzKbhz7B+eovvrYD3JuT9KWa3zQ4/T8m0AR/ssEi+XafLLEzuOcTFAusrq8
-         Cz/RnVAh1KaDmgK+Tzr33US2JIA8+Rcxj8UFzh1IRhStTqmSAvG6lLZjaniSZQzgV6oX
-         CI/e8jvn7+168FKeAuN+K746LLDfrxQAr3K5hw8pbVKYEcte6L0Kp+16MSjjSq7ccd34
-         RcOQ==
-X-Gm-Message-State: ANoB5pmgDPP0Ib6KBrWJNTTTpb389aQ4jfM2IBKVrrcYusE6Qcj5CraR
-        zFuENa9MuM3vFLSlW9LyABa8+A==
-X-Google-Smtp-Source: AA0mqf7aU3sYbBqKcTbkgAjuGCOJkCx5lVhg5h8ag0Pb++K/j5PtquzcyBt2t1XqTMWFzmQyiBzkRQ==
-X-Received: by 2002:a05:600c:4a9a:b0:3c6:d811:6cff with SMTP id b26-20020a05600c4a9a00b003c6d8116cffmr7923234wmp.43.1668761819090;
-        Fri, 18 Nov 2022 00:56:59 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
-        by smtp.gmail.com with ESMTPSA id z5-20020a056000110500b0022cc3e67fc5sm2994295wrw.65.2022.11.18.00.56.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 00:56:58 -0800 (PST)
-Message-ID: <2c1f2d88-99ed-c0a2-02f9-02b4bc4429ea@linaro.org>
-Date:   Fri, 18 Nov 2022 09:56:57 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: qcom,spmi-pmic: document pm8550,
- pm8550b, pm8550ve, pm8550vs, pmk8550, pm8010 & pmr735d
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ikLNajhgagvsy8YWu//dBofdaBK+urha+25nG1v92v4=;
+        b=rd7tlAOWC0L/HH6oHnmchiAQudQ8Xh/OEuwEpQOrtTe0LuKeHOcUgJ9ecppnYLGtpA
+         DDrO85h+/Kqv4iu3VeRU9jbxmYqzm4es6O+DBVLzbj2wx3Q2SC23aSCTNcQ8kSiep5p2
+         qB4uBN4Ig6vzbi/EPsFY7FboymTCVjz0Zc91YeX4l9yzLXShCaOpZMJL2xBm21qRmCyN
+         rRT7JB1M69Z/TbuTVqbjLoYDsdlNJe/p/LMVkAbFao+gm+XBQde530Hf3bitVvcjUEUG
+         ip4fsKrs4WYuWqGBV+rYRgqKwhrj/CnX/SwWVOyc2sMLj5nUDpRP8EhZbvJlI3liYrsy
+         27kw==
+X-Gm-Message-State: ANoB5pnxjfsONZHhVfVYV3IzKvMhuAHGsUEACCOckHHeeat+uVrwvED0
+        I2jn6P63G9ornmOPya9kMf68jzu19v/9UUlO
+X-Google-Smtp-Source: AA0mqf7cReHOzSDcSHf5S0iQhLRoD854GcTOICPse30M4ulzJJRejVX2zyyWwfYTVCg999LvptS2DQ==
+X-Received: by 2002:a05:651c:124c:b0:277:8144:413f with SMTP id h12-20020a05651c124c00b002778144413fmr2359934ljh.390.1668761945118;
+        Fri, 18 Nov 2022 00:59:05 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b0049478cc4eb9sm575398lfo.230.2022.11.18.00.59.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 00:59:04 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-spmi-v2-0-b839bf2d558a@linaro.org>
- <20221114-narmstrong-sm8550-upstream-spmi-v2-1-b839bf2d558a@linaro.org>
- <f20a8dff-fb51-4000-dbb6-29cb8b0d223d@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <f20a8dff-fb51-4000-dbb6-29cb8b0d223d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx: trim addresses to 8 digits
+Date:   Fri, 18 Nov 2022 09:59:00 +0100
+Message-Id: <166876193952.14422.5417474911500432659.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221115105051.95345-1-krzysztof.kozlowski@linaro.org>
+References: <20221115105051.95345-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,74 +78,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 09:52, Konrad Dybcio wrote:
+On Tue, 15 Nov 2022 11:50:51 +0100, Krzysztof Kozlowski wrote:
+> Hex numbers in addresses and sizes should be rather eight digits, not
+> nine.  Drop leading zeros.  No functional change (same DTB).
 > 
 > 
-> On 18/11/2022 09:24, Neil Armstrong wrote:
->> Document compatible for the pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550.
->> pm8010 & pmr735d SPMI PMICs
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> Didn't checkpatch complain about the length of this patch's subject?
 
-No, not even with --strict
+Applied, thanks!
 
-> I propose:
-> 
-> dt-bindings: mfd: qcom,spmi-pmic: document SM8550 PMICs
-> 
-> or
-> 
-> dt-bindings: mfd: qcom,spmi-pmic: document PMICs bundled with SM8550
+[1/1] ARM: dts: imx: trim addresses to 8 digits
+      https://git.kernel.org/krzk/linux-dt/c/a4231f626e780e3186fe4561b8cadf57673e3cd0
 
-I'll change to of these if I need to resend,
-
-Thanks,
-Neil
-
-> 
-> 
-> Konrad
->>   Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> index c8362efd4345..8c9b042b4f30 100644
->> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->> @@ -43,6 +43,7 @@ properties:
->>             - qcom,pm8004
->>             - qcom,pm8005
->>             - qcom,pm8009
->> +          - qcom,pm8010
->>             - qcom,pm8019
->>             - qcom,pm8028
->>             - qcom,pm8110
->> @@ -54,6 +55,10 @@ properties:
->>             - qcom,pm8350
->>             - qcom,pm8350b
->>             - qcom,pm8350c
->> +          - qcom,pm8550
->> +          - qcom,pm8550b
->> +          - qcom,pm8550ve
->> +          - qcom,pm8550vs
->>             - qcom,pm8841
->>             - qcom,pm8909
->>             - qcom,pm8916
->> @@ -70,10 +75,12 @@ properties:
->>             - qcom,pmi8998
->>             - qcom,pmk8002
->>             - qcom,pmk8350
->> +          - qcom,pmk8550
->>             - qcom,pmm8155au
->>             - qcom,pmp8074
->>             - qcom,pmr735a
->>             - qcom,pmr735b
->> +          - qcom,pmr735d
->>             - qcom,pms405
->>             - qcom,pmx55
->>             - qcom,pmx65
->>
-
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
