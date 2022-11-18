@@ -2,129 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9529562FB76
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9664D62FB93
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:26:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235144AbiKRRSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 12:18:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
+        id S242305AbiKRR0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 12:26:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235147AbiKRRSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:18:38 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F2D417584
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:18:37 -0800 (PST)
-Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0D4C63F2FF
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 17:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668791916;
-        bh=Ihl+Je3Z+y8gG//tf2j+pj2UsuFi/UkCnl/8sS+58OE=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=kzJGql7ohU2HWvDKsYqAQRFhEWDypTSv/wMA1YbKX3dWAG4ayvzr+1darSzEJd7ou
-         J+mEeLXwygEfr0aWa8MZWxmq4ptBy1Ul511r/XM77MIQrTCevBiEVi7GF9KEn7zg7G
-         3fTfpy7t8XpBxY56UGpudQ99xR+G5VBbDbiKmY2O85iOxsCntGf5bm9Z9JhTvKLber
-         guEdxy+ONJTz9SfJdzYdhNEKYZa8V2tzTp9Q5fWh1vCkauoaKAaKpjO2z+amNb9iCg
-         OrBfiG9FFUgrdaz1yM97DiPEBHVDQ+IciLA3zMQVlNG3vlOsuCWWXIyD7T5dbtQwJx
-         F3vNjtrTpHluw==
-Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-385bbf9bc8fso55130397b3.23
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:18:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ihl+Je3Z+y8gG//tf2j+pj2UsuFi/UkCnl/8sS+58OE=;
-        b=yT00OVtsbo8EJFb78DppjoRQtSsE6kxxqoeGqmAVbALvQrbfEG3rQans+yzQTy9XyX
-         +Kg+8KsjTk3crjt8hme6wd8zBD8ZwO5UJln3vYWTatHi0YM5/ApLbYFhdhhRDa2P1KVr
-         0f54ezLORkcdSdrs7wjYZHMvSutYKNfdIn6rZ3G4KLBqgQKVOjRjkG1deakYf8+uDqOY
-         nxAV1Y14xqkY5GKcxhKgwcyRhNCLuP2ugOk9qdksrvFM7djNlrK6vjC1d0K/nSlftCQ3
-         +/4BhT2OtkuluARBX2jqWuxXWv18xMhrOJZjtdMYuMVWMI/FCZ6RAzCQZ0izbhfD42AP
-         mzEg==
-X-Gm-Message-State: ANoB5plDYaoLjI8zgs21kwoAU1iKdevQCZ9LFAmyVOHu5ViceWIPJM0s
-        3qwYRTXKJ8TrjOOiibvlsXENnkPTl9B2b/INKpZEo7e9awdNKXhR3BgYHifSK0Fgkbc/H8OL9nn
-        x0GmaQVn0m2kKZmVGjp53sNqiIxgL3ZrYndYfxpL0iPxP1Rkg4PqVyAs=
-X-Received: by 2002:a25:3b51:0:b0:6de:f83b:3160 with SMTP id i78-20020a253b51000000b006def83b3160mr7210019yba.467.1668791914852;
-        Fri, 18 Nov 2022 09:18:34 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf6gNMjZV4v2icTvtOBtm8WnqynWPCLqrTz9saKsC/CrUDCNOM3JEQ5u9gZtmPCMVbMaRenaOlMRVu0ODuMyivY=
-X-Received: by 2002:a25:3b51:0:b0:6de:f83b:3160 with SMTP id
- i78-20020a253b51000000b006def83b3160mr7210002yba.467.1668791914667; Fri, 18
- Nov 2022 09:18:34 -0800 (PST)
+        with ESMTP id S241975AbiKRR0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:26:24 -0500
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383FD91510;
+        Fri, 18 Nov 2022 09:26:23 -0800 (PST)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AIGLMd2026693;
+        Fri, 18 Nov 2022 12:26:20 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3kx0p7md4w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Nov 2022 12:26:20 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 2AIHQJQj018606
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 12:26:19 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 18 Nov 2022 12:26:18 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 18 Nov 2022 12:26:15 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 18 Nov 2022 12:26:15 -0500
+Received: from debian.ad.analog.com ([10.48.65.130])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2AIHPsw2021732;
+        Fri, 18 Nov 2022 12:26:00 -0500
+From:   Ciprian Regus <ciprian.regus@analog.com>
+To:     <jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Ciprian Regus <ciprian.regus@analog.com>
+Subject: [PATCH v3 0/2] Add support for the AD5754 DAC
+Date:   Fri, 18 Nov 2022 19:24:05 +0200
+Message-ID: <20221118172407.765423-1-ciprian.regus@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20221118010627.70576-1-hal.feng@starfivetech.com> <20221118010627.70576-15-hal.feng@starfivetech.com>
-In-Reply-To: <20221118010627.70576-15-hal.feng@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 18:18:18 +0100
-Message-ID: <CAJM55Z8t8yotMTWVw2J7gtGMyx5no2onj-YcfB6d1BY0ACeDJg@mail.gmail.com>
-Subject: Re: [PATCH v2 14/14] clk: starfive: jh71x0: Don't register aux
- devices if JH7110 reset is disabled
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: wtFPpxKCSyMHSn21OKNK7nBKCcmNEYBx
+X-Proofpoint-GUID: wtFPpxKCSyMHSn21OKNK7nBKCcmNEYBx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-18_04,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ priorityscore=1501 adultscore=0 suspectscore=0 phishscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211180102
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> The JH7110 clock drivers will not register redundant auxiliary
-> devices if the JH7110 reset auxiliary driver is disabled.
->
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  drivers/clk/starfive/clk-starfive-jh71x0.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/starfive/clk-starfive-jh71x0.c b/drivers/clk/starfive/clk-starfive-jh71x0.c
-> index dda19c6937cb..4e69f56b00cc 100644
-> --- a/drivers/clk/starfive/clk-starfive-jh71x0.c
-> +++ b/drivers/clk/starfive/clk-starfive-jh71x0.c
-> @@ -333,7 +333,7 @@ const struct clk_ops *starfive_jh71x0_clk_ops(u32 max)
->  }
->  EXPORT_SYMBOL_GPL(starfive_jh71x0_clk_ops);
->
-> -#if IS_ENABLED(CONFIG_CLK_STARFIVE_JH7110_SYS)
-> +#if IS_ENABLED(CONFIG_RESET_STARFIVE_JH7110)
+These patches implement support for the AD5754 DAC (both dual
+and quad channel variants).
 
-I don't see any reason you'd want to build a kernel that needs the
-clock driver but not the resets, so I don't think this is something we
-should optimize for. I'd just drop this patch and let such broken
-kernels register the auxiliary devices even when no reset driver is
-there to use them.
+The AD5724/AD5734/AD5754 are quad, 12-/14-/16-bit, serial
+input, voltage output DACs. The devices operate from single-
+supply voltages from +4.5 V up to +16.5 V or dual-supply
+voltages from ±4.5 V up to ±16.5 V. The input coding is
+user-selectable twos complement or offset binary for a bipolar
+output (depending on the state of Pin BIN/2sComp), and straight
+binary for a unipolar output.
 
->  static void jh7110_reset_unregister_adev(void *_adev)
->  {
-> @@ -384,4 +384,13 @@ int jh7110_reset_controller_register(struct jh71x0_clk_priv *priv,
->  }
->  EXPORT_SYMBOL_GPL(jh7110_reset_controller_register);
->
-> +#else /* !CONFIG_RESET_STARFIVE_JH7110 */
-> +
-> +int jh7110_reset_controller_register(struct jh71x0_clk_priv *priv,
-> +                                    const char *adev_name,
-> +                                    u32 adev_id)
-> +{
-> +       return 0;
-> +}
-> +
->  #endif
-> --
-> 2.38.1
->
+Ciprian Regus (2):
+  dt-bindings: iio: dac: add adi,ad5754.yaml
+  drivers: iio: dac: Add AD5754 DAC driver
+
+ .../bindings/iio/dac/adi,ad5754.yaml          | 181 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/dac/Kconfig                       |  12 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/ad5754.c                      | 672 ++++++++++++++++++
+ 5 files changed, 874 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5754.yaml
+ create mode 100644 drivers/iio/dac/ad5754.c
+
+-- 
+2.30.2
+
