@@ -2,131 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEBE362ED5F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 06:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADD4B62ED7B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 07:08:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241008AbiKRF5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 00:57:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60566 "EHLO
+        id S232532AbiKRGI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 01:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiKRF5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 00:57:35 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A30F8CB88
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 21:57:34 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id v17so3702492plo.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 21:57:34 -0800 (PST)
+        with ESMTP id S231768AbiKRGIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 01:08:55 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEAF58BFB;
+        Thu, 17 Nov 2022 22:08:54 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id k2-20020a17090a4c8200b002187cce2f92so2209343pjh.2;
+        Thu, 17 Nov 2022 22:08:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0a1jjRfviTq5Xt2/NZLcpPRBi+hPaTFIWtK7i+Uba+o=;
-        b=lR4PSzbHtutX868gOZ71DV6BQ3XgJC0Tep7WH5FyBG4eniWNoVFrPI94BAD7cDkCuc
-         soYmtc4O+B7WyrBOg0gSmEfrmrosmxx0OAyDaaQkjjV2/OTjLDjzg3cLMV39Bbgihhmn
-         cJZXz1/5zY5/+BPehzeTHwI8XEc2SPHVsoXfdmAHEoWzAT7ptygWnCzBdRI/3KrIYA9Z
-         92QjwE1rdSIvMVJfzVBZGftN9cr1eBl+1yPakH9TEFAVfJspeVbHGz2b+KHU9D5bH/7D
-         Olu9tgYBxVXjE695WqsJqh6C5Py2eHRlo82AVxlIdQI7vSVMFx4+y5GMOzN/bow5MQ9E
-         Vhog==
+        bh=f1/9CyA/O/ffk/WiLLBbijHh3undgK2iph5RhrshJgM=;
+        b=ZGb+G5BgLZYRveyI+o9fJn5GxmvDjIYMmnZqG5Z1fsvqC75MUFvchqEr2FgEPIn+6h
+         0cfqfTF+WPWKlHMaDz45TpWWenvEWtrWthl5EbYyK8x2VtxhSj0ub1/2kZ98XyK49B33
+         lyVPX3cI1ktc1uiO8KMiAvx6UZWLEwqZl9uZCfpH1glB4SqytvTy8eLOIrKvdINDk7au
+         vMslP2yqbuBAkOIVNqyyurv6FTbbdV8SFbv8mezeKHbM6C3JpdmvwjQhur8iFm5iZTd/
+         swKJbHYgzOt0OpFQhFo7jE4KpDoW42FMoraIKzEBDSJWJZX2BgSdLKs8D15D4pgmWdVL
+         nUMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0a1jjRfviTq5Xt2/NZLcpPRBi+hPaTFIWtK7i+Uba+o=;
-        b=fERXmN377Po+djlAje8MEL6FLuZzieZQEOplZ+oIAg4Z3HGLywxZM8TsyQALth3fta
-         JhHowEGJysAVXABD1bxXx8R2CWkOX3JSx1QbwpXIBsQdKVqQVrIxOI2hDBP1lpLSdzRQ
-         zpoRBFSliqwJSPz7MHC4SzjDqcNGXSQdWODmRO1AHxi/9FUB62kJ9OEk2nI2WB8bTKwC
-         ilL2fOpVfjlWjdbj13f735cxlqXauTaDIHB7Vv13j/qBEZxou7wp3UTmkHOmV4bdPeJF
-         UCRu4/LZLoMJp4WhG1hQWeq56qUvuBs9rIuPzBjC6tQ440e6yLMCvLkIF0IUUjNK0OU8
-         UWfQ==
-X-Gm-Message-State: ANoB5pkDN5eSeFsN3dy8YwhB4HPoTDxbBVmEiZO1uJ4oZqYUWk3jYIBp
-        hcC+ymObdS6j89Aht4WT2/zpRQ==
-X-Google-Smtp-Source: AA0mqf7ZHCPYnYkcNX51xnBzNH8aRazEuukSXxWjRjt+qHEp7z32tE3pgG3H7A3HLPNIXczCaCL7Cg==
-X-Received: by 2002:a17:902:da87:b0:184:fa22:8b67 with SMTP id j7-20020a170902da8700b00184fa228b67mr6009281plx.149.1668751053815;
-        Thu, 17 Nov 2022 21:57:33 -0800 (PST)
-Received: from localhost ([122.172.85.60])
-        by smtp.gmail.com with ESMTPSA id q9-20020a170902bd8900b00176d347e9a7sm2486743pls.233.2022.11.17.21.57.32
+        bh=f1/9CyA/O/ffk/WiLLBbijHh3undgK2iph5RhrshJgM=;
+        b=f0OOb8q1B8LuWidc7fkqQ6KVkJZ+Q+LQ7TLC57jtumC/LepmDq3J/R4v7cl90MNwnB
+         YcIUs8in3yXcYC+dJuF5uMxmRnVqfyo8g8TSxnBF9TkwB033sze1evbaloyHbMuyCVqZ
+         TcvlMEcdC54DYq9EWIeB0y9Zi8Y6ErV9eDxvvLxpyLfFVx6rBCqcm/KytXU5r9NH9c1G
+         QK5FCKAHGSeR+902LzaATGKyhTdv0ygmfvrg7QZIOvpImTKOh526Qtb3A72Y11PoTagG
+         i5jp/FWp025BqtQ4mg+P+MBvaIXz/v5SzKwMXhMRIgHD5HysicEBdnlMRMKelb+a57Up
+         NKNw==
+X-Gm-Message-State: ANoB5pnEJxs69v/RhRNHHpSQFd/kptOY4G81Cr5eBSAXguG4e/t8OqOq
+        0Y4YRNdDfu7bgAAZLrW33V0=
+X-Google-Smtp-Source: AA0mqf5bBM/zQclPqWbgyWJyKksOjHrLKvrLvP782+r1jZPbC/4yYuW15tHmNp+/2JQ+cJo/YDAhmQ==
+X-Received: by 2002:a17:902:b58c:b0:188:64b7:e433 with SMTP id a12-20020a170902b58c00b0018864b7e433mr6193855pls.17.1668751734099;
+        Thu, 17 Nov 2022 22:08:54 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:e4c5:c31d:4c68:97a0])
+        by smtp.gmail.com with ESMTPSA id jg15-20020a17090326cf00b001868d4600b8sm2556448plb.158.2022.11.17.22.08.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 21:57:32 -0800 (PST)
-Date:   Fri, 18 Nov 2022 11:27:30 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221118055730.yrzpuih3zfko5c2q@vireshk-i7>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221117101903.sw3hxaruj5sfhybw@bogus>
- <20221117112403.haffuclwooudvgwz@vireshk-i7>
- <20221117120145.ou2pg7obxnwlsc36@bogus>
+        Thu, 17 Nov 2022 22:08:53 -0800 (PST)
+Date:   Thu, 17 Nov 2022 22:08:50 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [RESNED PATCH 1/3] dt-bindings: input/touchscreen: Add
+ compatible for IST3038 and IST30XXB
+Message-ID: <Y3chclOgvZSDqRGu@google.com>
+References: <20221117191436.87938-1-linmengbo0689@protonmail.com>
+ <20221117191436.87938-2-linmengbo0689@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221117120145.ou2pg7obxnwlsc36@bogus>
+In-Reply-To: <20221117191436.87938-2-linmengbo0689@protonmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-11-22, 12:01, Sudeep Holla wrote:
-> Thanks for the link. Sorry I still don't get the complete picture. Who are
-> the consumers of these clock nodes if not cpufreq itself.
+On Thu, Nov 17, 2022 at 07:15:03PM +0000, Lin, Meng-Bo wrote:
+> From: Markuss Broks <markuss.broks@gmail.com>
 > 
-> I am going to guess, so other device(like inter-connect) with phandle into
-> CPU device perhaps ? Also I assume it will have phandle to non-CPU device
-> and hence we need generic device clock solution. Sorry for the noise, but
-> I still find having both clocks and qcom,freq-domain property is quite
-> confusing but I am fine as I understand it bit better now.
+> Imagis IST3038 and IST30XXB are variants (firmware?) of Imagis IST3038 IC,
+> add the compatible for them to the IST3038C bindings.
+> 
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> [Change from IST3038B to IST3038 and IST30XXB]
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> ---
+>  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml  | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> index e3a2b871e50c..85390f6ffe36 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> @@ -18,7 +18,9 @@ properties:
+>  
+>    compatible:
+>      enum:
+> +      - imagis,ist3038
+>        - imagis,ist3038c
+> +      - imagis,ist30xxb
 
-Lemme try to explain what the initial problem was, because of which I suggested
-the DT to be fixed, even if no one is going to use it as a client.
+I do not believe wildcard compatibles are allowed.
 
-The OPP core provides two features:
-
-- Parsing of the OPP table and provide the data to the client.
-- Ability to switch the OPPs, i.e. configuring all resources.
-
-qcom-cpufreq-hw driver uses both of these, but in a tricky way (like Tegra30).
-It used the OPP core to parse the data, along with "opp-hz" property and switch
-the OPPs by calling dev_pm_opp_set_opp(). But it doesn't want
-dev_pm_opp_set_opp() to change the clock rate, but configure everything else.
-
-Now the OPP core needs to distinguish platforms for valid and invalid
-configurations, to make sure something isn't broken. For example a developer
-wants to change the OPP along with frequency and passes a valid OPP table. But
-forgets to set the clock entry in device's node. This is an error and the OPP
-core needs to report it. There can be more of such issues with different
-configurations.
-
-Also, as Mani explained, if the OPP core is required to switch the OPPs, then it
-needs to know the initial frequency of the device to see if we are going up or
-down the frequency graph. And so it will do a clk_get_rate() if there is
-"opp-hz" available.
-
-
-What we did in case of Tegra30 (commit 1b195626) is provide a .config_clks
-helper, which does nothing. So the OPP core doesn't need to know if frequency is
-programmed or not.
-
-The same can not be done for Qcom right now as the CPU node doesn't have the clk
-property though it has "opp-hz".
-
-Weather we have a user in kernel (OS) or not, shouldn't decide how the DT looks
-like. The DT should clearly define what the hardware looks like, irrespective of
-the users. The CPU has a clock and it should be mentioned. If the OPP core
-chooses to use that information, then it is a fine expectation to have.
-
-And so we are here. Most likely no one will ever do clk_set_rate() on this new
-clock, which is fine, though OPP core will likely do clk_get_rate() here.
-
-Hope I was able to clarify few things here.
+Thanks.
 
 -- 
-viresh
+Dmitry
