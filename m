@@ -2,90 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB52362EF10
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC9BF62EF22
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233442AbiKRIRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 03:17:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41850 "EHLO
+        id S241366AbiKRIYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 03:24:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241259AbiKRIRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:17:44 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B940892B7A
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:17:41 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id r12so7046063lfp.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:17:41 -0800 (PST)
+        with ESMTP id S241360AbiKRIYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:24:46 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9386D5ADF9
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:24:42 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id ja4-20020a05600c556400b003cf6e77f89cso6037094wmb.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:24:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sPhJE6VPTyo0qcaO20Sn281HINRzDdh0cJ106EjQf1E=;
-        b=ROvHAxbJ/IuPIP2V9+pObdDyhK8B+4WzRv7zamnhvubvuRQuxb/CHuBJ0nk7Z+cTHx
-         FsPp0T2yJsa5MEq1P78Ds1LGKetgiuo1BdbOH9QDRjZwf5Q+veWRUyG+Kw97CUTMW2XG
-         WGMl7OdONQeEVxFjCTVdPYDBLWjKIruVvYvBUPwbeX3PjaVt+6bUuEzfbVeB+dOGEkcQ
-         KOMPfiRa6TUakJ47YGRM3Hg5eqKdYn+LoAsW7NpviQAPmXMpInFL08shmIW3VA3ZfQrl
-         aNZBXfyv1BAWFz+VkzEzwGZlTbXzrjt0EY876LzSPb3JfAGs/piYzeTZ/mBIDFIDhEgF
-         bBEg==
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZCj0dVvQrIlDStuTc/HtBM39cFcNUtJEg5lczvmxgKs=;
+        b=F85IL8T5v6/v6K9gxmj0dgpbGs9+fO/f3+r3qSY4Hozja7efqI6Vm+NbDBE+2UMfpE
+         vwKNorHV3pnCq2+pRfEVaB6hoJiOGBjYp1nW5hZHJPAHgxSYmpNyyuEjIjU3Zu2Dlx/o
+         gmsxg8Q6dKERAB3nm2BdA4YD8t9GwlWE7JAX1CLLmfNjZMTe83A//tIpT+iHAOJ4ru/7
+         9vjVZlhPFnyRE85o7MomceBIGHTONen+iMU9mWQMC6O0evJWMupsZl0z8H6BtoMdMW1p
+         roDHIWkoZGhosof6vdwNG/5rp+VZgzIKQIv3pin5b2vFZSbzpkvjRWxT9i1wVBNXEaiY
+         q1Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sPhJE6VPTyo0qcaO20Sn281HINRzDdh0cJ106EjQf1E=;
-        b=pR+Ry/9+/UasavcmzRdzdAPpp+D8586Roi+HWzph5nhOUxlzx5XBBzuYao69YuZyXv
-         gpvIc2fxhFCIlObZpV2RSrflE+uhqFkmlXECPYXoYC7AuO45nWB1NT60Qb98/MqZJASU
-         dO14gMQcW8KdukivGVn9GQRhlwi1GLw1pbdgeFezesW36dQuBOGxxQu2Ne9odPmMol3P
-         PSDXqnZubb6qcs1FxorXMTssUA7PaEr6bA3sHNr14UtzD1OFuMo+TEEgTHKCZe5NHwd2
-         31WPukxfemyBGHaCv2/3d5/rvhkrRae2eGEBkSJ22i3OL9MecLdrBg1kThoCoN+HH1sy
-         ZEPg==
-X-Gm-Message-State: ANoB5pnP5+clGpYKBezpBUBwdMby7DLbsHLADlk513il6EtPkCLETkIK
-        1cvewvMlvNLV30TkSClOwITbdQ==
-X-Google-Smtp-Source: AA0mqf4GUPLpKm7SefwU0ytUKYrPVdXOQuxVrXO3s0xQxqSx6/W95ez8orUQIe+uED2zAXLivIxQPw==
-X-Received: by 2002:a05:6512:3244:b0:4a2:3d81:8aed with SMTP id c4-20020a056512324400b004a23d818aedmr1939706lfr.500.1668759459918;
-        Fri, 18 Nov 2022 00:17:39 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c3-20020ac25f63000000b004b177293a8dsm560876lfc.210.2022.11.18.00.17.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 00:17:39 -0800 (PST)
-Message-ID: <4e5e4f63-a950-f8f4-fe62-1982b66eb8a3@linaro.org>
-Date:   Fri, 18 Nov 2022 09:17:38 +0100
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZCj0dVvQrIlDStuTc/HtBM39cFcNUtJEg5lczvmxgKs=;
+        b=znQASBJ6ydcbJFqNm/cL+mJtTfJNo4T/ygV0vcjVfTJht7U8zEZ6l51bKuYcWAJZ+1
+         wSq8lkL1Ybmkkjv3cVXGX29IOZnT1ZUmNu3mmRtCS62KRcTrMfVsyIu7eCKC5iRLWPkS
+         gaMcFA3NL0IYl+FV6KyvnmkfmN6GL4ptDoASphhwM3kkiRs3Xuyn0QsY5jECK4YFeO5l
+         3AUUgKlomCKJS3UPDhbnLBV01BY+7ax1SWdt+WwszilFaJU9F3x0FE3gujkOHFNNE2/u
+         JXMwGsiPF0nJCLJbgnDpKmbieT3T/Uqx7POcS92pYY2MSVBPNPtkLme3DELvxVIFeTMP
+         E3lw==
+X-Gm-Message-State: ANoB5pm4LSwsQf+FpmzGCfFoaHgnIHXRr5U8jWg0Y3vMVt4uewgszL8t
+        hJ/dLiFMDq5Z4ROA4s68t0iTkw==
+X-Google-Smtp-Source: AA0mqf6Cca8aNYchWphhM5cN8e96CVy2ffjRIXxBbWHKFM/S+BV6+W6wZgIbDJB8mjWcBU9cdyao/Q==
+X-Received: by 2002:a05:600c:19d0:b0:3cf:e7b7:d87d with SMTP id u16-20020a05600c19d000b003cfe7b7d87dmr7241767wmq.95.1668759881064;
+        Fri, 18 Nov 2022 00:24:41 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m4-20020a05600c4f4400b003cffd3c3d6csm4070084wmq.12.2022.11.18.00.24.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 00:24:40 -0800 (PST)
+Subject: [PATCH v2 0/3] qcom: add support for SPMI PMICs found on SM8550 platforms
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 3/7] dt-bindings: mfd: syscon: Add mt8365-syscfg
-Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogiocchino.delregno@collabora.com
-References: <20221117210356.3178578-1-bero@baylibre.com>
- <20221117210356.3178578-4-bero@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117210356.3178578-4-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAEVBd2MC/42NQQqDMBBFr1Jm3SkmatGueo/SRRIHHTCJZFQo4t079ARdfd6H//4BQoVJ4HE5oN
+ DOwjkp2OsFwuTSSMiDMtjKWmNMg8mVKGvJaUSJXdtWuC3K5CLKEhkHG/q+p9AOwYBavBNCX1wKk3rS
+ Ns9aTixrLp/f6240Xv8f7AYrvNd156xvvG3Mc2bd5FsuI7zP8/wCRyhngNQAAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Fri, 18 Nov 2022 09:24:37 +0100
+Message-Id: <20221114-narmstrong-sm8550-upstream-spmi-v2-0-b839bf2d558a@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 22:03, Bernhard Rosenkränzer wrote:
-> Document Mediatek mt8365-syscfg
-> 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+The SM8550 based platforms sports a bunch of new PMICs:
+- pm8550
+- pm8550b
+- pm8550ve
+- pm8550vs
+- pmk8550
+- pmr735d
+- pm8010
 
+With GPIO support on:
+- pm8550
+- pm8550b
+- pm8550ve
+- pm8550vs
+- pmk8550
+- pmr735d
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This documents bindings for those SPMI PMIC and adds compatible in the
+PMIC pinctrl driver for GPIO support.
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Lee Jones <lee@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+---
+Changes in v2:
+- Squashed patch 3 & 2 into 1, added Reviewed-by from Krzysztof
+- Squashed patch 5 into 4, added Reviewed-by from Krzysztof
+- Squashed patch 7 into 6, added Reviewed-by from Konrad
+- Link to v1: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-spmi-v1-0-6338a2b4b241@linaro.org
+
+---
+Neil Armstrong (3):
+      dt-bindings: mfd: qcom,spmi-pmic: document pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550, pm8010 & pmr735d
+      dt-bindings: pinctrl: qcom,pmic-gpio: document pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550 & pmr735d
+      pinctrl: qcom: spmi-gpio: add support for pm8550 & pmr735d gpio control
+
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml        |  7 +++++++
+ .../devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml    | 18 ++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c               |  6 ++++++
+ 3 files changed, 31 insertions(+)
+---
+base-commit: 8274e19d9db1019f8fac39cf46da6680513fd5d3
+change-id: 20221114-narmstrong-sm8550-upstream-spmi-d2c999ec5dc1
 
 Best regards,
-Krzysztof
-
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
