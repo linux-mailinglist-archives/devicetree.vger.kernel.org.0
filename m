@@ -2,27 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0515662EA7C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 01:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C312762EA37
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 01:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234053AbiKRAoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 19:44:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47462 "EHLO
+        id S232330AbiKRA1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 19:27:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234080AbiKRAoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 19:44:12 -0500
-X-Greylist: delayed 1693 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Nov 2022 16:44:11 PST
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F358248EC;
-        Thu, 17 Nov 2022 16:44:08 -0800 (PST)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1ovp2v-000nxs-GZ; Fri, 18 Nov 2022 00:15:53 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S229580AbiKRA1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 19:27:15 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748CD6BDC4;
+        Thu, 17 Nov 2022 16:27:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=AFV+7ApdCBOIGMsVLFPQM1I3SArzUFkwUjMk4P2eK8w=; b=X6077zp2pInx/2693TTYUli8jc
+        K1IozKW9lf//AlSauzYixSYibR+yER5K2jUKT2bTBxo/z/UjY4j+bvuYpepGqSpbnHxVQpu3OvnVb
+        co/aL/GMA5ywbNuKLFioh+8JWZwAE3MqHB1+Nyq4vlI4oUd/oN3/LtBXudyoi5eHBoIs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ovpDr-002kI9-Lp; Fri, 18 Nov 2022 01:27:11 +0100
+Date:   Fri, 18 Nov 2022 01:27:11 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -31,83 +38,31 @@ To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH 3/3] arm64: dts: imx8m*-venice: add dp83867 PHY LED mode configuration
-Date:   Thu, 17 Nov 2022 16:15:48 -0800
-Message-Id: <20221118001548.635752-4-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221118001548.635752-1-tharvey@gateworks.com>
+Subject: Re: [PATCH 0/3] add dt configuration for dp83867 led modes
+Message-ID: <Y3bRX1N0Rp7EDJkS@lunn.ch>
 References: <20221118001548.635752-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221118001548.635752-1-tharvey@gateworks.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add configuration for dp83867 PHY LED mode via ti,led-modes property.
+On Thu, Nov 17, 2022 at 04:15:45PM -0800, Tim Harvey wrote:
+> This series adds a dt-prop ti,led-modes to configure dp83867 PHY led
+> modes, adds the code to implement it, and updates some board dt files
+> to use the new property.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi | 6 ++++++
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts  | 6 ++++++
- arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts  | 6 ++++++
- 3 files changed, 18 insertions(+)
+Sorry, but NACK.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-index c305e325d007..bb9928153ff0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-@@ -111,6 +111,12 @@ ethphy0: ethernet-phy@0 {
- 			reg = <0>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,led-modes = <
-+				DP83867_LED_SEL_LINK
-+				DP83867_LED_SEL_LINK_1000BT
-+				DP83867_LED_SEL_LINK_ACT
-+				DP83867_LED_SEL_LINK
-+			>;
- 			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 			rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 11481e09c75b..d7de555cf5e1 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -253,6 +253,12 @@ ethphy0: ethernet-phy@0 {
- 			reg = <0>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,led-modes = <
-+				DP83867_LED_SEL_LINK
-+				DP83867_LED_SEL_LINK_1000BT
-+				DP83867_LED_SEL_LINK_ACT
-+				DP83867_LED_SEL_LINK
-+			>;
- 			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 			rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 97582db71ca8..8e61966c8dd0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -248,6 +248,12 @@ ethphy0: ethernet-phy@0 {
- 			reg = <0>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,led-modes = <
-+				DP83867_LED_SEL_LINK
-+				DP83867_LED_SEL_LINK_1000BT
-+				DP83867_LED_SEL_LINK_ACT
-+				DP83867_LED_SEL_LINK
-+			>;
- 			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 			rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 		};
--- 
-2.25.1
+We need PHY leds to be controlled via /sys/class/leds. Everybody keeps
+trying to add there own way to configure these things, rather than
+have just one uniform way which all PHYs share.
 
+     Andrew
