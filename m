@@ -2,177 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D027462F922
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E6AA62F928
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241795AbiKRPU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
+        id S242198AbiKRPUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:20:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242101AbiKRPU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99431CB08;
-        Fri, 18 Nov 2022 07:20:24 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DD06FB82448;
-        Fri, 18 Nov 2022 15:20:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68B9FC433D6;
-        Fri, 18 Nov 2022 15:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668784821;
-        bh=SpvFCOXvPUWOiKQM23aihGopezt0vreTxIsAJdpgDSo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oc7/TRl+C+oGFHGA0/HLwnXKqEXXKpT8Tx1dY16SqJw9lkVcvNICA1XLIGSXswup6
-         ZCR0Dt5ZXnGKfZGGN8GMnfQRp4ozowb3pInAPwMMW9SI47DOhfZruVNKHsQj+Bvr8I
-         L9awqeg9l3UqAcPXsJHTBJ2ld9thZxkgJKn9DlHZDXmRrHBaKLm9WcWc0W5NHCVH5K
-         y59ypGSpQJqGabhYvkUWLvJgWSjzrqjbZEJzjWHm1qRYedZEA4xn2LEiOOKPt8tKJL
-         fLTECJFPPQxv3KvG5674syCZ/4udl0gDwx8cjqsIr/gXJMPeP/2xG0d02Mm20JWI/m
-         ciPdalNuQJJKg==
-Received: by mail-lf1-f52.google.com with SMTP id g7so8722373lfv.5;
-        Fri, 18 Nov 2022 07:20:21 -0800 (PST)
-X-Gm-Message-State: ANoB5pkBof8ICQJ2tjTYSiHW0oglqXBmu7tKpOO6Yj3H9dJRTO5ZpwYv
-        Qkap2Y2FTcQj1unfP1Q6c2siIsYJaNI86D67qA==
-X-Google-Smtp-Source: AA0mqf4EL07ceQCbbxeKyc252T6oLQShTRKBiEUE8bTfHXb2zfJ9zXJeBa/xS2aGnC6wqvpDpDa5FPgo/eVCoOSa/xI=
-X-Received: by 2002:ac2:442f:0:b0:4a2:8d76:abaa with SMTP id
- w15-20020ac2442f000000b004a28d76abaamr2707645lfl.74.1668784819339; Fri, 18
- Nov 2022 07:20:19 -0800 (PST)
+        with ESMTP id S242166AbiKRPUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:36 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46DA2B26D
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:35 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u2so7179457ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Mt1Oc0ujq+8ARYNZpTY4my+ocgdokMPqWBidtFrPicc=;
+        b=veZLUju0OZcLrca1Tev5vJEV7hltIl62XDCxKODQ7PQNYvXwgWv3nvesnEEirRUohl
+         WhWgbXoZbyh1Sg4IMRI9qfX9O/mVR1YpWEeC54qRL0iDTxGVXcOxlhRmOO8DbGV8BZqD
+         0KnQrkXnAQeSXMQGFYN5CW5sude1YMPaEEG9fCmSnJofMGn1ht4V//QLi5osUMWZCwWB
+         RyW6/tBlkq8AvndrloX6PNOGxsmvnKz9nUdsWcbp6NQfepPC4S7EBsNNxoJBKZpicFM1
+         Cdj4D20aEsaeKGjZrQocGO5Fq7gi2PZ1kAVK4sOPQQ/uw9/D1kgkkaalKVvoYQxpqFNQ
+         2Clw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mt1Oc0ujq+8ARYNZpTY4my+ocgdokMPqWBidtFrPicc=;
+        b=GBBs+jTVLXXIkPM9nBPWbAcWoQKX3fHzRs8phTiMk3hz11HiTTaEg+1E3KB5Ll1gKJ
+         +KniF07w9noGH79PWBprMvh9c5GSb5+zW/lgm5OwZwaCYmwSjKTM07PI4TXaQYnkCozQ
+         p6hyQpnS7fMBh2zirkiHQCuS8LPSLuWH6NFMefsjmmHCYMEFna4HglVqsvOGlNhWA3nh
+         Y3E8e9miBonwwp8yaNYOFaEWFpFvWZmV00xImVyKea9NsUKdqSkKHhxjiXPiZ/5TN7j2
+         APpYBmbNUaCklElu9uaY/0XuV+IwHNOdZCXlbsUscHTSfosGvDheKvOK/Yiwq+9qs0Ck
+         GHpg==
+X-Gm-Message-State: ANoB5pnMMlszTGYIw8YvBGMKAe4293Dg+FAw7aaDUdc1W2qfO7QMfStY
+        d/uux6wUQUiBMHnOVLLGDvwdGg==
+X-Google-Smtp-Source: AA0mqf5hlu4uHwk4LzPNIZkF/atO8Pz4NWHiF2ank783WcL1uP9fp09juYtV0GhRLysjeUsSj3RCug==
+X-Received: by 2002:a05:651c:1250:b0:279:d87:7bc6 with SMTP id h16-20020a05651c125000b002790d877bc6mr2564785ljh.225.1668784834094;
+        Fri, 18 Nov 2022 07:20:34 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b004948ddb4e4dsm690597lfq.301.2022.11.18.07.20.32
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Fri, 18 Nov 2022 07:20:33 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8350-sagami: Configure SLG51000 PMIC on PDX215
+Date:   Fri, 18 Nov 2022 16:20:27 +0100
+Message-Id: <20221118152028.59312-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20221118152028.59312-1-konrad.dybcio@linaro.org>
+References: <20221118152028.59312-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-References: <20221111132906.2212662-1-hljunggr@cisco.com> <20221111132906.2212662-4-hljunggr@cisco.com>
- <20221116200729.GA761467-robh@kernel.org> <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
-In-Reply-To: <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Nov 2022 09:20:10 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
-Message-ID: <CAL_Jsq+M2A-5B+ZM2xjZVYXdQFyU=7coitVe9aKx9GHpR_H1Ug@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Erling Ljunggren <hljunggr@cisco.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Bartosz
+Remove the mention of this PMIC from the common DTSI, as it's not
+used on PDX214. Add the required nodes to support it on PDX215.
 
-On Fri, Nov 18, 2022 at 4:34 AM Hans Verkuil <hverkuil@xs4all.nl> wrote:
->
-> On 11/16/22 21:07, Rob Herring wrote:
-> > On Fri, Nov 11, 2022 at 02:29:04PM +0100, Erling Ljunggren wrote:
-> >> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
-> >>
-> >> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
-> >> ---
-> >>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
-> >>  1 file changed, 46 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> >> new file mode 100644
-> >> index 000000000000..492eecb3ab7c
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> >> @@ -0,0 +1,46 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
-> >> +
-> >> +maintainers:
-> >> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> >> +
-> >> +description: |
-> >> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: onnn,cat24c208
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  input-connector:
-> >> +    description: |
-> >> +      Phandle to the video input connector, used to find
-> >> +      the HPD gpio and the connector label, both optional.
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >
-> > The binding and driver feel the wrong way around to me. It seems
-> > like you should have a driver for the connector and it needs HPD GPIO,
-> > label, and EEPROM. The driver instead looks mostly like an EEPROM driver
-> > that hooks into a few connector properties.
->
-> A device like this is typically used next to an HDMI receiver: the DDC
-> lines and the HPD line are connected to the EDID EEPROM, and the video
-> is handled by the HDMI receiver.
->
-> Most HDMI receivers will have the EDID part integrated into the chip itself
-> (see e.g. the adv7604 driver), but that doesn't have to be the case. The EDID
-> can be completely separate, it doesn't matter for the receiver part.
->
-> In our specific use-case there isn't even an HDMI receiver since the HDMI
-> video is passed through and this EDID EEPROM is used to help debug HDMI
-> issues by presenting custom EDIDs, similar to something like this:
->
-> https://www.amazon.com/dp/B0722NVQHX
->
-> The HPD line is controlled by the EDID part since it has to be low if there
-> is no EDID or pulled low for at least 100ms if the EDID is being modified.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../qcom/sm8350-sony-xperia-sagami-pdx215.dts | 66 +++++++++++++++++++
+ .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |  2 +-
+ 2 files changed, 67 insertions(+), 1 deletion(-)
 
-There is no HPD control on the EEPROM itself. So HPD does not belong
-in the EEPROM node. That is the fundamental problem with the binding.
+diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
+index c74c973a69d2..d4afaa393c9a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
++++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
+@@ -12,6 +12,72 @@ / {
+ 	compatible = "sony,pdx215-generic", "qcom,sm8350";
+ };
+ 
++&i2c13 {
++	pmic@75 {
++		compatible = "dlg,slg51000";
++		reg = <0x75>;
++		dlg,cs-gpios = <&pm8350b_gpios 1 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cam_pwr_a_cs>;
++
++		regulators {
++			slg51000_a_ldo1: ldo1 {
++				regulator-name = "slg51000_a_ldo1";
++				regulator-min-microvolt = <2400000>;
++				regulator-max-microvolt = <3300000>;
++			};
++
++			slg51000_a_ldo2: ldo2 {
++				regulator-name = "slg51000_a_ldo2";
++				regulator-min-microvolt = <2400000>;
++				regulator-max-microvolt = <3300000>;
++			};
++
++			slg51000_a_ldo3: ldo3 {
++				regulator-name = "slg51000_a_ldo3";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++
++			slg51000_a_ldo4: ldo4 {
++				regulator-name = "slg51000_a_ldo4";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++
++			slg51000_a_ldo5: ldo5 {
++				regulator-name = "slg51000_a_ldo5";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1200000>;
++			};
++
++			slg51000_a_ldo6: ldo6 {
++				regulator-name = "slg51000_a_ldo6";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1200000>;
++			};
++
++			slg51000_a_ldo7: ldo7 {
++				regulator-name = "slg51000_a_ldo7";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++		};
++	};
++};
++
++&pm8350b_gpios {
++	cam_pwr_a_cs: cam-pwr-a-cs-state {
++		pins = "gpio1";
++		function = "normal";
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++		power-source = <1>;
++		drive-push-pull;
++		output-high;
++	};
++};
++
+ &tlmm {
+ 	gpio-line-names = "APPS_I2C_0_SDA", /* GPIO_0 */
+ 			  "APPS_I2C_0_SCL",
+diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+index 6ae700e72d1e..8f32b2799bcb 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+@@ -3,6 +3,7 @@
+  * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
+  */
+ 
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sm8350.dtsi"
+ #include "pm8350.dtsi"
+@@ -506,7 +507,6 @@ &i2c13 {
+ 	clock-frequency = <100000>;
+ 
+ 	/* Qualcomm PM8008i/PM8008j (?) @ 8, 9, c, d */
+-	/* Dialog SLG51000 CMIC @ 75 */
+ };
+ 
+ &i2c15 {
+-- 
+2.38.1
 
-We've always started bindings without connector nodes and just shove
-properties into whatever node we do have. Then things evolve to be
-more complicated with different h/w and that doesn't work. Start with
-a connector even if you think it is overkill.
-
-> > Reading the datasheet, I don't see anything special about accessing the
-> > EEPROM from the host (DSP) side. Wouldn't the default at24 driver work?
-> > It exposes regmap and nvmem.
->
-> No. It is not a regular EEPROM, it is dedicated to store EDIDs. It has to
-> correctly toggle the HPD line and inform other drivers (specifically HDMI CEC)
-> of EDID updates.
->
-> I don't see how the at24 could work: besides the eeprom i2c address it has to
-> deal with two additional i2c devices: the segment address and the config
-> address of the device itself. Writing to the eeprom from the host side requires
-> a write to the segment address followed by a write to the eeprom part itself,
-> and that's not something the at24 can do. And it is also something very specific
-> to the VESA E-DDC standard (freely downloadable from vesa.org).
-
-The addressing is different on the DSP (as the datasheet calls it)
-side compared to the DDC side which has the EDID_SEL signal. Linux
-only sees the DSP side, right? Looking at it a bit more, it looks like
-the segment addressing is different from at24 which uses an i2c
-address per segment. It is similar to ee1004 SPD where the segment is
-selected by a write to a 2nd i2c address.
-
-> Note that historically the first EDID EEPROMs most likely did work like the
-> at24, but as EDID sizes grew beyond 256 bytes the E-DDC standard was created
-> and that departed from the normal EEPROMs.
-
-What happens if/when you have more than 1 part to support? Why not
-provide a regmap or nvmem to the EDID storage and then the backend
-device can be anything. I could imagine we could have a s/w
-implementation.
-
-Anyways, I don't really care if you do any of that now, but I still
-think the binding is backwards. It's the connector you are managing,
-not just an EEPROM, so you should bind to the connector and from there
-gather all the resources you need to do that (EEPROM, HPD).
-
-Rob
