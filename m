@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB74F62F52F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D1062F534
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:42:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235245AbiKRMln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 07:41:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
+        id S241159AbiKRMmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 07:42:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241063AbiKRMl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:41:29 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9104B8CFCE
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:41:28 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id u2so6635658ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:41:28 -0800 (PST)
+        with ESMTP id S241762AbiKRMmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:42:17 -0500
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E588D8CFD1
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:42:14 -0800 (PST)
+Received: by mail-ua1-x932.google.com with SMTP id y24so1462677uaq.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 04:42:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a0FTR6z372a+SVrLNdiUVE4A/1f4Z98NLhqS2FM1hNo=;
-        b=QnzB1ZH6VzQ0SLGmOAUmv3pmPocgdO13g3DtWTWwEn8nRE3cPWSWXQOxY8k83pafaf
-         N31xZiPAIoZkn9fGTakPcTAn53BQjMyQ6HpL+7GvJkxiKI2g/aH4CCHwlQv/6VoK86EF
-         FJ5IGH1EFa4kOtzYAAY+P5lAFl0PUoPXDPBRpU2qcdXXE8m0JWJQddbzBvdAfM9A8yYn
-         OjADxR7h4ROKMVswYG3IiTU2vLOHB85tKDb51F10/h+8vxGYhi+lkUXIQFWcwOC6zv2M
-         uribWNj+76MEqHaPJAcoz7KbimeKaxv8n/fdoPG64qvt22qd1kEhNBP8cl74+kY4/aaQ
-         syXg==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lR6xTYRY7MgkfHig5h9+QBVHckUH85lhudbs/NLAfWU=;
+        b=aSWpS3mKYDiCnOkBIsX+22S6pBFOEOgidnAmfkAVD+J2aGHAvlVyr5NsEQISwtWry1
+         s714L0cDxT4dIUjWZ26hqjYEf41F0jlvnyFp3tmJ+tNGIkqwsF0iBSgiBwzirjV8BEFW
+         3OsAZhXsf6/XNSUVkenujcjaqGH7kB0ROyfh79OYDAtjK3Jm/c1cXe/6Buoo5C9VLBTW
+         QTUzrWzvhC+ZRVSCHdEwXukGYQ2Pnl5w8H9OFaw90jnI5qRNpQ9ew6Y/cVB00RwbOUe+
+         IJoBozL1RkfQkEbQe4e8BiHKWg6EyHiu/2DORvSGYtSNyYqtTBtjS9s0aLxJZv5sP1Nk
+         WfQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a0FTR6z372a+SVrLNdiUVE4A/1f4Z98NLhqS2FM1hNo=;
-        b=Gck00s0fvrRjPvRXP0vSyZ8bSUirkaLm6E/PysKAU9N2QF0pllzTKCvdOABFjqC93c
-         YQCn90QyeavonST3/xzn3/GB+YyfH4Z62rVjHx0mfU4K+g2yIxOS33Tpd1aa3z8+I9+O
-         EVKoEU578CgoDAuchQCb9qaZLFkzJtE7VTTrNlJB2Tvmrwph0//2JZfHE2MV/ZRQDw3v
-         kEkMTMWgmej6BvluvFUFHQ5h/YZJx/WwsQngmNy+Bg3xca0PKAbGGbCJf5HntenDgEkS
-         FmPnK/w7ohqf/3Ey0Ba18Z/SEmHlhSjIxn5cf1kn6wdQuzw/TS5lKOJtwnQ0QjMhfs3p
-         ZIPw==
-X-Gm-Message-State: ANoB5plFVWUuB0zFvwm0BVwZq0e20nFAKrPWUVH/8/W3SuSyZIQDaekH
-        mLxbb7t3hbr8N1exc3Y+ruV1RQ==
-X-Google-Smtp-Source: AA0mqf7lErewth5EE2F868DAY6P5GOZSlqtM+eYuoc5OY1KVNj+hLDTJG51LiKE+OKuZfsP2eJgs5g==
-X-Received: by 2002:a2e:8e6e:0:b0:277:92e:e088 with SMTP id t14-20020a2e8e6e000000b00277092ee088mr2309263ljk.140.1668775286907;
-        Fri, 18 Nov 2022 04:41:26 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y21-20020ac24215000000b004947984b385sm644590lfh.87.2022.11.18.04.41.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 04:41:26 -0800 (PST)
-Message-ID: <e3c8121a-5234-1051-40c7-3989189badfa@linaro.org>
-Date:   Fri, 18 Nov 2022 13:41:24 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lR6xTYRY7MgkfHig5h9+QBVHckUH85lhudbs/NLAfWU=;
+        b=XqNs1OyUfUtM/eOqHrIWrewIyGdEWWLu0qOuPpzx1DAJhKydoRSJGlHPstHjf0nkbx
+         iUP+R4WTfnW04T4IZ8Ob6u8e2LjIUN0rSsla0TfKWk7V1JLwPENBx4OFeXj1jwHBiVLC
+         lArQnnqkxXS9q1auCL3BPGE1qlKRoKYBgz2Dgif595NYOHbONDE3hVBIZYuazgz8WxAz
+         kkCD/ihKJctvzmCrTcoCm4Sjg6x9efx4H5uxADIsni/cYZUt9j1AuV7kz4tfgzqN73Z2
+         qvkdNpq5QixT/IJNvJpbjh4rRJBXPOHBpmYPhAKqar/OQKRJ565Y6qyXuG3wfjFw9ePK
+         eurw==
+X-Gm-Message-State: ANoB5pkKcSECceNSHz4KdbrymGGTCo0nDJ/iLV1SxHgTzA+hCoPMsjx1
+        2IxSp82gsDPF69hmaGIB1PjNKPrlNCqOTa2Uwp2kdA==
+X-Google-Smtp-Source: AA0mqf7mGBV/TWyE4B8wNnzY/00pkB9i2ya3rMZZIkqwL+3LlYjws14OhWdWW2FOvqapZnlxd62JQdHqdYPgEw1XNiY=
+X-Received: by 2002:ab0:6caa:0:b0:409:a03b:1bbb with SMTP id
+ j10-20020ab06caa000000b00409a03b1bbbmr3840981uaa.55.1668775333718; Fri, 18
+ Nov 2022 04:42:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 00/10] iommu/arm-smmu-qcom: Rework Qualcomm SMMU
- bindings and implementation
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221117114818.v7.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+In-Reply-To: <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+From:   Guenter Roeck <groeck@google.com>
+Date:   Fri, 18 Nov 2022 04:42:02 -0800
+Message-ID: <CABXOdTfB9DA1LX3qj4QiHdTuJwV_OnP3eUEyTUvHzX3L3jnkNA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/3] dt-bindings: mfd: Add DT compatible string "google,cros_ec_uart"
+To:     Mark Hasemeyer <markhas@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-References: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2022 18:06, Dmitry Baryshkov wrote:
-> The main goal of this patchset is to define a generic qcom,smmu-500
-> binding to be used by newer Qualcomm platforms instead of defining each
-> and every SoC line with no actual differences between the compats.
-> 
-> While preparing this change it was required to cleanup the existing
-> bindings and to rework the way the arm-smmu-qcom implementation handles
-> binding to IOMMU devices.
-> 
-> Changes since RFC v2:
->  - Dropped the dts patch, picked up by Bjorn
->  - Fixed minor nits in commit messages and in-file comments (noted by
->    Krzysztof and Richard Acayan)
-> 
-> Changes since RFC v1:
->  - Added the dts patch fixing order of clocks in msm8996.dtsi
->  - Fixed the DT bot errors
->  - Added separate clause for Google Cheza devices
+On Thu, Nov 17, 2022 at 10:49 AM Mark Hasemeyer <markhas@chromium.org> wrote:
+>
+> Add DT compatible string in
+> Documentation/devicetree/bindings/mfd/cros_ec.txt
+>
 
-Please continue the version numbering. RFC is also a patch and also a
-version. This is v3. Your next will be v4.
+This is now google,cros-ec.yaml
 
-Best regards,
-Krzysztof
+Guenter
 
+> Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> ---
+>
+> Changes in v7:
+> - No change
+>
+> Changes in v6:
+> - No change
+>
+> Changes in v5:
+> - No change
+>
+> Changes in v4:
+> - Changes in commit message.
+>
+> Changes in v3:
+> - Rebased changes on google,cros-ec.yaml
+>
+> Changes in v2:
+> - No change
+>
+> ---
+>  .../devicetree/bindings/mfd/google,cros-ec.yaml       | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index 04962bb29576e..26787e4574b8d 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -28,6 +28,9 @@ properties:
+>        - description:
+>            For implementations of the EC is connected through RPMSG.
+>          const: google,cros-ec-rpmsg
+> +      - description:
+> +          For implementations of the EC is connected through UART.
+> +        const: google,cros-ec-uart
+>
+>    controller-data:
+>      description:
+> @@ -222,4 +225,12 @@ examples:
+>              compatible = "google,cros-ec-rpmsg";
+>          };
+>      };
+> +
+> +  # Example for UART
+> +  - |
+> +    uart0 {
+> +        cros-ec {
+> +            compatible = "google,cros-ec-uart";
+> +        };
+> +    };
+>  ...
+> --
+> 2.38.1.584.g0f3c55d4c2-goog
+>
