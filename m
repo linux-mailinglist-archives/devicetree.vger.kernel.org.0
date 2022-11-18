@@ -2,131 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A13862FC31
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:08:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B07D62FCE5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 19:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242427AbiKRSIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 13:08:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52010 "EHLO
+        id S235344AbiKRSlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 13:41:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241377AbiKRSIU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:08:20 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1E37A366;
-        Fri, 18 Nov 2022 10:08:18 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AII89BT082440;
-        Fri, 18 Nov 2022 12:08:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668794889;
-        bh=c3pepiCGHi5sR3q5cWaJ4aW11UIBytKWyekMYxdOLOs=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=CMKUFa98XMCKaueIg8aDc95Jj2VC3nJFFFSEMwy2sdBN5nkYicU2A+TU3l4vhDd0W
-         5NSUnj5ShSiiUbhpcufuJc/73XNf1vt0ZXjL6j1cB5NsDjDTjmkoJfhucoKx0i7ty5
-         sSrDHULjldhCzWicVIouvYYWwhNjVIKFw/X1/xy0=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AII898T054230
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Nov 2022 12:08:09 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
- Nov 2022 12:08:08 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 18 Nov 2022 12:08:08 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AII88Io123565;
-        Fri, 18 Nov 2022 12:08:08 -0600
-Date:   Fri, 18 Nov 2022 12:08:08 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Apurva Nandan <a-nandan@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
-Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
-Message-ID: <20221118180808.wnel7d6gswsnooww@junkman>
-References: <20221116130428.161329-1-a-nandan@ti.com>
- <20221116130428.161329-5-a-nandan@ti.com>
- <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
- <20221118174754.y37pq77drvla2uxj@tinderbox>
- <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
+        with ESMTP id S235316AbiKRSlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 13:41:18 -0500
+X-Greylist: delayed 1802 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Nov 2022 10:41:17 PST
+Received: from yutyjpcm.nojakebraking.com (yutyjpcm.nojakebraking.com [88.209.254.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434B01E701
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 10:41:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=dkim; d=nojakebraking.com;
+ h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To:Message-ID; i=shy.mar@nojakebraking.com;
+ bh=BhL8rJ0j5WZHRHFzM943rgUS1t4=;
+ b=WOFXUxqQExWxp+YpBVazMquIsaYy1R3ljb5waOn8IuARMQi4FncNoBPCqrYBH2plnMYbUSbd0veS
+   FiHb/3vVuycUiXO14k1dcOKn0oJCx7IfEsIpr6txQD0naKNCC4K8SNcNsbaYAmXI/negA15fecRU
+   kZAwxT7GzqQcGuvMfkIhVbpPaCd7HDEla7lGMD0+077LweXkBs4ATOvCzA/gOF6Izh4Px6pkTMs6
+   jb9g/tGZ8C9BfEp1CFdV5TGWuOIPPfnpR2a1OO5i+GP1oNkwq9D24Qz/tckF1g+veIbxhBYKBrWn
+   UfvJ9gE1XvlwdBFxH9faPL1Q309h8enaM+blGg==
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=dkim; d=nojakebraking.com;
+ b=TG9K5lTPeCOzbWfPTM2+CT5FEjuNs9+aRQuqsSwVb9hOTGYu8M/UE8c69f09MR4U2kk0rmVE6LOo
+   25RpizjONrSyI56yZ+07exgM1AxpZq5N5ZrYCP8IQUEU9BrD/F1VdNsWFAGl686670bIUSUt+2ur
+   YmbxEKwscNNwiHKskG/4cPfeA4daOVr3WFJSvplMLRZIUTAFbF+vMOb3fNXHjWwcibZyLxTteIMA
+   Qmulpx1sn5mPJ6zj21aowBkuhSbJNsA2KcX3QCV99hYwx5/L5MlVtBfTQWkvRR2jpppSwPHRgoLj
+   Jhdb6PLxEbRGQM1MxNWXKJAp2oHdVG/dDcjiHQ==;
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: Re:
+To:     devicetree@vger.kernel.org
+From:   "Mr. JAMES" <shy.mar@nojakebraking.com>
+Date:   Fri, 18 Nov 2022 10:11:11 -0800
+Reply-To: jw0622254@gmail.com
+Message-ID: <0.0.0.5C7.1D8FB7924A93D50.0@yutyjpcm.nojakebraking.com>
+X-Spam-Status: Yes, score=6.8 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,HK_NAME_MR_MRS,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [jw0622254[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  1.0 HK_NAME_MR_MRS No description available.
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:56-20221118, Andrew Davis wrote:
-> On 11/18/22 11:47 AM, Nishanth Menon wrote:
-> > On 11:40-20221118, Andrew Davis wrote:
-> > > On 11/16/22 7:04 AM, Apurva Nandan wrote:
-> > 
-> > [...]
-> > 
-> > > > +#include <dt-bindings/net/ti-dp83867.h>
-> > > > +#include <dt-bindings/gpio/gpio.h>
-> > > > +#include "k3-j784s4.dtsi"
-> > > > +
-> > > > +/ {
-> > > > +	compatible = "ti,j784s4-evm", "ti,j784s4";
-> > > > +	model = "Texas Instruments J784S4 EVM";
-> > > > +
-> > > > +	chosen {
-> > > > +		stdout-path = "serial2:115200n8";
-> > > > +	};
-> > > > +
-> > > > +	aliases {
-> > > > +		serial2 = &main_uart8;
-> > > 
-> > > This feels hacky. Your chosen node picks serial2 as that is usually
-> > > the one that is wired up on K3 boards. But on this board it is main_uart8.
-> > > So why not have this be serial10, then choose
-> > > 
-> > > stdout-path = "serial10:115200n8";
-> > > 
-> > > Also, I've made comments on previous version of this series, it is
-> > > nice to include folks who have commented before in the CC for future
-> > > versions, that way our filters don't hide these away and we can more
-> > > easily check that our comments have been addressed.
-> > 
-> > Please stick with the standard of serial2 as the linux console standard.
-> > We ended up with that to ease up capabilities of various distros to
-> > uniformly work across SoC and board variants.
-> > 
-> 
-> The chosen "stdout-path" is for setting the kernel's default output terminal.
-> Distros and other userspaces need to use their own policy mechanisms for
-> picking what serial port to run getty on or whatever the issue may be.
-> 
-> Some look at the kernel command line, and our bootloader provides
-> that too, so still no reason to fake alias names here.
+Hello, =
 
 
-We have had this conversation earlier as well.
+I'm James, an Entrepreneur, Venture Capitalist & Private Lender. I represen=
+t a group of Ultra High Net Worth Donors worldwide. Kindly let me know if y=
+ou can be trusted to distribute charitable items which include Cash, Food I=
+tems and Clothing in your region.
 
-https://lore.kernel.org/linux-arm-kernel/CAK8P3a2VSBvOn1o+q1PYZaQ6LS9U4cz+DZGuDbisHkwNs2dAAw@mail.gmail.com/T/#m4ecb0dc6a78c84631f072faa1b0df0df46333d09
-
-This is also the reason why we picked serial2 as linux console as a
-standard across the boards based on the ecosystem.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thank you
+James.
