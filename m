@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8B562F6E0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54EEA62F6E9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:13:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235230AbiKROLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:11:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46956 "EHLO
+        id S242228AbiKRONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:13:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235221AbiKROLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:11:31 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D393D3FB81
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:11:26 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id d20so6871295ljc.12
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:11:26 -0800 (PST)
+        with ESMTP id S242208AbiKRONf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:13:35 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FDFF7656
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:13:32 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id k19so6953276lji.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:13:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qtp5Dpmra1/rOA49Eh+jNdwLgrIa5og9y5Ys93KPSHE=;
-        b=vpE5DEJrG9SOD9w/HFMLfE+1HP8jFqbFKMfAWW2yiYMYsnFIimIAFmNcn+m4tALgkp
-         LgHY1KAwVbOgdyTKjt7CvX1Y59QgCHQEle+seAwQZCt3houzT3w+2rSzCrrgqSHwPk29
-         r8Hdzf0Iy/GEMs98J+C49B3ckS8l22abtCS1eyQwm7hv43xlrCLHnZ0D+BRoJew/NIc6
-         SF7Fg8sdLhXejVfdYHpFJnGsqa8LbTugeMVNS2hW8H+8SoNg5/kxvgytJZF8kX1up8Hn
-         BCdOGOCSEdzX4buLWUCi5BXQHqPDENkp560Do51lXcvNTk8zxeFGuPVpMrMIw5z2o4wY
-         XGhA==
+        bh=cqLaNkblV1LV9pgYgi/64RZJna6jVfmG5ouM5RL4vvs=;
+        b=q1CS8BiaLWEYfYmqXbHtd0JgL2ss0AyvGG14nZ7+2STHpjpNusBtrIxwQFUvj6GGBz
+         JmF0OfXh/NDIE7WfRQmhFHxIwLW3p8wTHUAvN0+pW7+evHlFfUx1w8cr7PbvvGo7Ppfx
+         GEHryc0X8iDaIepU59wkUI25xBHwWqCnC8hV10jl+tt66ou4HjAKNoX3B/XRlgPWryDJ
+         ILeo+iM9xLswHxnV0nd62jZCLk+WEiOXWQQuxEjiFcWDxVpgfPaf7hPKFZ0oMchIvNV0
+         pro7Tp4ef87Bm4XvlMD4lyDuXP/HeFJf8zL87SwA7gUFqx1wcL6FJvI1xPj5czROwwVP
+         dCow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qtp5Dpmra1/rOA49Eh+jNdwLgrIa5og9y5Ys93KPSHE=;
-        b=ALVVQnjh0kNo5AT45GSxzaotDFzTLHLimS9H/uoCovhs/sU7dj+V8ETrptuz7STF5+
-         BiVFpPa4h19//XaBHFUNca/Tej4G4iTlTOKqFYnb1yMxjRCiEMpAREXHyEgVso40Iya5
-         tVYHY7bZJYduKtIvZUQXVlNA3+kPMso2kUw3358UNhDt50IkNCsKTD19Lv34haTgAPvo
-         RTy3296RMlG3Xuqp+suiQAVlkg3OdaQJ/4UiMPga4KbU5JhBejdlnXskf/xfNrp6Uu/Q
-         O5o3qFm2oVRT5evQe5xsItS129O1kAxoEVwZk5Fcr62czGAP1EE8cxeX8iUenwlBppSv
-         jB8Q==
-X-Gm-Message-State: ANoB5pnzZ52gR2DgtpJsIlmGHyLOhksrXa4pyXiWZtRikRRC02l7lNP2
-        rl5s/pXToFg1AFPfTPilRlBaJA==
-X-Google-Smtp-Source: AA0mqf6ugo5sJDhmwF3aEBoUOKms4A5DsAn015MW37RuR7hfvqxQ1IS4rM/frjVmlKUvKbpu2GIi+g==
-X-Received: by 2002:a05:651c:50b:b0:26c:5db6:cd84 with SMTP id o11-20020a05651c050b00b0026c5db6cd84mr2545700ljp.114.1668780685230;
-        Fri, 18 Nov 2022 06:11:25 -0800 (PST)
+        bh=cqLaNkblV1LV9pgYgi/64RZJna6jVfmG5ouM5RL4vvs=;
+        b=JHMPfGBqMDQ4Xxfg2Sg07ombuppVugOvi0s09TrDKrdlu3Qfo6PC4yrLuFNFes+KCH
+         9s5aWDVQh8qtS+HPVUxWTMXw+qLMAP/QEscuezMTEBcWtOYDhZC/fTGdfWrVoOuZLFfG
+         C/4SEIi8y4IgmABrfVKCuq792qCMd2FbGtT0Mj76Hp3S6+BgkKd9KPkmObQAyJr95CXB
+         dfpGBKJ+lFbO0d7RR+9CaZmLHlH0i9Gb5pCcmxo6jsHI58kbgNYm2dHeHnySpKTODNIt
+         rPR+0feeQvXbNheZuCQtbTxE4xRjjQqtKYhO/rpiL51tXJ8zLP6Va+iRdKK4tgXRdtTE
+         /73Q==
+X-Gm-Message-State: ANoB5pmhvyqJ889YNKl74J6mSmwsrPTEduK1rVw7/6KD/sX6OJRmCjvM
+        6b5mNH/MQ2KsoSlwrFArnTL7bg==
+X-Google-Smtp-Source: AA0mqf6ppqWmgIkzm1J6G6yQ557Z8RpbYUlaeYOVZu0S6+yUmn2AEKw3w6XFgr7tE4vj94d9wnWlJw==
+X-Received: by 2002:a05:651c:549:b0:277:5059:82c8 with SMTP id q9-20020a05651c054900b00277505982c8mr2686953ljp.315.1668780810494;
+        Fri, 18 Nov 2022 06:13:30 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm666659lfh.197.2022.11.18.06.11.24
+        by smtp.gmail.com with ESMTPSA id o19-20020ac24e93000000b004acd6e441cesm673510lfr.205.2022.11.18.06.13.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:11:24 -0800 (PST)
-Message-ID: <07961c68-62d4-efee-5618-9e7f6342923b@linaro.org>
-Date:   Fri, 18 Nov 2022 15:11:23 +0100
+        Fri, 18 Nov 2022 06:13:29 -0800 (PST)
+Message-ID: <e93a61ce-4c7b-ecb2-7b82-1bde388ec6bb@linaro.org>
+Date:   Fri, 18 Nov 2022 15:13:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: add support for InnoLux
- G070ACE-L01
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD Pro
+ boards
 Content-Language: en-US
-To:     richard.leitner@linux.dev, linux-kernel@vger.kernel.org
-Cc:     Richard Leitner <richard.leitner@skidata.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221118075856.401373-1-richard.leitner@linux.dev>
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org
+References: <20221118073017.26128-1-quic_rjendra@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118075856.401373-1-richard.leitner@linux.dev>
+In-Reply-To: <20221118073017.26128-1-quic_rjendra@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 08:58, richard.leitner@linux.dev wrote:
-> From: Richard Leitner <richard.leitner@skidata.com>
+On 18/11/2022 08:30, Rajendra Nayak wrote:
+> Add compatibles for the Pro SKU of the sc7280 CRD boards
 > 
-> Add Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel compatible
-> string.
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 463509f0f23a..2550ab251f7b 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -613,6 +613,11 @@ properties:
+>            - const: google,hoglin
+>            - const: qcom,sc7280
+>  
+> +      - description: Qualcomm Technologies, Inc. sc7280 CRD Pro platform (newest rev)
+
+Such entry is already documented. I think this is not based on recent
+kernel.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +        items:
+> +          - const: google,hoglin-sku1536
+> +          - const: qcom,sc7280
+> +
+>        - description: Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform
+>          items:
+>            - const: qcom,sc7280-idp
 
 Best regards,
 Krzysztof
