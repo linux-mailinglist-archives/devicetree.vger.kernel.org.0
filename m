@@ -2,72 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1EF62F7F5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E91962F809
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:46:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241622AbiKROni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:43:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41534 "EHLO
+        id S242031AbiKROqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:46:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235217AbiKROn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:43:26 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5552CFE
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:43:24 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id z24so7039418ljn.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:43:24 -0800 (PST)
+        with ESMTP id S241807AbiKROqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:46:31 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5742271F1C
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:46:30 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id be13so8558609lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:46:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WdF8bmxTWuHAOgXPKQhJz71OI4DmuJEnYLajXB4naGE=;
-        b=UlYWsWnkKX84BrgCT6baoI5qXcZO5xYrQGHiXvml/paiD2nQcKag83WgiLgND4lP+L
-         3J0ZjRWGM1KV3a8xC807o2/nUbJEe5oU5H8GXd5mxh4nPaRuvCOLSDDkk+WxpQZFq9CH
-         6oCT6fQDH/WZzL8i+hB7H9dp5QJ2+TlwKy8MljvcgunpMhZklpWGcx8pZUEYuwlwDfi3
-         Xj41uremO55AQZhWjIyXnrsOiLPe0qZMw0laqYw52NMQU/kOK5jLsS3fMSFWS12Y96If
-         UG7yqQILptmXnJQzqNz8L1vFaJiguvl1p2et7gy7gIkjdPVC4uHun6s9fC/Lg1l4QdRF
-         bOrg==
+        bh=hahClhRd3DWgz5IfF3Hi2OhGzrj/JdBwzY9rjBeju8s=;
+        b=JZmmE5Z+1MzabRyRffMS4z0aGT9BgDXgC9DY0MCMYG1Od3pGNI30/93iq6QOZW6IdU
+         fzRFWbJEIsHpicLM2uM84cqyzD3qkQI9fT5ohEFetg4fYo8GpGdRtchVdyxXexmPlddC
+         eGYx58fwwwBR/DsKEi58q/WGkaBmfRML0mdohoszmg6ZPltefO3A2rcCnwjg9H2e4uHz
+         Ht2YGQKv1bXzlOexPAnjWHR0AMT7xMNE/h4sT/R2kdz2G7JqebBANYjHtmXhnqbDNEln
+         rVq3At5moD/Yhfg5Ccq+IamuGznKvyJiQMbNIvLxeCTTkEAeoLQaX+gl3f5Kw0H/Tmzx
+         zd0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WdF8bmxTWuHAOgXPKQhJz71OI4DmuJEnYLajXB4naGE=;
-        b=USmK+uJ9hR2sZiqxJToUE01GsEoQW0yt+4/N7nFPS6T592LicwhkPeg8JBiXgeQc5P
-         NUCiPzEwOqCIHNbT5w0AVjUcFEmcc27+/NPYUOZ6bkOzyXsBc8+Qkjf70VbmfhpNnp5A
-         KvVmszPGA+HhSnaxSHhY0lNXNEYrWi9a6HwNGxM6vyWQrcEMbF3EnBnUzuRN/AF5cFdC
-         7sjjHEVdhop7o3wV+AUYst8/bvgmy1RGTOslvOMrJ7YEDktOOcsDBTqQyVTYftjdGhgz
-         5Cfehrx0JP9/38Zc1tLEpOSkAt6sLpd2t7dLESI7nxR5hWNCaijY91Rvam8oDA30IrHN
-         lsTw==
-X-Gm-Message-State: ANoB5pkORznSDWQWawyp+YgzRDFXTy6cZM8cv2HDv0N2YZ5+cL3BrJK9
-        KAg2u3iDoPcYeCnTaaNIX7pYnw==
-X-Google-Smtp-Source: AA0mqf4IAqdFaqstFGpytpeVt/fRY+TBWIEystdlMj4m9iyac5DL01XHArlgI9dvZlIgkQzCOoCIfg==
-X-Received: by 2002:a2e:a806:0:b0:277:4b35:d94a with SMTP id l6-20020a2ea806000000b002774b35d94amr2443237ljq.21.1668782602704;
-        Fri, 18 Nov 2022 06:43:22 -0800 (PST)
+        bh=hahClhRd3DWgz5IfF3Hi2OhGzrj/JdBwzY9rjBeju8s=;
+        b=VrqFxX8qQ2p3pfor9izhh2eFRgNcFU9KSsP1fcUnQyL1lZSyPiCRyBOC2CRmadbzF/
+         KOYqNTnj2kc5j9b8Bi37IKJOYx0ueN5mLoy2oLDl+x31Sx5sjZ2bSoIue4aMzWtZvuSV
+         wuJB7h8CPEn3HOHUVaNY11JnUHN+2AXYReLpxeaIR460IEpr9HcAzcpmMOb/YA4HocOx
+         QNReXy9lP3B/PiJkz00fGBx0CT+XW8QRQWsZXGdDysNGxjOgWP9i43bLz4CV7rjPNbvM
+         5SpLOhF8VlAdoALLM5XUTIDfhjtmSAJ25Ak3Fm7PEyrJ+2xOkZNkWEVHkyid50zBvAGS
+         YlKg==
+X-Gm-Message-State: ANoB5pkavzV0KYZYWq8PG8AFoqglaEchDi287phC0EATwZna9bfL866W
+        PlLMoKzHByjqAgQPyPhiRNEOmw==
+X-Google-Smtp-Source: AA0mqf4xQNEVq6KlclNCEMjl56xKu/uoZoZfSEq3TwF8gKAhDBzYdep45hA5R/OZ/mt+9IdD6Luzkg==
+X-Received: by 2002:a19:4f14:0:b0:4b4:b20c:4b7 with SMTP id d20-20020a194f14000000b004b4b20c04b7mr2476398lfb.201.1668782788658;
+        Fri, 18 Nov 2022 06:46:28 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m1-20020a056512114100b004acb2adfa1fsm677950lfg.307.2022.11.18.06.43.21
+        by smtp.gmail.com with ESMTPSA id c3-20020ac25f63000000b004b177293a8dsm682197lfc.210.2022.11.18.06.46.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:43:22 -0800 (PST)
-Message-ID: <bedbaebe-d84b-fc0b-9492-4503a6d59a83@linaro.org>
-Date:   Fri, 18 Nov 2022 15:43:21 +0100
+        Fri, 18 Nov 2022 06:46:28 -0800 (PST)
+Message-ID: <57c2ca7c-05be-7fc1-69ad-e06b6e571d60@linaro.org>
+Date:   Fri, 18 Nov 2022 15:46:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: pwm: ti,pwm-omap-dmtimer: Update binding for
- yaml
+Subject: Re: [PATCH 01/12] dt-bindings: firmware: convert meson_sm.txt to
+ dt-schema
 Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Eric Dumazet <edumazet@google.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20221118125435.9479-1-tony@atomide.com>
- <debfe50a-7e94-9703-efde-2c805faa3d2b@linaro.org>
- <Y3eXe/S6MMaDGwEt@atomide.com>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-1-3f025599b968@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3eXe/S6MMaDGwEt@atomide.com>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-1-3f025599b968@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,19 +102,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 15:32, Tony Lindgren wrote:
-> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221118 14:12]:
->> On 18/11/2022 13:54, Tony Lindgren wrote:
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^pwm-([1-9]|1[0-2])$"
->>
->> Drop the nodename, device schemas do not need to enforce it.
+On 18/11/2022 15:33, Neil Armstrong wrote:
+> Convert the Amlogic Secure Monitor bindings to dt-schema.
 > 
-> Hmm I think that's needed to avoid warnings if the knob is
-> tweaked to 11? Right now the max timer value is 12.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/firmware/amlogic,meson-gxbb-sm.yaml   | 36 ++++++++++++++++++++++
+>  .../bindings/firmware/meson/meson_sm.txt           | 15 ---------
+>  2 files changed, 36 insertions(+), 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+> new file mode 100644
+> index 000000000000..33d1408610cf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/amlogic,meson-gxbb-sm.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/amlogic,meson-gxbb-sm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Secure Monitor (SM)
+> +
+> +description:
+> +  In the Amlogic SoCs the Secure Monitor code is used to provide access to the
+> +  NVMEM, enable JTAG, set USB boot, etc...
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,meson-gxbb-sm
+> +
+> +patternProperties:
+> +  "power-controller":
 
-Which warnings? The pwm.yaml allows up to 15.
+This looks like a property, not a pattern.
+
+> +    type: object
+> +    $ref: /schemas/power/amlogic,meson-sec-pwrc.yaml#
+
+Would be nice to add it here to example and drop from
+amlogic,meson-sec-pwrc.yaml (unless it will be used by more schemas?).
 
 
 Best regards,
