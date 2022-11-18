@@ -2,190 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0240262F8E9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C8462F940
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:28:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235290AbiKRPKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:10:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38732 "EHLO
+        id S241949AbiKRP2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:28:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235243AbiKRPKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:10:34 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9EE50266D
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:10:29 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D1EF23A;
-        Fri, 18 Nov 2022 07:10:35 -0800 (PST)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 0F4273F663;
-        Fri, 18 Nov 2022 07:10:27 -0800 (PST)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Pierre Gondois <pierre.gondois@arm.com>
-Subject: [PATCH] arm64: dts: fvp: Add information about L1 and L2 caches
-Date:   Fri, 18 Nov 2022 15:10:17 +0000
-Message-Id: <20221118151017.704716-1-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S241532AbiKRP2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:28:32 -0500
+X-Greylist: delayed 525 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Nov 2022 07:28:30 PST
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180D01E72D
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:28 -0800 (PST)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id A6A61348D6E;
+        Fri, 18 Nov 2022 16:19:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1668784780;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3uDpepbDz6oAsPmKRPLYkr5Mx+SABgVzOUZM4/B3U8Q=;
+        b=tWKaide1exK5/CcC1vSdRgb2ES/r1jatqYzrzVo5hm+hvY2Rbap3L0lRxZ58+gbxPQg5du
+        /1Po1XrDzGv/93WQdFwuiSkqAfStM2dB50QnpNwn9DDVs6/hCsUR3YR329ot+1GI4eUW2u
+        wkHjgltOhAlt1VZj6KGy01q2rah0taUqalfP8N87XzLjmzrN2lLiQpxxlTHHkf3mBKy4Tc
+        dqXuLawWIuXCbzl2/cdRHzcuL5qpogatjRxerI8wxyEu4WzYriTtPo3lkw/dLZ978wQ04a
+        amPLfGBKD4NBxMTnV1qVAcKMRhHhDDwTG/5A8Y4Vqnq64bI2ywM1Mw2oIoT13w==
+Message-ID: <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq
+ bindings to dt-schema
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
+Date:   Fri, 18 Nov 2022 16:19:39 +0100
+In-Reply-To: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
+References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the information about L1 and L2 caches on FVP RevC platform.
-Though the cache size is configurable through the model parameters,
-having default values in the device tree helps to exercise and debug
-any code utilising the cache information without the need of real
-hardware.
-
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- arch/arm64/boot/dts/arm/fvp-base-revc.dts | 73 +++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
-
-Hi,
-
-When a bug was reported recently on cacheinfo, I was trying to reproduce
-it but couldn't get access to any hardware. So I ended up using this model
-and it was useful. So thought of adding the same upstream.
-
-Regards,
-Sudeep
-
-diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-index 5f6f30c801a7..60472d65a355 100644
---- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-+++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-@@ -47,48 +47,121 @@ cpu0: cpu@0 {
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x000>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C0_L2>;
- 		};
- 		cpu1: cpu@100 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C0_L2>;
- 		};
- 		cpu2: cpu@200 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C0_L2>;
- 		};
- 		cpu3: cpu@300 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C0_L2>;
- 		};
- 		cpu4: cpu@10000 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C1_L2>;
- 		};
- 		cpu5: cpu@10100 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C1_L2>;
- 		};
- 		cpu6: cpu@10200 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C1_L2>;
- 		};
- 		cpu7: cpu@10300 {
- 			device_type = "cpu";
- 			compatible = "arm,armv8";
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&C1_L2>;
-+		};
-+		C0_L2: l2-cache0 {
-+			compatible = "cache";
-+			cache-size = <0x80000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-level = <2>;
-+			cache-unified;
-+		};
-+
-+		C1_L2: l2-cache1 {
-+			compatible = "cache";
-+			cache-size = <0x80000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-level = <2>;
-+			cache-unified;
- 		};
- 	};
- 
--- 
-2.38.1
+SGksCgpPbiBUdWUsIDIwMjItMTEtMTUgYXQgMTE6MDYgKzAxMDAsIE5laWwgQXJtc3Ryb25nIHdy
+b3RlOgo+IFRoaXMgY29udmVydHMgdGhlIFNlbXRlY2ggU1gxNTBYcSBiaW5kaW5ncyB0byBkdC1z
+Y2hlbWFzLCBhZGQgbmVjZXNzYXJ5Cj4gYmluZGluZ3MgZG9jdW1lbnRhdGlvbiB0byBjb3ZlciBh
+bGwgZGlmZmVyZW5jZXMgYmV0d2VlbiBIVyB2YXJpYW50cwo+IGFuZCBjdXJyZW50IGJpbmRpbmdz
+IHVzYWdlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9u
+Z0BsaW5hcm8ub3JnPgo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
+Pgo+IC0tLQo+IFRvOiBMaW51cyBXYWxsZWlqIDxsaW51cy53YWxsZWlqQGxpbmFyby5vcmc+Cj4g
+VG86IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+Cj4gVG86IEtyenlzenRvZiBLb3ps
+b3dza2kgPGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZz4KPiBDYzogbGludXgtZ3Bp
+b0B2Z2VyLmtlcm5lbC5vcmcKPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzog
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwo+IC0tLQo+IENoYW5nZXMgaW4gdjM6Cj4gLSBS
+ZXNlbnQgd2l0aCBtaXNzaW5nIFRvOiBMaW51cyBXYWxsZWlqCj4gLSBMaW5rIHRvIHYyOiBodHRw
+czovL2xvcmUua2VybmVsLm9yZy9yLzIwMjIxMDA1LW1kbTk2MTUtc3gxNTA5cS15YW1sLXYyLTAt
+YTRhNWI4ZWVjYzdiQGxpbmFyby5vcmcKPiAKPiBDaGFuZ2VzIGluIHYyOgo+IC0gZml4ZWQgcm9i
+IGNvbW1lbnRzCj4gLSBhZGRlZCByb2IncyBSZXZpZXdlZC1ieQo+IC0gTGluayB0byB2MTogaHR0
+cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDIyMTAwNS1tZG05NjE1LXN4MTUwOXEteWFtbC12MS0w
+LTBjMjY2NDliNjM3Y0BsaW5hcm8ub3JnCj4gLS0tCgpbc25pcF0KCj4gK8KgIC0gaWY6Cj4gK8Kg
+wqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZToKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgIGNvbnRhaW5zOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudW06
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gc2VtdGVjaCxzeDE1MDNxCj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gc2VtdGVjaCxzeDE1MDZxCj4gK8KgwqDCoCB0aGVuOgo+
+ICvCoMKgwqDCoMKgIHBhdHRlcm5Qcm9wZXJ0aWVzOgo+ICvCoMKgwqDCoMKgwqDCoCAnLWNmZyQn
+Ogo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBwaW5zOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpdGVtczoKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBhdHRlcm46ICdeZ3Bpb1swLTE1XSQnCgpbc25pcF0K
+Cj4gK8KgIC0gaWY6Cj4gK8KgwqDCoMKgwqAgcHJvcGVydGllczoKPiArwqDCoMKgwqDCoMKgwqAg
+Y29tcGF0aWJsZToKPiArwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnRhaW5zOgo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGNvbnN0OiBzZW10ZWNoLHN4MTUwOXEKPiArwqDCoMKgIHRoZW46Cj4gK8Kg
+wqDCoMKgwqAgcGF0dGVyblByb3BlcnRpZXM6Cj4gK8KgwqDCoMKgwqDCoMKgICctY2ZnJCc6Cj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoCBwcm9wZXJ0aWVzOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IHBpbnM6Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGl0ZW1zOgo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgcGF0dGVybjogJ14ob3NjaW98Z3Bpb1swLTE1XSkkJwoKU29y
+cnkgdG8gYmUgc28gbGF0ZSB0byByZXBseSwgYnV0IGRvbid0IHRoZXNlIHBhdHRlcm5zIG9ubHkg
+bWF0Y2ggImdwaW8wIiwgImdwaW8xIiwgYW5kICJncGlvNSI/CgpBIHF1aWNrIHNlYXJjaCBmb3Ig
+c29tZSBkYXRhc2hlZXRzIHR1cm5lZCB1cCB0aGUgU1gxNTAzIGFuZCBTWDE1MDlRIHdpdGggMTYg
+R1BJT3MsIHNvIEkgYXNzdW1lIHRoZQppbnRlbnRpb24gd2FzIHRvIG1hdGNoICJncGlvMCIgdG8g
+ImdwaW8xNSIuIEkgdGhpbmsgdGhpcyBzaG91bGQgYmUgIl4oZ3Bpb1swLTldfGdwaW8xWzAtNV0p
+JCIgKG9yCnNvbWV0aGluZyBlcXVpdmFsZW50KS4KCkJlc3QsClNhbmRlcgo=
 
