@@ -2,284 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D16E62FFD6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2084262FFDF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:15:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231297AbiKRWM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 17:12:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
+        id S229763AbiKRWPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 17:15:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiKRWM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:12:27 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32CCA31EE2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:12:26 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bp15so10359194lfb.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:12:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BP1pZfB5L6HAN1d/uOa0OfQ6gxpcqhet4v5Jrhgig0Y=;
-        b=wB02qBRNpHsPPVMbb3DDr9kto6WCgy5JPo6KvvXLpNqnuCS+iDtrm7ZmLVlb41lrWv
-         5k0e0cgpXsuh23/9cDwtuhEv2nOD+vBzuzOsDxBPnNXXhU1ZTriTLVkUsqBgAGrA1Gkk
-         fZYRtruW9guzXlTokt0kGVvETPTe5tz5enoMhZbfC0gD7zcBF7c0iLGXUbp8mBybKpbL
-         m8Y47vrSOKnhX+szUwq0SdUD6weChiovo6TNwAgbIKctMKuUOPqMGW1bngn5ADFbIGDZ
-         g+KmsyBKC+HiqN6rYmYhYI86cxDRmH2JGW/RET6iWaIChoYTM0EBTqBJuAZccbIerHWz
-         bx3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BP1pZfB5L6HAN1d/uOa0OfQ6gxpcqhet4v5Jrhgig0Y=;
-        b=3ESre8WntgSIuMsW8QIe3AfQukipc7W4z/VWsBTfBBGRPwMl2+p+vjY2oKP7xdH2Ir
-         rGV5MTAinmHFdNBp1qXam4Zch99ktN4TcuKA5h+ebEkJtNZgWAIerD1/yrmNj/fb/US4
-         uq2IXjUmX1cPQiGNbm1E/2Zsmw/FZE1WK0kI4e9lQWvG3uXtKIi8YbXxcQ8yUEA5tM9L
-         4NyttrBLpsV6g0Swah3NaOIOoIXZiYEha9VA55gIZITI0DX06dqbldQgRhAA08zpB2Q7
-         XNvYWG7XN5zofUvnaRARk0MDIK9r941uNRKTFgsIUQBltE241pyNuyc9+9Hx8E1+QOJr
-         fKYg==
-X-Gm-Message-State: ANoB5pnIx7UTnihP1pgN99zi4UlaSgeOyZVy3lFskMZwaXxeKefJHSFp
-        8tDBk/I4qZ6Mzp+Cvj0+eUrz8A==
-X-Google-Smtp-Source: AA0mqf6p8b1JfeRZXZESF3phUkzBVLQLltBm/Ua90nA8Keoxzd4XxMZ9iYpdHpSBe4G9KOWZJprjzA==
-X-Received: by 2002:ac2:5f41:0:b0:4b3:cc01:102b with SMTP id 1-20020ac25f41000000b004b3cc01102bmr3195993lfz.133.1668809544435;
-        Fri, 18 Nov 2022 14:12:24 -0800 (PST)
-Received: from [192.168.1.129] ([194.204.33.9])
-        by smtp.gmail.com with ESMTPSA id n15-20020a2e86cf000000b0026ddaf38b0fsm816651ljj.96.2022.11.18.14.12.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 14:12:24 -0800 (PST)
-Message-ID: <a88557b7-3126-1fd0-6bbf-8d9d8177f021@linaro.org>
-Date:   Sat, 19 Nov 2022 00:12:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: sm8350: add PCIe devices
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229925AbiKRWPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:15:53 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2763AF08A;
+        Fri, 18 Nov 2022 14:15:52 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIMFY8G130971;
+        Fri, 18 Nov 2022 16:15:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668809734;
+        bh=YJ8Ee2BSlqS+12WdMmthz73OOuNqa7uireFaQ9RDJh4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qvIknZ4Giqd8DsqWz9adUGPsGhTLDCmKOc3spxKPDwJqs1dOswNmMibD4cA7+3uzz
+         lu2j/KMHtKHucEbxQMtRg2qffCGl1Le+/FKArEAE4DJ3FXtF7V9ZyDxRlJqa/F2lNK
+         +vXkJuDheccCGeL4kIAO478l16RKSMthg44Bddiw=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIMFYWW025451
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 16:15:34 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 16:15:34 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 16:15:34 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIMFYsY071765;
+        Fri, 18 Nov 2022 16:15:34 -0600
+Date:   Fri, 18 Nov 2022 16:15:34 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221110183158.856242-1-dmitry.baryshkov@linaro.org>
- <20221110183158.856242-8-dmitry.baryshkov@linaro.org>
- <Y3T4nOjcdkSG4fYa@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y3T4nOjcdkSG4fYa@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+Message-ID: <20221118221534.52rfyf5gsck3xrrb@sauciness>
+References: <20221116130428.161329-1-a-nandan@ti.com>
+ <20221116130428.161329-5-a-nandan@ti.com>
+ <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
+ <20221118174754.y37pq77drvla2uxj@tinderbox>
+ <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
+ <20221118180808.wnel7d6gswsnooww@junkman>
+ <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
+ <20221118192744.wish2vrxgy7dg7c2@unnerving>
+ <3d5e41f6-16a8-4298-ccd3-6db60f94eb47@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <3d5e41f6-16a8-4298-ccd3-6db60f94eb47@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 16:50, Johan Hovold wrote:
-> On Thu, Nov 10, 2022 at 09:31:57PM +0300, Dmitry Baryshkov wrote:
->> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
->> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
->>   1 file changed, 244 insertions(+), 2 deletions(-)
+On 15:08-20221118, Andrew Davis wrote:
+> On 11/18/22 1:27 PM, Nishanth Menon wrote:
+> > On 12:15-20221118, Andrew Davis wrote:
+> > > I don't see either of those addressed in that thread, only that
+> > > the aliases should go in the .dts files and be trimmed, nothing
+> > 
+> > Key is trimmed to what the system and ecosystem needs.
+> > 
+> > > stops us from:
+> > > 
+> > > chosen {
+> > > 	stdout-path = "serial10:115200n8";
+> > > };
+> > > 
+> > > aliases {
+> > > 	serial10 = &main_uart8;
+> > > };
+> > 
+> > Do we need 10 serial aliases? There are'nt 10 serial ports exposed in
+> > j782s2. ok - lets say we do this, then: [1] is needed to boot? but why
+> > do we need to do that for all armv8 platforms when aliases allows us
 > 
->> +		pcie0: pci@1c00000 {
->> +			compatible = "qcom,pcie-sm8350";
->> +			reg = <0 0x01c00000 0 0x3000>,
->> +			      <0 0x60000000 0 0xf1d>,
->> +			      <0 0x60000f20 0 0xa8>,
->> +			      <0 0x60001000 0 0x1000>,
->> +			      <0 0x60100000 0 0x100000>;
->> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
->> +			device_type = "pci";
->> +			linux,pci-domain = <0>;
->> +			bus-range = <0x00 0xff>;
->> +			num-lanes = <1>;
->> +
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +
->> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
->> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
->> +
->> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
->> +					  "msi4", "msi5", "msi6", "msi7";
->> +			#interrupt-cells = <1>;
->> +			interrupt-map-mask = <0 0 0 0x7>;
->> +			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->> +					<0 0 0 2 &intc 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
->> +					<0 0 0 3 &intc 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
->> +					<0 0 0 4 &intc 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
->> +
->> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
->> +				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
->> +			clock-names = "aux",
->> +				      "cfg",
->> +				      "bus_master",
->> +				      "bus_slave",
->> +				      "slave_q2a",
->> +				      "tbu",
->> +				      "ddrss_sf_tbu",
->> +				      "aggre0",
->> +				      "aggre1";
->> +
->> +			iommus = <&apps_smmu 0x1c00 0x7f>;
->> +			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
->> +				    <0x100 &apps_smmu 0x1c01 0x1>;
->> +
->> +			resets = <&gcc GCC_PCIE_0_BCR>;
->> +			reset-names = "pci";
->> +
->> +			power-domains = <&gcc PCIE_0_GDSC>;
->> +
->> +			phys = <&pcie0_phy>;
->> +			phy-names = "pciephy";
->> +
->> +			perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
->> +			wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
->> +
->> +			pinctrl-names = "default";
->> +			pinctrl-0 = <&pcie0_default_state>;
+> Why do we need SERIAL_8250_NR_UARTS at all, might be a better question.
+> These should be dynamically allocated if the number goes over the
+> default count imposed by the TTY framework. Maybe folks are still a
+> bit too afraid to touch the TTY subsystem core, I don't blame them..
 > 
-> So I still think these do not belong in the dtsi for the reasons I just
-> gave in a reply to v2.
+> > to trim it to just the 3 or 4 serial ports the platform really needs
+> > That + being able to use the convention that serial2 is always linux
+> > console, is'nt that a good thing? Hence recommending to just expose the
+> > serialports as aliases to exactly what we need while keeping serial2 as
+> > the linux console (which in this case happens to be main_uart8 - example
+> > as j721s2 does).
+> > 
+> 
+> "serial2 as the linux console" is *not* a convention, we just don't want to
+> fix up our bootloader/userspace to actually reason about what serial ports to
+> put logins on. Why not make ttyS10 the default, or ttyS666, it doesn't solve
+> your multi-distro issue either way since they usually only start a login on
+> ttyS0, console=, and/or the first virtual tty. Never on ttyS2. So you are
+> hacking up DT for a solution that doesn't do what you want in the end.
 
-Ack. I must admit, I asked Bjorn and he confirmed that pcie pinconf also 
-belongs to the board dtsi. So I think I'll leave the pinctrl-0 here, but 
-split the bias/strength to the board dtsi.
+ttyS2 is an accidental convention not a "by design" or definition
+convention. I suspect we ended up here from old OMAP days - all
+platforms in k3 ended up with ttyS2. In hindsight, if I had to do it
+by design, I would probably have picked ttyS0, well, we did'nt.
 
-I still think that we should agree & document the approach and then 
-change all boards to follow it. Otherwise e.g. one of sm8550 review 
-comments tells the opposite thing: to move sdcc pinconf to SoC dtsi.
+$ git grep stdout-path arch/arm/boot/dts|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
+    379  "serial0
+     21  "serial1
+     33  "serial2
+     13  "serial3
+      1  "/slaves@3e000000/serial@0
 
-> 
->> +
->> +			status = "disabled";
->> +		};
->> +
->> +		pcie0_phy: phy@1c06000 {
->> +			compatible = "qcom,sm8350-qmp-gen3x1-pcie-phy";
->> +			reg = <0 0x01c06000 0 0x2000>;
-> 
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			ranges;
-> 
-> These three should not be here (same for pcie1).
+$ git grep stdout-path arch/arm64/boot/dts|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
+    245  "serial0
+     17  "serial0";
+      7  "serial1
+     49  "serial2
+      3  "serial3
+      2  "serial4
+      2  "serial5
+      2  "serial6
 
-Ack
+$ git grep stdout-path arch/arm64/boot/dts/ti|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
+      8  "serial2
+      1  "serial3
 
-> 
->> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_0_CLKREF_EN>,
->> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>,
->> +				 <&gcc GCC_PCIE_0_PIPE_CLK>;
->> +			clock-names = "aux", "cfg_ahb", "ref", "rchng", "pipe";
->> +
->> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
->> +			reset-names = "phy";
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
->> +			assigned-clock-rates = <100000000>;
->> +
->> +			#clock-cells = <0>;
->> +			clock-output-names = "pcie_0_pipe_clk";
->> +
->> +			#phy-cells = <0>;
->> +
->> +			status = "disabled";
->> +		};
-> 
->>   		lpass_ag_noc: interconnect@3c40000 {
->>   			compatible = "qcom,sm8350-lpass-ag-noc";
->>   			reg = <0 0x03c40000 0 0xf080>;
->> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
->>   			gpio-ranges = <&tlmm 0 0 204>;
->>   			wakeup-parent = <&pdc>;
->>   
->> +			pcie0_default_state: pcie0-default-state {
->> +				perst-pins {
->> +					pins = "gpio94";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-down;
->> +				};
->> +
->> +				clkreq-pins {
->> +					pins = "gpio95";
->> +					function = "pcie0_clkreqn";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +
->> +				wake-pins {
->> +					pins = "gpio96";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +			};
->> +
->> +			pcie1_default_state: pcie1-default-state {
->> +				perst-pins {
->> +					pins = "gpio97";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-down;
->> +				};
->> +
->> +				clkreq-pins {
->> +					pins = "gpio98";
->> +					function = "pcie1_clkreqn";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +
->> +				wake-pins {
->> +					pins = "gpio99";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +			};
->> +
->>   			qup_uart3_default_state: qup-uart3-default-state {
->>   				rx-pins {
->>   					pins = "gpio18";
-> 
-> Johan
+I don't buy the argument here for 1-1 mapping of aliased serial
+instances to instances - why should main_uart8 be ttyS10, why not
+ttyS8 (it is equally valid - why was it called uart8?).. That mapping
+is just a convention we are choosing to create.
 
+The iot2050 ecosystem picked ttyS3 as the linux console for reasons of
+that ecosystem. K3 so far has selected ttyS2 as the convention for
+console - no matter where the serial instances have been located.
+
+I want to maintain consistency of existing TI platforms here without
+needing to shove a dozen things on existing users (yes j78-evm is a new
+board, but it is within the existing k3 s/w ecosystem and yes, getty,
+systemd etc are smarter today than once upon a time)
+
+So, given TI K3 history does'nt follow rest of the non-TI instances
+unfortunately - and I am going to put my foot down here - serial8 or 10
+is "fake" anyways - rationalization can be made in different ways. So
+pushing for one over the other is not something I will entertain.
+
+From usage model point of view - serial0 will be the best candidate as
+console followed by serial2 (purely statistically speaking). In K3
+context, it is just serial2 in TI board ecosystem.
+
+That is a discussion for pros and cons - Open to hearing opinions.
+Unless I hear 1000% strong reasons with _backing data_ - not an
+subjective "it is correct thing to do" - why we'd want to move TI
+board ecosystem (including all the pains of bootloader combinations
+etc) switch over to ttyS0[1], having a mix and churn for the s/w
+ecosystem of having to deal with ttyS0 and ttyS2 nodes in arm64/dts/ti
+at least for the TI board ecosystem.. I cant see why i want to put the
+ecosystem through another churn on consoles.. But, fine, i will keep
+my ears open. If there are no strong arguments with _data_, then we
+stick with serial2 and y'all can curse me for another decade+ for that
+call :)
+
+[1] I have'nt forgotten ttyO2 to ttyS2 transition of OMAP
+ https://duckduckgo.com/?q=ttyO2+to+ttyS2+omap
 -- 
-With best wishes
-Dmitry
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
