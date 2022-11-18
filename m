@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7E662F811
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F45362F81B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235256AbiKROsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:48:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
+        id S241783AbiKROtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:49:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235308AbiKROsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:48:22 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464866DCC2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:48:20 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id t10so7113478ljj.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:48:20 -0800 (PST)
+        with ESMTP id S235225AbiKROtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:49:06 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21AD025C5
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:05 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id p8so8530273lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:49:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JzDAVj14Kg7cyIXYwLhr95fRyEdtiFybQ+a9MmGfD7k=;
-        b=P4iKBxDecGp7qNoMMYwLnoMJ7yQ2X4wm+chKoQAVcYgIbVgW/4Ic8Xtb7DnzlMuYXa
-         a+KagPKM9e/V54JuDN4+ZpL+QSS0cClqMG3jaI8OG6ey10xV8p5VOGhv4B335yHdxxZ6
-         udWuBi6XP4QdHTPL0/u9jWPb4AmhpkScZ6bVOxyFMBMkN5Up2LKYq3H5zmJuIcdkX0Fx
-         8fRUzWUlUGxjaJQgcLB1Zf1N9rH+cvB0CSSHsOL6EuqAPju3FneXzOwnJAxFBrQpQVyr
-         +UCtax2+FAg215FZ7h57gHkOjOg6N1bkk3yl6x31o6eYoiHPgEiKNXvzlBRf3tcxr8+J
-         ZKMA==
+        bh=+xECLjM+1wJ3tyU5u/WQawVGRXnB8gHjb6MLiqzOmuE=;
+        b=Zs12YmMMSavyYzmNqKcCRYMCcx5tO7qpQ0VvE7hyvFNBku6wyFMWhXNVMlF+Sqg0KT
+         WoIA+w4A8iuBJ/Z1AAHH4aIRydfpKhe7bF24gwy0bRzlEk0jYncnokHI+00AlKhVfGXV
+         JIIp3E5uA+gM7soG5wopEU+Lv1q63Zy9Cg91suTl/dBPE5V24XVYczE01kWsKEHVfQGb
+         dBT162Z4F1TG+7XSK0OcZOSsHy+CA846o55K/WA07GJriE9bcEJQUbPZyZbcV94cF4R/
+         VfK+gBKT/TkzM9E9oq25330xsTCuei+8omVXqqLIW5R7KPXHwfeYtmnlKBMLd61OMOgq
+         UpBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JzDAVj14Kg7cyIXYwLhr95fRyEdtiFybQ+a9MmGfD7k=;
-        b=RkDVYiIzzrU7JxsKJulilJ0Ye/FuROMlrH15teArGwbLlNexWGm3w0o+Hh49WSAdO7
-         Jg/cnqxLPNHnmuK4sh6PPXOLpMKYHhnIcZf7l1LzErj6YWedY1JQJYlGP6PtZTkNhrCm
-         rVGvMTH+Rl3EHNDLhYFZLZM8G2/EUvHaEPiOgkN/yCXw46lkOEGuCCvmCUDA5QO+Dhq6
-         CoiTdvM1NmQvUEwYahN/MuUfsNguv2n7wBMr0gpuLADVedwzU3iVSwSeqTmZzsk4rq66
-         oiEC0nBef1skN/pppf3vThAONnmp15AqoMEZzKp/NR9sIGyUnbBx4DyrEkxBEwg1Oa+s
-         vBHw==
-X-Gm-Message-State: ANoB5pnPRfkypadJCiLxxEvxNHb8TVhPLL4Kyx188tlbXRDZ6nXVZOkP
-        h69CBS1uBL3ibu7ZNjDkXIEEMA==
-X-Google-Smtp-Source: AA0mqf5cBtRAtVWCHt/JKQ9brxqzzQxd4TedCgkS2P/jQOnKdMCSZLGEZqSJlBl/s61brK5m99FHbQ==
-X-Received: by 2002:a2e:a274:0:b0:278:eef5:8d07 with SMTP id k20-20020a2ea274000000b00278eef58d07mr2463980ljm.61.1668782898632;
-        Fri, 18 Nov 2022 06:48:18 -0800 (PST)
+        bh=+xECLjM+1wJ3tyU5u/WQawVGRXnB8gHjb6MLiqzOmuE=;
+        b=smFVPbi8MZIhHyocHyfyAA96qXZPhjDHC1F9YmGO/QD8cuPE6D0qNFZ0kGc7Drg6GM
+         VQFaglHX7q/cn5LwVP8g+/YphhGz5Y0zIE5mrtY3wLTdMHcWgdpdQl335UVq4r/IMxqL
+         OhvUgKmz8nCIrJXTm/YntXiwJzmdYbiImQ1nZGWzhOaaExQWDSfKusd4e9L6jXOkBD7V
+         2GuJECzQQe5flUZlRh7+QV+LbBI6khwoKeOWVZ0/WJyL1fWbSBiWJIpdbCcxEXgxGdUJ
+         4SqMr28ULertA+86vAnAta3oZ71LLGMx8JmL6ogo5n8f/2T+cEu8HQivHpmUwdE4SvUZ
+         Am4A==
+X-Gm-Message-State: ANoB5pns/+rdg8q9scJVLhmT7f0jZrVYN8zE1hPjK4apZ/kb/pBTQZE1
+        bIhjmQ9yl2gF5GlIOZIi81LZHQ==
+X-Google-Smtp-Source: AA0mqf7ZXIKPBh9Rz/8NI/J74R1K82UMSY4YzepugR6KIDjTrCZkpyZFe0babnYb4sjivNlfYP6QJQ==
+X-Received: by 2002:a19:5019:0:b0:4b4:8d47:7057 with SMTP id e25-20020a195019000000b004b48d477057mr2868955lfb.376.1668782943480;
+        Fri, 18 Nov 2022 06:49:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id be40-20020a056512252800b00497a61453a9sm683196lfb.243.2022.11.18.06.48.16
+        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm685909lfm.186.2022.11.18.06.49.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:48:18 -0800 (PST)
-Message-ID: <40a4d3fd-bde8-c8ce-a93e-e0f8b633f10b@linaro.org>
-Date:   Fri, 18 Nov 2022 15:48:16 +0100
+        Fri, 18 Nov 2022 06:49:03 -0800 (PST)
+Message-ID: <24296f7d-416d-e5f5-ef6a-c960b59513cb@linaro.org>
+Date:   Fri, 18 Nov 2022 15:49:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 02/12] dt-bindings: nvmem: convert amlogic-efuse.txt to
+Subject: Re: [PATCH 04/12] dt-bindings: watchdog: convert meson-wdt.txt to
  dt-schema
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
@@ -88,9 +88,9 @@ Cc:     linux-media@vger.kernel.org, netdev@vger.kernel.org,
         linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-2-3f025599b968@linaro.org>
+ <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-2-3f025599b968@linaro.org>
+In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-4-3f025599b968@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -103,53 +103,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/11/2022 15:33, Neil Armstrong wrote:
-> Convert the  Amlogic Meson GX eFuse bindings to dt-schema.
+> Convert the Amlogic Meson6 SoCs Watchdog timer bindings to dt-schema.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/nvmem/amlogic,meson-gxbb-efuse.yaml   | 52 ++++++++++++++++++++++
->  .../devicetree/bindings/nvmem/amlogic-efuse.txt    | 48 --------------------
->  2 files changed, 52 insertions(+), 48 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
-> new file mode 100644
-> index 000000000000..1d88f7eee840
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/amlogic,meson-gxbb-efuse.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/amlogic,meson-gxbb-efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson GX eFuse
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,meson-gxbb-efuse
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  secure-monitor:
-> +    description: phandle to the secure-monitor node
 
-This does not look like standard property, so you need the type ($ref).
 
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - secure-monitor
-> +
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
