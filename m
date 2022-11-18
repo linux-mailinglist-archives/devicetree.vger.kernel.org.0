@@ -2,114 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F94B62F714
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7061862F731
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:21:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242272AbiKROTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:19:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52988 "EHLO
+        id S242335AbiKROV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:21:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242288AbiKROTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:19:19 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D1A10C4
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:19:17 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id s8so8409765lfc.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:19:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JgA8yw24O2i30NCYTg1/JIIAnOY+Wu0LNbmyEIpvXuU=;
-        b=wtPXLTlDYRv7ezb5DYtk3NuzdsUJn/t61NvLx3m4yBP2vADjQ/MIKaR6PNoc6qiOQM
-         +++k8vvln3incuN+OMA7HhA8qB0ANJTGfEsl4VfHMLO+v/jP5A8nnxQixnSdm24/clYp
-         z2udqjb/GLeUPtCSRn/P9QQOXB5aeK6liTbqHOseDdkTRDS4TQt2eO8jkFto9UG54tTj
-         IouItXBlddBdFVIgz/9lx9h972Bcnq534DAQqRvUZlP2q4z+FkVJnYkvuFDXEc9ZAn71
-         szrViWwk1XrwygDQtEl9afHWWBTIElJnt6/pUywzoZP0WwCeI7Oztdf/i9YeazWTZdLy
-         CD/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JgA8yw24O2i30NCYTg1/JIIAnOY+Wu0LNbmyEIpvXuU=;
-        b=08GAj/e5foSql61a+Ks9+SyjLIJoNB2GVbxjT8TZVu40LB0gcGD4o+yWBPOJHA3XBi
-         i7Bngv7zyEyVeORRQHiWy0hFooyApggil/WQXaOJXU1tay/jdejEpuSLVLbsMiD6dhLv
-         ZHnNSo3IvOSby1qFDhYpo+Y/gzfrZ4G4GrCSywXKTigKfAXoy8loF8r+Lsgkv0W1gTK6
-         LP8173ta9W+U5NWlHk0PEeVbrsQotduBEQ0E+bY37nvB5h005o3WHz4vIxVbZBJ/Pc1C
-         R1HY3SI+joaVTmbvlZHc3iilNo3pouMiRF9eNsZFAB08UcT1pTXbn0nyP7h5peZ1c/UB
-         /vpA==
-X-Gm-Message-State: ANoB5plBeVx1vh8gmrhG1QQaewO2n5tlrt/4537CxoFkGfX8dxY9AlBM
-        cfvdW6/AGMNksiVrpLnkiC2fLQ==
-X-Google-Smtp-Source: AA0mqf7TlmTWJziGrMLeJAgmh4qdlTOIPnh6RCz7Z3zW1Mofbv35K1UxHMtFKgjO4oBVMcUGe/sWEg==
-X-Received: by 2002:a05:6512:324c:b0:4a2:2e51:85c1 with SMTP id c12-20020a056512324c00b004a22e5185c1mr2394064lfr.658.1668781155414;
-        Fri, 18 Nov 2022 06:19:15 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s12-20020a056512314c00b004b0317a1035sm678035lfi.109.2022.11.18.06.19.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:19:14 -0800 (PST)
-Message-ID: <3796bfa6-9d39-f0ca-55a4-6f03bf578a6e@linaro.org>
-Date:   Fri, 18 Nov 2022 15:19:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RESNED PATCH 1/3] dt-bindings: input/touchscreen: Add compatible
- for IST3038 and IST30XXB
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242332AbiKROV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:21:27 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B2F67104;
+        Fri, 18 Nov 2022 06:21:25 -0800 (PST)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AICFIUb025123;
+        Fri, 18 Nov 2022 15:21:01 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=bEGiUooBAWg10GL05T18knua8Hy/usMTNQ+41sucBRQ=;
+ b=WqBhTGOHFfAzG/GsNxSprCdx3d9+p5zyyWB6jq3jvgzkiEZBACp4RETKOnQ2nOyVB5/S
+ CbS1cbj1bGo4q+3AmYu4GZt04WI9PrQL5Agp5X7KnCz8tp06IxcWNx+vzYW3ek40Bfqw
+ v0WQuw8DppMyQvI0AFipQqefMJSv2wjENG/Wq2Xp9ogFNp0ucm/QO6hrEprgxuO0V6Ni
+ 6MZPzx/4ik0D40+lB6NkzuG3FB+PsAeybiQeQlqpTfXfl0k4OoL+CfXetMvF5/YXZ7mP
+ d4NVHJwnvTfy4q+6Z9F+0Y58gwLffaJGw1DkQvndxMDcSHFFCy8Fuz3X/mm8WyJDScmE rA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kx0my47rj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Nov 2022 15:21:01 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 408E4100034;
+        Fri, 18 Nov 2022 15:20:57 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3B6AB231DE0;
+        Fri, 18 Nov 2022 15:20:57 +0100 (CET)
+Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.32; Fri, 18 Nov
+ 2022 15:20:57 +0100
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20221117191436.87938-1-linmengbo0689@protonmail.com>
- <20221117191436.87938-2-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117191436.87938-2-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] ARM: dts: add audio support on stm32mp131
+Date:   Fri, 18 Nov 2022 15:20:02 +0100
+Message-ID: <20221118142006.479138-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.178]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-18_02,2022-11-18_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2022 20:15, Lin, Meng-Bo wrote:
-> From: Markuss Broks <markuss.broks@gmail.com>
-> 
-> Imagis IST3038 and IST30XXB are variants (firmware?) of Imagis IST3038 IC,
-> add the compatible for them to the IST3038C bindings.
-> 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> [Change from IST3038B to IST3038 and IST30XXB]
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
->  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml  | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> index e3a2b871e50c..85390f6ffe36 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> @@ -18,7 +18,9 @@ properties:
->  
->    compatible:
->      enum:
-> +      - imagis,ist3038
->        - imagis,ist3038c
-> +      - imagis,ist30xxb
+Add SAI, I2S, SPDIFRX and DFSDM audio peripherals support for the
+STM32MP13 SoC family.
 
-I don't get why this is a resend, but comments from v1 apply.
+Olivier Moysan (4):
+  ARM: dts: stm32: add i2s nodes on stm32mp131
+  ARM: dts: stm32: add sai nodes on stm32mp131
+  ARM: dts: stm32: add spdifrx node on stm32mp131
+  ARM: dts: stm32: add dfsdm node on stm32mp131
 
-Best regards,
-Krzysztof
+ arch/arm/boot/dts/stm32mp131.dtsi | 149 ++++++++++++++++++++++++++++++
+ 1 file changed, 149 insertions(+)
+
+-- 
+2.25.1
 
