@@ -2,119 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC55262F093
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2E862F0D2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:17:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241648AbiKRJJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 04:09:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56626 "EHLO
+        id S241832AbiKRJQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 04:16:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241623AbiKRJJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:09:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F8FF24;
-        Fri, 18 Nov 2022 01:09:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 91AB0B822B2;
-        Fri, 18 Nov 2022 09:09:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80552C433C1;
-        Fri, 18 Nov 2022 09:09:28 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
-        dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="kG38vcqX"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
-        t=1668762566;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=g17PMHi9u+4MJQGHkf/DIo9Tq+jShLtD3YJw7FV3s3I=;
-        b=kG38vcqXlgsWQlQBbAL/1Y+4UK0C7RJ+oWrBZBnyAhb8C2JfoPs/tdDyrl+jl5vhLTTAyH
-        2q7RAqmWrPJRUFBEWZ+gjlZfzzoefmkwIAXDncXUYqmwm3IVlilJ+peNP6e7w6a2nLDTdv
-        t8vFxs8odJD1AhwfUtFgb0IX6y1onIU=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id f036269c (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-        Fri, 18 Nov 2022 09:09:25 +0000 (UTC)
-Date:   Fri, 18 Nov 2022 10:09:23 +0100
-From:   "Jason A. Donenfeld" <Jason@zx2c4.com>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH] of: fdt: parse early params before adding bootloader
- randomness
-Message-ID: <Y3dLw4TksI6hQLHP@zx2c4.com>
-References: <20221105014613.113503-1-Jason@zx2c4.com>
- <CAL_JsqKA1_HV5V17mHkKn8X72c_UN2Jg=TYtJkt93YM6SSDMSg@mail.gmail.com>
- <Y2lBj1ZIdFRf9HdR@zx2c4.com>
- <cd6e153b-953f-0374-364e-af649c82d8b4@rasmusvillemoes.dk>
+        with ESMTP id S241857AbiKRJQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:16:27 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DE691C02
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:16:25 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id bj12so11421342ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:16:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nVpY7HTKInpub0ujYpomEMwnoXj914wvun46oA4sJoQ=;
+        b=Xhz5XNfb3dS5vE01xwDhnNS0x2PKi9Dzud0k5uLCkF+WlXcrZ2l9BFeK45mVVkeMpB
+         eV/utXTP5NvGug9m/u8SIswHG8qrJ/wBLeE5S0ih9JRXCoOWZBmktGi2CCabJB2OIQsi
+         zTKoG0vFSNTUJqCijBx7QEARh3NVMx6SYSTlPWa9wdYBdeP3RKsxA9BEq3nfnBd7WJVF
+         5lD4x8aOVmkv7G+X4HX6ohElmiR8U1KxHElicjDykNs2+ZJtGAng3cGrljPw2RhdXjMD
+         m6T6e2AMZnMm3BE6zdbrudXsD1PWC+75pdQKZ4knW+52vEydTMDgWIIkjvZAewcTSMTD
+         xdOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nVpY7HTKInpub0ujYpomEMwnoXj914wvun46oA4sJoQ=;
+        b=qfUSj+oX6MfN9hh6PqYh7Nyc+PGuX0dppDc99nqV2Bg1f9Ni93AWGtoD/dBMhcfeaw
+         XETFp/lRgzP+t0U8xyQppdPvM6NLuOCDcTVLou2VJA9KlEqRe6FnJtrQ1JzLFLE6+xX7
+         dHy3aG7XPFXqRUt9IvuPFa/2SmKVihYLy+4jTgn6s9SoucZwhcFyXj+Yo7fu5ZHNU/bW
+         kPEjUaFIB/1Hqpm+vsa/V48IwAByj0OBDa4WfIrnS1WUDPkrYq3NFpcuncSkx+RhUfpV
+         LPXkGF8IBGKVCy9llJq9DY1ZJHawcF17pP+wL4cgf72dVcUyWbaUXQ7Pzmi5UNEvgj8T
+         IDwA==
+X-Gm-Message-State: ANoB5pny5xVdkYTr5t8u3tSBTiIDzKLP11JAKpWObQTvGybI0J7ZGvq6
+        6MyvQ+IQ79U6m14nyVV7esaW+SofWs+Gf6Ya
+X-Google-Smtp-Source: AA0mqf64rijyM5vvOY6oiWPW2G22yh6wist43cUewN9SRMFYULPK04Q0dJfkBi0jDPRyfCFrLbqmfg==
+X-Received: by 2002:a17:906:8c4:b0:7ae:fbe6:e7ca with SMTP id o4-20020a17090608c400b007aefbe6e7camr5334368eje.408.1668762983966;
+        Fri, 18 Nov 2022 01:16:23 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id a25-20020a50ff19000000b00461bd82581asm1545121edu.84.2022.11.18.01.16.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 01:16:23 -0800 (PST)
+Message-ID: <594be897-f710-fb62-0882-8a7f01b21bfe@linaro.org>
+Date:   Fri, 18 Nov 2022 10:16:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <cd6e153b-953f-0374-364e-af649c82d8b4@rasmusvillemoes.dk>
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH v2 10/13] arm64: dts: qcom: sm8450: add spmi node
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211209103505.197453-1-vkoul@kernel.org>
+ <20211209103505.197453-11-vkoul@kernel.org>
+ <5035b6a3-164b-afa0-b714-4deb886f9f90@linaro.org>
+ <9f696023-f2b4-ccd0-34a0-6f4d5848e862@linaro.org>
+ <8c1428a6-f268-cb03-3e55-887d30236924@linaro.org>
+ <3af48606-731f-6047-92ca-80435f401ae3@linaro.org>
+ <d5726896-e62b-d19d-454b-700dd1c42222@linaro.org>
+ <CAA8EJpovd0D154QUG1_EtCnCrffJBt+SPWQtLEZWb=dc_PLGjA@mail.gmail.com>
+ <Y1jGjCU47+tOBLus@matsya> <b5fcd010-76bf-9ec3-bf52-6ed51c655afa@linaro.org>
+In-Reply-To: <b5fcd010-76bf-9ec3-bf52-6ed51c655afa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 09:33:53AM +0100, Rasmus Villemoes wrote:
-> On 07/11/2022 18.34, Jason A. Donenfeld wrote:
-> > On Mon, Nov 07, 2022 at 11:28:20AM -0600, Rob Herring wrote:
-> >> On Fri, Nov 4, 2022 at 8:46 PM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
-> >>>
-> >>> FDT is examined so early that it's before the first incidental call to
-> >>> parse_early_param(). This is similar to EFI, except EFI actually added
-> >>> an explicitly call to parse_early_param(). Let's do the same here, so
-> >>> that specifying `random.trust_bootloader=0` is not ignored.
-> >>>
-> >>> Fixes: d97c68d178fb ("random: treat bootloader trust toggle the same way as cpu trust toggle")
-> >>> Cc: Rob Herring <robh@kernel.org>
-> >>> Cc: Frank Rowand <frowand.list@gmail.com>
-> >>> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
-> >>> ---
-> >>>  drivers/of/fdt.c | 3 +++
-> >>>  1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> >>> index 7b571a631639..6d959117fd4f 100644
-> >>> --- a/drivers/of/fdt.c
-> >>> +++ b/drivers/of/fdt.c
-> >>> @@ -1195,6 +1195,9 @@ int __init early_init_dt_scan_chosen(char *cmdline)
-> >>>
-> >>>         rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
-> >>>         if (rng_seed && l > 0) {
-> >>> +               /* Parse random.trust_bootloader if it's in command line. */
-> >>> +               parse_early_param();
-> >>
-> >> I don't think it's good that the timing of calling this is dependent
-> >> on "rng-seed" being present or not. So perhaps move it up to after the
-> >> cmdline is set.
-> >>
-> >> Either way, the other issue is the cmdline is not necessarily fixed at
-> >> this point with some architectures doing their own
-> >> append/prepend/override of the cmdline. We can't seem to get common
-> >> implementation there finished. I'm doubtful that corner case would
-> >> actually be hit though.
-> > 
-> > Hm, yea. I'm actually now having second thoughts about this one too for
-> > other reasons: FDT isn't the only arch that has this issue. It's also a
-> > problem on x86 and m68k. Maybe the random.trust_bootloader toggle should
-> > just go away, since already your bootloader can do whatever it wants to
-> > the kernel it executes? Not sure; I'll think on it a bit I guess...
+
+
+On 17/11/2022 15:57, Konrad Dybcio wrote:
 > 
-> Well, for the FDT case it least one could preserve the ability for the
-> bootloader to say "hey, here's a bunch of bytes, but I have reason to
-> believe they're not as random as you'd like" by setting a boolean
-> "rng-seed-is-crap" [pick a better name] property alongside the rng-seed
-> property. Then the kernel logic could be CONFIG_TRUST_BOOT_LOADER &&
-> !of_get_bool("rng-seed-is-crap"). Currently, the only thing the
-> bootloader could do in that case is to just elide the rng-seed
-> completely (or set the not-actually-working cmdline flag).
+> 
+> On 26/10/2022 07:33, Vinod Koul wrote:
+>> On 24-10-22, 21:58, Dmitry Baryshkov wrote:
+>>> On Mon, 24 Oct 2022 at 21:56, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 24/10/2022 12:48, Dmitry Baryshkov wrote:
+>>>>> On 24/10/2022 19:46, Krzysztof Kozlowski wrote:
+>>>>>> On 24/10/2022 12:45, Dmitry Baryshkov wrote:
+>>>>>>> On 24/10/2022 17:56, Krzysztof Kozlowski wrote:
+>>>>>>>> On 09/12/2021 05:35, Vinod Koul wrote:
+>>>>>>>>> Add the spmi bus as found in the SM8450 SoC
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+>>>>>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>>>>>>>> ---
+>>>>>>>>>     arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 ++++++++++++++++++
+>>>>>>>>>     1 file changed, 18 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
+>>>>>>>>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>>>>>> index f75de777f6ea..b80e34fd3fe1 100644
+>>>>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>>>>>> @@ -645,6 +645,24 @@ pdc: interrupt-controller@b220000 {
+>>>>>>>>>                            interrupt-controller;
+>>>>>>>>>                    };
+>>>>>>>>>
+>>>>>>>>> +         spmi_bus: spmi@c42d000 {
+>>>>>>>>> +                 compatible = "qcom,spmi-pmic-arb";
+>>>>>>>>> +                 reg = <0x0 0x0c400000 0x0 0x00003000>,
+>>>>>>>>> +                       <0x0 0x0c500000 0x0 0x00400000>,
+>>>>>>>>> +                       <0x0 0x0c440000 0x0 0x00080000>,
+>>>>>>>>> +                       <0x0 0x0c4c0000 0x0 0x00010000>,
+>>>>>>>>> +                       <0x0 0x0c42d000 0x0 0x00010000>;
+>>>>>>>>
+>>>>>>>> This is a patch from December 2021. Is there anything blocking 
+>>>>>>>> it from
+>>>>>>>> being merged?
+>>>>>>>>
+>>>>>>>> The same applies to several other patches here.
+>>>>>>>
+>>>>>>> As far as I know, Stephen still didn't pick up the spmi-pmic-arb 
+>>>>>>> support
+>>>>>>> for the PMIC on the SM8450 platform. Thus we also can not merge 
+>>>>>>> the DT
+>>>>>>> parts.
+>>>>>>
+>>>>>> Why we cannot merge DTS? How is DTS with new nodes depending on any
+>>>>>> driver changes?
+>>>>>
+>>>>> In this particular case, there was an open question, what should be 
+>>>>> the
+>>>>> bindings for the PMIC ARB v7.
+>>>>
+>>>> Ah, so it is about PMIC ARB v7 bindings? Then it's reasonable to wait
+>>>> with this one. I just had an impression that it's about driver 
+>>>> changes...
+>>>
+>>> Yes, it's about binding. Thus we have been waiting for quite some time.
+>>
+>> Yes sadly Steven has stopped responding to emails or IRC.. I am not
+>> sure whats going on!
+>>
+>> Even the SPMI tree is not being actively maintained with only few
+>> patches which were picked in last cycle since this year!
+> It's in -next now and 8450 boots and works fine. If the binding 
+> situation has been resolved, I say merge this ASAP! :)
+> 
+> Konrad
+With a small nit: it needs to be rebased, and should come between 
+aoss_qmp: and ipcc: address-wise (ipcc wasn't around a year ago in this 
+DT, it seems). Also most (all?) other nodes in the DT use reg = <0 [..]> 
+instead of reg = <0x0 [..]> so that could be fixed up as well.
 
-Yea I don't think we want to introduce that kind of complexity here. No
-more knobs :)
-
-Jason
+Konrad
+>>
