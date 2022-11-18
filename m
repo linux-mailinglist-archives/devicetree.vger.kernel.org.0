@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 511E962F42C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 520DF62F45E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232902AbiKRMEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 07:04:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
+        id S235237AbiKRMRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 07:17:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235107AbiKRMEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:04:12 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8C1264A5;
-        Fri, 18 Nov 2022 04:04:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0705D624BA;
-        Fri, 18 Nov 2022 12:04:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E643BC433C1;
-        Fri, 18 Nov 2022 12:04:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668773050;
-        bh=16/eZrNzuo6DfZkPEAFwMOchB87kodvzPf3XhDp0Vgw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S6ZAgd/uro5BfypVAdiqv7UtMzbw0VlsnIMF5F+91W+F+e75VGz/U/ORYFwuPBYRr
-         OLWCQQwUW+9R4MgwH6B/WoE6qgRf9rbCZGAHWq15r9K+6FpbfSG6iSFhzbOXzTPani
-         bXKoZHiA7cryOSx3dJlJlJRP0dY2ftGHwNP/Y9b7nR9yO5GjGxCu4O1ckeX9XjWQVc
-         rBoamjnG5gkvNseRhmSm2Vjud4KL0f9MWtzIUvdgQojop/oh2lXXcHsDkYBH/h8AWt
-         n/UXWgnoyLNUUma/2Nj8SZpyMtW1yP0MRWovLw5qV/pjHOR/y8grusi4JwORATYOLK
-         KIcTPDPIAlf3Q==
-Date:   Fri, 18 Nov 2022 12:04:04 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>, palmer@dabbelt.com
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
-Message-ID: <Y3d0tL6UoAbdhHKE@spud>
-References: <20221118011714.70877-1-hal.feng@starfivetech.com>
- <20221118011714.70877-9-hal.feng@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118011714.70877-9-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235333AbiKRMQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:16:59 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B448433E;
+        Fri, 18 Nov 2022 04:16:59 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AIAYkrp013554;
+        Fri, 18 Nov 2022 12:16:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=wZ96chG7Wo93NJeauknEUqyBoeHewSTyupy5drDPKAM=;
+ b=YR1PgFjdaXuUoSbvxsR7+XPqY8H8EscZphtasw94Q8+xIAAGZUw5t2JF1nld8jS5c+I0
+ aSMlIDChGBEa9cW4A82F/3k9TdADw6/KZIIVUoqCRUe7EMpPTRAncqtDL3wHfph0vFEm
+ OWysrqH2N7aK5kCJxgPHFI24TNX/UINjxMEt0CRghV3nnUXT+NPnk4yQH7ALOSWg5PLR
+ gMhrPSvi0eQcHQvskHXZQbQ4EqgU2KHokVt4S1+ERXg4x1enEaLHagFgbDxUedDXsmSt
+ ppyPgcDHS/TnVwByZMHo2XHWLkhUtlG1oUl1kqWWvFdVoAHqyhdVhvlRCvYyQu6VO0zr bg== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kx0ra9kkb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Nov 2022 12:16:54 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2AICGoCP013688;
+        Fri, 18 Nov 2022 12:16:50 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3kt4jkkc6e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Fri, 18 Nov 2022 12:16:50 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AICGoK8013682;
+        Fri, 18 Nov 2022 12:16:50 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2AICGnSl013681;
+        Fri, 18 Nov 2022 12:16:50 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id CC86C2EA0; Fri, 18 Nov 2022 04:16:48 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com
+Subject: [PATCH v3 0/3] add color management support for the crtc
+Date:   Fri, 18 Nov 2022 04:16:44 -0800
+Message-Id: <1668773807-19598-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ifIyFrQ0aCSEfxkrQ7YbVvvNCwBk5O9y
+X-Proofpoint-GUID: ifIyFrQ0aCSEfxkrQ7YbVvvNCwBk5O9y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-18_02,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 clxscore=1011 priorityscore=1501 mlxlogscore=560
+ suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211180073
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Palmer,
+Add color management support for the crtc provided there are
+enough dspps that can be allocated from the catalog
 
-Can you take this patch for v6.2 please, as it kinda just equalises
-things for the existing jh7100 stuff? Everyone else can boot defconfig
-other than the visionfive v1/beagle v.
+Kalyan Thota (3):
+  drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
+  drm/msm/disp/dpu1: add helper to know if display is builtin
+  drm/msm/disp/dpu1: add color management support for the crtc
 
-Thanks,
-Conor.
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  5 +++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  6 +++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 34 +++++++++++++++++++++++++++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  6 +++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 24 +++++++++++++-------
+ 5 files changed, 61 insertions(+), 14 deletions(-)
 
-On Fri, Nov 18, 2022 at 09:17:14AM +0800, Hal Feng wrote:
-> Add CONFIG_SERIAL_8250_DW=y, which is a necessary option for
-> StarFive JH7110 and JH7100 SoCs to boot with serial ports.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  arch/riscv/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index 05fd5fcf24f9..a23d022974ad 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -122,6 +122,7 @@ CONFIG_MICROSEMI_PHY=y
->  CONFIG_INPUT_MOUSEDEV=y
->  CONFIG_SERIAL_8250=y
->  CONFIG_SERIAL_8250_CONSOLE=y
-> +CONFIG_SERIAL_8250_DW=y
->  CONFIG_SERIAL_OF_PLATFORM=y
->  CONFIG_VIRTIO_CONSOLE=y
->  CONFIG_HW_RANDOM=y
-> -- 
-> 2.38.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+-- 
+2.7.4
+
