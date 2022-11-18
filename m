@@ -2,111 +2,554 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB3862F413
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 12:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D57062F428
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 13:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241597AbiKRLyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 06:54:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48896 "EHLO
+        id S241474AbiKRMBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 07:01:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241554AbiKRLyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 06:54:20 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A0B8093CD9;
-        Fri, 18 Nov 2022 03:54:19 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BEBC023A;
-        Fri, 18 Nov 2022 03:54:25 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D80D93F587;
-        Fri, 18 Nov 2022 03:54:17 -0800 (PST)
-Date:   Fri, 18 Nov 2022 11:54:15 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org, johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221118115415.gr2crvyhs7rcfbir@bogus>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221117101903.sw3hxaruj5sfhybw@bogus>
- <20221117112403.haffuclwooudvgwz@vireshk-i7>
- <20221117120145.ou2pg7obxnwlsc36@bogus>
- <20221118055730.yrzpuih3zfko5c2q@vireshk-i7>
+        with ESMTP id S241432AbiKRMBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 07:01:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B6D94A5C;
+        Fri, 18 Nov 2022 04:01:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 50328B82383;
+        Fri, 18 Nov 2022 12:01:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA437C433D6;
+        Fri, 18 Nov 2022 12:01:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668772894;
+        bh=gHY8oh7bKt9m5LJsvFCMjLzXQtR+VjOph9E0FEYxKbM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NPtmoEZ23cwe60TX4GGMt8EKk5ditunPtY2IkkyM3Hmha/8v4AqecsM8Uiyjqc5Tp
+         88Q4VRbKySxZnQbzkRs8zqGWhze60QwDd9wNe/ZSYJQl8Fa1UB6a7bYof5TToe7/E4
+         lri7CcWIZhTUU7rfTA+zaXr83l3rvHQ6Gmb4SRpfTjpxpkY3mavrU+nfA0Ifpw1Trs
+         2mHY6OnIhWsB9BzDICrx55F7YFIPNHjHXPWNXzV1yEybIvqZP5fKe0Rw5803kPe+3R
+         V6beSqI93xmjoibE4sbzlAOgl3ETr4LvWP/64fgGThp0UqGU7QuT1xgbuvn1HJ425W
+         ORNq/O2GTmZpQ==
+Date:   Fri, 18 Nov 2022 12:01:28 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/8] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+Message-ID: <Y3d0GE7msiWGlRcd@spud>
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+ <20221118011714.70877-7-hal.feng@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221118055730.yrzpuih3zfko5c2q@vireshk-i7>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221118011714.70877-7-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 11:27:30AM +0530, Viresh Kumar wrote:
-> On 17-11-22, 12:01, Sudeep Holla wrote:
-> > Thanks for the link. Sorry I still don't get the complete picture. Who are
-> > the consumers of these clock nodes if not cpufreq itself.
-> > 
-> > I am going to guess, so other device(like inter-connect) with phandle into
-> > CPU device perhaps ? Also I assume it will have phandle to non-CPU device
-> > and hence we need generic device clock solution. Sorry for the noise, but
-> > I still find having both clocks and qcom,freq-domain property is quite
-> > confusing but I am fine as I understand it bit better now.
+On Fri, Nov 18, 2022 at 09:17:12AM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> Lemme try to explain what the initial problem was, because of which I suggested
-> the DT to be fixed, even if no one is going to use it as a client.
+> Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> Technology Ltd.
 > 
-> The OPP core provides two features:
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 437 +++++++++++++++++++++++
+>  1 file changed, 437 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
 > 
-> - Parsing of the OPP table and provide the data to the client.
-> - Ability to switch the OPPs, i.e. configuring all resources.
-> 
-> qcom-cpufreq-hw driver uses both of these, but in a tricky way (like Tegra30).
-> It used the OPP core to parse the data, along with "opp-hz" property and switch
-> the OPPs by calling dev_pm_opp_set_opp(). But it doesn't want
-> dev_pm_opp_set_opp() to change the clock rate, but configure everything else.
-> 
-> Now the OPP core needs to distinguish platforms for valid and invalid
-> configurations, to make sure something isn't broken. For example a developer
-> wants to change the OPP along with frequency and passes a valid OPP table. But
-> forgets to set the clock entry in device's node. This is an error and the OPP
-> core needs to report it. There can be more of such issues with different
-> configurations.
-> 
-> Also, as Mani explained, if the OPP core is required to switch the OPPs, then it
-> needs to know the initial frequency of the device to see if we are going up or
-> down the frequency graph. And so it will do a clk_get_rate() if there is
-> "opp-hz" available.
-> 
-> 
-> What we did in case of Tegra30 (commit 1b195626) is provide a .config_clks
-> helper, which does nothing. So the OPP core doesn't need to know if frequency is
-> programmed or not.
-> 
-> The same can not be done for Qcom right now as the CPU node doesn't have the clk
-> property though it has "opp-hz".
-> 
-> Weather we have a user in kernel (OS) or not, shouldn't decide how the DT looks
-> like. The DT should clearly define what the hardware looks like, irrespective of
-> the users. The CPU has a clock and it should be mentioned. If the OPP core
-> chooses to use that information, then it is a fine expectation to have.
-> 
-> And so we are here. Most likely no one will ever do clk_set_rate() on this new
-> clock, which is fine, though OPP core will likely do clk_get_rate() here.
-> 
-> Hope I was able to clarify few things here.
-> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> new file mode 100644
+> index 000000000000..c22e8f1d2640
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -0,0 +1,437 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
 
-Thanks a ton for such detailed explanation. Ulf was trying to integrate
-genpd + performance domains with SCMI. That is the reason for my interest
-in this topic. Sorry for all the trouble.
+@Emil, I feel like I have to ask given the 2022 date, but should this
+stuff be attributed to your canonical address or is this fine?
 
--- 
-Regards,
-Sudeep
+Other than that, a cursory check /looks/ fine, other than the:
+
+> +       gmac0_rgmii_rxin: gmac0_rgmii_rxin {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+
+If you remove the clock-frequency = <0> bit, dtb validation will force
+people to set the value in jh7110-board.dts which I'd prefer to rely on
+than a comment.
+
+Glad to see you sorted out the clock/reset stuff too!
+
+Thanks,
+Conor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
