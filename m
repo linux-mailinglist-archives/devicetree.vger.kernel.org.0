@@ -2,221 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 125F962F580
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:04:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F09E662F583
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235278AbiKRNEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:04:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35296 "EHLO
+        id S241539AbiKRNGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:06:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235266AbiKRNEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:04:44 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E0D73BAA;
-        Fri, 18 Nov 2022 05:04:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1668776681; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RLOKla0FOU46dnncDnIuqyxwr1shBr/S/4OQQR/rr5U=;
-        b=rWJHtguDOJnr5OVc1oD4FoeyQThKk4xt8OlavVTQaG4IFD0g9HdzLLFxvrvL1iJHgDBBor
-        4sqIp1y7Avhkd2PwJo5oeGeSsjHH7KxVbohB5LXM7/lPqIBBYg331SabXjW9bQeuZI5hp6
-        nUtaZ4JUADZ8vaTMndMT/OzRtFdXSwQ=
-Date:   Fri, 18 Nov 2022 13:04:30 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 1/2] mmc: jz4740: Don't change parent clock rate for some
- SoCs
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S235266AbiKRNGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:06:19 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81818769E7
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:06:18 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id l12so8112105lfp.6
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:06:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SM/Hr9HQlKz57Vtwanp4K4Ls2OlF5cSrPv62Ff71hFg=;
+        b=BOBUo5yrSXCso4IIRkcg0o2teW8R3OqiUdLBb/m9b3VJ7Sh5+1gdMnp9pOxXnvd+Yn
+         jeS6rOMnYc39Qv7akYw16hE8G+rbBHmShmzV8w4wkEK7LDeUWinfdYLU+LaeLoWQoUZQ
+         pI+ZvbcLP5PTS8crCbDRSpjzftHj2eT9RRVk19z6/eVK7fbGk9Okpvh2RH9ftj6H2oCh
+         ho/ium4pBWQlacbK/QGRn1rhqlUiuw3WqXiGsfJyZ3sB2XYYBmgH6qjw0My9EbG308PF
+         of1sU8XAEEUtv/fOBo22tjrmNKJBQfGuLFLLLYC0E/Xc6JPrvWI+SVEf0Iv+0lrwdkVv
+         72cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SM/Hr9HQlKz57Vtwanp4K4Ls2OlF5cSrPv62Ff71hFg=;
+        b=pCw/DQqt6+ToKoPe0AmPbW/6RtBTVi739r6fUdu0ppRl1cPxRK1f1zLxYPjbok4Iap
+         Uo39Fwqb5238IN2dcV2AiFLjfyJRUOzYrhsnKkm+9sbGYoQYK/fpPRIiTzz6XJ+FkuPi
+         IuEtc09Ln8krS7pV5SR8+sCsgMnomT7wAzo1LRp3Zz5ocgLAUfd0/X0sg3LfLPd4av8e
+         Su6kG+0g8sWEQmBXTviZJ8k5yvpLxoSiwmz36fE56aYwoQboNErAd+jOxImTaw3IUl7T
+         u3u+kR4vAj6o+nNzlk3vLCqbNHd0533jdVVQUi4DVRnS8V/nONwRFCPda7faVrzCR2dc
+         WQXg==
+X-Gm-Message-State: ANoB5pkOBr/9WdmtanJY1HAyJ3Risxud1RsH+EmLosUYeTZXAkAN8B6N
+        81mGcGpmAGWdCnVAEUdMpKjYkA==
+X-Google-Smtp-Source: AA0mqf6Eg4ax1bzTHnu/VGLZTHQlm5c/vZt/4qmejF5rjXEdKZfMIwO0spdeu5nCwA4sLgFgaXuX8g==
+X-Received: by 2002:a05:6512:3daa:b0:4a2:ba30:a9a2 with SMTP id k42-20020a0565123daa00b004a2ba30a9a2mr2231992lfv.689.1668776776803;
+        Fri, 18 Nov 2022 05:06:16 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bt26-20020a056512261a00b004ab2cb8deb5sm655889lfb.18.2022.11.18.05.06.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 05:06:16 -0800 (PST)
+Message-ID: <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
+Date:   Fri, 18 Nov 2022 14:06:14 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
+ example
+Content-Language: en-US
+To:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Dafna Hirschfeld <dafna@fastmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Message-Id: <IBOJLR.I7JEODTRBACJ1@crapouillou.net>
-In-Reply-To: <CAKNVLfYpmJjQYFOy__PkmqcftQcQUYEKJ2V2K90MfG-1MBC_uA@mail.gmail.com>
-References: <20221108045300.2084671-1-lis8215@gmail.com>
-        <20221108045300.2084671-2-lis8215@gmail.com>
-        <CAPDyKFrMqCL1-faBadVP3xB-5qiCYsyRUuOHbFZuOWfLdCXwig@mail.gmail.com>
-        <59EJLR.DQ7KHQEAEUSG2@crapouillou.net>
-        <CAKNVLfYpmJjQYFOy__PkmqcftQcQUYEKJ2V2K90MfG-1MBC_uA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+ <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siarhei,
+On 18/11/2022 10:39, Paul Elder wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Add an example to the rockchip-isp1 DT binding that showcases usage of
+> the parallel input of the ISP, connected to the CSI-2 receiver internal
+> to the i.MX8MP.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Le ven. 18 nov. 2022 =C3=A0 12:51:54 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =C3=A9crit :
-> =D0=BF=D1=82, 18 =D0=BD=D0=BE=D1=8F=D0=B1. 2022 =D0=B3. =D0=B2 12:27, Pau=
-l Cercueil=20
-> <paul@crapouillou.net>:
->>=20
->>  Hi,
->>=20
->>  (Ingenic SoCs maintainer here)
->>=20
->>  Le ven. 18 nov. 2022 =C3=A0 09:45:48 +0100, Ulf Hansson
->>  <ulf.hansson@linaro.org> a =C3=A9crit :
->>  > On Tue, 8 Nov 2022 at 05:53, Siarhei Volkau <lis8215@gmail.com>=20
->> wrote:
->>  >>
->>  >>  Some SoCs have one clock divider for all MMC units, thus=20
->> changing
->>  >> one
->>  >>  affects others as well. This leads to random hangs and memory
->>  >>  corruptions, observed on the JZ4755 based device with two MMC=20
->> slots
->>  >>  used at the same time.
->>  >
->>  > Urgh, that sounds like broken HW to me.
->>  >
->>  > The MMC blocks could share a parent clock (that would need a fixed
->>  > rate for it to be applied), assuming there is a separate=20
->> gate/divider
->>  > available per block. But there isn't'?
->>=20
->>  They do share a parent clock and have separate gates, and each MMC=20
->> IP
->>  block has an internal divider for the bus frequency derived from=20
->> that
->>  shared clock.
->>=20
->>  >>
->>  >>  List of SoCs affected includes: JZ4725b, JZ4755, JZ4760 and=20
->> JZ4760b.
->>  >>  However, the MMC driver doesn't distinguish JZ4760 and JZ4770
->>  >>  which shall remain its behavior. For the JZ4755 is sufficient to
->>  >>  use JZ4725b's binding. JZ4750 is outside of the patch.
->>  >>
->>  >>  The MMC core has its own clock divisor, rather coarse but=20
->> suitable
->>  >> well,
->>  >>  and it shall keep the role of tuning clock for the MMC host in=20
->> that
->>  >>  case.
->>  >
->>  > The mmc core doesn't have a clock divisor, but it does control=20
->> the bus
->>  > clock frequency through the ->set_ios() host ops. It needs to do=20
->> that,
->>  > to be able to conform to the (e)MMC, SD and SDIO specifications.
->>  >
->>  > Can you please try to elaborate on the above, so I can better
->>  > understand your point?
->>=20
->>  Yes, I don't really understand the patch, TBH.
->>=20
->>  The "clk_set_rate" call will only set the shared clock to the=20
->> *maximum*
->>  clock frequency (host->mmc->f_max) which should be the exact same
->>  across all MMC IPs.
->=20
-> That's the case I need different "f_max" for my HW, for some reason
-> internal slot can't do a full rate (48MHz) but the external can, the=20
-> same
-> card used for checking. So I want to set 24M for mmc0, and 48M for=20
-> mmc1
-> with respect to hardware limitation.
+Missing SoB.
 
-The JZ4760B programming manual states that the controller is "fully=20
-compatible with the SD Memory Card Specification 2.0". In that=20
-specification, the bus speed is max. 25 MHz.
+> ---
+>  .../bindings/media/rockchip-isp1.yaml         | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+> 
 
-The programming manual also says: "In data transfer mode, the MSC=20
-controller can operate card with clock rate fpp (0 ~ 25Mhz)."
+I don't know what do you demonstrate there... usage of endpoints? That's
+the only difference. Such usage is the same everywhere, nothing specific
+to this example. You already have two examples, so I don't think this
+brings anything more.
 
-So the max-frequency really should be 25 MHz.
-
-Cheers,
--Paul
-
->>=20
->>  So it doesn't matter if it's set 3 times by 3 different instances of
->>  the IP, as long as they all request the same value.
->>=20
->>  Besides, I know for a fact that the mainline driver works fine on=20
->> the
->>  JZ4760(B) and JZ4725B.
->>=20
->>  Finally... even if it was correct, this change would break
->>  compatibility with old Device Tree files.
->>=20
->>  Cheers,
->>  -Paul
->>=20
->>  >>
->>  >>  Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
->>  >
->>  > Kind regards
->>  > Uffe
->>  >
->>  >>  ---
->>  >>   drivers/mmc/host/jz4740_mmc.c | 10 +++++++++-
->>  >>   1 file changed, 9 insertions(+), 1 deletion(-)
->>  >>
->>  >>  diff --git a/drivers/mmc/host/jz4740_mmc.c
->>  >> b/drivers/mmc/host/jz4740_mmc.c
->>  >>  index dc2db9c18..d390ff31d 100644
->>  >>  --- a/drivers/mmc/host/jz4740_mmc.c
->>  >>  +++ b/drivers/mmc/host/jz4740_mmc.c
->>  >>  @@ -114,6 +114,7 @@ enum jz4740_mmc_version {
->>  >>          JZ_MMC_JZ4740,
->>  >>          JZ_MMC_JZ4725B,
->>  >>          JZ_MMC_JZ4760,
->>  >>  +       JZ_MMC_JZ4770,
->>  >>          JZ_MMC_JZ4780,
->>  >>          JZ_MMC_X1000,
->>  >>   };
->>  >>  @@ -887,7 +888,13 @@ static int jz4740_mmc_set_clock_rate(struct
->>  >> jz4740_mmc_host *host, int rate)
->>  >>          int real_rate;
->>  >>
->>  >>          jz4740_mmc_clock_disable(host);
->>  >>  -       clk_set_rate(host->clk, host->mmc->f_max);
->>  >>  +
->>  >>  +       /*
->>  >>  +        * Changing rate on these SoCs affects other MMC units=20
->> too.
->>  >>  +        * Make sure the rate is configured properly by the CGU
->>  >> driver.
->>  >>  +        */
->>  >>  +       if (host->version !=3D JZ_MMC_JZ4725B && host->version !=3D
->>  >> JZ_MMC_JZ4760)
->>  >>  +               clk_set_rate(host->clk, host->mmc->f_max);
->>  >>
->>  >>          real_rate =3D clk_get_rate(host->clk);
->>  >>
->>  >>  @@ -992,6 +999,7 @@ static const struct of_device_id
->>  >> jz4740_mmc_of_match[] =3D {
->>  >>          { .compatible =3D "ingenic,jz4740-mmc", .data =3D (void *)
->>  >> JZ_MMC_JZ4740 },
->>  >>          { .compatible =3D "ingenic,jz4725b-mmc", .data =3D (void
->>  >> *)JZ_MMC_JZ4725B },
->>  >>          { .compatible =3D "ingenic,jz4760-mmc", .data =3D (void *)
->>  >> JZ_MMC_JZ4760 },
->>  >>  +       { .compatible =3D "ingenic,jz4770-mmc", .data =3D (void *)
->>  >> JZ_MMC_JZ4770 },
->>  >>          { .compatible =3D "ingenic,jz4775-mmc", .data =3D (void *)
->>  >> JZ_MMC_JZ4780 },
->>  >>          { .compatible =3D "ingenic,jz4780-mmc", .data =3D (void *)
->>  >> JZ_MMC_JZ4780 },
->>  >>          { .compatible =3D "ingenic,x1000-mmc", .data =3D (void *)
->>  >> JZ_MMC_X1000 },
->>  >>  --
->>  >>  2.36.1
->>  >>
->>=20
->>=20
-
+Best regards,
+Krzysztof
 
