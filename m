@@ -2,78 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5673662F936
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:23:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC4E662F944
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:28:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235170AbiKRPXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:23:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45192 "EHLO
+        id S242071AbiKRP2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:28:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241173AbiKRPXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:23:12 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0070C2CCBE
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:23:10 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso7759740wme.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:23:10 -0800 (PST)
+        with ESMTP id S242133AbiKRP2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:28:41 -0500
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AC164A16
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:39 -0800 (PST)
+Received: by mail-il1-x134.google.com with SMTP id m15so2688418ilq.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:28:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LcYxX7CS1Ufy2jDrgHKfbNrWxSi6NEkFbdecW+66ckA=;
-        b=kwWawBEtv8KFgdpgtP1kcjBH2zrLUgAusesVgFEwCuWYdfBgcA5wc/sBbYz/Gt60Fy
-         C04zvP0H/tOcx1EzY9ytQLrDGGHiqrxOfRPa50i7nY8v2N9LDYc8xgnsLc/GZOvrT6Io
-         vgTVe81WD/VJ1nVjtmE6LngjjQyGBUzEN3/SmMFWgHw+lrjQQjRIXbWlHn4WzsJsNGOP
-         sPy26VddXhOo5vWQpwZLlHy2CKNb/+D19+uuEKIcgHsHbUSe7ZvGcxDHweoT7IX+YDH1
-         0WeINkG/1vPNI8sPqxpkZFM+gQT4iTwUltg1AANvcWWf/B8iH+ezxZFEvkTs5mo/vXkr
-         WiQQ==
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=V3r1rBEjB59P7Hp9rGdtjQJ0ITi8NZo801rMdyiF4HU=;
+        b=G+PzEFfAhMqQSIaM94usPBm+ze8W/n7MqO76Y1A3SsmdmZNsRJR4K38aX8qjnGNxLe
+         yaHwhUn3hbQVPmGCo96jqLkb3TamQXkTlCN8qtTYA79D8j14Kdlt9KEZE+UvSQrRQwZl
+         XN3osX0KOX7aMFWMp/Hd0xyTG7q+NC2QRuMbE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LcYxX7CS1Ufy2jDrgHKfbNrWxSi6NEkFbdecW+66ckA=;
-        b=nnmO5PzYBu8bQH6LgYQT5ME4shc9Qa7KAPLzoogbLMBEBpV8Ng0XJlz8v8gV/4j8kM
-         FcF8BbkaO18lQZn6uC5YBx6WpT31krZIHuV0Jh0MgcK52gzPFQzmFvph8fDaHR68aT2K
-         Rt0a4Vv1GzwYoDjVwPn5qduEjvr3IuXE//jLxU1bnYkfDkB8IAxoys9puqJNFH5FjmaR
-         yjeJe+gwjYSIdmaXkE+7bT9gcTgaNIG/WtqGt7D/l4ApDWU66phCcQW6vD3UoUTt0aeE
-         1xPQ1rDIGQWkbx8SRiN8Sh5Bu02uyqtI41B3rbZoX6ZqKkzC0yFJF+MXIDAQfrC6W9Vl
-         wmmw==
-X-Gm-Message-State: ANoB5pmWJHyk5spKQaH81/Lb35XUTFMstYrU7tY2rlqD52QK6uocxCKP
-        FXFoLwzkQ5N480nEc/PVPxJ3RQ==
-X-Google-Smtp-Source: AA0mqf63aZ9cQQYw+4CNq3MjA++NwUGZ8iaNAcaISCCd+7/g1EHsFBDOhLklLe1GPigwlYD6F1nL5Q==
-X-Received: by 2002:a05:600c:348d:b0:3cf:88d3:5685 with SMTP id a13-20020a05600c348d00b003cf88d35685mr5340839wmq.38.1668784989562;
-        Fri, 18 Nov 2022 07:23:09 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
-        by smtp.gmail.com with ESMTPSA id e18-20020adfdbd2000000b0022da3977ec5sm3801120wrj.113.2022.11.18.07.23.08
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V3r1rBEjB59P7Hp9rGdtjQJ0ITi8NZo801rMdyiF4HU=;
+        b=5s588cpKuHfJ+zreDk96p52VfogTSdTLTCn8EekFByXF7urwnf7uiBzLDswG2xQt9C
+         hmkZLljUmfm4iWPGDxtAjRj+5+NGGxiShXstNTvmLBH2vB/myK6Fjenn2KJbugrll+hy
+         T1DEHt+6UIyN0xIIOeNh6TuvdM/JgFf78hRwhRfkkHgHFEf6TU1vUVW8VJkEjgpYR+ua
+         UEYKHKNTAjXZTp7WYt7nDT0Y4RxhqyMU1vTPiC7TNVpdON8zuWELUyWNT7KPo4lCGwAE
+         re8TlnWEdKrZZg9TzFZUwsPap8QOIi4gTrH4TevTxytgKPbj+S2IDrD/gawpf3STkMH2
+         GiAg==
+X-Gm-Message-State: ANoB5plggvNRYmSflFMG4GJ3apFdLkSDI8VSQj1+a64wsUweof84f0WD
+        PqiRqMVXlMoyJ5Cchnr27u2O8A==
+X-Google-Smtp-Source: AA0mqf6C3biW+ByQBq4hcoGxLWTV//5gPtXVCzNfAg0J28ZfiqPApQ/2Us66xTCumk0l7fvllDWDPg==
+X-Received: by 2002:a05:6e02:c0d:b0:300:b1ee:c196 with SMTP id d13-20020a056e020c0d00b00300b1eec196mr3614368ile.237.1668785319286;
+        Fri, 18 Nov 2022 07:28:39 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id o7-20020a056e02092700b003027f923d29sm1351073ilt.39.2022.11.18.07.28.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 07:23:09 -0800 (PST)
-Message-ID: <b5970487-9326-9d41-a004-6369e854e530@linaro.org>
-Date:   Fri, 18 Nov 2022 16:23:08 +0100
+        Fri, 18 Nov 2022 07:28:38 -0800 (PST)
+Date:   Fri, 18 Nov 2022 15:28:38 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add a new herobrine Pro SKU
+Message-ID: <Y3ekpgpRxgFwEeo0@google.com>
+References: <20221118073017.26128-1-quic_rjendra@quicinc.com>
+ <20221118073017.26128-2-quic_rjendra@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq bindings
- to dt-schema
-Content-Language: en-US
-To:     Sander Vanheule <sander@svanheule.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
-References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
- <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
-Organization: Linaro Developer Services
-In-Reply-To: <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221118073017.26128-2-quic_rjendra@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,78 +70,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 16:19, Sander Vanheule wrote:
-> Hi,
-> 
-> On Tue, 2022-11-15 at 11:06 +0100, Neil Armstrong wrote:
->> This converts the Semtech SX150Xq bindings to dt-schemas, add necessary
->> bindings documentation to cover all differences between HW variants
->> and current bindings usage.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->> To: Linus Walleij <linus.walleij@linaro.org>
->> To: Rob Herring <robh+dt@kernel.org>
->> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: linux-gpio@vger.kernel.org
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-kernel@vger.kernel.org
->> ---
->> Changes in v3:
->> - Resent with missing To: Linus Walleij
->> - Link to v2: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v2-0-a4a5b8eecc7b@linaro.org
->>
->> Changes in v2:
->> - fixed rob comments
->> - added rob's Reviewed-by
->> - Link to v1: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v1-0-0c26649b637c@linaro.org
->> ---
-> 
-> [snip]
-> 
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - semtech,sx1503q
->> +              - semtech,sx1506q
->> +    then:
->> +      patternProperties:
->> +        '-cfg$':
->> +          properties:
->> +            pins:
->> +              items:
->> +                pattern: '^gpio[0-15]$'
-> 
-> [snip]
-> 
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: semtech,sx1509q
->> +    then:
->> +      patternProperties:
->> +        '-cfg$':
->> +          properties:
->> +            pins:
->> +              items:
->> +                pattern: '^(oscio|gpio[0-15])$'
-> 
-> Sorry to be so late to reply, but don't these patterns only match "gpio0", "gpio1", and "gpio5"?
-> 
-> A quick search for some datasheets turned up the SX1503 and SX1509Q with 16 GPIOs, so I assume the
-> intention was to match "gpio0" to "gpio15". I think this should be "^(gpio[0-9]|gpio1[0-5])$" (or
-> something equivalent).
+Hi Rajendra,
 
-Damn you're right, Linus should I resend or send a fixup ?
+On Fri, Nov 18, 2022 at 01:00:17PM +0530, Rajendra Nayak wrote:
 
-Thanks,
-Neil
+> Subject: arm64: dts: qcom: sc7280: Add a new herobrine Pro SKU
 
+nit: this adds the herobrine *CRD* Pro SKU (though other Pro SKUs
+might follow), so 'CRD' should be part of the subject
+
+uber-nit: 'new' is redundant in this context
+
+> Some of the qualcomm qcard based herobrine devices can come with
+> a Pro variant of the chipset with some qcard level changes like
+> the smps9 from pm8350c which is ganged up with smps7 and smps8,
+> so we just end up removing smps9 from the herobrine pro sku dtsi.
+
+This is a very long sentence :)
+
+> We then use it to create a new dts for the Pro variant of the
+> herobrine CRD.
+
+Using 'we' is a a bit colloquial for a commit message, how a about
+something like this: 'Add a .dtsi for pro skus that deletes the
+smps9 node and include it from the new dts for the CRD Pro'.
+
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |  1 +
+>  .../dts/qcom/sc7280-herobrine-crd-pro.dts     | 35 +++++++++++++++++++
+>  .../dts/qcom/sc7280-herobrine-pro-sku.dtsi    |  8 +++++
+>  3 files changed, 44 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
 > 
-> Best,
-> Sander
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index afe496a93f94..c5ac51c3a383 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -108,6 +108,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd-pro.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
+> new file mode 100644
+> index 000000000000..fe6b228e9e4b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dts
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * sc7280 CRD 3+ Pro board device tree source
+> + *
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "sc7280-herobrine-crd.dts"
+> +#include "sc7280-herobrine-pro-sku.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. sc7280 CRD Pro platform (rev5+)";
+> +	compatible = "google,hoglin-sku1536", "qcom,sc7280";
+> +
+> +	/* FIXED REGULATORS */
+> +
+> +	/*
+> +	 * On most herobrine boards PPVAR_SYS directly provides VREG_EDP_BL.
+> +	 * However, on CRD there's an extra regulator in the way. Since this
+> +	 * is expected to be uncommon, we'll leave the "vreg_edp_bl" label
+> +	 * in the baseboard herobrine.dtsi point at "ppvar_sys" and then
+> +	 * make a "_crd" specific version here.
+> +	 */
+> +	vreg_edp_bl_crd: vreg-edp-bl-crd-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vreg_edp_bl_crd";
+> +
+> +		gpio = <&pm8350c_gpios 6 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&edp_bl_reg_en>;
+> +
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +};
 
+Why is this node needed here, doesn't it already exist by including
+'sc7280-herobrine-crd.dts'?
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
+> new file mode 100644
+> index 000000000000..fb4bbe8aeda0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-pro-sku.dtsi
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Google Herobrine dts fragment for PRO SKUs
+> + *
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/delete-node/ &vreg_s9c_0p676;
+> -- 
+> 2.17.1
+> 
