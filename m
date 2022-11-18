@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 709EE62F5E9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 091C562F60A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:30:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235278AbiKRN0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:26:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
+        id S241676AbiKRNaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:30:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234124AbiKRN0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:26:38 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4799185A26
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:26:37 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id d9so9214390wrm.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:26:37 -0800 (PST)
+        with ESMTP id S241712AbiKRN36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:29:58 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C66F7F
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:29:56 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso7520748wme.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:29:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5MiF9TMHxw5V5hyXlLxWTx5c5LNTg+L6bdroac28KQ=;
-        b=tXf7R2BbLdciR0aWHCW1fcHe8ymozuqrc0GToPKat0J6HPiGqJXpeTNjP8EZo7cAe5
-         ghQt0EqEWMd9qkLjwYOnHmFc0kbNN+kfPUxJHNCIdbdWB0uvnyEh8xkWZhiQ4DDxjT3A
-         ur1Aswxlx+ThA6gWcFoCN+/Den71gN3VX41Yrt0RgRVFE9XznpJzx0Zuvw85Mm103JzQ
-         yNUMhdt63vJif5OdEI5gsbkC6CKUjsYVWwa20xF+0WESaKVjQUiZYlJIWopmce8LAwWh
-         /YhIMyzDF2gZ4VnM9LqOgGKdRieJ+pairfYiDNYjRhkRKU8Mv4GgIY2o3egiR3sWW3g6
-         V23Q==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HN8LVu2tBOU+OG4LnFinIFanAXLqtN8dB9g7K9KkfjU=;
+        b=OG2Ckv2ZO0fmf4LFpZ1ezKwfBJtCEtj08HMol4o7P/Y/9Ta89WhfUr3KKSF/viNvCS
+         Y2ZI5LjDOEBbGfVDg1BNP7WAozSBVCRJSPz0ubyYaaAeOrSEqRPWIv4HqA6hIhXRbyCs
+         z3Q6LA5CQYLLyPVszidp2Cv0N6FhlbL9Am8OjFiludhX67cUsXWwjDY01oFyhvbFj9CT
+         8qZGqZOOphmvobWLK2G61e5D/yCVnvjcEJKLmXM0HYkY3LOX2g0cjeFwC9R6BUgKV6Qf
+         1v9OwBYOVyWeKLa1Mquh74I6yx3SLyhX9aN0PzZsw8wSUrtQxzhVIoWyoh86XMxaYAMu
+         Gzsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e5MiF9TMHxw5V5hyXlLxWTx5c5LNTg+L6bdroac28KQ=;
-        b=ZSP7AgwUwcgOdP5qJAiulseTQx2Q1pbF5VkTpZwAkXEZpQXOJrCFA5sdGDYLZy26Ct
-         lcwMGLN3ofmu60GD8GsVxJyRRANpNVZZeDDRe12+EYhitLeAKUXayEIEYi1wHl9g/dFo
-         LQgieCRWtguHxjPHy4umoxr0UaNWL5O5mnKEhfEIuY95WF0YnLydt3gC2sEf8Eb/khcz
-         Wh3uw0Qew4oNBOu51SoEzIORRNz36cjXcBKBaJ2828PbWoiwMlgJFZLtRPm72U92A8Mi
-         3Al+n7yAkHf41fsA3Ha7N0EukRNH8m5xWwm6yAvhpm8ycx0bA/ZXSzI/CI6O9f8bEXXk
-         SxZA==
-X-Gm-Message-State: ANoB5pmuNvnt77P0SI8+1HP+wVLU54cJzJ2oPLFaw+VLAbZL2GzKXX10
-        9CCBUWDsWn5qflGY1YPaoSDiQQ==
-X-Google-Smtp-Source: AA0mqf4kDgGIKWcnXZDZaS3yoafhs9FZKkJ73tJd4mzLPQeKB2/wrtXUa5UWiLDIZJgyTQVdB0iEUQ==
-X-Received: by 2002:a5d:6b08:0:b0:236:4b06:bbb1 with SMTP id v8-20020a5d6b08000000b002364b06bbb1mr4280526wrw.303.1668777995737;
-        Fri, 18 Nov 2022 05:26:35 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
-        by smtp.gmail.com with ESMTPSA id s18-20020adfdb12000000b00241727795c4sm4356779wri.63.2022.11.18.05.26.34
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HN8LVu2tBOU+OG4LnFinIFanAXLqtN8dB9g7K9KkfjU=;
+        b=DOm7fOGLFAGlXjT6rjwrnP0QSTaFzmppvk3R/BBaxuaVD2e/II/2rEaEuehMgCoNmO
+         GDr1CM+Ctvjd175ixDoPrM8EXHO5t4DuQlvXquAMvyIQK/FRYxnl3LbcTiy9KEAGvmvU
+         /9ZtBubk8tgg/w+lpFtGn7VVWLivSZFBsq1DhVvbtTddAk9rG8Lh0r27SYjIzxzLvvGe
+         /JrVfuF33mFOw3c9/sOGcyM6qW06jc0CiKRVi9qHqLbCwZ8enuLhbUt24PKY14TG2KyJ
+         wKRgsgYTLgvyCgV/JwG/4jfYWHGeXWcotk/no+DqR5uOm8J0z+PY7ynNO5SmnvxZCxlu
+         VItA==
+X-Gm-Message-State: ANoB5pkCcNR+VEHNCaK4OBAT3Hv3k/2U14RqWc4dLoc0EoqRHRULkNE4
+        yH3kjtJ/7YG+DTHIfwTq3WZvgg==
+X-Google-Smtp-Source: AA0mqf7i8dywQOhFfIFUfTreejp7KFR0nIu101KikdsXbMRrFt1RKBxdvI3qgRZVHoWm4mbMT54yiQ==
+X-Received: by 2002:a05:600c:ac1:b0:3c6:d18b:304b with SMTP id c1-20020a05600c0ac100b003c6d18b304bmr8044158wmr.142.1668778195318;
+        Fri, 18 Nov 2022 05:29:55 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id r13-20020a056000014d00b0024165454262sm3607708wrx.11.2022.11.18.05.29.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 05:26:35 -0800 (PST)
-Message-ID: <3cd03d3e-b521-8050-b8fa-a521310f1e5b@linaro.org>
-Date:   Fri, 18 Nov 2022 14:26:34 +0100
+        Fri, 18 Nov 2022 05:29:54 -0800 (PST)
+Message-ID: <0993d2bd-c0f2-8139-8f02-84abe6b8ad8b@linaro.org>
+Date:   Fri, 18 Nov 2022 13:29:52 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: reserved-memory: document Qualcomm
- MPSS DSM memory
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 07/18] dt-bindings: msm: dsi-controller-main: Add
+ compatible strings for every current SoC
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
- <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-1-f7c65d6f0e55@linaro.org>
- <0e8ed125-beba-8f74-b3aa-728e9dc5a09d@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <0e8ed125-beba-8f74-b3aa-728e9dc5a09d@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org
+Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
+ <20221107235654.1769462-8-bryan.odonoghue@linaro.org>
+ <aeb59d3c-34d0-f00a-bfc3-524cd03acb71@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <aeb59d3c-34d0-f00a-bfc3-524cd03acb71@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,39 +83,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 11:46, Krzysztof Kozlowski wrote:
-> On 18/11/2022 09:53, Neil Armstrong wrote:
->> Document the Qualcomm Modem Processing SubSystem DSM shared memory.
+On 08/11/2022 12:46, Dmitry Baryshkov wrote:
+> On 08/11/2022 02:56, Bryan O'Donoghue wrote:
+>> Currently we do not differentiate between the various users of the
+>> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
+>> compatible string but, the hardware does have some significant 
+>> differences
+>> in the number of clocks.
 >>
->> This memory zone is shared between the APPS and the MPSS subsystem,
->> and must be configured during the whole lifetime of the system.
+>> To facilitate documenting the clocks add the following compatible strings
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../reserved-memory/qcom,mpss-dsm-mem.yaml         | 37 ++++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
->> new file mode 100644
->> index 000000000000..226d0dfc422c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/reserved-memory/qcom,mpss-dsm-mem.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Modem Processing SubSystem DSM Memory
->> +
+>> - qcom,mdss-dsi-ctrl-apq8064
 > 
-> Discussion in v1 is still going. Memory region is not a device.
+> Generic comment: I think we'd better follow the arm/qcom-soc.yaml and 
+> use qcom,soc-something as compat string. This would leave us with 
+> qcom,apq8064-dsi-ctrl
+> 
+> I'm not sure if we want to follow the qcm2290 approach and encode the 
+> DSI ctrl revision here (6g vs v2).
 
-Nowhere is was affirmed this was a device.
+For qcm2290 I'm thinking qcm2290-dsi-ctrl - without the 6g piece.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+a) Nobody is using the compat at the moment
+b) I'm not sure what - if any real information the silicon version
+    number conveys here.
+
++ Loic, Shawn
+
+---
+bod
 
