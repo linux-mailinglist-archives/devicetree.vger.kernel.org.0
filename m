@@ -2,208 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0207D62F89D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:00:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E258562F8A8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242308AbiKRPAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:00:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54570 "EHLO
+        id S235243AbiKRPCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:02:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242133AbiKRPA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:00:27 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317E69C79C
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:57:39 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id d20so7029229ljc.12
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:57:39 -0800 (PST)
+        with ESMTP id S242181AbiKRPB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:01:29 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D420A922CD
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:58:20 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id x5so5555687wrt.7
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:58:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ngv5gxBO7Ianat52oueLrPYqURLVbai2GDjDWBWPbzg=;
-        b=EROklCgzykSqhFNVyDi4+gpVhCwfP6B7mI+CUDZF1U/wuFkZa3Cf5/0PPw+YjSLMT4
-         hsBip0klea3c0Y/uRLReKIQHK2I/YveobyeZMW2Eef00tDR4+FJJ1yfaVx9MnnhCzfjk
-         cCvE8lbIwMNLLJREQo+vrTQRIDwYL4FPJ1AC23pg4kZf3hpwHGTvYjgCi+FwFicVPYVl
-         OUZpEIL5hmWoBdLHZ0v2sg6ctc51ghuX779Q4OPfaeKoeVTOzWghwn2NDM9owNC40pGR
-         gzSD7t+CX0ZNHtB52/AtIDFIqTrbH06XHLHVFXx/jQn82+R43nQ53cmvHx/KnGWr28zv
-         PfEw==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nw23Nf2ywm0G6Jdy8jtkPxH6JRwBmcWd0JpF48UwDnA=;
+        b=EfbDeo6h2MKp54ozSgIaeVTNnyv1UmDOJvMSjDWuUlhiM1DGNEcXVI5Py3MrQm/mTB
+         EPOgxoTUuHZYEn5QzkIboSMSVIRx//32C3hmhPLM6XxeUI2CpG9kzHoaEg0AyWpHoQSU
+         tkZilxvZKh/9BQImtaalXAX5rv1QFRpcaDPk2waLrk0dFvM04sAXXDJMtgT0c/nFgm0J
+         4qU4JPPc8eobijy13xR3EZfDU7fjGvniswS3wWOXkY0SmQH5x/yM6Kwe2Hvh6jyb4NHZ
+         eZa4DBCbRiuKCexlah52t3UT1w1leBDFv9X/3u0kjRMeke4zPKKzaiyr16cEFZ4GK/dB
+         PkrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ngv5gxBO7Ianat52oueLrPYqURLVbai2GDjDWBWPbzg=;
-        b=IRDDtekNRTMvjbBrc4ZfrGocAlQNDUZ2vFDD7brX09QAEGnGe4oRdt8EyPMreWECDG
-         4ma2JsC6OQTVIa/eAFoWLD0YBOFzEwbXjrqXtWcyQOv0M4iEi29iL1AZMSVEzt6/Yk4Y
-         5pWF9H6qXA5NpXDq8HvenzcFdoI+c6wGHUi7BrOVczaYU3kdy5/WrZZq7wBkl77dAift
-         23gFOKd7rgoe4tYINcoU4c9N2bcDMe8FyuC6fdGmnGzSaYvIp+R1k/nxQmU9TFTdKkqB
-         +cLNmFvPJCRQVF2ULcUEeSCN5jT87V4SLl6ZLRsOPVgC1XlDsQypPIUynScrsB6R+tTz
-         UvWA==
-X-Gm-Message-State: ANoB5pnCMR/kJu3rdIYAoHn+lZ6MtqjPlz7Ung13KDbiVv9SdtWNuWZp
-        EL2Br+bk4k1col4wnh3FBStqQg==
-X-Google-Smtp-Source: AA0mqf4vIPsBBLJFJHTlqjhJ4CFdPwgqhejw4qFFRvVxAexWCQHYq1Ia/7slA+muOzdbuZsvy/yVog==
-X-Received: by 2002:a05:651c:12ca:b0:277:a9d:9355 with SMTP id 10-20020a05651c12ca00b002770a9d9355mr2409196lje.102.1668783457528;
-        Fri, 18 Nov 2022 06:57:37 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t23-20020ac243b7000000b004b490427bf2sm691531lfl.66.2022.11.18.06.57.35
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nw23Nf2ywm0G6Jdy8jtkPxH6JRwBmcWd0JpF48UwDnA=;
+        b=t7GojXvbWitKkK2ShqR+U0rb/JEBsO7qjWKpDIK7TmZ7c5DeSdW2/2U3URVMmXg+6w
+         rv367YJm6ma0pO8/KPwP8X06YBtfSDpvteLdATCnLmDaXY7kyeDz0eZ+i7gKfYStv+Vy
+         8prMskiTYwzSZBBDPn2xd+Kpu7JwUlNGyNUlyHy4Bv1F2HPWxhhWrzRiagK0ze0zaX+v
+         asz8jhMZ0CqJRfqeIQT+jD0vr+YAWQHmJzGRZmfKRPBwxLG1Sypm0exJSu81lwVNiao9
+         eM1lFhLU1V8kIF8cfMc8QplhIzbiOXQhmw6EoVOphB+F+56+72nnmBd/o9IE7eCnSlcX
+         ZJyw==
+X-Gm-Message-State: ANoB5pkKZzuJo6c+sx7qyFU0zcTPHahN+e7R7jnKyOZYtFhuv6l5pARf
+        F6x1SX6Jq7vrPyaGpSD/fbgVuNrX0xZbDg==
+X-Google-Smtp-Source: AA0mqf4+t3xWJIqhJSWh3vn3rZsaF4mL/rObMjJPqCSIHYtK1YNzB8OFep9EeMGw+ZKrtpe+MXV3ow==
+X-Received: by 2002:a5d:4ac4:0:b0:22c:f296:1120 with SMTP id y4-20020a5d4ac4000000b0022cf2961120mr4322781wrs.369.1668783499360;
+        Fri, 18 Nov 2022 06:58:19 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
+        by smtp.gmail.com with ESMTPSA id o9-20020a056000010900b00228692033dcsm3676836wrx.91.2022.11.18.06.58.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:57:37 -0800 (PST)
-Message-ID: <b14655e4-44ca-24a7-3350-9f0eb80bf925@linaro.org>
-Date:   Fri, 18 Nov 2022 15:57:35 +0100
+        Fri, 18 Nov 2022 06:58:19 -0800 (PST)
+Message-ID: <15ac1d06-5da7-ebd2-92ff-764c8df803a1@linaro.org>
+Date:   Fri, 18 Nov 2022 15:58:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 10/12] dt-bindings: mmc: convert amlogic,meson-gx.txt to
- dt-schema
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add pm8010 pmic dtsi
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Eric Dumazet <edumazet@google.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     linux-media@vger.kernel.org, netdev@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221117-b4-amlogic-bindings-convert-v1-0-3f025599b968@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v1-10-3f025599b968@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v1-10-3f025599b968@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20221116103146.2556846-1-abel.vesa@linaro.org>
+ <20221116103146.2556846-4-abel.vesa@linaro.org>
+ <76560659-7c90-3846-c250-24bfb072ec0e@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <76560659-7c90-3846-c250-24bfb072ec0e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 15:33, Neil Armstrong wrote:
-> Convert the Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> to dt-schema.
+On 17/11/2022 13:51, Krzysztof Kozlowski wrote:
+> On 16/11/2022 11:31, Abel Vesa wrote:
+>> From: Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>> Add nodes for pm8010 in separate dtsi file.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/pm8010.dtsi | 84 ++++++++++++++++++++++++++++
+>>   1 file changed, 84 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/pm8010.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/pm8010.dtsi b/arch/arm64/boot/dts/qcom/pm8010.dtsi
+>> new file mode 100644
+>> index 000000000000..0ea641e12209
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/pm8010.dtsi
+>> @@ -0,0 +1,84 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/mmc/amlogic,meson-gx-mmc.yaml         | 78 ++++++++++++++++++++++
->  .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 39 -----------
->  2 files changed, 78 insertions(+), 39 deletions(-)
+> Any reason why this is licensed BSD-3 clause? It's not a recommended
+> license (2 clause is). Same for other patches.
+
+Probably a bad copy-paste from other existing files.
+
+While checking, the majority of arch/arm64/boot/dts/qcom/pm*.dtsi uses BSD-3-Clause
+so it seems this was done for quite a while now.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> new file mode 100644
-> index 000000000000..c9545334fd99
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-gx-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> +
-> +description:
-> +  The MMC 5.1 compliant host controller on Amlogic provides the
-> +  interface for SD, eMMC and SDIO devices
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson-gx-mmc
-> +          - amlogic,meson-axg-mmc
-> +      - items:
-> +          - enum:
-> +              - amlogic,meson-gxbb-mmc
-> +              - amlogic,meson-gxl-mmc
-> +              - amlogic,meson-gxm-mmc
-> +          - const: amlogic,meson-gx-mmc
-
-Mention changes in commit msg. Anyway this might not match existing
-usage in DTS. At least amlogic,meson-gxbb-mmc has different order.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: clkin0
-> +      - const: clkin1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  amlogic,dram-access-quirk:
-> +    type: boolean
-> +    description:
-> +      set when controller's internal DMA engine cannot access the DRAM memory,
-> +      like on the G12A dedicated SDIO controller.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mmc@70000 {
-> +          compatible = "amlogic,meson-gx-mmc";
-> +          reg = <0x70000 0x2000>;
-> +          interrupts = <GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> +          clocks = <&clk_mmc>, <&xtal>, <&clk_div>;
-> +          clock-names = "core", "clkin0", "clkin1";
-> +          pinctrl-0 = <&emm_pins>;
-> +          resets = <&reset_mmc>;
-
-Use 4 spaces for example indentation.
-
-
-Best regards,
-Krzysztof
+>> +/*
+>> + * Copyright (c) 2022, Linaro Limited
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/spmi/spmi.h>
+>> +
+>> +/ {
+>> +	thermal-zones {
+>> +		pm8010-m-thermal {
+>> +			polling-delay-passive = <100>;
+>> +			polling-delay = <0>;
+>> +
+>> +			thermal-sensors = <&pm8010_m_temp_alarm>;
+>> +
+>> +			trips {
+>> +				trip0 {
+>> +					temperature = <95000>;
+>> +					hysteresis = <0>;
+>> +					type = "passive";
+>> +				};
+>> +
+>> +				trip1 {
+>> +					temperature = <115000>;
+>> +					hysteresis = <0>;
+>> +					type = "hot";
+>> +				};
+>> +			};
+>> +		};
+>> +
+>> +		pm8010-n-thermal {
+>> +			polling-delay-passive = <100>;
+>> +			polling-delay = <0>;
+>> +
+>> +			thermal-sensors = <&pm8010_n_temp_alarm>;
+>> +
+>> +			trips {
+>> +				trip0 {
+>> +					temperature = <95000>;
+>> +					hysteresis = <0>;
+>> +					type = "passive";
+>> +				};
+>> +
+>> +				trip1 {
+>> +					temperature = <115000>;
+>> +					hysteresis = <0>;
+>> +					type = "hot";
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +
+> 
+> Just one blank line.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
