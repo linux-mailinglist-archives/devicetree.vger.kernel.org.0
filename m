@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5A762F373
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 12:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8F162F37D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 12:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241212AbiKRLRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 06:17:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52632 "EHLO
+        id S235200AbiKRLU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 06:20:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbiKRLRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 06:17:39 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAB18E0B9
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 03:17:38 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id i12so4892239wrb.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 03:17:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CSkFHgevabuZjvANL1RYhOAj/AzunXZe9f8AOvvsIl0=;
-        b=tDg6M5k2ouCur0igY2qHHtlNsoC6a8/JwHpjs44o1wZgj5nQSlnSu7c1hM4czRUvdG
-         MA4ToWZ4O95tFc6uZzPoMrVj8LS4k1CSRt9N2fzTeYhrIIqJaa/VoU/czeXv75kmB2IU
-         YhEu2Dg2BTnERkBe8/Mr4zbfRDLDCToS90lNSx/JMKXHBAWM7ohT4CG9ifZ4acx3TQBg
-         IwKAqrokssYT4T+kB+CxLQG7mUycEmRWkgl2BmJBg0wnWX+hrZzjdy7HPlUKBxddzFsZ
-         sWpZ+7xef1yCvjCYy44JRnb8fcuZFYxs0xXqDflfonibb3PaHuRb+dcXOxMMZUplnaw2
-         Ic3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CSkFHgevabuZjvANL1RYhOAj/AzunXZe9f8AOvvsIl0=;
-        b=QEEcnMmpMiV2BcmZG6eg5df/CBGvYwXg+QjZvlG/hn2jaYJVK72+kBvOwo2XfhnXEW
-         5x+UDJcWrtQ2UqVcu4MFbnNV5RChDm0azQaSBo0OSBLQ2+36SQ8XpLXFDWUuJ1QpbA78
-         gZMVdEzlqBrKD5owE1f3E7Q1CCJNsvVHhPXxUUMH1kn59938Z7jZYIOG/Op9pMkgKAy/
-         ydKfYRk4OZ6l1sDz58O2KUG1YPgI2AEFwYWVp/lFLpnOhENlvHZ7K0J5ekS7vWCO5eF+
-         s2WpOpE0dKf1Qs0Dq5dHAolxWSLBNH+0Al0IZfXA+qaDLp/mgU8VdzBWJkpKuSoeGqRn
-         f6rg==
-X-Gm-Message-State: ANoB5pn/B6/Jzyv3imRZcHXd2Nwh5OyPAVyaDaaE4dLzLs+8u4aq6ZsT
-        JetLOI7webzSOIredaEHH5k7ig==
-X-Google-Smtp-Source: AA0mqf5DcR3zCJuQbw9WWUpiC/6yyN8KsckObgzeEKOksN0/GKLcFWgj7ov94HF72hJtSX2LXPKOWQ==
-X-Received: by 2002:adf:e844:0:b0:241:bfc9:5975 with SMTP id d4-20020adfe844000000b00241bfc95975mr1637001wrn.605.1668770256970;
-        Fri, 18 Nov 2022 03:17:36 -0800 (PST)
-Received: from [192.168.22.132] ([167.98.215.174])
-        by smtp.googlemail.com with ESMTPSA id he5-20020a05600c540500b003cfd4e6400csm4305458wmb.19.2022.11.18.03.17.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 03:17:36 -0800 (PST)
-Message-ID: <8cf8c902-571e-feb8-82a6-42e25e57caac@linaro.org>
-Date:   Fri, 18 Nov 2022 11:17:35 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] soc: qcom: add MDSS DSM memory driver
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S241871AbiKRLTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 06:19:53 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0FC2FFEE;
+        Fri, 18 Nov 2022 03:19:37 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIBJQBI000521;
+        Fri, 18 Nov 2022 05:19:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668770366;
+        bh=LM8ezV6TecVQu25z5Lbydgt5yexPr7glIAePeC3iCRU=;
+        h=From:To:CC:Subject:Date;
+        b=bCURE0Bgev0m/AQY0y9G2Q13Oi8B98BaCpe0hujhG5A0EorP/X0UWNPgWSzRBjmy9
+         5Undlpwz4KU0zv4g2utTEWP0HGHosTePnqanMuainsxA/pzv3mq6MFO8hqpDG3D/l+
+         Ywsi8VbU+cONNlRrDNHpEpezDExMevqRPzLgUJJw=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIBJQHE100331
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 05:19:26 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 05:19:26 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 05:19:26 -0600
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIBJQtA051645;
+        Fri, 18 Nov 2022 05:19:26 -0600
+Received: from localhost (a0501179-pc.dhcp.ti.com [10.24.69.114])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 2AIBJPD3029459;
+        Fri, 18 Nov 2022 05:19:26 -0600
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
- <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-2-f7c65d6f0e55@linaro.org>
-Content-Language: en-US
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-2-f7c65d6f0e55@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <srk@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Subject: [PATCH v9 0/6] Introduce PRU remoteproc consumer API
+Date:   Fri, 18 Nov 2022 16:49:18 +0530
+Message-ID: <20221118111924.3277838-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,174 +69,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Programmable Real-Time Unit and Industrial Communication Subsystem
+(PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
 
+There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+already merged and can be found under:
 
-On 18/11/2022 08:53, Neil Armstrong wrote:
-> Add a driver for the Qualcomm Modem Processing SubSystem DSM memory
-> used to assign such regions of memory with remote MPSS processors.
-> 
-> This memory zone is shared between the APPS and the MPSS subsystem,
-> and must be configured during the whole lifetime of the system.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   drivers/of/platform.c           |  1 +
->   drivers/soc/qcom/Kconfig        | 10 +++++
->   drivers/soc/qcom/Makefile       |  1 +
->   drivers/soc/qcom/mpss_dsm_mem.c | 95 +++++++++++++++++++++++++++++++++++++++++
->   4 files changed, 107 insertions(+)
-> 
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 3507095a69f6..d4bb03292f45 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -505,6 +505,7 @@ EXPORT_SYMBOL_GPL(of_platform_default_populate);
->   
->   static const struct of_device_id reserved_mem_matches[] = {
->   	{ .compatible = "phram" },
-> +	{ .compatible = "qcom,mpss-dsm-mem" },
->   	{ .compatible = "qcom,rmtfs-mem" },
->   	{ .compatible = "qcom,cmd-db" },
->   	{ .compatible = "qcom,smem" },
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index 024e420f1bb7..7624a8af56bf 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -95,6 +95,16 @@ config QCOM_QMI_HELPERS
->   	tristate
->   	depends on NET
->   
-> +config QCOM_MPSS_DSM_MEM
-> +	tristate "Qualcomm Modem Processing SubSystem DSM memory driver"
-> +	depends on ARCH_QCOM
-> +	select QCOM_SCM
-> +	help
-> +	  The Qualcomm Modem Processing SubSystem DSM memory driver is used to
-> +	  assign regions of DSM memory with remote MPSS processors.
-> +
-> +	  Say y here if you intend to boot the modem remoteproc.
-> +
->   config QCOM_RMTFS_MEM
->   	tristate "Qualcomm Remote Filesystem memory driver"
->   	depends on ARCH_QCOM
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index d66604aff2b0..0d0e850f1a18 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -16,6 +16,7 @@ qcom_rpmh-y			+= rpmh-rsc.o
->   qcom_rpmh-y			+= rpmh.o
->   obj-$(CONFIG_QCOM_SMD_RPM)	+= smd-rpm.o
->   obj-$(CONFIG_QCOM_SMEM) +=	smem.o
-> +obj-$(CONFIG_QCOM_MPSS_DSM_MEM) += mpss_dsm_mem.o
->   obj-$(CONFIG_QCOM_SMEM_STATE) += smem_state.o
->   obj-$(CONFIG_QCOM_SMP2P)	+= smp2p.o
->   obj-$(CONFIG_QCOM_SMSM)	+= smsm.o
-> diff --git a/drivers/soc/qcom/mpss_dsm_mem.c b/drivers/soc/qcom/mpss_dsm_mem.c
-> new file mode 100644
-> index 000000000000..5584bd101aee
-> --- /dev/null
-> +++ b/drivers/soc/qcom/mpss_dsm_mem.c
-> @@ -0,0 +1,95 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 Linaro Ltd.
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/err.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/slab.h>
-> +#include <linux/qcom_scm.h>
-> +
-> +struct qcom_mpss_dsm_mem {
-> +	phys_addr_t addr;
-> +	phys_addr_t size;
-> +
-> +	unsigned int perms;
-> +};
-> +
-> +static int qcom_mpss_dsm_mem_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *node = pdev->dev.of_node;
-> +	struct qcom_scm_vmperm perm;
-> +	struct reserved_mem *rmem;
-> +	struct qcom_mpss_dsm_mem *mpss_dsm_mem;
-> +	int ret;
-> +
-> +	if (!qcom_scm_is_available())
-> +		return -EPROBE_DEFER;
-> +
-> +	rmem = of_reserved_mem_lookup(node);
-> +	if (!rmem) {
-> +		dev_err(&pdev->dev, "failed to acquire memory region\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	mpss_dsm_mem = kzalloc(sizeof(*mpss_dsm_mem), GFP_KERNEL);
-> +	if (!mpss_dsm_mem)
-> +		return -ENOMEM;
-> +
-> +	mpss_dsm_mem->addr = rmem->base;
-> +	mpss_dsm_mem->size = rmem->size;
-> +
-> +	perm.vmid = QCOM_SCM_VMID_MSS_MSA;
-> +	perm.perm = QCOM_SCM_PERM_RW;
-> +
-> +	mpss_dsm_mem->perms = BIT(QCOM_SCM_VMID_HLOS);
-> +	ret = qcom_scm_assign_mem(mpss_dsm_mem->addr, mpss_dsm_mem->size,
-> +				  &mpss_dsm_mem->perms, &perm, 1);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "assign memory failed\n");
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+3) drivers/remoteproc/pru_rproc.c
+   Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
 
-memory leak here?
+The programmable nature of the PRUs provide flexibility to implement custom
+peripheral interfaces, fast real-time responses, or specialized data handling.
+Example of a PRU consumer drivers will be:
+  - Software UART over PRUSS
+  - PRU-ICSS Ethernet EMAC
 
+In order to make usage of common PRU resources and allow the consumer drivers to
+configure the PRU hardware for specific usage the PRU API is introduced.
 
-> +		return ret;
-> +	}
-> +
-> +	dev_set_drvdata(&pdev->dev, mpss_dsm_mem);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_mpss_dsm_mem_remove(struct platform_device *pdev)
-> +{
-> +	struct qcom_mpss_dsm_mem *mpss_dsm_mem = dev_get_drvdata(&pdev->dev);
-> +	struct qcom_scm_vmperm perm;
-> +
-> +	perm.vmid = QCOM_SCM_VMID_HLOS;
-> +	perm.perm = QCOM_SCM_PERM_RW;
-> +
-> +	qcom_scm_assign_mem(mpss_dsm_mem->addr, mpss_dsm_mem->size,
-> +			    &mpss_dsm_mem->perms, &perm, 1);
-> +
+This is the v9 of the patch series [1]. This version of the patchset 
+addresses the comments made on v8 [8] of the series. 
 
-same here.
+Two more patch series have been posted ([2] and [3]) that depends on this
+series, one has been posted to the soc/ti/ tree and another  
+to the networking tree. All the 3 series including this one, has been 
+sent as RFC [4] to get comments and to explain the dependencies.
 
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id qcom_mpss_dsm_mem_of_match[] = {
-> +	{ .compatible = "qcom,mpss-dsm-mem" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, qcom_mpss_dsm_mem_of_match);
-> +
-> +static struct platform_driver qcom_mpss_dsm_mem_driver = {
-> +	.probe = qcom_mpss_dsm_mem_probe,
-> +	.remove = qcom_mpss_dsm_mem_remove,
-> +	.driver  = {
-> +		.name  = "qcom_mpss_dsm_mem",
-> +		.of_match_table = qcom_mpss_dsm_mem_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(qcom_mpss_dsm_mem_driver);
-> +
-> +MODULE_AUTHOR("Linaro Ltd");
-> +MODULE_DESCRIPTION("Qualcomm DSM memory driver");
-> +MODULE_LICENSE("GPL");
-> 
+Changes from v8 to v9 :
+
+*) Fixed the warnings generated by running checkpatch.pl script.
+*) Added Review/Ack tags.
+*) Listed just the SoBs tags for all the patches as suggested by Mathieu.
+*) Removed a comment for an already documented field in patch 5/6 of this series.
+
+Changes from v7 [7] to v8 :
+
+*) Removed get_device(&rproc->dev) from API __pru_rproc_get() in patch 2/5 of 
+this series as asked by Roger. 
+*) Replaced all the SoBs (other than mine) to Co-developed-by tags for all 
+the patches in this series as asked by Mathieu.
+*) Added a new patch (3/6) in this series for Introduction of pruss_pru_id enum.
+Previously this enum was part of patch 2/6. As asked by Roger removed this enum 
+(and the APIs that are using the enum) from patch 2/6 and added it in new patch.
+*) Removed a comment for an already documented field in patch 2/6 of this series.
+*) Changed 'pru' to 'PRU' in comment of API pru_rproc_set_firmware() as asked by 
+Roger.
+
+Changes from v6 [6] to v7 :
+
+*) Removed example section from ti,pru-consumer.yaml as the full example 
+included compatible property as well which is not introduced in this series 
+thus creating dt check binding error. Removing the example section fixes the
+dt binding check error. The example section will be included in 
+"ti,icssg-prueth.yaml" in the next version of series [3]
+*) Updated the commit message for patch 1/5 of this series to address Krzysztof's 
+comment.
+
+Changes from v5 [5] to v6  :
+
+*) Added rproc_get_by_phandle() in pru_rproc_get() 
+*) Provided background of Ctable in the commit messege.
+*) Removed patch "" [9] (6th Patch of the previous version of this series)
+   as it has dependency on series [2], thus creating a cyclic dependency.
+
+The patch [6] will be sent along with the next version of series [2].
+
+[1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220603121520.13730-1-p-mohan@ti.com/
+[2] https://lore.kernel.org/all/20220418123004.9332-1-p-mohan@ti.com/
+[3] https://lore.kernel.org/all/20220531095108.21757-1-p-mohan@ti.com/
+[4] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
+[5] https://lore.kernel.org/all/20220607045650.4999-1-p-mohan@ti.com/
+[6] https://lore.kernel.org/all/20221012114429.2341215-1-danishanwar@ti.com/
+[7] https://lore.kernel.org/all/20221031073801.130541-1-danishanwar@ti.com/
+[8] https://lore.kernel.org/all/20221116121634.2901265-1-danishanwar@ti.com/
+[9] https://lore.kernel.org/all/20220607045650.4999-7-p-mohan@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+
+MD Danish Anwar (1):
+  remoteproc: pru: Add enum for PRU Core Indentifiers.
+
+Roger Quadros (1):
+  remoteproc: pru: Add pru_rproc_set_ctable() function
+
+Suman Anna (2):
+  dt-bindings: remoteproc: Add PRU consumer bindings
+  remoteproc: pru: Make sysfs entries read-only for PRU client driven
+    boots
+
+Tero Kristo (2):
+  remoteproc: pru: Add APIs to get and put the PRU cores
+  remoteproc: pru: Configure firmware based on client setup
+
+ .../bindings/remoteproc/ti,pru-consumer.yaml  |  60 +++++
+ drivers/remoteproc/pru_rproc.c                | 235 +++++++++++++++++-
+ include/linux/pruss.h                         |  78 ++++++
+ 3 files changed, 368 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+ create mode 100644 include/linux/pruss.h
+
+-- 
+2.25.1
+
