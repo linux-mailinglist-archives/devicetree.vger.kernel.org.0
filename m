@@ -2,198 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAFD262EE00
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 07:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0245B62EE0E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 08:02:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiKRG5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 01:57:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36174 "EHLO
+        id S234455AbiKRHCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 02:02:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239887AbiKRG5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 01:57:00 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDE8264C
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 22:56:59 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id v1so7764705wrt.11
-        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 22:56:58 -0800 (PST)
+        with ESMTP id S235105AbiKRHCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 02:02:39 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DF927DF0
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 23:02:38 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id o30so3005528wms.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Nov 2022 23:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8e6rRpvY1utUAM1R1YfWwwuUchnWq32QH8sI3dudXPg=;
-        b=f2FtTNvIEOxpR4zIofkbg9K2ZiAzfj0uUyeFw5/i9nRu5yazy4hoVq+LFTkFKhGWln
-         r1jkxXZ/stDuUVtgukxi47AtvUEpl5NFpYvoGnDrMKj6XKHF1JBMwXElY6B/uFE4In93
-         fC+q0L7gZamfMkq8bIvzU2sms1RfZq0rnzZOYT3KMUVDSq+3wjoBS18MaBNhdL0BaH9+
-         N6PacWzgkFqU/nisYUYdtcMzj1Fx+Z874GEIg+qcs4wqStpN8Dj28XLB/2s3dmJJOOzS
-         ZoUJoNnAL3l2s/0WZhxbHAf9SFH1z4T9warsXfDEmMMDDAY2Zq4wTvO0+AEwjXl1BINH
-         VF0Q==
+        bh=26hKBvJcF5CUHTUmsCq+huARsjmkGqI9lzieMyn9DLo=;
+        b=Xx/l90wegiIP7sy0/amq6ND08TImtpP9P536H71U90mq3TLZE5AmTi9VOGqDgZxvts
+         1eNEHWg6ietLCLW7LvNIxNSONbpnDptTiqxUPKuglJdy17HyrJI8cYBvMa/FoX+5Yz/S
+         jTpKmJxPqtV1OUN0vFM25rF8WLwWv48nCfMON5JVq0bo+NXy8g/5S/M9FjRW8RXVV1S8
+         4SQ0lTow3/1mAjE2PiJze24naqvDVHfc0KAQGbJJcdj+JTlngk39tjRnQm6alFUmVBwk
+         PYdVyg/V+ouGAXQ9GnrfvySAceDsASAcJMBnfbBTqahaMBcfPGutfF6vw38R8ZJWkD5j
+         hm7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8e6rRpvY1utUAM1R1YfWwwuUchnWq32QH8sI3dudXPg=;
-        b=xzaJmxxW0qqrM0EbZAIxq2WEtLwGd5Ih0t9ljn5a8yPJgAnRVZycOARunmQlvWHgMM
-         6VOSZJI+nDo8QOGG6SSVoOtnhFDxp9kMHIyvP838DeqjIn2En/yKB00o+08Rv/6QUfYu
-         8j12BUKLjwRke8kqtbvkO44Sby5zfx3V0C6hY/iPexr/dafR5xFjaHlLyr75y5dA2zjS
-         emmQxfBauhquMSIf+flplACyzG17vuu1ka26KLaAwy07fQb2FBWUKzQhWCpeoih2XT28
-         mtl5fY61Bj61CJ6/aAs/UyxFSHQizYLUt1ldOuedTlhPVLw3RslOzDdMseO8dTA6pnQd
-         u2EQ==
-X-Gm-Message-State: ANoB5pkmsG8GZ5uDqF1hfE6wHDrauZIy8R5uNp1ZV2kRqhbN11nQbFgT
-        SIhZ0+R+nncWSjXc77vfFMNuag==
-X-Google-Smtp-Source: AA0mqf4NVcmP6MCkOZV0FixgkVpInlUhb9xP5GP2pFw3rwQWyUmfKZ6q+vOdvnzk/Th4LDU/1Ybnzw==
-X-Received: by 2002:adf:e3cd:0:b0:241:bc27:f8b6 with SMTP id k13-20020adfe3cd000000b00241bc27f8b6mr2589924wrm.367.1668754617597;
-        Thu, 17 Nov 2022 22:56:57 -0800 (PST)
+        bh=26hKBvJcF5CUHTUmsCq+huARsjmkGqI9lzieMyn9DLo=;
+        b=FkJeBCqRNEsvk6UgPLXj29aYyqJv0YEzfhkzAT9nbmsH+auEfhofLESk05yRf7UYQ+
+         8LicwD1HY5jHInQzcTXyhDRszJOjXvAjUUU1FGquQ+vYdH+9EspF4lwTcZTuvymyBsv2
+         sy3G4Gsn4dqaRgVWx3bfkp9HMye0uHrVjSQHCm1KVS8ALyQQwvqAWIwumTjZ7U0EkhRj
+         gnKI/aa1RVO3U/3gpReCzrdwdi3/0b93pzAd88bW0jjqL8fi2L833qhOZj34xa9UDnla
+         SXe+pWm2mpevPa6sXuSM27B5gtPhgDVk+ktVULWpDRlBHzrtU11FWYBPhe8CSX1/MKQL
+         jhBQ==
+X-Gm-Message-State: ANoB5pk7U1MJ8/zPzHFVVstU+Z9laSeoTu9edFHE/eSlH0dRh7p47UJr
+        huerIphXgOFHaMCGKQRUshd0CQ==
+X-Google-Smtp-Source: AA0mqf58dgLUTsUC3FiqOzuNY3YY+BxeXPdO4wMVdVHin/vyF2Yj9CWK+59hwF/UbVGf48fiC3xyeQ==
+X-Received: by 2002:a05:600c:500f:b0:3c7:135a:2e4f with SMTP id n15-20020a05600c500f00b003c7135a2e4fmr7639463wmr.30.1668754956393;
+        Thu, 17 Nov 2022 23:02:36 -0800 (PST)
 Received: from [192.168.22.132] ([167.98.215.174])
-        by smtp.googlemail.com with ESMTPSA id m29-20020a05600c3b1d00b003c6b7f5567csm13771670wms.0.2022.11.17.22.56.56
+        by smtp.googlemail.com with ESMTPSA id w11-20020a1cf60b000000b003cfbe1da539sm3653646wmc.36.2022.11.17.23.02.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Nov 2022 22:56:56 -0800 (PST)
-Message-ID: <6ca00c5f-a405-da68-8286-fd6d02138c30@linaro.org>
-Date:   Fri, 18 Nov 2022 06:56:56 +0000
+        Thu, 17 Nov 2022 23:02:35 -0800 (PST)
+Message-ID: <8cf7f7ae-f2d3-56ad-021e-7cb478032291@linaro.org>
+Date:   Fri, 18 Nov 2022 07:02:34 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: lpass-va: add npl clock for new VA
- macro
+Subject: Re: [PATCH 2/2] ASoC: codecs: va-macro: add npl clk
+Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         broonie@kernel.org
 Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
         tiwai@suse.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
 References: <20221115105541.16322-1-srinivas.kandagatla@linaro.org>
- <20221115105541.16322-2-srinivas.kandagatla@linaro.org>
- <f3a6a7b1-b196-0abb-0c18-8a13908c6891@linaro.org>
-Content-Language: en-US
+ <20221115105541.16322-3-srinivas.kandagatla@linaro.org>
+ <090831eb-2c7a-56c2-601e-e910431a9403@linaro.org>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <f3a6a7b1-b196-0abb-0c18-8a13908c6891@linaro.org>
+In-Reply-To: <090831eb-2c7a-56c2-601e-e910431a9403@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Krzystof,
+Thanks Krzysztof,
 
-On 15/11/2022 14:21, Krzysztof Kozlowski wrote:
+On 15/11/2022 14:23, Krzysztof Kozlowski wrote:
 > On 15/11/2022 11:55, Srinivas Kandagatla wrote:
->> LPASS VA Macro now has soundwire master to deal with access to
->> analog mic in low power island use cases. This also means that VA macro
->> now needs to get hold of the npl clock too. Add clock bindings required
->> for this.
->>
->> As part of adding this bindings, also update bindings to be able to
->> specific and associate the clock names specific to the SoC.
+>> New versions of VA Macro has soundwire integrated, so handle the soundwire npl
+>> clock correctly in the codec driver.
 >>
 >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 >> ---
->>   .../bindings/sound/qcom,lpass-va-macro.yaml   | 72 ++++++++++++++++---
->>   1 file changed, 64 insertions(+), 8 deletions(-)
+>>   sound/soc/codecs/lpass-va-macro.c | 41 +++++++++++++++++++++++++++++++
+>>   1 file changed, 41 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
->> index c36caf90b837..848e34111df1 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
->> @@ -27,16 +27,13 @@ properties:
->>       const: 0
+>> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
+>> index b0b6cf29cba3..d59af6d69c34 100644
+>> --- a/sound/soc/codecs/lpass-va-macro.c
+>> +++ b/sound/soc/codecs/lpass-va-macro.c
+>> @@ -205,6 +205,7 @@ struct va_macro {
+>>   	int dec_mode[VA_MACRO_NUM_DECIMATORS];
+>>   	struct regmap *regmap;
+>>   	struct clk *mclk;
+>> +	struct clk *npl;
+>>   	struct clk *macro;
+>>   	struct clk *dcodec;
+>>   	struct clk *fsgen;
+>> @@ -1332,6 +1333,9 @@ static int fsgen_gate_enable(struct clk_hw *hw)
+>>   	struct regmap *regmap = va->regmap;
+>>   	int ret;
 >>   
->>     clocks:
->> -    maxItems: 3
->> +    minItems: 1
->> +    maxItems: 4
->> +
->>   
->>     clock-names:
->> -    oneOf:
->> -      - items:   #for ADSP based platforms
->> -          - const: mclk
->> -          - const: core
->> -          - const: dcodec
->> -      - items:   #for ADSP bypass based platforms
->> -          - const: mclk
->> +    minItems: 1
->> +    maxItems: 4
->>   
->>     clock-output-names:
->>       maxItems: 1
->> @@ -61,6 +58,65 @@ required:
->>     - reg
->>     - "#sound-dai-cells"
->>   
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,sc7280-lpass-va-macro
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 1
+>> +	if (va->has_swr_master)
+>> +		clk_prepare_enable(va->mclk);
 > 
-> You can skip minItems here.
-
-I have addressed all the comments including this, will send a v2 with 
-these changes.
+> No error path?
+that is true, i missed this indeed, sending v2 with this and other ret = 
+PTR_ERR(va->npl) change.
 
 --srini
 > 
->> +          maxItems: 1
->> +        clock-names:
->> +          items:
->> +            - const: mclk
->> +      required:
->> +        - clock-names
->> +        - clocks
-> 
-> IIUC, all variants require now clocks, so these two lines should be part
-> of top level "required:".
-> 
 >> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,sm8250-lpass-va-macro
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 3
->> +          maxItems: 3
->> +        clock-names:
->> +          items:
->> +            - const: mclk
->> +            - const: core
->> +            - const: dcodec
->> +      required:
->> +        - clock-names
->> +        - clocks
+>>   	ret = va_macro_mclk_enable(va, true);
+>>   	if (!va->has_swr_master)
+>>   		return ret;
+>> @@ -1358,6 +1362,8 @@ static void fsgen_gate_disable(struct clk_hw *hw)
+>>   			   CDC_VA_SWR_CLK_EN_MASK, 0x0);
+>>   
+>>   	va_macro_mclk_enable(va, false);
+>> +	if (va->has_swr_master)
+>> +		clk_disable_unprepare(va->mclk);
+>>   }
+>>   
+>>   static int fsgen_gate_is_enabled(struct clk_hw *hw)
+>> @@ -1386,6 +1392,9 @@ static int va_macro_register_fsgen_output(struct va_macro *va)
+>>   	struct clk_init_data init;
+>>   	int ret;
+>>   
+>> +	if (va->has_swr_master)
+>> +		parent = va->npl;
 >> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc8280xp-lpass-va-macro
->> +              - qcom,sm8450-lpass-va-macro
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 4
->> +          maxItems: 4
->> +        clock-names:
->> +          items:
->> +            - const: mclk
->> +            - const: npl
+>>   	parent_clk_name = __clk_get_name(parent);
+>>   
+>>   	of_property_read_string(np, "clock-output-names", &clk_name);
+>> @@ -1512,6 +1521,14 @@ static int va_macro_probe(struct platform_device *pdev)
+>>   	/* mclk rate */
+>>   	clk_set_rate(va->mclk, 2 * VA_MACRO_MCLK_FREQ);
+>>   
+>> +	if (va->has_swr_master) {
+>> +		va->npl = devm_clk_get(dev, "npl");
 > 
-> How about making it the last clock so the order matches with sm8250?
+> I think you miss:
+> ret = PTR_ERR(va->npl);
 > 
+>> +		if (IS_ERR(va->npl))
+>> +			goto err;
+>> +
+>> +		clk_set_rate(va->npl, 2 * VA_MACRO_MCLK_FREQ);
+>> +	}
+>> +
+>>   	ret = clk_prepare_enable(va->macro);
+>>   	if (ret)
+>>   		goto err;
 > 
 > Best regards,
 > Krzysztof
