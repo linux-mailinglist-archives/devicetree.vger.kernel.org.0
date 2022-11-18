@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B31862FA7B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9674A62FA81
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:42:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242014AbiKRQlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57060 "EHLO
+        id S242175AbiKRQmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:42:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235285AbiKRQlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:41:24 -0500
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CAC3A6204A;
-        Fri, 18 Nov 2022 08:41:22 -0800 (PST)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 19 Nov 2022 01:41:21 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 6D25E2058B4F;
-        Sat, 19 Nov 2022 01:41:21 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Sat, 19 Nov 2022 01:41:21 +0900
-Received: from [10.212.159.221] (unknown [10.212.159.221])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id AA8DFB62A4;
-        Sat, 19 Nov 2022 01:41:20 +0900 (JST)
-Message-ID: <935b3413-7a6f-79c8-aa74-2dae2fec62a0@socionext.com>
-Date:   Sat, 19 Nov 2022 01:41:20 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Add Socionext F_OSPI controller
- bindings
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242148AbiKRQmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:42:11 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1A6D69DF2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:42:09 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id k19so7476852lji.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:42:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=x7yxRPpkQlxtFzHM7bHG1/Tzv/+e3IcCGQCZXSEVD+0=;
+        b=wJVKA/nwQz03xEDCkQCELWQ9MDDPlVrqUPd4GxJpaTktRUscHD6sxk90EMix+jk3jA
+         W3iWQzEjeCM3HRpDJVF7TXH8EbofaMSZckwrLp827U964n2Hx67j55knk4+oalEk2TSP
+         JaAVKIH2MM586IXMtvobq7wF68edYxQyHl/gcWw+VY8g5XIJuWKxcy4uCBUczNjq6Nw4
+         KSCgJ2Q0GboN5NDnRtqW3rHhlAI9qL2Ooup75sT/EoxwVBeYQAQgHmdPYB1bLe4MJvdi
+         Um83etlYeuoqqeI2PKK7QbxnH3GR3hc0m/r/0FNy+f0ZaWin6SatEf+IDTwrdj26bkJG
+         cJig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x7yxRPpkQlxtFzHM7bHG1/Tzv/+e3IcCGQCZXSEVD+0=;
+        b=8OaNc7dL78H6UgoAVnrq3/HfuScuAe0TT25PNi8zaiHpG05tRfyFAdc3DJAy7rEI5A
+         kAm0TfzO4fdES2DUmXZg+tWne1d5bXdnFkDh2TkP+wx2WSMHblRXjVMhix2fhSzrPSmM
+         IXPxk+OEA2CrwrpuB7QQAsTTNM5RPHSW2EB6Z8qp8UcGdUq+JGXAobOn7tm7cRFvi17m
+         y3pOmgUSy9NRe44FWG0Db1BjRvqJebRHAenufoFlXuZCV6HJpFzInz/afIZUzDOulDfu
+         /OV2MRUmPQLZEZTJYmx38en0GmZXsoLEJWKePCs1Vj9KVGr3KXXNoKFCvksEZVdVqC6q
+         cFDw==
+X-Gm-Message-State: ANoB5pnpurLjC/4xjmny3pyG6UkS80vVx1n2J/4bIOiti5DJr6qtzhtI
+        RRlzSgJTjekgVliYfSAsJYFOYA==
+X-Google-Smtp-Source: AA0mqf7L+sWAhQN2Sr2Z3V3AFYQtJQkH3M8XMLjZDcJ2Fh+QAyEE4ABxI+Ej8IYpG63ePR2D56WcSw==
+X-Received: by 2002:a2e:a9a7:0:b0:26e:2de:49ad with SMTP id x39-20020a2ea9a7000000b0026e02de49admr3025781ljq.511.1668789728074;
+        Fri, 18 Nov 2022 08:42:08 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id e13-20020a05651236cd00b004b4bab7d5a9sm420324lfs.46.2022.11.18.08.42.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 08:42:07 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221118005904.23557-1-hayashi.kunihiko@socionext.com>
- <20221118005904.23557-2-hayashi.kunihiko@socionext.com>
- <Y3du24GWN/enGORf@sirena.org.uk>
- <5483711f-504c-bcf3-0fbf-65d04530d188@socionext.com>
- <Y3emmHGM6uS0m5kd@sirena.org.uk>
-Content-Language: en-US
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <Y3emmHGM6uS0m5kd@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Doug Anderson <dianders@chromium.org>
+Subject: [RFT PATCH v2 1/2] arm64: dts: qcom: sdm845-db845c: drop unneeded qup_spi0_default
+Date:   Fri, 18 Nov 2022 17:42:00 +0100
+Message-Id: <20221118164201.321147-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/19 0:36, Mark Brown wrote:
-> On Fri, Nov 18, 2022 at 11:16:22PM +0900, Kunihiko Hayashi wrote:
->> On 2022/11/18 20:39, Mark Brown wrote:
->>> On Fri, Nov 18, 2022 at 09:59:03AM +0900, Kunihiko Hayashi wrote:
-> 
->>>> +  socionext,cs-start-cycle:
->>>> +  socionext,cs-end-cycle:
->>>> +  socionext,cs-deassert-clk-cycle:
-> 
->>> These are all generic SPI properties so we should add them
->>> generically, on the device rather than the controller since this
->>> is something that might vary per client device.  There was also a
->>> core function spi_set_cs_timing() which was in earlier versions
->>> and is about to get reintroduced.
-> 
->> So I understand you mean that these properties should be defined like
->> spi-peripheral-props.yaml for the devices.
-> 
->> If yes, I'll drop these properties once and define our vendor-specific
->> "peripheral-props" in the next series.
-> 
-> Yes, sounds good.
+The qup_spi0_default pin override is exactly the same as one already in
+sdm845.dtsi.
 
-Okay, I'll send simple one in v2.
-
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>> +    items:
->>>> +      - description: the number of bytes to transfer
->>>> +        maximum: 4
->>>> +      - description: value to transfer
->>>> +        default: 0
->>>> +      - description: bit-width to transfer
->>>> +        enum: [0, 1, 2, 4, 8]
-> 
->>> This is also something SPI device should set up, as far as I can
->>> tell this should be set vis spi_mem_op.dummy.nbytes.
-> 
->> Yes, but the controller also supports dummy cycles, and can send
->> extra bytes before the dummy cycles.
-> 
-> Ah, so this is some additional thing on top of dummy cycles?  I'd
-> not realised that.  It probably wants to be added into spi-mem I
-> guess.
-
-Yes, however, it's tough to handle with spi-mem and I don't have
-any use case, so drop it.
-
->>>> +  socionext,data-swap-2byte:
->>>> +    description:
->>>> +      Indicates swap byte order per 2-bytes.
->>>> +    type: boolean
->>>
->>>> +  socionext,data-swap-4byte:
->>>> +    description:
->>>> +      Indicates swap byte order per 4-bytes.
->>>> +    type: boolean
-> 
->>> Again these should be set by the device.  I think these should be
->>> set based on a combination of bits per word and if the host is in
->>> big endian or little endian mode.
-> 
->> I see. This feature is complicated to use, so I'll not add it here.
-> 
-> That also works, someone can always add additional support later
-> when they have a concrete use case.
-
-I understand.
-
-Thank you,
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
-Best Regards
-Kunihiko Hayashi
+
+Cc: Doug Anderson <dianders@chromium.org>
+
+Changes since v1:
+1. New patch.
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 02dcf75c0745..56a7afb697ed 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -1274,11 +1274,3 @@ ov7251_ep: endpoint {
+ 		};
+ 	};
+ };
+-
+-/* PINCTRL - additions to nodes defined in sdm845.dtsi */
+-&qup_spi0_default {
+-	config {
+-		drive-strength = <6>;
+-		bias-disable;
+-	};
+-};
+-- 
+2.34.1
+
