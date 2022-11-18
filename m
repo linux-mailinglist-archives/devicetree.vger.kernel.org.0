@@ -2,920 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF0162EAA8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 02:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5EC62EB12
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 02:37:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235055AbiKRBAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 20:00:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56312 "EHLO
+        id S240923AbiKRBhE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 17 Nov 2022 20:37:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240799AbiKRBAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 20:00:18 -0500
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3222E8432B;
-        Thu, 17 Nov 2022 17:00:16 -0800 (PST)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 18 Nov 2022 09:59:12 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id E437020584CF;
-        Fri, 18 Nov 2022 09:59:12 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 18 Nov 2022 09:59:12 +0900
-Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 7E551B62A4;
-        Fri, 18 Nov 2022 09:59:12 +0900 (JST)
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH 2/2] spi: Add Socionext F_OSPI SPI flash controller driver
-Date:   Fri, 18 Nov 2022 09:59:04 +0900
-Message-Id: <20221118005904.23557-3-hayashi.kunihiko@socionext.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221118005904.23557-1-hayashi.kunihiko@socionext.com>
-References: <20221118005904.23557-1-hayashi.kunihiko@socionext.com>
+        with ESMTP id S240875AbiKRBgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 20:36:43 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA03B6379;
+        Thu, 17 Nov 2022 17:36:12 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7FF0024E020;
+        Fri, 18 Nov 2022 09:06:29 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Nov
+ 2022 09:06:29 +0800
+Received: from ubuntu.localdomain (183.27.96.116) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Nov
+ 2022 09:06:28 +0800
+From:   Hal Feng <hal.feng@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/14] Basic clock and reset support for StarFive JH7110 RISC-V SoC
+Date:   Fri, 18 Nov 2022 09:06:13 +0800
+Message-ID: <20221118010627.70576-1-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [183.27.96.116]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce Socionext F_OSPI controller driver. This controller is used to
-communicate with slave devices such as SPI Flash memories. It supports
-4 slave devices and up to 8-bit wide bus, but supports master mode only.
+The original patch series "Basic StarFive JH7110 RISC-V SoC support" [1]
+is split into 3 patch series. They respectively add basic clock&reset,
+pinctrl and device tree support for StarFive JH7110 SoC. These patch
+series are independent, but the Visionfive2 board can boot up successfully
+only if all these patches series applied. This one adds basic clock&reset
+support. This patch series is pulled out from the patch 7~21 of v1 [1].
+You can simply get or review the patches at the link [2].
 
-This driver uses spi-mem framework for SPI flash memory access, and
-can only operate indirect access mode and single data rate mode.
+[1]: https://lore.kernel.org/all/20220929143225.17907-1-hal.feng@linux.starfivetech.com/
+[2]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
 
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
----
- drivers/spi/Kconfig         |   9 +
- drivers/spi/Makefile        |   1 +
- drivers/spi/spi-sn-f-ospi.c | 818 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 828 insertions(+)
- create mode 100644 drivers/spi/spi-sn-f-ospi.c
+Changes since v1:
+- Rebased on tag v6.1-rc5.
+- Rewrote the clock and reset drivers using auxiliary bus framework, so
+  patch 8, 9, 15 were dropped and all patches changed a lot. (by Stephen)
+- Split Patch 14 into two patches. One is for factoring out the common
+  JH71X0 code, the another one is for renaming. (by Stephen)
+- Created a subdirectory for StarFive reset drivers.
+- Factored out common JH71X0 reset code.
+- Renamed the common clock and reset code from "*starfive*" or
+  "*STARFIVE*" to "*jh71x0*" or "*JH71X0*".
+- Combined JH7110 system and always-on clock DT binding headers in one
+  file named "include/dt-bindings/clock/starfive-jh7110.h".
+- Renamed clock definitions "JH7110_SYSCLK_PCLK2_MUX_FUNC_PCLK" and
+  "JH7110_SYSCLK_U2_PCLK_MUX_PCLK" to "JH7110_SYSCLK_PCLK2_MUX_FUNC" and
+  "JH7110_SYSCLK_PCLK2_MUX".
+- Rewrote the DT bindings of clock and reset for using auxiliary bus.
+- Registered an auxiliary device for reset controller in clock drivers.
+- Changed clock names "CODAJ*" and "WAVE*" to "codaj*" and "wave*".
+  Changed clock names "u2_pclk_mux_func_pclk" and "u2_pclk_mux_pclk" to
+  "pclk2_mux_func" and "pclk2_mux".
+- Changed the flags of clock apb0 and noc_bus_isp_axi to CLK_IS_CRITICAL
+  as suggested by StarFive SDK group.
+- Registered clock gmac0_gtxc as a gate clock instead of a div clock
+  as suggested by StarFive SDK group.
+- Changed the frequency of clock pll2_out to 1188MHz as suggested by
+  StarFive SDK group.
+- Fixed the bug that the clock JH7110_AONCLK_GMAC0_GTXCLK was not handled
+  in JH7110 always-on clock driver.
+- Registered the reset driver as an auxiliary driver.
+- Reworded the commit messages.
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index cb7e3a8ef3a5..c6fb8cd6d2ae 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -906,6 +906,15 @@ config SPI_SLAVE_MT27XX
- 	  say Y or M here.If you are not sure, say N.
- 	  SPI slave drivers for Mediatek MT27XX series ARM SoCs.
- 
-+config SPI_SN_F_OSPI
-+	tristate "Socionext F_OSPI SPI flash controller"
-+	depends on OF && HAS_IOMEM
-+	depends on SPI_MEM
-+	help
-+	  This enables support for the Socionext F_OSPI controller
-+	  for connecting an SPI Flash memory over up to 8-bit wide bus.
-+	  It supports indirect access mode only.
-+
- config SPI_SPRD
- 	tristate "Spreadtrum SPI controller"
- 	depends on ARCH_SPRD || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 60d0b2f611f1..971bd62e4481 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -121,6 +121,7 @@ obj-$(CONFIG_SPI_SH_MSIOF)		+= spi-sh-msiof.o
- obj-$(CONFIG_SPI_SH_SCI)		+= spi-sh-sci.o
- obj-$(CONFIG_SPI_SIFIVE)		+= spi-sifive.o
- obj-$(CONFIG_SPI_SLAVE_MT27XX)          += spi-slave-mt27xx.o
-+obj-$(CONFIG_SPI_SN_F_OSPI)		+= spi-sn-f-ospi.o
- obj-$(CONFIG_SPI_SPRD)			+= spi-sprd.o
- obj-$(CONFIG_SPI_SPRD_ADI)		+= spi-sprd-adi.o
- obj-$(CONFIG_SPI_STM32) 		+= spi-stm32.o
-diff --git a/drivers/spi/spi-sn-f-ospi.c b/drivers/spi/spi-sn-f-ospi.c
-new file mode 100644
-index 000000000000..cd935fa86a6d
---- /dev/null
-+++ b/drivers/spi/spi-sn-f-ospi.c
-@@ -0,0 +1,818 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Socionext SPI flash controller F_OSPI driver
-+ * Copyright (C) 2021 Socionext Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/spi/spi.h>
-+#include <linux/spi/spi-mem.h>
-+
-+/* Registers */
-+#define OSPI_PROT_CTL_INDIR			0x00
-+#define   OSPI_PROT_MODE_DATA_MASK		GENMASK(31, 30)
-+#define   OSPI_PROT_MODE_ALT_MASK		GENMASK(29, 28)
-+#define   OSPI_PROT_MODE_ADDR_MASK		GENMASK(27, 26)
-+#define   OSPI_PROT_MODE_CODE_MASK		GENMASK(25, 24)
-+#define     OSPI_PROT_MODE_SINGLE		0
-+#define     OSPI_PROT_MODE_DUAL			1
-+#define     OSPI_PROT_MODE_QUAD			2
-+#define     OSPI_PROT_MODE_OCTAL		3
-+#define   OSPI_PROT_DATA_RATE_DATA		BIT(23)
-+#define   OSPI_PROT_DATA_RATE_ALT		BIT(22)
-+#define   OSPI_PROT_DATA_RATE_ADDR		BIT(21)
-+#define   OSPI_PROT_DATA_RATE_CODE		BIT(20)
-+#define     OSPI_PROT_SDR			0
-+#define     OSPI_PROT_DDR			1
-+#define   OSPI_PROT_BIT_POS_DATA		BIT(19)
-+#define   OSPI_PROT_BIT_POS_ALT			BIT(18)
-+#define   OSPI_PROT_BIT_POS_ADDR		BIT(17)
-+#define   OSPI_PROT_BIT_POS_CODE		BIT(16)
-+#define   OSPI_PROT_SAMP_EDGE			BIT(12)
-+#define   OSPI_PROT_DATA_UNIT_MASK		GENMASK(11, 10)
-+#define     OSPI_PROT_DATA_UNIT_1B		0
-+#define     OSPI_PROT_DATA_UNIT_2B		1
-+#define     OSPI_PROT_DATA_UNIT_4B		3
-+#define   OSPI_PROT_TRANS_DIR_WRITE		BIT(9)
-+#define   OSPI_PROT_DATA_EN			BIT(8)
-+#define   OSPI_PROT_ALT_SIZE_MASK		GENMASK(7, 5)
-+#define   OSPI_PROT_ADDR_SIZE_MASK		GENMASK(4, 2)
-+#define   OSPI_PROT_CODE_SIZE_MASK		GENMASK(1, 0)
-+
-+#define OSPI_CLK_CTL				0x10
-+#define   OSPI_CLK_CTL_BOOT_INT_CLK_EN		BIT(16)
-+#define   OSPI_CLK_CTL_PHA			BIT(12)
-+#define     OSPI_CLK_CTL_PHA_180		0
-+#define     OSPI_CLK_CTL_PHA_90			1
-+#define   OSPI_CLK_CTL_DIV			GENMASK(9, 8)
-+#define     OSPI_CLK_CTL_DIV_1			0
-+#define     OSPI_CLK_CTL_DIV_2			1
-+#define     OSPI_CLK_CTL_DIV_4			2
-+#define     OSPI_CLK_CTL_DIV_8			3
-+#define   OSPI_CLK_CTL_INT_CLK_EN		BIT(0)
-+
-+#define OSPI_CS_CTL1				0x14
-+#define   OSPI_CS_CTL1_CS_START_MASK		GENMASK(7, 4)
-+#define   OSPI_CS_CTL1_CS_END_MASK		GENMASK(3, 0)
-+
-+#define OSPI_CS_CTL2				0x18
-+#define   OSPI_CS_CTL2_CS_DESEL_CYC_MASK	GENMASK(7, 4)
-+#define   OSPI_CS_CTL2_CS_DESEL_EN		BIT(0)
-+
-+#define OSPI_SSEL				0x20
-+#define OSPI_CMD_IDX_INDIR			0x40
-+#define OSPI_ADDR				0x50
-+#define OSPI_ALT_INDIR				0x60
-+#define OSPI_DMY_INDIR				0x70
-+#define OSPI_DAT				0x80
-+#define OSPI_DAT_SWP_INDIR			0x90
-+#define   OSPI_DAT_SWP_EN			BIT(8)
-+#define   OSPI_DAT_SWP_4TH_BYTE			GENMASK(7, 6)
-+#define   OSPI_DAT_SWP_3RD_BYTE			GENMASK(5, 4)
-+#define   OSPI_DAT_SWP_2ND_BYTE			GENMASK(3, 2)
-+#define   OSPI_DAT_SWP_1ST_BYTE			GENMASK(1, 0)
-+
-+#define OSPI_DAT_SIZE_INDIR			0xA0
-+#define   OSPI_DAT_SIZE_EN			BIT(15)
-+#define   OSPI_DAT_SIZE_MASK			GENMASK(10, 0)
-+#define   OSPI_DAT_SIZE_MAX			(OSPI_DAT_SIZE_MASK + 1)
-+
-+#define OSPI_TRANS_CTL				0xC0
-+#define   OSPI_TRANS_CTL_STOP_REQ		BIT(1)	/* RW1AC */
-+#define   OSPI_TRANS_CTL_START_REQ		BIT(0)	/* RW1AC */
-+
-+#define OSPI_ACC_MODE				0xC4
-+#define   OSPI_ACC_MODE_BOOT_DISABLE		BIT(0)
-+
-+#define OSPI_SWRST				0xD0
-+#define   OSPI_SWRST_INDIR_WRITE_FIFO		BIT(9)	/* RW1AC */
-+#define   OSPI_SWRST_INDIR_READ_FIFO		BIT(8)	/* RW1AC */
-+
-+#define OSPI_STAT				0xE0
-+#define   OSPI_STAT_IS_AXI_WRITING		BIT(10)
-+#define   OSPI_STAT_IS_AXI_READING		BIT(9)
-+#define   OSPI_STAT_IS_SPI_INT_CLK_STOP		BIT(4)
-+#define   OSPI_STAT_IS_SPI_IDLE			BIT(3)
-+
-+#define OSPI_IRQ				0xF0
-+#define   OSPI_IRQ_CS_DEASSERT			BIT(8)
-+#define   OSPI_IRQ_WRITE_BUF_READY		BIT(2)
-+#define   OSPI_IRQ_READ_BUF_READY		BIT(1)
-+#define   OSPI_IRQ_CS_TRANS_COMP		BIT(0)
-+#define   OSPI_IRQ_ALL				\
-+		(OSPI_IRQ_CS_DEASSERT | OSPI_IRQ_WRITE_BUF_READY \
-+		 | OSPI_IRQ_READ_BUF_READY | OSPI_IRQ_CS_TRANS_COMP)
-+
-+#define OSPI_IRQ_STAT_EN			0xF4
-+#define OSPI_IRQ_SIG_EN				0xF8
-+
-+/* Parameters */
-+#define OSPI_NUM_CS				4
-+#define OSPI_DUMMY_CYCLE_MAX			255
-+#define OSPI_WAIT_MAX_MSEC			100
-+
-+enum f_ospi_swap_mode {
-+	OSPI_SWAP_MODE_NONE = 0,
-+	OSPI_SWAP_MODE_2BYTE,
-+	OSPI_SWAP_MODE_4BYTE,
-+};
-+
-+struct f_ospi {
-+	struct mutex mlock;
-+	void __iomem *base;
-+	struct device *dev;
-+	struct clk *clk;
-+
-+	u8 cs_cyc_start;
-+	u8 cs_cyc_end;
-+	u8 cs_cyc_deassert;
-+	bool cs_cyc_deassert_en;
-+
-+	struct {
-+		u8 nbytes;
-+		u8 buswidth;
-+		u32 val;
-+	} alt;
-+
-+	enum f_ospi_swap_mode swap_mode;
-+};
-+
-+static u32 f_ospi_get_dummy_cycle(const struct spi_mem_op *op)
-+{
-+	return (op->dummy.nbytes * 8) / op->dummy.buswidth;
-+}
-+
-+static void f_ospi_clear_irq(struct f_ospi *ospi)
-+{
-+	writel(OSPI_IRQ_CS_DEASSERT | OSPI_IRQ_CS_TRANS_COMP,
-+	       ospi->base + OSPI_IRQ);
-+}
-+
-+static void f_ospi_enable_irq_status(struct f_ospi *ospi, u32 irq_bits)
-+{
-+	u32 val;
-+
-+	val = readl(ospi->base + OSPI_IRQ_STAT_EN);
-+	val |= irq_bits;
-+	writel(val, ospi->base + OSPI_IRQ_STAT_EN);
-+}
-+
-+static void f_ospi_disable_irq_status(struct f_ospi *ospi, u32 irq_bits)
-+{
-+	u32 val;
-+
-+	val = readl(ospi->base + OSPI_IRQ_STAT_EN);
-+	val &= ~irq_bits;
-+	writel(val, ospi->base + OSPI_IRQ_STAT_EN);
-+}
-+
-+static void f_ospi_disable_irq_output(struct f_ospi *ospi, u32 irq_bits)
-+{
-+	u32 val;
-+
-+	val = readl(ospi->base + OSPI_IRQ_SIG_EN);
-+	val &= ~irq_bits;
-+	writel(val, ospi->base + OSPI_IRQ_SIG_EN);
-+}
-+
-+static int f_ospi_prepare_config(struct f_ospi *ospi)
-+{
-+	u32 val, stat0, stat1;
-+
-+	/* G4: Disable internal clock */
-+	val = readl(ospi->base + OSPI_CLK_CTL);
-+	val &= ~(OSPI_CLK_CTL_BOOT_INT_CLK_EN | OSPI_CLK_CTL_INT_CLK_EN);
-+	writel(val, ospi->base + OSPI_CLK_CTL);
-+
-+	/* G5: Wait for stop */
-+	stat0 = OSPI_STAT_IS_AXI_WRITING | OSPI_STAT_IS_AXI_READING;
-+	stat1 = OSPI_STAT_IS_SPI_IDLE | OSPI_STAT_IS_SPI_INT_CLK_STOP;
-+
-+	return readl_poll_timeout(ospi->base + OSPI_STAT,
-+				  val, (val & (stat0 | stat1)) == stat1,
-+				  0, OSPI_WAIT_MAX_MSEC);
-+}
-+
-+static int f_ospi_unprepare_config(struct f_ospi *ospi)
-+{
-+	u32 val;
-+
-+	/* G11: Enable internal clock */
-+	val = readl(ospi->base + OSPI_CLK_CTL);
-+	val |= OSPI_CLK_CTL_BOOT_INT_CLK_EN | OSPI_CLK_CTL_INT_CLK_EN;
-+	writel(val, ospi->base + OSPI_CLK_CTL);
-+
-+	/* G12: Wait for clock to start */
-+	return readl_poll_timeout(ospi->base + OSPI_STAT,
-+				  val, !(val & OSPI_STAT_IS_SPI_INT_CLK_STOP),
-+				  0, OSPI_WAIT_MAX_MSEC);
-+}
-+
-+static void f_ospi_config_clk(struct f_ospi *ospi, u32 device_hz)
-+{
-+	long rate_hz = clk_get_rate(ospi->clk);
-+	u32 div = DIV_ROUND_UP(rate_hz, device_hz);
-+	u32 div_reg;
-+	u32 val;
-+
-+	if (rate_hz < device_hz) {
-+		dev_warn(ospi->dev, "Device frequency too large: %d\n",
-+			 device_hz);
-+		div_reg = OSPI_CLK_CTL_DIV_1;
-+	} else {
-+		if (div == 1) {
-+			div_reg = OSPI_CLK_CTL_DIV_1;
-+		} else if (div == 2) {
-+			div_reg = OSPI_CLK_CTL_DIV_2;
-+		} else if (div <= 4) {
-+			div_reg = OSPI_CLK_CTL_DIV_4;
-+		} else if (div <= 8) {
-+			div_reg = OSPI_CLK_CTL_DIV_8;
-+		} else {
-+			dev_warn(ospi->dev, "Device frequency too small: %d\n",
-+				 device_hz);
-+			div_reg = OSPI_CLK_CTL_DIV_8;
-+		}
-+	}
-+
-+	/*
-+	 * G7: Set clock mode
-+	 * clock phase is fixed at 180 degrees and configure edge direction
-+	 * instead.
-+	 */
-+	val = readl(ospi->base + OSPI_CLK_CTL);
-+
-+	val &= ~(OSPI_CLK_CTL_PHA | OSPI_CLK_CTL_DIV);
-+	val |= FIELD_PREP(OSPI_CLK_CTL_PHA, OSPI_CLK_CTL_PHA_180)
-+	     | FIELD_PREP(OSPI_CLK_CTL_DIV, div_reg);
-+
-+	writel(val, ospi->base + OSPI_CLK_CTL);
-+}
-+
-+static void f_ospi_config_dll(struct f_ospi *ospi)
-+{
-+	/* G8: Configure DLL, nothing */
-+}
-+
-+static u8 f_ospi_get_mode(struct f_ospi *ospi, int width, int data_size)
-+{
-+	u8 mode = OSPI_PROT_MODE_SINGLE;
-+
-+	switch (width) {
-+	case 1:
-+		mode = OSPI_PROT_MODE_SINGLE;
-+		break;
-+	case 2:
-+		mode = OSPI_PROT_MODE_DUAL;
-+		break;
-+	case 4:
-+		mode = OSPI_PROT_MODE_QUAD;
-+		break;
-+	case 8:
-+		mode = OSPI_PROT_MODE_OCTAL;
-+		break;
-+	default:
-+		if (data_size)
-+			dev_err(ospi->dev, "Invalid buswidth: %d\n", width);
-+		break;
-+	}
-+
-+	return mode;
-+}
-+
-+static void f_ospi_config_indir_protocol(struct f_ospi *ospi,
-+					 struct spi_mem *mem,
-+					 const struct spi_mem_op *op)
-+{
-+	struct spi_device *spi = mem->spi;
-+	u8 mode;
-+	u32 prot = 0, val;
-+	int unit;
-+
-+	/* Set one chip select */
-+	writel(BIT(spi->chip_select), ospi->base + OSPI_SSEL);
-+
-+	mode = f_ospi_get_mode(ospi, op->cmd.buswidth, 1);
-+	prot |= FIELD_PREP(OSPI_PROT_MODE_CODE_MASK, mode);
-+
-+	mode = f_ospi_get_mode(ospi, op->addr.buswidth, op->addr.nbytes);
-+	prot |= FIELD_PREP(OSPI_PROT_MODE_ADDR_MASK, mode);
-+
-+	mode = f_ospi_get_mode(ospi, op->data.buswidth, op->data.nbytes);
-+	prot |= FIELD_PREP(OSPI_PROT_MODE_DATA_MASK, mode);
-+
-+	mode = f_ospi_get_mode(ospi, ospi->alt.buswidth, ospi->alt.nbytes);
-+	prot |= FIELD_PREP(OSPI_PROT_MODE_ALT_MASK, mode);
-+
-+	prot |= FIELD_PREP(OSPI_PROT_DATA_RATE_DATA, OSPI_PROT_SDR);
-+	prot |= FIELD_PREP(OSPI_PROT_DATA_RATE_ALT,  OSPI_PROT_SDR);
-+	prot |= FIELD_PREP(OSPI_PROT_DATA_RATE_ADDR, OSPI_PROT_SDR);
-+	prot |= FIELD_PREP(OSPI_PROT_DATA_RATE_CODE, OSPI_PROT_SDR);
-+
-+	if (spi->mode & SPI_LSB_FIRST)
-+		prot |= OSPI_PROT_BIT_POS_DATA | OSPI_PROT_BIT_POS_ALT
-+		      | OSPI_PROT_BIT_POS_ADDR | OSPI_PROT_BIT_POS_CODE;
-+
-+	if (spi->mode & SPI_CPHA)
-+		prot |= OSPI_PROT_SAMP_EDGE;
-+
-+	/* Examine nbytes % 4 */
-+	switch (op->data.nbytes & 0x3) {
-+	case 0:
-+		unit = OSPI_PROT_DATA_UNIT_4B;
-+		val = 0;
-+		break;
-+	case 2:
-+		unit = OSPI_PROT_DATA_UNIT_2B;
-+		val = OSPI_DAT_SIZE_EN | (op->data.nbytes - 1);
-+		break;
-+	default:
-+		unit = OSPI_PROT_DATA_UNIT_1B;
-+		val = OSPI_DAT_SIZE_EN | (op->data.nbytes - 1);
-+		break;
-+	}
-+	prot |= FIELD_PREP(OSPI_PROT_DATA_UNIT_MASK, unit);
-+
-+	switch (op->data.dir) {
-+	case SPI_MEM_DATA_IN:
-+		prot |= OSPI_PROT_DATA_EN;
-+		break;
-+
-+	case SPI_MEM_DATA_OUT:
-+		prot |= OSPI_PROT_TRANS_DIR_WRITE | OSPI_PROT_DATA_EN;
-+		break;
-+
-+	case SPI_MEM_NO_DATA:
-+		prot |= OSPI_PROT_TRANS_DIR_WRITE;
-+		break;
-+
-+	default:
-+		dev_warn(ospi->dev, "Unsupported direction");
-+		break;
-+	}
-+
-+	prot |= FIELD_PREP(OSPI_PROT_ALT_SIZE_MASK, ospi->alt.nbytes);
-+	prot |= FIELD_PREP(OSPI_PROT_ADDR_SIZE_MASK, op->addr.nbytes);
-+	prot |= FIELD_PREP(OSPI_PROT_CODE_SIZE_MASK, 1);	/* 1byte */
-+
-+	writel(prot, ospi->base + OSPI_PROT_CTL_INDIR);
-+	writel(val, ospi->base + OSPI_DAT_SIZE_INDIR);
-+}
-+
-+static int f_ospi_indir_prepare_op(struct f_ospi *ospi, struct spi_mem *mem,
-+				   const struct spi_mem_op *op)
-+{
-+	struct spi_device *spi = mem->spi;
-+	u32 irq_stat_en;
-+	int ret;
-+
-+	ret = f_ospi_prepare_config(ospi);
-+	if (ret)
-+		return ret;
-+
-+	f_ospi_config_clk(ospi, spi->max_speed_hz);
-+
-+	f_ospi_config_indir_protocol(ospi, mem, op);
-+
-+	writel(f_ospi_get_dummy_cycle(op), ospi->base + OSPI_DMY_INDIR);
-+	writel(op->addr.val, ospi->base + OSPI_ADDR);
-+	writel(op->cmd.opcode, ospi->base + OSPI_CMD_IDX_INDIR);
-+
-+	f_ospi_clear_irq(ospi);
-+
-+	switch (op->data.dir) {
-+	case SPI_MEM_DATA_IN:
-+		irq_stat_en = OSPI_IRQ_READ_BUF_READY | OSPI_IRQ_CS_TRANS_COMP;
-+		break;
-+
-+	case SPI_MEM_DATA_OUT:
-+		irq_stat_en = OSPI_IRQ_WRITE_BUF_READY | OSPI_IRQ_CS_TRANS_COMP;
-+		break;
-+
-+	case SPI_MEM_NO_DATA:
-+		irq_stat_en = OSPI_IRQ_CS_TRANS_COMP;
-+		break;
-+
-+	default:
-+		dev_warn(ospi->dev, "Unsupported direction");
-+		irq_stat_en = 0;
-+	}
-+
-+	f_ospi_disable_irq_status(ospi, ~irq_stat_en);
-+	f_ospi_enable_irq_status(ospi, irq_stat_en);
-+
-+	return f_ospi_unprepare_config(ospi);
-+}
-+
-+static void f_ospi_indir_start_xfer(struct f_ospi *ospi)
-+{
-+	/* Write only 1, auto cleared */
-+	writel(OSPI_TRANS_CTL_START_REQ, ospi->base + OSPI_TRANS_CTL);
-+}
-+
-+static void f_ospi_indir_stop_xfer(struct f_ospi *ospi)
-+{
-+	/* Write only 1, auto cleared */
-+	writel(OSPI_TRANS_CTL_STOP_REQ, ospi->base + OSPI_TRANS_CTL);
-+}
-+
-+static int f_ospi_indir_wait_xfer_complete(struct f_ospi *ospi)
-+{
-+	u32 val;
-+
-+	return readl_poll_timeout(ospi->base + OSPI_IRQ, val,
-+				  val & OSPI_IRQ_CS_TRANS_COMP,
-+				  0, OSPI_WAIT_MAX_MSEC);
-+}
-+
-+static int f_ospi_indir_read(struct f_ospi *ospi, struct spi_mem *mem,
-+			     const struct spi_mem_op *op)
-+{
-+	u8 *buf = op->data.buf.in;
-+	u32 val;
-+	int i, ret;
-+
-+	mutex_lock(&ospi->mlock);
-+
-+	/* E1-2: Prepare transfer operation */
-+	ret = f_ospi_indir_prepare_op(ospi, mem, op);
-+	if (ret)
-+		goto out;
-+
-+	f_ospi_indir_start_xfer(ospi);
-+
-+	/* E3-4: Wait for ready and read data */
-+	for (i = 0; i < op->data.nbytes; i++) {
-+		ret = readl_poll_timeout(ospi->base + OSPI_IRQ, val,
-+					 val & OSPI_IRQ_READ_BUF_READY,
-+					 0, OSPI_WAIT_MAX_MSEC);
-+		if (ret)
-+			goto out;
-+
-+		buf[i] = readl(ospi->base + OSPI_DAT) & 0xFF;
-+	}
-+
-+	/* E5-6: Stop transfer if data size is nothing */
-+	if (!(readl(ospi->base + OSPI_DAT_SIZE_INDIR) & OSPI_DAT_SIZE_EN))
-+		f_ospi_indir_stop_xfer(ospi);
-+
-+	/* E7-8: Wait for completion and clear */
-+	ret = f_ospi_indir_wait_xfer_complete(ospi);
-+	if (ret)
-+		goto out;
-+
-+	writel(OSPI_IRQ_CS_TRANS_COMP, ospi->base + OSPI_IRQ);
-+
-+	/* E9: Do nothing if data size is valid */
-+	if (readl(ospi->base + OSPI_DAT_SIZE_INDIR) & OSPI_DAT_SIZE_EN)
-+		goto out;
-+
-+	/* E10-11: Reset and check read fifo */
-+	writel(OSPI_SWRST_INDIR_READ_FIFO, ospi->base + OSPI_SWRST);
-+
-+	ret = readl_poll_timeout(ospi->base + OSPI_SWRST, val,
-+				 !(val & OSPI_SWRST_INDIR_READ_FIFO),
-+				 0, OSPI_WAIT_MAX_MSEC);
-+out:
-+	mutex_unlock(&ospi->mlock);
-+
-+	return ret;
-+}
-+
-+static int f_ospi_indir_write(struct f_ospi *ospi, struct spi_mem *mem,
-+			      const struct spi_mem_op *op)
-+{
-+	u8 *buf = (u8 *)op->data.buf.out;
-+	u32 val;
-+	int i, ret;
-+
-+	mutex_lock(&ospi->mlock);
-+
-+	/* F1-3: Prepare transfer operation */
-+	ret = f_ospi_indir_prepare_op(ospi, mem, op);
-+	if (ret)
-+		goto out;
-+
-+	f_ospi_indir_start_xfer(ospi);
-+
-+	if (!(readl(ospi->base + OSPI_PROT_CTL_INDIR) & OSPI_PROT_DATA_EN))
-+		goto nodata;
-+
-+	/* F4-5: Wait for buffer ready and write data */
-+	for (i = 0; i < op->data.nbytes; i++) {
-+		ret = readl_poll_timeout(ospi->base + OSPI_IRQ, val,
-+					 val & OSPI_IRQ_WRITE_BUF_READY,
-+					 0, OSPI_WAIT_MAX_MSEC);
-+		if (ret)
-+			goto out;
-+
-+		writel(buf[i], ospi->base + OSPI_DAT);
-+	}
-+
-+	/* F6-7: Stop transfer if data size is nothing */
-+	if (!(readl(ospi->base + OSPI_DAT_SIZE_INDIR) & OSPI_DAT_SIZE_EN))
-+		f_ospi_indir_stop_xfer(ospi);
-+
-+nodata:
-+	/* F8-9: Wait for completion and clear */
-+	ret = f_ospi_indir_wait_xfer_complete(ospi);
-+	if (ret)
-+		goto out;
-+
-+	writel(OSPI_IRQ_CS_TRANS_COMP, ospi->base + OSPI_IRQ);
-+out:
-+	mutex_unlock(&ospi->mlock);
-+
-+	return ret;
-+}
-+
-+static int f_ospi_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
-+{
-+	struct f_ospi *ospi = spi_controller_get_devdata(mem->spi->master);
-+	int err = 0;
-+
-+	switch (op->data.dir) {
-+	case SPI_MEM_DATA_IN:
-+		err = f_ospi_indir_read(ospi, mem, op);
-+		break;
-+
-+	case SPI_MEM_DATA_OUT:
-+		fallthrough;
-+	case SPI_MEM_NO_DATA:
-+		err = f_ospi_indir_write(ospi, mem, op);
-+		break;
-+
-+	default:
-+		dev_warn(ospi->dev, "Unsupported direction");
-+		err = -EOPNOTSUPP;
-+	}
-+
-+	return err;
-+}
-+
-+static bool f_ospi_supports_op_width(struct spi_mem *mem,
-+				     const struct spi_mem_op *op)
-+{
-+	u8 width_available[] = { 0, 1, 2, 4, 8 };
-+	u8 width_op[] = { op->cmd.buswidth, op->addr.buswidth,
-+			  op->dummy.buswidth, op->data.buswidth };
-+	bool is_match_found;
-+	int i, j;
-+
-+	for (i = 0; i < ARRAY_SIZE(width_op); i++) {
-+		is_match_found = false;
-+
-+		for (j = 0; j < ARRAY_SIZE(width_available); j++) {
-+			if (width_op[i] == width_available[j]) {
-+				is_match_found = true;
-+				break;
-+			}
-+		}
-+
-+		if (!is_match_found)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+static bool f_ospi_supports_op(struct spi_mem *mem,
-+			       const struct spi_mem_op *op)
-+{
-+	if (f_ospi_get_dummy_cycle(op) > OSPI_DUMMY_CYCLE_MAX)
-+		return false;
-+
-+	if (op->addr.nbytes > 5)
-+		return false;
-+
-+	if (!f_ospi_supports_op_width(mem, op))
-+		return false;
-+
-+	return true;
-+}
-+
-+static int f_ospi_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
-+{
-+	op->data.nbytes = min((int)op->data.nbytes, (int)(OSPI_DAT_SIZE_MAX));
-+
-+	return 0;
-+}
-+
-+static const struct spi_controller_mem_ops f_ospi_mem_ops = {
-+	.adjust_op_size = f_ospi_adjust_op_size,
-+	.supports_op = f_ospi_supports_op,
-+	.exec_op = f_ospi_exec_op,
-+};
-+
-+static int f_ospi_init(struct f_ospi *ospi)
-+{
-+	u32 val;
-+	int ret;
-+
-+	ret = f_ospi_prepare_config(ospi);
-+	if (ret)
-+		return ret;
-+
-+	/* Disable boot signal */
-+	writel(OSPI_ACC_MODE_BOOT_DISABLE, ospi->base + OSPI_ACC_MODE);
-+
-+	f_ospi_config_dll(ospi);
-+
-+	/* Configure DT-derived parameters */
-+	writel(FIELD_PREP(OSPI_CS_CTL1_CS_START_MASK, ospi->cs_cyc_start)
-+	       | FIELD_PREP(OSPI_CS_CTL1_CS_END_MASK, ospi->cs_cyc_end),
-+	       ospi->base + OSPI_CS_CTL1);
-+
-+	val = FIELD_PREP(OSPI_CS_CTL2_CS_DESEL_CYC_MASK, ospi->cs_cyc_deassert)
-+		| OSPI_CS_CTL2_CS_DESEL_EN;
-+	writel(ospi->cs_cyc_deassert_en ? val : 0, ospi->base + OSPI_CS_CTL2);
-+
-+	writel(ospi->alt.val, ospi->base + OSPI_ALT_INDIR);
-+
-+	/* Set data byte order */
-+	switch (ospi->swap_mode) {
-+	case OSPI_SWAP_MODE_4BYTE:
-+		val = OSPI_DAT_SWP_EN
-+			| FIELD_PREP(OSPI_DAT_SWP_4TH_BYTE, 3)
-+			| FIELD_PREP(OSPI_DAT_SWP_3RD_BYTE, 2)
-+			| FIELD_PREP(OSPI_DAT_SWP_2ND_BYTE, 1)
-+			| FIELD_PREP(OSPI_DAT_SWP_1ST_BYTE, 0);
-+		break;
-+	case OSPI_SWAP_MODE_2BYTE:
-+		val = OSPI_DAT_SWP_EN
-+			| FIELD_PREP(OSPI_DAT_SWP_4TH_BYTE, 1)
-+			| FIELD_PREP(OSPI_DAT_SWP_3RD_BYTE, 0)
-+			| FIELD_PREP(OSPI_DAT_SWP_2ND_BYTE, 3)
-+			| FIELD_PREP(OSPI_DAT_SWP_1ST_BYTE, 2);
-+		break;
-+	default:
-+		val = 0;
-+		break;
-+	}
-+	writel(val, ospi->base + OSPI_DAT_SWP_INDIR);
-+
-+	/* Disable IRQ */
-+	f_ospi_clear_irq(ospi);
-+	f_ospi_disable_irq_status(ospi, OSPI_IRQ_ALL);
-+	f_ospi_disable_irq_output(ospi, OSPI_IRQ_ALL);
-+
-+	return f_ospi_unprepare_config(ospi);
-+}
-+
-+static void f_ospi_parse_dt(struct f_ospi *ospi, struct device_node *node)
-+{
-+	u32 alt[4];
-+	u32 val;
-+
-+	if (!of_property_read_u32(node, "socionext,cs-start-cycle", &val))
-+		ospi->cs_cyc_start = val;
-+
-+	if (!of_property_read_u32(node, "socionext,cs-end-cycle", &val))
-+		ospi->cs_cyc_end = val;
-+
-+	if (!of_property_read_u32(node, "socionext,cs-deassert-clk-cycle",
-+				  &val)) {
-+		ospi->cs_cyc_deassert_en = true;
-+		ospi->cs_cyc_deassert = val;
-+
-+		if (ospi->cs_cyc_deassert > 15) {
-+			dev_warn(ospi->dev, "cs-deassert-clk-cycle too large: %d\n",
-+				 ospi->cs_cyc_deassert);
-+			ospi->cs_cyc_deassert = 0;	/* infinite */
-+		}
-+	}
-+
-+	if (!of_property_read_u32_array(node, "socionext,alternative-byte",
-+					alt, 3)) {
-+		ospi->alt.nbytes = alt[0];
-+		ospi->alt.val = alt[1];
-+		ospi->alt.buswidth = alt[2];
-+
-+		if (ospi->alt.nbytes > 4) {
-+			dev_warn(ospi->dev,
-+				 "alternative-byte size too large: %d\n",
-+				 ospi->alt.nbytes);
-+			ospi->alt.nbytes = 4;
-+		}
-+	}
-+
-+	if (of_property_read_bool(node, "socionext,data-swap-2byte"))
-+		ospi->swap_mode = OSPI_SWAP_MODE_2BYTE;
-+	else if (of_property_read_bool(node, "socionext,data-swap-4byte"))
-+		ospi->swap_mode = OSPI_SWAP_MODE_4BYTE;
-+	else
-+		ospi->swap_mode = OSPI_SWAP_MODE_NONE;
-+}
-+
-+static int f_ospi_probe(struct platform_device *pdev)
-+{
-+	struct spi_controller *ctlr;
-+	struct device *dev = &pdev->dev;
-+	struct f_ospi *ospi;
-+	u32 num_cs = OSPI_NUM_CS;
-+	int ret;
-+
-+	ctlr = spi_alloc_master(dev, sizeof(*ospi));
-+	if (!ctlr)
-+		return -ENOMEM;
-+
-+	ctlr->mode_bits = SPI_TX_DUAL | SPI_TX_QUAD | SPI_TX_OCTAL
-+		| SPI_RX_DUAL | SPI_RX_QUAD | SPI_TX_OCTAL
-+		| SPI_MODE_0 | SPI_MODE_1 | SPI_LSB_FIRST;
-+	ctlr->mem_ops = &f_ospi_mem_ops;
-+	ctlr->bus_num = -1;
-+	of_property_read_u32(dev->of_node, "num-cs", &num_cs);
-+	if (num_cs > OSPI_NUM_CS) {
-+		dev_err(dev, "num-cs too large: %d\n", num_cs);
-+		return -ENOMEM;
-+	}
-+	ctlr->num_chipselect = num_cs;
-+	ctlr->dev.of_node = dev->of_node;
-+
-+	ospi = spi_controller_get_devdata(ctlr);
-+	ospi->dev = dev;
-+
-+	f_ospi_parse_dt(ospi, dev->of_node);
-+
-+	platform_set_drvdata(pdev, ospi);
-+
-+	ospi->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ospi->base)) {
-+		ret = PTR_ERR(ospi->base);
-+		goto err_put_ctlr;
-+	}
-+
-+	ospi->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(ospi->clk)) {
-+		ret = PTR_ERR(ospi->clk);
-+		goto err_put_ctlr;
-+	}
-+
-+	ret = clk_prepare_enable(ospi->clk);
-+	if (ret) {
-+		dev_err(dev, "Failed to enable the clock\n");
-+		goto err_disable_clk;
-+	}
-+
-+	mutex_init(&ospi->mlock);
-+
-+	ret = f_ospi_init(ospi);
-+	if (ret)
-+		goto err_destroy_mutex;
-+
-+	ret = devm_spi_register_controller(dev, ctlr);
-+	if (ret)
-+		goto err_destroy_mutex;
-+
-+	return 0;
-+
-+err_destroy_mutex:
-+	mutex_destroy(&ospi->mlock);
-+
-+err_disable_clk:
-+	clk_disable_unprepare(ospi->clk);
-+
-+err_put_ctlr:
-+	spi_controller_put(ctlr);
-+
-+	return ret;
-+}
-+
-+static int f_ospi_remove(struct platform_device *pdev)
-+{
-+	struct f_ospi *ospi = platform_get_drvdata(pdev);
-+
-+	clk_disable_unprepare(ospi->clk);
-+
-+	mutex_destroy(&ospi->mlock);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id f_ospi_dt_ids[] = {
-+	{ .compatible = "socionext,f-ospi" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, f_ospi_dt_ids);
-+
-+static struct platform_driver f_ospi_driver = {
-+	.driver = {
-+		.name = "socionext,f-ospi",
-+		.of_match_table = f_ospi_dt_ids,
-+	},
-+	.probe = f_ospi_probe,
-+	.remove = f_ospi_remove,
-+};
-+module_platform_driver(f_ospi_driver);
-+
-+MODULE_DESCRIPTION("Socionext F_OSPI controller driver");
-+MODULE_AUTHOR("Socionext Inc.");
-+MODULE_AUTHOR("Kunihiko Hayashi <hayashi.kunihiko@socionext.com>");
-+MODULE_LICENSE("GPL");
+  v1: https://lore.kernel.org/all/20220929143225.17907-1-hal.feng@linux.starfivetech.com/
+
+Emil Renner Berthing (10):
+  clk: starfive: Factor out common JH7100 and JH7110 code
+  reset: Create subdirectory for StarFive drivers
+  reset: starfive: Factor out common JH71X0 reset code
+  reset: starfive: jh71x0: Use 32bit I/O on 32bit registers
+  dt-bindings: clock: Add StarFive JH7110 system and always-on clock
+    definitions
+  dt-bindings: reset: Add StarFive JH7110 system and always-on reset
+    definitions
+  dt-bindings: clock: Add StarFive JH7110 system clock and reset
+    generator
+  dt-bindings: clock: Add StarFive JH7110 always-on clock and reset
+    generator
+  clk: starfive: Add StarFive JH7110 system clock driver
+  clk: starfive: Add StarFive JH7110 always-on clock driver
+
+Hal Feng (4):
+  clk: starfive: Rename "jh7100" to "jh71x0" for the common code
+  reset: starfive: Rename "jh7100" to "jh71x0" for the common code
+  reset: starfive: Add StarFive JH7110 reset driver
+  clk: starfive: jh71x0: Don't register aux devices if JH7110 reset is
+    disabled
+
+ .../clock/starfive,jh7110-aoncrg.yaml         |  76 ++
+ .../clock/starfive,jh7110-syscrg.yaml         |  80 ++
+ MAINTAINERS                                   |  16 +-
+ drivers/clk/starfive/Kconfig                  |  25 +
+ drivers/clk/starfive/Makefile                 |   6 +-
+ .../clk/starfive/clk-starfive-jh7100-audio.c  |  74 +-
+ drivers/clk/starfive/clk-starfive-jh7100.c    | 713 +++++-------------
+ drivers/clk/starfive/clk-starfive-jh7100.h    | 112 ---
+ .../clk/starfive/clk-starfive-jh7110-aon.c    | 165 ++++
+ .../clk/starfive/clk-starfive-jh7110-sys.c    | 650 ++++++++++++++++
+ drivers/clk/starfive/clk-starfive-jh71x0.c    | 396 ++++++++++
+ drivers/clk/starfive/clk-starfive-jh71x0.h    | 122 +++
+ drivers/reset/Kconfig                         |   8 +-
+ drivers/reset/Makefile                        |   2 +-
+ drivers/reset/reset-starfive-jh7100.c         | 173 -----
+ drivers/reset/starfive/Kconfig                |  20 +
+ drivers/reset/starfive/Makefile               |   5 +
+ .../reset/starfive/reset-starfive-jh7100.c    |  74 ++
+ .../reset/starfive/reset-starfive-jh7110.c    |  67 ++
+ .../reset/starfive/reset-starfive-jh71x0.c    | 130 ++++
+ .../reset/starfive/reset-starfive-jh71x0.h    |  21 +
+ include/dt-bindings/clock/starfive-jh7110.h   | 234 ++++++
+ include/dt-bindings/reset/starfive-jh7110.h   | 154 ++++
+ 23 files changed, 2466 insertions(+), 857 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+ delete mode 100644 drivers/clk/starfive/clk-starfive-jh7100.h
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-aon.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-sys.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.h
+ delete mode 100644 drivers/reset/reset-starfive-jh7100.c
+ create mode 100644 drivers/reset/starfive/Kconfig
+ create mode 100644 drivers/reset/starfive/Makefile
+ create mode 100644 drivers/reset/starfive/reset-starfive-jh7100.c
+ create mode 100644 drivers/reset/starfive/reset-starfive-jh7110.c
+ create mode 100644 drivers/reset/starfive/reset-starfive-jh71x0.c
+ create mode 100644 drivers/reset/starfive/reset-starfive-jh71x0.h
+ create mode 100644 include/dt-bindings/clock/starfive-jh7110.h
+ create mode 100644 include/dt-bindings/reset/starfive-jh7110.h
+
+
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
 -- 
-2.25.1
+2.38.1
 
