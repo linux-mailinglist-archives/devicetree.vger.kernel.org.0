@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E14062FA37
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C0E62FA3E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:28:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235084AbiKRQ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:28:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
+        id S241840AbiKRQ24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:28:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241686AbiKRQ16 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:27:58 -0500
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EE392B75;
-        Fri, 18 Nov 2022 08:27:55 -0800 (PST)
-Received: by mail-vk1-xa2f.google.com with SMTP id m18so2650294vka.10;
-        Fri, 18 Nov 2022 08:27:55 -0800 (PST)
+        with ESMTP id S235357AbiKRQ2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:28:54 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EA91D313;
+        Fri, 18 Nov 2022 08:28:52 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id n21so14256562ejb.9;
+        Fri, 18 Nov 2022 08:28:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aP8xigMH6Cdm1FehOCVDAAEkuLsKjaAGKg6SNk11hm4=;
-        b=OTjo/3/lVabVMWDiNLgPqAXVGqRIpWx8gvTgzherYcnKTjbHY9eYeUmqjKxALgB6pv
-         d5haJ64lg6v/HMu5tYzW4aUQBG6vJka3W0/CpMw0oaumAZN/Zf4QpJkrwuSMIeM0pvdp
-         VgDCSu7Qo+KMGuRK4J2f6Bxlslls85Sh0fOjvTyquUo2EGEzcpa0rC5hyFpOTHc+ZUpC
-         W1LKg9Q2u645orMaA8H6nExHFVam0t60DF7qOXTN8raIvJI51IH3GxUhEWuxAnHbe7Tw
-         c5HGfpsJNnxkydeq/Z2TOYYSUPoq7B0tXBWGs0Ljap2EyOC1Q3L3vvS12/cYWh52codC
-         rCYQ==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o7I/f2EYSr3aJDY2Ej4kxRkx+eOd+B9qRwYtt2bgbF8=;
+        b=OPhkeX3iNWjD5Mtu/rObm8ROZEJODP95/EGbud4/PkX8qR3EJLFOIhUtSIFfOzssj4
+         Tb5yYyihdCuXfUXugmdCEO1MT8Cld6zGIEKpVGI8xD4Jikk2pQgG8SIyIPaFjMH+69J5
+         FaWgshB9eNDZDUWmhgWqSaYn10grz/qLmNhDST5BhfYZHuwfaTrweyQH8Jbug3m1bRPG
+         +9EalGb/X4zcsgNm9+948ZGPWWqCd60lmWQnPFy2G/gN0Ka7M+iTFD2MllsnJkpG5m1K
+         NZeLXFzDhQo9qEAljAr2moCIJPbxeOVPxggSr6o/Rs2BOFjO/cooKHU0Lwp3JQHzKb9q
+         /vVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aP8xigMH6Cdm1FehOCVDAAEkuLsKjaAGKg6SNk11hm4=;
-        b=CwqqBVAZc3kG4gdXHj8JGTHkXZZjedtnJkiiGD2NTbwWwBgb51aMEydPcywnKzCTzH
-         tKE5OobEC5lJ/2cgMDJFwsnnoJwR5IaUTlBffvpvsc1fuAnCW5h+ESdddEqTkN0XJk4L
-         PjSLLYo1wvcW7q6Rx17BXUPwsZwKvFuHZ/M1Q2HVdU5KK0pBl7LtEwe91zN5wKJnbada
-         U6ASRe+bxv1FgalfRL/1pZavlG1H1hqugseAI3g7HOeuO+Z88Yw5drp0DC+8oQ99Mp/R
-         xIOcdqP45ZNhLPTiKV681FogJ0no+8nFoCiaQk2q/8Ux6HMVehly23YBkiQXkiiMDSBA
-         Cvfw==
-X-Gm-Message-State: ANoB5pnWXS5nJdLfKl+7TUR82PQyLS9mzl59qQqSjov07/Ym8EB1m8Lv
-        4iNw6Z2nKLjq5Ij9tDb1YX1PX2O60sNiHelAivGi8h/y
-X-Google-Smtp-Source: AA0mqf5knH/KwKqTKOiQd/z0yhn+IqZ67caj8iY/xM73bDp4/rQAeV2haenOZy56wBGm1B6UliEIwrur+lSZUECx51s=
-X-Received: by 2002:a1f:900f:0:b0:3ab:42ba:252 with SMTP id
- s15-20020a1f900f000000b003ab42ba0252mr4415727vkd.8.1668788874135; Fri, 18 Nov
- 2022 08:27:54 -0800 (PST)
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o7I/f2EYSr3aJDY2Ej4kxRkx+eOd+B9qRwYtt2bgbF8=;
+        b=OjLgTEUx1+T+5/Q75f77ZvSqCDsgoyQakRj9X14+aXjVC3rbPUgq2XlMUFzHzIJLZj
+         ijIRn2X2Xks9RnWMJGPVGYczpEjyKoJ6nBZ66hFOHlBzDLCOUfs+t2HAcKxr4naY93ys
+         BG2FplRvLMaVmhDaysVbY/mYmxn4oFkhF8erWvLGMdIPfYObAVeOkOv+N5A3T26xOfpc
+         7TWTZfk3xQ166mRV8A1o9e5cOM5hb6VlQFbDjiD0E1UuhAGX/TcOanRYpFs8/6Sc0RDH
+         JqWt+VTgj+ojkWpzKpgTtr0AT05jOJJvhVBY2T/VJ7Bdglqv+YF+IZ6QBL+VLZn1nGLy
+         eQKQ==
+X-Gm-Message-State: ANoB5plRr1Kin5sG31eXgWxwM502C6B8aRJdDbYFC7qNZURhldCKgRZf
+        C9bXEAFDzcZeijof24aaIOs=
+X-Google-Smtp-Source: AA0mqf6Pmuli5f8rC5IpgUIcdVFB8XjOrpzL+LKn0ukItpVfKInpCgIuS6Sb3TU3CGdu0XIRCkSk1g==
+X-Received: by 2002:a17:906:28d5:b0:7ad:88f8:68fb with SMTP id p21-20020a17090628d500b007ad88f868fbmr6755968ejd.277.1668788931124;
+        Fri, 18 Nov 2022 08:28:51 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id l19-20020aa7cad3000000b0045bd257b307sm1978015edt.22.2022.11.18.08.28.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 08:28:50 -0800 (PST)
+Date:   Fri, 18 Nov 2022 17:28:48 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, David Airlie <airlied@redhat.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v3 5/8] drm/simpledrm: Add support for system memory
+ framebuffers
+Message-ID: <Y3eywMZMGOG8wx/f@orome>
+References: <20221117184039.2291937-1-thierry.reding@gmail.com>
+ <20221117184039.2291937-6-thierry.reding@gmail.com>
+ <053fbbc2-824d-648b-fdac-6f6c7c64181d@suse.de>
+ <Y3em7dwyJgQI1vZw@orome>
+ <9bf3dde1-dbbf-a03f-6659-68ecd4fce8cf@suse.de>
 MIME-Version: 1.0
-References: <20221114215817.1953186-1-robertcnelson@gmail.com>
- <20221114215817.1953186-2-robertcnelson@gmail.com> <20221115200357.qa2rvw3clbz7unzq@symptom>
-In-Reply-To: <20221115200357.qa2rvw3clbz7unzq@symptom>
-From:   Robert Nelson <robertcnelson@gmail.com>
-Date:   Fri, 18 Nov 2022 10:27:27 -0600
-Message-ID: <CAOCHtYj-6C4-yesHOz0EzDxC+YyZNLUz7f9PxYstvCn_BaiOzQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] arm64: dts: ti: add k3-j721e-beagleboneai64
-To:     Nishanth Menon <nm@ti.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Andrew Davis <afd@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CiIa2B9WdSpqtTa2"
+Content-Disposition: inline
+In-Reply-To: <9bf3dde1-dbbf-a03f-6659-68ecd4fce8cf@suse.de>
+User-Agent: Mutt/2.2.8 (2022-11-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -71,80 +80,171 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Nishanth
 
-On Tue, Nov 15, 2022 at 2:04 PM Nishanth Menon <nm@ti.com> wrote:
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+--CiIa2B9WdSpqtTa2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +
-> > +             led-4 {
-> > +                     gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
-> > +                     linux,default-trigger = "phy0tx";
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml#n82
->
-> we'd be Violating the oneOf conditions here.
+On Fri, Nov 18, 2022 at 04:54:31PM +0100, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 18.11.22 um 16:38 schrieb Thierry Reding:
+> > On Fri, Nov 18, 2022 at 03:21:14PM +0100, Thomas Zimmermann wrote:
+> > > Hi
+> > >=20
+> > > Am 17.11.22 um 19:40 schrieb Thierry Reding:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >=20
+> > > > Simple framebuffers can be set up in system memory, which cannot be
+> > > > requested and/or I/O remapped using the I/O resource helpers. Add a
+> > > > separate code path that obtains system memory framebuffers from the
+> > > > reserved memory region referenced in the memory-region property.
+> > > >=20
+> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > > ---
+> > > > Changes in v3:
+> > > > - simplify memory code and move back to simpledrm_device_create()
+> > > > - extract screen_base iosys_map fix into separate patch
+> > > >=20
+> > > > Changes in v2:
+> > > > - make screen base a struct iosys_map to avoid sparse warnings
+> > > >=20
+> > > >    drivers/gpu/drm/tiny/simpledrm.c | 99 ++++++++++++++++++++++++--=
+------
+> > > >    1 file changed, 75 insertions(+), 24 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tin=
+y/simpledrm.c
+> > > > index 3673a42e4bf4..7f39bc58da52 100644
+> > > > --- a/drivers/gpu/drm/tiny/simpledrm.c
+> > > > +++ b/drivers/gpu/drm/tiny/simpledrm.c
+> > > > @@ -3,6 +3,7 @@
+> > > >    #include <linux/clk.h>
+> > > >    #include <linux/of_clk.h>
+> > > >    #include <linux/minmax.h>
+> > > > +#include <linux/of_address.h>
+> > > >    #include <linux/platform_data/simplefb.h>
+> > > >    #include <linux/platform_device.h>
+> > > >    #include <linux/regulator/consumer.h>
+> > > > @@ -184,6 +185,31 @@ simplefb_get_format_of(struct drm_device *dev,=
+ struct device_node *of_node)
+> > > >    	return simplefb_get_validated_format(dev, format);
+> > > >    }
+> > > > +static struct resource *
+> > > > +simplefb_get_memory_of(struct drm_device *dev, struct device_node =
+*of_node)
+> > > > +{
+> > > > +	struct device_node *np;
+> > > > +	struct resource *res;
+> > > > +	int err;
+> > > > +
+> > > > +	np =3D of_parse_phandle(of_node, "memory-region", 0);
+> > > > +	if (!np)
+> > > > +		return NULL;
+> > > > +
+> > > > +	res =3D devm_kzalloc(dev->dev, sizeof(*res), GFP_KERNEL);
+> > > > +	if (!res)
+> > > > +		return ERR_PTR(-ENOMEM);
+> > > > +
+> > > > +	err =3D of_address_to_resource(np, 0, res);
+> > > > +	if (err)
+> > > > +		return ERR_PTR(err);
+> > > > +
+> > > > +	if (of_get_property(of_node, "reg", NULL))
+> > > > +		drm_warn(dev, "preferring \"memory-region\" over \"reg\" propert=
+y\n");
+> > >=20
+> > > The reg property is converted to a device resource when we create the=
+ device
+> > > at [1].
+> > >=20
+> > > I have another question, which I was discussing with Javier recently.=
+ Is it
+> > > possible to handle memory-region there automatically? If, for exmaple=
+, it
+> > > would create a resource with IORESOURCE_CACHEABLE, simpledrm would ha=
+ndle it
+> > > as memory region. Without the CACHEABLE flag, it would be a regular r=
+esource
+> > > as before.
+> >=20
+> > memory-region properties are not typically converted into a standard
+> > resource automatically. One reason may be that they can have additional
+> > properties associated with them and so something like a CACHEABLE type
+> > may not apply.
+> >=20
+> > It's also standard to convert "reg" properties into struct resource and
+> > that's what many drivers will expect. I don't know if all drivers will
+> > gracefully handle being passed a struct resource that was created in
+> > this way from a memory-region property. If at all I think this would
+> > need to be special-cased for simple-framebuffer, in which case I'm not
+> > convinced that putting the special case into the core OF code is any
+> > better than putting it into the simpledrm driver.
+> >=20
+> > Also, even if we did so, what would it really change? We may be able to
+> > avoid the explicit DT lookup, but the bulk of the memory-region code is
+> > actually mapping it, etc. That part we won't be able to automatically
+> > handle, I think.
+> >=20
+> > Ultimately this is up to Rob, not sure if he'll want to extend the
+> > simple-framebuffer node creation code any further.
+>=20
+> Thanks for explaining. It was simply something we wondered about.
+>=20
+> The simpledrm device driver hands over device ownership to the hardware's
+> native driver during the boot process. To make this work in all cases, the
+> OF code needs to be involved. So at some point, we'll need to move some of
+> the memory-region code into the OF code. But how exactly this has to be d=
+one
+> can be discussed later.
 
-Removed..
+Currently the simpledrm driver will be removed when the native driver is
+loaded (on Tegra at least) and then the Tegra DRM driver will set itself
+up from scratch and anything that simpledrm had set up will be discarded
+after that.
 
-> > +
-> > +     vdd_mmc1: regulator-3 {
-> > +             compatible = "regulator-fixed";
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&sd_pwr_en_pins_default>;
-> > +             regulator-name = "vdd_mmc1";
-> > +             regulator-min-microvolt = <3300000>;
-> > +             regulator-max-microvolt = <3300000>;
-> > +             regulator-boot-on;
-> > +             enable-active-high;
-> > +             vin-supply = <&vsys_3v3>;
-> > +             gpios = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
->
-> s/gpios/gpio ?
+The tentative plan for Tegra is to eventually take over the memory from
+simpledrm (basically via the same memory-region mechanism) and copy it
+into a native buffer and also adopt the display configuration so that
+the transition can happen seamlessly. I'm not sure to what degree the OF
+core needs to get involved. Once we have the reserved-memory region, we
+don't really need OF anymore.
 
-cleaned up these old gpios -> gpio references...
+One thing I'm not sure about yet is what to do with the reserved-memory
+region. Ideally I think we would want to return the memory to the buddy
+allocator so that it can be reused. I'm not sure if that's possible or
+how to do it, since most of the low-level memblock code that is
+responsible for cleaning things up has already run at this point. We'd
+probably need to manually return the buffer somehow (perhaps with
+something like generic_online_page()). Alternatively we may also hang
+onto the memory and reuse it in the native driver, though that could be
+a bit messy since it can't be transparently handled like any other
+buffer.
 
-> > +&main_gpio0 {
-> > +     gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
-> > +             "P8_22", "P8_24", "P8_34", "P8_36", "P8_38A", /* 5-9 */
-> > +             "P9_23", "P8_37B", "P9_26B", "P9_24B", "P8_08", /* 10-14 */
-> > +             "P8_07", "P8_10", "P8_09", "P9_42B", "", /* 15-19 */
-> > +             "P8_03", "TYPEC_PWR_ST", "M2_RSTz", "M2_I2C_ALERT#", "P8_35A", /* 20-24 */
-> > +             "P8_33A", "P8_32A", "", "P9_17A", "", /* 25-29 */
-> > +             "P8_21", "P8_23", "P8_31A", "P8_05", "P8_06", /* 30-34 */
-> > +             "P8_25", "M2_W_DISABLE1#", "M2_W_DISABLE2#", "P9_22A (BOOTMODE1)", "P9_21A", /* 35-39 */
-> > +             "P9_18A", "DSI_I2C_SCL", "DSI_I2C_SDA", "P9_28B", "P9_30B", /* 40-44 */
-> > +             "P9_12", "P9_27A", "P9_15", "P8_04 (BOOTMODE2)", "VCC_DP_EN", /* 45-49 */
-> > +             "P9_33B", "P8_26", "P9_31B", "P9_29B", "P9_39B", /* 50-54 */
-> > +             "P9_35B", "P9_36B", "P9_37B", "P9_38B", "P8_12", /* 55-59 */
-> > +             "P8_11 (BOOTMODE7)", "P8_15", "P8_16", "", "", /* 60-64 */
-> > +             "P8_43", "P8_44", "P8_41", "P8_42 (BOOTMODE6)", "P8_39", /* 65-69 */
-> > +             "P8_40", "P8_27", "P8_28", "P8_29", "P8_30", /* 70-74 */
-> > +             "P8_14", "P8_20", "P9_20B", "P9_19B", "P8_45", /* 75-79 */
-> > +             "P8_46 (BOOTMODE3)", "P9_40B", "VDD_SD_EN", "CSI_I2C_SCL", "CSI_I2C_SDA", /* 80-84 */
-> > +             "M2_I2S_SCK", "M2_I2S_WS", "M2_I2S_IN", "P8_19", "P8_13", /* 85-89 */
-> > +             "P9_21B", "P9_22B", "M2_I2S_OUT", "P9_14", "P9_16", /* 90-94 */
-> > +             "USR1", "USR0", "USR2", "DSI_GPIO1", "FAN_PWM", /* 95-99 */
-> > +             "FAN_TACH", "CSI1_GPIO1", "CSI0_GPIO2", "CSI0_GPIO1", "P9_25B", /* 100-104 */
-> > +             "P8_38B", "P8_37A", "CSI1_GPIO2", "DSI_GPIO2", "USR4", /* 105-109 */
-> > +             "USR3", "P8_33B", "DP_HPD", "M2_UART_CTSn", "M2_UART_RTSn", /* 110-114 */
-> > +             "P9_17B", "P8_35B", "VDD_SD_SEL", "P9_26A", "P9_24A", /* 115-119 */
-> > +             "P9_18B", "CONSOLE_RX", "CONSOLE_TX", "P9_42A", "P9_27B", /* 120-124 */
-> > +             "M2_UART_RX", "M2_UART_TX", "P9_25A"; /* 125-127 */
->
-> Can we drop the gpio-line-names description for now?
-> gpio-line-names: maxItems: 32 in
-> Documentation/devicetree/bindings/gpio/ti,omap-gpio.yaml - that probably
-> should be fixed prior to this else we get the dtbs_check warning around
-> this. The max count actually depends on ti,ngpio - So, I think the
-> schema is probably not accurate here.
+I could find a few drivers that use memory-region, but none of them seem
+to return that region to the buddy allocator.
 
-Removed for now, till we are ready..
+Thierry
 
-Regards,
+--CiIa2B9WdSpqtTa2
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Robert Nelson
-https://rcn-ee.com/
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN3sr4ACgkQ3SOs138+
+s6HCyxAAoS0QANMnQU8hIzcsWsXsCYTbA+B8t/1SwCuIVztwWZIygJN57VSJuk+u
+oLkjRoXaNKfKWvVWOV/ty2LcWz9GzBVkwLupQsiMHNtcXq8J7cZcKb7GKI89zJwn
+WG7VYqleK+URd1Vy5hUFEc6HtuIxZrBb1VLSiXDmgZufrQXnHTav6PXbwRjP14P0
+xL/l2VpS9gi9kd8smqNYBylI5tE6vaCtpLyWAePHQShILQ4W1YTdZsRkbh/5gQhu
+6N+Rvbpg6kB5PlM57gAP2CJlrAxwJaP+34Imgj73H791wjnGmkufzHVcZIkCq3ip
+ltQsuNPuvPvdevDySQgVKxQWXcNMNvunW0wFsCGFd9GoH2QX9h39R6qMBwPqIN3u
+Ikwb+FC4liC2AzqrWN/vRJ3/fT2aTSL0+7ZRgMZRz+s3tq83CiIHMusa7Lx5rM1B
+CydQd8LiEZQgsufxmEu0fPYPwDi/CjOjqmKWE77LWpZgvpidNHTgUOi0mqwBXzB/
+/kLXli877Uqjnf8IKlf6oxD3ypcfeHE8rx8LSM6fQ8dF5nTlrxniEwXUNRIRFyHN
+U8Hp1vptrlEmtPosRHGnIR8YMJ19+fZQxnULhmdIQKIslfUqZxZbnIumrH7uei2V
+lzZO7eeIZSRB4qDVLZUIV+yGHk3oLATomNARtKR07442W3V5rfg=
+=Znn0
+-----END PGP SIGNATURE-----
+
+--CiIa2B9WdSpqtTa2--
