@@ -2,335 +2,556 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6AA62FBCE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E65862FBD5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:42:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242480AbiKRRkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 12:40:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
+        id S242177AbiKRRmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 12:42:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242304AbiKRRkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:40:36 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D273C20BD9;
-        Fri, 18 Nov 2022 09:40:30 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIHeLBd077023;
-        Fri, 18 Nov 2022 11:40:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1668793221;
-        bh=t45Q5EGy2QkYGozOYHUVUxhGG5GG1cC9m+hhsMGZPoE=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=IlmIH/8foh/2p8LN2mBT76/seFD1cOb9Gz9vJPX+0oA+8NYLZ2bNtMlr+ggAN0wuR
-         7xTD9FN/fwvrLRPFoknj7ugxs26kN4ysovuvPRwWtGiTqll/+eM7alOJoDduOHBkth
-         5hbng14jAXhDdTtrWf7dz1AWs95pTNidOxgWsWTw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIHeLFa048159
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Nov 2022 11:40:21 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
- Nov 2022 11:40:20 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 18 Nov 2022 11:40:20 -0600
-Received: from [10.250.38.44] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIHeKh7085024;
-        Fri, 18 Nov 2022 11:40:20 -0600
-Message-ID: <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
-Date:   Fri, 18 Nov 2022 11:40:19 -0600
+        with ESMTP id S242541AbiKRRmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:42:05 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317D320983
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:42:04 -0800 (PST)
+Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5E27B3F481
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 17:41:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1668793319;
+        bh=qLey4Ba7Mxtw0us/UV6dihBauJ7yWiM395MsIE8wApA=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=vAByh9F9prD5C7jVoI5WllEShDhDZ7e4Ybt6a+XIagpttImpkVskNrCmyB2MXrUun
+         a1Zs9saHmBnBRWPZuzt4BcfdshnhpAQL4xBfpJN2QCAewYm4nT8TB0FzLwznE1vHtK
+         2wkMyePj1qThlKQCAE5dy7JcuHF62kBwlqrlewmL9jXpbJhGtMECq3IIEC96wGQEx8
+         VaZAXGPSm2wlsXfzy5eRh5jWeF28cKpHM6rJ2w8B2wx/ABTL4moTlLbN8byqAh3xZ0
+         VeuGYkIFqJ2zGupmekr3BaW7k4l+fpbXWz6fC6puZf8iiduVVAwbn66UdrN01/dofJ
+         /DIkiLlWiGNWQ==
+Received: by mail-yb1-f197.google.com with SMTP id s16-20020a25aa10000000b006e894071c9bso2176985ybi.20
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:41:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qLey4Ba7Mxtw0us/UV6dihBauJ7yWiM395MsIE8wApA=;
+        b=3wtGbXYaky9G+JgJ4VcPwNxkKhOH1CqZV3RxFVG+b8t9tzN6kbvC1DffSME79V0ot3
+         e6F2rH7wMBEvlmDk6l66ngSyymEgOJ1+IK6ZWSeb0hqvFxrakpOTMrDyMxvdEn8lO1TP
+         M+3YvsSJUlexqxhm2hvq4O1x0y5ksvg+BOzGvSNYoU+4TJ6aBof/JNwEM7OdsKRGBmc5
+         HqdeH5q/9OK/SvZcep0C5FOXtOQG2QbD/AFVk+bNbwVJ1OHSf5jMtmAii2vWifFJxy0Q
+         gaVDTVytQbmgTmyZecXSDl9Lqa3k8lUfMD4U741FGHH7lHB3x3Idk0SdtQsi1f5/2wrI
+         ZNQw==
+X-Gm-Message-State: ANoB5plMqjbwupOS7W6YGq3bgMlglJMb3UNbMcFWtVk++fLo00hKbKzp
+        pG3NQ+u93J1BTF1Cbiu/Ik0EhoB8pEUeTBN/2WlVM+qnFWUAMG7BmxovJ5xmEHsoJmFbjq6ZWth
+        VRqTRBR9SUMR7o+Ywvq/SbHqy/+55zkdOwEseFD053V/4KFDR6l+QgNE=
+X-Received: by 2002:a81:f805:0:b0:378:5e3a:8fad with SMTP id z5-20020a81f805000000b003785e3a8fadmr7457707ywm.78.1668793318237;
+        Fri, 18 Nov 2022 09:41:58 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf4PkW+6KwpVvLH2wd9J3iZgdBdQhcmyZXoHDHAcHA8dDEtYWlt6rNtwZ6kj+9lJNFCDSMCd2DTRoG1ielpT8Rg=
+X-Received: by 2002:a81:f805:0:b0:378:5e3a:8fad with SMTP id
+ z5-20020a81f805000000b003785e3a8fadmr7457682ywm.78.1668793317939; Fri, 18 Nov
+ 2022 09:41:57 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
-Content-Language: en-US
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+References: <20221118011714.70877-1-hal.feng@starfivetech.com> <20221118011714.70877-7-hal.feng@starfivetech.com>
+In-Reply-To: <20221118011714.70877-7-hal.feng@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 18 Nov 2022 18:41:41 +0100
+Message-ID: <CAJM55Z9PXVLfFTPuyELR4ov22ENfEXZfJAJdLgURA+R4mcH_eg@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Hari Nagalla <hnagalla@ti.com>
-References: <20221116130428.161329-1-a-nandan@ti.com>
- <20221116130428.161329-5-a-nandan@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20221116130428.161329-5-a-nandan@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/16/22 7:04 AM, Apurva Nandan wrote:
-> J784S4 EVM board is designed for TI J784S4 SoC. It supports the following
-> interfaces:
-> * 32 GB DDR4 RAM
-> * x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
-> * x1 Input Audio Jack, x1 Output Audio Jack
-> * x1 USB2.0 Hub with two Type A host and x1 USB 3.1 Type-C Port
-> * x2 4L PCIe connector
-> * x1 UHS-1 capable micro-SD card slot
-> * 512 Mbit OSPI flash, 1 Gbit Octal NAND flash, 512 Mbit QSPI flash,
->    UFS flash.
-> * x6 UART through UART-USB bridge
-> * XDS110 for onboard JTAG debug using USB
-> * Temperature sensors, user push buttons and LEDs
-> * 40-pin User Expansion Connector
-> * x2 ENET Expansion Connector, x1 GESI expander, x2 Display connector
-> * x1 15-pin CSI header
-> * x6 MCAN instances
-> 
-> Add basic support for J784S4-EVM.
-> 
-> Schematics: https://www.ti.com/lit/zip/sprr458
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+On Fri, 18 Nov 2022 at 02:17, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> From: Emil Renner Berthing <kernel@esmil.dk>
+>
+> Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> Technology Ltd.
+>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->   arch/arm64/boot/dts/ti/Makefile          |   2 +
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 197 +++++++++++++++++++++++
->   2 files changed, 199 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 4555a5be2257..67621b349e88 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->   
->   dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->   
-> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-> +
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 437 +++++++++++++++++++++++
+>  1 file changed, 437 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
 > new file mode 100644
-> index 000000000000..53516fb2b346
+> index 000000000000..c22e8f1d2640
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -0,0 +1,196 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -0,0 +1,437 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
 > +/*
-> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * EVM Board Schematics: https://www.ti.com/lit/zip/sprr458
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
 > + */
 > +
 > +/dts-v1/;
-> +
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-j784s4.dtsi"
+> +#include <dt-bindings/clock/starfive-jh7110.h>
+> +#include <dt-bindings/reset/starfive-jh7110.h>
 > +
 > +/ {
-> +	compatible = "ti,j784s4-evm", "ti,j784s4";
-> +	model = "Texas Instruments J784S4 EVM";
+> +       compatible = "starfive,jh7110";
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
 > +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
+> +       cpus {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
 > +
-> +	aliases {
-> +		serial2 = &main_uart8;
+> +               S76_0: cpu@0 {
+> +                       compatible = "sifive,u74-mc", "riscv";
+> +                       reg = <0>;
+> +                       d-cache-block-size = <64>;
+> +                       d-cache-sets = <64>;
+> +                       d-cache-size = <8192>;
+> +                       d-tlb-sets = <1>;
+> +                       d-tlb-size = <40>;
+> +                       device_type = "cpu";
+> +                       i-cache-block-size = <64>;
+> +                       i-cache-sets = <64>;
+> +                       i-cache-size = <16384>;
+> +                       i-tlb-sets = <1>;
+> +                       i-tlb-size = <40>;
+> +                       mmu-type = "riscv,sv39";
+> +                       next-level-cache = <&ccache>;
+> +                       riscv,isa = "rv64imac";
+> +                       tlb-split;
+> +                       status = "disabled";
+> +
+> +                       cpu0_intc: interrupt-controller {
+> +                               compatible = "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <1>;
+> +                       };
+> +               };
+> +
+> +               U74_1: cpu@1 {
+> +                       compatible = "sifive,u74-mc", "riscv";
+> +                       reg = <1>;
+> +                       d-cache-block-size = <64>;
+> +                       d-cache-sets = <64>;
+> +                       d-cache-size = <32768>;
+> +                       d-tlb-sets = <1>;
+> +                       d-tlb-size = <40>;
+> +                       device_type = "cpu";
+> +                       i-cache-block-size = <64>;
+> +                       i-cache-sets = <64>;
+> +                       i-cache-size = <32768>;
+> +                       i-tlb-sets = <1>;
+> +                       i-tlb-size = <40>;
+> +                       mmu-type = "riscv,sv39";
+> +                       next-level-cache = <&ccache>;
+> +                       riscv,isa = "rv64imafdc";
+> +                       tlb-split;
+> +
+> +                       cpu1_intc: interrupt-controller {
+> +                               compatible = "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <1>;
+> +                       };
+> +               };
+> +
+> +               U74_2: cpu@2 {
+> +                       compatible = "sifive,u74-mc", "riscv";
+> +                       reg = <2>;
+> +                       d-cache-block-size = <64>;
+> +                       d-cache-sets = <64>;
+> +                       d-cache-size = <32768>;
+> +                       d-tlb-sets = <1>;
+> +                       d-tlb-size = <40>;
+> +                       device_type = "cpu";
+> +                       i-cache-block-size = <64>;
+> +                       i-cache-sets = <64>;
+> +                       i-cache-size = <32768>;
+> +                       i-tlb-sets = <1>;
+> +                       i-tlb-size = <40>;
+> +                       mmu-type = "riscv,sv39";
+> +                       next-level-cache = <&ccache>;
+> +                       riscv,isa = "rv64imafdc";
+> +                       tlb-split;
+> +
+> +                       cpu2_intc: interrupt-controller {
+> +                               compatible = "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <1>;
+> +                       };
+> +               };
+> +
+> +               U74_3: cpu@3 {
+> +                       compatible = "sifive,u74-mc", "riscv";
+> +                       reg = <3>;
+> +                       d-cache-block-size = <64>;
+> +                       d-cache-sets = <64>;
+> +                       d-cache-size = <32768>;
+> +                       d-tlb-sets = <1>;
+> +                       d-tlb-size = <40>;
+> +                       device_type = "cpu";
+> +                       i-cache-block-size = <64>;
+> +                       i-cache-sets = <64>;
+> +                       i-cache-size = <32768>;
+> +                       i-tlb-sets = <1>;
+> +                       i-tlb-size = <40>;
+> +                       mmu-type = "riscv,sv39";
+> +                       next-level-cache = <&ccache>;
+> +                       riscv,isa = "rv64imafdc";
+> +                       tlb-split;
+> +
+> +                       cpu3_intc: interrupt-controller {
+> +                               compatible = "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <1>;
+> +                       };
+> +               };
+> +
+> +               U74_4: cpu@4 {
+> +                       compatible = "sifive,u74-mc", "riscv";
+> +                       reg = <4>;
+> +                       d-cache-block-size = <64>;
+> +                       d-cache-sets = <64>;
+> +                       d-cache-size = <32768>;
+> +                       d-tlb-sets = <1>;
+> +                       d-tlb-size = <40>;
+> +                       device_type = "cpu";
+> +                       i-cache-block-size = <64>;
+> +                       i-cache-sets = <64>;
+> +                       i-cache-size = <32768>;
+> +                       i-tlb-sets = <1>;
+> +                       i-tlb-size = <40>;
+> +                       mmu-type = "riscv,sv39";
+> +                       next-level-cache = <&ccache>;
+> +                       riscv,isa = "rv64imafdc";
+> +                       tlb-split;
+> +
+> +                       cpu4_intc: interrupt-controller {
+> +                               compatible = "riscv,cpu-intc";
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <1>;
+> +                       };
+> +               };
+> +
+> +               cpu-map {
+> +                       cluster0 {
+> +                               core0 {
+> +                                       cpu = <&S76_0>;
+> +                               };
+> +
+> +                               core1 {
+> +                                       cpu = <&U74_1>;
+> +                               };
+> +
+> +                               core2 {
+> +                                       cpu = <&U74_2>;
+> +                               };
+> +
+> +                               core3 {
+> +                                       cpu = <&U74_3>;
+> +                               };
+> +
+> +                               core4 {
+> +                                       cpu = <&U74_4>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       osc: osc {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       clk_rtc: clk_rtc {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       gmac0_rmii_refin: gmac0_rmii_refin {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       gmac0_rgmii_rxin: gmac0_rgmii_rxin {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       gmac1_rmii_refin: gmac1_rmii_refin {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       gmac1_rgmii_rxin: gmac1_rgmii_rxin {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       i2stx_bclk_ext: i2stx_bclk_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       i2stx_lrck_ext: i2stx_lrck_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       i2srx_bclk_ext: i2srx_bclk_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       i2srx_lrck_ext: i2srx_lrck_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       tdm_ext: tdm_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       mclk_ext: mclk_ext {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       soc {
 
-This feels hacky. Your chosen node picks serial2 as that is usually
-the one that is wired up on K3 boards. But on this board it is main_uart8.
-So why not have this be serial10, then choose
+Please sort these nodes after their address like the jh7100.dtsi.
+That is sort the nodes after @<number>.
 
-stdout-path = "serial10:115200n8";
-
-Also, I've made comments on previous version of this series, it is
-nice to include folks who have commented before in the CC for future
-versions, that way our filters don't hide these away and we can more
-easily check that our comments have been addressed.
-
-Andrew
-
-> +		mmc1 = &main_sdhci1;
-> +		i2c0 = &main_i2c0;
-> +	};
+> +               compatible = "simple-bus";
+> +               interrupt-parent = <&plic>;
+> +               #address-cells = <2>;
+> +               #size-cells = <2>;
+> +               ranges;
 > +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* 32G RAM */
-> +		reg = <0x00 0x80000000 0x00 0x80000000>,
-> +		      <0x08 0x80000000 0x07 0x80000000>;
-> +	};
+> +               clint: clint@2000000 {
+> +                       compatible = "starfive,jh7110-clint", "sifive,clint0";
+> +                       reg = <0x0 0x2000000 0x0 0x10000>;
+> +                       interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
+> +                                             <&cpu1_intc 3>, <&cpu1_intc 7>,
+> +                                             <&cpu2_intc 3>, <&cpu2_intc 7>,
+> +                                             <&cpu3_intc 3>, <&cpu3_intc 7>,
+> +                                             <&cpu4_intc 3>, <&cpu4_intc 7>;
+> +               };
 > +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+> +               plic: plic@c000000 {
+> +                       compatible = "starfive,jh7110-plic", "sifive,plic-1.0.0";
+> +                       reg = <0x0 0xc000000 0x0 0x4000000>;
+> +                       interrupts-extended = <&cpu0_intc 11>,
+> +                                             <&cpu1_intc 11>, <&cpu1_intc 9>,
+> +                                             <&cpu2_intc 11>, <&cpu2_intc 9>,
+> +                                             <&cpu3_intc 11>, <&cpu3_intc 9>,
+> +                                             <&cpu4_intc 11>, <&cpu4_intc 9>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells = <1>;
+> +                       #address-cells = <0>;
+> +                       riscv,ndev = <136>;
+> +               };
 > +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
-> +			no-map;
-> +		};
-> +	};
+> +               ccache: cache-controller@2010000 {
+> +                       compatible = "starfive,jh7110-ccache", "cache";
+> +                       reg = <0x0 0x2010000 0x0 0x4000>;
+> +                       interrupts = <1>, <3>, <4>, <2>;
+> +                       cache-block-size = <64>;
+> +                       cache-level = <2>;
+> +                       cache-sets = <2048>;
+> +                       cache-size = <2097152>;
+> +                       cache-unified;
+> +               };
 > +
-> +	evm_12v0: regulator-evm12v0 {
-> +		/* main supply */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "evm_12v0";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+> +               syscrg: clock-controller@13020000 {
+> +                       compatible = "starfive,jh7110-syscrg";
+> +                       reg = <0x0 0x13020000 0x0 0x10000>;
+> +                       clocks = <&osc>, <&gmac1_rmii_refin>,
+> +                                <&gmac1_rgmii_rxin>,
+> +                                <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+> +                                <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+> +                                <&tdm_ext>, <&mclk_ext>;
+> +                       clock-names = "osc", "gmac1_rmii_refin",
+> +                                     "gmac1_rgmii_rxin",
+> +                                     "i2stx_bclk_ext", "i2stx_lrck_ext",
+> +                                     "i2srx_bclk_ext", "i2srx_lrck_ext",
+> +                                     "tdm_ext", "mclk_ext";
+> +                       #clock-cells = <1>;
+> +                       #reset-cells = <1>;
+> +               };
 > +
-> +	vsys_3v3: regulator-vsys3v3 {
-> +		/* Output of LM5140 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&evm_12v0>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+> +               aoncrg: clock-controller@17000000 {
+> +                       compatible = "starfive,jh7110-aoncrg";
+> +                       reg = <0x0 0x17000000 0x0 0x10000>;
+> +                       clocks = <&osc>, <&clk_rtc>,
+> +                                <&gmac0_rmii_refin>, <&gmac0_rgmii_rxin>,
+> +                                <&syscrg JH7110_SYSCLK_STG_AXIAHB>,
+> +                                <&syscrg JH7110_SYSCLK_APB_BUS_FUNC>,
+> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXCLK>;
+> +                       clock-names = "osc", "clk_rtc", "gmac0_rmii_refin",
+> +                                     "gmac0_rgmii_rxin", "stg_axiahb",
+> +                                     "apb_bus_func", "gmac0_gtxclk";
+> +                       #clock-cells = <1>;
+> +                       #reset-cells = <1>;
+> +               };
 > +
-> +	vsys_5v0: regulator-vsys5v0 {
-> +		/* Output of LM5140 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&evm_12v0>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+> +               gpio: gpio@13040000 {
+> +                       compatible = "starfive,jh7110-sys-pinctrl";
+> +                       reg = <0x0 0x13040000 0x0 0x10000>;
+> +                       reg-names = "control";
+> +                       clocks = <&syscrg JH7110_SYSCLK_IOMUX>;
+> +                       resets = <&syscrg JH7110_SYSRST_IOMUX>;
+> +                       interrupts = <86>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells = <2>;
+> +                       gpio-controller;
+> +                       #gpio-cells = <2>;
+> +               };
 > +
-> +	vdd_mmc1: regulator-sd {
-> +		/* Output of TPS22918 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
-> +	};
+> +               gpioa: gpio@17020000 {
+> +                       compatible = "starfive,jh7110-aon-pinctrl";
+> +                       reg = <0x0 0x17020000 0x0 0x10000>;
+> +                       reg-names = "control";
+> +                       resets = <&aoncrg JH7110_AONRST_AON_IOMUX>;
+> +                       interrupts = <85>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells = <2>;
+> +                       gpio-controller;
+> +                       #gpio-cells = <2>;
+> +               };
 > +
-> +	vdd_sd_dv: regulator-TLV71033 {
-> +		/* Output of TLV71033 */
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "tlv71033";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vsys_5v0>;
-> +		gpios = <&main_gpio0 8 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
+> +               uart0: serial@10000000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x10000000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART0_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART0_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART0_APB>;
+> +                       interrupts = <32>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               uart1: serial@10010000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x10010000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART1_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART1_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART1_APB>;
+> +                       interrupts = <33>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               uart2: serial@10020000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x10020000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART2_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART2_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART2_APB>;
+> +                       interrupts = <34>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               uart3: serial@12000000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x12000000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART3_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART3_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART3_APB>;
+> +                       interrupts = <45>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               uart4: serial@12010000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x12010000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART4_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART4_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART4_APB>;
+> +                       interrupts = <46>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               uart5: serial@12020000 {
+> +                       compatible = "snps,dw-apb-uart";
+> +                       reg = <0x0 0x12020000 0x0 0x10000>;
+> +                       clocks = <&syscrg JH7110_SYSCLK_UART5_CORE>,
+> +                                <&syscrg JH7110_SYSCLK_UART5_APB>;
+> +                       clock-names = "baudclk", "apb_pclk";
+> +                       resets = <&syscrg JH7110_SYSRST_UART5_APB>;
+> +                       interrupts = <47>;
+> +                       reg-io-width = <4>;
+> +                       reg-shift = <2>;
+> +                       status = "disabled";
+> +               };
+> +       };
 > +};
-> +
-> +&main_pmx0 {
-> +	main_uart8_pins_default: main-uart8-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x040, PIN_INPUT, 14) /* (AF37) MCASP0_AXR0.UART8_CTSn */
-> +			J784S4_IOPAD(0x044, PIN_OUTPUT, 14) /* (AG37) MCASP0_AXR1.UART8_RTSn */
-> +			J784S4_IOPAD(0x0d0, PIN_INPUT, 11) /* (AP38) SPI0_CS1.UART8_RXD */
-> +			J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
-> +		>;
-> +	};
-> +
-> +	main_i2c0_pins_default: main-i2c0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
-> +			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
-> +		>;
-> +	};
-> +
-> +	main_mmc1_pins_default: main-mmc1-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x104, PIN_INPUT, 0) /* (AB38) MMC1_CLK */
-> +			J784S4_IOPAD(0x108, PIN_INPUT, 0) /* (AB36) MMC1_CMD */
-> +			J784S4_IOPAD(0x100, PIN_INPUT, 0) /* (No Pin) MMC1_CLKLB */
-> +			J784S4_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA33) MMC1_DAT0 */
-> +			J784S4_IOPAD(0x0f8, PIN_INPUT, 0) /* (AB34) MMC1_DAT1 */
-> +			J784S4_IOPAD(0x0f4, PIN_INPUT, 0) /* (AA32) MMC1_DAT2 */
-> +			J784S4_IOPAD(0x0f0, PIN_INPUT, 0) /* (AC38) MMC1_DAT3 */
-> +			J784S4_IOPAD(0x0e8, PIN_INPUT, 8) /* (AR38) TIMER_IO0.MMC1_SDCD */
-> +		>;
-> +	};
-> +
-> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_uart8 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart8_pins_default>;
-> +};
-> +
-> +&main_i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_i2c0_pins_default>;
-> +
-> +	clock-frequency = <400000>;
-> +
-> +	exp1: gpio@20 {
-> +		compatible = "ti,tca6416";
-> +		reg = <0x20>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		gpio-line-names = "PCIE1_2L_MODE_SEL", "PCIE1_4L_PERSTZ", "PCIE1_2L_RC_RSTZ",
-> +				  "PCIE1_2L_EP_RST_EN", "PCIE0_4L_MODE_SEL", "PCIE0_4L_PERSTZ",
-> +				  "PCIE0_4L_RC_RSTZ", "PCIE0_4L_EP_RST_EN", "PCIE1_4L_PRSNT#",
-> +				  "PCIE0_4L_PRSNT#", "CDCI1_OE1/OE4", "CDCI1_OE2/OE3",
-> +				  "AUDIO_MUX_SEL", "EXP_MUX2", "EXP_MUX3", "GESI_EXP_PHY_RSTZ";
-> +	};
-> +
-> +	exp2: gpio@22 {
-> +		compatible = "ti,tca6424";
-> +		reg = <0x22>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		gpio-line-names = "R_GPIO_RGMII1_RST", "ENET2_I2CMUX_SEL", "GPIO_USD_PWR_EN",
-> +				  "USBC_PWR_EN", "USBC_MODE_SEL1", "USBC_MODE_SEL0",
-> +				  "GPIO_LIN_EN", "R_CAN_STB", "CTRL_PM_I2C_OE#",
-> +				  "ENET2_EXP_PWRDN", "ENET2_EXP_SPARE2", "CDCI2_RSTZ",
-> +				  "USB2.0_MUX_SEL", "CANUART_MUX_SEL0", "CANUART_MUX2_SEL1",
-> +				  "CANUART_MUX1_SEL1", "ENET1_EXP_PWRDN", "ENET1_EXP_RESETZ",
-> +				  "ENET1_I2CMUX_SEL", "ENET1_EXP_SPARE2", "ENET2_EXP_RESETZ",
-> +				  "USER_INPUT1", "USER_LED1", "USER_LED2";
-> +	};
-> +};
-> +
-> +&main_sdhci1 {
-> +	/* SD card */
-> +	status = "okay";
-> +	pinctrl-0 = <&main_mmc1_pins_default>;
-> +	pinctrl-names = "default";
-> +	disable-wp;
-> +	vmmc-supply = <&vdd_mmc1>;
-> +	vqmmc-supply = <&vdd_sd_dv>;
-> +};
-> +
-> +&main_gpio0 {
-> +	status = "okay";
-> +};
+> --
+> 2.38.1
+>
