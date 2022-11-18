@@ -2,109 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B5162F5D3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 709EE62F5E9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241336AbiKRNUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:20:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
+        id S235278AbiKRN0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:26:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241357AbiKRNUe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:20:34 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C6966CA1
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:20:32 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id h132so5316803oif.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:20:32 -0800 (PST)
+        with ESMTP id S234124AbiKRN0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:26:38 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4799185A26
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:26:37 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id d9so9214390wrm.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:26:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QKptrtDak5xNgogQtUzqh6nsMsdSKa7rBerhEtOlgEw=;
-        b=DPuLitaop7WrOTZRtLDvW3149cLPppbEHjYveGlfjNbOhbVqs8rC/Txm6du6o1cnN2
-         fZMJJvWzpiBpcpu9LhCISK6BGdPPRDsVQN4nSeX5OQqpUuZHyTbsZmluXV3aeP8chP8e
-         kTRLqpJ/MKbLkhA5e9LF/IeUv/Gg8h+IwRagRvMCNt8qAKyex6S/0Pp0mLUz2tuEVGSf
-         tTh4wJ79aH6VrQct7oxD0Mu96zv+LfeoTN0zLFWIKvY6HxRqwIPuwQx0mQkbUmpa8t3L
-         m/BvpgrE7VEJQSUp4qf3c5iDIquNs6++lEl6rVamJSBLF/QzIyYykX1Q8eY7xOHrah/o
-         VTmA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5MiF9TMHxw5V5hyXlLxWTx5c5LNTg+L6bdroac28KQ=;
+        b=tXf7R2BbLdciR0aWHCW1fcHe8ymozuqrc0GToPKat0J6HPiGqJXpeTNjP8EZo7cAe5
+         ghQt0EqEWMd9qkLjwYOnHmFc0kbNN+kfPUxJHNCIdbdWB0uvnyEh8xkWZhiQ4DDxjT3A
+         ur1Aswxlx+ThA6gWcFoCN+/Den71gN3VX41Yrt0RgRVFE9XznpJzx0Zuvw85Mm103JzQ
+         yNUMhdt63vJif5OdEI5gsbkC6CKUjsYVWwa20xF+0WESaKVjQUiZYlJIWopmce8LAwWh
+         /YhIMyzDF2gZ4VnM9LqOgGKdRieJ+pairfYiDNYjRhkRKU8Mv4GgIY2o3egiR3sWW3g6
+         V23Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QKptrtDak5xNgogQtUzqh6nsMsdSKa7rBerhEtOlgEw=;
-        b=H7pQGHUhcUBLEK5VgzueTRs0bBvH6oY7r6P61DBT1WZpN4na96MUVGpcGW3U/gghLk
-         q//B3uVVjuGJhCTi5viAGnHl1V+W5FmGX8X+CRc4Fxr6zNdvYXxB4FyvMCsqk1TVxSSn
-         cK64K4xV+KRCUmG3RoQiZyQaELU/o+XITFewy413fRb3uKlNOkuNJE1VbUEgNPrumxpl
-         kG3bcsV5ZQ4TcKpw9XjWX3aOruFgS8ptR2shQbVueI3xd3RY5mWyNTZOZL2Oa3FjsccO
-         mnnxAGV7zuboWyhtR4CsR4gtIl0xvurZFySgV5RejMq5MnepmQW0zWDJOzFoU2KnlX7k
-         M8vg==
-X-Gm-Message-State: ANoB5pl5Pw9cLssb/iWGKO/COeaJnRHguN/hS0Q0NbJXQWJE097oxSai
-        DBL5SiHlHbnbVNWSnQw50RU=
-X-Google-Smtp-Source: AA0mqf7nadVFqdk8r9551qyUNSOU1VLMBy73Fhf58mPt3rWEaMtpZ9WZAxXiW7ONg6Dt2Jo0b7fJcg==
-X-Received: by 2002:a05:6808:1293:b0:359:dc34:5b5e with SMTP id a19-20020a056808129300b00359dc345b5emr6111993oiw.259.1668777631307;
-        Fri, 18 Nov 2022 05:20:31 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:485:4b69:5e22:964c:bd31:bca4])
-        by smtp.gmail.com with ESMTPSA id h14-20020a9d6f8e000000b0066d2fc495a4sm1570012otq.48.2022.11.18.05.20.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 05:20:30 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] ARM: dts: imx51: Fix sram.yaml warnings
-Date:   Fri, 18 Nov 2022 10:20:16 -0300
-Message-Id: <20221118132016.1752358-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221118132016.1752358-1-festevam@gmail.com>
-References: <20221118132016.1752358-1-festevam@gmail.com>
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5MiF9TMHxw5V5hyXlLxWTx5c5LNTg+L6bdroac28KQ=;
+        b=ZSP7AgwUwcgOdP5qJAiulseTQx2Q1pbF5VkTpZwAkXEZpQXOJrCFA5sdGDYLZy26Ct
+         lcwMGLN3ofmu60GD8GsVxJyRRANpNVZZeDDRe12+EYhitLeAKUXayEIEYi1wHl9g/dFo
+         LQgieCRWtguHxjPHy4umoxr0UaNWL5O5mnKEhfEIuY95WF0YnLydt3gC2sEf8Eb/khcz
+         Wh3uw0Qew4oNBOu51SoEzIORRNz36cjXcBKBaJ2828PbWoiwMlgJFZLtRPm72U92A8Mi
+         3Al+n7yAkHf41fsA3Ha7N0EukRNH8m5xWwm6yAvhpm8ycx0bA/ZXSzI/CI6O9f8bEXXk
+         SxZA==
+X-Gm-Message-State: ANoB5pmuNvnt77P0SI8+1HP+wVLU54cJzJ2oPLFaw+VLAbZL2GzKXX10
+        9CCBUWDsWn5qflGY1YPaoSDiQQ==
+X-Google-Smtp-Source: AA0mqf4kDgGIKWcnXZDZaS3yoafhs9FZKkJ73tJd4mzLPQeKB2/wrtXUa5UWiLDIZJgyTQVdB0iEUQ==
+X-Received: by 2002:a5d:6b08:0:b0:236:4b06:bbb1 with SMTP id v8-20020a5d6b08000000b002364b06bbb1mr4280526wrw.303.1668777995737;
+        Fri, 18 Nov 2022 05:26:35 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
+        by smtp.gmail.com with ESMTPSA id s18-20020adfdb12000000b00241727795c4sm4356779wri.63.2022.11.18.05.26.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 05:26:35 -0800 (PST)
+Message-ID: <3cd03d3e-b521-8050-b8fa-a521310f1e5b@linaro.org>
+Date:   Fri, 18 Nov 2022 14:26:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: reserved-memory: document Qualcomm
+ MPSS DSM memory
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-1-f7c65d6f0e55@linaro.org>
+ <0e8ed125-beba-8f74-b3aa-728e9dc5a09d@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <0e8ed125-beba-8f74-b3aa-728e9dc5a09d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 18/11/2022 11:46, Krzysztof Kozlowski wrote:
+> On 18/11/2022 09:53, Neil Armstrong wrote:
+>> Document the Qualcomm Modem Processing SubSystem DSM shared memory.
+>>
+>> This memory zone is shared between the APPS and the MPSS subsystem,
+>> and must be configured during the whole lifetime of the system.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../reserved-memory/qcom,mpss-dsm-mem.yaml         | 37 ++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
+>> new file mode 100644
+>> index 000000000000..226d0dfc422c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
+>> @@ -0,0 +1,37 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/reserved-memory/qcom,mpss-dsm-mem.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Modem Processing SubSystem DSM Memory
+>> +
+> 
+> Discussion in v1 is still going. Memory region is not a device.
 
-Add ranges, #address-cells and #size-cells properties to the sram
-node to fix the following warnings when checking sram.yaml:
+Nowhere is was affirmed this was a device.
 
-make dtbs_check DT_SCHEMA_FILES=sram.yaml
-...
-arch/arm/boot/dts/imx51-apf51.dtb: sram@1ffe0000: '#address-cells' is a required property
-	From schema: Documentation/devicetree/bindings/sram/sram.yaml
-arch/arm/boot/dts/imx51-apf51.dtb: sram@1ffe0000: '#size-cells' is a required property
-	From schema: Documentation/devicetree/bindings/sram/sram.yaml
-arch/arm/boot/dts/imx51-apf51.dtb: sram@1ffe0000: 'ranges' is a required property
-	From schema: Documentation/devicetree/bindings/sram/sram.yaml
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/imx51.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx51.dtsi b/arch/arm/boot/dts/imx51.dtsi
-index 853707574d2e..ba92a3ea6872 100644
---- a/arch/arm/boot/dts/imx51.dtsi
-+++ b/arch/arm/boot/dts/imx51.dtsi
-@@ -124,6 +124,9 @@ soc: soc {
- 		iram: sram@1ffe0000 {
- 			compatible = "mmio-sram";
- 			reg = <0x1ffe0000 0x20000>;
-+			ranges = <0 0x1ffe0000 0x20000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 		};
- 
- 		gpu: gpu@30000000 {
--- 
-2.25.1
+> 
+> Best regards,
+> Krzysztof
+> 
 
