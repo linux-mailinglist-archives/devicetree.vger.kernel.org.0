@@ -2,116 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 664BE62FFBE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D16E62FFD6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 23:12:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbiKRWHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 17:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34152 "EHLO
+        id S231297AbiKRWM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 17:12:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbiKRWHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:07:45 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CAAAA7C2A;
-        Fri, 18 Nov 2022 14:07:45 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso3896416otl.13;
-        Fri, 18 Nov 2022 14:07:45 -0800 (PST)
+        with ESMTP id S229835AbiKRWM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 17:12:27 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32CCA31EE2
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:12:26 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bp15so10359194lfb.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 14:12:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wgcPyzOf6Q15rxxM6fTsspp0P6UUf5LqBU3xDxpeGO0=;
-        b=e6umILm9EFnYjS3rxK0bYDa6NoWKCEOk3ARc2VDU2V1mXMNxmMxLuApUYRlL5Y2CxT
-         Byx85PFQ8acEpLADgVl90kZh7zxKGUTcc9sbWuqhz42I8k1YMiOuU/G9/IjkL1OInd/k
-         Crx4J/xSMAjW0SxUR8/rGG/EjDgWWrIEApsAb31E10RymedSrC9ZgnGnebQf1+jR4Wzf
-         Yn8xOFZMs0kDNdPKEDjHid6wTe2e167HU9KYD4feACuz7RYuHIlnVKR0Ih3V0VMe0jG0
-         fYxw++MvSVgQdeGU9SkTRaPZt7BiitFUqCLE+LdOQgYPYvf/FMj0oitSGrOWKXIwpHyX
-         K2Fw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BP1pZfB5L6HAN1d/uOa0OfQ6gxpcqhet4v5Jrhgig0Y=;
+        b=wB02qBRNpHsPPVMbb3DDr9kto6WCgy5JPo6KvvXLpNqnuCS+iDtrm7ZmLVlb41lrWv
+         5k0e0cgpXsuh23/9cDwtuhEv2nOD+vBzuzOsDxBPnNXXhU1ZTriTLVkUsqBgAGrA1Gkk
+         fZYRtruW9guzXlTokt0kGVvETPTe5tz5enoMhZbfC0gD7zcBF7c0iLGXUbp8mBybKpbL
+         m8Y47vrSOKnhX+szUwq0SdUD6weChiovo6TNwAgbIKctMKuUOPqMGW1bngn5ADFbIGDZ
+         g+KmsyBKC+HiqN6rYmYhYI86cxDRmH2JGW/RET6iWaIChoYTM0EBTqBJuAZccbIerHWz
+         bx3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wgcPyzOf6Q15rxxM6fTsspp0P6UUf5LqBU3xDxpeGO0=;
-        b=PNUFU+R/OiBIn2chUim21IiCR+OhWapimz3DS7yv+ZsOy3ozmUvUmDLaYAKmE7HwjJ
-         ZDGPnLRGtbLyxT6xudvc3V1ctpi09UVyZgPAvlgYNtophlJtAcaL86P4VSRzQFkDtBIe
-         xNqryGKJrJlV5jg/BMyCsULTQocXi41lxxhwtO4EaoQmAUN8FNU5B+nG1w6uHU2hwzSV
-         LOH/vOt6a0yYtQQTILZYLD5O2uszw+U/3XBNQ6c6P6izfnLUeCAoMIvT4fxaw9XoXx2V
-         +MsokHkbAnNxZ7FtTyrbq440KylgUAJkCySGF1ZLoZQHV7uzvVlPtrIsvvHWfPnr1Fe+
-         1BwA==
-X-Gm-Message-State: ANoB5pn5pxj/hghKb9Jj0qT7C+8C0kWJQQEO3NhzurZxWNhcSCpwMF64
-        /TZihkgIBtGAmwRuwlc5uCo=
-X-Google-Smtp-Source: AA0mqf6B2ThA3WTewjIwAtEwYhsfuCflD8wp2jc4sesZ4vw8LYj8YHCgTydiNbyy8LPDcvzEzXzIDw==
-X-Received: by 2002:a9d:2288:0:b0:66d:dff:1d9f with SMTP id y8-20020a9d2288000000b0066d0dff1d9fmr4797132ota.376.1668809264547;
-        Fri, 18 Nov 2022 14:07:44 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a9-20020a05687073c900b00142169cb977sm2700151oan.7.2022.11.18.14.07.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 14:07:44 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 18 Nov 2022 14:07:43 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BP1pZfB5L6HAN1d/uOa0OfQ6gxpcqhet4v5Jrhgig0Y=;
+        b=3ESre8WntgSIuMsW8QIe3AfQukipc7W4z/VWsBTfBBGRPwMl2+p+vjY2oKP7xdH2Ir
+         rGV5MTAinmHFdNBp1qXam4Zch99ktN4TcuKA5h+ebEkJtNZgWAIerD1/yrmNj/fb/US4
+         uq2IXjUmX1cPQiGNbm1E/2Zsmw/FZE1WK0kI4e9lQWvG3uXtKIi8YbXxcQ8yUEA5tM9L
+         4NyttrBLpsV6g0Swah3NaOIOoIXZiYEha9VA55gIZITI0DX06dqbldQgRhAA08zpB2Q7
+         XNvYWG7XN5zofUvnaRARk0MDIK9r941uNRKTFgsIUQBltE241pyNuyc9+9Hx8E1+QOJr
+         fKYg==
+X-Gm-Message-State: ANoB5pnIx7UTnihP1pgN99zi4UlaSgeOyZVy3lFskMZwaXxeKefJHSFp
+        8tDBk/I4qZ6Mzp+Cvj0+eUrz8A==
+X-Google-Smtp-Source: AA0mqf6p8b1JfeRZXZESF3phUkzBVLQLltBm/Ua90nA8Keoxzd4XxMZ9iYpdHpSBe4G9KOWZJprjzA==
+X-Received: by 2002:ac2:5f41:0:b0:4b3:cc01:102b with SMTP id 1-20020ac25f41000000b004b3cc01102bmr3195993lfz.133.1668809544435;
+        Fri, 18 Nov 2022 14:12:24 -0800 (PST)
+Received: from [192.168.1.129] ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id n15-20020a2e86cf000000b0026ddaf38b0fsm816651ljj.96.2022.11.18.14.12.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 14:12:24 -0800 (PST)
+Message-ID: <a88557b7-3126-1fd0-6bbf-8d9d8177f021@linaro.org>
+Date:   Sat, 19 Nov 2022 00:12:22 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: sm8350: add PCIe devices
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/Five SoC
-Message-ID: <20221118220743.GB685644@roeck-us.net>
-References: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221110183158.856242-1-dmitry.baryshkov@linaro.org>
+ <20221110183158.856242-8-dmitry.baryshkov@linaro.org>
+ <Y3T4nOjcdkSG4fYa@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Y3T4nOjcdkSG4fYa@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 01:38:29PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 16/11/2022 16:50, Johan Hovold wrote:
+> On Thu, Nov 10, 2022 at 09:31:57PM +0300, Dmitry Baryshkov wrote:
+>> Add PCIe0 and PCIe1 (and corresponding PHY) devices found on SM8350
+>> platform. The PCIe0 is a 1-lane Gen3 host, PCIe1 is a 2-lane Gen3 host.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 246 ++++++++++++++++++++++++++-
+>>   1 file changed, 244 insertions(+), 2 deletions(-)
 > 
-> The WDT block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-> SoC. "renesas,r9a07g043-wdt" compatible string will be used on the
-> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
-> SoC.
+>> +		pcie0: pci@1c00000 {
+>> +			compatible = "qcom,pcie-sm8350";
+>> +			reg = <0 0x01c00000 0 0x3000>,
+>> +			      <0 0x60000000 0 0xf1d>,
+>> +			      <0 0x60000f20 0 0xa8>,
+>> +			      <0 0x60001000 0 0x1000>,
+>> +			      <0 0x60100000 0 0x100000>;
+>> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
+>> +			device_type = "pci";
+>> +			linux,pci-domain = <0>;
+>> +			bus-range = <0x00 0xff>;
+>> +			num-lanes = <1>;
+>> +
+>> +			#address-cells = <3>;
+>> +			#size-cells = <2>;
+>> +
+>> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+>> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+>> +
+>> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
+>> +					  "msi4", "msi5", "msi6", "msi7";
+>> +			#interrupt-cells = <1>;
+>> +			interrupt-map-mask = <0 0 0 0x7>;
+>> +			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>> +					<0 0 0 2 &intc 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+>> +					<0 0 0 3 &intc 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+>> +					<0 0 0 4 &intc 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+>> +
+>> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+>> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+>> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+>> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
+>> +				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
+>> +				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
+>> +			clock-names = "aux",
+>> +				      "cfg",
+>> +				      "bus_master",
+>> +				      "bus_slave",
+>> +				      "slave_q2a",
+>> +				      "tbu",
+>> +				      "ddrss_sf_tbu",
+>> +				      "aggre0",
+>> +				      "aggre1";
+>> +
+>> +			iommus = <&apps_smmu 0x1c00 0x7f>;
+>> +			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
+>> +				    <0x100 &apps_smmu 0x1c01 0x1>;
+>> +
+>> +			resets = <&gcc GCC_PCIE_0_BCR>;
+>> +			reset-names = "pci";
+>> +
+>> +			power-domains = <&gcc PCIE_0_GDSC>;
+>> +
+>> +			phys = <&pcie0_phy>;
+>> +			phy-names = "pciephy";
+>> +
+>> +			perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+>> +			wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+>> +
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&pcie0_default_state>;
 > 
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-wdt" will be used as a fallback on RZ/Five SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> So I still think these do not belong in the dtsi for the reasons I just
+> gave in a reply to v2.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Ack. I must admit, I asked Bjorn and he confirmed that pcie pinconf also 
+belongs to the board dtsi. So I think I'll leave the pinctrl-0 here, but 
+split the bias/strength to the board dtsi.
 
-> ---
->  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+I still think that we should agree & document the approach and then 
+change all boards to follow it. Otherwise e.g. one of sm8550 review 
+comments tells the opposite thing: to move sdcc pinconf to SoC dtsi.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index 26b1815a6753..e2c9bf1aec38 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -26,7 +26,7 @@ properties:
->  
->        - items:
->            - enum:
-> -              - renesas,r9a07g043-wdt    # RZ/G2UL
-> +              - renesas,r9a07g043-wdt    # RZ/G2UL and RZ/Five
->                - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
->                - renesas,r9a07g054-wdt    # RZ/V2L
->            - const: renesas,rzg2l-wdt
-> -- 
-> 2.25.1
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		pcie0_phy: phy@1c06000 {
+>> +			compatible = "qcom,sm8350-qmp-gen3x1-pcie-phy";
+>> +			reg = <0 0x01c06000 0 0x2000>;
 > 
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+> 
+> These three should not be here (same for pcie1).
+
+Ack
+
+> 
+>> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+>> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_PCIE_0_CLKREF_EN>,
+>> +				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>,
+>> +				 <&gcc GCC_PCIE_0_PIPE_CLK>;
+>> +			clock-names = "aux", "cfg_ahb", "ref", "rchng", "pipe";
+>> +
+>> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
+>> +			reset-names = "phy";
+>> +
+>> +			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
+>> +			assigned-clock-rates = <100000000>;
+>> +
+>> +			#clock-cells = <0>;
+>> +			clock-output-names = "pcie_0_pipe_clk";
+>> +
+>> +			#phy-cells = <0>;
+>> +
+>> +			status = "disabled";
+>> +		};
+> 
+>>   		lpass_ag_noc: interconnect@3c40000 {
+>>   			compatible = "qcom,sm8350-lpass-ag-noc";
+>>   			reg = <0 0x03c40000 0 0xf080>;
+>> @@ -1761,6 +1957,52 @@ tlmm: pinctrl@f100000 {
+>>   			gpio-ranges = <&tlmm 0 0 204>;
+>>   			wakeup-parent = <&pdc>;
+>>   
+>> +			pcie0_default_state: pcie0-default-state {
+>> +				perst-pins {
+>> +					pins = "gpio94";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-down;
+>> +				};
+>> +
+>> +				clkreq-pins {
+>> +					pins = "gpio95";
+>> +					function = "pcie0_clkreqn";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +
+>> +				wake-pins {
+>> +					pins = "gpio96";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +			};
+>> +
+>> +			pcie1_default_state: pcie1-default-state {
+>> +				perst-pins {
+>> +					pins = "gpio97";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-down;
+>> +				};
+>> +
+>> +				clkreq-pins {
+>> +					pins = "gpio98";
+>> +					function = "pcie1_clkreqn";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +
+>> +				wake-pins {
+>> +					pins = "gpio99";
+>> +					function = "gpio";
+>> +					drive-strength = <2>;
+>> +					bias-pull-up;
+>> +				};
+>> +			};
+>> +
+>>   			qup_uart3_default_state: qup-uart3-default-state {
+>>   				rx-pins {
+>>   					pins = "gpio18";
+> 
+> Johan
+
+-- 
+With best wishes
+Dmitry
+
