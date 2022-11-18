@@ -2,108 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7510C62E9DB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 00:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5913662EA10
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 01:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235077AbiKQXtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Nov 2022 18:49:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50712 "EHLO
+        id S240291AbiKRAHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Nov 2022 19:07:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234724AbiKQXtR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 18:49:17 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F21532F7;
-        Thu, 17 Nov 2022 15:49:15 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id a13-20020a9d6e8d000000b00668d65fc44fso2103110otr.9;
-        Thu, 17 Nov 2022 15:49:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qMcsFmOL/2GypqX63+TgzuiSSfzo6QHW3VYHiQ5eWyQ=;
-        b=DSzrLDk8NFHkI2fEypEFc0b+PIPx3YitXFvr8DGZN7RBpfqdoauZMQE/Bn8xWWiXiy
-         4jNyBcZqZwOoOgNTtpfn7S7y4ARUeI36zPjovOAyGmIO5y7QrUa1EPfl72yFTSagqDzL
-         dMxwAGnQujKlFxmRlWc6bWw4beM7N2rxzyMCcVDSNfVrqEeDMtQhSy7Bio7O+ZRXIzdG
-         F7EbEP4Q9wCa7SodxGZ39ndOKsxXROw2CLnT8VMMsjkuGBcuX5HtYrJ2nyzzti/1aM94
-         YIvgLHAEW6sgE9rHkyZWVEgWtsE24MsjmZxadKoncxK3SxLWQv1PKJolevroOfw+Fu//
-         /sQg==
-X-Gm-Message-State: ANoB5plE5eVnYKDqPZdx+f0q5ArMOqlbLs5WG9eHYtoFLKUrsLMZt/g5
-        L1OhdK4qZDzK5xqELpmLTQ==
-X-Google-Smtp-Source: AA0mqf70HF0fYopJdR01uFy+Fw0KQgN9VuaGnVLTj/Bb72eE55NhcI4+NXbQu1RE6+w84xfmZ8cONg==
-X-Received: by 2002:a9d:28d:0:b0:66c:cedd:8d0 with SMTP id 13-20020a9d028d000000b0066ccedd08d0mr2629224otl.131.1668728954597;
-        Thu, 17 Nov 2022 15:49:14 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a18-20020a056870d61200b0012b298699dbsm1161400oaq.1.2022.11.17.15.49.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Nov 2022 15:49:14 -0800 (PST)
-Received: (nullmailer pid 13384 invoked by uid 1000);
-        Thu, 17 Nov 2022 23:49:15 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S232050AbiKRAHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Nov 2022 19:07:43 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02584D94;
+        Thu, 17 Nov 2022 16:07:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=wv0rvg+qGKsAcuFlpcEuCbIUu5ZxBnWHri6DHVe34qM=; b=eJpO91RR72W5+FtReIbXj9YpnF
+        UgtpfDtz73IFT43IR566O3HGWcpc1IAtBKPeRKMfyNoAr4+c/foJCODDoijtPztc7lWW8z6Y7odrA
+        KyKEkvMb+1cMD+oi95YAvMEJWY+Xj39t5LMghRPcpOef96VANYI9IASt5OItnjdn1Mfs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ovouw-002kA8-Id; Fri, 18 Nov 2022 01:07:38 +0100
+Date:   Fri, 18 Nov 2022 01:07:38 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andy Chiu <andy.chiu@sifive.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, pabeni@redhat.com, edumazet@google.com,
+        greentime.hu@sifive.com
+Subject: Re: [PATCH v5 net-next 3/3] net: axienet: set mdio clock according
+ to bus-frequency
+Message-ID: <Y3bMyjEWk73oabnA@lunn.ch>
+References: <20221117154014.1418834-1-andy.chiu@sifive.com>
+ <20221117154014.1418834-4-andy.chiu@sifive.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org>
-References: <20221005-mdm9615-pinctrl-yaml-v5-0-910019fb8b9b@linaro.org>
- <20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org>
-Message-Id: <166872874092.6463.6032366215221969012.robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: regulators: convert non-smd RPM
- Regulators bindings to dt-schema
-Date:   Thu, 17 Nov 2022 17:49:15 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221117154014.1418834-4-andy.chiu@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 17 Nov 2022 18:04:58 +0100, Neil Armstrong wrote:
-> Convert the non-SMD Regulators bindings to dt-schema, the old text based
-> bindings will be deleted later since the RPM bindings are not yet converted.
+On Thu, Nov 17, 2022 at 11:40:14PM +0800, Andy Chiu wrote:
+> Some FPGA platforms have 80KHz MDIO bus frequency constraint when
+> connecting Ethernet to its on-board external Marvell PHY. Thus, we may
+> have to set MDIO clock according to the DT. Otherwise, use the default
+> 2.5 MHz, as specified by 802.3, if the entry is not present.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/regulator/qcom,rpm-regulator.yaml     | 128 +++++++++++++++++++++
->  1 file changed, 128 insertions(+)
+> Also, change MAX_MDIO_FREQ to DEFAULT_MDIO_FREQ because we may actually
+> set MDIO bus frequency higher than 2.5MHz if undelying devices support
+> it. And properly disable the mdio bus clock in error path.
 > 
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml: Documentation/devicetree/bindings/soc/qcom/qcom,ipc-rpm.yaml
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221005-mdm9615-pinctrl-yaml-v5-1-910019fb8b9b@linaro.org
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command.
-
+    Andrew
