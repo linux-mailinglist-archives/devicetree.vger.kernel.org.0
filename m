@@ -2,168 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3F762F394
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 12:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B24FF62F3AF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 12:32:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235245AbiKRLWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 06:22:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
+        id S241645AbiKRLcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 06:32:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241745AbiKRLVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 06:21:48 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9389370B
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 03:21:15 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g12so7732158lfh.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 03:21:15 -0800 (PST)
+        with ESMTP id S241875AbiKRLcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 06:32:12 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D3C69BA29;
+        Fri, 18 Nov 2022 03:31:54 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id a14so8848268wru.5;
+        Fri, 18 Nov 2022 03:31:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o/8Glo0B7GLFHjGhKgNuXxk0fVKZ1GFqQt1D0PZgSFk=;
-        b=W0FmKs1IxxSRY4uYGE1KlbSGSZtsG4wYij2zJQXeOwTP6OfE58Iq4P3mAC0YxQ/JkP
-         JaVybbRNymnANLJSME49WYO5zm0PRLflPYRVEg3CrlXSIvBajy6fWOCvPN+J00eT84dp
-         h3LsU53N35y+jX1zr01KYqp1CmjgT9XV3qOvc=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u8qpOHGlOhZYR6pVYrTYVhfVUaK3uhqqUMzIDSjxxZ4=;
+        b=BwfGT3C99fgwftzC5OnNV7hU6aNSoYA1b5/aMNHdS1dLyOO/Hb2iAYzjv/+Bxbh/Hi
+         +jnX8GWvnGy5BqXAsOmrJgvTk9G0wYpTdoiP1vzf+OUs0fd5NFGhRJb71549uzCaEKFb
+         jsmQeurYWPrFWu0mGJuaBcqMv+AkmZBZhQn8PX9ohezOJvcJdBhbT605K3vvx8SluQ6g
+         deLdTlMcL1+6rYuMQkxGR9MLZzeAyO/fst50YXdBLC5gmL/cqNF3ugaeXsxPQ9skjult
+         D61AAzQfKKeWKI5wbI3OFSeC45wPjFzUatGDGJMGBFPbxJ+NWlTABFU7isdsKdEEO5Se
+         jHtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o/8Glo0B7GLFHjGhKgNuXxk0fVKZ1GFqQt1D0PZgSFk=;
-        b=h/t5f2LgK3yKjbmVA75f57hMThTGrmGJSRd0GrZab5n4obQSziX+UHHzPgLsu/eAOn
-         kh6RI6cmZjvmDTTH7oU6u1T0ceWvolU+fU2VkQ4v4OsXgK89ccT1Mmy67fLTaZVSS6e7
-         m61al0LDL86+ZPvI3t8uYDozp4oBA4mJxAFy7muMqx4FbQ/UTLnF8kTGjKwixLk+e7g8
-         YbJp3zC0CaefoLFVyhTzi7bid6tQpthLYBt7Hxxd4Fclfe2RRFCjM852SHDsT+4P9pvC
-         /EIkwsIsQi3RXRNs6dz4w+JqovhMO+8ap1fAEqoRYxRYOwoGMJXvqEGaAOqFh1hhxYUY
-         bf4A==
-X-Gm-Message-State: ANoB5pmvsTTAybKP8E1URt5rx2LIcnBeXcdoZ/xiP2E3OZtRaSIb1tN5
-        RZ9LfZxMLXf/+yL3WMqmAHm28g==
-X-Google-Smtp-Source: AA0mqf6WO6xKOPxr9oiTjOxwCD0UQ9pWZj6V6JHpiKjb11MUIa+d3WeJB7bPKeCqMVYjxKKsMO2CDQ==
-X-Received: by 2002:a05:6512:1051:b0:4b0:a51e:2b3 with SMTP id c17-20020a056512105100b004b0a51e02b3mr2584162lfb.636.1668770473260;
-        Fri, 18 Nov 2022 03:21:13 -0800 (PST)
-Received: from [172.16.11.74] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id a18-20020ac25e72000000b004b0a1e77cb2sm622936lfr.137.2022.11.18.03.21.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 03:21:12 -0800 (PST)
-Message-ID: <730ef480-8f10-6a38-b78a-13600a805dea@rasmusvillemoes.dk>
-Date:   Fri, 18 Nov 2022 12:21:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 5/5] iio: addac: ad74413r: add support for reset-gpio
-Content-Language: en-US, da
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     =?UTF-8?Q?Nuno_S=c3=a1?= <noname.nuno@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u8qpOHGlOhZYR6pVYrTYVhfVUaK3uhqqUMzIDSjxxZ4=;
+        b=NXQlLFRNsjbySbAP8cjWAMUqLjCfUzlEacyQgWqjKPUEnRAISKlZ1i6N2xVVyihcwq
+         Zuq4uvaXv+JiABBzWhmz9JNpTSyofLK/FZEx/M6VvpLVGemx5WA7HbSpl/Sv+yMHEMeK
+         V4vvFl4iyhUGSwUOz2TSAyn3egL4tO6b8owks1ZlcZayW8v5aGG7c1ELXMs6Bsr6Nnbf
+         AuNw5vzIGl9+dmcV+cuDnD8yDjNDDokJTFn2otFvai/3cA2i1akI7o8YKyvIZTrtNC0o
+         dWxEUXkcfRzAT4eP7N3eQM0pyP5zcd0xIryz3YYtndWqHZ9FVJvPYdHEaiBGb/u6Dn9A
+         KKzg==
+X-Gm-Message-State: ANoB5pnRYyWI5F9SflLPdjEfY3YkFVa2AuZV2txZtsJrLplR85cY/g2X
+        QHI8rXGyX59Ezo+Qmcbw9Lk=
+X-Google-Smtp-Source: AA0mqf78tC8zLLLrVwtpZodpwAvwC85+Ssq8kXfWKY0JubDzNVdSXmpR3zF4XZLm/lh/NF7M8xCfCw==
+X-Received: by 2002:a5d:6745:0:b0:241:b2b2:7c50 with SMTP id l5-20020a5d6745000000b00241b2b27c50mr4081224wrw.613.1668771112672;
+        Fri, 18 Nov 2022 03:31:52 -0800 (PST)
+Received: from localhost.localdomain ([95.183.227.98])
+        by smtp.gmail.com with ESMTPSA id l24-20020a05600c1d1800b003cf878c4468sm9894817wms.5.2022.11.18.03.31.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 03:31:52 -0800 (PST)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
- <20221111143921.742194-6-linux@rasmusvillemoes.dk>
- <20221112170705.7efe1673@jic23-huawei>
- <095a454b55cf497392a621649f24e067@analog.com>
- <20221114194447.2528f699@jic23-huawei>
- <0d6b3e4047df9f560079a562bc167bd7a0bf2d28.camel@gmail.com>
- <20221115161052.00002633@Huawei.com>
- <6d76cc6d-9db7-5b18-e4f1-dc220b3929a3@rasmusvillemoes.dk>
- <20221116102200.00003d16@Huawei.com>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <20221116102200.00003d16@Huawei.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/7] MediaTek pinctrl DT binding cleanup and MT6735 pinctrl support
+Date:   Fri, 18 Nov 2022 14:30:21 +0300
+Message-Id: <20221118113028.145348-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 11.22, Jonathan Cameron wrote:
-> On Tue, 15 Nov 2022 20:10:53 +0100
-> Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
-> 
->> On 15/11/2022 17.10, Jonathan Cameron wrote:
->>> On Tue, 15 Nov 2022 15:49:46 +0100
->>> Nuno Sá <noname.nuno@gmail.com> wrote:
->>>   
->>>> On Mon, 2022-11-14 at 19:44 +0000, Jonathan Cameron wrote:  
->>>>> On Mon, 14 Nov 2022 13:52:26 +0000
->>>>> "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com> wrote:
->>>>>     
->>>>>>>
->>>>>>> I'm a little confused on polarity here.  The pin is a !reset so
->>>>>>> we need to drive it low briefly to trigger a reset.
->>>>>>> I'm guessing for your board the pin is set to active low? (an
->>>>>>> example
->>>>>>> in the dt would have made that clearer) Hence the pulse
->>>>>>> in here to 1 is actually briefly driving it low before restoring
->>>>>>> to high?
->>>>>>>
->>>>>>> For a pin documented as !reset that seems backwards though you
->>>>>>> have
->>>>>>> called it reset so that is fine, but this description doesn't
->>>>>>> make that
->>>>>>> celar.      
->>>>>>
->>>>>> My opinion is that the driver shouldn't exactly know the polarity
->>>>>> of the reset,
->>>>>> and just assume that setting the reset GPIO to 1 means putting it
->>>>>> in reset,
->>>>>> and setting it to 0 means bringing out of reset.    
->>>>>
->>>>> Agreed. I'd just like a comment + example in the dt-binding to make
->>>>> the point
->>>>> that the pin is !reset.
->>>>>
->>>>> Preferably with an example in the dt binding of the common case of it
->>>>> being wired
->>>>> up to an active low pin.
->>>>>
->>>>> The main oddity here is the need to pulse it rather than request it
->>>>> directly as
->>>>> in the reset state and then just set that to off.
->>>>>
->>>>>     
->>>>
->>>> Agreed... In theory we should be able to request the gpio with
->>>> GPIOD_OUT_HIGH and then just bring the device out of reset  
->>>
->>> If I recall correctly the datasheet specifically calls out that a pulse
->>> should be used.  No idea if that's actually true, or if it was meant
->>> to be there just to say it needs to be set for X nsecs.  
->>
->> So the data sheet says
->>
->>   The hardware reset is initiated by pulsing the RESET pin low. The
->> RESET pulse width must comply with the specifications in Table 11.
->>
->> and table 11 says that the pulse must be min 50us, max 1ms. We don't
->> really have any way whatsoever to ensure that we're not rescheduled
->> right before pulling the gpio high again (deasserting the reset), so the
->> pulse could effectively be much more than 1ms. But I have a hard time
->> believing that that actually matters (i.e., what state would the chip be
->> in if we happen to make a pulse 1234us wide?).
-> 
-> Test it maybe?  Otherwise we'd have to play games to do it again if the
-> timing was too long to ensure after a couple of goes we do get a suitable
-> width pulse.
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-So I've booted quite a number of times with various large sleep values
-(between 1 and 10ms), and never seen a problem. Our hardware guys also
-confirm that there should be no such thing as a "too long" pulse.
+This series adds a driver for the pin controller found on the MediaTek MT6735
+and MT6735M SoCs. The two differ in the last 6 physical pins, which are used
+for MSDC2 on MT6735 but don't exist on MT6735M (since MSDC2 doesn't exist on it
+to begin with). In preparation to document DT bindings for this pin controller,
+the existing documents for MT67xx SoCs are combined into one in order to
+eliminate duplicate property definitions and standardize pin configuration node
+names. Necessary cleanup is done along the way.
 
-So do you want me to respin, moving the gpio request into the reset
-function (i.e. not storing the descriptor in the ad74413r_state as Nuno
-pointed out), requesting it in asserted state, and then, if the gpio was
-found, just do the fsleep(50) and then deassert it?
+Changes since v4:
+ - Remove patches that were applied previously.
+ - Define interrupts items for each variant (bringing back maxItems: 1 to the top
+   level definition then adding maxItems: 2 under the MT6795 condition causes a
+   dt_binding_check error for some reason)
+ - Move example changes to the patch they belong to
+ - Don't unnecessarily move the allOf block.
+ 
+Yassine Oudjana (7):
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Pull pinctrl node
+    changes from MT6795 document
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Improve pinctrl subnode
+    and property descriptions
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Add MT6795
+  arm64: dts: mediatek: mt6797: Make pin configuration nodes follow DT
+    bindings
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6765 pin
+    controller
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6735 pin
+    controller
+  pinctrl: mediatek: Add MT6735 pinctrl driver
 
-Rasmus
+ .../pinctrl/mediatek,mt6779-pinctrl.yaml      |  220 +-
+ .../pinctrl/mediatek,pinctrl-mt6795.yaml      |  227 -
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/mediatek/mt6797.dtsi      |   20 +-
+ drivers/pinctrl/mediatek/Kconfig              |    6 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6735.c     |  584 +++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h | 3993 +++++++++++++++++
+ 8 files changed, 4800 insertions(+), 259 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt6735.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h
+
+-- 
+2.38.1
 
