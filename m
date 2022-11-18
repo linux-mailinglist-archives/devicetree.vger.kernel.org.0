@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1714462F0E7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B608262F0FF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:21:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241622AbiKRJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 04:19:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S241886AbiKRJVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 04:21:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241794AbiKRJT0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:19:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C8D13F20;
-        Fri, 18 Nov 2022 01:19:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9EBEBB822DC;
-        Fri, 18 Nov 2022 09:19:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84299C433C1;
-        Fri, 18 Nov 2022 09:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668763163;
-        bh=iRaJEbJLZoILd9LHKyMewBZAVelq+rNxVl7UK4aOIwY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HwMkO7sabolcvoNCP3zcYsgba+R/9E3t4ht5gH6Yn5JzJ9Nfx73AGedjH2F7Yt23l
-         ri8FUxYV6fflLiUAvPSn2yneJQBNiUpDAXNcaYEiLsZejWGU6lQKgr3BuKbCyKhYUt
-         0lFv7P2cRRJxewbrHwPETJvXhjcf6u4DoC6yHaaOTsOx8bykj4UkEoh88nyeU9MrHP
-         Pu96WwLgH66LP7BI8CrkHhcOW7iDiAiX9nk6oMJlR7Zt9J0lqzDUhLfu4SLtSjnzvb
-         CWFh+E0UI02lLZeR79sAjD/fNNXbxna2Wpf0T2fMzoFsSAjTMeroTkhRy+llHkMPKB
-         54cZ4X6CPGDGA==
-Date:   Fri, 18 Nov 2022 17:19:19 +0800
-From:   Tzung-Bi Shih <tzungbi@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Mark Hasemeyer <markhas@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 2/3] dt-bindings: mfd: Add DT compatible string
- "google,cros_ec_uart"
-Message-ID: <Y3dOF3IQ/S5NCnR+@google.com>
-References: <20221117114818.v7.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
- <20221117114818.v7.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
- <Y3cboMlFTRzSJyQ8@google.com>
- <Y3dJYXCngi1p28HO@google.com>
+        with ESMTP id S241160AbiKRJVi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:21:38 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D195A657D
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:21:37 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id r126-20020a1c4484000000b003cffd336e24so2386357wma.4
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:21:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=m6/kM6KP+SnBs5M0JuT/vYW786ouIvPBbX7I3EVelKY=;
+        b=i9DT/eD2K77yPUZzee+4HC6ansijp0KuuccSv+lEc4Doo0eJc6sTzRXQhudFqNvZ+G
+         WGY0QTxykHtNRlwHh/IoiWqWzs+jTNxHBwtLtF9hxKfTroOj9RwAhn8pz4AG4dOfsBaq
+         BLCKuPwLfal9aPsdx4JKvFqWNR36xWF/LZrDjzDcO3mxdGUbRST1iAwiRMdmN2aFRgMF
+         JtZX0tE9hNl2fmipv/UNXSRLWAzYI81U3rpUOS77ZKrW3uz480vlx7ucaOEXbi2jbwQq
+         73wJcwO3A6/wdY0uapguzvNy7niinRA1hMeLMJ0gnBHR03P7guZjW/eO/R2n49VgMyOs
+         As7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m6/kM6KP+SnBs5M0JuT/vYW786ouIvPBbX7I3EVelKY=;
+        b=e2/5As7LiDiRtHIINGT0h3BcgghOy9lCYgAguYu7fOAjvCjv+RldQWdFW0y9tGP1+8
+         jRRffibnZUdNMt6Btip6AuaBC0FV49ePjHra73OBaxAn4l6bAXtzWULvA/gRDla5LkUG
+         bvQdKPACQIGrMTsnKigpgVNbuZRGTvG0RINiiZDCdLzwWRdMzGsQrGS+QS6/N89axhbY
+         d7pxhDalSikoHEwYAE2BxRvXMNm+ARYQPMQg2mr4NQxY9Gb2LqDVhLh07tzCr3T+Pbup
+         1rvpqgBelzbPfSViJ/u6qBiDmDXKkm+J91Fi86IZyTke7NY13y/ID79LGzWE1BDCTZYZ
+         QkQg==
+X-Gm-Message-State: ANoB5plFrohqRHkJeuWadzMLA9l6JkdJvV0b26FNU4oCCyNLT1bZa+2n
+        QbiLNyzznRDf6OXO+hrP9zNeZQ==
+X-Google-Smtp-Source: AA0mqf43KTq+HCm+j8RvGz2WAgU75ljkntP/K45HcsptU3hV48ubtmG5WgFylKoJZCB7PzWN4UFkag==
+X-Received: by 2002:a7b:c4d8:0:b0:3cf:b0ed:de9d with SMTP id g24-20020a7bc4d8000000b003cfb0edde9dmr7493708wmk.188.1668763296369;
+        Fri, 18 Nov 2022 01:21:36 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id f12-20020a7bc8cc000000b003c64c186206sm3738421wml.16.2022.11.18.01.21.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 01:21:35 -0800 (PST)
+Date:   Fri, 18 Nov 2022 11:21:34 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: qcom: aoss: Add compatible for SM8550
+Message-ID: <Y3dOntoHWWhKIdPA@linaro.org>
+References: <20221116113128.2655441-1-abel.vesa@linaro.org>
+ <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y3dJYXCngi1p28HO@google.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,16 +74,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 08:59:13AM +0000, Lee Jones wrote:
-> On Fri, 18 Nov 2022, Tzung-Bi Shih wrote:
-> 
-> > On Thu, Nov 17, 2022 at 11:48:47AM -0700, Mark Hasemeyer wrote:
-> > > Add DT compatible string in
-> > > Documentation/devicetree/bindings/mfd/cros_ec.txt
+On 22-11-16 12:43:26, Krzysztof Kozlowski wrote:
+> On 16/11/2022 12:31, Abel Vesa wrote:
+> > Document the compatible for SM8550.
 > > 
-> > The patch doesn't apply.  Please rebase it.
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > 
-> Were you actually trying to apply the patch, or just testing?
+> Why this is not part of other SoC patches? I just received many single
+> patches for this SM8550 topic. All these should be set of few series,
+> not 10 or more...
 
-Was trying to apply the patch to my local Linux tree (for-next) for
-reading the series.
+Fair point. Will do that next iteration then.
+
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks,
+Abel
+
+> 
+> Best regards,
+> Krzysztof
+> 
