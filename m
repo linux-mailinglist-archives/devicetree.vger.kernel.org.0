@@ -2,71 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B608262F0FF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2AE662F106
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:22:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241886AbiKRJVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 04:21:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
+        id S241876AbiKRJWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 04:22:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241160AbiKRJVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:21:38 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D195A657D
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:21:37 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id r126-20020a1c4484000000b003cffd336e24so2386357wma.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:21:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m6/kM6KP+SnBs5M0JuT/vYW786ouIvPBbX7I3EVelKY=;
-        b=i9DT/eD2K77yPUZzee+4HC6ansijp0KuuccSv+lEc4Doo0eJc6sTzRXQhudFqNvZ+G
-         WGY0QTxykHtNRlwHh/IoiWqWzs+jTNxHBwtLtF9hxKfTroOj9RwAhn8pz4AG4dOfsBaq
-         BLCKuPwLfal9aPsdx4JKvFqWNR36xWF/LZrDjzDcO3mxdGUbRST1iAwiRMdmN2aFRgMF
-         JtZX0tE9hNl2fmipv/UNXSRLWAzYI81U3rpUOS77ZKrW3uz480vlx7ucaOEXbi2jbwQq
-         73wJcwO3A6/wdY0uapguzvNy7niinRA1hMeLMJ0gnBHR03P7guZjW/eO/R2n49VgMyOs
-         As7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m6/kM6KP+SnBs5M0JuT/vYW786ouIvPBbX7I3EVelKY=;
-        b=e2/5As7LiDiRtHIINGT0h3BcgghOy9lCYgAguYu7fOAjvCjv+RldQWdFW0y9tGP1+8
-         jRRffibnZUdNMt6Btip6AuaBC0FV49ePjHra73OBaxAn4l6bAXtzWULvA/gRDla5LkUG
-         bvQdKPACQIGrMTsnKigpgVNbuZRGTvG0RINiiZDCdLzwWRdMzGsQrGS+QS6/N89axhbY
-         d7pxhDalSikoHEwYAE2BxRvXMNm+ARYQPMQg2mr4NQxY9Gb2LqDVhLh07tzCr3T+Pbup
-         1rvpqgBelzbPfSViJ/u6qBiDmDXKkm+J91Fi86IZyTke7NY13y/ID79LGzWE1BDCTZYZ
-         QkQg==
-X-Gm-Message-State: ANoB5plFrohqRHkJeuWadzMLA9l6JkdJvV0b26FNU4oCCyNLT1bZa+2n
-        QbiLNyzznRDf6OXO+hrP9zNeZQ==
-X-Google-Smtp-Source: AA0mqf43KTq+HCm+j8RvGz2WAgU75ljkntP/K45HcsptU3hV48ubtmG5WgFylKoJZCB7PzWN4UFkag==
-X-Received: by 2002:a7b:c4d8:0:b0:3cf:b0ed:de9d with SMTP id g24-20020a7bc4d8000000b003cfb0edde9dmr7493708wmk.188.1668763296369;
-        Fri, 18 Nov 2022 01:21:36 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id f12-20020a7bc8cc000000b003c64c186206sm3738421wml.16.2022.11.18.01.21.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 01:21:35 -0800 (PST)
-Date:   Fri, 18 Nov 2022 11:21:34 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom: aoss: Add compatible for SM8550
-Message-ID: <Y3dOntoHWWhKIdPA@linaro.org>
-References: <20221116113128.2655441-1-abel.vesa@linaro.org>
- <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
+        with ESMTP id S235295AbiKRJWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:22:47 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A032A1B5;
+        Fri, 18 Nov 2022 01:22:46 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AI9MNF4076880;
+        Fri, 18 Nov 2022 03:22:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668763343;
+        bh=vwNaGwz0+unEw3DnW8QS+x9gcVkdP39aX2pv4R8/ADE=;
+        h=From:To:CC:Subject:Date;
+        b=XKBt65PdawPeqn6iNbZMM9IQwgHW0z0BbAERjsON8FyIxIc9pj666RdAuoPIGhuMq
+         7zi2Vfs4k2Z1RsAnkEmRDlHGqpl15c66KtOSC7tDbGSuE+OYO/VxxAXoXNLP9288f+
+         hHCTqbBTmmYg1TrqY8Nx6gAS/9b8E57FQhJ0UKVY=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AI9MNHU029850
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 03:22:23 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 03:22:23 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 03:22:23 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AI9MKKx083116;
+        Fri, 18 Nov 2022 03:22:22 -0600
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <vigneshr@ti.com>, <robh@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <a.zummo@towertech.it>,
+        <linus.walleij@linaro.org>, <lee@kernel.org>, <brgl@bgdev.pl>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH v4 0/4] mfd: add tps6594x support for Jacinto platforms
+Date:   Fri, 18 Nov 2022 01:22:14 -0800
+Message-ID: <20221118092218.480147-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,25 +63,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-11-16 12:43:26, Krzysztof Kozlowski wrote:
-> On 16/11/2022 12:31, Abel Vesa wrote:
-> > Document the compatible for SM8550.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> 
-> Why this is not part of other SoC patches? I just received many single
-> patches for this SM8550 topic. All these should be set of few series,
-> not 10 or more...
+This patchset series adds support for the TPS6594x PMIC along with
+initial support for its RTC + GPIO interface, and poweroff sequence.
 
-Fair point. Will do that next iteration then.
+Additionally, add usage of the PMIC for the various Jacintor platforms
+devicetree's.
 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes from v1:
+* Corrected devicetree documentation issues found with dt-schema
+* Changed MFD references to PMIC reflecting the more valid use of driver
+* Cleaning up variable naming and ordering within functions
+* Adding gpio + regulator cells for upcoming driver support
+* Switching from .probe to .probe_new API
+* Revising comments within drivers to be more concise
+* Adding device tree nodes for j721s2 and j721e platforms
 
-Thanks,
-Abel
+Changes from v2:
+* Adding gpio-tps6594x driver support
+* Enabling gpio cell in MFD driver
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes from v3:
+* Refactoring gpio driver to use regmap gpio helpers
+* Changing rtc driver to use more of device resource management 
+* Minor code changes related to error messages that aren't useful
+  being dropped
+* Dropped wildcard in device-tree compatible, and i2c device id
+* Dropped device tree changes from the series; since these should
+  be in their own series later
+
+Keerthy (2):
+  MFD: TPS6594x: Add new PMIC device driver for TPS6594x chips
+  rtc: rtc-tps6594x: Add support for TPS6594X PMIC RTC
+
+Matt Ranostay (2):
+  Documentation: ti,tps6594: Add DT bindings for the TPS6594x PMIC
+  gpio: gpio-tps6594x: add GPIO support for TPS6594x PMIC
+
+ .../devicetree/bindings/mfd/ti,tps6594.yaml   |  65 ++++++++
+ drivers/gpio/Kconfig                          |   9 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-tps6594x.c                  |  78 +++++++++
+ drivers/mfd/Kconfig                           |  14 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/tps6594x.c                        | 113 +++++++++++++
+ drivers/rtc/Kconfig                           |  10 ++
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-tps6594x.c                    | 155 ++++++++++++++++++
+ include/linux/mfd/tps6594x.h                  |  88 ++++++++++
+ 11 files changed, 535 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+ create mode 100644 drivers/gpio/gpio-tps6594x.c
+ create mode 100644 drivers/mfd/tps6594x.c
+ create mode 100644 drivers/rtc/rtc-tps6594x.c
+ create mode 100644 include/linux/mfd/tps6594x.h
+
+-- 
+2.38.GIT
+
