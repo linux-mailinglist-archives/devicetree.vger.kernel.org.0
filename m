@@ -2,140 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E0762F2AB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 11:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F31D62F2EE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 11:46:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241480AbiKRKeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 05:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
+        id S241766AbiKRKqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 05:46:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241281AbiKRKeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 05:34:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05902922C5;
-        Fri, 18 Nov 2022 02:34:09 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 95DAF6240E;
-        Fri, 18 Nov 2022 10:34:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1979EC433C1;
-        Fri, 18 Nov 2022 10:34:06 +0000 (UTC)
-Message-ID: <3d7ab1ba-bc9e-4385-8ca8-73d062b383a3@xs4all.nl>
-Date:   Fri, 18 Nov 2022 11:34:04 +0100
+        with ESMTP id S241855AbiKRKqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 05:46:05 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31FB9B3B5
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 02:45:37 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id j16so7544690lfe.12
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 02:45:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EDQMv2x+NfeIg4hepEP6f1FTphfl0o9/8AhuUMjcc+I=;
+        b=sDy8EIdAnoCUVGOoAcV7a1Xz+JDtSiutjXCMQ9DacYCE85IA7POPH2g46V2/ASaX8+
+         0H+UuTNobIW6VnIA0Y+jMhQF9OvEFJ579KwI4my7rti5tneyBCPJWV/sjyxi0Nf8JC0G
+         Yh5Fz7aPbnSg4xqWRgY6TM+xwtqMNlMj2tWyzCtmaUZps05NP+PYP/UoJS1JnJ4Xh6ng
+         R/cIuopHomP5BrSgr+NyeHJA1PRElc58svbC3pqyFmaOLQ5cEXh2v0GK1ZK3ztOGldHY
+         dMWDR4FCYxKI15PcBZPhn/AA1acLScP7xz+qr61Gmy8/F6y2/fQZQxftIw4H6Vo1vLFy
+         E1ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EDQMv2x+NfeIg4hepEP6f1FTphfl0o9/8AhuUMjcc+I=;
+        b=mDyc9IG9lEQIAjRmWkk6g/Pl/WWqmAl+KXQWCYgdYVCnd1Zy6ZHQipRhdhYa0MfmIl
+         C7IpFdtBtHc1bpl6FWyEgz30yPOX5L4yaAj8SQ8HgQTAF1Zc872q4cK+/rWndxd/BKQq
+         pgJyWL4Mp2rRablEJ7to8x7bT0JRnKSTaF4cuFyFWLMQlR2nOfk3Dm9oZ/mPWDR/SO4k
+         fxLjOtKfvqsbsHCrJFyNwqqB2rWCjyNx/5UWdw1vqjRyM4fqFGYWqaVRdhnUquA0ILbD
+         z44xswbvQmiYG53iMFtz5I8Ar4hZ/kZDSJkxrCF83uRZvleTXIl+ojASUcNhtRJqbliB
+         4sMw==
+X-Gm-Message-State: ANoB5pm+k+g5duqRV8WGecgvKSTj/WhJWRSaN7xBcXf8x6yPp9qTZo1e
+        gS+A8dPcyA5uvfl1f3IZy6S7WQ==
+X-Google-Smtp-Source: AA0mqf7vV2tdGnpiXwtC5D6ZTxDgazbRllYin5VA7YoKbD6XgEbHhhwH389oMxgifnqkjCGApx/E+Q==
+X-Received: by 2002:a05:6512:16a1:b0:4b1:4933:d0de with SMTP id bu33-20020a05651216a100b004b14933d0demr2096379lfb.10.1668768336006;
+        Fri, 18 Nov 2022 02:45:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id m7-20020a0565120a8700b004b497035243sm608798lfu.184.2022.11.18.02.45.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 02:45:35 -0800 (PST)
+Message-ID: <dfec6a0b-86c6-fb61-51f6-d1e400a6f5ef@linaro.org>
+Date:   Fri, 18 Nov 2022 11:45:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [PATCH v4 3/5] dt-bindings: media: add cat24c208 bindings
-To:     Rob Herring <robh@kernel.org>,
-        Erling Ljunggren <hljunggr@cisco.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221111132906.2212662-1-hljunggr@cisco.com>
- <20221111132906.2212662-4-hljunggr@cisco.com>
- <20221116200729.GA761467-robh@kernel.org>
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: reserved-memory: document Qualcomm MPSS
+ DSM memory
 Content-Language: en-US
-In-Reply-To: <20221116200729.GA761467-robh@kernel.org>
+To:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-1-158dc2bb6e96@linaro.org>
+ <38fff21b-3e75-13f9-664e-a115bc527b67@linaro.org>
+ <9aa23650-6ae1-3844-7cf3-6812dc023c11@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9aa23650-6ae1-3844-7cf3-6812dc023c11@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/16/22 21:07, Rob Herring wrote:
-> On Fri, Nov 11, 2022 at 02:29:04PM +0100, Erling Ljunggren wrote:
->> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
+On 17/11/2022 10:47, Neil Armstrong wrote:
 >>
->> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
->> ---
->>  .../bindings/media/i2c/onnn,cat24c208.yaml    | 46 +++++++++++++++++++
->>  1 file changed, 46 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,mpss-dsm-mem
 >>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
->> new file mode 100644
->> index 000000000000..492eecb3ab7c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
->> @@ -0,0 +1,46 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: ON Semiconductor CAT24C208 EDID EEPROM driver
->> +
->> +maintainers:
->> +  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
->> +
->> +description: |
->> +  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
->> +
->> +properties:
->> +  compatible:
->> +    const: onnn,cat24c208
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  input-connector:
->> +    description: |
->> +      Phandle to the video input connector, used to find
->> +      the HPD gpio and the connector label, both optional.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> Why do we need dedicated binding and compatible for it instead of using
+>> memory-region phandle in the device?
 > 
-> The binding and driver feel the wrong way around to me. It seems 
-> like you should have a driver for the connector and it needs HPD GPIO, 
-> label, and EEPROM. The driver instead looks mostly like an EEPROM driver 
-> that hooks into a few connector properties.
+> So like rmtfs, this memory zone is shared between APPS and the MPSS subsystem.
+> 
+> Like rmtfs it makes no sense to link it to the MPSS PAS, since it's only a launcher,
+> it doesn't represent the MPSS subsystem.
 
-A device like this is typically used next to an HDMI receiver: the DDC
-lines and the HPD line are connected to the EDID EEPROM, and the video
-is handled by the HDMI receiver.
-
-Most HDMI receivers will have the EDID part integrated into the chip itself
-(see e.g. the adv7604 driver), but that doesn't have to be the case. The EDID
-can be completely separate, it doesn't matter for the receiver part.
-
-In our specific use-case there isn't even an HDMI receiver since the HDMI
-video is passed through and this EDID EEPROM is used to help debug HDMI
-issues by presenting custom EDIDs, similar to something like this:
-
-https://www.amazon.com/dp/B0722NVQHX
-
-The HPD line is controlled by the EDID part since it has to be low if there
-is no EDID or pulled low for at least 100ms if the EDID is being modified.
+This also does not represent a device. Memory region is not a device, so
+this is as well not correct representation of hardware.
 
 > 
-> Reading the datasheet, I don't see anything special about accessing the 
-> EEPROM from the host (DSP) side. Wouldn't the default at24 driver work? 
-> It exposes regmap and nvmem.
+> In the PAS startup process, the resources are released from APPS once the MPSS subsystem
+> is running, which is not the case with the MPSS DSM where it must be shared during the whole
+> lifetime of the system.
 
-No. It is not a regular EEPROM, it is dedicated to store EDIDs. It has to
-correctly toggle the HPD line and inform other drivers (specifically HDMI CEC)
-of EDID updates.
+I don't think that PAS releases the region. I checked the
+qcom_q6v5_pas.c and there is only ioremap. The device stays loaded thus
+the memory stays mapped.
 
-I don't see how the at24 could work: besides the eeprom i2c address it has to
-deal with two additional i2c devices: the segment address and the config
-address of the device itself. Writing to the eeprom from the host side requires
-a write to the segment address followed by a write to the eeprom part itself,
-and that's not something the at24 can do. And it is also something very specific
-to the VESA E-DDC standard (freely downloadable from vesa.org).
+We have already three of such "memory region devices" and we keep
+growing it. It's not scalable.
 
-Note that historically the first EDID EEPROMs most likely did work like the
-at24, but as EDID sizes grew beyond 256 bytes the E-DDC standard was created
-and that departed from the normal EEPROMs.
-
-Regards,
-
-	Hans
-
-> 
-> Rob
+Best regards,
+Krzysztof
 
