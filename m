@@ -2,59 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2ECB62FA00
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0C9262FA1A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:21:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235220AbiKRQOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:14:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40598 "EHLO
+        id S235084AbiKRQVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:21:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235165AbiKRQOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:14:41 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CE8E0D4;
-        Fri, 18 Nov 2022 08:14:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A176E62605;
-        Fri, 18 Nov 2022 16:14:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69566C433C1;
-        Fri, 18 Nov 2022 16:14:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668788080;
-        bh=kpKu/c9BWXRel1V/AWJLvQR+q/X8pLWSB+6SkGCg9f0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eUYwVCxrLpTFAFmyfiVKEVLalU/mClbJ2liZ/IzpK/QF45IPJnQEWgfkjwfWST9/y
-         cXQUijC+2qhBZjnVql346XaLv6vulxsl4BL0hTrJcK5l6b3x0lFIxAa6xG2eV9EwIK
-         tjhxSmHm2z0SYEpi5F93w9E0MAYqlM9FWvgoBp7Qo4UH2imxR+7fgvdYtfYyjmLCk8
-         uVmoeb9B6/O2yxwHGrMO+mt92bSh9C3do3+2sxsYAL6xGodLPV5Aw/WtWOjh1uukpa
-         STD8JCi4FjG/dqnEWB7Kc+zAtuVWXfPx6T5xnUfzaHp86x5AswlLstVE7LjX/iR+Ed
-         ayII11ONy8JEg==
-Date:   Fri, 18 Nov 2022 16:14:37 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     andrew@lunn.ch, calvin.johnson@oss.nxp.com, davem@davemloft.net,
-        edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
-        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 1/3] regulator: Add of_regulator_bulk_get_all
-Message-ID: <Y3evbTL4P72xwYWS@sirena.org.uk>
-References: <20221115073603.3425396-1-clabbe@baylibre.com>
- <20221115073603.3425396-2-clabbe@baylibre.com>
+        with ESMTP id S229476AbiKRQVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:21:08 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EFA69208F
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:21:07 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id c25so7357999ljr.8
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mjnqvZvoLJRruPXTecNFKm0hhbTgEsvXWGcm3Dhr9+E=;
+        b=YRZudXVeLLu3eAEiGezFVHFfMIQpdfUYU3iAHhHAUaaJLNdqrIPuAkTEuw3TgRPkXR
+         mEtU4mUyleui4ZNj7xU5UOMasba2WiEYDcCxTF0iB6lhZ+ZyiZCBByW8iB7zIU6aAdwv
+         8J7HK2jSXilyScrjTQFThZhYQs97oiUyEQCeKLTEDdDEPdwnTQKKtGIUB5OY1p9lRnKQ
+         4tEgx5hSj0X7923zaCsxz/Fz7DPwq/oPjlSorKlEOMq0f894jTFayEzwOJunSMlH0WMq
+         JJ+fJT+90GKdAlU6GLIEF8k6/+9b5eraYjDLDLdaG6ilU8YQ9vuzPg6VeuNnsArvKLbh
+         9uwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mjnqvZvoLJRruPXTecNFKm0hhbTgEsvXWGcm3Dhr9+E=;
+        b=7de6Q9h2QccQ+G/qbT8lwaLjecw9MK91D7wKLUBPFLy29IPTa9qrHp1rTyRGB0AKLP
+         2oCD5KRlW6Esu754A82i4+v5zap3QOrjlX4xg+2vC6U6sZxghah3oxy8nyAbEaylmV3Y
+         t583q/7uY4li6KVH8LauHGervWAkZorPEmRGDNRyblpeUlR0DCeYtOgelIbNID1wkm2W
+         nffuFEdMeeMvSbeL3vk1NUWngyKwvhecZBemdn4lUQR3pNnEUi7RIbYOuqQx7A//jTLc
+         Zq89cv46csbJ6X6x+yzePhxf8HY0TXilnC3upQIjx6OyFQIUgnYPD8h7ATG81W1QaQou
+         h/yw==
+X-Gm-Message-State: ANoB5pmTMoSRA1IsKy6bDsbVNGThrglBwIs6tI4Yh6NDRSZ6UWYX6Gtw
+        xBh4OWYIN+5iiiqkoKLLNxCGtg==
+X-Google-Smtp-Source: AA0mqf5MDZ8n8aOqGyUjyf5Z4PQZnVdF3dQdUdGagTqmUi8FiWFnrvqAXqHOmN9vC36zzvrrZKWnkA==
+X-Received: by 2002:a2e:b5d4:0:b0:279:5fa:8e7c with SMTP id g20-20020a2eb5d4000000b0027905fa8e7cmr2654551ljn.62.1668788465509;
+        Fri, 18 Nov 2022 08:21:05 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b00499bf7605afsm718252lfo.143.2022.11.18.08.21.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 08:21:04 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pinctrl: qcom,sdm845-pinctrl: add GPIO hogs
+Date:   Fri, 18 Nov 2022 17:21:01 +0100
+Message-Id: <20221118162101.145267-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DJFv/5IyQrUvDztj"
-Content-Disposition: inline
-In-Reply-To: <20221115073603.3425396-2-clabbe@baylibre.com>
-X-Cookie: Ego sum ens omnipotens.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,57 +74,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Allow GPIO hogs in pin controller node.  qcom/sdm845-cheza.dtsi already
+uses it.
 
---DJFv/5IyQrUvDztj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/pinctrl/qcom,sdm845-pinctrl.yaml        | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-On Tue, Nov 15, 2022 at 07:36:01AM +0000, Corentin Labbe wrote:
-> It work exactly like regulator_bulk_get() but instead of working on a
-> provided list of names, it seek all consumers properties matching
-> xxx-supply.
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+index c9627777ceb3..57bac7f7a4fc 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.yaml
+@@ -48,6 +48,11 @@ patternProperties:
+             $ref: "#/$defs/qcom-sdm845-tlmm-state"
+         additionalProperties: false
+ 
++  "-hog(-[0-9]+)?$":
++    $ref: /schemas/gpio/gpio-hog.yaml
++    type: object
++    unevaluatedProperties: false
++
+ $defs:
+   qcom-sdm845-tlmm-state:
+     type: object
+@@ -117,6 +122,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     pinctrl@3400000 {
+@@ -130,6 +136,12 @@ examples:
+         gpio-ranges = <&tlmm 0 0 151>;
+         wakeup-parent = <&pdc_intc>;
+ 
++        ap-suspend-l-hog {
++            gpio-hog;
++            gpios = <126 GPIO_ACTIVE_LOW>;
++            output-low;
++        };
++
+         cci0-default-state {
+             pins = "gpio17", "gpio18";
+             function = "cci_i2c";
+-- 
+2.34.1
 
-The following changes since commit 9abf2313adc1ca1b6180c508c25f22f9395cc780:
-
-  Linux 6.1-rc1 (2022-10-16 15:36:24 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git tags/of_regulator_bulk_get_all
-
-for you to fetch changes up to 27b9ecc7a9ba1d0014779bfe5a6dbf630899c6e7:
-
-  regulator: Add of_regulator_bulk_get_all (2022-11-18 15:13:34 +0000)
-
-----------------------------------------------------------------
-regulator: Add of_regulator_bulk_get_all()
-
-This adds a new of_regulator_bulk_get_all() which grab all supplies
-properties in a DT node, for use in implementing generic handling
-for things like MDIO PHYs where the physical standardisation of
-the bus does not extend to power supplies.
-
-----------------------------------------------------------------
-Corentin Labbe (1):
-      regulator: Add of_regulator_bulk_get_all
-
- drivers/regulator/of_regulator.c   | 92 ++++++++++++++++++++++++++++++++++++++
- include/linux/regulator/consumer.h |  8 ++++
- 2 files changed, 100 insertions(+)
-
---DJFv/5IyQrUvDztj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmN3r2wACgkQJNaLcl1U
-h9CEOQf/U2ff5jdqmcVQLYGSojvvtxIkUDdM8+kofOodWraaYzvkggTTav+lly2R
-bzFgqC0N49PIzS0I+jHP7KUD5tdKi8Mg6bdjEIEOjB7rx6QHuHHeeg6KA93iTH5m
-rFIL2nbGA/x0awGN6VJUmz+ov1Ve6rixWwx6DOpteeiegTKPWsYi6S/IFIeZTVdn
-1KnO+9XmdKzpwNXzInBFExi4H+y++MjfwYhv/m/GmGZllyBDh9P/qp5kFTkUS0nY
-mgzg/okKLtcCNtgDBH0rZG3YNJjPRiR+6GTGD7phfwhQbl9WM7m+mZ8rAeb4ms/e
-RdvpZsg88t548AY76WBGDUXngBwgLQ==
-=M0l3
------END PGP SIGNATURE-----
-
---DJFv/5IyQrUvDztj--
