@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32C762F9AC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B693E62F9B0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:50:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234455AbiKRPuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:50:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
+        id S242005AbiKRPuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:50:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242225AbiKRPuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:50:15 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960F38C495
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:50:08 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id i12so5988587wrb.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:50:08 -0800 (PST)
+        with ESMTP id S242302AbiKRPuQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:50:16 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967DA8C0BD
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:50:09 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5so3900798wmo.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:50:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=CmTL+mg18Z4AepnU6eZyDbtFVjUFILiYsH5hlR5uEro=;
-        b=OKMKBVZQLGFbwj7QynAdCsT1VPXH4Rioy1t2pjuIIwxWZix6jBtDy7618JyJPVVbKc
-         9cyV2lgYpSqGprBK/Zo5n0gBEwNItE5wk5Gn9gntUX2rkuu0ze1qAwFs2OWCJn+nFkcl
-         JAqCvez9iMlY31ZS4LunN34VGNDFXbZ3vWTgbY1e/y+4E+EpNgB7JTLS3KsHPGVn8q3D
-         unjpp+2+9+3F+IeR0mpzwPO5FSgMd1PgXO5xo8ymNxjTuTysCfEcwqT0Z6UAln26Rlcv
-         7+h/5k5SFS9tYojx/tMVyRFw2tCzjRc3rsQ6wEoArQ40uBTijfLSQD+45DjsTzDCm51g
-         ZFHQ==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qZLQieUidZlNqVrKwu39po09Jc+DVA7oSfqP+BkaPT0=;
+        b=XqNd0uAyJhWFtotx7vjCSEtvyrwCBbOy730MU2iqH9Bb6DXPmJEGFeKr4QtZDd7Tjy
+         7IejBtA0HLuYABlkkjh2YvpHHI+g4jgWFpeisHhAFvP4jeomO1tNgCvNn433rh9zJiBi
+         Fsoc1TOdRPVBBwRGj6Os62dOucnSbPdirCII9CdDD4kwp6Dlzck+KwQiXqPnZMIWJX4V
+         96psaJA9hMsp1STUmWWHdfwi6SPcY5+T3t10yf7W+5dx9+UDHw0z4PkLIqGbueZbDDyo
+         U2b3pzo25Kyup8PT1V9FKlQAQHrKHRzwH8CgHOtBdTKEpN3xPCAb1ckxA8uf4UXmMV71
+         eZxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CmTL+mg18Z4AepnU6eZyDbtFVjUFILiYsH5hlR5uEro=;
-        b=GimQrXQE8O4fwE5EESYBxdzBe/+AsVk5PjuI2Hh/LS9tTdT//F0fRQyY9vsMLoUzeN
-         H+w3oKOwNrzc5BchE+Qe0XvfzIY4Y6ZOQ4h/kZjPYNrqwTPCdpVwBg31E1NvhhVXAPTx
-         8n4WCIHf0ugkTw+bmEAA1DoAIOm6ilZpDER8FHxUtVAtefdLICFid+AyVgcpqAoVuVAd
-         8J7xjtPSJAzYoho+nYm9aDYLBg8uBJTq+n+6rXtjCZAa7SrmwxivSWVv95UUtdvOVrE9
-         8Wjj/dpvWTaJ0SgK4/15i+bP/qbwreHG5S5gDqLdzjtAPAOsMPDCLOK/LUTiM0RdsGjP
-         4S5g==
-X-Gm-Message-State: ANoB5pl7MfZY4iWempYIgA+0YOYh66G1XiyvlrVIBEYnx8+W27bks+w5
-        3OZ5o0kQYd3prLxmZVjle4Av2g==
-X-Google-Smtp-Source: AA0mqf4VUH/lC1IDoaI1Aq0Zpxjp4JBMofLzpxPK1c2Yw11pg5JIQHZmyxkopn1qIikCQ7p5Weaomw==
-X-Received: by 2002:adf:e78e:0:b0:22e:32ab:c37 with SMTP id n14-20020adfe78e000000b0022e32ab0c37mr4831201wrm.317.1668786606917;
-        Fri, 18 Nov 2022 07:50:06 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qZLQieUidZlNqVrKwu39po09Jc+DVA7oSfqP+BkaPT0=;
+        b=G/CRBh/ROvxzQeJTumh1p9xEixm1ice6OeJ3pTgqv7YvzCGILdHgJLNkL+YEL1ZS3J
+         5G91pBE63d5tzXXb87qRKT0ZuMBBsZ6qu6TAWtzqVfyA4NUm89naVPEqFiZ3Pp+esEjR
+         cOKeUtAfeirJI60JYcIvFYv+x7SMKFiUjm5YExtpoHa33U8x81Ln1TE6qd9eoOouZvOi
+         k3NdaRvi7IUdIA4MikaLaKx+ALHWgwRYPu97PMwf0YTaoV2zJes8qYP/r9NcGW2RCq2g
+         IUFW9GvjBIZx3NMqjC7egSJ7DifxVjfM+YETSYFqOBES0G12pmJdO/nV2h+psbzGdFXN
+         3CaA==
+X-Gm-Message-State: ANoB5pk/0EM1dQwpDCLzPx0K/wU/1FYQ32EFYyCxJHa/aBrv8zdmITgE
+        ixRp8cej5sRg5JgJhGNUT7FOJQ==
+X-Google-Smtp-Source: AA0mqf7cj+n72vPORo59VxFb5rqtLtnKdyXmn3W8xEo2uhlOrcC7huqtnuGH5Z3zdkviwiXoWdJ2lw==
+X-Received: by 2002:a1c:f401:0:b0:3c7:84d:72d with SMTP id z1-20020a1cf401000000b003c7084d072dmr8854319wma.181.1668786607821;
+        Fri, 18 Nov 2022 07:50:07 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
         by smtp.gmail.com with ESMTPSA id a13-20020a5d53cd000000b002383edcde09sm3812465wrw.59.2022.11.18.07.50.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 07:50:06 -0800 (PST)
-Subject: [PATCH v2 0/2] arm64: amlogic: add initial Odroid Go Ultra DTS
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-b4-tracking: H4sIAKypd2MC/42NQQrDMAwEv1J0rkrsxKH01H+UHuRYJAJjgZwESsjfa/qCnpbZw8wBlU24wuNygP
- EuVbQ08NcLTAuVmVFSY/Cd967rHcYBNZlKwllxy6sRSpFVKGPgMUyJA/ueoAkiVcZoVKalKcqWczsX
- qava5xfcXZvXX+7dYYeD5z5FpvuYwjNLIdOb2gzv8zy/1JQWNcoAAAA=
+        Fri, 18 Nov 2022 07:50:07 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 18 Nov 2022 16:50:04 +0100
-Message-Id: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
+Date:   Fri, 18 Nov 2022 16:50:05 +0100
+Subject: [PATCH v2 1/2] dt-bindings: amlogic: document Odroid Go Ultra compatible
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20221031-b4-odroid-go-ultra-initial-v2-1-a3df1e09b0af@linaro.org>
+References: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
+In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -80,10 +80,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds initial support for the Hardkernel Odroid Go Ultra.
-
-The Odroid Go Ultra is a portable gaming device with the following
-characteristics:
+This documents the Odroid Go Ultra, a portable gaming device,
+with the following characteristics:
 - Amlogic S922X SoC
 - RK817 & RK818 PMICs
 - 2GiB LPDDR4
@@ -97,52 +95,24 @@ characteristics:
 - 2x ADC Analog Joysticks
 - USB-C Port for USB2 Device and Charging
 
-The following are not yet handled:
-- Battery RK818 Gauge and Charging
-- Earphone stereo jack detect
-- 5inch 854×480 MIPI-DSI TFT LCD
-
-This adds:
-- Device bindings
-- Initial device DT
-
-This serie depends on:
-- https://lore.kernel.org/all/20221025-rk808-multi-v2-0-d292d51ada81@linaro.org/
-
-To: Sebastian Reichel <sre@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
+Acked-by: Rob Herring <robh@kernel.org>
 ---
-Changes in v2:
-- Dropped power off driver/bindings, will move to another patchset
-- Fixed DT comments from Krzysztof
-- Dropped poweroff node
-- Add Acked-by from Rob to bindings change
-- Link to v1: https://lore.kernel.org/r/20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Neil Armstrong (2):
-      dt-bindings: amlogic: document Odroid Go Ultra compatible
-      arm64: dts: amlogic: add initial Odroid Go Ultra DTS
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 9fda2436c618..e16b5fa55847 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -163,6 +163,7 @@ properties:
+               - azw,gsking-x
+               - azw,gtking
+               - azw,gtking-pro
++              - hardkernel,odroid-go-ultra
+               - hardkernel,odroid-n2
+               - hardkernel,odroid-n2-plus
+               - khadas,vim3
 
- Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     | 722 +++++++++++++++++++++
- 3 files changed, 724 insertions(+)
----
-base-commit: 2c3c398ddfabf48b7a0b66b5f01052ba43c36337
-change-id: 20221031-b4-odroid-go-ultra-initial-5e65cde5e23a
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+b4 0.10.1
