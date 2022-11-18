@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3693562FF57
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 22:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2D162FF60
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 22:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiKRV0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 16:26:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37288 "EHLO
+        id S229700AbiKRVb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 16:31:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiKRV0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 16:26:39 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3224FA2884
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 13:26:35 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id z20so7391330edc.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 13:26:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gn19h91kD2DXtHLVTlmvX/z0+yNPKmW/7RO5Bbqf1MM=;
-        b=FuGELQ46WHyMDr8mQpKAZjqb0l82MxhqlvgSAv6Po5f7yjBMJaIL42l7phMLc8R6Na
-         SXmeZ6W6eSL7rQWunnHHmsZc/f9i/K0L5D28oi4xLPvx52ehylKA2MKq167XiG43QjjT
-         k398LCs8w+zDm6A2gm+6GsyZoOnbm80rRM7MQxjN2tdNNYLLd/eQhXQTJXT8mInHxDdo
-         zx4oPW+Ifl/+gVJD0MgQZ4YuiT3Lwzq/2z95lhiTVCHFivhzbYTn6kMen8x6aAqJu10a
-         zeGnF4dOe2IfU3F0lRQONNWBK4Vxpf1eKGBUUQJdXVJBNiQtLW6v+GNYYePo5N9FToS0
-         UtKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Gn19h91kD2DXtHLVTlmvX/z0+yNPKmW/7RO5Bbqf1MM=;
-        b=stwwmuIe4nUZKfo0pVRKMAmMG0cVhMsLrrwEcEvnYHZA/ZPWDEtzyEOGI+klIGOdtJ
-         xswahT8pFUDWhAVCLN7ACjnF5yDPWKnVMueexN+f8UyNPf94FR//KAFfCA4OoIlLIMPY
-         Wh6JrZ3l0YuCvLh63AzQrS+1KKNVe4zCy4rJDf27QucEModWQE5XT9kh8G8fbFU0cKw8
-         CAP05/gx+SQhWN+eNsQFrtxrZhyn/c+0A0nHZ6PoRmJ4ZA1uMWOEKOtvmI7RhQZThxrQ
-         iUt2KzUCy7mBhxNnhR6Dx4zTR6UNUbjtxuJJUg8QRn6jSTnBAArbwPi563Mrl3Qpqxne
-         Iy+A==
-X-Gm-Message-State: ANoB5pk64ToAfTAuf564t2nE8OSeGB6Qp7kGlmeaKswPob9mKZyIxT/n
-        ioCPDa6KJ/VqT1QgSRqpJD8XebA4z7JUYoL+ZW7MZw==
-X-Google-Smtp-Source: AA0mqf7/jfSfmCMp1R3z90KPsI7aEquK2Hg1zTkkjjR73PB27eXwJMYj8xkB+a9dyVksrMBxxq9IE8bZY63uCH8TSOA=
-X-Received: by 2002:a05:6402:c0b:b0:463:a83c:e0af with SMTP id
- co11-20020a0564020c0b00b00463a83ce0afmr7463177edb.158.1668806793738; Fri, 18
- Nov 2022 13:26:33 -0800 (PST)
+        with ESMTP id S229483AbiKRVb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 16:31:58 -0500
+X-Greylist: delayed 9630 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Nov 2022 13:31:57 PST
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 508D877222;
+        Fri, 18 Nov 2022 13:31:57 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id AB6681382;
+        Fri, 18 Nov 2022 22:31:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1668807115;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jhsoQZGuusQB+cmhOr0OjTamtUUcvXLkhCvJFGQv/dM=;
+        b=dyqmJDrhlD49WDtt67kx3e41wuqADtomYJdL3P9JWqaY9HodYZSEwm66ELysqQdEuRFCGm
+        d4gR1HQJnixVwcD8QqsnKVeQz4wJ1usztknklJQEZiFpqBbBOLrtVlhoB/SOhHIdu4KQex
+        /dhB5zAMYT2ch4k5OQWd261mx0G15jDeUkm0hWn6hZ0DFgZNwNS19KS9VuztfAw6hIrHf+
+        NocsD8ySWtxr72mPW+uWo5Y4KHVihNz66+5MD+z+3lwI40i5guJCIoKng3ni67NSQeXdG5
+        ppwKu3g5rV8hu9RKpiINMWfGsseo3Hy+TO6oCRTGHcWlxMQ8yvOwOoij2W1OIg==
 MIME-Version: 1.0
-References: <20221117080916.411766-1-cosmin.tanislav@analog.com> <20221117080916.411766-3-cosmin.tanislav@analog.com>
-In-Reply-To: <20221117080916.411766-3-cosmin.tanislav@analog.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 18 Nov 2022 22:26:21 +0100
-Message-ID: <CACRpkdbRPugRA+zbad8=v0jaUDCOYA4KWdsRxyFn_iWmiyJQFw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: addac: add AD74115 driver
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+Date:   Fri, 18 Nov 2022 22:31:55 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Jonathan Corbet <corbet@lwn.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 02/18] of: base: add
+ of_parse_phandle_with_optional_args()
+In-Reply-To: <20221118185118.1190044-3-michael@walle.cc>
+References: <20221118185118.1190044-1-michael@walle.cc>
+ <20221118185118.1190044-3-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <8b976cf546bad3aa159a6f05cd3c15d1@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 9:09 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+Am 2022-11-18 19:51, schrieb Michael Walle:
+> Add a new variant of the of_parse_phandle_with_args() which treats the
+> cells name as optional. If it's missing, it is assumed that the phandle
+> has no arguments.
+> 
+> Up until now, a nvmem node didn't have any arguments, so all the device
+> trees haven't any '#*-cells' property. But there is a need for an
+> additional argument for the phandle, for which we need a '#*-cells'
+> property. Therefore, we need to support nvmem nodes with and without
+> this property.
 
-> The AD74115H is a single-channel, software-configurable, input and
-> output device for industrial control applications. The AD74115H
-> provides a wide range of use cases, integrated on a single chip.
->
-> These use cases include analog output, analog input, digital output,
-> digital input, resistance temperature detector (RTD), and thermocouple
-> measurement capability. The AD74115H also has an integrated HART modem.
->
-> A serial peripheral interface (SPI) is used to handle all communications
-> to the device, including communications with the HART modem. The digital
-> input and digital outputs can be accessed via the SPI or the
-> general-purpose input and output (GPIO) pins to support higher
-> speed data rates.
->
-> The device features a 16-bit, sigma-delta analog-to-digital converter
-> (ADC) and a 14-bit digital-to-analog converter (DAC).
-> The AD74115H contains a high accuracy 2.5 V on-chip reference that can
-> be used as the DAC and ADC reference.
->
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+I've just noticed that this isn't enough. We also need to fix the 
+parsing
+in drivers/of/property.c, otherwise spurious device links will be 
+created
+because the phandle argument is treated as a phandle itself.
 
-(...)
-> +config AD74115
-> +       tristate "Analog Devices AD74115H driver"
-> +       depends on GPIOLIB && SPI
+-michael
 
-I think you can technically just select GPIOLIB making it easier
-for users, but that's up to you and definitely fine like this too.
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
