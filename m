@@ -2,226 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96C1962EFCC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7D462EFDF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 09:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235149AbiKRIm5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Nov 2022 03:42:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34388 "EHLO
+        id S241425AbiKRIpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 03:45:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232404AbiKRImz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:42:55 -0500
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC8FE0F7;
-        Fri, 18 Nov 2022 00:42:54 -0800 (PST)
-Received: by mail-qv1-f54.google.com with SMTP id i12so2942952qvs.2;
-        Fri, 18 Nov 2022 00:42:54 -0800 (PST)
+        with ESMTP id S241423AbiKRIpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 03:45:18 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2190E942F1
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:45:10 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id g12so8146765wrs.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 00:45:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=ora/VunEn0YneVtDdkAbPmkCHMtwr9PRQnKVi+QQtuk=;
+        b=PWKvBm09nWluf8q9xZx5T063ULZCTCSLwTivRmIV5S0KnyAMfLueWTage9HLdTGNpE
+         NZ31+jMT4SZ6ehGHptyA0JqxUwstvDhii2cpOQyashKNJ6P9VgY9JtGt7ob6HIF7Hirq
+         Xr2aYb49CXySFC8LF3YwI6BC8EqFUmeTlJb18c8lsOh+6vNIu6m8D2JRg1KJUkt1w0uE
+         o7Fp5EtGGH7naQRjScYV9uqS17tUy8GFBtpN7P7tYI3BxScD6mq/BjBWCNwEZWPPbWPt
+         fl0sLxBmTDWR2SJRnqp5D4tp8J6vOQesalACJlkG3t2e00cWrImVViLf4nWBdh0mVfCb
+         TGvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6UUepPjtp7tXuNI8x6TQiQ+HTeQFYkPSiIg2QjVFvAA=;
-        b=PIzYhKpPqLlXCUAJEtph3ModlJHU3wAfj1gxXaqsrQme7I9jkyhsgW5p2maGoHadij
-         U5WnfW/yFvlpQ45zA5FPkpwajjPjfEhH+tW+1sxLAO41f2h7BQ1BFIv7c/kDSF6VYEFx
-         qm9mcRZhn6XQa2aNQ0KYwRxJ8xpC8iY1KvhOgWWRKQTuAHnYMYJEHlgRTJxNu5avElW+
-         K/MCYo/ZLeDhrtZbWqPRQw5cKnQi7VAmVdCo/PpHI3c+sED7gPHLYzPGk/5hAQr9k68z
-         N2gp5NkUvnFCx6QaR8Rky6TNsejU2E1bV6hA51PLyZXxJhGan+Yp6VIUynSeCThWJXN5
-         djzw==
-X-Gm-Message-State: ANoB5pkxFl98KbYTbrLqP7eOwjoJ5kW1nh1dpX9Uyv9T0egZkTNxaf96
-        sLLQc674XtxCg168oTf/097uaztg6YFuaA==
-X-Google-Smtp-Source: AA0mqf7fmRgSuC3ZN4cd8n12HXYRTVKhQZEqGq1XsE9+BNWKhAa6eC67pOpQE38id7FyDFtHz1t9uQ==
-X-Received: by 2002:a0c:ff0b:0:b0:4bb:7349:14e5 with SMTP id w11-20020a0cff0b000000b004bb734914e5mr5586353qvt.114.1668760973329;
-        Fri, 18 Nov 2022 00:42:53 -0800 (PST)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id dt18-20020a05620a479200b006ea7f9d8644sm2026710qkb.96.2022.11.18.00.42.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 00:42:53 -0800 (PST)
-Received: by mail-yb1-f176.google.com with SMTP id 7so4847310ybp.13;
-        Fri, 18 Nov 2022 00:42:52 -0800 (PST)
-X-Received: by 2002:a25:9e84:0:b0:6de:6183:c5c3 with SMTP id
- p4-20020a259e84000000b006de6183c5c3mr5804957ybq.89.1668760972393; Fri, 18 Nov
- 2022 00:42:52 -0800 (PST)
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ora/VunEn0YneVtDdkAbPmkCHMtwr9PRQnKVi+QQtuk=;
+        b=oA8Pyu1G6eU7wF5W+wOtJFHiCaduCzeQw17hmwradnFqaK11HUZr+Xk3Cr4lMzFfYT
+         dBxMAcNmAv8iHSIJzlm+wnlLdGVHJsPwLJPuYfL4FV69af6m/dntX/WAXPg+C5G3FJNM
+         yviTHzEzSHGrGjz17GkLHCH9g3OYud/UJOsVdVZ7XeRYBlZYxLtpUqZIde8cIv9JXGeA
+         Fat9ICFUQi/s+Xs3bTpUJMg0M539c1JNceq0xPq6MCJlI0dUYJ1cHrbLOrH4H4GY5iEK
+         LGE3jnhAmbvd+IG5U2Q34oBE6d1lBz7iM6M1egc2CFKva24CfpxGQPwKn2Ye+NqT7z5K
+         ddDw==
+X-Gm-Message-State: ANoB5plGbhiXegdwJfXk4SOi96bWRViM+j5hzsj9Z6dy2JbSIdDZHdA3
+        /Lod92Hi/WYobrewm0Q4wNw0tg==
+X-Google-Smtp-Source: AA0mqf6eeEHhhxK6RxscWgzRkeJS+Z73karOL8G1Cll4V/G4ET6dxlzUFdmwBPGLNNNQKDtjBb6y9g==
+X-Received: by 2002:adf:ce0f:0:b0:22e:2e22:6698 with SMTP id p15-20020adfce0f000000b0022e2e226698mr3805864wrn.296.1668761108653;
+        Fri, 18 Nov 2022 00:45:08 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id v18-20020a5d6112000000b00236e834f050sm2960284wrt.35.2022.11.18.00.45.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 00:45:08 -0800 (PST)
+Subject: [PATCH v2 0/6] soc: qcom: add support for the I2C Master Hub
 MIME-Version: 1.0
-References: <e9d8c14d-38b3-0401-7bfc-b2bd7ab36c52@linaro.org>
- <20221116193940.67445-1-blarson@amd.com> <20221116223045.GA1130586-robh@kernel.org>
- <BL0PR12MB2401ECC21B2EA83A5D806E369B069@BL0PR12MB2401.namprd12.prod.outlook.com>
- <BL0PR12MB2401AFF244ADF7B026935A419B069@BL0PR12MB2401.namprd12.prod.outlook.com>
-In-Reply-To: <BL0PR12MB2401AFF244ADF7B026935A419B069@BL0PR12MB2401.namprd12.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Nov 2022 09:42:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXuTxAZsrqHxfhwhWq6xmJVRuzFNmgMx26zBAY=D2s19A@mail.gmail.com>
-Message-ID: <CAMuHMdXuTxAZsrqHxfhwhWq6xmJVRuzFNmgMx26zBAY=D2s19A@mail.gmail.com>
-Subject: Re: [PATCH v8 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
- Pensando Elba System Resource chip
-To:     "Larson, Bradley" <Bradley.Larson@amd.com>
-Cc:     Rob Herring <robh@kernel.org>, Brad Larson <brad@pensando.io>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "alcooperx@gmail.com" <alcooperx@gmail.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
-        "gsomlo@gmail.com" <gsomlo@gmail.com>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "p.yadav@ti.com" <p.yadav@ti.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "piotrs@cadence.com" <piotrs@cadence.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "samuel@sholland.org" <samuel@sholland.org>,
-        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
-        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIABBGd2MC/52NTQrCMBCFryJZO5IJ6Z8r7yEukjo2gSaRTFuQ0rs7eARXj+/B+96umGokVtfTri
+ ptkWPJAuZ8UmNweSKIT2FltDGIaCG7mnipJU/AqW8aDetbmFyCaEZIjheqEFYP1rru5XGwXUNKfN4x
+ ga8uj0GMeZ1nKUPkpdTP739Difs/VxuChtZaO6BuHdr+NkdZl0upk3ocx/EF0WZInegAAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Fri, 18 Nov 2022 09:45:04 +0100
+Message-Id: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v2-0-aadaa6997b28@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
+The I2C Master Hub is a stripped down version of the GENI Serial Engine
+QUP Wrapper Controller but only supporting I2C serial engines without
+DMA support.
 
-On Thu, Nov 17, 2022 at 7:39 PM Larson, Bradley <Bradley.Larson@amd.com> wrote:
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> > > ...
-> > > > > +
-> > > > > +title: AMD Pensando Elba SoC Resource Controller
-> > > > > +
-> > > > > +description: |
-> > > > > +  AMD Pensando Elba SoC Resource Controller functions are
-> > > > > +  accessed with four chip-selects.  Reset control is on CS0.
-> > > >
-> > > > One device with 4 chip-selects? Then I'd expect 'reg = <0 1 2 3>;'
-> > > >
-> > > > Hard to say more because I don't have the whole thread nor remember what
-> > > > exactly we discussed before. That was 100s of bindings ago...
-> > >
-> > > I agree and the example for v7 had all 4 chip-selects shown.
-> >
-> > That is not what I said. Look at 'reg' above again. You have 1 device,
-> > but you have 4 nodes which looks like separate 4 devices. The
-> > exception would be if what's on each chip select is independent from
-> > each other.
-> >
-> > Describe what your h/w has/is/does so we can provide better guidance.
->
-> This is the hardware design for every implementation with the Elba SoC
->
->   Elba <-- spi --> One FPGA or CPLD (4 chip-selects)
->
-> where there are four functions in the FPGA accessed by userspace applications except for emmc reset control which is a bit in a CS0 register.  The IP at CS0 is a bunch of miscellaneous mgmt registers.  CS1 is a designware I2C master/slave.  CS2 is a Lattice dual I2C master.  CS3 is internal storage for the CPLD or FPGA depending on the hardware implementation.
->
-> 'reg = <0 1 2 3>' in the dt fragment below is indicating the chip-select which is what other bindings appear to be doing.  Maybe one answer is delete this and add our compatible to spidev.c in the patchset we provide to customers.  Adding our compatible to spidev.c was nack'ed. Recommendation?
+The I2C Master Hub only supports a variant of the I2C serial engine with:
+- a separate "core" clock
+- no DMA support
+- non discoverable fixed FIFO size
 
-The fragment below does not have "reg = <0 1 2 3>", but individual
-subnodes, each with their own "reg" property.
+Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
+and the iommus property neither.
 
-> Not including 'reg' results in this compile warning:
->
->   DTC     arch/arm64/boot/dts/amd/elba-asic.dtb
-> arch/arm64/boot/dts/amd/elba-asic-common.dtsi:73.28-78.4: Warning (spi_bus_reg): /soc/spi@2800/system-controller@0: missing or empty reg property
-> arch/arm64/boot/dts/amd/elba-asic-common.dtsi:80.22-84.4: Warning (spi_bus_reg): /soc/spi@2800/system-controller@1: missing or empty reg property
-> arch/arm64/boot/dts/amd/elba-asic-common.dtsi:86.22-92.4: Warning (spi_bus_reg): /soc/spi@2800/system-controller@2: missing or empty reg property
-> arch/arm64/boot/dts/amd/elba-asic-common.dtsi:94.22-98.4: Warning (spi_bus_reg): /soc/spi@2800/system-controller@3: missing or empty reg property
->   CALL    scripts/atomic/check-atomics.sh
->
-> &emmc {
->         bus-width = <8>;
->         cap-mmc-hw-reset;
->         reset-names = "hw";
->         resets = <&rstc 0>;
->         status = "okay";
-> };
->
-> &spi0 {
->         #address-cells = <1>;
->         #size-cells = <0>;
->         num-cs = <4>;
->         cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
->                    <&porta 7 GPIO_ACTIVE_LOW>;
->         status = "okay";
->
->         rstc: system-controller@0 {
->                 compatible = "amd,pensando-elbasr";
->                 reg = <0>;
->                 spi-max-frequency = <12000000>;
->                 #reset-cells = <1>;
->         };
->
->         system-controller@1 {
->                 compatible = "amd,pensando-elbasr";
->                 reg = <1>;
->                 spi-max-frequency = <12000000>;
->         };
->
->         system-controller@2 {
->                 compatible = "amd,pensando-elbasr";
->                 reg = <2>;
->                 spi-max-frequency = <12000000>;
->                 interrupt-parent = <&porta>;
->                 interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
->         };
->
->         system-controller@3 {
->                 compatible = "amd,pensando-elbasr";
->                 reg = <3>;
->                 spi-max-frequency = <12000000>;
->         };
+This patchset adds the bindings changes to the QUPv3 wrapper and I2C serial
+element bindings to reflect the different resources requirements.
 
-The above describes 4 individual but further identical (they have the
-same compatible value) devices, while above you say they are not identical:
+In order to reuse the QUPv3 wrapper and I2C serial element driver support,
+the I2C Master Hub requirements are expressed in new desc structs passed
+as device match data.
 
-    The IP at CS0 is a bunch of miscellaneous mgmt registers.
-    CS1 is a designware I2C master/slave.
-    CS2 is a Lattice dual I2C master.
-    CS3 is internal storage for the CPLD or FPGA depending on the
-hardware implementation.
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-So either this should be modelled as a single subnode with 4 chip
-selects[*]:
+---
+Changes in v2:
+- Fixed all commits messages to remove "This" and fix grammar
+- Fixed the bindings by moving the if in allOf:if
+- Fixed the bindings by adding minItems: & maxItems: instead of true
+- Added a warning about clock count in patch 3
+- Added Reviewed-by from Konrad on patches 3, 4 & 5
+- Link to v1: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-i2c-master-hub-v1-0-64449106a148@linaro.org
 
-        system-controller@0 {
-                compatible = "amd,pensando-elbasr";
-                reg = <0 1 2 3 4>;
-                spi-max-frequency = <12000000>;
-                #reset-cells = <1>;
-        };
+---
+Neil Armstrong (6):
+      dt-bindings: qcom: geni-se: document I2C Master Hub wrapper variant
+      dt-bindings: i2c: qcom-geni: document I2C Master Hub serial I2C engine
+      soc: qcom: geni-se: add desc struct to specify clocks from device match data
+      soc: qcom: geni-se: add support for I2C Master Hub wrapper variant
+      i2c: qcom-geni: add desc struct to prepare support for I2C Master Hub variant
+      i2c: qcom-geni: add support for I2C Master Hub variant
 
-or as 4 separate subnodes, each using 4 different compatible values.
-Giving the wildly different functionalities provided by each, you also need
-4 binding documents.
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml           | 64 ++++++++++++++++----
+ .../devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 44 ++++++++++++--
+ drivers/i2c/busses/i2c-qcom-geni.c                 | 58 +++++++++++++++++-
+ drivers/soc/qcom/qcom-geni-se.c                    | 69 +++++++++++++++++-----
+ 4 files changed, 202 insertions(+), 33 deletions(-)
+---
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+change-id: 20221114-narmstrong-sm8550-upstream-i2c-master-hub-44a7fb19475e
 
-[*] I'm not sure the Linux SPI core actually supports this yet.
-
-> };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
