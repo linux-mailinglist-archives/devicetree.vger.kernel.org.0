@@ -2,861 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C4462FA23
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D04BF62FA29
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:24:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241331AbiKRQWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:22:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
+        id S235153AbiKRQYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:24:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235221AbiKRQWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:22:40 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD7C9208F
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:22:37 -0800 (PST)
-Received: from mail-yb1-f199.google.com (mail-yb1-f199.google.com [209.85.219.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8B9F63F20D
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 16:22:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668788549;
-        bh=UIuXrM1nrVnpPWLQTVj4KoTkLg8yi2TmNazv9H3mek8=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=c0H5iJqe+bqddbfgQ+pF+wvCRCClczFCq6WPn2n71ZWUiEUzl9OJv2csRCiI05nM9
-         IvKsXb4YCEjDP67IsFNADDKYeXUAMGSrfVT/KuVrd6vh0QHNqL4cWDpZ9gLW7x+oou
-         mL5MunJrcyKqmy4blyrqFCx9Emq4LCCDIsPf26PKX7kN+zQY6CjWz8uHEb5whBlqKd
-         a7lkBu8MYOi1CaCSU47GQ3n/M86hxX0YHKihf/tok6JSYjIbzXMeifCaITOh62KT4m
-         lRu/pww5Uab8Gs3QRpscFXE6Z3XhRng0RMLXgt2LvFGB44wy6OzqlKMxp6FTyC+QYh
-         mHCwg+/esSrow==
-Received: by mail-yb1-f199.google.com with SMTP id j132-20020a25238a000000b006da635e2073so4843921ybj.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:22:29 -0800 (PST)
+        with ESMTP id S233971AbiKRQYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:24:52 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B0AAE5B
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:24:51 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id z24so7400097ljn.4
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 08:24:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TyvEqZNJ/MRi1G8+a46Jw9oIBcHIz45goT0ItOFpL6k=;
+        b=AZVccVwGjF3Vxy7sxVUW8prhfRscUTczTjzZe6fpzB+s12ve3OBjdTgsekqRUV3dUY
+         du3wJD+Atk+RcvhaG3hEPj+8BUQlM+jopsSOS2DYixYFbH9ub4f7yKQX8b+2V/moKpg4
+         Zw+u5UbXccgPVhjzpNoJNUO10H9Th8+JSUmXEsjF9uqeBSdDkKNTaQ9p+yGGwc9Fcu1q
+         jYdNYkwfHy2wg815374Dze6x98QYVcn9z5fRR8h+WkimYLPHnh2je8825+gtKamGn6FK
+         Sss+xcIulhWWFxreh7RKC2LQi2cgf+3tuHUiAZQoiwEG6HPD1pm8p0avBF9aK7ySOgPN
+         Hkzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UIuXrM1nrVnpPWLQTVj4KoTkLg8yi2TmNazv9H3mek8=;
-        b=AGEC1NsNKoyICWVBk3C6dGyKAoFQrFcQblmquVptxbxx1e1q6nNR+Vlv6fj9ZsoKOS
-         iMekoObjF20aunOo23+MrFFkimSYLCPfyZuwhZazPa3vlUkjnkgYUTxtx0pF8sbOkpIL
-         k2x1iWydxE/k0/69e/btIL00gG11WHMqgIinLJUMJ7JVtzqoEdVCFBjZwDJ7k6W2jXVa
-         rtuTN3mUE9vPWyjXkzulxiqx4FI+odH4KYfbfahMXO260Ih/zVeBQkNkHRzGmXUfMECq
-         OuPAnVviLou+XURGGy0piduSw4LtufcMn2TJP07kS6T945T3Lu9XYWm4kQ/jZzHV1cUJ
-         AmsQ==
-X-Gm-Message-State: ANoB5pkJ9cRDEURsls3SG9+RWE+f3JeYeocIN95Banzj/QZwEAnEXFPW
-        x0NiXEu7shYu41yWIrix7HFIUkckoTmFTRZXzIwU9XbyCd0RjMasolMnApJhrnC04kqRwkdgdeT
-        +wlzjsfdNZkzmlX1asFOgOr2dCQP+2E3cH+Etu6IJZRik13zBNTemDMo=
-X-Received: by 2002:a25:abe4:0:b0:6e7:cbc4:1ac3 with SMTP id v91-20020a25abe4000000b006e7cbc41ac3mr5814650ybi.559.1668788547245;
-        Fri, 18 Nov 2022 08:22:27 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5Z+nWiESsyhyw2ii4v0Xj3hmukMVm82cnfkoBX45XLT0igqXvEGGvMxcYfTrtWigVZvs/Bu94g2NFIVfZaPHE=
-X-Received: by 2002:a25:abe4:0:b0:6e7:cbc4:1ac3 with SMTP id
- v91-20020a25abe4000000b006e7cbc41ac3mr5814615ybi.559.1668788546889; Fri, 18
- Nov 2022 08:22:26 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TyvEqZNJ/MRi1G8+a46Jw9oIBcHIz45goT0ItOFpL6k=;
+        b=QWGkNB6B7Y5FHR/YJ/IIevzmIxEyONkhLJlx2Wrg9GJBq6/HecSg1WPIIPsn3mLtKM
+         Pd4vJGXqTgw2uiH6CR8SfoSe/h36RGkNaMet39z+m/bveI8nUexwKvyn8scs7DCf1lBj
+         3MTenmm9+sFOo8DXjEI1JNlKJgX7sVsvMJ6/FXSi1zeeNTnzlfkuoY3jDDEdHtu/RM1f
+         TNH6ffhnmxNgQK0yiXyVT4jVzWD2V2WPfsj8D8EIPEXk89v9u9UMTCQCZYD2id2ccmlO
+         9Lm/qqjEEWlzo71FzbWaGEi/92BBBeiJ/vaK9IxNeAuqoGJXgedfKmbejEqEtq2EuXSp
+         R6cw==
+X-Gm-Message-State: ANoB5pk/LkCOtjg7VE5mn17E7Tc/cMq7Oo5SGrdiHsNGk3vOz99yVN8s
+        8oeDA9g4B35dc4HPe3HUpBX1yg==
+X-Google-Smtp-Source: AA0mqf4rJCEmefb/9vbDfhMOh/I4HZfeXCgo54yyLoE8CtCIOwEz8eHs4DpWhU8WfEwaQUk5zP+9WQ==
+X-Received: by 2002:a2e:bd0c:0:b0:277:10c2:e7ce with SMTP id n12-20020a2ebd0c000000b0027710c2e7cemr2918150ljq.370.1668788689586;
+        Fri, 18 Nov 2022 08:24:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t7-20020a056512030700b004979ec19380sm714550lfp.285.2022.11.18.08.24.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 08:24:49 -0800 (PST)
+Message-ID: <d2fac789-4064-2c8a-5527-0da5b348a29d@linaro.org>
+Date:   Fri, 18 Nov 2022 17:24:47 +0100
 MIME-Version: 1.0
-References: <20221118010627.70576-1-hal.feng@starfivetech.com> <20221118010627.70576-2-hal.feng@starfivetech.com>
-In-Reply-To: <20221118010627.70576-2-hal.feng@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 17:22:10 +0100
-Message-ID: <CAJM55Z8nGNm_TrTsw0HZnAVehWrFU9-MtAj0ngRRx_E8jFapGg@mail.gmail.com>
-Subject: Re: [PATCH v2 01/14] clk: starfive: Factor out common JH7100 and
- JH7110 code
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: qcom: Add SM8550 pinctrl
+ bindings
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20221116105724.2600349-1-abel.vesa@linaro.org>
+ <20221116105724.2600349-2-abel.vesa@linaro.org>
+ <368cd281-b461-e668-0b57-cbb83f5b8086@linaro.org>
+ <e825bfbb-dc77-016a-3f56-9474aef06085@linaro.org>
+Content-Language: en-US
+In-Reply-To: <e825bfbb-dc77-016a-3f56-9474aef06085@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> From: Emil Renner Berthing <kernel@esmil.dk>
->
-> The clock control registers on the StarFive JH7100 and JH7110 work
-> identically, so factor out the code then drivers for the two SoCs
-> can share it without depending on each other. No functional change.
->
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  MAINTAINERS                                |   2 +-
->  drivers/clk/starfive/Kconfig               |   5 +
->  drivers/clk/starfive/Makefile              |   3 +-
->  drivers/clk/starfive/clk-starfive-jh7100.c | 325 --------------------
->  drivers/clk/starfive/clk-starfive-jh7100.h |   2 +
->  drivers/clk/starfive/clk-starfive-jh71x0.c | 333 +++++++++++++++++++++
->  6 files changed, 343 insertions(+), 327 deletions(-)
->  create mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 256f03904987..d43daa89d5f1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19602,7 +19602,7 @@ STARFIVE JH7100 CLOCK DRIVERS
->  M:     Emil Renner Berthing <kernel@esmil.dk>
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/clock/starfive,jh7100-*.yaml
-> -F:     drivers/clk/starfive/clk-starfive-jh7100*
-> +F:     drivers/clk/starfive/
+On 18/11/2022 17:10, Krzysztof Kozlowski wrote:
+>>> +
+>>> +  "^.+-hog(-[0-9]+)?$":
+>>> +    type: object
+>>> +    properties:
+>>> +      gpio-hog: true
+>>> +      gpios: true
+>>> +      input: true
+>>> +      output-high: true
+>>> +      output-low: true
+>>> +      line-name: true
+>>
+>> Keep properties sorted by name (just like gpio-hog.yaml).
+>>
+>> I wonder if we could add this to the common TLMM schema. It will appear
+>> in multiple places.
+> 
+> Answering to myself - this would require moving the 'state'
+> patternProperties part to the common schema, so maybe later... Looks
+> fine with changes about ordering.
 
-When this entry cover all the starfive clock drivers the header should
-also match. Eg.
-STARFIVE CLOCK DRIVERS
+If Rob likes my solution here:
+https://lore.kernel.org/linux-arm-msm/20221118162101.145267-1-krzysztof.kozlowski@linaro.org/T/#u
 
+then please go with similar way. It allows to skip listing the properties.
 
->  F:     include/dt-bindings/clock/starfive-jh7100*.h
->
->  STARFIVE JH7100 PINCTRL DRIVER
-> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
-> index 003bd2d56ce7..594d516dcb38 100644
-> --- a/drivers/clk/starfive/Kconfig
-> +++ b/drivers/clk/starfive/Kconfig
-> @@ -1,8 +1,12 @@
->  # SPDX-License-Identifier: GPL-2.0
->
-> +config CLK_STARFIVE_JH71X0
-> +       bool
-> +
->  config CLK_STARFIVE_JH7100
->         bool "StarFive JH7100 clock support"
->         depends on SOC_STARFIVE || COMPILE_TEST
-> +       select CLK_STARFIVE_JH71X0
->         default SOC_STARFIVE
->         help
->           Say yes here to support the clock controller on the StarFive JH7100
-> @@ -11,6 +15,7 @@ config CLK_STARFIVE_JH7100
->  config CLK_STARFIVE_JH7100_AUDIO
->         tristate "StarFive JH7100 audio clock support"
->         depends on CLK_STARFIVE_JH7100
-> +       select CLK_STARFIVE_JH71X0
->         default m if SOC_STARFIVE
->         help
->           Say Y or M here to support the audio clocks on the StarFive JH7100
-> diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
-> index 0fa8ecb9ec1c..82edfa9f9cb8 100644
-> --- a/drivers/clk/starfive/Makefile
-> +++ b/drivers/clk/starfive/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -# StarFive Clock
-> +obj-$(CONFIG_CLK_STARFIVE_JH71X0)      += clk-starfive-jh71x0.o
-> +
->  obj-$(CONFIG_CLK_STARFIVE_JH7100)      += clk-starfive-jh7100.o
->  obj-$(CONFIG_CLK_STARFIVE_JH7100_AUDIO)        += clk-starfive-jh7100-audio.o
-> diff --git a/drivers/clk/starfive/clk-starfive-jh7100.c b/drivers/clk/starfive/clk-starfive-jh7100.c
-> index 691aeebc7092..eea52f16af0d 100644
-> --- a/drivers/clk/starfive/clk-starfive-jh7100.c
-> +++ b/drivers/clk/starfive/clk-starfive-jh7100.c
-> @@ -7,15 +7,10 @@
->   * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
->   */
->
-> -#include <linux/bits.h>
->  #include <linux/clk-provider.h>
-> -#include <linux/debugfs.h>
->  #include <linux/device.h>
->  #include <linux/init.h>
-> -#include <linux/io.h>
-> -#include <linux/kernel.h>
->  #include <linux/mod_devicetable.h>
-> -#include <linux/module.h>
->  #include <linux/platform_device.h>
->
->  #include <dt-bindings/clock/starfive-jh7100.h>
-> @@ -269,326 +264,6 @@ static const struct jh7100_clk_data jh7100_clk_data[] __initconst = {
->         JH7100_GATE(JH7100_CLK_SYSERR_APB, "syserr_apb", 0, JH7100_CLK_APB2_BUS),
->  };
->
-> -static struct jh7100_clk *jh7100_clk_from(struct clk_hw *hw)
-> -{
-> -       return container_of(hw, struct jh7100_clk, hw);
-> -}
-> -
-> -static struct jh7100_clk_priv *jh7100_priv_from(struct jh7100_clk *clk)
-> -{
-> -       return container_of(clk, struct jh7100_clk_priv, reg[clk->idx]);
-> -}
-> -
-> -static u32 jh7100_clk_reg_get(struct jh7100_clk *clk)
-> -{
-> -       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> -       void __iomem *reg = priv->base + 4 * clk->idx;
-> -
-> -       return readl_relaxed(reg);
-> -}
-> -
-> -static void jh7100_clk_reg_rmw(struct jh7100_clk *clk, u32 mask, u32 value)
-> -{
-> -       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> -       void __iomem *reg = priv->base + 4 * clk->idx;
-> -       unsigned long flags;
-> -
-> -       spin_lock_irqsave(&priv->rmw_lock, flags);
-> -       value |= readl_relaxed(reg) & ~mask;
-> -       writel_relaxed(value, reg);
-> -       spin_unlock_irqrestore(&priv->rmw_lock, flags);
-> -}
-> -
-> -static int jh7100_clk_enable(struct clk_hw *hw)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_ENABLE, JH7100_CLK_ENABLE);
-> -       return 0;
-> -}
-> -
-> -static void jh7100_clk_disable(struct clk_hw *hw)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_ENABLE, 0);
-> -}
-> -
-> -static int jh7100_clk_is_enabled(struct clk_hw *hw)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -
-> -       return !!(jh7100_clk_reg_get(clk) & JH7100_CLK_ENABLE);
-> -}
-> -
-> -static unsigned long jh7100_clk_recalc_rate(struct clk_hw *hw,
-> -                                           unsigned long parent_rate)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 div = jh7100_clk_reg_get(clk) & JH7100_CLK_DIV_MASK;
-> -
-> -       return div ? parent_rate / div : 0;
-> -}
-> -
-> -static int jh7100_clk_determine_rate(struct clk_hw *hw,
-> -                                    struct clk_rate_request *req)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       unsigned long parent = req->best_parent_rate;
-> -       unsigned long rate = clamp(req->rate, req->min_rate, req->max_rate);
-> -       unsigned long div = min_t(unsigned long, DIV_ROUND_UP(parent, rate), clk->max_div);
-> -       unsigned long result = parent / div;
-> -
-> -       /*
-> -        * we want the result clamped by min_rate and max_rate if possible:
-> -        * case 1: div hits the max divider value, which means it's less than
-> -        * parent / rate, so the result is greater than rate and min_rate in
-> -        * particular. we can't do anything about result > max_rate because the
-> -        * divider doesn't go any further.
-> -        * case 2: div = DIV_ROUND_UP(parent, rate) which means the result is
-> -        * always lower or equal to rate and max_rate. however the result may
-> -        * turn out lower than min_rate, but then the next higher rate is fine:
-> -        *   div - 1 = ceil(parent / rate) - 1 < parent / rate
-> -        * and thus
-> -        *   min_rate <= rate < parent / (div - 1)
-> -        */
-> -       if (result < req->min_rate && div > 1)
-> -               result = parent / (div - 1);
-> -
-> -       req->rate = result;
-> -       return 0;
-> -}
-> -
-> -static int jh7100_clk_set_rate(struct clk_hw *hw,
-> -                              unsigned long rate,
-> -                              unsigned long parent_rate)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       unsigned long div = clamp(DIV_ROUND_CLOSEST(parent_rate, rate),
-> -                                 1UL, (unsigned long)clk->max_div);
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_DIV_MASK, div);
-> -       return 0;
-> -}
-> -
-> -static unsigned long jh7100_clk_frac_recalc_rate(struct clk_hw *hw,
-> -                                                unsigned long parent_rate)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 reg = jh7100_clk_reg_get(clk);
-> -       unsigned long div100 = 100 * (reg & JH7100_CLK_INT_MASK) +
-> -                              ((reg & JH7100_CLK_FRAC_MASK) >> JH7100_CLK_FRAC_SHIFT);
-> -
-> -       return (div100 >= JH7100_CLK_FRAC_MIN) ? 100 * parent_rate / div100 : 0;
-> -}
-> -
-> -static int jh7100_clk_frac_determine_rate(struct clk_hw *hw,
-> -                                         struct clk_rate_request *req)
-> -{
-> -       unsigned long parent100 = 100 * req->best_parent_rate;
-> -       unsigned long rate = clamp(req->rate, req->min_rate, req->max_rate);
-> -       unsigned long div100 = clamp(DIV_ROUND_CLOSEST(parent100, rate),
-> -                                    JH7100_CLK_FRAC_MIN, JH7100_CLK_FRAC_MAX);
-> -       unsigned long result = parent100 / div100;
-> -
-> -       /* clamp the result as in jh7100_clk_determine_rate() above */
-> -       if (result > req->max_rate && div100 < JH7100_CLK_FRAC_MAX)
-> -               result = parent100 / (div100 + 1);
-> -       if (result < req->min_rate && div100 > JH7100_CLK_FRAC_MIN)
-> -               result = parent100 / (div100 - 1);
-> -
-> -       req->rate = result;
-> -       return 0;
-> -}
-> -
-> -static int jh7100_clk_frac_set_rate(struct clk_hw *hw,
-> -                                   unsigned long rate,
-> -                                   unsigned long parent_rate)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       unsigned long div100 = clamp(DIV_ROUND_CLOSEST(100 * parent_rate, rate),
-> -                                    JH7100_CLK_FRAC_MIN, JH7100_CLK_FRAC_MAX);
-> -       u32 value = ((div100 % 100) << JH7100_CLK_FRAC_SHIFT) | (div100 / 100);
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_DIV_MASK, value);
-> -       return 0;
-> -}
-> -
-> -static u8 jh7100_clk_get_parent(struct clk_hw *hw)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 value = jh7100_clk_reg_get(clk);
-> -
-> -       return (value & JH7100_CLK_MUX_MASK) >> JH7100_CLK_MUX_SHIFT;
-> -}
-> -
-> -static int jh7100_clk_set_parent(struct clk_hw *hw, u8 index)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 value = (u32)index << JH7100_CLK_MUX_SHIFT;
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_MUX_MASK, value);
-> -       return 0;
-> -}
-> -
-> -static int jh7100_clk_mux_determine_rate(struct clk_hw *hw,
-> -                                        struct clk_rate_request *req)
-> -{
-> -       return clk_mux_determine_rate_flags(hw, req, 0);
-> -}
-> -
-> -static int jh7100_clk_get_phase(struct clk_hw *hw)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 value = jh7100_clk_reg_get(clk);
-> -
-> -       return (value & JH7100_CLK_INVERT) ? 180 : 0;
-> -}
-> -
-> -static int jh7100_clk_set_phase(struct clk_hw *hw, int degrees)
-> -{
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       u32 value;
-> -
-> -       if (degrees == 0)
-> -               value = 0;
-> -       else if (degrees == 180)
-> -               value = JH7100_CLK_INVERT;
-> -       else
-> -               return -EINVAL;
-> -
-> -       jh7100_clk_reg_rmw(clk, JH7100_CLK_INVERT, value);
-> -       return 0;
-> -}
-> -
-> -#ifdef CONFIG_DEBUG_FS
-> -static void jh7100_clk_debug_init(struct clk_hw *hw, struct dentry *dentry)
-> -{
-> -       static const struct debugfs_reg32 jh7100_clk_reg = {
-> -               .name = "CTRL",
-> -               .offset = 0,
-> -       };
-> -       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> -       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> -       struct debugfs_regset32 *regset;
-> -
-> -       regset = devm_kzalloc(priv->dev, sizeof(*regset), GFP_KERNEL);
-> -       if (!regset)
-> -               return;
-> -
-> -       regset->regs = &jh7100_clk_reg;
-> -       regset->nregs = 1;
-> -       regset->base = priv->base + 4 * clk->idx;
-> -
-> -       debugfs_create_regset32("registers", 0400, dentry, regset);
-> -}
-> -#else
-> -#define jh7100_clk_debug_init NULL
-> -#endif
-> -
-> -static const struct clk_ops jh7100_clk_gate_ops = {
-> -       .enable = jh7100_clk_enable,
-> -       .disable = jh7100_clk_disable,
-> -       .is_enabled = jh7100_clk_is_enabled,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_div_ops = {
-> -       .recalc_rate = jh7100_clk_recalc_rate,
-> -       .determine_rate = jh7100_clk_determine_rate,
-> -       .set_rate = jh7100_clk_set_rate,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_fdiv_ops = {
-> -       .recalc_rate = jh7100_clk_frac_recalc_rate,
-> -       .determine_rate = jh7100_clk_frac_determine_rate,
-> -       .set_rate = jh7100_clk_frac_set_rate,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_gdiv_ops = {
-> -       .enable = jh7100_clk_enable,
-> -       .disable = jh7100_clk_disable,
-> -       .is_enabled = jh7100_clk_is_enabled,
-> -       .recalc_rate = jh7100_clk_recalc_rate,
-> -       .determine_rate = jh7100_clk_determine_rate,
-> -       .set_rate = jh7100_clk_set_rate,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_mux_ops = {
-> -       .determine_rate = jh7100_clk_mux_determine_rate,
-> -       .set_parent = jh7100_clk_set_parent,
-> -       .get_parent = jh7100_clk_get_parent,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_gmux_ops = {
-> -       .enable = jh7100_clk_enable,
-> -       .disable = jh7100_clk_disable,
-> -       .is_enabled = jh7100_clk_is_enabled,
-> -       .determine_rate = jh7100_clk_mux_determine_rate,
-> -       .set_parent = jh7100_clk_set_parent,
-> -       .get_parent = jh7100_clk_get_parent,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_mdiv_ops = {
-> -       .recalc_rate = jh7100_clk_recalc_rate,
-> -       .determine_rate = jh7100_clk_determine_rate,
-> -       .get_parent = jh7100_clk_get_parent,
-> -       .set_parent = jh7100_clk_set_parent,
-> -       .set_rate = jh7100_clk_set_rate,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_gmd_ops = {
-> -       .enable = jh7100_clk_enable,
-> -       .disable = jh7100_clk_disable,
-> -       .is_enabled = jh7100_clk_is_enabled,
-> -       .recalc_rate = jh7100_clk_recalc_rate,
-> -       .determine_rate = jh7100_clk_determine_rate,
-> -       .get_parent = jh7100_clk_get_parent,
-> -       .set_parent = jh7100_clk_set_parent,
-> -       .set_rate = jh7100_clk_set_rate,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -static const struct clk_ops jh7100_clk_inv_ops = {
-> -       .get_phase = jh7100_clk_get_phase,
-> -       .set_phase = jh7100_clk_set_phase,
-> -       .debug_init = jh7100_clk_debug_init,
-> -};
-> -
-> -const struct clk_ops *starfive_jh7100_clk_ops(u32 max)
-> -{
-> -       if (max & JH7100_CLK_DIV_MASK) {
-> -               if (max & JH7100_CLK_MUX_MASK) {
-> -                       if (max & JH7100_CLK_ENABLE)
-> -                               return &jh7100_clk_gmd_ops;
-> -                       return &jh7100_clk_mdiv_ops;
-> -               }
-> -               if (max & JH7100_CLK_ENABLE)
-> -                       return &jh7100_clk_gdiv_ops;
-> -               if (max == JH7100_CLK_FRAC_MAX)
-> -                       return &jh7100_clk_fdiv_ops;
-> -               return &jh7100_clk_div_ops;
-> -       }
-> -
-> -       if (max & JH7100_CLK_MUX_MASK) {
-> -               if (max & JH7100_CLK_ENABLE)
-> -                       return &jh7100_clk_gmux_ops;
-> -               return &jh7100_clk_mux_ops;
-> -       }
-> -
-> -       if (max & JH7100_CLK_ENABLE)
-> -               return &jh7100_clk_gate_ops;
-> -
-> -       return &jh7100_clk_inv_ops;
-> -}
-> -EXPORT_SYMBOL_GPL(starfive_jh7100_clk_ops);
-> -
->  static struct clk_hw *jh7100_clk_get(struct of_phandle_args *clkspec, void *data)
->  {
->         struct jh7100_clk_priv *priv = data;
-> diff --git a/drivers/clk/starfive/clk-starfive-jh7100.h b/drivers/clk/starfive/clk-starfive-jh7100.h
-> index f116be5740a5..a8ba6e25b5ce 100644
-> --- a/drivers/clk/starfive/clk-starfive-jh7100.h
-> +++ b/drivers/clk/starfive/clk-starfive-jh7100.h
-> @@ -4,6 +4,8 @@
->
->  #include <linux/bits.h>
->  #include <linux/clk-provider.h>
-> +#include <linux/device.h>
-> +#include <linux/spinlock.h>
->
->  /* register fields */
->  #define JH7100_CLK_ENABLE      BIT(31)
-> diff --git a/drivers/clk/starfive/clk-starfive-jh71x0.c b/drivers/clk/starfive/clk-starfive-jh71x0.c
-> new file mode 100644
-> index 000000000000..6c07b61b4a32
-> --- /dev/null
-> +++ b/drivers/clk/starfive/clk-starfive-jh71x0.c
-> @@ -0,0 +1,333 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * StarFive JH7100 Clock Generator Driver
-> + *
-> + * Copyright (C) 2021-2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +
-> +#include "clk-starfive-jh7100.h"
-> +
-> +static struct jh7100_clk *jh7100_clk_from(struct clk_hw *hw)
-> +{
-> +       return container_of(hw, struct jh7100_clk, hw);
-> +}
-> +
-> +static struct jh7100_clk_priv *jh7100_priv_from(struct jh7100_clk *clk)
-> +{
-> +       return container_of(clk, struct jh7100_clk_priv, reg[clk->idx]);
-> +}
-> +
-> +static u32 jh7100_clk_reg_get(struct jh7100_clk *clk)
-> +{
-> +       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> +       void __iomem *reg = priv->base + 4 * clk->idx;
-> +
-> +       return readl_relaxed(reg);
-> +}
-> +
-> +static void jh7100_clk_reg_rmw(struct jh7100_clk *clk, u32 mask, u32 value)
-> +{
-> +       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> +       void __iomem *reg = priv->base + 4 * clk->idx;
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&priv->rmw_lock, flags);
-> +       value |= readl_relaxed(reg) & ~mask;
-> +       writel_relaxed(value, reg);
-> +       spin_unlock_irqrestore(&priv->rmw_lock, flags);
-> +}
-> +
-> +static int jh7100_clk_enable(struct clk_hw *hw)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_ENABLE, JH7100_CLK_ENABLE);
-> +       return 0;
-> +}
-> +
-> +static void jh7100_clk_disable(struct clk_hw *hw)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_ENABLE, 0);
-> +}
-> +
-> +static int jh7100_clk_is_enabled(struct clk_hw *hw)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +
-> +       return !!(jh7100_clk_reg_get(clk) & JH7100_CLK_ENABLE);
-> +}
-> +
-> +static unsigned long jh7100_clk_recalc_rate(struct clk_hw *hw,
-> +                                           unsigned long parent_rate)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 div = jh7100_clk_reg_get(clk) & JH7100_CLK_DIV_MASK;
-> +
-> +       return div ? parent_rate / div : 0;
-> +}
-> +
-> +static int jh7100_clk_determine_rate(struct clk_hw *hw,
-> +                                    struct clk_rate_request *req)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       unsigned long parent = req->best_parent_rate;
-> +       unsigned long rate = clamp(req->rate, req->min_rate, req->max_rate);
-> +       unsigned long div = min_t(unsigned long, DIV_ROUND_UP(parent, rate), clk->max_div);
-> +       unsigned long result = parent / div;
-> +
-> +       /*
-> +        * we want the result clamped by min_rate and max_rate if possible:
-> +        * case 1: div hits the max divider value, which means it's less than
-> +        * parent / rate, so the result is greater than rate and min_rate in
-> +        * particular. we can't do anything about result > max_rate because the
-> +        * divider doesn't go any further.
-> +        * case 2: div = DIV_ROUND_UP(parent, rate) which means the result is
-> +        * always lower or equal to rate and max_rate. however the result may
-> +        * turn out lower than min_rate, but then the next higher rate is fine:
-> +        *   div - 1 = ceil(parent / rate) - 1 < parent / rate
-> +        * and thus
-> +        *   min_rate <= rate < parent / (div - 1)
-> +        */
-> +       if (result < req->min_rate && div > 1)
-> +               result = parent / (div - 1);
-> +
-> +       req->rate = result;
-> +       return 0;
-> +}
-> +
-> +static int jh7100_clk_set_rate(struct clk_hw *hw,
-> +                              unsigned long rate,
-> +                              unsigned long parent_rate)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       unsigned long div = clamp(DIV_ROUND_CLOSEST(parent_rate, rate),
-> +                                 1UL, (unsigned long)clk->max_div);
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_DIV_MASK, div);
-> +       return 0;
-> +}
-> +
-> +static unsigned long jh7100_clk_frac_recalc_rate(struct clk_hw *hw,
-> +                                                unsigned long parent_rate)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 reg = jh7100_clk_reg_get(clk);
-> +       unsigned long div100 = 100 * (reg & JH7100_CLK_INT_MASK) +
-> +                              ((reg & JH7100_CLK_FRAC_MASK) >> JH7100_CLK_FRAC_SHIFT);
-> +
-> +       return (div100 >= JH7100_CLK_FRAC_MIN) ? 100 * parent_rate / div100 : 0;
-> +}
-> +
-> +static int jh7100_clk_frac_determine_rate(struct clk_hw *hw,
-> +                                         struct clk_rate_request *req)
-> +{
-> +       unsigned long parent100 = 100 * req->best_parent_rate;
-> +       unsigned long rate = clamp(req->rate, req->min_rate, req->max_rate);
-> +       unsigned long div100 = clamp(DIV_ROUND_CLOSEST(parent100, rate),
-> +                                    JH7100_CLK_FRAC_MIN, JH7100_CLK_FRAC_MAX);
-> +       unsigned long result = parent100 / div100;
-> +
-> +       /* clamp the result as in jh7100_clk_determine_rate() above */
-> +       if (result > req->max_rate && div100 < JH7100_CLK_FRAC_MAX)
-> +               result = parent100 / (div100 + 1);
-> +       if (result < req->min_rate && div100 > JH7100_CLK_FRAC_MIN)
-> +               result = parent100 / (div100 - 1);
-> +
-> +       req->rate = result;
-> +       return 0;
-> +}
-> +
-> +static int jh7100_clk_frac_set_rate(struct clk_hw *hw,
-> +                                   unsigned long rate,
-> +                                   unsigned long parent_rate)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       unsigned long div100 = clamp(DIV_ROUND_CLOSEST(100 * parent_rate, rate),
-> +                                    JH7100_CLK_FRAC_MIN, JH7100_CLK_FRAC_MAX);
-> +       u32 value = ((div100 % 100) << JH7100_CLK_FRAC_SHIFT) | (div100 / 100);
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_DIV_MASK, value);
-> +       return 0;
-> +}
-> +
-> +static u8 jh7100_clk_get_parent(struct clk_hw *hw)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 value = jh7100_clk_reg_get(clk);
-> +
-> +       return (value & JH7100_CLK_MUX_MASK) >> JH7100_CLK_MUX_SHIFT;
-> +}
-> +
-> +static int jh7100_clk_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 value = (u32)index << JH7100_CLK_MUX_SHIFT;
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_MUX_MASK, value);
-> +       return 0;
-> +}
-> +
-> +static int jh7100_clk_mux_determine_rate(struct clk_hw *hw,
-> +                                        struct clk_rate_request *req)
-> +{
-> +       return clk_mux_determine_rate_flags(hw, req, 0);
-> +}
-> +
-> +static int jh7100_clk_get_phase(struct clk_hw *hw)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 value = jh7100_clk_reg_get(clk);
-> +
-> +       return (value & JH7100_CLK_INVERT) ? 180 : 0;
-> +}
-> +
-> +static int jh7100_clk_set_phase(struct clk_hw *hw, int degrees)
-> +{
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       u32 value;
-> +
-> +       if (degrees == 0)
-> +               value = 0;
-> +       else if (degrees == 180)
-> +               value = JH7100_CLK_INVERT;
-> +       else
-> +               return -EINVAL;
-> +
-> +       jh7100_clk_reg_rmw(clk, JH7100_CLK_INVERT, value);
-> +       return 0;
-> +}
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +static void jh7100_clk_debug_init(struct clk_hw *hw, struct dentry *dentry)
-> +{
-> +       static const struct debugfs_reg32 jh7100_clk_reg = {
-> +               .name = "CTRL",
-> +               .offset = 0,
-> +       };
-> +       struct jh7100_clk *clk = jh7100_clk_from(hw);
-> +       struct jh7100_clk_priv *priv = jh7100_priv_from(clk);
-> +       struct debugfs_regset32 *regset;
-> +
-> +       regset = devm_kzalloc(priv->dev, sizeof(*regset), GFP_KERNEL);
-> +       if (!regset)
-> +               return;
-> +
-> +       regset->regs = &jh7100_clk_reg;
-> +       regset->nregs = 1;
-> +       regset->base = priv->base + 4 * clk->idx;
-> +
-> +       debugfs_create_regset32("registers", 0400, dentry, regset);
-> +}
-> +#else
-> +#define jh7100_clk_debug_init NULL
-> +#endif
-> +
-> +static const struct clk_ops jh7100_clk_gate_ops = {
-> +       .enable = jh7100_clk_enable,
-> +       .disable = jh7100_clk_disable,
-> +       .is_enabled = jh7100_clk_is_enabled,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_div_ops = {
-> +       .recalc_rate = jh7100_clk_recalc_rate,
-> +       .determine_rate = jh7100_clk_determine_rate,
-> +       .set_rate = jh7100_clk_set_rate,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_fdiv_ops = {
-> +       .recalc_rate = jh7100_clk_frac_recalc_rate,
-> +       .determine_rate = jh7100_clk_frac_determine_rate,
-> +       .set_rate = jh7100_clk_frac_set_rate,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_gdiv_ops = {
-> +       .enable = jh7100_clk_enable,
-> +       .disable = jh7100_clk_disable,
-> +       .is_enabled = jh7100_clk_is_enabled,
-> +       .recalc_rate = jh7100_clk_recalc_rate,
-> +       .determine_rate = jh7100_clk_determine_rate,
-> +       .set_rate = jh7100_clk_set_rate,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_mux_ops = {
-> +       .determine_rate = jh7100_clk_mux_determine_rate,
-> +       .set_parent = jh7100_clk_set_parent,
-> +       .get_parent = jh7100_clk_get_parent,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_gmux_ops = {
-> +       .enable = jh7100_clk_enable,
-> +       .disable = jh7100_clk_disable,
-> +       .is_enabled = jh7100_clk_is_enabled,
-> +       .determine_rate = jh7100_clk_mux_determine_rate,
-> +       .set_parent = jh7100_clk_set_parent,
-> +       .get_parent = jh7100_clk_get_parent,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_mdiv_ops = {
-> +       .recalc_rate = jh7100_clk_recalc_rate,
-> +       .determine_rate = jh7100_clk_determine_rate,
-> +       .get_parent = jh7100_clk_get_parent,
-> +       .set_parent = jh7100_clk_set_parent,
-> +       .set_rate = jh7100_clk_set_rate,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_gmd_ops = {
-> +       .enable = jh7100_clk_enable,
-> +       .disable = jh7100_clk_disable,
-> +       .is_enabled = jh7100_clk_is_enabled,
-> +       .recalc_rate = jh7100_clk_recalc_rate,
-> +       .determine_rate = jh7100_clk_determine_rate,
-> +       .get_parent = jh7100_clk_get_parent,
-> +       .set_parent = jh7100_clk_set_parent,
-> +       .set_rate = jh7100_clk_set_rate,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +static const struct clk_ops jh7100_clk_inv_ops = {
-> +       .get_phase = jh7100_clk_get_phase,
-> +       .set_phase = jh7100_clk_set_phase,
-> +       .debug_init = jh7100_clk_debug_init,
-> +};
-> +
-> +const struct clk_ops *starfive_jh7100_clk_ops(u32 max)
-> +{
-> +       if (max & JH7100_CLK_DIV_MASK) {
-> +               if (max & JH7100_CLK_MUX_MASK) {
-> +                       if (max & JH7100_CLK_ENABLE)
-> +                               return &jh7100_clk_gmd_ops;
-> +                       return &jh7100_clk_mdiv_ops;
-> +               }
-> +               if (max & JH7100_CLK_ENABLE)
-> +                       return &jh7100_clk_gdiv_ops;
-> +               if (max == JH7100_CLK_FRAC_MAX)
-> +                       return &jh7100_clk_fdiv_ops;
-> +               return &jh7100_clk_div_ops;
-> +       }
-> +
-> +       if (max & JH7100_CLK_MUX_MASK) {
-> +               if (max & JH7100_CLK_ENABLE)
-> +                       return &jh7100_clk_gmux_ops;
-> +               return &jh7100_clk_mux_ops;
-> +       }
-> +
-> +       if (max & JH7100_CLK_ENABLE)
-> +               return &jh7100_clk_gate_ops;
-> +
-> +       return &jh7100_clk_inv_ops;
-> +}
-> +EXPORT_SYMBOL_GPL(starfive_jh7100_clk_ops);
-> --
-> 2.38.1
->
+Best regards,
+Krzysztof
+
