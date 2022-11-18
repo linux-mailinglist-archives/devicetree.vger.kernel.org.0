@@ -2,306 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC13662F059
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEFA62F07E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 10:06:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234867AbiKRJBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 04:01:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52312 "EHLO
+        id S241716AbiKRJGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 04:06:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiKRJBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:01:38 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC3D697DD;
-        Fri, 18 Nov 2022 01:01:36 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AI7q7TU009812;
-        Fri, 18 Nov 2022 09:01:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=VB0ghxJc3zS8lgE6Uhoofu3/+rArs3Cpleawb1aPpEM=;
- b=JkKUumlZY0oPrm6TEe9BhqEmSftZ+SMxWokQFpaxZOrfdBruysgmk8zkkNpU2BviVKZk
- X2TWCoPwZYqFMf9n6VBLRTSgd9DEyNwKBYQZ/IRMxm7igKh5T2ASiw/2jL2GSoi/Nm8P
- bwW93EXFaVxR0Hrq6EVNVu8mmreM4pIDdfFiN/B8G3v5Oq7tsNsym1Ly84Ys0/VYQ4EF
- 1TUMaFYrGNFR+Gnu6OkiQK+6gaGbAZbhoqDWaEbPgbrh7cqeGsQ6vPLynxAZsZ/w7m1v
- GufUTM4rqHbwOCuDojdS7GiNl5rkdX0tAJyi63J8ZdbEmAFSvIR0KPszkKTnT5wuhyZY 9g== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kx0se931y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 09:01:25 +0000
-Received: from pps.filterd (NALASPPMTA03.qualcomm.com [127.0.0.1])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2AI91Otm013175;
-        Fri, 18 Nov 2022 09:01:24 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 3kwxakt01s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 09:01:24 +0000
-Received: from NALASPPMTA03.qualcomm.com (NALASPPMTA03.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AI91O18013167;
-        Fri, 18 Nov 2022 09:01:24 GMT
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 2AI91O9x013166
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 09:01:24 +0000
-Received: from [10.216.4.191] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 18 Nov
- 2022 01:01:18 -0800
-Message-ID: <7e359c57-253e-ae87-a119-a4bf772b4d55@quicinc.com>
-Date:   Fri, 18 Nov 2022 14:31:14 +0530
+        with ESMTP id S231534AbiKRJGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 04:06:33 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5697C459
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:06:30 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id p8so7173763lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 01:06:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o5LvHXOq/S5ojYSJ40UtUFDgw1gowSS1LOpknOhOd8s=;
+        b=zPZVWs55Nxluk17EmfoGgWYT6EFzaJI+8ocmQDKmhGmP44xJ4XuBTI6Rqd/yo5bW/m
+         NpQ/199dGE9J2/qABCw2epv+ULw8mOd0nFdB5R5C7Uve6E+JOz6CHLGCr7xWcOan/NZ7
+         Jdw2Sg8hOiYHdAwT2Bsu+3rWlGrq/+a4+/yoFEf1y7vQvWx5BCg3X//d5Hg5BFSV0/vd
+         4bpJgMkRRUaLnuuQiuYcj02nzozfAc9dRWvM3rgH9BlCJAxFwCDb1bbHX/eAAjJR8CIv
+         51ynbDjy2yqWcgN48rIejWHEMinMmtkwRfFoYw3Lm/ENcZMYZV6hAHQsQTCvXghxW90K
+         bSmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=o5LvHXOq/S5ojYSJ40UtUFDgw1gowSS1LOpknOhOd8s=;
+        b=TR1nc8m+tD0CDRnjGSjsaBpa65Wy1POrJeQ2YcYtmei9dbk63ea+CzQu/kL6CvXxES
+         qMudL14qtTifsqjI8RuvhF311+tCZVz4t4Ffinn1GsuvuXYfHc9z6KkU1gjetjhbC67o
+         PLeZOCEAPh+xlmA34SdzXnjMGXn8cXcehMmWXmpHZVO0oV0iGBNjbMGOFFAut6ldi/fx
+         6YPVg8AId2OK8wU2pzlHyU99/qfEnlumZiRB13iw19QkPgFggShUr3+/1wBMtOefh4TO
+         uTDtYLM7Hv5w4PlY0wMnt5eFWg7TUco7flOGYp4MuCI5kiIY3JwuDsKhEtBbyMLQmiWt
+         c7yA==
+X-Gm-Message-State: ANoB5pl+Pp4sUgSbitOyXYpywG8vgBimPCgaMmzgAnY+TtJRPafVrdEJ
+        zb5jtBBVudEvxjWkqI/FdVSPLw==
+X-Google-Smtp-Source: AA0mqf6H/OBIYdJ/gJkaPxc3ffIWTCBSkVo0aI6Nsg/gpybN3CnGpXlJVxCKMpJ5re7L46019WEspQ==
+X-Received: by 2002:a05:6512:3f1d:b0:4a2:3f29:5e8a with SMTP id y29-20020a0565123f1d00b004a23f295e8amr2094943lfa.221.1668762388938;
+        Fri, 18 Nov 2022 01:06:28 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id g6-20020a056512118600b00497ab34bf5asm48205lfr.20.2022.11.18.01.06.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 01:06:28 -0800 (PST)
+Message-ID: <24a88a47-7556-20f1-ce9c-fe7bd0466a88@linaro.org>
+Date:   Fri, 18 Nov 2022 10:06:26 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: dwc3: Add support for multiport
- related properties
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.2
+Subject: Re: [PATCH v2 3/6] soc: qcom: geni-se: add desc struct to specify
+ clocks from device match data
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, Harsh Agarwal <quic_harshq@quicinc.com>
-References: <1654709787-23686-1-git-send-email-quic_harshq@quicinc.com>
- <1654709787-23686-2-git-send-email-quic_harshq@quicinc.com>
- <20220609153826.GA3828657-robh@kernel.org>
- <ac3676bf-cd5c-be21-913a-0de6dc55bc7c@quicinc.com>
- <20220610172210.GE1787330-robh@kernel.org>
- <5d2a3a55-ae24-1bbb-2448-e7a23b9debde@quicinc.com>
- <20220706220943.GB572635-robh@kernel.org>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <20220706220943.GB572635-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: n91QMShaB_ERTFnP8VdlUKULOt_7g-So
-X-Proofpoint-ORIG-GUID: n91QMShaB_ERTFnP8VdlUKULOt_7g-So
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-17_06,2022-11-17_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- spamscore=0 mlxlogscore=999 lowpriorityscore=0 adultscore=0 bulkscore=0
- phishscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2211180055
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v2-0-aadaa6997b28@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v2-3-aadaa6997b28@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v2-3-aadaa6997b28@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attempt to revive this thread.
 
-Hi Rob,
 
-   Apologies for the delay in pursuing this thread further. Neither 
-Harsh nor me were able to pursue this since July because of some other 
-work load.
-
-On 7/7/2022 3:39 AM, Rob Herring wrote:
-> On Mon, Jun 27, 2022 at 06:36:53PM +0530, Harsh Agarwal wrote:
->>
->> On 6/10/2022 10:52 PM, Rob Herring wrote:
->>> On Fri, Jun 10, 2022 at 05:25:25PM +0530, Harsh Agarwal wrote:
->>>> On 6/9/2022 9:08 PM, Rob Herring wrote:
->>>>> On Wed, Jun 08, 2022 at 11:06:25PM +0530, Harsh Agarwal wrote:
->>>>>> Added support for multiport, mport, num_usb2_phy and num_usb3_phy
->>>>>> properties. These properties are used to support devices having
->>>>>> a multiport controller.
->>>>>>
->>>>>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
->>>>>> ---
->>>>>>     .../devicetree/bindings/usb/snps,dwc3.yaml         | 53 ++++++++++++++++++++++
->>>>>>     1 file changed, 53 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>>> index d41265b..9332fa2 100644
->>>>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>>> @@ -343,6 +343,32 @@ properties:
->>>>>>           This port is used with the 'usb-role-switch' property  to connect the
->>>>>>           dwc3 to type C connector.
->>>>>> +  multiport:
->>>>> Again, I don't think this is going to play well if you need to describe
->>>>> USB devices in your DT. For example, a USB hub with additional DT
->>>>> properties.
->>>> Thanks for the review Rob.
->>>> Can you please explain why would one want to describe a USB hub in device
->>>> tree ?
->>> Because someone soldered a hub on the board and then connected extra
->>> things like resets, GPIOs, supplies which are all outside of standard
->>> USB. It's quite common...
->>>
->>> There's some flavors of Beagle boards that have a USB ethernet on board.
->>> Guess what, they skipped out on a eeprom and so the device and a MAC
->>> address has to be described in DT (if you want a stable MAC addr).
->>>
->>>> IF USB hub is attached to a root port , it would be enumerated by the SW. I
->>>> am not clear how DT is coming
->>>> into picture. Even if there was a scenario to add DT properties for a hub,
->>>> then this multiport node would be like a nop
->>>> as it just helps us to get the PHY phandles in a proper way.
->>> It won't be enumerated by the SW if it has to be powered on first using
->>> non-standard resources.
->>>
->>>> Do you feel we still might have a problem with multiport node ?
->>> A board design could have a hub or device on any or all your ports.
->>>
->>>>>> +    description:
->>>>>> +      If a single USB controller supports multiple ports, then it's referred to as
->>>>>> +      a multiport controller. Each port of the multiport controller can support
->>>>>> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
->>>>>> +      port is represented by "mport" node and all the "mport" nodes are grouped
->>>>>> +      together inside the "multiport" node where individual "mport" node defines the
->>>>>> +      PHYs supported by that port.
->>>>>> +
->>>>>> +  num_usb2_phy:
->>>>>> +    description: Total number of HS-PHYs defined by the multiport controller.
->>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>> +
->>>>>> +  num_usb3_phy:
->>>>>> +    description: Total number of SS-PHYs defined by the multiport controller.
->>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>> +
->>>>>> +  mport:
->>>>>> +    description: Each mport node represents one port of the multiport controller.
->>>>>> +    oneOf:
->>>>>> +      - required:
->>>>>> +        - usb-phy
->>>>> This is deprecated. Why are you adding it?
->>>> Do you mean "usb-phy" is deprecated ?
->>> It is replaced by 'phys'. Any new user should use 'phys'.
->>>
->>>> Internally we use usb-phy with our downstream GLUE driver
->>> Upstream does not care about that.
->>>
->>>>>> +      - required:
->>>>>> +        - phys
->>>>>> +        - phy-names
->>>>> Other multi port USB hosts just have a list of phys. Why can't you just
->>>>> use phy-names to identify each phy:
->>>>>
->>>>> phy-names = "port0-hs", "port0-ss", "port1-hs", "port1-ss", "port2-hs",
->>>>>      "port3-hs";
->>>> With the above method we would have to do some kind of string parsing on the
->>>> phy-names to get the HS and SS PHYs as we need to cater to different
->>>> combinations of Ports ( some support HS+SS , other supports SS only).
->>> You are doing string parsing anyways to get the child nodes and
->>> properties.
->>>
->>>> So one challenge here is with the "usb-phy". There we directly define the
->>>> phy phandles and that might/might-not have proper sub-strings. eg
->>>> USB_QMP_PHY . So extracting PHYS could be tricky if the phy-handle does not
->>>> have proper substring like "SS" "HS" etc.
->>> The schema can and should enforce that you have the proper strings.
->> Hi Rob,
->> Apologies for replying late.
->>
->> I get your concern. Yes we can remove the "multiport" node and instead
->> define the
->> USB phy phandles all in one place. Still I would need to add support for
->> both generic-phy and
->> usb-phy framework as downstream many vendors are using "usb-phy" and it's
->> supported by ACK as well.
+On 18/11/2022 09:45, Neil Armstrong wrote:
+> The I2C Master Hub is a stripped down version of the GENI Serial Engine
+> QUP Wrapper Controller but only supporting I2C serial engines without
+> DMA support.
 > 
-> Upstream is not concerned with downstream. The generic PHY has replaced
-> usb-phy for many years now.
+> Prepare support for the I2C Master Hub variant by moving the required
+> clocks list to a new desc struct then passing it through the compatible
+> match data.
 > 
-> Furthermore, if downstream was using documented bindings, then we
-> wouldn't be having this conversation.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/soc/qcom/qcom-geni-se.c | 59 +++++++++++++++++++++++++++++++----------
+>   1 file changed, 45 insertions(+), 14 deletions(-)
 > 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index a0ceeede450f..ced2a2932eda 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -81,19 +81,31 @@
+>    */
+>   
+>   #define MAX_CLK_PERF_LEVEL 32
+> -#define NUM_AHB_CLKS 2
+> +#define MAX_CLKS 2
+>   
+>   /**
+>    * struct geni_wrapper - Data structure to represent the QUP Wrapper Core
+>    * @dev:		Device pointer of the QUP wrapper core
+>    * @base:		Base address of this instance of QUP wrapper core
+> - * @ahb_clks:		Handle to the primary & secondary AHB clocks
+> + * @clks:		Handle to the primary & optional secondary AHB clocks
+> + * @num_clks:		Count of clocks
+>    * @to_core:		Core ICC path
+>    */
+>   struct geni_wrapper {
+>   	struct device *dev;
+>   	void __iomem *base;
+> -	struct clk_bulk_data ahb_clks[NUM_AHB_CLKS];
+> +	struct clk_bulk_data clks[MAX_CLKS];
+> +	unsigned int num_clks;
+> +};
+> +
+> +/**
+> + * struct geni_se_desc - Data structure to represent the QUP Wrapper resources
+> + * @clks:		Name of the primary & optional secondary AHB clocks
+> + * @num_clks:		Count of clock names
+> + */
+> +struct geni_se_desc {
+> +	unsigned int num_clks;
+> +	const char * const *clks;
+>   };
+>   
+>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+> @@ -496,8 +508,7 @@ static void geni_se_clks_off(struct geni_se *se)
+>   	struct geni_wrapper *wrapper = se->wrapper;
+>   
+>   	clk_disable_unprepare(se->clk);
+> -	clk_bulk_disable_unprepare(ARRAY_SIZE(wrapper->ahb_clks),
+> -						wrapper->ahb_clks);
+> +	clk_bulk_disable_unprepare(wrapper->num_clks, wrapper->clks);
+>   }
+>   
+>   /**
+> @@ -528,15 +539,13 @@ static int geni_se_clks_on(struct geni_se *se)
+>   	int ret;
+>   	struct geni_wrapper *wrapper = se->wrapper;
+>   
+> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(wrapper->ahb_clks),
+> -						wrapper->ahb_clks);
+> +	ret = clk_bulk_prepare_enable(wrapper->num_clks, wrapper->clks);
+>   	if (ret)
+>   		return ret;
+>   
+>   	ret = clk_prepare_enable(se->clk);
+>   	if (ret)
+> -		clk_bulk_disable_unprepare(ARRAY_SIZE(wrapper->ahb_clks),
+> -							wrapper->ahb_clks);
+> +		clk_bulk_disable_unprepare(wrapper->num_clks, wrapper->clks);
+>   	return ret;
+>   }
+>   
+> @@ -887,11 +896,23 @@ static int geni_se_probe(struct platform_device *pdev)
+>   		return PTR_ERR(wrapper->base);
+>   
+>   	if (!has_acpi_companion(&pdev->dev)) {
+> -		wrapper->ahb_clks[0].id = "m-ahb";
+> -		wrapper->ahb_clks[1].id = "s-ahb";
+> -		ret = devm_clk_bulk_get(dev, NUM_AHB_CLKS, wrapper->ahb_clks);
+> +		const struct geni_se_desc *desc;
+> +		int i;
+> +
+> +		desc = device_get_match_data(&pdev->dev);
+> +		if (!desc)
+> +			return -EINVAL;
+> +
+> +		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
+> +		if (wrapper->num_clks < desc->num_clks)
+This will never execute (except if somebody adding a third desc would 
+make a mistake or not update MAX_CLKS), as wrapper->num_clks will only 
+be < desc->num_clks if desc->num_clks > MAX_CLKS.
 
-If we are concentrating only on generic phy's do we need to refrain from 
-making any changes to downstream phy part of the driver code in core.c 
-as done in this RFC series ? I wanted to update this series after 
-addressing review comments. If we don't need to, then I can revert 
-changes done to dwc->usb2->phy and dwc->usb3_phy in this series.
+I was thinking about getting the number of actual clocks passed to the 
+device in the DT, but I can't find a helper function for that, so it 
+would probably require some kind of manual looping.. I guess we can drop 
+this. Or leave it to save somebody pulling their hair out in an unlikely 
+event. I guess I'm fine with both.
 
->> This would not regress anything with Generic PHY.
->>
->> @Greg can you please comment as ACK has support for usb-phy framework.
->>
->> Now coming to implementation, let's consider a 4 port USB multiport
->> controller having
->> 4 HS PHYs and 2 SS PHYs.  We can have two approaches here
->>
->> #1 -> If we could mandate using "HS" or "SS" as substring in
->> phy-names or usb-phy, then we can calculate number of HS and SS phy and also
->> get
->> corresponding PHY nodes. Only concern here is that downstream vendors might
->> need
->> to change their existing usb-phy names and add proper substring if they are
->> not doing so ;
->>
->> phy = <&usb-hs-phy>,<&usb-ss-phy>,
->>        <&usb-hs-phy1>, <&usb-ss-phy1>,
->>        <&usb-hs-phy2>, <&usb-hs-phy3>;
->>
->> phy-names = "port0-hs", "port0-ss", "port1-hs", "port1-ss", "port2-hs",
->>     "port3-hs";
->>
->>
->> OR
->>
->>
->> #2-> We could mandate defining the USB phy in HS - SS pairs.
->> For ports that has only HS PHY, we would need to define usb_nop_phy in SS
->> place.
->> Then we can calculate the number of HS & SS phys and get corresponding
->> PHY nodes by using simple fact that HS phy would be defined at odd places &
->> SS phy defined at even. Here substrings are not mandated.
->>
->> phy = <&usb-hs-phy>,<&usb-qmp-phy>,
->>        <&usb-hs-phy1>, <&usb-qmp-phy1>,
->>        <&usb-hs-phy2>, <&usb_nop_phy>
->>        <&usb-hs-phy3>, <&usb_nop_phy>;
->>
->> phy-names = "port0-hs", "port0-ss",
->> 	    "port1-hs", "port1-ss",
->> 	    "port2-hs", "usb-nop",
->> 	    "port3-hs", "usb-nop";
+
+> +			dev_warn(dev, "too much clocks described in DT\n")
+If you leave it, s/too much/Too many/
+
+
+Konrad
+> +
+> +		for (i = 0; i < wrapper->num_clks; ++i)
+> +			wrapper->clks[i].id = desc->clks[i];
+> +
+> +		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+>   		if (ret) {
+> -			dev_err(dev, "Err getting AHB clks %d\n", ret);
+> +			dev_err(dev, "Err getting clks %d\n", ret);
+>   			return ret;
+>   		}
+>   	}
+> @@ -901,8 +922,18 @@ static int geni_se_probe(struct platform_device *pdev)
+>   	return devm_of_platform_populate(dev);
+>   }
+>   
+> +static const char * const qup_clks[] = {
+> +	"m-ahb",
+> +	"s-ahb",
+> +};
+> +
+> +static const struct geni_se_desc qup_desc = {
+> +	.clks = qup_clks,
+> +	.num_clks = ARRAY_SIZE(qup_clks),
+> +};
+> +
+>   static const struct of_device_id geni_se_dt_match[] = {
+> -	{ .compatible = "qcom,geni-se-qup", },
+> +	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
 > 
-> The whole reason for -names is to avoid something like this with filler
-> entries. So I prefer #1 as I suggested.
-> 
-Thanks for the review. How about we do the following:
-Assuming we have 3 ports where first port is HS+SS capable and the other 
-two are only HS capable. We can implement phys and phy-names as :
-
-phy = <&usb-hs-phy1>,<&usb-ss-phy1>,
-	<&usb-hs-phy2>, <&usb-hs-phy3>,
-
-phy-names = "usb2-phy-port0", "usb3-phy-port0",
-		"usb2-phy-port1", "usb2-phy-port2";
-
-Since the driver code mandates that the phy-names are supposed to be 
-"usb2-phy" and "usb3-phy", we can be sure that the first part of every 
-phy name starts with "usb2-phy" or "usb3-phy" and we can append -portX 
-at end of each phy name to differentiate them as shown in the above example.
-
-In the driver code we can iterate over each of the phy-names property 
-and string compare them with "usb2-phy" and "usb3-phy" to identify 
-whether it is HS/SS. That way even if we have only one-port the code 
-would still hold good.
-
-Let me know if that approach would be fine.
-
-Once again, sorry for delaying this thread.
-
-Regards,
-Krishna,
-
-> Rob
