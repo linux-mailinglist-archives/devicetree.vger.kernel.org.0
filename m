@@ -2,90 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9BD062F7DF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD82162F7E1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 15:41:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242269AbiKROlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 09:41:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41530 "EHLO
+        id S242463AbiKROl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 09:41:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242201AbiKROkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:40:46 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6997E46
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:38:35 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id s24so6980866ljs.11
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:38:35 -0800 (PST)
+        with ESMTP id S242172AbiKROlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 09:41:03 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1024A04C
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:39:43 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id t4so3745833wmj.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 06:39:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bHTp8WxD0cqwio5pXFuWtKnMnq/qdJErDoBEBwvP2sk=;
-        b=puMgpYajPPIk3Ykwm+tcdadpD9lyTeJKAI8z7HlGRfY+NSsZJzna7GjQwGMfo7ijwB
-         iMiDRyWrLxnQDh2Xk/HHqZIDQpReMj8EaCSSDojD/pUFT88/vaxUopxAiCUrK1nkpf9y
-         zx1A6H8fCPSqKaAuMRXeuqc13VkN5XWPdJ+MYCiS6UTmSgtU/fp02mjEg7QqNimoAESV
-         Yemliv0VkZNZnFjH9XfCYCW5iiwYr6ZXZ5b9h8g0d87gGOS1BuX9IZ6AArhlIf/8DWf1
-         5LqY32e/5L0u4XEYhQUmVWJGRf6b6TSL8VNR+8qfrO/KOt0AVJMPu9RyBGmGWVsCEt2A
-         gkkw==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Y6Bg6qnbLbnNqXzsBHD84qTsLn1wOxnG7yqT2bB3ME=;
+        b=xSL2im09i1KIxS2mPzcxkjNvslnj6eMdv8/l3GIPKfG4be2IiNiuLJKAnl/n0kQ83D
+         ueBerELi5Z3NTPZ5fCLCgxXA9mPk70SfB35/gvlN67FuwH8rVgp5XUzjExACyecyM9Fz
+         Bkddcbdt9EhS9KqskfTAiQrXQm/eiyBeOSFvvh6CDUf3WGEwkfQRlk/6Ubkm+GT1RmFI
+         C2IvUn0oR1rLBUL/vfGd8WNtVWqEkiLuQOCCReOxeitCBqEicha3OmECgacodS862KHa
+         J54lBd7ktsG79azccKkmJMW3U3Y7Ip3DR5hGWToCbbb9QUxCThvX++tJIBsp0IDMLsuz
+         Jfeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bHTp8WxD0cqwio5pXFuWtKnMnq/qdJErDoBEBwvP2sk=;
-        b=XXYp7n8phDwWsvM8xrHMnKdSdludtvKZggxcxJHpQFakf3Oxjz3nPWgC3JiKt+mZwe
-         Ct4XL3+HTTPznHsmAyAZFwr5zOMvBZbauYApPc0pzhC/JpyZUyjjHcpq4LhwJHMwJjiT
-         FyiySj/qH/sQrbMeoZp315YaHvD3niZPbcDqg9q8pGbUryxH9D/weTSG7OEgF3LUZfqM
-         rc/VTe2hs+A4EnvNjMDE4lSLMlRv7xqXPKA/VBRDlcUCkEu6QblDFj2O2Z4KCFTHtlYJ
-         osCVIMHZSuSoBzE4nGx2mS5fkeKKNUrs0ZW60/2GuttDiqtnTWLlsXv50VbvNOk6q27U
-         Th7w==
-X-Gm-Message-State: ANoB5pmBlXrBjBao61cWd0/MBCoDrDn806u6jCJCIpbgGuMrTd3hdb2f
-        B6eQv6cV9G6rLhirZLpkZU47kw==
-X-Google-Smtp-Source: AA0mqf5itRuxKo/p8JLJKY1b/siNfqPJIRbSguu2UNOYtp1ZnFiPakQHISIDlIACodjd11xaVMuKbA==
-X-Received: by 2002:a05:651c:b26:b0:277:9847:286a with SMTP id b38-20020a05651c0b2600b002779847286amr2474891ljr.309.1668782314025;
-        Fri, 18 Nov 2022 06:38:34 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t17-20020a195f11000000b004994117b0fdsm678523lfb.281.2022.11.18.06.38.33
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Y6Bg6qnbLbnNqXzsBHD84qTsLn1wOxnG7yqT2bB3ME=;
+        b=sgCuivtxQ1sGIK77bgrqMquID3fJo+A0kiotyqOXsSw+sCumaf1zjo7SkMg5D1hptJ
+         ZT3sYNO2a6wv3TCvtaYDDdrgfD2tmvDr08KTStsPCpBa3ySOw7yxAWXRXDIuI/Vf94w9
+         EJ6O9eJqiMEFx9yNjz8i6eORAuwkqdruIYVZqp4GvIoW3Bh45xAnu+zdvji4xGiQTM+m
+         BZh+JSyQ7+kHhRAaFL6HHhE/tfdXgc6LQvw2jc02HIC5xcaBdM0jtNOYBKsA1uUnKnIb
+         wKJrqDYOP0FPaQc8OoHXFUZ2n3bRbBeZWo3d9QbqUDE87f1BCz8JutAF2oGT/6oi6vs5
+         ffww==
+X-Gm-Message-State: ANoB5pkzi/tPptWblB/URvDk0i0Wo+NQgGoVIWWlDbrTdaAY0H5s0/N8
+        JaC7JC/Wid2Ub0UYHpyG29QQTw==
+X-Google-Smtp-Source: AA0mqf6+xja8YwiiyJEjzyuPpa/nrBlOVNTSsYyM8az4DVr4K6oearAVW2j9Gpgbp5j0npawgfzhtw==
+X-Received: by 2002:a05:600c:4e12:b0:3cf:d4f7:e70d with SMTP id b18-20020a05600c4e1200b003cfd4f7e70dmr5140565wmq.187.1668782381730;
+        Fri, 18 Nov 2022 06:39:41 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
+        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003cfd4cf0761sm10164756wmq.1.2022.11.18.06.39.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 06:38:33 -0800 (PST)
-Message-ID: <c3a2316f-2956-6417-f1ea-a6a64df037c6@linaro.org>
-Date:   Fri, 18 Nov 2022 15:38:32 +0100
+        Fri, 18 Nov 2022 06:39:41 -0800 (PST)
+Message-ID: <7c722431-a866-7d19-d7b2-83535719aed0@linaro.org>
+Date:   Fri, 18 Nov 2022 15:39:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: lpass-va: add npl clock for new
- VA macro
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq bindings
+ to dt-schema
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org
-Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
-        tiwai@suse.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20221118071849.25506-1-srinivas.kandagatla@linaro.org>
- <20221118071849.25506-2-srinivas.kandagatla@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118071849.25506-2-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
+References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
+ <CACRpkdYCUTb6-RdT0LPbmesxabUR1yMs5-YKCxxNcg+MC8Gf8A@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CACRpkdYCUTb6-RdT0LPbmesxabUR1yMs5-YKCxxNcg+MC8Gf8A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 08:18, Srinivas Kandagatla wrote:
-> LPASS VA Macro now has soundwire master to deal with access to
-> analog mic in low power island use cases. This also means that VA macro
-> now needs to get hold of the npl clock too. Add clock bindings required
-> for this.
+On 17/11/2022 09:56, Linus Walleij wrote:
+> On Tue, Nov 15, 2022 at 11:06 AM Neil Armstrong
+> <neil.armstrong@linaro.org> wrote:
+> 
+>> This converts the Semtech SX150Xq bindings to dt-schemas, add necessary
+>> bindings documentation to cover all differences between HW variants
+>> and current bindings usage.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> The binding is a piece of art. Excellent work!
 
+Thanks ! Actually it was fun to write !
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> Yours,
+> Linus Walleij
 
