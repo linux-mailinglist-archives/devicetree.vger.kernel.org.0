@@ -2,582 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C540062FBC8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6AA62FBCE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 18:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235240AbiKRRkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 12:40:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38188 "EHLO
+        id S242480AbiKRRkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 12:40:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234711AbiKRRkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:40:04 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E44B201A3
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:40:03 -0800 (PST)
-Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com [209.85.219.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0A7533F32C
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 17:40:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1668793202;
-        bh=khOfblgst9enibwZtKIhuBZJXCqSZWcWc7io0Y3ec00=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=uumq2vk7JnGWia1ZBtn9bPg4aXOV5enlAe0VAmpTXaxgH0d8o/yI0/RyY+jYF5GnF
-         Tdti6z6jvtFU+nDE+gZ2iyjt9YrhjLWCnMGAksfpKm7mIsfzo24zpBUXhlDKTxHJES
-         44TDdjeaiz3YRt0zky8zjdrvtrmKtUnPp4cmt8QWNeMZ27yhADBwA69CW0oNGTdUn5
-         3vhx5t6br8ELraGwxzB1zrP+bBvP2Lbn8qnB/yWarUBmpsfmBQFUqOZOUpTMGb2AWG
-         jnoC9MgvljwgX7ntCtAShLfYXX/JvbBpoWFUB7m9BfhjKJ/Gagu7mn8ntKXVzBxC3G
-         DXeTajwDDKiqA==
-Received: by mail-yb1-f200.google.com with SMTP id b17-20020a25b851000000b006e32b877068so5074368ybm.16
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 09:40:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=khOfblgst9enibwZtKIhuBZJXCqSZWcWc7io0Y3ec00=;
-        b=Ncg6gVdeBkt2tRUAnSfV6s3DfQcAMAofhApCr52RAZtLZzwPIGN6HkZMuUfWKPhXID
-         Pcq2NuUrWjK3XpV5O5wwK/doidErDhfrL0X6ZB+7p4K/V4kV5DEKJhK1DoNwFI3wpVcD
-         ZhGvRMiXdP/jIadUTcF4o+EMa9zeHGUsYY46aHo3bo9kfT7y7z59Jf+aWxd4uH4fgrgx
-         +zxf4uaF6k2jXzLHmkKJb9Osgtgyj8PhgGfSstoi6FUTbnv6S3T5Gt6JK40MaCGQgHHU
-         ibIV6/9a9S3qFcJ9cCS4yDRUrxUCONrKmL/Tf/oBb5Bm0PX6Fs6GcP+USYGdUeknFOnE
-         BReg==
-X-Gm-Message-State: ANoB5pkkS6X4a/v0Bu2WOU1tnhki79RfUrzhpjSDgk+qFY6zFOM48u0B
-        vyuJpwX+HrmHlLHsgxoENVzgiEtT1ceyu+c9V7DyOi8TDeBgit9o18YOuM/PxaJt2EtrgbDbEU7
-        grV3qWI8TP7d6ydH1L6yYkzTQTPZAMuWjxuupdG4405U+Vf/+0VmIz60=
-X-Received: by 2002:a81:9a0b:0:b0:370:2d3:c361 with SMTP id r11-20020a819a0b000000b0037002d3c361mr7373253ywg.251.1668793199533;
-        Fri, 18 Nov 2022 09:39:59 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5jjAsNvhdPGGqZYsergcF++LvMbbQe3AgNyo2sdT6ZeT0o7tzyhO5uVsz3J8DtAGJMuP52P9lVuRXACQqXzlk=
-X-Received: by 2002:a81:9a0b:0:b0:370:2d3:c361 with SMTP id
- r11-20020a819a0b000000b0037002d3c361mr7373226ywg.251.1668793199261; Fri, 18
- Nov 2022 09:39:59 -0800 (PST)
+        with ESMTP id S242304AbiKRRkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 12:40:36 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D273C20BD9;
+        Fri, 18 Nov 2022 09:40:30 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIHeLBd077023;
+        Fri, 18 Nov 2022 11:40:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668793221;
+        bh=t45Q5EGy2QkYGozOYHUVUxhGG5GG1cC9m+hhsMGZPoE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=IlmIH/8foh/2p8LN2mBT76/seFD1cOb9Gz9vJPX+0oA+8NYLZ2bNtMlr+ggAN0wuR
+         7xTD9FN/fwvrLRPFoknj7ugxs26kN4ysovuvPRwWtGiTqll/+eM7alOJoDduOHBkth
+         5hbng14jAXhDdTtrWf7dz1AWs95pTNidOxgWsWTw=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIHeLFa048159
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 11:40:21 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 11:40:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 11:40:20 -0600
+Received: from [10.250.38.44] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIHeKh7085024;
+        Fri, 18 Nov 2022 11:40:20 -0600
+Message-ID: <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
+Date:   Fri, 18 Nov 2022 11:40:19 -0600
 MIME-Version: 1.0
-References: <20221118011714.70877-1-hal.feng@starfivetech.com>
- <20221118011714.70877-7-hal.feng@starfivetech.com> <Y3d0GE7msiWGlRcd@spud>
-In-Reply-To: <Y3d0GE7msiWGlRcd@spud>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 18 Nov 2022 18:39:43 +0100
-Message-ID: <CAJM55Z_3m9w83D9J2y+MV8VLc+uU0Gwo8xpD=fnCGZSAGntu7Q@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] riscv: dts: starfive: Add initial StarFive JH7110
- device tree
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+Content-Language: en-US
+To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hari Nagalla <hnagalla@ti.com>
+References: <20221116130428.161329-1-a-nandan@ti.com>
+ <20221116130428.161329-5-a-nandan@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221116130428.161329-5-a-nandan@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 at 13:01, Conor Dooley <conor@kernel.org> wrote:
->
-> On Fri, Nov 18, 2022 at 09:17:12AM +0800, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> >
-> > Add initial device tree for the JH7110 RISC-V SoC by StarFive
-> > Technology Ltd.
-> >
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > ---
-> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 437 +++++++++++++++++++++++
-> >  1 file changed, 437 insertions(+)
-> >  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > new file mode 100644
-> > index 000000000000..c22e8f1d2640
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > @@ -0,0 +1,437 @@
-> > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > +/*
-> > + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> > + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
->
-> @Emil, I feel like I have to ask given the 2022 date, but should this
-> stuff be attributed to your canonical address or is this fine?
+On 11/16/22 7:04 AM, Apurva Nandan wrote:
+> J784S4 EVM board is designed for TI J784S4 SoC. It supports the following
+> interfaces:
+> * 32 GB DDR4 RAM
+> * x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
+> * x1 Input Audio Jack, x1 Output Audio Jack
+> * x1 USB2.0 Hub with two Type A host and x1 USB 3.1 Type-C Port
+> * x2 4L PCIe connector
+> * x1 UHS-1 capable micro-SD card slot
+> * 512 Mbit OSPI flash, 1 Gbit Octal NAND flash, 512 Mbit QSPI flash,
+>    UFS flash.
+> * x6 UART through UART-USB bridge
+> * XDS110 for onboard JTAG debug using USB
+> * Temperature sensors, user push buttons and LEDs
+> * 40-pin User Expansion Connector
+> * x2 ENET Expansion Connector, x1 GESI expander, x2 Display connector
+> * x1 15-pin CSI header
+> * x6 MCAN instances
+> 
+> Add basic support for J784S4-EVM.
+> 
+> Schematics: https://www.ti.com/lit/zip/sprr458
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile          |   2 +
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 197 +++++++++++++++++++++++
+>   2 files changed, 199 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 4555a5be2257..67621b349e88 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>   
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+>   
+> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+> +
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>   
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> new file mode 100644
+> index 000000000000..53516fb2b346
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -0,0 +1,196 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> + *
+> + * EVM Board Schematics: https://www.ti.com/lit/zip/sprr458
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-j784s4.dtsi"
+> +
+> +/ {
+> +	compatible = "ti,j784s4-evm", "ti,j784s4";
+> +	model = "Texas Instruments J784S4 EVM";
+> +
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +	};
+> +
+> +	aliases {
+> +		serial2 = &main_uart8;
 
-Yeah, this is fine. I did this on my own time before I was actually
-tasked with working on the JH7110 based boards.
+This feels hacky. Your chosen node picks serial2 as that is usually
+the one that is wired up on K3 boards. But on this board it is main_uart8.
+So why not have this be serial10, then choose
 
-> Other than that, a cursory check /looks/ fine, other than the:
->
-> > +       gmac0_rgmii_rxin: gmac0_rgmii_rxin {
-> > +               compatible = "fixed-clock";
-> > +               #clock-cells = <0>;
-> > +               /* This value must be overridden by the board */
-> > +               clock-frequency = <0>;
-> > +       };
->
-> If you remove the clock-frequency = <0> bit, dtb validation will force
-> people to set the value in jh7110-board.dts which I'd prefer to rely on
-> than a comment.
->
-> Glad to see you sorted out the clock/reset stuff too!
->
-> Thanks,
-> Conor.
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
+stdout-path = "serial10:115200n8";
+
+Also, I've made comments on previous version of this series, it is
+nice to include folks who have commented before in the CC for future
+versions, that way our filters don't hide these away and we can more
+easily check that our comments have been addressed.
+
+Andrew
+
+> +		mmc1 = &main_sdhci1;
+> +		i2c0 = &main_i2c0;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		/* 32G RAM */
+> +		reg = <0x00 0x80000000 0x00 0x80000000>,
+> +		      <0x08 0x80000000 0x07 0x80000000>;
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		secure_ddr: optee@9e800000 {
+> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	evm_12v0: regulator-evm12v0 {
+> +		/* main supply */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "evm_12v0";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_3v3: regulator-vsys3v3 {
+> +		/* Output of LM5140 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_5v0: regulator-vsys5v0 {
+> +		/* Output of LM5140 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vdd_mmc1: regulator-sd {
+> +		/* Output of TPS22918 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_mmc1";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		vin-supply = <&vsys_3v3>;
+> +		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	vdd_sd_dv: regulator-TLV71033 {
+> +		/* Output of TLV71033 */
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "tlv71033";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		vin-supply = <&vsys_5v0>;
+> +		gpios = <&main_gpio0 8 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0>,
+> +			 <3300000 0x1>;
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	main_uart8_pins_default: main-uart8-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x040, PIN_INPUT, 14) /* (AF37) MCASP0_AXR0.UART8_CTSn */
+> +			J784S4_IOPAD(0x044, PIN_OUTPUT, 14) /* (AG37) MCASP0_AXR1.UART8_RTSn */
+> +			J784S4_IOPAD(0x0d0, PIN_INPUT, 11) /* (AP38) SPI0_CS1.UART8_RXD */
+> +			J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
+> +		>;
+> +	};
+> +
+> +	main_i2c0_pins_default: main-i2c0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
+> +			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
+> +		>;
+> +	};
+> +
+> +	main_mmc1_pins_default: main-mmc1-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x104, PIN_INPUT, 0) /* (AB38) MMC1_CLK */
+> +			J784S4_IOPAD(0x108, PIN_INPUT, 0) /* (AB36) MMC1_CMD */
+> +			J784S4_IOPAD(0x100, PIN_INPUT, 0) /* (No Pin) MMC1_CLKLB */
+> +			J784S4_IOPAD(0x0fc, PIN_INPUT, 0) /* (AA33) MMC1_DAT0 */
+> +			J784S4_IOPAD(0x0f8, PIN_INPUT, 0) /* (AB34) MMC1_DAT1 */
+> +			J784S4_IOPAD(0x0f4, PIN_INPUT, 0) /* (AA32) MMC1_DAT2 */
+> +			J784S4_IOPAD(0x0f0, PIN_INPUT, 0) /* (AC38) MMC1_DAT3 */
+> +			J784S4_IOPAD(0x0e8, PIN_INPUT, 8) /* (AR38) TIMER_IO0.MMC1_SDCD */
+> +		>;
+> +	};
+> +
+> +	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+> +		>;
+> +	};
+> +};
+> +
+> +&main_uart8 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_uart8_pins_default>;
+> +};
+> +
+> +&main_i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c0_pins_default>;
+> +
+> +	clock-frequency = <400000>;
+> +
+> +	exp1: gpio@20 {
+> +		compatible = "ti,tca6416";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "PCIE1_2L_MODE_SEL", "PCIE1_4L_PERSTZ", "PCIE1_2L_RC_RSTZ",
+> +				  "PCIE1_2L_EP_RST_EN", "PCIE0_4L_MODE_SEL", "PCIE0_4L_PERSTZ",
+> +				  "PCIE0_4L_RC_RSTZ", "PCIE0_4L_EP_RST_EN", "PCIE1_4L_PRSNT#",
+> +				  "PCIE0_4L_PRSNT#", "CDCI1_OE1/OE4", "CDCI1_OE2/OE3",
+> +				  "AUDIO_MUX_SEL", "EXP_MUX2", "EXP_MUX3", "GESI_EXP_PHY_RSTZ";
+> +	};
+> +
+> +	exp2: gpio@22 {
+> +		compatible = "ti,tca6424";
+> +		reg = <0x22>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "R_GPIO_RGMII1_RST", "ENET2_I2CMUX_SEL", "GPIO_USD_PWR_EN",
+> +				  "USBC_PWR_EN", "USBC_MODE_SEL1", "USBC_MODE_SEL0",
+> +				  "GPIO_LIN_EN", "R_CAN_STB", "CTRL_PM_I2C_OE#",
+> +				  "ENET2_EXP_PWRDN", "ENET2_EXP_SPARE2", "CDCI2_RSTZ",
+> +				  "USB2.0_MUX_SEL", "CANUART_MUX_SEL0", "CANUART_MUX2_SEL1",
+> +				  "CANUART_MUX1_SEL1", "ENET1_EXP_PWRDN", "ENET1_EXP_RESETZ",
+> +				  "ENET1_I2CMUX_SEL", "ENET1_EXP_SPARE2", "ENET2_EXP_RESETZ",
+> +				  "USER_INPUT1", "USER_LED1", "USER_LED2";
+> +	};
+> +};
+> +
+> +&main_sdhci1 {
+> +	/* SD card */
+> +	status = "okay";
+> +	pinctrl-0 = <&main_mmc1_pins_default>;
+> +	pinctrl-names = "default";
+> +	disable-wp;
+> +	vmmc-supply = <&vdd_mmc1>;
+> +	vqmmc-supply = <&vdd_sd_dv>;
+> +};
+> +
+> +&main_gpio0 {
+> +	status = "okay";
+> +};
