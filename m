@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88CE262FDF1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 20:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA7162FDFB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 20:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234973AbiKRTYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 14:24:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48088 "EHLO
+        id S235329AbiKRT16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 14:27:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232926AbiKRTYk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 14:24:40 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A766F0;
-        Fri, 18 Nov 2022 11:24:40 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AIIK6Y8003709;
-        Fri, 18 Nov 2022 19:24:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Dy7fm/CffSTrGxBiQ0piJhj/xW4rZh3fg19dYQbd2AU=;
- b=h/K15T9VkXDt5hzDaowLbBvvp1pYvk5qIDfRrZxXi7XMUwABxXPvLu0zsR2LIXZ36hbV
- WlLcCareuxULek1ONoqSt0byhVBiB8DJ0TijEH8Q6mXNKnGNuttMPmPCwJEjcDFGetTs
- 6HN5rbn7ZhzxwqcFMB9U9yBsAaV/84kG/X+NyYw8AJWOeWuUh2kFO8ELfZZ3KpdxQ7Dn
- dbq2UmL3S0IBSHh+poqWru2J09eww4O5/hbN1wul5mNo+YNM+7A1GuEQgk+1IicU/d8n
- Qu7H8qkhRgFMSdvKHjw/jkHnl61HOtmKWaa+2pPJlxsv5OVAnvXQPQ9lLIXQIAXs2sGh 8g== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kx0tea0du-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 19:24:36 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AIJOZ3h024823
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Nov 2022 19:24:35 GMT
-Received: from [10.110.5.113] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 18 Nov
- 2022 11:24:34 -0800
-Message-ID: <f6842c89-fffc-e1b0-c68f-287111974378@quicinc.com>
-Date:   Fri, 18 Nov 2022 13:24:33 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v5 0/2] spmi: pmic-arb: Add support for PMIC v7
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234867AbiKRT15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 14:27:57 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D685725DE;
+        Fri, 18 Nov 2022 11:27:54 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIJRiun065186;
+        Fri, 18 Nov 2022 13:27:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668799665;
+        bh=AZsI4uAWUVHvsk4krFq0fSTfUz9BioebFL/dStV1c5c=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=DuirtsMV4tOFemOBjsECnXLVGaAwUZIGJbD5rey7OIpFqe3plYD1AJNYvfFcPfqrG
+         0qxJEBQ+Sn+eGynErgBYoklWVMMe6shrZdbuzHR8xffCPtkGLfdPW9CI+aprGrgg76
+         26wtWuE7z8YDKZnr2YG8zfKWDCB/88PJFIVg0iRI=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIJRi2u021547
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 13:27:44 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 13:27:44 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 13:27:44 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIJRiN8052813;
+        Fri, 18 Nov 2022 13:27:44 -0600
+Date:   Fri, 18 Nov 2022 13:27:44 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>
-References: <20220914165212.3705892-1-vkoul@kernel.org>
- <Y2PP0cZaJ1vpv1Em@matsya>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <Y2PP0cZaJ1vpv1Em@matsya>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kbCo4LQQsEzGNu_GBE9FTgtlPkQXCPNv
-X-Proofpoint-GUID: kbCo4LQQsEzGNu_GBE9FTgtlPkQXCPNv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-18_06,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- suspectscore=0 adultscore=0 clxscore=1015 mlxlogscore=901 phishscore=0
- malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211180115
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+Message-ID: <20221118192744.wish2vrxgy7dg7c2@unnerving>
+References: <20221116130428.161329-1-a-nandan@ti.com>
+ <20221116130428.161329-5-a-nandan@ti.com>
+ <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
+ <20221118174754.y37pq77drvla2uxj@tinderbox>
+ <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
+ <20221118180808.wnel7d6gswsnooww@junkman>
+ <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,45 +75,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12:15-20221118, Andrew Davis wrote:
+> I don't see either of those addressed in that thread, only that
+> the aliases should go in the .dts files and be trimmed, nothing
 
+Key is trimmed to what the system and ecosystem needs.
 
-On 11/3/2022 9:27 AM, Vinod Koul wrote:
-> On 14-09-22, 22:22, Vinod Koul wrote:
->> Hello,
->>
->> The is version 5 of support for PMIC v7. I have added a new property
->> qcom,bus-id for supporting v7 and then add driver changes for v7
-> Stephen,
->
-> Can you pick this? It has been so long...
+> stops us from:
+> 
+> chosen {
+> 	stdout-path = "serial10:115200n8";
+> };
+> 
+> aliases {
+> 	serial10 = &main_uart8;
+> };
 
-Hi Stephen,
+Do we need 10 serial aliases? There are'nt 10 serial ports exposed in
+j782s2. ok - lets say we do this, then: [1] is needed to boot? but why
+do we need to do that for all armv8 platforms when aliases allows us
+to trim it to just the 3 or 4 serial ports the platform really needs
+That + being able to use the convention that serial2 is always linux
+console, is'nt that a good thing? Hence recommending to just expose the
+serialports as aliases to exactly what we need while keeping serial2 as
+the linux console (which in this case happens to be main_uart8 - example
+as j721s2 does).
 
-Do you mind looking at this? I've got some patches that depend on functionality here...
-https://lore.kernel.org/all/20221118192241.29384-1-quic_molvera@quicinc.com/
+[1] https://lore.kernel.org/lkml/3ab9addf-7938-fcf3-6147-15a998e37d2d@ti.com/
 
-Thanks,
-Melody
-
->> Changes since v4:
->>  - Fix David name and email
->>  - remove trailing line in binding
->>
->> Changes since v3:
->>  - rebase on spmi/next
->>
->> David Collins (1):
->>   spmi: pmic-arb: Add support for PMIC v7
->>
->> Vinod Koul (1):
->>   dt-bindings: spmi: Add qcom,bus-id
->>
->>  .../bindings/spmi/qcom,spmi-pmic-arb.yaml     |  10 +
->>  drivers/spmi/spmi-pmic-arb.c                  | 242 ++++++++++++++++--
->>  2 files changed, 231 insertions(+), 21 deletions(-)
->>
->>
->> base-commit: 18c42f8d23426d3f4048df89523aa47203c3493a
->> -- 
->> 2.37.3
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
