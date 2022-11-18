@@ -2,164 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E076305E4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 00:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1536563064A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 01:09:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237292AbiKRX7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 18:59:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43324 "EHLO
+        id S237539AbiKSAJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 19:09:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237596AbiKRX6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 18:58:30 -0500
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46402776CE;
-        Fri, 18 Nov 2022 15:29:23 -0800 (PST)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id B26AE5C044F;
-        Fri, 18 Nov 2022 18:29:22 -0500 (EST)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Fri, 18 Nov 2022 18:29:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1668814162; x=1668900562; bh=jd
-        aVVyoiR0VCQOud2KCglQnSQfOgAw/rL0a1ZKTNzvI=; b=d6tNv2qI8DBti//IDo
-        KpsXzFVC+ZrSzmDsLIt3AziO09/eIZs+84NFj2js4XtZbiJElq3mDN+ng4Fv6Y/i
-        v22Sjr38OAzC3hrd0txZkmcsMbJGtOFLW62kwy/nkAym1jRhpICdUaJ+LiklUCRC
-        ua76rqPMmD0NSgRyhVoo0xNne4AP23Qb7mQPLIUDC/K0tBqJIn68v3rO1ZMjabyF
-        yKh07lohWayKMzYv8NwyI77edrq6ERZwwli47OcVqU0vnu4cBhZRbc2z4NqIlRLe
-        VmBXsVGZ/yVuL6vcA0YiaQh5qRoO5b1xx88bHD1zv332RZpfHT2i+GctNcKlPm+L
-        R8pA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1668814162; x=1668900562; bh=jdaVVyoiR0VCQOud2KCglQnSQfOg
-        Aw/rL0a1ZKTNzvI=; b=AMOCmt026IUrsemIgu7w4kfYogHwuMWmHTO4XZ5NmrFT
-        M1cPI1uo14acViwzowT3nCqBZTg4bnKZzHMSF0RPlxeMmzjR5j0IZz+771DQJj8l
-        6desYz2Qe3gqTqXYpv2d5vFcbmK4XNp4td81LCM3xzPrL0TEQBv5G3uZGyYVrmUy
-        mwRtbIzNVeVaGtOxEBXMuT9pGhJWuY6S+FLfZk9xve6aPAASRYf/gVR7ZGf0cqYn
-        2YwiGsaFNCSgcPtM6Y5Imbn328JoY/0K6wVlxLeM9XzD0tACb73qpaeUtjo28Dhf
-        F23Eo+f9SIVn9J9ubniOTi0FGsg8bvtPaY/uRlfrqA==
-X-ME-Sender: <xms:UhV4Y4udhcoQ73vA7XqifMmYm9OFi3Jojop3hM6ZmiLvA-3KC6zrXA>
-    <xme:UhV4Y1cSiVQWxoHbmXMkCGb86vkbMTgYm5X1ZXyZqxmbHRNk_tksYM2shZiU6GPXw
-    bm2CgngXshkoUIIP3w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrhedugdduvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomheptehlihhs
-    thgrihhruceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrg
-    htthgvrhhnpeeukeffkefhjeethedtieegudejvedvhfejleekheefhfdufffhjefgjeei
-    heehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:UhV4YzxRa3arT6IrVxvZLL3z799u--__KBwLoIlA8hkHECThy3pNwA>
-    <xmx:UhV4Y7Pq4AaNVsbdZtvaGdUEMAjVjlLv_QkwS_hrBNCHO2DcLgL5Jg>
-    <xmx:UhV4Y4-E6NPZY8IZKfB8UUOfkifQPjxtwbdBp-qkXpe8ETThgnuAfA>
-    <xmx:UhV4Y3nNfYhSyiuIJJ2hXHkLXV9fdxLyzq2UuA7DdGcz5cxZO2-IwA>
-Feedback-ID: ifd214418:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 8BD2D2D40090; Fri, 18 Nov 2022 18:29:22 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <b32cf5f3-2be6-4401-86f2-37c880d46a3a@app.fastmail.com>
-In-Reply-To: <20221117190507.87535-3-linmengbo0689@protonmail.com>
-References: <20221117190507.87535-1-linmengbo0689@protonmail.com>
- <20221117190507.87535-3-linmengbo0689@protonmail.com>
-Date:   Sat, 19 Nov 2022 09:29:00 +1000
-From:   Alistair <alistair@alistair23.me>
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-input@vger.kernel.org
-Cc:     "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] Input: cyttsp5 - add vddio regulator
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232051AbiKSAJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 19:09:34 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 913CBD123
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:47 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id a15so8618064ljb.7
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 15:32:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BlwFEZE/SAxDXRWUzrr/1IUfgQmjEm+H1x3VkOquluI=;
+        b=X0ao+8I0u6haCAzn5yuOKeBdxzHATC5OOKak1TebE6SfgnRvUE1V4+eF7xVXd7hB/r
+         WS0GzXfaoRvfcGF24IZaD2znSJyKYSK3cbEXhS8I8Hn0F0wQJ13k98c0fhOUek0qICQf
+         gC/6i2YPtKLNDFAHnXFrLQQvsfE1i7zRXGDw0eps4vUVrs6h3KLqVj2bV7Z7h9NIkSJl
+         PxDFt4p492e8339DBzV3F33y9RBuRcIialNEatgRty+Tvmosy7pWUMDBqnWltKSC1Met
+         jYi/LVfPnHttLkCYx/cBXFa1SOKWECHTJ6IzwwDxzVKfeqXt4SJotI+fM+oMFXRTPebN
+         4Ehw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BlwFEZE/SAxDXRWUzrr/1IUfgQmjEm+H1x3VkOquluI=;
+        b=oUlqnkjVXOyXTzw8fGHaN124y2ywTS2AkJ/PuJzeLEZD9TMrjWMfwgaJ7c93rPOV5T
+         bFitCIkGmhu7toTmcfyX3y2aAhGOMksvPUZVQMAEhvy/EnXRBMhZNxLCDyRXxgFR0Wfq
+         +xvuQYgGfIZrG/Xm35jOD3kLOeJG/xf5LuA5howgHC71UCsPzBNFhdrd+K2w8S2iBwxz
+         DBumqM4NeTVXD9PLErvebS+/QpM52mu54Cg9N3tTBwI7XAYJuQcXFgpGrG+wPGpTkT0k
+         XhGavZgLFkQr3GVVoYcIMMWxabFrP/2uPTNRbML1EEBEeP33ERg7brKDvKY8BmmTdxAK
+         zBOg==
+X-Gm-Message-State: ANoB5pnusy4PyajlGeXz/GYFe4U3OgMf0zvhv9fuQiIGq5W83ysEuhb6
+        JLwxuYDTyCPjedmU8GAwkXla7A==
+X-Google-Smtp-Source: AA0mqf7LBWSGIUWul+WfPluJ+CKGVl2UNi56U3/ksFaE4HNyoPhWSWv7G5JwzCjcGEfWel7vQReEBA==
+X-Received: by 2002:a2e:a229:0:b0:26f:a8a8:654a with SMTP id i9-20020a2ea229000000b0026fa8a8654amr3375031ljm.435.1668814365930;
+        Fri, 18 Nov 2022 15:32:45 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([194.204.33.9])
+        by smtp.gmail.com with ESMTPSA id k13-20020ac257cd000000b004947f8b6266sm843900lfo.203.2022.11.18.15.32.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 15:32:45 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 0/8] PCI/phy: Add support for PCI on sm8350 platform
+Date:   Sat, 19 Nov 2022 01:32:34 +0200
+Message-Id: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022, at 5:05 AM, Lin, Meng-Bo wrote:
-> The Samsung touchscreen controllers are often used with external pull-up
-> for the interrupt line and the I2C lines, so we might need to enable
-> a regulator to bring the lines into usable state. Otherwise, this might
-> cause spurious interrupts and reading from I2C will fail.
-> 
-> Implement support for a "vddio-supply" that is enabled by the cyttsp5
-> driver so that the regulator gets enabled when needed.
-> 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+SM8350 is one of the recent Qualcomm platforms which lacks PCIe support.
+Use sm8450 PHY tables to add support for the PCIe hosts on Qualcomm SM8350 platform.
 
-Acked-by: Alistair Francis <alistair@alistair23.me>
+Note: the PCIe0 table is based on the lahaina-v2.1.dtsi file, so it
+might work incorrectly on earlier SoC revisions.
 
-> ---
-> drivers/input/touchscreen/cyttsp5.c | 19 ++++++++++++-------
-> 1 file changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/cyttsp5.c b/drivers/input/touchscreen/cyttsp5.c
-> index 24ab1df9fc07..d02fdb940edf 100644
-> --- a/drivers/input/touchscreen/cyttsp5.c
-> +++ b/drivers/input/touchscreen/cyttsp5.c
-> @@ -190,7 +190,7 @@ struct cyttsp5 {
-> int num_prv_rec;
-> struct regmap *regmap;
-> struct touchscreen_properties prop;
-> - struct regulator *vdd;
-> + struct regulator_bulk_data supplies[2];
-> };
->  
-> /*
-> @@ -767,7 +767,7 @@ static void cyttsp5_cleanup(void *data)
-> {
-> struct cyttsp5 *ts = data;
->  
-> - regulator_disable(ts->vdd);
-> + regulator_bulk_disable(ARRAY_SIZE(ts->supplies), ts->supplies);
-> }
->  
-> static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
-> @@ -790,9 +790,12 @@ static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
-> init_completion(&ts->cmd_done);
->  
-> /* Power up the device */
-> - ts->vdd = devm_regulator_get(dev, "vdd");
-> - if (IS_ERR(ts->vdd)) {
-> - error = PTR_ERR(ts->vdd);
-> + ts->supplies[0].supply = "vdd";
-> + ts->supplies[1].supply = "vddio";
-> + error = devm_regulator_bulk_get(dev, ARRAY_SIZE(ts->supplies),
-> +       ts->supplies);
-> + if (error < 0) {
-> + dev_err(ts->dev, "Failed to get regulators, error %d\n", error);
-> return error;
-> }
->  
-> @@ -800,9 +803,11 @@ static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
-> if (error)
-> return error;
->  
-> - error = regulator_enable(ts->vdd);
-> - if (error)
-> + error = regulator_bulk_enable(ARRAY_SIZE(ts->supplies), ts->supplies);
-> + if (error < 0) {
-> + dev_err(ts->dev, "Failed to enable regulators, error %d\n", error);
-> return error;
-> + }
->  
-> ts->input = devm_input_allocate_device(dev);
-> if (!ts->input) {
-> -- 
-> 2.30.2
-> 
-> 
-> 
+Dependencies:
+- phy/next (for PHY patches only)
+
+Changes since v3:
+ - Moved all pinconf and -gpios to board dtsi (Johan)
+ - Reworked bindings to move the optional clock to the end (Rob)
+
+Changes since v2:
+ - Rebased onto phy/next
+ - Added voltge supplies to the HDK dts file (Johan)
+
+Changes since v1:
+ - removed pipe/ref clocks from the PCI schema, they are unused now
+ - split the sm8450 tables commit into separate split & rename (Bjorn)
+ - cleaned up the dtsi file, removing 'power-domain-names' and fixing
+   gpio proprety names.
+
+Dmitry Baryshkov (8):
+  dt-bindings: PCI: qcom: Add sm8350 to bindings
+  dt-bindings: phy: qcom,qmp-pcie: add sm8350 bindings
+  PCI: qcom: Add support for SM8350
+  phy: qcom-qmp-pcie: split sm8450 gen3 PHY config tables
+  phy: qcom-qmp-pcie: rename the sm8450 gen3 PHY config tables
+  phy: qcom-qmp-pcie: add support for sm8350 platform
+  arm64: dts: qcom: sm8350: add PCIe devices
+  arm64: dts: qcom: sm8350-hdk: enable PCIe devices
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  32 +++
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  22 +++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |  80 ++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 182 +++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 164 ++++++++++++++--
+ 6 files changed, 463 insertions(+), 18 deletions(-)
+
+-- 
+2.35.1
+
