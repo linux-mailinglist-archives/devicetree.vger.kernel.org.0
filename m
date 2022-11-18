@@ -2,85 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ECEC62F651
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E89562F675
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235260AbiKRNgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:36:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53632 "EHLO
+        id S241392AbiKRNlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:41:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242243AbiKRNgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:36:16 -0500
-X-Greylist: delayed 108 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 18 Nov 2022 05:34:19 PST
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBCA942DF;
-        Fri, 18 Nov 2022 05:34:18 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0171224E287;
-        Fri, 18 Nov 2022 21:32:30 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Nov
- 2022 21:32:30 +0800
-Received: from localhost.localdomain (183.27.96.116) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Nov
- 2022 21:32:28 +0800
-From:   Walker Chen <walker.chen@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235221AbiKRNlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:41:44 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A2B1C3D;
+        Fri, 18 Nov 2022 05:41:43 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id w14so9311359wru.8;
+        Fri, 18 Nov 2022 05:41:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kdLS+asfEoSvipkYLNNhcL5qp6R+rlOz+8ktYa9WENs=;
+        b=N+pZ+IvkTjyayqCEzGcFSxvi2J3GiWXiEAxO4CgJw5mldoXyA6fyZvQvaKCIiqAAtk
+         xYcHNqBuAmywb85rF4Q//hD752UHwXaYm/b8esSIDEWMK6+v6g5eoUmFH79aZ79Loyv+
+         hThyVMei5G84VN7Ek8izxHjTclWCMCQpJFRoeh8woM0Dv55lShnyyzjHHRcnoz3f/sai
+         dvnpXgdIRPeVZvTWSyj+3uDgHEf+lpGpS/cKul7d6WxAxTIT8YbQTSM0wvd1j8MpjwoE
+         SLA6kQnez4WZ5cKsKaiupHvo5qJWrEHFgWdSES1hllm7we3bD0HAot3KF1r+EtlHuYDw
+         FmqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kdLS+asfEoSvipkYLNNhcL5qp6R+rlOz+8ktYa9WENs=;
+        b=oeNUSi2cLvGLSUs5NV0FXGQO9dYIh39pWi+noBRCxNiV2T8d4nQgtOpgRAbNNTT1yX
+         UzPqWJ3csjOlsmr2RNc4gWjzjbVPxYhOG6c8YPw/MQmsiNjwKhta9CfprHmXlEF+fNX3
+         Nm3A6y4u1IfAWaTwpec4eSRYmJ/tuUVl+DSxYVd8MqJ2Fq56bpYw3KuqBAJOPpbT4wmS
+         GyuCQ5nXFglDU3Gb0P6j2nFXpaKgewr6c6cnKeylGpJmyF6bqW13wikZaI2wjvkQfrmJ
+         ILtjGaczsbX05mDRumBCdg8Z2O0mr8Om2ZiYE0TEQ+EEa9rdpJLVc9HHpCwetqUv3lDT
+         BI/A==
+X-Gm-Message-State: ANoB5pmbdO1r2Qx5p4u6lsVQ4n1/E/ZH4lNuUm5I9vNtZB8Wk+5IFaEG
+        qncXVictXvwwkCyAnFEiBbY=
+X-Google-Smtp-Source: AA0mqf4nHDAuiyx+n3E39N7LD5MIjpFi4kW9nKbyHoi5Zgoi7z371ZYJ18sTItNGjWEiIIpvwoJ0gQ==
+X-Received: by 2002:a05:6000:12cb:b0:236:62e3:6202 with SMTP id l11-20020a05600012cb00b0023662e36202mr4395284wrx.47.1668778902081;
+        Fri, 18 Nov 2022 05:41:42 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:29e1:fee9:75e6:d6ea])
+        by smtp.gmail.com with ESMTPSA id c20-20020a7bc854000000b003b476cabf1csm4531598wml.26.2022.11.18.05.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Nov 2022 05:41:40 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 4/4] riscv: dts: starfive: add power controller node
-Date:   Fri, 18 Nov 2022 21:32:16 +0800
-Message-ID: <20221118133216.17037-5-walker.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221118133216.17037-1-walker.chen@starfivetech.com>
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/Five SoC
+Date:   Fri, 18 Nov 2022 13:38:29 +0000
+Message-Id: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.96.116]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the power controller node for the Starfive JH7110 SoC.
-The pmu needs to be used by other modules such as ISP, VPU, etc.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+The WDT block on the RZ/Five SoC is identical to one found on the RZ/G2UL
+SoC. "renesas,r9a07g043-wdt" compatible string will be used on the
+RZ/Five SoC so to make this clear, update the comment to include RZ/Five
+SoC.
+
+No driver changes are required as generic compatible string
+"renesas,rzg2l-wdt" will be used as a fallback on RZ/Five SoC.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index c22e8f1d2640..fa7b60b82d71 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -356,6 +356,13 @@
- 			#gpio-cells = <2>;
- 		};
+diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+index 26b1815a6753..e2c9bf1aec38 100644
+--- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+@@ -26,7 +26,7 @@ properties:
  
-+		pwrc: power-controller@17030000 {
-+			compatible = "starfive,jh7110-pmu";
-+			reg = <0x0 0x17030000 0x0 0x10000>;
-+			interrupts = <111>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		uart0: serial@10000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x10000000 0x0 0x10000>;
+       - items:
+           - enum:
+-              - renesas,r9a07g043-wdt    # RZ/G2UL
++              - renesas,r9a07g043-wdt    # RZ/G2UL and RZ/Five
+               - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
+               - renesas,r9a07g054-wdt    # RZ/V2L
+           - const: renesas,rzg2l-wdt
 -- 
-2.17.1
+2.25.1
 
