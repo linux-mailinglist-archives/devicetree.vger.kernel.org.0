@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B10A762FD91
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 20:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0103562FD96
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 20:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242844AbiKRTCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 14:02:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35116 "EHLO
+        id S242881AbiKRTCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 14:02:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242845AbiKRTBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 14:01:52 -0500
-Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B728130550;
-        Fri, 18 Nov 2022 11:01:38 -0800 (PST)
+        with ESMTP id S242957AbiKRTBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 14:01:53 -0500
+Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D7A21893;
+        Fri, 18 Nov 2022 11:01:39 -0800 (PST)
 Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-        by mxout1.routing.net (Postfix) with ESMTP id D092F4039D;
-        Fri, 18 Nov 2022 19:01:36 +0000 (UTC)
+        by mxout4.routing.net (Postfix) with ESMTP id 8838A100995;
+        Fri, 18 Nov 2022 19:01:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
         s=20200217; t=1668798097;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=0G8A0Vfo5m7AIOUJk0K0IJlgKB0iQp40ZYsUGIkco0E=;
-        b=miuTTB51NT/kO2sKHO/2VyDlH4Kc5NLo6WnZxaMyP4eIt/g9EX3Kxz2ZrQUQRDJPo357nW
-        EKDcCfvHT4l7gcTBVRKJMg6gHPWbvrg5/ptkSesICi7iyy+/D8hstXwaKO8UY3zbSoISKA
-        EPHLN7RTg+sp3cIzwiZnkqip8AcwvVM=
+        bh=6YDvN14LGzYl2jRSkK1fRlKatqJWzuwYk+eXtAY5bVg=;
+        b=Bg8VOojRqjXpMbnvcQ0BS7YLdq0qU/ixxmd4qWW8aTSiRMhNppN9n3ZX6yXL3D63iLfYKj
+        RmsCghVZLHDx+vGs+y0zv+f0pci1vrv67b1npT/kLsrner+k1nETyiF2ELJfEXbvJPfkCH
+        oS6CyKYn3XmZdV61b/HV8DvuS1oWzow=
 Received: from frank-G5.. (fttx-pool-80.245.77.125.bambit.de [80.245.77.125])
-        by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 76AC81226BC;
-        Fri, 18 Nov 2022 19:01:36 +0000 (UTC)
+        by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 365341226BC;
+        Fri, 18 Nov 2022 19:01:37 +0000 (UTC)
 From:   Frank Wunderlich <linux@fw-web.de>
 To:     linux-mediatek@lists.infradead.org
 Cc:     Frank Wunderlich <frank-w@public-files.de>,
@@ -49,12 +49,12 @@ Cc:     Frank Wunderlich <frank-w@public-files.de>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v6 02/11] dt-bindings: phy: mediatek,tphy: add support for mt7986
-Date:   Fri, 18 Nov 2022 20:01:17 +0100
-Message-Id: <20221118190126.100895-3-linux@fw-web.de>
+Subject: [PATCH v6 04/11] dt-bindings: PCI: mediatek-gen3: add SoC based clock config
+Date:   Fri, 18 Nov 2022 20:01:19 +0100
+Message-Id: <20221118190126.100895-5-linux@fw-web.de>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221118190126.100895-1-linux@fw-web.de>
 References: <20221118190126.100895-1-linux@fw-web.de>
@@ -71,28 +71,96 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Frank Wunderlich <frank-w@public-files.de>
 
-Add compatible string for mt7986.
+The PCIe driver covers different SOC which needing different clock
+configs. Define them based on compatible.
 
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Jianjun Wang <jianjun.wang@mediatek.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v2:
+- fix typo in mediatek,mt8192-pcie
+v3:
+- remove contains to match only if compatible is no fallback
+  tested with series "Add driver nodes for MT8195 SoC" and mt7986
+  pcie-nodes, dtbs_check is now clean
+---
+ .../bindings/pci/mediatek-pcie-gen3.yaml      | 47 ++++++++++++++-----
+ 1 file changed, 35 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-index 5613cc5106e3..230a17f24966 100644
---- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-@@ -79,6 +79,7 @@ properties:
-           - enum:
-               - mediatek,mt2712-tphy
-               - mediatek,mt7629-tphy
-+              - mediatek,mt7986-tphy
-               - mediatek,mt8183-tphy
-               - mediatek,mt8186-tphy
-               - mediatek,mt8192-tphy
+diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+index c00be39af64e..5d7369debff2 100644
+--- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
++++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+@@ -43,9 +43,6 @@ description: |+
+   each set has its own address for MSI message, and supports 32 MSI vectors
+   to generate interrupt.
+ 
+-allOf:
+-  - $ref: /schemas/pci/pci-bus.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -84,15 +81,7 @@ properties:
+     maxItems: 6
+ 
+   clock-names:
+-    items:
+-      - const: pl_250m
+-      - const: tl_26m
+-      - const: tl_96m
+-      - const: tl_32k
+-      - const: peri_26m
+-      - enum:
+-          - top_133m        # for MT8192
+-          - peri_mem        # for MT8188/MT8195
++    maxItems: 6
+ 
+   assigned-clocks:
+     maxItems: 1
+@@ -138,6 +127,40 @@ required:
+   - '#interrupt-cells'
+   - interrupt-controller
+ 
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++  - if:
++      properties:
++        compatible:
++          const: mediatek,mt8192-pcie
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: pl_250m
++            - const: tl_26m
++            - const: tl_96m
++            - const: tl_32k
++            - const: peri_26m
++            - const: top_133m
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt8188-pcie
++              - mediatek,mt8195-pcie
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: pl_250m
++            - const: tl_26m
++            - const: tl_96m
++            - const: tl_32k
++            - const: peri_26m
++            - const: peri_mem
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
 2.34.1
 
