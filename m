@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710D862F622
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B27E962F61B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242036AbiKRNbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:31:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52310 "EHLO
+        id S241876AbiKRNbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:31:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235303AbiKRNbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:31:24 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9555A13F4D;
-        Fri, 18 Nov 2022 05:31:22 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-141ca09c2fbso5922949fac.6;
-        Fri, 18 Nov 2022 05:31:22 -0800 (PST)
+        with ESMTP id S241701AbiKRNbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:31:23 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECBFD67F6C;
+        Fri, 18 Nov 2022 05:31:20 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so5933039fac.5;
+        Fri, 18 Nov 2022 05:31:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=y+PQank0kVuo33Md8NlsnP7gjwKHFRrleDDip1LLBFo=;
-        b=0CLK1VbLXGwN5ehZle8r3kRY5vhWqYZQN3QQn0J7yzAdw1gvimTjNV633TlOvPA0SJ
-         JU3KWMV85s+PmaAZehF8RgFRBqHmvL1RFBxwA4uminTlgzlor4d2nDXqVu2X9LcnVeqM
-         KwX+wq6mE4LBuYw3EtWHxmW8lzl8j6vtHnttSsjTMcayqd1k59G3qp3H2uOkdkd47poI
-         MA94yQhI4Gf7j7OWV9eb5qKJjLh3j6F5G6Fl7VYq7sE3buRTuUAxTytV/2tQ7k/szgct
-         jRRFVEOON/eteKq3s6glDDQa/Ttwqk7j0tf8B9hA4bu1XoyJeFQbTvCzbus7LTDDWYok
-         bZiA==
-X-Gm-Message-State: ANoB5pnDS+5zHuc7VTFYgMKTlI7nWLDgibfXbq6S8onW0GJoWw05gMSU
-        Hov2/hoWhk8YC3olShLlKfhGkzsNLQ==
-X-Google-Smtp-Source: AA0mqf6hKsFP3YIalK4Wpqh7ejVjg0lybBFJOFt9BJ0OaI0dhtPs2Hp8J4zJGnJ0+qOqxFzfnK01kA==
-X-Received: by 2002:a05:6871:4598:b0:13c:14f9:8657 with SMTP id nl24-20020a056871459800b0013c14f98657mr4098190oab.293.1668778281533;
-        Fri, 18 Nov 2022 05:31:21 -0800 (PST)
+        bh=EfogeLm9YKn41KXzs/CGTbBvXGpNupwTv41nqDxYWRc=;
+        b=Avk7dIxCFQk0G0gCJgSP8hQqIGuOs8CfWSGXLtonIRJdg7PzG5a1T4Dt1oRgulFQ1Z
+         7CqSvotc4vrkbCOg0PyWbzFcoXCEYfIXcycfsVh6TUj4RmCrYGFhj3o6rMMIFKpD9nSE
+         mLc/4mP4X2oi7A1PrpxxzvkFVgzHZ3hodNLPSIadUGGJdms8QW1Szg3EPeIlFsCm/BIt
+         TYslSX4kYWGrlO+Kf6FZB89rvwuy+kURhhXi7GPIjUdsj1IpCdwUayJXc10TZ0RCm4Qk
+         imPiXkoqw9kUo2cohavXXjiLnQ9z0G4D34bk1f/kjVsOAMN3z9rq+utjH7LVel9aC13s
+         nJbw==
+X-Gm-Message-State: ANoB5plihOkJxsUQwtE0lAEpIa1XZnhfh8VAp9wG/fVZyDRRXLOod0Ke
+        r++WyX9zuP9cUT0XiVLfQg==
+X-Google-Smtp-Source: AA0mqf7QRfsdsSbMWIOmsFpInlQ9vxFriR4ebriv3bGHGVpNO2xEQLPYKgVDxvgK/vJX4Yu7Z6iQ0g==
+X-Received: by 2002:a05:6870:40ca:b0:141:e308:fab5 with SMTP id l10-20020a05687040ca00b00141e308fab5mr4049099oal.49.1668778278208;
+        Fri, 18 Nov 2022 05:31:18 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q4-20020a9d5784000000b00661a16f14a1sm1534081oth.15.2022.11.18.05.31.20
+        by smtp.gmail.com with ESMTPSA id be41-20020a05680821a900b00339befdfad0sm1392635oib.50.2022.11.18.05.31.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 05:31:20 -0800 (PST)
-Received: (nullmailer pid 1482194 invoked by uid 1000);
+        Fri, 18 Nov 2022 05:31:17 -0800 (PST)
+Received: (nullmailer pid 1482189 invoked by uid 1000);
         Fri, 18 Nov 2022 13:31:19 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org
-In-Reply-To:  =?utf-8?q?=3C20221114-narmstrong-sm8550-upstream-i2c-master-hu?=
- =?utf-8?q?b-v2-1-aadaa6997b28=40linaro=2Eorg=3E?=
-References:  =?utf-8?q?=3C20221114-narmstrong-sm8550-upstream-i2c-master-hub?=
- =?utf-8?q?-v2-0-aadaa6997b28=40linaro=2Eorg=3E__=3C20221114-narmstrong-sm85?=
- =?utf-8?q?50-upstream-i2c-master-hub-v2-1-aadaa6997b28=40linaro=2Eorg=3E?=
-Message-Id: <166877745148.1437444.17672314766624749996.robh@kernel.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: qcom: geni-se: document I2C Master
- Hub wrapper variant
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     brgl@bgdev.pl, devicetree@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org, a.zummo@towertech.it,
+        vigneshr@ti.com, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lee@kernel.org, linus.walleij@linaro.org
+In-Reply-To: <20221118092218.480147-2-mranostay@ti.com>
+References: <20221118092218.480147-1-mranostay@ti.com>
+ <20221118092218.480147-2-mranostay@ti.com>
+Message-Id: <166877739931.1425860.1214658943409919491.robh@kernel.org>
+Subject: Re: [PATCH v4 1/4] Documentation: ti,tps6594: Add DT bindings for the
+ TPS6594x PMIC
 Date:   Fri, 18 Nov 2022 07:31:19 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -73,533 +68,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 18 Nov 2022 09:45:05 +0100, Neil Armstrong wrote:
-> The I2C Master Hub is a stripped down version of the GENI Serial Engine
-> QUP Wrapper Controller but only supporting I2C serial engines without
-> DMA support.
+On Fri, 18 Nov 2022 01:22:15 -0800, Matt Ranostay wrote:
+> Add documentation for the TPS6594x PMIC including its RTC and GPIO
+> functionalities.
 > 
-> Document the variant compatible, forbid UART and SPI sub-nodes,
-> and remove requirement for the Master AHB clock and iommu property.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 > ---
->  .../devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 44 +++++++++++++++++++---
->  1 file changed, 38 insertions(+), 6 deletions(-)
+>  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221114-narmstrong-sm8550-upstream-i2c-master-hub-v2-1-aadaa6997b28@linaro.org
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/mfd/ti,tps6594.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb: pmic@48: gpio: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb: pmic@48: gpio:compatible:0: 'ti,tps6594x-gpio' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+Documentation/devicetree/bindings/mfd/ti,tps6594.example.dtb:0:0: /example-0/i2c0/pmic@48/gpio: failed to match any schema with compatible: ['ti,tps6594-gpio']
 
+doc reference errors (make refcheckdocs):
 
-geniqup@8c0000: i2c@880000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221118092218.480147-2-mranostay@ti.com
 
-geniqup@8c0000: i2c@884000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-geniqup@8c0000: i2c@888000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-geniqup@8c0000: i2c@88c000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
+pip3 install dtschema --upgrade
 
-geniqup@8c0000: i2c@890000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@8c0000: i2c@894000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@8c0000: i2c@898000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@8c0000: i2c@89c000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@8c0000: spi@880000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@880000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@884000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@884000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@888000: Unevaluated properties are not allowed ('label' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-
-geniqup@8c0000: spi@888000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@888000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@88c000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@88c000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@890000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@890000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@894000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@894000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@898000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@8c0000: spi@898000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
-	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
-	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
-
-geniqup@8c0000: spi@89c000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: i2c@a80000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a84000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a88000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a8c000: Unevaluated properties are not allowed ('label', 'operating-points-v2' were unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-
-geniqup@ac0000: i2c@a8c000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a90000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a94000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a98000: Unevaluated properties are not allowed ('label', 'operating-points-v2' were unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-
-geniqup@ac0000: i2c@a98000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: i2c@a9c000: Unevaluated properties are not allowed ('operating-points-v2' was unexpected)
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb
-	arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
-	arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb
-	arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dtb
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-	arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dtb
-
-geniqup@ac0000: spi@a80000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: spi@a84000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: spi@a88000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: spi@a8c000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: spi@a90000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@ac0000: spi@a94000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c80000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c84000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c88000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c8c000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c90000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
-
-geniqup@cc0000: spi@c94000: Unevaluated properties are not allowed ('reg-names', 'spi-max-frequency' were unexpected)
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dtb
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dtb
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb
+Please check and re-submit after running the above command.
 
