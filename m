@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A625562F92B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5673662F936
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 16:23:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242238AbiKRPUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 10:20:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43954 "EHLO
+        id S235170AbiKRPXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 10:23:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242242AbiKRPUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:20:38 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C2E2C671
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:37 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id b3so8725795lfv.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:20:37 -0800 (PST)
+        with ESMTP id S241173AbiKRPXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 10:23:12 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0070C2CCBE
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:23:10 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso7759740wme.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 07:23:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kb/6Z6Nz1gnb2z7GznvPxvyQcocsubtScHtnufLzpH8=;
-        b=IHUJ4ViWC3qk37qn4GHyU/n75i6gHrjzDdr27nQHRmtg8yU0ept4ffxn0ShutbkedG
-         X74NoeRHZy6eQCVmdZaI9ExK+lFrtN/K1DRB6pTQkNJpdBsxFhlmNduBJJsIFf2OfBMF
-         qOEhH7Yi6iO+kU7ynIF8gxPqfgblX95IgJsb8RhfhkeHvZDiCwN7Jy/GuAzZ6PDiC1Td
-         do5gR14EgDv7tcxzIEMAnAp/sXFuAZAAUKIYkvvXP8Uo/juNRUD1WhsZPNmPyGh/P14p
-         90GvG4by3mFnrwHesXMPMtNyuxSkX4h+y/fH+P/q/K5SA13yLtUa3iCJV2gzvxFUPHAJ
-         hEnQ==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcYxX7CS1Ufy2jDrgHKfbNrWxSi6NEkFbdecW+66ckA=;
+        b=kwWawBEtv8KFgdpgtP1kcjBH2zrLUgAusesVgFEwCuWYdfBgcA5wc/sBbYz/Gt60Fy
+         C04zvP0H/tOcx1EzY9ytQLrDGGHiqrxOfRPa50i7nY8v2N9LDYc8xgnsLc/GZOvrT6Io
+         vgTVe81WD/VJ1nVjtmE6LngjjQyGBUzEN3/SmMFWgHw+lrjQQjRIXbWlHn4WzsJsNGOP
+         sPy26VddXhOo5vWQpwZLlHy2CKNb/+D19+uuEKIcgHsHbUSe7ZvGcxDHweoT7IX+YDH1
+         0WeINkG/1vPNI8sPqxpkZFM+gQT4iTwUltg1AANvcWWf/B8iH+ezxZFEvkTs5mo/vXkr
+         WiQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Kb/6Z6Nz1gnb2z7GznvPxvyQcocsubtScHtnufLzpH8=;
-        b=7uurvWDwSMvYl8fnEqg2gOyzzcVytKx8dPpkV7cPy46ttQ9tlnON/MdfMmoCVV2/iF
-         7KyKSUrAfTZnU3YAdrGzjtoJoF2cT7+kGaihWl7Jt+7QQK126AvJY5zjwUMnqaQuL0KQ
-         RX/4Nh2gcr9xeBErWC6vJ1Puha2k8z6WUwCzs1v9POsP8lfhim11iQfeYRq+wVc38kYy
-         FVkgOv8T3/R/ugwsqlt0xvhzDcOUgvlo8W7PgSDBhIOQ6DspHr3Sb7lMG2X+bfLpzGLu
-         tw62yh41eDAPc19Bg4wenBejakBH0q7AuVJxf3JLfBhGodxRB7cIOqtVoEk/HfE75n3T
-         I2pA==
-X-Gm-Message-State: ANoB5pkii7PohSbxZ5ouTFkEVwRrSkU7MJPVx+Sa+yoTXLudb94vvzJk
-        u72zYlmnYm3Q55FKnQeZPc/KCQ==
-X-Google-Smtp-Source: AA0mqf4OcdskkBwdfhW7fzDIEeecphOYfbsANRyvspW90OYHyg0Y408+8wUWBURzNqtp+MYhtMy7xQ==
-X-Received: by 2002:ac2:5de7:0:b0:4af:f58e:a7a0 with SMTP id z7-20020ac25de7000000b004aff58ea7a0mr2457830lfq.507.1668784835927;
-        Fri, 18 Nov 2022 07:20:35 -0800 (PST)
-Received: from localhost.localdomain ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b004948ddb4e4dsm690597lfq.301.2022.11.18.07.20.34
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Fri, 18 Nov 2022 07:20:35 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8350-sagami: Add GPIO line names for PMIC GPIOs
-Date:   Fri, 18 Nov 2022 16:20:28 +0100
-Message-Id: <20221118152028.59312-3-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20221118152028.59312-1-konrad.dybcio@linaro.org>
-References: <20221118152028.59312-1-konrad.dybcio@linaro.org>
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LcYxX7CS1Ufy2jDrgHKfbNrWxSi6NEkFbdecW+66ckA=;
+        b=nnmO5PzYBu8bQH6LgYQT5ME4shc9Qa7KAPLzoogbLMBEBpV8Ng0XJlz8v8gV/4j8kM
+         FcF8BbkaO18lQZn6uC5YBx6WpT31krZIHuV0Jh0MgcK52gzPFQzmFvph8fDaHR68aT2K
+         Rt0a4Vv1GzwYoDjVwPn5qduEjvr3IuXE//jLxU1bnYkfDkB8IAxoys9puqJNFH5FjmaR
+         yjeJe+gwjYSIdmaXkE+7bT9gcTgaNIG/WtqGt7D/l4ApDWU66phCcQW6vD3UoUTt0aeE
+         1xPQ1rDIGQWkbx8SRiN8Sh5Bu02uyqtI41B3rbZoX6ZqKkzC0yFJF+MXIDAQfrC6W9Vl
+         wmmw==
+X-Gm-Message-State: ANoB5pmWJHyk5spKQaH81/Lb35XUTFMstYrU7tY2rlqD52QK6uocxCKP
+        FXFoLwzkQ5N480nEc/PVPxJ3RQ==
+X-Google-Smtp-Source: AA0mqf63aZ9cQQYw+4CNq3MjA++NwUGZ8iaNAcaISCCd+7/g1EHsFBDOhLklLe1GPigwlYD6F1nL5Q==
+X-Received: by 2002:a05:600c:348d:b0:3cf:88d3:5685 with SMTP id a13-20020a05600c348d00b003cf88d35685mr5340839wmq.38.1668784989562;
+        Fri, 18 Nov 2022 07:23:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f7cc:460c:56ae:45a? ([2a01:e0a:982:cbb0:f7cc:460c:56ae:45a])
+        by smtp.gmail.com with ESMTPSA id e18-20020adfdbd2000000b0022da3977ec5sm3801120wrj.113.2022.11.18.07.23.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Nov 2022 07:23:09 -0800 (PST)
+Message-ID: <b5970487-9326-9d41-a004-6369e854e530@linaro.org>
+Date:   Fri, 18 Nov 2022 16:23:08 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq bindings
+ to dt-schema
+Content-Language: en-US
+To:     Sander Vanheule <sander@svanheule.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
+References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
+ <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
+Organization: Linaro Developer Services
+In-Reply-To: <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,135 +82,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sony ever so graciously provides GPIO line names in their downstream
-kernel (though sometimes they are not 100% accurate and you can judge
-that by simply looking at them and with what drivers they are used).
+On 18/11/2022 16:19, Sander Vanheule wrote:
+> Hi,
+> 
+> On Tue, 2022-11-15 at 11:06 +0100, Neil Armstrong wrote:
+>> This converts the Semtech SX150Xq bindings to dt-schemas, add necessary
+>> bindings documentation to cover all differences between HW variants
+>> and current bindings usage.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>> To: Linus Walleij <linus.walleij@linaro.org>
+>> To: Rob Herring <robh+dt@kernel.org>
+>> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: linux-gpio@vger.kernel.org
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> ---
+>> Changes in v3:
+>> - Resent with missing To: Linus Walleij
+>> - Link to v2: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v2-0-a4a5b8eecc7b@linaro.org
+>>
+>> Changes in v2:
+>> - fixed rob comments
+>> - added rob's Reviewed-by
+>> - Link to v1: https://lore.kernel.org/r/20221005-mdm9615-sx1509q-yaml-v1-0-0c26649b637c@linaro.org
+>> ---
+> 
+> [snip]
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - semtech,sx1503q
+>> +              - semtech,sx1506q
+>> +    then:
+>> +      patternProperties:
+>> +        '-cfg$':
+>> +          properties:
+>> +            pins:
+>> +              items:
+>> +                pattern: '^gpio[0-15]$'
+> 
+> [snip]
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: semtech,sx1509q
+>> +    then:
+>> +      patternProperties:
+>> +        '-cfg$':
+>> +          properties:
+>> +            pins:
+>> +              items:
+>> +                pattern: '^(oscio|gpio[0-15])$'
+> 
+> Sorry to be so late to reply, but don't these patterns only match "gpio0", "gpio1", and "gpio5"?
+> 
+> A quick search for some datasheets turned up the SX1503 and SX1509Q with 16 GPIOs, so I assume the
+> intention was to match "gpio0" to "gpio15". I think this should be "^(gpio[0-9]|gpio1[0-5])$" (or
+> something equivalent).
 
-Add these to the PDX213&214 DTSIs to better document the hardware.
+Damn you're right, Linus should I resend or send a fixup ?
 
-Diff between 223 and 224:
+Thanks,
+Neil
 
-pm8350b
-< 	gpio-line-names = "NC", /* GPIO_1 */
-> 	gpio-line-names = "CAM_PWR_A_CS", /* GPIO_1 */
-< 			  "NC",
-> 			  "CAM_PWR_LD_EN",
-
-pm8350c
-< 			  "NC",
-> 			  "WLC_TXPWR_EN",
-
-Which is due to different camera power wiring on 213 and lack of an
-additional SLG51000 PMIC on 214.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../qcom/sm8350-sony-xperia-sagami-pdx214.dts | 23 +++++++++++++++++++
- .../qcom/sm8350-sony-xperia-sagami-pdx215.dts | 21 +++++++++++++++++
- .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 20 ++++++++++++++++
- 3 files changed, 64 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
-index cc650508dc2d..e6824c8c2774 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
-@@ -17,3 +17,26 @@ &framebuffer {
- 	height = <2520>;
- 	stride = <(1080 * 4)>;
- };
-+
-+&pm8350b_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "SNAPSHOT_N",
-+			  "NC",
-+			  "NC",
-+			  "FOCUS_N";
-+};
-+
-+&pm8350c_gpios {
-+	gpio-line-names = "FL_STROBE_TRIG_WIDE", /* GPIO_1 */
-+			  "FL_STROBE_TRIG_TELE",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "RGBC_IR_PWR_EN",
-+			  "NC",
-+			  "NC",
-+			  "WIDEC_PWR_EN";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-index d4afaa393c9a..c6f402c3ef35 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dts
-@@ -68,6 +68,15 @@ slg51000_a_ldo7: ldo7 {
- };
- 
- &pm8350b_gpios {
-+	gpio-line-names = "CAM_PWR_A_CS", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "SNAPSHOT_N",
-+			  "CAM_PWR_LD_EN",
-+			  "NC",
-+			  "FOCUS_N";
-+
- 	cam_pwr_a_cs: cam-pwr-a-cs-state {
- 		pins = "gpio1";
- 		function = "normal";
-@@ -78,6 +87,18 @@ cam_pwr_a_cs: cam-pwr-a-cs-state {
- 	};
- };
- 
-+&pm8350c_gpios {
-+	gpio-line-names = "FL_STROBE_TRIG_WIDE", /* GPIO_1 */
-+			  "FL_STROBE_TRIG_TELE",
-+			  "NC",
-+			  "WLC_TXPWR_EN",
-+			  "NC",
-+			  "RGBC_IR_PWR_EN",
-+			  "NC",
-+			  "NC",
-+			  "WIDEC_PWR_EN";
-+};
-+
- &tlmm {
- 	gpio-line-names = "APPS_I2C_0_SDA", /* GPIO_0 */
- 			  "APPS_I2C_0_SCL",
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index 8f32b2799bcb..d73e1f3fa501 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -534,6 +534,26 @@ &mpss {
- 	firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
- };
- 
-+&pm8350_gpios {
-+	gpio-line-names = "ASSIGN1_THERM", /* GPIO_1 */
-+			  "LCD_ID",
-+			  "SDR_MMW_THERM",
-+			  "RF_ID",
-+			  "NC",
-+			  "FP_LDO_EN",
-+			  "SP_ARI_PWR_ALARM",
-+			  "NC",
-+			  "G_ASSIST_N",
-+			  "PM8350_OPTION"; /* GPIO_10 */
-+};
-+
-+&pmk8350_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "VOL_DOWN_N",
-+			  "PMK8350_OPTION";
-+};
-+
- &pmk8350_rtc {
- 	status = "okay";
- };
--- 
-2.38.1
+> 
+> Best,
+> Sander
 
