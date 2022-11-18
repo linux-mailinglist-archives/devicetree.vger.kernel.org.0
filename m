@@ -2,78 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE74F62F2F0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 11:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 764A062F2F6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 11:48:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241349AbiKRKqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 05:46:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35816 "EHLO
+        id S241426AbiKRKsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 05:48:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241594AbiKRKqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 05:46:25 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57396970B4
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 02:46:22 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id s8so7571968lfc.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 02:46:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aeMvN6MbIutm3HuzW/RoMf+6yOP31RHrL3pEC9uw6ts=;
-        b=RzzRCIZGbzerL8T5KMqjYaEOMywCYt7iANXi2sq0u5ACJAxqWp+Rh1payRLZIGVhJw
-         6VXPtEsRZlWiY9sH2Ddflqyxi8kP3YHXlMgudu2MSawkij710IiAmQfzP2S66v1PE627
-         ZELOZivclDiYIwyGGC3vT4Yah9roD1OQJWZDoaGV52Fshr4Z+tnAk0WxajlameBTOaIi
-         vhWrC3i42Az4nPRrU23BHWV91uLr06cC4mAGT9mzON1+XWmDcDQSlMHvoEJaWT2Sdg+E
-         s9+mCa77OahJrKfdv/8sB70sD+8ur8Tl1g37+x6S4P5SteYWgyae1oAYqHxZNJ1xdKmb
-         D5Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aeMvN6MbIutm3HuzW/RoMf+6yOP31RHrL3pEC9uw6ts=;
-        b=BJ1pduZDIdjsMKQ2Io2G5MUOIJ5Ymz5CULY3GgoXMSRaCYGKlDvilx2njM3TwHR8Sa
-         mvH0qn2KgpYepILNByZWxAV0s4bhbSCl8lxtUURMH5GMzXmR1iOZoCHsDRBGL022SGLI
-         hwiJzK27TsyIUsl80utlZSBQ6CRSAD6CjObrzXT1Nr6vIEQTKraEkKqVtHTU5+pyU9HL
-         hojKanhTSF3W1YUjy1quvzIuKuRJFlWrnoRA9CdMYgk2NEqH/k7cyf/L2VdjVYwXh1Oh
-         lf3oOHX1TptfH+5WHo7spnvsnqxtjqobeXg8m50xNLgUsHBSBVBL3253dLKQUd5XkPve
-         kirA==
-X-Gm-Message-State: ANoB5pkDQrIJHv8eJnhBiWnG6HZfasgyoSEAx3B/AQNkdZqcg66gUTOA
-        tmGbNvhJrqNPwBjL1ODo9teTPA==
-X-Google-Smtp-Source: AA0mqf49JNy4r6BC3Mg7hLhBh3xuqRsAE09Rp7Bd2/7JWubm7a159AC91boqgP78FId8oRQU2U9K0Q==
-X-Received: by 2002:a19:7502:0:b0:4a2:4b90:1ea8 with SMTP id y2-20020a197502000000b004a24b901ea8mr2522439lfe.155.1668768380697;
-        Fri, 18 Nov 2022 02:46:20 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q18-20020ac246f2000000b00497feee98basm603525lfo.274.2022.11.18.02.46.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 02:46:20 -0800 (PST)
-Message-ID: <0e8ed125-beba-8f74-b3aa-728e9dc5a09d@linaro.org>
-Date:   Fri, 18 Nov 2022 11:46:19 +0100
+        with ESMTP id S241644AbiKRKr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 05:47:59 -0500
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1B6326F3
+        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 02:47:57 -0800 (PST)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2043.outbound.protection.outlook.com [104.47.22.43]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-17-RXMvd36KPxi-npg-21HSyA-1; Fri, 18 Nov 2022 11:47:54 +0100
+X-MC-Unique: RXMvd36KPxi-npg-21HSyA-1
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
+ ZRAP278MB0142.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:13::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5834.9; Fri, 18 Nov 2022 10:47:52 +0000
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::98a2:d371:57e0:cc3]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::98a2:d371:57e0:cc3%9]) with mapi id 15.20.5834.009; Fri, 18 Nov 2022
+ 10:47:52 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
+        "marex@denx.de" <marex@denx.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "richard.leitner@linux.dev" <richard.leitner@linux.dev>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>
+Subject: Re: [PATCH v2] soc: imx: imx8mp-blk-ctrl: Add PCIe SYSPLL
+ configurations
+Thread-Topic: [PATCH v2] soc: imx: imx8mp-blk-ctrl: Add PCIe SYSPLL
+ configurations
+Thread-Index: AQHY+vxoPOannHJiikmQ58K/x/rcB65EgHCA
+Date:   Fri, 18 Nov 2022 10:47:52 +0000
+Message-ID: <aacc40f4d8f727a8e1be97c094d1e391a8f72012.camel@toradex.com>
+References: <1668740199-31956-1-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <1668740199-31956-1-git-send-email-hongxing.zhu@nxp.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|ZRAP278MB0142:EE_
+x-ms-office365-filtering-correlation-id: 7cf43dc1-8bb0-4962-07e2-08dac95257f6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: 6dNz9ngGuEsGMdWQxq92ZHqD0kzBnDFFC4dGmL14uonGSgC2KHtotvVv+9JNBZ1NUcnU9DwFYa6UDYTqsDwWMRiJyZ0galnLKNHhrGCaXvB0RTLx6QK1eKdGKwmH80/GLQcxlW68/an4XbqMTIa5UcMBB1eNYElF9wK77FW7Jmqf1eiYFAa+IRfZyBE5D2m0kyg1De/IqEDxUFKtsgRXwwSN1kJxrJGaJ+o4/LWHmelIjRhp6M5Y3EiZgAcBxWed3yqN35S9bpPjoqIVQSFfgBZxyRnMMcDR1o7uBNJmtAIavrrTm4zyqMXWdqD9Vmb9eJRoEHjlen00GO2aOHUV9jgKQSCvnpWNr/GJzX7yK/lRbjByAaG1OFfVU57b7znyUPBSuSFTMTg4gve9GZrDfBPMtPXE2B8lFG7p2z05QkHxBpFdR/T0uiEPCxMfptafQCeNIg5UN09pwcLeTveMqOJUkzU7FgbEsabFEzAHKRZ0e1+RON9byW9YL24yg60ddParLSd6/1nf46hEinFMc2HJu6eFc094Syr2Rizh56npKJ5tlHKEHJwfYPOnyerWdSafhICX1KDwlmrIrdVpZ0YAMpP8erc9gS2dP8GOjLpfN15iEze2hRMyRCp7U7S8iQsXNlccRRl+fPDyMk96Iaa5XeVz5xWGS0IS+CvRKci2TNxp8hOtJb7CGQkNP4MpZ534di+3U+ZfpLP4IwaAJh5Um7w8+21GFuQNTVEUYiVeaigDUNY5fKuyJBqfBGV+
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(39850400004)(136003)(376002)(366004)(451199015)(54906003)(110136005)(316002)(4326008)(64756008)(8676002)(6512007)(478600001)(966005)(6486002)(66946007)(66556008)(6506007)(71200400001)(66446008)(76116006)(66476007)(186003)(5660300002)(7416002)(41300700001)(8936002)(2616005)(44832011)(36756003)(2906002)(4001150100001)(83380400001)(86362001)(38100700002)(38070700005)(122000001)(32563001);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bTdGMlZraTZqazlEZ2xDcXRwVko3Rmx2UFBiSkVBSmhUcEp3SXJtVnpFMmhP?=
+ =?utf-8?B?UlBZdlprNUdYM1BoeGhWU0J0TzhIVXhHNlZ3YS9GVVBaVGVTYUZXdGpvZTl0?=
+ =?utf-8?B?OUlyYjJOdnZFM1hFY1JCS0NCaytQQmxVWldYc2Y4cWZXbDA0TGZ0VlpSaWFs?=
+ =?utf-8?B?V05zOXdvNVRZYUNsaUdLRVlEUGdrMXpTSTkyeWVSQytyVDRzcDExU2V4cWhR?=
+ =?utf-8?B?bU04Vk9ZN1EzbWdtcFN4MlB4amVMRjlHUDJrMzc5VkJmeGlTWjQyQWVmR3Ix?=
+ =?utf-8?B?dHYraDNQUEFLNkdQbGJ4azRsMGhZRHZGNXZEQ0YweG5JU1Q2WmIrSkJuUUM5?=
+ =?utf-8?B?R0xPMUJVRDNJb3JLS3p4cmZyV2dvRlV0Z3lFeUwwNWN5cDhUOW1NY2g5UkhT?=
+ =?utf-8?B?bzByM2dXOEhSL3VzV3VuMTFoNlBRMDA1VHJ1TTBGZjNwd1Y5Qm9qT2tTdG5H?=
+ =?utf-8?B?UmFESFBCMkhTakNkdmdmaTNsVERzRW95bmRZY1dwbVl4UFU5Nm9aZGlUbFVP?=
+ =?utf-8?B?bDFTVTZFY1lMTk5kVEduSE1Wd3hxVHdhSEZBdFZERjFPSG16Qy92Ymcwd1pL?=
+ =?utf-8?B?bkZHaEdIemdvK0lLZkQxbS9xNWxVTWN1eWpjYnJ5SE0rb1NDTGVNN2x0Q3Zw?=
+ =?utf-8?B?LzM0Q1VOM1BpNkNZVWFLZm5GTEoxZWx3elgrS1l4ODIwMGtTTG1sTWR5Zm0x?=
+ =?utf-8?B?bVYvSmk3ZUQ5clRvdmkwdU5VTnZJNDhXWUY5OTZQaDdCRWFYT3ZkOXBZZWtM?=
+ =?utf-8?B?QzVMR0VqY2FRcTU4V1NqTzVWWDh2VWVQUWtiN3ZCc2V3VUgzeGtvRVBPVy84?=
+ =?utf-8?B?Y3NJd2pxeEdDTGM3WENuejlwZjMrVGZmenFBQ3gzV29hakVuMlJhbm9Yanl0?=
+ =?utf-8?B?UWw5MEdkalYybi8xVC8xSFlBekFNVHluek4yRnB5WGx0T2haQ09uN3FnQ2Vi?=
+ =?utf-8?B?dHo1N1hSODVDSHhoL3VjaU00cXViamRiOHZpbS9lOFJJNm9TWVF1K0NSOE9t?=
+ =?utf-8?B?OElxSG9tUTYvU1QycFRmMUp0QmIxN3ZKWXFwdkprcDkvM3VZa1RUQnVISjVJ?=
+ =?utf-8?B?Q01EZ1dua1BRdmxOQkIxblVGeXpnQUY1QjRBYlpyTkZrcjhVY1RVRUQ0bzVl?=
+ =?utf-8?B?MTlzdnoxOVFoaWJ1cG1TNXFaelo5M3gzTDlVTGo2dVlWVTE4azhXc3hvelJT?=
+ =?utf-8?B?c0ozNTZuVHlqWitwRzg0YzNKdUdSeFFvejdNNzlJU3Z2K1k4RFhRY2NBZmtW?=
+ =?utf-8?B?RXJsbVU4NjgrTWtRY25ZQ2VJMnByNGdWdTR6OVMxdHlieDA0dEc0UDJiTG5v?=
+ =?utf-8?B?YXRPNmR3eDd0L3FxOWFHQ0dOZGthOEpsTUJrY1NaaWpHNjBUbjk1WHp6ejda?=
+ =?utf-8?B?c2NjcjhRZ0JHSzZhYjV3K1ZRVGpnbU9YWDhOSVd2RnVzWFEzM3ZyK3hCcE9x?=
+ =?utf-8?B?ZC9LRHZlRzA0RFM2MFNnYnVlZUkvSWNZdUhteFpUNGpkSzZjNy9rdmlYWmpP?=
+ =?utf-8?B?eUkwa2FxWmdtUFBtYStoK3ZVay9ZeHZUTk01VjUyaCtDSjFkd3BtR09LampT?=
+ =?utf-8?B?NG1IeEFwWkVuYkZnTkllazRoc0FYbEdLWHNHbEo2TzhSV0VKRm81cVR5LzUw?=
+ =?utf-8?B?c01PU3lyaG55TmhENnl4V0YxTUxxVFN5Z3BScTBUU3JlVldBVE1tdlQyS3JE?=
+ =?utf-8?B?VmZsZk5IWHlmWE9ucFFvT3JsWG9mZU85blpncnk1SCtBeXZmS2RILzRvNkdN?=
+ =?utf-8?B?V0dWankxalRuU2NFenIrYk5SdjhpMU5vQTJRQTMzTkNTOFFpTk1WWFB3YkJH?=
+ =?utf-8?B?RmlNSkgvbUdVUm5OcThuVlY3d2FaenpKZitOOGxYWlFOSjdFUkt6TEVxK25u?=
+ =?utf-8?B?ZWJLNnBOVExaSm5WQ3FXTkFiVGhnZERzTk5DYzEyL0ZTVm9lMUNNT3ducWd0?=
+ =?utf-8?B?dkhGYjJHQ3dJZ1cvbVg0QkRRdFNjckVKYndpUnZNY0FwWEN2ZGlSc1NXZWpP?=
+ =?utf-8?B?T1QvY1pxVkRmdHpWNlV6NmVTVjIzVEFyUHBTYmp5QXJoR2crcmdNWVhaQ09l?=
+ =?utf-8?B?cEo5OWs3aS9mL1JwU2J6OWs4YzM1eUo0OWY4YWFaRE1oYS9RNFV2UmNDYlBo?=
+ =?utf-8?B?VVQ1MExERmpjVjZoM09NR2JaQ0FvS1oyMXpUMVBHYXRoa2czMzJVQUNla1lH?=
+ =?utf-8?Q?3OmRfvmegd6lgEySieMlQMUOMlKXDbsE59LFfs5zRWE7?=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: reserved-memory: document Qualcomm
- MPSS DSM memory
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cf43dc1-8bb0-4962-07e2-08dac95257f6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2022 10:47:52.6276
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: m0orVZ7XH5T0NkftjW4PyANxpKOggnQM/CtukY4YhUVP+KCBDeotiDCDwkPhYUy63lJHbOJCdaHyHenFTBOguEXRbUEcrAbeGnzObDLoqiA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0142
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
- <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-1-f7c65d6f0e55@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-1-f7c65d6f0e55@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-ID: <A065B3F9B1EA8145AEEE26B17D2C911F@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,34 +129,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 09:53, Neil Armstrong wrote:
-> Document the Qualcomm Modem Processing SubSystem DSM shared memory.
-> 
-> This memory zone is shared between the APPS and the MPSS subsystem,
-> and must be configured during the whole lifetime of the system.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../reserved-memory/qcom,mpss-dsm-mem.yaml         | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
-> new file mode 100644
-> index 000000000000..226d0dfc422c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,mpss-dsm-mem.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/qcom,mpss-dsm-mem.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Modem Processing SubSystem DSM Memory
-> +
-
-Discussion in v1 is still going. Memory region is not a device.
-
-Best regards,
-Krzysztof
+SGkgUmljaGFyZAoKT24gRnJpLCAyMDIyLTExLTE4IGF0IDEwOjU2ICswODAwLCBSaWNoYXJkIFpo
+dSB3cm90ZToKPiBBZGQgUENJZSBTWVNQTEwgY29uZmlndXJhdGlvbnMsIHRodXMgdGhlIGludGVy
+bmFsIFNZU1BMTCBjYW4gYmUgdXNlZCBhcwo+IGkuTVg4TVAgUENJZSByZWZlcmVuY2UgY2xvY2su
+Cj4gCj4gVGhlIGZvbGxvd2luZyBwcm9wZXJ0aWVzIG9mIFBIWSBkdHMgbm9kZSBzaG91bGQgYmUg
+Y2hhbmdlZCBhY2NvcmRpbmdseS4KPiDCoCAtIFNldCAnZnNsLHJlZmNsay1wYWQtbW9kZScgYXMg
+JzxJTVg4X1BDSUVfUkVGQ0xLX1BBRF9PVVRQVVQ+Jy4KPiDCoCAtIENoYW5nZSAnY2xvY2tzJyB0
+byAnPCZjbGsgSU1YOE1QX0NMS19IU0lPX0FYST4nLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFJpY2hh
+cmQgWmh1IDxob25neGluZy56aHVAbnhwLmNvbT4KClRlc3RlZC1ieTogTWFyY2VsIFppc3dpbGVy
+IDxtYXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+CgpUaGlzIHdvcmtzIHBlcmZlY3RseSBmaW5l
+IG9uIFZlcmRpbiBpTVg4TSBQbHVzIGFzIHdlbGwuIEkgd2lsbCB1cGRhdGUgbXkgcHJldmlvdXMg
+UENJZS1lbmFibGVtZW50IGNvbW1pdAooZGV2aWNlIHRyZWUgcGFydCkgaW4gdGhhdCByZXNwZWN0
+IGFuZCAocmUtKXN1Ym1pdCBpdC4KClRoYW5rcyEKCkNoZWVycwoKTWFyY2VsCgo+IC0tLQo+IHYx
+LT52MjoKPiBSZWZlciB0byBMdWNhcycgY29tbWVudHMsIGRvbid0IGV4cG9zZSBJTVg4TVBfQ0xL
+X0hTSU9fUk9PVCB0byBkdHMgbm9kZS4KPiBodHRwczovL3BhdGNod29yay5vemxhYnMub3JnL3By
+b2plY3QvbGludXgtcGNpL3BhdGNoLzE2NjY1OTAxODktMTM2NC0xLWdpdC1zZW5kLWVtYWlsLWhv
+bmd4aW5nLnpodUBueHAuY29tLwo+IAo+IFVzZSA8JmNsayBJTVg4TVBfQ0xLX0hTSU9fQVhJPiBh
+cyByZWZlcnJlbmNlIGNsb2NrIHNvdXJjZSB3aGVuIGludGVybmFsCj4gY2xvY2sgbW9kZSBpcyB1
+c2VkIGJ5IGkuTVg4TVAgUENJZSBtb2R1bGUuCj4gCj4gVmVyaWZpZWQgb24gaS5NWDhNUCBFVksg
+Ym9hcmQgd2l0aCByZW1vdmluZyBSMTMxL1IxMzIvUjEzNy9SMTM4LCBhbmQKPiBwb3B1bGF0aW5n
+IFIxMzUvUjEzNi4KPiAtLS0KPiDCoGRyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxrLWN0cmwuYyB8
+IDIyICsrKysrKysrKysrKysrKysrKysrKysKPiDCoDEgZmlsZSBjaGFuZ2VkLCAyMiBpbnNlcnRp
+b25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxrLWN0cmwu
+YyBiL2RyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxrLWN0cmwuYwo+IGluZGV4IDBlM2I2YmEyMmY5
+NC4uNWFkMjBhOGVhMjVlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxr
+LWN0cmwuYwo+ICsrKyBiL2RyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxrLWN0cmwuYwo+IEBAIC0y
+MSw2ICsyMSwxNiBAQAo+IMKgI2RlZmluZcKgIFVTQl9DTE9DS19NT0RVTEVfRU7CoMKgwqBCSVQo
+MSkKPiDCoCNkZWZpbmXCoCBQQ0lFX1BIWV9BUEJfUlNUwqDCoMKgwqDCoMKgQklUKDQpCj4gwqAj
+ZGVmaW5lwqAgUENJRV9QSFlfSU5JVF9SU1TCoMKgwqDCoMKgQklUKDUpCj4gKyNkZWZpbmUgR1BS
+X1JFRzLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAweDgKPiArI2RlZmluZcKgIFBfUExM
+X01BU0vCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBHRU5NQVNLKDUsIDApCj4gKyNkZWZpbmXCoCBN
+X1BMTF9NQVNLwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgR0VOTUFTSygxNSwgNikKPiArI2RlZmlu
+ZcKgIFNfUExMX01BU0vCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBHRU5NQVNLKDE4LCAxNikKPiAr
+I2RlZmluZcKgIFBfUExMwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCgweGMgPDwg
+MCkKPiArI2RlZmluZcKgIE1fUExMwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCgw
+eDMyMCA8PCA2KQo+ICsjZGVmaW5lwqAgU19QTEzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgKDB4NCA8PCAxNikKPiArI2RlZmluZSBHUFJfUkVHM8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoDB4Ywo+ICsjZGVmaW5lwqAgUExMX0NLRcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoEJJVCgxNykKPiArI2RlZmluZcKgIFBMTF9SU1TCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBCSVQoMzEpCj4gwqAKPiDCoHN0cnVjdCBpbXg4bXBfYmxrX2N0cmxfZG9tYWluOwo+
+IMKgCj4gQEAgLTg2LDYgKzk2LDE4IEBAIHN0YXRpYyB2b2lkIGlteDhtcF9oc2lvX2Jsa19jdHJs
+X3Bvd2VyX29uKHN0cnVjdCBpbXg4bXBfYmxrX2N0cmwgKmJjLAo+IMKgwqDCoMKgwqDCoMKgwqBj
+YXNlIElNWDhNUF9IU0lPQkxLX1BEX1BDSUVfUEhZOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgcmVnbWFwX3NldF9iaXRzKGJjLT5yZWdtYXAsIEdQUl9SRUcwLAo+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBQ
+Q0lFX1BIWV9BUEJfUlNUIHwgUENJRV9QSFlfSU5JVF9SU1QpOwo+ICsKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgLyogU2V0IHRoZSBQTEwgY29uZmlndXJhdGlvbnMsIFAgPSAxMiwg
+TSA9IDgwMCwgUyA9IDQuICovCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ21h
+cF91cGRhdGVfYml0cyhiYy0+cmVnbWFwLCBHUFJfUkVHMiwKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFBfUExMX01B
+U0sgfCBNX1BMTF9NQVNLIHwgU19QTExfTUFTSywKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFBfUExMIHwgTV9QTEwg
+fCBTX1BMTCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHVkZWxheSgxKTsKPiAr
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ21hcF91cGRhdGVfYml0cyhiYy0+
+cmVnbWFwLCBHUFJfUkVHMywgUExMX1JTVCwgUExMX1JTVCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHVkZWxheSgxMCk7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAvKiBTZXQgMWInMSB0byBwbGxfY2tlIG9mIEdQUl9SRUczICovCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoHJlZ21hcF91cGRhdGVfYml0cyhiYy0+cmVnbWFwLCBHUFJfUkVH
+MywgUExMX0NLRSwgUExMX0NLRSk7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBi
+cmVhazsKPiDCoMKgwqDCoMKgwqDCoMKgZGVmYXVsdDoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGJyZWFrOwo=
 
