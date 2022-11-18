@@ -2,80 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 091C562F60A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:30:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA8362F60D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 14:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241676AbiKRNaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 08:30:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50642 "EHLO
+        id S241863AbiKRNa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 08:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241712AbiKRN36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:29:58 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C66F7F
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:29:56 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso7520748wme.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Nov 2022 05:29:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HN8LVu2tBOU+OG4LnFinIFanAXLqtN8dB9g7K9KkfjU=;
-        b=OG2Ckv2ZO0fmf4LFpZ1ezKwfBJtCEtj08HMol4o7P/Y/9Ta89WhfUr3KKSF/viNvCS
-         Y2ZI5LjDOEBbGfVDg1BNP7WAozSBVCRJSPz0ubyYaaAeOrSEqRPWIv4HqA6hIhXRbyCs
-         z3Q6LA5CQYLLyPVszidp2Cv0N6FhlbL9Am8OjFiludhX67cUsXWwjDY01oFyhvbFj9CT
-         8qZGqZOOphmvobWLK2G61e5D/yCVnvjcEJKLmXM0HYkY3LOX2g0cjeFwC9R6BUgKV6Qf
-         1v9OwBYOVyWeKLa1Mquh74I6yx3SLyhX9aN0PzZsw8wSUrtQxzhVIoWyoh86XMxaYAMu
-         Gzsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HN8LVu2tBOU+OG4LnFinIFanAXLqtN8dB9g7K9KkfjU=;
-        b=DOm7fOGLFAGlXjT6rjwrnP0QSTaFzmppvk3R/BBaxuaVD2e/II/2rEaEuehMgCoNmO
-         GDr1CM+Ctvjd175ixDoPrM8EXHO5t4DuQlvXquAMvyIQK/FRYxnl3LbcTiy9KEAGvmvU
-         /9ZtBubk8tgg/w+lpFtGn7VVWLivSZFBsq1DhVvbtTddAk9rG8Lh0r27SYjIzxzLvvGe
-         /JrVfuF33mFOw3c9/sOGcyM6qW06jc0CiKRVi9qHqLbCwZ8enuLhbUt24PKY14TG2KyJ
-         wKRgsgYTLgvyCgV/JwG/4jfYWHGeXWcotk/no+DqR5uOm8J0z+PY7ynNO5SmnvxZCxlu
-         VItA==
-X-Gm-Message-State: ANoB5pkCcNR+VEHNCaK4OBAT3Hv3k/2U14RqWc4dLoc0EoqRHRULkNE4
-        yH3kjtJ/7YG+DTHIfwTq3WZvgg==
-X-Google-Smtp-Source: AA0mqf7i8dywQOhFfIFUfTreejp7KFR0nIu101KikdsXbMRrFt1RKBxdvI3qgRZVHoWm4mbMT54yiQ==
-X-Received: by 2002:a05:600c:ac1:b0:3c6:d18b:304b with SMTP id c1-20020a05600c0ac100b003c6d18b304bmr8044158wmr.142.1668778195318;
-        Fri, 18 Nov 2022 05:29:55 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id r13-20020a056000014d00b0024165454262sm3607708wrx.11.2022.11.18.05.29.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Nov 2022 05:29:54 -0800 (PST)
-Message-ID: <0993d2bd-c0f2-8139-8f02-84abe6b8ad8b@linaro.org>
-Date:   Fri, 18 Nov 2022 13:29:52 +0000
+        with ESMTP id S241173AbiKRNaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 08:30:20 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE2E72129;
+        Fri, 18 Nov 2022 05:30:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BFE062527;
+        Fri, 18 Nov 2022 13:30:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1507AC433C1;
+        Fri, 18 Nov 2022 13:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668778217;
+        bh=DVByPI99cziskeMpw3/H3Sw35EfmuI4W+QBBcElCutc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q9ycSFlGC0m5cG9RlAnwnYROpSROstzfMcobdK7fyIuqni/nBCox5zZU8Zxm5JPQU
+         0NKbCmOwLN6yHLstgSag0cb2GLcS31zJxM9bJyFPJoQbzVy0V+liMcYT8YrNRwTQeL
+         qSmMkZ5+8tMznQrISNGyBBCqpy/mixDrZFEFn29bfIz6oaPXPdMENCV02yPhFm3bUK
+         OvRzNp9qluquzn86ncaH7paGu3Fl+Wb1WI3H/owbh/Ebept7Fs7ZUMT0DXwOR40Mrr
+         GFtFiDEUOAwpp8v8bklsGXmYphMFUeCoL9ls0we38VSPdLs4lerFm/lfDqQXfsdhW6
+         /XmJuSgBbZbLQ==
+Date:   Fri, 18 Nov 2022 13:30:10 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v1 00/10] iommu/arm-smmu-qcom: Rework Qualcomm SMMU
+ bindings and implementation
+Message-ID: <20221118133009.GA4046@willie-the-truck>
+References: <20221114170635.1406534-1-dmitry.baryshkov@linaro.org>
+ <e3c8121a-5234-1051-40c7-3989189badfa@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 07/18] dt-bindings: msm: dsi-controller-main: Add
- compatible strings for every current SoC
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org
-Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Shawn Guo <shawn.guo@linaro.org>
-References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
- <20221107235654.1769462-8-bryan.odonoghue@linaro.org>
- <aeb59d3c-34d0-f00a-bfc3-524cd03acb71@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <aeb59d3c-34d0-f00a-bfc3-524cd03acb71@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e3c8121a-5234-1051-40c7-3989189badfa@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,33 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2022 12:46, Dmitry Baryshkov wrote:
-> On 08/11/2022 02:56, Bryan O'Donoghue wrote:
->> Currently we do not differentiate between the various users of the
->> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
->> compatible string but, the hardware does have some significant 
->> differences
->> in the number of clocks.
->>
->> To facilitate documenting the clocks add the following compatible strings
->>
->> - qcom,mdss-dsi-ctrl-apq8064
+On Fri, Nov 18, 2022 at 01:41:24PM +0100, Krzysztof Kozlowski wrote:
+> On 14/11/2022 18:06, Dmitry Baryshkov wrote:
+> > The main goal of this patchset is to define a generic qcom,smmu-500
+> > binding to be used by newer Qualcomm platforms instead of defining each
+> > and every SoC line with no actual differences between the compats.
+> > 
+> > While preparing this change it was required to cleanup the existing
+> > bindings and to rework the way the arm-smmu-qcom implementation handles
+> > binding to IOMMU devices.
+> > 
+> > Changes since RFC v2:
+> >  - Dropped the dts patch, picked up by Bjorn
+> >  - Fixed minor nits in commit messages and in-file comments (noted by
+> >    Krzysztof and Richard Acayan)
+> > 
+> > Changes since RFC v1:
+> >  - Added the dts patch fixing order of clocks in msm8996.dtsi
+> >  - Fixed the DT bot errors
+> >  - Added separate clause for Google Cheza devices
 > 
-> Generic comment: I think we'd better follow the arm/qcom-soc.yaml and 
-> use qcom,soc-something as compat string. This would leave us with 
-> qcom,apq8064-dsi-ctrl
-> 
-> I'm not sure if we want to follow the qcm2290 approach and encode the 
-> DSI ctrl revision here (6g vs v2).
+> Please continue the version numbering. RFC is also a patch and also a
+> version. This is v3. Your next will be v4.
 
-For qcm2290 I'm thinking qcm2290-dsi-ctrl - without the 6g piece.
+I queued this already, so hopefully there won't be a next version!
 
-a) Nobody is using the compat at the moment
-b) I'm not sure what - if any real information the silicon version
-    number conveys here.
-
-+ Loic, Shawn
-
----
-bod
-
+Will
