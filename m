@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6EA62FEF7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 21:46:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE96462FF28
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 22:08:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiKRUqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 15:46:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43164 "EHLO
+        id S229631AbiKRVIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 16:08:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbiKRUqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 15:46:44 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 347AE6205A;
-        Fri, 18 Nov 2022 12:46:44 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id l127so6613294oia.8;
-        Fri, 18 Nov 2022 12:46:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h3na0c+zCdiHpYsiS/hKe8VnK8EaiIE0atU3Cp6vqK8=;
-        b=EZJGh3pERaS0dPM2mNqSU1Otc4q3hmAOtAGESfEhg5dy5meAnCC68obisZ8R7xeDM0
-         M8y4N6EOGfLtGFtLhD7Wt9VT22mIlLouNp0S0RphmG/fTHWPvmFlLIN1qMUde75OrNcU
-         CnQ8OpmO019NDz3C3YKrV6zPntCiJ9YNqun+MCCAK/zW8LTiia/Dv4eDdpzRs1yXt7Sv
-         GLhImW9gZX0Zga83Y+9FB9SU0l4lhbdgTCAe54d6tMhLC4bdv3qA7DNmXQ6tfHGDMDm6
-         zDfDJPSHFCB+WW3EHzhUkt5pJqFWYgU1N0qA/ZWSNHHgpKMdkV9VJXdpEOvmU/Kkd20U
-         vXJg==
-X-Gm-Message-State: ANoB5pnAzVtwdbaY2sX4DBQoHSs86w56m4DUdINAZOv1r+4kD4dIFh7x
-        J+2ErlZfwlZ7PZPp9wazpw==
-X-Google-Smtp-Source: AA0mqf77Kvv76+2dRDE7XcyDrmAFDyRj4QvQ7OTBZ2bM59km+E8GbCkPFq9ssjIV4GX905G9Eziucw==
-X-Received: by 2002:a54:4596:0:b0:359:fea2:69d0 with SMTP id z22-20020a544596000000b00359fea269d0mr4245868oib.45.1668804403417;
-        Fri, 18 Nov 2022 12:46:43 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k9-20020a544409000000b00359b83e3df1sm1814919oiw.9.2022.11.18.12.46.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 12:46:42 -0800 (PST)
-Received: (nullmailer pid 1327692 invoked by uid 1000);
-        Fri, 18 Nov 2022 20:46:44 -0000
-Date:   Fri, 18 Nov 2022 14:46:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] kbuild: Cleanup DT Overlay intermediate files as
- appropriate
-Message-ID: <20221118204644.GA1327355-robh@kernel.org>
-References: <20221114205939.27994-1-afd@ti.com>
+        with ESMTP id S229514AbiKRVIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 16:08:39 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8741F12636;
+        Fri, 18 Nov 2022 13:08:36 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AIL8Pjs098709;
+        Fri, 18 Nov 2022 15:08:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1668805705;
+        bh=Yr4LSYGMtRX7f6gDoB3pzPK7VDSrGB+Mip9zdhZE6vY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=pg20JjDTtULID4xVlEvXyUlUafjzZhVP48+U3vrSY7Kj8EzhZGkbUXODNcNIUpQnR
+         pTFqmHHd4D5Rk45dCVDgqmf8jNus6PXqlQUgS9EQWdHA51ZcMjgWVArO4cJ9dxUzzL
+         LEUg+foyGY8CZoHE4zSnYyQA8sG71fBn1PuI0H1k=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AIL8PhZ102998
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Nov 2022 15:08:25 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 18
+ Nov 2022 15:08:25 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 18 Nov 2022 15:08:24 -0600
+Received: from [10.250.38.44] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AIL8Op3017735;
+        Fri, 18 Nov 2022 15:08:24 -0600
+Message-ID: <3d5e41f6-16a8-4298-ccd3-6db60f94eb47@ti.com>
+Date:   Fri, 18 Nov 2022 15:08:23 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221114205939.27994-1-afd@ti.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
+References: <20221116130428.161329-1-a-nandan@ti.com>
+ <20221116130428.161329-5-a-nandan@ti.com>
+ <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
+ <20221118174754.y37pq77drvla2uxj@tinderbox>
+ <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
+ <20221118180808.wnel7d6gswsnooww@junkman>
+ <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
+ <20221118192744.wish2vrxgy7dg7c2@unnerving>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221118192744.wish2vrxgy7dg7c2@unnerving>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 14, 2022 at 02:59:39PM -0600, Andrew Davis wrote:
-> %.dtbo.o and %.dtbo.S files are used to build-in DT Overlay. They should
-> should not be removed by Make or the kernel will be needlessly rebuilt.
+On 11/18/22 1:27 PM, Nishanth Menon wrote:
+> On 12:15-20221118, Andrew Davis wrote:
+>> I don't see either of those addressed in that thread, only that
+>> the aliases should go in the .dts files and be trimmed, nothing
 > 
-> These should be removed by "clean" and ignored by git like other
-> intermediate files.
+> Key is trimmed to what the system and ecosystem needs.
 > 
-> Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  .gitignore             | 1 +
->  Makefile               | 4 +++-
->  scripts/Makefile.build | 2 ++
->  3 files changed, 6 insertions(+), 1 deletion(-)
+>> stops us from:
+>>
+>> chosen {
+>> 	stdout-path = "serial10:115200n8";
+>> };
+>>
+>> aliases {
+>> 	serial10 = &main_uart8;
+>> };
+> 
+> Do we need 10 serial aliases? There are'nt 10 serial ports exposed in
+> j782s2. ok - lets say we do this, then: [1] is needed to boot? but why
+> do we need to do that for all armv8 platforms when aliases allows us
 
-Applied, thanks!
+Why do we need SERIAL_8250_NR_UARTS at all, might be a better question.
+These should be dynamically allocated if the number goes over the
+default count imposed by the TTY framework. Maybe folks are still a
+bit too afraid to touch the TTY subsystem core, I don't blame them..
+
+> to trim it to just the 3 or 4 serial ports the platform really needs
+> That + being able to use the convention that serial2 is always linux
+> console, is'nt that a good thing? Hence recommending to just expose the
+> serialports as aliases to exactly what we need while keeping serial2 as
+> the linux console (which in this case happens to be main_uart8 - example
+> as j721s2 does).
+> 
+
+"serial2 as the linux console" is *not* a convention, we just don't want to
+fix up our bootloader/userspace to actually reason about what serial ports to
+put logins on. Why not make ttyS10 the default, or ttyS666, it doesn't solve
+your multi-distro issue either way since they usually only start a login on
+ttyS0, console=, and/or the first virtual tty. Never on ttyS2. So you are
+hacking up DT for a solution that doesn't do what you want in the end.
+
+Andrew
+
+> [1] https://lore.kernel.org/lkml/3ab9addf-7938-fcf3-6147-15a998e37d2d@ti.com/
+> 
