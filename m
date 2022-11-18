@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8F962FA53
-	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F13E62FA59
+	for <lists+devicetree@lfdr.de>; Fri, 18 Nov 2022 17:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242014AbiKRQbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 11:31:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50946 "EHLO
+        id S241647AbiKRQe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 11:34:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241961AbiKRQbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:31:49 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5EC893720;
-        Fri, 18 Nov 2022 08:31:46 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id h2so2075695ile.11;
-        Fri, 18 Nov 2022 08:31:46 -0800 (PST)
+        with ESMTP id S235230AbiKRQe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 11:34:28 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA635C763;
+        Fri, 18 Nov 2022 08:34:27 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id l11so7890855edb.4;
+        Fri, 18 Nov 2022 08:34:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zr4CdAG3b4+1IuVnuiLbDJEOXhKaGAkSP5HPb5fVy6Y=;
-        b=HGw3Z0j3HE8VAZrfXlS1swwSBXJVfQrNjYFaLhgScJLyvaeJr7N4KcgQ00EOMGqtcH
-         19zrlH+qicCh9T7R4pZFyqoCPiOd3Vi0fBV8L/3QidtR/0j7Ebpe0kFXYvoqHgEPcaGA
-         RJEjOekqtq/qM6zAuuKYWj0pfYjvjRP5dxAsohS7Le92JIJKGCkww9SYPW3QMUWsOayL
-         aw9LCijpR0qzSb1RVofmlNaFKz41PkvKCvu2lFaFwHgc5Ce0lfDkCeNpyfOtB4AzJ5ir
-         QRgDyrL/LJBVTQBwQt3RmnVAuoNKBiPyaXfXkaGYXlPjS1ahDg/vU1rTBTriJ1TdQzHT
-         VtMw==
+        bh=uNVdoCJOEmGKRPr7JE/NblxZ8eYI1vXfs6NClf7SbNU=;
+        b=g5wUOO7LZRQMj6zXQm8VDcXkSEHRndBjvEEU1w8vj6JOPq+pze4BSsZ4QEJ1vydv0c
+         E+MNJ5+k6CIsuj+dDllGgdF7K5iaNx9mQc8uMUI5v4ww7c3v1fM1JLEzQ6b0ceXdsvWf
+         VQDAD0HH1czivYQzLaXRaggBegA12xdAHeEjRtrL/j+w5u04qUsnTABElfnY3YarSlRL
+         h0hmMoDG2API7NX78MjfNCGi+26hrhdCT/OKL5pyiOvo8SpDOZIb6R1ioOSI+BF7FuZV
+         ez1Et5Wf/NB4f/k2HZScxslKui/C4zCq+ZoDxp1VdFguHP1nyHQpyrmWanZYdfb1fMFJ
+         F2mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zr4CdAG3b4+1IuVnuiLbDJEOXhKaGAkSP5HPb5fVy6Y=;
-        b=EhgK4kEXZy+Xvn8xmigrG89dOME+86gW2Pl5GhZygPEDpejHbZxouFLDImDO3CZb+s
-         alFzvWcS+vNP6jWxDaY3Su6wjqtBfFapzESuJnST9cB9PqcFgXSKUzUTB+hUzQnTyUct
-         bKDTq13JkpMiMtGrSc8J5YmGgCO3DRB7qOfTn+P04iSEd6eYIpeW4H4B8NVwVDMbS9VR
-         2xxIDmevUwNomAymLel3uSsBQbuGnYAQ9+Fy6L/GhKvnecDZ9ePItGWy/n8oJCAt1H1a
-         kaL39xx4LvvoPyZvVIJvcVEYtV4tyaPxax+VLW4jFrEL7dx5BTPNwaMv+9+6zgbGCULJ
-         J13g==
-X-Gm-Message-State: ANoB5pm1fdezs1goHmOLTlqAbRGPXTt8/J69SLLfodIvgMqkNufIcD1O
-        Ed4mPG82fxrI4NnBFM7qizk=
-X-Google-Smtp-Source: AA0mqf5280U2LYe4XFhYCN7JDeY7uEqHKC4nDrGChfsYD7B5kB6lpUnE0lO+UJPsTJwZXgGGE0Embg==
-X-Received: by 2002:a05:6e02:1d8c:b0:2ff:e41c:7236 with SMTP id h12-20020a056e021d8c00b002ffe41c7236mr3663209ila.269.1668789105932;
-        Fri, 18 Nov 2022 08:31:45 -0800 (PST)
-Received: from hestia.gfnd.rcn-ee.org (208-107-176-7-dynamic.midco.net. [208.107.176.7])
-        by smtp.gmail.com with ESMTPSA id f2-20020a02a102000000b00372412edbc2sm1311128jag.116.2022.11.18.08.31.44
+        bh=uNVdoCJOEmGKRPr7JE/NblxZ8eYI1vXfs6NClf7SbNU=;
+        b=Qsz394BooPZzP+e7vWASMnK1sjTqPoTvQtSNEWsUH+I1LzbR/0P+eOCxtme07N/s2I
+         8xWAN3JyzdjPuiXc4QERl8G6zg0XEPvjD75zoxY26VGLqUt7PjwTypekNILiLgGtRJRK
+         1Hi/kkO21n1+Fet1vP+at+4YGGFzQ5NaL51JIQXe/G1lqEKtv94Qb+C7KlYayy6gvNKj
+         AcPgjTY/m2VlRKvLweQi9cM7HoLdU9BIHItMdZhv1KLei2Fc9DKVlck31rXP6g5e4Gc9
+         4eud5q8oAvXBArCliwYo8eUwa2WuQ/uSM33Uv0g5DQQSQAwSrades20WcVDQuZ88frh8
+         SfrA==
+X-Gm-Message-State: ANoB5pmTSSl7VS3VmuGQgfJxEun4RHravoNX5cqP++PMB1koD0A04kCg
+        p4qBpXqlOsEUIyhKxqmWSL4/qD73OEI=
+X-Google-Smtp-Source: AA0mqf74yBnMsNXdHV6F8dNKg1w9YXVx53dcKVVcmrVMWD5/xGr/tYEAF66OeQR9wZpj7/T9Tldi1Q==
+X-Received: by 2002:aa7:c754:0:b0:469:1ddf:9251 with SMTP id c20-20020aa7c754000000b004691ddf9251mr2476952eds.110.1668789265361;
+        Fri, 18 Nov 2022 08:34:25 -0800 (PST)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id i26-20020a1709063c5a00b007ae035374a0sm1885029ejg.214.2022.11.18.08.34.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Nov 2022 08:31:45 -0800 (PST)
-From:   Robert Nelson <robertcnelson@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Robert Nelson <robertcnelson@gmail.com>, Andrew Davis <afd@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-Subject: [PATCH v6 2/2] arm64: dts: ti: Add k3-j721e-beagleboneai64
-Date:   Fri, 18 Nov 2022 10:31:39 -0600
-Message-Id: <20221118163139.3592054-2-robertcnelson@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221118163139.3592054-1-robertcnelson@gmail.com>
-References: <20221118163139.3592054-1-robertcnelson@gmail.com>
+        Fri, 18 Nov 2022 08:34:24 -0800 (PST)
+Date:   Fri, 18 Nov 2022 17:34:23 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        David Airlie <airlied@redhat.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v3 7/8] drm/simpledrm: Support the XB24/AB24 format
+Message-ID: <Y3e0D2BmSt2Ftlbd@orome>
+References: <20221117184039.2291937-1-thierry.reding@gmail.com>
+ <20221117184039.2291937-8-thierry.reding@gmail.com>
+ <7018f094-e1f8-d82d-f4b2-b1ae833d1c47@suse.de>
+ <Y3eoeLLOxHaruPOV@orome>
+ <dbfd2e78-3250-ba4b-b8e0-96df46ce33a5@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ldz8iAyLzBuJ8Wi1"
+Content-Disposition: inline
+In-Reply-To: <dbfd2e78-3250-ba4b-b8e0-96df46ce33a5@suse.de>
+User-Agent: Mutt/2.2.8 (2022-11-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -76,1149 +79,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BeagleBoard.org BeagleBone AI-64 is an open source hardware single
-board computer based on the Texas Instruments TDA4VM SoC featuring
-dual-core 2.0GHz Arm Cortex-A72 processor, C7x+MMA and 2 C66x
-floating-point VLIW DSPs, 3x dual Arm Cortex-R5 co-processors,
-2x 6-core Programmable Real-Time Unit and Industrial Communication
-SubSystem, PowerVR Rogue 8XE GE8430 3D GPU. The board features 4GB
-DDR4, USB3.0 Type-C, 2x USB SS Type-A, miniDisplayPort, 2x 4-lane
-CSI, DSI, 16GB eMMC flash, 1G Ethernet, M.2 E-key for WiFi/BT, and
-BeagleBone expansion headers.
 
-This board family can be indentified by the BBONEAI-64-B0 in the
-at24 eeprom:
+--ldz8iAyLzBuJ8Wi1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[aa 55 33 ee 01 37 00 10  2e 00 42 42 4f 4e 45 41 |.U3..7....BBONEA|]
-[49 2d 36 34 2d 42 30 2d  00 00 42 30 30 30 37 38 |I-64-B0-..B00078|]
+On Fri, Nov 18, 2022 at 05:10:38PM +0100, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 18.11.22 um 16:44 schrieb Thierry Reding:
+> > On Fri, Nov 18, 2022 at 04:08:23PM +0100, Thomas Zimmermann wrote:
+> > > Hi
+> > >=20
+> > > Am 17.11.22 um 19:40 schrieb Thierry Reding:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >=20
+> > > > Add XB24 and AB24 to the list of supported formats. The format help=
+ers
+> > > > support conversion to these formats and they are documented in the
+> > > > simple-framebuffer device tree bindings.
+> > > >=20
+> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > > ---
+> > > > Changes in v2:
+> > > > - treat AB24 as XB24 and support both at the same time
+> > > >=20
+> > > >    drivers/gpu/drm/tiny/simpledrm.c       | 2 ++
+> > > >    include/linux/platform_data/simplefb.h | 1 +
+> > > >    2 files changed, 3 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/tiny/simpledrm.c b/drivers/gpu/drm/tin=
+y/simpledrm.c
+> > > > index 7f39bc58da52..ba1c2057fc65 100644
+> > > > --- a/drivers/gpu/drm/tiny/simpledrm.c
+> > > > +++ b/drivers/gpu/drm/tiny/simpledrm.c
+> > > > @@ -483,6 +483,8 @@ static int simpledrm_device_init_regulators(str=
+uct simpledrm_device *sdev)
+> > > >    static const uint32_t simpledrm_primary_plane_formats[] =3D {
+> > > >    	DRM_FORMAT_XRGB8888,
+> > > >    	DRM_FORMAT_ARGB8888,
+> > > > +	DRM_FORMAT_XBGR8888,
+> > > > +	DRM_FORMAT_ABGR8888,
+> > >=20
+> > > Does the hardware *really* support AB42 on its primary plane?
+> >=20
+> > Yes, Tegra display hardware supports this format on the primary plane.
+> >=20
+> > > We recently had a discussion about the exported formats and the conse=
+nsus is
+> > > that we only want the hardware's native formats plus XRGB888. That's =
+not
+> > > implemented yet in simpledrm, but this format list will soon see a la=
+rger
+> > > cleanup.
+> > >=20
+> > > So I think ARGB8888 likely shouldn't be on the list here.
+> >=20
+> > This is for consistency with the list below. If a device tree claims
+> > that the framebuffer is ABGR8888 using the "a8b8g8r8" string, then
+> > shouldn't we support it?
+>=20
+> The situation is complicated. Several DTs claim that their framebuffers
+> support Alpha+RGB when they actually mean X+RGB. But for compatibility, we
+> cannot change this now AFAIU. So we're stuck with X+RGB framebuffers that
+> claim that they have an alpha channel. OTOH, other hardware might actually
+> support the announced alpha channel. Trying to render into an alpha chann=
+el
+> would therefore produce undefined output.
 
-https://beagleboard.org/ai-64
-https://git.beagleboard.org/beagleboard/beaglebone-ai-64
+As long as we output 0xff into the alpha channel we should be able to
+support those modes as well, shouldn't we? This would effectively be the
+same as XRGB variants, except that the native mode could still be
+reflected. It probably doesn't make sense to have an alpha channel for
+these use-cases (what would we blend with), but I don't see how it would
+hurt.
 
-Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
-CC: Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>
-CC: Jason Kridner <jkridner@beagleboard.org>
-CC: Drew Fustini <drew@beagleboard.org>
----
-Changes since v5:
- - led: drop un-documented phy0tx trigger
- - regulator: use gpio over gpios
- - gpio-line-names: drop names till rule is updated for 128 entries
-Changes since v4:
- - secure_ddr - removed alignment property
- - gpio-keys - removed un-needed autorepeat
- - gpio-keys - use button over switch label
- - davinci_mdio - move mcu_mdio_pins_default into davinci_mdio node
- - main_r5fss0_core0 - remove firmware name till upstream gets it sorted out
-Changes since v3:
- - rebased on next after enable/disable device-tree level changes
- - Enable UART nodes at the board level
- - Enable I2C nodes at the board level
- - Enable Mailbox nodes at the board level
- - Enable MCASP nodes at the board level
-Changes since v2:
- - drop bootargs
- - use generic node names for regulators
- - corrected main-i2c*pins node-names
-Changes since v1:
- - added product url to license section
- - added aliases for serial, mmc and i2c
- - use switch-X syntax for switches
- - switch-1 removed disabled status
- - use led-X syntax for leds
- - led-x dropped labels, using functions
- - dp_pwr_3v3 removed extra comment, always on regulator setting
- - added i2c interfaces that map with BeagleBone Family
- - corrected mcu-adc*-pins-default node-names
- - main_uart0 corrected comment on TIFS firmware.
- - main_gpio0 - removed un-needed okay
- - main_gpio1 - removed un-needed okay
- - mhdp added missing phy
- - main_r5fss0_core0 - corrected missing space
- - added tscadc0/tscadc1 pins brought out on board
- - marked disabled nodes as unused in this design
----
- arch/arm64/boot/dts/ti/Makefile               |    1 +
- .../boot/dts/ti/k3-j721e-beagleboneai64.dts   | 1055 +++++++++++++++++
- 2 files changed, 1056 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> The consensus is that we only want to announce XRGB8888 plus the native
+> format to userspace. But if the native format has an alpha channel, we'd
+> announce the non-alpha format instead. Our format-conversion helpers would
+> then fill the alpha channel automatically with 0xff during the pageflip.
+>=20
+> (This hasn't yet been fully implemented because we first need to fix a few
+> things in fbdev emulation to make it work.)
+>=20
+> Therefore ABGR8888 shouldn't be on the list. Note that a native DRM driver
+> for your display hardware would be free to export ABGR8888. We only have
+> this rule for the hardware-agnostic drivers.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 4555a5be2257..cf7c509538a4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
- 
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-new file mode 100644
-index 000000000000..e1eec5767cac
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -0,0 +1,1055 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * https://beagleboard.org/ai-64
-+ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
-+ * Copyright (C) 2022 Robert Nelson, BeagleBoard.org Foundation
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-j721e.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+
-+/ {
-+	compatible = "beagle,j721e-beagleboneai64", "ti,j721e";
-+	model = "BeagleBoard.org BeagleBone AI-64";
-+
-+	aliases {
-+		serial2 = &main_uart0;
-+		mmc0 = &main_sdhci0;
-+		mmc1 = &main_sdhci1;
-+		i2c0 = &wkup_i2c0;
-+		i2c1 = &main_i2c6;
-+		i2c2 = &main_i2c2;
-+		i2c3 = &main_i2c4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_memory_region: r5f-memory@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: r5f-memory@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_memory_region: r5f-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core0_dma_memory_region: r5f-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core0_memory_region: r5f-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core1_dma_memory_region: r5f-dma-memory@a5000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa5000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss1_core1_memory_region: r5f-memory@a5100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa5100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c66_1_dma_memory_region: c66-dma-memory@a6000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa6000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c66_0_memory_region: c66-memory@a6100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa6100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c66_0_dma_memory_region: c66-dma-memory@a7000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa7000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c66_1_memory_region: c66-memory@a7100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa7100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c71_0_dma_memory_region: c71-dma-memory@a8000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa8000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c71_0_memory_region: c71-memory@a8100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa8100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@aa000000 {
-+			reg = <0x00 0xaa000000 0x00 0x01c00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sw_pwr_pins_default>;
-+
-+		button-1 {
-+			label = "BOOT";
-+			linux,code = <BTN_0>;
-+			gpios = <&wkup_gpio0 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		button-2 {
-+			label = "POWER";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins_default>;
-+
-+		led-0 {
-+			gpios = <&main_gpio0 96 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			linux,default-trigger = "mmc0";
-+		};
-+
-+		led-2 {
-+			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_CPU;
-+			linux,default-trigger = "cpu";
-+		};
-+
-+		led-3 {
-+			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			linux,default-trigger = "mmc1";
-+		};
-+
-+		led-4 {
-+			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_WLAN;
-+			default-state = "off";
-+		};
-+	};
-+
-+	evm_12v0: regulator-0 {
-+		/* main supply */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: regulator-1 {
-+		/* Output of LMS140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_5v0: regulator-2 {
-+		/* Output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: regulator-3 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sd_pwr_en_pins_default>;
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv_alt: regulator-4 {
-+		compatible = "regulator-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
-+		regulator-name = "tlv71033";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpio = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+
-+	dp_pwr_3v3: regulator-5 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&dp0_3v3_en_pins_default>;
-+		regulator-name = "dp-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
-+		enable-active-high;
-+	};
-+
-+	dp0: connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp_pwr_3v3>;
-+
-+		port {
-+			dp_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	led_pins_default: led-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x184, PIN_INPUT, 7) /* (T23) RGMII5_RD0.GPIO0_96 */
-+			J721E_IOPAD(0x180, PIN_INPUT, 7) /* (R23) RGMII5_RD1.GPIO0_95 */
-+			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-+			J721E_IOPAD(0x1bc, PIN_INPUT, 7) /* (V24) MDIO0_MDC.GPIO0_110 */
-+			J721E_IOPAD(0x1b8, PIN_INPUT, 7) /* (V26) MDIO0_MDIO.GPIO0_109 */
-+		>;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x254, PIN_INPUT, 0) /* (R29) MMC1_CMD */
-+			J721E_IOPAD(0x250, PIN_INPUT, 0) /* (P25) MMC1_CLK */
-+			J721E_IOPAD(0x2ac, PIN_INPUT, 0) /* (P25) MMC1_CLKLB */
-+			J721E_IOPAD(0x24c, PIN_INPUT, 0) /* (R24) MMC1_DAT0 */
-+			J721E_IOPAD(0x248, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-+			J721E_IOPAD(0x244, PIN_INPUT, 0) /* (R25) MMC1_DAT2 */
-+			J721E_IOPAD(0x240, PIN_INPUT, 0) /* (R26) MMC1_DAT3 */
-+			J721E_IOPAD(0x258, PIN_INPUT, 0) /* (P23) MMC1_SDCD */
-+		>;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1e8, PIN_INPUT, 0) /* (AB2) UART0_RXD */
-+			J721E_IOPAD(0x1ec, PIN_OUTPUT, 0) /* (AB3) UART0_TXD */
-+		>;
-+	};
-+
-+	sd_pwr_en_pins_default: sd-pwr-en-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-+		>;
-+	};
-+
-+	vdd_sd_dv_alt_pins_default: vdd-sd-dv-alt-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1d8, PIN_INPUT, 7) /* (W4) SPI1_CS1.GPIO0_117 */
-+		>;
-+	};
-+
-+	main_usbss0_pins_default: main-usbss0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 - USBC_DIR */
-+		>;
-+	};
-+
-+	main_usbss1_pins_default: main-usbss1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x290, INPUT_DISABLE, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
-+		>;
-+	};
-+
-+	dp0_3v3_en_pins_default:dp0-3v3-en-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0xc8, PIN_INPUT, 7) /* (AE26) PRG0_PRU0_GPO6.GPIO0_49 */
-+		>;
-+	};
-+
-+	dp0_pins_default: dp0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* (Y4) SPI0_CS1.DP0_HPD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x220, PIN_INPUT_PULLUP, 0) /* (AC5) I2C0_SCL */
-+			J721E_IOPAD(0x224, PIN_INPUT_PULLUP, 0) /* (AA5) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x228, PIN_INPUT_PULLUP, 0) /* (Y6) I2C1_SCL */
-+			J721E_IOPAD(0x22c, PIN_INPUT_PULLUP, 0) /* (AA6) I2C1_SDA */
-+		>;
-+	};
-+
-+	main_i2c2_pins_default: main-i2c2-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x208, PIN_INPUT_PULLUP, 4) /* (W5) MCAN0_RX.I2C2_SCL */
-+			J721E_IOPAD(0x20c, PIN_INPUT_PULLUP, 4) /* (W6) MCAN0_TX.I2C2_SDA */
-+			J721E_IOPAD(0x138, PIN_INPUT, 7) /* (AE25) PRG0_PRU1_GPO14.GPIO0_77 */
-+			J721E_IOPAD(0x13c, PIN_INPUT, 7) /* (AF29) PRG0_PRU1_GPO15.GPIO0_78 */
-+		>;
-+	};
-+
-+	main_i2c3_pins_default: main-i2c3-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) MMC2_CLK.I2C3_SCL */
-+			J721E_IOPAD(0x274, PIN_INPUT_PULLUP, 4) /* (T25) MMC2_CMD.I2C3_SDA */
-+		>;
-+	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1e0, PIN_INPUT_PULLUP, 2) /* (Y5) SPI1_D0.I2C4_SCL */
-+			J721E_IOPAD(0x1dc, PIN_INPUT_PULLUP, 2) /* (Y1) SPI1_CLK.I2C4_SDA */
-+			J721E_IOPAD(0x30, PIN_INPUT, 7) /* (AF24) PRG1_PRU0_GPO11.GPIO0_12 */
-+			J721E_IOPAD(0x34, PIN_INPUT, 7) /* (AJ24) PRG1_PRU0_GPO12.GPIO0_13 */
-+		>;
-+	};
-+
-+	main_i2c5_pins_default: main-i2c5-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-+			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-+		>;
-+	};
-+
-+	main_i2c6_pins_default: main-i2c6-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1d0, PIN_INPUT_PULLUP, 2) /* (AA3) SPI0_D1.I2C6_SCL */
-+			J721E_IOPAD(0x1e4, PIN_INPUT_PULLUP, 2) /* (Y2) SPI1_D1.I2C6_SDA */
-+			J721E_IOPAD(0x74, PIN_INPUT, 7) /* (AC21) PRG1_PRU1_GPO7.GPIO0_28 */
-+			J721E_IOPAD(0xa4, PIN_INPUT, 7) /* (AH22) PRG1_PRU1_GPO19.GPIO0_40 */
-+		>;
-+	};
-+
-+	csi0_gpio_pins_default: csi0-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x19c, PIN_INPUT_PULLDOWN, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-+			J721E_IOPAD(0x1a0, PIN_INPUT_PULLDOWN, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-+		>;
-+	};
-+
-+	csi1_gpio_pins_default: csi1-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x198, PIN_INPUT_PULLDOWN, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-+			J721E_IOPAD(0x1b0, PIN_INPUT_PULLDOWN, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-+		>;
-+	};
-+
-+	pcie1_rst_pins_default: pcie1-rst-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x5c, PIN_INPUT, 7) /* (AG23) PRG1_PRU1_GPO1.GPIO0_22 */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx0 {
-+	eeprom_wp_pins_default: eeprom-wp-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xc4, PIN_OUTPUT_PULLUP, 7) /* (G24) WKUP_GPIO0_5 */
-+		>;
-+	};
-+
-+	mcu_adc0_pins_default: mcu-adc0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x130, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN0 */
-+			J721E_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (K26) MCU_ADC0_AIN1 */
-+			J721E_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (K28) MCU_ADC0_AIN2 */
-+			J721E_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (L28) MCU_ADC0_AIN3 */
-+			J721E_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (K24) MCU_ADC0_AIN4 */
-+			J721E_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (K27) MCU_ADC0_AIN5 */
-+			J721E_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (K29) MCU_ADC0_AIN6 */
-+		>;
-+	};
-+
-+	mcu_adc1_pins_default: mcu-adc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (N23) MCU_ADC1_AIN0 */
-+		>;
-+	};
-+
-+	mikro_bus_pins_default: mikro-bus-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x108, PIN_INPUT, 7) /* SDAPULLEN (E26) PMIC_POWER_EN0.WKUP_GPIO0_66 */
-+			J721E_WKUP_IOPAD(0xd4, PIN_INPUT, 7) /* SDA (G26) WKUP_GPIO0_9.MCU_I2C1_SDA */
-+			J721E_WKUP_IOPAD(0xf4, PIN_INPUT, 7) /* SDA (D25) MCU_I3C0_SDA.WKUP_GPIO0_61 */
-+			J721E_WKUP_IOPAD(0xd0, PIN_INPUT, 7) /* SCL (G27) WKUP_GPIO0_8.MCU_I2C1_SCL */
-+			J721E_WKUP_IOPAD(0xf0, PIN_INPUT, 7) /* SCL (D26) MCU_I3C0_SCL.WKUP_GPIO0_60 */
-+
-+			J721E_WKUP_IOPAD(0xb8, PIN_INPUT, 7) /* MOSI (F28) WKUP_GPIO0_2.MCU_SPI1_D1 */
-+			J721E_WKUP_IOPAD(0xb4, PIN_INPUT, 7) /* MISO (F25) WKUP_GPIO0_1.MCU_SPI1_D0 */
-+			J721E_WKUP_IOPAD(0xb0, PIN_INPUT, 7) /* CLK (F26) WKUP_GPIO0_0.MCU_SPI1_CLK */
-+			J721E_WKUP_IOPAD(0xbc, PIN_INPUT, 7) /* CS (F27) WKUP_GPIO0_3.MCU_SPI1_CS0 */
-+
-+			J721E_WKUP_IOPAD(0x44, PIN_INPUT, 7) /* RX (G22) MCU_OSPI1_D1.WKUP_GPIO0_33 */
-+			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 7) /* TX (D23) MCU_OSPI1_D2.WKUP_GPIO0_34 */
-+
-+			J721E_WKUP_IOPAD(0x4c, PIN_INPUT, 7) /* INT (C23) MCU_OSPI1_D3.WKUP_GPIO0_35 */
-+			J721E_WKUP_IOPAD(0x54, PIN_INPUT, 7) /* RST (E22) MCU_OSPI1_CSn1.WKUP_GPIO0_37 */
-+			J721E_WKUP_IOPAD(0xdc, PIN_INPUT, 7) /* PWM (H27) WKUP_GPIO0_11 */
-+			J721E_WKUP_IOPAD(0xac, PIN_INPUT, 7) /* AN (C29) MCU_MCAN0_RX.WKUP_GPIO0_59 */
-+		>;
-+	};
-+
-+	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
-+			J721E_WKUP_IOPAD(0x80, PIN_INPUT, 0) /* (A24) MCU_RGMII1_RD1 */
-+			J721E_WKUP_IOPAD(0x7c, PIN_INPUT, 0) /* (D24) MCU_RGMII1_RD2 */
-+			J721E_WKUP_IOPAD(0x78, PIN_INPUT, 0) /* (A25) MCU_RGMII1_RD3 */
-+			J721E_WKUP_IOPAD(0x74, PIN_INPUT, 0) /* (C24) MCU_RGMII1_RXC */
-+			J721E_WKUP_IOPAD(0x5c, PIN_INPUT, 0) /* (C25) MCU_RGMII1_RX_CTL */
-+			J721E_WKUP_IOPAD(0x6c, PIN_OUTPUT, 0) /* (B25) MCU_RGMII1_TD0 */
-+			J721E_WKUP_IOPAD(0x68, PIN_OUTPUT, 0) /* (A26) MCU_RGMII1_TD1 */
-+			J721E_WKUP_IOPAD(0x64, PIN_OUTPUT, 0) /* (A27) MCU_RGMII1_TD2 */
-+			J721E_WKUP_IOPAD(0x60, PIN_OUTPUT, 0) /* (A28) MCU_RGMII1_TD3 */
-+			J721E_WKUP_IOPAD(0x70, PIN_OUTPUT, 0) /* (B26) MCU_RGMII1_TXC */
-+			J721E_WKUP_IOPAD(0x58, PIN_OUTPUT, 0) /* (B27) MCU_RGMII1_TX_CTL */
-+		>;
-+	};
-+
-+	mcu_mdio_pins_default: mcu-mdio1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x8c, PIN_OUTPUT, 0) /* (F23) MCU_MDIO0_MDC */
-+			J721E_WKUP_IOPAD(0x88, PIN_INPUT, 0) /* (E23) MCU_MDIO0_MDIO */
-+		>;
-+	};
-+
-+	sw_pwr_pins_default: sw-pwr-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
-+		>;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
-+			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
-+		>;
-+	};
-+
-+	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
-+		>;
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* Wakeup UART is used by TIFS firmware. */
-+	status = "reserved";
-+};
-+
-+&main_uart0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	/* Shared with ATF on this platform */
-+	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_sdhci0 {
-+	/* eMMC */
-+	non-removable;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&main_sdhci1 {
-+	/* SD Card */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv_alt>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&main_sdhci2 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&ospi0 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&ospi1 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c2 {
-+	/* BBB Header: P9.19 and P9.20 */
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c2_pins_default>;
-+	clock-frequency = <100000>;
-+};
-+
-+&main_i2c3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c3_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c4 {
-+	/* BBB Header: P9.24 and P9.26 */
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <100000>;
-+};
-+
-+&main_i2c5 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c6 {
-+	/* BBB Header: P9.17 and P9.18 */
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c6_pins_default>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c04";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&main_gpio2 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_gpio3 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_gpio4 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_gpio5 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_gpio6 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_gpio7 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&wkup_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_adc0_pins_default &mcu_adc1_pins_default &mikro_bus_pins_default>;
-+};
-+
-+&wkup_gpio1 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&usb_serdes_mux {
-+	idle-states = <1>, <1>; /* USB0 to SERDES3, USB1 to SERDES2 */
-+};
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J721E_SERDES0_LANE0_IP4_UNUSED>, <J721E_SERDES0_LANE1_IP4_UNUSED>,
-+		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
-+		      <J721E_SERDES2_LANE0_IP1_UNUSED>, <J721E_SERDES2_LANE1_USB3_1>,
-+		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
-+		      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
-+		      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
-+};
-+
-+&serdes_wiz3 {
-+	typec-dir-gpios = <&main_gpio1 3 GPIO_ACTIVE_LOW>;
-+	typec-dir-debounce-ms = <700>;	/* TUSB321, tCCB_DEFAULT 133 ms */
-+};
-+
-+&serdes3 {
-+	serdes3_usb_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz3 1>, <&serdes_wiz3 2>;
-+	};
-+};
-+
-+&serdes4 {
-+	torrent_phy_dp: phy@0 {
-+		reg = <0>;
-+		resets = <&serdes_wiz4 1>;
-+		cdns,phy-type = <PHY_TYPE_DP>;
-+		cdns,num-lanes = <4>;
-+		cdns,max-bit-rate = <5400>;
-+		#phy-cells = <0>;
-+	};
-+};
-+
-+&mhdp {
-+	phys = <&torrent_phy_dp>;
-+	phy-names = "dpphy";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
-+};
-+
-+&usbss0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes3_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
-+
-+&serdes2 {
-+	serdes2_usb_link: phy@1 {
-+		reg = <1>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz2 2>;
-+	};
-+};
-+
-+&usbss1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usbss1_pins_default &mcu_usbss1_pins_default>;
-+	ti,vbus-divider;
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes2_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
-+
-+&tscadc0 {
-+	/* BBB Header: P9.39, P9.40, P9.37, P9.38, P9.33, P9.36, P9.35 */
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6>;
-+	};
-+};
-+
-+&tscadc1 {
-+	/* MCU mikroBUS Header J10.1 - MCU_ADC1_AIN0 */
-+	adc {
-+		ti,adc-channels = <0>;
-+	};
-+};
-+
-+&mcu_cpsw {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_cpsw_pins_default>;
-+};
-+
-+&davinci_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mdio_pins_default>;
-+
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&phy0>;
-+};
-+
-+&dss {
-+	/*
-+	 * These clock assignments are chosen to enable the following outputs:
-+	 *
-+	 * VP0 - DisplayPort SST
-+	 * VP1 - DPI0
-+	 * VP2 - DSI
-+	 * VP3 - DPI1
-+	 */
-+
-+	assigned-clocks = <&k3_clks 152 1>,	/* VP 1 pixel clock */
-+			  <&k3_clks 152 4>,	/* VP 2 pixel clock */
-+			  <&k3_clks 152 9>,	/* VP 3 pixel clock */
-+			  <&k3_clks 152 13>;	/* VP 4 pixel clock */
-+	assigned-clock-parents = <&k3_clks 152 2>,	/* PLL16_HSDIV0 */
-+				 <&k3_clks 152 6>,	/* PLL19_HSDIV0 */
-+				 <&k3_clks 152 11>,	/* PLL18_HSDIV0 */
-+				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
-+};
-+
-+&dss_ports {
-+	port {
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+};
-+
-+&dp0_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp_connector_in>;
-+		};
-+	};
-+};
-+
-+&serdes0 {
-+	serdes0_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>;
-+	};
-+};
-+
-+&serdes1 {
-+	serdes1_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-+	};
-+};
-+
-+&pcie0_rc {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&pcie1_rc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_rst_pins_default>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	max-link-speed = <3>;
-+	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&pcie2_rc {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&pcie0_ep {
-+	status = "disabled";
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_ep {
-+	status = "disabled";
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie2_ep {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&pcie3_rc {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&pcie3_ep {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&icssg0_mdio {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&icssg1_mdio {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&ufs_wrapper {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster0 {
-+	interrupts = <436>;
-+
-+	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	interrupts = <432>;
-+
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	interrupts = <428>;
-+
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	interrupts = <424>;
-+
-+	mbox_c66_0: mbox-c66-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c66_1: mbox-c66-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster4 {
-+	interrupts = <420>;
-+
-+	mbox_c71_0: mbox-c71-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&mcu_r5fss0_core1 {
-+	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core1>;
-+	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
-+			<&mcu_r5fss0_core1_memory_region>;
-+};
-+
-+&main_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
-+};
-+
-+&main_r5fss0_core1 {
-+	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core1>;
-+	memory-region = <&main_r5fss0_core1_dma_memory_region>,
-+			<&main_r5fss0_core1_memory_region>;
-+};
-+
-+&main_r5fss1_core0 {
-+	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss1_core0>;
-+	memory-region = <&main_r5fss1_core0_dma_memory_region>,
-+			<&main_r5fss1_core0_memory_region>;
-+};
-+
-+&main_r5fss1_core1 {
-+	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss1_core1>;
-+	memory-region = <&main_r5fss1_core1_dma_memory_region>,
-+			<&main_r5fss1_core1_memory_region>;
-+};
-+
-+&c66_0 {
-+	mboxes = <&mailbox0_cluster3 &mbox_c66_0>;
-+	memory-region = <&c66_0_dma_memory_region>,
-+			<&c66_0_memory_region>;
-+};
-+
-+&c66_1 {
-+	mboxes = <&mailbox0_cluster3 &mbox_c66_1>;
-+	memory-region = <&c66_1_dma_memory_region>,
-+			<&c66_1_memory_region>;
-+};
-+
-+&c71_0 {
-+	mboxes = <&mailbox0_cluster4 &mbox_c71_0>;
-+	memory-region = <&c71_0_dma_memory_region>,
-+			<&c71_0_memory_region>;
-+};
--- 
-2.30.2
+I don't feel strongly about it, so I can also drop that format. Do we
+also want to drop ARGB8888 and ARGB2101010 while we're at it? In a
+separate patch of course.
 
+Thierry
+
+--ldz8iAyLzBuJ8Wi1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmN3tA8ACgkQ3SOs138+
+s6EyWQ/+KexJpcXO2wTvhVu/Sv7E3aNuZIELCIDdJo6FB3S8+k8xV1eZsiFj9iB1
+PJddcc3VkNjzsU/7ltfKE0b/hhEzgQAJABU7LFWLxpqGtifhScASHGzMMYBqKLAk
+1FpZpxDJu5AGSAVbBFQaiJoJL1/EWHipfn8hysNzJ98Wf/AS5rIZgJvEFhqPvkQz
+FRFATOe2hqIb5E0PpNW1cEye8lWGvQL2FVUaOHG8H5vGDS3/FDa3LtdWlt+NYdar
+rWmWQXdMmhIh74bjoV1+FM7GzWytNT2K7rKch9JOvdnFwiH8hJIp7ZoLulZWyCHe
+2aQ8B8uUbexcBXDUFvuLhDTNfGKkhZWfUAC6JqoqCw2xaa1alO4R6SskQDfM4/5U
+fz5Pu038nogFhqGCTinY64A8HSY/AtzL0qPB/kxd9YQjlz3TcZvdr2CXSJMPe7tx
+zX1LLFoVo6Efno4yVVMUcpLfxX5wnRZ1MApXF7acKapDIsEUAX+5Vgpn1jIs7ivs
+XICv1fv43wf233tq6AxD8DhLZVYVZdJRazlMMdGluzGOdbonV3LUMFNtJWDy16MY
+lnqAIF5rCTUebO1qOQKX96GwE4ZX5ZUXTOodCxac/90Pf9IN+fThLoLZvs8F5WxT
+vVDw8wVlp+ylb3zJTn51i6Lk+QbqQaaJx1OGC6VyBeDp/3a4eyI=
+=/UDo
+-----END PGP SIGNATURE-----
+
+--ldz8iAyLzBuJ8Wi1--
