@@ -2,59 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E751C630DAE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 10:11:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C92630DDE
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 10:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbiKSJL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 04:11:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39122 "EHLO
+        id S233680AbiKSJjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 04:39:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiKSJL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 04:11:57 -0500
+        with ESMTP id S233638AbiKSJjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 04:39:13 -0500
 Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D4E7E1DA6B;
-        Sat, 19 Nov 2022 01:11:56 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A87AC7DED9;
+        Sat, 19 Nov 2022 01:39:11 -0800 (PST)
 Received: from 8bytes.org (p200300c27724780086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7724:7800:86ad:4f9d:2505:dd0d])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.8bytes.org (Postfix) with ESMTPSA id C49A62A02E2;
-        Sat, 19 Nov 2022 10:11:55 +0100 (CET)
+        by mail.8bytes.org (Postfix) with ESMTPSA id 826D92A02E9;
+        Sat, 19 Nov 2022 10:39:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-        s=default; t=1668849116;
-        bh=Mnj+XKy1eq+cpp4M1nNQ/BJ5gwNgtt/9NmvCYlk98lM=;
+        s=default; t=1668850749;
+        bh=zWtga/KvubHoJ0zb/2PRxtdqk3xpMDxLeLBasVYUrwA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TkWUk44EuE6Qzf35kclftWpLfCtg5ilCYc4uaPR850QcfeUrf1tp1Xm1Ey8URAcvp
-         KPyU/rgiN1ln6vSNBM325IHlDDXjPBHs0iRmodqDjuzaL0p3qOU0jV6SjJOmUGXy32
-         aZCZXRxrcB3MT4F88H565tRMhKpsaqIv/5Iu9xz2zYZh4FZtMcZJGNcoekVl8hpuD6
-         q+2xw5rkrkBCeqXuPxDrwFq4N3LAGWW/kFPJHKks3Z+8eA6drLrbp/T4p/aQQ/WV6k
-         2f07Coc9oEeoftLXAwMzfR04vHUrJaWJYUqa4xmZkeRSNkDOGSIR6xRVYz9lNp8aSb
-         7XISudJwIVM+w==
-Date:   Sat, 19 Nov 2022 10:11:54 +0100
+        b=FZlZRDuyN+NhX9mRTLX2JPwfJ4uclm5XvIJkjNAJU79wu4Hq/3IY1TeLmylQqT7ah
+         cc5SxAv5E+AYqJiH2VrFx1xb7hFWa0MM0V7sQHACey0ecJWflrSbR9DMqBiNeOPv0i
+         NW61iVgiEYyI0jAUCE5gmS3HknUqctA9UxX+Qx6QNH+N1qdF2PFoVHjz7crH4Huz1c
+         8XJuozPRQomKeTf62eMAuF2oa46Qxm8NpdoahKo6zPquj9GtDIyvQUtZ6bYU40g8u8
+         OBIv/7DQDTQhu5Cx6FbVW9Sdsagh8DIGw3JOEA/uA9xwcvDEAhaIpwl7eRS1M1P6gD
+         E6dwp675GQlWw==
+Date:   Sat, 19 Nov 2022 10:39:08 +0100
 From:   Joerg Roedel <joro@8bytes.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>,
         Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 0/3] iommu/mediatek: Add mt8365 iommu support
-Message-ID: <Y3id2iJdLxdr6L5o@8bytes.org>
-References: <20221001-iommu-support-v6-0-be4fe8da254b@baylibre.com>
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: Re: [PATCH v11 0/5] iommu: Support mappings/reservations in
+ reserved-memory regions
+Message-ID: <Y3ikPBFYrSCWB10K@8bytes.org>
+References: <20221111161806.630527-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221001-iommu-support-v6-0-be4fe8da254b@baylibre.com>
+In-Reply-To: <20221111161806.630527-1-thierry.reding@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -64,10 +61,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 02, 2022 at 04:18:06PM +0100, Alexandre Mergnat wrote:
-> Fabien Parent (3):
->       dt-bindings: iommu: mediatek: add binding documentation for MT8365 SoC
->       iommu/mediatek: add support for 6-bit encoded port IDs
->       iommu/mediatek: add support for MT8365 SoC
+On Fri, Nov 11, 2022 at 05:18:01PM +0100, Thierry Reding wrote:
+> Thierry Reding (5):
+>   of: Introduce support for #dma-{address,size}-cells
+>   of: Introduce of_translate_dma_region()
+>   dt-bindings: reserved-memory: Document iommu-addresses
+>   iommu: Implement of_iommu_get_resv_regions()
+>   iommu: dma: Use of_iommu_get_resv_regions()
+> 
+>  .../reserved-memory/reserved-memory.yaml      | 73 ++++++++++++++
+>  drivers/iommu/dma-iommu.c                     |  3 +
+>  drivers/iommu/of_iommu.c                      | 94 +++++++++++++++++++
+>  drivers/of/address.c                          | 84 +++++++++++++----
+>  drivers/of/base.c                             | 70 +++++++++++---
+>  drivers/of/of_private.h                       | 14 ++-
+>  include/linux/of.h                            | 17 +++-
+>  include/linux/of_address.h                    |  4 +-
+>  include/linux/of_iommu.h                      |  8 ++
+>  9 files changed, 329 insertions(+), 38 deletions(-)
 
-Applied, thanks.
+Despite this lacking some essential reviews, what is the plan with this
+code? Should it go through the IOMMU or DT tree?
+
+Regards,
+
+	Joerg
