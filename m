@@ -2,116 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1CEC631036
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 19:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 475C7631067
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 20:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230398AbiKSSQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 13:16:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
+        id S231757AbiKSTPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 14:15:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234176AbiKSSQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 13:16:28 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BCB8D13CD7;
-        Sat, 19 Nov 2022 10:16:26 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A8891FB;
-        Sat, 19 Nov 2022 10:16:32 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C4493F587;
-        Sat, 19 Nov 2022 10:16:24 -0800 (PST)
-Date:   Sat, 19 Nov 2022 18:14:59 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Renze Nicolai <renze@rnplus.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Conley Lee <conleylee@foxmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, krzysztof.kozlowski@linaro.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: allwinner: a64: add device tree for SOPINE
- on Pine64 Clusterboard
-Message-ID: <20221119181459.7a264ddd@slackpad.lan>
-In-Reply-To: <3351526.aeNJFYEL58@werkpc>
-References: <3351526.aeNJFYEL58@werkpc>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S230471AbiKSTPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 14:15:24 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 985B9CE21;
+        Sat, 19 Nov 2022 11:15:23 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86FCE749;
+        Sat, 19 Nov 2022 20:15:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1668885320;
+        bh=v0qcqXQDEZCZ4IOM0K8lVp7JUfe7LsbUA+QPtksUNCc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y3wOWRK1GsfPYTmkUQmYJXGdgDOh7BlvWIqH453S8b8rs3pOpP+/+SfbroJtp+Nuf
+         YqH8W0q1O4HsTFVr5rCfxLYuL0j3IHfZhbnPDgJWxeG38MIqpOWG3mLIi8kODIT+6u
+         MyGiMjC8cfyBK08OVb2gLTHKugiiMDBmDF2cE9Tg=
+Date:   Sat, 19 Nov 2022 21:15:04 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Elder <paul.elder@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v3 0/6] dt-bindings: Add macros for video interface bus
+ types
+Message-ID: <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <YtOyCBOqCR71uG1i@paasikivi.fi.intel.com>
+ <Y3dPGkFaz/qo/drw@pyrite.rasen.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Y3dPGkFaz/qo/drw@pyrite.rasen.tech>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 19 Nov 2022 13:31:59 +0100
-Renze Nicolai <renze@rnplus.nl> wrote:
+Hello,
 
-> The Pine64 SOPINE Clusterboard is a mini-ITX sized board capable
-> of hosting up-to 7 SOPINE modules. It is largely compatible
-> with the SOPINE baseboard but it omits most of the in- and
-> output interfaces. Also The Clusterboard needs a tx delay
-> of 500ps for ethernet to work.
+On Fri, Nov 18, 2022 at 06:23:38PM +0900, Paul Elder wrote:
+> Hi Sakari,
 > 
-> Add a device tree for SOPINE on the Pine64 Clusterboard.
+> Gentle ping.
 > 
-> Signed-off-by: Renze Nicolai <renze@rnplus.nl>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile           |  1 +
->  .../allwinner/sun50i-a64-sopine-clusterboard.dts | 16 ++++++++++++++++
->  2 files changed, 17 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-
-> clusterboard.dts
+> On Sun, Jul 17, 2022 at 06:54:00AM +0000, Sakari Ailus wrote:
+> > Folks,
+> > 
+> > > Laurent Pinchart (6):
+> > >   dt-bindings: media: Add macros for video interface bus types
+> > >   dt-bindings: Use new video interface bus type macros in examples
+> > >   ARM: dts: freescale: Use new media bus type macros
+> > >   ARM: dts: omap: Use new media bus type macros
+> > >   ARM: dts: renesas: Use new media bus type macros
+> > >   ARM: dts: stm32: Use new media bus type macros
+> > 
+> > What's the preference on the tree through which these would be merged?
+> > 
+> > The two first should probably go through the media tree but what about the
+> > DTS? There's a dependency to the first patch. I can take these all if
+> > people are fine with that.
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/
-> allwinner/Makefile
-> index 6a96494a2e0a..15b011d1aaea 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab-early-adopter.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-clusterboard.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts 
-> b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts
-> new file mode 100644
-> index 000000000000..f75325d43d76
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-clusterboard.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (c) 2022 Renze Nicolai <renze@rnplus.nl>
-> +
-> +/dts-v1/;
+> How is this going?
 
-Since you include a complete .dts (not a .dtsi) below, you don't need
-the dts-v1 tag, as this is provided by the baseboard.dts. That's the
-same situation as with the Pine64 LTS.
+Sakari, if there's a concern taking patches 3/6 to 6/6 in the media
+tree, could you merge 1/6 and 2/6 ? If they can still be included in a
+pull request for v6.2, I'll work on getting the dts changes in v6.3
+through their respective trees.
 
-Cheers,
-Andre
+-- 
+Regards,
 
-> +
-> +#include "sun50i-a64-sopine-baseboard.dts"
-> +
-> +/ {
-> +	model = "SOPINE with clusterboard";
-> +	compatible = "pine64,sopine-clusterboard", "pine64,sopine",
-> +		     "allwinner,sun50i-a64";
-> +};
-> +
-> +&emac {
-> +	allwinner,tx-delay-ps = <500>;
-> +};
-
+Laurent Pinchart
