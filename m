@@ -2,105 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1940631125
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 22:45:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CBD4631132
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 23:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232243AbiKSVpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 16:45:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39592 "EHLO
+        id S230471AbiKSWMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 17:12:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiKSVpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 16:45:41 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785D610A5
-        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 13:45:40 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id 130so7959233pgc.5
-        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 13:45:40 -0800 (PST)
+        with ESMTP id S232799AbiKSWMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 17:12:44 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DFD15806
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 14:12:43 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id p8so13574783lfu.11
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 14:12:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O0N4KFs/+iAAmWrU6V4/9VSGjOXaLTvJgAIawzgxFsA=;
-        b=HncsJ+GqjkYrxdy4wEWqzWqx21OHAPYlvm2C438Sts0+p0VQpkm0w2EOw+GqkQiDGu
-         JUvW8qVcAidxVGsz4TKCIzIYfat7edszzvOKhva1MS5U2LC0KHOmpiA6lOQlJNqcvS3l
-         1Uc75BdAST/NqfbBD67hNNy2QJizl9MvNOY1BPhMebIQ+3xZ7APxqUPVP9AqlK1okkAK
-         TbyHKZv62twR9hzbIEzvCev9kKB5ayIN6gSp6Gloecev6Y035nXMgQu1PNKisvfXHjuk
-         sMidaTFbqTsovmY0sdd7wFC0VBF8NJ0htX9XHUc8mGc9lhkCAmiogRZb8doliDQ4/3nK
-         uiSw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jZkwUGyeGgLpD7/abMkmVR6RIxjNUyy5XUkE4m7mSEI=;
+        b=TQG76VVzCrE6jw2YN1c8BaP66oklivB3/nG6CKm4jPuxtNLKSc7+NVm6kvve9rhyCa
+         wey7z33kLAsDP0UpYXzwbPXrmtEhM8cmaGGTTL/1ekcuWU+LcZX3i2RTsBbXg17r4fZd
+         oFHvQE9nOsWywrJejrCNTsxLOkl6YdkjRTATH2HwJOSEYajPhmAL16rgC/FPqfTYXfRE
+         OCfHrhp9H6wjxe5aqiQlgh/1PB7j/6TmQ0q8uP4AStAukwrbFUFzN1NFSMqUlGsb+ttT
+         mcr1YGtAuO0F70hMi1vJcFliKgJr8eC+SmxRvxsP6NRpAMgrX8txjB7HB86l81Lo78Nu
+         IIlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O0N4KFs/+iAAmWrU6V4/9VSGjOXaLTvJgAIawzgxFsA=;
-        b=MbuIi7p6TSuJnaOSs71s0pL6aKXdoNipHTuJQYtxVcak7dxjjni0r2hZOw7AErULHp
-         hAJb0QQRWvbphQYaR5ZGJxKZehNm7KAlCWJvZdHJH/BSuMmXdOKFnWf5NYBpwMbQBgIn
-         pZmCYLPlLyfxAdvgKYhancYBTPKjBjyTC5YqDtaLIn2KMw65mBYm6aOnVGlsdNNzOQi1
-         nt+/wrQ+ChZz5yBq5o88fRfMxTqmsjVf0xP4FHlo6hIUjW+3Y6KjKfPLstTo+cPw2Tw3
-         boQiO4Q5+K24+HIwe0qj01LnKoDqBVH1e3MDn9G6w7xjwOVt8A5DiyJHobLSLKU+TTwp
-         EOfw==
-X-Gm-Message-State: ANoB5pmn8KusLLdtRd2tPbkgRPuO7s7wklRIuIatOgEMEPHESanMKR0P
-        ZziEn5KG5zy3ULjRlud1gACKe6wA3/klO2aiyAM=
-X-Google-Smtp-Source: AA0mqf75MKTlhGnz1E4CXXINOPSa9nBjUcbkaXfrwfxhsfd0tLYkw+DJok+hq9o9gSkC6UTBhlZi3KwG8e47AQe4dT0=
-X-Received: by 2002:a63:b54:0:b0:434:911a:301 with SMTP id a20-20020a630b54000000b00434911a0301mr12438454pgl.50.1668894339971;
- Sat, 19 Nov 2022 13:45:39 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jZkwUGyeGgLpD7/abMkmVR6RIxjNUyy5XUkE4m7mSEI=;
+        b=nMUtSWN/S3WPk/6pXkYVh7qelJyn7TQ7jMrswCZKzUmMejptvMpZ8Xdyjju+wg32kr
+         D6vsKn6yQHDdXEGQYHRHje0Ppncdkvf/sea3A36fkenn3r8oYBZa/dByafBTLaIPuzAu
+         S21o1d0j3/fepHj6IO/0Bq2S0WcPYFx7DsNMmBUjItUH4dEa3EAnNO9wAM7ymrh7Q1au
+         RsP9Em3yc04dC8O9PuuDpB2J6bEuBr6MvWyTAkaQdyjqCi1/HfXgZSX5g8HmbLOrHgLj
+         TJHSQELyuXWNcWkqVFSfxM3HywFgo+9/f7jZRZ3KKwsuUtRLfl3VcT7Yhu00CCyM6G1C
+         Jvug==
+X-Gm-Message-State: ANoB5pm98U9D1m61LmA6zqRTflSpu1U8uZHmQbElITrxAqroaIsmqqTr
+        0QhBY/JcloGSbHTqvoDF5w7Kqw==
+X-Google-Smtp-Source: AA0mqf7UUr17t+1zuZd9i2FLTtICOAQdWTqbSE9qMiIErIqFrFCMkU0cgT7OAWvb88tu8sYtVn6nXQ==
+X-Received: by 2002:ac2:47fc:0:b0:4a2:2f31:12bf with SMTP id b28-20020ac247fc000000b004a22f3112bfmr4400296lfp.550.1668895961509;
+        Sat, 19 Nov 2022 14:12:41 -0800 (PST)
+Received: from Fecusia.lan (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id u3-20020a05651220c300b00496d3e6b131sm1234254lfr.234.2022.11.19.14.12.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Nov 2022 14:12:40 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
+Date:   Sat, 19 Nov 2022 23:12:16 +0100
+Message-Id: <20221119221219.1232541-2-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221119221219.1232541-1-linus.walleij@linaro.org>
+References: <20221119221219.1232541-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <20221119212436.2028208-1-festevam@gmail.com>
-In-Reply-To: <20221119212436.2028208-1-festevam@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 19 Nov 2022 18:45:22 -0300
-Message-ID: <CAOMZO5CVsSixvtW-VBv6dFeyEvsQU+3JzW2Wy_NQ+intAG5EYw@mail.gmail.com>
-Subject: Re: [RFC] ARM: dts: imx6qdl-gw560x: Remove incorrect 'uart-has-rtscts'
-To:     shawnguo@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        tharvey@gateworks.com, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 19, 2022 at 6:24 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> The following build warning is seen when running:
-> make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
->
-> arch/arm/boot/dts/imx6dl-gw560x.dtb: serial@2020000: rts-gpios: False schema does not allow [[20, 1, 0]]
->         From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
->
-> The imx6qdl-gw560x board does not expose the UART RTS and CTS
-> as native pins, so 'uart-has-rtscts' should not be used.
->
-> Fix the problem by removing the 'uart-has-rtscts' property.
->
-> Fixes: b8a559feffb2 ("ARM: dts: imx: add Gateworks Ventana GW5600 support")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Hi,
->
-> My understanding is that uart-has-rtscts indicates that the UART RTS
-> and CTS pins are used natively and we cannot use uart-has-rtscts with
-> rts-gpios.
->
-> If this is correct, then I can also submit a patch fixing the arm64 Gateworks
-> boards too.
+This adds device tree bindings for the Ux500 CRYP block
+as a compatible in the STM32 CRYP bindings.
 
-Looking at serial.yaml:
+The Ux500 CRYP binding has been used for ages in the kernel
+device tree for Ux500 but was never documented, so fill in
+the gap by making it a sibling of the STM32 CRYP block,
+which is what it is.
 
-if:
-  required:
-    - uart-has-rtscts
-then:
-  properties:
-    cts-gpios: false
-    rts-gpios: false
+The relationship to the existing STM32 CRYP block is pretty
+obvious when looking at the register map, and I have written
+patches to reuse the STM32 CRYP driver on the Ux500.
 
-So I think my proposed change is correct.
+The two properties added are DMA channels and power domain.
+Power domains are a generic SoC feature and the STM32 variant
+also has DMA channels.
+
+Cc: devicetree@vger.kernel.org
+Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+This was previously sent out as an open question but
+nothing happened, now I send it as part of the STM32
+bindings, in a series making the Linux STM32 driver
+use the STM32 driver.
+---
+ .../bindings/crypto/st,stm32-cryp.yaml        | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+index ed23bf94a8e0..69614ab51f81 100644
+--- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
++++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+@@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 CRYP bindings
+ 
++description: The STM32 CRYP block is built on the CRYP block found in
++  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
++  SoC in 2010.
++
+ maintainers:
+   - Lionel Debieve <lionel.debieve@foss.st.com>
+ 
+ properties:
+   compatible:
+     enum:
++      - st,stn8820-cryp
++      - stericsson,ux500-cryp
+       - st,stm32f756-cryp
+       - st,stm32mp1-cryp
+ 
+@@ -27,6 +33,19 @@ properties:
+   resets:
+     maxItems: 1
+ 
++  dmas:
++    items:
++      - description: mem2cryp DMA channel
++      - description: cryp2mem DMA channel
++
++  dma-names:
++    items:
++      - const: mem2cryp
++      - const: cryp2mem
++
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -48,4 +67,17 @@ examples:
+       resets = <&rcc CRYP1_R>;
+     };
+ 
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
++    #include <dt-bindings/arm/ux500_pm_domains.h>
++    cryp@a03cb000 {
++      compatible = "stericsson,ux500-cryp";
++      reg = <0xa03cb000 0x1000>;
++      interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&prcc_pclk 6 2>;
++      power-domains = <&pm_domains DOMAIN_VAPE>;
++    };
++
+ ...
+-- 
+2.38.1
+
