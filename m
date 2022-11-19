@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9585F631077
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 20:44:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBAA63107C
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 20:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234231AbiKSToj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 14:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59256 "EHLO
+        id S234311AbiKSTsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 14:48:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233757AbiKSToj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 14:44:39 -0500
-Received: from mail-40137.protonmail.ch (mail-40137.protonmail.ch [185.70.40.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4B41408B
-        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 11:44:38 -0800 (PST)
-Date:   Sat, 19 Nov 2022 19:44:28 +0000
+        with ESMTP id S231757AbiKSTsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 14:48:10 -0500
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C281408E;
+        Sat, 19 Nov 2022 11:48:09 -0800 (PST)
+Date:   Sat, 19 Nov 2022 19:48:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1668887076; x=1669146276;
-        bh=o6QxM7n8Pe+s6NbQYl3+s27sQZRR56v/GRz0zpnTqnw=;
-        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-        b=hGVT7h3WS87iOCW9+oHeRwU8Z6OxtW3Hwu13mms50nzp0B0IWlqJg9sJqasehk9Ec
-         3jNkiJ7BV5jrTr6GyXTZYQzROXuh+U5JtNxGbUPVnalX2+YoH364Aap/YIILQn43l5
-         NWVx6jui07+hGNszPCD8PDtQZZFghwnDsiI/V4kmO2I0RBFk6WmjEuRfIQ4NSi9WmH
-         K/JeuJx8yg+p9DM6MY0nQC+5Q07T46Bs6LQMegKX/EyMeRxnngyUhhSPtjc1Trabnj
-         QQSjjmSuT9ErnxepxPvFhtKUYqFmp5ikKhSXb57LUCRjv9xlNQff6K2uWEQwshr2b8
-         DcL0rATCvGnHg==
+        s=protonmail3; t=1668887287; x=1669146487;
+        bh=eIEl89I/FCcRoTqjgCQKLi93kH0LmWEm09LZk3oD43E=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=LVYC8DmQXfYw4NJmAJITmdY983phtrRBH+1MVB+m+RMFy+vUEtS38bVI0VS7J4UUa
+         daxLS3KRCXDDGXJnKVogGuQK8GBQrOnX9M0YRflmXuzUn9jZhawUwcQy/jaRP+gAu/
+         LIVjMvnSFUbmQ0YzybyWIXMcMwLSX2OlB0pNrq23CA8OTreSgkW2uQ17kKtdYkkmFQ
+         nan/9DWucUmLYKsGG6rHVX+bebo4fF7DJJEbjkj130X5gBSwPmhq1DdX3WjbPQ4PKz
+         ntIo00u4Bqci04goOJ2OU1bwKv2XeISVs5/YWkM4P834jTpiLepKRK7/Ic6Z5klJXF
+         hDOxTXbdbzhSw==
 To:     linux-kernel@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -37,8 +38,10 @@ Cc:     Andy Gross <agross@kernel.org>,
         Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH 0/3] arm64: dts: qcom: msm8916-acer-a1-724: Add initial device tree
-Message-ID: <20221119194340.91789-1-linmengbo0689@protonmail.com>
+Subject: [PATCH 1/3] dt-bindings: qcom: Document bindings for new msm8916-acer-a7-724 device
+Message-ID: <20221119194709.91998-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20221119194340.91789-1-linmengbo0689@protonmail.com>
+References: <20221119194340.91789-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -53,22 +56,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acer Iconia Talk S A1-724 is a tablet using the MSM8916 SoC released
-in 2014.
+Document the new acer,a1-724 device tree bindings used in its device tree.
 
-Note: The original firmware from Acer can only boot 32-bit kernels.
-To boot arm64 kernels it is necessary to flash 64-bit TZ/HYP firmware
-with EDL, e.g. taken from the DragonBoard 410c. This works because Acer
-didn't set up (firmware) secure boot.
+Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Add a device tree for with initial support for:
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentatio=
+n/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..83f6748979a9 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -180,6 +180,7 @@ properties:
+=20
+       - items:
+           - enum:
++              - acer,a1-724
+               - alcatel,idol347
+               - asus,z00l
+               - huawei,g7
+--=20
+2.30.2
 
-- GPIO keys
-- pm8916-vibrator
-- SDHCI (internal and external storage)
-- USB Device Mode
-- UART
-- WCNSS (WiFi/BT)
-- Regulators
-- Bosch BMC150 accelerometer/magnetometer
 
