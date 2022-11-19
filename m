@@ -2,216 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03ECC630CE7
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 08:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EDB630D3B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 09:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbiKSHUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 02:20:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33768 "EHLO
+        id S232198AbiKSISr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 03:18:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiKSHT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 02:19:59 -0500
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7DE920BC;
-        Fri, 18 Nov 2022 23:19:57 -0800 (PST)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout3.routing.net (Postfix) with ESMTP id DD8B562608;
-        Sat, 19 Nov 2022 07:19:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1668842396;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ov0YYXmwqRVPJ8mk/jWh4VlTvRDF8RS9SB8/7u28NwE=;
-        b=LRCeCOrA6CSrOStxeGORqIrn0AjDw/k9ShF4O9sMHRnqkKk5OQtv62vv6wA/ucBL6JncGh
-        3myF4/S+2aEFiKopUC4Bq0fOWRi8IMO0K1t+/nTgaXH0g6dr1mqZD/K8D4qtWI+CssdiXr
-        QmMxwGHHrY88p7IJ1BbKM4VYHRLOxxI=
-Received: from [127.0.0.1] (fttx-pool-80.245.75.145.bambit.de [80.245.75.145])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 88C511000CA;
-        Sat, 19 Nov 2022 07:19:54 +0000 (UTC)
-Date:   Sat, 19 Nov 2022 08:19:52 +0100
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     Rob Herring <robh+dt@kernel.org>, frank-w@public-files.de
-CC:     linux-mediatek@lists.infradead.org,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v6 11/11] arm64: dts: mt7986: add BPI-R3 nand/nor overlays
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAL_JsqKz1qQFZnStLnApraJvp=-cQoW6x5=p7-GBcftYKVMErg@mail.gmail.com>
-References: <20221118190126.100895-1-linux@fw-web.de> <20221118190126.100895-12-linux@fw-web.de> <CAL_JsqKiRzRToSzk3q+csWR5DEZjZpQWChqZ3mH8MLruvfe=Dw@mail.gmail.com> <99114D73-22EF-43CD-848E-88A37B29B953@public-files.de> <CAL_JsqKz1qQFZnStLnApraJvp=-cQoW6x5=p7-GBcftYKVMErg@mail.gmail.com>
-Message-ID: <192D4414-DC88-4321-BB2A-4345C48E3C12@fw-web.de>
+        with ESMTP id S229836AbiKSISq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 03:18:46 -0500
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30034FFB8
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 00:18:43 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-39451671bdfso44810907b3.10
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 00:18:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mjyF9GZRbjnKvRIu6G5HCxPcIESHSZ+tBu/Yu/REEs4=;
+        b=eyXCEckvHE06z2dtwRm4PcFouCfPbIuLakCBQ9vvDMvBMRmny/HmbxE8OPH2X6KuXL
+         +/Yy/OCjAv/7K4K7yKYwHq/RqeulHdbCV6sgJozK0whr/IRu5ykRk9tzmDQgj3TFEswf
+         vR0GY2SfZQa5kmbgkaFwE0180whk0dDyUac9GBW9jdmfF1FAjbO48ckdX7WUvTOXn/zI
+         GmB9BOW3pYn1woKsphcqan+U3dtIMR+lMGi4FqMW1+aIV7pKeSlDvsVq4h/pfs5bPfVp
+         4T69uS0vaax/fUgrDYm6TJKcN4F29DKbk8Khc9VQRrZTWLptStqHtP62kyAILSuk2t3+
+         Gr2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mjyF9GZRbjnKvRIu6G5HCxPcIESHSZ+tBu/Yu/REEs4=;
+        b=F88Xia5qGM+tt7a+oWqrmnA4jh+GUHXGb59svgO/zqFgrHbW0i4Q28yEVj2YbFGBj0
+         rU90u32oUbjTdZ4vwtFBcE09/rOx3EtqZKVE1zsdf5KRolJiZy6qRmMMcbBXG11VPPtd
+         l4OaupCJf9FFMAZZsWE36jL2hHzFely9Bw+N+crQm2P2BqfqStRsN4JcoLCC6Dool8Yk
+         SxDnjwFa5q8p/yDv+C8+VF5q8dmHY4D032vMM9AtGZ1teFbifCNeDBedcOKAxZs/VWOq
+         X4r7kbE0JFDn6oDyI3m3V9S1J3vDzYWw1Kn590BsHonH0EgCTnnZAVpBvDSgbs7iQ5HS
+         B3ig==
+X-Gm-Message-State: ANoB5pmhuB6lvpSxpjriSh/MQnNkLpvTxlI2sRUElUIy2jkfyer9QpAD
+        z2oN1Slf8SEMJWFEO2jntgfo4P2cTrKfIM98VXm21Q==
+X-Google-Smtp-Source: AA0mqf5ESgrsqCSEYIFRooYNeokCRBJg7PLLMWGi6CC/opzLtX1pTKtPKCaOn6zZrUtQJQ3HSdg5ZMRUFcJhzJfs3lc=
+X-Received: by 2002:a0d:ea05:0:b0:368:52a0:9173 with SMTP id
+ t5-20020a0dea05000000b0036852a09173mr9566915ywe.191.1668845922812; Sat, 19
+ Nov 2022 00:18:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20221117215557.1277033-1-miquel.raynal@bootlin.com> <20221117215557.1277033-7-miquel.raynal@bootlin.com>
+In-Reply-To: <20221117215557.1277033-7-miquel.raynal@bootlin.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Sat, 19 Nov 2022 09:18:34 +0100
+Message-ID: <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
+Subject: Re: [PATCH net-next 6/6] net: mvpp2: Consider NVMEM cells as possible
+ MAC address source
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: 0ca9227a-4531-4695-b383-da3c235452f3
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 8=2E November 2022 15:45:49 MEZ schrieb Rob Herring <robh+dt@kernel=2Eor=
-g>:
->On Fri, Nov 18, 2022 at 4:05 PM Frank Wunderlich
-><frank-w@public-files=2Ede> wrote:
->>
->> Am 18=2E November 2022 22:39:52 MEZ schrieb Rob Herring <robh+dt@kernel=
-=2Eorg>:
->> >On Fri, Nov 18, 2022 at 1:01 PM Frank Wunderlich <linux@fw-web=2Ede> w=
-rote:
->> >>
->> >> From: Frank Wunderlich <frank-w@public-files=2Ede>
->> >>
->> >> Add devicetree overlays for using nand and nor on BPI-R3=2E
->> >
->> >Can you not tell at runtime which one you booted from? If not, how
->> >does one choose which overlay to apply? If you can, why not populate
->> >both nodes and enable the right one? IMO, if all h/w is present, it
->> >should all be in the DT=2E Selecting what h/w to use is a separate
->> >problem and overlays aren't a great solution for that=2E
->>
->> It is not the decision about bootdevice,more available devices=2E
->>
->> Only 1 spi device (nand OR nor) is available
->> at boottime as they share same spi bus and
->> chipselect is set via hw jumper=2E
->> Both nodes have reg 0,which is imho not
->> supported in linux=2E
+Hi Miquel,
+
+
+czw., 17 lis 2022 o 22:56 Miquel Raynal <miquel.raynal@bootlin.com> napisa=
+=C5=82(a):
 >
->As long as one is set to disabled, it should be fine=2E
+> The ONIE standard describes the organization of tlv (type-length-value)
+> arrays commonly stored within NVMEM devices on common networking
+> hardware.
 >
+> Several drivers already make use of NVMEM cells for purposes like
+> retrieving a default MAC address provided by the manufacturer.
 >
->> I choosed overlays to add the right spi
->> device on the right mmc device where
->> similar selection happens (see patch 10)=2E
->> Either sd OR emmc can be used (1 mmc
->> controller,first 4bits from bus switched by
->> hardware jumper)=2EBut for mmc i use it as
->> base fdt because i see mmc as primary
->> device which holds rootfs too=2E Nand/nor is
->> imho helping device for accessing emmc or
->> like rescue system (only uboot)=2E
+> What made ONIE tables unusable so far was the fact that the information
+> where "dynamically" located within the table depending on the
+> manufacturer wishes, while Linux NVMEM support only allowed statically
+> defined NVMEM cells. Fortunately, this limitation was eventually tackled
+> with the introduction of discoverable cells through the use of NVMEM
+> layouts, making it possible to extract and consistently use the content
+> of tables like ONIE's tlv arrays.
 >
->No way to read the jumper state or know what you booted from I gues?
+> Parsing this table at runtime in order to get various information is now
+> possible. So, because many Marvell networking switches already follow
+> this standard, let's consider using NVMEM cells as a new valid source of
+> information when looking for a base MAC address, which is one of the
+> primary uses of these new fields. Indeed, manufacturers following the
+> ONIE standard are encouraged to provide a default MAC address there, so
+> let's eventually use it if no other MAC address has been found using the
+> existing methods.
 >
->> I probe in uboot if emmc is available (mmc
->>  partconf) and choose emmc else sd=2E For
->>  spi i try with sf command to check for nor,if
->>  this does not work i apply nand overlay=2E
+> Link: https://opencomputeproject.github.io/onie/design-spec/hw_requiremen=
+ts.html
+
+Thanks for the patch. Did you manage to test in on a real HW? I am curious =
+about
+
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
->Instead of applying overlays, wouldn't just changing 'status' be easier?
-
-It will be easier,but requires dts for all
- combinations,we have have sd/emmc
- combination twice (once for nand
- enabling,once for nor) and we have then 4
- full dts instead of smaller overlays in fit=2E
-
-So i should add spi subnodes both disabled
- in base dtsi and create 4 dts (sd-nand,sd-nor,emmc-nand,emmc-nor) with
- mmc node and enabling the right spi node?
->>
->> >> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->> >> ---
->> >> maybe rename to dtso?
->> >>
->> >> "kbuild: Allow DTB overlays to built from =2Edtso named source files=
-"
->> >> https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/robh/linux=2Egit=
-/commit/?h=3Ddt/next&id=3D363547d2191cbc32ca954ba75d72908712398ff2
->>
->> Should i do this?
+> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/ne=
+t/ethernet/marvell/mvpp2/mvpp2_main.c
+> index eb0fb8128096..7c8c323f4411 100644
+> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> @@ -6104,6 +6104,12 @@ static void mvpp2_port_copy_mac_addr(struct net_de=
+vice *dev, struct mvpp2 *priv,
+>                 }
+>         }
 >
->Yes=2E =2Edts -> =2Edtbo is going to be removed=2E
+> +       if (!of_get_mac_address(to_of_node(fwnode), hw_mac_addr)) {
 
-Do this if still using overlays,will test new way=2E
+Unfortunately, nvmem cells seem to be not supported with ACPI yet, so
+we cannot extend fwnode_get_mac_address - I think it should be,
+however, an end solution.
 
-Maybe we can apply parts 1-9 first?
+As of now, I'd prefer to use of_get_mac_addr_nvmem directly, to avoid
+parsing the DT again (after fwnode_get_mac_address) and relying
+implicitly on falling back to nvmem stuff (currently, without any
+comment it is not obvious).
 
->> >> more comments about the dt overlay-support:
->> >>
->> >> https://patchwork=2Ekernel=2Eorg/comment/25092116/
->> >> https://patchwork=2Ekernel=2Eorg/comment/25085681/
->>
->> Daniel suggest define sd/emmc as overlay too=2E=2E=2Ewith way you menti=
-on below we could create 4 full fdt without applying overlays in uboot=2E
+Best regards,
+Marcin
+
+> +               *mac_from =3D "nvmem cell";
+> +               eth_hw_addr_set(dev, hw_mac_addr);
+> +               return;
+> +       }
+> +
+>         *mac_from =3D "random";
+>         eth_hw_addr_random(dev);
+>  }
+> --
+> 2.34.1
 >
->Yes, but if you are going to do that, then you can just do all this
->with includes=2E
-
-This is a third way if i understand correctly
-
-Make all of them as overlay (dtso?) but
- build dtb by combining them in makefile=2E
-
-This looks the best way because it avoids
- redundand code for mmc node and allows
- my current spi config (not the status way
- which may break due to same unit address)=2E
-
-I guess my base dtsi is then a dts too?
-
-Or should these overlays only duplicated and either include sd dts or emmc=
- dts (but this creates again redundant code)?
->> >> --- a/arch/arm64/boot/dts/mediatek/Makefile
->> >> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->> >> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6797-x20-dev=2Edt=
-b
->> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-rfb1=2Edtb
->> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-bananapi-bpi-r64=2Edtb
->> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-emmc=2Edtb
->> >> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nand=2Edtb=
-o
->> >> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nor=2Edtbo
->> >
->> >These need rules to apply them to the base dtb(s)=2E You just need:
->> >
->> >full=2Edtb :=3D base=2Edtb overlay=2Edtb
->> >dtb-y +=3D full=2Edtb
->>
->> I would prefer to do this in bootloader to allow all 4 possible configu=
-rations:
->>
->> Sd+nand
->> Sd+nor
->> Emmc+nand
->> Emmc+nor
->
->That's fine=2E The purpose here is to document what the overlays apply
->to, check that they actually apply, and validate them when applied
->(unless someone wants to figure out all the issues with validating
->just an overlay and make that work)=2E You for example have an
->undocumented compatible in yours (denx,fit)=2E
-
-Oh,need to check,copied partitions from my
- uboot dts=2E=2E=2Emaybe there is a linux version
- for marking it as fit partition,else i drop
- completely=2E
-
-So i i stay with current way i have to rename
- overlays to dtso and add info about base
- dtb (bpi-r3-sd/emmc) to commit message
- or into the overlay itself?
-
->Rob
-
-
-regards Frank
