@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A9D630931
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 03:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8E46309D3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 03:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231445AbiKSCMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Nov 2022 21:12:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44938 "EHLO
+        id S235031AbiKSCTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Nov 2022 21:19:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbiKSCLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 21:11:55 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED763C6C1;
-        Fri, 18 Nov 2022 18:11:40 -0800 (PST)
+        with ESMTP id S235404AbiKSCTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Nov 2022 21:19:03 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293C6BE872;
+        Fri, 18 Nov 2022 18:14:14 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 63FEAB82679;
-        Sat, 19 Nov 2022 02:11:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4DBAC433D6;
-        Sat, 19 Nov 2022 02:11:36 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 47100B82675;
+        Sat, 19 Nov 2022 02:14:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94402C43470;
+        Sat, 19 Nov 2022 02:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668823898;
-        bh=fgVj5nOWOnl47lIW/xWgrRwA6PJNr5fnn5l5d58KssQ=;
+        s=k20201202; t=1668824041;
+        bh=x7MgMSBYsh7ZsW8NjRE23dg4v8oznSggoiJ1A8oIq7M=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IP/8xAdk+ZHc9Vvj7TCUBda8D1DKiv7HsRchOxxIgr21TkljX9ENajvFISAJ6Ka80
-         hhOjZZyhBXzApMSo0/pdGf9IbK5+VYN5uKHyKZ6X9VmaDzszbDTrhccbHRyCWpwsKX
-         LL0JsurLMoFDjM9xWYfjQ05xnZT0xdUmrDCzurD7vNfu+enm5eyP4r3pifradpUSCf
-         QzS8OtKyxu3bJ7aJCvz7xXunXlyys2ZReDkU8wlzhQsl91iw10V4WHG5C+/1b8iX4R
-         rLxN4sUXjKbBLCuNzytHO2TIRSHrgJD5G0MtbR0qG3xMKqUA0parwtm0HOYKWTq/+a
-         /CmhT+rjDMNBw==
+        b=fSaapoiT28sV+/T3NOUaqjz60r+WGq7G0mO7s1pwUHKkOp3mqbajw5pUwT9/MKbXr
+         5elBxUpQ7jkuGs/fCgs9VEOaDjVw1zk0R+cB6yjVFEvb3tnn9g3v0ulXMpd9FJSjzz
+         ai9hVfhxnkvREbBqWQAcM/aAnMQ3aJIconUVw1FxthbhuaWlmXJ5yixbfgtXSgbTnE
+         tW+Id9e103awI5h42QcoxYYT239oSOHhrGO+g05/O/bOZa5K6e4ISIw8PrwnBIfGzA
+         8TYULOBae/PoRNiSLCigfAHu3Gu9RGXpC4bBtnzfX2MP3mgx76fOD1hDEXdd0DUVCD
+         CPC13eJMWRzlg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
@@ -41,12 +41,12 @@ Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
         bin.meng@windriver.com, devicetree@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.0 05/44] riscv: dts: sifive unleashed: Add PWM controlled LEDs
-Date:   Fri, 18 Nov 2022 21:10:45 -0500
-Message-Id: <20221119021124.1773699-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 03/27] riscv: dts: sifive unleashed: Add PWM controlled LEDs
+Date:   Fri, 18 Nov 2022 21:13:28 -0500
+Message-Id: <20221119021352.1774592-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221119021124.1773699-1-sashal@kernel.org>
-References: <20221119021124.1773699-1-sashal@kernel.org>
+In-Reply-To: <20221119021352.1774592-1-sashal@kernel.org>
+References: <20221119021352.1774592-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -80,7 +80,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 38 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index ced0d4e47938..900a50526d77 100644
+index 22f971e97161..2f4d677c9c4f 100644
 --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
 +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
 @@ -3,6 +3,8 @@
@@ -92,7 +92,7 @@ index ced0d4e47938..900a50526d77 100644
  
  /* Clock frequency (in Hz) of the PCB crystal for rtcclk */
  #define RTCCLK_FREQ		1000000
-@@ -42,6 +44,42 @@ gpio-restart {
+@@ -46,6 +48,42 @@ gpio-restart {
  		compatible = "gpio-restart";
  		gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
  	};
