@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D282163135B
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 11:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9455D63135E
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 11:40:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiKTKgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 05:36:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
+        id S229491AbiKTKkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 05:40:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbiKTKgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 05:36:36 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A077DCA1
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 02:36:34 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id s8so14897306lfc.8
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 02:36:34 -0800 (PST)
+        with ESMTP id S229680AbiKTKkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 05:40:13 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC2978B20
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 02:40:10 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id j4so14978190lfk.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 02:40:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bkqr5CITlf9Pw0k+sezW0jUIFDxvpCmwSMWyehFOiNM=;
-        b=l01VxSQh8yun766SjOSDe7zfb3SL3HFlZdKdnKf6D2EiEzXVI2Av+lmCp2NZ3lVlpi
-         Y1vEvHZJw3wFXGX8mBTgR99tBrci4iwdycuAW/irJzmXCKEaLmEYE7tla4U219jYYgbu
-         Ak71A+oY5nA0KSe2u+ozcIWsvG4O2ZWQUiXohw9BlFJCJFvsfSfm2aLpRJ2dQORoJodZ
-         4qb7oYyFiJcNAQpz4ahaM//QrbawwiBwlOtchNsCfw4bxU1aDWxicQcnRxjMPb6tfVKa
-         lilYfjjOSydFNN055+AMwVyOy7UBFRTHzCkdQlVY+9eDKHuOYZ01pXXvoMEHytic9Ecg
-         dzwQ==
+        bh=6I/Z/D+bfI5rpoGK4pCb1Y+E9eMHCV51iKQUL8lPZc0=;
+        b=bjf3d2XJA3mpzYV8yNz6tmkpXTOu9TbqM0pYlTCxxM4PDnrCnmbZGYEvbsd8SX9Lp+
+         sy7gko4NuhDtFiWM6jDQKHMVnSf3Kh8dJOPwGlUy3R/v0js1OZYNfGAQeWR8Apk/D5gu
+         PmdTqSZqPneghE6OF6e0lJaT+jCDUCex2TqrN+S+uGkMV8/Gcn5UPNIkFJOgoIWUP56N
+         j0S2pTdxvg1fE6rKaYzwJDqNqIuPujONqSXQNLSSQxrBurfYdBsi9hff9ThJHznwWb0O
+         XMsKuTp2B+OYnHyvT1M3JYyFeubXw9AB/Nc3M5FU/8naBaDF9FXJCB6gSvOFZ2FBmUFc
+         AAgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bkqr5CITlf9Pw0k+sezW0jUIFDxvpCmwSMWyehFOiNM=;
-        b=1mWpYOUfI9kUeka5zZvtOCQU7FNxR42nqSjsdLRvdC3P2XTAOKQf2znx1AecIchidc
-         E5QIXSHwOiIwNJV8J+Ih3X3/VvmM5qDvgKhCgVQVl5Nf98EqyomqxnXBPMx1ZzXcVs07
-         iGkWngq/rZ/Py0aMkvvT+BtKcnefQP2LRAOkkwyMcdWHEEpgxYfdl0KNbkxiA7D/hQal
-         Lae8KWjZOLD5Zd1ZaAvnUjYmZRzP681QNY2PYMA2Z5IiCRwLyd7kyUtKX9e0lhKsTDPl
-         WXr76pHJFH6izjAR7Gfi2H9OyUu9qD3fwtP4nXqSBK3C3OzPpSKTJZ2tl4YvUnmrNt+g
-         ZGXA==
-X-Gm-Message-State: ANoB5pmzqu2SikmIUVtGropZPdCWDUlcufUdk9l2wM7BEQ65QX7j9mrM
-        xZxePZZxp8LDPoB/hr+8C2vGhg==
-X-Google-Smtp-Source: AA0mqf6Mn70Z7ivGYWkW2u7n1bmFEm8KUVOAgQ7UoY06kP3Jgu4IpvXfJfXjOWCewEwECTOGz+/xQQ==
-X-Received: by 2002:a05:6512:b8f:b0:4a2:3953:7e43 with SMTP id b15-20020a0565120b8f00b004a239537e43mr4517786lfv.229.1668940592846;
-        Sun, 20 Nov 2022 02:36:32 -0800 (PST)
+        bh=6I/Z/D+bfI5rpoGK4pCb1Y+E9eMHCV51iKQUL8lPZc0=;
+        b=DGyZzgD6N2ZRvss5COA4cX9lq2M8wvk7mu+ndnR5nOA94gEHwQ3CYwWetUeLl3i5Ou
+         NKuAAMqD8OcGe25xQc+YpfMuJYdbrJm4fETndfTm2dKjZQd1QSNda4rQ2/OALXaX0aMb
+         yaAhFaWIplRJZqk4/Tc2sgDU5v2YU3AEHYmBdpYoHetcOKpQuPO3ai+oy0oqfoGszE4U
+         GaENdC6nk0jFdb3OGedsbhGPiBne/OsFsZj0Q19THaiVQa74xU3ownE4IVTxaT0yVivD
+         0Q3kZxxY8lxN/ar0169DYfRAYtoZkkpkDKw8skHfyWKWhohf15wyavPKLui3rHgf/8nj
+         bH8A==
+X-Gm-Message-State: ANoB5plYVB/6t775Mw1faJgjRom7gmlJhozhDiTMJuYXRwGCtYR/7d/J
+        ddiQvMMfMdjnMMECuBHTmlBSZA==
+X-Google-Smtp-Source: AA0mqf4GJTVZ6oOy/tG1Y2xUN3IM+SCcLz2+qe3xY1TglkFbGHfu9W873n2qi+HObj1karKVyGKUUQ==
+X-Received: by 2002:ac2:43b0:0:b0:4a4:719a:19ed with SMTP id t16-20020ac243b0000000b004a4719a19edmr5135600lfl.356.1668940808593;
+        Sun, 20 Nov 2022 02:40:08 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u21-20020a196a15000000b00498f871f33fsm1497394lfu.86.2022.11.20.02.36.31
+        by smtp.gmail.com with ESMTPSA id k21-20020a05651239d500b00494618889c0sm1488288lfu.42.2022.11.20.02.40.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Nov 2022 02:36:32 -0800 (PST)
-Message-ID: <238f7bf8-578c-5bb4-9f00-50f36334c5cf@linaro.org>
-Date:   Sun, 20 Nov 2022 11:36:31 +0100
+        Sun, 20 Nov 2022 02:40:08 -0800 (PST)
+Message-ID: <76cae9bf-c81a-684a-c22b-9548dd82c8d4@linaro.org>
+Date:   Sun, 20 Nov 2022 11:40:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
- example
+Subject: Re: [PATCH v3 4/7] dt-bindings: pinctrl: add bindings for Mediatek
+ MT8365 SoC
 Content-Language: en-US
-To:     Paul Elder <paul.elder@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
- <20221118093931.1284465-3-paul.elder@ideasonboard.com>
- <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
- <Y3h93cLdEvMzInXe@pyrite.rasen.tech>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogiocchino.delregno@collabora.com
+References: <20221117210356.3178578-1-bero@baylibre.com>
+ <20221117210356.3178578-5-bero@baylibre.com>
+ <06e916b7-f8f2-6de5-f86e-7b020c052451@linaro.org>
+ <7ha64o9h1d.fsf@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3h93cLdEvMzInXe@pyrite.rasen.tech>
+In-Reply-To: <7ha64o9h1d.fsf@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -86,46 +82,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/11/2022 07:55, Paul Elder wrote:
-> On Fri, Nov 18, 2022 at 02:06:14PM +0100, Krzysztof Kozlowski wrote:
->> On 18/11/2022 10:39, Paul Elder wrote:
->>> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+On 18/11/2022 20:52, Kevin Hilman wrote:
+> Hi Krzysztof,
+> 
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+> 
+>> On 17/11/2022 22:03, Bernhard Rosenkränzer wrote:
+>>> Add devicetree bindings for Mediatek MT8365 pinctrl driver.
 >>>
->>> Add an example to the rockchip-isp1 DT binding that showcases usage of
->>> the parallel input of the ISP, connected to the CSI-2 receiver internal
->>> to the i.MX8MP.
->>>
->>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 >>
->> Missing SoB.
-> 
-> I don't quite understand. I see an SoB right there.
-
-Laurent did not sent it. Did you run checkpatch before sending?
-
-> 
+>> Thank you for your patch. There is something to discuss/improve.
 >>
->>> ---
->>>  .../bindings/media/rockchip-isp1.yaml         | 72 +++++++++++++++++++
->>>  1 file changed, 72 insertions(+)
->>>
+>>> +
+>>> +  pins-are-numbered:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: |
+>>> +      Specify the subnodes are using numbered pinmux to specify pins.
 >>
->> I don't know what do you demonstrate there... usage of endpoints? That's
->> the only difference. Such usage is the same everywhere, nothing specific
+>> Why would you name pins differently per board? And why this different
+>> naming of the same pins is a property of hardware?
+>>
+>> This looks like something to drop.
 > 
-> I guess...? Doesn't the same argument apply against the px30 example too
-> then?
-> 
->> to this example. You already have two examples, so I don't think this
->> brings anything more.
-> 
-> We do have usage of this in imx8mp.dtsi and overlays for the ISP, but
-> those patches haven't been sent/merged yet, so in the meantime I think
-> there is value in providing an example here for the imx8mp.
+> Yeah, having this as a flag kind of implies that this could be present
+> for some boards but not others.  But in practice, the driver requires it
+> to be present or just fails[1].  What's the right way to describe that?
+> We're just trying to add a binding that reflects the existing driver.
 
-The examples are not for demonstrating imx8mp or any other soc, but this
-one given binding. Changing compatibles and few properties is not a
-different example - from "exampleness" point of view it is very similar.
+Uh, what an interesting property. What's the point of it then? Why
+failing to probe on a missing property which does nothing else?
+
+The solution is also to drop that property from the driver.
+
+> We also noticed that there's another documented binding with this
+> same flag[2] where similiarily, the driver simply requires it to be
+> present[2].
+> 
+> So is the way this flag is documented in the stm32 binding OK for the
+> mediatek one also?  If not, what would you suggest?
+
+I would like to understand why do we need this property and what is
+described by it. Because if it's purpose is only to fail or not fail
+driver probe, then we should just drop it everywhere.
+
+
+> 
 
 Best regards,
 Krzysztof
