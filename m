@@ -2,184 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D306313D7
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 12:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9643C6313E0
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 13:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbiKTL7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 06:59:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56584 "EHLO
+        id S229593AbiKTMTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 07:19:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiKTL7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 06:59:12 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C935F01A;
-        Sun, 20 Nov 2022 03:59:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1668945543; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=GCQgfecM5oAjOLyUsRLj0KQKxUlftJFFpZ9/PI/AMTRTJwZ+uU+GfQvLWsbs+7OsFg4HX7ofavWdS1J/B/R1jIgOUbE3ZBhQsZbwac1FzpLBahOycc3sy082tMwsr9DxdElq5VVO5Wok2Q+UXrRYlYzPDuWEZaCRJNJm8svQizY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1668945543; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=j3d00nupHhCdWjEL+0yMBXb36kiHshGZbkXiymHzukk=; 
-        b=PjNrvgEkHL/CJ5pm4RLCir3iYrXoX8NjblTxLmCbsIqexedZb0iaskoM6NyEO+aJYb3/xjAmT6Wa3kpNMs7Dr4e6x1c7W/VDKP5OHTSBE7KARZ6wCKPpiYy92kHbFhCM0VZEgOke567tSgo9NbW6LR9KvyrZPwLffTNza4GhCVc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1668945543;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=j3d00nupHhCdWjEL+0yMBXb36kiHshGZbkXiymHzukk=;
-        b=H+3stPwG61N+OKqbRYL3nbNsfkqi3Ik6fsJFepLJnyiddtZbVCMiZPx5MEvLSzyo
-        KQJJX3A9Lrd4bb2iFajAWFTd0d/bw54a+kHSVOavmH0SyDfPJH3UmGTCgifsWonS+dB
-        Ka8vTcKkic3J3LegfrgPybmm2Uo6GRKxH26mgzJ4=
-Received: from edelgard.fodlan.icenowy.me (112.94.100.29 [112.94.100.29]) by mx.zohomail.com
-        with SMTPS id 1668945542045893.9487348701042; Sun, 20 Nov 2022 03:59:02 -0800 (PST)
-Message-ID: <32ffd3f857ce9c08462ce8a7b2e40871c2f2c275.camel@icenowy.me>
-Subject: Re: [PATCH 5/7] riscv: dts: bouffalolab: add the bl808 SoC base
- device tree
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor@kernel.org>, Jisheng Zhang <jszhang@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Date:   Sun, 20 Nov 2022 19:58:56 +0800
-In-Reply-To: <Y3oJSfsNFE9Cn0Al@spud>
-References: <20221120082114.3030-1-jszhang@kernel.org>
-         <20221120082114.3030-6-jszhang@kernel.org> <Y3oJSfsNFE9Cn0Al@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+        with ESMTP id S229554AbiKTMTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 07:19:44 -0500
+Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr [80.12.242.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B2B4D5F0
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 04:19:42 -0800 (PST)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id wjIPoqSZxFUJ3wjIPoqDBa; Sun, 20 Nov 2022 13:19:39 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 20 Nov 2022 13:19:39 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <6b68b7c2-e070-0a88-35ee-2060dcbdee91@wanadoo.fr>
+Date:   Sun, 20 Nov 2022 13:19:37 +0100
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 3/3] interconnect: qcom: Add QDU1000/QRU1000
+ interconnect driver
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221118182245.31035-1-quic_molvera@quicinc.com>
+ <20221118182245.31035-4-quic_molvera@quicinc.com>
+Content-Language: fr
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20221118182245.31035-4-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-5ZyoIDIwMjItMTEtMjDmmJ/mnJ/ml6XnmoQgMTE6MDIgKzAwMDDvvIxDb25vciBEb29sZXnlhpnp
-gZPvvJoKPiBPbiBTdW4sIE5vdiAyMCwgMjAyMiBhdCAwNDoyMToxMlBNICswODAwLCBKaXNoZW5n
-IFpoYW5nIHdyb3RlOgo+ID4gQWRkIGEgYmFpc2MgZHRzaSBmb3IgdGhlIGJvdWZmYWxvbGFiIGJs
-ODA4IFNvQy4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogSmlzaGVuZyBaaGFuZyA8anN6aGFuZ0Br
-ZXJuZWwub3JnPgo+ID4gLS0tCj4gPiDCoGFyY2gvcmlzY3YvYm9vdC9kdHMvTWFrZWZpbGXCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxICsKPiA+IMKgYXJjaC9yaXNjdi9ib290L2R0
-cy9ib3VmZmFsb2xhYi9ibDgwOC5kdHNpIHwgNzQKPiA+ICsrKysrKysrKysrKysrKysrKysrKysK
-PiA+IMKgMiBmaWxlcyBjaGFuZ2VkLCA3NSBpbnNlcnRpb25zKCspCj4gPiDCoGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBhcmNoL3Jpc2N2L2Jvb3QvZHRzL2JvdWZmYWxvbGFiL2JsODA4LmR0c2kKPiA+IAo+
-ID4gZGlmZiAtLWdpdCBhL2FyY2gvcmlzY3YvYm9vdC9kdHMvTWFrZWZpbGUKPiA+IGIvYXJjaC9y
-aXNjdi9ib290L2R0cy9NYWtlZmlsZQo+ID4gaW5kZXggZmYxNzQ5OTZjZGZkLi5iNTI1NDY3MTUy
-YjIgMTAwNjQ0Cj4gPiAtLS0gYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL01ha2VmaWxlCj4gPiArKysg
-Yi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL01ha2VmaWxlCj4gPiBAQCAtMSw0ICsxLDUgQEAKPiA+IMKg
-IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMAo+ID4gK3N1YmRpci15ICs9IGJvdWZm
-YWxvbGFiCj4gPiDCoHN1YmRpci15ICs9IHNpZml2ZQo+ID4gwqBzdWJkaXIteSArPSBzdGFyZml2
-ZQo+ID4gwqBzdWJkaXItJChDT05GSUdfU09DX0NBTkFBTl9LMjEwX0RUQl9CVUlMVElOKSArPSBj
-YW5hYW4KPiA+IGRpZmYgLS1naXQgYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL2JvdWZmYWxvbGFiL2Js
-ODA4LmR0c2kKPiA+IGIvYXJjaC9yaXNjdi9ib290L2R0cy9ib3VmZmFsb2xhYi9ibDgwOC5kdHNp
-Cj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5jOThlYmIx
-NGVlMTAKPiA+IC0tLSAvZGV2L251bGwKPiA+ICsrKyBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvYm91
-ZmZhbG9sYWIvYmw4MDguZHRzaQo+ID4gQEAgLTAsMCArMSw3NCBAQAo+ID4gKy8vIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgb3IgTUlUKQo+ID4gKy8qCj4gPiArICogQ29weXJp
-Z2h0IChDKSAyMDIyIEppc2hlbmcgWmhhbmcgPGpzemhhbmdAa2VybmVsLm9yZz4KPiA+ICsgKi8K
-PiA+ICsKPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJx
-Lmg+Cj4gPiArCj4gPiArLyB7Cj4gPiArwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gImJvdWZm
-YWxvbGFiLGJsODA4IjsKPiA+ICvCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+Owo+
-ID4gK8KgwqDCoMKgwqDCoMKgI3NpemUtY2VsbHMgPSA8MT47Cj4gPiArCj4gPiArwqDCoMKgwqDC
-oMKgwqBjcHVzIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0aW1lYmFzZS1m
-cmVxdWVuY3kgPSA8MTAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-I2FkZHJlc3MtY2VsbHMgPSA8MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-I3NpemUtY2VsbHMgPSA8MD47Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgY3B1MDogY3B1QDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInRoZWFkLGM5MDYiLCAicmlzY3YiOwo+IAo+IFNvIHRo
-aXMgaXMgbm90IHlldCBkZWZpbmVkIGFzIHRoZSBkdCBldGMgZm9yIHRoZSBkMSBoYXMgbm90IHll
-dAo+IGxhbmRlZC4KPiBJIHRoaW5rIEkgd2lsbCBnbyBwaWNrIHVwIHRoYXQgcGF0Y2ggZm9yIHY2
-LjIgYXMgaXQgc2hvdWxkIG1ha2UKPiBldmVyeW9uZSdzIGxpZmUgZWFzaWVyLgo+IAo+IFdpdGhv
-dXQgdGhhdCwgZHRic19jaGVjayBwcm9kdWNlczoKPiBhcmNoL3Jpc2N2L2Jvb3QvZHRzL2JvdWZm
-YWxvbGFiL2JsODA4LXNpcGVlZC1tMXMuZHRiOjA6MDoKPiAvY3B1cy9jcHVAMDogZmFpbGVkIHRv
-IG1hdGNoIGFueSBzY2hlbWEgd2l0aCBjb21wYXRpYmxlOgo+IFsndGhlYWQsYzkwNicsICdyaXNj
-diddCj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGRldmljZV90eXBlID0gImNwdSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgZC1jYWNoZS1ibG9jay1zaXplID0gPDY0PjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZC1jYWNoZS1zZXRzID0g
-PDI1Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGQtY2FjaGUtc2l6ZSA9IDwzMjc2OD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoGktY2FjaGUtYmxvY2stc2l6ZSA9IDw2ND47Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGktY2FjaGUtc2V0cyA9IDwx
-Mjg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBp
-LWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBtbXUtdHlwZSA9ICJyaXNjdixzdjM5IjsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmlzY3YsaXNhID0gInJ2NjRpbWFm
-ZGMiOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBjcHUwX2ludGM6IGludGVycnVwdC1jb250cm9sbGVyIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGli
-bGUgPSAicmlzY3YsY3B1LWludGMiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0LWNvbnRyb2xsZXI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAjYWRkcmVzcy1jZWxscyA9IDwwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNpbnRlcnJ1cHQtY2VsbHMg
-PSA8MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oH07Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICvCoMKgwqDCoMKg
-wqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqB4dGFsOiB4dGFsLWNsayB7Cj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY2xvY2stZnJlcXVlbmN5ID0gPDQwMDAw
-MDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1vdXRwdXQtbmFt
-ZXMgPSAieHRhbCI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2Nsb2NrLWNl
-bGxzID0gPDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDC
-oHNvYyB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJz
-aW1wbGUtYnVzIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByYW5nZXM7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0LXBhcmVudCA9IDwmcGxp
-Yz47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZG1hLW5vbmNvaGVyZW50Owo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+Owo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNzaXplLWNlbGxzID0gPDE+Owo+ID4g
-Kwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHVhcnQwOiBzZXJpYWxAMzAwMDIw
-MDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBj
-b21wYXRpYmxlID0gImJvdWZmYWxvbGFiLHVhcnQiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MHgzMDAwMjAwMCAweDEwMDA+Owo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlcnJ1cHRz
-ID0gPDIwIElSUV9UWVBFX0xFVkVMX0hJR0g+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPSA8Jnh0YWw+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJsZWQiOwo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcGxpYzogaW50ZXJydXB0LWNvbnRyb2xsZXJAZTAwMDAwMDAg
-ewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21w
-YXRpYmxlID0gInRoZWFkLGM5MDAtcGxpYyI7Cj4gCj4gSG1tLCB0aGlzIG9uZSBmYWlscyB2YWxp
-ZGF0aW9uIHRvby4gTGlrZWx5IHlvdSBuZWVkIHRvIGFkZCBhCj4gImJvdWZmYWxvbGFiLHBsaWMi
-IHRvIHRoZSBwbGljIGR0LWJpbmRpbmcgb3Igb3RoZXJ3aXNlIG1vZGlmeSB0aGUKPiBiaW5kaW5n
-IHN1Y2ggdGhhdCB0aGVhZCxjOTAwLXBsaWMgb24gaXQncyBvd24gaXMgcGVybWl0dGVkLiBDQyBT
-YW11ZWwKPiBvbgo+IHRoYXQgcGF0Y2ggcGxlYXNlIGluIGNhc2UgaGUgaGFzIGFuIG9waW5pb24g
-b24gaXQuCgpQZXJzb25hbGx5IEkgcHJlZmVyIGEgc2luZ2xlIGM5MDAtcGxpYyBpbiBjb21wYXRp
-YmxlLCBiZWNhdXNlIHRoZSBQTElDCmRvZXNuJ3QgbG9vayBzbyBjb25maWd1cmFibGUgaW4gQzkw
-Ni9DOTEwICh0aGUgaW50ZXJydXB0IHNvdXJjZSBudW1iZXIKaXMgcmVhbGx5IGFkanVzdGFibGUs
-IGJ1dCBpdCdzIGFscmVhZHkgaW4gdGhlIHJpc2N2LG5kZXYgcHJvcGVydHkpLgoKPiAKPiBBbHNv
-LCBJJ3ZlIHRha2VuIG92ZXIgcGlja2luZyB1cCB0aGUgbWlzYyBkdCBzdHVmZiB0aGF0IFBhbG1l
-ciB1c2VkCj4gdG8KPiBhcHBseSAtIHNvIGNhbmFhbiwgc3RhcmZpdmUgJiBzaWZpdmUgc3R1ZmYu
-IERvIHlvdSBpbnRlbmRlZCBzZW5kaW5nCj4gUFJzCj4gdG8gQXJuZCBmb3IgdGhpcyBzdHVmZiwg
-b3Igd291bGQgeW91IGxpa2UgdG8gbWUgYnVuZGxlIGl0IHdpdGggd2hhdCBJCj4gYW0KPiBnb2lu
-ZyB0byBiZSBzZW5kaW5nIGFueXdheT8KPiAKPiBUaGFua3MsCj4gQ29ub3IuCj4gCj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweGUwMDAw
-MDAwIDB4NDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGludGVycnVwdHMtZXh0ZW5kZWQgPSA8JmNwdTBfaW50Ywo+ID4gMHhmZmZmZmZm
-Zj4sCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JmNwdTBfaW50YyA5PjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZXJy
-dXB0LWNvbnRyb2xsZXI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjaW50ZXJydXB0LWNlbGxzID0gPDI+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByaXNjdixuZGV2ID0g
-PDY0PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gK8KgwqDCoMKg
-wqDCoMKgfTsKPiA+ICt9Owo+ID4gLS0gCj4gPiAyLjM3LjIKPiA+IAo+IAo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gbGludXgtcmlzY3YgbWFpbGlu
-ZyBsaXN0Cj4gbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcmlzY3YKCg==
+Le 18/11/2022 à 19:22, Melody Olvera a écrit :
+> Add interconnect provider driver for Qualcomm QDU1000 and QRU1000
+> platforms.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>   drivers/interconnect/qcom/Kconfig   |    9 +
+>   drivers/interconnect/qcom/Makefile  |    2 +
+>   drivers/interconnect/qcom/qdu1000.c | 1079 +++++++++++++++++++++++++++
+>   drivers/interconnect/qcom/qdu1000.h |   95 +++
+>   4 files changed, 1185 insertions(+)
+>   create mode 100644 drivers/interconnect/qcom/qdu1000.c
+>   create mode 100644 drivers/interconnect/qcom/qdu1000.h
+> 
+
+[...]
+
+> +static int qnoc_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +
+> +	ret = qcom_icc_rpmh_probe(pdev);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "failed to register ICC provider\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int qnoc_remove(struct platform_device *pdev)
+> +{
+> +	struct qcom_icc_provider *qp = platform_get_drvdata(pdev);
+> +
+> +	icc_nodes_remove(&qp->provider);
+> +	icc_provider_del(&qp->provider);
+
+qcom_icc_rpmh_remove()?
+
+(more future proof, less verbose and more consistent with 
+qcom_icc_rpmh_probe() in the probe)
+
+CJ
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id qnoc_of_match[] = {
+> +	{ .compatible = "qcom,qdu1000-clk-virt",
+> +	  .data = &qdu1000_clk_virt
+> +	},
+> +	{ .compatible = "qcom,qdu1000-gem-noc",
+> +	  .data = &qdu1000_gem_noc
+> +	},
+> +	{ .compatible = "qcom,qdu1000-mc-virt",
+> +	  .data = &qdu1000_mc_virt
+> +	},
+> +	{ .compatible = "qcom,qdu1000-system-noc",
+> +	  .data = &qdu1000_system_noc
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, qnoc_of_match);
+> +
+> +static struct platform_driver qnoc_driver = {
+> +	.probe = qnoc_probe,
+> +	.remove = qnoc_remove,
+> +	.driver = {
+> +		.name = "qnoc-qdu1000",
+> +		.of_match_table = qnoc_of_match,
+> +	},
+> +};
+
+[...]
 
