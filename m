@@ -2,143 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E6063121A
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 02:22:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C161D6312BD
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 07:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbiKTBWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 20:22:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60322 "EHLO
+        id S229446AbiKTGwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 01:52:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiKTBV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 20:21:59 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F03B6B20;
-        Sat, 19 Nov 2022 17:21:57 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-13bd19c3b68so10162815fac.7;
-        Sat, 19 Nov 2022 17:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+HS+CfYox7ld6+b2/m9ST36+4P+3OQ4EfiKHVDdYhrA=;
-        b=agx4J5BmC6z1crsZDXUGsUeaCSjPpReKTEdjAbryGghhU+2b07IEgol7fPcGM/6Wi+
-         ZH2hY2bXaEHQ/ZiCRBCknKlHW52A/Fba4R7OHklPCJb0S+2OhAOFz/ugNNFYSvPmIAho
-         IyoWlaTFitotzyD1CNBnqtgd5HQpCW7urxVKfCEiMoP9oCiRZ6YFcK8n2BHe/aPdIUq3
-         bPs0t+hIsrAwlVNp2G8FUX2Gv+USj0G31NhC2/bM7cQ1GzAgSbTz/Tqt2+MOV0egaaIS
-         6LuVRf3uIhVcNIM0dH4xYH8HxHGdGW7Ao8GXA4thjpOzVmJPZF4dXiJms5hjnk9KxoN8
-         UAQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+HS+CfYox7ld6+b2/m9ST36+4P+3OQ4EfiKHVDdYhrA=;
-        b=s/oaHm1HNeiyXyR5cow3rEB6rR7xMmoKCA3AwJAmK8n6yXpPLXt3bRU1WxXz0MNxMT
-         ImBqasOiljlrqqS4fGFL3DVevLKNGsRXqQ900JglqFdLF/wPZR4r2pAwx8QZrFe05TcC
-         pzYTx6Q5O1O4b5ZfO00n6Hv7+C36H6j9+1eboyJgvi6oAf/GDgNOoK/nH9kkRoI0SiEj
-         J9W6l6lA1S3nKxMpQcmlZE1OcXQ/bZPOUl1MtsrRuO1Ic9c2TxnywGYQ97HUFDbxdLfK
-         PDnRBl65PKFdhqV+IRD4zIMFZWklTYMABbfllCE9p+ynJXve7jqw23Gv0kaErxJhJY+o
-         KiSA==
-X-Gm-Message-State: ANoB5pmSA+RQUU20nMCk5TSUCnHr2+qwqVDAf9KKkGi2Nz1WErJwMlLl
-        WWLica0kcShK2JWY/X9e5VA=
-X-Google-Smtp-Source: AA0mqf4u5nVfhqn1A5b7kAP+RrtRWjUR+1pInZ/TDdDd0McqCSBXNw0Mc0a0SssJjWoyNquhHYhXHw==
-X-Received: by 2002:a05:6870:d784:b0:13a:ec33:4ed with SMTP id bd4-20020a056870d78400b0013aec3304edmr1228418oab.56.1668907316977;
-        Sat, 19 Nov 2022 17:21:56 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:485:4b69:2f06:7c46:ee05:7e79])
-        by smtp.gmail.com with ESMTPSA id t21-20020a056870f21500b0010d7242b623sm4146472oao.21.2022.11.19.17.21.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Nov 2022 17:21:56 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     dmitry.torokhov@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: input: gpio-beeper: Convert to yaml schema
-Date:   Sat, 19 Nov 2022 22:21:35 -0300
-Message-Id: <20221120012135.2085631-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229490AbiKTGwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 01:52:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E448F94A6B
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 22:52:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8A75EB80ACC
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 06:52:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C997C43149
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 06:52:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668927140;
+        bh=unX76QKH95pBc8VMtK0DMu4SdkXMf/gkRIw9iatMLXc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JHz0T5yDc36FyNAnp++6tNSmk6dj1fmNPPnFwJ/GbuaQ5q+FbAixvEvnzapVM1GYU
+         5BKSSHWhZFtzPt9KD0aUDPusKHcMmZ6svhGnlD+8BSAkbrTd6UQ+qmVmNf1PNPU5wt
+         ckoa/XLszalnfnAKop2Rz+R+BdBvTymcRJFw/VyYu4e0VrkLidpTckYQrGdRmsuOVX
+         yBP0Knq9FCx/CFlh4OB/xK/ZgCN1cCA86mYSFLr8YkRH8Ar92R1SouSnum0pYGwajX
+         KQuBfi9ikzeC6O4tGvw2yv48N4dOPjcVTpbzzaqbDd+amWFylJXATpm+C+f1EEid4w
+         Bycke5StjDlnQ==
+Received: by mail-vk1-f175.google.com with SMTP id s204so4302173vkb.3
+        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 22:52:20 -0800 (PST)
+X-Gm-Message-State: ANoB5pkD/SX2WAmuGDAFVFtSQw/Kd73hh8rAmeksFpx0mHDzQzDDIymT
+        UqYGf0atYUPNU5QEwfiss1Wu17XE5kzBcyhbprUoUA==
+X-Google-Smtp-Source: AA0mqf5arwI+1Ek3mx3soz8ohE6WHnF+dcjdCqRzErREao2c5D+qmuXG9A9UQ0DaiieR0JHZqysHYs4Di4jY3Ome4F4=
+X-Received: by 2002:a1f:5f50:0:b0:3ae:dce4:457 with SMTP id
+ t77-20020a1f5f50000000b003aedce40457mr7127292vkb.26.1668927138878; Sat, 19
+ Nov 2022 22:52:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221114-narmstrong-sm8550-upstream-tsens-v1-0-0e169822830f@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-tsens-v1-0-0e169822830f@linaro.org>
+From:   Amit Kucheria <amitk@kernel.org>
+Date:   Sun, 20 Nov 2022 12:22:07 +0530
+X-Gmail-Original-Message-ID: <CAHLCerPKz9cP5di+8VeaLgO8mmh1Nj5x3fC70otyhPDONFVwaA@mail.gmail.com>
+Message-ID: <CAHLCerPKz9cP5di+8VeaLgO8mmh1Nj5x3fC70otyhPDONFVwaA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: Add compatible for sm8550
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Wed, Nov 16, 2022 at 3:40 PM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> The Qualcomm SM8550 platform has three instances of the tsens block,
+> add a compatible for these instances.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Convert the bindings from plain text to yaml schema.
+Acked-by: Amit Kucheria <amitk@kernel.org>
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/input/gpio-beeper.txt | 13 --------
- .../bindings/input/gpio-beeper.yaml           | 33 +++++++++++++++++++
- 2 files changed, 33 insertions(+), 13 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.txt
- create mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.txt b/Documentation/devicetree/bindings/input/gpio-beeper.txt
-deleted file mode 100644
-index a5086e37fce6..000000000000
---- a/Documentation/devicetree/bindings/input/gpio-beeper.txt
-+++ /dev/null
-@@ -1,13 +0,0 @@
--* GPIO beeper device tree bindings
--
--Register a beeper connected to GPIO pin.
--
--Required properties:
--- compatible:	Should be "gpio-beeper".
--- gpios:	From common gpio binding; gpio connection to beeper enable pin.
--
--Example:
--	beeper: beeper {
--		compatible = "gpio-beeper";
--		gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.yaml b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
-new file mode 100644
-index 000000000000..5fd57a8940df
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/gpio-beeper.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPIO controlled beeper
-+
-+maintainers:
-+  - Fabio Estevam <festevam@denx.de>
-+
-+properties:
-+  compatible:
-+    const: gpio-beeper
-+
-+  gpios:
-+    maxItems: 1
-+    description:
-+      GPIO that drives the beeper.
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    beeper {
-+        compatible = "gpio-beeper";
-+        gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+    };
--- 
-2.25.1
-
+> ---
+> To: Andy Gross <agross@kernel.org>
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@somainline.org>
+> To: Amit Kucheria <amitk@kernel.org>
+> To: Thara Gopinath <thara.gopinath@gmail.com>
+> To: "Rafael J. Wysocki" <rafael@kernel.org>
+> To: Daniel Lezcano <daniel.lezcano@linaro.org>
+> To: Zhang Rui <rui.zhang@intel.com>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index f0bd4b979e28..09dbd96d380e 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -58,6 +58,7 @@ properties:
+>                - qcom,sm8250-tsens
+>                - qcom,sm8350-tsens
+>                - qcom,sm8450-tsens
+> +              - qcom,sm8550-tsens
+>            - const: qcom,tsens-v2
+>
+>        - description: v2 of TSENS with combined interrupt
+>
+> ---
+> base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
+> change-id: 20221114-narmstrong-sm8550-upstream-tsens-dfaec218c321
+>
+> Best regards,
+> --
+> Neil Armstrong <neil.armstrong@linaro.org>
