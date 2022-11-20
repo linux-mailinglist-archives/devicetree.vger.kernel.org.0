@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEEFC6314DA
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 16:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E24F6314E4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 16:30:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiKTPZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 10:25:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
+        id S229553AbiKTPaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 10:30:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbiKTPZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 10:25:16 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF171F9E6;
-        Sun, 20 Nov 2022 07:25:14 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id jr19so5989600qtb.7;
-        Sun, 20 Nov 2022 07:25:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z+/Aw8lmVI6gvOs4GOlG63zrNeHjc0UvuCCC5lTTgjw=;
-        b=cjg/33zAOEaPXT1FnU+ga7d5pq+b7zKUTOtrq6yfQsuQvr7GF57DULR3odyVCzDdH2
-         bElrehzZKD2Sv3agBvdHL6ASbuXY0Zc2sCB24yR74DNpslg+tRC82K6IHn7VwlFsrdqE
-         RrWkONH6bCb+WfHEq9+XJ44TrS09hX6tQDBbc5/E8DoGLyYHJeAvguKi11jN8+tzc2Ej
-         yKoYLqLntNsotDADch3paZNZ2Sk92S87sM8HR45rYVmDWVyq5/RC4xuYXM/sfWUws6Oo
-         doba6pIFvh5qfkOishi66Zv+9pD/a+6b9RwGq0dm4D9vwc4nQ4JFADgXLkqpGspWEg5K
-         hbGA==
+        with ESMTP id S229491AbiKTPav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 10:30:51 -0500
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390B52B610;
+        Sun, 20 Nov 2022 07:30:50 -0800 (PST)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-13bd2aea61bso11285237fac.0;
+        Sun, 20 Nov 2022 07:30:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z+/Aw8lmVI6gvOs4GOlG63zrNeHjc0UvuCCC5lTTgjw=;
-        b=whI+qYmWBWNLLXlfp40VnaSjOy4Rb9m3W6ren64/r58nFRj+MVNTL68LOa25qV1hM8
-         /9Ikg54aU2euP7k2PcJpZTzKPjm1rbjCtXL02H0D4vFCHfmbk7WCaoE9kJ7n+yJ+4MWm
-         aYyvbcP5B8AXxEYym8p97uBRnyUQHuaeBttxDpU6AfVHZuI22SjNdy9aVu2X+5+hkhWJ
-         U1jsroRIyZ/+/bF2ejsjboWB36IqHK6Lomgbop2N3KqFdEvS6P3siXr450r7VL5cRZ48
-         R6KWeddClvvkLWILMVpARojMNaDesDRD+Jr13xKDDmNkSvlwtkpJWKs0PCi+oHEfc/ZA
-         qhIA==
-X-Gm-Message-State: ANoB5pnNJ+yR4xSolZ4z7nMBSaA5U6/+dBuDzeHFFA9iKnYhbxxgwH/m
-        KNelqwjXIrrBYZXyyPAOVO4=
-X-Google-Smtp-Source: AA0mqf4WQB3q0Oa8lzcKAX8RG8gZ3BDk88Uh6DWdsLLajIQv1RI5uy09GBI9d8QnOjYxZwV435168g==
-X-Received: by 2002:ac8:4649:0:b0:3a5:8ea9:34f5 with SMTP id f9-20020ac84649000000b003a58ea934f5mr14188053qto.420.1668957914021;
-        Sun, 20 Nov 2022 07:25:14 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id cc16-20020a05622a411000b003a606428a59sm5346868qtb.91.2022.11.20.07.25.13
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JVXsWKmUu84AHlrYVgKd8m6jeh7lnHZqLNxGPaZlsRo=;
+        b=AtBT8D5GWJHj5jqdFOIIkKNDVCUq1KyXWXmvYAxFWBFgJD0+BA9kOH7rmuBFZMxx1g
+         ZxBrhdpB0BpL3d80deCiXweD9OO95SLaMQMzywBT1Fjux/5Tgfw7vpYvjoo1eLXxJBWt
+         vPaw0R8DjyjgNCoRP7lJo848prQ/mxl43Fm6Mo6V1nx/ULvL9u+35H1I0bVZ6rl9+60b
+         YKfqi0IdSILblPnLm+AKdIRMb3BKlsPANfXyBXumwogrtzNxTK3bX6LvXTPsq0BWeG4A
+         ATeTdklIFiP6BVug8bVh1kquc2ScIYWSnD36ELhpE9TBjHd7p48P3hUVBXDu/FeqGJqk
+         K9dg==
+X-Gm-Message-State: ANoB5pkLr8Dn32at3Zk4Yn5dUoT5qWbo+Mb2BQopD6axZoWTjoXFPdXs
+        nonrPhW8WBXEDms2cJ0kJ3utSQEBtA==
+X-Google-Smtp-Source: AA0mqf6VfeJvk+z6L9WRgBnkJFM21HtxaOk/a6KyEBk+TdNGXuE9m7pjso+JVkWxi/wjwZ8ESSgz9Q==
+X-Received: by 2002:a05:6870:ab06:b0:142:d9b9:c4ae with SMTP id gu6-20020a056870ab0600b00142d9b9c4aemr1120231oab.179.1668958249285;
+        Sun, 20 Nov 2022 07:30:49 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80f6:1a48:29f6:113d:266f:a78e])
+        by smtp.gmail.com with ESMTPSA id a18-20020a056870d61200b0012b298699dbsm4808953oaq.1.2022.11.20.07.30.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 07:25:13 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 20 Nov 2022 07:25:12 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-Message-ID: <20221120152512.GA1791758@roeck-us.net>
-References: <20221116213615.1256297-1-Naresh.Solanki@9elements.com>
- <20221116213615.1256297-2-Naresh.Solanki@9elements.com>
+        Sun, 20 Nov 2022 07:30:48 -0800 (PST)
+Received: (nullmailer pid 3092241 invoked by uid 1000);
+        Sun, 20 Nov 2022 15:30:49 -0000
+Date:   Sun, 20 Nov 2022 09:30:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ash Logan <ash@heyquark.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, paulus@samba.org,
+        mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
+        benh@kernel.crashing.org, segher@kernel.crashing.org,
+        pali@kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, j.ne@posteo.net,
+        linkmauve@linkmauve.fr, rw-r-r-0644@protonmail.com,
+        devicetree@vger.kernel.org, joel@jms.id.au
+Subject: Re: [PATCH v4 01/11] dt-bindings: wiiu: Document the Nintendo Wii U
+ devicetree
+Message-ID: <20221120153049.GA3081277-robh@kernel.org>
+References: <20220628133144.142185-1-ash@heyquark.com>
+ <20221119113041.284419-1-ash@heyquark.com>
+ <20221119113041.284419-2-ash@heyquark.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221116213615.1256297-2-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <20221119113041.284419-2-ash@heyquark.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,76 +70,449 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 10:36:13PM +0100, Naresh Solanki wrote:
-> Add common fan properties bindings to a schema.
+On Sat, Nov 19, 2022 at 10:30:31PM +1100, Ash Logan wrote:
+> Adds schema for the various Wii U devicetree nodes used.
 > 
-> Bindings for fan controllers can reference the common schema for the
-> fan
-> 
-> child nodes:
-> 
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       $ref: fan-common.yaml#
-> 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Signed-off-by: Ash Logan <ash@heyquark.com>
 > ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> v3->v4: Rework to match expected style and conciceness.
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+>  .../bindings/powerpc/nintendo/wiiu.yaml       | 25 +++++++++
+>  .../powerpc/nintendo/wiiu/espresso-pic.yaml   | 48 ++++++++++++++++
+>  .../bindings/powerpc/nintendo/wiiu/gpu7.yaml  | 42 ++++++++++++++
+>  .../powerpc/nintendo/wiiu/latte-ahci.yaml     | 50 +++++++++++++++++
+>  .../powerpc/nintendo/wiiu/latte-dsp.yaml      | 35 ++++++++++++
+>  .../powerpc/nintendo/wiiu/latte-pic.yaml      | 55 +++++++++++++++++++
+>  .../powerpc/nintendo/wiiu/latte-sdhci.yaml    | 46 ++++++++++++++++
+>  .../bindings/powerpc/nintendo/wiiu/latte.yaml | 31 +++++++++++
+>  .../devicetree/bindings/usb/generic-ehci.yaml |  1 +
+>  9 files changed, 333 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/espresso-pic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/gpu7.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-ahci.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-dsp.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-pic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-sdhci.yaml
+>  create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu.yaml
 > new file mode 100644
-> index 000000000000..1954882eed77
+> index 000000000000..23703b1052d0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu.yaml
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Common fan properties
+> +title: Nintendo Wii U bindings
+
+Everything is a binding, so drop 'bindings'. 
+
 > +
 > +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+
+Don't need '|' if no formatting.
+
+> +  Nintendo Wii U video game console binding.
 > +
 > +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  $nodename:
+> +    const: "/"
 > +
-> +  pulses-per-revolution:
-> +    description:
-> +      The number of pulse from fan sensor per revolution.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +  compatible:
+> +    const: nintendo,wiiu
 > +
-> +  target-rpm:
-> +    description:
-> +      Target RPM the fan should be configured during driver probe.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +additionalProperties: true
 > +
-> +  pwms:
-> +    description:
-> +      PWM provider.
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/espresso-pic.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/espresso-pic.yaml
+> new file mode 100644
+> index 000000000000..476a8ccda7a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/espresso-pic.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/espresso-pic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  label:
-> +    description:
-> +      Optional fan label
+> +title: Nintendo Wii U "Espresso" interrupt controller
 > +
-> +  fan-supply:
-> +    description:
-> +      Power supply for fan.
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  Interrupt controller found on the Nintendo Wii U for the "Espresso" processor.
+> +
+> +allOf:
+> +  - $ref: "/schemas/interrupt-controller.yaml#"
+
+Drop quotes.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: nintendo,espresso-pic
+> +
+> +  '#interrupt-cells':
+> +    # Interrupt numbers 0-32 in one cell
+> +    const: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#interrupt-cells'
+> +  - interrupt-controller
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller@c000078 {
+> +        compatible = "nintendo,espresso-pic";
+> +        reg = <0x0c000078 0x18>;
+> +        #interrupt-cells = <1>;
+> +        interrupt-controller;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/gpu7.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/gpu7.yaml
+> new file mode 100644
+> index 000000000000..d44ebe0d866c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/gpu7.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/gpu7.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii U Latte "GPU7" graphics processor
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  GPU7 graphics processor, also known as "GX2", found in the Latte multifunction chip of the
+
+Wrap lines at 80 unless some advantage to 100.
+
+> +  Nintendo Wii U.
+> +
+> +properties:
+> +  compatible:
+> +    const: nintendo,latte-gpu7
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpu@c200000 {
+> +        compatible = "nintendo,latte-gpu7";
+> +        reg = <0x0c200000 0x80000>;
+> +        interrupts = <2>;
+> +        interrupt-parent = <&espresso_pic>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-ahci.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-ahci.yaml
+> new file mode 100644
+> index 000000000000..a53971a11e89
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-ahci.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/latte-ahci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii U Latte AHCI controller
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  Nintendo Wii U AHCI SATA controller, as found in the Latte chip.
+> +
+> +allOf:
+> +  - $ref: "/schemas/ata/ahci-common.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: nintendo,latte-ahci
+> +
+> +  reg:
+> +    items:
+> +      - description: |
+> +          HBA memory registers. Note that unlike the spec, space for only 6 ports exist, with 2 vendor
+> +          registers afterwards, thus register space should be 0x408 long (0x100+0x80*6+0x8).
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Main HBA interrupt
+> +      - description: Vendor debugging interrupt
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sata@d160400 {
+> +        compatible = "nintendo,latte-ahci";
+> +        reg = <0x0d160400 0x408>;
+> +
+> +        interrupt-parent = <&latte_pic>;
+> +        interrupts = <38>, <28>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-dsp.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-dsp.yaml
+> new file mode 100644
+> index 000000000000..772afe0c298c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-dsp.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/latte-dsp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii U Latte DSP
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  Nintendo Wii U digital signal processor, as found in the Latte chip.
+> +
+> +properties:
+> +  compatible:
+> +    const: nintendo,latte-dsp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dsp@c005000 {
+> +        compatible = "nintendo,latte-dsp";
+> +        reg = <0x0c005000 0x200>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-pic.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-pic.yaml
+> new file mode 100644
+> index 000000000000..4b71d6b9b14d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-pic.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/latte-pic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii U Latte interrupt controller
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  Interrupt controller found on the Nintendo Wii U for the "Latte" devices.
+> +
+> +allOf:
+> +  - $ref: "/schemas/interrupt-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: nintendo,latte-pic
+> +
+> +  '#interrupt-cells':
+> +    # Interrupt numbers 0-64 in one cell.
+> +    const: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Cascade interrupt for Espresso PIC
+> +
+> +required:
+> +  - compatible
+> +  - '#interrupt-cells'
+> +  - interrupt-controller
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller@d800440 {
+> +        compatible = "nintendo,latte-pic";
+> +        #interrupt-cells = <1>;
+> +        interrupt-controller;
+> +        reg = <0x0d800440 0x30>;
+> +
+> +        interrupt-parent = <&espresso_pic>;
+> +        interrupts = <24>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-sdhci.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-sdhci.yaml
+> new file mode 100644
+> index 000000000000..25d474fca679
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-sdhci.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/latte-sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii U Latte SD Host controller
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  SDHCI hosts found on the Nintendo Wii U's Latte SoC for SD cards and SDIO devices.
+> +
+> +allOf:
+> +  - $ref: "/schemas/mmc/mmc-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nintendo,latte-sdhci
+> +      - const: sdhci
+
+Just 'sdhci' is not too useful. *All* SDHCI controllers have quirks.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@d070000 {
+> +        compatible = "nintendo,latte-sdhci", "sdhci";
+> +        reg = <0x0d070000 0x200>;
+> +        interrupts = <7>;
+> +        interrupt-parent = <&latte_pic>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte.yaml b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte.yaml
+> new file mode 100644
+> index 000000000000..6fdf93622fcc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/powerpc/nintendo/wiiu/latte.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Latte system bus
+> +
+> +maintainers:
+> +  - Ash Logan <ash@heyquark.com>
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |
+> +  Latte multi-function SoC, containing many of the devices found on the Nintendo Wii U.
+> +
+> +allOf:
+> +  - $ref: "/schemas/simple-bus.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nintendo,latte
+> +      - const: simple-bus
+
+If truly 'simple', then you don't need 'nintendo,latte'.
+
+Otherwise, you need a custom 'select' schema to not select all cases of 
+'simple-bus'.
+
+> +
 > +
 
-Another property which is definitely missing and needed
-will be DC vs. PWM control. That is currently pwm[1-*]_mode
-in sysfs attributes, but it is really a fan attribute.
+one blank line
 
-Many fans are DC controlled, so this property is absolutely
-necessary.
-
-Guenter
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> index c5f629c5bc61..9f69b5ab21ff 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> @@ -69,6 +69,7 @@ properties:
+>                - ibm,usb-ehci-440epx
+>                - ibm,usb-ehci-460ex
+>                - nintendo,hollywood-usb-ehci
+> +              - nintendo,latte-ehci
+>                - st,spear600-ehci
+>            - const: usb-ehci
+>        - enum:
+> -- 
+> 2.38.1
+> 
+> 
