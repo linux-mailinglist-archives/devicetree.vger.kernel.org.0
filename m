@@ -2,96 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85FDB631396
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 12:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD7386313A1
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 12:23:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbiKTLNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 06:13:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
+        id S229622AbiKTLXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 06:23:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbiKTLNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 06:13:34 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A35186DB
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 03:13:30 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id b9so11730956ljr.5
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 03:13:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AfbStBxanXNxkhy7xdJiqPZKJHP3hmr6NUjVL9mVGnE=;
-        b=mJ/ju7Oer5Qqu7iM4Ke3VwsgMsCvFBzIWDH/+TwRmrzc6+8kg6ZvswY+U26SOlWTlf
-         7wQOOPSD0ocye5DoWba3/PUcAZiXtZlPbNkPpoYDTROIA+ZvxUSO690Ed7YVv0zIuNqy
-         KVgdHgol4eSSqJcDjKAmTPNUo/ZvolwofuGYSWOgadVvDojgZ/gcrgyBIDic8dAWJtd8
-         AQkHKY1+1o/xjEMiVUtCmPnqR3H+pm+PHIqHeh0qGb9pBsiARHRigx11asEjfoBy2F0q
-         tiFC6yFoesco5Jfzlgj4HW4ZosweNHKwUMJCwBLZaMBbObiwpAyWP4K2UUuB8oULFim0
-         oeCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AfbStBxanXNxkhy7xdJiqPZKJHP3hmr6NUjVL9mVGnE=;
-        b=G1mcqq/0BwK64eten5WMK83683hmorPyYlXk0l7EbcrHy3Q+AKovfXvYT/tjF/kdjj
-         HQT8JT/uYRbetVRQc8f2bVxRgy41+PzFQ7FaSC37aUtKT62E4g4qA/9fewDB9l4Oq+L4
-         DIs+HRqy5K8kmrc2OWdiyrdMQaHLPskczuVFSr05Mq3DMLz+BnqLY5skdzg1RdIMKIgZ
-         PLLi9mJyDR6ic+Y1/fQStFvrc51HSzHFJq96TnZSfg2/pxMCrcT34Zn8RbS0ZxrTK//Z
-         QwdzYGQaxb7EzAW6R2ICpUy1LX/oWp7uQ/1KTlG09JyzncwvNWNS0dA67plHRchKyPAH
-         ARlg==
-X-Gm-Message-State: ANoB5pk9F02bDUDKdWmBd9GJVCflGdN0JqZN7xMb9qt/y2CeocSPXBvM
-        n6EFXarr9Svr8q34t8/UW7wzVQ==
-X-Google-Smtp-Source: AA0mqf6f66PCRQgqtNdT976hGTlPlmoi+WfjEE9hQQQ4Rtk4J7wGIw4HqxLxd7BnurCTthHC74CXyw==
-X-Received: by 2002:a05:651c:1105:b0:277:3dd:e32e with SMTP id e5-20020a05651c110500b0027703dde32emr4126189ljo.467.1668942808658;
-        Sun, 20 Nov 2022 03:13:28 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bf8-20020a056512258800b00492b0d23d24sm1515423lfb.247.2022.11.20.03.13.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Nov 2022 03:13:28 -0800 (PST)
-Message-ID: <303ecda8-5b02-27c6-ac2c-52fed0923de5@linaro.org>
-Date:   Sun, 20 Nov 2022 12:13:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 2/3] dt-bindings: interconnect: Add QDU1000/QRU1000
- devices
-Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229542AbiKTLXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 06:23:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A65823BDE;
+        Sun, 20 Nov 2022 03:23:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 846D560C35;
+        Sun, 20 Nov 2022 11:23:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E5F2C433D6;
+        Sun, 20 Nov 2022 11:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1668943421;
+        bh=8PFD1joXMpo0BIBLMMAMUhQ88Ub256i63VmGt7znFMA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ak+99zcWQngP8/4sLvjEZHL5BhaaEgvSTPNGIGUEDpu2IcblbH1Kv0wbbnBxjsdE/
+         ZHMz221O0gTOFI6DOAq/VDmJsSvUUKHp+yjNQyIfQfpG/HO1YQP7HY+GfypE8fcY8M
+         AM+3Vq6c0mMnepP19/8QGnFtA49OFhKK23DIEcKnIIsilP0/a4NaTlGPnOPa5zhq3n
+         0FAe7zjy2LI9SQ05TyycfnGqJ9Fm5fIvDeIjSwS6TDn2hZ31sA3je35olQq7ijzVml
+         sFWL2BhgiUlQNcFdr6GrZgjHHG+ztei+++hm57Iw8Gzsf7g9MKMjB9DbVgVELDxOVu
+         7coGSy0dMEq4g==
+Date:   Sun, 20 Nov 2022 11:23:36 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Icenowy Zheng <uwu@icenowy.me>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221118182245.31035-1-quic_molvera@quicinc.com>
- <20221118182245.31035-3-quic_molvera@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118182245.31035-3-quic_molvera@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH 02/12] dt-bindings: riscv: Add T-HEAD C906 and C910
+ compatibles
+Message-ID: <Y3oOOOdG4e24ByEc@spud>
+References: <20220815050815.22340-1-samuel@sholland.org>
+ <20220815050815.22340-3-samuel@sholland.org>
+ <76d9c4fb368dca87c64494b927706d0b18d712d2.camel@icenowy.me>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <76d9c4fb368dca87c64494b927706d0b18d712d2.camel@icenowy.me>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 19:22, Melody Olvera wrote:
-> Add interconnect IDs for Qualcomm QDU1000 and QRU1000 platforms.
+On Fri, Nov 04, 2022 at 10:57:58AM +0800, Icenowy Zheng wrote:
+> 在 2022-08-15星期一的 00:08 -0500，Samuel Holland写道：
+> > The C906 and C910 are RISC-V CPU cores from T-HEAD Semiconductor.
+> > Notably, the C906 core is used in the Allwinner D1 SoC.
 > 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
+> Could this get applied first?
+> 
+> C906 and C910 now have a fixed-configuration open-source version, which
+> means these cores could be played by anyone, and having them in the DT
+> binding really helps people. In addition I am aware of some C906-
+> equipped SoC out of Allwinner.
 
+I've applied this one patch as v6.2 material since I doubt this series is
+gonna make it & the Bouffalolabs dt is going to need this compatible too.
+I applied it on top of v6.1-rc1 just in case:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+https://git.kernel.org/conor/c/0d814000ad3589bf4f69c9cb25a3b77bbd55ffec
 
-Best regards,
-Krzysztof
-
+> 
+> > 
+> > Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > index 873dd12f6e89..ce2161d9115a 100644
+> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > @@ -38,6 +38,8 @@ properties:
+> >                - sifive,u5
+> >                - sifive,u7
+> >                - canaan,k210
+> > +              - thead,c906
+> > +              - thead,c910
+> >            - const: riscv
+> >        - items:
+> >            - enum:
+> 
