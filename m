@@ -2,90 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 466D763159E
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 19:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 616606315A7
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 19:34:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiKTSAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 13:00:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54196 "EHLO
+        id S229693AbiKTSeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 13:34:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiKTSAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 13:00:34 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB4D2A96A;
-        Sun, 20 Nov 2022 10:00:31 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-142b72a728fso3734318fac.9;
-        Sun, 20 Nov 2022 10:00:31 -0800 (PST)
+        with ESMTP id S229633AbiKTSeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 13:34:05 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2005F2188F
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 10:34:04 -0800 (PST)
+Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com [209.85.219.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7C9713F11F
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 18:34:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1668969240;
+        bh=dG5PIPBE2GHp36S+UZp6jaADUVR1TUqcHiS7ewQr4PU=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=OOfW4X9WAmhzquOYL/9Ch6Q+sF4hCdYRNArwmgM2RIMOvgG+sI4OWprzSErPc4X0u
+         08ug1l9c6FkDZ3xVTMTVSebjPCQxVfJ0nQeDWjq2Uh/6E89TxEwq+Ys0E+lroMoQw6
+         v8BSHZ+NzM2xv+Zcorlir28JYk6WihWTs4bxEawSu0HXgPA0Q8xHb5hdp2ETk2C8RR
+         oc+MNRlOiTL4GkbY37xA0ADibOjHSB4LVihLrNN7EZJxOtpwRUc9TVvb/eA12IdXOR
+         6MJoxkI1rP2QH4mAg14QMdsO/mLkZNUvGz2tptfvMqqFT86f1txAxDy2F9YwqYd2rr
+         pI82xTBby17xw==
+Received: by mail-yb1-f200.google.com with SMTP id y82-20020a253255000000b006e7a04f3824so8466289yby.19
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 10:34:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VqDV5bEOonkQKcGjRa8rDOkspDvNLwiewUYppvmzsG4=;
-        b=jMFZFXobMn3OQo3tTEnGwUBu75jZhPtbFmS5LoowwymSor/l7C3BCPw/uF8FM0S71k
-         v2y3Omp9i8uLDC3nMF3te48EkNAdqS/bwuudpmAnxLCufekNaZF1Mh4GlpzmQr0yoCLQ
-         izeOqDucS9gYGaUKs0nSAdybeuIW8DoDgeFSP+vW31gePJsVRyRlfiAT9bXN2aJED6hs
-         EItfkVlvUVvSuCVRtbf3hip1wsZjYq6+UI2fnIIOD+UFuUFDg2eJLR8Dqiv3XhI8eAFq
-         KS95mNhZvmNEDatSW/HAlpsJtRw/hL276OMNS2oCYJDXrUSGU/Y0KKw0xHzJn+G15wg1
-         NOSg==
-X-Gm-Message-State: ANoB5plax+rdshLMp9RT+tqxj1b7fjPtPPhtSSuDRmKAGx2McLHplNf1
-        6nvZ6wjlLXG4Dpwu++y/qA==
-X-Google-Smtp-Source: AA0mqf59xqJp3I6E88kVPzETemIzIGpnJbqw6uctCutxVSc8VS3ZmMs7qXwBj7/o6UDxxyLKSGwJdQ==
-X-Received: by 2002:a05:6870:9688:b0:141:51a8:2d19 with SMTP id o8-20020a056870968800b0014151a82d19mr1637577oaq.187.1668967231043;
-        Sun, 20 Nov 2022 10:00:31 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:80f8:5cb3:df5a:23c3:86fb:15a6])
-        by smtp.gmail.com with ESMTPSA id 123-20020aca0781000000b00349a06c581fsm3493232oih.3.2022.11.20.10.00.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 10:00:30 -0800 (PST)
-Received: (nullmailer pid 3265089 invoked by uid 1000);
-        Sun, 20 Nov 2022 18:00:30 -0000
-Date:   Sun, 20 Nov 2022 12:00:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Sameer Pujar <spujar@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>, linux-tegra@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Janne Grunau <j@jannau.net>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, Krishna Reddy <vdumpa@nvidia.com>,
-        asahi@lists.linux.dev,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        iommu@lists.linux-foundation.org
-Subject: Re: [PATCH v12 1/4] of: Introduce of_translate_dma_region()
-Message-ID: <166896722896.3265021.2815009340512697667.robh@kernel.org>
-References: <20221117185424.2359687-1-thierry.reding@gmail.com>
- <20221117185424.2359687-2-thierry.reding@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dG5PIPBE2GHp36S+UZp6jaADUVR1TUqcHiS7ewQr4PU=;
+        b=U4fs2yaqLaHFdPTQb0SSOnjpcbt0eXfZoOoOmnSbutF0PVy+7oAKr+6KBuid4tGyS/
+         KeDqAI+rixWdMmsXHl1O9bKRST2jwctmRKDQ0dTIY8LheKrfc5/n4FGdy1IabsI/G1Q9
+         VHHPDdoRirYOEK+ESMdp4mDF4HiblytkZzc1CzgRB45MpVyhxeqy2wcwZX+9M7FejKTW
+         RQ8PGxs9kCtQbNsuXTWZc7IHrWnl5aDVBQW0aMgXh7bNaAHpmCr4j1+dAXT2zwc6mt7z
+         Qq+fQuTwjl/SfiHHb5mWeEqb0GdwsXzMLjGTH9mJz3sxFxLNJBtrmtmkvL0zjA1iIa5w
+         cd8g==
+X-Gm-Message-State: ANoB5pn4OZSjf8Bx4oeODUh8zVVeVnHV/58AGToneHVqiFz2fhq4/7HQ
+        dRYwnQYf5GO7xEUw1dcg4PJr/FnjoxXFWoCw5TR9zFrEf8T8Npao6Q827l1ktjHyDRxFT8GzohQ
+        foTjyauXYkDp+DYfJTLtKAKxkYiPTLVrA+umPwkLwj5xLLY1ywWpbgXM=
+X-Received: by 2002:a25:ce45:0:b0:6de:39c1:9cb3 with SMTP id x66-20020a25ce45000000b006de39c19cb3mr4557861ybe.469.1668969238858;
+        Sun, 20 Nov 2022 10:33:58 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf7D5wi+VzurwIIfkrVA4oYQhDY3qKyG8JzAj9UB/Ym70XQ6dHirKxuyiYefeUUYc4HmKc2qyRnz8/hamiUIt4E=
+X-Received: by 2002:a25:ce45:0:b0:6de:39c1:9cb3 with SMTP id
+ x66-20020a25ce45000000b006de39c19cb3mr4557849ybe.469.1668969238637; Sun, 20
+ Nov 2022 10:33:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221117185424.2359687-2-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221120082114.3030-1-jszhang@kernel.org> <20221120082114.3030-6-jszhang@kernel.org>
+ <CAJM55Z_f=zp3Z=wno_yr7csAUMQ472RiZXD19CrDTTxmGAmU4w@mail.gmail.com> <Y3ppF88SuYAPOjbU@spud>
+In-Reply-To: <Y3ppF88SuYAPOjbU@spud>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Sun, 20 Nov 2022 19:33:42 +0100
+Message-ID: <CAJM55Z95sJzn0zQJF5pGQkeMWTRj8FLyO6i+52idJ4ZMLOT5tg@mail.gmail.com>
+Subject: Re: [PATCH 5/7] riscv: dts: bouffalolab: add the bl808 SoC base
+ device tree
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 20 Nov 2022 at 18:51, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Sun, Nov 20, 2022 at 03:57:17PM +0100, Emil Renner Berthing wrote:
+> > On Sun, 20 Nov 2022 at 09:32, Jisheng Zhang <jszhang@kernel.org> wrote:
+> > >
+> > > Add a baisc dtsi for the bouffalolab bl808 SoC.
+>
+> > > +       xtal: xtal-clk {
+> > > +               compatible = "fixed-clock";
+> > > +               clock-frequency = <40000000>;
+> >
+> > This was discussed many times before, but I think the conclusion was
+> > that the frequency is a property of the crystal on the board, so this
+> > should be 0 in the SoC dtsi, and then overwritten in the board device
+> > tree.
+>
+> Or set nothing in soc.dtsi so that dtbs_check can be used to see if
+> someone forgot to set a clock for their board?
 
-On Thu, 17 Nov 2022 19:54:21 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> This function is similar to of_translate_dma_address() but also reads a
-> length in addition to an address from a device tree property.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  drivers/of/address.c       | 41 ++++++++++++++++++++++++++++++++++++++
->  include/linux/of_address.h |  2 ++
->  2 files changed, 43 insertions(+)
-> 
+Sure. That sounds even better.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> > > +               clock-output-names = "xtal";
+> > > +               #clock-cells = <0>;
+> > > +       };
+>
