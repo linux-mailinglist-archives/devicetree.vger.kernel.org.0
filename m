@@ -2,119 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B357631541
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 17:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D21631545
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 17:53:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiKTQtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 11:49:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36894 "EHLO
+        id S229526AbiKTQxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 11:53:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiKTQtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 11:49:08 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E79413E1E;
-        Sun, 20 Nov 2022 08:49:07 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id v81so10423594oie.5;
-        Sun, 20 Nov 2022 08:49:07 -0800 (PST)
+        with ESMTP id S229517AbiKTQxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 11:53:22 -0500
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2C72E9EB;
+        Sun, 20 Nov 2022 08:53:22 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id p10-20020a9d76ca000000b0066d6c6bce58so6065267otl.7;
+        Sun, 20 Nov 2022 08:53:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=53uEYpSA+4eoQGytR32S8grohfFXG49rcIylHhuzFj8=;
-        b=A+B1SD5W5RHMMKs8C/Oy2sqHs1mqXFzmtAGRxcbMECE9QyAclBhVtdYMzJgMBBESnP
-         9JSKsss120EQXRQgFUmBq5HQrQNW0ELT5Iw1Wv245K6OlZUHiB1M8osgv0qBhDkdimmR
-         ZNBN0KMi5t5ogOTpd60nDYf86AxsMTAwS3w5o5RoP0OENHiinlpMyDhDbjMJsmoG/1F7
-         xzm7o+EXj8qGNYWqV07z4N0Eb8t/p+x/xkzYdhp1uNtnzE5LomuP3emLpUlv1ewYJWqH
-         TV8TyuvZdy6KmsgJNvRKxXOpZF99TqjLarNqFEP20hHXZkz7l6YDpdMVo97+wVSnztMh
-         2SUA==
-X-Gm-Message-State: ANoB5plOCDECALf4yHOa6pygdz4/v9pjxnVZ6K9Z75mTJ17qtLEhvJMx
-        uk631KIa+sz78cRbuz0z6Q==
-X-Google-Smtp-Source: AA0mqf7x6qnZPCjOM9cXRy24E90vfPYfyfopCFQ0GLp/jBjyQctgIwLUHd8hzrLRpgDhzANMJxzJBw==
-X-Received: by 2002:a05:6808:5c4:b0:35a:4aed:5904 with SMTP id d4-20020a05680805c400b0035a4aed5904mr10131960oij.198.1668962946663;
-        Sun, 20 Nov 2022 08:49:06 -0800 (PST)
+        bh=aoQ4zuyTd7evirB3DHF86QcOknBwVYfLo01LRkadhOQ=;
+        b=u0CZTlhYPZ5ckXtB/w2AhrovL27QJCgeBEjvlW4zaByxMdJbTB/vcVEKc7b3va21st
+         pyOIo01WLrqMq816N8Q1LgQwqzkH8VFL7MQUpjD23FBNPyr0HCMc+COLi57tpQa9jfIq
+         7Cnk0zz/LFHDUu4TU9s7guZM9YUDLHPfmjTMPmYrOrQ2VqjzKQzBdufHMiAhDG04yWh7
+         b7Y6/EhjRtNWhiuKVIk979WD3IExGEFGld1xFbvZjzRP5HfRe8Qy1oUALqbWFytixbqs
+         V7swzXYQKQyBnJs9oy9k4n/BLRLBJ4031AVk5efkASn1qJbEVbayweDP079yQsvxudV8
+         bmvg==
+X-Gm-Message-State: ANoB5pl9zog/Il5BR5Eypzj4A9GsAX5iYxgK8SF9kbsHb3ONQQu2nqMe
+        JGDY3xgrNm9xY3tsJnyfufdD17TIPQ==
+X-Google-Smtp-Source: AA0mqf7VoumVeOat8gcKUatjmfqniX6zO3MOiPw3zmmtuxnZ2rqYap6OXiFNILEtWXSN+2z5E8jX9A==
+X-Received: by 2002:a9d:7e9a:0:b0:66c:6096:1878 with SMTP id m26-20020a9d7e9a000000b0066c60961878mr634215otp.203.1668963201355;
+        Sun, 20 Nov 2022 08:53:21 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:80f8:5cb3:df5a:23c3:86fb:15a6])
-        by smtp.gmail.com with ESMTPSA id z12-20020a05687042cc00b0013ae39d0575sm4835620oah.15.2022.11.20.08.49.05
+        by smtp.gmail.com with ESMTPSA id k5-20020a056870d0c500b0014185b2b3d5sm2833328oaa.18.2022.11.20.08.53.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 08:49:06 -0800 (PST)
-Received: (nullmailer pid 3186692 invoked by uid 1000);
-        Sun, 20 Nov 2022 16:49:07 -0000
-Date:   Sun, 20 Nov 2022 10:49:07 -0600
+        Sun, 20 Nov 2022 08:53:20 -0800 (PST)
+Received: (nullmailer pid 3191260 invoked by uid 1000);
+        Sun, 20 Nov 2022 16:53:22 -0000
+Date:   Sun, 20 Nov 2022 10:53:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Zhe Wang <zhe.wang1@unisoc.com>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        avri.altman@wdc.com, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, orsonzhai@gmail.com,
-        yuelin.tang@unisoc.com, zhenxiong.lai@unisoc.com,
-        zhang.lyra@gmail.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Add document for Unisoc UFS
- host controller
-Message-ID: <20221120164907.GA3183451-robh@kernel.org>
-References: <20221116133131.6809-1-zhe.wang1@unisoc.com>
- <20221116133131.6809-2-zhe.wang1@unisoc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>, agross@kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        andersson@kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@gmail.com>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        patches@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] dt-bindings: msm/dsi: Don't require vdds-supply on 10nm
+ PHY
+Message-ID: <166896320103.3191204.6491707287483372164.robh@kernel.org>
+References: <20221116163218.42449-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221116133131.6809-2-zhe.wang1@unisoc.com>
+In-Reply-To: <20221116163218.42449-1-konrad.dybcio@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 09:31:30PM +0800, Zhe Wang wrote:
-> Add Unisoc ums9620 ufs host controller devicetree document.
+
+On Wed, 16 Nov 2022 17:32:18 +0100, Konrad Dybcio wrote:
+> On some SoCs (hello SM6350) vdds-supply is not wired to any smd-rpm
+> or rpmh regulator, but instead powered by the VDD_MX/mx.lvl line,
+> which is voted for in the DSI ctrl node.
 > 
-> Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../bindings/ufs/sprd,ums9620-ufs.yaml        | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml b/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
-> new file mode 100644
-> index 000000000000..ce9d05be1a6b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/sprd,ums9620-ufs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc Universal Flash Storage (UFS) Controller
-> +
-> +maintainers:
-> +  - Zhe Wang <zhe.wang1@unisoc.com>
-> +
-> +allOf:
-> +  - $ref: ufs-common.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: sprd,ums9620-ufs
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ufs_eb
-> +      - const: ufs_cfg_eb
-> +      - const: ufsh
-> +      - const: ufsh_source
 
-Sounds like a parent clock to 'ufsh'? If so, it doesn't belong in 
-'clocks'. Use the clock API to get the parent or use 
-'assigned-clock-parents'.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
