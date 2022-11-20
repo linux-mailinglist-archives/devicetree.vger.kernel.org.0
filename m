@@ -2,87 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7D21631545
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 17:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDE563155C
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 18:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiKTQxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 11:53:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38236 "EHLO
+        id S229489AbiKTRFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 12:05:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiKTQxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 11:53:22 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2C72E9EB;
-        Sun, 20 Nov 2022 08:53:22 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id p10-20020a9d76ca000000b0066d6c6bce58so6065267otl.7;
-        Sun, 20 Nov 2022 08:53:22 -0800 (PST)
+        with ESMTP id S229454AbiKTRFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 12:05:16 -0500
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2615800B;
+        Sun, 20 Nov 2022 09:05:14 -0800 (PST)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-14286d5ebc3so8068673fac.3;
+        Sun, 20 Nov 2022 09:05:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aoQ4zuyTd7evirB3DHF86QcOknBwVYfLo01LRkadhOQ=;
-        b=u0CZTlhYPZ5ckXtB/w2AhrovL27QJCgeBEjvlW4zaByxMdJbTB/vcVEKc7b3va21st
-         pyOIo01WLrqMq816N8Q1LgQwqzkH8VFL7MQUpjD23FBNPyr0HCMc+COLi57tpQa9jfIq
-         7Cnk0zz/LFHDUu4TU9s7guZM9YUDLHPfmjTMPmYrOrQ2VqjzKQzBdufHMiAhDG04yWh7
-         b7Y6/EhjRtNWhiuKVIk979WD3IExGEFGld1xFbvZjzRP5HfRe8Qy1oUALqbWFytixbqs
-         V7swzXYQKQyBnJs9oy9k4n/BLRLBJ4031AVk5efkASn1qJbEVbayweDP079yQsvxudV8
-         bmvg==
-X-Gm-Message-State: ANoB5pl9zog/Il5BR5Eypzj4A9GsAX5iYxgK8SF9kbsHb3ONQQu2nqMe
-        JGDY3xgrNm9xY3tsJnyfufdD17TIPQ==
-X-Google-Smtp-Source: AA0mqf7VoumVeOat8gcKUatjmfqniX6zO3MOiPw3zmmtuxnZ2rqYap6OXiFNILEtWXSN+2z5E8jX9A==
-X-Received: by 2002:a9d:7e9a:0:b0:66c:6096:1878 with SMTP id m26-20020a9d7e9a000000b0066c60961878mr634215otp.203.1668963201355;
-        Sun, 20 Nov 2022 08:53:21 -0800 (PST)
+        bh=VheYSDFtvLHCDiituLIR+eRxXrleFk3aorOpSVzMQ4U=;
+        b=02RCHBfY/JbB+jtltqGWqCpUs1ufgupKWQSpwdFwa8TyqXyDfRLH4IK30HR69zsWAo
+         qAcaznQ5WqaiqYBXpyZTAiXB67yiPrsyO+LA909GFIDquz2xeDQ267qpZbHZI+BfmjJN
+         /JYCP5qTLP0AQV1upJCrhUfGZjIlxIq2cAXjjTUgo4oXqluCfdaSmDiHO4SjeKWS2Kai
+         TG7FgmXiiHHlznkH0Jf4auu2Ai8lWbXzeKbit0qqgWDCiTTkCfgKa/G1xucQ3gReUzrq
+         KRJbv0ZTXtDyz0bsHATn3sr895fxE0cZ7IkSmf2aF7/2EluI0xpE/91PzMegYoBPZboq
+         8wrQ==
+X-Gm-Message-State: ANoB5plygqy5AqeesL8++1a3swnD2pqPxuP+sPEAKK0A4E4fDiuTj+06
+        oEY2rY7vkx8LEu+uYHpKCfMoGuJvGw==
+X-Google-Smtp-Source: AA0mqf67G516TnraaP+JTVCHo56B4CXRmRuPFyOwAhESA4hEJqYmyLjQMdbVK1YDhqM7/GIM3MGdLw==
+X-Received: by 2002:a05:6870:2c85:b0:13c:4592:c2f2 with SMTP id oh5-20020a0568702c8500b0013c4592c2f2mr8070284oab.160.1668963913800;
+        Sun, 20 Nov 2022 09:05:13 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:80f8:5cb3:df5a:23c3:86fb:15a6])
-        by smtp.gmail.com with ESMTPSA id k5-20020a056870d0c500b0014185b2b3d5sm2833328oaa.18.2022.11.20.08.53.19
+        by smtp.gmail.com with ESMTPSA id 59-20020a9d0141000000b0066aba96addbsm3945259otu.81.2022.11.20.09.05.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 08:53:20 -0800 (PST)
-Received: (nullmailer pid 3191260 invoked by uid 1000);
-        Sun, 20 Nov 2022 16:53:22 -0000
-Date:   Sun, 20 Nov 2022 10:53:22 -0600
+        Sun, 20 Nov 2022 09:05:13 -0800 (PST)
+Received: (nullmailer pid 3203993 invoked by uid 1000);
+        Sun, 20 Nov 2022 17:05:14 -0000
+Date:   Sun, 20 Nov 2022 11:05:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, agross@kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        andersson@kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@gmail.com>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        patches@linaro.org,
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Naresh Solanki <naresh.solanki@9elements.com>,
+        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] dt-bindings: msm/dsi: Don't require vdds-supply on 10nm
- PHY
-Message-ID: <166896320103.3191204.6491707287483372164.robh@kernel.org>
-References: <20221116163218.42449-1-konrad.dybcio@linaro.org>
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
+Message-ID: <20221120170514.GA3192266-robh@kernel.org>
+References: <20221116213615.1256297-1-Naresh.Solanki@9elements.com>
+ <20221116213615.1256297-2-Naresh.Solanki@9elements.com>
+ <20221120151331.GA1791561@roeck-us.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221116163218.42449-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20221120151331.GA1791561@roeck-us.net>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 16 Nov 2022 17:32:18 +0100, Konrad Dybcio wrote:
-> On some SoCs (hello SM6350) vdds-supply is not wired to any smd-rpm
-> or rpmh regulator, but instead powered by the VDD_MX/mx.lvl line,
-> which is voted for in the DSI ctrl node.
+On Sun, Nov 20, 2022 at 07:13:31AM -0800, Guenter Roeck wrote:
+> On Wed, Nov 16, 2022 at 10:36:13PM +0100, Naresh Solanki wrote:
+> > Add common fan properties bindings to a schema.
+> > 
+> > Bindings for fan controllers can reference the common schema for the
+> > fan
+> > 
+> > child nodes:
+> > 
+> >   patternProperties:
+> >     "^fan@[0-2]":
+> >       type: object
+> >       $ref: fan-common.yaml#
+> > 
+> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> > ---
+> >  .../devicetree/bindings/hwmon/fan-common.yaml | 42 +++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> > new file mode 100644
+> > index 000000000000..1954882eed77
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> > @@ -0,0 +1,42 @@
+> > +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common fan properties
+> > +
+> > +maintainers:
+> > +  - Naresh Solanki <naresh.solanki@9elements.com>
+> > +
+> > +properties:
+> > +  max-rpm:
+> > +    description:
+> > +      Max RPM supported by fan.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  pulses-per-revolution:
+> > +    description:
+> > +      The number of pulse from fan sensor per revolution.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  target-rpm:
+> > +    description:
+> > +      Target RPM the fan should be configured during driver probe.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  pwms:
+> > +    description:
+> > +      PWM provider.
+> > +
+> > +  label:
+> > +    description:
+> > +      Optional fan label
+> > +
+> > +  fan-supply:
+> > +    description:
+> > +      Power supply for fan.
+> > +
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
+> I still think that at least min-rpm should be added. It is just as common
+> as max-rpm.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Or a table if the response is not linear like LEDs/backlights? Though if 
+there's a tach, that wouldn't be necessary.
+
+Rob
