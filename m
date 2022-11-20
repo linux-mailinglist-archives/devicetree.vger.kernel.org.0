@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 358ED631501
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 16:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 045B6631514
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 17:13:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiKTPrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 10:47:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52728 "EHLO
+        id S229673AbiKTQNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 11:13:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiKTPra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 10:47:30 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 792C1F21;
-        Sun, 20 Nov 2022 07:47:27 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id d1so4385351wrs.12;
-        Sun, 20 Nov 2022 07:47:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=phxWAWN6RFOZILWUELs+CtSL4mhtXipbV6LGQCU4x9A=;
-        b=Zk/hEWohRKl7NoWnQIqZa6QSrvfeaOITUdtB2WBO/h9tt/JjVWHH+dXSsIlHPujtWJ
-         7bR60K9/aYLtgsFdsxpra004l8GRUpsqlWK+nWEWWUFsU41bkjrx2Flxr+7VnY3TQJhf
-         c4m9fynDD6V4oblVuKDivJIFBwN3SW/BoTxfdtJcTC75r1hmuuRbNAW80J5AnI4T78sV
-         LBmAodvRoEuXAtkih0nlfIWaiv5OXEspQWUzbCF+ifqla9XTKJ5SImNXJnqJrwwmTgzu
-         f19i653b/g0Ks/BNn6Mg5K+VXBVe5XK8VMruWgpf487Vs5k8OWbfZ5lBvh8QLuZNH+8g
-         zb6A==
+        with ESMTP id S229604AbiKTQNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 11:13:00 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2C8E0F6;
+        Sun, 20 Nov 2022 08:12:58 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-12c8312131fso11303629fac.4;
+        Sun, 20 Nov 2022 08:12:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=phxWAWN6RFOZILWUELs+CtSL4mhtXipbV6LGQCU4x9A=;
-        b=HxKbgLh5IAS51w14Xu+TIQ2uHJxgA+0VKw50PneCdj046vLxthGvv/Wxt3AvQlCpd1
-         gxCAp5Ww3dHury5SzUjHYTNYkXI8NTiE9UsDJtKZZ+9lHdaTX9tdU8QRJpRIXhp5ImaH
-         fhrtJmMyiHMKhTg2PjiR9ATbKfkN+/EtEb7cjVt+zhYR4OAHhUOqz115F5dH4ANzR1Ke
-         Lipo3VQqn9ylzlNTd1Ycd6GUIYIwiQkUwS93WWpNTofaETbtQmDq+f3EWG2vbePmVRIs
-         rn3uXCX0w1yVIj2eTtdFiQRjBMSH8PH6pjqSCnh7oROEmqlPNeanMSUiyna5t9sR4muZ
-         F0bw==
-X-Gm-Message-State: ANoB5pnKS9cmS3I0imBLSB7kvC2wfSgsW3CDjzmmk/ckgjyiibhWH9lU
-        cI42GH5kCqbqKpBzTmnBiVid5+gE07g=
-X-Google-Smtp-Source: AA0mqf6xnkqQnQfUHctZhRxImHLViJZZuZz2Od3ef/eFyMFibOUIOsiLnK2/7A3TVpH1AhbmXGnw3A==
-X-Received: by 2002:adf:ff83:0:b0:236:6824:c227 with SMTP id j3-20020adfff83000000b002366824c227mr9131970wrr.510.1668959245848;
-        Sun, 20 Nov 2022 07:47:25 -0800 (PST)
-Received: from localhost.localdomain ([95.183.227.98])
-        by smtp.gmail.com with ESMTPSA id e18-20020adfdbd2000000b0022da3977ec5sm8974094wrj.113.2022.11.20.07.47.23
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wiLwBmMHV1A6Z4C0RQN7TsMa3l3kHluwKps8vWmowhY=;
+        b=I15gvGCjRWUu3nGaLl8MSkDflI6BDUIU8vgYoLpPdqiZVA1GRWOGIbVkeH/zJJySOC
+         GSw6N1R2EtbugCsynQoMwpLXD+jS2SxfuWQLG9XQZAUv0zlsHKKeL/MCJ7fnIPE1L+6v
+         TNO9+asJG15jkDgrYeyLoSttthKbr9zUFx9/mnVKwbfzv7/zhqLSJfA9Qlf5H4FsV7Zp
+         uOXKqoURSEc7Uy37jZwdQkr0Y16Pb/KNT+pcpbQ62S1MuqwqaAUBSoxiWCvbvOYjQPOo
+         gD8xJB4QOLh8b/CSl1hTWZvPVoGf/V3hegHEnAeR3JywWx2z2123BK0amKvTHY63hd/K
+         iWpg==
+X-Gm-Message-State: ANoB5pm/edO8GrW02BuTDGQ5nXTbw8N1C/NjqE7aFj+Jtkq7XwycYDby
+        kmUlYFiZxgqvyODcp+y2kQ==
+X-Google-Smtp-Source: AA0mqf6ZbXDYehIdfhDzXQQ1LP/V2dpERMTijOuj5pa1lBMe4ljmr5JO1MZblW1kwPOdHYFxj4miUQ==
+X-Received: by 2002:a05:6870:670a:b0:131:3a84:1326 with SMTP id gb10-20020a056870670a00b001313a841326mr11334462oab.128.1668960777844;
+        Sun, 20 Nov 2022 08:12:57 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80f6:1a48:29f6:113d:266f:a78e])
+        by smtp.gmail.com with ESMTPSA id i11-20020a9d53cb000000b00667ff6b7e9esm3960911oth.40.2022.11.20.08.12.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 07:47:25 -0800 (PST)
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Sun, 20 Nov 2022 08:12:57 -0800 (PST)
+Received: (nullmailer pid 3145083 invoked by uid 1000);
+        Sun, 20 Nov 2022 16:12:51 -0000
+Date:   Sun, 20 Nov 2022 10:12:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     frank-w@public-files.de, linux-mediatek@lists.infradead.org,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alejandro Tafalla <atafalla@dnyon.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: power: supply: Add DT schema for Qualcomm SMBCHG
-Date:   Sun, 20 Nov 2022 18:46:26 +0300
-Message-Id: <20221120154625.57095-1-y.oudjana@protonmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <dfaf7a35-25bb-8201-42bc-73ca280fcb69@linaro.org>
-References: 
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v6 11/11] arm64: dts: mt7986: add BPI-R3 nand/nor overlays
+Message-ID: <20221120161251.GA3133853-robh@kernel.org>
+References: <20221118190126.100895-1-linux@fw-web.de>
+ <20221118190126.100895-12-linux@fw-web.de>
+ <CAL_JsqKiRzRToSzk3q+csWR5DEZjZpQWChqZ3mH8MLruvfe=Dw@mail.gmail.com>
+ <99114D73-22EF-43CD-848E-88A37B29B953@public-files.de>
+ <CAL_JsqKz1qQFZnStLnApraJvp=-cQoW6x5=p7-GBcftYKVMErg@mail.gmail.com>
+ <192D4414-DC88-4321-BB2A-4345C48E3C12@fw-web.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <192D4414-DC88-4321-BB2A-4345C48E3C12@fw-web.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,96 +81,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Aug 2022 11:42:34 +0300, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> On 08/08/2022 10:34, Yassine Oudjana wrote:
-> > From: Yassine Oudjana <y.oudjana@protonmail.com>
-> > 
-> > Add DT schema for the switch-mode battery charger found on Qualcomm
-> > PMICs such as PMI8994. Due to lack of documentation, some interrupt
-> > descriptions might be inaccurate.
-> > 
-> > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> > ---
-> >  .../bindings/power/supply/qcom,smbchg.yaml    | 205 ++++++++++++++++++
-> >  MAINTAINERS                                   |   8 +
-> >  2 files changed, 213 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml b/Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml
-> > new file mode 100644
-> > index 000000000000..d825a9c10b3e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml
-> > @@ -0,0 +1,205 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/supply/qcom,smbchg.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm PMIC Switch-Mode Battery Charger
-> > +
-> > +maintainers:
-> > +  - Yassine Oudjana <y.oudjana@protonmail.com>
-> > +  - Alejandro Tafalla <atafalla@dnyon.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,pmi8994-smbchg
-> > +      - qcom,pmi8996-smbchg
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  monitored-battery:
-> > +    description: |
-> > +      phandle of battery characteristics node.
-> > +      The charger uses the following properties:
-> > +      - charge-term-current-microamp
-> > +      - constant-charge-current-max-microamp
-> > +      - voltage-max-design-microvolt
-> > +      The constant-charge-current-max-microamp and voltage-max-design-microvolt
-> > +      properties must be set.
-> > +      See Documentation/devicetree/bindings/power/supply/battery.yaml
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Charger error
-> > +      - description: Charger inhibited
-> > +      - description: Charger precharge safety timer timeout
-> > +      - description: Charger charge safety timer timeout
-> > +      - description: Charger pre to fast charging switch threshold reached
-> > +      - description: Charger recharge threshold reached
-> > +      - description: Charger taper threshold reached
-> > +      - description: Charger charge termination threshold reached
-> > +      - description: Battery hot
-> > +      - description: Battery warm
-> > +      - description: Battery cold
-> > +      - description: Battery cool
-> > +      - description: Battery overvoltage
-> > +      - description: Battery low
-> > +      - description: Battery missing
-> > +      - description: Battery thermistor missing # unconfirmed
-> > +      - description: USB input undervolt
-> > +      - description: USB input overvolt
-> > +      - description: USB input source detected
-> > +      - description: OTG regulator failure
-> > +      - description: OTG regulator overcurrent
-> > +      - description: Automatic input current limiting done
-> > +      - description: USB ID pin changed
-> > +      - description: DC input undervolt
-> > +      - description: DC input overvolt
-> > +      - description: Power OK
-> > +      - description: Temperature shutdown
-> > +      - description: Watchdog timeout
-> > +      - description: Flash failure
-> > +      - description: OTST2 # unknown
-> > +      - description: OTST3 # unknown
+On Sat, Nov 19, 2022 at 08:19:52AM +0100, Frank Wunderlich wrote:
+> Am 8. November 2022 15:45:49 MEZ schrieb Rob Herring <robh+dt@kernel.org>:
+> >On Fri, Nov 18, 2022 at 4:05 PM Frank Wunderlich
+> ><frank-w@public-files.de> wrote:
+> >>
+> >> Am 18. November 2022 22:39:52 MEZ schrieb Rob Herring <robh+dt@kernel.org>:
+> >> >On Fri, Nov 18, 2022 at 1:01 PM Frank Wunderlich <linux@fw-web.de> wrote:
+> >> >>
+> >> >> From: Frank Wunderlich <frank-w@public-files.de>
+> >> >>
+> >> >> Add devicetree overlays for using nand and nor on BPI-R3.
+> >> >
+> >> >Can you not tell at runtime which one you booted from? If not, how
+> >> >does one choose which overlay to apply? If you can, why not populate
+> >> >both nodes and enable the right one? IMO, if all h/w is present, it
+> >> >should all be in the DT. Selecting what h/w to use is a separate
+> >> >problem and overlays aren't a great solution for that.
+> >>
+> >> It is not the decision about bootdevice,more available devices.
+> >>
+> >> Only 1 spi device (nand OR nor) is available
+> >> at boottime as they share same spi bus and
+> >> chipselect is set via hw jumper.
+> >> Both nodes have reg 0,which is imho not
+> >> supported in linux.
+> >
+> >As long as one is set to disabled, it should be fine.
+> >
+> >
+> >> I choosed overlays to add the right spi
+> >> device on the right mmc device where
+> >> similar selection happens (see patch 10).
+> >> Either sd OR emmc can be used (1 mmc
+> >> controller,first 4bits from bus switched by
+> >> hardware jumper).But for mmc i use it as
+> >> base fdt because i see mmc as primary
+> >> device which holds rootfs too. Nand/nor is
+> >> imho helping device for accessing emmc or
+> >> like rescue system (only uboot).
+> >
+> >No way to read the jumper state or know what you booted from I gues?
+> >
+> >> I probe in uboot if emmc is available (mmc
+> >>  partconf) and choose emmc else sd. For
+> >>  spi i try with sf command to check for nor,if
+> >>  this does not work i apply nand overlay.
+> >
+> >Instead of applying overlays, wouldn't just changing 'status' be easier?
 > 
-> It seems you listed register interrupts, not physical pins. This should
-> be interrupt lines.
+> It will be easier,but requires dts for all
+>  combinations,we have have sd/emmc
+>  combination twice (once for nand
+>  enabling,once for nor) and we have then 4
+>  full dts instead of smaller overlays in fit.
 
-I'm not sure what I'm supposed to do here. I couldn't find an interrupt-lines
-property used anywhere so that's not what you meant, right?
+No, I mean can't you have 1 dtb with everything, but nand, nor, emmc, 
+and sd are all disabled. Then at boot change 'status' for what's 
+enabled.
 
+
+> So i should add spi subnodes both disabled
+>  in base dtsi and create 4 dts (sd-nand,sd-nor,emmc-nand,emmc-nor) with
+>  mmc node and enabling the right spi node?
+> >>
+> >> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> >> >> ---
+> >> >> maybe rename to dtso?
+> >> >>
+> >> >> "kbuild: Allow DTB overlays to built from .dtso named source files"
+> >> >> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=dt/next&id=363547d2191cbc32ca954ba75d72908712398ff2
+> >>
+> >> Should i do this?
+> >
+> >Yes. .dts -> .dtbo is going to be removed.
+> 
+> Do this if still using overlays,will test new way.
+> 
+> Maybe we can apply parts 1-9 first?
+
+Sure.
+
+> 
+> >> >> more comments about the dt overlay-support:
+> >> >>
+> >> >> https://patchwork.kernel.org/comment/25092116/
+> >> >> https://patchwork.kernel.org/comment/25085681/
+> >>
+> >> Daniel suggest define sd/emmc as overlay too...with way you mention below we could create 4 full fdt without applying overlays in uboot.
+> >
+> >Yes, but if you are going to do that, then you can just do all this
+> >with includes.
+> 
+> This is a third way if i understand correctly
+> 
+> Make all of them as overlay (dtso?) but
+>  build dtb by combining them in makefile.
+> 
+> This looks the best way because it avoids
+>  redundand code for mmc node and allows
+>  my current spi config (not the status way
+>  which may break due to same unit address).
+> 
+> I guess my base dtsi is then a dts too?
+
+Yes, it can be.
+
+> 
+> Or should these overlays only duplicated and either include sd dts or emmc dts (but this creates again redundant code)?
+> >> >> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> >> >> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> >> >> @@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+> >> >>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+> >> >>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+> >> >>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtb
+> >> >> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
+> >> >> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
+> >> >
+> >> >These need rules to apply them to the base dtb(s). You just need:
+> >> >
+> >> >full.dtb := base.dtb overlay.dtb
+> >> >dtb-y += full.dtb
+> >>
+> >> I would prefer to do this in bootloader to allow all 4 possible configurations:
+> >>
+> >> Sd+nand
+> >> Sd+nor
+> >> Emmc+nand
+> >> Emmc+nor
+> >
+> >That's fine. The purpose here is to document what the overlays apply
+> >to, check that they actually apply, and validate them when applied
+> >(unless someone wants to figure out all the issues with validating
+> >just an overlay and make that work). You for example have an
+> >undocumented compatible in yours (denx,fit).
+> 
+> Oh,need to check,copied partitions from my
+>  uboot dts...maybe there is a linux version
+>  for marking it as fit partition,else i drop
+>  completely.
+
+You just need to document it. But the first thing I'm going to say, is 
+'u-boot' is the vendor, not 'denx'. So 'u-boot,fit'.
+
+Rob
