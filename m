@@ -2,172 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CBD4631132
-	for <lists+devicetree@lfdr.de>; Sat, 19 Nov 2022 23:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72E6063121A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 02:22:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbiKSWMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Nov 2022 17:12:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
+        id S229455AbiKTBWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Nov 2022 20:22:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232799AbiKSWMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 17:12:44 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DFD15806
-        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 14:12:43 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id p8so13574783lfu.11
-        for <devicetree@vger.kernel.org>; Sat, 19 Nov 2022 14:12:43 -0800 (PST)
+        with ESMTP id S229437AbiKTBV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Nov 2022 20:21:59 -0500
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F03B6B20;
+        Sat, 19 Nov 2022 17:21:57 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-13bd19c3b68so10162815fac.7;
+        Sat, 19 Nov 2022 17:21:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jZkwUGyeGgLpD7/abMkmVR6RIxjNUyy5XUkE4m7mSEI=;
-        b=TQG76VVzCrE6jw2YN1c8BaP66oklivB3/nG6CKm4jPuxtNLKSc7+NVm6kvve9rhyCa
-         wey7z33kLAsDP0UpYXzwbPXrmtEhM8cmaGGTTL/1ekcuWU+LcZX3i2RTsBbXg17r4fZd
-         oFHvQE9nOsWywrJejrCNTsxLOkl6YdkjRTATH2HwJOSEYajPhmAL16rgC/FPqfTYXfRE
-         OCfHrhp9H6wjxe5aqiQlgh/1PB7j/6TmQ0q8uP4AStAukwrbFUFzN1NFSMqUlGsb+ttT
-         mcr1YGtAuO0F70hMi1vJcFliKgJr8eC+SmxRvxsP6NRpAMgrX8txjB7HB86l81Lo78Nu
-         IIlg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+HS+CfYox7ld6+b2/m9ST36+4P+3OQ4EfiKHVDdYhrA=;
+        b=agx4J5BmC6z1crsZDXUGsUeaCSjPpReKTEdjAbryGghhU+2b07IEgol7fPcGM/6Wi+
+         ZH2hY2bXaEHQ/ZiCRBCknKlHW52A/Fba4R7OHklPCJb0S+2OhAOFz/ugNNFYSvPmIAho
+         IyoWlaTFitotzyD1CNBnqtgd5HQpCW7urxVKfCEiMoP9oCiRZ6YFcK8n2BHe/aPdIUq3
+         bPs0t+hIsrAwlVNp2G8FUX2Gv+USj0G31NhC2/bM7cQ1GzAgSbTz/Tqt2+MOV0egaaIS
+         6LuVRf3uIhVcNIM0dH4xYH8HxHGdGW7Ao8GXA4thjpOzVmJPZF4dXiJms5hjnk9KxoN8
+         UAQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jZkwUGyeGgLpD7/abMkmVR6RIxjNUyy5XUkE4m7mSEI=;
-        b=nMUtSWN/S3WPk/6pXkYVh7qelJyn7TQ7jMrswCZKzUmMejptvMpZ8Xdyjju+wg32kr
-         D6vsKn6yQHDdXEGQYHRHje0Ppncdkvf/sea3A36fkenn3r8oYBZa/dByafBTLaIPuzAu
-         S21o1d0j3/fepHj6IO/0Bq2S0WcPYFx7DsNMmBUjItUH4dEa3EAnNO9wAM7ymrh7Q1au
-         RsP9Em3yc04dC8O9PuuDpB2J6bEuBr6MvWyTAkaQdyjqCi1/HfXgZSX5g8HmbLOrHgLj
-         TJHSQELyuXWNcWkqVFSfxM3HywFgo+9/f7jZRZ3KKwsuUtRLfl3VcT7Yhu00CCyM6G1C
-         Jvug==
-X-Gm-Message-State: ANoB5pm98U9D1m61LmA6zqRTflSpu1U8uZHmQbElITrxAqroaIsmqqTr
-        0QhBY/JcloGSbHTqvoDF5w7Kqw==
-X-Google-Smtp-Source: AA0mqf7UUr17t+1zuZd9i2FLTtICOAQdWTqbSE9qMiIErIqFrFCMkU0cgT7OAWvb88tu8sYtVn6nXQ==
-X-Received: by 2002:ac2:47fc:0:b0:4a2:2f31:12bf with SMTP id b28-20020ac247fc000000b004a22f3112bfmr4400296lfp.550.1668895961509;
-        Sat, 19 Nov 2022 14:12:41 -0800 (PST)
-Received: from Fecusia.lan (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id u3-20020a05651220c300b00496d3e6b131sm1234254lfr.234.2022.11.19.14.12.40
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+HS+CfYox7ld6+b2/m9ST36+4P+3OQ4EfiKHVDdYhrA=;
+        b=s/oaHm1HNeiyXyR5cow3rEB6rR7xMmoKCA3AwJAmK8n6yXpPLXt3bRU1WxXz0MNxMT
+         ImBqasOiljlrqqS4fGFL3DVevLKNGsRXqQ900JglqFdLF/wPZR4r2pAwx8QZrFe05TcC
+         pzYTx6Q5O1O4b5ZfO00n6Hv7+C36H6j9+1eboyJgvi6oAf/GDgNOoK/nH9kkRoI0SiEj
+         J9W6l6lA1S3nKxMpQcmlZE1OcXQ/bZPOUl1MtsrRuO1Ic9c2TxnywGYQ97HUFDbxdLfK
+         PDnRBl65PKFdhqV+IRD4zIMFZWklTYMABbfllCE9p+ynJXve7jqw23Gv0kaErxJhJY+o
+         KiSA==
+X-Gm-Message-State: ANoB5pmSA+RQUU20nMCk5TSUCnHr2+qwqVDAf9KKkGi2Nz1WErJwMlLl
+        WWLica0kcShK2JWY/X9e5VA=
+X-Google-Smtp-Source: AA0mqf4u5nVfhqn1A5b7kAP+RrtRWjUR+1pInZ/TDdDd0McqCSBXNw0Mc0a0SssJjWoyNquhHYhXHw==
+X-Received: by 2002:a05:6870:d784:b0:13a:ec33:4ed with SMTP id bd4-20020a056870d78400b0013aec3304edmr1228418oab.56.1668907316977;
+        Sat, 19 Nov 2022 17:21:56 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:485:4b69:2f06:7c46:ee05:7e79])
+        by smtp.gmail.com with ESMTPSA id t21-20020a056870f21500b0010d7242b623sm4146472oao.21.2022.11.19.17.21.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Nov 2022 14:12:40 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
-Date:   Sat, 19 Nov 2022 23:12:16 +0100
-Message-Id: <20221119221219.1232541-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221119221219.1232541-1-linus.walleij@linaro.org>
-References: <20221119221219.1232541-1-linus.walleij@linaro.org>
+        Sat, 19 Nov 2022 17:21:56 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     dmitry.torokhov@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: input: gpio-beeper: Convert to yaml schema
+Date:   Sat, 19 Nov 2022 22:21:35 -0300
+Message-Id: <20221120012135.2085631-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Ux500 CRYP block
-as a compatible in the STM32 CRYP bindings.
+From: Fabio Estevam <festevam@denx.de>
 
-The Ux500 CRYP binding has been used for ages in the kernel
-device tree for Ux500 but was never documented, so fill in
-the gap by making it a sibling of the STM32 CRYP block,
-which is what it is.
+Convert the bindings from plain text to yaml schema.
 
-The relationship to the existing STM32 CRYP block is pretty
-obvious when looking at the register map, and I have written
-patches to reuse the STM32 CRYP driver on the Ux500.
-
-The two properties added are DMA channels and power domain.
-Power domains are a generic SoC feature and the STM32 variant
-also has DMA channels.
-
-Cc: devicetree@vger.kernel.org
-Cc: Lionel Debieve <lionel.debieve@foss.st.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-This was previously sent out as an open question but
-nothing happened, now I send it as part of the STM32
-bindings, in a series making the Linux STM32 driver
-use the STM32 driver.
----
- .../bindings/crypto/st,stm32-cryp.yaml        | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ .../devicetree/bindings/input/gpio-beeper.txt | 13 --------
+ .../bindings/input/gpio-beeper.yaml           | 33 +++++++++++++++++++
+ 2 files changed, 33 insertions(+), 13 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.txt
+ create mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.yaml
 
-diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-index ed23bf94a8e0..69614ab51f81 100644
---- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-+++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-@@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: STMicroelectronics STM32 CRYP bindings
- 
-+description: The STM32 CRYP block is built on the CRYP block found in
-+  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
-+  SoC in 2010.
+diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.txt b/Documentation/devicetree/bindings/input/gpio-beeper.txt
+deleted file mode 100644
+index a5086e37fce6..000000000000
+--- a/Documentation/devicetree/bindings/input/gpio-beeper.txt
++++ /dev/null
+@@ -1,13 +0,0 @@
+-* GPIO beeper device tree bindings
+-
+-Register a beeper connected to GPIO pin.
+-
+-Required properties:
+-- compatible:	Should be "gpio-beeper".
+-- gpios:	From common gpio binding; gpio connection to beeper enable pin.
+-
+-Example:
+-	beeper: beeper {
+-		compatible = "gpio-beeper";
+-		gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
+-	};
+diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.yaml b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
+new file mode 100644
+index 000000000000..5fd57a8940df
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/gpio-beeper.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- maintainers:
-   - Lionel Debieve <lionel.debieve@foss.st.com>
- 
- properties:
-   compatible:
-     enum:
-+      - st,stn8820-cryp
-+      - stericsson,ux500-cryp
-       - st,stm32f756-cryp
-       - st,stm32mp1-cryp
- 
-@@ -27,6 +33,19 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  dmas:
-+    items:
-+      - description: mem2cryp DMA channel
-+      - description: cryp2mem DMA channel
++title: GPIO controlled beeper
 +
-+  dma-names:
-+    items:
-+      - const: mem2cryp
-+      - const: cryp2mem
++maintainers:
++  - Fabio Estevam <festevam@denx.de>
 +
-+  power-domains:
++properties:
++  compatible:
++    const: gpio-beeper
++
++  gpios:
 +    maxItems: 1
++    description:
++      GPIO that drives the beeper.
 +
- required:
-   - compatible
-   - reg
-@@ -48,4 +67,17 @@ examples:
-       resets = <&rcc CRYP1_R>;
-     };
- 
++required:
++  - compatible
++  - gpios
++
++additionalProperties: false
++
++examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
-+    #include <dt-bindings/arm/ux500_pm_domains.h>
-+    cryp@a03cb000 {
-+      compatible = "stericsson,ux500-cryp";
-+      reg = <0xa03cb000 0x1000>;
-+      interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&prcc_pclk 6 2>;
-+      power-domains = <&pm_domains DOMAIN_VAPE>;
++    #include <dt-bindings/gpio/gpio.h>
++    beeper {
++        compatible = "gpio-beeper";
++        gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
 +    };
-+
- ...
 -- 
-2.38.1
+2.25.1
 
