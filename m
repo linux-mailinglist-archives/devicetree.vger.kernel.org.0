@@ -2,187 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B927631384
-	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 12:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3CC631389
+	for <lists+devicetree@lfdr.de>; Sun, 20 Nov 2022 12:07:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbiKTLCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 06:02:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43966 "EHLO
+        id S229735AbiKTLHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 06:07:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiKTLCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 06:02:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C5610B49;
-        Sun, 20 Nov 2022 03:02:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2302760A50;
-        Sun, 20 Nov 2022 11:02:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E6EC433C1;
-        Sun, 20 Nov 2022 11:02:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1668942158;
-        bh=gDU2LVXIzZwLgBshn5UVoInFo0YQ5h+qGGMcrbbByiA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cs/PSADvyqH2ADXPbipsh1UqqL5+N4J52iN86y/9Ew92/X+0a29He9D9ds1c9FvmK
-         +QVB8ohmocBD4E6DpjYtlBx6DfFOUJJdmSbBq5g6TmFGlMJVJ/zRsCXtiehfI4G8OB
-         JQ3ZTopkx++6lrMFU8Hl8HVrqhMV3jOMZgHE06adWe/KPefOJaLhLsQiFqreK7nGVT
-         k6BoUN6D97PzBNuaVG+LiHjOCa+E/H3D92esGe60FgVtJpyd27a/QRK3Va6TpbkEb9
-         PW7Y/Rt8Va7jUm0rXv632cPL308HS/RnxY0gB7vlmQ+g82T7vxMWqMaJ6ADsFLcTVg
-         W/XfX2LZHQblA==
-Date:   Sun, 20 Nov 2022 11:02:33 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 5/7] riscv: dts: bouffalolab: add the bl808 SoC base
- device tree
-Message-ID: <Y3oJSfsNFE9Cn0Al@spud>
-References: <20221120082114.3030-1-jszhang@kernel.org>
- <20221120082114.3030-6-jszhang@kernel.org>
+        with ESMTP id S229722AbiKTLHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 06:07:00 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DB94922C2
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 03:06:59 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id u2so11730592ljl.3
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 03:06:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xIr2q8Y2l+wilwdG0V6wIg0brdQLEMLT5ARBL9F/arc=;
+        b=s9Qk4HhV4hMqLWoMFAqH4DkqhT7EWeeGt8eAonfz3fDKDAEAe7KjNF8GzBmZWtptKX
+         3AkHh52nyS3Ui6E139WNcvaQC628YYRJZK5H2Dbe2LWM9ZN6SGmGIQV/RxBUgQ24i5dh
+         MbFndQV9XMgtMaXLQMFPgCvlNwofOuheQGUECN+7sAGkmcevaf3Wyeucn/Ze1EqhOr6x
+         ExI5DjPrw1imJSwGyy63qdIvqsRX5Xyi8HN7c9BQ1qYc7WaYlAi0STLprYtyc00BYBPs
+         uyMDSvchCzrK0FQiytuvn+mOLwzIoPcmt7zgne7OBfJ8WWziK39wdbB2t80V3AGrYaGO
+         q+3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xIr2q8Y2l+wilwdG0V6wIg0brdQLEMLT5ARBL9F/arc=;
+        b=J3PAeGkiT9ykcBpsNtd4+iEMrlT4Z0DqhNGNWamogUiC5nz7JVc0TTt8kXfoycjwN1
+         UjICt3ucj89AiD9JMF0KekZ7UP7W6ICO63zrDNgmyw1RoXKZBQe2Tp88IDYHNMoMCXVY
+         sj10iDATuzgqtW2P7A84kg1rZo7sjlxgU9dgeoIKKQPgbJVOdyiiben0zG77SiUG+Wjx
+         wFblvhnADxk8VTIuUtxNW8gU6iMyzc1CpIntx8vfdFaccBsQkPyBJPrUl+ftLFfwi6kU
+         jJjNdvgB6YVjCmt9DKD2y4WuQXwmlvG/evjBzMb6AAKmnjXbckEJyM+idytnCsJJDsJ8
+         oA1w==
+X-Gm-Message-State: ANoB5pkmmdlriWfI1VvC62bxsTydEUwSf8mMm3DTyTXcD3YmY4wpIWkc
+        Dh5p38ftkRPQOmdmFnQA8JK9pA==
+X-Google-Smtp-Source: AA0mqf75UpkAwQi9ELawua28y4bhVc60FdGeiYcnfraxXNA39l6f9Cpw28z4XHJjdnuBGAELXXh36g==
+X-Received: by 2002:a2e:990b:0:b0:277:5a8:91c8 with SMTP id v11-20020a2e990b000000b0027705a891c8mr4137786lji.173.1668942417657;
+        Sun, 20 Nov 2022 03:06:57 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q29-20020ac25a1d000000b00497aa190523sm1511887lfn.248.2022.11.20.03.06.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Nov 2022 03:06:56 -0800 (PST)
+Message-ID: <a5afd699-64a5-4034-88d2-95035e08c9c7@linaro.org>
+Date:   Sun, 20 Nov 2022 12:06:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221120082114.3030-6-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add QDU1000 and QRU1000 GCC
+ clocks
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221118181826.28269-1-quic_molvera@quicinc.com>
+ <20221118181826.28269-2-quic_molvera@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221118181826.28269-2-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 20, 2022 at 04:21:12PM +0800, Jisheng Zhang wrote:
-> Add a baisc dtsi for the bouffalolab bl808 SoC.
+On 18/11/2022 19:18, Melody Olvera wrote:
+> Add device tree bindings for global clock controller on QDU1000 and
+> QRU1000 SoCs.
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  arch/riscv/boot/dts/Makefile               |  1 +
->  arch/riscv/boot/dts/bouffalolab/bl808.dtsi | 74 ++++++++++++++++++++++
->  2 files changed, 75 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+>  .../bindings/clock/qcom,gcc-qdu1000.yaml      |  70 ++++++++
+>  include/dt-bindings/clock/qcom,gcc-qdu1000.h  | 170 ++++++++++++++++++
+>  2 files changed, 240 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-qdu1000.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-qdu1000.h
 > 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index ff174996cdfd..b525467152b2 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +subdir-y += bouffalolab
->  subdir-y += sifive
->  subdir-y += starfive
->  subdir-$(CONFIG_SOC_CANAAN_K210_DTB_BUILTIN) += canaan
-> diff --git a/arch/riscv/boot/dts/bouffalolab/bl808.dtsi b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-qdu1000.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-qdu1000.yaml
 > new file mode 100644
-> index 000000000000..c98ebb14ee10
+> index 000000000000..90935a6795ee
 > --- /dev/null
-> +++ b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> @@ -0,0 +1,74 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> + */
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-qdu1000.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,gcc-qdu1000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <dt-bindings/interrupt-controller/irq.h>
+> +title: Qualcomm Global Clock & Reset Controller for QDU1000 and QRU1000
 > +
-> +/ {
-> +	compatible = "bouffalolab,bl808";
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
+> +allOf:
+> +  - $ref: qcom,gcc.yaml#
 > +
-> +	cpus {
-> +		timebase-frequency = <1000000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> +maintainers:
+> +  - Melody Olvera <quic_molvera@quicinc.com>
 > +
-> +		cpu0: cpu@0 {
-> +			compatible = "thead,c906", "riscv";
+> +description: |
+> +  Qualcomm global clock control module which supports the clocks, resets and
+> +  power domains on QDU1000 and QRU1000
 
-So this is not yet defined as the dt etc for the d1 has not yet landed.
-I think I will go pick up that patch for v6.2 as it should make
-everyone's life easier.
+Keep the same style as existing files. They were cleaned up recently.
 
-Without that, dtbs_check produces:
-arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtb:0:0: /cpus/cpu@0: failed to match any schema with compatible: ['thead,c906', 'riscv']
-
-> +			device_type = "cpu";
-> +			reg = <0>;
-> +			d-cache-block-size = <64>;
-> +			d-cache-sets = <256>;
-> +			d-cache-size = <32768>;
-> +			i-cache-block-size = <64>;
-> +			i-cache-sets = <128>;
-> +			i-cache-size = <32768>;
-> +			mmu-type = "riscv,sv39";
-> +			riscv,isa = "rv64imafdc";
 > +
-> +			cpu0_intc: interrupt-controller {
-> +				compatible = "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <40000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		ranges;
-> +		interrupt-parent = <&plic>;
-> +		dma-noncoherent;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		uart0: serial@30002000 {
-> +			compatible = "bouffalolab,uart";
-> +			reg = <0x30002000 0x1000>;
-> +			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&xtal>;
-> +			status = "disabled";
-> +		};
-> +
-> +		plic: interrupt-controller@e0000000 {
-> +			compatible = "thead,c900-plic";
+> +  See also:
+> +  - include/dt-bindings/clock/qcom,gcc-qdu1000.h
 
-Hmm, this one fails validation too. Likely you need to add a
-"bouffalolab,plic" to the plic dt-binding or otherwise modify the
-binding such that thead,c900-plic on it's own is permitted. CC Samuel on
-that patch please in case he has an opinion on it.
+Keep the same style, so missing '::', drop '- '.
 
-Also, I've taken over picking up the misc dt stuff that Palmer used to
-apply - so canaan, starfive & sifive stuff. Do you intended sending PRs
-to Arnd for this stuff, or would you like to me bundle it with what I am
-going to be sending anyway?
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,gcc-qdu1000
 
-Thanks,
-Conor.
+SM8550 is coming with proper style of compatible, so let's do the same
+also here: qcom,qdu1000-gcc
+(and file name matching it)
 
-> +			reg = <0xe0000000 0x4000000>;
-> +			interrupts-extended = <&cpu0_intc 0xffffffff>,
-> +					      <&cpu0_intc 9>;
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			#interrupt-cells = <2>;
-> +			riscv,ndev = <64>;
-> +		};
-> +	};
-> +};
-> -- 
-> 2.37.2
-> 
+
+> +      - const: syscon
+
+I don't see usage of it as syscon. Which parts of GCC are needed for whom?
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Sleep clock source
+> +      - description: PCIE 0 Pipe clock source
+> +      - description: PCIE 0 Phy Auxiliary clock source
+> +      - description: USB3 Phy wrapper pipe clock source
+> +    minItems: 2
+
+Same question as for SM8550 - why inputs are flexible? Either you have
+these or you do not.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+
+Missing ref to gcc.yaml. Drop all properties provided by gcc.yaml.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+
+Drop these required by gcc.yaml.
+
+
+
+Best regards,
+Krzysztof
+
