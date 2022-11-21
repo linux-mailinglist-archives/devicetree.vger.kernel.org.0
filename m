@@ -2,133 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4CA631EC9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:52:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163AD631ED4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:54:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiKUKwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:52:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
+        id S229661AbiKUKyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:54:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiKUKwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:52:47 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8005BC26
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:52:43 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso12435435wme.5
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:52:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
-        b=nSAKPp9iT1tfGIkSlXmfAmD6MPcXsYYSG4wspAw3llD1/Df8G+BuHDkMTvqHL+Ou7k
-         BdMNJojv0ZkWbXFCsFg7d7OA4/6iPdyYm4WKe5lNtl4U7m6vEQm08L9Ms3ZmKPXqtpdx
-         I64b3oIqfZid2IGanRVuzxL3U/FfDQTek317Vcp9WljqMqy5DUAl7gdwh3PLfjHEUhkN
-         tJFIn9n/MGoRjCqHLTHIp/zAMjLbAOxMeYKQVxiOlibovRknkPM+XVoJMfdjpzzAXwlc
-         ud5Srn6WG1kuGnTHesZ1sV07MFHQ2uF1hXZbLaVPxmIq1lsmnqkr33HLgfephdLSU0j0
-         Iz1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
-        b=GS26UyVt84rBb+NhjIUsJJJBHnwQ9HMxyBpq4k5FzQ8A5ZpRPzZxRetrYb3/PEs0qK
-         xAGvgEF6yzh57q88Ix+Zr+33FIzE5ePs1m6KPIsVAjMl/RMw5qDXq0mGMKBvfR9Q7S9/
-         4U4PALC6E/iHOXkAKJ5+4GJiE9B3o5CcedmFkaBCk8X2ZgJeEK5cfzvlwDQjkQMyISm8
-         cs/eAzGfQ/lR8faJO1/mJQwYBJTuBPvPvhbHGM6+iaCi1IH17BrGHRlBdDAbRBQMqU4p
-         AAxdkQSjty5xF9YRw32nFK2FQrKIiH5DwQxTK9bW5aVr1Oo6aq/yeqlifesWHeanRPsh
-         V71A==
-X-Gm-Message-State: ANoB5pnlbBTjLoJbkoIz0l4bXYVrSduVC21vrql+o7bSvqIEl5kW31zf
-        XwY7isVoRmZWNkJUG4lMTh346A==
-X-Google-Smtp-Source: AA0mqf5QSJ7OtroHLmnJdUzSWQwzpQbp01lD9Fe8uHseFbRLgx9H+XiLEeh83Dx4wJW6i6KniCCkYw==
-X-Received: by 2002:a1c:7409:0:b0:3cf:713a:c947 with SMTP id p9-20020a1c7409000000b003cf713ac947mr4678415wmc.40.1669027962284;
-        Mon, 21 Nov 2022 02:52:42 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k33-20020a05600c1ca100b003b3365b38f9sm14550303wms.10.2022.11.21.02.52.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 02:52:41 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S229864AbiKUKyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:54:08 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ECFF23EAD;
+        Mon, 21 Nov 2022 02:54:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669028047; x=1700564047;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5CzyKjvM5WYE6virKJsMLAdYS9+fXIpeK1k+J3c3OSs=;
+  b=BmXxgbYvoWS3kz4mLqbjOnxIr6bAh0TuR0WUS95ZTBmZivHFIKmZG68z
+   VkRZ2fiFygaCSKqb3ptXNITdUo06PhzqoWtFc0GYKQjxcwGBzxm7tUsWb
+   7ytxqs6vuPfiwrSaTrcsOHepvRvGfdUGFrB7hOcumWCf02UV5+hnHXTrf
+   WB4vH3RVuuIM1bx869cFgZPW/eanXggcIKQESUAub4Q5ZumFPjnVMJO3o
+   Jz336ZTT3za/rrkCw7BPhXAwNGlCgQ8Wft7BO73nZyF15Hg9wvtD0w1ET
+   yogIHmJJ37zJD1D+97CEFMqDt/1Ywc1MPcAIUAG4Xlaot4bWfxxsNXXdU
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="301073722"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
+   d="scan'208";a="301073722"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 02:54:07 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="886075072"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
+   d="scan'208";a="886075072"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 02:54:03 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 839582015F;
+        Mon, 21 Nov 2022 12:54:01 +0200 (EET)
+Date:   Mon, 21 Nov 2022 10:54:01 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
-References: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
-Subject: Re: [PATCH v2 0/2] arm64: amlogic: add initial Odroid Go Ultra DTS
-Message-Id: <166902796132.3866590.17335821749451892538.b4-ty@linaro.org>
-Date:   Mon, 21 Nov 2022 11:52:41 +0100
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v3 0/6] dt-bindings: Add macros for video interface bus
+ types
+Message-ID: <Y3tYyRHkvgei5We9@paasikivi.fi.intel.com>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <YtOyCBOqCR71uG1i@paasikivi.fi.intel.com>
+ <Y3dPGkFaz/qo/drw@pyrite.rasen.tech>
+ <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Laurent,
 
-On Fri, 18 Nov 2022 16:50:04 +0100, Neil Armstrong wrote:
-> This adds initial support for the Hardkernel Odroid Go Ultra.
+On Sat, Nov 19, 2022 at 09:15:04PM +0200, Laurent Pinchart wrote:
+> Hello,
 > 
-> The Odroid Go Ultra is a portable gaming device with the following
-> characteristics:
-> - Amlogic S922X SoC
-> - RK817 & RK818 PMICs
-> - 2GiB LPDDR4
-> - On board 16GiB eMMC
-> - Micro SD Card slot
-> - 5inch 854×480 MIPI-DSI TFT LCD
-> - Earphone stereo jack, 0.5Watt 8Ω Mono speaker
-> - Li-Polymer 3.7V/4000mAh Battery
-> - USB-A 2.0 Host Connector
-> - x16 GPIO Input Buttons
-> - 2x ADC Analog Joysticks
-> - USB-C Port for USB2 Device and Charging
+> On Fri, Nov 18, 2022 at 06:23:38PM +0900, Paul Elder wrote:
+> > Hi Sakari,
+> > 
+> > Gentle ping.
+> > 
+> > On Sun, Jul 17, 2022 at 06:54:00AM +0000, Sakari Ailus wrote:
+> > > Folks,
+> > > 
+> > > > Laurent Pinchart (6):
+> > > >   dt-bindings: media: Add macros for video interface bus types
+> > > >   dt-bindings: Use new video interface bus type macros in examples
+> > > >   ARM: dts: freescale: Use new media bus type macros
+> > > >   ARM: dts: omap: Use new media bus type macros
+> > > >   ARM: dts: renesas: Use new media bus type macros
+> > > >   ARM: dts: stm32: Use new media bus type macros
+> > > 
+> > > What's the preference on the tree through which these would be merged?
+> > > 
+> > > The two first should probably go through the media tree but what about the
+> > > DTS? There's a dependency to the first patch. I can take these all if
+> > > people are fine with that.
+> > 
+> > How is this going?
 > 
-> [...]
+> Sakari, if there's a concern taking patches 3/6 to 6/6 in the media
+> tree, could you merge 1/6 and 2/6 ? If they can still be included in a
+> pull request for v6.2, I'll work on getting the dts changes in v6.3
+> through their respective trees.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
+I think I was expecting v4 from you. But I can address the comments, too,
+they were minor matters.
 
-[1/2] dt-bindings: amlogic: document Odroid Go Ultra compatible
-      https://git.kernel.org/amlogic/c/66af218f8669a262b1bf89ba80f2acf1a3be429c
-[2/2] arm64: dts: amlogic: add initial Odroid Go Ultra DTS
-      https://git.kernel.org/amlogic/c/62e73f000696cc41cfd237a1ad90b001ad0f76c6
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+For applying the DTS patches I'd like to have ack from respective
+treemaintainers it's fine to take these through the media tree.
 
 -- 
-Neil
+Kind regards,
+
+Sakari Ailus
