@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FCA9631E62
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C314631E67
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiKUKbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:31:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38858 "EHLO
+        id S229798AbiKUKdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:33:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiKUKbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:31:38 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DD3165B1
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:31:36 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id a15so13994184ljb.7
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:31:36 -0800 (PST)
+        with ESMTP id S229700AbiKUKcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:32:55 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DDA41400E
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:32:53 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id l12so18131267lfp.6
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:32:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Slta85Trz78FGjwfDG8uy79pV5EloKWIZYoD0VMik0o=;
-        b=KuF3mPrP6YdH3IJDZjmfUjTv0ru0fcg3jK9DMUmtHqyzzh5MCUUlUHcPn1cua+VaIh
-         pOs+U6qfu/QKiATpFPX9AZQINHY3GTPMMtJIG1Yqtemd0rQdly+USJmwg6QGna7Oms/x
-         IWlVWqVyPUsqmPFxS9GY22PklA8gLXPU6Kagiqe+HnXsTAUePEreHrSLSVGxPcVjjUj3
-         fsdoMAaRgg2nig4LOnECS6CMIgyH62a9czxRi8IH8xQO7f9G0NLhiqSY3HCe2/wQ7yrZ
-         2u8yBZ6Q/gpBqtP1I8tIaqvBwS+K4qvc+peuOgpAylUK2aAXiGKui+c4FZxtfqmc2E/g
-         9KfQ==
+        bh=vtiHEjAIttB7CAn3xJDjqRmiO71yc6P2uSCGvhcaPgQ=;
+        b=Ofw8MR2aR6I3oqDUrvg1WNpkJKSdUMRram8Be151ukQ+WTMKwDwGqPfs8kY2MGrPvO
+         U7+N/+FpaGf6O0ZmfJ1JX6jkIigIJUqTNAQ/Da8SIuM5Z4DLuiljxGq9Jt3Q6MgLFeLJ
+         wGDL7AxBH+e0cYbQNIx0O+h0Ucz53b+QrEg52FqhL0Rn1rmihPwkho0MD7L6nXinjJGA
+         1lQbUjb9tWuI1m4VaF2KE3KZH42XuF1GoapyjoUWXSkXEOVjghzI2kYZ/1e5qxE26RT1
+         qhC7kT+VkrIpt00ztie7cCJwDKGF7LsfdErAqFVSoSk5YLE1JwAnQD0SDMv/8K9oMRjg
+         HadA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Slta85Trz78FGjwfDG8uy79pV5EloKWIZYoD0VMik0o=;
-        b=rxc3ymBadwFpRE1N1/3gEX2HOuFlYNe+orUtxvZlFLTGb/IlEObZ/3m/RHDxxr/839
-         UoCIG12gA86U6LcZcPSuC3MCSGXSh0oVtWyrONSlD2cZCAlB+N6gb46X1ZGoeEphJqLH
-         71mGlQPixNpOs55Qt9UcTU9zYbTlz+Hc07GPUONho+lyajtUdr+E38elEj+IEUsgzwyR
-         DbHtIPqvhLAsfexzpttiOKvkyUK1RcGl3I1GgQp8DvuYQ/XVjR6cozcMb14Qg5exOmnO
-         /reZJ8zpekUC0UpsoAVAiiuQ4lfGxCJVdS3Uar98sW5rFvIEZy54pnIuq9yU9zxuck5F
-         Mn9g==
-X-Gm-Message-State: ANoB5pk/5adlLbMJty6yQrTuxShuUjwiGPb283TZGDJFA4KvQSR+IE5N
-        xCCarqmDpzLXSMlpE4/qVPH1Fw==
-X-Google-Smtp-Source: AA0mqf6RMmIjGhBX3/kp2DTp7QpyuOxBd9xuRrCYvNmK5sbP+Pi7xf89GSnl0ysEgzeK0q+egGpGzA==
-X-Received: by 2002:a05:651c:549:b0:277:5059:82c8 with SMTP id q9-20020a05651c054900b00277505982c8mr5669806ljp.315.1669026695211;
-        Mon, 21 Nov 2022 02:31:35 -0800 (PST)
+        bh=vtiHEjAIttB7CAn3xJDjqRmiO71yc6P2uSCGvhcaPgQ=;
+        b=dtbcqIhgYLrcTwVbWO+ULI7PVegzMhxracMVtsU3TF5qgis2HRkjZqSAY6plmIlBmg
+         lPLriuHXDa9SdNtHolORoeY1oJCSy9wEvqlyFdkPx4zlKn5MIaan2B9MYYRf56j6X8pz
+         Wn5fY38/YhRxRZgJosB8BvgPVRWdCvkA6Nuw9yfZO9WXLc5rLEQp7lqIzwg6WC1IivAL
+         fW21n0pev6XC2fycYvvNUIToQ9OrgSLaq8tSdw8kJ5CiffpIvzZWh02kqaMjgGlEtmsI
+         MlArvEF382Rym2/n/tGNO6+VTaH3atcL0KIV1DrOpMPVEKS69fpHak+PONF5QSF+a8Na
+         +eBg==
+X-Gm-Message-State: ANoB5pkzeBWGbQ0Y+MMwo/h7j5QF4WfFhg7d2/BXhABsi+c0gvc+qSPq
+        PFce5Nw7X6LSS1U4bi2h83vYNA==
+X-Google-Smtp-Source: AA0mqf6iKN7PSXL75uuqu7QQqMYuqJfBl07GRSGM9UAfM8cwfuGCsmBq23v6rCPQVrw0DlKFfCQRJw==
+X-Received: by 2002:ac2:46e1:0:b0:4b4:c234:b79d with SMTP id q1-20020ac246e1000000b004b4c234b79dmr1420378lfo.557.1669026771836;
+        Mon, 21 Nov 2022 02:32:51 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z17-20020a195e51000000b00499aefcf68esm1965873lfi.292.2022.11.21.02.31.34
+        by smtp.gmail.com with ESMTPSA id i10-20020ac2522a000000b00497a32e2576sm1957021lfl.32.2022.11.21.02.32.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 02:31:34 -0800 (PST)
-Message-ID: <3a50ba73-aab7-f6db-5e42-beb7e193c5bf@linaro.org>
-Date:   Mon, 21 Nov 2022 11:31:33 +0100
+        Mon, 21 Nov 2022 02:32:51 -0800 (PST)
+Message-ID: <beb1a813-a1c3-d660-0fa1-ef4c167245e7@linaro.org>
+Date:   Mon, 21 Nov 2022 11:32:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3] dt-bindings: iio: adc: ad7923: adjust documentation
+Subject: Re: [PATCH] dt-bindings: pwm: ti,pwm-omap-dmtimer: Update binding for
+ yaml
 Content-Language: en-US
-To:     Edmund Berenson <edmund.berenson@emlix.com>
-Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221120153419.GA3094349-robh@kernel.org>
- <20221120170630.29354-1-edmund.berenson@emlix.com>
- <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
- <20221121102600.uwmgivssgy7oakxf@emlix.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20221118125435.9479-1-tony@atomide.com>
+ <debfe50a-7e94-9703-efde-2c805faa3d2b@linaro.org>
+ <Y3eXe/S6MMaDGwEt@atomide.com>
+ <bedbaebe-d84b-fc0b-9492-4503a6d59a83@linaro.org>
+ <Y3tOJZ3LJroyXD6D@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121102600.uwmgivssgy7oakxf@emlix.com>
+In-Reply-To: <Y3tOJZ3LJroyXD6D@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,86 +81,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:26, Edmund Berenson wrote:
-> On Mon, Nov 21, 2022 at 10:13:57AM +0100, Krzysztof Kozlowski wrote:
->> On 20/11/2022 18:06, Edmund Berenson wrote:
->>> - Add the ad7927 compatibility string, with fallback compatibility
->>> to ad7928.
->>> - ad7923 and ad7924 are treated the same in the driver, show
->>> the relationship in the documentation.
+On 21/11/2022 11:08, Tony Lindgren wrote:
+> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221118 14:33]:
+>> On 18/11/2022 15:32, Tony Lindgren wrote:
+>>> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221118 14:12]:
+>>>> On 18/11/2022 13:54, Tony Lindgren wrote:
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "^pwm-([1-9]|1[0-2])$"
+>>>>
+>>>> Drop the nodename, device schemas do not need to enforce it.
 >>>
->>> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
->>> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
->>> ---
->>>  .../bindings/iio/adc/adi,ad7923.yaml          | 26 ++++++++++++-------
+>>> Hmm I think that's needed to avoid warnings if the knob is
+>>> tweaked to 11? Right now the max timer value is 12.
 >>
->> Do not respond with new patch to some old thread. Each patchset starts a
->> new thread.
->>
-> Sorry I didn't know this is the preferred way. I will send new patch
-> version as new thread in the future.
->>>  1 file changed, 17 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
->>> index 07f9d1c09c7d..e553853e25d5 100644
->>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
->>> @@ -11,7 +11,7 @@ maintainers:
->>>  
->>>  description: |
->>>    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
->>> -   AD7918, AD7928 8 Channels ADCs.
->>> +   AD7918, AD7927, AD7928 8 Channels ADCs.
->>>  
->>>    Specifications about the part can be found at:
->>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
->>> @@ -20,14 +20,22 @@ description: |
->>>  
->>>  properties:
->>>    compatible:
->>> -    enum:
->>> -      - adi,ad7904
->>> -      - adi,ad7914
->>> -      - adi,ad7923
->>> -      - adi,ad7924
->>> -      - adi,ad7908
->>> -      - adi,ad7918
->>> -      - adi,ad7928
->>> +    oneOf:
->>> +      - enum:
->>> +          - adi,ad7904
->>> +          - adi,ad7914
->>> +          - adi,ad7908
->>
->> You already started shuffling the entries, so make them ordered. What's
->> the point of changing the order from one non-sorted to another non-sorted?
->>
->>> +          - adi,ad7918
->>> +          - adi,ad7923
->>> +          - adi,ad7924
->>
->> Then deprecate this as alone compatible.
->>
->>> +          - adi,ad7927> +          - adi,ad7928
->>
->> Ditto
->>
->>> +      - items:
->>> +          - const: adi,ad7923
->>> +          - const: adi,ad7924
->>
->> I would expect lower number as fallback.
-> If I remove alone compatibility of 7924 and 7927 in the documentation,
+>> Which warnings? The pwm.yaml allows up to 15.
+> 
+> Heh I was using dec instead of hex.. :) Yup pwm.yaml works just fine.
 
-I don't understand. 7924 and 7927 are not compatible with each other -
-neither in old code nor in new - so what do you want to remove?
-
-> I will have to remove explicit compatibility match on the driver side,
-> correct?
-> Just want to make sure I don't misunderstand you.
-
-My comment to which you responded was about order of items. Usually
-lower number means older device and usually older device is the fallback.
+This could be fixed (extended) in pwm.yaml as well, because simple
+human-readable increments/IDs are usually decimal. hex is only for
+addresses.
 
 Best regards,
 Krzysztof
