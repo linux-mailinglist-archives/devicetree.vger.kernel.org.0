@@ -2,213 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F37F8631CD6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42EB2631CD9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:29:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbiKUJ2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:28:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42454 "EHLO
+        id S229715AbiKUJ3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:29:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiKUJ2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:28:06 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EFE724976;
-        Mon, 21 Nov 2022 01:28:02 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9D9EDE0002;
-        Mon, 21 Nov 2022 09:27:59 +0000 (UTC)
+        with ESMTP id S229650AbiKUJ3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:29:37 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B6D26139;
+        Mon, 21 Nov 2022 01:29:35 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C20D01C0006;
+        Mon, 21 Nov 2022 09:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669022881;
+        t=1669022973;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=V7viAY5AnyzdDmkRQxymcAJLutcCIIh5S3qm0qHRPSg=;
-        b=nbZkOuBTCQqvUfDnkR/u+PfVggCYdve0oxR2Q7yG+P2sKOeKGj9ouz7QEKsxukXZdT8IYa
-        SeG8n2ndvewGJbRZ2OlR0x+nBxxNudd+yvb0Pu1EBaBF7F7VvEb2y/AIThfE8zqWzBwYSp
-        Se4yom1awPe3Am2AMikNRK+JJCjO5Naiygggj3yx3efiYZAG1EdYC69WqeQAzeRxRtdwyj
-        wrr2KZkqNtf5+GUnE8yxHR9b2qeHJ5cuUZijdRmhSrw/gwuO9WPz3XhL4LWrQQ6VC3XacB
-        SMoJRT3TB0l36c7Np75b3K8vhDwABtefF4RRfL8cMyEjSXqUNlWdC5TYEyRkwQ==
-Date:   Mon, 21 Nov 2022 10:27:59 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jacky Bai <ping.bai@nxp.com>, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
-        a.zummo@towertech.it, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, festevam@gmail.com
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
- bbnsm
-Message-ID: <Y3tEnxqWy6HCkpOd@mail.local>
-References: <20221121065144.3667658-1-ping.bai@nxp.com>
- <20221121065144.3667658-2-ping.bai@nxp.com>
- <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
+        bh=c/Vnj6MPjUKIBDRhrj8ixFI/juf2n4PkKcGC0BhMOmA=;
+        b=ngrxWGtv0zVvk4sWmRJqaVEY8vjSErYieuuHoJBEcDxkLetxG+O/372w40aGiHEMcU8fHB
+        tlncjX8G3cA/+qA95MCrxOpGbYpidkbdQltOZudwxNpYEnjU/OAz0Y/6RTZwylvVsaRPAq
+        C3QVw196EX0DWK4OzNMFyMTzuSaGLIavSVq/1l8Xh5dAnE1+JW/nA/KLtDDunhamMXfKwM
+        Cp4UkZ/59bsZp5BLHgtBKlxoDVTMbZnNmKXAAeUS2x/zq79tIesKT1IgsF74defA3WedcU
+        A47FXXAxSRK1Zqnz9jjOCGk/iIHKjHfBGG3I5ENDFFKMcbDoTqNWieTKv6/U7w==
+Date:   Mon, 21 Nov 2022 10:29:28 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Marcin Wojtas <mw@semihalf.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH net-next 6/6] net: mvpp2: Consider NVMEM cells as
+ possible MAC address source
+Message-ID: <20221121102928.7b190296@xps-13>
+In-Reply-To: <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
+References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
+        <20221117215557.1277033-7-miquel.raynal@bootlin.com>
+        <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 10:09:40+0100, Krzysztof Kozlowski wrote:
-> On 21/11/2022 07:51, Jacky Bai wrote:
-> > Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
-> > 
-> > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+Hi Marcin,
+
+mw@semihalf.com wrote on Sat, 19 Nov 2022 09:18:34 +0100:
+
+> Hi Miquel,
+>=20
+>=20
+> czw., 17 lis 2022 o 22:56 Miquel Raynal <miquel.raynal@bootlin.com> napis=
+a=C5=82(a):
+> >
+> > The ONIE standard describes the organization of tlv (type-length-value)
+> > arrays commonly stored within NVMEM devices on common networking
+> > hardware.
+> >
+> > Several drivers already make use of NVMEM cells for purposes like
+> > retrieving a default MAC address provided by the manufacturer.
+> >
+> > What made ONIE tables unusable so far was the fact that the information
+> > where "dynamically" located within the table depending on the
+> > manufacturer wishes, while Linux NVMEM support only allowed statically
+> > defined NVMEM cells. Fortunately, this limitation was eventually tackled
+> > with the introduction of discoverable cells through the use of NVMEM
+> > layouts, making it possible to extract and consistently use the content
+> > of tables like ONIE's tlv arrays.
+> >
+> > Parsing this table at runtime in order to get various information is now
+> > possible. So, because many Marvell networking switches already follow
+> > this standard, let's consider using NVMEM cells as a new valid source of
+> > information when looking for a base MAC address, which is one of the
+> > primary uses of these new fields. Indeed, manufacturers following the
+> > ONIE standard are encouraged to provide a default MAC address there, so
+> > let's eventually use it if no other MAC address has been found using the
+> > existing methods.
+> >
+> > Link: https://opencomputeproject.github.io/onie/design-spec/hw_requirem=
+ents.html =20
+>=20
+> Thanks for the patch. Did you manage to test in on a real HW? I am curiou=
+s about
+
+Yes, I have a Replica switch on which the commercial ports use the
+replica PCI IP while the config "OOB" port is running with mvpp2:
+[   16.737759] mvpp2 f2000000.ethernet eth52: Using nvmem cell mac address =
+18:be:92:13:9a:00
+
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > > ---
-> >  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 103 ++++++++++++++++++
-> >  1 file changed, 103 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> > new file mode 100644
-> > index 000000000000..b3f22b0daea6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> > @@ -0,0 +1,103 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/nxp,bbnsm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP Battery-Backed Non-Secure Module bindings
-> > +
-> > +maintainers:
-> > +  - Jacky Bai <ping.bai@nxp.com>
-> > +
-> > +description: |
-> > +  NXP BBNSM serves as non-volatile logic and storage for the system.
-> > +  it Intergrates RTC & ON/OFF control.
-> > +  The RTC can retain its state and continues counting even when the
-> > +  main chip is power down. A time alarm is generated once the most
-> > +  significant 32 bits of the real-time counter match the value in the
-> > +  Time Alarm register.
-> > +  The ON/OFF logic inside the BBNSM allows for connecting directly to
-> > +  a PMIC or other voltage regulator device. both smart PMIC mode and
-> > +  Dumb PMIC mode supported.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - nxp,bbnsm
-> > +      - const: syscon
-> > +      - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  rtc:
-> > +    type: object
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: nxp,bbnsm-rtc
-> 
-> 
-> Missing ref to rtc.yaml.
-> 
+> >  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/=
+net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > index eb0fb8128096..7c8c323f4411 100644
+> > --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > @@ -6104,6 +6104,12 @@ static void mvpp2_port_copy_mac_addr(struct net_=
+device *dev, struct mvpp2 *priv,
+> >                 }
+> >         }
+> >
+> > +       if (!of_get_mac_address(to_of_node(fwnode), hw_mac_addr)) { =20
+>=20
+> Unfortunately, nvmem cells seem to be not supported with ACPI yet, so
+> we cannot extend fwnode_get_mac_address - I think it should be,
+> however, an end solution.
 
-This is also missing start-year
+Agreed.
 
-> > +
-> > +      regmap:
-> 
-> Use vendor prefix, descriptive name and description. Where is the type
-> of 'regmap' defined?
-> 
-> > +        maxItems: 1
-> 
-> I don't think this is correct. Rob explained the simple-mfd means
-> children do not depend on anything from the parent, but taking a regmap
-> from its parent contradicts it.
-> 
-> > +
-> > +      interrupts:
-> > +        maxItems: 1
-> 
-> You have same interrupt and same address space used by two devices.
-> 
-> Both arguments (depending on parent regmap, sharing interrupt) suggests
-> that this is one device block, so describing it with simple-mfd is quite
-> unflexible.
-> 
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - regmap
-> > +      - interrupts
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  pwrkey:
-> > +    type: object
-> > +    $ref: /schemas/input/input.yaml#
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: nxp,bbnsm-pwrkey
-> > +
-> > +      regmap:
-> > +        maxItems: 1
-> > +
-> > +      interrupts:
-> > +        maxItems: 1
-> > +
-> > +      linux,code: true
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - regmap
-> > +      - interrupts
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - rtc
-> > +  - pwrkey
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    bbnsm: bbnsm@44440000 {
-> > +      compatible = "nxp,bbnsm", "syscon", "simple-mfd";
-> > +      reg = <0x44440000 0x10000>;
-> > +
-> > +      bbnsm_rtc: rtc {
-> > +        compatible = "nxp,bbnsm-rtc";
-> 
-> Use 4 spaces for example indentation.
-> 
-> > +        regmap = <&bbnsm>;
-> > +        interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> > +      };
-> > +
-> > +      bbnsm_pwrkey: pwrkey {
-> > +         compatible = "nxp,bbnsm-pwrkey";
-> > +         regmap = <&bbnsm>;
-> > +         interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> > +         linux,code = <KEY_POWER>;
-> > +       };
-> > +    };
-> 
+> As of now, I'd prefer to use of_get_mac_addr_nvmem directly, to avoid
+> parsing the DT again (after fwnode_get_mac_address) and relying
+> implicitly on falling back to nvmem stuff (currently, without any
+> comment it is not obvious).
+
+I did not do that in the first place because of_get_mac_addr_nvmem()
+was not exported, but I agree it would be the cleanest (and quickest)
+approach, so I'll attempt to export the function first, and then use it
+directly from the driver.
+
 > Best regards,
-> Krzysztof
-> 
+> Marcin
+>=20
+> > +               *mac_from =3D "nvmem cell";
+> > +               eth_hw_addr_set(dev, hw_mac_addr);
+> > +               return;
+> > +       }
+> > +
+> >         *mac_from =3D "random";
+> >         eth_hw_addr_random(dev);
+> >  }
+> > --
+> > 2.34.1
+> > =20
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks a lot,
+Miqu=C3=A8l
