@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8688631DF8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD41631DFB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:16:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbiKUKPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53770 "EHLO
+        id S229449AbiKUKQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:16:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbiKUKPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:15:50 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB54112D1D
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:15:49 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id d6so18084798lfs.10
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:15:49 -0800 (PST)
+        with ESMTP id S229633AbiKUKQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:16:05 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E811F2F642
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:16:04 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id k19so13985867lji.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:16:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rlPX0/HkEahkqIbJpSO1lxKpCnTdlVDg79RU4xh3Zhs=;
-        b=yN/TuefqholGNYZIcqM90cxRsVaSZwKSYlRk8IBdp8d9OFPPB1atBR6DWEeDoWMUt5
-         QpMn8AR5L2w06TUvFXbtlR820yvzLIBqJl4fPbPEv2mIe+LL522gbsqwKVPpnPZUymDJ
-         9Hf4Ag1WtcgU+jaYtnO++HNyyNAJWeltz8aSNkXzPpYKtdaVSRdOcrfJf507/OjhrIY4
-         zzOrIm57EgCNPlsGgOH5FzNTi0LTHUAb9wg+6qPPpviIxcsKL+lx9QhDEMJhPu5jRYY0
-         YKV6FwYom1Wf0ZvS9rfsF8fPsDfhWpbAlT2/dBsQbI8LGkYIR4MIblP+MOalOcxFAX4i
-         Rg0A==
+        bh=XWUJOeG/zPa04enCW2XorjiM8RYSaxFwzqOSJ4t0ZC4=;
+        b=khPaLEgn5sIjpQ/rVRtbW4TPfFp9SM74USATHKHChhgRCvnVTfJPdbiC5WGN1bVtk7
+         QiLkKMAl437DI3DaZ3NZBAxpzm6+/Z0PQfKHKfRZUAe+ugTe2n2YZKwlclADe6+7xZDN
+         j00cZB0kmeIJNs9rKi3n4K9xmhU4cb3CctQXx6x1V0f2bEzMp+A2OYqECFUS0YAlttvQ
+         +NPBcGFNOok2AkxOFewjTpSAl1Sz2Aq5Pgf9natG7Uo0t2PJxSxLpaqiD8DBlGvAEiFB
+         Zzg0lER6Hcw5Crn6yAx9rPgrUKzxmRuF7Y1FtpoQETg94tvSeQ+RU7E+4reOAIp2G4HL
+         xuSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rlPX0/HkEahkqIbJpSO1lxKpCnTdlVDg79RU4xh3Zhs=;
-        b=IUi/GbF5IFV9JPZpAHheQ+3WDtYzK+KTOGebtuRQUjTnFGfxnMBdr79Q68uEXpFf2C
-         IAkMUON7FRuEwQke2ykGb9U+l9kIStMVYrpXQanqXFtDMHhzrcaUNCIvJ2iVKRcqiO1t
-         odAPh1D0RkpGczEagKn+KNHdqqD+QGVs0y74IDjStQaY/iThsCr7sJf6CnKZ5Dcs5hYG
-         XCN0burYrw4ElMcy74N8XjdqIfC0gVU6Aq6cAkqaSTGVUeUt4vSxvFjd43ZeSJ3MPy3u
-         8KLKJY+ht4sgM1/V9z9/ICNYimE4YD5hFiIvd/eaqOmU8YOaYx1X+c5dxomn/QIa+jmQ
-         uCrQ==
-X-Gm-Message-State: ANoB5pkj12H1tZLOzTBJsByVEXHDUs3uLG0MGRqNfaTA7L9zyGRUxGu2
-        9iOwz+PnfxNzXuR6eV/0/pzwWA==
-X-Google-Smtp-Source: AA0mqf7q4Mb4IsKU4YpMv6ICs3I2hcyf1CVMfJHzV4QGvdtvFOb1j28NxRkfCSFEG+vRNXx1HVfr3g==
-X-Received: by 2002:a05:6512:2520:b0:4a2:6907:98d8 with SMTP id be32-20020a056512252000b004a2690798d8mr2261994lfb.28.1669025748240;
-        Mon, 21 Nov 2022 02:15:48 -0800 (PST)
+        bh=XWUJOeG/zPa04enCW2XorjiM8RYSaxFwzqOSJ4t0ZC4=;
+        b=vdrQQZCIph4HGQIs+yQvlfoIPYU1CWJ3iwfumYupnDHE3p5o4Y/d7CdhmjCyQmryGd
+         bccO1qxDX8IlaSAXcnPCczFWRacWfCRGPaXsFS597H88dhoNmKTp6qeNh2YU+oFCMJJn
+         6kRAnGH2VFZLS6+0VA3JLGRz2t0P8K4Rm/lRBDSbmW64IDhUrdpHUZjqvYoY67VweFqf
+         ekoUbULKVpJFDx+2bi/ulXVuLMxntpXk+bCSzf4WWQOzA3BTjKGXPLQStbIAPS0sOffk
+         lvf6lzmTSZnIqx6xWkXV7mgrlxJeNh3aAWxrVyo6UAzI6cMKC2/of++DzTDGvBgnsxMy
+         Oelg==
+X-Gm-Message-State: ANoB5pkmQmIaPCw2EGdWpfd3tM9+4WUT1uODifEOUFeSHpDbSCZNU/lQ
+        xwvrmXB6/xPs9jPEqa6+bUmXzw==
+X-Google-Smtp-Source: AA0mqf6pahYBk6m7Afp7sdpUAI0+3CyI0KsGlCZ114PFjqD+zcE1OVlp+BPydhnl+MgBAMEt/rZR0Q==
+X-Received: by 2002:a05:651c:179e:b0:26d:fcef:7d84 with SMTP id bn30-20020a05651c179e00b0026dfcef7d84mr1016416ljb.9.1669025763307;
+        Mon, 21 Nov 2022 02:16:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p8-20020a19f008000000b004ac980a1ba1sm1959456lfc.24.2022.11.21.02.15.47
+        by smtp.gmail.com with ESMTPSA id c27-20020ac25f7b000000b0049f53b65790sm1955252lfc.228.2022.11.21.02.16.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 02:15:47 -0800 (PST)
-Message-ID: <0c303534-190a-7480-f1bf-fa0b9a1d4dba@linaro.org>
-Date:   Mon, 21 Nov 2022 11:15:46 +0100
+        Mon, 21 Nov 2022 02:16:02 -0800 (PST)
+Message-ID: <1243aa10-21c3-5b63-d454-8cec925e9adf@linaro.org>
+Date:   Mon, 21 Nov 2022 11:16:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD
- Pro boards
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Add a herobrine CRD Pro
+ SKU
 Content-Language: en-US
 To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
@@ -64,8 +64,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dianders@chromium.org,
         mka@chromium.org
 References: <20221121043437.21925-1-quic_rjendra@quicinc.com>
+ <20221121043437.21925-2-quic_rjendra@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121043437.21925-1-quic_rjendra@quicinc.com>
+In-Reply-To: <20221121043437.21925-2-quic_rjendra@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,18 +79,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/11/2022 05:34, Rajendra Nayak wrote:
-> Add compatibles for the Pro SKU of the sc7280 CRD boards
-> which come with a Pro variant of the qcard.
-> The Pro qcard variant has smps9 from pm8350c ganged up with
-> smps7 and smps8.
+> Some of the qualcomm qcard based herobrine devices can come with
+> a Pro variant of the chipset on the qcard.
+> Such Pro qcards have the smps9 from pm8350c ganged up with smps7 and
+> smps8, so Add a .dtsi for pro skus that deletes the
+> smps9 node and include it from the new dts for the CRD Pro
 > 
 > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
 
+LGTM
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
