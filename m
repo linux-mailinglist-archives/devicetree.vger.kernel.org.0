@@ -2,137 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5692D63243E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F032632444
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiKUNtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 08:49:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55884 "EHLO
+        id S231168AbiKUNug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:50:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbiKUNtD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:49:03 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B05624B;
-        Mon, 21 Nov 2022 05:49:03 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 219306600371;
-        Mon, 21 Nov 2022 13:49:01 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669038541;
-        bh=AeKWzGXHbjRKpMaS+ztWcfZ+DeI78CJ083tMt3FLtes=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bvComeICZ+p7rb1lgdPClfoyO/gA+D0VTz/zn47MaRosJ+vsGqguHKWSYUZZXlp+4
-         ApbqaD01wloyg1n/LrsQ8BRaImqS0tFmCnBDVPb5DG+4fQdRQsZE0NwabIqlUxiqJA
-         6dbt0E6jgQkxX1i+Upu+iKAWrvod1wn4ljKNv8Rv2whVNckIJFFrgOCpEsccQDpFSJ
-         u06xUkNp0QYwa7+gXDXhxsEtE6lMTAZVStCXqz38UpUYTMJTtnR+CwdPLa/qsUFl0R
-         jN8Ek/4YiZNsFcb58074RKzFx3sAbpZH0Gt2J4qNwywvaz2OvCWr/LbatB4/LTGRAC
-         545gIjRkAST9A==
-Message-ID: <1d27a496-b49c-94d5-e9e6-68c81195a69a@collabora.com>
-Date:   Mon, 21 Nov 2022 14:48:58 +0100
+        with ESMTP id S229977AbiKUNud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:50:33 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE196547
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:50:32 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id bp15so18879739lfb.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:50:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QAt4YvIoyvYsFbo41kBZWP010rGTy75faIZV5/NcsYg=;
+        b=gzXIwUVXy1V7XBQQSTVPLPMyWs9eNUDdabh6yxCweLVXP0Y6xCGvLuky1A0pLGKMjt
+         EctDlYTbYh7atokrbgwkF3m2WoN7dkhcH7eiHwuD6hIwTy1XYNrBtCasY/E1VSWfLZsA
+         qROPXRiGVWnFpDVL1oWnB+qU1HMkJyretUNyK0pF9ynXE8ztKFR2X+MKbQSWzG+etLcv
+         cd+tK5t5IdGz8GGE5nuKL8KVDePd/hPi3oUWcbnV4YrMIgtkL3zDWxCdDFvXFVWC6aYo
+         SD28pL5bCy7dSkI2BrRaxkrt/OjbWOmyvPF7MksBJExMLpXWvMN/Fgoon8cJfwkhmTHZ
+         wzqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QAt4YvIoyvYsFbo41kBZWP010rGTy75faIZV5/NcsYg=;
+        b=kuFkwD2/GV24nKhlVuzSG9CKCGnDQambCMvIAF6c0xKi7eP8ca6svjIwJwU2pE/WOF
+         JMnN9OEPXPFRms5WPZ7omQOQ0G/xcnzDITSJzPKGgCWuDfcpsg8J2XlT+jKEiXdXHtaj
+         dPLu807w5EoLWmkrgYIIvuvrOOPuEnAxdl9Pu6Y4G+NRBAQMdkHpegoBFjUgLGeD117u
+         kM4UJ/JRcwpl4Gx1dhuN/qO/qw3nDrHJ05RrS6iHnuq6+k2He/sELhvm61j9dpdedVSG
+         GN/yCx2LpR+Plgsuz7e9HUllAuhUg0yuDc2Y8M5t03fu1v5fkCLLPzgknnOsLPR1BKKe
+         NVwQ==
+X-Gm-Message-State: ANoB5pmRkho6peS2RD+xHE8PZcOydrKWVWkXdbW38rzHQR6mtmUx3ISC
+        GQ764bWkw6SzTceKm3XtgRqtrQ==
+X-Google-Smtp-Source: AA0mqf5TYxFBqqdBHMjFqcmXaZTC/TwSnfK8gpf3JY5xoq27k5W77KUczLzcmKQ1hGAgM6fJhOjrew==
+X-Received: by 2002:a05:6512:2109:b0:4a2:5f7b:840a with SMTP id q9-20020a056512210900b004a25f7b840amr3125371lfr.577.1669038630507;
+        Mon, 21 Nov 2022 05:50:30 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004a2588520f5sm2027721lft.166.2022.11.21.05.50.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 05:50:30 -0800 (PST)
+Message-ID: <e0835b03-c409-ef0b-501b-176251bc1725@linaro.org>
+Date:   Mon, 21 Nov 2022 14:50:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 6/7] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
- Document MT6735 pin controller
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add pm8010 pmic dtsi
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-References: <20221118113028.145348-1-y.oudjana@protonmail.com>
- <20221118113028.145348-7-y.oudjana@protonmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221118113028.145348-7-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     neil.armstrong@linaro.org, Abel Vesa <abel.vesa@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20221116103146.2556846-1-abel.vesa@linaro.org>
+ <20221116103146.2556846-4-abel.vesa@linaro.org>
+ <76560659-7c90-3846-c250-24bfb072ec0e@linaro.org>
+ <15ac1d06-5da7-ebd2-92ff-764c8df803a1@linaro.org>
+ <3a84d45c-6550-7ae2-2511-9f61d15894d1@linaro.org>
+ <081732c9-5e8e-b68e-c2bd-20724ca1a5d5@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <081732c9-5e8e-b68e-c2bd-20724ca1a5d5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/11/22 12:30, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 21/11/2022 14:29, neil.armstrong@linaro.org wrote:
+>>>> Any reason why this is licensed BSD-3 clause? It's not a recommended
+>>>> license (2 clause is). Same for other patches.
+>>>
+>>> Probably a bad copy-paste from other existing files.
+>>>
+>>> While checking, the majority of arch/arm64/boot/dts/qcom/pm*.dtsi uses BSD-3-Clause
+>>> so it seems this was done for quite a while now.
+>>
+>> If it is derivative work (of upstrea, downstream), then you might have
+>> to keep BSD-3. But if not, how about changing it to BSD-2?
 > 
-> Add bindings for the pin controller found on MediaTek MT6735 and
-> MT6735M SoCs, including describing a method to manually specify
-> a pin and function in the pinmux property making defining bindings
-> for each pin/function combination unnecessary. The pin controllers
-> on those SoCs are generally identical, with the only difference
-> being the lack of MSDC2 pins (198-203) on MT6735M.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->   .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 55 ++++++++++++++++++-
->   MAINTAINERS                                   |  6 ++
->   2 files changed, 60 insertions(+), 1 deletion(-)
-> 
+> It's definitely a derivative work from upstream pm*.dtsi files with BSD-3-Clause
+> licence.
 
-..snip..
+OK.
 
-> @@ -352,18 +391,32 @@ examples:
->               };
->   
->               /* GPIO0 set as multifunction GPIO0 */
-> -            gpio-pins {
-> +            gpio0-pins {
->                   pins {
->                       pinmux = <PINMUX_GPIO0__FUNC_GPIO0>;
->                   };
->               };
->   
-> +            /* GPIO1 set to function 0 (GPIO) */
-> +            gpio1-pins {
-> +                pins {
-> +                    pinmux = <(MTK_PIN_NO(1) | 0)>;
-
-Please follow the same format that you can find in all of the
-mtXXXX-pinfunc.h.
-
-What you wrote here (MTK_PIN_NO(x) | func) is defined in there for the purpose
-of providing a definition name that actually means something (for both readability
-and documentation purposes).
-
-This means that your GPIO1 set to function 0 (gpio) should be
-
-			pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-
-> +                };
-> +            };
-> +
->               /* GPIO52 set as multifunction SDA0 */
->               i2c0-pins {
->                   pins {
->                     pinmux = <PINMUX_GPIO52__FUNC_SDA0>;
->                   };
->               };
-> +
-> +            /* GPIO62 set to function 1 (primary function) */
-> +            i2c1-pins {
-> +                pins {
-> +                    pinmux = <(MTK_PIN_NO(62) | 1)>;
-
-pinmux = <PINMUX_GPIO62__FUNC_SDA1>; (is it sda1??)
-
-This means that you should as well add a mediatek,mt6735-pinfunc.h binding...
-
-Regards,
-Angelo
-
+Best regards,
+Krzysztof
 
