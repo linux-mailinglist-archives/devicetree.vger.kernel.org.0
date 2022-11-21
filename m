@@ -2,138 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6372C631EE4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 809186320E0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:41:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiKUK6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:58:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55722 "EHLO
+        id S230505AbiKULlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:41:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiKUK6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:58:38 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6749E951;
-        Mon, 21 Nov 2022 02:58:36 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id bj12so27514078ejb.13;
-        Mon, 21 Nov 2022 02:58:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yuufDN8MAkZ+z/1NDCLZ9tHt7lifmvSE7ROToVJ/Z04=;
-        b=ZLoPWLhoKYxmHi/+IEWgDRPnqyYviYWLV2Jv3fhHz4fokTK+GyWrKFeWB7iIwuoSTz
-         Quf2F9gQ7o0rGRz0uKepfni+gYMcuVSWOXz8HuXsvBJcxzEc1Z49vHixl0t6xsU4sBYH
-         FN/3u2GhJ+gEC8xhq7k6JBDttv/s3SbT5fNUgDAAUWjgaTdlsaHfQUvdxVzOvh0XY2NN
-         II+b9Hrg8zgRJ1FxdZpxY9RRrhVxg0EWAda9OKconHCmHU2uk9rTF+9t2RVuBcc/SnG7
-         HK4W+EjgDr0EDbn41X0qNZkiMuVir3Dhy2Q4v0rKlXZkIB7AKHsiiibfm6TTRYYGPO2K
-         GdXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yuufDN8MAkZ+z/1NDCLZ9tHt7lifmvSE7ROToVJ/Z04=;
-        b=6hna8scE0Je+fjLlbhtjSC8mw7j6xtlloCMp0u9H9odR5RJdLUAtm4SOIO6OMqVt0V
-         7oOf644ls8ARMdPTrPF34ucDnPinTjFws4IiQRSTqUaE28/Lm2uSiW0pmNRxrU8MiyLC
-         vowt7Vn9+eFuMsAZTdGUWIACGgreOcKvFoVyWPmuS9M+3ngURxlH9uGO2jmHefybUp2K
-         gBAAEMhXpTFzpaV5yMSehlWA421rbcjR/HxXSlODQxDL8Lfyq6vxgjQS/mMhLwNWIOHF
-         +VEZVfmEKvnCq3MNL5GeP5hyd79z9eE8jaw1L/yZUaE47zun5GuPFuGdaw6a+ObWyu2J
-         9OPQ==
-X-Gm-Message-State: ANoB5pk9J9q9DUO5V/L0PEJeWEvjmtJenbB1rop41kLYsjNVp4QCJ9l0
-        7k3oA8BlrXw7rOC5wszrmic=
-X-Google-Smtp-Source: AA0mqf54asC375YIqRZi1ostE5mdXb4wOP9ZiJG3ecr1g4Kt9CqeEvbwGhIPZ6W7NP+kX0CDNqsmpQ==
-X-Received: by 2002:a17:906:901:b0:7ae:23c:3cb4 with SMTP id i1-20020a170906090100b007ae023c3cb4mr14566927ejd.599.1669028315126;
-        Mon, 21 Nov 2022 02:58:35 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id mf20-20020a1709071a5400b0078a543e9301sm4869041ejc.200.2022.11.21.02.58.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 02:58:34 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH dt-schema.git] schemas: add NVMEM cell with #nvmem-cell-cells
-Date:   Mon, 21 Nov 2022 11:58:30 +0100
-Message-Id: <20221121105830.7411-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230479AbiKULkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:40:32 -0500
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043D91B1DC
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:40:16 -0800 (PST)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20221121114012epoutp01997f28d8038fc52a29e378b5b79d01b1~plq5iYnao1587215872epoutp01p
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:40:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20221121114012epoutp01997f28d8038fc52a29e378b5b79d01b1~plq5iYnao1587215872epoutp01p
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669030812;
+        bh=k6BCQhAc1QJjlToPfL6iH8ZV8+rahLxp9IWGdjPBumQ=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=vF/ZzhPyxPa0R4v7CcV6Q60iK9Lowf4B8nRM5w5+6XJKr/jn1pefh8ggg1ORfdZ/2
+         ctSYc/zoURoQlH52hBcdEIgFq5lkYIYApeWF2X7jGFFyQbWkOzoyOBSFQvh601o6tz
+         eVoAyyYSNSA2klT9j9738XS0bwlSxQ5/DG8XzmoU=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20221121114012epcas5p1c4d1e194fef85cdd2d3699e7ffb12130~plq5M-G4M2845828458epcas5p13;
+        Mon, 21 Nov 2022 11:40:12 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4NG56L4NN7z4x9Pv; Mon, 21 Nov
+        2022 11:40:10 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        5D.2F.01710.A936B736; Mon, 21 Nov 2022 20:40:10 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221121090555epcas5p29c8c7de6dba38449aaf3357beb43432d~pjkMhPQ0A2126421264epcas5p2C;
+        Mon, 21 Nov 2022 09:05:55 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221121090555epsmtrp2972a73b8f017fef049d485f7478297ab~pjkMgh6F12801828018epsmtrp2N;
+        Mon, 21 Nov 2022 09:05:55 +0000 (GMT)
+X-AuditID: b6c32a49-a41ff700000006ae-7c-637b639abba8
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        5D.19.18644.37F3B736; Mon, 21 Nov 2022 18:05:55 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20221121090554epsmtip179528108a46eaed0d211936597639005~pjkLNmTvj1475314753epsmtip1n;
+        Mon, 21 Nov 2022 09:05:54 +0000 (GMT)
+From:   Sriranjani P <sriranjani.p@samsung.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, devicetree@vger.kernel.org,
+        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com
+Cc:     linux-kernel@vger.kernel.org,
+        Sriranjani P <sriranjani.p@samsung.com>
+Subject: [PATCH 0/2] arm64: dts: Add SYSREG nodes for FSD SoC
+Date:   Mon, 21 Nov 2022 14:41:16 +0530
+Message-Id: <20221121091118.48628-1-sriranjani.p@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGKsWRmVeSWpSXmKPExsWy7bCmuu6s5Opkg5VLFCwezNvGZjH/yDlW
+        i74XD5ktdrQtZLG4vGsOm8WirV/YLR5+2MNu0br3CLvF7TfrWB04PTat6mTzuHNtD5tH35ZV
+        jB6fN8kFsERl22SkJqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6
+        ZeYA3aKkUJaYUwoUCkgsLlbSt7Mpyi8tSVXIyC8usVVKLUjJKTAp0CtOzC0uzUvXy0stsTI0
+        MDAyBSpMyM541fyMveApc8XcGU+YGhh/MnUxcnBICJhInH4v0sXIySEksJtRYvYJhy5GLiD7
+        E6NE/8PTTBDOZ0aJ9//2M4FUgTS0XZ3GDJHYxSix9e8ERginlUmiZ9oaZpAqNgFdidZrn8Ha
+        RQS2MEqsPL8TrJ1ZwFPiwJXnYLawgK3Err+3wBpYBFQlGh49YQO5iRcofmyjKcQ2eYnVGw6A
+        bZMQ2MYusffAbnaIu10kVr33hKgRlnh1fAs7hC0l8fndXjYIO11i85HNrBB2jkRHUzMzhG0P
+        dMIcFpAxzAKaEut36UOEZSWmnloHdSWfRO/vJ1AP80rsmAdjq0ksftQJZctIrH30CWq8h8Te
+        /mmMkGCMlbh85xrzBEbZWQgbFjAyrmKUTC0ozk1PLTYtMMxLLYdHU3J+7iZGcALT8tzBePfB
+        B71DjEwcjIcYJTiYlUR462Oqk4V4UxIrq1KL8uOLSnNSiw8xmgJDbCKzlGhyPjCF5pXEG5pY
+        GpiYmZmZWBqbGSqJ8y6eoZUsJJCeWJKanZpakFoE08fEwSnVwGR3juHN+S+T9237cTKy/M8n
+        js2xF+Myz/xw68rr4Y+5tHwGl6RlZtoUy/ZFHnaPzumdTd35buI0hZb/xvn9G+3mGhjZzf1T
+        tsP8pphpTYN/8QZ1GQv/OLe+ExW3991pORywpZ2p8Gmy9NpXdw/Lab5j/HXEZuOBt3Wzrpys
+        fDnj7eGOGzNT6nnXJFnPkXb2et+5WDCpYGrwsXDH9yu4zxxWZQz/kxXdEPZP7KhD3VWd9JNe
+        L9TEA/rq1moWujz7qmJ6TPTT2YdSPickU3vDpvAbFvAuON2/7X/ClGTWNAmfNOm7D1pyAqW/
+        Jb6ODqy02/P/YtrxwNl3/m55W3P1ypupt04vuGa77Iuq4poKRw8lluKMREMt5qLiRADU0aQq
+        6QMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmluLIzCtJLcpLzFFi42LZdlhJTrfYvjrZ4PpuA4sH87axWcw/co7V
+        ou/FQ2aLHW0LWSwu75rDZrFo6xd2i4cf9rBbtO49wm5x+806VgdOj02rOtk87lzbw+bRt2UV
+        o8fnTXIBLFFcNimpOZllqUX6dglcGa+an7EXPGWumDvjCVMD40+mLkZODgkBE4m2q9OYuxi5
+        OIQEdjBKrH36iRUiISNx8sESZghbWGLlv+fsEEXNTBJXfr5jAUmwCehKtF77zASSEBHYwyjx
+        bvoJoG4ODmYBb4kpv9VAaoQFbCV2/b0FNohFQFWi4dETNpASXqD4sY2mEPPlJVZvOMA8gZFn
+        ASPDKkbJ1ILi3PTcYsMCo7zUcr3ixNzi0rx0veT83E2M4HDS0trBuGfVB71DjEwcjIcYJTiY
+        lUR4RY5VJgvxpiRWVqUW5ccXleakFh9ilOZgURLnvdB1Ml5IID2xJDU7NbUgtQgmy8TBKdXA
+        tPOCW3n3b0mel6Fhi/q/9OU277Mv9NjJY35x2dX49IZbEzPEii81BpofXLOvSU8v7EnyXR7T
+        B+bXeln7PYw7b5xJ2G27wO1SnWJ02HrOhuba0zeehtSwJ7KfaluxZemr+Uuf3vra/mBHMSeH
+        1qynXXoOu2tP2B8pOu+s4X390m9Rua6VgQz7p66bJdO/pVd7l9Li/8Z/Zsw/FsjI/O50+x0D
+        m+V/Jm6YrTTzek5OPkdZxF+HveEvHOIZ2bpfLPKYmFVoknj4b0Waz8aG1SczfT8l1BQt2P/Y
+        fYagkmdGSMXDxdoRHzu4bu46WCKVPnN9f0fbo7SXHXrTFn+W8A3XvF3+91fLpdbKm4YT+taK
+        KrEUZyQaajEXFScCAMnYbGqWAgAA
+X-CMS-MailID: 20221121090555epcas5p29c8c7de6dba38449aaf3357beb43432d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221121090555epcas5p29c8c7de6dba38449aaf3357beb43432d
+References: <CGME20221121090555epcas5p29c8c7de6dba38449aaf3357beb43432d@epcas5p2.samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+FSD SoC has three sysreg nodes one in PERIC block and other two are in
+FSYS0 and FSYS1 block. This patch series add required DT binding and
+DT file modifications.
 
-Some NVMEM cells may provide more than 1 value. An example can be base
-MAC address that is used for calculating multiple MACs (for few
-different devices). For specifying value to read phandle needs to be
-used with an argument.
+Sriranjani P (2):
+  dt-bindings: mfd: syscon: Add tesla compatibles found on FSD SoC
+  arm64: dts: fsd: add sysreg device node
 
-Cc: Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>
-Cc: Michael Walle <michael@walle.cc>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-This bit is required for moving forward with the
-[PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
-https://lore.kernel.org/linux-arm-kernel/20220901221857.2600340-1-michael@walle.cc/
+ Documentation/devicetree/bindings/mfd/syscon.yaml |  1 +
+ arch/arm64/boot/dts/tesla/fsd.dtsi                | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
 
-As pointed out by Rob #nvmem-cell-cells should be added to the dt-schema
-and not a Linux binding:
-Re: [PATCH v2 15/20] dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
-https://lore.kernel.org/linux-arm-kernel/20220912192038.GA1661550-robh@kernel.org/
-
-sl28 is one example that needs #nvmem-cell-cells
-u-boot,env is another one
-
-Please let me know if I got this binding right at all.
----
- dtschema/schemas/nvmem/nvmem-cell.yaml | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100644 dtschema/schemas/nvmem/nvmem-cell.yaml
-
-diff --git a/dtschema/schemas/nvmem/nvmem-cell.yaml b/dtschema/schemas/nvmem/nvmem-cell.yaml
-new file mode 100644
-index 0000000..dfa99b8
---- /dev/null
-+++ b/dtschema/schemas/nvmem/nvmem-cell.yaml
-@@ -0,0 +1,23 @@
-+# SPDX-License-Identifier: BSD-2-Clause
-+$id: "http://devicetree.org/schemas/nvmem/nvmem-cell.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/base.yaml#"
-+
-+title: NVMEM Cell Common Properties
-+description: "Schema for NVMEM cell devicetree bindings"
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+# always select the core schema
-+select: true
-+
-+properties:
-+  "#nvmem-cell-cells":
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description: >
-+      Some NVMEM cells may consist of raw data that requires some extra
-+      processing. They may provide more than 1 value.
-+
-+      Passing extra argument(s) allows selecting data to access.
-+
-+additionalProperties: true
 -- 
-2.34.1
+2.17.1
 
