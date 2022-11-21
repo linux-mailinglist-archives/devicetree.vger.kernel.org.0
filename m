@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BE2632095
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:29:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A228632099
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:29:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbiKUL3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:29:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56878 "EHLO
+        id S230293AbiKUL3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:29:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbiKUL3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:29:11 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD3DB9486
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:23:55 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id z24so14158872ljn.4
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:23:55 -0800 (PST)
+        with ESMTP id S230368AbiKUL3d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:29:33 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F82B4801
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:24:10 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id l8so14117362ljh.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:24:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d1hGOwFF0QOaziSceA+/kHlNJfHPDOB+lxzerxjy37o=;
-        b=YJggKpNFJMfD36AY7M96yLXiFYjsPS9oSWYw5ibweyqMc6ggvkWBDLZjKQ83ZQMMVP
-         +eskohJ9QvWrIxPl1/JTg7qU78bDg7VUHkWZXh8UE3odnBpAOS02WupeYx1uWwIOCpHD
-         Pa71ENGsyNFTJ+4Z5vm92AMNQo2pqk7Ob5oVcL18SoSCI/LoUfuzUgYWvp454xiWLTkH
-         V9LN9tDVb1tDGTvpOPD8loXSx3hZ5OadJM3qf9dOcQ8U8wSAN9r3B6F6HfOm8AugbOOI
-         7tjJV3S2SWa6T8owV7VDSedJt1H1gIkEAHvcD0psTRcawWZT1PmD9SqZPFXZq/CwGL6K
-         9FgA==
+        bh=F3ha/lY5Ic8T9/pCMhQS0VzAXItA9akOxGeE3iE2uwg=;
+        b=GXCPV1qg5gXY/PDtUcQ5XlqtZc0WaW6/R+AQdSy4J6fNUA2kMwhmpXcmAwB3gQy+kx
+         sUncmxtaYpV+AE4H3RgpXonMJQphQHBQZGrkhQwabA9lUavPxadIglXaiIfdjEEVyvvp
+         PwzWl2KOp7+O86OjPcBRcrogJHPr5HnSBwjhZHfmAb8BgQoz+BhC7SrDIk87M3DaLyku
+         WPlkPgGdU6qehFDFgrBVbilol/Si1EL4u+IZIyGUFrsxxJuLBuFVaayWPNxkONpWdDpa
+         DVnINZ7cP+xis2xgjmAa2eJtLLrsyJhRU9sWSIjwfX/ZcykvuXceKhTj+547lgeuddTW
+         sU0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d1hGOwFF0QOaziSceA+/kHlNJfHPDOB+lxzerxjy37o=;
-        b=QGkEZPWLzVoDoysvTiZccuEC1L00EmTB+xcVsYMa3B/YXACBpe8Tjd/TvcguqHI/U9
-         Wj6+wJrYIlQPUTHSwpcmuV7PLCejj3T+usnb1TPaYVZXFXTgoCcazSLAKmhJdbXcjGe5
-         cNxR54YNyt0fl1EvTBZe2k393n/8uc55EzQwHdWG2d0Hc8KPcal12H++aLpXaqKjzs7o
-         8QlxGWdX6PmJ/NRizdzrxZQHozadmTbvQ/D5kz3LTJfg6+DxNeF+geKepMuwT/tgrKx8
-         p7TKBX/L+W2YH5ko9pNizFCUiu0AawpVmWTY+XpTVrPapj0HCG2O4OWLPGJLZDjDBwOm
-         yDWQ==
-X-Gm-Message-State: ANoB5plM7vd/lW2I7jSerP0wHz4SZdNQuFtvaOF8mUS9ymWsC6rMdNOL
-        fCmnvoCROxpSTu9vufZ5ix+qaA==
-X-Google-Smtp-Source: AA0mqf5Gy6Om8GCoWWSM+y5Gu90BLj8vZ4RsuzPdzhzC3Pz48PdN39Vc+SL0UNZKWidA5ntFxgVyNw==
-X-Received: by 2002:a2e:3807:0:b0:277:b3a:43dc with SMTP id f7-20020a2e3807000000b002770b3a43dcmr5051173lja.411.1669029834066;
-        Mon, 21 Nov 2022 03:23:54 -0800 (PST)
+        bh=F3ha/lY5Ic8T9/pCMhQS0VzAXItA9akOxGeE3iE2uwg=;
+        b=Hpqc9cHIrQ5sSnhIOT0NhMB3ZgHvkdrdIP5rT7399cIv+sLKjx4WqLDV0AcASlsxDE
+         nGh8lElpugKVqtvBDILCWVHuPZBa4AmDF4rWjpLV7D54FJlE9t47gNnQEiOb7EhbJWxV
+         YEnjdRH5ixywjFHu7amIThXbQYajwZmlJdNyxAfrYt6J9AFm/0ejcS6+PH46DA9B1Pce
+         59NSt2Pc3rs3ozSHqhcPwFoj+tlZEI7oB9HzMNwsUAK/Q5UNfsGI2LEQotRV9qgW6qML
+         vkoQNdkgJyhALHewSs9a7qO/mS2nmcNxO8qodBrPKdloNLj0EB8Wz3MHCiDj9J3pWkMh
+         eVoA==
+X-Gm-Message-State: ANoB5pm7z/WILuyqx3aSmvnihojOtqh+oviS+n6JGrbUlAqW1sZn6LhK
+        OQdbUKjzRDeYYycmYsikJfC8Nw==
+X-Google-Smtp-Source: AA0mqf66DZenK4y500jeKMjTP4Not4u/MjCX3D1Jk8QFNOUrjnMJcaJzdtrYf5kGec2pITVSiMd80g==
+X-Received: by 2002:a2e:a810:0:b0:277:9e5:6cc8 with SMTP id l16-20020a2ea810000000b0027709e56cc8mr5199074ljq.105.1669029849369;
+        Mon, 21 Nov 2022 03:24:09 -0800 (PST)
 Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id k8-20020a05651210c800b0048a982ad0a8sm1980583lfg.23.2022.11.21.03.23.52
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512214900b004acff58a951sm2000032lfr.133.2022.11.21.03.24.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 03:23:53 -0800 (PST)
-Message-ID: <729600fb-e2e6-5ae8-514b-2847501b1c14@linaro.org>
-Date:   Mon, 21 Nov 2022 12:23:52 +0100
+        Mon, 21 Nov 2022 03:24:08 -0800 (PST)
+Message-ID: <5eb40c7d-6663-68c1-d9f9-70a117cc3b26@linaro.org>
+Date:   Mon, 21 Nov 2022 12:24:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: msm8916-gplus-fl8005a: Add
- touchscreen
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: msm8916-gplus-fl8005a: Add flash
+ LED
 Content-Language: en-US
 To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
         linux-kernel@vger.kernel.org
@@ -71,9 +71,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
 References: <20221119202316.93142-1-linmengbo0689@protonmail.com>
- <20221119202649.93613-1-linmengbo0689@protonmail.com>
+ <20221119202659.93667-1-linmengbo0689@protonmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221119202649.93613-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20221119202659.93667-1-linmengbo0689@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,82 +87,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 19.11.2022 21:27, Lin, Meng-Bo wrote:
-> FL8005A uses a Focaltech FT5402 touchscreen that is connected to
-> blsp_i2c5. Add it to the device tree.
+On 19.11.2022 21:28, Lin, Meng-Bo wrote:
+> FL8005A uses SGM3140 Flash LED driver. Add it to the device tree.
 > 
 > Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 > ---
->  .../boot/dts/qcom/msm8916-gplus-fl8005a.dts   | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-> index bed1fe984287..cc81880f7c42 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-> @@ -65,6 +65,32 @@ usb_id: usb-id {
->  	};
->  };
->  
-> +&blsp_i2c5 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		/* Actually ft5402 */
-> +		compatible = "edt,edt-ft5406";
-> +		reg = <0x38>;
-> +
-> +		interrupt-parent = <&msmgpio>;
-> +		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		reset-gpios = <&msmgpio 12 GPIO_ACTIVE_LOW>;
-> +
-> +		vcc-supply = <&pm8916_l17>;
-> +		iovcc-supply = <&pm8916_l6>;
-> +
-> +		touchscreen-size-x = <800>;
-> +		touchscreen-size-y = <500>;
-> +		touchscreen-inverted-x;
-> +		touchscreen-swapped-x-y;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_default>;
-> +	};
-> +};
-> +
->  &blsp1_uart2 {
->  	status = "okay";
->  };
-> @@ -229,6 +255,24 @@ gpio_leds_default: gpio-led-default-state {
->  		bias-disable;
->  	};
->  
-> +	touchscreen_default: touchscreen-default-state {
-> +		touchscreen-pins {
-> +			pins = "gpio13";
-> +			function = "gpio";
-> +
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +
-> +		reset-pins {
-> +			pins = "gpio12";
-> +			function = "gpio";
-> +
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-These subnodes are not sorted in any way, neither alphabetically nor
-GPIO-no wise. Please swap them.
-
-With that:
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  .../boot/dts/qcom/msm8916-gplus-fl8005a.dts   | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
+> index cc81880f7c42..131e12ae510e 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
+> @@ -21,6 +21,21 @@ chosen {
+>  		stdout-path = "serial0";
+>  	};
+>  
+> +	flash-led-controller {
+> +		compatible = "sgmicro,sgm3140";
+> +		enable-gpios = <&msmgpio 31 GPIO_ACTIVE_HIGH>;
+> +		flash-gpios = <&msmgpio 32 GPIO_ACTIVE_HIGH>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&camera_flash_default>;
+> +
+> +		flash_led: led {
+> +			function = LED_FUNCTION_FLASH;
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			flash-max-timeout-us = <250000>;
+> +		};
 > +	};
 > +
->  	usb_id_default: usb-id-default-state {
->  		pins = "gpio110";
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  
+> @@ -239,6 +254,14 @@ l18 {
+>  };
+>  
+>  &msmgpio {
+> +	camera_flash_default: camera-flash-default-state {
+> +		pins = "gpio31", "gpio32";
+> +		function = "gpio";
+> +
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+>  	gpio_keys_default: gpio-keys-default-state {
+>  		pins = "gpio107";
 >  		function = "gpio";
