@@ -2,92 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E99163252B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E44632532
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbiKUOLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 09:11:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
+        id S229476AbiKUOMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 09:12:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbiKUOKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:10:53 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850DB10F1
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:07:31 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id a15so14605532ljb.7
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:07:31 -0800 (PST)
+        with ESMTP id S229519AbiKUOLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:11:25 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CF61C909
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:08:40 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id s24so14583947ljs.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:08:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=djRHmBukKstiuYNqNkBJ087KSGKz5gsNDoOKPXzoyGI=;
-        b=Vq4n8sEk3X7zXCunG8wrGWxC2P0GMkYwKRf67UcVymusPtKeJ9HMX6HVArVvcZ9JJU
-         gq6P2N8JuXgbc1BYS2NzltLn4ByOnf70TDsXkNs6ht/w9E+AtcY4NZsU4RviZ4JO5d3T
-         smuQBAPS2pbas6N1Qe8O3CS03WOibQQTFAZAOdmmUFWoyJNOUOezKVXiM/lPLLziVzko
-         JERL6g3ycPPuBy8uYRJC88quMsYTFTMimvdSdmJvOGzTTxXsh4006ZpB0CNS5F5uBQoV
-         p33k2d13c+NbpVXiKWSlilTsv3GV5aym1iDQHcxMLpJ4gGuq6xIqZdQCpb/Bpdf1O6JF
-         wdbA==
+        bh=1q/66qpieV42ROuLl508/NOCtso5oX8ztxq7+MJZS74=;
+        b=aBTqybRW16+csQw2izdh0Z/Tj0Lsk9e5tDNHDVkqXxGVpi8ZGGdBefFmuZckcYvSNv
+         ccO8+0/zdZjQhZ8MdHSNKbiiuuTJjFTjrGFukfLj0UifJluWc05jb16j9SNKexFvRQE/
+         b35O3BsbViQVnWJJLT5DHrjfXxqe29OclCZHGU4/omQY8k9hXm6sJTeq7agyGviYdxK7
+         qEZnarT2xh3OChfxr2V3l6KbiAYMBdgAeNyb21DDtx1zbd0+eTf2BTey7Lz2QfOfUlcA
+         QwJ97wth0fIQCcSMT9Zi2WIyxqvK7fzJocKuMisbR1O0pX4kEYQWLu5iCl6hcNIlFrNg
+         YXGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=djRHmBukKstiuYNqNkBJ087KSGKz5gsNDoOKPXzoyGI=;
-        b=6XumaQGY0Fl96DBOy4aMK0wWQYmnu9GyLoKoU3EJ4HX+NpJmeZwJ9gxsuZrgSTCGmL
-         TIqHiqL9OMcj1f0vfdq0EDfBxX5rCmh6ufRu2wTZvVDfps1KsIbErcSF53Ry9tbkcTrb
-         oboZOqzARYqx3gdvsIA1OmYaywmY8ULO0ku9zxo2vWrFIoyKSBRXtAsVUjY+SFpFjNVr
-         NZd6QbozjvbRBCqh+/G5Qw16vP33jHEKi9i9pZLqks69hyl6gH1r/L1nrsjwhX3/2vry
-         lO0KlWOBgIMz8XCuJLpkzjITNfaPBJD3DJm8gkEB77qa/ZpGXkD8xBSjZZE47XBJxLHt
-         fXBQ==
-X-Gm-Message-State: ANoB5plIsUZBmiLmdVz/O4PQ9MtiyGpzFtM23OcmxbYiO7Pjw+vKx+Rl
-        r0prTH30ZYJ+GoeXtfaB2q8cmg==
-X-Google-Smtp-Source: AA0mqf545E8HWL6+SWv7of49yPT7WdBJYQRXCb01GBzalOnfurtK6peAdsw/1IMr6qoLvpWyp8SqmQ==
-X-Received: by 2002:a2e:a4b6:0:b0:277:34a:f656 with SMTP id g22-20020a2ea4b6000000b00277034af656mr6276080ljm.78.1669039649923;
-        Mon, 21 Nov 2022 06:07:29 -0800 (PST)
+        bh=1q/66qpieV42ROuLl508/NOCtso5oX8ztxq7+MJZS74=;
+        b=MicGCaa7e3w/mu0hfXBIHFuJ73qzV9/bsvt8qSNw5Y8P4Qz+zHbJjx95jkvQpWMFD9
+         FPKvJNZbLDX5BI808EGfedwh67sKsljrGjd466hSHiWz073u/NaCSMrlQaPcg2PdYZWf
+         wMx6RvtjpQzaWloeYDZ/KYbr9E9r3PWiSdsaMt435xE0yYfP5Z5YIdOuhlO0L/jiLZzZ
+         LMaGQBqTegZW3cVe05fKEC5+y3D+MY6oeC4N1bty16sOg71FX6bno6pX+Au8LD0NQ849
+         sKJM6nXRHlgzgI/D5CJSt5Fu6rsxA58ZmkeCLG681K63LhPXyJhsl+CbxQxnXadxdnVu
+         wg4w==
+X-Gm-Message-State: ANoB5plC8aBIN5iVt1ONZHGLIHz5ytn8+ljxA0//g3Ev8/jYovPgZ3l4
+        DfGh+X6gHLDxSGRihdY5HFUQAA==
+X-Google-Smtp-Source: AA0mqf6VveqNQ+m62AwB2rm6lHLBMfChSDcetgHGdiA1oaAB9sTaZG6t8MzhfxeZbmzwa2IBQ42MSw==
+X-Received: by 2002:a2e:aa25:0:b0:277:4a17:be66 with SMTP id bf37-20020a2eaa25000000b002774a17be66mr6572661ljb.232.1669039718755;
+        Mon, 21 Nov 2022 06:08:38 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y23-20020ac24477000000b004b4ad5ee601sm2061431lfl.255.2022.11.21.06.07.28
+        by smtp.gmail.com with ESMTPSA id f24-20020a193818000000b00492ceda336fsm2022674lfa.278.2022.11.21.06.08.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 06:07:29 -0800 (PST)
-Message-ID: <6584d47e-e26d-614f-8dce-c2b79161ebba@linaro.org>
-Date:   Mon, 21 Nov 2022 15:07:28 +0100
+        Mon, 21 Nov 2022 06:08:38 -0800 (PST)
+Message-ID: <c397969d-0f6c-42c2-cf08-3be81257cc22@linaro.org>
+Date:   Mon, 21 Nov 2022 15:08:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sc8280xp-x13s: Add soundcard
- support
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: magnetometer: add ti tmag5273
+ documentation file
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, andersson@kernel.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221121130403.161817-1-srinivas.kandagatla@linaro.org>
- <20221121130403.161817-4-srinivas.kandagatla@linaro.org>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
+ <20221121123542.1322367-2-gerald.loacker@wolfvision.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121130403.161817-4-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221121123542.1322367-2-gerald.loacker@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 14:04, Srinivas Kandagatla wrote:
-> Add support for SoundCard on X13s. This patch adds support for Headset
-> Playback, record and 2 DMICs on the Panel along with the regulators
-> required for powering up the LPASS codecs.
+On 21/11/2022 13:35, Gerald Loacker wrote:
+> Add bindings for TI TMAG5273.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
 > ---
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 213 ++++++++++++++++++
->  1 file changed, 213 insertions(+)
+> Changes in v2:
+>  - Removed nodename
+>  - Changed angle-enable to angle-measurement and used strings
+>  - Added interrupts
+>  - Removed vcc-supply from required properties
+>  - Changed i2c-0 to i2c in examples
+>  .../iio/magnetometer/ti,tmag5273.yaml         | 75 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> new file mode 100644
+> index 000000000000..b2ecd7054a34
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/ti,tmag5273.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor
+> +
+> +maintainers:
+> +  - Gerald Loacker <gerald.loacker@wolfvision.net>
+> +
+> +description:
+> +  The TI TMAG5273 is a low-power linear 3D Hall-effect sensor. This device
+> +  integrates three independent Hall-effect sensors in the X, Y, and Z axes.
+> +  The device has an integrated temperature sensor available. The TMAG5273
+> +  can be configured through the I2C interface to enable any combination of
+> +  magnetic axes and temperature measurements. An integrated angle calculation
+> +  engine (CORDIC) provides full 360° angular position information for both
+> +  on-axis and off-axis angle measurement topologies. The angle calculation is
+> +  performed using two user-selected magnetic axes.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tmag5273
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  ti,angle-measurement:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Enables angle measurement in the selected plane.
+> +      If not specified, "x-y" will be anables as default.
+> +    enum:
+> +      - "off"
+> +      - "x-y"
+> +      - "y-z"
+> +      - "x-z"
 
+Drop quotes from all these.
+
+With this:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
