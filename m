@@ -2,125 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D52A96319D3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:45:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9123F6319DE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:50:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbiKUGpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 01:45:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
+        id S229449AbiKUGud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 01:50:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbiKUGpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:45:12 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C2317892
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 22:45:11 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id 140so10492015pfz.6
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 22:45:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T9z6VNHAh5buPLOQbn4DZRIbuRpf7GLAza5o2jIuncE=;
-        b=oyqKPJqV6ChsbvcTQN+xTD9PeymSUxzZ4mMliDJurfoOfDB9tEnQWdI7PQaKjC1D0T
-         LIHx/SMR/6Q/7er1lusBloufr8W4xin7Qq2hfmIpZnRdWzTrEgCcgBJA2GhjmelaXvsI
-         V7iWawCflMlMvGxfITd89DW2MG1jgB1MG167Rh5uUUwRYS17aFVz9aT+XBY/hlbLXUwY
-         CII1XP/HqWT5StaQo6HXfG3eMIcMvfjbKa9TWZCNplJ5aPb92KuZsbTfZ/2Z9JSee89L
-         mm+TGdN+02s25vkFuC/G+eQWp3OjSa/6P8LrPLB2/LUD8mcMO7Mxdimiu+/fdxahIwPo
-         NxTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T9z6VNHAh5buPLOQbn4DZRIbuRpf7GLAza5o2jIuncE=;
-        b=l0q2oJOW4TBtJN6GJyKhW/3IBFiYqCqjHO8mf/ihU5U6LUGviBY1qXfsQyta5mdg6b
-         LJ2XviObIZfrIZYe4Xbs/VNGjT84FPmQWBSY+85Id/ltIbfC3T5zJzfgGy/KHJWsYKww
-         BlXupdQqcF+nFQwIsirDzMylOYptAovxGfHpfL8n+4aEknbiJDaMlnfNmsVyc0y3J63l
-         3mz+EwPUzbxRrfsTdrRrqA5Qc2wrAlr089pwM075E6nE1saWvkMDHRGKXji9HYA28DJ0
-         BQ9Rx0qbTVGQxWYELfJSSVnKsVSIQeqaaqtVOvpVf1MuUMWA9KldyGb1LOW+F5huTqot
-         xoAQ==
-X-Gm-Message-State: ANoB5pkCz/eq4Ip3ADdI/jXePAAmYdEciHPeDQXQ3Y6cUTTCaQbJlbg2
-        bLtsIFzrmDU8mCJpMWeNg2xy
-X-Google-Smtp-Source: AA0mqf6ddMnQGXatGtIKDuBbyT3kbY7n1kpxrE0Vd9I/tQTaSSyurICcwD9LRXBLZlh0j9EpMLqbdA==
-X-Received: by 2002:a63:5007:0:b0:45f:beda:4116 with SMTP id e7-20020a635007000000b0045fbeda4116mr789381pgb.618.1669013110909;
-        Sun, 20 Nov 2022 22:45:10 -0800 (PST)
-Received: from thinkpad ([59.92.99.222])
-        by smtp.gmail.com with ESMTPSA id d187-20020a6236c4000000b0053e62b6fd22sm7752028pfa.126.2022.11.20.22.45.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 22:45:09 -0800 (PST)
-Date:   Mon, 21 Nov 2022 12:15:07 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221121064507.GC11945@thinkpad>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
- <20221121051959.hphzjuaif423xwn6@vireshk-i7>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S229436AbiKUGuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:50:32 -0500
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140083.outbound.protection.outlook.com [40.107.14.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CCC713CD7;
+        Sun, 20 Nov 2022 22:50:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jTHbfLJXEOTEXKrq+lod1aa00Srx2Pc9bH+yf5oYv/rEq9w6cVmlyYa/IFzyj9oRiMDBHoM1zlqBpfF5XT5VTN0uVDVOz6bKcECNqcq03UziCuMOhoPepbFsDnmsJYv2JHn/Bm8i7b3Fay1kvEKEk6uXzbb9NtslxHyaIu2egDJECjGiR7busN0c7RHj99XBVr4TQ5YtoTzopT+Dh2c59pLI07Hf8owdaqEWefNK8yuHKqY5RJeT34vMU+xftoZEJ2E0zwHXuMYjiuEIm0/x1qOPTRH3WUyQSDPtSqyGS7/wXLkxhSW9KfxSc+7B4EFWoUqfGtqhlMoybdRqIAcvxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3z1ySkrBqQZVr6vY4is14M2zP9QqijDioFf8dn0K0/0=;
+ b=Ez1rgef8QdSN69nLPPmnG4Xen1vnBCdNX5r7bdwnDw+GG2ZaT2dBhyPNPsq2fwfRBe8dV5VSeZ5vMROcn7Xy8390M0eKYZUqxnaQU9ZIYvKQh3vANta03/e87vL8NZnx+hGcXmb8TGCsK55rjnLoMLijw/6fvZvwxhGnPeCRY6chgu1BZDeDl+8GxT7XuOobMR9cLJDXPjIm4g0kJidRZG/ywkLDu4/HP8l3nmWB8cN5j97tZi+dlSncBXuBhGAHYatVmjusWeNPVexGuugXjvjhUH1md4rA5TvuaFFurTt6/bvEozrC9c0f3xwun35EFbNk51MGMAlH6ZdFkrRM8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3z1ySkrBqQZVr6vY4is14M2zP9QqijDioFf8dn0K0/0=;
+ b=Q6eSllmgwMDjjIDhOiBwEszU4q2hMwd3z3xQV69SWllzjPd10hjuqCsQoTOJE6IucGfqKxd8NXShwLbWwzIMP+1lzbePtfAJrCYz+Be3BRj13Z6m5NIQ4Xe1PS/j6n06wvcPUi3E8/SgDTXLS2rB8qL/6cGrLIoYJqhVJrj/22U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by AM7PR04MB7142.eurprd04.prod.outlook.com (2603:10a6:20b:113::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Mon, 21 Nov
+ 2022 06:50:27 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::9ded:65b7:9d51:d37a]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::9ded:65b7:9d51:d37a%8]) with mapi id 15.20.5834.011; Mon, 21 Nov 2022
+ 06:50:27 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
+Subject: [PATCH 0/4] Add nxp bbnsm module support
+Date:   Mon, 21 Nov 2022 14:51:40 +0800
+Message-Id: <20221121065144.3667658-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221121051959.hphzjuaif423xwn6@vireshk-i7>
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0123.apcprd02.prod.outlook.com
+ (2603:1096:4:188::22) To AS8PR04MB8642.eurprd04.prod.outlook.com
+ (2603:10a6:20b:429::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|AM7PR04MB7142:EE_
+X-MS-Office365-Filtering-Correlation-Id: e94fd821-fd27-427a-16a9-08dacb8cabea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: d2WtqyZkUo7Mvpdf1JTAj6oyGdIQEHmuUIP7u14zRZGzSjt9hoa2kaS9f8XjlLN7jYTHeNF0AwyaLE1r+jKi0bg+ycMm2n2gkWOJSIKbbmHijkX7G7a61t0fEEujEBvGfs06ye1UzIi3sDMx49bVbRDs4oaW+PXDpU4bhJsyISp7wpVSBTrRbDgmy5YzWX3ptDf4mVOz2rONyABQFw8LyyZXmK8JNvM3/WfOD5jxPaCIB6p9nQnjBXGUl2PzO16CYmjOSl1qQZyVqfzxjqOW8KYN+3MjCbCZgRxWDJ32oVfQrGOpzRXXspjFl4QrAaHNh5m+LZsFrNbGKnPOoN1MtgEcADc4FAQ/hgNO+lFFht8U8+VUsVo/2OGJzN2Jcd2ePQ+okuMlXOA26RikIstN8kXiI/jgElJj+rh0ddeVCCNte4R2phiTCTWOAqZbV8FzQiSSOmakKNk2hkOXT0QS4fCR0iZtBHEaYWlJv63OVEGpnKDZIYcLob/niJlqOxZyZLm40nFFcc/nSpM1Pfyb6XGbJqcl2Ta9gCCiugtfhae6BuekTz/33XZxFYWr+m4KmOYtI5JoOGO9m+EzmPA5nxdxBwal24AR5k6oA2BGVYVBJL57Dmp3QPEr5d2FlBJEP80U5q4PKJ3Qyf/op0KprspMeJ1Rbd6sjBEQZXdaxrOT2N5Mo+xPwm3Xg8Cee5LSZKu+p/b3wzfbvh0AoKzijg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(376002)(39860400002)(346002)(396003)(451199015)(36756003)(38100700002)(38350700002)(41300700001)(2906002)(86362001)(66476007)(8676002)(4326008)(66556008)(316002)(6486002)(66946007)(6512007)(26005)(186003)(1076003)(8936002)(5660300002)(7416002)(478600001)(6506007)(2616005)(52116002)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HcmLAyKtNluxC7hsvdLMhJtDaX2pUgVSvAT8qupCzO+0g0cILjQCYKPBKsLr?=
+ =?us-ascii?Q?Nb/lxEC7XwuMzvI7VbmRP3hGQuFF0tA1kSZXzJj0i43ShwEQxberGey1UXhv?=
+ =?us-ascii?Q?LH/9clMILGLH1ZqUA/fcWgGNdb4nEciH5BGzwKs8BPm+n3WawzD5/QjdQ0wp?=
+ =?us-ascii?Q?QJQYTUI25xSicbBF5OcEAYKB4f82pW1gtZD1802/LNzTk3WyCZFlEm0zA8qV?=
+ =?us-ascii?Q?PVBor9Mc63Ifz31AWWhkgywkLtzbDqopYeaw0WW+D4IvptL+0arMWZDWwoz0?=
+ =?us-ascii?Q?PrUizrNW75xte85BK/YTCeQMPDaWBWcNRfzP+NA4mkVrPmbKV4e2j5JF/5IA?=
+ =?us-ascii?Q?S2Jodfh0BOMG2Pzqi4Cr1V7koUEgTxuhPSkb5CJ9lf7515863nCA3925Z9jd?=
+ =?us-ascii?Q?Ss6+VHNvmM+FyV63LpifejjwScqMlx6Q2fGguRde1r7+eNvAoAHSDb0Sjgpu?=
+ =?us-ascii?Q?BpeHSjBYM6hUsrzKngVU57olycz12csmL3Gaoqh9g9l/x7mlQr/k8hzU4Oql?=
+ =?us-ascii?Q?1o2no7dkwLbeNYKMJFbCerRPe95VlfhyrBF0kwxYoaWFF6tqc+xFo+nYUfGm?=
+ =?us-ascii?Q?nIDjIZZEUnxQmd9apcvjJak1As1/u8Lvr4Soylt+fdD05dnNykkewtH1TaVc?=
+ =?us-ascii?Q?oct4G+fGVMWG8KWZ1j/gt7586OuHWU4uuCVnrqGYfmMtaMvZmSqqTmQ8Q5AN?=
+ =?us-ascii?Q?WtS3degg2k7fjKZ5vo00CwPXaVHFaK3lSx521NKNOiYAA/ZkvXUmYpUt9Iw3?=
+ =?us-ascii?Q?x/7Red0CkspLmiW1YUmwYPDNald4BXHl6FDgjewn+ftrcCI+8a7UUtbRNYdo?=
+ =?us-ascii?Q?IAFcq1sBh2KTbq3PDt7Iurk+K2PxqUx2xk4rk+HgSUZl25wH4HT146gmizeJ?=
+ =?us-ascii?Q?xodSQ7hmFuQnB8W+dbov/MD1K+/FBoer+ABat+MBoF+SmLGMlZoE5YptBKGa?=
+ =?us-ascii?Q?TfmJQa8YjPj0WGojoQhhSTseGmz4ycjynfAmEriVTmDPYWiq0uzCfhGCxPpX?=
+ =?us-ascii?Q?0X6S4Z8Mk/w6NIOHBzEKEHhDFRvq5CzvBxGErB0W92+OCJDkWzjwt1+0XIw1?=
+ =?us-ascii?Q?MslTFlbecFIpLXkq4G6gzEbGVhgIhUo6gBBJX1py+BAAFFHMs+jjp7oJu5Bq?=
+ =?us-ascii?Q?jylo5fymz1dbbx2dX2ChBlnAa7AtEbdGCMA6qJlboSw/4f6z8YMT1IlpCbGT?=
+ =?us-ascii?Q?MC1EGwYsEhMi9lZ3yFfrP1cqImpnJhxzjIcUZ06d8l4dbHixciNBLAEM2PiY?=
+ =?us-ascii?Q?fU460j2x7KKRDePANLJzE8olXlMTTR3/Yd0D0GjrrqShbVulo8ITWe1/YyKc?=
+ =?us-ascii?Q?dkPxqeyM4INwAroI8+RaQ/x9IsasHgs54YgUCCfYCe601AQ+m3iCq6yOcs1y?=
+ =?us-ascii?Q?+vZTOwSDTTBYrCxcEDOxihOqBk37C9VPAGFhFnS1dZM0GQJ6/2QfjWFfgfFl?=
+ =?us-ascii?Q?XdkUJeka+fxn34vO+mgjhay1X3S6V50sItCu2XP7FZU9RbPd/IM6uZYpt1WM?=
+ =?us-ascii?Q?MAfLB/hs8cBJqj9EgvXgBSJAp9phufUxyrHZF+BRIxpRXzUbeA095TQgddug?=
+ =?us-ascii?Q?/LPoo4nFsDl6B/mWHwBH9b0x0hZxdZy6w6Ucqxvm?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e94fd821-fd27-427a-16a9-08dacb8cabea
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2022 06:50:26.9888
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n0dHGVUOj2oFO05yS7ceaK3bjqYJkkB10Nh/q+v8pIgpd9vQelNmGYurjyoI3Ydi1i9hevO1z87svvpmlSlFfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7142
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 10:49:59AM +0530, Viresh Kumar wrote:
-> On 17-11-22, 11:01, Manivannan Sadhasivam wrote:
-> > Hello,
-> > 
-> > This series adds clock provider support to the Qcom CPUFreq driver for
-> > supplying the clocks to the CPU cores in Qcom SoCs.
-> > 
-> > The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
-> > clocks to the CPU cores. But this is not represented clearly in devicetree.
-> > There is no clock coming out of the CPUFreq HW node to the CPU. This created
-> > an issue [1] with the OPP core when a recent enhancement series was submitted.
-> > Eventhough the issue got fixed in the OPP framework in the meantime, that's
-> > not a proper solution and this series aims to fix it properly.
-> > 
-> > There was also an attempt made by Viresh [2] to fix the issue by moving the
-> > clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
-> > since those clocks belong to the CPUFreq HW node only.
-> > 
-> > The proposal here is to add clock provider support to the Qcom CPUFreq HW
-> > driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
-> > This correctly reflects the hardware implementation.
-> > 
-> > The clock provider is a simple one that just provides the frequency of the
-> > clocks supplied to each frequency domain in the SoC using .recalc_rate()
-> > callback. The frequency supplied by the driver will be the actual frequency
-> > that comes out of the EPSS/OSM block after the DCVS operation. This frequency
-> > is not same as what the CPUFreq framework has set but it is the one that gets
-> > supplied to the CPUs after throttling by LMh.
-> > 
-> > This series has been tested on SM8450 based dev board with the OPP hack removed
-> > and hence there is a DTS change only for that platform. Once this series gets
-> > accepted, rest of the platform DTS can also be modified and finally the hack on
-> > the OPP core can be dropped.
-> 
-> Applied. Thanks.
-> 
-> If you get review comments later on, please send incremental patches
-> for that.
-> 
+NXP BBNSM (Battery-Backed Non-Secure Module) serves as non-volatile
+logic and storage for the system. it provides some similar functions
+like RTC and ON/OFF support as previous SNVS module found on legacy
+i.MX SoCs. The BBNSM is replacement of previous SNVS module, and more
+likely it will be used on all the future i.MX SoC or other SoCs from
+NXP.
 
-Sure thing.
+This patchset add the basic support for BBNSM that found on i.MX93.
 
-Thanks,
-Mani
+Jacky Bai (4):
+  dt-bindings: mfd: nxp,bbnsm: Add binding for nxp bbnsm
+  input: bbnsm_pwrkey: Add bbnsm power key support
+  rtc: bbnsm: Add the bbnsm rtc support
+  arm64: dts: imx93: Add the bbnsm dts node
 
-> -- 
-> viresh
+ .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 103 ++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |  18 ++
+ drivers/input/keyboard/Kconfig                |  11 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/bbnsm_pwrkey.c         | 196 +++++++++++++++
+ drivers/rtc/Kconfig                           |  12 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-bbnsm.c                       | 223 ++++++++++++++++++
+ 8 files changed, 565 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+ create mode 100644 drivers/input/keyboard/bbnsm_pwrkey.c
+ create mode 100644 drivers/rtc/rtc-bbnsm.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.37.1
+
