@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5DB631BC5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 892EB631BC9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:45:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbiKUIp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
+        id S230190AbiKUIpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:45:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiKUIpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:45:16 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E689372139
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:45:14 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id u2so13729034ljl.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:45:14 -0800 (PST)
+        with ESMTP id S230163AbiKUIpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:45:34 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4E87FC0E
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:45:33 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id h12so13685643ljg.9
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:45:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mycMge6787I2pSG246uybE+7CW7nJVNvvmftra6HFuc=;
-        b=EpCIUBS1xLeEDrqaJF+VCHWZRLmXU/nQF3q72N6xLlGNAOw9okfhX6AJTkUsmacS++
-         8GHdCUDpo7gDtaNU4CRgy84ky9JKr11n9jsSQHU4nacXn750M5txZ77fCl0losTGiCF9
-         AX7DlOE6fbMx/FYg02ASuqJ0m0TsVS3i5nIlDr+oaGBn1DnZFVtMRRgnpVR7co9sTdKW
-         TeYd/uSlquRtpUN8ngminea2BQ4JuFGMun3RPjkuZxGkQ4/0nTZg6AkF7Y5N2v1f6Ys8
-         dulwvixdg5kqlvvvqwoeTQOjGgMIGBitFv1LnjCEbM8b8yhSXwUlRvBrgkIo3GiQ39Jb
-         8bJQ==
+        bh=FGxw8oU0grRMxGkzDQfX5OPAjWzxKp/cmBJBZE2lbSE=;
+        b=nBNkjGO+UfQSSASIQvgHi9XYpH8VG48D+hGvza3RC74eld+iuol1zjzmv/YIgTXprN
+         wpZf6NPPJP7RZr2RQKFh30UG773ELwvUOXvPnT2wltkPyadrnnaDbf70NHRKN2CGtu7S
+         LamrjPlYS0TNjgpumKMHj+pZOGF4/AZLbY3ZWP5Yh+ZaFMhqf9LIflxKVRI3tTX5Azwp
+         m81UfdeKfFrSWc5UQ3Yd5plB+Gkb9LmwAhzk5TgiH9DtZUKhoTmHVgLo9D6bXgXh7LSd
+         M48z6SZmMFnJxT4NHjfPYpG6ad+k24KJwnntnhO0URbdFOI+HDDGBBoXCHhqjqJO2C4T
+         /qDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mycMge6787I2pSG246uybE+7CW7nJVNvvmftra6HFuc=;
-        b=DvJEhAGSwG9JafKQ5rmC9LiZRvLdlqVWMvOBcHx6ehpNB83TDXZGX3KYbkFTufrJjV
-         B03XC/hpZNF4OdO+lcmm46dYfwhRSUplHno7yIlAdJZYVmdIYecub/IXsPD6qvcjt9ZW
-         sfJ825LviA/Uy1Bnhjthz22nJsUBnMapf95jYuWUquMYvsbOF12h1x3T9q0isen8xES8
-         uSsTWPvBOP7+dEmiypjrN1PBvgeZQ7+JCOUG5w8h6guVJ4ZQW5St4KqaqmU1XS+4TOFa
-         s6puOSjpO3GHeoWo+W4LQ19CNrjw1U+l+9xmMyDzqMDQzKRMY8/478fRQo7qEwv5g2a/
-         NWTg==
-X-Gm-Message-State: ANoB5plQFL5syYLWNQMIjSvUwLD4VlrnLA17VH5IRPtmI6v+yb1i3LRE
-        vMbcHMwaHBYyiwxfRyEStgAccg==
-X-Google-Smtp-Source: AA0mqf7lf5Y283PltKwNYB6rVc/aL101oDcgs/xDNwunV6PjB/jvcixKvd81YQAo5e3xQh08QOAdWg==
-X-Received: by 2002:a2e:b523:0:b0:277:31c3:ca17 with SMTP id z3-20020a2eb523000000b0027731c3ca17mr413372ljm.523.1669020313313;
-        Mon, 21 Nov 2022 00:45:13 -0800 (PST)
+        bh=FGxw8oU0grRMxGkzDQfX5OPAjWzxKp/cmBJBZE2lbSE=;
+        b=cFU6QTVkQ+4Qc8ETVf0qszh+gAobHvTaLSfF31pEicuaslI9xFrEZbnoP9dhUq82RK
+         +pX2fOT7g5Tm265lMYZMwBd+NeA5liwQnk+dAmtAxIgAsjGbJT77RGA4wdFTLJK+YfLj
+         59OaE3Vq0TSpPvn/qTlQKAqci07Ss8YelRyRwk9UBTn17lC5PUSB8xWKYA6U8EZArf/R
+         QBvnpJZaI5xSzRl9fyQh7p60nYuZTC8pycyo1TQYrn+i+6d/heD7k+NnM8unyVEunIFx
+         PrUo8CaGoOePxtOFHPSswFaQBacKf6FEDzZRDYm4vfoCp/Vf1oMk5X/4cmku+j+dl0Bz
+         BVsg==
+X-Gm-Message-State: ANoB5pmUdgstJ3kC/tpM3r1hriB/beR6d62zsPcX/FVO4c96O+Nvw/rv
+        ExJEB+NFGaNCSuYlrbKESF7bsg==
+X-Google-Smtp-Source: AA0mqf69rMGUenhpYORaEyxbqbvUN24UYXtECG0wneW+MPaIJDQp7hjHwvwhcIEoBMImVWp9l/bqWw==
+X-Received: by 2002:a2e:bc10:0:b0:277:11ec:ff2a with SMTP id b16-20020a2ebc10000000b0027711ecff2amr5745943ljf.163.1669020331540;
+        Mon, 21 Nov 2022 00:45:31 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac25f7a000000b0049f54c5f2a4sm1922312lfc.229.2022.11.21.00.45.12
+        by smtp.gmail.com with ESMTPSA id q5-20020a2e2a05000000b0027765fd616asm1376623ljq.20.2022.11.21.00.45.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 00:45:12 -0800 (PST)
-Message-ID: <4d1fbddc-ee8b-1ab3-d1a9-8496bda3f668@linaro.org>
-Date:   Mon, 21 Nov 2022 09:45:11 +0100
+        Mon, 21 Nov 2022 00:45:31 -0800 (PST)
+Message-ID: <5ef383a7-aab2-dd4d-ad60-ac631345f38a@linaro.org>
+Date:   Mon, 21 Nov 2022 09:45:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 07/14] dt-bindings: clock: Add StarFive JH7110 system
- and always-on clock definitions
+Subject: Re: [PATCH v2 08/14] dt-bindings: reset: Add StarFive JH7110 system
+ and always-on reset definitions
 Content-Language: en-US
 To:     Hal Feng <hal.feng@starfivetech.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
@@ -70,14 +70,15 @@ Cc:     Conor Dooley <conor@kernel.org>,
         Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         linux-kernel@vger.kernel.org
 References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-8-hal.feng@starfivetech.com>
+ <20221118010627.70576-9-hal.feng@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118010627.70576-8-hal.feng@starfivetech.com>
+In-Reply-To: <20221118010627.70576-9-hal.feng@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,38 +88,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 18/11/2022 02:06, Hal Feng wrote:
 > From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> Add all clock outputs for the StarFive JH7110 system (SYS) and
-> always-on (AON) clock generator.
+> Add resets for the StarFive JH7110 system (SYS) and always-on (AON)
+> reset controller.
 > 
 > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
 > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
 >  MAINTAINERS                                 |   5 +-
->  include/dt-bindings/clock/starfive-jh7110.h | 234 ++++++++++++++++++++
->  2 files changed, 237 insertions(+), 2 deletions(-)
->  create mode 100644 include/dt-bindings/clock/starfive-jh7110.h
+>  include/dt-bindings/reset/starfive-jh7110.h | 154 ++++++++++++++++++++
+>  2 files changed, 157 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/starfive-jh7110.h
 > 
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index e6f1060e7964..e97dac9c0ee4 100644
+> index e97dac9c0ee4..eeab26f5597c 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -19598,12 +19598,13 @@ M:	Ion Badulescu <ionut@badula.org>
->  S:	Odd Fixes
->  F:	drivers/net/ethernet/adaptec/starfire*
+> @@ -19614,12 +19614,13 @@ F:	Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
+>  F:	drivers/pinctrl/starfive/
+>  F:	include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
 >  
-> -STARFIVE JH7100 CLOCK DRIVERS
-> +STARFIVE CLOCK DRIVERS
+> -STARFIVE JH7100 RESET CONTROLLER DRIVERS
+> +STARFIVE RESET CONTROLLER DRIVERS
 >  M:	Emil Renner Berthing <kernel@esmil.dk>
 > +M:	Hal Feng <hal.feng@starfivetech.com>
 >  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/starfive,jh7100-*.yaml
->  F:	drivers/clk/starfive/
-> -F:	include/dt-bindings/clock/starfive-jh7100*.h
-> +F:	include/dt-bindings/clock/starfive*
+>  F:	Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+>  F:	drivers/reset/starfive/
+> -F:	include/dt-bindings/reset/starfive-jh7100.h
+> +F:	include/dt-bindings/reset/starfive*
 >  
->  STARFIVE JH7100 PINCTRL DRIVER
->  M:	Emil Renner Berthing <kernel@esmil.dk>
-> diff --git a/include/dt-bindings/clock/starfive-jh7110.h b/include/dt-bindings/clock/starfive-jh7110.h
+>  STATIC BRANCH/CALL
+>  M:	Peter Zijlstra <peterz@infradead.org>
+> diff --git a/include/dt-bindings/reset/starfive-jh7110.h b/include/dt-bindings/reset/starfive-jh7110.h
 
 Filename based / the same as compatible (or bindings filename).
 
