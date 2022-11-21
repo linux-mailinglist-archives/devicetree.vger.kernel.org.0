@@ -2,115 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB79631B99
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F297631BA5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:38:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbiKUIhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:37:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S229868AbiKUIiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:38:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230046AbiKUIhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:37:14 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952571EEF1
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:37:12 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id s12so15181563edd.5
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:37:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/twC/ha76jEiNVmOM5ygah60xUtG/ONv2QvD8LyUHR8=;
-        b=nSBCI7qcEXZMZy9n5XsZR2PvEFCeEWDrLwXXhHO23PsKyEBwla0aK8X/4NJvK6SGIv
-         BBm2SDyRt9Nas/brh3CNJSdtC5xDv4fKs45a++pe9cp1gcQGsnC48HDou5lbgTALzH+C
-         M7k8eulHknrjylWM83S5hPEIf7zce7oRkopuXJJ+OmuTzIst21IZIxp+1sJbs3NOKghK
-         NfgX5txuH4aqusDYCFM9Kzjik6vuVV/v/dhliPgLay8MplwUZW6WbEt9YViL3SISBGZT
-         pCbkB7vzr5ixcQ8isnnglqA/OQAt9nJVOA5Yqq8ZOLipS7MXzaRLkX0F6HO14Vr3A27r
-         8bjg==
+        with ESMTP id S229848AbiKUIiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:38:08 -0500
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23701D336;
+        Mon, 21 Nov 2022 00:38:05 -0800 (PST)
+Received: by mail-qk1-f175.google.com with SMTP id z17so7536025qki.11;
+        Mon, 21 Nov 2022 00:38:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/twC/ha76jEiNVmOM5ygah60xUtG/ONv2QvD8LyUHR8=;
-        b=by0eVs4nn024YlS8wpCqvNuNSS8qfv93xYI64TLM0VCX0qP2POC6AwraTDNhaX0Sah
-         W7OslSIj8YIHq5Jp6saBNpCRjTM6qbBoXIX9KWMOsBcw5NEeotdXt7QfTg/oe6RbUYut
-         0OHagld46PWScoX9R9Y+qBHT5dH14U3UTbNiAij48+i0aTXfQgKX9qqRIbwpS9UbneBT
-         7dcmDjpzyjApxqkD7dAtDUGw35Mg7H7FwC/BfJZldjHiCMHjN/aScnNFjRcKWRZTsl4x
-         BJGgtmtFC+kw21jyXwAVu0wtynf0grBja4llmq1H3daF8QROFpCTGSjWaJGP6kMcJNLi
-         TXFw==
-X-Gm-Message-State: ANoB5pntVeq7jaWjnQxeIjvmbpBmybOV1XQs7gRp4AMWHy/x2b2uhSL5
-        dZ+eh9OyuSABFfe/P649V0d+e2vFkmYJJDrC1t96fg==
-X-Google-Smtp-Source: AA0mqf7H05bbHloVzMxMtfy6zpSK99wVNqcrzskS8PJRKysYmp6Z7Pu0/HvsVmzHLEI38tBbIW2VC0XE4rHZ6ihWALU=
-X-Received: by 2002:aa7:d555:0:b0:464:6485:419b with SMTP id
- u21-20020aa7d555000000b004646485419bmr803045edr.382.1669019830478; Mon, 21
- Nov 2022 00:37:10 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=majJ1avGrA5sKHgff1+tjzzyZx4Q8F2N6bTI30UoVN0=;
+        b=XYtG3qcXZlf52gle7v15TTQkORhvT49sba3oM7PqdMTxAKDHBjfdF1pljGp/7X1gnS
+         xjGAet8iSokRhVpc2ofwrYWcPTGQeGBid6PFyiAUTUoBtSjbnJuRKNsBj7Ss/iaSOQrf
+         dfTwjabUpY/bcLe0pbr/J9LqtVmKHzW6RFzfgw29ZDmqfF+BZ5ev4EcLStk+zpot8jYU
+         5V/MTRlqcwvLu7kduSo9EkSz+8OvDzBzk5MeMo3HWuxbi18FCa+MJ/PM58UrjBdmiyX2
+         YUKMYA3qCaWEwdpa2NcmhDwJNfdyhyhlmIMsz7VC3zITWwx91En5TE/hT8iwkAUVq8qK
+         hNKw==
+X-Gm-Message-State: ANoB5pkkyMAWWQby9+ws2v6gKkhCq0xfy7ksRLDzTdlM/ksbkm1M1rzf
+        we6Lr5O/g9g3WmExoZKeAxxgPW9ZX0Qa0A==
+X-Google-Smtp-Source: AA0mqf42m6RtQH9n3FrT6ck1TJ8JYf+DL91aVh89zndnYg5xcI3fw3Cqh+f19rdsFfPeepAOEMNnfw==
+X-Received: by 2002:a05:620a:150c:b0:6f8:aafe:27e7 with SMTP id i12-20020a05620a150c00b006f8aafe27e7mr15094781qkk.590.1669019884806;
+        Mon, 21 Nov 2022 00:38:04 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id v18-20020a05620a0f1200b006fa32a26433sm7838132qkl.38.2022.11.21.00.38.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 00:38:03 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id k84so12771887ybk.3;
+        Mon, 21 Nov 2022 00:38:02 -0800 (PST)
+X-Received: by 2002:a5b:24b:0:b0:6ca:3b11:8d76 with SMTP id
+ g11-20020a5b024b000000b006ca3b118d76mr16184146ybp.202.1669019882500; Mon, 21
+ Nov 2022 00:38:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20220905145555.674800-1-etienne.carriere@linaro.org> <b7ee82ac-1e64-45d9-8b30-5b697e36ad1f@app.fastmail.com>
-In-Reply-To: <b7ee82ac-1e64-45d9-8b30-5b697e36ad1f@app.fastmail.com>
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-Date:   Mon, 21 Nov 2022 09:36:59 +0100
-Message-ID: <CAN5uoS90ONkgZSsyP-dPHyO6SMCxH0yJ2vHaQ82G8jv0Og12rQ@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-binding: gpio: publish binding IDs under dual license
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Stephen Warren <swarren@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20221118223728.1721589-1-robh@kernel.org>
+In-Reply-To: <20221118223728.1721589-1-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Nov 2022 09:37:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXevKD5uq9k+gWygy0rZ_AVjxBW1vrE_Gzzu8=mJu1vjQ@mail.gmail.com>
+Message-ID: <CAMuHMdXevKD5uq9k+gWygy0rZ_AVjxBW1vrE_Gzzu8=mJu1vjQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Add missing start and/or end of line regex anchors
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Yangtao Li <tiny.windzz@gmail.com>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Daniel Mack <zonque@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-pci@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrew and all,
+On Fri, Nov 18, 2022 at 11:43 PM Rob Herring <robh@kernel.org> wrote:
+> json-schema patterns by default will match anywhere in a string, so
+> typically we want at least the start or end anchored. Fix the obvious
+> cases where the anchors were forgotten.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On Mon, 21 Nov 2022 at 01:24, Andrew Jeffery <andrew@aj.id.au> wrote:
->
->
->
-> On Tue, 6 Sep 2022, at 00:25, Etienne Carriere wrote:
-> > Changes gpio.h DT binding header file to be published under GPLv2 or
-> > BSD-2-Clause license terms. This change allows this GPIO generic
-> > bindings header file to be used in software components as bootloaders
-> > and OSes that are not published under GPLv2 terms.
-> >
-> > All contributors to gpio.h file in copy.
-> >
-> > Cc: Stephen Warren <swarren@nvidia.com>
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Laxman Dewangan <ldewangan@nvidia.com>
-> > Cc: Andrew Jeffery <andrew@aj.id.au>
-> > Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-> > Cc: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> >
-> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
->
-> Acked-by: Andrew Jeffery <andrew@aj.id.au>
->
-> Apologies for the delay, it took me a bit to find the right people to tal=
-k to.
+>  .../devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml        | 2 +-
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml     | 2 +-
 
-Thanks a lot for closing looking at this change.
-I think all contributors now have acked it.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Regards,
-Etienne
+Gr{oetje,eeting}s,
 
->
-> Andrew
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
