@@ -2,85 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BEF631866
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 02:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB8D63186B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 03:00:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229891AbiKUB6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 20:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36100 "EHLO
+        id S229735AbiKUCAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 21:00:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbiKUB6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 20:58:35 -0500
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CD917E1E
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 17:58:34 -0800 (PST)
-Received: by mail-oo1-xc2e.google.com with SMTP id r76-20020a4a374f000000b004988a70de2eso1612138oor.2
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 17:58:34 -0800 (PST)
+        with ESMTP id S229645AbiKUCAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 21:00:24 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A44E18B0D;
+        Sun, 20 Nov 2022 18:00:24 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id n188so7699387iof.8;
+        Sun, 20 Nov 2022 18:00:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nw7lJeHpRVDFo2y9OeZfhTiqPLPx6ObPD3zTI8pHiMo=;
-        b=BslRvuvHwq4RffX7b09RlXn1jTkjG3TGMGXA/Vyqku5kVB+AvSsZSpQQpQ44pA20x2
-         rpBsAj4NEStFpWGiZHIaz39M8+PYkky8wvkZxNnVIkXfNtSWDYiQWbAHyf6NFTdp0xsP
-         CNlb5ycaWaWzmfBaWf2JVAsG7DpnhdaULtnw39l3mWKvPC2h1PkeBh8s07QFpsBUrYMq
-         TgmdZ3Znp5HLFu298d6/UGS4Dwk0x4HBYyqUkmT7g1JRhJEAGNznk8Cf1j80PMsyIFs8
-         oW+jtkPwt6PBnIIvNk+ILl5gGUUwDHpZfKEiEySXiaY3cxJ7VPy+n1F7QA8m2tqUkgCb
-         w+6w==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xggRaS5UNqwaVE+Kvx6ewI9lR4TfRIRa8mzj1osKdw8=;
+        b=X/bFIPPT9/oSix+mDpkAcD4ROPq+lAUpgqEVvw3CeakV0KjGma8OHCY0oJ7jc2CAKD
+         gnOv2+BrIp4yzLgUE26BXu4nWpcHdZOXd8wSG/BA/SoaIqxbbQH/FHSXmiJLqoI6/aQS
+         3AfNTh4nSlnxwBFDsOJnNTgb++gs+A9pRXEVC+vGHkYFFWj57HadDgNehSUVB+h80Hau
+         r/B25BE+jl45MjX5PIy6KpMtukHJ5XfZrkmrourLbYq/SonmHRDNkcm0tZQWlhmO4saz
+         npSWutCCppti6vQDv0jcwrunbzF1BJKZvmyJCpJKDYHs/5IEKmqqT09fjBZBYE/UrPvr
+         Scsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nw7lJeHpRVDFo2y9OeZfhTiqPLPx6ObPD3zTI8pHiMo=;
-        b=mxMlVYWaqK1lv6aZU0L5tpQRgoh6vHjfOlV0tttNmqGt4X6CEjXzvICVZvSRtX+cod
-         A1fLw3y6+fTVkXxFuO5jKdMlSP3aokEpvdpoS6QpwU6VIhrzVvkgG6PJ1Z297oh7J1ku
-         qbtp2At0TLZyhWosd8NK7NSYmhJW3nR59C0ejU+4OJegt+nyOtiSow7pkLwY5NfX06AG
-         C6bqfTVIiNB26cRBcr+weQF/04ugPQm6IMYUx/5PNMDwSqHqb1YrctmsMMe7Js636q+T
-         VVMJZwbnwHN1mOH6SUk8kvr4n/dkhcNAp2wpO2GiZXlLyJbmIeYyEXzXvVycE8d0yySR
-         RyFg==
-X-Gm-Message-State: ANoB5pl5xtPa+hR5DBOw/RxkjzmamKgRBgaxj7ihYosttoKsqysaDad5
-        CytkIOGC1ProyNF3QdUxy9W0tkahpJCKLVT5Q/x/IA==
-X-Google-Smtp-Source: AA0mqf5hC3CJKCmoMVgnBmKcIAMXKJfznqI2sQVGVTw1Ezc/VASK11qwClHjwj9WF5iZe3T6Z8EE7/1wxyO7PEjW+jI=
-X-Received: by 2002:a4a:1486:0:b0:49f:542:819 with SMTP id 128-20020a4a1486000000b0049f05420819mr7638371ood.71.1668995913588;
- Sun, 20 Nov 2022 17:58:33 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xggRaS5UNqwaVE+Kvx6ewI9lR4TfRIRa8mzj1osKdw8=;
+        b=GL2OudVaBv3d9+5KfzfAgbIqzkkSW8JNmcabk5kLurLR50QBfOd2hTOv9l3R8FYBjP
+         maPGQhPloDBSgVR8I/ru7gSEHASCZd6/8O0tXOz3/HeDj1hcUFsceqAYr9WePqjiP+Le
+         hua2WhE9scSkq+BY17UsxBpj3prywhIKT+1Df4T13QzbQL4ccpQPKdDMgGOK/4PXu2fb
+         S6BEfp4u7L7FC6ALtlZUFXNXjqiXLz+dmhM7YXcM/iJ7IOYRzByGV2ONv7K7FJ6DU8X+
+         hlLOrnbrTYJ8zauJFkkSLMyYT7BI9+0EMIWKSJrCTl950pIFMYZhXMDnSHHFt7/wxGcz
+         1H5w==
+X-Gm-Message-State: ANoB5pkUeappcAvYoh+yeTQr9H26jqHOBCsZDrDZfAXj51qxov4tiyaB
+        WKzdxU7k7q2PbJKhtUsRKI3xU9bweUk=
+X-Google-Smtp-Source: AA0mqf5eyBLtjjAcyN1HolhDfODa02iOhn1V5VaDyU4U7aJQOk+rBDNLWMvXQIwlTYCQ4RYVsYyh+A==
+X-Received: by 2002:a02:6d6f:0:b0:375:c16b:7776 with SMTP id e47-20020a026d6f000000b00375c16b7776mr7263485jaf.54.1668996023437;
+        Sun, 20 Nov 2022 18:00:23 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:799e:a547:4c2f:ec44? ([2600:1700:2442:6db0:799e:a547:4c2f:ec44])
+        by smtp.gmail.com with ESMTPSA id x15-20020a026f0f000000b0037fbfe86e77sm827295jab.3.2022.11.20.18.00.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Nov 2022 18:00:22 -0800 (PST)
+Message-ID: <8c8124c1-2de6-adfd-3e4b-766c653ebe2d@gmail.com>
+Date:   Sun, 20 Nov 2022 20:00:20 -0600
 MIME-Version: 1.0
-References: <20221117210356.3178578-1-bero@baylibre.com> <20221117210356.3178578-5-bero@baylibre.com>
- <06e916b7-f8f2-6de5-f86e-7b020c052451@linaro.org> <7ha64o9h1d.fsf@baylibre.com>
- <76cae9bf-c81a-684a-c22b-9548dd82c8d4@linaro.org> <CAP2ifjMQAx23xc0p_LZ9Dj79Hx1cyLZ-tx8HrGUbtDR-SmdECw@mail.gmail.com>
-In-Reply-To: <CAP2ifjMQAx23xc0p_LZ9Dj79Hx1cyLZ-tx8HrGUbtDR-SmdECw@mail.gmail.com>
-From:   =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Date:   Mon, 21 Nov 2022 02:58:22 +0100
-Message-ID: <CAP2ifjNeGqrr+LcMBAsVjEm8ciZ=zXxZxq3wppQ3Y37LbmvroQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] dt-bindings: pinctrl: add bindings for Mediatek
- MT8365 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] of: overlay: fix memory leak in add_changeset_node()
+Content-Language: en-US
+To:     Zeng Heng <zengheng4@huawei.com>, pantelis.antoniou@konsulko.com,
+        grant.likely@linaro.org, robh+dt@kernel.org
+Cc:     liwei391@huawei.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221118105308.370474-1-zengheng4@huawei.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20221118105308.370474-1-zengheng4@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 20, 2022 at 3:38 PM Bernhard Rosenkr=C3=A4nzer <bero@baylibre.c=
-om> wrote:
-> I can prepare a "remove pins-are-numbered" patchset
+On 11/18/22 04:53, Zeng Heng wrote:
+> In of_changeset_action(), we have called of_node_get() to increase
+> refcount of a node.
+> 
+> Therefore, when tchild (duplicated by __of_node_dup()) is done,
+> of_node_put() needs to call and release the device_node.
+> 
+> Otherwise, there are some memory leak reported about the node:
+> 
+> unreferenced object 0xffff88810cd1e800 (size 256):
+>   backtrace:
+>     kmalloc_trace
+>     __of_node_dup
+>     add_changeset_node (inlined)
+>     build_changeset_next_level
+> 
+> unreferenced object 0xffff888113721240 (size 16):
+>   backtrace:
+>     __kmalloc_node_track_caller
+>     kstrdup
+>     __of_node_dup
+>     add_changeset_node (inlined)
+>     build_changeset_next_level
+> 
+> unreferenced object 0xffff88810a38d400 (size 128):
+>   backtrace:
+>     kmalloc_trace
+>     __of_prop_dup
+>     add_changeset_property
+>     build_changeset_next_level
+> 
+> Fixes: 7518b5890d8a ("of/overlay: Introduce DT overlay support")
+> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
+> ---
+>  drivers/of/overlay.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index bd8ff4df723d..a5189a0ec0a3 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
+>  		of_node_set_flag(tchild, OF_OVERLAY);
+>  
+>  		ret = of_changeset_attach_node(&ovcs->cset, tchild);
+> -		if (ret)
+> +		if (ret) {
+> +			of_node_put(tchild);
+>  			return ret;
+> +		}
 
-... and I did.
-https://lore.kernel.org/linux-devicetree/20221121015451.2471196-1-bero@bayl=
-ibre.com/
+By visual inspection of the code (Linux 6.1-rc1), this does not appear to be
+correct.  For the only case where of_changeset_action(),
+called by of_changeset_attach_node(), returns an error, of_node_get() has not
+yet occurred on tchild.
 
-Best regards
-bero
+>  
+>  		target_child.np = tchild;
+>  		target_child.in_livetree = false;
+
+For which version of Linux were the memory leaks detected?  Were any additional
+patches applied?
+
+-Frank
