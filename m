@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0AAD6320DA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3106320F8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiKULj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:39:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38312 "EHLO
+        id S231417AbiKULoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:44:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbiKULjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:39:40 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E1F8CF22
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:38:36 -0800 (PST)
-Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com [209.85.219.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E709D3F0A2
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1669030714;
-        bh=k1LFdNn2YthCqXfDo2Al9HOEWWRFBoST7OMZo/loF+4=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=TFnv8/tfGLwGb9JTZ4UQBkwoD9YDU4OI4XTg1q7CGTKGBRrIaTmw/gIFxf8JcekRd
-         cwlbnok25Xjw+F31LZLNrR2s5EmHLqSXg+52ZXdbCPifFAEZwF57HOFt0y44NCjdQ5
-         11kabYSp4wCYZCii/e4jYbsrciZsvGj4+vDbc7eWBL18PrqT8EHd2OO4/KosxHR0PJ
-         u+lPRzm714uDmnakkppxxp8oBWA40VpKCxyvGstRZGxDzmbS5cTqC5uzfUm8plfbPF
-         cJ1lxPCnBptU0TGdppTYduLm1YYW+mpD3pJXmnfZgUE4FijBEi11jZTanfq6mPZDEK
-         CNut8ShesPevw==
-Received: by mail-yb1-f200.google.com with SMTP id b17-20020a25b851000000b006e32b877068so10866896ybm.16
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:38:34 -0800 (PST)
+        with ESMTP id S231419AbiKULnz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:43:55 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBDAC24
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:43:19 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id b3so18440196lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:43:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eJjIdqBUf7mCDkNqH+fJaGpki5XNddXN56C3IGVthfs=;
+        b=jvsDyTDvEEvKahs+I0jRYw1UOVoegcSDrbK5OOi8YXXwsq7VNyteHXOyXn21Pzxhw+
+         KzPhlop/Xi6XvvE7NiGQF2tTJBNxJmsTGPdk1SmEsQBqzYxMv2JN6+4mQiApfNguPDZO
+         x+QS1bxhl3JqlppiKfBywx/sSkjPDhYlMdiKAZ+FyqVQ85ozSoGDVDo0M26XxpeGnJdm
+         z87SAjvU26Ysw0pnSMJ4+50pu2CXUnDK5W6GG0uI0Bu4hxYZyBULp+dOQoxuDHkvpget
+         o0Ugqy/QRTYMfIKglRY4b82MR6O+SZBgKCTSQBvLTuUD9UCrkSPI0m462w77WLmtxTAu
+         XsXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k1LFdNn2YthCqXfDo2Al9HOEWWRFBoST7OMZo/loF+4=;
-        b=sgM5SJxUBxH+dG3o/lV7wgblnNjB34t59y3IXRCsSTNjQSOs3U7tbFFUbGeJsXW+8h
-         pNk2OtnnjwGJBXbL/z62vPztn2hIBPSPrcq0h1S8FcxO+c4xd3NVf0ZZMY2DmHoF5SJU
-         Qruhipx8lnqqEhXoA9wNJq4gtdxx0coEEtoBCb/lizX4RJYhtf1tPxg69RezvayGM+71
-         MunYN7XVHxP1N5y+zAkgKwfvmWyi+4WYcYTaRCIO5xjF+3C3VRoeVVtgwevCe7UHEE8X
-         ggC4ggMc3xh7AcgZkWTG7becvGpzeRe258C5XWGSQFBLpFeU8IM0IEv9hHYXJtWNZszr
-         RKbA==
-X-Gm-Message-State: ANoB5pnTAmUWpazSpGsVbjfJPtf1NpX6M7eZcMz9JVb43e03s4ashU3V
-        86tzq5bVlfbWUnDoUlmkVAbJsi5WvVaJkR12RrBz4P9cD8nTuxp7CUEM98MebxNQ3xEc8/zTE8C
-        ovSqsaOK1U+OWYIyLFiC7rEE3HP+QumV6pS9XPeim4Ay9Uyt6uhfxsH0=
-X-Received: by 2002:a25:e80f:0:b0:6df:927f:38c9 with SMTP id k15-20020a25e80f000000b006df927f38c9mr16158718ybd.92.1669030713975;
-        Mon, 21 Nov 2022 03:38:33 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5WqnZPCDXzAGWO5+CsGrfvY5dZ99oEse/5+ZdgxQLRmeJNBWFQZouQa8Zd7b6wtc3vX0BNaCAIpFXWIf5Gs/k=
-X-Received: by 2002:a25:e80f:0:b0:6df:927f:38c9 with SMTP id
- k15-20020a25e80f000000b006df927f38c9mr16158698ybd.92.1669030713733; Mon, 21
- Nov 2022 03:38:33 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eJjIdqBUf7mCDkNqH+fJaGpki5XNddXN56C3IGVthfs=;
+        b=JPcOrHtlOgGnVCaQZVo/DPE4BaOZb1/5a8/IzcD5IvP/IRtmFHFLUYJ1/dMlBe2nEU
+         MmXM+ssUMAUM/96TsEFSGBMa9ri5iZa/wKG+i93lX2vBvv/q2Ds9HfIOBnqRQ+qPSU/d
+         SKzsA3nUBykqCqBVNaqelAZH86PW7I1N8GX3R/OrlqG5KNxt2J73qNT4s+CJqn0U7QW7
+         wkUCkjygyxlg7ZsZY9nC4ctEw61LaQirj9sodbuyPUQ5hQbFkfkYUovaVSZ+D3NW6RcZ
+         hRbmY9bWzeS4Egz/BfoCJX04GagPYg4RocjnnMx1wVTg1KKlyy5tupglVuIvYIGtDwER
+         KpKw==
+X-Gm-Message-State: ANoB5pnPvcNBlug/60KY4bhlFRLHY2CdtVcbQE+WyspgEJ7DTYDiaogK
+        7IAmSo4LzXhoSeM2I9+SY77vnA==
+X-Google-Smtp-Source: AA0mqf4LUV1uVk6m74MISW9MOGRH7u8VqLFXDuWZECSkhQDyJLDgHXZotMMipUi7nB4QWKNPRWlPrQ==
+X-Received: by 2002:a05:6512:b17:b0:4b4:b90a:69a1 with SMTP id w23-20020a0565120b1700b004b4b90a69a1mr5108694lfu.76.1669030997603;
+        Mon, 21 Nov 2022 03:43:17 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id w23-20020ac24437000000b0049480c8e7bcsm2001366lfl.176.2022.11.21.03.43.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 03:43:17 -0800 (PST)
+Message-ID: <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
+Date:   Mon, 21 Nov 2022 12:43:16 +0100
 MIME-Version: 1.0
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-11-hal.feng@starfivetech.com> <8153973d-e8ad-e47a-3808-bbcdbfd169a5@linaro.org>
-In-Reply-To: <8153973d-e8ad-e47a-3808-bbcdbfd169a5@linaro.org>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 21 Nov 2022 12:38:17 +0100
-Message-ID: <CAJM55Z9ouj=jD2Otx3fK4W1wgnPjecUgFuKksw5CmU6SraM_Nw@mail.gmail.com>
-Subject: Re: [PATCH v2 10/14] dt-bindings: clock: Add StarFive JH7110
- always-on clock and reset generator
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
+ h2mode property
+Content-Language: en-US
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-3-herve.codina@bootlin.com>
+ <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
+ <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
+ <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221118112349.7f09eefb@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,57 +90,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Nov 2022 at 09:49, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 18/11/2022 02:06, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> >
-> > Add bindings for the always-on clock and reset generator (AONCRG) on the
-> > JH7110 RISC-V SoC by StarFive Ltd.
-> >
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > ---
-> >  .../clock/starfive,jh7110-aoncrg.yaml         | 76 +++++++++++++++++++
-> >  1 file changed, 76 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
-> > new file mode 100644
-> > index 000000000000..afbb205e294f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/starfive,jh7110-aoncrg.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: StarFive JH7110 Always-On Clock and Reset Generator
-> > +
-> > +maintainers:
-> > +  - Emil Renner Berthing <kernel@esmil.dk>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: starfive,jh7110-aoncrg
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Main Oscillator
-> > +      - description: RTC clock
->
-> Real Time Clock clock? :) I don't think the input to clock controller is
-> the output of RTC...
+On 18/11/2022 11:23, Herve Codina wrote:
+> Hi Krzysztof, Geert,
+> 
+> On Tue, 15 Nov 2022 15:04:17 +0100
+> Herve Codina <herve.codina@bootlin.com> wrote:
+> 
+>> Hi Krzysztof,
+>>
+>> On Tue, 15 Nov 2022 14:07:52 +0100
+>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>>> On 15/11/2022 14:05, Krzysztof Kozlowski wrote:  
+>>>> On 14/11/2022 12:15, Herve Codina wrote:    
+>>>>> Add the h2mode property to force the USBs mode ie:
+>>>>>  - 2 hosts
+>>>>> or
+>>>>>  - 1 host and 1 device
+>>>>>
+>>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>>> ---
+>>>>>  .../bindings/clock/renesas,r9a06g032-sysctrl.yaml      | 10 ++++++++++
+>>>>>  1 file changed, 10 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>> index 95bf485c6cec..f9e0a58aa4fb 100644
+>>>>> --- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>> @@ -39,6 +39,16 @@ properties:
+>>>>>    '#power-domain-cells':
+>>>>>      const: 0
+>>>>>  
+>>>>> +  renesas,h2mode:
+>>>>> +    description: |
+>>>>> +      Configure the USBs mode.
+>>>>> +        - <0> : the USBs are in 1 host and 1 device mode.
+>>>>> +        - <1> : the USBs are in 2 host mode.
+>>>>> +      If the property is not present, the value used is the one already present
+>>>>> +      in the CFG_USB register (from reset or set by the bootloader).
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [0, 1]    
+>>>>
+>>>> 0/1 are quite cryptic. Why not making it a string which is easy to read
+>>>> and understand? Can be something like "two-hosts" and "one-host". Or
+>>>> anything you find more readable...    
+>>>
+>>> ...but actually you should rather make it a property of your USB
+>>> controller, not clock controller. You have two controllers and we have a
+>>> generic property for them - dr_mode.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>   
+>>
+>> IMHO, this property in the USB controllers does not make sense.
+>> Indeed each controller cannot have a different 'mode'.
+>> Some controllers are USB host only (EHCI and OHCI) and the USBF
+>> controller I worked on is device only.
+>> 'h2mode' allows to choose between host or device on one of the USB
+>> but not at the USB controller level.
+>>
+>> This property should be handle outside the USB controller nodes.
+>>
+>> Currently, this node (declared as a clock node) is in fact a sysctrl
+>> node and can do some configuration not related to clocks.
+>>
+>> I agree with you something related to choosing USB Host/Device in
+>> a clock node seems strange.
+>>
+>> Some discussion were already opened related to this property and how
+>> to handle it:
+>>   https://lore.kernel.org/all/20221107182642.05a09f2f@bootlin.com/
+>>   https://lore.kernel.org/all/20221107173614.474707d7@bootlin.com/
+>>
+> 
+> We advanced on this topic.
+> 
+> First, even if 'renesas,r9a06g032-sysctrl.yaml' is present in
+> the devicetree/bindings/clock/ directory, this node is really
+> a 'system controller' node:
+> - title: Renesas RZ/N1D (R9A06G032) System Controller
+> - compatible: renesas,r9a06g032-sysctrl
+> 
+> It handles clocks, power domains, some DMA routing, ...
+> 
+> Now, the property 'h2mode' allows to choose between:
+>   - 2 USB hosts
+> or
+>   - 1 USB host and 1 USB device.
+> 
+> This switching is system wide and has no reason to be done in
+> one specific USB controller. It can impact multiple devices and
+> PLL settings.
+> 
+> The 'renesas,r9a06g032-sysctrl' node, as the system control
+> node of our system, is the best candidate to handle the property.
 
-The description is bad, but even the documentation calls it "clk_rtc"
-even though it's really an optional input from a 32k oscillator.
+Not necessarily. IIUC, you have:
 
-> Best regards,
-> Krzysztof
->
+1. sysctrl with some register(s) for choosing device mode
+2. usb device or host at one address
+3. usb host at separate address
+
+If so then:
+A. Pretty often we have wrapper nodes for this purpose (USB, phy
+wrappers or glues) which are usually needed to configure something for a
+generic block (like Synopsys etc).
+
+B. Pretty often the device (so your USB host or device) needs to poke
+something in system controller registers, e.g. for power or some other
+setup.
+
+Your case looks a lot like (B). We have many, many of such examples
+already. Actually it is exactly like that, except that it affects
+possibility of another device (e.g. choosing USB device blocks having
+host there).
+
+C. It looks a bit like a multi-serial-protocol interfaces (so
+UART+I2C+SPI). The difference is that such cases have all these nodes
+defined as a children of the protocol-wrapping device. Not here.
+
+I would propose to go with (B) unless of course it's causes some crazy
+architecture/code choices. Why? Because with exception of (C) we should
+not define properties which represent DT node choices. IOW, Choosing a
+node and compatible (e.g. usb controller as device) is enough to
+describe the hardware. No need for other properties to control some
+register in other block.
+
+
+> 
+> In order to be less cryptic in the property value, what do you
+> think about:
+>   renesas,h2mode:
+>     - one-dev : the USBs are in 1 host and 1 device mode.
+>     - only-hosts : the USBs are in 2 hosts mode.
+
+Name looks better, if we go this path.
+
+> 
+> With these details and change on the property value,
+> Is it ok for you to have the 'renesas,h2mode' property
+> in the 'renesas,r9a06g032-sysctrl' node ?
+
+
+Best regards,
+Krzysztof
+
