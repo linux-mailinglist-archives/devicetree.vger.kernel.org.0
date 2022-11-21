@@ -2,256 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B31D6321A3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D856321B5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:17:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbiKUMLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 07:11:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37554 "EHLO
+        id S229536AbiKUMRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 07:17:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiKUMLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:11:39 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA3673412
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:11:37 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id j4so18586004lfk.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:11:37 -0800 (PST)
+        with ESMTP id S229735AbiKUMRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:17:40 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0360E167E8;
+        Mon, 21 Nov 2022 04:17:39 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id bs21so19579534wrb.4;
+        Mon, 21 Nov 2022 04:17:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7qhOMct1HtHorGbIWxyZEdTxvsTx5R3VBHmP3l2woMg=;
-        b=rOgOeCRWpjxZg5nXP82q7tc9S0QzvizVoefqoQzE2Q7H86DBuFTopuoD1mNZ5sPC4w
-         92LR2HCe2f0niGUYjXVAgkj3CgjHkIIJP4c/FaNkPVIYy1kwyTkuXSkoLygGnmvi/jst
-         imcQn5rkWlnFProwvMfFtxz5Hy9UDchjTMZGqJdQcNGdSkPZCzKKueQiMuiUhbuzPyKj
-         DTJLiye9/PufyxJsnjqipi7wyoayFR5DAInUve/lu0v07p92+EvTAYJMpWwk/7ImGKK/
-         MwIant5rN7BDSi0jJdmn094NsfnOvSb7KBWDqtHLQYrNl06EDQK81HZhMyEoOVgry0Xm
-         A6lA==
+        bh=Dau72eMFobVjeX858MKpIQt+w+Vj109653tn0bOEToE=;
+        b=LZ9ntN+4DTSrbOgtfOrnpUBwBrbpV7qmRH/ljp2H/dZdMQuirrWvAdZk2R/bGkpO9p
+         qC11WmNqXSMvmjgG7ofh8dwut6KCDI2MVrANuQg1egUOPzNFHakWsZ6fR88Nryg/7gzi
+         DXSZUc61z46nnPxXGxqoL3rIsG2jkL997JUWk6wyWodMIBjdZ1K/nd6gaYEYNtVygHz3
+         dIEaeNdSjezKh5Kzt2l0j+tTscWRhu+dKN/rVmpRtleKI5mx/w5GqWUIi+y2SkAGSw03
+         zluYjzYDXohiwomidyNMjAOiXEFbr1LAFEzJxDoYzW1wT7fYyBDWQlzBCHnq5eRekgvR
+         Of4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7qhOMct1HtHorGbIWxyZEdTxvsTx5R3VBHmP3l2woMg=;
-        b=k8uPo3rAwRlPYfmHyHW+pkKVC94k6SC6entbAuLqrG6A4Zn5WE2QVXrLAd9gE+gQYG
-         2K9Cft5cytXhQYDoSjyQJUy7hLD/CTjPzvPAKZFPcAqc77QsjhOTkfXZoVH7mL8wZZ6/
-         j/UDpYUCFqaRI4FrRh0BANqGFno+4ETVnsAigWS+wNQrNh60/t8wOodTlE1l9kP3WJf4
-         P4AGf7mbvXzdrUi8iXxePVHKyPpibD+4QlrxNCXFPuXYzJ69QkN0DAE7g14Edje41xxE
-         NYCrcDuM9ecNBl3KL225rXTBW1u+iv4rC8Fx2tpEdfm3Nor5HPEkcSNZM5PCikvp/BOd
-         R4iw==
-X-Gm-Message-State: ANoB5pmeWspg21poM7buXQo6evbedQYGOHUVHDoAsqM9jorOjg6VO30U
-        YVfk9Cn0ZHKj+HpW+gsT6ATdpg==
-X-Google-Smtp-Source: AA0mqf7xZ0mWUdJCN+6VFR2cUJVKZcxOD17BCaNQ2fbAP6LUKcuL2AlNDQkkD7XCO/YE1IbrdhUIRw==
-X-Received: by 2002:ac2:58ca:0:b0:4b4:eed:ec3e with SMTP id u10-20020ac258ca000000b004b40eedec3emr5710487lfo.446.1669032695820;
-        Mon, 21 Nov 2022 04:11:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w2-20020a19c502000000b004a05767bc07sm1996327lfe.28.2022.11.21.04.11.34
+        bh=Dau72eMFobVjeX858MKpIQt+w+Vj109653tn0bOEToE=;
+        b=mQsqnF+5AhKDFCH6ZcAXbXQxq9q58TE5HtkFWq6wiMdzxmD25fmoc4+I22RkKR4DWe
+         f3/pQ8zeEyCxzmLvpSESO2JuPOdm8R3RhsgqA0FK6EhSVssHe2oXKpYx7/HF7pWlzxVf
+         ADtd4jt53AQYj344nMMwbbcp3t5/oz4bF+ybMGeWfaSJGBACsV+tzRmZufitoK8xVD5m
+         yqKjPnFiyacRmEKgjMUDVMqE2//POr4ovVY47udi0QTsRXRqwBgAuKHT7rPwSaE/4Q1D
+         EIppgC0RG9T5CxtcGEkfXLlp74qsJXUcV1zN383TA6NDgjRUxIo2tLBns9yF//PJWeIA
+         6QNA==
+X-Gm-Message-State: ANoB5pkeksuy1IUtv6C7F0x0jhLy/Q5r24kI7Uovs1DIvlE672AUuhGp
+        PmbGF/Gdlk0GiiD1IrFBdzg=
+X-Google-Smtp-Source: AA0mqf5fGkC5GjLrWjBo6zV31RUokHzCtGY/Ltn3f1prZofGpBm/8pSWUcDd/u4xQilm5VMtM63W1A==
+X-Received: by 2002:adf:ff89:0:b0:22e:38b:95ff with SMTP id j9-20020adfff89000000b0022e038b95ffmr1287478wrr.202.1669033057477;
+        Mon, 21 Nov 2022 04:17:37 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id e21-20020a05600c219500b003cf894dbc4fsm13444667wme.25.2022.11.21.04.17.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 04:11:35 -0800 (PST)
-Message-ID: <0149c0e5-f3d6-1e15-cadb-5b88ed4b3dbf@linaro.org>
-Date:   Mon, 21 Nov 2022 13:11:33 +0100
+        Mon, 21 Nov 2022 04:17:24 -0800 (PST)
+Message-ID: <065b5ff5-fbae-2ec5-a06a-8aad015612f9@gmail.com>
+Date:   Mon, 21 Nov 2022 13:16:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 5/6] arm64: dts: fsd: Add PCIe support for Tesla FSD SoC
+Subject: Re: [PATCH v4 0/4] Add dp-intf and dp nodes
 Content-Language: en-US
-To:     Shradha Todi <shradha.t@samsung.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, lpieralisi@kernel.org,
-        kw@linux.com, mani@kernel.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, alim.akhtar@samsung.com,
-        ajaykumar.rs@samsung.com, rcsekar@samsung.com,
-        sriranjani.p@samsung.com, bharat.uppal@samsung.com,
-        s.prashar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, p.rajanbabu@samsung.com,
-        niyas.ahmed@samsung.com, chanho61.park@samsung.com
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20221121105210.68596-1-shradha.t@samsung.com>
- <CGME20221121104741epcas5p31e1320bc4c0912485c1fabe52ea19988@epcas5p3.samsung.com>
- <20221121105210.68596-6-shradha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121105210.68596-6-shradha.t@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     angelogioacchino.delregno@collabora.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221110063716.25677-1-rex-bc.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221110063716.25677-1-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:52, Shradha Todi wrote:
-> Add the support for PCIe controller driver and phy driver
-> for Tesla FSD. It includes support for both RC and EP.
+
+
+On 10/11/2022 07:37, Bo-Chen Chen wrote:
+> This series add MediaTek dp-intf nodes and dp nodes.
+> This series is based on linux-next-20220915.
 > 
-> Signed-off-by: Niyas Ahmed S T <niyas.ahmed@samsung.com>
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> ---
->  arch/arm64/boot/dts/tesla/fsd-evb.dts      |  48 ++++++
->  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi |  65 ++++++++
->  arch/arm64/boot/dts/tesla/fsd.dtsi         | 171 +++++++++++++++++++++
->  3 files changed, 284 insertions(+)
+> Changes for v4:
+> 1. Rebase to linux-next 20221109.
 > 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> index 1db6ddf03f01..cda72b0f76f8 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> @@ -41,3 +41,51 @@
->  &ufs {
->  	status = "okay";
->  };
-> +
-> +&pcie_phy0 {
-> +	status = "disabled";
+> Changes for v3:
+> 1. Update commit message for "arm64: dts: mediatek: cherry: Add edptx and dptx support".
+> 
+> Changes for v2:
+> 1. Update commit messages.
+> 2. reorder the place of "status = "disabled";"
+> 3. reorder the place of dp-intf.
+> 
+> Bo-Chen Chen (4):
+>    arm64: dts: mt8195: Add dp-intf nodes
+>    arm64: dts: mt8195: Add edptx and dptx nodes
+>    arm64: dts: mediatek: cherry: Add dp-intf ports
+>    arm64: dts: mediatek: cherry: Add edptx and dptx support
+> 
 
-It's a double disable, isn't it?
+Whole series applied, thanks!
 
-> +};
-> +
-> +&pcie_phy1 {
-> +	status = "disabled";
-> +};
-> +
-> +&pcie4_rc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie1_clkreq>, <&pcie1_wake>, <&pcie1_preset>,
-> +			<&pcie0_slot1>;
-> +	status = "disabled";
-
-???
-
-> +};
-> +
-> +&pcie4_ep {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie1_clkreq>, <&pcie1_wake>, <&pcie1_preset>,
-> +			<&pcie0_slot1>;
-> +	status = "disabled";
-> +};
-> +
-> +&pcie0_rc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_clkreq>, <&pcie0_wake0>, <&pcie0_preset0>,
-> +			 <&pcie0_slot0>;
-> +	status = "disabled";
-> +};
-> +
-> +&pcie0_ep {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_clkreq>, <&pcie0_wake0>, <&pcie0_preset0>,
-> +			 <&pcie0_slot0>;
-> +	status = "disabled";
-> +};
-> +
-> +&pcie1_rc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_clkreq>, <&pcie0_wake1>, <&pcie0_preset0>;
-> +	status = "disabled";
-> +};
-> +
-> +&pcie1_ep {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_clkreq>, <&pcie0_wake1>, <&pcie0_preset0>;
-> +	status = "disabled";
-
-Ordering is broken. All overrides/extends are ordered by label name.
-
-> +};
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> index d0abb9aa0e9e..edae62dfa987 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-> @@ -64,6 +64,27 @@
->  		samsung,pin-pud = <FSD_PIN_PULL_NONE>;
->  		samsung,pin-drv = <FSD_PIN_DRV_LV2>;
->  	};
-> +
-> +	pcie1_clkreq: pcie1-clkreq {
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-(...)
-
->  
->  &pinctrl_pmu {
-> diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> index f35bc5a288c2..2177f6964553 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-> +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-> @@ -32,6 +32,14 @@
->  		spi0 = &spi_0;
->  		spi1 = &spi_1;
->  		spi2 = &spi_2;
-> +		pciephy0 = &pcie_phy0;
-> +		pciephy1 = &pcie_phy1;
-> +		pcierc0 = &pcie0_rc;
-> +		pcieep0 = &pcie0_ep;
-> +		pcierc1 = &pcie1_rc;
-> +		pcieep1 = &pcie1_ep;
-> +		pcierc2 = &pcie4_rc;
-> +		pcieep2 = &pcie4_ep;
-
-Since these are disabled, aliases do not belong to DTSI, but to board.
-
-Also, explain why do you need them.
-
->  	};
->  
->  	cpus {
-> @@ -860,6 +868,169 @@
->  			clocks = <&clock_fsys0 UFS0_MPHY_REFCLK_IXTAL26>;
->  			clock-names = "ref_clk";
->  		};
-> +
-> +		pcie_phy0: pcie-phy@15080000 {
-> +			compatible = "tesla,fsd-pcie-phy";
-> +			#phy-cells = <0>;
-> +			reg = <0x0 0x15080000 0x0 0x2000>,
-> +			      <0x0 0x150A0000 0x0 0x1000>;
-> +			reg-names = "phy", "pcs";
-> +			samsung,pmureg-phandle = <&pmu_system_controller>;
-> +			tesla,pcie-sysreg = <&sysreg_fsys0>;
-> +			phy-mode = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie_phy1: pcie-phy@16880000 {
-> +			compatible = "tesla,fsd-pcie-phy";
-> +			#phy-cells = <0>;
-> +			reg = <0x0 0x16880000 0x0 0x2000>,
-> +			      <0x0 0x16860000 0x0 0x1000>;
-> +			reg-names = "phy", "pcs";
-> +			samsung,pmureg-phandle = <&pmu_system_controller>;
-> +			tesla,pcie-sysreg = <&sysreg_fsys1>;
-> +			phy-mode = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie4_rc: pcie@15400000 {
-
-Not ordered. Keep nodes sorted by unit address, at least within the
-group of devices you add.
-
-> +			compatible = "tesla,fsd-pcie";
-
-reg is second property. reg-names and ranges follow.
-
-> +			clocks = <&clock_fsys0 PCIE_SUBCTRL_INST0_AUX_CLK_SOC>,
-> +				 <&clock_fsys0 PCIE_SUBCTRL_INST0_DBI_ACLK_SOC>,
-> +				 <&clock_fsys0 PCIE_SUBCTRL_INST0_MSTR_ACLK_SOC>,
-> +				 <&clock_fsys0 PCIE_SUBCTRL_INST0_SLV_ACLK_SOC>;
-> +			clock-names = "aux_clk", "dbi_clk", "mstr_clk", "slv_clk";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-
-Best regards,
-Krzysztof
-
+>   .../boot/dts/mediatek/mt8195-cherry.dtsi      | 86 +++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 48 +++++++++++
+>   2 files changed, 134 insertions(+)
+> 
