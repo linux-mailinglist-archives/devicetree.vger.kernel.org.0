@@ -2,155 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A990863293B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C26E632951
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:22:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiKUQRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 11:17:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        id S230012AbiKUQWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 11:22:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbiKUQRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:17:16 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C031D39D2;
-        Mon, 21 Nov 2022 08:17:15 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ALGFrUU003901;
-        Mon, 21 Nov 2022 16:17:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=d1bj0Jd0Qilb/tCfeYP9/FCeyYOKVwD2wEDhQR02Kpo=;
- b=XWhkiSVSVkJ+BUqp+nXk0F9fE7yKYu8GGwndn3ARW+K+r/na9D6npxWHtY1jNOaEXnd3
- /JfWtWOtlp67SA8Wb//mseZC98NPlQ1++A6RGrdlARkKemq/OPj6mO/b20IthoGdmg+S
- NZj0iQRuj+KjcYs36pDjLvSEdAFrPHVCvh6gQU+wspFzbfv+H9Uw+aPJMJ/LdkGPkuSl
- lDc3sSlkt6rCeZrhytUkdQTTMuTW4F0qPrIU5uyDStHJHBVREDlC0/T+aY/8j6HIWRps
- 3oC91CrGwsLxdDR4Kt8WJzvjDkKRxc6vQmsBQXwT3OKLS1sB2KLtwCXXw8ADs4j5c3/a dQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrut4tyr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Nov 2022 16:17:11 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALGHALG018094
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Nov 2022 16:17:10 GMT
-Received: from [10.110.36.88] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 21 Nov
- 2022 08:17:09 -0800
-Message-ID: <2f63c7df-f220-ad80-1ec8-a5d13e866be8@quicinc.com>
-Date:   Mon, 21 Nov 2022 10:17:08 -0600
+        with ESMTP id S229936AbiKUQWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:22:32 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7DD2190
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:22:29 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id cn2-20020a056830658200b0066c74617e3dso7632198otb.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:22:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S+nfDr+dyGsfAPvm0J/EwZGvNH288poL7KdHYBLmF6c=;
+        b=bzQy0qUOJjvEIgTSCWCQhsEypflEt8Dq3JTaWYbjoxvlMKp7yldaKxBNQC/qFYSVBj
+         uV+1hwSZLkZBMXNggi9LcRqqsARa5qLilciCqMl3tyWzYpOjZEqsX2itJtJH2G78GNks
+         rN66CinMnLeYNrJQOwmzO8N4uVyJFKUlsH+bJScem3dAoEWtTQoMrDx4zZrxkrFZA5Hj
+         GCEcfB1w2mNyAAdJi3N1nO4AJNKxQYR8/0O3SGEUy8yIAojqvg3PbMr02Pp3RtG+gyTh
+         fK9T1LKig0oF/njWRib+istwVlGkeGGFI9arrz+2YOex1f9rkJqQG9IslKNlXv1no2pS
+         Gs4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S+nfDr+dyGsfAPvm0J/EwZGvNH288poL7KdHYBLmF6c=;
+        b=kRDLafqR3a67MjqWL+LqF1biqwZMBrtx67wZeqQR0Sm/ovhNvBjcvgZpk8Pe48u/OG
+         CEZAQqUXMJBYGZaJ85sqkKC3P8vjJAeO9mnSa3ycpt6TPIduI0IJ5iM8Y4aM0UWTWkfK
+         I83eqmOTWb5Sk4bdQuVJMttTCglRKbyCKfCotjW6fMCZ9jLSe544XrWWyaQSOIBm9DJn
+         9iFwPFyGQeWiVGRurESg7RfGotgC+P3iJ3gYnlwGwA+5Cy6pY7AKG1tI+iKYTf5W5U/6
+         Co9XGi9k7RTIn4lKkxEG/PUUeqNpE8Wm0LzbJLaRrfoUW3le8O3wSc6pw+OXblfgQ8t6
+         uneA==
+X-Gm-Message-State: ANoB5pml5EAiXF+ZiQSr3Q253F9dB3pZ8ddSDePPZ7ZhmVBcqWvbjmza
+        G38RGsigcu4dP8CHX2QY9Uc=
+X-Google-Smtp-Source: AA0mqf4g6YQ1AzYPSkvCgTCbdv6Q6wSgS8c7KRUh91odSnBuqa/f6WCXOYNuXdNv4LOiJjHTLjXXgw==
+X-Received: by 2002:a05:6830:d8c:b0:66c:5a5a:3eb0 with SMTP id bv12-20020a0568300d8c00b0066c5a5a3eb0mr979029otb.286.1669047748862;
+        Mon, 21 Nov 2022 08:22:28 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:485:4b69:5204:9130:9b29:a926])
+        by smtp.gmail.com with ESMTPSA id h22-20020a9d61d6000000b006619295af60sm4935222otk.70.2022.11.21.08.22.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 08:22:28 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] ARM: dts: imx6ul-pico-dwarf: Use 'clock-frequency'
+Date:   Mon, 21 Nov 2022 13:22:15 -0300
+Message-Id: <20221121162216.2375833-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatible
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>
-CC:     "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221118182614.11774-1-quic_molvera@quicinc.com>
- <94f23d11-dfa3-fd86-32ed-937c78592f20@linaro.org>
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <94f23d11-dfa3-fd86-32ed-937c78592f20@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YYrcvIAfbPxWjMDOUV3fcKjfXA-NUxY_
-X-Proofpoint-ORIG-GUID: YYrcvIAfbPxWjMDOUV3fcKjfXA-NUxY_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-21_14,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 impostorscore=0 mlxlogscore=999 phishscore=0
- adultscore=0 clxscore=1011 bulkscore=0 priorityscore=1501 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2211210126
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fabio Estevam <festevam@denx.de>
 
+'clock_frequency' is not a valid property.
 
-On 11/20/2022 4:45 AM, Krzysztof Kozlowski wrote:
-> On 18/11/2022 19:26, Melody Olvera wrote:
->> Add compatible for scm driver for QDU1000 and QRU1000 platforms. These drivers
->> only require the compatible field, so update the bindings accordingly for
->> these platforms.
->>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->> This patch is separated out from [1] and includes
->> changes addressing comments from that patch set.
->>
->> [1] https://lore.kernel.org/all/20221026190549.4005703-2-quic_molvera@quicinc.com/
-> Then this is a v4. Please always include the changelog.
+Use the co47246fafef84e175bff2ff1f3c56669e03a89ederrect 'clock-frequency' instead.
 
-Apologies.
+Fixes: 47246fafef84 ("ARM: dts: imx6ul-pico: Add support for the dwarf baseboard")
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/imx6ul-pico-dwarf.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
-> Did you implement the changes requested? If they are no changes, then
-> review would stay the same as before.
-
-Yes the changes requested are implemented; this document is different from the
-one originally submitted.
-
-Thanks,
-Melody
->
->>  .../devicetree/bindings/firmware/qcom,scm.yaml        | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> index 25688571ee7c..71012d43a32f 100644
->> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> @@ -38,6 +38,7 @@ properties:
->>            - qcom,scm-msm8994
->>            - qcom,scm-msm8996
->>            - qcom,scm-msm8998
->> +          - qcom,scm-qdu1000
->>            - qcom,scm-sc7180
->>            - qcom,scm-sc7280
->>            - qcom,scm-sc8280xp
->> @@ -82,6 +83,16 @@ properties:
->>      description: TCSR hardware block
->>  
->>  allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,scm-qdu1000
->> +    then:
->> +      properties:
->> +        clocks: false
->> +        clock-names: false
->> +
->>    - if:
->>        properties:
->>          compatible:
->>
->> base-commit: 147307c69ba4441ee90c1f8ce8edf5df4ea60f67
-> Best regards,
-> Krzysztof
->
+diff --git a/arch/arm/boot/dts/imx6ul-pico-dwarf.dts b/arch/arm/boot/dts/imx6ul-pico-dwarf.dts
+index 162dc259edc8..5a74c7f68eb6 100644
+--- a/arch/arm/boot/dts/imx6ul-pico-dwarf.dts
++++ b/arch/arm/boot/dts/imx6ul-pico-dwarf.dts
+@@ -32,7 +32,7 @@ sys_mclk: clock-sys-mclk {
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+-- 
+2.25.1
 
