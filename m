@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BEB463225A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:37:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 359B863225E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:38:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231477AbiKUMh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 07:37:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58098 "EHLO
+        id S231460AbiKUMiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 07:38:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231407AbiKUMhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:37:55 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB162F381
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:37:53 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id b9so14352984ljr.5
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:37:53 -0800 (PST)
+        with ESMTP id S230430AbiKUMiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:38:01 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3616B9C2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:37:58 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so12657633wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:37:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HfG+hA+uYwDsZ1UdfYKRtVV9KVyXwGJ9M9n0nwa5OFc=;
-        b=qVRdaXRkwOZckqHytSlZzPQYqP9Y2TWyDf9/s0fgu823ggTHiRlvplRtwsy0grDGxf
-         ccQ7o6o33EtwKwG//itIwf4diZmaVYzRFy9oyaivR2zdfA4I2b4CfEVKWI3hO5i+ik+s
-         XgoVHRTKA5XYbIvi4DqaLUZBWxwy7mZl+d9D3fJcvQms9LGfE8beV94uDv3z9PqZ8J1F
-         ZkjpXSo+yhIzwyvimRjSJ+Hb1lGfvqflyZpRUtCrZVV2Gtwo+76O1JgWxX7O1CqHjeua
-         df8Re6bNRJdR29VlAS2Fnpr0NQCuB6zW5AjJiOzFW59JMr91yIoKltR+0sPf5BCU6TDJ
-         VLUg==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfJ6ReGcbvudqGx5aWnlLmh808mEmKwe4YM900G8GoU=;
+        b=bhLvzu/iY7Mjd1xlH9twYzc2DCTHHIuR6cmeB16W+qrctjI2VgehKZyGjhsb0y/s9Q
+         rb5YPfiHqcjgLHbMXVp1UA7FFBV5n7zmRJIowCr2t4gxPwYHqilNJKTuooB3QAcZFDKk
+         fZPBYxMNpqfIMW4A5i2NiTps5MXN74532w65v0P6trMHqwWrfavqhd07zEWt36odoyfn
+         4ZHkqB9bGKS91KyjTFGnfRiCUkjx9qVv3VGl8kFEL6Oy+w8gJ+FQWT1UgfYoNk4Wjtj3
+         +WY+DtEaJYy5UC5YzyvXglazmcTU9wPC4nUtmeIyCSRMxit9IPjY7hrBVMj9Kwo3Wn3C
+         1kKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HfG+hA+uYwDsZ1UdfYKRtVV9KVyXwGJ9M9n0nwa5OFc=;
-        b=py2tJ+A0uom/zN/QJaYLi38oQ/GZj/xAzJkv9fjsPrRnRzJQdcPqNwRpp4ywAFYZhN
-         W2xV0tB5VYBU74kBqgaYZ9GdKelqmX8FZGQMln23UoBR+G+VVxgD+uvV3GbDCZU71wwR
-         u+aqWtui+2vNSfcJTp992RZO3jqbOoeScY4gWrWp4KCnrPuk6pqIYVgQ2wNU+VC8Bgpn
-         rbYhWnZ4W1bh8t7QShrwSskTTtNwPuoD2iWhgvTHXCAZGylgDWBmsj1WJTvCmLWz9azV
-         UC+Wg1QzTZp1sYL29Fy+kTFDFU4o2+3BD/VWnp//EmQOAWQVYmeg6Wb3EN8UsS+giZYi
-         RWLA==
-X-Gm-Message-State: ANoB5pm+OJRLjlUeQ4jXAXazD4jL03BWXwZwpb0qzjM/43qlpAjSr8Fu
-        4omJ1jjzN0mykFDJnsZxGP/MOA==
-X-Google-Smtp-Source: AA0mqf4lADTH4UBnhnzITCAh4PxE4jvuBtauyFJ39lIlkTlmOgO2oOYF9BQyH7qnNp+r3XAy3V46Cg==
-X-Received: by 2002:a2e:b63b:0:b0:277:56d:fcfb with SMTP id s27-20020a2eb63b000000b00277056dfcfbmr5221175ljn.264.1669034271700;
-        Mon, 21 Nov 2022 04:37:51 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k12-20020a0565123d8c00b004979df1c1fasm2006030lfv.61.2022.11.21.04.37.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 04:37:51 -0800 (PST)
-Message-ID: <fd714745-ea9f-fba5-3154-7c4babfc7ba9@linaro.org>
-Date:   Mon, 21 Nov 2022 13:37:50 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OfJ6ReGcbvudqGx5aWnlLmh808mEmKwe4YM900G8GoU=;
+        b=B0g7pFtPFdZUpcOs5iEGaGAOzQANdaZWElcFefo5pTIhpGtBq+TR2EgT7cHRMuxnXz
+         5w1qpVaH4xHcAwE4B/sR2Q6tnwnnhZFQyBUfI67z/MokgWntGzBzbokMYgWIxqph5pkm
+         q302mJHdONwHaXSlQ/7l9DKvzVs8rmOFpIyopINI167dPMgH1sIrj3cX4ogtDeUL6UhP
+         y/mDX2hTNzJ6P4bnmFqZeqN1LlMJyjJuOH/8BC2f4jcekuycXmhHku1enZIj5sACkvRA
+         2eBBhCRM96cSDraKfuNk409ypNEU0inS143dakUy58rmphfbPhdCFAj0wHilsg6hxwqZ
+         SXjg==
+X-Gm-Message-State: ANoB5pm3P7rKCRSG4X/bDBlbLEtPoQpKwpcqcGHwQqejykvqGWWtmSBm
+        jIYVGtxtaaK7CVsNtxWJ7w0HQQ==
+X-Google-Smtp-Source: AA0mqf5JngN/dT4Kr7SbrPWvWx3miCH34ldho+VQ75xmRL5193rxCxFZa4xfx0c7V+FzhXpY/pFlwQ==
+X-Received: by 2002:a1c:7401:0:b0:3cf:934b:b7ad with SMTP id p1-20020a1c7401000000b003cf934bb7admr1734188wmc.22.1669034276591;
+        Mon, 21 Nov 2022 04:37:56 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id e21-20020a05600c219500b003cf894dbc4fsm13496353wme.25.2022.11.21.04.37.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 04:37:56 -0800 (PST)
+Date:   Mon, 21 Nov 2022 14:37:54 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH 1/2] ufs: host: ufs-qcom: Clear qunipro_g4_sel for HW
+ version major 5
+Message-ID: <Y3txIoDn3hFBXt0Y@linaro.org>
+References: <20221116121732.2731448-1-abel.vesa@linaro.org>
+ <20221116121732.2731448-2-abel.vesa@linaro.org>
+ <57b0669c-3826-dc33-36a4-2d8220da768a@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 0/9] Remove the pins-are-numbered DT property
-Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com
-References: <20221121015451.2471196-1-bero@baylibre.com>
- <2cc7a3c5-563d-cdf6-f49b-5e0a9852fb54@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2cc7a3c5-563d-cdf6-f49b-5e0a9852fb54@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <57b0669c-3826-dc33-36a4-2d8220da768a@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,42 +83,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 13:31, Matthias Brugger wrote:
-> Hi Bernhard,
+On 22-11-16 13:28:53, Konrad Dybcio wrote:
 > 
-> On 21/11/2022 02:54, Bernhard Rosenkränzer wrote:
->> During the review of my MT8365 support patchset
->> (https://lore.kernel.org/linux-mediatek/20221117210356.3178578-1-bero@baylibre.com/),
->> the issue of the "pins-are-numbered" DeviceTree property has come up.
->>
->> This property is unique to Mediatek MT65xx and STM32 pinctrls, and
->> doesn't seem to serve any purpose (both the Mediatek and STM32 drivers
->> simply refuse to deal with a device unless pins-are-numbered is set to
->> true).
->>
->> There is no other use of this property in the kernel or in other projects
->> using DeviceTrees (checked u-boot and FreeBSD -- in both of those, the
->> flag is present in Mediatek and STM devicetrees, but not used anywhere).
->>
->> There is also no known use in userspace (in fact, a userland application
->> relying on the property would be broken because it would get true on
->> any Mediatek or STM chipset and false on all others, even though other
->> chipsets use numbered pins).
->>
->> This patchset removes all uses of pins-are-numbered.
->>
->>
 > 
-> My personal preference is to add a summary of the files touched by the series in 
-> the cover letter (the tools will do that for you). This allows maintainers to 
-> easier understand if they have to look deeper into the series or can ignore it.
+> On 16/11/2022 13:17, Abel Vesa wrote:
+> > On SM8550, depending on the Qunipro, we can run with G5 or G4.
+> > For now, when the major version is 5 or above, we go with G5.
+> > Therefore, we need to specifically tell UFS HC that.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >   drivers/ufs/host/ufs-qcom.c | 4 ++++
+> >   drivers/ufs/host/ufs-qcom.h | 2 ++
+> >   2 files changed, 6 insertions(+)
+> > 
+> > diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> > index ca60a5b0292b..72334aefe81c 100644
+> > --- a/drivers/ufs/host/ufs-qcom.c
+> > +++ b/drivers/ufs/host/ufs-qcom.c
+> > @@ -227,6 +227,10 @@ static void ufs_qcom_select_unipro_mode(struct ufs_qcom_host *host)
+> >   	ufshcd_rmwl(host->hba, QUNIPRO_SEL,
+> >   		   ufs_qcom_cap_qunipro(host) ? QUNIPRO_SEL : 0,
+> >   		   REG_UFS_CFG1);
+> > +
+> > +	if (host->hw_ver.major == 0x05)
+> > +		ufshcd_rmwl(host->hba, QUNIPRO_G4_SEL, 0, REG_UFS_CFG0);
+> > +
+> >   	/* make sure above configuration is applied before we return */
+> >   	mb();
+> >   }
+> > diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
+> > index 751ded3e3531..10621055bf7f 100644
+> > --- a/drivers/ufs/host/ufs-qcom.h
+> > +++ b/drivers/ufs/host/ufs-qcom.h
+> > @@ -36,6 +36,7 @@ enum {
+> >   	/* On older UFS revisions, this register is called "RETRY_TIMER_REG" */
+> >   	REG_UFS_PARAM0                      = 0xD0,
+> >   	REG_UFS_PA_LINK_STARTUP_TIMER       = 0xD8,
+> > +	REG_UFS_CFG0                        = 0xD8,
+> Are you sure these two should point to the same register? Maybe it deserves
+> some kind of a comment?
+
+The REG_UFS_PA_LINK_STARTUP_TIMER is used by non qunipro variants. (UFS
+versions below 2.x)
+
+The REG_UFS_CFG0 is used by qunipro variants. (UFS versions above 2.x).
+
+Will add a comment to the later one that would look like this:
+"/* Found on UFS versions above 2.x only */"
+
+Thanks,
+Abel
+
 > 
-> No need to send again, just saying for the future.
-
-Yep. And git format-patch does it automatically in both common cases -
-writing cover letter manually or taking it from branch description
-(which is absolutely cool, IMHO).
-
-Best regards,
-Krzysztof
-
+> Konrad
+> >   	REG_UFS_CFG1                        = 0xDC,
+> >   	REG_UFS_CFG2                        = 0xE0,
+> >   	REG_UFS_HW_VERSION                  = 0xE4,
+> > @@ -75,6 +76,7 @@ enum {
+> >   /* bit definitions for REG_UFS_CFG1 register */
+> >   #define QUNIPRO_SEL		BIT(0)
+> > +#define QUNIPRO_G4_SEL		BIT(5)
+> >   #define UFS_PHY_SOFT_RESET	BIT(1)
+> >   #define UTP_DBG_RAMS_EN		BIT(17)
+> >   #define TEST_BUS_EN		BIT(18)
