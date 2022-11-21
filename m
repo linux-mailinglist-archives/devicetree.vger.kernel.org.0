@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C12D631DED
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:14:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8688631DF8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbiKUKOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:14:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52496 "EHLO
+        id S230346AbiKUKPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:15:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiKUKOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:14:16 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BE2D41
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:14:15 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p8so18058671lfu.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:14:15 -0800 (PST)
+        with ESMTP id S230054AbiKUKPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:15:50 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB54112D1D
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:15:49 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id d6so18084798lfs.10
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:15:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=huSdTSSPuNXnoZS/eHmsGnIE6FjPj9B88zrBs7fiZfk=;
-        b=NeMpWLpw/VGYxrbuzW7jvw2Zj1Nfi3gDv98L2ZjOnbqAeGJjM8wn+VJxEVNkiRugSd
-         OQ7Tmu6pMhD/aUFllBlGcL+AlFkZ45BPNURu7FAQQ2MCIIC6VLvPz2ip9wCP1YapZhd3
-         o6/YUX4wwAo5UHnvEcz/ghquvvCy/58s5MJBKZHOl7FQxePuAbLZdDcePyjqv3XtvDX1
-         oAajxBuaAmGLKZwomr/1bC1HqGit+Bs6twk6fbyyUFSBKry5hWiZao44wSNXy6tcSZzl
-         EClSd9wu0hI94hhcaB+83s769n+Xk03DjJ/vOhGiQ5XZncTbY4PEWvTPBwgcXqFSqtQq
-         xyzw==
+        bh=rlPX0/HkEahkqIbJpSO1lxKpCnTdlVDg79RU4xh3Zhs=;
+        b=yN/TuefqholGNYZIcqM90cxRsVaSZwKSYlRk8IBdp8d9OFPPB1atBR6DWEeDoWMUt5
+         QpMn8AR5L2w06TUvFXbtlR820yvzLIBqJl4fPbPEv2mIe+LL522gbsqwKVPpnPZUymDJ
+         9Hf4Ag1WtcgU+jaYtnO++HNyyNAJWeltz8aSNkXzPpYKtdaVSRdOcrfJf507/OjhrIY4
+         zzOrIm57EgCNPlsGgOH5FzNTi0LTHUAb9wg+6qPPpviIxcsKL+lx9QhDEMJhPu5jRYY0
+         YKV6FwYom1Wf0ZvS9rfsF8fPsDfhWpbAlT2/dBsQbI8LGkYIR4MIblP+MOalOcxFAX4i
+         Rg0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=huSdTSSPuNXnoZS/eHmsGnIE6FjPj9B88zrBs7fiZfk=;
-        b=j/Cvt62xOlWwwC33PUOr7n4gU3UgYvmpTQo/hZMUZgC8UrX+V4spuWNzYrxErK9jfx
-         X07gcI9DPtLLgHcBO0WJCORDGO8RejOT703TJj2McvQ/mSTg9y4z7agG/N/PIjQoI8oB
-         hCGLllnAlhen5NokihknXFLuq02nhs2gSmgeMz+cv62AyEF20EbQfPSyobNQX4SvIQDJ
-         sOy4sY9TkM7/1Lb/tc98LVhH9dDK4/RWAtdd6wLCooQymarXzXU8DmGJh34ksOJ+zbcT
-         dhbPwyR5CXOT1uEYdEi9zoQj4szFul8w09Jna7Lnw4gOuYGphkGK8BIkiLCzYfBfpFD9
-         NTsQ==
-X-Gm-Message-State: ANoB5pm7v2XAX0QK6V6Ko0ahgftZ/wKcJ3CL3fnDfbWRHgVj7H+F+yWW
-        ri2Qv4jgEkD3VmWQKVzSCpXGAw==
-X-Google-Smtp-Source: AA0mqf5MIpJ8acuij7Zyzk0NHW7RM4Gxmqrv+yzfJWyhegkhGd3Kuk6wRQYO312yoIGdnWyPdbtHxQ==
-X-Received: by 2002:a05:6512:25a8:b0:4aa:a6f8:f042 with SMTP id bf40-20020a05651225a800b004aaa6f8f042mr5296215lfb.405.1669025653696;
-        Mon, 21 Nov 2022 02:14:13 -0800 (PST)
+        bh=rlPX0/HkEahkqIbJpSO1lxKpCnTdlVDg79RU4xh3Zhs=;
+        b=IUi/GbF5IFV9JPZpAHheQ+3WDtYzK+KTOGebtuRQUjTnFGfxnMBdr79Q68uEXpFf2C
+         IAkMUON7FRuEwQke2ykGb9U+l9kIStMVYrpXQanqXFtDMHhzrcaUNCIvJ2iVKRcqiO1t
+         odAPh1D0RkpGczEagKn+KNHdqqD+QGVs0y74IDjStQaY/iThsCr7sJf6CnKZ5Dcs5hYG
+         XCN0burYrw4ElMcy74N8XjdqIfC0gVU6Aq6cAkqaSTGVUeUt4vSxvFjd43ZeSJ3MPy3u
+         8KLKJY+ht4sgM1/V9z9/ICNYimE4YD5hFiIvd/eaqOmU8YOaYx1X+c5dxomn/QIa+jmQ
+         uCrQ==
+X-Gm-Message-State: ANoB5pkj12H1tZLOzTBJsByVEXHDUs3uLG0MGRqNfaTA7L9zyGRUxGu2
+        9iOwz+PnfxNzXuR6eV/0/pzwWA==
+X-Google-Smtp-Source: AA0mqf7q4Mb4IsKU4YpMv6ICs3I2hcyf1CVMfJHzV4QGvdtvFOb1j28NxRkfCSFEG+vRNXx1HVfr3g==
+X-Received: by 2002:a05:6512:2520:b0:4a2:6907:98d8 with SMTP id be32-20020a056512252000b004a2690798d8mr2261994lfb.28.1669025748240;
+        Mon, 21 Nov 2022 02:15:48 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u15-20020a056512128f00b004a2ae643b99sm1965407lfs.170.2022.11.21.02.14.12
+        by smtp.gmail.com with ESMTPSA id p8-20020a19f008000000b004ac980a1ba1sm1959456lfc.24.2022.11.21.02.15.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 02:14:13 -0800 (PST)
-Message-ID: <15a860d8-d134-5eab-1635-74622421c5d7@linaro.org>
-Date:   Mon, 21 Nov 2022 11:14:12 +0100
+        Mon, 21 Nov 2022 02:15:47 -0800 (PST)
+Message-ID: <0c303534-190a-7480-f1bf-fa0b9a1d4dba@linaro.org>
+Date:   Mon, 21 Nov 2022 11:15:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1 3/4] soc: starfive: Add StarFive JH71XX pmu driver
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD
+ Pro boards
 Content-Language: en-US
-To:     Walker Chen <walker.chen@starfivetech.com>,
-        linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        linux-kernel@vger.kernel.org
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
- <20221118133216.17037-4-walker.chen@starfivetech.com>
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org
+References: <20221121043437.21925-1-quic_rjendra@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118133216.17037-4-walker.chen@starfivetech.com>
+In-Reply-To: <20221121043437.21925-1-quic_rjendra@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,39 +77,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 14:32, Walker Chen wrote:
-> Add generic power domain driver for the StarFive JH71XX SoC.
+On 21/11/2022 05:34, Rajendra Nayak wrote:
+> Add compatibles for the Pro SKU of the sc7280 CRD boards
+> which come with a Pro variant of the qcard.
+> The Pro qcard variant has smps9 from pm8350c ganged up with
+> smps7 and smps8.
 > 
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Thank you for your patch. There is something to discuss/improve.
 
-> +
-> +MODULE_AUTHOR("Walker Chen <walker.chen@starfivetech.com>");
-> +MODULE_DESCRIPTION("StarFive JH71XX Power Domain Driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/soc/starfive/pm_domains.h b/include/soc/starfive/pm_domains.h
-> new file mode 100644
-> index 000000000000..a20e28e9baf3
-> --- /dev/null
-> +++ b/include/soc/starfive/pm_domains.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Author: Walker Chen <walker.chen@starfivetech.com>
-> + */
-> +
-> +#ifndef __SOC_STARFIVE_PMDOMAINS_H__
-> +#define __SOC_STARFIVE_PMDOMAINS_H__
-> +
-> +#include <linux/types.h>
-> +
-> +void starfive_pmu_hw_event_turn_on(u32 mask);
-> +void starfive_pmu_hw_event_turn_off(u32 mask);
-
-These are not used outside of driver. Drop entire header file.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
