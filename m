@@ -2,78 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ACC632A5D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA916632A6D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:11:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230438AbiKURHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:07:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57176 "EHLO
+        id S230017AbiKURLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:11:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230446AbiKURHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:07:11 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B17CB9EB
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:07:07 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id a15so15187594ljb.7
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:07:07 -0800 (PST)
+        with ESMTP id S229915AbiKURLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:11:30 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13AECB96C
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:11:26 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id p8so19770045lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:11:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rJQWLAZ4mdjMtlFjO7Mbh6mixzKo427eR1BTd1zJu8w=;
-        b=xm7lgVvTD8LiKUqo3lDgCROpVlzaUp5xR5oj/uRiSHOTCPkwI4ffK97ZDk4rAoIAHu
-         fVz6Lld5vc+StslDX8RTWnty/GGnaFYtvbJRFiPzzJ5l6tT7PfRlFKjNMcq4Qnuf+Oid
-         dbsUBp92BrrHS4gsjNnaBqtxcpyNJQv1bYODwQ6DqeE/cy4x/sfwOmwVeNUqZlUkACsO
-         Gr4GIZdS17SkCPci1YrZxAtXxJqTkk+gSJm99H92s4uJTlkg1OQ5o9MTpiGWoaSD6Xsf
-         6LETMkR8MSmJ72+cpP9MGYtzd8x3+5/LZKtPqxzCcKk+L2NVJJMUNb8h0xX4hzo9Jggx
-         hPwQ==
+        bh=vcQtuQ1svxsHJl1QOt/PUC4+CkXncaj7ukKHdxsUxSE=;
+        b=gbZ6kO7oxVkFgHRjBISYLzSogPdT9xsx0Wd7qCc3tuR/2r1JFJQdQ5gSSngO5sYSfb
+         PDWmoxUewUtE3GAU/mLLywOEwT+/IGAkVXSBSCCmLibACH98oBozjL1Ps4B6T3jXfvBp
+         mdAysdt6Fr6JtupdUlLY3cubkhYBGA7S/5wtJnOL2KkiHd12UQELGzMfDIkTVZ+kHViZ
+         gPqzRctW3TJeBHly4+TlsJmxKIie31DJvEIeHFcGvFFimWVsn0odNybhcxd/eVVNqK1l
+         yeHquEVsuxxY+yoIuYV2iRPQFc6MA/uJZYx22in6YgiUiK1Yd3MY3dIrcBD0zbJ15j7c
+         ambw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rJQWLAZ4mdjMtlFjO7Mbh6mixzKo427eR1BTd1zJu8w=;
-        b=aqTEbqWi7rxz6zeFG+A5y3eHhhCMMonPrch0T2NNQehyZRMRJhd9qAS0xKTUGHBCgL
-         ulwao9szjdYiUhi8nzOa1QEN4/yqdWgLWSMfPTRfp2OGU3tzIC+rPSeD3AZSLB36/0H3
-         C9LG2kNPWXH1pqJVLw4SXUpTgWYaIuHQn7RFV8Pc40vi9eXxiqOuTFT744+8oNkZcZBY
-         5Rq4kiUlxOVoGsAVzmu4jYOjjrge/u85oDQ2FWlbo3bV3iyWaiJwKqXt6kg14VsKfTeD
-         Yr59fA+6kmrmsmqIPOioM+GOyhiWdKGtUg7kablFL0p+15eX8A+HQ6gFPWbpe4FKCGoa
-         nqsw==
-X-Gm-Message-State: ANoB5plLHzB2a4h6JpTzPQyn1X6uemHrtHXav/IYj3MugFoynzgG+MZD
-        16jYkoIuwVVE7YNeyUf769e1AQ==
-X-Google-Smtp-Source: AA0mqf6h+6xPI2dxU9CA3hVBJILkn7hxLyyKv1N7KNTixcKNfyb9AQn+ztPktj067WOaqKu+Ldpt/Q==
-X-Received: by 2002:a05:651c:205:b0:26c:5e3a:44d7 with SMTP id y5-20020a05651c020500b0026c5e3a44d7mr6573052ljn.471.1669050426022;
-        Mon, 21 Nov 2022 09:07:06 -0800 (PST)
+        bh=vcQtuQ1svxsHJl1QOt/PUC4+CkXncaj7ukKHdxsUxSE=;
+        b=hEJYb3JJZHGHE0UqVjj6cqD63JJCg236Hv/dfmmDMNB449OTzo9RjT8Qgi+LsFL7EL
+         1UrlO/ni1LdR50Zf3fcQC1BAcTLOOzkDjYcyARvCKmmEDbI8fQ1RTLLtRiW4uiWvPgYK
+         eWUAWrLH9hS0y4fFnUS0zt9fbqyBRvJfoo1ECqeOqwLGunMsoTwUtGrJh3jekRTC7gzW
+         wTELEvgYDIpAZfiRpQ8K2FXbOY3l4Uy92f/Bmomfp4qxOzOhSWgSLNQp5E2NhfF6YMRJ
+         4l/oNiBS3RrHeseYbI9Npt0utp5BEc7S0CjfjT6MN5pViCb6HdbOuBOZBoNWp+gddEVw
+         L6eg==
+X-Gm-Message-State: ANoB5pn0S/7svxHtlx1kKi8zpDjup6rlXRXhrBJOdGmh7KvhS9Q6f+v5
+        rnH0Kf2ejOr3n3jZBhEoPIUesQ==
+X-Google-Smtp-Source: AA0mqf4jhoY4IaYINWC8QxyHlMFRo6RU5SKdkHy5zwJkwW9QTPZQHD2fS+cFHf12OXdKAaISnGID1w==
+X-Received: by 2002:a05:6512:3b06:b0:4aa:8cd:5495 with SMTP id f6-20020a0565123b0600b004aa08cd5495mr1041453lfv.254.1669050684880;
+        Mon, 21 Nov 2022 09:11:24 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v10-20020a2e87ca000000b0027712379ec8sm1552281ljj.28.2022.11.21.09.07.04
+        by smtp.gmail.com with ESMTPSA id o8-20020a05651205c800b004ae394b6a6fsm1163468lfo.246.2022.11.21.09.11.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 09:07:05 -0800 (PST)
-Message-ID: <1419e9da-98f7-c477-9f07-4b54e82be4c4@linaro.org>
-Date:   Mon, 21 Nov 2022 18:07:04 +0100
+        Mon, 21 Nov 2022 09:11:24 -0800 (PST)
+Message-ID: <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
+Date:   Mon, 21 Nov 2022 18:11:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/8] dt-bindings: power: supply: Add DT schema for
- Qualcomm SMBCHG
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
+ h2mode property
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alejandro Tafalla <atafalla@dnyon.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-References: <20221120154625.57095-1-y.oudjana@protonmail.com>
- <795deac4-71fe-d40b-a3b6-855eb3875ad1@linaro.org>
- <1H1PLR.S9UFOHIJCU6S@gmail.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-3-herve.codina@bootlin.com>
+ <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
+ <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
+ <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
+ <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
+ <20221121165921.559d6538@bootlin.com>
+ <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
+ <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1H1PLR.S9UFOHIJCU6S@gmail.com>
+In-Reply-To: <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,100 +95,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:36, Yassine Oudjana wrote:
+On 21/11/2022 17:36, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> On Mon, Nov 21 2022 at 09:26:59 +01:00:00, Krzysztof Kozlowski 
+> On Mon, Nov 21, 2022 at 5:33 PM Krzysztof Kozlowski
 > <krzysztof.kozlowski@linaro.org> wrote:
->> On 20/11/2022 16:46, Yassine Oudjana wrote:
->>>>>  +  interrupts:
->>>>>  +    items:
->>>>>  +      - description: Charger error
->>>>>  +      - description: Charger inhibited
->>>>>  +      - description: Charger precharge safety timer timeout
->>>>>  +      - description: Charger charge safety timer timeout
->>>>>  +      - description: Charger pre to fast charging switch 
->>>>> threshold reached
->>>>>  +      - description: Charger recharge threshold reached
->>>>>  +      - description: Charger taper threshold reached
->>>>>  +      - description: Charger charge termination threshold reached
->>>>>  +      - description: Battery hot
->>>>>  +      - description: Battery warm
->>>>>  +      - description: Battery cold
->>>>>  +      - description: Battery cool
->>>>>  +      - description: Battery overvoltage
->>>>>  +      - description: Battery low
->>>>>  +      - description: Battery missing
->>>>>  +      - description: Battery thermistor missing # unconfirmed
->>>>>  +      - description: USB input undervolt
->>>>>  +      - description: USB input overvolt
->>>>>  +      - description: USB input source detected
->>>>>  +      - description: OTG regulator failure
->>>>>  +      - description: OTG regulator overcurrent
->>>>>  +      - description: Automatic input current limiting done
->>>>>  +      - description: USB ID pin changed
->>>>>  +      - description: DC input undervolt
->>>>>  +      - description: DC input overvolt
->>>>>  +      - description: Power OK
->>>>>  +      - description: Temperature shutdown
->>>>>  +      - description: Watchdog timeout
->>>>>  +      - description: Flash failure
->>>>>  +      - description: OTST2 # unknown
->>>>>  +      - description: OTST3 # unknown
+>> On 21/11/2022 16:59, Herve Codina wrote:
+>>> On Mon, 21 Nov 2022 12:43:16 +0100
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>> On 18/11/2022 11:23, Herve Codina wrote:
+>>>>> On Tue, 15 Nov 2022 15:04:17 +0100
+>>>>> Herve Codina <herve.codina@bootlin.com> wrote:
+>>>>>> On Tue, 15 Nov 2022 14:07:52 +0100
+>>>>>>> On 15/11/2022 14:05, Krzysztof Kozlowski wrote:
+>>>>>>>> On 14/11/2022 12:15, Herve Codina wrote:
+>>>>>>>>> Add the h2mode property to force the USBs mode ie:
+>>>>>>>>>  - 2 hosts
+>>>>>>>>> or
+>>>>>>>>>  - 1 host and 1 device
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>>>>>>> ---
+>>>>>>>>>  .../bindings/clock/renesas,r9a06g032-sysctrl.yaml      | 10 ++++++++++
+>>>>>>>>>  1 file changed, 10 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>>>>>> index 95bf485c6cec..f9e0a58aa4fb 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.yaml
+>>>>>>>>> @@ -39,6 +39,16 @@ properties:
+>>>>>>>>>    '#power-domain-cells':
+>>>>>>>>>      const: 0
+>>>>>>>>>
+>>>>>>>>> +  renesas,h2mode:
+>>>>>>>>> +    description: |
+>>>>>>>>> +      Configure the USBs mode.
+>>>>>>>>> +        - <0> : the USBs are in 1 host and 1 device mode.
+>>>>>>>>> +        - <1> : the USBs are in 2 host mode.
+>>>>>>>>> +      If the property is not present, the value used is the one already present
+>>>>>>>>> +      in the CFG_USB register (from reset or set by the bootloader).
+>>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>>>> +    enum: [0, 1]
+>>>>>>>>
+>>>>>>>> 0/1 are quite cryptic. Why not making it a string which is easy to read
+>>>>>>>> and understand? Can be something like "two-hosts" and "one-host". Or
+>>>>>>>> anything you find more readable...
+>>>>>>>
+>>>>>>> ...but actually you should rather make it a property of your USB
+>>>>>>> controller, not clock controller. You have two controllers and we have a
+>>>>>>> generic property for them - dr_mode.
+>>>>>>>
+>>>>>>> Best regards,
+>>>>>>> Krzysztof
+>>>>>>>
+>>>>>>
+>>>>>> IMHO, this property in the USB controllers does not make sense.
+>>>>>> Indeed each controller cannot have a different 'mode'.
+>>>>>> Some controllers are USB host only (EHCI and OHCI) and the USBF
+>>>>>> controller I worked on is device only.
+>>>>>> 'h2mode' allows to choose between host or device on one of the USB
+>>>>>> but not at the USB controller level.
+>>>>>>
+>>>>>> This property should be handle outside the USB controller nodes.
+>>>>>>
+>>>>>> Currently, this node (declared as a clock node) is in fact a sysctrl
+>>>>>> node and can do some configuration not related to clocks.
+>>>>>>
+>>>>>> I agree with you something related to choosing USB Host/Device in
+>>>>>> a clock node seems strange.
+>>>>>>
+>>>>>> Some discussion were already opened related to this property and how
+>>>>>> to handle it:
+>>>>>>   https://lore.kernel.org/all/20221107182642.05a09f2f@bootlin.com/
+>>>>>>   https://lore.kernel.org/all/20221107173614.474707d7@bootlin.com/
+>>>>>>
+>>>>>
+>>>>> We advanced on this topic.
+>>>>>
+>>>>> First, even if 'renesas,r9a06g032-sysctrl.yaml' is present in
+>>>>> the devicetree/bindings/clock/ directory, this node is really
+>>>>> a 'system controller' node:
+>>>>> - title: Renesas RZ/N1D (R9A06G032) System Controller
+>>>>> - compatible: renesas,r9a06g032-sysctrl
+>>>>>
+>>>>> It handles clocks, power domains, some DMA routing, ...
+>>>>>
+>>>>> Now, the property 'h2mode' allows to choose between:
+>>>>>   - 2 USB hosts
+>>>>> or
+>>>>>   - 1 USB host and 1 USB device.
+>>>>>
+>>>>> This switching is system wide and has no reason to be done in
+>>>>> one specific USB controller. It can impact multiple devices and
+>>>>> PLL settings.
+>>>>>
+>>>>> The 'renesas,r9a06g032-sysctrl' node, as the system control
+>>>>> node of our system, is the best candidate to handle the property.
 >>>>
->>>>  It seems you listed register interrupts, not physical pins. This 
->>>> should
->>>>  be interrupt lines.
+>>>> Not necessarily. IIUC, you have:
+>>>>
+>>>> 1. sysctrl with some register(s) for choosing device mode
+>>>> 2. usb device or host at one address
+>>>> 3. usb host at separate address
+>>>>
 >>>
->>>  I'm not sure what I'm supposed to do here. I couldn't find an 
->>> interrupt-lines
->>>  property used anywhere so that's not what you meant, right?
+>>> Just to clarify, usb device and host controller are not provided by
+>>> the same IP.
+>>> We have an USB host at some address range (PCI OHCI/EHCI USB host
+>>> below a PCI bridge) and the USB device at some other address range
+>>> (below a AHB to someting bridge).
+>>> And I am not sure that only USB host or devices are affected by this
+>>> property change.
+>>>
+>>>> If so then:
+>>>> A. Pretty often we have wrapper nodes for this purpose (USB, phy
+>>>> wrappers or glues) which are usually needed to configure something for a
+>>>> generic block (like Synopsys etc).
+>>>>
+>>>> B. Pretty often the device (so your USB host or device) needs to poke
+>>>> something in system controller registers, e.g. for power or some other
+>>>> setup.
+>>>
+>>> And we did it for some items (clocks and power).
+>>>
+>>>>
+>>>> Your case looks a lot like (B). We have many, many of such examples
+>>>> already. Actually it is exactly like that, except that it affects
+>>>> possibility of another device (e.g. choosing USB device blocks having
+>>>> host there).
+>>>>
+>>>> C. It looks a bit like a multi-serial-protocol interfaces (so
+>>>> UART+I2C+SPI). The difference is that such cases have all these nodes
+>>>> defined as a children of the protocol-wrapping device. Not here.
+>>>>
+>>>> I would propose to go with (B) unless of course it's causes some crazy
+>>>> architecture/code choices. Why? Because with exception of (C) we should
+>>>> not define properties which represent DT node choices. IOW, Choosing a
+>>>> node and compatible (e.g. usb controller as device) is enough to
+>>>> describe the hardware. No need for other properties to control some
+>>>> register in other block.
+>>>
+>>> The issue with h2mode is that it affects several devices and these
+>>> devices should not be in a "running" state when the h2mode is changed.
 >>
->> Are these physical interrupt lines this device has, register offsets 
->> or
->> virtual interrupts (e.g. passed via irq_chip)? Definitely not the 
->> first
->> and rather offsets for qpnpint_irq_domain_translate. Devicetree is not
->> for describing register layout of devices. IOW, register layout does 
->> not
->> change on different boards, because the device is exactly the same, so
->> there is no point to put it into DTS.
+>> Why the change should happen when device is running? And why this should
+>> be anyway different than your existing hsmode property - it also will
+>> happen when system and device are running.
 >>
+>>
+>>> PCI devices (host controllers) itself are not described in the DT. They
+>>> are automatically enumerated.
+>>
+>> Aren't we talking about USB controller in a MMIO-based SoC?
+>>
+>>> Changing the property in USB device controller can leads to hang on
+>>> other busses. Indeed, changing this property when a device affected
+>>> by the property is running can lead to a bus hang.>
+>>> In order to do that from the USB device controller I need to synchronize
+>>> the other devices to wait for this setting before running.
+>>> 1) probe sysctrl without setting h2mode
+>>> 2) probe some devices (USB host and probably others)
+>>>    Stop at some point and wait for the h2mode property setting.
+>>
+>> Why do you need to wait? Which device needs to wait? There are no such
+>> devices... if they are then please bring entire DTS, not some pieces in
+>> this patchset.
+>>
+>>> 3) probe usb device -> Set h2mode property
+>>> 4) allow devices waiting for the property setting to continue.
+>>
+>> I don't get why do you need such order. Your sysctrl also probes any
+>> time so old solution has exactly the same problem, doesn't it?
+>>
+>>> This synchronization seems pretty tricky and what to do if nobody
+>>> set the property (USB device controller not present or status="disabled"
+>>> for instance) ?
+>>>
+>>> Setting this property in sysctrl probe avoid the need for all of this
+>>> synchronization:
+>>> 1) probe sysctrl and set h2mode.
+>>> 2) probe other devices (no need to wait for the setting as it is already done)
+>>
+>> No, because other devices probe before sysctrl. If you bring here any
+>> manual ordering, you are doing it wrong.
+>>
+>>> The probing of the other devices (or the starting of they running state)
+>>> is guaranteed as they all need some clocks and so cannot start without
+>>> having the sysctrl node already probed.
+>>> This sysctrl node handles the clocks.
+>>
+>> Ah, so sysctrl is a clock controller for these?
+>>
+>> Then still there are no other devices depending on your USB. The USB is
+>> the owner of this property (specific bits in register), no one else.
 > 
-> So how would I describe the interrupts then? Or if you are saying I 
-> shouldn't have these interrupts in DT at all, how would I get them and 
-> register handlers for them in the driver? the PMIC arbiter takes 4 
-> interrupt cells, 3 of which are these offsets specifying the peripheral 
-> and interrupt. All other PMIC peripherals currently described in DT 
-> (examples being qcom,pm8916-wcd-analog-codec, qcom,pm8941-pwrkey and 
-> qcom-wled) have their interrupts (if any) described this way, with the 
-> only exceptions perhaps being the GPIO and MPP controllers which are 
-> themselves interrupt controllers. Changing the way PMIC peripheral 
-> interrupts are described would require changing PMIC arbiter bindings 
-> and code which I believe is out of the scope of this patch series.
+> 1. There are two USB devices.
+> 2. The USB drivers can be modular, the sysctrl driver cannot, as it is
+>    the main clock controller.
 
-I don't think this would touch PMIC arbiter bindings, rather the PMIC
-itself. Usually complex devices (like PMICs) have one few physical
-interrupt lines and many registers related to some specific interrupts.
-For example:
-1. One IRQ line,
-2. Register with bits for overvoltage, undervoltage, vharger error etc.
+This does not change anything. Herve wrote:
 
-Now how the MFD child device accesses them. Since this is strictly
-related to hardware programming model, it's not something you put to
-Devicetree. Instead parent device (PMIC) registers IRQ chip for its one
-interrupt line with several Linux (or virtual) interrupts. The children
-then just get a virtual IRQ from the parent (PMIC) and setup a
-handler(s) for them.
+> probe some devices (USB host and probably others)
 
-You will find some examples for this, just grep for regmap_irq_get_virq,
-for the drivers using regmap_irq_chip (or irq_create_mapping for
-non-regmaps).
+Why some can be probed earlier and some not, if there are no
+dependencies? If there are dependencies, it's the same case with sysctrl
+touching the register bit and the USB controller touching it (as well
+via syscon, but that's obvious, I assume).
 
-Since it is *one* device - the PMIC and its child like charger - the
-register layout is fixed thus I think these virtual (or Linux)
-interrupts are fixed as well.
-
-I don't know why Qualcomm PMIC for SPMI is done differently.
+Where is the synchronization problem?
 
 Best regards,
 Krzysztof
