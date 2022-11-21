@@ -2,229 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96488631BFF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFDDE631C1A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:54:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230247AbiKUIwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:52:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        id S229764AbiKUIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:54:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbiKUIwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:52:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3342B7FC35;
-        Mon, 21 Nov 2022 00:52:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 88503B80D4D;
-        Mon, 21 Nov 2022 08:52:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA4EC433D6;
-        Mon, 21 Nov 2022 08:52:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669020720;
-        bh=DiTiFhITTJAs4MUg6xmD0lJZnTNOGszS1cZFFoBRtIY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FQ5LDqk6bap7VHo3bW2hTHpjjl3ixgyC00Wzlx8mbM8oSP2+NpXKFvo1/0t8QaIx7
-         aTjFRzJrmUoLeOxPnre3xUOwtyKvC4dyb0zScpAhiVxuHmuhMz/CdsQVgM8G4mjZbh
-         aXaC8fmFg1jbYkTUBBkHqM/Ebn4WQAvQZm0+2J1LyzqgOFs2XsKFOxJmWiHQGWGsPd
-         h9vcZbqWVx9PKOEdXhb7Eq59lDqIvy/Rme4Dfj4WqXR/5Xb/31wBndnxXJ06WjNbFs
-         wh3/XLEOzJJdVRNux+R9IIqWNMtRbHeeHwdgpiO4difuTUqqi1sT4Od26KRzpaZ2ug
-         3GA5GBzh+o01g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1ox2WT-00088t-Nr; Mon, 21 Nov 2022 09:51:25 +0100
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v3 15/15] arm64: dts: qcom: sc8280xp: fix USB-DP PHY nodes
-Date:   Mon, 21 Nov 2022 09:50:58 +0100
-Message-Id: <20221121085058.31213-16-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221121085058.31213-1-johan+linaro@kernel.org>
-References: <20221121085058.31213-1-johan+linaro@kernel.org>
+        with ESMTP id S230220AbiKUIxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:53:45 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2053.outbound.protection.outlook.com [40.107.20.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107428CF0A;
+        Mon, 21 Nov 2022 00:52:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l3gLXvsm9CHpwTQdWKz3Nl2ebpFudCSA1da2Ctm9iJPuzMCZPJzHUBC5HpMMz128tjx8Jn4H79QZqSQeWmWZKP1XhsP1sMk1T/9IeKDat7Vf1Xjs5z6yxNX/qfgv1laKjE73a3jckLPTu4TUTeoTBruTkJX/jCsDmTRh1cADw8Ro3oKSN0EdQkz2z7wd3+g2PklRVpLDtAE2wfirD+Yg6ePBqJ7M3hVUEM/zYhC9RRIc8d5P1aknQM9XeOovO+FRnzaCpxESAB1zh1Tt13NBXGq2pgPU5pFkXrni1CUff8gf0k21a7eSmUdSWm6TutlZN1baDC80RnarQO9osvhTmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tTreSJLnDtuxkFWE6wItd9FdizMoYZBW497AjB5uhgs=;
+ b=WR6mfAa1q2uYyJFTgx1tYwTFH8fdO065HYP726lQnxjSo1dA3abeef6YAhKJxQhMhh1lH7V9PdHMUdDV3gyMqOJ0479UKLGGQEPyIP28Y1J9fsqW34p6Hv3LWAq5+QgWm6mGUubjoQxuAGg29u2JvEE8UXisyt3FM8ymd6HC4Kp5XLOCJ004kD1giQrY62z/E6C6EwqV6SlI5nR3MJ/UuZ3MF+RfSCnxmXO355StuPQW0AivfiUPi7ejVICIeInVlxRA7kLaZBEOj5+oLd4E6uHUU/gMda8PflHiyeu78yWuShpptiyFHjMhHQ1tMhO5m6mq6ipxyelT8xilZonE4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tTreSJLnDtuxkFWE6wItd9FdizMoYZBW497AjB5uhgs=;
+ b=203OR6CoH9sdEisvwfQ7FoZoS06znIoYnsRQz5qTjFF8wL1LsIBij7P65J0tfvtzqJ02K4SExbRllSE3KSc//xwnxEJfQ+qxWpw30teTuQNQd7SsJqbw5DuCMR94I4waOOtAi9wuAT/1U2SqCkxOuIYGudQb74kHsFw+042WXQZTpnRuM7/Ng9l7XVLj4blES/+mDvS4qxyHu4DhIem3GntfJYzUvWrTtwazYPDK4NaBXZS+3Gy5KOVewhMid4NToU5iHv0t6QBQcyQMxHvlyWJ71J6cTLICyr00GrrRpLzS9r0Vn2ZLBnwRRpeU6Xm9Hmjg9y86RXwhckuaHeh71g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com (2603:10a6:20b:348::19)
+ by DU2PR04MB8775.eurprd04.prod.outlook.com (2603:10a6:10:2e2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.13; Mon, 21 Nov
+ 2022 08:52:35 +0000
+Received: from AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::b69e:7eea:21cc:54ab]) by AS8PR04MB8465.eurprd04.prod.outlook.com
+ ([fe80::b69e:7eea:21cc:54ab%9]) with mapi id 15.20.5834.015; Mon, 21 Nov 2022
+ 08:52:35 +0000
+Message-ID: <c119bd9c-0b90-4096-a988-9d0312c3dbcd@suse.com>
+Date:   Mon, 21 Nov 2022 16:52:22 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCHv3 0/9] RK3588 Clock and Reset Support
+Content-Language: en-US
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+From:   Qu Wenruo <wqu@suse.com>
+In-Reply-To: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR05CA0044.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::19) To AS8PR04MB8465.eurprd04.prod.outlook.com
+ (2603:10a6:20b:348::19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8465:EE_|DU2PR04MB8775:EE_
+X-MS-Office365-Filtering-Correlation-Id: a19f0338-ecac-49c8-5de3-08dacb9dbc43
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EOU2XLsW1jMv+OlE8Ht40gD7yPQZeTTFUwDDGGtR5Gxu9Wh2+gdLiPOdbIgT6C7qKPuodS94hSyISZ1IwcuDrEis6xNsyKuEpJQkiBt9tQKWyK4B38wPYiUmmzbt8tSKfs9YMGSEd0Owna947um00gLk4CivtmAkA4fK5DYOm+EO88VOCU1zwM4OV4FMMIvqmBRRSikW5uvoJZqq7rVn8gAb5ULJWdVvV7WjQLnb443hX2lb6WGYFbN3Se8BPrnkyftNgmgW8ftT8bOnn9XkfZpVWNewNmEIMtC1JgEHV8MfnqnWRESbYY+cnBkEp3Kcl/mdphENCMpCqPUIRmKRQRDXURKF727mLqw+gqSRGKnZNfZSVQ6Q/bLsqwb1xku4brBhnhvGu9QlLVLvm323DAfe4srMutCemVtOczM4oSQ747na0gcL1M0Dy2j1j61Zzc+AT7vtWgfzHnFb2b8yKd8Sq7THPeM5JFFmAFaznCq3H1uUEHXqu/34sRvacWGVYO0xXV5tj297GkkAKXO2q+l2rS4rkTRhcs/PHy+VGtVKQDsOjJ5wheDeqera+sHUSFVIyOYEs6uh7tLO5/Qfe4cgCWD+UaXDplPZ9PDRGESd+C+oM/VOyOWiTexVJvWdTLOd68YtQf+CQy72Nz4MRC035TcHfc7Mr+qZW8wJBOp5HhAoJVHsWpI7E7/9JaE/Fi4CDmS0Lfo2QEFFRV9knAu9I5P8fnqBOpOP4LB/VQvKF7U+MmOkCaER3sl028t08UZXNk3+OA0yYgva/vZm3LW1dc3fK/7O8bIpg/tLENE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8465.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(39860400002)(136003)(366004)(376002)(346002)(396003)(451199015)(6512007)(8936002)(2616005)(53546011)(186003)(4326008)(7416002)(5660300002)(38100700002)(36756003)(316002)(31696002)(86362001)(6486002)(966005)(6506007)(478600001)(110136005)(54906003)(41300700001)(6666004)(66556008)(66946007)(66476007)(8676002)(31686004)(83380400001)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1FHbG9BdEs1YmZRRXl1SEhWVzQwTi8rbWxHOXVZWjZWelU0S3VmV1JyTlBm?=
+ =?utf-8?B?bDFpbXlOblVnU2xOWnllTXVPV3dhcHQwVnV4aW1zK2JtY0s0SFhqSndQK2ox?=
+ =?utf-8?B?V0F5a0N6OTIyeUJnQUNteS8xRW94bUw5LytsUVpCQXZRbmZRQWpqamFXZlFD?=
+ =?utf-8?B?eFZmNVdOd0NENUFMV1diV1k2bm9jQXdydTAxeWFxSEt1Zjd1WnlPY3dINnJH?=
+ =?utf-8?B?L2NOWlR2VGhJeURObWlVdHZXVVgvNldOM1R5UE54a3M3R1ZQSzhqYWtsSU1C?=
+ =?utf-8?B?aFRJZytVYVJweE9jU2pJdHRsTlJkUkZnZFdEZnp6dHovQnQzMUVwcEg4eWNV?=
+ =?utf-8?B?R3E3aDRDNEFlcG1NVnlKTDdzZEFqcW41c095ajZ4VmpaakI5L3RmL3RKaGwr?=
+ =?utf-8?B?S25jdTUzZjVRd3Q2TnB1ZmUyMGgyaHJmZXJMQVU2MmRTSnZWb0VsbGJoVkJr?=
+ =?utf-8?B?ekpLWjhFQ3JhQUZHeklpb0ZMQldNOGxxVmI0WEtvTzROenB3Z2l6bjhDcmNH?=
+ =?utf-8?B?VEhMYnQycG1UNGF1dFB4YWROWldXdW5KRW9UQXNPU05RN1kzN0ZCUFNCeU4w?=
+ =?utf-8?B?ZlFQTzJDQUc5ODVYQnNkSmdZTkVzOFdqTnExU1ZBVGRqNFJLOUhnWmU2dVNh?=
+ =?utf-8?B?RXM0WThFakZaVWtDNjRQSkNxRGMrOHlhWWNudnNNM1V0TkhiZjJYL1FtYi9x?=
+ =?utf-8?B?MkhmSWZpRlpNS2trdXZpbGtrWUlvc2ZleGhVTldSQ2RwSHZoWUc5cGRKc3d4?=
+ =?utf-8?B?QS94czA5OGc5ZmtIUlFrN25hdnV0cVBvemJmSjVlVEhWcklFd010Z3pFSEVr?=
+ =?utf-8?B?YjJUSlBGYmgxSWpDUENmMFVuU2EvMFBDZ0ZyTWlMMm9sajVoWWRXZ2VqQ3dp?=
+ =?utf-8?B?c0xqVU5yTFo4Zm8yc0xJRTJmQVlBTFZHejJqSVJLUEd2NG8zQmpwd2hsQU1E?=
+ =?utf-8?B?b0wwV3UzRGU2TFQwaWRQWm9vcFVQNkdTdVRoTnFCNWx0OXFITVFoOU4xNjBZ?=
+ =?utf-8?B?bEJ0TEU3VjZFQ2ZzRjR0aWpROWFJZGovS2VVT1dvK3gxS1NNcEJScmdSa1E1?=
+ =?utf-8?B?UytTbWJlSGM2MUJSSlU5S2s0Q21CZmN5c092cmlBZEdpcVJpRVFkKzNIOWc5?=
+ =?utf-8?B?TGVRbXJiMzNvVjF2WmlrK3IvdjFjNTkrbnI1MDFEeU00N0gzNTBOdkFqWk1F?=
+ =?utf-8?B?bVBPOWxaVmVDVitwRlNiVmdlR2dGbHE0UDRSeWxneUtyRGZ0RDVnYWlNZUtS?=
+ =?utf-8?B?N2Mva2lXM2NzS2ZuYVg0V2ZDRVJKTC93Ykt4QVA3c1QvcXJnSHJLNGJGdWht?=
+ =?utf-8?B?Z0pJM3RCTExFQS9hUkZzc0xTcVBlR1NsOE5YT0wvaTVIemRXaFI3bG1OMmxY?=
+ =?utf-8?B?ZXc0Tkhpd21vNThsQm8xT0hVZWs5bE8razFkZnNYeDhpN1Z5ZnVFZk9KNHBi?=
+ =?utf-8?B?VzdTdWlFR3hZdXVyc09uSUZHQlhxeVdOL1VrbXRFb2JJSUE3NVhjVGRPZVBN?=
+ =?utf-8?B?YnlqL09nMGRORHBFSnFNcXlyMXVVbFUyOXZFa2tJTytGeW54cVlPK3JuTDhn?=
+ =?utf-8?B?a1J2WmRYSTBPaklCSEhBZGNOY3A0UWRXdEtheFMwN3psVStYNnBEUUtld25x?=
+ =?utf-8?B?LzVvcGxaSTBGT1lneGZBbUxmaVVSaFhPd3RJeVJCY3NJSUpKbDUwOTArUWc5?=
+ =?utf-8?B?YWhWUnp1M3lvTUZnbW9hVkU1S2lTTWJLWHFjajZ1Q24xVWFBNzA0TUtKU25F?=
+ =?utf-8?B?WFNtek1NM01NRk4wN2JRSGl5U3JCTGxkL2Foam1VL3NqbDVJMHNmWnJtbHpv?=
+ =?utf-8?B?RE0xdkVzWWlJbVNmZ0VSRFEydzV0NWhqaE1PSXJNdnBBRjJLaDRIWnIzOHli?=
+ =?utf-8?B?Q3pDVlVNSlNKVlFSMDRsR0RxelM2QXl1c2tXUXpFZkl2Q1IxYWRIcXExd3BZ?=
+ =?utf-8?B?eGNXZk5aNDlnTXpla2FUdmV3Q3VXVHJ4RFUyT0JnMlk3N0dDS281SzhyTG0x?=
+ =?utf-8?B?bVdRblhnNTdEM2x1WDA1UG1tWDV2VjlndHBZaWdMZkx5QVdwT3BEbm03SGxq?=
+ =?utf-8?B?b3N0V2Z6NmZ0Vmp3TGhXemFUSUkwemNudU5ObmhpVStpTUp0ZEtPdzNHVk81?=
+ =?utf-8?B?UHQ1UXliZ1dOZ1l5R0tadEp4VlhMOFJlaGJvaHI5K2s1RnVqMzg0SHlXdVRz?=
+ =?utf-8?Q?snESoxfWI9FzhouqCpF9lic=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a19f0338-ecac-49c8-5de3-08dacb9dbc43
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8465.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2022 08:52:35.6589
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3xnTy7mxnneeSWu+Ewa4/wcnbLSF32IVEL9XB5cv/Vt1BoLTVej0kocWdgJjevKA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8775
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the USB4-USB3-DP QMP PHY nodes to match the new binding which
-specifically includes the missing register regions (e.g. DP_PHY) and
-allows for supporting DisplayPort Alternate Mode.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 77 ++++++++------------------
- 1 file changed, 23 insertions(+), 54 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 85c674e7e1a5..3c5bc56e68fc 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interconnect/qcom,sc8280xp.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-+#include <dt-bindings/phy/phy-qcom-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- #include <dt-bindings/thermal/thermal.h>
-@@ -763,7 +764,7 @@ gcc: clock-controller@100000 {
- 				 <0>,
- 				 <0>,
- 				 <0>,
--				 <&usb_0_ssphy>,
-+				 <&usb_0_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
- 				 <0>,
- 				 <0>,
- 				 <0>,
-@@ -771,7 +772,7 @@ gcc: clock-controller@100000 {
- 				 <0>,
- 				 <0>,
- 				 <0>,
--				 <&usb_1_ssphy>,
-+				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
- 				 <0>,
- 				 <0>,
- 				 <0>,
-@@ -1666,42 +1667,26 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			};
- 		};
- 
--		usb_0_qmpphy: phy-wrapper@88ec000 {
-+		usb_0_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
--			reg = <0 0x088ec000 0 0x1e4>,
--			      <0 0x088eb000 0 0x40>,
--			      <0 0x088ed000 0 0x1c8>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			reg = <0 0x088eb000 0 0x4000>;
- 
- 			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB4_EUD_CLKREF_CLK>,
--				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
--			clock-names = "aux", "ref_clk_src", "ref", "com_aux";
-+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-+			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-+
-+			power-domains = <&gcc USB30_PRIM_GDSC>;
- 
- 			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
- 				 <&gcc GCC_USB4_DP_PHY_PRIM_BCR>;
- 			reset-names = "phy", "common";
- 
--			power-domains = <&gcc USB30_PRIM_GDSC>;
-+			#clock-cells = <1>;
-+			#phy-cells = <1>;
- 
- 			status = "disabled";
--
--			usb_0_ssphy: usb3-phy@88eb400 {
--				reg = <0 0x088eb400 0 0x100>,
--				      <0 0x088eb600 0 0x3ec>,
--				      <0 0x088ec400 0 0x364>,
--				      <0 0x088eba00 0 0x100>,
--				      <0 0x088ebc00 0 0x3ec>,
--				      <0 0x088ec200 0 0x18>;
--				#phy-cells = <0>;
--				#clock-cells = <0>;
--				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
--				clock-names = "pipe0";
--				clock-output-names = "usb0_phy_pipe_clk_src";
--			};
- 		};
- 
- 		usb_1_hsphy: phy@8902000 {
-@@ -1718,42 +1703,26 @@ usb_1_hsphy: phy@8902000 {
- 			status = "disabled";
- 		};
- 
--		usb_1_qmpphy: phy-wrapper@8904000 {
-+		usb_1_qmpphy: phy@8903000 {
- 			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
--			reg = <0 0x08904000 0 0x1e4>,
--			      <0 0x08903000 0 0x40>,
--			      <0 0x08905000 0 0x1c8>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			reg = <0 0x08903000 0 0x4000>;
- 
- 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB4_CLKREF_CLK>,
--				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>;
--			clock-names = "aux", "ref_clk_src", "ref", "com_aux";
-+				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
-+			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-+
-+			power-domains = <&gcc USB30_SEC_GDSC>;
- 
- 			resets = <&gcc GCC_USB3_PHY_SEC_BCR>,
- 				 <&gcc GCC_USB4_1_DP_PHY_PRIM_BCR>;
- 			reset-names = "phy", "common";
- 
--			power-domains = <&gcc USB30_SEC_GDSC>;
-+			#clock-cells = <1>;
-+			#phy-cells = <1>;
- 
- 			status = "disabled";
--
--			usb_1_ssphy: usb3-phy@8903400 {
--				reg = <0 0x08903400 0 0x100>,
--				      <0 0x08903600 0 0x3ec>,
--				      <0 0x08904400 0 0x364>,
--				      <0 0x08903a00 0 0x100>,
--				      <0 0x08903c00 0 0x3ec>,
--				      <0 0x08904200 0 0x18>;
--				#phy-cells = <0>;
--				#clock-cells = <0>;
--				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
--				clock-names = "pipe0";
--				clock-output-names = "usb1_phy_pipe_clk_src";
--			};
- 		};
- 
- 		mdss1_dp0_phy: phy@8909a00 {
-@@ -1941,7 +1910,7 @@ usb_0_dwc3: usb@a600000 {
- 				reg = <0 0x0a600000 0 0xcd00>;
- 				interrupts = <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>;
- 				iommus = <&apps_smmu 0x820 0x0>;
--				phys = <&usb_0_hsphy>, <&usb_0_ssphy>;
-+				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 			};
- 		};
-@@ -1995,7 +1964,7 @@ usb_1_dwc3: usb@a800000 {
- 				reg = <0 0x0a800000 0 0xcd00>;
- 				interrupts = <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>;
- 				iommus = <&apps_smmu 0x860 0x0>;
--				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-+				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 			};
- 		};
--- 
-2.37.4
+On 2022/10/18 23:13, Sebastian Reichel wrote:
+> Hi,
+> 
+> This has been part of a bigger patchset adding basic rk3588 support.
+> Since that gets more and more out of hand, I'm now sending patches
+> for each subsystem as individual patchset.
 
+Awesome work! Thanks for the work to bring upstream support for RK3588.
+
+This upstream work is especially important since the vendor kernel has 
+so many weird things and is never properly tested using newer tool chains.
+
+But considering the support has been split into different patchset, is 
+there a git repo that I can fetch all the patches and test it on my 
+Rock5B board?
+
+Thanks,
+Qu
+> 
+> Changes since PATCHv2:
+>   * https://lore.kernel.org/all/20220930153857.299396-1-sebastian.reichel@collabora.com/
+>   * rebased to v6.1-rc1
+>   * define rk3588_rst_init() in clk.h to fix build warning
+>   * add input clocks to the binding
+>   * add some more rates from the rate table (merged downstream fix)
+>   * fix input of mux_700m_400m_200m_24m_p clock (merged downstream fix)
+> 
+> Changes since PATCHv1:
+>   * https://lore.kernel.org/all/20220623160329.239501-1-sebastian.reichel@collabora.com/
+>   * split dt-binding header addition into its own patch (requested by Heiko)
+>   * split dt-binding header into clock and reset one (requested by Krzysztof)
+>   * use reset identifier instead of register offset (requested by Krzysztof)
+>    * (involves adding lookup table support to rockchip CRU reset code)
+>   * use linear, gapless clock identifier (requested by Krzysztof)
+>   * reword the DT binding description
+> 
+> Changes since PATCHv0:
+>   * https://lore.kernel.org/all/20220504213251.264819-1-sebastian.reichel@collabora.com/
+>   * Sync'd with latest downstream changes
+>   * Update bindings according to Rob's comments, except for license
+>     (no feedback from Rockchip)
+> 
+> -- Sebastian
+> 
+> Elaine Zhang (5):
+>    dt-bindings: clock: add rk3588 cru bindings
+>    clk: rockchip: add register offset of the cores select parent
+>    clk: rockchip: add pll type for RK3588
+>    clk: rockchip: clk-cpu: add mux setting for cpu change frequency
+>    clk: rockchip: add clock controller for the RK3588
+> 
+> Sebastian Reichel (4):
+>    dt-bindings: clock: add rk3588 clock definitions
+>    dt-bindings: reset: add rk3588 reset definitions
+>    clk: rockchip: simplify rockchip_clk_add_lookup
+>    clk: rockchip: add lookup table support
+> 
+>   .../bindings/clock/rockchip,rk3588-cru.yaml   |   71 +
+>   drivers/clk/rockchip/Kconfig                  |    8 +
+>   drivers/clk/rockchip/Makefile                 |    1 +
+>   drivers/clk/rockchip/clk-cpu.c                |   69 +-
+>   drivers/clk/rockchip/clk-pll.c                |  218 +-
+>   drivers/clk/rockchip/clk-rk3588.c             | 2538 +++++++++++++++++
+>   drivers/clk/rockchip/clk.c                    |   14 +-
+>   drivers/clk/rockchip/clk.h                    |   95 +-
+>   drivers/clk/rockchip/rst-rk3588.c             |  857 ++++++
+>   drivers/clk/rockchip/softrst.c                |   34 +-
+>   .../dt-bindings/clock/rockchip,rk3588-cru.h   |  766 +++++
+>   .../dt-bindings/reset/rockchip,rk3588-cru.h   |  754 +++++
+>   12 files changed, 5390 insertions(+), 35 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml
+>   create mode 100644 drivers/clk/rockchip/clk-rk3588.c
+>   create mode 100644 drivers/clk/rockchip/rst-rk3588.c
+>   create mode 100644 include/dt-bindings/clock/rockchip,rk3588-cru.h
+>   create mode 100644 include/dt-bindings/reset/rockchip,rk3588-cru.h
+> 
