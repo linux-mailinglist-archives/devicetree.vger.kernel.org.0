@@ -2,105 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F032632444
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B31163244D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbiKUNug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 08:50:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57012 "EHLO
+        id S231465AbiKUNvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:51:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbiKUNud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:50:33 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE196547
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:50:32 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id bp15so18879739lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QAt4YvIoyvYsFbo41kBZWP010rGTy75faIZV5/NcsYg=;
-        b=gzXIwUVXy1V7XBQQSTVPLPMyWs9eNUDdabh6yxCweLVXP0Y6xCGvLuky1A0pLGKMjt
-         EctDlYTbYh7atokrbgwkF3m2WoN7dkhcH7eiHwuD6hIwTy1XYNrBtCasY/E1VSWfLZsA
-         qROPXRiGVWnFpDVL1oWnB+qU1HMkJyretUNyK0pF9ynXE8ztKFR2X+MKbQSWzG+etLcv
-         cd+tK5t5IdGz8GGE5nuKL8KVDePd/hPi3oUWcbnV4YrMIgtkL3zDWxCdDFvXFVWC6aYo
-         SD28pL5bCy7dSkI2BrRaxkrt/OjbWOmyvPF7MksBJExMLpXWvMN/Fgoon8cJfwkhmTHZ
-         wzqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QAt4YvIoyvYsFbo41kBZWP010rGTy75faIZV5/NcsYg=;
-        b=kuFkwD2/GV24nKhlVuzSG9CKCGnDQambCMvIAF6c0xKi7eP8ca6svjIwJwU2pE/WOF
-         JMnN9OEPXPFRms5WPZ7omQOQ0G/xcnzDITSJzPKGgCWuDfcpsg8J2XlT+jKEiXdXHtaj
-         dPLu807w5EoLWmkrgYIIvuvrOOPuEnAxdl9Pu6Y4G+NRBAQMdkHpegoBFjUgLGeD117u
-         kM4UJ/JRcwpl4Gx1dhuN/qO/qw3nDrHJ05RrS6iHnuq6+k2He/sELhvm61j9dpdedVSG
-         GN/yCx2LpR+Plgsuz7e9HUllAuhUg0yuDc2Y8M5t03fu1v5fkCLLPzgknnOsLPR1BKKe
-         NVwQ==
-X-Gm-Message-State: ANoB5pmRkho6peS2RD+xHE8PZcOydrKWVWkXdbW38rzHQR6mtmUx3ISC
-        GQ764bWkw6SzTceKm3XtgRqtrQ==
-X-Google-Smtp-Source: AA0mqf5TYxFBqqdBHMjFqcmXaZTC/TwSnfK8gpf3JY5xoq27k5W77KUczLzcmKQ1hGAgM6fJhOjrew==
-X-Received: by 2002:a05:6512:2109:b0:4a2:5f7b:840a with SMTP id q9-20020a056512210900b004a25f7b840amr3125371lfr.577.1669038630507;
-        Mon, 21 Nov 2022 05:50:30 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004a2588520f5sm2027721lft.166.2022.11.21.05.50.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 05:50:30 -0800 (PST)
-Message-ID: <e0835b03-c409-ef0b-501b-176251bc1725@linaro.org>
-Date:   Mon, 21 Nov 2022 14:50:28 +0100
+        with ESMTP id S231415AbiKUNvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:51:08 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1280512AD1;
+        Mon, 21 Nov 2022 05:51:04 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C063525B;
+        Mon, 21 Nov 2022 14:51:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1669038662;
+        bh=XcBq95S/ocbQuYtsQHOYDFbxJwIk2fRPU1hrNjPp58I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rGusc9FJWQGoQlouzveeNLYJT1esLk4+2LygTgaSF4PCQOADjMCo/lkh/ekneO5Xj
+         gITFnM1s4tudLCGSP0mTi93dntA5ng8lK4FgOsFrF/8GWGEu6kONh7IaNn9z6NDyrk
+         fYpK0ClzjsGO47wyoaxcgV1ixTCj7QtNoBSJO+Qs=
+Date:   Mon, 21 Nov 2022 15:50:47 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
+ example
+Message-ID: <Y3uCN59bBwTw6dc9@pendragon.ideasonboard.com>
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+ <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+ <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
+ <Y3h93cLdEvMzInXe@pyrite.rasen.tech>
+ <238f7bf8-578c-5bb4-9f00-50f36334c5cf@linaro.org>
+ <Y3sIAHqd8Kd/XBB/@pyrite.rasen.tech>
+ <50024f2e-4820-ef78-d54d-5bfe53ccac7e@linaro.org>
+ <Y3tVKOEfxdZ+Klnh@pendragon.ideasonboard.com>
+ <9389201b-22d4-1229-7e26-5f046d18e15f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 03/10] arm64: dts: qcom: Add pm8010 pmic dtsi
-Content-Language: en-US
-To:     neil.armstrong@linaro.org, Abel Vesa <abel.vesa@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20221116103146.2556846-1-abel.vesa@linaro.org>
- <20221116103146.2556846-4-abel.vesa@linaro.org>
- <76560659-7c90-3846-c250-24bfb072ec0e@linaro.org>
- <15ac1d06-5da7-ebd2-92ff-764c8df803a1@linaro.org>
- <3a84d45c-6550-7ae2-2511-9f61d15894d1@linaro.org>
- <081732c9-5e8e-b68e-c2bd-20724ca1a5d5@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <081732c9-5e8e-b68e-c2bd-20724ca1a5d5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <9389201b-22d4-1229-7e26-5f046d18e15f@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 14:29, neil.armstrong@linaro.org wrote:
->>>> Any reason why this is licensed BSD-3 clause? It's not a recommended
->>>> license (2 clause is). Same for other patches.
->>>
->>> Probably a bad copy-paste from other existing files.
->>>
->>> While checking, the majority of arch/arm64/boot/dts/qcom/pm*.dtsi uses BSD-3-Clause
->>> so it seems this was done for quite a while now.
->>
->> If it is derivative work (of upstrea, downstream), then you might have
->> to keep BSD-3. But if not, how about changing it to BSD-2?
+On Mon, Nov 21, 2022 at 12:16:41PM +0100, Krzysztof Kozlowski wrote:
+> On 21/11/2022 11:38, Laurent Pinchart wrote:
+> > On Mon, Nov 21, 2022 at 09:04:29AM +0100, Krzysztof Kozlowski wrote:
+> >> On 21/11/2022 06:09, Paul Elder wrote:
+> >>> On Sun, Nov 20, 2022 at 11:36:31AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 19/11/2022 07:55, Paul Elder wrote:
+> >>>>> On Fri, Nov 18, 2022 at 02:06:14PM +0100, Krzysztof Kozlowski wrote:
+> >>>>>> On 18/11/2022 10:39, Paul Elder wrote:
+> >>>>>>> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>>>>>>
+> >>>>>>> Add an example to the rockchip-isp1 DT binding that showcases usage of
+> >>>>>>> the parallel input of the ISP, connected to the CSI-2 receiver internal
+> >>>>>>> to the i.MX8MP.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>>>>>
+> >>>>>> Missing SoB.
+> >>>>>
+> >>>>> I don't quite understand. I see an SoB right there.
+> >>>>
+> >>>> Laurent did not sent it. Did you run checkpatch before sending?
+> >>>
+> >>> That's why he's on the "From:" in the beginning. checkpatch says it's
+> >>> fine.
+> >>
+> >> Ah, indeed, checkpatch misses that feature (it's part of Greg's
+> >> verify_signedoff.sh). Anyway, your SoB is missing, as Laurent did not
+> >> send the patch.
+> > 
+> > I thought adding an SoB was only required either when making changes or
+> > when pushing commits through git, not when forwarding patches on mailing
+> > lists ?
 > 
-> It's definitely a derivative work from upstream pm*.dtsi files with BSD-3-Clause
-> licence.
+> Anyone touching the file should signed it off. You cannot send it
+> without touching (e.g. git format-patch).
+> 
+> https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/submitting-patches.rst#L397
+> 
+> https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/submitting-patches.rst#L420
 
-OK.
+The second link states
 
-Best regards,
-Krzysztof
+  SoB chains should reflect the **real** route a patch took as it was
+  propagated to the maintainers and ultimately to Linus, with the first
+  SoB entry signalling primary authorship of a single author.
 
+This series will (eventually) be upstreamed by me through a pull request
+to Mauro. Paul's SoB will thus not be needed. Of course you have no way
+to know this when reviewing the series on the list.
+
+Adding a SoB line when taking a patch in a git tree is standard
+practice, but when posting unmodified patches to a mailing list, there's
+more of a grey area. Look at
+https://lore.kernel.org/all/20221024113058.096628238@linuxfoundation.org/
+for instance, posted by Greg, but without his SoB.
+
+-- 
+Regards,
+
+Laurent Pinchart
