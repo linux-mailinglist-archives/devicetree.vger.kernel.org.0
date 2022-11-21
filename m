@@ -2,378 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A0E63204F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:22:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B80F632051
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:22:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230455AbiKULVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:21:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46344 "EHLO
+        id S229818AbiKULWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:22:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbiKULVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:21:34 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1E0C1F5A
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:16:25 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id d6so18306325lfs.10
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:16:24 -0800 (PST)
+        with ESMTP id S230379AbiKULVn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:21:43 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D481FCC0
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:16:44 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id p8so18286383lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:16:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lb2opW9F8iRuPmao9rEV62ivh/DFfQYAcMrDoUHfJeI=;
-        b=ujRwQ9dJpwiN+HDFOLwz5WG8Q1I7J/eeDKq76gdjRGRLeDg2s3StSyCD1buNRplLM/
-         haQqfw8W+GMoa79BPDJV6Tf6oVNu7T7qohcsXmipGHNnUuEqxkBN2MpvLY5UuSkJnIr1
-         NKqn7wNswmTKEBwFHzRTfOkWsqnFJvRoEOwIZTmEHvtpiy5nzUt21bWBefHZTQkH+wLg
-         x987sVTowAKSvL5HBNpsVo1LmrISs6K3Sgb+Tx4GLt04e6cuyXKr0F5uWzdZzxWP5zjQ
-         a9M1OXjG7EhTcvKyOr8UAWJUS1RczEVJ0/3bn/yVl3/pMGFggRa2s3PbceKGoEbp4HwN
-         uIcw==
+        bh=lrfG9YCdHt66hbYqu0OShiByN9Q+Ix/FBWGfahZIGTw=;
+        b=xnbCMedvtEU3dsFJUuZuBxNphjIJrx2tlNtlRW2TMqS5/MONSHB7fRdDdxFWJ1gDpl
+         m5o6YkZhUWqu9rutHH5jJfs9LVHB4SUAn/GbmeviiWK3HBkgddAs5HuXVg+qEU8SYinT
+         yUIeYgaK7Tjscr9NpeismG0KbddLgiqsndWqlVVWhTXYhVC4ubWwHkGLZ1LmVlxIkG64
+         Ykuv71VIOllchEaTsO8IxfEXLok/CN+JLWGaZ1ccv+NznR3EjfCc6aRH7PyisBmmqdK8
+         UUF/LKRQ0HIaSRpq6bi11X4Z4FSM5twuSGj5RmZunG4XFm4k5p7vuKSQrWI1zwSvj9zQ
+         WQqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lb2opW9F8iRuPmao9rEV62ivh/DFfQYAcMrDoUHfJeI=;
-        b=YJ2YUJmT1veaey1fQBJKSgjLq42Ut6P69Xog1B6ltHQ9gjyaYu005ypPTU83W20tyN
-         Oz3fSR/WMrgBbOH5IRtU2f0TsotCVaSP8mB/sDr18IfMsDtAW8PO6sV8BYyQTZNLOr4O
-         nvjx+ZyJskVFpdvPm8XkX1pqbP8sm8nKQYVNWUKACIivlH/56PRpPrsOpHlakivbKN0F
-         jVCowRmVXSz8SdK1c9MEy3/stfTPnYYLDhsWRLysP5494NG0H8n3/A93KoLnkNFjrVxo
-         3EhOwNC7N1MwydGw6cymKtLxuJVwkIs6uos/PQd3CysbBPehpViV+0SajZY5yDTnVJlL
-         n+MA==
-X-Gm-Message-State: ANoB5pkdFaQPILTcGOP69Gtf/huGfCL5idlxoRSSYmRrAAaBYmyHLuEX
-        fhNCMYyPU6iPZJm2zCGJTScLGg==
-X-Google-Smtp-Source: AA0mqf78lVsAp8TebFcPDrS5txLHqCkaoAB0Cf0bOXh62o5fugGpz6hUZAtSocgDCC9BZo3Q2k3aAw==
-X-Received: by 2002:ac2:4bd1:0:b0:4a2:4dc3:a2e with SMTP id o17-20020ac24bd1000000b004a24dc30a2emr2448924lfq.403.1669029383368;
-        Mon, 21 Nov 2022 03:16:23 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id k19-20020ac24f13000000b00498fe38ea0fsm1987187lfr.174.2022.11.21.03.16.22
+        bh=lrfG9YCdHt66hbYqu0OShiByN9Q+Ix/FBWGfahZIGTw=;
+        b=c78HM47LVQk0cYC0qh0kXW2JqFf+ZQp+OQLSsrFgKSz5WsaRn2AsRzmXi3HKzO1bku
+         SyEtFnIBrD3hl0uuNwKarZTVlUKVjciS92XNZDSXQPenWN5qY9JzW9gKkHrYz7lUN6sJ
+         Dv1xz2bJyt/adDSdCIVHQ4pELsALPb9Lg0+qJ61wlBFwfwGhYv/Zblu90CfssWHL90qf
+         c92RNZiES2yOy7ruhqsxjw3YVwecZJVmWCpDfQUqspA/YGiqRobfAkXq2f2srqj2SmjQ
+         7Mi4qj5NJadH+wEfDmRbKN1OYCFk7wo3NPxzQ0iu9GOcvytHbQP/q3yKyG+SvcJCwjIi
+         rhmw==
+X-Gm-Message-State: ANoB5pnZIRg9Ts2Xq+FC3FEuKU08+o8I6OGm590QrqtET5vpqvUo1NBP
+        osKXfgiyussvFzBFSRwv9eY0aA==
+X-Google-Smtp-Source: AA0mqf7XTsi+DRaW0EjX/SWzCsh6OLHKxJQ5nOhQBp07hY+otYz+Pmy3TNDQk343ejimX6B5i8Je2A==
+X-Received: by 2002:ac2:58f6:0:b0:4a2:7692:3a0a with SMTP id v22-20020ac258f6000000b004a276923a0amr5989466lfo.71.1669029403043;
+        Mon, 21 Nov 2022 03:16:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y22-20020a196416000000b004a25bb4494fsm2000785lfb.178.2022.11.21.03.16.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 03:16:22 -0800 (PST)
-Message-ID: <358de1df-7e83-c292-6abf-4011b9f26318@linaro.org>
-Date:   Mon, 21 Nov 2022 12:16:21 +0100
+        Mon, 21 Nov 2022 03:16:42 -0800 (PST)
+Message-ID: <9389201b-22d4-1229-7e26-5f046d18e15f@linaro.org>
+Date:   Mon, 21 Nov 2022 12:16:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 3/9] arm64: dts: qcom: sdm450: Add device tree for
- Motorola Moto G6
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
+ example
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Julian Braha <julianbraha@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org
-References: <20221119203758.888207-1-luca@z3ntu.xyz>
- <20221119203758.888207-4-luca@z3ntu.xyz>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221119203758.888207-4-luca@z3ntu.xyz>
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+ <20221118093931.1284465-3-paul.elder@ideasonboard.com>
+ <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
+ <Y3h93cLdEvMzInXe@pyrite.rasen.tech>
+ <238f7bf8-578c-5bb4-9f00-50f36334c5cf@linaro.org>
+ <Y3sIAHqd8Kd/XBB/@pyrite.rasen.tech>
+ <50024f2e-4820-ef78-d54d-5bfe53ccac7e@linaro.org>
+ <Y3tVKOEfxdZ+Klnh@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3tVKOEfxdZ+Klnh@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19.11.2022 21:37, Luca Weiss wrote:
-> From: Julian Braha <julianbraha@gmail.com>
+On 21/11/2022 11:38, Laurent Pinchart wrote:
+> On Mon, Nov 21, 2022 at 09:04:29AM +0100, Krzysztof Kozlowski wrote:
+>> On 21/11/2022 06:09, Paul Elder wrote:
+>>> On Sun, Nov 20, 2022 at 11:36:31AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 19/11/2022 07:55, Paul Elder wrote:
+>>>>> On Fri, Nov 18, 2022 at 02:06:14PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On 18/11/2022 10:39, Paul Elder wrote:
+>>>>>>> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>>>>
+>>>>>>> Add an example to the rockchip-isp1 DT binding that showcases usage of
+>>>>>>> the parallel input of the ISP, connected to the CSI-2 receiver internal
+>>>>>>> to the i.MX8MP.
+>>>>>>>
+>>>>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>>>
+>>>>>> Missing SoB.
+>>>>>
+>>>>> I don't quite understand. I see an SoB right there.
+>>>>
+>>>> Laurent did not sent it. Did you run checkpatch before sending?
+>>>
+>>> That's why he's on the "From:" in the beginning. checkpatch says it's
+>>> fine.
+>>
+>> Ah, indeed, checkpatch misses that feature (it's part of Greg's
+>> verify_signedoff.sh). Anyway, your SoB is missing, as Laurent did not
+>> send the patch.
 > 
-> Add device tree for the Motorola Moto G6 (ali) smartphone. This device
-> is based on Snapdragon 450 (sdm450) SoC which is a variant of MSM8953.
-> 
-> Signed-off-by: Julian Braha <julianbraha@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> I thought adding an SoB was only required either when making changes or
+> when pushing commits through git, not when forwarding patches on mailing
+> lists ?
 
-> Changes in v2:
-> * address review comments from v1
-Veeeeeeery vauge!
+Anyone touching the file should signed it off. You cannot send it
+without touching (e.g. git format-patch).
 
-Konrad
-> 
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sdm450-motorola-ali.dts     | 250 ++++++++++++++++++
->  2 files changed, 251 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index afe496a93f94..6bc1be0d525a 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -120,6 +120,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sda660-inforce-ifc6560.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm450-motorola-ali.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts b/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
-> new file mode 100644
-> index 000000000000..43e2941f98d9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts
-> @@ -0,0 +1,250 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Julian Braha <julianbraha@gmail.com>
-> + */
-> +/dts-v1/;
-> +
-> +#include "msm8953.dtsi"
-> +#include "pm8953.dtsi"
-> +#include "pmi8950.dtsi"
-> +
-> +/delete-node/ &qseecom_mem;
-> +
-> +/ {
-> +	model = "Motorola Moto G6";
-> +	compatible = "motorola,ali", "qcom,sdm450";
-> +	chassis-type = "handset";
-> +	qcom,msm-id = <338 0>;
-> +	qcom,board-id = <0x43 0xc200>;
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-volume-up {
-> +			label = "volume_up";
-> +			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		qseecom_mem: qseecom@84300000 {
-> +			reg = <0x0 0x84300000 0x0 0x2000000>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@ef000000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xef000000 0x0 0xc0000>;
-> +			console-size = <0x40000>;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&hsusb_phy {
-> +	vdd-supply = <&pm8953_l3>;
-> +	vdda-pll-supply = <&pm8953_l7>;
-> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c_3 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		compatible = "edt,edt-ft5406";
-> +		reg = <0x38>;
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <65 IRQ_TYPE_EDGE_FALLING>;
-> +		vcc-supply = <&pm8953_l10>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ts_int_active &ts_reset_active>;
-> +
-> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-> +		touchscreen-size-x = <1080>;
-> +		touchscreen-size-y = <2160>;
-> +	};
-> +};
-> +
-> +&pm8953_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&pmi8950_wled {
-> +	qcom,num-strings = <3>;
-> +	qcom,external-pfet;
-> +	qcom,cabc;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators {
-> +		compatible = "qcom,rpm-pm8953-regulators";
-> +
-> +		vdd_s1-supply = <&vph_pwr>;
-> +		vdd_s2-supply = <&vph_pwr>;
-> +		vdd_s3-supply = <&vph_pwr>;
-> +		vdd_s4-supply = <&vph_pwr>;
-> +		vdd_s5-supply = <&vph_pwr>;
-> +		vdd_s6-supply = <&vph_pwr>;
-> +		vdd_s7-supply = <&vph_pwr>;
-> +		vdd_l1-supply = <&pm8953_s3>;
-> +		vdd_l2_l3-supply = <&pm8953_s3>;
-> +		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-> +		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-> +		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-> +
-> +		pm8953_s1: s1 {
-> +			regulator-min-microvolt = <795000>;
-> +			regulator-max-microvolt = <1081000>;
-> +		};
-> +
-> +		pm8953_s3: s3 {
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1224000>;
-> +		};
-> +
-> +		pm8953_s4: s4 {
-> +			regulator-min-microvolt = <1900000>;
-> +			regulator-max-microvolt = <2050000>;
-> +		};
-> +
-> +		pm8953_l1: l1 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1100000>;
-> +		};
-> +
-> +		pm8953_l2: l2 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +
-> +		pm8953_l3: l3 {
-> +			regulator-min-microvolt = <925000>;
-> +			regulator-max-microvolt = <925000>;
-> +		};
-> +
-> +		pm8953_l5: l5 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l6: l6 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l7: l7 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1900000>;
-> +		};
-> +
-> +		pm8953_l8: l8 {
-> +			regulator-min-microvolt = <2900000>;
-> +			regulator-max-microvolt = <2900000>;
-> +		};
-> +
-> +		pm8953_l9: l9 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3300000>;
-> +		};
-> +
-> +		pm8953_l10: l10 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l11: l11 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l12: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-> +
-> +		pm8953_l13: l13 {
-> +			regulator-min-microvolt = <3125000>;
-> +			regulator-max-microvolt = <3125000>;
-> +		};
-> +
-> +		pm8953_l16: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +		};
-> +
-> +		pm8953_l17: l17 {
-> +			regulator-min-microvolt = <2850000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l19: l19 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1350000>;
-> +		};
-> +
-> +		pm8953_l22: l22 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2850000>;
-> +		};
-> +
-> +		pm8953_l23: l23 {
-> +			regulator-min-microvolt = <975000>;
-> +			regulator-max-microvolt = <1225000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on  &sdc1_rclk_on>;
-> +	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off &sdc1_rclk_off>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_off>;
-> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <95 5>, <111 1>, <126 1>;
-> +
-> +	ts_int_active: ts-int-active-state {
-> +		pins = "gpio65";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	ts_reset_active: ts-reset-active-state {
-> +		pins = "gpio64";
-> +		function = "gpio";
-> +		drive-strength = <0x08>;
-> +		bias-pull-up;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
+https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/submitting-patches.rst#L397
+
+https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/submitting-patches.rst#L420
+
+Best regards,
+Krzysztof
+
