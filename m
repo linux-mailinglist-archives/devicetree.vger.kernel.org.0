@@ -2,109 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8AD6319A0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC426319B3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:25:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbiKUGHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 01:07:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50910 "EHLO
+        id S229502AbiKUGZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 01:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiKUGHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:07:13 -0500
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39A52A969;
-        Sun, 20 Nov 2022 22:07:11 -0800 (PST)
-Received: from kwepemi500024.china.huawei.com (unknown [172.30.72.56])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4NFxjZ5VvrzRpHG;
-        Mon, 21 Nov 2022 14:06:42 +0800 (CST)
-Received: from [10.174.179.163] (10.174.179.163) by
- kwepemi500024.china.huawei.com (7.221.188.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 21 Nov 2022 14:07:08 +0800
-Message-ID: <9ec55a8e-5ce4-6846-f88d-2d9b33a34bc9@huawei.com>
-Date:   Mon, 21 Nov 2022 14:07:08 +0800
+        with ESMTP id S229490AbiKUGZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:25:43 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1C926571;
+        Sun, 20 Nov 2022 22:25:38 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id AA67B24E205;
+        Mon, 21 Nov 2022 14:25:35 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 21 Nov
+ 2022 14:25:35 +0800
+Received: from [192.168.50.235] (113.72.144.23) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 21 Nov
+ 2022 14:25:34 +0800
+Message-ID: <7cf9be4a-6ef2-f1f9-07a3-4801fd2833a8@starfivetech.com>
+Date:   Mon, 21 Nov 2022 14:25:21 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2] of: overlay: fix memory leak in add_changeset_node()
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v2 01/14] clk: starfive: Factor out common JH7100 and
+ JH7110 code
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20221118010627.70576-1-hal.feng@starfivetech.com>
+ <20221118010627.70576-2-hal.feng@starfivetech.com>
+ <CAJM55Z8nGNm_TrTsw0HZnAVehWrFU9-MtAj0ngRRx_E8jFapGg@mail.gmail.com>
 Content-Language: en-US
-To:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <pantelis.antoniou@konsulko.com>, <grant.likely@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <liwei391@huawei.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <f0c641ee-b20d-48dd-c65f-2b372eae0b06@huawei.com>
- <20221121035335.809316-1-zengheng4@huawei.com>
-From:   Zeng Heng <zengheng4@huawei.com>
-In-Reply-To: <20221121035335.809316-1-zengheng4@huawei.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <CAJM55Z8nGNm_TrTsw0HZnAVehWrFU9-MtAj0ngRRx_E8jFapGg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.163]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemi500024.china.huawei.com (7.221.188.100)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.144.23]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+cc linux-kernel-mail-list
+On Sat, 19 Nov 2022 00:22:10 +0800, Emil Renner Berthing wrote:
+> On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
+> >
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> >
+> > The clock control registers on the StarFive JH7100 and JH7110 work
+> > identically, so factor out the code then drivers for the two SoCs
+> > can share it without depending on each other. No functional change.
+> >
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  MAINTAINERS                                |   2 +-
+> >  drivers/clk/starfive/Kconfig               |   5 +
+> >  drivers/clk/starfive/Makefile              |   3 +-
+> >  drivers/clk/starfive/clk-starfive-jh7100.c | 325 --------------------
+> >  drivers/clk/starfive/clk-starfive-jh7100.h |   2 +
+> >  drivers/clk/starfive/clk-starfive-jh71x0.c | 333 +++++++++++++++++++++
+> >  6 files changed, 343 insertions(+), 327 deletions(-)
+> >  create mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 256f03904987..d43daa89d5f1 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -19602,7 +19602,7 @@ STARFIVE JH7100 CLOCK DRIVERS
+> >  M:     Emil Renner Berthing <kernel@esmil.dk>
+> >  S:     Maintained
+> >  F:     Documentation/devicetree/bindings/clock/starfive,jh7100-*.yaml
+> > -F:     drivers/clk/starfive/clk-starfive-jh7100*
+> > +F:     drivers/clk/starfive/
+> 
+> When this entry cover all the starfive clock drivers the header should
+> also match. Eg.
+> STARFIVE CLOCK DRIVERS
 
+OK, will fix it. Ditto for the reset driver.
 
-On 2022/11/21 11:53, Zeng Heng wrote:
-> When of_changeset_attach_node() returns fail and tchild is
-> over of life cycle which is duplicated by __of_node_dup(),
-> it needs to call of_node_put() to release tchild in
-> error handle route.
->
-> Otherwise, there are some memory leak reported about the node:
->
-> unreferenced object 0xffff88810cd1e800 (size 256):
->    backtrace:
->      kmalloc_trace
->      __of_node_dup
->      add_changeset_node (inlined)
->      build_changeset_next_level
->
-> unreferenced object 0xffff888113721240 (size 16):
->    backtrace:
->      __kmalloc_node_track_caller
->      kstrdup
->      __of_node_dup
->      add_changeset_node (inlined)
->      build_changeset_next_level
->
-> unreferenced object 0xffff88810a38d400 (size 128):
->    backtrace:
->      kmalloc_trace
->      __of_prop_dup
->      add_changeset_property
->      build_changeset_next_level
->
-> Fixes: 0290c4ca2536 ("of: overlay: rename identifiers to more reflect what they do")
-> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
-> ---
->   drivers/of/overlay.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> index bd8ff4df723d..a5189a0ec0a3 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
->   		of_node_set_flag(tchild, OF_OVERLAY);
->   
->   		ret = of_changeset_attach_node(&ovcs->cset, tchild);
-> -		if (ret)
-> +		if (ret) {
-> +			of_node_put(tchild);
->   			return ret;
-> +		}
->   
->   		target_child.np = tchild;
->   		target_child.in_livetree = false;
+Best regards,
+Hal
