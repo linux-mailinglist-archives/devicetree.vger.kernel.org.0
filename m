@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF3B631B69
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C59631B84
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbiKUI3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56176 "EHLO
+        id S230098AbiKUIei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:34:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbiKUI3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:29:32 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBF91C42C
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:29:31 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id b3so17743015lfv.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:29:31 -0800 (PST)
+        with ESMTP id S229947AbiKUIeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:34:36 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2E71EEF4
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:34:32 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id s8so17722640lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:34:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhMKknOu+L4hL/MeAclcv9laMtxk7Kj4QsjwABrFVeU=;
-        b=y+vcmOVMKIcfBIqj6YndtIwVHMdjuQMSiuV1lkV1I7X27fTcD/H+TiIZEuedtwLo/A
-         mv2JYgbkjZ0HgAli6uNAETau/NRlMplPIoTFxa5uKDOujMppWs8dV73WxgYYfhlydFIZ
-         wXAL5M0bMj8bvHOi0oZp1nGFHczawCYZyCZyChoH5WKJv0F2bNbUxE/Xzv7VtyQU1+nA
-         ShkaFRCh3/CashM65P81MpzCu6yofxNzGYF5jfpphl4WU9VRImsF2A+QPW/UcTzMWvgG
-         sUVut25GfW5M4IbXeIOIb87Sl0J2mggXjbAaNAGrXOLntHZoST2jBOuytLWXld7AnnKw
-         3w3Q==
+        bh=hYejw+k9KxJfa6Qv7Zm4NVNSTlImBJzqWTxtup6xt6k=;
+        b=p5+b03NQcjEAjwwFxdx+wjvB1qxgceoMDJxwlT1qbwUVTh1DAnsh6ltatdwsE8lkuE
+         HUFh6MivlQk6ozYkX8kWjdDjmjhsespIFrpd51k+XFmwhcOmYEbHYTFcvf/4TIMrHRvr
+         sk4zoVRbiC/75afBZ3lEgQ4w5pnVvb6YZJfqwMHx38QL5Fyk+HPeFDK6jIB62Sz5zTXS
+         JlgMsARKxLJEcmjMwYnry9woLUenX5jCyM1Oa0HktGcN+uhFS9mI+XjwG+DHzkhKIEwt
+         q3VXA10Dax1RstLIYJ1gj+f7JSNjaGCEjsugooUWVUZZduCiEWUj2M+q26g5B6EsX52+
+         vPyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhMKknOu+L4hL/MeAclcv9laMtxk7Kj4QsjwABrFVeU=;
-        b=YhFf40SSERXY9r/udZHrJFV2kyo7IdYATHxl5paHrtH+MFGSypIGF1NwUdiE/WzWkI
-         4ma8eySo6CXqVJdXSrGobWBas7lcRfWo1awmm9m/r9O8G+Vpmm+8l+yQsoAZ1HOFeqnd
-         AAC0Q1FnIACOyf7skrDOCvn8JbEN8+qGtrMUtlwOiFP97pfJ1tD+Oxc9sVtTg0nZKLSI
-         ZGMz7/OE4MjQGncl4aQpoDJUuixM9ZSWTTzzuj9uOapiOwd2Ok0vmJdCshn5uStUgMk1
-         md0NKcF5BoAkqCu7LhCZA56+l1eB6/pcBApDQr5MZQp8jfkpqe9gciXXGYIxXLyJJ4Xp
-         kEhA==
-X-Gm-Message-State: ANoB5pmdjmcbBN6UtOk6sVCwut1SepsUMIwBtlSzxHLe5RvnuquiuubF
-        iBhgRKDR64uBNes1wARZTdLUQTnc/2fnvxK6
-X-Google-Smtp-Source: AA0mqf4YPJKO3rQ7bkdNyX3zwFYoPBIcLyWtDRGhYg6xJwPcyi/w0d2QKMslhMI8mshpPegxMN6gMg==
-X-Received: by 2002:a19:5e01:0:b0:4a2:2b5d:b95d with SMTP id s1-20020a195e01000000b004a22b5db95dmr5366515lfb.589.1669019369955;
-        Mon, 21 Nov 2022 00:29:29 -0800 (PST)
+        bh=hYejw+k9KxJfa6Qv7Zm4NVNSTlImBJzqWTxtup6xt6k=;
+        b=a8juokvSo7cZKZRzFqF4J2AcChd013/ES4Qo5eFBrL9QQEPmAQrCBuS1UO0hMiYWER
+         3VQH4/aXBdC4YMQSv309K2d48damD7IehQgUQ3EWpsmHbFryDtFktsCg0rt7k44+NY/n
+         v/1obf0TpT/evkkGSWSUODmIyfli0UK1e1Bz38WHbEuBsZBrseiavbjeEtIHtgHJ2c4M
+         IaUPXjYg/ZumOwxtxSoN87A+zO60wQGDI1YE799M1umTMgQ60SJrMQEWYQHBFXNCEhzC
+         9QonFhiaauWkAomPXIA2hUalBol4D0TyRaePsJqYRaKSuf8h+A/p5q46qGtBhEGSwyh7
+         4Wbg==
+X-Gm-Message-State: ANoB5pncIjtxvu9Vw386EJqIejwUX7ACiBFSTOblgFjNa7mVdRzTss2X
+        OKOxRn1YiXF7VddGohhttjTUoQ==
+X-Google-Smtp-Source: AA0mqf4eL/MpEQEqX1r7hzYLk3UUuFB3FNAC2RmceF35Js7nzf6LVPqC6nxPBP/Fw53xMviFWSZeOA==
+X-Received: by 2002:a19:4f14:0:b0:4b4:b20c:4b7 with SMTP id d20-20020a194f14000000b004b4b20c04b7mr124281lfb.201.1669019670875;
+        Mon, 21 Nov 2022 00:34:30 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q20-20020a056512211400b00497a1f92a72sm1933849lfr.221.2022.11.21.00.29.29
+        by smtp.gmail.com with ESMTPSA id i25-20020a2ea239000000b002790fbb5f89sm1387438ljm.44.2022.11.21.00.34.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 00:29:29 -0800 (PST)
-Message-ID: <d96a9798-7928-1303-60b1-3bb22badb5da@linaro.org>
-Date:   Mon, 21 Nov 2022 09:29:28 +0100
+        Mon, 21 Nov 2022 00:34:30 -0800 (PST)
+Message-ID: <1353266c-2d95-6c68-5288-c405231a37f1@linaro.org>
+Date:   Mon, 21 Nov 2022 09:34:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc8280xp/sa8540p: add SoundWire
- and LPASS
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Add soundcard support
 Content-Language: en-US
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         agross@kernel.org, andersson@kernel.org
@@ -63,9 +62,9 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221119164425.86014-1-srinivas.kandagatla@linaro.org>
- <20221119164425.86014-3-srinivas.kandagatla@linaro.org>
+ <20221119164425.86014-4-srinivas.kandagatla@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221119164425.86014-3-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221119164425.86014-4-srinivas.kandagatla@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,15 +77,111 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/11/2022 17:44, Srinivas Kandagatla wrote:
-> Add LPASS Codecs along with SoundWire controller for TX, RX, WSA and VA macros
-> along with LPASS LPI pinctrl node.
+> Add support for SoundCard on X13s. This patch adds support for Headset
+> Playback, record and 2 DMICs on the Panel along with the regulators
+> required for powering up the LPASS codecs.
 > 
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 319 +++++++++++++++++++++++++
 
+Thank you for your patch. There is something to discuss/improve.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +	right_spkr: wsa8830-right@0,2{
+> +		compatible = "sdw10217020200";
+> +		reg = <0 2>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spkr_2_sd_n_default>;
+> +		powerdown-gpios = <&tlmm 179 GPIO_ACTIVE_LOW>;
+> +		#thermal-sensor-cells = <0>;
+> +		sound-name-prefix = "SpkrRight";
+> +		#sound-dai-cells = <0>;
+> +		vdd-supply = <&vreg_s10b>;
+> +	};
+> +};
+> +
+> +
+
+Only one blank line.
+
+> +&swr1 {
+> +	status = "okay";
+> +
+> +	wcd_rx: wcd9380-rx@0,4 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 4>;
+> +		qcom,rx-port-mapping = <1 2 3 4 5 6>;
+
+No improvements: Still looks too long.
+
+> +
+
+Drop empty line.
+> +	};
+> +};
+> +
+> +&swr2 {
+> +	status = "okay";
+> +
+> +	wcd_tx: wcd9380-tx@0,3 {
+> +		compatible = "sdw20217010d00";
+> +		reg = <0 3>;
+> +		qcom,tx-port-mapping = <1 1 2 3>;
+> +	};
+> +};
+> +
+> +&vamacro {
+> +	pinctrl-0 = <&dmic01_default>, <&dmic02_default>;
+> +	pinctrl-names = "default";
+> +	vdd-micb-supply = <&vreg_s10b>;
+> +	qcom,dmic-sample-rate = <600000>;
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
+>  
+> @@ -369,6 +558,14 @@ reset {
+>  		};
+>  	};
+>  
+> +	wcd_default: wcd-default-state {
+> +		reset-pins {
+> +			pins = "gpio106";
+> +			function = "gpio";
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>  	qup0_i2c4_default: qup0-i2c4-default-state {
+>  		pins = "gpio171", "gpio172";
+>  		function = "qup4";
+> @@ -383,6 +580,26 @@ qup2_i2c5_default: qup2-i2c5-default-state {
+>  		drive-strength = <16>;
+>  	};
+>  
+> +	spkr_1_sd_n_default: spkr-1-sd-n-default-state {
+> +		perst-n-pins {
+> +			pins = "gpio178";
+> +			function = "gpio";
+> +			drive-strength = <16>;
+> +			bias-disable;
+> +			output-high;
+> +		};
+> +	};
+> +
+> +	spkr_2_sd_n_default: spkr-2-sd-n-default-state {
+> +		perst-n-pins {
+> +			pins = "gpio179";
+> +			function = "gpio";
+> +			drive-strength = <16>;
+> +			bias-disable;
+> +			output-high;
+> +		};
+> +	};
+> +
+>  	tpad_default: tpad-default-state {
+>  		int-n {
+
+This won't apply cleanly. You need to base your patches on recent trees.
 
 Best regards,
 Krzysztof
