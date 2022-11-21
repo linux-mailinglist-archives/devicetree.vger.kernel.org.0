@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA45631E1D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C19631E40
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbiKUKVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:21:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58056 "EHLO
+        id S229498AbiKUK0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:26:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbiKUKVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:21:43 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 79C6C8CFCC;
-        Mon, 21 Nov 2022 02:21:42 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9652A1FB;
-        Mon, 21 Nov 2022 02:21:48 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CB8583F73D;
-        Mon, 21 Nov 2022 02:21:39 -0800 (PST)
-Message-ID: <2e731c94-22a8-f15c-4eaa-aa84e3e9038f@arm.com>
-Date:   Mon, 21 Nov 2022 10:21:38 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v1 0/9] Add support to configure TPDM DSB subunit
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S229657AbiKUK0G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:26:06 -0500
+Received: from mx1.emlix.com (mx1.emlix.com [136.243.223.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F10A65B7;
+        Mon, 21 Nov 2022 02:26:02 -0800 (PST)
+Received: from mailer.emlix.com (unknown [81.20.119.6])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.emlix.com (Postfix) with ESMTPS id C1B545FB8C;
+        Mon, 21 Nov 2022 11:26:00 +0100 (CET)
+Date:   Mon, 21 Nov 2022 11:26:00 +0100
+From:   Edmund Berenson <edmund.berenson@emlix.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org
-References: <1669018873-4718-1-git-send-email-quic_taozha@quicinc.com>
-Content-Language: en-US
-From:   Suzuki Kuruppassery Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1669018873-4718-1-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: adc: ad7923: adjust documentation
+Message-ID: <20221121102600.uwmgivssgy7oakxf@emlix.com>
+References: <20221120153419.GA3094349-robh@kernel.org>
+ <20221120170630.29354-1-edmund.berenson@emlix.com>
+ <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 08:21, Tao Zhang wrote:
-> Introduction of TPDM DSB subunit
-> DSB subunit is responsible for creating a dataset element, and is also
-> optionally responsible for packing it to fit multiple elements on a
-> single ATB transfer if possible in the configuration. The TPDM Core
-> Datapath requests timestamps be stored by the TPDA and then delivering
-> ATB sized data (depending on ATB width and element size, this could
-> be smaller or larger than a dataset element) to the ATB Mast FSM.
+On Mon, Nov 21, 2022 at 10:13:57AM +0100, Krzysztof Kozlowski wrote:
+> On 20/11/2022 18:06, Edmund Berenson wrote:
+> > - Add the ad7927 compatibility string, with fallback compatibility
+> > to ad7928.
+> > - ad7923 and ad7924 are treated the same in the driver, show
+> > the relationship in the documentation.
+> > 
+> > Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> > Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+> > ---
+> >  .../bindings/iio/adc/adi,ad7923.yaml          | 26 ++++++++++++-------
 > 
-> The DSB subunit must be configured prior to enablement. This series
-> adds support for TPDM to configure the configure DSB subunit.
+> Do not respond with new patch to some old thread. Each patchset starts a
+> new thread.
 > 
-> Once this series patches are applied properly, the new tpdm nodes for
-> should be observed at the tpdm path /sys/bus/coresight/devices/tpdm*
-> which supports DSB subunit.
-> e.g.
-> /sys/devices/platform/soc@0/69d0000.tpdm/tpdm0#ls -l | grep dsb
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_edge_ctrl
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_edge_ctrl_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_mode
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_ts
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_type
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_patt_val
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_patt_mask
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_patt_val
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_ts
-> -rw-r--r--    1 root     root      4096 Jan  1 00:01 dsb_trig_type
+Sorry I didn't know this is the preferred way. I will send new patch
+version as new thread in the future.
+> >  1 file changed, 17 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> > index 07f9d1c09c7d..e553853e25d5 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> > @@ -11,7 +11,7 @@ maintainers:
+> >  
+> >  description: |
+> >    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
+> > -   AD7918, AD7928 8 Channels ADCs.
+> > +   AD7918, AD7927, AD7928 8 Channels ADCs.
+> >  
+> >    Specifications about the part can be found at:
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
+> > @@ -20,14 +20,22 @@ description: |
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - adi,ad7904
+> > -      - adi,ad7914
+> > -      - adi,ad7923
+> > -      - adi,ad7924
+> > -      - adi,ad7908
+> > -      - adi,ad7918
+> > -      - adi,ad7928
+> > +    oneOf:
+> > +      - enum:
+> > +          - adi,ad7904
+> > +          - adi,ad7914
+> > +          - adi,ad7908
 > 
-> We can use the commands are similar to the below to configure the
-> TPDMs which support DSB subunit. Enable coresight sink first.
-> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/tpdm0/reset
-> echo 0x3 0x3 0x1 > /sys/bus/coresight/devices/tpdm0/dsb_edge_ctrl_mask
-> echo 0x6d 0x6d 0 > /sys/bus/coresight/devices/tpdm0/dsb_edge_ctrl
-> echo 1 > /sys/bus/coresight/devices/tpdm0/dsb_patt_ts
-> echo 1 > /sys/bus/coresight/devices/tpdm0/dsb_patt_type
-> echo 0 > /sys/bus/coresight/devices/tpdm0/dsb_trig_ts
-> echo 0 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/dsb_patt_mask
-> echo 0 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/dsb_trig_patt_val
+> You already started shuffling the entries, so make them ordered. What's
+> the point of changing the order from one non-sorted to another non-sorted?
 > 
-> This series applies to coresight/next
-> https://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git?h=next
-
-Does it ?
-
-> This patch series depends on patch series "[v12,0/9] Coresight: Add
-> support for TPDM and TPDA"
-> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221114144027.14365-1-quic_jinlmao@quicinc.com/
+> > +          - adi,ad7918
+> > +          - adi,ad7923
+> > +          - adi,ad7924
+> 
+> Then deprecate this as alone compatible.
+> 
+> > +          - adi,ad7927> +          - adi,ad7928
+> 
+> Ditto
+> 
+> > +      - items:
+> > +          - const: adi,ad7923
+> > +          - const: adi,ad7924
+> 
+> I would expect lower number as fallback.
+If I remove alone compatibility of 7924 and 7927 in the documentation,
+I will have to remove explicit compatibility match on the driver side,
+correct?
+Just want to make sure I don't misunderstand you.
+> 
+> > +      - items:
+> > +          - const: adi,ad7927
+> > +          - const: adi,ad7928
+> 
+> Ditto.
+> 
+> >  
+> >    reg:
+> >      maxItems: 1
+> 
+> Best regards,
+> Krzysztof
 > 
 
-And the CoreSight Dynamice Trace ID series too.
-
-Change log please
-
-Suzuki
+Thank you and best regards,
+Edmund
