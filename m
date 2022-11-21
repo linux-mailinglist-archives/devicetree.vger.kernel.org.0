@@ -2,140 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBCA3632A34
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8DC2632A54
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:06:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbiKUREZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
+        id S230217AbiKURGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:06:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbiKUREZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:04:25 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4116D79378;
-        Mon, 21 Nov 2022 09:04:24 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id t25-20020a1c7719000000b003cfa34ea516so10718120wmi.1;
-        Mon, 21 Nov 2022 09:04:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NoFx71q/N+0qvQAXga+00ibSeehFlmzztyqyJ4eQ8tU=;
-        b=SOzH1U73ZCGPIl43YAXV6NsMIfqJufbn/wt/jIDoIOp6GOyDnyNUbweXEzy6k7i/GC
-         U7kDF6zkGTZJaKsG8HlSLw6o4jH+zrzamUK2ttsK/v0Ev0UHeFKF0cgO56PL/UfJ/VJq
-         P5tegS169frMGQLFONlxqSDw7DKPL4qSX28m2Y8oxjCQK9OaNMfJcmdEA58NrNYCcXMD
-         tVeexNRwQNzZfTAaPFiTj34BZsAFgPj6pDjykwWIRKBwlD0kuFXmIK8+OSHKMvwmpdIz
-         xqrzkxoEMdn0qCvI3EfBZ+LkJcoeDhsKeEQYm3cS36/rtajPjkuv9RSkbX50qFpzKnan
-         569A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NoFx71q/N+0qvQAXga+00ibSeehFlmzztyqyJ4eQ8tU=;
-        b=NZZsSDuHCCaa1UHue9r6x4vrjP6SZCm9iuTOHBTaLkS4VywgVMMQ6ySXIF0d3BlEuO
-         RhlLJVVpA+FGhmPlKzWTG+if/gR71PigSII7wJeBfy5Bgbs3EgRNManjNF87Lyu3cKqA
-         VRyZPu4K0UVhRCKh47lSu/JYau7JFfZ8cydo7xz+Byz2bT6XNAQ2yAIakCrAiImONZlp
-         XkSDVGdYbXCn0ydlotTq43Mzv/rnhZTX1V7n+JcgqVsW5igGAED3gt0NHzCTkO4dFSoe
-         qINo4POl7iAbfvvba+GnAB3fDstw8yY878zxTF/QuZtBcjQyhFQisk4smesZlQXCquBT
-         bC5A==
-X-Gm-Message-State: ANoB5pnuQ+LeelLUL5FGc88+ljPk/bLy31MCCYWhiBo7tE4FwQQtvFMm
-        wbsd7B6/NeVqV7hHEptJKVxUM9W9SLA=
-X-Google-Smtp-Source: AA0mqf7NevCCp2kHDxm/siKILqFB87Rj2TAPdnv2R9chC5DSXsq7GJxVOqlYf2BRJ2sM75AZqf8HGg==
-X-Received: by 2002:a05:600c:35c8:b0:3cf:cf89:2f02 with SMTP id r8-20020a05600c35c800b003cfcf892f02mr2889036wmq.2.1669050262379;
-        Mon, 21 Nov 2022 09:04:22 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id g17-20020a05600c4ed100b003c701c12a17sm21447872wmq.12.2022.11.21.09.04.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 09:04:20 -0800 (PST)
-Message-ID: <a257049b-d3a8-e0ac-d887-5bb0420579ad@gmail.com>
-Date:   Mon, 21 Nov 2022 18:04:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 01/11] arm64: dts: mt7986: move wed_pcie node
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S229641AbiKURGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:06:46 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB6FAC7689;
+        Mon, 21 Nov 2022 09:06:43 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1oxAFl-00041n-02; Mon, 21 Nov 2022 18:06:41 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 1099AC1C88; Mon, 21 Nov 2022 18:04:42 +0100 (CET)
+Date:   Mon, 21 Nov 2022 18:04:42 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20221118190126.100895-1-linux@fw-web.de>
- <20221118190126.100895-2-linux@fw-web.de>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221118190126.100895-2-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2] mips: dts: bcm63268: add TWD block timer
+Message-ID: <20221121170441.GC3200@alpha.franken.de>
+References: <20221113090904.8784-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221113090904.8784-1-zajec5@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 18/11/2022 20:01, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Sun, Nov 13, 2022 at 10:09:04AM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Move the wed_pcie node to have node aligned by address.
+> BCM63268 TWD contains block with 3 timers. Add binding for it.
 > 
-> Fixes: 00b9903996b3 ("arm64: dts: mediatek: mt7986: add support for Wireless Ethernet Dispatch")
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Applied, thanks!
-
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
+> V2: Add missing ';'
+> ---
+>  arch/mips/boot/dts/brcm/bcm63268.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index a22e10e89ab9..afc01abfa99c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -112,6 +112,12 @@ infracfg: infracfg@10001000 {
->   			#clock-cells = <1>;
->   		};
->   
-> +		wed_pcie: wed-pcie@10003000 {
-> +			compatible = "mediatek,mt7986-wed-pcie",
-> +				     "syscon";
-> +			reg = <0 0x10003000 0 0x10>;
-> +		};
+> diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
+> index 8926417a8fbc..c663efce91cf 100644
+> --- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
+> +++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
+> @@ -110,6 +110,11 @@ timer-mfd@10000080 {
+>  			reg = <0x10000080 0x30>;
+>  			ranges = <0x0 0x10000080 0x30>;
+>  
+> +			timer@0 {
+> +				compatible = "brcm,bcm6345-timer";
+> +				reg = <0x0 0x1c>;
+> +			};
 > +
->   		topckgen: topckgen@1001b000 {
->   			compatible = "mediatek,mt7986-topckgen", "syscon";
->   			reg = <0 0x1001B000 0 0x1000>;
-> @@ -257,12 +263,6 @@ ethsys: syscon@15000000 {
->   			 #reset-cells = <1>;
->   		};
->   
-> -		wed_pcie: wed-pcie@10003000 {
-> -			compatible = "mediatek,mt7986-wed-pcie",
-> -				     "syscon";
-> -			reg = <0 0x10003000 0 0x10>;
-> -		};
-> -
->   		wed0: wed@15010000 {
->   			compatible = "mediatek,mt7986-wed",
->   				     "syscon";
+>  			wdt: watchdog@1c {
+>  				compatible = "brcm,bcm7038-wdt";
+>  				reg = <0x1c 0xc>;
+> -- 
+> 2.34.1
+
+applied to mips-next.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
