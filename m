@@ -2,85 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8DA632924
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6234563292A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:15:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiKUQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 11:13:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
+        id S229541AbiKUQPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 11:15:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbiKUQNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:13:47 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB58D28BF
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:13:46 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:4821:1ba5:2638:5c3a])
-        by michel.telenet-ops.be with bizsmtp
-        id n4Dk2802A5WXlCv064DkBW; Mon, 21 Nov 2022 17:13:45 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ox9QW-0019JO-84; Mon, 21 Nov 2022 17:13:44 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ox9QV-00BS3c-NG; Mon, 21 Nov 2022 17:13:43 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v2] dt-bindings: pwm: renesas,tpu: Add r8a779g0 support
-Date:   Mon, 21 Nov 2022 17:13:42 +0100
-Message-Id: <ccdf2ccb5aeb9329d959599069d60177fe34e892.1669047191.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229526AbiKUQPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:15:35 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481BBD32BE
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:15:34 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id b9so15049312ljr.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:15:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E8EDKzp4/2MlyjbQH60EmRijgtPP7Kp6u82PuoEfyTc=;
+        b=HOTwvBNX0aQ3XOcpqMtXVnNSIYKQz3Sk4VswjLF5xVcKCH8IAujSSc9D2cNlzYEzV6
+         SulaqkXMsZcqkqoq9nAP3S6QiVUczmb7JcWrXLL7IETZLh+xMyfIHpmcTTuCKbENqeq5
+         dYD88mbikroeOCIHnBc8E+d7jzngb9LUYmeCF7AVKYH/cRNMxhVZ/xpc2o6kShicmE3g
+         lM0UXXOLQ02vZLZfqXTuhEqXjb2zCbXJN8BF1wwPA50u1X4bTI5zsMPtpG9OONaRpR6o
+         1/6YT38pQdzNRXkrC+VQqxdWXvFDfyQe/XSfQV6pZwSV5icZs4KrVVUi47iZF5CufIu/
+         RJpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E8EDKzp4/2MlyjbQH60EmRijgtPP7Kp6u82PuoEfyTc=;
+        b=u+e5cNa8GFpYidEEyy5mwfDTonIj/micS51FiVJV0g6GDAtLw1FswYWFmvOfutY249
+         9hbUtliAN8y2pw+vPQVKfRaFMbexzah3MpkfcVg0jq7lH8NTQBkTku1vadHZwC5bcmcH
+         K/YCyc/szOrwJyHCdUBcmNiJxP6mfk6yxyXaWAGz5wXZUTiZGMZJ8fDZSnqUn42HeV6Q
+         UmzhSvk6VpoegcBStM7C4XQ85bEEJBkJdqFM1Xw5P7+Zg29gqzq7XmCB4uVK7bfDi17N
+         klowiFN5qyBs81gK0G7Cz9ynChSVLGIN7WYAp1Vi1Oqojtaweoa99g6Q2RV8BejlbycA
+         kMRg==
+X-Gm-Message-State: ANoB5plTkYPiimvtTgI+7l9dRRuhKGCebKzpPuQhbUd6JLpGAnpSlEI1
+        JeZGxd5Lwappca6Lm+FebjG1GA==
+X-Google-Smtp-Source: AA0mqf6g5wsdeH0+r5ugnw0UKndTE3cNRaZGjMyU+Nrq+xDSsE/4aYAwal62Pwo72W2DMPSrQU6vzQ==
+X-Received: by 2002:a05:651c:98c:b0:277:6f7e:bfeb with SMTP id b12-20020a05651c098c00b002776f7ebfebmr6411639ljq.274.1669047332498;
+        Mon, 21 Nov 2022 08:15:32 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 19-20020ac25f53000000b0049d83646ce7sm2061010lfz.110.2022.11.21.08.15.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 08:15:31 -0800 (PST)
+Message-ID: <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
+Date:   Mon, 21 Nov 2022 17:15:30 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in addition
+ to hex format
+Content-Language: en-US
+To:     Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20221121115525.36362-1-tony@atomide.com>
+ <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
+ <Y3uPvYqaILNiYW8K@atomide.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3uPvYqaILNiYW8K@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the 16-Bit Timer Pulse Unit (TPU) in the Renesas
-R-Car V4H (R8A779G0) SoC.
+On 21/11/2022 15:48, Tony Lindgren wrote:
+> * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
+>> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
+>>> Let's allow node numbering in decimal format too.
+>>>
+>>> Simple human-readable increments/IDs are usually decimal, hex is only for
+>>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
+>>>
+>>> Cc: Thierry Reding <thierry.reding@gmail.com>
+>>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>> @@ -13,7 +13,7 @@ select: false
+>>>  
+>>>  properties:
+>>>    $nodename:
+>>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+>>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+>>
+>> I wonder why you don't make this:
+>>
+>> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
 
-Based on a patch in the BSP by CongDang.
+Yes, the '*' should be within ().
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
-v2:
-  - Add Acked-by, Reviewed-by.
----
- Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> Hmm but I think this would also pass for node names like pwm-a-foo?
+> 
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-index c6b2ab56b7feade7..a3e52b22dd180422 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-@@ -40,6 +40,7 @@ properties:
-           - renesas,tpu-r8a77970  # R-Car V3M
-           - renesas,tpu-r8a77980  # R-Car V3H
-           - renesas,tpu-r8a779a0  # R-Car V3U
-+          - renesas,tpu-r8a779g0  # R-Car V4H
-       - const: renesas,tpu
- 
-   reg:
--- 
-2.25.1
+No, how?
+
+
+Best regards,
+Krzysztof
 
