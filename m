@@ -2,99 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CACBF632DF5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 21:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6E9632E0C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 21:38:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbiKUUaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 15:30:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41350 "EHLO
+        id S230286AbiKUUi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 15:38:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbiKUUaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 15:30:15 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B82BD907C
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 12:30:14 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id x66so3772419pfx.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 12:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9+M2W0CzPt/3Idrh2stcScSTO3IN/Wj2t7AJg/nEkVA=;
-        b=YxHUTbGH3q2bQTBCEF8BcGPhzX9RTjklZuyP9KKihuNg2GbfTKSVzcjnXV0FCFZlzF
-         AET+H8UWx8bvKRO09bmjuThzAk3lUftqshCEJ4T8BfwBLj15mTvtUBYUL+8r3G0hsUvm
-         2442Nd26UU41Z4HjxqQ1sOSFUtpMXf0V4sOH80XRToQ1LDAeKn7y5OdbFAZpg86Cqrwx
-         kY7LHSxdUZiIX12PIAMXiIbpqaC/mvKF7JdHytu8uOmBUSIo5pT3Kg3V1BiRJI9rW1Xx
-         e+IVs/Vue9dMfaKGGdzu3noGQ1ZolYyDujzwG1c0ynELIbdSSATK1bejPOuJhJBV1/5l
-         zI8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9+M2W0CzPt/3Idrh2stcScSTO3IN/Wj2t7AJg/nEkVA=;
-        b=hjSefxaZOln1n2wbaCRF/cWR8xMS5U9koz2L/lb57NpOLqxEl86lp5oakqbWgNRNV5
-         /5LHYnZdln/9Xvs9/bM5EAbzdxAwK6ESe7i5SNwGTVtrxO2vrwav9Zq/UEgiDe8Mjkol
-         ZdA7CLfmXfmKMPd8SGPyvyL2HzAYoVjHWBYeFcUWTbsOgmqC9Eash+2Nl7DpTnobbiSW
-         sKjXPOlU1nUo7Yh9M7Ed28uDqf3tGcJJV5TNFtDfL79fTnwl6EDr9C3kB6BOV6vJm1z4
-         3Py5nOpqPtcNSvyMuNMGZKRd5OSfp57n0UCbxmQXzSxYi9ymVeRaw5k21Ri2+V2kt39W
-         agtg==
-X-Gm-Message-State: ANoB5plsPkKwV8aJ5MjyipYKEspKDFkE7UagLjC7zE6cwWbvcYtHpqBv
-        SstkLucCVcuJ9CSKKon+Ts5w/k3iY5rTCw6rTq5cXNjSkaU=
-X-Google-Smtp-Source: AA0mqf6P/4cgoOqms4Hg/SBSbh8OfDCW696Vy5GWvdjLuZqZQe1MJF6oDeEej9/G1ihbNGyvj9oxLBpQL4B4kaUnjEw=
-X-Received: by 2002:a62:e80b:0:b0:56e:ad31:b98b with SMTP id
- c11-20020a62e80b000000b0056ead31b98bmr4856818pfi.40.1669062614134; Mon, 21
- Nov 2022 12:30:14 -0800 (PST)
+        with ESMTP id S230235AbiKUUi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 15:38:28 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC0C12B638;
+        Mon, 21 Nov 2022 12:38:27 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ALJwB53013099;
+        Mon, 21 Nov 2022 20:38:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2s7pXi2xUsgbOBd1b9tQo4sZBnUzWsGimUNCwDl4Zpk=;
+ b=CMBzv5WxP0ts7Aiw3eVevRMbmVBwu03PHXZ24mTxGjAnv7n+MALAkfudj/LZEHW8/Brr
+ iZXlmJVHfE9alXlIZqMqn7OFwYRTnTyr9mYAccgUN6eX0e7U1P/em//HPGEtgzSNaa6T
+ QrSN3TxfsBx2lccqiPG2O5C6CuWSiPtolJ3j574VNFAGMCTQB5hZ+l3OrQBENVOi6K+k
+ vnVDFxcImTH0SCSLLayAGFsda/0bHUXsya0qsKuAgyr2xl1QkoUJ/t7+Ww/K9Wux1Nc7
+ GY1QYZNajwk59TtMBm1vzgs5I47bBIzN8Obk3TUStFD4g0giaYJ150DcxO0/2J7vHfoF fQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxreanp27-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Nov 2022 20:38:24 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALKcNwW021435
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Nov 2022 20:38:23 GMT
+Received: from [10.110.33.239] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 21 Nov
+ 2022 12:38:22 -0800
+Message-ID: <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
+Date:   Mon, 21 Nov 2022 14:38:21 -0600
 MIME-Version: 1.0
-References: <cover.1669023361.git.tonyhuang.sunplus@gmail.com>
-In-Reply-To: <cover.1669023361.git.tonyhuang.sunplus@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 21 Nov 2022 21:29:37 +0100
-Message-ID: <CAPDyKFp2uzqiVg1k8qxm+BGvDp_YPT7vonVR+Z7y6NBbYDrOrQ@mail.gmail.com>
-Subject: Re: [PATCH v12 0/2] Add mmc driver for Sunplus SP7021 SOC
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     lhjeff911@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, wells.lu@sunplus.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
+ QRU1000 pinctrl
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221118182039.29236-1-quic_molvera@quicinc.com>
+ <20221118182039.29236-2-quic_molvera@quicinc.com>
+ <528648f2-17df-ab19-8ad4-76423bbc0ae4@linaro.org>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <528648f2-17df-ab19-8ad4-76423bbc0ae4@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VOVa4yK0u1eg-27HiKTjzsWHhre2rJWS
+X-Proofpoint-ORIG-GUID: VOVa4yK0u1eg-27HiKTjzsWHhre2rJWS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-21_16,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ suspectscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999 spamscore=0
+ phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211210155
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Nov 2022 at 11:07, Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
+
+
+On 11/20/2022 4:58 AM, Krzysztof Kozlowski wrote:
+> On 18/11/2022 19:20, Melody Olvera wrote:
+>> Add device tree bindings for QDU1000 and QRU1000 TLMM devices.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 134 ++++++++++++++++++
+>>  1 file changed, 134 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>> new file mode 100644
+>> index 000000000000..cb0c496d8666
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>> @@ -0,0 +1,134 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
+>> +
+>> +maintainers:
+>> +  - Melody Olvera <quic_molvera@quicinc.com>
+>> +
+>> +description: |
+>> +  This Top Level Mode Multiplexer block (TLMM) is found in the QDU1000 and
+>> +  QRU1000 platforms.
+> It's better to keep consistent style which allows to do easy
+> search/replace, than to have new files using their own sentences. So
+> keep it the same as was unified in few recent commits.
+
+Ok... Just making sure that's what you want. Last PS you gave comments to change
+the wording of this description to remove "This binding describes..." as we've done
+in all the other qcom pinctrl/tlmm bindings. I can change the wording back to the
+original, just want to be clear here.
+
 >
-> This is a patch series for mmc driver for Sunplus SP7021 SOC.
+>> +allOf:
+>> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,qdu1000-tlmm
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts: true
+>> +  interrupt-controller: true
+>> +  "#interrupt-cells": true
+>> +  gpio-controller: true
+>> +
+>> +  gpio-reserved-ranges:
+>> +    minItems: 1
+>> +    maxItems: 75
+> Technically you can have up to 76 separate ranges (151 GPIOs).
+
+Fair enough. I can fix this.
+
+Thanks,
+Melody
 >
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
-> etc.) into a single chip. It is designed for industrial control.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
-> Refer to:
-> https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-> https://tibbo.com/store/plus1.html
 >
-> Tony Huang (2):
->   dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
->   mmc: Add mmc driver for Sunplus SP7021
->
->  .../devicetree/bindings/mmc/sunplus,mmc.yaml       |   62 ++
->  MAINTAINERS                                        |    7 +
->  drivers/mmc/host/Kconfig                           |    9 +
->  drivers/mmc/host/Makefile                          |    1 +
->  drivers/mmc/host/sunplus-mmc.c                     | 1000 ++++++++++++++++++++
->  5 files changed, 1079 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
->  create mode 100644 drivers/mmc/host/sunplus-mmc.c
+> Best regards,
+> Krzysztof
 >
 
-Applied for next, thanks!
-
-Kind regards
-Uffe
