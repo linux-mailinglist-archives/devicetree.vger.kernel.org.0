@@ -2,122 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 163AD631ED4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:54:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6372C631EE4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:58:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbiKUKyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:54:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54176 "EHLO
+        id S229456AbiKUK6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:58:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbiKUKyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:54:08 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ECFF23EAD;
-        Mon, 21 Nov 2022 02:54:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669028047; x=1700564047;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5CzyKjvM5WYE6virKJsMLAdYS9+fXIpeK1k+J3c3OSs=;
-  b=BmXxgbYvoWS3kz4mLqbjOnxIr6bAh0TuR0WUS95ZTBmZivHFIKmZG68z
-   VkRZ2fiFygaCSKqb3ptXNITdUo06PhzqoWtFc0GYKQjxcwGBzxm7tUsWb
-   7ytxqs6vuPfiwrSaTrcsOHepvRvGfdUGFrB7hOcumWCf02UV5+hnHXTrf
-   WB4vH3RVuuIM1bx869cFgZPW/eanXggcIKQESUAub4Q5ZumFPjnVMJO3o
-   Jz336ZTT3za/rrkCw7BPhXAwNGlCgQ8Wft7BO73nZyF15Hg9wvtD0w1ET
-   yogIHmJJ37zJD1D+97CEFMqDt/1Ywc1MPcAIUAG4Xlaot4bWfxxsNXXdU
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="301073722"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
-   d="scan'208";a="301073722"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 02:54:07 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="886075072"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
-   d="scan'208";a="886075072"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 02:54:03 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 839582015F;
-        Mon, 21 Nov 2022 12:54:01 +0200 (EET)
-Date:   Mon, 21 Nov 2022 10:54:01 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Paul Elder <paul.elder@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v3 0/6] dt-bindings: Add macros for video interface bus
- types
-Message-ID: <Y3tYyRHkvgei5We9@paasikivi.fi.intel.com>
-References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
- <YtOyCBOqCR71uG1i@paasikivi.fi.intel.com>
- <Y3dPGkFaz/qo/drw@pyrite.rasen.tech>
- <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
+        with ESMTP id S229448AbiKUK6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:58:38 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6749E951;
+        Mon, 21 Nov 2022 02:58:36 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id bj12so27514078ejb.13;
+        Mon, 21 Nov 2022 02:58:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yuufDN8MAkZ+z/1NDCLZ9tHt7lifmvSE7ROToVJ/Z04=;
+        b=ZLoPWLhoKYxmHi/+IEWgDRPnqyYviYWLV2Jv3fhHz4fokTK+GyWrKFeWB7iIwuoSTz
+         Quf2F9gQ7o0rGRz0uKepfni+gYMcuVSWOXz8HuXsvBJcxzEc1Z49vHixl0t6xsU4sBYH
+         FN/3u2GhJ+gEC8xhq7k6JBDttv/s3SbT5fNUgDAAUWjgaTdlsaHfQUvdxVzOvh0XY2NN
+         II+b9Hrg8zgRJ1FxdZpxY9RRrhVxg0EWAda9OKconHCmHU2uk9rTF+9t2RVuBcc/SnG7
+         HK4W+EjgDr0EDbn41X0qNZkiMuVir3Dhy2Q4v0rKlXZkIB7AKHsiiibfm6TTRYYGPO2K
+         GdXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yuufDN8MAkZ+z/1NDCLZ9tHt7lifmvSE7ROToVJ/Z04=;
+        b=6hna8scE0Je+fjLlbhtjSC8mw7j6xtlloCMp0u9H9odR5RJdLUAtm4SOIO6OMqVt0V
+         7oOf644ls8ARMdPTrPF34ucDnPinTjFws4IiQRSTqUaE28/Lm2uSiW0pmNRxrU8MiyLC
+         vowt7Vn9+eFuMsAZTdGUWIACGgreOcKvFoVyWPmuS9M+3ngURxlH9uGO2jmHefybUp2K
+         gBAAEMhXpTFzpaV5yMSehlWA421rbcjR/HxXSlODQxDL8Lfyq6vxgjQS/mMhLwNWIOHF
+         +VEZVfmEKvnCq3MNL5GeP5hyd79z9eE8jaw1L/yZUaE47zun5GuPFuGdaw6a+ObWyu2J
+         9OPQ==
+X-Gm-Message-State: ANoB5pk9J9q9DUO5V/L0PEJeWEvjmtJenbB1rop41kLYsjNVp4QCJ9l0
+        7k3oA8BlrXw7rOC5wszrmic=
+X-Google-Smtp-Source: AA0mqf54asC375YIqRZi1ostE5mdXb4wOP9ZiJG3ecr1g4Kt9CqeEvbwGhIPZ6W7NP+kX0CDNqsmpQ==
+X-Received: by 2002:a17:906:901:b0:7ae:23c:3cb4 with SMTP id i1-20020a170906090100b007ae023c3cb4mr14566927ejd.599.1669028315126;
+        Mon, 21 Nov 2022 02:58:35 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id mf20-20020a1709071a5400b0078a543e9301sm4869041ejc.200.2022.11.21.02.58.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 02:58:34 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Michael Walle <michael@walle.cc>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH dt-schema.git] schemas: add NVMEM cell with #nvmem-cell-cells
+Date:   Mon, 21 Nov 2022 11:58:30 +0100
+Message-Id: <20221121105830.7411-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Sat, Nov 19, 2022 at 09:15:04PM +0200, Laurent Pinchart wrote:
-> Hello,
-> 
-> On Fri, Nov 18, 2022 at 06:23:38PM +0900, Paul Elder wrote:
-> > Hi Sakari,
-> > 
-> > Gentle ping.
-> > 
-> > On Sun, Jul 17, 2022 at 06:54:00AM +0000, Sakari Ailus wrote:
-> > > Folks,
-> > > 
-> > > > Laurent Pinchart (6):
-> > > >   dt-bindings: media: Add macros for video interface bus types
-> > > >   dt-bindings: Use new video interface bus type macros in examples
-> > > >   ARM: dts: freescale: Use new media bus type macros
-> > > >   ARM: dts: omap: Use new media bus type macros
-> > > >   ARM: dts: renesas: Use new media bus type macros
-> > > >   ARM: dts: stm32: Use new media bus type macros
-> > > 
-> > > What's the preference on the tree through which these would be merged?
-> > > 
-> > > The two first should probably go through the media tree but what about the
-> > > DTS? There's a dependency to the first patch. I can take these all if
-> > > people are fine with that.
-> > 
-> > How is this going?
-> 
-> Sakari, if there's a concern taking patches 3/6 to 6/6 in the media
-> tree, could you merge 1/6 and 2/6 ? If they can still be included in a
-> pull request for v6.2, I'll work on getting the dts changes in v6.3
-> through their respective trees.
+Some NVMEM cells may provide more than 1 value. An example can be base
+MAC address that is used for calculating multiple MACs (for few
+different devices). For specifying value to read phandle needs to be
+used with an argument.
 
-I think I was expecting v4 from you. But I can address the comments, too,
-they were minor matters.
+Cc: Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>
+Cc: Michael Walle <michael@walle.cc>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+This bit is required for moving forward with the
+[PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
+https://lore.kernel.org/linux-arm-kernel/20220901221857.2600340-1-michael@walle.cc/
 
-For applying the DTS patches I'd like to have ack from respective
-treemaintainers it's fine to take these through the media tree.
+As pointed out by Rob #nvmem-cell-cells should be added to the dt-schema
+and not a Linux binding:
+Re: [PATCH v2 15/20] dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
+https://lore.kernel.org/linux-arm-kernel/20220912192038.GA1661550-robh@kernel.org/
 
+sl28 is one example that needs #nvmem-cell-cells
+u-boot,env is another one
+
+Please let me know if I got this binding right at all.
+---
+ dtschema/schemas/nvmem/nvmem-cell.yaml | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 dtschema/schemas/nvmem/nvmem-cell.yaml
+
+diff --git a/dtschema/schemas/nvmem/nvmem-cell.yaml b/dtschema/schemas/nvmem/nvmem-cell.yaml
+new file mode 100644
+index 0000000..dfa99b8
+--- /dev/null
++++ b/dtschema/schemas/nvmem/nvmem-cell.yaml
+@@ -0,0 +1,23 @@
++# SPDX-License-Identifier: BSD-2-Clause
++$id: "http://devicetree.org/schemas/nvmem/nvmem-cell.yaml#"
++$schema: "http://devicetree.org/meta-schemas/base.yaml#"
++
++title: NVMEM Cell Common Properties
++description: "Schema for NVMEM cell devicetree bindings"
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++# always select the core schema
++select: true
++
++properties:
++  "#nvmem-cell-cells":
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: >
++      Some NVMEM cells may consist of raw data that requires some extra
++      processing. They may provide more than 1 value.
++
++      Passing extra argument(s) allows selecting data to access.
++
++additionalProperties: true
 -- 
-Kind regards,
+2.34.1
 
-Sakari Ailus
