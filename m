@@ -2,55 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 922C0631A8D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C09D9631A92
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:48:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbiKUHrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 02:47:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
+        id S229613AbiKUHsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 02:48:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbiKUHrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:47:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF06EB0;
-        Sun, 20 Nov 2022 23:46:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C0E360DBB;
-        Mon, 21 Nov 2022 07:46:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 664F2C433C1;
-        Mon, 21 Nov 2022 07:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669016817;
-        bh=jG4j8KgJyQC/+rnV3jJ8fSMV3b8HphQv1Xahnz08T+M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QnXy1IrVs/9dnbwaydjyZJu/4Wl4uRlCj3qkFUSSqd/0jbvAnxSGNoEUhxYci35Is
-         gGgMwoh+D85PlwyUvQ0PLftBFekdV4dd/ogyxeE5N3Q8JJke9x0FEfaB/gpn7HDW8c
-         Pum4lWeKX9O1az2P1i/K8k6VceaGwkMxgde759z9G6w6oq9ulQOZcV8SfHhwJvRxxu
-         UMIBwyKXfk9em21f/AjJVPWb+sKKtFhKj8W5yzAtUqHtPz0jc5GE+Y3DORtP0UpgQG
-         JiOUnGgy7h9lJIFM/UDMY8zC1QBeI2oeoVWjlUswPJKUxmSuVA76o85ySNDMFmhkW4
-         /KuPd5xLDqD3A==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ox1Vb-00069e-Ir; Mon, 21 Nov 2022 08:46:27 +0100
-Date:   Mon, 21 Nov 2022 08:46:27 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc8280xp/sa8540p: add gpr node
-Message-ID: <Y3ss05yM1077yPcy@hovoldconsulting.com>
-References: <20221119164425.86014-1-srinivas.kandagatla@linaro.org>
- <20221119164425.86014-2-srinivas.kandagatla@linaro.org>
+        with ESMTP id S229491AbiKUHsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:48:13 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157C531DC2
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 23:48:13 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id v28so10588994pfi.12
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 23:48:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IACc2gkcOz5V66qY6IE0pXOutouS3CLvlPRM7bFD3Fs=;
+        b=jiMU/+ADUNU95PVFy5dZLAzE6RJp/GSzuaToJOl3NL37TEC1ZWJJow2LIBAdf/6TrB
+         B6FmmdipjU6XKXOcDU8R0I4uTNu2IkdPqEhunYLKHw2w7dVLWFr+jvF0U1s2uLYlHUM3
+         MVV7Si07nlH6VaYYIsU+7+WfGfFc5P0MMAfQtPGbEzbxI3lBeMasQ04fi4A621Z6FFoT
+         me1fGQF2X2kscfSowpC1WW+oe5LqlJ5/G4MvNBVUZzaS585SDq+HKnKJrPw+GbtrHihX
+         oBf++bdZ6Qa65UseTIqKKAMxEi5hfNirQ/HEFVaL1zUIqXXkvA/bKqQfNRRLKsO1eM4x
+         f82Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IACc2gkcOz5V66qY6IE0pXOutouS3CLvlPRM7bFD3Fs=;
+        b=l+vbVyuOudRUMrGsOyDjPA/gIGgMX0pxKE5e3mSRsb+eIbhJaG7Xp9XzzHwaEVKFIv
+         XBp6+swSeOZbtTa1HqPYTLeYHyjcSVqXP2/AvtzlgXfefbUQ3e6dC2ak9yQg0mdwcpx4
+         xEsLazoFaRoBzSrp2yAdAOw3w8WLilT71EZe9dtyHdvT/JF2u2CWG4rLb6Q531ewxSoY
+         clUO78X2Hr2qtgs0FeZ+3Dh3h/QFjn1hP8I3gQn0bpzMhEnxB7xZcJok+NS9OnGBDQCl
+         olUSL08jpPifcjqTISPnuiCgPRSPEHscG7zysF6QwunBDXKPNMzuk+akgNMtqLOOX5vV
+         zDhw==
+X-Gm-Message-State: ANoB5pmm3eWvFYVeRA6kPU2hn5366irDS1AH3PEvdbNvubtxlTCBLmmp
+        uQb170U7Foi2hEL7iwPRxiKENg==
+X-Google-Smtp-Source: AA0mqf57/6MzTK8YP0wv6rPUYELOh2yI5mYTfv3pzQm6Mysb0UxKQIfTqS0N4qR6rVHFCCO2+JfZwQ==
+X-Received: by 2002:a63:4543:0:b0:46f:3dfb:8fb3 with SMTP id u3-20020a634543000000b0046f3dfb8fb3mr16528480pgk.121.1669016892545;
+        Sun, 20 Nov 2022 23:48:12 -0800 (PST)
+Received: from localhost ([122.172.85.60])
+        by smtp.gmail.com with ESMTPSA id 139-20020a621591000000b0057210dc5f23sm7918038pfv.218.2022.11.20.23.48.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Nov 2022 23:48:12 -0800 (PST)
+Date:   Mon, 21 Nov 2022 13:18:10 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221121074810.mbpm5feyfbcupl5r@vireshk-i7>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+ <20221121051959.hphzjuaif423xwn6@vireshk-i7>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221119164425.86014-2-srinivas.kandagatla@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20221121051959.hphzjuaif423xwn6@vireshk-i7>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,80 +72,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 19, 2022 at 04:44:23PM +0000, Srinivas Kandagatla wrote:
-> Add GPR node along with APM(Audio Process Manager) and PRM(Proxy
-> resource Manager) audio services.
+On 21-11-22, 10:49, Viresh Kumar wrote:
+> On 17-11-22, 11:01, Manivannan Sadhasivam wrote:
+> > Hello,
+> > 
+> > This series adds clock provider support to the Qcom CPUFreq driver for
+> > supplying the clocks to the CPU cores in Qcom SoCs.
+> > 
+> > The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
+> > clocks to the CPU cores. But this is not represented clearly in devicetree.
+> > There is no clock coming out of the CPUFreq HW node to the CPU. This created
+> > an issue [1] with the OPP core when a recent enhancement series was submitted.
+> > Eventhough the issue got fixed in the OPP framework in the meantime, that's
+> > not a proper solution and this series aims to fix it properly.
+> > 
+> > There was also an attempt made by Viresh [2] to fix the issue by moving the
+> > clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
+> > since those clocks belong to the CPUFreq HW node only.
+> > 
+> > The proposal here is to add clock provider support to the Qcom CPUFreq HW
+> > driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
+> > This correctly reflects the hardware implementation.
+> > 
+> > The clock provider is a simple one that just provides the frequency of the
+> > clocks supplied to each frequency domain in the SoC using .recalc_rate()
+> > callback. The frequency supplied by the driver will be the actual frequency
+> > that comes out of the EPSS/OSM block after the DCVS operation. This frequency
+> > is not same as what the CPUFreq framework has set but it is the one that gets
+> > supplied to the CPUs after throttling by LMh.
+> > 
+> > This series has been tested on SM8450 based dev board with the OPP hack removed
+> > and hence there is a DTS change only for that platform. Once this series gets
+> > accepted, rest of the platform DTS can also be modified and finally the hack on
+> > the OPP core can be dropped.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 40 ++++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index c32bcded2aef..a610c12103bf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  #include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/soc/qcom,gpr.h>
+> Applied. Thanks.
 
-Again, please keep the includes sorted.
+I have dropped patch 2/4 now, since Mani wants to get it merged via
+SoC tree.
 
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -1152,9 +1153,48 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
->  
->  				label = "lpass";
->  				qcom,remote-pid = <2>;
-> +
-> +				gpr {
-> +					compatible = "qcom,gpr";
-> +					qcom,glink-channels = "adsp_apps";
-> +					qcom,domain = <GPR_DOMAIN_ID_ADSP>;
-> +					qcom,intents = <512 20>;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					q6apm: service@1 {
-> +						compatible = "qcom,q6apm";
-> +						reg = <GPR_APM_MODULE_IID>;
-> +						#sound-dai-cells = <0>;
-> +						qcom,protection-domain = "avs/audio",
-> +									 "msm/adsp/audio_pd";
-> +						q6apmdai: dais {
-> +							compatible = "qcom,q6apm-dais";
-> +							iommus = <&apps_smmu 0x0c01 0x0>;
-> +						};
-> +
-> +						q6apmbedai: bedais {
-> +							compatible = "qcom,q6apm-lpass-dais";
-> +							#sound-dai-cells = <1>;
-> +						};
-> +					};
-> +
-> +					q6prm: service@2 {
-> +						compatible = "qcom,q6prm";
-> +						reg = <GPR_PRM_MODULE_IID>;
-> +						qcom,protection-domain = "avs/audio",
-> +									 "msm/adsp/audio_pd";
-> +						q6prmcc: clock-controller {
-> +							compatible = "qcom,q6prm-lpass-clocks";
-> +							clock-controller;
-> +							#clock-cells = <2>;
-> +						};
-> +					};
-> +				};
->  			};
->  		};
->  
-> +
-
-Drop the stray newline.
-
->  		usb_0_qmpphy: phy-wrapper@88ec000 {
->  			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
->  			reg = <0 0x088ec000 0 0x1e4>,
-
-Johan
+-- 
+viresh
