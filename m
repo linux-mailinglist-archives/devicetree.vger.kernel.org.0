@@ -2,145 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E43EE631EB8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD4CA631EC9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:52:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbiKUKsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:48:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
+        id S229448AbiKUKwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:52:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiKUKsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:48:12 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BB0FA12D08;
-        Mon, 21 Nov 2022 02:48:10 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 8EFE580A7;
-        Mon, 21 Nov 2022 10:37:57 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 1/1] ARM: dts: Unify pwm-omap-dmtimer node names
-Date:   Mon, 21 Nov 2022 12:48:04 +0200
-Message-Id: <20221121104804.1672-1-tony@atomide.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S229593AbiKUKwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:52:47 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8005BC26
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:52:43 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso12435435wme.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:52:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
+        b=nSAKPp9iT1tfGIkSlXmfAmD6MPcXsYYSG4wspAw3llD1/Df8G+BuHDkMTvqHL+Ou7k
+         BdMNJojv0ZkWbXFCsFg7d7OA4/6iPdyYm4WKe5lNtl4U7m6vEQm08L9Ms3ZmKPXqtpdx
+         I64b3oIqfZid2IGanRVuzxL3U/FfDQTek317Vcp9WljqMqy5DUAl7gdwh3PLfjHEUhkN
+         tJFIn9n/MGoRjCqHLTHIp/zAMjLbAOxMeYKQVxiOlibovRknkPM+XVoJMfdjpzzAXwlc
+         ud5Srn6WG1kuGnTHesZ1sV07MFHQ2uF1hXZbLaVPxmIq1lsmnqkr33HLgfephdLSU0j0
+         Iz1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4DwFFWAbB39pdzGdbl/1ro70K08wbqiEN02fL5my0ng=;
+        b=GS26UyVt84rBb+NhjIUsJJJBHnwQ9HMxyBpq4k5FzQ8A5ZpRPzZxRetrYb3/PEs0qK
+         xAGvgEF6yzh57q88Ix+Zr+33FIzE5ePs1m6KPIsVAjMl/RMw5qDXq0mGMKBvfR9Q7S9/
+         4U4PALC6E/iHOXkAKJ5+4GJiE9B3o5CcedmFkaBCk8X2ZgJeEK5cfzvlwDQjkQMyISm8
+         cs/eAzGfQ/lR8faJO1/mJQwYBJTuBPvPvhbHGM6+iaCi1IH17BrGHRlBdDAbRBQMqU4p
+         AAxdkQSjty5xF9YRw32nFK2FQrKIiH5DwQxTK9bW5aVr1Oo6aq/yeqlifesWHeanRPsh
+         V71A==
+X-Gm-Message-State: ANoB5pnlbBTjLoJbkoIz0l4bXYVrSduVC21vrql+o7bSvqIEl5kW31zf
+        XwY7isVoRmZWNkJUG4lMTh346A==
+X-Google-Smtp-Source: AA0mqf5QSJ7OtroHLmnJdUzSWQwzpQbp01lD9Fe8uHseFbRLgx9H+XiLEeh83Dx4wJW6i6KniCCkYw==
+X-Received: by 2002:a1c:7409:0:b0:3cf:713a:c947 with SMTP id p9-20020a1c7409000000b003cf713ac947mr4678415wmc.40.1669027962284;
+        Mon, 21 Nov 2022 02:52:42 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id k33-20020a05600c1ca100b003b3365b38f9sm14550303wms.10.2022.11.21.02.52.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 02:52:41 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
+References: <20221031-b4-odroid-go-ultra-initial-v2-0-a3df1e09b0af@linaro.org>
+Subject: Re: [PATCH v2 0/2] arm64: amlogic: add initial Odroid Go Ultra DTS
+Message-Id: <166902796132.3866590.17335821749451892538.b4-ty@linaro.org>
+Date:   Mon, 21 Nov 2022 11:52:41 +0100
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no reg property for pwm-omap-dmtimer.
+Hi,
 
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
+On Fri, 18 Nov 2022 16:50:04 +0100, Neil Armstrong wrote:
+> This adds initial support for the Hardkernel Odroid Go Ultra.
+> 
+> The Odroid Go Ultra is a portable gaming device with the following
+> characteristics:
+> - Amlogic S922X SoC
+> - RK817 & RK818 PMICs
+> - 2GiB LPDDR4
+> - On board 16GiB eMMC
+> - Micro SD Card slot
+> - 5inch 854×480 MIPI-DSI TFT LCD
+> - Earphone stereo jack, 0.5Watt 8Ω Mono speaker
+> - Li-Polymer 3.7V/4000mAh Battery
+> - USB-A 2.0 Host Connector
+> - x16 GPIO Input Buttons
+> - 2x ADC Analog Joysticks
+> - USB-C Port for USB2 Device and Charging
+> 
+> [...]
 
-Changes since v1:
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
 
-- Use hex instead of dec for pwm10 and 11
+[1/2] dt-bindings: amlogic: document Odroid Go Ultra compatible
+      https://git.kernel.org/amlogic/c/66af218f8669a262b1bf89ba80f2acf1a3be429c
+[2/2] arm64: dts: amlogic: add initial Odroid Go Ultra DTS
+      https://git.kernel.org/amlogic/c/62e73f000696cc41cfd237a1ad90b001ad0f76c6
 
-- Add missing #pwm-cells for am335x-guardian
+These changes has been applied on the intermediate git tree [1].
 
----
- arch/arm/boot/dts/am335x-guardian.dts            | 3 ++-
- arch/arm/boot/dts/am3517-evm.dts                 | 2 +-
- arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi | 2 +-
- arch/arm/boot/dts/motorola-mapphone-common.dtsi  | 4 ++--
- arch/arm/boot/dts/omap3-gta04.dtsi               | 2 +-
- arch/arm/boot/dts/omap3-n900.dts                 | 2 +-
- 6 files changed, 8 insertions(+), 7 deletions(-)
+The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-diff --git a/arch/arm/boot/dts/am335x-guardian.dts b/arch/arm/boot/dts/am335x-guardian.dts
---- a/arch/arm/boot/dts/am335x-guardian.dts
-+++ b/arch/arm/boot/dts/am335x-guardian.dts
-@@ -103,8 +103,9 @@ panel-info {
- 
- 	};
- 
--	guardian_beeper: dmtimer-pwm@7 {
-+	guardian_beeper: pwm-7 {
- 		compatible = "ti,omap-dmtimer-pwm";
-+		#pwm-cells = <3>;
- 		ti,timers = <&timer7>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&guardian_beeper_pins>;
-diff --git a/arch/arm/boot/dts/am3517-evm.dts b/arch/arm/boot/dts/am3517-evm.dts
---- a/arch/arm/boot/dts/am3517-evm.dts
-+++ b/arch/arm/boot/dts/am3517-evm.dts
-@@ -150,7 +150,7 @@ bl: backlight {
- 		enable-gpios = <&gpio6 22 GPIO_ACTIVE_HIGH>; /* gpio_182 */
- 	};
- 
--	pwm11: dmtimer-pwm@11 {
-+	pwm11: pwm-b {
- 		compatible = "ti,omap-dmtimer-pwm";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm_pins>;
-diff --git a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
---- a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
-+++ b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
-@@ -59,7 +59,7 @@ led2 {
- 		};
- 	};
- 
--	pwm10: dmtimer-pwm {
-+	pwm10: pwm-a {
- 		compatible = "ti,omap-dmtimer-pwm";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm_pins>;
-diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
---- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-+++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-@@ -133,7 +133,7 @@ soundcard {
- 		dais = <&mcbsp2_port>, <&mcbsp3_port>;
- 	};
- 
--	pwm8: dmtimer-pwm-8 {
-+	pwm8: pwm-8 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&vibrator_direction_pin>;
- 
-@@ -143,7 +143,7 @@ pwm8: dmtimer-pwm-8 {
- 		ti,clock-source = <0x01>;
- 	};
- 
--	pwm9: dmtimer-pwm-9 {
-+	pwm9: pwm-9 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&vibrator_enable_pin>;
- 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -147,7 +147,7 @@ backlight: backlight {
- 		pinctrl-0 = <&backlight_pins>;
- 	};
- 
--	pwm11: dmtimer-pwm {
-+	pwm11: pwm-b {
- 		compatible = "ti,omap-dmtimer-pwm";
- 		ti,timers = <&timer11>;
- 		#pwm-cells = <3>;
-diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
---- a/arch/arm/boot/dts/omap3-n900.dts
-+++ b/arch/arm/boot/dts/omap3-n900.dts
-@@ -156,7 +156,7 @@ battery: n900-battery {
- 		io-channel-names = "temp", "bsi", "vbat";
- 	};
- 
--	pwm9: dmtimer-pwm {
-+	pwm9: pwm-9 {
- 		compatible = "ti,omap-dmtimer-pwm";
- 		#pwm-cells = <3>;
- 		ti,timers = <&timer9>;
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.38.1
+Neil
