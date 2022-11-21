@@ -2,84 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4DC5632BFB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 19:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D339B632C1E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 19:28:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbiKUSVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 13:21:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
+        id S229516AbiKUS2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 13:28:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiKUSVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 13:21:32 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC30DC67EF
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 10:21:31 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id w4so2548417plp.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 10:21:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8w9f4y377QtdcrkQmSKVz9YndndMyGver3VZ27R7CKA=;
-        b=3omtfVMBlHwiBWSEOLuxgQqnH3bzQTxnJNc1CqHj7505Mu9sQWMu+R+dNeviBUmYON
-         Nrf8mMt8T1phKqn9bnrQ8wX/SZjaMtN9aW+sqrjVXk89gHEZaLF65G5zzK2Sv1FMckQH
-         bS5TNztm10AdS2d2Nz90rX0XPsE5YItnVVEOOdwnVoDy4Jm+JQDKmrIkt6A/5v14qzvM
-         yyIy4/6Bs5e3cdN4m/UmybN1YXi/kUBQ7Nwl/FYRdfIjb+/1Iz3iHv0HiApd3FBpx6QI
-         5ZRSNdtulQGLkZdjFQx+gvExfnafWI7bJ4nco2qjdNPx7ThYKfeph9DpZbWv6h1AjhF0
-         qpNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8w9f4y377QtdcrkQmSKVz9YndndMyGver3VZ27R7CKA=;
-        b=OoH+hS3QYGZs5M5WU2frtfYf5x4E6qr5pSySCfKRnHZuZsXIS0SUM3hiHwJKRiaNeB
-         MN9QsVEDq9tdAfRcc8KGd9aRXPvaP8Dps+oedavg3ENLEcIciJwkEQHQ6zs0itwkT23o
-         CJbFups2EI+/vX1seeqaM6HC7V6AtFzFOXXaqbd2/GtkyfR66f+xRs9gRX53D6J8Mp0d
-         vsFPupOGYFDkdg2oRwCmL3q5KTCncCbImy05FkqqEblEFVQC1iOCU+NuHWYDRJhj1C6g
-         tG542UibnP95uHClRxchT97NdtkJXMG19qa9oH68pFnVVIdyBwWIwwOxzWM/+iLOEtfe
-         /3fQ==
-X-Gm-Message-State: ANoB5pncUlt4iHBwRYR5zhRYbVAm6p2blUP1vfjqS1OWbVDxwQjgLUl6
-        xQQZ3V1gox9H5qVqQ0BfpoAO7A==
-X-Google-Smtp-Source: AA0mqf6lZH/t4A6UhS6locXOZ/QDeHJNF0k/f2M6v6NCSZSVyFx7Q5/JiZKp4LAXjmm2O30PPiKTmw==
-X-Received: by 2002:a17:902:7d94:b0:188:f0e1:ef42 with SMTP id a20-20020a1709027d9400b00188f0e1ef42mr2923518plm.166.1669054891238;
-        Mon, 21 Nov 2022 10:21:31 -0800 (PST)
-Received: from localhost ([75.172.139.56])
-        by smtp.gmail.com with ESMTPSA id e1-20020aa79801000000b0056bb4bbfb9bsm5335744pfl.95.2022.11.21.10.21.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 10:21:30 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Bernhard =?utf-8?Q?Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, matthias.bgg@gmail.com
-Subject: Re: [PATCH 6/9] ARM: dts: mediatek: Remove pins-are-numbered property
-In-Reply-To: <20221121015451.2471196-7-bero@baylibre.com>
-References: <20221121015451.2471196-1-bero@baylibre.com>
- <20221121015451.2471196-7-bero@baylibre.com>
-Date:   Mon, 21 Nov 2022 10:21:30 -0800
-Message-ID: <7hpmdg88yd.fsf@baylibre.com>
+        with ESMTP id S229456AbiKUS2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 13:28:43 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 924E2D02EB;
+        Mon, 21 Nov 2022 10:28:41 -0800 (PST)
+Received: from mercury (dyndsl-037-138-187-016.ewe-ip-backbone.de [37.138.187.16])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E61876602A68;
+        Mon, 21 Nov 2022 18:28:39 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669055320;
+        bh=yKHSiVz87pEjWX8tRrj8awnJJ2ctOTvniVa2luLwPc8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aBbURpt0aZYS6rAWDYE7wQGiYeN4Lu03c5LUJY0ks4+n/8GR4+1jrjOb8cJq99RBa
+         mZ937sAOUprMJ3djn7us1MIker9lKnFpzTSp6Saa6Ijkpx6IUVIFkxWjQKMl0v5H0g
+         lCD7tdvl6FJYV6A20YUtQZonCcthnc/UpJMxuyC+jVWrZAtazOBukvyzD7QsJNLkQK
+         FT/+oXuNOxcWtTu9ypSCdahLg0mTfnldTr190ayEAtt/m/stpKmtvtAkvll2xCu3YX
+         XDnUKoME4vAYRTL+JNcvi3AGkyrbunraZdaVEEyb56ZUDPf41syrAcjqoTqQTHlf/z
+         JLph5w/IOAbxA==
+Received: by mercury (Postfix, from userid 1000)
+        id F303E10610F7; Mon, 21 Nov 2022 19:28:36 +0100 (CET)
+Date:   Mon, 21 Nov 2022 19:28:36 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Qu Wenruo <wqu@suse.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCHv3 0/9] RK3588 Clock and Reset Support
+Message-ID: <20221121182836.kwkbnonulcwfzbg4@mercury.elektranox.org>
+References: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+ <c119bd9c-0b90-4096-a988-9d0312c3dbcd@suse.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="x3rbmtlos2qzegrs"
+Content-Disposition: inline
+In-Reply-To: <c119bd9c-0b90-4096-a988-9d0312c3dbcd@suse.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com> writes:
 
-> Remove the unnecessary pins-are-numbered property from
-> Mediatek ARM DeviceTrees
->
-> Signed-off-by: Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com>
+--x3rbmtlos2qzegrs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Hi Qu,
+
+On Mon, Nov 21, 2022 at 04:52:22PM +0800, Qu Wenruo wrote:
+> On 2022/10/18 23:13, Sebastian Reichel wrote:
+> > This has been part of a bigger patchset adding basic rk3588 support.
+> > Since that gets more and more out of hand, I'm now sending patches
+> > for each subsystem as individual patchset.
+>=20
+> Awesome work! Thanks for the work to bring upstream support for RK3588.
+>=20
+> This upstream work is especially important since the vendor kernel has so
+> many weird things and is never properly tested using newer tool chains.
+>=20
+> But considering the support has been split into different patchset, is th=
+ere
+> a git repo that I can fetch all the patches and test it on my Rock5B boar=
+d?
+
+try linux-next + https://lore.kernel.org/all/20221121175814.68927-1-sebasti=
+an.reichel@collabora.com/
+
+It should boot, but that's about it. For Rock 5B there is not even
+ethernet support, since that needs PCIe. Ideally the DT series makes
+it in time for the 6.2 merge window.
+
+Alternatively my working branch (I rebase that!) is available here:
+https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-misc.git/log/?h=
+=3Drk3588
+It adds PMIC, thermal and cpufrequency support.
+
+-- Sebastian
+
+--x3rbmtlos2qzegrs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmN7wzQACgkQ2O7X88g7
++pq1dRAAohcRYRRBHfxuFqEbA5kMScXOo3hWkFT/Ww2H7pExV91w6J9i58BTLq0o
+6FQjN3d3UKiPJm9uDXiCk6J/hXTOLIKQ4wn8INwNwFqLVr+a9sB+0BZPHHg4BouS
+yjzJ0OurbkTBiruoxTF8+9/Qd2C7PY2DMZwvUfJ9eu2aOV06MvXf63VU9oa616ec
+me+ZnphAtwAPZZl0byRw3uAfb3o9MucT6Ultd6z0Ib3HuoCB9EczXEXxiic22vOS
+G046dm/RcglWYATVUCfpXBphGbSLGRgtlnKLgPZuCgnRkofVNXu81PkgXPROMIYd
+02TuK50k40LhW6lpufBbZTfH0nC8sqxAK6wRkHTKVJ6rFMQ7wc5nK4p92LfbtosO
+NIesBruULe54p6u6YwRoOJP5AA2z+biRRZr3DLBNjH+3HG4O71KmQ3Pu7pbAizpx
+3pwL2rHU50lPDmeuOiHcBRfZFIeyALX/7s63ogtA2+DGqRaABtzSLTLKQxTehY59
+d24cmku0oRp3grK7NbSiGXhHEUYKyi3jYzdVzVfqJiP1PseCjRzQlEtBEZOYVvMR
+OkumsOkbNvbt4iHxY0OZGs6LrzQV8XxtvqAUG8cGDVsTPFTuPWzOOvaCZSBlAgA8
+gt5hj+4B0pw27pPG62S+Yn/FWZfjjp3IKhWsMVw6Z34KBs5CBg8=
+=N3YC
+-----END PGP SIGNATURE-----
+
+--x3rbmtlos2qzegrs--
