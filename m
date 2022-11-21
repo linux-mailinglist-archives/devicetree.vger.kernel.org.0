@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78867631DEB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C12D631DED
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:14:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231322AbiKUKNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:13:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
+        id S230105AbiKUKOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:14:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231252AbiKUKNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:13:19 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53B822F
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:13:16 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id s8so18073430lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:13:16 -0800 (PST)
+        with ESMTP id S229702AbiKUKOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:14:16 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BE2D41
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:14:15 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id p8so18058671lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 02:14:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tXyKt1cDFcpIxmOysUOnFCPepALLvuM42ETXUOVNOr4=;
-        b=MxP3yBFhLd4mDOhZZsPx3S3EpQtQfXB9MiFkvlbv+DIRRHa7Q4lW3fAgP88ylNVIG9
-         c6acVC3iQDXaS+T2TkU9OI6XCXTPOC4DLEPb5JdJgiitQizUOUO3Y5jtoMgNSpfOf2XG
-         emVJQ/5oQw2jqdECpkaFXvc14fEdf4+jPaU146wqe/IjyI9JsZTm9iRvXsSMIinTnDDs
-         iLXaiwIQSlvCOehB5QhaiG4JEBJGlIiFB3qEUF8EMa86FL0YfD68a6Qv8KxufYvFFidG
-         jJAg/sqZ6iZkRTbLHu+FnI+VLYU0gaQwjxKh0caElYuNkA5umBz55nQqC05A68xMgoNA
-         dW9g==
+        bh=huSdTSSPuNXnoZS/eHmsGnIE6FjPj9B88zrBs7fiZfk=;
+        b=NeMpWLpw/VGYxrbuzW7jvw2Zj1Nfi3gDv98L2ZjOnbqAeGJjM8wn+VJxEVNkiRugSd
+         OQ7Tmu6pMhD/aUFllBlGcL+AlFkZ45BPNURu7FAQQ2MCIIC6VLvPz2ip9wCP1YapZhd3
+         o6/YUX4wwAo5UHnvEcz/ghquvvCy/58s5MJBKZHOl7FQxePuAbLZdDcePyjqv3XtvDX1
+         oAajxBuaAmGLKZwomr/1bC1HqGit+Bs6twk6fbyyUFSBKry5hWiZao44wSNXy6tcSZzl
+         EClSd9wu0hI94hhcaB+83s769n+Xk03DjJ/vOhGiQ5XZncTbY4PEWvTPBwgcXqFSqtQq
+         xyzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tXyKt1cDFcpIxmOysUOnFCPepALLvuM42ETXUOVNOr4=;
-        b=iR28jCgei+UDioZyrAVhA8i2jsgZDIusKOlB/GDTYMZo6mqv4y6pe1zT1R3v6iPfDX
-         g4Qf4kVZ8AKjxHbA6ceAlQO0z+DxZhWAl/XCBwEwdoh7pwGMwottlAPYeLTv/h73WRDX
-         xJf8Um/0b+Z0ESF2+nY80WHf+xUc/SiN60AtysKZ0dc0ELedNAnxZexdvu2SznI2n3yv
-         +Nt/WbuhoOE8xFr7HhEiXygUOh3MbkxY8sESRYRhtrLsX60OsoBbcYdgiGlPfONFTZ8U
-         P/GSbOOnfMiitAj0V3YjHWN4NRtH/ZlWJyC1SHu5YjJCXj/XDwf+6vMYd7S5+cYZSnCb
-         KXuw==
-X-Gm-Message-State: ANoB5pnnc8b1iEqGe5FK1Ui7e+MUmCPoFsUjwhWkiwc5Mcq3zU8b4fZA
-        KDnAo3ENmJecnexWKUZmxN6bnCykvNqVpWMH
-X-Google-Smtp-Source: AA0mqf74j2xf/DYcqvDoHVEVApFcyXDBUs4OT8J1RRHrj6hCQmlzFxEr41QeBt/yTXchv6RbIxcHwQ==
-X-Received: by 2002:a05:6512:3483:b0:4a2:8836:c07d with SMTP id v3-20020a056512348300b004a28836c07dmr5412482lfr.661.1669025595298;
-        Mon, 21 Nov 2022 02:13:15 -0800 (PST)
+        bh=huSdTSSPuNXnoZS/eHmsGnIE6FjPj9B88zrBs7fiZfk=;
+        b=j/Cvt62xOlWwwC33PUOr7n4gU3UgYvmpTQo/hZMUZgC8UrX+V4spuWNzYrxErK9jfx
+         X07gcI9DPtLLgHcBO0WJCORDGO8RejOT703TJj2McvQ/mSTg9y4z7agG/N/PIjQoI8oB
+         hCGLllnAlhen5NokihknXFLuq02nhs2gSmgeMz+cv62AyEF20EbQfPSyobNQX4SvIQDJ
+         sOy4sY9TkM7/1Lb/tc98LVhH9dDK4/RWAtdd6wLCooQymarXzXU8DmGJh34ksOJ+zbcT
+         dhbPwyR5CXOT1uEYdEi9zoQj4szFul8w09Jna7Lnw4gOuYGphkGK8BIkiLCzYfBfpFD9
+         NTsQ==
+X-Gm-Message-State: ANoB5pm7v2XAX0QK6V6Ko0ahgftZ/wKcJ3CL3fnDfbWRHgVj7H+F+yWW
+        ri2Qv4jgEkD3VmWQKVzSCpXGAw==
+X-Google-Smtp-Source: AA0mqf5MIpJ8acuij7Zyzk0NHW7RM4Gxmqrv+yzfJWyhegkhGd3Kuk6wRQYO312yoIGdnWyPdbtHxQ==
+X-Received: by 2002:a05:6512:25a8:b0:4aa:a6f8:f042 with SMTP id bf40-20020a05651225a800b004aaa6f8f042mr5296215lfb.405.1669025653696;
+        Mon, 21 Nov 2022 02:14:13 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k8-20020a05651210c800b0048a982ad0a8sm1957503lfg.23.2022.11.21.02.13.14
+        by smtp.gmail.com with ESMTPSA id u15-20020a056512128f00b004a2ae643b99sm1965407lfs.170.2022.11.21.02.14.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 02:13:14 -0800 (PST)
-Message-ID: <99302e53-c0c9-cfe8-4e6a-c70e8428d9c3@linaro.org>
-Date:   Mon, 21 Nov 2022 11:13:13 +0100
+        Mon, 21 Nov 2022 02:14:13 -0800 (PST)
+Message-ID: <15a860d8-d134-5eab-1635-74622421c5d7@linaro.org>
+Date:   Mon, 21 Nov 2022 11:14:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1 2/4] dt-bindings: power: Add starfive,jh71xx-power
- bindings
+Subject: Re: [PATCH v1 3/4] soc: starfive: Add StarFive JH71XX pmu driver
 Content-Language: en-US
 To:     Walker Chen <walker.chen@starfivetech.com>,
         linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
@@ -66,9 +65,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         "Rafael J . Wysocki" <rafael@kernel.org>,
         linux-kernel@vger.kernel.org
 References: <20221118133216.17037-1-walker.chen@starfivetech.com>
- <20221118133216.17037-3-walker.chen@starfivetech.com>
+ <20221118133216.17037-4-walker.chen@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118133216.17037-3-walker.chen@starfivetech.com>
+In-Reply-To: <20221118133216.17037-4-walker.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,53 +80,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/11/2022 14:32, Walker Chen wrote:
-> Add bindings for the power domain controller on the StarFive JH71XX SoC.
+> Add generic power domain driver for the StarFive JH71XX SoC.
 > 
-
-Subject: drop second, redundant "bindings".
-
 > Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> ---
->  .../bindings/power/starfive,jh71xx-power.yaml | 46 +++++++++++++++++++
 
-1st patch should be squashed here. Headers are part of bindings file.
+Thank you for your patch. There is something to discuss/improve.
 
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml b/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
+> +
+> +MODULE_AUTHOR("Walker Chen <walker.chen@starfivetech.com>");
+> +MODULE_DESCRIPTION("StarFive JH71XX Power Domain Driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/soc/starfive/pm_domains.h b/include/soc/starfive/pm_domains.h
 > new file mode 100644
-> index 000000000000..2537303b4829
+> index 000000000000..a20e28e9baf3
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
+> +++ b/include/soc/starfive/pm_domains.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Author: Walker Chen <walker.chen@starfivetech.com>
+> + */
+> +
+> +#ifndef __SOC_STARFIVE_PMDOMAINS_H__
+> +#define __SOC_STARFIVE_PMDOMAINS_H__
+> +
+> +#include <linux/types.h>
+> +
+> +void starfive_pmu_hw_event_turn_on(u32 mask);
+> +void starfive_pmu_hw_event_turn_off(u32 mask);
 
-Filename like compatible.
+These are not used outside of driver. Drop entire header file.
 
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/starfive,jh71xx-power.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH71xx Power Domains Controller
-> +
-> +maintainers:
-> +  - Walker Chen <walker.chen@starfivetech.com>
-> +
-> +description: |
-> +  StarFive JH71xx SoCs include support for multiple power domains which can be
-> +  powered on/off by software based on different application scenes to save power.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-No items. You have just one item,
-
-> +      - enum:
-> +          - starfive,jh7110-pmu
-> +
 
 Best regards,
 Krzysztof
