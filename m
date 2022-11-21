@@ -2,134 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9606632952
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A51263295B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbiKUQWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 11:22:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
+        id S229797AbiKUQ1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 11:27:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbiKUQWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:22:33 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22F6270E
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:22:31 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso7622788otl.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:22:31 -0800 (PST)
+        with ESMTP id S229541AbiKUQ1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:27:02 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC9CC8462
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:27:01 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id l8so15047453ljh.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:27:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UuU5jNZ9ll6lvTgROCjhDnRGN/gMHARLmfggb3xRV4w=;
-        b=pt15qk/5u57Jwqzxzk+C1nMmsX5E5RDqqBaU6OFguk83YOA5ao+UJdF5YUzWDhs7Ew
-         dDWGZ4NbFrIfjDvZbidTUht+rQvsMxhbokHBWmeEYzZOHrZ+ygos6kGrjYXeWEzY+BoV
-         gmxZUqR/0ec1gLHG1Fa22ofAVQ/kv6Y077Ht5EWSoyemW0ZGO2pFZQ8CX9iarK5Rb3gg
-         kkwqWFn0TfAqucyS6Aofh+tesn89l3n66KjTb+A0w/ZqY2UbAIxY+M9NdHo2WelpRvIA
-         fP1gmRv9IyVzxZ+xmWtbSicGJmjk30SkH+5ajU85FRqQqWsFb6Noj7yJKNGaghIkYU0c
-         kzgQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IK/hcYRO4+2xDkBUGwlm3+33CLzxibEmLxv8uMBuvXw=;
+        b=C9oaLuCFpVuHZBmZToJMOFdTN+ZrANvFGp68HH7T0DdgitcmCIytNppzjmG0GpKsxS
+         DRqCE2JfwXaeDfTrrjZLBsMRXYrBBSRZiJIhIV0GSK1OSb/mBFLvsWl94T7Es7bB98/h
+         /MQYtLXCQd2IePMHurDKvwEwYBMeGQYFS1/5I2crL7MOFbB9QixzeRGKuYwTgGEiphIm
+         cO2BFNEGPk671Ed0n6OMfl06IWi364ky9p45QO1WcCSTY9j7LDAJTsmSHOOfdAHovsV3
+         jF0CtvnoYWPs2LyajVb6/dl0DDWL5IwzHrHjqMthTlWq8MeRZxrzpsScXBRNWAh5G/Wl
+         RREQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UuU5jNZ9ll6lvTgROCjhDnRGN/gMHARLmfggb3xRV4w=;
-        b=BcDD7hjkwBPxP9cEi/eGh5NfUvFjdHUme4XqCc1/v4fx0neqA5DIWhZZ42afnZjT1t
-         ep+D8h/8+CaqF/VVkQjP/j7zndhaTWpbpERqxgs1x+wsANquyN7OP1uPGxdPuETObINp
-         wSmUyMfhEP1p7gIgj4qpGzoEArLIE2lBzjLWN7PzLygzn+rqHaOfjhHV9A1zbfXX4GNi
-         SpqJAiULhLoG1MvEFXypRBnm2qzefdwGQMr3VqYZHkuHltoycc0jhrBzdw1WPxBCWpqj
-         2DwPV8L5NpafmDrdTK6LmKr673iPLrUYL6pIQxgw9B1X1L6mwjsaTXXmJRtY09fso+97
-         EKgQ==
-X-Gm-Message-State: ANoB5pnb9MnfB8q2iMujgayuwh1QXsNL+pexo93Sp9NNXqgymSiVZPi/
-        joeaFHCmAXcePhiWlZJq7aM0gMmxLjM=
-X-Google-Smtp-Source: AA0mqf4wjuLWjvpmG+Ylbpw4QhwBnPc0UmR2hxjpe1sjRW8rNz6bYRhCcExHvsff1ecivLIt5B93dw==
-X-Received: by 2002:a9d:6206:0:b0:659:d9e4:b8f with SMTP id g6-20020a9d6206000000b00659d9e40b8fmr1787210otj.182.1669047751212;
-        Mon, 21 Nov 2022 08:22:31 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:485:4b69:5204:9130:9b29:a926])
-        by smtp.gmail.com with ESMTPSA id h22-20020a9d61d6000000b006619295af60sm4935222otk.70.2022.11.21.08.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 08:22:30 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] ARM: dts: imx7d-pico: Use 'clock-frequency'
-Date:   Mon, 21 Nov 2022 13:22:16 -0300
-Message-Id: <20221121162216.2375833-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221121162216.2375833-1-festevam@gmail.com>
-References: <20221121162216.2375833-1-festevam@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IK/hcYRO4+2xDkBUGwlm3+33CLzxibEmLxv8uMBuvXw=;
+        b=pNXju7Wg7xmA5KLxIYsXdbFmSomEqZl3PdcisYEVtKPBPkywIHGwJEgkmD2bIaHnEx
+         o9NxErG6lWXNGnLkeZQ5nnLV7RfW9TgK5vwCYhNrSObqHnKvMpUsDSXxABiZxYWcKWUt
+         ox6BuEz8ZxWHXjsNlcW3dGChCa5NTFRHSZ1x+GHA5CR4GpKmA376+eF30Okw8d4Z+BnE
+         JIgAy29B5WrFqwCBYu4KRJsp/xR0fFXnpq/BpM9cpImhguYSa/JWxSgOhJW7EQ5bmc2Q
+         HS4IAqknpyD7Va6bTpmjpqWAF17ZB3omc0t22t9nWBM3CNW1Gt51MEDKuGFKm8v9cVgf
+         KIZw==
+X-Gm-Message-State: ANoB5pmpQy3ZeMPAOu+XCZ7VVChGiA92kCOMIfnHy5FwqiizUwZGYaM5
+        QyTJI0ZH/6P4fysSL/8tTmGHzg==
+X-Google-Smtp-Source: AA0mqf6jg9QPuniTDKbw/FHukSe9K+oG1xhN84uEcSbo3NdKv66w4NIw7IKP5T1TWsxE8D2WJoJf6A==
+X-Received: by 2002:a05:651c:110a:b0:26d:e85b:92af with SMTP id e10-20020a05651c110a00b0026de85b92afmr5623921ljo.464.1669048020079;
+        Mon, 21 Nov 2022 08:27:00 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f10-20020a056512360a00b004aa0870b5e5sm2077709lfs.147.2022.11.21.08.26.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 08:26:59 -0800 (PST)
+Message-ID: <777399ec-ac03-18f6-c37c-7fda6d927ae3@linaro.org>
+Date:   Mon, 21 Nov 2022 17:26:58 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: rockchip-rga: add
+ rockchip,rk3568-rga
+Content-Language: en-US
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        jacob-chen@iotwrt.com, ezequiel@vanguardiasur.com.ar,
+        robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        michael.riesch@wolfvision.net,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+References: <20221121151755.2072816-1-m.tretter@pengutronix.de>
+ <20221121151755.2072816-2-m.tretter@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221121151755.2072816-2-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 21/11/2022 16:17, Michael Tretter wrote:
+> Add a new compatible for the rk3568 Rockchip SoC, which also features an
+> RGA, which is called RGA2 in the TRM Part2. It is the same core as used
+> on the rk3288, which documents the same RGA2.
+> 
+> Specify a new compatible for the rk3568 to be able to handle unknown
+> SoC-specific differences in the driver.
+> 
 
-'clock_frequency' is not a valid property.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Use the correct 'clock-frequency' instead.
-
-Fixes: 8b646cfb84c3 ("ARM: dts: imx7d-pico: Add support for the dwarf baseboard")
-Fixes: 6418fd92417f ("ARM: dts: imx7d-pico: Add support for the nymph baseboard")
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/imx7d-pico-dwarf.dts | 4 ++--
- arch/arm/boot/dts/imx7d-pico-nymph.dts | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx7d-pico-dwarf.dts b/arch/arm/boot/dts/imx7d-pico-dwarf.dts
-index 5162fe227d1e..fdc10563f147 100644
---- a/arch/arm/boot/dts/imx7d-pico-dwarf.dts
-+++ b/arch/arm/boot/dts/imx7d-pico-dwarf.dts
-@@ -32,7 +32,7 @@ sys_mclk: clock-sys-mclk {
- };
- 
- &i2c1 {
--	clock_frequency = <100000>;
-+	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c1>;
- 	status = "okay";
-@@ -52,7 +52,7 @@ pressure-sensor@60 {
- };
- 
- &i2c4 {
--	clock_frequency = <100000>;
-+	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c1>;
- 	status = "okay";
-diff --git a/arch/arm/boot/dts/imx7d-pico-nymph.dts b/arch/arm/boot/dts/imx7d-pico-nymph.dts
-index 104a85254adb..5afb1674e012 100644
---- a/arch/arm/boot/dts/imx7d-pico-nymph.dts
-+++ b/arch/arm/boot/dts/imx7d-pico-nymph.dts
-@@ -43,7 +43,7 @@ sys_mclk: clock-sys-mclk {
- };
- 
- &i2c1 {
--	clock_frequency = <100000>;
-+	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c1>;
- 	status = "okay";
-@@ -64,7 +64,7 @@ adc@52 {
- };
- 
- &i2c2 {
--	clock_frequency = <100000>;
-+	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c2>;
- 	status = "okay";
--- 
-2.25.1
+Best regards,
+Krzysztof
 
