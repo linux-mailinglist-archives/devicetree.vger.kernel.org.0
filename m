@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03BE1632450
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EF3A632458
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbiKUNvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 08:51:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
+        id S229501AbiKUNwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:52:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231463AbiKUNvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:51:16 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22135BE266
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:51:15 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id z192so13666630yba.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:51:15 -0800 (PST)
+        with ESMTP id S230268AbiKUNwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:52:41 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D69131D
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:52:40 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id g7so18945506lfv.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:52:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OC2dnciZqHbQv7bck4ZM4yvqMVwrtYUiDz/KQUUfBFw=;
-        b=x81a3w592lABjIyzgo//7Odymi3SiKhozLTTKlLDmeO+Mn/JvoOVoluXDwKFgHG+C2
-         KmO5eRADzFCpDvqkLvL5jTlKCZMM3Ucfsp1pgNxvaoYcp8dyEuqq5IbZm1/Tk2JDKdkT
-         7skuRPkwBeVaulSzHHNhsnD/nPc7CxBn2Yc08ngiORywAG/YFbpgYcUxUnPDcfj5VXJ4
-         DwKG80hcQzPrtE+lbf3T2opiZIed7ZqGhv9eDBH2PHuupcUtnfPWRR3389U5Kszazhhz
-         Wv+ONbsT2C5RX5emiZVcdRDenTxcvCv7cwK22ihLFAGWka4WDiwKgG2vy80tBcVYqLEe
-         BJ+g==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MFXoD9b7Lpf7iFRxgolfzLQRzqbJDNckDUwVKI2IQXM=;
+        b=py3JyfJ1y9UjV35WDIRt8kHnmLrcdM7/OR26OFZNfEmNn71j1583xSj8cWXsSjlg3N
+         3ldhZav+Pe9gd0Z/iUKOOkkAwooHjoxM4VyFeZYgK4r6cXHQzdEUGMA/1DsvBZho8rWK
+         4yIeFFqU3bwfJNcguUPhOF0gllHNRDF9x+FBkk5/nSJ5IubfaJhXzsrEiaktbpfDa7vs
+         5dBWzGpnaYMRCR7/5XYhXBuRn2frJuxIQxNd8RZ/Vt5a8HZj7zGXvkA5099cjFAhS7fb
+         /Hp1lvDry7GHoxKdArHZFh5r5OEWNNH8vpKSEfuSSbkkbEU/+WRba0E+eo7Z5R+VEfC6
+         x7Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OC2dnciZqHbQv7bck4ZM4yvqMVwrtYUiDz/KQUUfBFw=;
-        b=PqzyDpw/1vJtCA2z6/pHRw7Whheqm2sQUNtkVxHFazlVRcJmRJbXTbHZseM4qgfsIk
-         8yEeL6BKe4iOdeShWJrV7B+89tZyj4i4qhceolcGRvrMbjjIf59qFPn9u6dm2kzg2UJo
-         BCfUSW2gMdekp7lUSte/gF2Bm5w3GF2FLwFzt65A9RLji4EKt6cC0up5uo1Wt5d4qlv/
-         t47Vq/RHn9caUhozF9b8TjAjU9yMs1qBqf0lZ01cTZkwk8OBboYM3doIDlwIrzMRG9Mh
-         dPiDmJw61HRm+UU1j4i5+qR74Igbe1bxsCtZQ4OMIUWFnMhtar/1HNoVWXc7IWQZy7fI
-         iKiw==
-X-Gm-Message-State: ANoB5pnHRSIRjKDeZOK7dNYSl3pYyBgQTlKxOp8tAezhkzlcFoOqXp+B
-        ArlkT40+f7D0CeatXrwfCiiXLcQRdgdNYvQjd3rVlA==
-X-Google-Smtp-Source: AA0mqf53bbgUybixKyoC3FP/zMh6ddK5kH7FK1QEae9KYabkbpynAnpM9EWfCnBBfYiozyzqsSohAcgz/1Pgy027gNo=
-X-Received: by 2002:a25:c7c8:0:b0:6bd:1ca1:afd6 with SMTP id
- w191-20020a25c7c8000000b006bd1ca1afd6mr16645628ybe.43.1669038674366; Mon, 21
- Nov 2022 05:51:14 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MFXoD9b7Lpf7iFRxgolfzLQRzqbJDNckDUwVKI2IQXM=;
+        b=uHQ0Aa2gmVBIyq6qIID0v5mgfS7F7Wk3r35z41MpFtqkYjd6TN6lqZ7r7R5xvcJnz4
+         CS4e3XegL4PAu2GjOopfBAE09bHhOGwG82vwaEn2cIvUvKqSx9O6VGx3f70ziDPzdFgt
+         pJuSqzYE47jK+5ySEY2Lc+G64a6/OERZEEfXDLMCyD4pDBLbpRHyEG3JXaDgcT8gYWvz
+         tjML50feoDZCglkMiozW/Uy4wcsALhrpl4X6mapSozVNjq3A+BMLMwSorY9CWCPo+3DD
+         VHFqHs+3pnHz4eZpiWqyIupW4hf1vqcVcyTvTOtUhcyrNntYL+NwNTND8718KyFm419W
+         IVhg==
+X-Gm-Message-State: ANoB5plfPoI4OV2d9h41mXeKvK/mCPIgA8TThVkf3ZGqnUOWGTOi/NyZ
+        5imA5ydzve0zTsTK7gbYKm13VSdExe6HX0v4
+X-Google-Smtp-Source: AA0mqf6heDDugK0rluT8kIaUsHz3ASeN9ynsC9c9zw33Yi6qAb9PC4nu/sUOv1Ivy4dmxqoJL5fUPQ==
+X-Received: by 2002:a05:6512:749:b0:4ae:d0fc:1bce with SMTP id c9-20020a056512074900b004aed0fc1bcemr5626608lfs.107.1669038758606;
+        Mon, 21 Nov 2022 05:52:38 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h22-20020a05651c125600b00267232d0652sm1499545ljh.46.2022.11.21.05.52.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 05:52:37 -0800 (PST)
+Message-ID: <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
+Date:   Mon, 21 Nov 2022 14:52:37 +0100
 MIME-Version: 1.0
-References: <20221005-mdm9615-sx1509q-yaml-v3-0-e8b349eb1900@linaro.org>
- <79ba65cc117db8102bd8f7e30d6d44fdbd0542f1.camel@svanheule.net> <b5970487-9326-9d41-a004-6369e854e530@linaro.org>
-In-Reply-To: <b5970487-9326-9d41-a004-6369e854e530@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 21 Nov 2022 14:51:02 +0100
-Message-ID: <CACRpkdYZOsBSx_ODLYPc-po8mCs0SB=XCZhvT1LzggHXCmA4Ew@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: convert semtech,sx150xq bindings
- to dt-schema
-To:     neil.armstrong@linaro.org
-Cc:     Sander Vanheule <sander@svanheule.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: Mixed types of values inside a single property
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,16 +74,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 4:23 PM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
+On 21/11/2022 13:59, Andy Shevchenko wrote:
+> 
+> Hi, Rob and Krzysztof!
+> 
+> Today on SO one question [1] was popped up, and I, remembering a bit of
+> the code of device properties in the Linux kernel, was a bit surprised of it
+> in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
+> that either.
+> 
+> Can the specification be a bit more clear about that? Or is it me and the OP of
+> that question who missed something in the DT spec?
+> 
+> [1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
 
-> > A quick search for some datasheets turned up the SX1503 and SX1509Q with 16 GPIOs, so I assume the
-> > intention was to match "gpio0" to "gpio15". I think this should be "^(gpio[0-9]|gpio1[0-5])$" (or
-> > something equivalent).
->
-> Damn you're right, Linus should I resend or send a fixup ?
+I saw question on Stackoverflow and I saw there answers, but what is the
+question to us?
 
-Just send a fixup on top of my devel branch please!
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
