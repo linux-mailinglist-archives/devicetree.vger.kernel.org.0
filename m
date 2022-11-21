@@ -2,237 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D8B631C71
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51ED8631C86
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbiKUJIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:08:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56116 "EHLO
+        id S230224AbiKUJKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:10:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbiKUJId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:08:33 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA47A13DC6;
-        Mon, 21 Nov 2022 01:08:31 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AL8OpoL031133;
-        Mon, 21 Nov 2022 09:08:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=1W1f8UH9EqIeBJHNQLHw8+dLhtc7tyzQLYpRIB2TrhE=;
- b=gtJqlXuWt6/bIyNlD9RDZINPErMmqOsY/mblppoPyzwPmjYTKTF9KlVij3dJl8XUz47E
- vlgBRYsIi/6FjPHQMjIWEM/zjYn2B6AOCXhNHR/zH7leshMVRlQ1H+gY5qPug62jV1E7
- /Vf6jcvHq4bH4BdZofFxkiUhzYliRXeqZ8ioTrdYQsOIu2nvBJ0Q9wwLyPxc+otKtHjo
- usjYZTOLm2gYE4Q9Y4wjSzCmZsfI7SQXvISEzJEuc141aecLOxk7abGXUrmWtWv2X1MC
- CyzMNmqeH/k1tvlmTaYCPLGEVu+HeyRmZapz2eeX+MQv73azJ1iuapptCGGtCiyG24Ch qw== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrf0v07e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Nov 2022 09:08:27 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2AL98LMm032757;
-        Mon, 21 Nov 2022 09:08:24 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3kxr7k3t86-1;
-        Mon, 21 Nov 2022 09:08:24 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AL98OKZ000310;
-        Mon, 21 Nov 2022 09:08:24 GMT
-Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2AL98Nmp000309;
-        Mon, 21 Nov 2022 09:08:24 +0000
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id B1F28349C; Mon, 21 Nov 2022 01:08:22 -0800 (PST)
-From:   Kalyan Thota <quic_kalyant@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com
-Subject: [PATCH v4 3/3] drm/msm/disp/dpu1: add color management support for the crtc
-Date:   Mon, 21 Nov 2022 01:08:15 -0800
-Message-Id: <1669021695-4397-4-git-send-email-quic_kalyant@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
-References: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RpsPe8h3JH9O6sJxPTI8EVIBViL9TLt5
-X-Proofpoint-ORIG-GUID: RpsPe8h3JH9O6sJxPTI8EVIBViL9TLt5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-21_06,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 spamscore=0 suspectscore=0 phishscore=0
- clxscore=1015 impostorscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211210071
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229762AbiKUJJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:09:45 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1268FE4E
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:09:43 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id t10so13840935ljj.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:09:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5iEe7fRY9UI3AIlY+2BLLJv3AGvgsuX2GD1a9szCu9I=;
+        b=q7Pr41DBl6rR/A4TtHdH/roj5GaCx8EvAhpS1JRx+Tbe/ThGfLRmzQbrEh3VauzIh0
+         CSEgjoGSGGpzrB3A7mokXemHhqloLKOLbxgtWvAav7It9nhHYOnS2Gpfc0rUJlw7y+dc
+         p8uPnPU0IQumuIROmAsjH1O72Py6JizpXaJVzgXJm0dpr28zHm9xAhFmwxJZ45OAMEK2
+         0v0WWm56qvo3+FjNKL020M0+suQ8Molq682RWRt7JHEtzdbPNo2ikUhb/OZ3TxZAwkzq
+         fvP7od2XrVub1Ec4mFVA0kgNnqhj8bJLED+TslRlCMpvbi4MJ8hkVQ/qTGp1kpGuJjmy
+         Pb9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5iEe7fRY9UI3AIlY+2BLLJv3AGvgsuX2GD1a9szCu9I=;
+        b=iKI7+6uXuDwWcrgSzfGrfzgkt4YmNiFnxZeaMJXqlaBSyWJWZBu1vhP7vGlGexaTTE
+         EMCq/SN/VEFR2PGIwHXoEOlUfnXnRDztCagFoYRkRI9pvAEnu8QC4FCaAGU9iae6IkfL
+         ev1D7RcUhRUR/fz2ZPchtSzIQ7p/K4/KPsupkKYJO1PZ8w51O6F+g57hGY/DzRgre/5g
+         az+6QzOc4TvZkd8/hmGXk+T7oT1w2Jde9EesTWwtg4Ojm/9Bh6vJB9HtGW00NCMsuxqt
+         7bMSorWEdgQywIxuMFLdKoLW/5RrYper86zvh3cuESgYtvblFCWV5taFachxu8dZ8Rk+
+         znVA==
+X-Gm-Message-State: ANoB5pkp5gQxEdo6Ehp+gB8YzK4hrRom8OhncUeq1ip8Z0kAXJMdj/LD
+        uaYF4oPTE+zi3tkAuhMmPAbvvw==
+X-Google-Smtp-Source: AA0mqf65tf5iX3QXgYL+eDW+B/MJ19SGQIBINQ1kkLBTydy+/a8Q+euTpQhHxseu7DMQRo+st/RVMg==
+X-Received: by 2002:a2e:bd17:0:b0:277:50a:bd5c with SMTP id n23-20020a2ebd17000000b00277050abd5cmr5364778ljq.6.1669021782081;
+        Mon, 21 Nov 2022 01:09:42 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a25-20020a056512021900b004a9b9ccfbe6sm1956656lfo.51.2022.11.21.01.09.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 01:09:41 -0800 (PST)
+Message-ID: <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
+Date:   Mon, 21 Nov 2022 10:09:40 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
+ bbnsm
+Content-Language: en-US
+To:     Jacky Bai <ping.bai@nxp.com>, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
+References: <20221121065144.3667658-1-ping.bai@nxp.com>
+ <20221121065144.3667658-2-ping.bai@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221121065144.3667658-2-ping.bai@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add color management support for the crtc provided there are
-enough dspps that can be allocated from the catalog.
+On 21/11/2022 07:51, Jacky Bai wrote:
+> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 103 ++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> new file mode 100644
+> index 000000000000..b3f22b0daea6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/nxp,bbnsm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP Battery-Backed Non-Secure Module bindings
+> +
+> +maintainers:
+> +  - Jacky Bai <ping.bai@nxp.com>
+> +
+> +description: |
+> +  NXP BBNSM serves as non-volatile logic and storage for the system.
+> +  it Intergrates RTC & ON/OFF control.
+> +  The RTC can retain its state and continues counting even when the
+> +  main chip is power down. A time alarm is generated once the most
+> +  significant 32 bits of the real-time counter match the value in the
+> +  Time Alarm register.
+> +  The ON/OFF logic inside the BBNSM allows for connecting directly to
+> +  a PMIC or other voltage regulator device. both smart PMIC mode and
+> +  Dumb PMIC mode supported.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - nxp,bbnsm
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  rtc:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: nxp,bbnsm-rtc
 
-Changes in v1:
-- cache color enabled state in the dpu crtc obj (Dmitry)
-- simplify dspp allocation while creating crtc (Dmitry)
-- register for color when crtc is created (Dmitry)
 
-Changes in v2:
-- avoid primary encoders in the documentation (Dmitry)
+Missing ref to rtc.yaml.
 
-Changes in v3:
-- add ctm for builtin encoders (Dmitry)
+> +
+> +      regmap:
 
-Changes in v4:
-- few nits (Dmitry)
+Use vendor prefix, descriptive name and description. Where is the type
+of 'regmap' defined?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    | 5 +++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    | 5 ++++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 7 +++++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 6 +++++-
- 4 files changed, 17 insertions(+), 6 deletions(-)
+> +        maxItems: 1
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-index 4170fbe..6cacaaf 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-@@ -1571,7 +1571,7 @@ static const struct drm_crtc_helper_funcs dpu_crtc_helper_funcs = {
- 
- /* initialize crtc */
- struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
--				struct drm_plane *cursor)
-+				struct drm_plane *cursor, bool ctm)
- {
- 	struct drm_crtc *crtc = NULL;
- 	struct dpu_crtc *dpu_crtc = NULL;
-@@ -1583,6 +1583,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
- 
- 	crtc = &dpu_crtc->base;
- 	crtc->dev = dev;
-+	dpu_crtc->color_enabled = ctm;
- 
- 	spin_lock_init(&dpu_crtc->spin_lock);
- 	atomic_set(&dpu_crtc->frame_pending, 0);
-@@ -1604,7 +1605,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
- 
- 	drm_crtc_helper_add(crtc, &dpu_crtc_helper_funcs);
- 
--	drm_crtc_enable_color_mgmt(crtc, 0, true, 0);
-+	drm_crtc_enable_color_mgmt(crtc, 0, dpu_crtc->color_enabled, 0);
- 
- 	/* save user friendly CRTC name for later */
- 	snprintf(dpu_crtc->name, DPU_CRTC_NAME_SIZE, "crtc%u", crtc->base.id);
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-index 539b68b..792b4f0 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h
-@@ -136,6 +136,7 @@ struct dpu_crtc_frame_event {
-  * @enabled       : whether the DPU CRTC is currently enabled. updated in the
-  *                  commit-thread, not state-swap time which is earlier, so
-  *                  safe to make decisions on during VBLANK on/off work
-+ * @color_enabled : whether crtc supports color management
-  * @feature_list  : list of color processing features supported on a crtc
-  * @active_list   : list of color processing features are active
-  * @dirty_list    : list of color processing features are dirty
-@@ -164,6 +165,7 @@ struct dpu_crtc {
- 	u64 play_count;
- 	ktime_t vblank_cb_time;
- 	bool enabled;
-+	bool color_enabled;
- 
- 	struct list_head feature_list;
- 	struct list_head active_list;
-@@ -269,10 +271,11 @@ void dpu_crtc_complete_commit(struct drm_crtc *crtc);
-  * @dev: dpu device
-  * @plane: base plane
-  * @cursor: cursor plane
-+ * @ctm: ctm flag
-  * @Return: new crtc object or error
-  */
- struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
--			       struct drm_plane *cursor);
-+			       struct drm_plane *cursor, bool ctm);
- 
- /**
-  * dpu_crtc_register_custom_event - api for enabling/disabling crtc event
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index 96db7fb..a585036 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -571,6 +571,7 @@ bool dpu_encoder_use_dsc_merge(struct drm_encoder *drm_enc)
- static struct msm_display_topology dpu_encoder_get_topology(
- 			struct dpu_encoder_virt *dpu_enc,
- 			struct dpu_kms *dpu_kms,
-+			struct dpu_crtc *dpu_crtc,
- 			struct drm_display_mode *mode)
- {
- 	struct msm_display_topology topology = {0};
-@@ -599,7 +600,7 @@ static struct msm_display_topology dpu_encoder_get_topology(
- 	else
- 		topology.num_lm = (mode->hdisplay > MAX_HDISPLAY_SPLIT) ? 2 : 1;
- 
--	if (dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_DSI) {
-+	if (dpu_crtc->color_enabled) {
- 		if (dpu_kms->catalog->dspp &&
- 			(dpu_kms->catalog->dspp_count >= topology.num_lm))
- 			topology.num_dspp = topology.num_lm;
-@@ -634,6 +635,7 @@ static int dpu_encoder_virt_atomic_check(
- 	struct drm_display_mode *adj_mode;
- 	struct msm_display_topology topology;
- 	struct dpu_global_state *global_state;
-+	struct dpu_crtc *dpu_crtc;
- 	int i = 0;
- 	int ret = 0;
- 
-@@ -644,6 +646,7 @@ static int dpu_encoder_virt_atomic_check(
- 	}
- 
- 	dpu_enc = to_dpu_encoder_virt(drm_enc);
-+	dpu_crtc = to_dpu_crtc(crtc_state->crtc);
- 	DPU_DEBUG_ENC(dpu_enc, "\n");
- 
- 	priv = drm_enc->dev->dev_private;
-@@ -669,7 +672,7 @@ static int dpu_encoder_virt_atomic_check(
- 		}
- 	}
- 
--	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, adj_mode);
-+	topology = dpu_encoder_get_topology(dpu_enc, dpu_kms, dpu_crtc, adj_mode);
- 
- 	/* Reserve dynamic resources now. */
- 	if (!ret) {
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index d967eef..53e0163 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -805,7 +805,11 @@ static int _dpu_kms_drm_obj_init(struct dpu_kms *dpu_kms)
- 	/* Create one CRTC per encoder */
- 	i = 0;
- 	drm_for_each_encoder(encoder, dev) {
--		crtc = dpu_crtc_init(dev, primary_planes[i], cursor_planes[i]);
-+		bool _ctm = false;
-+
-+		if (catalog->dspp_count && dpu_encoder_is_builtin(encoder))
-+			_ctm = true;
-+		crtc = dpu_crtc_init(dev, primary_planes[i], cursor_planes[i], _ctm);
- 		if (IS_ERR(crtc)) {
- 			ret = PTR_ERR(crtc);
- 			return ret;
--- 
-2.7.4
+I don't think this is correct. Rob explained the simple-mfd means
+children do not depend on anything from the parent, but taking a regmap
+from its parent contradicts it.
+
+> +
+> +      interrupts:
+> +        maxItems: 1
+
+You have same interrupt and same address space used by two devices.
+
+Both arguments (depending on parent regmap, sharing interrupt) suggests
+that this is one device block, so describing it with simple-mfd is quite
+unflexible.
+
+> +
+> +    required:
+> +      - compatible
+> +      - regmap
+> +      - interrupts
+> +
+> +    additionalProperties: false
+> +
+> +  pwrkey:
+> +    type: object
+> +    $ref: /schemas/input/input.yaml#
+> +
+> +    properties:
+> +      compatible:
+> +        const: nxp,bbnsm-pwrkey
+> +
+> +      regmap:
+> +        maxItems: 1
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      linux,code: true
+> +
+> +    required:
+> +      - compatible
+> +      - regmap
+> +      - interrupts
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - rtc
+> +  - pwrkey
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bbnsm: bbnsm@44440000 {
+> +      compatible = "nxp,bbnsm", "syscon", "simple-mfd";
+> +      reg = <0x44440000 0x10000>;
+> +
+> +      bbnsm_rtc: rtc {
+> +        compatible = "nxp,bbnsm-rtc";
+
+Use 4 spaces for example indentation.
+
+> +        regmap = <&bbnsm>;
+> +        interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +      };
+> +
+> +      bbnsm_pwrkey: pwrkey {
+> +         compatible = "nxp,bbnsm-pwrkey";
+> +         regmap = <&bbnsm>;
+> +         interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +         linux,code = <KEY_POWER>;
+> +       };
+> +    };
+
+Best regards,
+Krzysztof
 
