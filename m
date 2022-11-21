@@ -2,162 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 945FA6325B3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ADE36325B6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:25:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231253AbiKUOZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 09:25:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36192 "EHLO
+        id S231341AbiKUOZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 09:25:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbiKUOYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:24:42 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88DB0C78C0;
-        Mon, 21 Nov 2022 06:23:49 -0800 (PST)
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8C56C66029A5;
-        Mon, 21 Nov 2022 14:23:45 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669040627;
-        bh=qAqjbzpbzCYGde1jIuieXfGh7bGscq+1ycAIsLP/zNg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nK9ZpmCXTjn3GTesP6VNlKCUdzpDPq2OVuLGTuvoGh9Rz0e1lUAoU5/fSW2nDIcSr
-         iHuFvw5dFgctCnrJ+t69CmCYlkXcevxE571PCb/dn0Ig944ebNZrXCko9kH2HeeDZ2
-         2Eit+koI7BosESKUHAfyzS8dpPbTiW+RDT0g4mIu4/dsTte8WX4RAXw4VppzBEcPFY
-         +SA7GiqmyhqGtK8iZNgrulWqybgpNBbWtf8bwMDcL9tZpo6PtB62BkI2ehT2ieegxX
-         UlufwjLgmVeQCRh5jOjMR/4MMHVEoe09sitpvhOhyEn9P6+4rCGTV/rONU01M8tMaS
-         yN+1j0lMOeq0Q==
-Date:   Mon, 21 Nov 2022 09:23:40 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng =?utf-8?B?KOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: mt8192: Add vcodec lat and core nodes
-Message-ID: <20221121142340.kpdak6lkicag6qtz@notapiano>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-3-allen-kh.cheng@mediatek.com>
- <20221118141039.y2ap7dzdp26ih2la@notapiano>
- <5bb52e10002be4ea00ccb97d08235ebb97161756.camel@mediatek.com>
+        with ESMTP id S230176AbiKUOY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:24:59 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B648DC8445
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:23:56 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id a15so14660057ljb.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:23:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ukdkZsBG+Zpg8CFe5XXXn+uTzn8/gKFc0qyjbWGXodI=;
+        b=RU8as1KlrpTbuhrPb0+GOSd5H1XZUQTtGzT6zGEHqiNQxgrS/4eFlkVJBNOudNEFM1
+         4bANpq8j4fUs1OaFfn4rsBd+9pc+ouIXTvs7hYennrqWiQW/IDaK5Beb1SqpVNYQ3zjB
+         mgQhbQyL2820HWFTuB8RxXyXJrjWCxB4VNiAuEZzTUfsn7G4p3O4yaU9hfGYKwwUZI0T
+         DPFEUEtC/d79WO+u8QevAKHrMHKIRHxDvZg57Z2uyhw0VYGVsx+xVf4MeR7jWUNraf5y
+         tWU/vTP+LvmH+0Blb7yaXvpIX96s8K1jQm/jGfthvWOXWOwH8Bc4pmIqAEv3i8mNawpD
+         4stg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukdkZsBG+Zpg8CFe5XXXn+uTzn8/gKFc0qyjbWGXodI=;
+        b=bstgu0k2e/nU67uCELZhFTbjknrW+CbzCdZp1NMTukhwzzNsmN/4nzTR8ZM/GZ+vqa
+         wljeNyTvI6qzdAOCbhWoMjdzpcOTCDv66+Cb3zQiWv6S5FOXbvVnwxj0c2zjLUFYW7GG
+         mh6Tj+ZVjiZqBX2YMAhEzrOxvOUwlp6NWnYBUvL/ayrFpxLohZ6fBOz8m1J6pt6CXWUJ
+         2pdIIFWTuy9Ofw+WYUSFuxSW7SmdYZzPlv4v8mU8nPajLr7ErQ+ZmqBeyDmj6od8S6jF
+         E2WE1DVNd+y+Rb7p3n9zCNkzUQ1yey9VViuxpuhH30wKLSx/JTuKXb+g94UCUmcWkZz3
+         ugYQ==
+X-Gm-Message-State: ANoB5pkggRG1WYgBUjhG9FSsZtdS+5P+gLsYVDcUpST8M/Co/glcH+Dk
+        0J72HeZpJW4vUY7XyZDS0at2Hg==
+X-Google-Smtp-Source: AA0mqf7MZ43Jbbypc7iZP4L2F5Ff6Ssa4Pv03V41oQQyWJBlv6zwFujvnbVw5xRudBAn5lLLiFWZAw==
+X-Received: by 2002:a05:651c:1954:b0:277:43c4:a864 with SMTP id bs20-20020a05651c195400b0027743c4a864mr5434683ljb.463.1669040634960;
+        Mon, 21 Nov 2022 06:23:54 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b1-20020a056512070100b004b4bb6286d8sm1704524lfs.84.2022.11.21.06.23.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 06:23:54 -0800 (PST)
+Message-ID: <b958733a-18a0-d916-930a-e7efb481dd06@linaro.org>
+Date:   Mon, 21 Nov 2022 15:23:53 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5bb52e10002be4ea00ccb97d08235ebb97161756.camel@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: Mixed types of values inside a single property
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
+ <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
+ <Y3uG/XvhZzaIq5Zi@smile.fi.intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3uG/XvhZzaIq5Zi@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 12:30:37PM +0000, Allen-KH Cheng (程冠勳) wrote:
-> Hi Nícolas,
+On 21/11/2022 15:11, Andy Shevchenko wrote:
+> On Mon, Nov 21, 2022 at 02:52:37PM +0100, Krzysztof Kozlowski wrote:
+>> On 21/11/2022 13:59, Andy Shevchenko wrote:
+>>>
+>>> Hi, Rob and Krzysztof!
+>>>
+>>> Today on SO one question [1] was popped up, and I, remembering a bit of
+>>> the code of device properties in the Linux kernel, was a bit surprised of it
+>>> in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
+>>> that either.
+>>>
+>>> Can the specification be a bit more clear about that? Or is it me and the OP of
+>>> that question who missed something in the DT spec?
+>>>
+>>> [1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
+>>
+>> I saw question on Stackoverflow and I saw there answers, but what is the
+>> question to us?
 > 
-> On Fri, 2022-11-18 at 09:10 -0500, Nícolas F. R. A. Prado wrote:
-> > On Fri, Sep 30, 2022 at 07:22:37PM +0800, Allen-KH Cheng wrote:
-> > > Add vcodec lat and core nodes for mt8192 SoC.
-> > > 
-> > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > > Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60
-> > > ++++++++++++++++++++++++
-> > >  1 file changed, 60 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > index 6b20376191a7..92a20f87468b 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > @@ -1449,6 +1449,66 @@
-> > >  			power-domains = <&spm
-> > > MT8192_POWER_DOMAIN_ISP2>;
-> > >  		};
-> > >  
-> > > +		vcodec_dec: video-codec@16000000 {
-> > > +			compatible = "mediatek,mt8192-vcodec-dec";
-> > > +			reg = <0 0x16000000 0 0x1000>;
-> > > +			mediatek,scp = <&scp>;
-> > > +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> > > +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
-> > > 0xfff00000>;
-> > 
-> > Hi,
-> > 
-> > since commit 951d48855d86 ("of: Make of_dma_get_range() work on bus
-> > nodes") [1]
-> > was merged this no longer works as is. Running the fluster codec
-> > tests results
-> > in IOMMU faults:
-> > 
-> > 	[  386.233976] mtk-iommu 1401d000.m4u: fault type=0x280
-> > iova=0x1fcdc0000 pa=0x0 master=0x500041c(larb=4 port=7) layer=0 read
-> > 	[  386.250666] mtk_vdec_worker(),241:
-> > [MTK_V4L2][ERROR]  <===[138], src_buf[0] sz=0x298 pts=0
-> > vdec_if_decode() ret=1 res_chg=0===>
-> > 
-> > The issue is that the DMA configuration supplied by dma-ranges is now
-> > looked for
-> > in the parent node, so the vcodec_dec node no longer gets the
-> > configuration it
-> > expected.
-> > 
-> > That said, given that the node already uses the IOMMU for the address
-> > translations (iommus property), there shouldn't even be a dma-ranges
-> > property.
-> > Indeed simply removing the dma-ranges property from this node fixes
-> > the issue
-> > and gets the decoder working again.
-> > 
-> > Thanks,
-> > Nícolas
-> > 
-> > [1] 
-> > https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f1ad5338a4d57fe1fe6475003acb8c70bf9d1bdf__;!!CTRNKA9wMg0ARbw!xdhhnvXMY5-BjI2BXPHQI-Hw8zgtZ1lvFyFFv7KtNuCDxW17VC7RqAaW9B_uXsQucT1sLk_DUl-c99ijF9dF8QXbJQ$
-> >  
-> 
-> Noted!
-> 
-> The paret node should be
-> 
-> vcodec_dec: video-codec@16000000 {
-> 	compatible = "mediatek,mt8192-vcodec-dec";
-> 	reg = <0 0x16000000 0 0x1000>;
-> 	mediatek,scp = <&scp>;
-> 	iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> 	#address-cells = <2>;
-> 	#size-cells = <2>;
-> 	ranges = <0 0 0 0x16000000 0 0x26000>;
-> 	
-> 	video-codec-lat@10000 {
-> ...
-> 
-> }
-> 
-> Am I right?
+> Does the specification allows mixed types of the values in the same property?
+> Because reading it doesn't give a hint.
 
-Yes, that's right.
+I think DT spec allows it ("Format is specific to the property. See the
+property definition.") but DT schema mostly not (finite list of property
+types). To some level DT schema accepts mixes, e.g. phandle-array
+containing phandle and offsets, but that's because phandle is actually
+also a number (dtschema/schemas/types.yaml).
 
-Thanks,
-Nícolas
+Best regards,
+Krzysztof
+
