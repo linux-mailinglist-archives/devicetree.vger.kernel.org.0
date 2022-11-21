@@ -2,89 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 799BF631CFD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 361A2631D15
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbiKUJkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
+        id S229693AbiKUJoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:44:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiKUJkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:40:22 -0500
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E17A27924;
-        Mon, 21 Nov 2022 01:40:22 -0800 (PST)
-Received: by mail-qk1-f170.google.com with SMTP id z1so7615263qkl.9;
-        Mon, 21 Nov 2022 01:40:22 -0800 (PST)
+        with ESMTP id S230224AbiKUJoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:44:09 -0500
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C87C76B;
+        Mon, 21 Nov 2022 01:44:08 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id l15so6922061qtv.4;
+        Mon, 21 Nov 2022 01:44:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=f4rlrAyktGkWb1x+yDeRfOg4XirV9skGgXAar9V+0cQ=;
-        b=4vwD8acsVUPGX4jHGaSCbLvYTdj7cDv4tTV8l5MJOjdu9wgNZ0rQisFs6OqzFtWKcd
-         JY/jiHBo0J3zVHFlyFoqM95WoarIqpn1eYoWoMEdKvJRLQcrQxGxUkKnQqppNElN2dIM
-         KbNc4dJgVh3oOYP4kevdObSJctOmnbrUg2+nTpJ9j2fwPBvjgULk8cXdFvJzGdoFG9B2
-         iMF4TAy3jNeQTqrUW4SaTMQ1Zgz7y1o1hipAZHAjsSxO9ujKVYEr5rOGvyT30elicK/O
-         sh6qtwj11vEwBFTX4VH77cWWpRmRmGix8SDHPi6nwwLWYFfXpH5/R5I+HZ/qzwYAWfz9
-         NTtg==
-X-Gm-Message-State: ANoB5pmYlF5hOdbt0RtM4JyhgrTKedCojttOrChekcG5CI3gri+TK02w
-        onRSH4E/GNPMjdIg9x3ItV1EAzfQcVXp4Q==
-X-Google-Smtp-Source: AA0mqf6fOWvmeTQ6MzCmcM6EH+ADibwQEV8jtGJlNumKXXP1ZQMP/U5yjrdtXIZ4GdxVyIZ9nwbgXA==
-X-Received: by 2002:a05:620a:1014:b0:6ce:4418:16d6 with SMTP id z20-20020a05620a101400b006ce441816d6mr15160699qkj.138.1669023621136;
-        Mon, 21 Nov 2022 01:40:21 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id c7-20020a05620a268700b006fb112f512csm7998204qkp.74.2022.11.21.01.40.19
+        bh=ieZjlpZ3qak0sadfZHGHEvvE6+oSvPeWOGhOtNL2sHo=;
+        b=YEMsFss3MSVYlivAOZxbhRt+JQgMIdd/oYTUJWWa48UeS3gqJ6iFf4+WzprnoKkk1s
+         ei/BfY1i0Bxa9WV19IMcFy1whDafgCmZrARGGtdEdtgzfDQB4zRi6/fONSDLJczC3wm8
+         1x+CVYUOFvADH9RJ/EfWbNGky45DJd5qKfBKG0vd0KqjEelYGhKNARtj6NmMkipXFwmC
+         pERkbQIu0EduvP/khTAhH4sY7d9GVgcMxMs+ES2Rv6K0EyP1Ex4cnms+k6jrsbvOUVRM
+         3P9XwpiiN29nG3je7NZmqDLwXQjdamFVps05B0SBt88KtsgmNAoXFqxdebs1JfSk05Z6
+         X2tA==
+X-Gm-Message-State: ANoB5pkRHStf9jWVIvMbxwslxCU5clX7IgDt21fIbQI85t04ENwLE/cp
+        xUhUdIysJGP9PCoFz3igczMZJSkq3Q+CGQ==
+X-Google-Smtp-Source: AA0mqf4advnKH/QJjO2O3IzRBFqMA26HO9FO2ysdtDIh/MVCMXs8jmyj0JH9Yi0YLPEkH4zmTGHuUg==
+X-Received: by 2002:ac8:65d0:0:b0:3a5:4859:8176 with SMTP id t16-20020ac865d0000000b003a548598176mr16778692qto.478.1669023846954;
+        Mon, 21 Nov 2022 01:44:06 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id x13-20020a05620a448d00b006fa4ac86bfbsm7829086qkp.55.2022.11.21.01.44.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 01:40:19 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id 205so12907207ybe.7;
-        Mon, 21 Nov 2022 01:40:19 -0800 (PST)
-X-Received: by 2002:a25:4289:0:b0:6ca:e43:d9ff with SMTP id
- p131-20020a254289000000b006ca0e43d9ffmr15779488yba.543.1669023619176; Mon, 21
- Nov 2022 01:40:19 -0800 (PST)
+        Mon, 21 Nov 2022 01:44:05 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id z192so12965836yba.0;
+        Mon, 21 Nov 2022 01:44:05 -0800 (PST)
+X-Received: by 2002:a5b:24b:0:b0:6ca:3b11:8d76 with SMTP id
+ g11-20020a5b024b000000b006ca3b118d76mr16342904ybp.202.1669023844963; Mon, 21
+ Nov 2022 01:44:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221118133829.12855-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221118211103.GA1334449-robh@kernel.org>
+In-Reply-To: <20221118211103.GA1334449-robh@kernel.org>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Nov 2022 10:40:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUuP6zYK4zupbMfQQ-RS2SNSOd3NKGoSNBH6gS9FSiw=Q@mail.gmail.com>
-Message-ID: <CAMuHMdUuP6zYK4zupbMfQQ-RS2SNSOd3NKGoSNBH6gS9FSiw=Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/Five SoC
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date:   Mon, 21 Nov 2022 10:43:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUM9e3mvfRV2jTBgPH7Xp=wW-k_JrAr5vuZ=PJ-JmjSqw@mail.gmail.com>
+Message-ID: <CAMuHMdUM9e3mvfRV2jTBgPH7Xp=wW-k_JrAr5vuZ=PJ-JmjSqw@mail.gmail.com>
+Subject: Re: [GIT PULL] Stable branch for .dts to .dtso rename
+To:     Rob Herring <robh@kernel.org>, soc@kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Andrew Davis <afd@ti.com>, Michal Simek <michal.simek@amd.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 2:59 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The WDT block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-> SoC. "renesas,r9a07g043-wdt" compatible string will be used on the
-> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
-> SoC.
->
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-wdt" will be used as a fallback on RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Rob, soc-people,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, Nov 18, 2022 at 10:11 PM Rob Herring <robh@kernel.org> wrote:
+> .dts files for overlays are getting renamed to .dtso. The kbuild support
+> for that in in this stable branch. The .dts patches that depend on this
+> are here[1]. There's also some new .dts overlay files posted[2].
+>
+> I'll leave it to the SoC and sub-arch maintainers to decide how you all
+> want to handle it from here. Either SoC maintainers can take this branch
+> and dependent rename patches or each sub-arch can. In any case, I would
+> like it converted over in 6.2 so we can remove .dts -> .dtbo build
+> support ASAP and not be carrying both.
+>
+> Rob
+>
+> [1] https://lore.kernel.org/all/20221024173434.32518-1-afd@ti.com/
+> [2] https://lore.kernel.org/all/20221118190126.100895-12-linux@fw-web.de/
+>
+> The following changes since commit 9abf2313adc1ca1b6180c508c25f22f9395cc780:
+>
+>   Linux 6.1-rc1 (2022-10-16 15:36:24 -0700)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/dtbo-rename
+>
+> for you to fetch changes up to dcad240c15c10bebdccd1f29f1a44787528f2d76:
+>
+>   kbuild: Cleanup DT Overlay intermediate files as appropriate (2022-11-18 14:45:30 -0600)
+>
+> ----------------------------------------------------------------
+> Andrew Davis (4):
+>       kbuild: Allow DTB overlays to built from .dtso named source files
+>       kbuild: Allow DTB overlays to built into .dtbo.S files
+>       staging: pi433: overlay: Rename overlay source file from .dts to .dtso
+>       kbuild: Cleanup DT Overlay intermediate files as appropriate
+>
+> Frank Rowand (1):
+>       of: overlay: rename overlay source files from .dts to .dtso
+
+Thanks, pulled into renesas-devel for v6.2, with the "renesas"
+patch[1] applied on top, for a special late pull request for soc.
+
+Alternatively, the soc people could just apply [1] directly, if they prefer
+doing it that way.
+
+Thanks!
+
+[1] https://lore.kernel.org/all/20221024173434.32518-6-afd@ti.com/
 
 Gr{oetje,eeting}s,
 
