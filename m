@@ -2,105 +2,660 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A8E631FF3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19F53631FF7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230231AbiKULLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:11:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60946 "EHLO
+        id S229943AbiKULMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:12:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbiKULKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:10:45 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF7B38A5;
-        Mon, 21 Nov 2022 03:07:40 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9E39B74C;
-        Mon, 21 Nov 2022 12:07:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1669028826;
-        bh=jGpOQO+X5hH4cZCBKqCtuHwespayHBV2l8MWJKlO3OE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cxCLAMKONpic0LLC+0kgMunFgGttSqr/Oedn8hwZiQA+2voVIscLoaDfKy2v6HV0n
-         wU1ni4YP1Fckr1aV11bksXPJXR11Rw4QWqAODJpytsWu/qP/Zi12dWtQ7jfsOcxNUU
-         OSt7m4U19PECxa54AOxueJREEjY8nkbExTbHXfhc=
-Date:   Mon, 21 Nov 2022 13:06:52 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Paul Elder <paul.elder@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v3 0/6] dt-bindings: Add macros for video interface bus
- types
-Message-ID: <Y3tbzArGt9yap6x7@pendragon.ideasonboard.com>
-References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
- <YtOyCBOqCR71uG1i@paasikivi.fi.intel.com>
- <Y3dPGkFaz/qo/drw@pyrite.rasen.tech>
- <Y3krOMoBLKpF1L7/@pendragon.ideasonboard.com>
- <Y3tYyRHkvgei5We9@paasikivi.fi.intel.com>
+        with ESMTP id S230346AbiKULLi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:11:38 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103C022B0A
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:07:48 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g12so18309347lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:07:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6p6hxbgel3Zl3rnDaE8Rz7BrvsaXOJ6kRXgbKVxVQZY=;
+        b=UnZ8onUtSogYHlZTlJXaPIEnrpdxG4Y1kXdoO6ijV1s7Cn0Rvowdwn0y2AnrpKYYFI
+         vsOdHRyh0AltgXTtb9Api6GbElPWTI5k/OVMccAsE4yGcjB1SW2JT8YnLoMgpX10hRwV
+         bObppCTCNw4OQkNPXBFZUmmfEOQKRZagIrc/NHVkVdBxlrg9mFPWL9eDStJ2j8zU69hM
+         b7Qe4mcHY2vfBzUSLsXi7FrsDIdaT18axDPPOrGeg33G65oETbsX7kkx8YiHTsj0UEeJ
+         IaFKSwZ4OGyxZHvWVX111xeyAXFfg25f/UTPisG+Szf/w728hbRDJTm9kNhhhBYAiB+e
+         LVpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6p6hxbgel3Zl3rnDaE8Rz7BrvsaXOJ6kRXgbKVxVQZY=;
+        b=4Mu+YB8T0v1Jb/7edLTQWLwxMlLtWh7d8DcdWgIgfa5sgjueWPNQUtkn8E2vAyTFsI
+         2q/PoMvaop2uzw3sMFrnTTm5yhmJj9y+bLlhT+HXgxHSbcJXlJmohlz5iCZgNJXpO12K
+         qJK7O/qQFEtd8pW4OsbjJU51mngvkFYEpMxW4XETk58dCP7a0Oy0n1HbdxzGRqMYKrWS
+         fZYuJpOj9Mbewzlng8vMhmXHEt+b5aEzm1zD4N34zcWNTnUzacJ+hhRNvhKWVZ664Rqt
+         vGHz6Zn7NvWWod5QkA2lqykfMuodyBePkzr65OYayXNeJ9bTh3lz7LZuTyQcknQ8vnZC
+         SInA==
+X-Gm-Message-State: ANoB5pnSx2xxzu6C4cG/c2NTqSSNEHXeaEOkbayR0Ne0CKtE1+1q+pql
+        TpjkbzTx2JmS9nebME0jwn/vWA==
+X-Google-Smtp-Source: AA0mqf4sHvDS62G2FUOiIzqtEfG1296xjYLiuyZO6zGOr5vh4J5Jw7RUbU1cZ46HdjsFZuhnic3+TA==
+X-Received: by 2002:ac2:41d4:0:b0:4af:cd2:f8d5 with SMTP id d20-20020ac241d4000000b004af0cd2f8d5mr5959364lfi.489.1669028851458;
+        Mon, 21 Nov 2022 03:07:31 -0800 (PST)
+Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
+        by smtp.gmail.com with ESMTPSA id x19-20020ac25dd3000000b00498fd423cc3sm1976715lfq.295.2022.11.21.03.07.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 03:07:30 -0800 (PST)
+Message-ID: <fed1d538-d133-6987-12d4-3f1516d519e5@linaro.org>
+Date:   Mon, 21 Nov 2022 12:07:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Y3tYyRHkvgei5We9@paasikivi.fi.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221118192241.29384-1-quic_molvera@quicinc.com>
+ <20221118192241.29384-3-quic_molvera@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221118192241.29384-3-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
 
-On Mon, Nov 21, 2022 at 10:54:01AM +0000, Sakari Ailus wrote:
-> On Sat, Nov 19, 2022 at 09:15:04PM +0200, Laurent Pinchart wrote:
-> > On Fri, Nov 18, 2022 at 06:23:38PM +0900, Paul Elder wrote:
-> > > On Sun, Jul 17, 2022 at 06:54:00AM +0000, Sakari Ailus wrote:
-> > > > Folks,
-> > > > 
-> > > > > Laurent Pinchart (6):
-> > > > >   dt-bindings: media: Add macros for video interface bus types
-> > > > >   dt-bindings: Use new video interface bus type macros in examples
-> > > > >   ARM: dts: freescale: Use new media bus type macros
-> > > > >   ARM: dts: omap: Use new media bus type macros
-> > > > >   ARM: dts: renesas: Use new media bus type macros
-> > > > >   ARM: dts: stm32: Use new media bus type macros
-> > > > 
-> > > > What's the preference on the tree through which these would be merged?
-> > > > 
-> > > > The two first should probably go through the media tree but what about the
-> > > > DTS? There's a dependency to the first patch. I can take these all if
-> > > > people are fine with that.
-> > > 
-> > > How is this going?
-> > 
-> > Sakari, if there's a concern taking patches 3/6 to 6/6 in the media
-> > tree, could you merge 1/6 and 2/6 ? If they can still be included in a
-> > pull request for v6.2, I'll work on getting the dts changes in v6.3
-> > through their respective trees.
+
+On 18.11.2022 20:22, Melody Olvera wrote:
+> Add DTs for Qualcomm IDP platforms using the QDU1000 and QRU1000
+> SoCs.
 > 
-> I think I was expecting v4 from you. But I can address the comments, too,
-> they were minor matters.
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile        |   2 +
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 266 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qru1000-idp.dts | 266 +++++++++++++++++++++++
+>  3 files changed, 534 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index afe496a93f94..da66d4a0a884 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -53,7 +53,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qru1000-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> new file mode 100644
+> index 000000000000..5aed483201fa
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> @@ -0,0 +1,266 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include "qdu1000.dtsi"
+> +#include "pm8150.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. QDU1000 IDP";
+> +	compatible = "qcom,qdu1000-idp", "qcom,qdu1000";
+Missing chassis-type
 
-That would be nice :-) Could it still be done for v6.2 ?
+> +
+> +	aliases {
+> +		serial0 = &uart7;
+> +	};
+> +
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <19200000>;
+> +			clock-output-names = "xo_board";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie_0_pipe_clk: pcie-0-pipe-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "pcie_0_pipe_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie_0_phy_aux_clk: pcie-0-phy-aux-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "pcie_0_phy_aux_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		usb3_phy_wrapper_pipe_clk: usb3-phy-wrapper-pipe-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "usb3_phy_wrapper_pipe_clk";
+> +			#clock-cells = <0>;
+> +		};
+Do these pipe clocks not come from QMPPHY?
 
-> For applying the DTS patches I'd like to have ack from respective
-> treemaintainers it's fine to take these through the media tree.
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	ppvar_sys: ppvar-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ppvar_sys";
+Any chance you could add the voltage of this regulator here,
+so the DT can better represent the hardware?
 
-Works for me, this can be done in v6.3.
-
--- 
-Regards,
-
-Laurent Pinchart
+Konrad
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +};
+> +
+> +&apps_rsc {
+> +	regulators {
+> +		compatible = "qcom,pm8150-rpmh-regulators";
+> +		qcom,pmic-id = "a";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +		vdd-s9-supply = <&vph_pwr>;
+> +		vdd-s10-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l8-l11-supply = <&vreg_s6a_0p9>;
+> +		vdd-l2-l10-supply = <&vph_pwr>;
+> +		vdd-l3-l4-l5-l18-supply = <&vreg_s5a_2p0>;
+> +		vdd-l6-l9-supply = <&vreg_s6a_0p9>;
+> +		vdd-l7-l12-l14-l15-supply = <&vreg_s4a_1p8>;
+> +		vdd-l13-l16-l17-supply = <&vph_pwr>;
+> +
+> +		vreg_s2a_0p5: smps2 {
+> +			regulator-name = "vreg_s2a_0p5";
+> +			regulator-min-microvolt = <320000>;
+> +			regulator-max-microvolt = <570000>;
+> +		};
+> +
+> +		vreg_s3a_1p05: smps3 {
+> +			regulator-name = "vreg_s3a_1p05";
+> +			regulator-min-microvolt = <950000>;
+> +			regulator-max-microvolt = <1170000>;
+> +		};
+> +
+> +		vreg_s4a_1p8: smps4 {
+> +			regulator-name = "vreg_s4a_1p8";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		vreg_s5a_2p0: smps5 {
+> +			regulator-name = "vreg_s5a_2p0";
+> +			regulator-min-microvolt = <1904000>;
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_s6a_0p9: smps6 {
+> +			regulator-name = "vreg_s6a_0p9";
+> +			regulator-min-microvolt = <920000>;
+> +			regulator-max-microvolt = <1128000>;
+> +		};
+> +
+> +		vreg_s7a_1p2: smps7 {
+> +			regulator-name = "vreg_s7a_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		vreg_s8a_1p3: smps8 {
+> +			regulator-name = "vreg_s8a_1p3";
+> +			regulator-min-microvolt = <1352000>;
+> +			regulator-max-microvolt = <1352000>;
+> +		};
+> +
+> +		vreg_l1a_0p91: ldo1 {
+> +			regulator-name = "vreg_l1a_0p91";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l2a_2p3: ldo2 {
+> +			regulator-name = "vreg_l2a_2p3";
+> +			regulator-min-microvolt = <2970000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l3a_1p2: ldo3 {
+> +			regulator-name = "vreg_l3a_1p2";
+> +			regulator-min-microvolt = <920000>;
+> +			regulator-max-microvolt = <1260000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l5a_0p8: ldo5 {
+> +			regulator-name = "vreg_l5a_0p8";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l6a_0p91: ldo6 {
+> +			regulator-name = "vreg_l6a_0p91";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <950000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l7a_1p8: ldo7 {
+> +			regulator-name = "vreg_l7a_1p8";
+> +			regulator-min-microvolt = <1650000>;
+> +			regulator-max-microvolt = <2000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +
+> +		};
+> +
+> +		vreg_l8a_0p91: ldo8 {
+> +			regulator-name = "vreg_l8a_0p91";
+> +			regulator-min-microvolt = <888000>;
+> +			regulator-max-microvolt = <925000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l9a_0p91: ldo9 {
+> +			regulator-name = "vreg_l8a_0p91";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l10a_2p95: ldo10 {
+> +			regulator-name = "vreg_l10a_2p95";
+> +			regulator-min-microvolt = <2700000>;
+> +			regulator-max-microvolt = <3544000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l11a_0p91: ldo11 {
+> +			regulator-name = "vreg_l11a_0p91";
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <1000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l12a_1p8: ldo12 {
+> +			regulator-name = "vreg_l12a_1p8";
+> +			regulator-min-microvolt = <1504000>;
+> +			regulator-max-microvolt = <1504000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l14a_1p8: ldo14 {
+> +			regulator-name = "vreg_l14a_1p8";
+> +			regulator-min-microvolt = <1650000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l15a_1p8: ldo15 {
+> +			regulator-name = "vreg_l15a_1p8";
+> +			regulator-min-microvolt = <1504000>;
+> +			regulator-max-microvolt = <2000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l16a_1p8: ldo16 {
+> +			regulator-name = "vreg_l16a_1p8";
+> +			regulator-min-microvolt = <1710000>;
+> +			regulator-max-microvolt = <1890000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l17a_3p3: ldo17 {
+> +			regulator-name = "vreg_l17a_3p3";
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3544000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l18a_1p2: ldo18 {
+> +			regulator-name = "vreg_l18a_1p2";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +	};
+> +};
+> +
+> +&qupv3_id_0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart7 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> new file mode 100644
+> index 000000000000..42eb0c33e7ba
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> @@ -0,0 +1,266 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include "qru1000.dtsi"
+> +#include "pm8150.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. QRU1000 IDP";
+> +	compatible = "qcom,qru1000-idp", "qcom,qru1000";
+> +
+> +	aliases {
+> +		serial0 = &uart7;
+> +	};
+> +
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <19200000>;
+> +			clock-output-names = "xo_board";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie_0_pipe_clk: pcie-0-pipe-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "pcie_0_pipe_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		pcie_0_phy_aux_clk: pcie-0-phy-aux-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "pcie_0_phy_aux_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		usb3_phy_wrapper_pipe_clk: usb3-phy-wrapper-pipe-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <1000>;
+> +			clock-output-names = "usb3_phy_wrapper_pipe_clk";
+> +			#clock-cells = <0>;
+> +		};
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	ppvar_sys: ppvar-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ppvar_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&ppvar_sys>;
+> +	};
+> +};
+> +
+> +&apps_rsc {
+> +	regulators {
+> +		compatible = "qcom,pm8150-rpmh-regulators";
+> +		qcom,pmic-id = "a";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +		vdd-s9-supply = <&vph_pwr>;
+> +		vdd-s10-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l8-l11-supply = <&vreg_s6a_0p9>;
+> +		vdd-l2-l10-supply = <&vph_pwr>;
+> +		vdd-l3-l4-l5-l18-supply = <&vreg_s5a_2p0>;
+> +		vdd-l6-l9-supply = <&vreg_s6a_0p9>;
+> +		vdd-l7-l12-l14-l15-supply = <&vreg_s4a_1p8>;
+> +		vdd-l13-l16-l17-supply = <&vph_pwr>;
+> +
+> +		vreg_s2a_0p5: smps2 {
+> +			regulator-name = "vreg_s2a_0p5";
+> +			regulator-min-microvolt = <320000>;
+> +			regulator-max-microvolt = <570000>;
+> +		};
+> +
+> +		vreg_s3a_1p05: smps3 {
+> +			regulator-name = "vreg_s3a_1p05";
+> +			regulator-min-microvolt = <950000>;
+> +			regulator-max-microvolt = <1170000>;
+> +		};
+> +
+> +		vreg_s4a_1p8: smps4 {
+> +			regulator-name = "vreg_s4a_1p8";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		vreg_s5a_2p0: smps5 {
+> +			regulator-name = "vreg_s5a_2p0";
+> +			regulator-min-microvolt = <1904000>;
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_s6a_0p9: smps6 {
+> +			regulator-name = "vreg_s6a_0p9";
+> +			regulator-min-microvolt = <920000>;
+> +			regulator-max-microvolt = <1128000>;
+> +		};
+> +
+> +		vreg_s7a_1p2: smps7 {
+> +			regulator-name = "vreg_s7a_1p2";
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		vreg_s8a_1p3: smps8 {
+> +			regulator-name = "vreg_s8a_1p3";
+> +			regulator-min-microvolt = <1352000>;
+> +			regulator-max-microvolt = <1352000>;
+> +		};
+> +
+> +		vreg_l1a_0p91: ldo1 {
+> +			regulator-name = "vreg_l1a_0p91";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l2a_2p3: ldo2 {
+> +			regulator-name = "vreg_l2a_2p3";
+> +			regulator-min-microvolt = <2970000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l3a_1p2: ldo3 {
+> +			regulator-name = "vreg_l3a_1p2";
+> +			regulator-min-microvolt = <920000>;
+> +			regulator-max-microvolt = <1260000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l5a_0p8: ldo5 {
+> +			regulator-name = "vreg_l5a_0p8";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l6a_0p91: ldo6 {
+> +			regulator-name = "vreg_l6a_0p91";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <950000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l7a_1p8: ldo7 {
+> +			regulator-name = "vreg_l7a_1p8";
+> +			regulator-min-microvolt = <1650000>;
+> +			regulator-max-microvolt = <2000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +
+> +		};
+> +
+> +		vreg_l8a_0p91: ldo8 {
+> +			regulator-name = "vreg_l8a_0p91";
+> +			regulator-min-microvolt = <888000>;
+> +			regulator-max-microvolt = <925000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l9a_0p91: ldo9 {
+> +			regulator-name = "vreg_l8a_0p91";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l10a_2p95: ldo10 {
+> +			regulator-name = "vreg_l10a_2p95";
+> +			regulator-min-microvolt = <2700000>;
+> +			regulator-max-microvolt = <3544000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l11a_0p91: ldo11 {
+> +			regulator-name = "vreg_l11a_0p91";
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <1000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l12a_1p8: ldo12 {
+> +			regulator-name = "vreg_l12a_1p8";
+> +			regulator-min-microvolt = <1504000>;
+> +			regulator-max-microvolt = <1504000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l14a_1p8: ldo14 {
+> +			regulator-name = "vreg_l14a_1p8";
+> +			regulator-min-microvolt = <1650000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l15a_1p8: ldo15 {
+> +			regulator-name = "vreg_l15a_1p8";
+> +			regulator-min-microvolt = <1504000>;
+> +			regulator-max-microvolt = <2000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l16a_1p8: ldo16 {
+> +			regulator-name = "vreg_l16a_1p8";
+> +			regulator-min-microvolt = <1710000>;
+> +			regulator-max-microvolt = <1890000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l17a_3p3: ldo17 {
+> +			regulator-name = "vreg_l17a_3p3";
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3544000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +
+> +		vreg_l18a_1p2: ldo18 {
+> +			regulator-name = "vreg_l18a_1p2";
+> +			regulator-min-microvolt = <312000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> +		};
+> +	};
+> +};
+> +
+> +&qupv3_id_0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart7 {
+> +	status = "okay";
+> +};
