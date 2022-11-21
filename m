@@ -2,193 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405E7632A49
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B66632A59
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:06:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbiKURFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:05:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55592 "EHLO
+        id S230228AbiKURGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:06:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbiKURFg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:05:36 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD25C6D01;
-        Mon, 21 Nov 2022 09:05:35 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id i64-20020a1c3b43000000b003d016c21100so3671367wma.3;
-        Mon, 21 Nov 2022 09:05:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wQ34R1ClvRJ30zGsVGp2RiEaSuUp9nthQZpzgznhpr8=;
-        b=aMKwG0neuXdoNBJBy55LDxor41lGbfQMps+JlNnHqgoiOxjrPOtxdSE4RsHOecn/zZ
-         UL8K7CG/gfcDLfDwRG2eluolShQ/8EH+mKVLF9yhV+Jd76lhsOyTqeJbI2W5X9IPIxh1
-         yHRkJ91sF/u07+Rj0pUzoR3KynwVymat66kmdiUHqPs2Xti/MrOj4ll60J/uCVSR4XnX
-         R42niY3I8FM6vWjMH6Wkrj8eqfXqLhk5K0GEyQqhQJVxTKkRONnDELnEBjspckBt68hg
-         0Ts0diRaHbiI/L+6P9aSduy/8I64EiyzVkMPsay2JUloz4KcNoCs3RphVpBxd18f8h0D
-         xaYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wQ34R1ClvRJ30zGsVGp2RiEaSuUp9nthQZpzgznhpr8=;
-        b=G/MHEG00U1g2ZeXtVicB8Lgv4+votxpygOOWJAlLjjdUumMucgKlUd5EEWLalykHzo
-         FhI0DBQNorI1bFryhRVKrYk9TEgf344Fr2JLHZx5Wti7FjewHNgYzaNsIzwXK2WX6q6d
-         IYV8h8r1mvZaD/d9dhkt8rMMovHZgVFZD1WMvwauR/YHYFQmsNAt62qzRaGr7Cvv29LL
-         WdbZXlHs4JuoHC60j9YsnvaJvdm98ggZiOF/ItMIEHOW9mWic3aSeDB1xWJ48EdtTkZI
-         sHFQYKidjSCT76EzFLUBoO6ubKVXnjsGrNZ0fLjaYmdP9TNLdsF457A6NRwzG76DIaqF
-         991g==
-X-Gm-Message-State: ANoB5pmL8A4HKpRHSglpeggApjecHe9g6FfcuJvMOvYZt+3nX16Grojl
-        UT1TSXJcPJUVRt5fH47E+QQ=
-X-Google-Smtp-Source: AA0mqf6071ld2DQr5qO+/kKEHgogUnSmTC4vQ9vKrpj5EJuxP+w5Y+6e1Xaod0BnpQlAlpY4LP+xlw==
-X-Received: by 2002:a05:600c:6012:b0:3cf:cb16:f242 with SMTP id az18-20020a05600c601200b003cfcb16f242mr5063589wmb.82.1669050334101;
-        Mon, 21 Nov 2022 09:05:34 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id w19-20020adfbad3000000b00241c6729c2bsm8621083wrg.26.2022.11.21.09.05.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 09:05:32 -0800 (PST)
-Message-ID: <53d6f1a2-86c8-409e-6b4a-d4e0f181adde@gmail.com>
-Date:   Mon, 21 Nov 2022 18:05:30 +0100
+        with ESMTP id S229924AbiKURGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:06:46 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 468BFC8454;
+        Mon, 21 Nov 2022 09:06:44 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1oxAFl-00041n-04; Mon, 21 Nov 2022 18:06:41 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 28364C1C88; Mon, 21 Nov 2022 18:06:12 +0100 (CET)
+Date:   Mon, 21 Nov 2022 18:06:12 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hauke@hauke-m.de,
+        zajec5@gmail.com, zhouyanjie@wanyeetech.com,
+        linux-mips@vger.kernel.org, arinc.unal@arinc9.com,
+        f.fainelli@gmail.com
+Subject: Re: [PATCH v8 0/2] dt-bindings: mips: add CPU bindings for MIPS
+ architecture
+Message-ID: <20221121170612.GE3200@alpha.franken.de>
+References: <20221006042945.1038594-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 04/11] dt-bindings: PCI: mediatek-gen3: add SoC based
- clock config
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20221118190126.100895-1-linux@fw-web.de>
- <20221118190126.100895-5-linux@fw-web.de>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221118190126.100895-5-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221006042945.1038594-1-sergio.paracuellos@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 18/11/2022 20:01, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Thu, Oct 06, 2022 at 06:29:43AM +0200, Sergio Paracuellos wrote:
+> Hi all,
 > 
-> The PCIe driver covers different SOC which needing different clock
-> configs. Define them based on compatible.
+> This series tries to make the correct thing to represent in schema
+> all the current documentation related with MIPS CPUs.
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
-> v2:
-> - fix typo in mediatek,mt8192-pcie
-> v3:
-> - remove contains to match only if compatible is no fallback
->    tested with series "Add driver nodes for MT8195 SoC" and mt7986
->    pcie-nodes, dtbs_check is now clean
-> ---
->   .../bindings/pci/mediatek-pcie-gen3.yaml      | 47 ++++++++++++++-----
->   1 file changed, 35 insertions(+), 12 deletions(-)
+> Broadcom cpus node is a bit special and need to use the property
+> 'mips-hpt-frequency' in the cpus node. Because of this I have introduced
+> brcm/soc.yaml schema with current broadcom SoCs and making this property
+> required as per Rob's v3 review comments.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index c00be39af64e..5d7369debff2 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -43,9 +43,6 @@ description: |+
->     each set has its own address for MSI message, and supports 32 MSI vectors
->     to generate interrupt.
->   
-> -allOf:
-> -  - $ref: /schemas/pci/pci-bus.yaml#
-> -
->   properties:
->     compatible:
->       oneOf:
-> @@ -84,15 +81,7 @@ properties:
->       maxItems: 6
->   
->     clock-names:
-> -    items:
-> -      - const: pl_250m
-> -      - const: tl_26m
-> -      - const: tl_96m
-> -      - const: tl_32k
-> -      - const: peri_26m
-> -      - enum:
-> -          - top_133m        # for MT8192
-> -          - peri_mem        # for MT8188/MT8195
-> +    maxItems: 6
->   
->     assigned-clocks:
->       maxItems: 1
-> @@ -138,6 +127,40 @@ required:
->     - '#interrupt-cells'
->     - interrupt-controller
->   
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: mediatek,mt8192-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: top_133m
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8188-pcie
-> +              - mediatek,mt8195-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: peri_mem
-> +
->   unevaluatedProperties: false
->   
->   examples:
+> Ingenic cpus have also its schema already mainlined. To unify things I
+> have also put this information in this mips/cpus.yaml schema and remove
+> the 'mips/ingenic/ingenic,cpu.yaml' schema. I have also added current
+> maintainer as maintainer for this 'mips/cpus.yaml' file.
+> 
+> Thomas, are these patches going through the mips git tree?
+> 
+> Thanks,
+>     Sergio Paracuellos
+> 
+> Changes in v8:
+>   - Remove Hauke Mehrtens from brcm/soc.yaml maintainers as per Hauke Mehrtens's
+>     requested in v7 response.
+> 
+> Changes in v7:
+>   - Remove Rafał Miłecki from brcm/soc.yaml maintainers as per Rafał Miłecki's
+>     requested in v6 response.
+> 
+> Changes in v6:
+>   - Avoid 'convert' in SoC's patch commit message since this is just an
+>     addition and nothing is removed in this patch.
+>   - Add Florian Fainelli to maintainers of Broadcom SoC bindings
+>   - Add Florian's Acked-by for broadcom SoC PATCH.
+>   - Collect Rob's Reviewed-by for both patches.
+> 
+> Changes in v5:
+>   - Address Krzysztof comments in v4:
+>       - change BMIPS SoC compatibles into an enum and drop descriptions,
+>       - Add blank line.
+>       - Redo commit message since it is not a conversion to schema.
+>       - Drop 'device tree bindings' from description.
+>       - Properly describe 'mips-hpt-frequency'.
+>   - Review cpus node and add a sample to check schema correctness.    
+> 
+> Changes in v4:
+> - Address Rob's v3 review comments:
+>     * Drop PATCH introducing special brcm,cpus.yaml only because properyu
+>     'mips-hpt-frequency' is required and move this property to brcm/soc.yaml
+>     schema.
+>     * Remove 'Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml'
+>     and add that information to general mips/cpus.yaml schema.
+>     * Define all properties in mips/cpus.yaml and set 'additionalProperties'
+>     to false.
+> 
+> Changes in v3:
+> - cpus.yaml:
+>     * address Krzysztof comment in v2:
+>     * add Thomas as maintainer since this is architecture binding.
+>     * s/cpu/CPU
+>     * compatible goes first
+>     * Add compatible 'mips,mips4Kc' as per Thomas request.
+> - Introduce two new schemas for Broadcom BMIPS:
+>     * soc.yaml: describing the BRCM SoC's
+>     * brcm,bmips-cpus.yaml: describing the cpu nodes for this platform.
+> 
+> Previous series:
+> v1: https://lore.kernel.org/all/CAMhs-H-eUTOHjAXAbywOXQJgc_j5Ex-1sB7eBZU_bWt1fpNVzA@mail.gmail.com/T/
+> v2: https://lore.kernel.org/all/20220918112245.GA5555@alpha.franken.de/T/
+> v3: https://lore.kernel.org/linux-devicetree/20220929072004.874795-1-sergio.paracuellos@gmail.com/T/#t
+> v4: https://lore.kernel.org/linux-devicetree/20221001043855.933528-1-sergio.paracuellos@gmail.com/T/#t
+> v5: https://lore.kernel.org/linux-devicetree/20221002091611.946210-1-sergio.paracuellos@gmail.com/T/#t
+> v6: https://lore.kernel.org/linux-devicetree/20221004050924.986211-1-sergio.paracuellos@gmail.com/T/#t
+> 
+> Sergio Paracuellos (2):
+>   dt-bindings: mips: add CPU bindings for MIPS architecture
+>   dt-bindings: mips: brcm: add Broadcom SoCs bindings
+> 
+>  .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
+>  .../devicetree/bindings/mips/brcm/soc.yaml    |  97 +++++++++++++++
+>  .../devicetree/bindings/mips/cpus.yaml        | 115 ++++++++++++++++++
+>  .../bindings/mips/ingenic/ingenic,cpu.yaml    |  69 -----------
+>  4 files changed, 212 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+>  create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
+> 
+> -- 
+> 2.25.1
+
+series applied to mips-next.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
