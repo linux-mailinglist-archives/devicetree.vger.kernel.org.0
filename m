@@ -2,137 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A00AF6319D1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D52A96319D3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbiKUGnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 01:43:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60000 "EHLO
+        id S229788AbiKUGpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 01:45:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbiKUGnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:43:46 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA75917892;
-        Sun, 20 Nov 2022 22:43:44 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id i10so26227231ejg.6;
-        Sun, 20 Nov 2022 22:43:44 -0800 (PST)
+        with ESMTP id S229576AbiKUGpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:45:12 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C2317892
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 22:45:11 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id 140so10492015pfz.6
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 22:45:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t8wNXBRmarHNAcLIByCKKPj/LanlRtwsGtrhezJEOSw=;
-        b=Gatp50fjydykXjhub0LNhfe/lfVnDryij/v+t8D/4G5AEGl7FJsWPfK4w0mPul9eQY
-         PZIX1MrAtRnY5NwoeuLrsRm367pA9fQd7Mb34R23Qx2WSCaYkf8puI8Wtw+f5HIHRrvQ
-         WDqi/XHhtf7lzEgMNq8bnEGjsFChWd6GFK1cnCs3Kk/F3D+MfZWB/nqcs0aWapuS3CTH
-         eHi0mE7KU8QvrRPBswXPz1gzzVi7WfiDEi1ZdO+lHb1U0VmM9gg9nZ8PA05Ry2yAb0Br
-         w3PfxPCFgNYfkpRdpTxQ+/BtXBbSLE7zOe+vxiu6suatpRszWKAByCQLvFBKx5WCEFqI
-         Gjeg==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=T9z6VNHAh5buPLOQbn4DZRIbuRpf7GLAza5o2jIuncE=;
+        b=oyqKPJqV6ChsbvcTQN+xTD9PeymSUxzZ4mMliDJurfoOfDB9tEnQWdI7PQaKjC1D0T
+         LIHx/SMR/6Q/7er1lusBloufr8W4xin7Qq2hfmIpZnRdWzTrEgCcgBJA2GhjmelaXvsI
+         V7iWawCflMlMvGxfITd89DW2MG1jgB1MG167Rh5uUUwRYS17aFVz9aT+XBY/hlbLXUwY
+         CII1XP/HqWT5StaQo6HXfG3eMIcMvfjbKa9TWZCNplJ5aPb92KuZsbTfZ/2Z9JSee89L
+         mm+TGdN+02s25vkFuC/G+eQWp3OjSa/6P8LrPLB2/LUD8mcMO7Mxdimiu+/fdxahIwPo
+         NxTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t8wNXBRmarHNAcLIByCKKPj/LanlRtwsGtrhezJEOSw=;
-        b=17qt/H6iIb7NUeU5NPyl0p2ILv/Obf2DlQ/9rAbLshVTvv5q7MNb6JSICzgRGRgnsr
-         v79mGiyLoN9y3vg77aRQkIjCuvondVG11fC1qGWLS4SU4uW94ERHd/y2YgNpGYl9UbHs
-         yBN35G4pzbrd5PuGHScvh1EeCf1+E0HknI2ujYWvMWwa2F6MaUfxVqK5DR5vcWnOcCEn
-         9+NYDAZ1ptLe5hXjGQ4QHrNBw7oTMzqel9h3koaINSeeNjqNtzpAy/zgd91JSfjx4DhX
-         3oAsWeM/qK2hi7g8Joh8vRpJ+6eXZKf16pbA3HhTlHaZTeZrqIEXnXpsfmuFA6UpbHAi
-         UT7Q==
-X-Gm-Message-State: ANoB5plHjcTxoy5G9EY2uKizctD/ZpGWrIf35QJxWmx22rPDOnARElZ2
-        6xgI0Y9qvi5yhbSDfzRK9II4PFyZq9aclfGwF3o=
-X-Google-Smtp-Source: AA0mqf4Of5Pt29Tp3S6p1t/qCJ1rl3NGexGDDhenKsDTUJwdEUMYBaxzrgFKp6bfE54i5N4HXxQjKJ60uVNt5EyHRbY=
-X-Received: by 2002:a17:907:d08c:b0:7b6:62c:dd57 with SMTP id
- vc12-20020a170907d08c00b007b6062cdd57mr3272660ejc.207.1669013023198; Sun, 20
- Nov 2022 22:43:43 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T9z6VNHAh5buPLOQbn4DZRIbuRpf7GLAza5o2jIuncE=;
+        b=l0q2oJOW4TBtJN6GJyKhW/3IBFiYqCqjHO8mf/ihU5U6LUGviBY1qXfsQyta5mdg6b
+         LJ2XviObIZfrIZYe4Xbs/VNGjT84FPmQWBSY+85Id/ltIbfC3T5zJzfgGy/KHJWsYKww
+         BlXupdQqcF+nFQwIsirDzMylOYptAovxGfHpfL8n+4aEknbiJDaMlnfNmsVyc0y3J63l
+         3mz+EwPUzbxRrfsTdrRrqA5Qc2wrAlr089pwM075E6nE1saWvkMDHRGKXji9HYA28DJ0
+         BQ9Rx0qbTVGQxWYELfJSSVnKsVSIQeqaaqtVOvpVf1MuUMWA9KldyGb1LOW+F5huTqot
+         xoAQ==
+X-Gm-Message-State: ANoB5pkCz/eq4Ip3ADdI/jXePAAmYdEciHPeDQXQ3Y6cUTTCaQbJlbg2
+        bLtsIFzrmDU8mCJpMWeNg2xy
+X-Google-Smtp-Source: AA0mqf6ddMnQGXatGtIKDuBbyT3kbY7n1kpxrE0Vd9I/tQTaSSyurICcwD9LRXBLZlh0j9EpMLqbdA==
+X-Received: by 2002:a63:5007:0:b0:45f:beda:4116 with SMTP id e7-20020a635007000000b0045fbeda4116mr789381pgb.618.1669013110909;
+        Sun, 20 Nov 2022 22:45:10 -0800 (PST)
+Received: from thinkpad ([59.92.99.222])
+        by smtp.gmail.com with ESMTPSA id d187-20020a6236c4000000b0053e62b6fd22sm7752028pfa.126.2022.11.20.22.45.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Nov 2022 22:45:09 -0800 (PST)
+Date:   Mon, 21 Nov 2022 12:15:07 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
+Message-ID: <20221121064507.GC11945@thinkpad>
+References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+ <20221121051959.hphzjuaif423xwn6@vireshk-i7>
 MIME-Version: 1.0
-References: <20221116133131.6809-1-zhe.wang1@unisoc.com> <20221116133131.6809-2-zhe.wang1@unisoc.com>
- <20221120164907.GA3183451-robh@kernel.org>
-In-Reply-To: <20221120164907.GA3183451-robh@kernel.org>
-From:   Zhe Wang <zhewang116@gmail.com>
-Date:   Mon, 21 Nov 2022 14:43:31 +0800
-Message-ID: <CAJxzgGo6YLw2nCp4SdmMg_dHRBxQY3jFCg94U1BpbDupOtorTg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Add document for Unisoc UFS host controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     Zhe Wang <zhe.wang1@unisoc.com>, martin.petersen@oracle.com,
-        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, avri.altman@wdc.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
-        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221121051959.hphzjuaif423xwn6@vireshk-i7>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Rob=EF=BC=8C
+On Mon, Nov 21, 2022 at 10:49:59AM +0530, Viresh Kumar wrote:
+> On 17-11-22, 11:01, Manivannan Sadhasivam wrote:
+> > Hello,
+> > 
+> > This series adds clock provider support to the Qcom CPUFreq driver for
+> > supplying the clocks to the CPU cores in Qcom SoCs.
+> > 
+> > The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
+> > clocks to the CPU cores. But this is not represented clearly in devicetree.
+> > There is no clock coming out of the CPUFreq HW node to the CPU. This created
+> > an issue [1] with the OPP core when a recent enhancement series was submitted.
+> > Eventhough the issue got fixed in the OPP framework in the meantime, that's
+> > not a proper solution and this series aims to fix it properly.
+> > 
+> > There was also an attempt made by Viresh [2] to fix the issue by moving the
+> > clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
+> > since those clocks belong to the CPUFreq HW node only.
+> > 
+> > The proposal here is to add clock provider support to the Qcom CPUFreq HW
+> > driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
+> > This correctly reflects the hardware implementation.
+> > 
+> > The clock provider is a simple one that just provides the frequency of the
+> > clocks supplied to each frequency domain in the SoC using .recalc_rate()
+> > callback. The frequency supplied by the driver will be the actual frequency
+> > that comes out of the EPSS/OSM block after the DCVS operation. This frequency
+> > is not same as what the CPUFreq framework has set but it is the one that gets
+> > supplied to the CPUs after throttling by LMh.
+> > 
+> > This series has been tested on SM8450 based dev board with the OPP hack removed
+> > and hence there is a DTS change only for that platform. Once this series gets
+> > accepted, rest of the platform DTS can also be modified and finally the hack on
+> > the OPP core can be dropped.
+> 
+> Applied. Thanks.
+> 
+> If you get review comments later on, please send incremental patches
+> for that.
+> 
 
-On Mon, Nov 21, 2022 at 12:54 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Nov 16, 2022 at 09:31:30PM +0800, Zhe Wang wrote:
-> > Add Unisoc ums9620 ufs host controller devicetree document.
-> >
-> > Signed-off-by: Zhe Wang <zhe.wang1@unisoc.com>
-> > ---
-> >  .../bindings/ufs/sprd,ums9620-ufs.yaml        | 78 +++++++++++++++++++
-> >  1 file changed, 78 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/ufs/sprd,ums9620-=
-ufs.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yam=
-l b/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
-> > new file mode 100644
-> > index 000000000000..ce9d05be1a6b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
-> > @@ -0,0 +1,78 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/ufs/sprd,ums9620-ufs.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Unisoc Universal Flash Storage (UFS) Controller
-> > +
-> > +maintainers:
-> > +  - Zhe Wang <zhe.wang1@unisoc.com>
-> > +
-> > +allOf:
-> > +  - $ref: ufs-common.yaml
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sprd,ums9620-ufs
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ufs_eb
-> > +      - const: ufs_cfg_eb
-> > +      - const: ufsh
-> > +      - const: ufsh_source
->
-> Sounds like a parent clock to 'ufsh'? If so, it doesn't belong in
-> 'clocks'. Use the clock API to get the parent or use
-> 'assigned-clock-parents'.
->
-> Rob
+Sure thing.
 
-It would be more appropriate to use 'assigned-clock-parents', I'll fix
-this, thanks.
+Thanks,
+Mani
 
-Best regards,
-zhe
+> -- 
+> viresh
+
+-- 
+மணிவண்ணன் சதாசிவம்
