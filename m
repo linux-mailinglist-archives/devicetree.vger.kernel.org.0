@@ -2,133 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1586A633080
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 00:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B486330A3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 00:18:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbiKUXKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 18:10:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
+        id S229864AbiKUXSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 18:18:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231302AbiKUXKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 18:10:41 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D331D06FF
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 15:10:39 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id t4so9553152wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 15:10:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=utZ5LumivO+OC9wzfTv52noCJX/L2vcsR/WMsYswU8Y=;
-        b=mEymlC0lSrr8gCvp9nv53tYGEyd6zdngNlqDzkQ5YB5egbSbYshqR2VZ5GzRo443jy
-         inbcFMd405X2ZmZLtdDrxvwtOw04bc8eXkzbSDpQal5JVgTnt6qrqsyqhuW9uTAxTrY5
-         jLgysul5z+Va11u8bJ2dbilxPk8BzgDrmPciTwDBQBIK5qTE0JzOoA/V7QDSu07wzVD+
-         1fRUss0cl8VnQYaCLM5iYjuTUerJ5Pcd2b0NTnNNP/YMmupBo1fb9oN33+JSyUsDhfRE
-         fG0INJ/va2nYWbnnUtQlltgxkBtFPvztjV0bwyLSjUlPbEl+zkxxlMLtt5R9g83h6Ocw
-         ivfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=utZ5LumivO+OC9wzfTv52noCJX/L2vcsR/WMsYswU8Y=;
-        b=DL6kuc0+wgVUUrbE/41OmXTRlAxnpEzbkHGFKgmK8bzy6P/5ZaOKiINP6TfxXuiNZ7
-         SvGvVIJflnQRS5IMDRtg2ZbJ1ypFlT0lM+NMlPdR/rWhueKXCrZrfJ/I7TPuv8vD7Oey
-         WjnX5YQJAvRMKFC5L2VsTFSh5s7BkINa031pyvh4XD6oO0notPy11WBDrp3kAPMjzPKc
-         QoKyuenPvvCm8W44vGIWz8rTmx4t1x2k5Fy5KaW21Qsg1haNcCX6rvMqS7eT+INXor3l
-         xDnHWikR29auyS98Gck4he7gJfRH6aOCZrwhBHNmjzqxP7RrkiFsyFLVilaSvzJAPufS
-         ZIvg==
-X-Gm-Message-State: ANoB5pkO20uejOnQuEqgO0ReHsb5DLo1h3uXLLemvOC+B7YKKYhWjsQD
-        xuOdX2dzdoPmvGSVGco1HkhTX8c5tuAtjaYhMLA=
-X-Google-Smtp-Source: AA0mqf59gd0PxuJuOoz6ctMvQVZdwYBU10xhRwhWwUUI/QKk0XjLP15zbnj62qrWGOvz+sImByXUEWtpM/2Scp2qvhU=
-X-Received: by 2002:a7b:c5c9:0:b0:3cf:cfea:904c with SMTP id
- n9-20020a7bc5c9000000b003cfcfea904cmr3760801wmk.33.1669072237720; Mon, 21 Nov
- 2022 15:10:37 -0800 (PST)
+        with ESMTP id S229817AbiKUXSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 18:18:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A02C67F7;
+        Mon, 21 Nov 2022 15:18:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D7156614FD;
+        Mon, 21 Nov 2022 23:18:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F02B5C433D6;
+        Mon, 21 Nov 2022 23:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669072729;
+        bh=4habRl7EWY7Q2b/7QkEy7kBg7npss/byERgceP+MyTo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=Mkq5WKle3ER8xnEodSsXb1DUDoRujLzzH9a2OxVc4x4V37xNqqtK7BHJEPPvce76e
+         aaawRGgi3jW8PYFzTMRKU3yl1UC9iMfPWiSI7Xm/G6pj11RSVtf4WY5K/DlsmX0gFP
+         mIzqxDiro+Q7WuTVW4fROCNDnEOwOSCH4XMoOdeYHy6ijp+/zONbUi81GFmDTYXMIx
+         jECDROG8WMyoC+giltpQiR7HwhgA4sGW6/MJh9JHEiDHczdDKx/PJSA1qUBlidOXaZ
+         QA1Gjs4BNTzhLGDH/XHijxXjIWd08garnjmVK1yXEGZxIwTkxzBDn/uqJkITRK2gBC
+         Uoe3+qeU7HmnQ==
+Date:   Mon, 21 Nov 2022 17:18:47 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Shradha Todi <shradha.t@samsung.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, mani@kernel.org,
+        arnd@arndb.de, gregkh@linuxfoundation.org, alim.akhtar@samsung.com,
+        ajaykumar.rs@samsung.com, rcsekar@samsung.com,
+        sriranjani.p@samsung.com, bharat.uppal@samsung.com,
+        s.prashar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, p.rajanbabu@samsung.com,
+        niyas.ahmed@samsung.com, chanho61.park@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 3/6] PCI: dwc: fsd: Add FSD PCIe Controller driver support
+Message-ID: <20221121231847.GA141229@bhelgaas>
 MIME-Version: 1.0
-References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
- <TY3P286MB2611FB223B1CC437B01BD984980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <20221121164116.GE15565@pengutronix.de> <TY3P286MB261119C709225F2DED97CF81980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <CAAEAJfC74Am19+GSpCpbWJVpdbgv4n=3pjMHNkpRcCQfwi5xQA@mail.gmail.com>
-In-Reply-To: <CAAEAJfC74Am19+GSpCpbWJVpdbgv4n=3pjMHNkpRcCQfwi5xQA@mail.gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Mon, 21 Nov 2022 18:10:25 -0500
-Message-ID: <CAMdYzYr68xvNvJRiJw9JyHoN7v12bvucdWLhdkt5j1QJqEuApg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Shengyu Qu <wiagn233@outlook.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        devicetree@vger.kernel.org, heiko@sntech.de, jacob-chen@iotwrt.com,
-        kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
-        robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221121105210.68596-4-shradha.t@samsung.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 12:34 PM Ezequiel Garcia
-<ezequiel@vanguardiasur.com.ar> wrote:
->
-> Hi Shengyu, Michael,
->
-> On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com> wrote:
-> >
-> > Hi,
-> > I remember someone said that rga2 has only 32bit address space but not =
-having a mmu or mmu needs to be configured. Better ask by yourself in pine6=
-4 discord since I'm not sure about that.
-> >
-> > Shengyu
-> >
-> >
-> > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8A=E5=8D=
-=8812:41:16, Michael Tretter <m.tretter@pengutronix.de> =E5=86=99=E5=88=B0:
-> > >Hi,
-> > >
-> > >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
-> > >> Someone from pine64 discord found that RGA2 doesn't work properly on=
- over
-> > >>
-> > >> 4GB memory RK3568 devices. Are you sure current driver works now?
-> > >
-> > >I am absolutely sure that the driver works on a 2GB ROCK3A board.
-> > >Unfortunately, I don't have a device with 4GB or more memory and I can=
-not test
-> > >the driver with such a device.
-> > >
-> > >As the documentation for the RGA2 is the same in the TRM of the rk3288=
- and
-> > >rk3568, I would guess that the driver doesn't work on a rk3288 with mo=
-re than
-> > >4GB (if there is such a thing) either and the driver needs to be fixed=
- for
-> > >both SoCs.
-> > >
->
-> In any case, if there's some kind of issue it must be in the driver,
-> and not in the device tree binding (i.e. this patchset).
+On Mon, Nov 21, 2022 at 04:22:07PM +0530, Shradha Todi wrote:
+> Add PCIe controller driver file for PCIe controller
+> found in fsd SoC family. This driver adds support for both RC
+> and EP mode.
+> 
+> Signed-off-by: Niyas Ahmed S T <niyas.ahmed@samsung.com>
+> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
 
-An unfortunate number of Rockchip drivers break on rk356x boards with
-more than 4GB of ram. I've found requesting memory allocations with
-the GFP_DMA flag solves the problem, as the kernel only allocates
-32bit addresses for DMA on rk356x. This is similar to the bug with the
-ITS MSI allocations.
+Would be much, much better if drivers can be combined as Krzysztof
+suggests.  Superficial comments below if not.
 
->
-> Regards,
-> Ezequiel
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> +config PCIE_FSD
+> +	bool "Samsung FSD PCIe Controller"
+> +	default n
+
+Unnecessary since "default n" is the default.  Please read and learn
+from the existing Kconfig for other drivers.
+
+> +config PCIE_FSD_HOST
+> +	bool "PCIe FSD Host Mode"
+> +	depends on PCI
+
+Shouldn't be necessary because the entire menu depends on PCI:
+
+  menu "DesignWare PCI Core Support"
+	  depends on PCI
+
+> +	depends on PCI_MSI_IRQ_DOMAIN || PCI_DOMAIN
+> +	select PCIE_DW_HOST
+> +	select PCIE_FSD
+> +	default n
+
+Unnecessary.
+
+> +config PCIE_FSD_EP
+> +	bool "PCIe FSD Endpoint Mode"
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	select PCIE_FSD
+> +	default n
+
+Unnecessary.
+
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PCIe host controller driver for Tesla fsd SoC
+> + *
+> + * Copyright (C) 2017-2022 Samsung Electronics Co., Ltd. http://www.samsung.com
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+
+Unnecessary copyright text since you have SPDX at the top.
+
+> + * struct fsd_pcie - representation of the pci controller
+
+s/pci/PCI/ in English text (you do it inconsistently)
+s/pcie/PCIe/ same
+
+> + * @pci: representation of dwc pcie device structure
+> + * @pdata: private data to determine the oprations supported by device
+
+s/oprations/operations/
+
+> + * @appl_base: represent the appl base
+> + * @sysreg: represent the system register base
+> + * @sysreg_base: represents the offset of the system register required
+
+"representation", "represent", "represents"?  Pick one.
+
+> + * @phy: represents the phy device associated for the controller
+
+s/phy/PHY/ in English text
+
+> +	/* External Local Bus interface(ELBI) Register */
+
+Space before "(" in English text.
+
+> +		dev_err(dev, "failed to map dbi_base\n");
+> +		dev_err(dev, "Sysreg regmap lookup failed.\n");
+> +		dev_err(dev, "Couldn't get the register offset for syscon!\n");
+> +		dev_err(dev, "couldn't get aux clock\n");
+
+Random capitalization of driver messages.  Pick one.
+
+> +	/* assert LTSSM enable */
+> +		/* Return success as link might come up later */
+
+Random capitalization of comments.  Pick one.
+
+> +			case RADM_VENDOR_MSG:
+> +				pr_info("Interrupt received for\n");
+
+Must include device identification.  This one also looks incomplete
+("for ..."?)
+
+> +			/* To indicate that controller has accepted to send
+> +			 * Latency Tolerance reporting message
+
+Use standard multi-line comment format.
+
+> +			dev_err(dev, "failed to get msi irq\n");
+
+s/msi/MSI/ in English text.
+s/irq/IRQ/ also
+
+> +	.start_link	= fsd_pcie_establish_link,
+
+fsd_pcie_start_link() to match function pointer name.
+
+> +	pci->dbi_base2 = NULL;
+> +	pci->dbi_base = NULL;
+> +	pci->atu_base = NULL;
+
+Unnecessary since you used kzalloc().
+
+> +	dev_info(dev, "FSD PCIe probe completed successfully\n");
+
+Questionable utility.  Most drivers don't emit this, or if they do,
+they include some useful information like address, IRQ, etc.
+
+> +	dev_err(dev, "PCIe Failed to set 36 bit dma mask\n");
+
+s/dma/DMA/ in English text.
