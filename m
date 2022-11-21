@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C944632194
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:07:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CDF3632199
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:08:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbiKUMHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 07:07:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35854 "EHLO
+        id S230043AbiKUMId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 07:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiKUMHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:07:47 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 893011929B
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:07:46 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id l12so18484737lfp.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:07:46 -0800 (PST)
+        with ESMTP id S229953AbiKUMIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:08:32 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C57148754
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:08:31 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id r8so3667163ljn.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lfG4cik696zUtTBIcgQeTEQkmrpF/e/tKgc3C9UfvMI=;
-        b=K7nx5lnfzyOxynPYjR0p0HHRc5IfrvUbf4CaMa1zyzlYDYq01CLKng1A6CbAfP1m2J
-         lofU9IbY+WMrD65t1E2woswDiJrB6+bWX/yorIMPkji3TgJ7bjsaEh0ZMF1toWu86hx9
-         N1XmMx9Ie0693BDRWwTbtwpHSqTzSc4CXlBKVQG5UsYX6q9PESI08f8NlxQxt7FzVO08
-         4KQZpuWxuo1C9RF+vtp9hsmVYpvLAFdxi4bmD/v331ibMOSUJGB7VfLHxQ+6V9qosJgL
-         BpinSHXE6DkS377Ydsa4KBVYqP1fekFNlLdcScLHdU7IOCgHiTfu/6MxX5WBAKQH6BUC
-         n5UA==
+        bh=Mp/Wf7Ihyn7IRm224a6elGwJlmdiu5nLebRBT6EL2QY=;
+        b=YtArTj74J8IWD8ozryoyr8jgBtCtYTisL83R4ZTuWeI4lKKYPZWjpNHRgmVCqmHEU8
+         p/S6DnN82lh6h9zMitXTzE6sz7RqV9bREiwkZ/AjGuyseg1VyPDdf6s0vnri41vWzwU+
+         6A9shmNbl00ggyoXbkvzTVcgESEmHFSvzWc1c8/j7FdJqvoK+qwNKPa0xUBgObbJT8mI
+         YzndDbvMZGWpeuGtPUnptnefQgoJc2iyMwCc49WAjKDtUTdtbK5JgwHX8I8kWVXN16VU
+         hCsWQ1NPfKmjjUyVN585BSWARIbiHJBJbuypt7k2RJZDS6TNB7x6z1/SYOasdF7aaogu
+         To1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lfG4cik696zUtTBIcgQeTEQkmrpF/e/tKgc3C9UfvMI=;
-        b=EczUmbdV9goTXAsMt9m6bBkqdbP1wEO7sDAMI15YFcyP3UQzGfyd1kMqpmA9S2EsMj
-         5Ofp90Sy7FekAlaTEQuCogAHaMaZ25ZMJTExQOEeGDQEdDa8K5YQ8nbs6gyjBv0+vPC7
-         pSRcs+cPT+uOaCDdeCNg42gSj0VeQ64robxuTDSXpYNYAT2johUOKJMVb/juCEeWUkhE
-         AKwCDlgR4VFSvw1r6usurrq4emBnJPngcZfTfs0fIbBOytpJfoXo6u5aZiflt6KSeKv/
-         t7ud/Nu+LQbo15SGSw5pJByTT1GhKlHuZrmVmjirpHiRrPLpkVjWYBKq+wRenEsmxRHf
-         sQiw==
-X-Gm-Message-State: ANoB5pmCU3Ky8A3/SLevY0oAOYyqtFoCTeClrwovwiu88M35kOT44/0f
-        lRsZ9N2au1LhQvI2B5fUXtkiYQ==
-X-Google-Smtp-Source: AA0mqf5rEQabyEzmEwn4ur6+5m8qVOBvPw935+wb9q5UxzKEspgNRcHmTLImdMuMncb0C35ujXdA0g==
-X-Received: by 2002:a05:6512:3f89:b0:4ac:660b:1f02 with SMTP id x9-20020a0565123f8900b004ac660b1f02mr2247583lfa.9.1669032464923;
-        Mon, 21 Nov 2022 04:07:44 -0800 (PST)
+        bh=Mp/Wf7Ihyn7IRm224a6elGwJlmdiu5nLebRBT6EL2QY=;
+        b=sXxPey/VkcRBvQfRuGBnQBWa2Gb+z99ziB5kLhFdzUyBgrduZCv6NvYHBsST28vgFk
+         0KJMW+lBBPX0M/bfA1gjNjrihktT3rAbPhYs10rrbI9j3znV6ih++FrzWM1+4cYux3cC
+         TVHlMw1CCrwlLE+Ic22KRpaIrucPdi/kdIC/w6yrl5X56pZ2GswWxS+E6lIbd6f3pB0c
+         BRujyZL/evQSZx19hrxTglucfe8HCctB6qMbYkH4EN0t9o/bBUCld3XDdATx/rq3+nPs
+         tod/0fF9sP6QpNyLN0kbiJ96I9u6i2gyJgDNoF1/TFEu5bLMOFahTzJqM5uwuSF89iUm
+         lIrg==
+X-Gm-Message-State: ANoB5pnY/AjnVr2acP1+XOXF4JdRY3JjDOamqmVvQ2gGo8ZxUDjORlb0
+        ejcWkIw7jjEovhhNOOBpGR3xeA==
+X-Google-Smtp-Source: AA0mqf7nzlJ13PlkibFVu8sbGpZadx0YW7VJA9cwKVJLyjBcjoYZRkY5LsNsaHcWs6OROfJdyXkxKw==
+X-Received: by 2002:a2e:a911:0:b0:277:44b2:6b9c with SMTP id j17-20020a2ea911000000b0027744b26b9cmr5272068ljq.26.1669032509403;
+        Mon, 21 Nov 2022 04:08:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t22-20020ac25496000000b004b491fe071fsm1979285lfk.36.2022.11.21.04.07.43
+        by smtp.gmail.com with ESMTPSA id h7-20020a056512220700b0049ae3ed42e8sm1992278lfu.180.2022.11.21.04.08.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 04:07:44 -0800 (PST)
-Message-ID: <646b30eb-ab89-b4c0-1a71-b296359bd00b@linaro.org>
-Date:   Mon, 21 Nov 2022 13:07:42 +0100
+        Mon, 21 Nov 2022 04:08:28 -0800 (PST)
+Message-ID: <dd6acba0-fa3a-1dae-b383-d70cc08dd114@linaro.org>
+Date:   Mon, 21 Nov 2022 13:08:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 3/6] PCI: dwc: fsd: Add FSD PCIe Controller driver support
+Subject: Re: [PATCH 4/6] phy: tesla-pcie: Add PCIe PHY driver support for FSD
 Content-Language: en-US
 To:     Shradha Todi <shradha.t@samsung.com>, bhelgaas@google.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -69,15 +69,16 @@ To:     Shradha Todi <shradha.t@samsung.com>, bhelgaas@google.com,
 Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
 References: <20221121105210.68596-1-shradha.t@samsung.com>
- <CGME20221121104731epcas5p48f96c92e5bfb4ede56ce74a78887a2f3@epcas5p4.samsung.com>
- <20221121105210.68596-4-shradha.t@samsung.com>
+ <CGME20221121104736epcas5p36c12ff0b575af77f8cf99811b055b339@epcas5p3.samsung.com>
+ <20221121105210.68596-5-shradha.t@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121105210.68596-4-shradha.t@samsung.com>
+In-Reply-To: <20221121105210.68596-5-shradha.t@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,30 +86,23 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/11/2022 11:52, Shradha Todi wrote:
-> Add PCIe controller driver file for PCIe controller
-> found in fsd SoC family. This driver adds support for both RC
-> and EP mode.
+> This patch adds PHY driver support for PCIe controller
+> found in Tesla FSD SoC.
 > 
 > Signed-off-by: Niyas Ahmed S T <niyas.ahmed@samsung.com>
 > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
 > Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
 > ---
->  drivers/pci/controller/dwc/Kconfig    |   35 +
->  drivers/pci/controller/dwc/Makefile   |    1 +
->  drivers/pci/controller/dwc/pcie-fsd.c | 1021 +++++++++++++++++++++++++
->  3 files changed, 1057 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-fsd.c
+>  drivers/phy/samsung/Kconfig          |  10 +
+>  drivers/phy/samsung/Makefile         |   1 +
+>  drivers/phy/samsung/phy-tesla-pcie.c | 397 +++++++++++++++++++++++++++
+>  3 files changed, 408 insertions(+)
+>  create mode 100644 drivers/phy/samsung/phy-tesla-pcie.c
 > 
 
-Yeah, when Samsung started upstreaming Artpec-8 PCI and said "it is
-entirely different, cannot be merged with anything else", I had a
-feeling it will bite us.
-
-So now we see one more.
-
-Then in some days there will be separate PCI for Exynos in Google
-products. Then in company X, then Y.
+Same comment as for PCI. It's the third driver for Samsung Exynos PCIe
+PHY and every time you will say "but it is different".
 
 No, work on unified approach not 3 different drivers.
 
