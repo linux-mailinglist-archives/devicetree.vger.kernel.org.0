@@ -2,1065 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388E0631A4C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:29:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4D9631A61
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbiKUH26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 02:28:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
+        id S229449AbiKUHi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 02:38:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiKUH2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:28:17 -0500
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2041.outbound.protection.outlook.com [40.107.241.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634D222B0C;
-        Sun, 20 Nov 2022 23:28:05 -0800 (PST)
+        with ESMTP id S229590AbiKUHiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:38:54 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A532872A;
+        Sun, 20 Nov 2022 23:38:45 -0800 (PST)
+X-UUID: 4a9911fee8694011997b29a478c05676-20221121
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=ik0kJo2+fiYDO5HS2yRx4CjDo+5UaPNT0AhHdN/5Rzo=;
+        b=sH8DWs8Co7G800E5Ct8vbYPexK/qVYSso7GjTQLZNuS//NxzawYcX+SSIzuGJAwZqN94C881eHlMkVjAMFzcZGBUuQ0I//4SOQ4Kx03loBjDygp7HyDsNQap6fONat+8znrREdjCRXuSTAQ4a77mXP90GVwfuNEwWDuEurX51us=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.13,REQID:f1b43ac2-c467-40b7-b2a7-97eed961e936,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-INFO: VERSION:1.1.13,REQID:f1b43ac2-c467-40b7-b2a7-97eed961e936,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:-5
+X-CID-META: VersionHash:d12e911,CLOUDID:55765a2f-2938-482e-aafd-98d66723b8a9,B
+        ulkID:221121153842DXYRCH0W,BulkQuantity:0,Recheck:0,SF:38|17|19|102,TC:nil
+        ,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 4a9911fee8694011997b29a478c05676-20221121
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1586427336; Mon, 21 Nov 2022 15:38:39 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 21 Nov 2022 15:38:38 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.239)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Mon, 21 Nov 2022 15:38:38 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GbOM71SqPkYpVE5OUNCHcuv3/i3e15gH5Bupll/69yZkHQBnGBY4bWXAhSvwyRoEW6Xb6S2v/Dmh/XW0lGYyQsNEgkzu/4twbxy+P2Dy+o5Vw8q0auIRiCBrIUfPG1JcSxc1XgjuF/jtSrlt3fp6hYktG67H1ZI1l3hxB/YlHCq+LBAceurqMdjr1tba+RGx+Yg92yMkoEbCXbEjRVtGCaJ5/SL3mv760LSytEVQ6xPKlJTAmZY3FTjBm7ygyFGqXaL89JqEv15wCF+c5yOGeh8+RMFoHjCxz001DZyHZXl9bfpRK03ZOgKvtUtTgWKPlHm7IEz7I5tmqIN3IOeb4Q==
+ b=CRQNfK10kk8N1t6YtxYUyq/NeUf5Vp7rvaMMHN4whlKOabHy+25RSnLWwlP4ouNOQmSypRgiuX7pxc9hHgQ4XNnwUto4mH1DbOcCQa7LnoXyltCtL442M/5MuGV86MfDf9fmbvRjoZ2Pqw8MwY9tODwmg0hP0IqID7Nw4zLPTdfPCl9u9UJVQhC29SOxeER/V86cjmlxMR3RqCIbUKYujn7mCf6NllKQ2d9Qme1nszTxuDhraCGcD/j/NNSSl0MamJ7ih+/lnh5dJrhwgbPUvqrLQu/tXfRQvnUOtfAUmqZhfZNkb6X/XuwZ9S9t9Lz641AYDGK/GVT7b8+HYMIPfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VCtXc+egdt4u8LWg2RJSj9lXtCDMVT+5rCtpQohBkpc=;
- b=DaCsYpbzlt7hx+fgfZUI3mKSSs18/0Czm3wO4nz0gXAnGDYZpiI2XhBXOsWTZF0RvU7mAtZ1V56BCdl4YB8nWpJks+q/FhFZmowNZYzO9hXlEjyV2rRxEbXGSMYUeNWo8BYjHQ/PbA+LcA87jremQisIsjh2LPjLuk3yT4+AMojnTQKetuV+x1h97dFTomXeIMm0ffxlzOzq2ocnfoPhdEVUjLZzLjfBoi1AJ0TA2BNCP2+LXTt3ss9L5kbjggfKOKcUZq5HHVyDkAA3fdVWGmffzRUQISwZge3ICXZN/myia0XFZbf1vWdPwxjKYp36lPmFdyr3ShnNXvxdw0P18g==
+ bh=ik0kJo2+fiYDO5HS2yRx4CjDo+5UaPNT0AhHdN/5Rzo=;
+ b=nsTkbfyxeuw0dW+6X3MavL9ChRwAeiOBK2TivdCdh5w8NSwJoN1ciVHrA4bFdJwy/rYMlQfrC08pznXRAH7TsidMwSVltR98PO6U3RiJ9YLbJw4uCW/4bjS3CHCCLA7Fp4oDecB9cD7THG7uXCTRuOwdTwh+AE1WWfOSr7NbtzYYLxqqFMfMMdW+NFNKNObCPRE1EBfng46VaFtkvHX1BenbRpAvUePuOQvvjdXB5MsGEgUGMARr8XZINkdmHVQwT3It/FvEfuBalNOQWK75bCcuKbNj/O/0he9+8BGdM5N4nmRqbmli/ECcnBZMTTwDC8fec2qOI4gIG0xm2bMF7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VCtXc+egdt4u8LWg2RJSj9lXtCDMVT+5rCtpQohBkpc=;
- b=Eq3JmLfGiO/jTr/hd0O01udhMh/96FhA2dlxvQLIpxxjSc8JI3ZSCRYmGG82wj4n6AqXGvvJdYpquBAM5pouYFS5faYFppcvvhaDDYLTBcfEqKqobPEYKjtw0IrIy3d0XAk68/G9+qYUk6YhcM+w1sadJCDmuzhrV+qb+YlejUI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
- by PA4PR04MB7678.eurprd04.prod.outlook.com (2603:10a6:102:ec::18) with
+ bh=ik0kJo2+fiYDO5HS2yRx4CjDo+5UaPNT0AhHdN/5Rzo=;
+ b=eTN7oeyyKEUTrxWq8InsVvtBpdMAxIgBGBRZfe5zpSDMyVRRYxj806t1xWcw8CJbCzbCqbWE35JIjOlVfoWuGNch5Cy6fz0cJZyU7fJX9Q5cBvgVxx9KyZpNHVV2MhPq4c6tSYS5mrp9CWhHLb5fb8aMOeACpbzw2rsFuuq9A8Y=
+Received: from KL1PR03MB5062.apcprd03.prod.outlook.com (2603:1096:820:1a::22)
+ by SEYPR03MB7144.apcprd03.prod.outlook.com (2603:1096:101:d9::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Mon, 21 Nov
- 2022 07:28:02 +0000
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::60b2:4bec:7707:e196]) by PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::60b2:4bec:7707:e196%5]) with mapi id 15.20.5834.015; Mon, 21 Nov 2022
- 07:28:02 +0000
-From:   Sandor Yu <Sandor.yu@nxp.com>
-To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, kishon@ti.com,
-        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        alexander.stein@ew.tq-group.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, Sandor.yu@nxp.com,
-        oliver.brown@nxp.com
-Subject: [PATCH v4 10/10] phy: cadence: Add driver for HDP-TX HDMI PHY
-Date:   Mon, 21 Nov 2022 15:24:00 +0800
-Message-Id: <bcfdede97147a7e759177920e1f6de3220d155f0.1669013346.git.Sandor.yu@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1669013346.git.Sandor.yu@nxp.com>
-References: <cover.1669013346.git.Sandor.yu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR06CA0246.apcprd06.prod.outlook.com
- (2603:1096:4:ac::30) To PAXPR04MB9448.eurprd04.prod.outlook.com
- (2603:10a6:102:2b1::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.11; Mon, 21 Nov
+ 2022 07:38:36 +0000
+Received: from KL1PR03MB5062.apcprd03.prod.outlook.com
+ ([fe80::9585:3a04:b796:b696]) by KL1PR03MB5062.apcprd03.prod.outlook.com
+ ([fe80::9585:3a04:b796:b696%5]) with mapi id 15.20.5834.011; Mon, 21 Nov 2022
+ 07:38:36 +0000
+From:   =?utf-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= 
+        <Chunfeng.Yun@mediatek.com>
+To:     "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux@fw-web.de" <linux@fw-web.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        =?utf-8?B?U2FtIFNoaWggKOWPsueiqeS4iSk=?= <Sam.Shih@mediatek.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo@kernel.org" <lorenzo@kernel.org>,
+        "frank-w@public-files.de" <frank-w@public-files.de>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        =?utf-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= 
+        <Jianjun.Wang@mediatek.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        Ryder Lee <Ryder.Lee@mediatek.com>,
+        =?utf-8?B?Qm8gSmlhbyAo54Sm5rOiKQ==?= <Bo.Jiao@mediatek.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH v6 07/11] arm64: dts: mt7986: add usb related device nodes
+Thread-Topic: [PATCH v6 07/11] arm64: dts: mt7986: add usb related device
+ nodes
+Thread-Index: AQHY+4A6FqCbcv+i/USuBYGTcxFYHa5JAYWA
+Date:   Mon, 21 Nov 2022 07:38:36 +0000
+Message-ID: <e22f554e2182cb9cea5f582f8676d9e9e5a4f6d0.camel@mediatek.com>
+References: <20221118190126.100895-1-linux@fw-web.de>
+         <20221118190126.100895-8-linux@fw-web.de>
+In-Reply-To: <20221118190126.100895-8-linux@fw-web.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KL1PR03MB5062:EE_|SEYPR03MB7144:EE_
+x-ms-office365-filtering-correlation-id: 0db9e805-5707-4bb9-9d29-08dacb93662d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rcfy0Wywy7DjGg30EDpAxG0gF7krM4j0qvPGpkxLRln12yVkqrR2qhLUS7mttuD2O0r8P+jjtizdBeSCFAYaee4cQh00xtR90H6eUzPWXDdFwPOmPEhfAtLqrv2Gwwy3Z4q6+PUyvqs+ut4iQv3/ayrtpA7eJ1gVJIRdCN377KPLkdHbWdeh+oMM0GQbyKh9Ba0/7z3TfJXvXNkeI5GkS/CqNSIDEK1R0mcrn+BOLHY9Qw4drIqfrDtvuz/+1JsGqRrqOhfgLa6VW1mCU6ydsB4xXVL+dKGucC9hkny6l4Wmu8gSU+4FF4MYY65NPzad5NvQHVrN+2WzeJmfR7SP9tJIpkqvtWvtFwXnqoR5SHTldq0PPRiUusjR/EZu39rHKCP8uXxwUK6maPbDuVG29JGqHIAPhTAhluscYkbH1CJlABNC2LYSqQ2K0A+GWEG1HtmzA7XY0TsWmCtAVlpZa72UEawK+LmmQNMLCYj6rQIA3qJI4uAYmuMKgJSGq+ATZOlTpy9QV2T3Y321d8LVIlsCYjE2T0z1hjugw30l6MsfzNcWk0ofyP0I1Hsn2QmfgqgDzfQHpn5y/bDnaPPg5nVrVdk/G8VHW5oDtISzarSweH2IgXplyfFAcMceF44DC7r8cgZvWhW45NTAntyC+k8OpNWOEChvCX2bb/s03DQhZwnWt6ykuk+P46O5T0BEsLxXXlaLzPoGJBwfhrQvfuGhwgrffRm3dNuqTuhsAPSWX7vw9J/4sY5KKTECkwdIXIDf+dHH8XKmiT7NF09SoA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5062.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(136003)(39860400002)(346002)(366004)(451199015)(41300700001)(7416002)(76116006)(8936002)(4001150100001)(5660300002)(4326008)(316002)(54906003)(66556008)(66446008)(66476007)(66946007)(64756008)(8676002)(91956017)(6486002)(85182001)(36756003)(71200400001)(478600001)(2906002)(122000001)(6506007)(186003)(6512007)(26005)(2616005)(110136005)(38100700002)(38070700005)(83380400001)(86362001)(99106002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?blZtSndzL0dJZzRRTjVxeUorcGNONjBwRGdkeWNJOGpCMnBPRUwzNUJzOE9p?=
+ =?utf-8?B?UVpEek9IVUk5OUhFdlNHQVB1bkNmc01JNTdJSHp5cTJmRFFJRmxDVCtUbjF2?=
+ =?utf-8?B?ZE1MMUxraUhaUXV5UFV2cDY1U08wQUVKQnlKNkU2Y3FMWFlkOVd3Z1krMm9Y?=
+ =?utf-8?B?eHdYRm1xMXBuc0l4QXFFL2hmNW1xaUc4YXJvd0lmMGx0WVhVU2IwakFSOTJD?=
+ =?utf-8?B?MHR1ekVkMWhCYzJjbThDZk1meDBaQzQwM0lKSWNOZUNpYnplN29wVEZZakNq?=
+ =?utf-8?B?OWRJdC9tVStrSXFnNkU3NWdwRG1iNnhORmlKUlJnSGQxZzBLOEYzTHdRTU1B?=
+ =?utf-8?B?R1RhOFZoQ2xHN0xBOXNxaUtENVhPRjRjWjduY2NiNitLKzhUY1dlbE9KNG42?=
+ =?utf-8?B?UURxS294R3ROSzZvSFFQQW4yZXh1VUVoZHJVbTB5L0ZIYi94VjlEOS92TG1K?=
+ =?utf-8?B?SnRNVFhrak9EVFZubDRySlY5NEppVGs5cVVPRFU0MXhvTUlrc0MrRzROQzc1?=
+ =?utf-8?B?aTNYbXBCaytMaUdwQjF3bXlFWnhCdk40elhSVmpEUmxBTFdNeG5aaVE2dmpR?=
+ =?utf-8?B?V0kvVTVBWjB0cnJZUkMwNkJvbWxwamtONnZMSXluc0dmWVpNQi8wUnAyV0hU?=
+ =?utf-8?B?K2hUU0JQbGFkNmR0TFkwMkFVaDMzRUVpcjhrN2I4cURYejdrNGpkKzdBZWZH?=
+ =?utf-8?B?L0ljbEcwSVY3M0tma3VxRHdISkpJT3VINERYM0QrZmdkMUUwQ0xYRkw2R0JZ?=
+ =?utf-8?B?enJiSkZoK25EeWhpR0o2VEdMUVVTYmJxRkdmYWhzOWU1WW52SDBhcWRIWWp5?=
+ =?utf-8?B?ZlZoWWFwcUV4WC9rSzViYnVaM2VQTXZKeXVOcU1lbElEYXI0bWZ0dWRVM0Zo?=
+ =?utf-8?B?OE9VSURMWDZhUVlxbDRnSHpRaExaT2FJUSt5RXpicjNEUWxXdFNlODdjbWZT?=
+ =?utf-8?B?RTM5eFN5QzJnZ2dEVmh3V3RCZW1lbm5LV2ZGK3dUSkhaWUtidFBLNnBjTDNI?=
+ =?utf-8?B?NnZuaExpOFBUS3A3MkV1VW9jL3Q5RE9nUXdPQTVzcjlYYVVlbDkrMmRGdE4y?=
+ =?utf-8?B?djUyZjhMUzRZQ1dVeVVkTGdFYm9YTkZaeGVKSHpwc2ZmZk1OUVlqRFJSK1A1?=
+ =?utf-8?B?RFNibkJMM09Cb0J6N3pZNVBiaHZvZHlkU29SbHovcU9RTVdHYit1UmtYZzJ6?=
+ =?utf-8?B?QzRjOGdUVHBkSzdadWV6bmZ5aUJtS1hrTTE2U29kMkJHSXZSazY2TlBEYnJ4?=
+ =?utf-8?B?L1lwTWVmT1dMeG5Qc3pFVE9icGZDVGIxRnUwWFA4ME5QNTRCeGV2ME5XczZ4?=
+ =?utf-8?B?N1VPYXVETG1iNmcxYXlQQmVXQU5kR2dVTE50WTN1UEg5eHVuMDBGTTNLLzhT?=
+ =?utf-8?B?dlpoN3ExV001ckxXL1c3L2ptRzdOUVkwNnJjRExhMFJQOWQySEVEaDRSd3hU?=
+ =?utf-8?B?bmZINVoyV2svRTR0eTNzSk83eEFtMlN3dWdGOVRkeE1NU0czZkpUTWl4QVM2?=
+ =?utf-8?B?UFNlNS84dkUyWW52RGhZRnJ6U1RoZ2pmcDVnT2dKUHhYc3FYYlJ4dm5NWGpO?=
+ =?utf-8?B?N0tMTEN0enZhMklaSDVIY2hHTUpUVWpQM3VsRXRMNVdPZUE3Q3d5eUNocWNz?=
+ =?utf-8?B?MW1UVzIxU2k1cUI5OU9aeVpONFA5dTcybWM1aWFkZmozcVI5a0EwcEpjTkx3?=
+ =?utf-8?B?RHRSdVV6T0tZd0RkQkx6VE83S1NtQit1R1ppTG5nSmxnaGM3MkM5WWtXdVJ0?=
+ =?utf-8?B?MVk4eVhBVytjY0RjV3VPQXV0Vmp0bzMyZGZMc2pFdnNpUWNWa2Q5dGFqWFds?=
+ =?utf-8?B?N3pUR0NJQi9yUmQ3L29BdHhVSFFuOWl0Mjg2Ukl3UTJvTCs5K2dhSkQ3d2Uw?=
+ =?utf-8?B?c2JkS1hwNXYwTlBVQzcxK21DQ1lFaFNiNC8wM0dWOFVHMFBpOGZBZFoxRXd3?=
+ =?utf-8?B?S3B5VGlMSW1xb1NDODNiTG1naDExdk4rL2loRWE5ZVBHbk92eUdWNThjcytq?=
+ =?utf-8?B?OUo4elU3RzlqR1k0WlhwRkZwUEVvdGNwZWRQRFU5QjUxYWRTVm9YT2xQRXpP?=
+ =?utf-8?B?aE9NUkRjTXJLTWIwSit3cW1UK1BCSlJTMHFVdkY5MklKNi9QOCtFS0pkSWY4?=
+ =?utf-8?B?YVdlVXVqN1N3U0tGNmFwZ1VmQS95dmJjN3pPVHdqRDEzenFxNDFzc3VLb0Nm?=
+ =?utf-8?B?TEE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8CD41C00316D754E88CF0465CD9E7ED3@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9448:EE_|PA4PR04MB7678:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f31e216-a14c-46c5-87ec-08dacb91ec19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3B5R60eeQ6gWGqdIRegOoh5xLahTCECk5XmVXbmBg5uuHgqbDAriH5kOrGXit4HoJWo8DXwoNEMR2HiZI7s1GVoznZhDy81b5kh01UDuAFIxWvFaf7mLKeifYF7Ipbbq8WUP+yoM4iVmDIPXwFDjm2sITcFeU6UVqpWVN1cruCIRlTJBYnQs93LI4tsvQVo7OueHl07RFsfS9BFbG9ZX7f1Y0lsRNyNmS0qjFy6JGO1RaZ7M0zQj48QgACE+qe0VKY2wOPQjFiFClJcaPNV5XdJ5eNrAwATOzL2FFNgW21U+sci2m1OOAdKwZfQb6PY4DJ2XpFxSPl/KG1caqN0to1uJpPs40m0t2zAbGLi/cGeoxBcbAGw+7CsJz49PQmCE85hg1WlH7qQJyT60tWlih6Z+270OdaJPNJTRMmM59r/AHNdh26KgbkUo25l/VsPxNReNsEjnUmpBQ2HtCWKNFU96HlBmymoORIGHYg1r4EdzHHy2maxwqQ/0H3yL17Z0RtvobnYw9U3R8p4D23hPWpnNPJzzAljG+UWZ+S6RXUWulKlVMITbj75cH0jl90w1G5leIAHx5hbT0ob+pu57BL5PP+9ys9w63CUswtojEw9hkM+n9cHA+TKEHiPNV5YcQqIyI/8fS5Gj+3ZQaIuE6oRWhOGgUeb+pj6CJAlotQPrcrKn/h2UQnrXBthD5NbqFtxyhCVOVFHVDQY4NKtxVg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(136003)(396003)(376002)(366004)(451199015)(26005)(36756003)(2906002)(86362001)(6512007)(921005)(8676002)(83380400001)(38100700002)(38350700002)(41300700001)(4326008)(66556008)(66476007)(66946007)(52116002)(30864003)(8936002)(5660300002)(316002)(186003)(7416002)(6486002)(6506007)(2616005)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2g/7+5u3m5Es78xwPr2Y+NwmnobhoZSPaUzk7u0IN+YMRGU2uXJ9qGiX3Gzc?=
- =?us-ascii?Q?MtUE6U+PYZzxIKBrsrxXzHEdMrRC+3A+gotD4fccmJXJEJ+i2wmQ41iTOuoJ?=
- =?us-ascii?Q?oq6YkuFUFUIU8I7gweXz5iU1/joTxIA2pJHb+er1zXAsjH7ZRNMNrPcRIZGq?=
- =?us-ascii?Q?drC7mSIoy6N/nZ888a9m/WjgHSw6b163+zYPEH1agq4cZT85LzsRHZ5OSd/6?=
- =?us-ascii?Q?GhllbZtRNx+cpJMUJaNuSzPSP0RvX9ksgsqhTDRoKz+neHUHuZ5yszL4OnV/?=
- =?us-ascii?Q?3VvJJU+a6FDJ5rbajh7weD/5PhNoRhK5OSN1jF/fm1hrqaV3k22KdbqoLVPu?=
- =?us-ascii?Q?x3l29MmBO3QscqWd+0uY4py93Q0X6fXXwXXaWQMuekJtddVAirn59QN8GiPR?=
- =?us-ascii?Q?45Mz62JYQ1nwyVFpAF/pL8KuGqWp5XRbnhAWJlGDOhFhO8JELcGWwtD9iRS4?=
- =?us-ascii?Q?bvW5q1zsUJqC0ZJXV/1F/kLkHG/CuVhhXNbTRlxHMF0RTK7JNRNORVdoVPMY?=
- =?us-ascii?Q?5h/CbJitLU9LVH00doB+I77FVXeBGnSEwwbCgympWqYEWjKM2S8bDDe4rex2?=
- =?us-ascii?Q?d5IVQkgAGdJA4qRV0oMP0GxxVVerjMq4i9c9geAWNU14S1dUhNRDI1OVmGys?=
- =?us-ascii?Q?ajoIhMsVo2rR8uStd1N/8T/dgbpICIc4U8oxzYuxTn+Hghwxx0tFmVWDoG0g?=
- =?us-ascii?Q?V926MgjtaDTkTJ0HO3hR/EqcvArfJVf4AU7TBbvFIzgsME/v+BjlwwcAP2Gz?=
- =?us-ascii?Q?fkLvCU1jcj/aJ6oMFTilEdscS8j1PGYVsv2aDaFfBTuwOKTsh1Z/ZbRYsEji?=
- =?us-ascii?Q?H+xW1sz4XWjj8C7WUGI7PO+AeJ3fA2bXkVsgCB00gQQSCPcRCI3PW3KJEzgC?=
- =?us-ascii?Q?wkahYrt9V002qEBD2LwIhnr9mu5/KD6qO6KVKzq8LwAfPrF3ouJ2yDNi38tX?=
- =?us-ascii?Q?Rgi0ibXGljUnLghvv+IGw3pvcHg3WnQgG1OPv9lySYgqsRiVvVrheScnLrse?=
- =?us-ascii?Q?VV2+gTXcS7wDLAjQUls10IGgh9pBZeJASEKmmcbIujZ2fPle/GEIWd6H/MQZ?=
- =?us-ascii?Q?rwFC/RWeCClB40PwcIhwRfSr4gTRWOuKWmpNND5/au3NpbUotzrXhWFHukQU?=
- =?us-ascii?Q?w7laR7Qn3lg5G7ilzERPTt5LLWVesEtYLAJ2X85NkRKWE/RbbaAteuyTVuuX?=
- =?us-ascii?Q?sjxWWfnwx9wwLQJabIDEeabKd3Am/STwtHI4+yHSTkJhbkGwOrZtSxjEKZcY?=
- =?us-ascii?Q?Efnmg8XJTPq0OHn5GgbOjqmUxh6QnXNEXLZ25iZkuKXtEcsYraQiqgbmiB+/?=
- =?us-ascii?Q?7KEC2ELl/1M5HqK2YbYkBeMP6qPc147NCpmDDJtObiGaBI40dbaQqHrNL3UH?=
- =?us-ascii?Q?dcE8aPANcfKC4QmktIEyDsh/IBKX8gt7xQbXOE4YQwMcm8VOCRU9uWEP6QKR?=
- =?us-ascii?Q?P+HESzrf5J9H6q1KhLwsOdalPT+WwEQICzL68HCxdEd8C4aTaErUtLxnUs9u?=
- =?us-ascii?Q?zsCKg9PfnS6rf04pEAbwwC4LShrp6iIWq7ljnnIg5ONJM1wP6PWR/dMBUfSK?=
- =?us-ascii?Q?xJe+Dm/dtAwir5bHySdpTDrWxl2CFxPkWLhr5ZWr?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f31e216-a14c-46c5-87ec-08dacb91ec19
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2022 07:28:02.1732
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5062.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0db9e805-5707-4bb9-9d29-08dacb93662d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2022 07:38:36.0930
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5onZCUFmcLxjy8FnAlIJX2/NnjYQDTzjnyM/mhZx9yd3rDvwqg2U18sYosXE0Fofl2ZE1opa3V5r+GQOM5RzRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7678
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Yx6/sO2YAuJKMAPUOGsUf0lXztBfj+YOuZ3WlhIDwcJI8/2PqiG4KQnDTtTg1AfVB0G8ype2r5ao1Zw1g/zYs0wCNo6p6Ju7ZGAcFbEVJS4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7144
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Cadence HDP-TX HDMI PHY driver.
-
-Cadence HDP-TX PHY could be put in either DP mode or
-HDMI mode base on the configuration chosen.
-HDMI PHY mode is configurated in the driver.
-
-Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
----
- drivers/phy/cadence/Kconfig                  |   8 +
- drivers/phy/cadence/Makefile                 |   1 +
- drivers/phy/cadence/phy-cadence-hdptx-hdmi.c | 891 +++++++++++++++++++
- 3 files changed, 900 insertions(+)
- create mode 100644 drivers/phy/cadence/phy-cadence-hdptx-hdmi.c
-
-diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
-index 7c662a57b812..84e81c473a51 100644
---- a/drivers/phy/cadence/Kconfig
-+++ b/drivers/phy/cadence/Kconfig
-@@ -38,6 +38,14 @@ config PHY_CADENCE_HDPTX_DP
- 	help
- 	  Enable this to support the Cadence HDPTX DP PHY driver
- 
-+config PHY_CADENCE_HDPTX_HDMI
-+	tristate "Cadence HDPTX HDMI PHY Driver"
-+	depends on OF && HAS_IOMEM
-+	depends on COMMON_CLK
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support the Cadence HDPTX HDMI PHY driver.
-+
- config PHY_CADENCE_SIERRA
- 	tristate "Cadence Sierra PHY Driver"
- 	depends on OF && HAS_IOMEM && RESET_CONTROLLER
-diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
-index 5e7d92a4c9aa..98702b7d2903 100644
---- a/drivers/phy/cadence/Makefile
-+++ b/drivers/phy/cadence/Makefile
-@@ -3,5 +3,6 @@ obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
- obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
- obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
- obj-$(CONFIG_PHY_CADENCE_HDPTX_DP)	+= phy-cadence-hdptx-dp.o
-+obj-$(CONFIG_PHY_CADENCE_HDPTX_HDMI) += phy-cadence-hdptx-hdmi.o
- obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
- obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
-diff --git a/drivers/phy/cadence/phy-cadence-hdptx-hdmi.c b/drivers/phy/cadence/phy-cadence-hdptx-hdmi.c
-new file mode 100644
-index 000000000000..e7b1633846bb
---- /dev/null
-+++ b/drivers/phy/cadence/phy-cadence-hdptx-hdmi.c
-@@ -0,0 +1,891 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Cadence High-Definition Multimedia Interface (HDMI) PHY driver
-+ *
-+ * Copyright (C) 2022 NXP Semiconductor, Inc.
-+ */
-+#include <asm/unaligned.h>
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/io.h>
-+
-+#include <drm/bridge/cdns-mhdp-mailbox.h>
-+
-+#define ADDR_PHY_AFE	0x80000
-+/* PHY registers */
-+#define CMN_SSM_BIAS_TMR                0x0022
-+#define CMN_PLLSM0_USER_DEF_CTRL        0x002F
-+#define CMN_PSM_CLK_CTRL                0x0061
-+#define CMN_CDIAG_REFCLK_CTRL           0x0062
-+#define CMN_PLL0_VCOCAL_START           0x0081
-+#define CMN_PLL0_VCOCAL_INIT_TMR        0x0084
-+#define CMN_PLL0_VCOCAL_ITER_TMR        0x0085
-+#define CMN_TXPUCAL_CTRL                0x00E0
-+#define CMN_TXPDCAL_CTRL                0x00F0
-+#define CMN_TXPU_ADJ_CTRL               0x0108
-+#define CMN_TXPD_ADJ_CTRL               0x010c
-+#define CMN_DIAG_PLL0_FBH_OVRD          0x01C0
-+#define CMN_DIAG_PLL0_FBL_OVRD          0x01C1
-+#define CMN_DIAG_PLL0_OVRD              0x01C2
-+#define CMN_DIAG_PLL0_TEST_MODE         0x01C4
-+#define CMN_DIAG_PLL0_V2I_TUNE          0x01C5
-+#define CMN_DIAG_PLL0_CP_TUNE           0x01C6
-+#define CMN_DIAG_PLL0_LF_PROG           0x01C7
-+#define CMN_DIAG_PLL0_PTATIS_TUNE1      0x01C8
-+#define CMN_DIAG_PLL0_PTATIS_TUNE2      0x01C9
-+#define CMN_DIAG_PLL0_INCLK_CTRL        0x01CA
-+#define CMN_DIAG_PLL0_PXL_DIVH          0x01CB
-+#define CMN_DIAG_PLL0_PXL_DIVL          0x01CC
-+#define CMN_DIAG_HSCLK_SEL              0x01E0
-+#define XCVR_PSM_RCTRL                  0x4001
-+#define TX_TXCC_CAL_SCLR_MULT_0         0x4047
-+#define TX_TXCC_CPOST_MULT_00_0         0x404C
-+#define XCVR_DIAG_PLLDRC_CTRL           0x40E0
-+#define XCVR_DIAG_PLLDRC_CTRL           0x40E0
-+#define XCVR_DIAG_HSCLK_SEL             0x40E1
-+#define XCVR_DIAG_BIDI_CTRL             0x40E8
-+#define TX_PSC_A0                       0x4100
-+#define TX_PSC_A1                       0x4101
-+#define TX_PSC_A2                       0x4102
-+#define TX_PSC_A3                       0x4103
-+#define TX_DIAG_TX_CTRL                 0x41E0
-+#define TX_DIAG_TX_DRV                  0x41E1
-+#define TX_DIAG_BGREF_PREDRV_DELAY      0x41E7
-+#define TX_DIAG_ACYA_0                  0x41FF
-+#define TX_DIAG_ACYA_1                  0x43FF
-+#define TX_DIAG_ACYA_2                  0x45FF
-+#define TX_DIAG_ACYA_3                  0x47FF
-+#define TX_ANA_CTRL_REG_1               0x5020
-+#define TX_ANA_CTRL_REG_2               0x5021
-+#define TX_DIG_CTRL_REG_2               0x5024
-+#define TXDA_CYA_AUXDA_CYA              0x5025
-+#define TX_ANA_CTRL_REG_3               0x5026
-+#define TX_ANA_CTRL_REG_4               0x5027
-+#define TX_ANA_CTRL_REG_5               0x5029
-+#define RX_PSC_A0                       0x8000
-+#define RX_PSC_CAL                      0x8006
-+#define PHY_HDP_MODE_CTRL               0xC008
-+#define PHY_HDP_CLK_CTL                 0xC009
-+#define PHY_ISO_CMN_CTRL                0xC010
-+#define PHY_PMA_CMN_CTRL1               0xC800
-+#define PHY_PMA_ISO_CMN_CTRL            0xC810
-+#define PHY_PMA_ISO_PLL_CTRL1           0xC812
-+#define PHY_PMA_ISOLATION_CTRL          0xC81F
-+
-+#define REF_CLK_27MHZ		27000000
-+
-+/* HDMI TX clock control settings */
-+struct hdptx_hdmi_ctrl {
-+	u32 pixel_clk_freq_min;
-+	u32 pixel_clk_freq_max;
-+	u32 feedback_factor;
-+	u32 data_range_kbps_min;
-+	u32 data_range_kbps_max;
-+	u32 cmnda_pll0_ip_div;
-+	u32 cmn_ref_clk_dig_div;
-+	u32 ref_clk_divider_scaler;
-+	u32 pll_fb_div_total;
-+	u32 cmnda_pll0_fb_div_low;
-+	u32 cmnda_pll0_fb_div_high;
-+	u32 pixel_div_total;
-+	u32 cmnda_pll0_pxdiv_low;
-+	u32 cmnda_pll0_pxdiv_high;
-+	u32 vco_freq_min;
-+	u32 vco_freq_max;
-+	u32 vco_ring_select;
-+	u32 cmnda_hs_clk_0_sel;
-+	u32 cmnda_hs_clk_1_sel;
-+	u32 hsclk_div_at_xcvr;
-+	u32 hsclk_div_tx_sub_rate;
-+	u32 cmnda_pll0_hs_sym_div_sel;
-+	u32 cmnda_pll0_clk_freq_min;
-+	u32 cmnda_pll0_clk_freq_max;
-+};
-+
-+struct cdns_hdptx_hdmi_phy {
-+	void __iomem *regs;	/* DPTX registers base */
-+	struct mutex mbox_mutex; /* mutex to protect mailbox */
-+	struct device *dev;
-+	struct phy *phy;
-+	struct clk *ref_clk, *apb_clk;
-+	u32 ref_clk_rate;
-+	u32 pixel_clk_rate;
-+	enum hdmi_phy_colorspace color_space;
-+	u32 bpc;
-+};
-+
-+/* HDMI TX clock control settings, pixel clock is output */
-+static const struct hdptx_hdmi_ctrl pixel_clk_output_ctrl_table[] = {
-+/*Minclk  Maxclk Fdbak  DR_min   DR_max  ip_d  dig  DS    Totl */
-+{ 27000,  27000, 1000,  270000,  270000, 0x03, 0x1, 0x1,  240, 0x0BC, 0x030,  80, 0x026, 0x026, 2160000, 2160000, 0, 2, 2, 2, 4, 0x3,  27000,  27000},
-+{ 27000,  27000, 1250,  337500,  337500, 0x03, 0x1, 0x1,  300, 0x0EC, 0x03C, 100, 0x030, 0x030, 2700000, 2700000, 0, 2, 2, 2, 4, 0x3,  33750,  33750},
-+{ 27000,  27000, 1500,  405000,  405000, 0x03, 0x1, 0x1,  360, 0x11C, 0x048, 120, 0x03A, 0x03A, 3240000, 3240000, 0, 2, 2, 2, 4, 0x3,  40500,  40500},
-+{ 27000,  27000, 2000,  540000,  540000, 0x03, 0x1, 0x1,  240, 0x0BC, 0x030,  80, 0x026, 0x026, 2160000, 2160000, 0, 2, 2, 2, 4, 0x2,  54000,  54000},
-+{ 54000,  54000, 1000,  540000,  540000, 0x03, 0x1, 0x1,  480, 0x17C, 0x060,  80, 0x026, 0x026, 4320000, 4320000, 1, 2, 2, 2, 4, 0x3,  54000,  54000},
-+{ 54000,  54000, 1250,  675000,  675000, 0x04, 0x1, 0x1,  400, 0x13C, 0x050,  50, 0x017, 0x017, 2700000, 2700000, 0, 1, 1, 2, 4, 0x2,  67500,  67500},
-+{ 54000,  54000, 1500,  810000,  810000, 0x04, 0x1, 0x1,  480, 0x17C, 0x060,  60, 0x01C, 0x01C, 3240000, 3240000, 0, 2, 2, 2, 2, 0x2,  81000,  81000},
-+{ 54000,  54000, 2000, 1080000, 1080000, 0x03, 0x1, 0x1,  240, 0x0BC, 0x030,  40, 0x012, 0x012, 2160000, 2160000, 0, 2, 2, 2, 1, 0x1, 108000, 108000},
-+{ 74250,  74250, 1000,  742500,  742500, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  80, 0x026, 0x026, 5940000, 5940000, 1, 2, 2, 2, 4, 0x3,  74250,  74250},
-+{ 74250,  74250, 1250,  928125,  928125, 0x04, 0x1, 0x1,  550, 0x1B4, 0x06E,  50, 0x017, 0x017, 3712500, 3712500, 1, 1, 1, 2, 4, 0x2,  92812,  92812},
-+{ 74250,  74250, 1500, 1113750, 1113750, 0x04, 0x1, 0x1,  660, 0x20C, 0x084,  60, 0x01C, 0x01C, 4455000, 4455000, 1, 2, 2, 2, 2, 0x2, 111375, 111375},
-+{ 74250,  74250, 2000, 1485000, 1485000, 0x03, 0x1, 0x1,  330, 0x104, 0x042,  40, 0x012, 0x012, 2970000, 2970000, 0, 2, 2, 2, 1, 0x1, 148500, 148500},
-+{ 99000,  99000, 1000,  990000,  990000, 0x03, 0x1, 0x1,  440, 0x15C, 0x058,  40, 0x012, 0x012, 3960000, 3960000, 1, 2, 2, 2, 2, 0x2,  99000,  99000},
-+{ 99000,  99000, 1250, 1237500, 1237500, 0x03, 0x1, 0x1,  275, 0x0D8, 0x037,  25, 0x00B, 0x00A, 2475000, 2475000, 0, 1, 1, 2, 2, 0x1, 123750, 123750},
-+{ 99000,  99000, 1500, 1485000, 1485000, 0x03, 0x1, 0x1,  330, 0x104, 0x042,  30, 0x00D, 0x00D, 2970000, 2970000, 0, 2, 2, 2, 1, 0x1, 148500, 148500},
-+{ 99000,  99000, 2000, 1980000, 1980000, 0x03, 0x1, 0x1,  440, 0x15C, 0x058,  40, 0x012, 0x012, 3960000, 3960000, 1, 2, 2, 2, 1, 0x1, 198000, 198000},
-+{148500, 148500, 1000, 1485000, 1485000, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  40, 0x012, 0x012, 5940000, 5940000, 1, 2, 2, 2, 2, 0x2, 148500, 148500},
-+{148500, 148500, 1250, 1856250, 1856250, 0x04, 0x1, 0x1,  550, 0x1B4, 0x06E,  25, 0x00B, 0x00A, 3712500, 3712500, 1, 1, 1, 2, 2, 0x1, 185625, 185625},
-+{148500, 148500, 1500, 2227500, 2227500, 0x03, 0x1, 0x1,  495, 0x188, 0x063,  30, 0x00D, 0x00D, 4455000, 4455000, 1, 1, 1, 2, 2, 0x1, 222750, 222750},
-+{148500, 148500, 2000, 2970000, 2970000, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  40, 0x012, 0x012, 5940000, 5940000, 1, 2, 2, 2, 1, 0x1, 297000, 297000},
-+{198000, 198000, 1000, 1980000, 1980000, 0x03, 0x1, 0x1,  220, 0x0AC, 0x02C,  10, 0x003, 0x003, 1980000, 1980000, 0, 1, 1, 2, 1, 0x0, 198000, 198000},
-+{198000, 198000, 1250, 2475000, 2475000, 0x03, 0x1, 0x1,  550, 0x1B4, 0x06E,  25, 0x00B, 0x00A, 4950000, 4950000, 1, 1, 1, 2, 2, 0x1, 247500, 247500},
-+{198000, 198000, 1500, 2970000, 2970000, 0x03, 0x1, 0x1,  330, 0x104, 0x042,  15, 0x006, 0x005, 2970000, 2970000, 0, 1, 1, 2, 1, 0x0, 297000, 297000},
-+{198000, 198000, 2000, 3960000, 3960000, 0x03, 0x1, 0x1,  440, 0x15C, 0x058,  20, 0x008, 0x008, 3960000, 3960000, 1, 1, 1, 2, 1, 0x0, 396000, 396000},
-+{297000, 297000, 1000, 2970000, 2970000, 0x03, 0x1, 0x1,  330, 0x104, 0x042,  10, 0x003, 0x003, 2970000, 2970000, 0, 1, 1, 2, 1, 0x0, 297000, 297000},
-+{297000, 297000, 1500, 4455000, 4455000, 0x03, 0x1, 0x1,  495, 0x188, 0x063,  15, 0x006, 0x005, 4455000, 4455000, 1, 1, 1, 2, 1, 0x0, 445500, 445500},
-+{297000, 297000, 2000, 5940000, 5940000, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  20, 0x008, 0x008, 5940000, 5940000, 1, 1, 1, 2, 1, 0x0, 594000, 594000},
-+{594000, 594000, 1000, 5940000, 5940000, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  10, 0x003, 0x003, 5940000, 5940000, 1, 1, 1, 2, 1, 0x0, 594000, 594000},
-+{594000, 594000,  750, 4455000, 4455000, 0x03, 0x1, 0x1,  495, 0x188, 0x063,  10, 0x003, 0x003, 4455000, 4455000, 1, 1, 1, 2, 1, 0x0, 445500, 445500},
-+{594000, 594000,  625, 3712500, 3712500, 0x04, 0x1, 0x1,  550, 0x1B4, 0x06E,  10, 0x003, 0x003, 3712500, 3712500, 1, 1, 1, 2, 1, 0x0, 371250, 371250},
-+{594000, 594000,  500, 2970000, 2970000, 0x03, 0x1, 0x1,  660, 0x20C, 0x084,  10, 0x003, 0x003, 5940000, 5940000, 1, 1, 1, 2, 2, 0x1, 297000, 297000},
-+};
-+
-+/* HDMI TX PLL tuning settings */
-+struct hdptx_hdmi_pll_tuning {
-+	u32 vco_freq_bin;
-+	u32 vco_freq_min;
-+	u32 vco_freq_max;
-+	u32 volt_to_current_coarse;
-+	u32 volt_to_current;
-+	u32 ndac_ctrl;
-+	u32 pmos_ctrl;
-+	u32 ptat_ndac_ctrl;
-+	u32 feedback_div_total;
-+	u32 charge_pump_gain;
-+	u32 coarse_code;
-+	u32 v2i_code;
-+	u32 vco_cal_code;
-+};
-+
-+/* HDMI TX PLL tuning settings, pixel clock is output */
-+static const struct hdptx_hdmi_pll_tuning pixel_clk_output_pll_table[] = {
-+/*bin VCO_freq min/max  coar  cod NDAC  PMOS PTAT div-T P-Gain Coa V2I CAL */
-+{  1, 1980000, 1980000, 0x4, 0x3, 0x0, 0x09, 0x09, 220, 0x42, 160, 5, 183 },
-+{  2, 2160000, 2160000, 0x4, 0x3, 0x0, 0x09, 0x09, 240, 0x42, 166, 6, 208 },
-+{  3, 2475000, 2475000, 0x5, 0x3, 0x1, 0x00, 0x07, 275, 0x42, 167, 6, 209 },
-+{  4, 2700000, 2700000, 0x5, 0x3, 0x1, 0x00, 0x07, 300, 0x42, 188, 6, 230 },
-+{  4, 2700000, 2700000, 0x5, 0x3, 0x1, 0x00, 0x07, 400, 0x4C, 188, 6, 230 },
-+{  5, 2970000, 2970000, 0x6, 0x3, 0x1, 0x00, 0x07, 330, 0x42, 183, 6, 225 },
-+{  6, 3240000, 3240000, 0x6, 0x3, 0x1, 0x00, 0x07, 360, 0x42, 203, 7, 256 },
-+{  6, 3240000, 3240000, 0x6, 0x3, 0x1, 0x00, 0x07, 480, 0x4C, 203, 7, 256 },
-+{  7, 3712500, 3712500, 0x4, 0x3, 0x0, 0x07, 0x0F, 550, 0x4C, 212, 7, 257 },
-+{  8, 3960000, 3960000, 0x5, 0x3, 0x0, 0x07, 0x0F, 440, 0x42, 184, 6, 226 },
-+{  9, 4320000, 4320000, 0x5, 0x3, 0x1, 0x07, 0x0F, 480, 0x42, 205, 7, 258 },
-+{ 10, 4455000, 4455000, 0x5, 0x3, 0x0, 0x07, 0x0F, 495, 0x42, 219, 7, 272 },
-+{ 10, 4455000, 4455000, 0x5, 0x3, 0x0, 0x07, 0x0F, 660, 0x4C, 219, 7, 272 },
-+{ 11, 4950000, 4950000, 0x6, 0x3, 0x1, 0x00, 0x07, 550, 0x42, 213, 7, 258 },
-+{ 12, 5940000, 5940000, 0x7, 0x3, 0x1, 0x00, 0x07, 660, 0x42, 244, 8, 292 },
-+};
-+
-+static int cdns_phy_reg_write(struct cdns_hdptx_hdmi_phy *cdns_phy, u32 addr, u32 val)
-+{
-+	return cdns_mhdp_reg_write(cdns_phy, ADDR_PHY_AFE + (addr << 2), val);
-+}
-+
-+static u32 cdns_phy_reg_read(struct cdns_hdptx_hdmi_phy *cdns_phy, u32 addr)
-+{
-+	u32 reg32;
-+
-+	cdns_mhdp_reg_read(cdns_phy, ADDR_PHY_AFE + (addr << 2), &reg32);
-+
-+	return reg32;
-+}
-+
-+#define KEEP_ALIVE			0x18
-+static bool hdptx_phy_check_alive(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	u32  alive, newalive;
-+	u8 retries_left = 50;
-+
-+	alive = readl(cdns_phy->regs + KEEP_ALIVE);
-+
-+	while (retries_left--) {
-+		udelay(2);
-+
-+		newalive = readl(cdns_phy->regs + KEEP_ALIVE);
-+		if (alive == newalive)
-+			continue;
-+		return true;
-+	}
-+	return false;
-+}
-+
-+static int hdptx_hdmi_clk_enable(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	struct device *dev = cdns_phy->dev;
-+	u32 ref_clk_rate;
-+	int ret;
-+
-+	cdns_phy->ref_clk = devm_clk_get(dev, "refclk");
-+	if (IS_ERR(cdns_phy->ref_clk)) {
-+		dev_err(dev, "phy ref clock not found\n");
-+		return PTR_ERR(cdns_phy->ref_clk);
-+	}
-+
-+	cdns_phy->apb_clk = devm_clk_get(dev, "apbclk");
-+	if (IS_ERR(cdns_phy->apb_clk)) {
-+		dev_err(dev, "phy apb clock not found\n");
-+		return PTR_ERR(cdns_phy->apb_clk);
-+	}
-+
-+	ret = clk_prepare_enable(cdns_phy->ref_clk);
-+	if (ret) {
-+		dev_err(cdns_phy->dev, "Failed to prepare ref clock\n");
-+		return ret;
-+	}
-+
-+	ref_clk_rate = clk_get_rate(cdns_phy->ref_clk);
-+	if (!ref_clk_rate) {
-+		dev_err(cdns_phy->dev, "Failed to get ref clock rate\n");
-+		goto err_ref_clk;
-+	}
-+
-+	if (ref_clk_rate == REF_CLK_27MHZ)
-+		cdns_phy->ref_clk_rate = ref_clk_rate;
-+	else {
-+		dev_err(cdns_phy->dev, "Not support Ref Clock Rate(%dHz)\n", ref_clk_rate);
-+		goto err_ref_clk;
-+	}
-+
-+	ret = clk_prepare_enable(cdns_phy->apb_clk);
-+	if (ret) {
-+		dev_err(cdns_phy->dev, "Failed to prepare apb clock\n");
-+		goto err_ref_clk;
-+	}
-+
-+	return 0;
-+
-+err_ref_clk:
-+	clk_disable_unprepare(cdns_phy->ref_clk);
-+	return -EINVAL;
-+}
-+
-+static void hdptx_hdmi_clk_disable(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	clk_disable_unprepare(cdns_phy->ref_clk);
-+	clk_disable_unprepare(cdns_phy->apb_clk);
-+}
-+
-+static void hdptx_hdmi_arc_config(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	u16 txpu_calib_code;
-+	u16 txpd_calib_code;
-+	u16 txpu_adj_calib_code;
-+	u16 txpd_adj_calib_code;
-+	u16 prev_calib_code;
-+	u16 new_calib_code;
-+	u16 rdata;
-+
-+	/* Power ARC */
-+	cdns_phy_reg_write(cdns_phy, TXDA_CYA_AUXDA_CYA, 0x0001);
-+
-+	prev_calib_code = cdns_phy_reg_read(cdns_phy, TX_DIG_CTRL_REG_2);
-+	txpu_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPUCAL_CTRL);
-+	txpd_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPDCAL_CTRL);
-+	txpu_adj_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPU_ADJ_CTRL);
-+	txpd_adj_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPD_ADJ_CTRL);
-+
-+	new_calib_code = ((txpu_calib_code + txpd_calib_code) / 2)
-+		+ txpu_adj_calib_code + txpd_adj_calib_code;
-+
-+	if (new_calib_code != prev_calib_code) {
-+		rdata = cdns_phy_reg_read(cdns_phy, TX_ANA_CTRL_REG_1);
-+		rdata &= 0xDFFF;
-+		cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, rdata);
-+		cdns_phy_reg_write(cdns_phy, TX_DIG_CTRL_REG_2, new_calib_code);
-+		mdelay(10);
-+		rdata |= 0x2000;
-+		cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, rdata);
-+		udelay(150);
-+	}
-+
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0100);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0300);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_3, 0x0000);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2008);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2018);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2098);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030C);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_5, 0x0010);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_4, 0x4001);
-+	mdelay(5);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2198);
-+	mdelay(5);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030D);
-+	udelay(100);
-+	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030F);
-+}
-+
-+static void hdptx_hdmi_phy_set_vswing(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	u32 k;
-+	const u32 num_lanes = 4;
-+
-+	for (k = 0; k < num_lanes; k++) {
-+		cdns_phy_reg_write(cdns_phy, (TX_DIAG_TX_DRV | (k << 9)), 0x7c0);
-+		cdns_phy_reg_write(cdns_phy, (TX_TXCC_CPOST_MULT_00_0 | (k << 9)), 0x0);
-+		cdns_phy_reg_write(cdns_phy, (TX_TXCC_CAL_SCLR_MULT_0 | (k << 9)), 0x120);
-+	}
-+}
-+
-+static int hdptx_hdmi_feedback_factor(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	u32 feedback_factor;
-+
-+	switch (cdns_phy->color_space) {
-+	case HDMI_PHY_COLORSPACE_YUV422:
-+		feedback_factor = 1000;
-+		break;
-+	case HDMI_PHY_COLORSPACE_YUV420:
-+		switch (cdns_phy->bpc) {
-+		case 8:
-+			feedback_factor = 500;
-+			break;
-+		case 10:
-+			feedback_factor = 625;
-+			break;
-+		case 12:
-+			feedback_factor = 750;
-+			break;
-+		case 16:
-+			feedback_factor = 1000;
-+			break;
-+		default:
-+			dev_dbg(cdns_phy->dev, "Invalid ColorDepth\n");
-+			return 0;
-+		}
-+		break;
-+	default:
-+		/* Assume RGB/YUV444 */
-+		switch (cdns_phy->bpc) {
-+		case 10:
-+			feedback_factor = 1250;
-+			break;
-+		case 12:
-+			feedback_factor = 1500;
-+			break;
-+		case 16:
-+			feedback_factor = 2000;
-+			break;
-+		default:
-+			feedback_factor = 1000;
-+		}
-+	}
-+
-+	return feedback_factor;
-+}
-+
-+static int hdptx_hdmi_phy_config(struct cdns_hdptx_hdmi_phy *cdns_phy,
-+								const struct hdptx_hdmi_ctrl *p_ctrl_table,
-+								const struct hdptx_hdmi_pll_tuning *p_pll_table,
-+								char pclk_in)
-+{
-+	const u32 num_lanes = 4;
-+	u32 val, i, k;
-+
-+	/* enable PHY isolation mode only for CMN */
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISOLATION_CTRL, 0xD000);
-+
-+	/* set cmn_pll0_clk_datart1_div/cmn_pll0_clk_datart0_div dividers */
-+	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_ISO_PLL_CTRL1);
-+	val &= 0xFF00;
-+	val |= 0x0012;
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_PLL_CTRL1, val);
-+
-+	/* assert PHY reset from isolation register */
-+	cdns_phy_reg_write(cdns_phy, PHY_ISO_CMN_CTRL, 0x0000);
-+	/* assert PMA CMN reset */
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0000);
-+
-+	/* register XCVR_DIAG_BIDI_CTRL */
-+	for (k = 0; k < num_lanes; k++)
-+		cdns_phy_reg_write(cdns_phy, XCVR_DIAG_BIDI_CTRL | (k << 9), 0x00FF);
-+
-+	/* Describing Task phy_cfg_hdp */
-+
-+	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-+	val &= 0xFFF7;
-+	val |= 0x0008;
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-+
-+	/* PHY Registers */
-+	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-+	val &= 0xCFFF;
-+	val |= p_ctrl_table->cmn_ref_clk_dig_div << 12;
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-+
-+	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-+	val &= 0x00FF;
-+	val |= 0x1200;
-+	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-+
-+	/* Common control module control and diagnostic registers */
-+	val = cdns_phy_reg_read(cdns_phy, CMN_CDIAG_REFCLK_CTRL);
-+	val &= 0x8FFF;
-+	val |= p_ctrl_table->ref_clk_divider_scaler << 12;
-+	val |= 0x00C0;
-+	cdns_phy_reg_write(cdns_phy, CMN_CDIAG_REFCLK_CTRL, val);
-+
-+	/* High speed clock used */
-+	val = cdns_phy_reg_read(cdns_phy, CMN_DIAG_HSCLK_SEL);
-+	val &= 0xFF00;
-+	val |= (p_ctrl_table->cmnda_hs_clk_0_sel >> 1) << 0;
-+	val |= (p_ctrl_table->cmnda_hs_clk_1_sel >> 1) << 4;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_HSCLK_SEL, val);
-+
-+	for (k = 0; k < num_lanes; k++) {
-+		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)));
-+		val &= 0xCFFF;
-+		val |= (p_ctrl_table->cmnda_hs_clk_0_sel >> 1) << 12;
-+		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)), val);
-+	}
-+
-+	/* PLL 0 control state machine registers */
-+	val = p_ctrl_table->vco_ring_select << 12;
-+	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_USER_DEF_CTRL, val);
-+
-+	if (pclk_in == true)
-+		val = 0x30A0;
-+	else {
-+		val = cdns_phy_reg_read(cdns_phy, CMN_PLL0_VCOCAL_START);
-+		val &= 0xFE00;
-+		val |= p_pll_table->vco_cal_code;
-+	}
-+	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_START, val);
-+
-+	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_INIT_TMR, 0x0064);
-+	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_ITER_TMR, 0x000A);
-+
-+	/* Common functions control and diagnostics registers */
-+	val = p_ctrl_table->cmnda_pll0_hs_sym_div_sel << 8;
-+	val |= p_ctrl_table->cmnda_pll0_ip_div;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_INCLK_CTRL, val);
-+
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_OVRD, 0x0000);
-+
-+	val = p_ctrl_table->cmnda_pll0_fb_div_high;
-+	val |= (1 << 15);
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_FBH_OVRD, val);
-+
-+	val = p_ctrl_table->cmnda_pll0_fb_div_low;
-+	val |= (1 << 15);
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_FBL_OVRD, val);
-+
-+	if (pclk_in == false) {
-+		val = p_ctrl_table->cmnda_pll0_pxdiv_low;
-+		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PXL_DIVL, val);
-+
-+		val = p_ctrl_table->cmnda_pll0_pxdiv_high;
-+		val |= (1 << 15);
-+		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PXL_DIVH, val);
-+	}
-+
-+	val = p_pll_table->volt_to_current_coarse;
-+	val |= (p_pll_table->volt_to_current) << 4;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_V2I_TUNE, val);
-+
-+	val = p_pll_table->charge_pump_gain;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_CP_TUNE, val);
-+
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_LF_PROG, 0x0008);
-+
-+	val = p_pll_table->pmos_ctrl;
-+	val |= (p_pll_table->ndac_ctrl) << 8;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PTATIS_TUNE1, val);
-+
-+	val = p_pll_table->ptat_ndac_ctrl;
-+	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PTATIS_TUNE2, val);
-+
-+	if (pclk_in == true)
-+		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_TEST_MODE, 0x0022);
-+	else
-+		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_TEST_MODE, 0x0020);
-+
-+	cdns_phy_reg_write(cdns_phy, CMN_PSM_CLK_CTRL, 0x0016);
-+
-+	/* Transceiver control and diagnostic registers */
-+	for (k = 0; k < num_lanes; k++) {
-+		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)));
-+		val &= 0xBFFF;
-+		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)), val);
-+	}
-+
-+	for (k = 0; k < num_lanes; k++) {
-+		val = cdns_phy_reg_read(cdns_phy, (TX_DIAG_TX_CTRL | (k << 9)));
-+		val &= 0xFF3F;
-+		val |= (p_ctrl_table->hsclk_div_tx_sub_rate >> 1) << 6;
-+		cdns_phy_reg_write(cdns_phy, (TX_DIAG_TX_CTRL | (k << 9)), val);
-+	}
-+
-+	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-+	val &= 0xFF8F;
-+	/*
-+	 * single ended reference clock (val |= 0x0030);
-+	 * differential clock  (val |= 0x0000);
-+	 * for differential clock on the refclk_p and
-+	 * refclk_m off chip pins: CMN_DIAG_ACYA[8]=1'b1
-+	 * cdns_phy_reg_write(cdns_phy, CMN_DIAG_ACYA, 0x0100);
-+	 */
-+	val |= 0x0030;
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-+
-+	/* Deassert PHY reset */
-+	cdns_phy_reg_write(cdns_phy, PHY_ISO_CMN_CTRL, 0x0001);
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0003);
-+
-+	/* Power state machine registers */
-+	for (k = 0; k < num_lanes; k++)
-+		cdns_phy_reg_write(cdns_phy, XCVR_PSM_RCTRL | (k << 9), 0xFEFC);
-+
-+	/* Assert cmn_macro_pwr_en */
-+	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0013);
-+
-+	/* wait for cmn_macro_pwr_en_ack */
-+	for (i = 0; i < 10; i++) {
-+		val = cdns_phy_reg_read(cdns_phy, PHY_PMA_ISO_CMN_CTRL);
-+		if (val & (1 << 5))
-+			break;
-+		msleep(20);
-+	}
-+	if (i == 10) {
-+		dev_err(cdns_phy->dev, "PMA output macro power up failed\n");
-+		return -1;
-+	}
-+
-+	/* wait for cmn_ready */
-+	for (i = 0; i < 10; i++) {
-+		val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-+		if (val & (1 << 0))
-+			break;
-+		msleep(20);
-+	}
-+	if (i == 10) {
-+		dev_err(cdns_phy->dev, "PMA output ready failed\n");
-+		return -1;
-+	}
-+
-+	for (k = 0; k < num_lanes; k++) {
-+		cdns_phy_reg_write(cdns_phy, TX_PSC_A0 | (k << 9), 0x6791);
-+		cdns_phy_reg_write(cdns_phy, TX_PSC_A1 | (k << 9), 0x6790);
-+		cdns_phy_reg_write(cdns_phy, TX_PSC_A2 | (k << 9), 0x0090);
-+		cdns_phy_reg_write(cdns_phy, TX_PSC_A3 | (k << 9), 0x0090);
-+
-+		val = cdns_phy_reg_read(cdns_phy, RX_PSC_CAL | (k << 9));
-+		val &= 0xFFBB;
-+		cdns_phy_reg_write(cdns_phy, RX_PSC_CAL | (k << 9), val);
-+
-+		val = cdns_phy_reg_read(cdns_phy, RX_PSC_A0 | (k << 9));
-+		val &= 0xFFBB;
-+		cdns_phy_reg_write(cdns_phy, RX_PSC_A0 | (k << 9), val);
-+	}
-+	return 0;
-+}
-+
-+static int hdptx_hdmi_phy_cfg(struct cdns_hdptx_hdmi_phy *cdns_phy, u32 rate)
-+{
-+	const struct hdptx_hdmi_ctrl *p_ctrl_table;
-+	const struct hdptx_hdmi_pll_tuning *p_pll_table;
-+	const u32 refclk_freq_khz = cdns_phy->ref_clk_rate / 1000;
-+	const u8 pclk_in = false;
-+	u32 pixel_freq = rate;
-+	u32 vco_freq, char_freq;
-+	u32 div_total, feedback_factor;
-+	u32 i, ret;
-+
-+	feedback_factor = hdptx_hdmi_feedback_factor(cdns_phy);
-+
-+	char_freq = pixel_freq * feedback_factor / 1000;
-+
-+	dev_dbg(cdns_phy->dev, "Pixel clock: (%d KHz), character clock: %d, bpc is (%0d-bit)\n",
-+			pixel_freq, char_freq, cdns_phy->bpc);
-+
-+	/* Get right row from the ctrl_table table.
-+	 * Check if 'pixel_freq_khz' value matches the PIXEL_CLK_FREQ column.
-+	 * Consider only the rows with FEEDBACK_FACTOR column matching feedback_factor.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_ctrl_table); i++) {
-+		if (feedback_factor == pixel_clk_output_ctrl_table[i].feedback_factor &&
-+			pixel_freq == pixel_clk_output_ctrl_table[i].pixel_clk_freq_min) {
-+			p_ctrl_table = &pixel_clk_output_ctrl_table[i];
-+			break;
-+		}
-+	}
-+	if (i == ARRAY_SIZE(pixel_clk_output_ctrl_table)) {
-+		dev_warn(cdns_phy->dev, "Pixel clk (%d KHz) not supported, bpc is (%0d-bit)\n",
-+				pixel_freq, cdns_phy->bpc);
-+		return 0;
-+	}
-+
-+	div_total = p_ctrl_table->pll_fb_div_total;
-+	vco_freq = refclk_freq_khz * div_total / p_ctrl_table->cmnda_pll0_ip_div;
-+
-+	/* Get right row from the pixel_clk_output_pll_table table.
-+	 * Check if vco_freq_khz and feedback_div_total
-+	 * column matching with pixel_clk_output_pll_table.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_pll_table); i++) {
-+		if (vco_freq == pixel_clk_output_pll_table[i].vco_freq_min &&
-+			div_total == pixel_clk_output_pll_table[i].feedback_div_total) {
-+			p_pll_table = &pixel_clk_output_pll_table[i];
-+			break;
-+		}
-+	}
-+	if (i == ARRAY_SIZE(pixel_clk_output_pll_table)) {
-+		dev_warn(cdns_phy->dev, "VCO (%d KHz) not supported\n", vco_freq);
-+		return -1;
-+	}
-+	dev_dbg(cdns_phy->dev, "VCO frequency is (%d KHz)\n", vco_freq);
-+
-+	ret = hdptx_hdmi_phy_config(cdns_phy, p_ctrl_table, p_pll_table, pclk_in);
-+	if (ret < 0)
-+		return ret;
-+
-+	return char_freq;
-+}
-+
-+static int hdptx_hdmi_phy_power_up(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	u32 val, i;
-+
-+	/* set Power State to A2 */
-+	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, 0x0004);
-+
-+	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_0, 1);
-+	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_1, 1);
-+	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_2, 1);
-+	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_3, 1);
-+
-+	/* Wait for Power State A2 Ack */
-+	for (i = 0; i < 10; i++) {
-+		val = cdns_phy_reg_read(cdns_phy, PHY_HDP_MODE_CTRL);
-+		if (val & (1 << 6))
-+			break;
-+		msleep(20);
-+	}
-+	if (i == 10) {
-+		dev_err(cdns_phy->dev, "Wait A2 Ack failed\n");
-+		return -1;
-+	}
-+
-+	/* Power up ARC */
-+	hdptx_hdmi_arc_config(cdns_phy);
-+
-+	/* Configure PHY in A0 mode (PHY must be in the A0 power
-+	 * state in order to transmit data)
-+	 */
-+	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, 0x0001);
-+
-+	/* Wait for Power State A0 Ack */
-+	for (i = 0; i < 10; i++) {
-+		val = cdns_phy_reg_read(cdns_phy, PHY_HDP_MODE_CTRL);
-+		if (val & (1 << 4))
-+			break;
-+		msleep(20);
-+	}
-+	if (i == 10) {
-+		dev_err(cdns_phy->dev, "Wait A0 Ack failed\n");
-+		return -1;
-+	}
-+	return 0;
-+}
-+
-+static int hdptx_hdmi_phy_power_down(struct cdns_hdptx_hdmi_phy *cdns_phy)
-+{
-+	int timeout;
-+	u32 reg_val;
-+
-+	reg_val = cdns_phy_reg_read(cdns_phy, PHY_HDP_MODE_CTRL);
-+	reg_val &= 0xfff0;
-+	/* PHY_DP_MODE_CTL set to A3 power state*/
-+	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, reg_val | 0x8);
-+
-+	/* Wait for A3 acknowledge */
-+	timeout = 0;
-+	do {
-+		reg_val = cdns_phy_reg_read(cdns_phy, PHY_HDP_MODE_CTRL);
-+		dev_dbg(cdns_phy->dev, "Reg val is 0x%04x\n", reg_val);
-+		timeout++;
-+		msleep(100);
-+	} while (!(reg_val & (0x8 << 4)) && (timeout < 10));
-+
-+	return 0;
-+}
-+
-+static int cdns_hdptx_hdmi_phy_on(struct phy *phy)
-+{
-+	struct cdns_hdptx_hdmi_phy *cdns_phy = phy_get_drvdata(phy);
-+
-+	return hdptx_hdmi_phy_power_up(cdns_phy);
-+}
-+
-+static int cdns_hdptx_hdmi_phy_off(struct phy *phy)
-+{
-+	struct cdns_hdptx_hdmi_phy *cdns_phy = phy_get_drvdata(phy);
-+
-+	hdptx_hdmi_phy_power_down(cdns_phy);
-+	return 0;
-+}
-+
-+int	cdns_hdptx_hdmi_phy_valid(struct phy *phy, enum phy_mode mode, int submode,
-+							union phy_configure_opts *opts)
-+{
-+	u32 rate = opts->hdmi.pixel_clk_rate;
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_ctrl_table); i++)
-+		if (rate == pixel_clk_output_ctrl_table[i].pixel_clk_freq_min)
-+			return 0;
-+
-+	return -EINVAL;
-+}
-+
-+static int cdns_hdptx_hdmi_phy_init(struct phy *phy)
-+{
-+	return 0;
-+}
-+
-+static int cdns_hdptx_hdmi_configure(struct phy *phy,
-+				     union phy_configure_opts *opts)
-+{
-+	struct cdns_hdptx_hdmi_phy *cdns_phy = phy_get_drvdata(phy);
-+	int ret;
-+
-+	cdns_phy->pixel_clk_rate = opts->hdmi.pixel_clk_rate;
-+	cdns_phy->color_space = opts->hdmi.color_space;
-+	cdns_phy->bpc = opts->hdmi.bpc;
-+
-+	/* Check HDMI FW alive before HDMI PHY init */
-+	ret = hdptx_phy_check_alive(cdns_phy);
-+	if (ret == false) {
-+		dev_err(cdns_phy->dev, "NO HDMI FW running\n");
-+		return -ENXIO;
-+	}
-+
-+	/* Configure PHY */
-+	if (hdptx_hdmi_phy_cfg(cdns_phy, cdns_phy->pixel_clk_rate) < 0) {
-+		dev_err(cdns_phy->dev, "failed to set phy pclock\n");
-+		return -EINVAL;
-+	}
-+
-+	ret = hdptx_hdmi_phy_power_up(cdns_phy);
-+	if (ret < 0)
-+		return ret;
-+
-+	hdptx_hdmi_phy_set_vswing(cdns_phy);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops cdns_hdptx_hdmi_phy_ops = {
-+	.init		= cdns_hdptx_hdmi_phy_init,
-+	.configure	= cdns_hdptx_hdmi_configure,
-+	.power_on	= cdns_hdptx_hdmi_phy_on,
-+	.power_off	= cdns_hdptx_hdmi_phy_off,
-+	.validate   = cdns_hdptx_hdmi_phy_valid,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int cdns_hdptx_hdmi_phy_probe(struct platform_device *pdev)
-+{
-+	struct cdns_hdptx_hdmi_phy *cdns_phy;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct phy_provider *phy_provider;
-+	struct resource *res;
-+	struct phy *phy;
-+	int ret;
-+
-+	cdns_phy = devm_kzalloc(dev, sizeof(*cdns_phy), GFP_KERNEL);
-+	if (!cdns_phy)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, cdns_phy);
-+	cdns_phy->dev = dev;
-+	mutex_init(&cdns_phy->mbox_mutex);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return -ENODEV;
-+	cdns_phy->regs = devm_ioremap(dev, res->start, resource_size(res));
-+	if (IS_ERR(cdns_phy->regs))
-+		return PTR_ERR(cdns_phy->regs);
-+
-+	phy = devm_phy_create(dev, node, &cdns_hdptx_hdmi_phy_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy->attrs.mode = PHY_MODE_HDMI;
-+
-+	cdns_phy->phy = phy;
-+	phy_set_drvdata(phy, cdns_phy);
-+
-+	ret = hdptx_hdmi_clk_enable(cdns_phy);
-+	if (ret) {
-+		dev_err(dev, "Init clk fail\n");
-+		return -EINVAL;
-+	}
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(phy_provider)) {
-+		ret =  PTR_ERR(phy_provider);
-+		goto clk_disable;
-+	}
-+
-+	dev_dbg(dev, "probe success!\n");
-+
-+	return 0;
-+
-+clk_disable:
-+	hdptx_hdmi_clk_disable(cdns_phy);
-+
-+	return -EINVAL;
-+}
-+
-+static int cdns_hdptx_hdmi_phy_remove(struct platform_device *pdev)
-+{
-+	struct cdns_hdptx_hdmi_phy *cdns_phy = platform_get_drvdata(pdev);
-+
-+	hdptx_hdmi_clk_disable(cdns_phy);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id cdns_hdptx_hdmi_phy_of_match[] = {
-+	{
-+		.compatible = "cdns,hdptx-hdmi-phy",
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, cdns_hdptx_hdmi_phy_of_match);
-+
-+static struct platform_driver cdns_hdptx_hdmi_phy_driver = {
-+	.probe	= cdns_hdptx_hdmi_phy_probe,
-+	.remove = cdns_hdptx_hdmi_phy_remove,
-+	.driver = {
-+		.name	= "cdns-hdptx-hdmi-phy",
-+		.of_match_table	= cdns_hdptx_hdmi_phy_of_match,
-+	}
-+};
-+module_platform_driver(cdns_hdptx_hdmi_phy_driver);
-+
-+MODULE_AUTHOR("Sandor Yu <sandor.yu@nxp.com>");
-+MODULE_DESCRIPTION("Cadence HDP-TX HDMI PHY driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
-
+T24gRnJpLCAyMDIyLTExLTE4IGF0IDIwOjAxICswMTAwLCBGcmFuayBXdW5kZXJsaWNoIHdyb3Rl
+Og0KPiBGcm9tOiBTYW0gU2hpaCA8c2FtLnNoaWhAbWVkaWF0ZWsuY29tPg0KPiANCj4gVGhpcyBw
+YXRjaCBhZGRzIFVTQiBzdXBwb3J0IGZvciBNVDc5ODYuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBT
+YW0gU2hpaCA8c2FtLnNoaWhAbWVkaWF0ZWsuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBGcmFuayBX
+dW5kZXJsaWNoIDxmcmFuay13QHB1YmxpYy1maWxlcy5kZT4NCj4gLS0tDQo+IGNoYW5nZXMgY29t
+cGFyZWQgdG8gc2FtcyBvcmlnaW5hbCB2ZXJzaW9uOg0KPiAtIHJlb3JkZXIgeGhjaS1jbG9ja3Mg
+YmFzZWQgb24geWFtbCBiaW5kaW5nDQo+IA0KPiB2NToNCj4gIC0gdXBkYXRlIHJhbmdlcy9yZWcg
+b2YgdXNiLXBoeQ0KPiAgLSBub3QgYWRkZWQgUkIgZnJvbSBBbmdlbG9HaW9hY2NoaW5vIGZvciB2
+NCBiZWNhdXNlIG9mIHRoZXNlIGNoYW5nZXMNCj4gDQo+IHY2Og0KPiAtIHJlbW92ZSB1bnVzZWQg
+dXNiIHJlZ3VsYXRvcnMNCj4gLSByZW1vdmUgM3YzIHJlZ3VsYXRvciAod2lsbCBiZSBhZGRlZCB3
+aXRoIGVtbWMtcGF0Y2gpDQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
+dDc5ODZhLXJmYi5kdHMgfCAgOCArKysNCj4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
+bXQ3OTg2YS5kdHNpICAgIHwgNTUNCj4gKysrKysrKysrKysrKysrKysrKysNCj4gIGFyY2gvYXJt
+NjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ3OTg2Yi1yZmIuZHRzIHwgIDggKysrDQo+ICAzIGZpbGVz
+IGNoYW5nZWQsIDcxIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
+L2Jvb3QvZHRzL21lZGlhdGVrL210Nzk4NmEtcmZiLmR0cw0KPiBiL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvbWVkaWF0ZWsvbXQ3OTg2YS1yZmIuZHRzDQo+IGluZGV4IDAwNjg3OGUzZjJiMi4uODI4ZDUw
+NGE0ZTQ4IDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Nzk4
+NmEtcmZiLmR0cw0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Nzk4NmEt
+cmZiLmR0cw0KPiBAQCAtMTQwLDYgKzE0MCwxMCBAQCAmc3BpMSB7DQo+ICAJc3RhdHVzID0gIm9r
+YXkiOw0KPiAgfTsNCj4gIA0KPiArJnNzdXNiIHsNCj4gKwlzdGF0dXMgPSAib2theSI7DQo+ICt9
+Ow0KPiArDQo+ICAmc3dpdGNoIHsNCj4gIAlwb3J0cyB7DQo+ICAJCSNhZGRyZXNzLWNlbGxzID0g
+PDE+Ow0KPiBAQCAtMjAxLDYgKzIwNSwxMCBAQCAmdWFydDIgew0KPiAgCXN0YXR1cyA9ICJva2F5
+IjsNCj4gIH07DQo+ICANCj4gKyZ1c2JfcGh5IHsNCj4gKwlzdGF0dXMgPSAib2theSI7DQo+ICt9
+Ow0KPiArDQo+ICAmd2lmaSB7DQo+ICAJc3RhdHVzID0gIm9rYXkiOw0KPiAgCXBpbmN0cmwtbmFt
+ZXMgPSAiZGVmYXVsdCIsICJkYmRjIjsNCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvbWVkaWF0ZWsvbXQ3OTg2YS5kdHNpDQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
+ay9tdDc5ODZhLmR0c2kNCj4gaW5kZXggMjlkYTliOGVkNzUzLi5jNjliOGJmZjdmNGEgMTAwNjQ0
+DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ3OTg2YS5kdHNpDQo+ICsr
+KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ3OTg2YS5kdHNpDQo+IEBAIC0yODEs
+NiArMjgxLDYxIEBAIHNwaTE6IHNwaUAxMTAwYjAwMCB7DQo+ICAJCQlzdGF0dXMgPSAiZGlzYWJs
+ZWQiOw0KPiAgCQl9Ow0KPiAgDQo+ICsJCXNzdXNiOiB1c2JAMTEyMDAwMDAgew0KPiArCQkJY29t
+cGF0aWJsZSA9ICJtZWRpYXRlayxtdDc5ODYteGhjaSIsDQo+ICsJCQkJICAgICAibWVkaWF0ZWss
+bXRrLXhoY2kiOw0KPiArCQkJcmVnID0gPDAgMHgxMTIwMDAwMCAwIDB4MmUwMD4sDQo+ICsJCQkg
+ICAgICA8MCAweDExMjAzZTAwIDAgMHgwMTAwPjsNCj4gKwkJCXJlZy1uYW1lcyA9ICJtYWMiLCAi
+aXBwYyI7DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTczIElSUV9UWVBFX0xFVkVMX0hJ
+R0g+Ow0KPiArCQkJY2xvY2tzID0gPCZpbmZyYWNmZyBDTEtfSU5GUkFfSVVTQl9TWVNfQ0s+LA0K
+PiArCQkJCSA8JmluZnJhY2ZnIENMS19JTkZSQV9JVVNCX0NLPiwNCj4gKwkJCQkgPCZpbmZyYWNm
+ZyBDTEtfSU5GUkFfSVVTQl8xMzNfQ0s+LA0KPiArCQkJCSA8JmluZnJhY2ZnIENMS19JTkZSQV9J
+VVNCXzY2TV9DSz4sDQo+ICsJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9VMlUzX1hIQ0lfU0VMPjsN
+Cj4gKwkJCWNsb2NrLW5hbWVzID0gInN5c19jayIsDQo+ICsJCQkJICAgICAgInJlZl9jayIsDQo+
+ICsJCQkJICAgICAgIm1jdV9jayIsDQo+ICsJCQkJICAgICAgImRtYV9jayIsDQo+ICsJCQkJICAg
+ICAgInhoY2lfY2siOw0KPiArCQkJcGh5cyA9IDwmdTJwb3J0MCBQSFlfVFlQRV9VU0IyPiwNCj4g
+KwkJCSAgICAgICA8JnUzcG9ydDAgUEhZX1RZUEVfVVNCMz4sDQo+ICsJCQkgICAgICAgPCZ1MnBv
+cnQxIFBIWV9UWVBFX1VTQjI+Ow0KPiArCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gKwkJfTsN
+Cj4gKw0KPiArCQl1c2JfcGh5OiB0LXBoeUAxMWUxMDAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0g
+Im1lZGlhdGVrLG10Nzk4Ni10cGh5IiwNCj4gKwkJCQkgICAgICJtZWRpYXRlayxnZW5lcmljLXRw
+aHktdjIiOw0KPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ICsJCQkjc2l6ZS1jZWxscyA9
+IDwxPjsNCj4gKwkJCXJhbmdlcyA9IDwwIDAgMHgxMWUxMDAwMCAweDE3MDA+Ow0KPiArCQkJc3Rh
+dHVzID0gImRpc2FibGVkIjsNCj4gKw0KPiArCQkJdTJwb3J0MDogdXNiLXBoeUAwIHsNCj4gKwkJ
+CQlyZWcgPSA8MHgwIDB4NzAwPjsNCj4gKwkJCQljbG9ja3MgPSA8JnRvcGNrZ2VuDQo+IENMS19U
+T1BfREFfVTJfUkVGU0VMPiwNCj4gKwkJCQkJIDwmdG9wY2tnZW4NCj4gQ0xLX1RPUF9EQV9VMl9D
+S18xUF9TRUw+Ow0KPiArCQkJCWNsb2NrLW5hbWVzID0gInJlZiIsICJkYV9yZWYiOw0KPiArCQkJ
+CSNwaHktY2VsbHMgPSA8MT47DQo+ICsJCQl9Ow0KPiArDQo+ICsJCQl1M3BvcnQwOiB1c2ItcGh5
+QDcwMCB7DQo+ICsJCQkJcmVnID0gPDB4NzAwIDB4OTAwPjsNCj4gKwkJCQljbG9ja3MgPSA8JnRv
+cGNrZ2VuDQo+IENMS19UT1BfVVNCM19QSFlfU0VMPjsNCj4gKwkJCQljbG9jay1uYW1lcyA9ICJy
+ZWYiOw0KPiArCQkJCSNwaHktY2VsbHMgPSA8MT47DQo+ICsJCQl9Ow0KPiArDQo+ICsJCQl1MnBv
+cnQxOiB1c2ItcGh5QDEwMDAgew0KPiArCQkJCXJlZyA9IDwweDEwMDAgMHg3MDA+Ow0KPiArCQkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4NCj4gQ0xLX1RPUF9EQV9VMl9SRUZTRUw+LA0KPiArCQkJCQkg
+PCZ0b3Bja2dlbg0KPiBDTEtfVE9QX0RBX1UyX0NLXzFQX1NFTD47DQo+ICsJCQkJY2xvY2stbmFt
+ZXMgPSAicmVmIiwgImRhX3JlZiI7DQo+ICsJCQkJI3BoeS1jZWxscyA9IDwxPjsNCj4gKwkJCX07
+DQo+ICsJCX07DQo+ICsNCj4gIAkJZXRoc3lzOiBzeXNjb25AMTUwMDAwMDAgew0KPiAgCQkJICNh
+ZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiAgCQkJICNzaXplLWNlbGxzID0gPDE+Ow0KPiBkaWZmIC0t
+Z2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDc5ODZiLXJmYi5kdHMNCj4gYi9h
+cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Nzk4NmItcmZiLmR0cw0KPiBpbmRleCAyYzdm
+MWQ0ZmIzNTIuLmNkZmMyOTIwMDJjZiAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0
+cy9tZWRpYXRlay9tdDc5ODZiLXJmYi5kdHMNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9t
+ZWRpYXRlay9tdDc5ODZiLXJmYi5kdHMNCj4gQEAgLTE2NywxMCArMTY3LDE4IEBAICZzcGkxIHsN
+Cj4gIAlzdGF0dXMgPSAib2theSI7DQo+ICB9Ow0KPiAgDQo+ICsmc3N1c2Igew0KPiArCXN0YXR1
+cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gICZ1YXJ0MCB7DQo+ICAJc3RhdHVzID0gIm9rYXki
+Ow0KPiAgfTsNCj4gIA0KPiArJnVzYl9waHkgew0KPiArCXN0YXR1cyA9ICJva2F5IjsNCj4gK307
+DQo+ICsNCj4gICZ3aWZpIHsNCj4gIAlzdGF0dXMgPSAib2theSI7DQo+ICAJcGluY3RybC1uYW1l
+cyA9ICJkZWZhdWx0IiwgImRiZGMiOw0KDQpSZXZpZXdlZC1ieTogQ2h1bmZlbmcgWXVuIDxjaHVu
+ZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KDQpUaGFua3MgYSBsb3QNCg0KDQo=
