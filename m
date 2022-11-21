@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46705631928
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 05:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AC863192F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 05:26:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbiKUET0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Nov 2022 23:19:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47588 "EHLO
+        id S229568AbiKUE0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Nov 2022 23:26:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbiKUES7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 23:18:59 -0500
+        with ESMTP id S229726AbiKUE0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Nov 2022 23:26:10 -0500
 Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5C424BF0;
-        Sun, 20 Nov 2022 20:18:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669004323; cv=none; 
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD25248E3;
+        Sun, 20 Nov 2022 20:26:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669004756; cv=none; 
         d=zohomail.com; s=zohoarc; 
-        b=fyshxFY9Mc/+iJ1znLlt674Lkas5pFte2C+XYQTgLN7twzB6oiciAGD71SWwdKJYSWu9U14IBwlUNSCSiEQh3l7TUKYWlrhN/nNXMLG+Mt+xd65yPGBlPRn9+5GsKbAfdhrvrwNXnAJ94K6lG3MRI01cKHD6VwrwhSqOmja/7TQ=
+        b=NtsxhcrC2wzFQZOlFCxsJZPDDQFKsEBsNkR7UEv2lxf1ucCsV6yrCYhh5KpYYqKz9dXzLtTIVnWlL5Mz6dJhA/OzEp02o+b/A7Tv/LKFcZR6Ec3TT/Ysv8hDTbRzueyc3XnzFrMzSLaSjqQw5N4vsytluBpKgx9nRFhd9Q7UcMk=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669004323; h=Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=3mufr77oeRQMIDQ9BLCeK57+i5lF/oGGUHybbQbCGv0=; 
-        b=SVO8XJ6yGlRfdKEtCycXw6K1MAX46QfAe8vf4WVf0/6apAEPkDzPKJ5PX8fVP714NYbxijEqQVOPq0l30Qzxwoer8d4M7Pgtzw6G+efKQY+mBWvk2JOSpAIImm/Aj24lOAi3NU9ZX3HKzD19kE47UJiQMAEU7npXXrTMwrdUGak=
+        t=1669004756; h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=MQp3Bcww7uwH34e0QnChRkJJwq/5NAzIg0lalgR19co=; 
+        b=I4pi6Ji0iUgRMNAS9d4rKn2cf4HlU+ux9mYoa9D4f3654iieJgQgvBBXsRJJBKzKSNhihIFBkB4LzZu9Pq+PkiKpvLu6l4VZt6C/Ar97DkWi23mpcVyteZw5sUsW4gV3ojCS8SsnLxWy2dRcumfgGxjtcKqnFsy1sM9ChaFtuXU=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
         dkim=pass  header.i=icenowy.me;
         spf=pass  smtp.mailfrom=uwu@icenowy.me;
         dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669004323;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669004756;
         s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Reply-To;
-        bh=3mufr77oeRQMIDQ9BLCeK57+i5lF/oGGUHybbQbCGv0=;
-        b=bgWiYmXimeGexCxx/i1ZdvkWwgnY8ctOaoF23X/GecU0aP0ozpndtbVvorG9XYuG
-        jKJc4b90Y4mNnMsDYcjOYJp9RsKWkQ7RgvGnEJz2VHKIExV1WhLnh0DVOieKdrM8oPP
-        yYVyQLcerP1Ib9tbj82kd2UHkIJQzgnsqraBpu94=
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
+        bh=MQp3Bcww7uwH34e0QnChRkJJwq/5NAzIg0lalgR19co=;
+        b=CyMiwpmLl7/Whx6Sai27+Bqy58g7Yq2HjxGs92yFF6og+Ltfq2e5UtRruKwRP5a4
+        9YdwTka9zZa0npfTQxcLi1x9R7pk/zrqPui33H7+1q0FvC2+40limBgXpOFq/BjBNrI
+        386P/oCMKY+XZ0LA49IkIgeDKrSB5iHWO+mFM8Tg=
 Received: from edelgard.fodlan.icenowy.me (112.94.100.29 [112.94.100.29]) by mx.zohomail.com
-        with SMTPS id 1669004322259164.1933466310711; Sun, 20 Nov 2022 20:18:42 -0800 (PST)
+        with SMTPS id 1669004754310175.0741417958027; Sun, 20 Nov 2022 20:25:54 -0800 (PST)
 From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Gabriel Somlo <gsomlo@gmail.com>, Joel Stanley <joel@jms.id.au>
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH 3/3] dt-bindings: interrupt-controller: sifive,plic: add OpenC906 compatible
-Date:   Mon, 21 Nov 2022 12:17:57 +0800
-Message-Id: <20221121041757.418645-4-uwu@icenowy.me>
+        Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 1/2] dt-bindings: timer: add a binding for LiteX Timer
+Date:   Mon, 21 Nov 2022 12:25:44 +0800
+Message-Id: <20221121042545.421532-1-uwu@icenowy.me>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221121041757.418645-1-uwu@icenowy.me>
-References: <20221121041757.418645-1-uwu@icenowy.me>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
@@ -63,29 +61,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T-Head OpenC906 is a open-source-licensed fixed-configuration of C906,
-which is now public and able to be integrated.
+The LiteX SoC generator has a timer core, which by default only
+generates a simple down counter.
 
-Add a compatible for the PLIC shipped as part of OpenC906, which should
-just be ordinary C9xx PLIC.
+Add a DT binding for it.
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/timer/litex,timer.yaml           | 52 +++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/litex,timer.yaml
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 99e01f4d0a69..4d14c5f5c611 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -65,6 +65,7 @@ properties:
-       - items:
-           - enum:
-               - allwinner,sun20i-d1-plic
-+              - thead,openc906-plic
-           - const: thead,c900-plic
-       - items:
-           - const: sifive,plic-1.0.0
+diff --git a/Documentation/devicetree/bindings/timer/litex,timer.yaml b/Documentation/devicetree/bindings/timer/litex,timer.yaml
+new file mode 100644
+index 000000000000..bece07586c6b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/litex,timer.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/litex,timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LiteX Timer
++
++maintainers:
++  - Icenowy Zheng <uwu@icenowy.me>
++
++description: |
++  The LiteX Timer is a count-down timer that is defaultly embedded
++  into all LiteX SoCs, unless explicitly disabled. It's fed directly
++  by the system clock like other LiteX peripherals.
++
++properties:
++  compatible:
++    const: litex,timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  litex,width:
++    description:
++      The width of the timer's value, specified as the width argument
++      when creating an instance of litex.soc.cores.Timer.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - litex,width
++
++additionalProperties: false
++
++examples:
++  - |
++     timer@a0006000 {
++        compatible = "litex,timer";
++        reg = <0xa0006000 0x20>;
++        clocks = <&sys_clk>;
++        interrupts = <17>;
++        litex,width = <32>;
++     };
 -- 
 2.37.1
 
