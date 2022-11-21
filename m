@@ -2,143 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 907CF631EA2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E43EE631EB8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:48:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiKUKph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:45:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48166 "EHLO
+        id S229514AbiKUKsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:48:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiKUKpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:45:36 -0500
-Received: from mx1.emlix.com (mx1.emlix.com [136.243.223.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5862E7AF5B;
-        Mon, 21 Nov 2022 02:45:34 -0800 (PST)
-Received: from mailer.emlix.com (unknown [81.20.119.6])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.emlix.com (Postfix) with ESMTPS id C94BA5FB8C;
-        Mon, 21 Nov 2022 11:45:32 +0100 (CET)
-Date:   Mon, 21 Nov 2022 11:45:32 +0100
-From:   Edmund Berenson <edmund.berenson@emlix.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229851AbiKUKsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:48:12 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BB0FA12D08;
+        Mon, 21 Nov 2022 02:48:10 -0800 (PST)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 8EFE580A7;
+        Mon, 21 Nov 2022 10:37:57 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iio: adc: ad7923: adjust documentation
-Message-ID: <20221121104532.dibxead6kiv3xqzw@emlix.com>
-References: <20221120153419.GA3094349-robh@kernel.org>
- <20221120170630.29354-1-edmund.berenson@emlix.com>
- <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
- <20221121102600.uwmgivssgy7oakxf@emlix.com>
- <3a50ba73-aab7-f6db-5e42-beb7e193c5bf@linaro.org>
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 1/1] ARM: dts: Unify pwm-omap-dmtimer node names
+Date:   Mon, 21 Nov 2022 12:48:04 +0200
+Message-Id: <20221121104804.1672-1-tony@atomide.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3a50ba73-aab7-f6db-5e42-beb7e193c5bf@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 11:31:33AM +0100, Krzysztof Kozlowski wrote:
-> On 21/11/2022 11:26, Edmund Berenson wrote:
-> > On Mon, Nov 21, 2022 at 10:13:57AM +0100, Krzysztof Kozlowski wrote:
-> >> On 20/11/2022 18:06, Edmund Berenson wrote:
-> >>> - Add the ad7927 compatibility string, with fallback compatibility
-> >>> to ad7928.
-> >>> - ad7923 and ad7924 are treated the same in the driver, show
-> >>> the relationship in the documentation.
-> >>>
-> >>> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> >>> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
-> >>> ---
-> >>>  .../bindings/iio/adc/adi,ad7923.yaml          | 26 ++++++++++++-------
-> >>
-> >> Do not respond with new patch to some old thread. Each patchset starts a
-> >> new thread.
-> >>
-> > Sorry I didn't know this is the preferred way. I will send new patch
-> > version as new thread in the future.
-> >>>  1 file changed, 17 insertions(+), 9 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> >>> index 07f9d1c09c7d..e553853e25d5 100644
-> >>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> >>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> >>> @@ -11,7 +11,7 @@ maintainers:
-> >>>  
-> >>>  description: |
-> >>>    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
-> >>> -   AD7918, AD7928 8 Channels ADCs.
-> >>> +   AD7918, AD7927, AD7928 8 Channels ADCs.
-> >>>  
-> >>>    Specifications about the part can be found at:
-> >>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
-> >>> @@ -20,14 +20,22 @@ description: |
-> >>>  
-> >>>  properties:
-> >>>    compatible:
-> >>> -    enum:
-> >>> -      - adi,ad7904
-> >>> -      - adi,ad7914
-> >>> -      - adi,ad7923
-> >>> -      - adi,ad7924
-> >>> -      - adi,ad7908
-> >>> -      - adi,ad7918
-> >>> -      - adi,ad7928
-> >>> +    oneOf:
-> >>> +      - enum:
-> >>> +          - adi,ad7904
-> >>> +          - adi,ad7914
-> >>> +          - adi,ad7908
-> >>
-> >> You already started shuffling the entries, so make them ordered. What's
-> >> the point of changing the order from one non-sorted to another non-sorted?
-> >>
-> >>> +          - adi,ad7918
-> >>> +          - adi,ad7923
-> >>> +          - adi,ad7924
-> >>
-> >> Then deprecate this as alone compatible.
-> >>
-> >>> +          - adi,ad7927> +          - adi,ad7928
-> >>
-> >> Ditto
-> >>
-> >>> +      - items:
-> >>> +          - const: adi,ad7923
-> >>> +          - const: adi,ad7924
-> >>
-> >> I would expect lower number as fallback.
-> > If I remove alone compatibility of 7924 and 7927 in the documentation,
-> 
-> I don't understand. 7924 and 7927 are not compatible with each other -
-> neither in old code nor in new - so what do you want to remove?
-> 
-> > I will have to remove explicit compatibility match on the driver side,
-> > correct?
-> > Just want to make sure I don't misunderstand you.
-> 
-> My comment to which you responded was about order of items. Usually
-> lower number means older device and usually older device is the fallback.
-My response was meant to respond to both your comment to "deprecate
-alone compatibility" and "lower number should be fallback"
-Which I understood in the following way: because 7923, 7924 for one and
-7927, 7928 are compatible with each other I will remove
-7924 compatible string from driver and not add 7927 to the driver and
-only add it to the documentation.
-> Best regards,
-> Krzysztof
-> 
+There is no reg property for pwm-omap-dmtimer.
 
-Thank you and best regards,
-Edmund
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+
+Changes since v1:
+
+- Use hex instead of dec for pwm10 and 11
+
+- Add missing #pwm-cells for am335x-guardian
+
+---
+ arch/arm/boot/dts/am335x-guardian.dts            | 3 ++-
+ arch/arm/boot/dts/am3517-evm.dts                 | 2 +-
+ arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi | 2 +-
+ arch/arm/boot/dts/motorola-mapphone-common.dtsi  | 4 ++--
+ arch/arm/boot/dts/omap3-gta04.dtsi               | 2 +-
+ arch/arm/boot/dts/omap3-n900.dts                 | 2 +-
+ 6 files changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm/boot/dts/am335x-guardian.dts b/arch/arm/boot/dts/am335x-guardian.dts
+--- a/arch/arm/boot/dts/am335x-guardian.dts
++++ b/arch/arm/boot/dts/am335x-guardian.dts
+@@ -103,8 +103,9 @@ panel-info {
+ 
+ 	};
+ 
+-	guardian_beeper: dmtimer-pwm@7 {
++	guardian_beeper: pwm-7 {
+ 		compatible = "ti,omap-dmtimer-pwm";
++		#pwm-cells = <3>;
+ 		ti,timers = <&timer7>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&guardian_beeper_pins>;
+diff --git a/arch/arm/boot/dts/am3517-evm.dts b/arch/arm/boot/dts/am3517-evm.dts
+--- a/arch/arm/boot/dts/am3517-evm.dts
++++ b/arch/arm/boot/dts/am3517-evm.dts
+@@ -150,7 +150,7 @@ bl: backlight {
+ 		enable-gpios = <&gpio6 22 GPIO_ACTIVE_HIGH>; /* gpio_182 */
+ 	};
+ 
+-	pwm11: dmtimer-pwm@11 {
++	pwm11: pwm-b {
+ 		compatible = "ti,omap-dmtimer-pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm_pins>;
+diff --git a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
+--- a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
++++ b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
+@@ -59,7 +59,7 @@ led2 {
+ 		};
+ 	};
+ 
+-	pwm10: dmtimer-pwm {
++	pwm10: pwm-a {
+ 		compatible = "ti,omap-dmtimer-pwm";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pwm_pins>;
+diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+--- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
++++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+@@ -133,7 +133,7 @@ soundcard {
+ 		dais = <&mcbsp2_port>, <&mcbsp3_port>;
+ 	};
+ 
+-	pwm8: dmtimer-pwm-8 {
++	pwm8: pwm-8 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vibrator_direction_pin>;
+ 
+@@ -143,7 +143,7 @@ pwm8: dmtimer-pwm-8 {
+ 		ti,clock-source = <0x01>;
+ 	};
+ 
+-	pwm9: dmtimer-pwm-9 {
++	pwm9: pwm-9 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vibrator_enable_pin>;
+ 
+diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
+--- a/arch/arm/boot/dts/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/omap3-gta04.dtsi
+@@ -147,7 +147,7 @@ backlight: backlight {
+ 		pinctrl-0 = <&backlight_pins>;
+ 	};
+ 
+-	pwm11: dmtimer-pwm {
++	pwm11: pwm-b {
+ 		compatible = "ti,omap-dmtimer-pwm";
+ 		ti,timers = <&timer11>;
+ 		#pwm-cells = <3>;
+diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
+--- a/arch/arm/boot/dts/omap3-n900.dts
++++ b/arch/arm/boot/dts/omap3-n900.dts
+@@ -156,7 +156,7 @@ battery: n900-battery {
+ 		io-channel-names = "temp", "bsi", "vbat";
+ 	};
+ 
+-	pwm9: dmtimer-pwm {
++	pwm9: pwm-9 {
+ 		compatible = "ti,omap-dmtimer-pwm";
+ 		#pwm-cells = <3>;
+ 		ti,timers = <&timer9>;
+-- 
+2.38.1
