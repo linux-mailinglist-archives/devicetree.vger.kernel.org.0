@@ -2,131 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 361A2631D15
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DB81631D3B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:47:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiKUJoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52714 "EHLO
+        id S230397AbiKUJra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:47:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbiKUJoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:44:09 -0500
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C87C76B;
-        Mon, 21 Nov 2022 01:44:08 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id l15so6922061qtv.4;
-        Mon, 21 Nov 2022 01:44:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ieZjlpZ3qak0sadfZHGHEvvE6+oSvPeWOGhOtNL2sHo=;
-        b=YEMsFss3MSVYlivAOZxbhRt+JQgMIdd/oYTUJWWa48UeS3gqJ6iFf4+WzprnoKkk1s
-         ei/BfY1i0Bxa9WV19IMcFy1whDafgCmZrARGGtdEdtgzfDQB4zRi6/fONSDLJczC3wm8
-         1x+CVYUOFvADH9RJ/EfWbNGky45DJd5qKfBKG0vd0KqjEelYGhKNARtj6NmMkipXFwmC
-         pERkbQIu0EduvP/khTAhH4sY7d9GVgcMxMs+ES2Rv6K0EyP1Ex4cnms+k6jrsbvOUVRM
-         3P9XwpiiN29nG3je7NZmqDLwXQjdamFVps05B0SBt88KtsgmNAoXFqxdebs1JfSk05Z6
-         X2tA==
-X-Gm-Message-State: ANoB5pkRHStf9jWVIvMbxwslxCU5clX7IgDt21fIbQI85t04ENwLE/cp
-        xUhUdIysJGP9PCoFz3igczMZJSkq3Q+CGQ==
-X-Google-Smtp-Source: AA0mqf4advnKH/QJjO2O3IzRBFqMA26HO9FO2ysdtDIh/MVCMXs8jmyj0JH9Yi0YLPEkH4zmTGHuUg==
-X-Received: by 2002:ac8:65d0:0:b0:3a5:4859:8176 with SMTP id t16-20020ac865d0000000b003a548598176mr16778692qto.478.1669023846954;
-        Mon, 21 Nov 2022 01:44:06 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id x13-20020a05620a448d00b006fa4ac86bfbsm7829086qkp.55.2022.11.21.01.44.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 01:44:05 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id z192so12965836yba.0;
-        Mon, 21 Nov 2022 01:44:05 -0800 (PST)
-X-Received: by 2002:a5b:24b:0:b0:6ca:3b11:8d76 with SMTP id
- g11-20020a5b024b000000b006ca3b118d76mr16342904ybp.202.1669023844963; Mon, 21
- Nov 2022 01:44:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20221118211103.GA1334449-robh@kernel.org>
-In-Reply-To: <20221118211103.GA1334449-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Nov 2022 10:43:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUM9e3mvfRV2jTBgPH7Xp=wW-k_JrAr5vuZ=PJ-JmjSqw@mail.gmail.com>
-Message-ID: <CAMuHMdUM9e3mvfRV2jTBgPH7Xp=wW-k_JrAr5vuZ=PJ-JmjSqw@mail.gmail.com>
-Subject: Re: [GIT PULL] Stable branch for .dts to .dtso rename
-To:     Rob Herring <robh@kernel.org>, soc@kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Andrew Davis <afd@ti.com>, Michal Simek <michal.simek@amd.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S230433AbiKUJrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:47:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0304976ED;
+        Mon, 21 Nov 2022 01:47:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6042F60FA5;
+        Mon, 21 Nov 2022 09:47:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA49C433C1;
+        Mon, 21 Nov 2022 09:47:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1669024033;
+        bh=gmfaWGBSorIYw4Zwv5/28r4h97AtvcQ5z5+f8XvcvKs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=IsXkM6S0Q5gHIt2WC6JfP9kkxoBLjduIwsWgNBO0HsHmrrISN3lUCKmLbWiPkPLOy
+         rJay10xnOPbXzmUlOFsA5FYTt7IfxffQgYSjJPJ2eCRB7KOhuevM42OjseGKo8EtjN
+         UjjwP5VXWOBHM6w2bNjrZ36JTuMxJbE6X4dGO9u4=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org
+Subject: [PATCH 5/5] driver core: pass a const * into of_device_uevent()
+Date:   Mon, 21 Nov 2022 10:46:49 +0100
+Message-Id: <20221121094649.1556002-5-gregkh@linuxfoundation.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221121094649.1556002-1-gregkh@linuxfoundation.org>
+References: <20221121094649.1556002-1-gregkh@linuxfoundation.org>
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2328; i=gregkh@linuxfoundation.org; h=from:subject; bh=gmfaWGBSorIYw4Zwv5/28r4h97AtvcQ5z5+f8XvcvKs=; b=owGbwMvMwCRo6H6F97bub03G02pJDMnVnpx5T7Ju3t5s9dnoy+EDZYYtHicKhRtu9wXwN18qPOXX z1jeEcvCIMjEICumyPJlG8/R/RWHFL0MbU/DzGFlAhnCwMUpABOZvpphwZKtfN5/Q9rbAlzYmwLnSX YdtXt+lWEOF2vo6utq0m8Lbm5r3poysetq8mRLAA==
+X-Developer-Key: i=gregkh@linuxfoundation.org; a=openpgp; fpr=F4B60CC5BF78C2214A313DCB3147D40DDB2DFB29
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, soc-people,
+of_device_uevent() does not modify the struct device * passed into it,
+so make it a const * to enforce this.  Also the documentation for the
+function was really wrong so fix that up at the same time.
 
-On Fri, Nov 18, 2022 at 10:11 PM Rob Herring <robh@kernel.org> wrote:
-> .dts files for overlays are getting renamed to .dtso. The kbuild support
-> for that in in this stable branch. The .dts patches that depend on this
-> are here[1]. There's also some new .dts overlay files posted[2].
->
-> I'll leave it to the SoC and sub-arch maintainers to decide how you all
-> want to handle it from here. Either SoC maintainers can take this branch
-> and dependent rename patches or each sub-arch can. In any case, I would
-> like it converted over in 6.2 so we can remove .dts -> .dtbo build
-> support ASAP and not be carrying both.
->
-> Rob
->
-> [1] https://lore.kernel.org/all/20221024173434.32518-1-afd@ti.com/
-> [2] https://lore.kernel.org/all/20221118190126.100895-12-linux@fw-web.de/
->
-> The following changes since commit 9abf2313adc1ca1b6180c508c25f22f9395cc780:
->
->   Linux 6.1-rc1 (2022-10-16 15:36:24 -0700)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/dtbo-rename
->
-> for you to fetch changes up to dcad240c15c10bebdccd1f29f1a44787528f2d76:
->
->   kbuild: Cleanup DT Overlay intermediate files as appropriate (2022-11-18 14:45:30 -0600)
->
-> ----------------------------------------------------------------
-> Andrew Davis (4):
->       kbuild: Allow DTB overlays to built from .dtso named source files
->       kbuild: Allow DTB overlays to built into .dtbo.S files
->       staging: pi433: overlay: Rename overlay source file from .dts to .dtso
->       kbuild: Cleanup DT Overlay intermediate files as appropriate
->
-> Frank Rowand (1):
->       of: overlay: rename overlay source files from .dts to .dtso
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/of/device.c       | 6 +++---
+ include/linux/of_device.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-Thanks, pulled into renesas-devel for v6.2, with the "renesas"
-patch[1] applied on top, for a special late pull request for soc.
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 8cefe5a7d04e..c674a13c3055 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -332,10 +332,10 @@ EXPORT_SYMBOL_GPL(of_device_modalias);
+ 
+ /**
+  * of_device_uevent - Display OF related uevent information
+- * @dev:	Device to apply DMA configuration
+- * @env:	Kernel object's userspace event reference
++ * @dev:	Device to display the uevent information for
++ * @env:	Kernel object's userspace event reference to fill up
+  */
+-void of_device_uevent(struct device *dev, struct kobj_uevent_env *env)
++void of_device_uevent(const struct device *dev, struct kobj_uevent_env *env)
+ {
+ 	const char *compat, *type;
+ 	struct alias_prop *app;
+diff --git a/include/linux/of_device.h b/include/linux/of_device.h
+index 1a803e4335d3..ab7d557d541d 100644
+--- a/include/linux/of_device.h
++++ b/include/linux/of_device.h
+@@ -35,7 +35,7 @@ extern const void *of_device_get_match_data(const struct device *dev);
+ extern ssize_t of_device_modalias(struct device *dev, char *str, ssize_t len);
+ extern int of_device_request_module(struct device *dev);
+ 
+-extern void of_device_uevent(struct device *dev, struct kobj_uevent_env *env);
++extern void of_device_uevent(const struct device *dev, struct kobj_uevent_env *env);
+ extern int of_device_uevent_modalias(struct device *dev, struct kobj_uevent_env *env);
+ 
+ static inline struct device_node *of_cpu_device_node_get(int cpu)
+@@ -64,7 +64,7 @@ static inline int of_driver_match_device(struct device *dev,
+ 	return 0;
+ }
+ 
+-static inline void of_device_uevent(struct device *dev,
++static inline void of_device_uevent(const struct device *dev,
+ 			struct kobj_uevent_env *env) { }
+ 
+ static inline const void *of_device_get_match_data(const struct device *dev)
+-- 
+2.38.1
 
-Alternatively, the soc people could just apply [1] directly, if they prefer
-doing it that way.
-
-Thanks!
-
-[1] https://lore.kernel.org/all/20221024173434.32518-6-afd@ti.com/
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
