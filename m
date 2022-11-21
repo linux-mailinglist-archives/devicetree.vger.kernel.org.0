@@ -2,167 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 383616320AE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FB436320B9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:34:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbiKULcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:32:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57022 "EHLO
+        id S231282AbiKULeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:34:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbiKULcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:32:07 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E89BFF5D
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:27:05 -0800 (PST)
-Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A50353F513
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:27:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1669030023;
-        bh=nVDeZyW08L6nlsmG9j40la0+32+2f6F/+Ex3JCMFolQ=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=RMHBFopqbrm4ahbWARLygpU613O26PLOhmQ7ewl7YFyhIaYddu0Y4lhaWmxm+5B1b
-         99pGBB3uWuKGC0p0rKtg2PFT5Wq48e4cSDxqNa1NPvvPdTNrvsb0QxC0TFM0mwHl9n
-         WFLOc0jtTAE2yiXWUWDgHPJSIgwZrJMRPvncPES6hK/ikpwyab+XEPRB3oBW/nHWje
-         e82V0ayXkCL/OUvLHQOdngGvCWR5vH5cy+xf7SLjOdThZX5axpb/cYCeFyh4qDbGIU
-         UYrMh04NcAnkx9nTjAiufQM7qYQBrDE2B3BWU5j5bMYMrzXKrV7l0OZ6w0d5FVGIGm
-         H6fp9UjriSutg==
-Received: by mail-yb1-f197.google.com with SMTP id h16-20020a255f50000000b006e880b47e6fso7938390ybm.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 03:27:03 -0800 (PST)
+        with ESMTP id S231285AbiKULdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:33:43 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2483A3057F;
+        Mon, 21 Nov 2022 03:29:29 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id n20so27929508ejh.0;
+        Mon, 21 Nov 2022 03:29:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p5wAGqxHFekK2a3K2dnGtE+wgtyOKfjyzcWPwOBM3e4=;
+        b=hHGRc+ErTgVBmDvQpU9tTYMO6uC7Unl0nVAMHyEK7UY8zQO8787ASrZ0ZInLZL0MqD
+         ETbvZNNr4I18qonBpjwUxchDp8HAgYQQiqj2+3lPzCvImGmWb7PNdoWHBw5qlDqjqiNT
+         L9zkXLA0djixZGILG9S5CIFJVzu0oWe8tK6aPtghfpec9Rl66sl71Jw3rEE0dkG/5SPY
+         +TJVnLtXjpGleHAzfeUOtulCSRF/+fGEvgYhEZLUSEmBOxx+gV2DvmyWhMlzhiaJfhvU
+         +MJGAfMQy8drTOWd7pv2mx3fXv1YiJkUda64YVsR+pO8wtngAsRk/Rpwm5uDkxoCW+0p
+         flxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nVDeZyW08L6nlsmG9j40la0+32+2f6F/+Ex3JCMFolQ=;
-        b=dh70PUstsdu4YmdgrkDwI+0uJ6tjKRpIxlGgMt+eO1x3h1zLmKNSFpRgpx4/W+X+ZT
-         Gluu0ZzWoAVOD7W6vWSewG9g51/Iuy2fUEjxk4k2Al/jUDuV0s0KUE4MIncf6ES23X6e
-         jVlk5SQPayuIlsUHzJF8yvnUSe9g+C7OdHIrljyCrqrti9TI3sah18vqdGnELAi9tvml
-         BOH6OYGkaGq+v4ITVjryVAGCAwsDLIhc7s1T8Yr0W5nKBgdYpEU1Y6Tni7ZypC/NRCND
-         I1P3AC/+KyT+9pOiZ5v608YzDeDVaUWrWxK3T8gg49NDVlYJh5WWfq7ccSnyhfrmd1PN
-         GPww==
-X-Gm-Message-State: ANoB5pniuFfn63/JezPwB4E8GxD0dkiM12BrprQoFovk1B6y+s1c3ooD
-        oMRawGHvV4t4ubkNCcPafvNp4eCdAk7KwFfN/IHRE87+HMq31MT8kT7+/nE9DOtGohxdo+dIGFX
-        0VBMrx6MhGzWa/susPrno6O9lox1RmQLO8+8H1icYZ67ZKFLLb4WmDN8=
-X-Received: by 2002:a81:7287:0:b0:36d:451:1ae3 with SMTP id n129-20020a817287000000b0036d04511ae3mr17133993ywc.412.1669030022443;
-        Mon, 21 Nov 2022 03:27:02 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf7BNoHMhxvvMA27fb1kHBCpUPwqHXSX7q0wPPmbNiJG25wYB+LqAmx8G+JjyU2pjpZ5G11Fsrh4Vg711umxRCY=
-X-Received: by 2002:a81:7287:0:b0:36d:451:1ae3 with SMTP id
- n129-20020a817287000000b0036d04511ae3mr17133979ywc.412.1669030022234; Mon, 21
- Nov 2022 03:27:02 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=p5wAGqxHFekK2a3K2dnGtE+wgtyOKfjyzcWPwOBM3e4=;
+        b=ZRTAEikTBvLEsGJfna5/HK7TlNbG7MguzzXEt6OrmxkJjxTeCFQoo4vRLS4acXRuzZ
+         lj/r6fjJSoFLKees/ddw+3X2TA3ZCpx4NsMoS5O4OS5OvVHs6RhDBEFBkIlTRvibP9m7
+         d4jqY7laFUgrCeJAosC5ys1QkLq+KH58AWrKj07GNRoEh12c/9qIrSdoGs2dzfMqRXBn
+         W9h0ImhBnCZK7V+Qzv+eoldIDCSyovN1IY+iEjPMa2bV8PjoGoe1UEEUNuUAumcJbbF7
+         XAj7CZxUElIWQwJTCo99VgD3TalkTGhQhwEIkWvZ1l/gRTV0Cvl1vCiJqDHtsbSKpoLx
+         9bRQ==
+X-Gm-Message-State: ANoB5pmqdEno/g+c28FzrJihzg6Q/okfjZFzngZult4kDTPxRMuvSX6L
+        CIUfKzeIJQvus06drvhLhP0=
+X-Google-Smtp-Source: AA0mqf4yRlIfdY/MUfL3UoaCa7+S+Ok0mR2+dPe7bQkvja+lPtuJ4zId7zkYJDriUe88r4sgje+z6A==
+X-Received: by 2002:a17:906:a8a:b0:7ae:6cdd:9bc9 with SMTP id y10-20020a1709060a8a00b007ae6cdd9bc9mr14614529ejf.619.1669030167659;
+        Mon, 21 Nov 2022 03:29:27 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id o13-20020a170906768d00b0073dc4385d3bsm4857902ejm.105.2022.11.21.03.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 03:29:27 -0800 (PST)
+Message-ID: <36b1389a-f08c-96df-47d5-e8ca93b9f8ab@gmail.com>
+Date:   Mon, 21 Nov 2022 12:29:25 +0100
 MIME-Version: 1.0
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-5-hal.feng@starfivetech.com> <CAJM55Z8z9OLU5_Z0HiyKN0mMZHrKSkGJqbP_1QOw3nEt6b5MxQ@mail.gmail.com>
- <4dd7ebaf-89db-3c22-e8bc-e9f7211fa06b@starfivetech.com>
-In-Reply-To: <4dd7ebaf-89db-3c22-e8bc-e9f7211fa06b@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 21 Nov 2022 12:26:45 +0100
-Message-ID: <CAJM55Z-eQMXES0v4m-a6THyydyCDhqD0=ETjk8_bWxTw_Q5sLw@mail.gmail.com>
-Subject: Re: [PATCH v2 04/14] reset: starfive: Factor out common JH71X0 reset code
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH dt-schema.git] schemas: add NVMEM cell with
+ #nvmem-cell-cells
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Michael Walle <michael@walle.cc>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20221121105830.7411-1-zajec5@gmail.com>
+ <259ad74e-ec86-34e6-661f-7b7b172c4ddd@linaro.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <259ad74e-ec86-34e6-661f-7b7b172c4ddd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Nov 2022 at 10:24, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> On Sat, 19 Nov 2022 00:39:35 +0800, Emil Renner Berthing wrote:
-> > On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
-> > > diff --git a/drivers/reset/starfive/reset-starfive-jh7100.c b/drivers/reset/starfive/reset-starfive-jh71x0.c
-> > > similarity index 50%
-> > > copy from drivers/reset/starfive/reset-starfive-jh7100.c
-> > > copy to drivers/reset/starfive/reset-starfive-jh71x0.c
-> > > index fc44b2fb3e03..1e230f3f9841 100644
-> > > --- a/drivers/reset/starfive/reset-starfive-jh7100.c
-> > > +++ b/drivers/reset/starfive/reset-starfive-jh71x0.c
->
-> [...]
->
-> > > -static int __init jh7100_reset_probe(struct platform_device *pdev)
-> > > +int reset_starfive_jh7100_register(struct device *dev, struct device_node *of_node,
-> > > +                                  void __iomem *assert, void __iomem *status,
-> > > +                                  const u64 *asserted, unsigned int nr_resets,
-> > > +                                  bool is_module)
-> > >  {
-> > >         struct jh7100_reset *data;
-> > >
-> > > -       data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> > > +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> > >         if (!data)
-> > >                 return -ENOMEM;
-> > >
-> > > -       data->base = devm_platform_ioremap_resource(pdev, 0);
-> > > -       if (IS_ERR(data->base))
-> > > -               return PTR_ERR(data->base);
-> > > -
-> > >         data->rcdev.ops = &jh7100_reset_ops;
-> > > -       data->rcdev.owner = THIS_MODULE;
-> > > -       data->rcdev.nr_resets = JH7100_RSTN_END;
-> > > -       data->rcdev.dev = &pdev->dev;
-> > > -       data->rcdev.of_node = pdev->dev.of_node;
-> > > +       if (is_module)
-> > > +               data->rcdev.owner = THIS_MODULE;
-> >
-> > nit: consider just passing the owner directly, so this would just be
-> > data->rcdev.owner = owner;
-> >
-> > ..and callers that used false can just pass NULL.
->
-> Yeah, will fix it.
->
-> >
-> > > +       data->rcdev.nr_resets = nr_resets;
-> > > +       data->rcdev.dev = dev;
-> > > +       data->rcdev.of_node = of_node;
-> >
-> > Is it important to register this with the auxiliary device and not
-> > just use the parent device?
->
-> I'm not sure whether it still works if we use the same device,
+On 21.11.2022 12:25, Krzysztof Kozlowski wrote:
+> On 21/11/2022 11:58, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> Some NVMEM cells may provide more than 1 value. An example can be base
+>> MAC address that is used for calculating multiple MACs (for few
+>> different devices). For specifying value to read phandle needs to be
+>> used with an argument.
+>>
+>> Cc: Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>
+>> Cc: Michael Walle <michael@walle.cc>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>> This bit is required for moving forward with the
+>> [PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
+>> https://lore.kernel.org/linux-arm-kernel/20220901221857.2600340-1-michael@walle.cc/
+>>
+>> As pointed out by Rob #nvmem-cell-cells should be added to the dt-schema
+>> and not a Linux binding:
+>> Re: [PATCH v2 15/20] dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
+>> https://lore.kernel.org/linux-arm-kernel/20220912192038.GA1661550-robh@kernel.org/
+>>
+>> sl28 is one example that needs #nvmem-cell-cells
+>> u-boot,env is another one
+>>
+>> Please let me know if I got this binding right at all.
+>> ---
+>>   dtschema/schemas/nvmem/nvmem-cell.yaml | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>   create mode 100644 dtschema/schemas/nvmem/nvmem-cell.yaml
+>>
+>> diff --git a/dtschema/schemas/nvmem/nvmem-cell.yaml b/dtschema/schemas/nvmem/nvmem-cell.yaml
+>> new file mode 100644
+>> index 0000000..dfa99b8
+>> --- /dev/null
+>> +++ b/dtschema/schemas/nvmem/nvmem-cell.yaml
+>> @@ -0,0 +1,23 @@
+>> +# SPDX-License-Identifier: BSD-2-Clause
+>> +$id: "http://devicetree.org/schemas/nvmem/nvmem-cell.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/base.yaml#"
+> 
+> Drop quotes from both.
+> 
+>> +
+>> +title: NVMEM Cell Common Properties
+>> +description: "Schema for NVMEM cell devicetree bindings"
+> 
+> Drop quotes.
+> 
+>> +maintainers:
+>> +  - Rafał Miłecki <rafal@milecki.pl>
+>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> +
+>> +# always select the core schema
+>> +select: true
+>> +
+>> +properties:
+>> +  "#nvmem-cell-cells":
+>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> 
+> Drop quotes.
+> 
+> Rest looks fine to me, except a bit funny cell-cell name, but that's
+> just life. :)
 
-Try it.
+Bothers me a bit too, I was even thinking about renaming NVMEM cells to
+NVMEM entries but I'm not sure if it's not too late for that.
 
-> but
-> it's general to separate the devices of clock and reset. They have
-> different device names and different drivers.
->
-> Best regards,
-> Hal
->
-> > If not you can just always pass the device that has the right of_node
-> > and have this be
-> >
-> > data->rcdev.of_node = dev->of_node;
-> >
-> > > +
-> > >         spin_lock_init(&data->lock);
-> > > +       data->assert = assert;
-> > > +       data->status = status;
-> > > +       data->asserted = asserted;
-> > >
-> > > -       return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> > > +       return devm_reset_controller_register(dev, &data->rcdev);
-> > >  }
->
+We already have "nvmem-cells" and "nvmem-cell-names" properties so
+adding "entries" not would be probably confusing.
+
+
+>> +    description: >
+>> +      Some NVMEM cells may consist of raw data that requires some extra
+>> +      processing. They may provide more than 1 value.
+>> +
+>> +      Passing extra argument(s) allows selecting data to access.
+>> +
+>> +additionalProperties: true
+
