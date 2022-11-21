@@ -2,70 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22182632AFF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AC72632B1A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:35:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbiKURaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:30:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
+        id S229527AbiKURfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:35:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbiKURaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:30:20 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2C3CDFF2
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:30:13 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id n188so9115036iof.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:30:13 -0800 (PST)
+        with ESMTP id S229495AbiKURfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:35:06 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C48CEB98;
+        Mon, 21 Nov 2022 09:35:05 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id l14so2051009wrw.13;
+        Mon, 21 Nov 2022 09:35:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/CdFA7VtSjmYPiyz7y2hV+ROJUwbYLUnLtbKUpXnpH4=;
-        b=XWajUMngI/PRAhJ4ffZ78Wf045DGo/Gx4ywdvEGYTudmSCXcvC1hLHKX/Sx7mAAi48
-         4bZQvdIqmN1M98mtKYPtEJ87Wp1FGuXko9EZR2yG9Ygt8GLVZxkmSq+/uL6biisvLSi6
-         xGV9TSsZWJa7c6A+dk//s057R/4qWDHsftknObWoPuhdKPOK24fGkIwB3+MxOltBGVyH
-         cNBQoBa6aKgucix6jJxlC9Fpvh3lBWMaRIRHO7Y0Ac7Uh2W2l9mjy/LHK1j1SaYxO7WU
-         ggp/ZltpsusMJtM3ZixxDc0AUj4G8xYBu6f0n5cX3qhmhhBSlJ7gRY2CJIvDRDM5NMWd
-         hewA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H739gohkJQiXvKefWiLyqitYzOD/5OYfD2uRzWxJMv0=;
+        b=Sw4vUrpV+2ZKerURpiiaRPbic/zppeNW8NcdRE+SOtCQaKWeI7Z9q6CLWu9trUZVX0
+         dOBHa2KaSZV9zAL9fOGSNVWmAyEmP5pBTfbUFA3Z6/SlswhOql+H3ZPXezC9oKFC8Ckw
+         HffyxJS3QDcqeJM7CFeNaVIFlWHCEEthmCXJ2PeL9qAt4BjS0e+gfd7/XDJy68WlnYeS
+         W44A6uI+xi0e77dXoiRLxzlGsBM2JbtLVr3w9WD6z4Sy/+e9JhPsiVUzutWxv2MA1oXq
+         dvbvHUUfW1aFUpOZAwFZZ4KaRgF+Mk39DfSO5njA/EmDr3vdoVecxTtm82RlS+tV12v/
+         aonA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/CdFA7VtSjmYPiyz7y2hV+ROJUwbYLUnLtbKUpXnpH4=;
-        b=8MYG1V6FVR76oR5D24gUWFAP3YqCSoXtwS5a5Z9zea3zjkO7x3rkLUtlmHKzYMdMcN
-         5N2ihpou16t8s/f8bZ1NduAnFTFSTtjY7VRI3KaoS7laiSu+ZrUlhWTYti8DronqSfVo
-         iMm+ljYuJGWl1OBKli9VeZDblsYMQOS/i0stlseHnKHtXFdf4KpomQZUgT2a0/+CXS2S
-         sQQYWn6OMY/D0xLQTYR1tKmkQJ/Y2WVAPHK3szGGje8qDFdfVxdO1AMPtV1cbWYuSFsT
-         y95XNtordJmi8JefHH4t3sCZXULYxNjk+zG7u3qEa2Y/FKI+IwM5xqHFjxFePb1jQZtD
-         VCvQ==
-X-Gm-Message-State: ANoB5pk1YOJkvnAshrcxZS7IuCPAp/c2hZQh19PjT8Aua+vQv9qfHWiR
-        tN4VZxuu6pb/HlRxPoMf2TqQV5kuxUc9frJTW+n6YQ==
-X-Google-Smtp-Source: AA0mqf5Ldn3zMPR1KTK1lb+ixNQARhU8GYZX0oMCAEPybcd4Gk7DkHHRLn+vZ7hFw9GNTzyY2cS3WOqAx8NgVUSyS+E=
-X-Received: by 2002:a05:6638:20a:b0:374:f7d4:5eca with SMTP id
- e10-20020a056638020a00b00374f7d45ecamr1328041jaq.164.1669051813305; Mon, 21
- Nov 2022 09:30:13 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H739gohkJQiXvKefWiLyqitYzOD/5OYfD2uRzWxJMv0=;
+        b=rMVbmcsOiogxWY7byttYlaerbKrv1xZfugcmlXGKV16gSza2KU1nugvxBEBWN2auu+
+         JaStwv/whSBctYOaRZmYyx3qnT+SOmOWNEOb6YOLJ0K74EatmH7jscu1PCs2hfGwJBDv
+         AFMQxeYs+uT4DcsFqkqfTdxoPLm4fLPTpjKG8eqQyjzJrKsPWEzYNlNaOFlkHs4VnTPD
+         wJUY41IOPjnyA1DAeLNqChca0n7LssG/xTJvy4H5Bn0i161cxsNYgiBP1qGl6G0TUMoM
+         Em4ltXk423YZIjRnyMkh0EoDmhsOM9ZLteDeIyOkhVdUrcj0J1JhPpsGGicDqf0hw8If
+         3Jqg==
+X-Gm-Message-State: ANoB5pkQm1Bp7J5Iv5a/EaVWl05sfIMqPIizmiRvVYF4AK+LXXE9W+Fk
+        Zp0Pxv+luK5xq85/qNo8tn4=
+X-Google-Smtp-Source: AA0mqf6s5UrB6KSQzIfGircalN42vcOhoXNt66f+1gAnQqi9w65qZfja19jeAbwazXHd+sfm6fd/Aw==
+X-Received: by 2002:a5d:538b:0:b0:241:c3c2:24cf with SMTP id d11-20020a5d538b000000b00241c3c224cfmr3225033wrv.587.1669052103907;
+        Mon, 21 Nov 2022 09:35:03 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id l18-20020a05600c4f1200b003c6f3f6675bsm20780645wmq.26.2022.11.21.09.35.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 09:35:02 -0800 (PST)
+Message-ID: <1c33cf07-900a-7acf-92d9-ad40f8543db8@gmail.com>
+Date:   Mon, 21 Nov 2022 18:35:00 +0100
 MIME-Version: 1.0
-References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
- <TY3P286MB2611FB223B1CC437B01BD984980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <20221121164116.GE15565@pengutronix.de> <TY3P286MB261119C709225F2DED97CF81980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-In-Reply-To: <TY3P286MB261119C709225F2DED97CF81980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Mon, 21 Nov 2022 14:30:02 -0300
-Message-ID: <CAAEAJfC74Am19+GSpCpbWJVpdbgv4n=3pjMHNkpRcCQfwi5xQA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
-To:     Shengyu Qu <wiagn233@outlook.com>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        devicetree@vger.kernel.org, heiko@sntech.de, jacob-chen@iotwrt.com,
-        kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 1/3] dt-bindings: phy: mediatek: hdmi-phy: Add mt8195
+ compatible
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        David Airlie <airlied@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        stuart.lee@mediatek.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
-        robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mac.shen@mediatek.com,
+        linux-phy@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20220919-v4-0-bdc21e1307e9@baylibre.com>
+ <20220919-v4-1-bdc21e1307e9@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220919-v4-1-bdc21e1307e9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,44 +91,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shengyu, Michael,
 
-On Mon, Nov 21, 2022 at 2:13 PM Shengyu Qu <wiagn233@outlook.com> wrote:
->
-> Hi,
-> I remember someone said that rga2 has only 32bit address space but not ha=
-ving a mmu or mmu needs to be configured. Better ask by yourself in pine64 =
-discord since I'm not sure about that.
->
-> Shengyu
->
->
-> =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8A=E5=8D=
-=8812:41:16, Michael Tretter <m.tretter@pengutronix.de> =E5=86=99=E5=88=B0:
-> >Hi,
-> >
-> >On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
-> >> Someone from pine64 discord found that RGA2 doesn't work properly on o=
-ver
-> >>
-> >> 4GB memory RK3568 devices. Are you sure current driver works now?
-> >
-> >I am absolutely sure that the driver works on a 2GB ROCK3A board.
-> >Unfortunately, I don't have a device with 4GB or more memory and I canno=
-t test
-> >the driver with such a device.
-> >
-> >As the documentation for the RGA2 is the same in the TRM of the rk3288 a=
-nd
-> >rk3568, I would guess that the driver doesn't work on a rk3288 with more=
- than
-> >4GB (if there is such a thing) either and the driver needs to be fixed f=
-or
-> >both SoCs.
-> >
 
-In any case, if there's some kind of issue it must be in the driver,
-and not in the device tree binding (i.e. this patchset).
+On 21/11/2022 15:19, Guillaume Ranquet wrote:
+> Add a compatible for the HDMI PHY on MT8195
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
-Regards,
-Ezequiel
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>   Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> index 0d94950b84ca..71c75a11e189 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> @@ -28,6 +28,7 @@ properties:
+>             - const: mediatek,mt2701-hdmi-phy
+>         - const: mediatek,mt2701-hdmi-phy
+>         - const: mediatek,mt8173-hdmi-phy
+> +      - const: mediatek,mt8195-hdmi-phy
+>   
+>     reg:
+>       maxItems: 1
+> 
