@@ -2,225 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51ED8631C86
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7F78631C8F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbiKUJKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:10:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56172 "EHLO
+        id S229964AbiKUJOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:14:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiKUJJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:09:45 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1268FE4E
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:09:43 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id t10so13840935ljj.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:09:43 -0800 (PST)
+        with ESMTP id S229449AbiKUJOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:14:01 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E6F6D97A
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:14:00 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id d6so17860887lfs.10
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:14:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5iEe7fRY9UI3AIlY+2BLLJv3AGvgsuX2GD1a9szCu9I=;
-        b=q7Pr41DBl6rR/A4TtHdH/roj5GaCx8EvAhpS1JRx+Tbe/ThGfLRmzQbrEh3VauzIh0
-         CSEgjoGSGGpzrB3A7mokXemHhqloLKOLbxgtWvAav7It9nhHYOnS2Gpfc0rUJlw7y+dc
-         p8uPnPU0IQumuIROmAsjH1O72Py6JizpXaJVzgXJm0dpr28zHm9xAhFmwxJZ45OAMEK2
-         0v0WWm56qvo3+FjNKL020M0+suQ8Molq682RWRt7JHEtzdbPNo2ikUhb/OZ3TxZAwkzq
-         fvP7od2XrVub1Ec4mFVA0kgNnqhj8bJLED+TslRlCMpvbi4MJ8hkVQ/qTGp1kpGuJjmy
-         Pb9g==
+        bh=KzJ1Wp+0Y1BV5FI5ALPYO3ykaQyEtvnk1yBBPpwmu2k=;
+        b=MY2ZMsvAOIUWpv95uOKNW6RZvGBkO6P4O7pJxf+QWNCVKvCPJ145yjyVAUbuYmBn8b
+         oU6gBohmHFUdG07x6n2J8CrhD3SITPX3MUfjvL1iRod6zLQaAWW11QrKVH7kGg8ilLeE
+         robaC3v13YDu3jUEzxAE6pknR+aTYym1e+0TrGG2elX+74u5NdetMKcLoMA2DvwASg/E
+         SwRPz32w7pUuJHc0j9AOCQzPtfqHBumQr/deLliEIaZsoXOsx8Gri2TwUr9rWEE5PmCS
+         /2GwO1QHxOPtqvg+YZgHNYCgIyCEJkHUvbjF47T/CEfc6LWF1NbvdMYm3ONK/m2nX/zI
+         usjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5iEe7fRY9UI3AIlY+2BLLJv3AGvgsuX2GD1a9szCu9I=;
-        b=iKI7+6uXuDwWcrgSzfGrfzgkt4YmNiFnxZeaMJXqlaBSyWJWZBu1vhP7vGlGexaTTE
-         EMCq/SN/VEFR2PGIwHXoEOlUfnXnRDztCagFoYRkRI9pvAEnu8QC4FCaAGU9iae6IkfL
-         ev1D7RcUhRUR/fz2ZPchtSzIQ7p/K4/KPsupkKYJO1PZ8w51O6F+g57hGY/DzRgre/5g
-         az+6QzOc4TvZkd8/hmGXk+T7oT1w2Jde9EesTWwtg4Ojm/9Bh6vJB9HtGW00NCMsuxqt
-         7bMSorWEdgQywIxuMFLdKoLW/5RrYper86zvh3cuESgYtvblFCWV5taFachxu8dZ8Rk+
-         znVA==
-X-Gm-Message-State: ANoB5pkp5gQxEdo6Ehp+gB8YzK4hrRom8OhncUeq1ip8Z0kAXJMdj/LD
-        uaYF4oPTE+zi3tkAuhMmPAbvvw==
-X-Google-Smtp-Source: AA0mqf65tf5iX3QXgYL+eDW+B/MJ19SGQIBINQ1kkLBTydy+/a8Q+euTpQhHxseu7DMQRo+st/RVMg==
-X-Received: by 2002:a2e:bd17:0:b0:277:50a:bd5c with SMTP id n23-20020a2ebd17000000b00277050abd5cmr5364778ljq.6.1669021782081;
-        Mon, 21 Nov 2022 01:09:42 -0800 (PST)
+        bh=KzJ1Wp+0Y1BV5FI5ALPYO3ykaQyEtvnk1yBBPpwmu2k=;
+        b=tmnnddA8ncT6cKqc30aT8tod88E3yoPWq/LVZfz3D3TxlzGEBe76Pog9cKHjpnlzBU
+         jZvgsjJNgjNHMS85spDGBmjZHpIq8yfIfREccImqWBYKR9mDV/t2CoN5R5eCLoa49Auz
+         U+hV1d1GxcCv5PFlaS8vLnQVXM0KzNEZ09pvuzzpy1s1uJ9UrgInvdlE5STNqt1l6sT5
+         5Dx6ocnLJkayajjnC8yiUk1yWRuyZTKXYc3tL6pG9+DiTwrEzjRsmbFKG5Im0hp5RDQC
+         kf+gY4DO9n2MSrC8ijC6jou0sVpjcdTzx1Czqao2hxIzzFn7okNTNFLA6stH4XwCzmBw
+         4NGA==
+X-Gm-Message-State: ANoB5pnnicZgjMy9RPOd9KOyfWTnncrCwFSUvQeJZsMefJ97t8+e0bAM
+        AXiudyGWYQknN4fKBwzGoLtN8Q==
+X-Google-Smtp-Source: AA0mqf66WvuXOvvEgmjWbFNbdtend+6s+HRKZkNnVe5YBS4XvYhP3v3obghSZgzSgUT+GR7d0mkgag==
+X-Received: by 2002:ac2:5e23:0:b0:4a6:fd95:a0a4 with SMTP id o3-20020ac25e23000000b004a6fd95a0a4mr5940005lfg.485.1669022039057;
+        Mon, 21 Nov 2022 01:13:59 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056512021900b004a9b9ccfbe6sm1956656lfo.51.2022.11.21.01.09.41
+        by smtp.gmail.com with ESMTPSA id g2-20020a2eb5c2000000b0025ebaef9570sm1385005ljn.40.2022.11.21.01.13.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 01:09:41 -0800 (PST)
-Message-ID: <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
-Date:   Mon, 21 Nov 2022 10:09:40 +0100
+        Mon, 21 Nov 2022 01:13:58 -0800 (PST)
+Message-ID: <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
+Date:   Mon, 21 Nov 2022 10:13:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
- bbnsm
+Subject: Re: [PATCH v3] dt-bindings: iio: adc: ad7923: adjust documentation
 Content-Language: en-US
-To:     Jacky Bai <ping.bai@nxp.com>, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
-References: <20221121065144.3667658-1-ping.bai@nxp.com>
- <20221121065144.3667658-2-ping.bai@nxp.com>
+To:     Edmund Berenson <edmund.berenson@emlix.com>
+Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221120153419.GA3094349-robh@kernel.org>
+ <20221120170630.29354-1-edmund.berenson@emlix.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121065144.3667658-2-ping.bai@nxp.com>
+In-Reply-To: <20221120170630.29354-1-edmund.berenson@emlix.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 07:51, Jacky Bai wrote:
-> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
+On 20/11/2022 18:06, Edmund Berenson wrote:
+> - Add the ad7927 compatibility string, with fallback compatibility
+> to ad7928.
+> - ad7923 and ad7924 are treated the same in the driver, show
+> the relationship in the documentation.
 > 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
 > ---
->  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+>  .../bindings/iio/adc/adi,ad7923.yaml          | 26 ++++++++++++-------
+
+Do not respond with new patch to some old thread. Each patchset starts a
+new thread.
+
+>  1 file changed, 17 insertions(+), 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> new file mode 100644
-> index 000000000000..b3f22b0daea6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/nxp,bbnsm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Battery-Backed Non-Secure Module bindings
-> +
-> +maintainers:
-> +  - Jacky Bai <ping.bai@nxp.com>
-> +
-> +description: |
-> +  NXP BBNSM serves as non-volatile logic and storage for the system.
-> +  it Intergrates RTC & ON/OFF control.
-> +  The RTC can retain its state and continues counting even when the
-> +  main chip is power down. A time alarm is generated once the most
-> +  significant 32 bits of the real-time counter match the value in the
-> +  Time Alarm register.
-> +  The ON/OFF logic inside the BBNSM allows for connecting directly to
-> +  a PMIC or other voltage regulator device. both smart PMIC mode and
-> +  Dumb PMIC mode supported.
-> +
-> +properties:
-> +  compatible:
-> +    items:
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> index 07f9d1c09c7d..e553853e25d5 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> @@ -11,7 +11,7 @@ maintainers:
+>  
+>  description: |
+>    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
+> -   AD7918, AD7928 8 Channels ADCs.
+> +   AD7918, AD7927, AD7928 8 Channels ADCs.
+>  
+>    Specifications about the part can be found at:
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
+> @@ -20,14 +20,22 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - adi,ad7904
+> -      - adi,ad7914
+> -      - adi,ad7923
+> -      - adi,ad7924
+> -      - adi,ad7908
+> -      - adi,ad7918
+> -      - adi,ad7928
+> +    oneOf:
 > +      - enum:
-> +          - nxp,bbnsm
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  rtc:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: nxp,bbnsm-rtc
+> +          - adi,ad7904
+> +          - adi,ad7914
+> +          - adi,ad7908
 
+You already started shuffling the entries, so make them ordered. What's
+the point of changing the order from one non-sorted to another non-sorted?
 
-Missing ref to rtc.yaml.
+> +          - adi,ad7918
+> +          - adi,ad7923
+> +          - adi,ad7924
 
-> +
-> +      regmap:
+Then deprecate this as alone compatible.
 
-Use vendor prefix, descriptive name and description. Where is the type
-of 'regmap' defined?
+> +          - adi,ad7927> +          - adi,ad7928
 
-> +        maxItems: 1
+Ditto
 
-I don't think this is correct. Rob explained the simple-mfd means
-children do not depend on anything from the parent, but taking a regmap
-from its parent contradicts it.
+> +      - items:
+> +          - const: adi,ad7923
+> +          - const: adi,ad7924
 
-> +
-> +      interrupts:
-> +        maxItems: 1
+I would expect lower number as fallback.
 
-You have same interrupt and same address space used by two devices.
+> +      - items:
+> +          - const: adi,ad7927
+> +          - const: adi,ad7928
 
-Both arguments (depending on parent regmap, sharing interrupt) suggests
-that this is one device block, so describing it with simple-mfd is quite
-unflexible.
+Ditto.
 
-> +
-> +    required:
-> +      - compatible
-> +      - regmap
-> +      - interrupts
-> +
-> +    additionalProperties: false
-> +
-> +  pwrkey:
-> +    type: object
-> +    $ref: /schemas/input/input.yaml#
-> +
-> +    properties:
-> +      compatible:
-> +        const: nxp,bbnsm-pwrkey
-> +
-> +      regmap:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      linux,code: true
-> +
-> +    required:
-> +      - compatible
-> +      - regmap
-> +      - interrupts
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - rtc
-> +  - pwrkey
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bbnsm: bbnsm@44440000 {
-> +      compatible = "nxp,bbnsm", "syscon", "simple-mfd";
-> +      reg = <0x44440000 0x10000>;
-> +
-> +      bbnsm_rtc: rtc {
-> +        compatible = "nxp,bbnsm-rtc";
-
-Use 4 spaces for example indentation.
-
-> +        regmap = <&bbnsm>;
-> +        interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +      };
-> +
-> +      bbnsm_pwrkey: pwrkey {
-> +         compatible = "nxp,bbnsm-pwrkey";
-> +         regmap = <&bbnsm>;
-> +         interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +         linux,code = <KEY_POWER>;
-> +       };
-> +    };
+>  
+>    reg:
+>      maxItems: 1
 
 Best regards,
 Krzysztof
