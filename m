@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE51B6327B9
+	by mail.lfdr.de (Postfix) with ESMTP id 60DD76327B8
 	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 16:20:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232238AbiKUPUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 10:20:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
+        id S232050AbiKUPUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 10:20:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbiKUPU1 (ORCPT
+        with ESMTP id S231969AbiKUPU1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 10:20:27 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6983919C21
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E2419C20
         for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 07:18:03 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mtr@pengutronix.de>)
-        id 1ox8Yb-0004BZ-LZ; Mon, 21 Nov 2022 16:18:01 +0100
+        id 1ox8Yb-0004BO-LZ; Mon, 21 Nov 2022 16:18:01 +0100
 Received: from [2a0a:edc0:0:1101:1d::54] (helo=dude05.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <mtr@pengutronix.de>)
-        id 1ox8YV-005gHK-Ph; Mon, 21 Nov 2022 16:17:56 +0100
+        id 1ox8YV-005gHF-Ln; Mon, 21 Nov 2022 16:17:56 +0100
 Received: from mtr by dude05.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <mtr@pengutronix.de>)
-        id 1ox8YV-008hFH-Jx; Mon, 21 Nov 2022 16:17:55 +0100
+        id 1ox8YV-008hFJ-KH; Mon, 21 Nov 2022 16:17:55 +0100
 From:   Michael Tretter <m.tretter@pengutronix.de>
 To:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
         jacob-chen@iotwrt.com, ezequiel@vanguardiasur.com.ar,
@@ -34,10 +34,12 @@ Cc:     krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
         michael.riesch@wolfvision.net,
         linux-arm-kernel@lists.infradead.org, m.tretter@pengutronix.de,
         kernel@pengutronix.de
-Subject: [PATCH 0/2] media: rockchip: rga: Add rk3568 support
-Date:   Mon, 21 Nov 2022 16:17:53 +0100
-Message-Id: <20221121151755.2072816-1-m.tretter@pengutronix.de>
+Subject: [PATCH 1/2] media: dt-bindings: media: rockchip-rga: add rockchip,rk3568-rga
+Date:   Mon, 21 Nov 2022 16:17:54 +0100
+Message-Id: <20221121151755.2072816-2-m.tretter@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20221121151755.2072816-1-m.tretter@pengutronix.de>
+References: <20221121151755.2072816-1-m.tretter@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -52,24 +54,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RGA2 on the Rockchip rk3568 is the same core as the RGA2 on the Rockchip
-rk3288.
+Add a new compatible for the rk3568 Rockchip SoC, which also features an
+RGA, which is called RGA2 in the TRM Part2. It is the same core as used
+on the rk3288, which documents the same RGA2.
 
-This series adds the necessary device tree binding and node in the device tree
-to enable the RGA2 on the Rockchip rk3568.
+Specify a new compatible for the rk3568 to be able to handle unknown
+SoC-specific differences in the driver.
 
-I tested the driver with the GStreamer v4l2convert element on a ROCK3A board.
+Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+---
+ Documentation/devicetree/bindings/media/rockchip-rga.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Michael
-
-Michael Tretter (2):
-  media: dt-bindings: media: rockchip-rga: add rockchip,rk3568-rga
-  arm64: dts: rockchip: Add RGA2 support to rk356x
-
- .../devicetree/bindings/media/rockchip-rga.yaml       |  4 +++-
- arch/arm64/boot/dts/rockchip/rk356x.dtsi              | 11 +++++++++++
- 2 files changed, 14 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/media/rockchip-rga.yaml b/Documentation/devicetree/bindings/media/rockchip-rga.yaml
+index dd645ddccb07..ea2342222408 100644
+--- a/Documentation/devicetree/bindings/media/rockchip-rga.yaml
++++ b/Documentation/devicetree/bindings/media/rockchip-rga.yaml
+@@ -21,7 +21,9 @@ properties:
+       - const: rockchip,rk3288-rga
+       - const: rockchip,rk3399-rga
+       - items:
+-          - const: rockchip,rk3228-rga
++          - enum:
++              - rockchip,rk3228-rga
++              - rockchip,rk3568-rga
+           - const: rockchip,rk3288-rga
+ 
+   reg:
 -- 
 2.30.2
 
