@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E84F631CA7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC96C631CAD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:18:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbiKUJRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:17:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35372 "EHLO
+        id S229848AbiKUJSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:18:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbiKUJRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:17:37 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8AC10FE0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:17:34 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id l12so17861775lfp.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:17:34 -0800 (PST)
+        with ESMTP id S229706AbiKUJS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:18:29 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676361A810
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:18:28 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id g12so17913720lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:18:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gp3IGQii0onhRL32oSXRirQKRZGP56ycvUwqVetzvJk=;
-        b=W7/yQJgKbgEBDNGZP5YnMsgAucSIFk+F52Jx3LtQT9CEjypia/W8cLn/B3UeisZ9+8
-         X3gSXq5mqqb3ubWs7BTXKKMdLuWuHpIQQdd7GDZS1M/04wRpSVLW5ers+KoDiHlyFluw
-         GjAvVWCUV1wUcBS87XEImJR2P3XauCuuFt6qy7M52IIyLITR5rJhm1dDg/kejIM7MrSS
-         mnsLnuMTFdTaEWLrb9rxTaeDBtmdXHoTDy3zF6DK0nXyINzvx/3vVLVaffnuFehEIRK6
-         rjgbB3Of6WZEo8Z3+JvChdHjkIgIAtgH3/tdHzirQr14gEEYvnu3kBXXR8NF58yQ+qK2
-         b2Cw==
+        bh=UpSTdsDOMig0TNjIkUYB/wrzKSkG9D66w0IJbB6U/L8=;
+        b=bApH5BU/CyiIRvct4YDbvqTVCEV70kdWkmqgMJIk7WUxUqddxTpExh15Jlpbu6cjnW
+         vFKmn2cvtmh/sA1Nsrz9iOlzEMlqShm3hAE/lGxFm+r1oaoq9PgR09XYq32Q3GIRrOft
+         RyksDCeziJJ1CfBjUcWaEvruL6wNuWp/tU1nsruofL5MxJCmk/+zwPw7bhhe9DvWmimC
+         29l/Ldha+zN7XxADJJWKrlmapzGJranuayTniQ5qEjHvxKoJiVjM6FYmCLb5KF5I7Y95
+         v4oW26NDXOzYjVNS0v8gCp1aYxdxiNo4GPMYFsz4Bn9aLyhh7tALdfT8OWoLK8gSNOf3
+         Gkjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gp3IGQii0onhRL32oSXRirQKRZGP56ycvUwqVetzvJk=;
-        b=kBg5KEsw64gTlsYlYnSlP0WHjrE5To/k1UzxpSlt6z9igc3bdw0MAeB9sKdMFljkrC
-         7QmSVFkBMSquQO6Bcr2l4XHOzq/iR0xnCMR7LmD1iUyimRiINwZKH8Iq3xaY+x7ZnWHX
-         iIgWhRW2+ZOJLB8huA+yKjJcA3GEN9Bi2VS6imXPd2ry0gItWNLgLw0UPgnK+46tAC4C
-         peREzicBr47A1tkpIo9QC6tLnx1OrvyEypJVtk5rdtN4L98FemYkjqgvK5Fdicw8Ur67
-         IybjhXKerHYPrk5aH30xrZ1ZzZRI+U/WK1BJUiIJHyCm1WeuNpYIojWtFdwNDQ8yZYiL
-         6XoQ==
-X-Gm-Message-State: ANoB5pnPGr7xE8uwS5SlWQBe0nvllv3RcxbLXHNJ1PUy1BZ2b5U2gawq
-        iN+tZ7qrJbE0IBInSRC7tWM/XQ==
-X-Google-Smtp-Source: AA0mqf5bbnEZuHv78qjWTwLGBDg6Qq+Vo3r0YRqJiT630QzBxJCJw90RmdR2tYAw/9HhA67ArtRz2w==
-X-Received: by 2002:a19:3818:0:b0:4a2:4e8f:746 with SMTP id f24-20020a193818000000b004a24e8f0746mr594170lfa.528.1669022253207;
-        Mon, 21 Nov 2022 01:17:33 -0800 (PST)
+        bh=UpSTdsDOMig0TNjIkUYB/wrzKSkG9D66w0IJbB6U/L8=;
+        b=g5D5mVPaH/pry0lWVcKwLaVQPgL+eBea93lc98ezHQIZF0ltv9rubXR4Ol7E7EucJU
+         RhzUw7Wvav5cFVfGah3Kfh3pkEbpAV1QRyXOm19EvgRlGwzRDA/bduuH72YOoklkHDGW
+         AFb5Qm5Ye1rofqJATXaTb+6IOwCq7rruZXOlaz9qaWy16A3ZYxo/IUdEp3Pvq45d8YPA
+         RXIzIyodptZDZAY9i/vCfOGkAGX4g/iDZvb23QUqJDUkhGSCAeKOq6z2PkR/FOL9S8IF
+         kBBiFtPpoyG7W3HSh4u3MmWfDn962yccjnDuCrcOZs2G86Lz/i31yvWVyMhToCmHFk2h
+         cJGQ==
+X-Gm-Message-State: ANoB5pkNjPzm1ZAFjKglD/TqwrgOFFcso6tsmqZG28mgaB2YbVcvOLEt
+        9Dt5HcePmc1Z3J8sMQ1Ecx7wjg==
+X-Google-Smtp-Source: AA0mqf5zHNaXnko3gkuaISLPSTETD4rWCwavxCCeqOH2Rj9oIO5q8inPQkwpIu8NTPrYi5Qn9HGi2w==
+X-Received: by 2002:a19:5f0a:0:b0:498:f195:5113 with SMTP id t10-20020a195f0a000000b00498f1955113mr2161735lfb.159.1669022306801;
+        Mon, 21 Nov 2022 01:18:26 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056512360a00b004aa0870b5e5sm1935424lfs.147.2022.11.21.01.17.32
+        by smtp.gmail.com with ESMTPSA id p7-20020a2eb7c7000000b002770e531535sm1412589ljo.55.2022.11.21.01.18.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 01:17:32 -0800 (PST)
-Message-ID: <e2c1d1a1-ea82-d225-1503-648e56fcd14e@linaro.org>
-Date:   Mon, 21 Nov 2022 10:17:31 +0100
+        Mon, 21 Nov 2022 01:18:26 -0800 (PST)
+Message-ID: <1d93e843-d7bd-a4f7-bb99-4270d9333fa1@linaro.org>
+Date:   Mon, 21 Nov 2022 10:18:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/3] dt-bindings: qcom: Document bindings for new
- msm8916-acer-a7-724 device
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
+ bbnsm
 Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20221119194340.91789-1-linmengbo0689@protonmail.com>
- <20221119194709.91998-1-linmengbo0689@protonmail.com>
+To:     Jacky Bai <ping.bai@nxp.com>, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
+References: <20221121065144.3667658-1-ping.bai@nxp.com>
+ <20221121065144.3667658-2-ping.bai@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221119194709.91998-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20221121065144.3667658-2-ping.bai@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,12 +79,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/11/2022 20:48, Lin, Meng-Bo wrote:
-> Document the new acer,a1-724 device tree bindings used in its device tree.
-> 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+Also few nits:
 
-Same comments as for your other binding patch
+On 21/11/2022 07:51, Jacky Bai wrote:
+> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
+
+Subject: drop second, redundant "bindings".
+
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>  .../devicetree/bindings/mfd/nxp,bbnsm.yaml    | 103 ++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> new file mode 100644
+> index 000000000000..b3f22b0daea6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/nxp,bbnsm.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/nxp,bbnsm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP Battery-Backed Non-Secure Module bindings
+
+Drop "bindings"
+
+> +
+> +maintainers:
+> +  - Jacky Bai <ping.bai@nxp.com>
 
 Best regards,
 Krzysztof
