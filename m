@@ -2,113 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B629631975
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 06:20:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8AD6319A0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 07:07:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbiKUFUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 00:20:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        id S229509AbiKUGHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 01:07:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiKUFUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 00:20:04 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20D01038
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 21:20:02 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id s196so10187030pgs.3
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 21:20:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SmbSGrfMl5sX57mZPY6ziSauUhzIAv3tjbcoM5dFVJ0=;
-        b=WF+QyOdocMZsoAKkxVFEye9m3D809X7KmFNnNW3D+NdIuMak/E1R9mrOppMi7knBeb
-         RrHclkIGnq55SD/RFJl3E/GCN0Zi0EOuE0VzLNq7+Unbh8jXR0zMxga6AarB4dgS/2nj
-         9oGjeseSlNzcYGEu+jDITIhIo3SyBDZt1TX+tq9SdZEW2Vz69iUxnu1VUhCklR7wtjw0
-         aiyeh//5DYB/nu66CC3qBnbQt/KRTltDbzsfZVNi5qb41fFZ1VQ5WWAf8sNYqdGIK0NZ
-         GtG3HOY7faNlDbuc/x3TLfRhd1EXumO3p07pWPxYA5uKS751WcmozXEGVEQhdifxYJNw
-         orzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SmbSGrfMl5sX57mZPY6ziSauUhzIAv3tjbcoM5dFVJ0=;
-        b=XhiMQF3oTFl98UfFGKyimCDsS3s2Fu3DohfPUchmvqpe8ZQhaWARJ0Ls6e3QCEcWXw
-         +UazGzWUX+VTd1RQFVGj5xZ+ygjr7UuRikjIsi2e4jB/f39GC1E/5sT5MCe/ivbZiRXY
-         cEXqv1ter+6Ie+ETvhQpnvREyn23mVtK9Py2DHQKeL1LsJZ8tigDAzZ3jIACJlb+th/k
-         OFhpBhp2Gu3RwFNvRud9uMjiafvxkpgTv9uaVUazJrOwAu9jPttacreSFEAUelSs7hDC
-         /3HrFTCGlrxW/PkYYjO1gEGbmT5lluzCkisFUIxKe7RmhZUwXYIjUXMLvWehMYRh+mvQ
-         AvcA==
-X-Gm-Message-State: ANoB5pmevYJEKG50XcIo+z5pHenMMOWQNq5iefUgA1sn4rbkh2kNBYoJ
-        eTBr3w1WP94X+QwKN19/b7vb0g==
-X-Google-Smtp-Source: AA0mqf7bw/tHtFB6HxDO3PUB2J4xMJ+MOVsMJf7R8bEoFRj/gNrjL5df+ZdsptjiscK9jyTg5wCaMQ==
-X-Received: by 2002:a63:1601:0:b0:454:228c:742b with SMTP id w1-20020a631601000000b00454228c742bmr3404949pgl.494.1669008002232;
-        Sun, 20 Nov 2022 21:20:02 -0800 (PST)
-Received: from localhost ([122.172.85.60])
-        by smtp.gmail.com with ESMTPSA id u139-20020a627991000000b00561cf757749sm7616978pfc.183.2022.11.20.21.20.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Nov 2022 21:20:01 -0800 (PST)
-Date:   Mon, 21 Nov 2022 10:49:59 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 0/4] qcom-cpufreq-hw: Add CPU clock provider support
-Message-ID: <20221121051959.hphzjuaif423xwn6@vireshk-i7>
-References: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229379AbiKUGHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 01:07:13 -0500
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39A52A969;
+        Sun, 20 Nov 2022 22:07:11 -0800 (PST)
+Received: from kwepemi500024.china.huawei.com (unknown [172.30.72.56])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4NFxjZ5VvrzRpHG;
+        Mon, 21 Nov 2022 14:06:42 +0800 (CST)
+Received: from [10.174.179.163] (10.174.179.163) by
+ kwepemi500024.china.huawei.com (7.221.188.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 21 Nov 2022 14:07:08 +0800
+Message-ID: <9ec55a8e-5ce4-6846-f88d-2d9b33a34bc9@huawei.com>
+Date:   Mon, 21 Nov 2022 14:07:08 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221117053145.10409-1-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v2] of: overlay: fix memory leak in add_changeset_node()
+Content-Language: en-US
+To:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <pantelis.antoniou@konsulko.com>, <grant.likely@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <liwei391@huawei.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <f0c641ee-b20d-48dd-c65f-2b372eae0b06@huawei.com>
+ <20221121035335.809316-1-zengheng4@huawei.com>
+From:   Zeng Heng <zengheng4@huawei.com>
+In-Reply-To: <20221121035335.809316-1-zengheng4@huawei.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.163]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemi500024.china.huawei.com (7.221.188.100)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-11-22, 11:01, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds clock provider support to the Qcom CPUFreq driver for
-> supplying the clocks to the CPU cores in Qcom SoCs.
-> 
-> The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
-> clocks to the CPU cores. But this is not represented clearly in devicetree.
-> There is no clock coming out of the CPUFreq HW node to the CPU. This created
-> an issue [1] with the OPP core when a recent enhancement series was submitted.
-> Eventhough the issue got fixed in the OPP framework in the meantime, that's
-> not a proper solution and this series aims to fix it properly.
-> 
-> There was also an attempt made by Viresh [2] to fix the issue by moving the
-> clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
-> since those clocks belong to the CPUFreq HW node only.
-> 
-> The proposal here is to add clock provider support to the Qcom CPUFreq HW
-> driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
-> This correctly reflects the hardware implementation.
-> 
-> The clock provider is a simple one that just provides the frequency of the
-> clocks supplied to each frequency domain in the SoC using .recalc_rate()
-> callback. The frequency supplied by the driver will be the actual frequency
-> that comes out of the EPSS/OSM block after the DCVS operation. This frequency
-> is not same as what the CPUFreq framework has set but it is the one that gets
-> supplied to the CPUs after throttling by LMh.
-> 
-> This series has been tested on SM8450 based dev board with the OPP hack removed
-> and hence there is a DTS change only for that platform. Once this series gets
-> accepted, rest of the platform DTS can also be modified and finally the hack on
-> the OPP core can be dropped.
++cc linux-kernel-mail-list
 
-Applied. Thanks.
 
-If you get review comments later on, please send incremental patches
-for that.
-
--- 
-viresh
+On 2022/11/21 11:53, Zeng Heng wrote:
+> When of_changeset_attach_node() returns fail and tchild is
+> over of life cycle which is duplicated by __of_node_dup(),
+> it needs to call of_node_put() to release tchild in
+> error handle route.
+>
+> Otherwise, there are some memory leak reported about the node:
+>
+> unreferenced object 0xffff88810cd1e800 (size 256):
+>    backtrace:
+>      kmalloc_trace
+>      __of_node_dup
+>      add_changeset_node (inlined)
+>      build_changeset_next_level
+>
+> unreferenced object 0xffff888113721240 (size 16):
+>    backtrace:
+>      __kmalloc_node_track_caller
+>      kstrdup
+>      __of_node_dup
+>      add_changeset_node (inlined)
+>      build_changeset_next_level
+>
+> unreferenced object 0xffff88810a38d400 (size 128):
+>    backtrace:
+>      kmalloc_trace
+>      __of_prop_dup
+>      add_changeset_property
+>      build_changeset_next_level
+>
+> Fixes: 0290c4ca2536 ("of: overlay: rename identifiers to more reflect what they do")
+> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
+> ---
+>   drivers/of/overlay.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index bd8ff4df723d..a5189a0ec0a3 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
+>   		of_node_set_flag(tchild, OF_OVERLAY);
+>   
+>   		ret = of_changeset_attach_node(&ovcs->cset, tchild);
+> -		if (ret)
+> +		if (ret) {
+> +			of_node_put(tchild);
+>   			return ret;
+> +		}
+>   
+>   		target_child.np = tchild;
+>   		target_child.in_livetree = false;
