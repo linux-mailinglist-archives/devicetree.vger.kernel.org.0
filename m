@@ -2,55 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EBBE6326AF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:48:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3982632714
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:57:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbiKUOsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 09:48:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60612 "EHLO
+        id S229864AbiKUO5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 09:57:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbiKUOqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:46:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F9ED2890
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:41:07 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ox7xw-0004wY-P9; Mon, 21 Nov 2022 15:40:08 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ox7xt-005fnr-Os; Mon, 21 Nov 2022 15:40:06 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ox7xu-000akk-0z; Mon, 21 Nov 2022 15:40:06 +0100
-Date:   Mon, 21 Nov 2022 15:40:00 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in
- addition to hex format
-Message-ID: <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
-References: <20221121115525.36362-1-tony@atomide.com>
+        with ESMTP id S231501AbiKUO4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:56:23 -0500
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738A1CEB91
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:46:56 -0800 (PST)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-37063f855e5so115722847b3.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:46:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ulFUKCXAc9aqxzSy5N0/HB1Zcs+rWuap2uwJAvIalXY=;
+        b=E3+Ab5ymBjhRv+mPQJsnLPZIUqlEY50RqereQhANaVN+0Uf8zUE9qEmhkyFg9YbgoY
+         XZrxBVNnHIRsdUXCq51HwP1XE6ayGuVklfNJYVwT//yxtQug++UxpjUooF4W44/qx95V
+         R+yBMfLpKu4xjrTWEoOwbSbuVSG+N7aurs6ZL/GUG/A28VS3hELpuowlVQyDWD/dBavW
+         GQKf+r7C0FoIZdlMNhUnosu/gXKKDjns/oL77HkDRCIb9kI6yTLyFshfHzRbC53DpmCV
+         7Nf/SszYnGjcR/YcmjjPH290oLtMTo22A5B+/WTpl/RZZMLCXAjN3OAijwajceDzv7mQ
+         GMKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ulFUKCXAc9aqxzSy5N0/HB1Zcs+rWuap2uwJAvIalXY=;
+        b=2n6nFdsoaPqE15R4s28r85eqFyTuFIZTXVLmfd1H1Of9V6kXxG12ydk8b/H4j708wU
+         7esNU+4eMBvFjINVyCxoebzS6eCcj4HCKAe52yEFNrGyeVObkX5pT3W+Vw4wUribZKcj
+         lljA/u5a1RoRmR4sRa1un91zQd6GxCLcGzxjVSqQgM7MzCdIlL3rJRuY+PKraX6jUm0H
+         uAAgEXDkTH8IGtXfoalS88+RWFtUGn7PyQi8+TcVWn6ngTSkbq6abHBmXoCMBGklUd6m
+         nCGAhIhNGaYB7T3xfgdtTlrjA1Nj85ClJ9Kb/wPwF3ygO80UD4h7MxW6XShd+uGrqqcm
+         w+Rg==
+X-Gm-Message-State: ANoB5pk3XMoOqNvX97nt6C80CFzQVZEj1cJJVMIz6lD0+bcZJuMXEGH/
+        LsNwm/eTRyKiDXUEF3RZvhULwbb6vkQ5Wec12ulfUw==
+X-Google-Smtp-Source: AA0mqf67GSNoHFtEMWoa7PQwZkXnx8oBOgaiP3Qk0ae9QNXF+lKDNVeKAdZ++WEoIc1A7cDg/0qXZF55lJEASemST8M=
+X-Received: by 2002:a81:520a:0:b0:38e:3015:b4cd with SMTP id
+ g10-20020a81520a000000b0038e3015b4cdmr17831033ywb.87.1669042015544; Mon, 21
+ Nov 2022 06:46:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mvnzhqz5rtb7bfhq"
-Content-Disposition: inline
-In-Reply-To: <20221121115525.36362-1-tony@atomide.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
+ <20221117215557.1277033-7-miquel.raynal@bootlin.com> <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
+ <20221121102928.7b190296@xps-13>
+In-Reply-To: <20221121102928.7b190296@xps-13>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Mon, 21 Nov 2022 15:46:44 +0100
+Message-ID: <CAPv3WKds1gUN1V-AkdhPJ7W_G285Q4PmAbS0_nApPgU+3RK+fA@mail.gmail.com>
+Subject: Re: [PATCH net-next 6/6] net: mvpp2: Consider NVMEM cells as possible
+ MAC address source
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        linux-kernel@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,68 +82,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+pon., 21 lis 2022 o 10:29 Miquel Raynal <miquel.raynal@bootlin.com> napisa=
+=C5=82(a):
+>
+> Hi Marcin,
+>
+> mw@semihalf.com wrote on Sat, 19 Nov 2022 09:18:34 +0100:
+>
+> > Hi Miquel,
+> >
+> >
+> > czw., 17 lis 2022 o 22:56 Miquel Raynal <miquel.raynal@bootlin.com> nap=
+isa=C5=82(a):
+> > >
+> > > The ONIE standard describes the organization of tlv (type-length-valu=
+e)
+> > > arrays commonly stored within NVMEM devices on common networking
+> > > hardware.
+> > >
+> > > Several drivers already make use of NVMEM cells for purposes like
+> > > retrieving a default MAC address provided by the manufacturer.
+> > >
+> > > What made ONIE tables unusable so far was the fact that the informati=
+on
+> > > where "dynamically" located within the table depending on the
+> > > manufacturer wishes, while Linux NVMEM support only allowed staticall=
+y
+> > > defined NVMEM cells. Fortunately, this limitation was eventually tack=
+led
+> > > with the introduction of discoverable cells through the use of NVMEM
+> > > layouts, making it possible to extract and consistently use the conte=
+nt
+> > > of tables like ONIE's tlv arrays.
+> > >
+> > > Parsing this table at runtime in order to get various information is =
+now
+> > > possible. So, because many Marvell networking switches already follow
+> > > this standard, let's consider using NVMEM cells as a new valid source=
+ of
+> > > information when looking for a base MAC address, which is one of the
+> > > primary uses of these new fields. Indeed, manufacturers following the
+> > > ONIE standard are encouraged to provide a default MAC address there, =
+so
+> > > let's eventually use it if no other MAC address has been found using =
+the
+> > > existing methods.
+> > >
+> > > Link: https://opencomputeproject.github.io/onie/design-spec/hw_requir=
+ements.html
+> >
+> > Thanks for the patch. Did you manage to test in on a real HW? I am curi=
+ous about
+>
+> Yes, I have a Replica switch on which the commercial ports use the
+> replica PCI IP while the config "OOB" port is running with mvpp2:
+> [   16.737759] mvpp2 f2000000.ethernet eth52: Using nvmem cell mac addres=
+s 18:be:92:13:9a:00
+>
 
---mvnzhqz5rtb7bfhq
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Nice. Do you have a DT snippet that can possibly be shared? I'd like
+to recreate this locally and eventually leverage EDK2 firmware to
+expose that.
 
-On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
-> Let's allow node numbering in decimal format too.
->=20
-> Simple human-readable increments/IDs are usually decimal, hex is only for
-> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org=
->.
->=20
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentati=
-on/devicetree/bindings/pwm/pwm.yaml
-> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
-> @@ -13,7 +13,7 @@ select: false
-> =20
->  properties:
->    $nodename:
-> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
-> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > ---
+> > >  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/driver=
+s/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > index eb0fb8128096..7c8c323f4411 100644
+> > > --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
+> > > @@ -6104,6 +6104,12 @@ static void mvpp2_port_copy_mac_addr(struct ne=
+t_device *dev, struct mvpp2 *priv,
+> > >                 }
+> > >         }
+> > >
+> > > +       if (!of_get_mac_address(to_of_node(fwnode), hw_mac_addr)) {
+> >
+> > Unfortunately, nvmem cells seem to be not supported with ACPI yet, so
+> > we cannot extend fwnode_get_mac_address - I think it should be,
+> > however, an end solution.
+>
+> Agreed.
+>
+> > As of now, I'd prefer to use of_get_mac_addr_nvmem directly, to avoid
+> > parsing the DT again (after fwnode_get_mac_address) and relying
+> > implicitly on falling back to nvmem stuff (currently, without any
+> > comment it is not obvious).
+>
+> I did not do that in the first place because of_get_mac_addr_nvmem()
+> was not exported, but I agree it would be the cleanest (and quickest)
+> approach, so I'll attempt to export the function first, and then use it
+> directly from the driver.
+>
 
-I wonder why you don't make this:
+That would be great, thank you. Please add one-comment in the
+mvpp2_main.c, that this is valid for now only in DT world.
 
-+    pattern: "^pwm(@.*|-[0-9a-f]*)$"
-
-Is there a use case to match
-
-	pwm-1-2-3-4-5
-
-?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---mvnzhqz5rtb7bfhq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmN7jbEACgkQwfwUeK3K
-7Ak8dgf/atfKNt71rGzkk4AfyRplgjB1ipeRHY5+IS01+0ucveDejarUIE4B/i2T
-ORZmHocWEjjLq4invfvjxNDwlJsp8L8HM8xOt9Kugj892DbNnJ/8iXvV334fwH4S
-uNBShNMfq9KYqNsrknxI5IFWXUetgOPbcnHluyZivNTIsbIQxAmPJNBS3Mti7m//
-FjD+bHBELl2vXz6wM1oAjkQOZB0rGE0g3UqU7cScGKkX8igwx6FG1Ld1mQSL37ok
-zEvmTVyC1kCtdUi+ZDRZGcXCG+rIRnLRxPNfzTAEoxfYckqdXOyPzqu5y8Fe8S9l
-ADMczadutThcO+1jTvE/yMGnt4MTeA==
-=vPi1
------END PGP SIGNATURE-----
-
---mvnzhqz5rtb7bfhq--
+Best regards,
+Marcin
