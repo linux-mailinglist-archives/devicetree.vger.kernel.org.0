@@ -2,72 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88ED3631C46
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C19631C69
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:08:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbiKUJAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50704 "EHLO
+        id S229965AbiKUJIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:08:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbiKUJAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:00:31 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1747D2EF77
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:00:31 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5DEDE66003EF;
-        Mon, 21 Nov 2022 09:00:29 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669021229;
-        bh=GjoD6+ESt/0nC7WvRsDYNODjgEOQgbj3D/vo0DNgFs8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GX7ndQFc90mDHy9IVvkFjC11UQildBuY3gKGx5XKCYxu2dnDae9C9I1haWu3O3clb
-         4P3a5dBkRdW9cUo2QValv+k2lr27sWD6c6kEzfLFYfAHlxpEuyx+Gvkc84pyA/1K5z
-         ab+Y6oXZmDDujBGsEOpK6zDF44lpnE6mKZyxB/3xqXdHA4LIMSkqmipcFYDysdadNL
-         Qt18/u7pLXy2ASnjC1lm9jpJhu8hJOm7f8thB9Zf4b785JWYXYY0jsOu5M60YcZ/3L
-         j3bOvJV4YFLR7wm8Naa3B6kHbgKY/OSRNdm6Sk2CBiKcvEWdRZmd3CU6QgAPLog6mT
-         VjY7470Ij803Q==
-Message-ID: <0ccc4c54-c60f-72eb-6efe-31915b6277d7@collabora.com>
-Date:   Mon, 21 Nov 2022 10:00:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/9] pinctrl: mediatek: common: Remove check for
- pins-are-numbered
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, khilman@baylibre.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        matthias.bgg@gmail.com
-References: <20221121015451.2471196-1-bero@baylibre.com>
- <20221121015451.2471196-2-bero@baylibre.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221121015451.2471196-2-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229998AbiKUJI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:08:29 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B1385EDC;
+        Mon, 21 Nov 2022 01:08:27 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AL8QEW8008997;
+        Mon, 21 Nov 2022 09:08:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=dN/1OORLXDrlZjcUzz/iXvTANCZiAd8xkDrk+zHW4pA=;
+ b=AgcEVlua7hAsgrsGAq4gQFJW+Qf/YK/gP8yxKe3zYWZQHRQgkz58OPpF9qILR8MUTp7w
+ fsU1ZbUqk4ShFdgOfhi4e2hLZdYp7R3nPI3H04KOPTEVTJ9Fdx8o1CI0XQ3NllYVniy4
+ SojZmso1+neKXI4eqI44SUk+3oLUIpvJRuzxDubahEh582M30vtFz82bk49SPW2vYBf+
+ R48dbUapzCBqjxq3QY3uQ5TqhVgKUaIlFjTw5rck8qn8PB62W+7OJ0dwNgVEVplHSNkk
+ sU1VvXuseqTCi00sG+j3WaUBK6uVteWAP/gvlMoQmTeAErw5o1cJGWGZ5DpLEWrk38bv Tg== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxraubyp3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Nov 2022 09:08:23 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2AL98JbC032742;
+        Mon, 21 Nov 2022 09:08:19 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3kxr7k3t7q-1;
+        Mon, 21 Nov 2022 09:08:19 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2AL98JXD032737;
+        Mon, 21 Nov 2022 09:08:19 GMT
+Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2AL98J3u032736;
+        Mon, 21 Nov 2022 09:08:19 +0000
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 4939A349C; Mon, 21 Nov 2022 01:08:18 -0800 (PST)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com
+Subject: [PATCH v4 0/3] add color management support for the crtc
+Date:   Mon, 21 Nov 2022 01:08:12 -0800
+Message-Id: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: m01uVsgwOT6c2IUr64XUT93OOfpZtC0h
+X-Proofpoint-ORIG-GUID: m01uVsgwOT6c2IUr64XUT93OOfpZtC0h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-21_05,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 adultscore=0 mlxlogscore=563 priorityscore=1501
+ suspectscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
+ mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211210071
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/11/22 02:54, Bernhard Rosenkränzer ha scritto:
-> Remove the check for the unnecessary pins-are-numbered Devicetree property.
-> 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+Add color management support for the crtc provided there are
+enough dspps that can be allocated from the catalog
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Kalyan Thota (3):
+  drm/msm/disp/dpu1: pin 1 crtc to 1 encoder
+  drm/msm/disp/dpu1: add helper to know if display is builtin
+  drm/msm/disp/dpu1: add color management support for the crtc
 
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  5 +++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.h    |  5 ++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 33 +++++++++++++++++++++++++++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  6 ++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 24 ++++++++++++++-------
+ 5 files changed, 60 insertions(+), 13 deletions(-)
+
+-- 
+2.7.4
 
