@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D8D6322E6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 198AF63230D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiKUM7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 07:59:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45448 "EHLO
+        id S230047AbiKUNEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:04:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbiKUM7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:59:48 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774142936E
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:59:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669035587; x=1700571587;
-  h=date:from:to:cc:subject:message-id:mime-version;
-  bh=si+DZodBVvJT8HkhhedPN4Wed1iZ0a5TOnfLApPF3VU=;
-  b=LkBQ7p3LGNnm3kISEMw7CBHaXdpS3DwVXn5jY9zRBJQdWr9+BAJhR7iU
-   ts2yjV7J2Nm8TazRylgKtc5vjroB0zhv/UwMJ4FGkr6RMwmRVMwqLWEpr
-   3Gfhi86IHEE/w7NIFZ7DvpuhQ9TiaPwJpNHDlFp2I/t5i6ULGU/BBc38N
-   Eu0w3PvN0s+Q/E7WlEO3aEsiU5sA0P45t7da2IAiMHCE1e7ObQk5ZrgA1
-   RCyQI8xKdgVJ2RbUxYjuzK37e/LGOFJLt3aM8qf2gm8P4wiyRvDBiHpjW
-   daA1gmNIVsvsQqN48dPJvZkRB6FBMgFtxea5s4N8eWh5QqiC13eQ9Ma9g
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="340408754"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
-   d="scan'208";a="340408754"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 04:59:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10537"; a="704551123"
-X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
-   d="scan'208";a="704551123"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP; 21 Nov 2022 04:59:46 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1ox6Om-00FHEL-2q;
-        Mon, 21 Nov 2022 14:59:44 +0200
-Date:   Mon, 21 Nov 2022 14:59:44 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Mixed types of values inside a single property
-Message-ID: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
+        with ESMTP id S229677AbiKUNEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:04:20 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F62451C11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:04:16 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id cl5so19766477wrb.9
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:04:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vEFzLLCkAmvtlRGpGupffHTbi3RRZZNgjCKpe17ieh4=;
+        b=eqHihs4AcVn+xQ+OVkfyxrDbP49/t1D2NXZWCE8Nf1TcMfJSpCta1cqOQTDt6U0pvr
+         uvE5pnP7ggEOiWwPWmJUaAOEcv3xDSCVTV3YsjPfyTuVO6StUfQ3zq0lVAFoNIQBmXR5
+         k81wmk0FmhO5CHmm/Rwn52+6ZnXf8FedX0f+m8bmxHFjdrGVPQiaIE6RMlxjpsMqPJhC
+         3IqCiv+zvRuhcP1OAj8gszLUzWNCo92fiweewkfz5MKMQlAWipwBrfL9cYOz2GiU0KMi
+         QbkjIqpzsycUGrgBAzD9ddqLVI6oTj5/d3bs9DOnLTrvggC15VWcUzTbxvsjWIIa++8C
+         4JRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vEFzLLCkAmvtlRGpGupffHTbi3RRZZNgjCKpe17ieh4=;
+        b=K48CBNIYHvho8/ijlLRgaP84JD6VOwpODo0+Ee7F5xnAAAWr71vn2x7COIkhVKCr5n
+         v3/vYVd+m/QhcwrygvnCpPGBOrqxR8UwTyv40Tx7DU5L8O10YMfe3rbK6NM7NTo+vbe2
+         30BSm/gk2uoqdZQAL6Mqkl+/En/0c94qpz8dIcc316YzplNgktQydAZfDHeoLUoldLI8
+         A+LiI/K9pRYA5JMAWpz5pw2mG7jABQEkgJ+ftu+yFIHmKFvYzfue5RvyMqlHpeok6Hpz
+         g6Yw6pLhpReQ+W97Fn46TwbBDzQVulPTEFFn/5tmz83PtzVYmNECMT0QHA0eIGOk6exh
+         YBTA==
+X-Gm-Message-State: ANoB5pni+vKiYGvdvn7G+C92oZqso6FDSgvwOFokPd4OEg3FsaQxyjIm
+        9Gyy0nuubL+3hwbPo90VVQ20Ww==
+X-Google-Smtp-Source: AA0mqf5avd6Nllh4br5WicJ/f6/ceeoinz6Q6U5GDS03HqAQEXv2oGhNaGAGT72tb3xNfaYgixohqA==
+X-Received: by 2002:adf:db4e:0:b0:241:c694:f4b9 with SMTP id f14-20020adfdb4e000000b00241c694f4b9mr7006738wrj.552.1669035855214;
+        Mon, 21 Nov 2022 05:04:15 -0800 (PST)
+Received: from localhost.localdomain ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id a13-20020a5d53cd000000b002383edcde09sm11133898wrw.59.2022.11.21.05.04.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 05:04:14 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: sc8280xp: add audio support
+Date:   Mon, 21 Nov 2022 13:04:00 +0000
+Message-Id: <20221121130403.161817-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds audio support for sc8280xp Lenovo x13s.
+Support for Headset Playback/Capture, Speaker Playback and DMIC is
+tested.
 
-Hi, Rob and Krzysztof!
+A prebuit ASoC topology file available at
+https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/tree/prebuilt/SC8280XP-LENOVO-X13S-tplg.bin
 
-Today on SO one question [1] was popped up, and I, remembering a bit of
-the code of device properties in the Linux kernel, was a bit surprised of it
-in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
-that either.
 
-Can the specification be a bit more clear about that? Or is it me and the OP of
-that question who missed something in the DT spec?
+Thanks to Johan and Kryz for reviewing v2.
 
-[1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
+Changes since v2:
+	- removed lots of stray lines.
+	- ordered include files.
+	- moved all the nodes before pinctrl
+	- fixed subject line to include x13s.
+	- rebased to latest qcom dts branch.
+
+Thanks,
+Srini
+
+Srinivas Kandagatla (3):
+  arm64: dts: qcom: sc8280xp/sa8540p: add gpr node
+  arm64: dts: qcom: sc8280xp/sa8540p: add SoundWire and LPASS
+  arm64: dts: qcom: sc8280xp-x13s: Add soundcard support
+
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 213 +++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 359 ++++++++++++++++++
+ 2 files changed, 572 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
