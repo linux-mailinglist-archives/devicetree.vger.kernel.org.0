@@ -2,102 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1F92631AA6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A486631AB7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 08:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiKUHwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 02:52:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58458 "EHLO
+        id S229826AbiKUHyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 02:54:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbiKUHwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:52:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA88C31DC2
-        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 23:51:59 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ox1ak-0002dr-1P; Mon, 21 Nov 2022 08:51:46 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ox1ai-00058n-B2; Mon, 21 Nov 2022 08:51:44 +0100
-Date:   Mon, 21 Nov 2022 08:51:44 +0100
-To:     Michael Walle <michael@walle.cc>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+        with ESMTP id S229988AbiKUHyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 02:54:19 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F926A681
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 23:54:06 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id me22so9966144ejb.8
+        for <devicetree@vger.kernel.org>; Sun, 20 Nov 2022 23:54:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GT9ErDbClBtlo66hqT2klzySCTqQIgR/TIVfNl1Gg+Y=;
+        b=O8QBYlAGTTApUL6TLXRC+RdaXgjr6tjZq/PDzzK6ry8Y4u+YJOmeMB5Bn7NTt1qSBi
+         Fukr5kVtdZ4oP8jT3o5Y4ig2M23vgoSWxqsEKX17jKqWA1nakj+jDvHCYj3zVMtgXt4L
+         6w3BeLQUjC/HSQg6TnRYqaWM1WO8NI8d0YViYJ+vy0UvKzyKtMySsWpp99tt08PwS7Vh
+         0/xED8W60TuQkxU12/G2BNND3IPn28OjtYxeXPDUHtbs4zYNN81rhzun5rLMy8kSU1GK
+         QygY7zjiZdOTBVHWAttgYDOf2YlF1/SdqxTmuvWrr2LRwf4fhLC8LAIsuE8j8fh1D7Fu
+         RzQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GT9ErDbClBtlo66hqT2klzySCTqQIgR/TIVfNl1Gg+Y=;
+        b=kVsE56+Sddu5tMaezUaKvDqh0NoQX+5ZO7YAWPwgJ9UkIrBTrM4yqkOn+HrteW4Zhx
+         l0JnqDaicSNnhiIyRSlcfD8nYNAt/cr7yw7lW8LCQC792dCLrQ1RQJvT0KKk+cF8xNwU
+         sVa2BYKJHotFAJDFlQcDOh1POzlkkHo6kmB+6iBaBW4n/hwRvlY46/gVu5qpZL2DHa4g
+         vb71X3ThL/Xy5mOBvxzgOfIGI4wvNKazEraL3xDLc7gFcKPD4WJ7TdVoPm1nHVUXqdQC
+         LsFafoyG1CVV900ImAaNFh2NgMNXrRNunXN+SlPOhRiqZlKWD2MZQ4u3nu09Z/QIEDgI
+         ETxw==
+X-Gm-Message-State: ANoB5pm87L0qVJHkxhLGeCGa9kwIg6NpTR4d/0LxmAeADL4JXYoMzbS1
+        p5vp8lW3IjO7l7pIZ215YqpIAQ==
+X-Google-Smtp-Source: AA0mqf62uSlXNxPTJw3z57ahsIMBOuTXwZwsI5C/DqMRrKONDTY65VHgWF2pcKCOJRSKeBBt/r1gHA==
+X-Received: by 2002:a17:906:2804:b0:78d:e7c0:a2b with SMTP id r4-20020a170906280400b0078de7c00a2bmr14766006ejc.273.1669017244575;
+        Sun, 20 Nov 2022 23:54:04 -0800 (PST)
+Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id o11-20020a170906860b00b007ad4a555499sm4700805ejx.204.2022.11.20.23.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Nov 2022 23:54:04 -0800 (PST)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 17/18] nvmem: layouts: Add ONIE tlv layout driver
-Message-ID: <20221121075144.GL3143@pengutronix.de>
-References: <20221118185118.1190044-1-michael@walle.cc>
- <20221118185118.1190044-18-michael@walle.cc>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add sm6350 compatible
+Date:   Mon, 21 Nov 2022 08:53:55 +0100
+Message-Id: <20221121075358.76582-1-luca.weiss@fairphone.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118185118.1190044-18-michael@walle.cc>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Sascha Hauer <sha@pengutronix.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 07:51:17PM +0100, Michael Walle wrote:
-> From: Miquel Raynal <miquel.raynal@bootlin.com>
-> 
-> This layout applies no top of any non volatile storage device containing
+Add the compatible describing the combo phy found on SM6350.
 
-s/no/on/
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +	table_len = hdr_len + data_len;
-> +	if (table_len > ONIE_TLV_MAX_LEN) {
-> +		dev_err(dev, "Invalid ONIE TLV data length\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	table = devm_kmalloc(dev, table_len, GFP_KERNEL);
-> +	if (!table)
-> +		return -ENOMEM;
-> +
-> +	ret = nvmem_device_read(nvmem, 0, table_len, table);
-> +	if (ret != table_len)
-> +		goto free_data_buf;
-> +
-> +	if (!onie_tlv_crc_is_valid(dev, table_len, table)) {
-> +		ret = -EINVAL;
-> +		goto free_data_buf;
-> +	}
-> +
-> +	data = table + hdr_len;
-> +	ret = onie_tlv_add_cells(dev, nvmem, data_len, data);
-> +	if (ret)
-> +		goto free_data_buf;
-> +
-> +free_data_buf:
-> +	kfree(table);
-
-This is allocated with devm_kmalloc(), you shouldn't free it here.
-
-Sascha
-
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+index 97a7ecafbf85..68aecb638870 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+@@ -18,6 +18,7 @@ properties:
+       - qcom,sc8180x-qmp-usb3-dp-phy
+       - qcom,sc8280xp-qmp-usb43dp-phy
+       - qcom,sdm845-qmp-usb3-dp-phy
++      - qcom,sm6350-qmp-usb3-dp-phy
+       - qcom,sm8250-qmp-usb3-dp-phy
+   reg:
+     items:
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.38.1
+
