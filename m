@@ -2,110 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83397632F82
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 23:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D76632F93
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 23:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbiKUWDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 17:03:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50926 "EHLO
+        id S230041AbiKUWK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 17:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbiKUWDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 17:03:47 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83065F41;
-        Mon, 21 Nov 2022 14:03:46 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ALM3f9g092186;
-        Mon, 21 Nov 2022 16:03:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669068221;
-        bh=yLIraiDAl3fRDr2IzQO3j1XUEWsnoJbe0Ih/sVCEK8M=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=WyYKdWmDSfCDwabxNFeEt5074Z9t+ryw68M4JAa0DTrn464jlrSYbnsQ6mRwDQDdX
-         /Zw/hPjyiNqa3FYu4Sivg8O8Bhftb5G/eL7zZ7qClpVFnE90fCE0eyX/UOvayPOsvu
-         HBKc+st9sAgLiI0kpxxiKtz2HXQi20SLbLu3Oaws=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ALM3fQI010970
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 21 Nov 2022 16:03:41 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 21
- Nov 2022 16:03:40 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 21 Nov 2022 16:03:40 -0600
-Received: from [10.250.135.52] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ALM3XMN105468;
-        Mon, 21 Nov 2022 16:03:34 -0600
-Message-ID: <533bfed1-40da-58a0-de02-6a0161bceaa7@ti.com>
-Date:   Tue, 22 Nov 2022 00:03:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v4 3/5] firmware: ti_sci: Allocate memory for the LPM
- modes
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
+        with ESMTP id S229699AbiKUWKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 17:10:24 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB63DC68A0
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 14:10:19 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id n3so5392114wrp.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 14:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VRR3RzwlMsl9gUPziLpbyooFq3AsphOP+PSPpJyQx+g=;
+        b=C9GzapMbOacL8zYzDWVRs3+/qYM5T0y9fqflHl2TZzs/cvYUqdRLb41zQHEiWHYCKp
+         h/bCDgG2xspXa6kEY6kohfT9DF1yYbe5d8J7D60CkfnPIqFqo8j2D8belLI8s83k3GsG
+         H+goshF4jxdAZMvznPliyUororU22VOCy8Rsyq52mArVtPE9YjYRVWg0+SB4J1pQf1mO
+         MYR0x9iV8YqUh7wutK2mzsh0TJhRyOzAPV8DSTmN/nd+gftLU56v3p2y0tRYksgsUMsA
+         Kg58RLc1/7R8n5e9SBbpOhrmsUUIDokaaWlFE7xKuPAbL6qWDHNG+d3q+LN4s9BUrTMO
+         pvlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VRR3RzwlMsl9gUPziLpbyooFq3AsphOP+PSPpJyQx+g=;
+        b=BA4rc34zGUnuZSyxBY6NKzvmNMWCrPejF7qaEDZWMdXoEP3yIWWzjPx8NMFIzlR2/E
+         nJGZyhWggaa9ZeoXZozIQmeNZPVmoynyDMXKL6F4OA8xT+D06VQGYLRAGL87F8LR5tsx
+         hsuSnhmUq3oNqUCMqjPIJ67OvEPSM0bh80CY2e5lBN5Z0OHke0irnKW9wCfwK3v5+IOL
+         666kR7MpMC2jAN2sorEVZbUcW8sG+AS2f0mc0JFUiUcUYYW/uowTB0PRje+70WjGhIGE
+         RIXmFkpBZwNWpo/IbasvXmZ/EcNI+MXaBS6nSeR8xVeYtgqT8H/eXG/dmh83V1ROAjvC
+         KGjA==
+X-Gm-Message-State: ANoB5pnFj7SZQJQ+Wysvveagrlr/xtnp380yMwkDfoceJc6C2xM+Hk6e
+        WT31018Hgd7rBtTqKLKDeyGkeQ==
+X-Google-Smtp-Source: AA0mqf40nJIz/c53JTgd3rI7SoVigsjcW9HIqTgE2EGcTELGqjwqtXv0Caae2rk0B3ZgLA+eM1h+6w==
+X-Received: by 2002:adf:db4e:0:b0:241:c694:f4b9 with SMTP id f14-20020adfdb4e000000b00241c694f4b9mr8276456wrj.552.1669068618184;
+        Mon, 21 Nov 2022 14:10:18 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id n14-20020a05600c3b8e00b003b4c979e6bcsm21983306wms.10.2022.11.21.14.10.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 14:10:17 -0800 (PST)
+Date:   Tue, 22 Nov 2022 00:10:15 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Bough Chen <haibo.chen@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vibhore Vardhan <vibhore@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-References: <20221116181307.198209-1-g-vlaev@ti.com>
- <20221116181307.198209-4-g-vlaev@ti.com>
- <20221121185627.lysq4u7guiprclxt@surviving>
-From:   Georgi Vlaev <g-vlaev@ti.com>
-In-Reply-To: <20221121185627.lysq4u7guiprclxt@surviving>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jesse Taube <mr.bossman075@gmail.com>
+Subject: Re: [PATCH 1/4] clk: imx: imxrt1050: fix IMXRT1050_CLK_LCDIF_APB
+ offsets
+Message-ID: <Y3v3R94KF8/ygnkT@linaro.org>
+References: <20221117181014.851505-1-giulio.benetti@benettiengineering.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221117181014.851505-1-giulio.benetti@benettiengineering.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+On 22-11-17 19:10:11, Giulio Benetti wrote:
+> Fix IMXRT1050_CLK_LCDIF_APB offsets.
+> 
+> Fixes: 7154b046d8f3 ("clk: imx: Add initial support for i.MXRT1050 clock driver")
+> Cc: Jesse Taube <mr.bossman075@gmail.com>
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
 
-On 11/21/22 20:56, Nishanth Menon wrote:
-> On 20:13-20221116, Georgi Vlaev wrote:
->> +	/*
->> +	 * Attempt to call prepare_sleep, this will be NAK'd if suspend is not
->> +	 * supported by firmware in use, in which case we will not attempt to
->> +	 * init suspend.
->> +	 */
->> +	ret = ti_sci_cmd_prepare_sleep(&info->handle, 0,
->> +				       (u32)(info->ctx_mem_addr & 0xffffffff),
->> +				       (u32)((u64)info->ctx_mem_addr >> 32), 0);
->> +
-> 
-> https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html#tisci-msg-prepare-sleep
-> "Prepare the SOC for entering into a low power mode."
-> 
-> But we are in the init process here. From the documentation, firmware
-> does'nt seem to guarantee it would do something unexpected (like setup
-> io daisy chain or something like that which normal LP entry state
-> would have to do) - How is it safe to use it as a discovery of
-> capability API?
-> 
-> 
+Applied patches #1 and #2. Thanks.
 
-Well, you're correct, there's no guarantee. It is safe to call it now on AM62x
-in both places we actually use it. However, this may change in the future
-and it's not a good idea to misuse that API. We'll switch the detection part
-to a more appropriate message, that's better suited for this purpose on all
-K3 platforms.
+As a suggestion, next time, please send two separate patchsets,
+since there are two different subsystems involved (and the patches #3
+and #4 are not related to #1 and #2).
 
--- 
-Regards,
-Georgi
+> ---
+> V1->V2:
+> * nothing done
+> V2->V3:
+> * added commit log and not only subject as suggested by Jesse Taube
+> V3->V4:
+> * added Fixes: as suggested by Fabio Estevam
+> ---
+>  drivers/clk/imx/clk-imxrt1050.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/imx/clk-imxrt1050.c b/drivers/clk/imx/clk-imxrt1050.c
+> index 9539d35588ee..26108e9f7e67 100644
+> --- a/drivers/clk/imx/clk-imxrt1050.c
+> +++ b/drivers/clk/imx/clk-imxrt1050.c
+> @@ -140,7 +140,7 @@ static int imxrt1050_clocks_probe(struct platform_device *pdev)
+>  	hws[IMXRT1050_CLK_USDHC1] = imx_clk_hw_gate2("usdhc1", "usdhc1_podf", ccm_base + 0x80, 2);
+>  	hws[IMXRT1050_CLK_USDHC2] = imx_clk_hw_gate2("usdhc2", "usdhc2_podf", ccm_base + 0x80, 4);
+>  	hws[IMXRT1050_CLK_LPUART1] = imx_clk_hw_gate2("lpuart1", "lpuart_podf", ccm_base + 0x7c, 24);
+> -	hws[IMXRT1050_CLK_LCDIF_APB] = imx_clk_hw_gate2("lcdif", "lcdif_podf", ccm_base + 0x74, 10);
+> +	hws[IMXRT1050_CLK_LCDIF_APB] = imx_clk_hw_gate2("lcdif", "lcdif_podf", ccm_base + 0x70, 28);
+>  	hws[IMXRT1050_CLK_DMA] = imx_clk_hw_gate("dma", "ipg", ccm_base + 0x7C, 6);
+>  	hws[IMXRT1050_CLK_DMA_MUX] = imx_clk_hw_gate("dmamux0", "ipg", ccm_base + 0x7C, 7);
+>  	imx_check_clk_hws(hws, IMXRT1050_CLK_END);
+> -- 
+> 2.34.1
+> 
