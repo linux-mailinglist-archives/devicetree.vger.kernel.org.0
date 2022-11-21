@@ -2,220 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9561063217C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B70B9632186
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231285AbiKUMAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 07:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
+        id S229711AbiKUMDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 07:03:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231265AbiKUMAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:00:02 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C937262DC
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:00:00 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id t10so14303042ljj.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:00:00 -0800 (PST)
+        with ESMTP id S229610AbiKUMDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:03:32 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FE113DF9;
+        Mon, 21 Nov 2022 04:03:31 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id d1so7399456wrs.12;
+        Mon, 21 Nov 2022 04:03:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gAe96EUQJW/t2YfQOYFjoHjjiIW4hHrPPaKyPCc7BE4=;
-        b=UVduBhk3PJQZkKzEskUrpKs00z1z4r/O7LnJCkT22HInQOeMTGaNIiUeqIGHvlHNel
-         8VqMPfMXtV6tMv9ea7G6sbKvzE3Fm/DlG1E+g8NcPhYe8kgMQ604qRLIDomYKgkO4nJm
-         nNM0oOsRVkJDTr9ybiWyVEr8r6WawaItHr7qHt8Sbx4Ok3kdRHr2SR9GXJjMcjqAyue3
-         iOGkflLwOC1bOY41x6zbbYbq9oqoBTN30Z/aCEk3crJLxYULIxr+CRUxsV3WKHgXoVok
-         yHMtfO5pYc15hhPs6wnzHYeNYaUln8nxRvBy6UGnsaaprdi+rLUUBCYXS1isltaJirK1
-         YmLg==
+        bh=5XQKcVJbCKdPNL3r284+FMGZ1NmD17SxEaB1YH/7mOI=;
+        b=HS4vlJyCkWEfvsMOQSvAWS+nanJLMMyJYUkeOp9QiSi5pcTW25aPdUB4POvsIUg42S
+         U2pw9eI2yOW3OJ0EDFEnKkYe3whh+ZB3hEdVMCoOg7gB+HkjsWWlcaNmC4emBztTdWMH
+         Fs6yFRbnD1oeutuPcrsEa0gQeC41VuSb9lMiuBe4qH8iwnCnvVYXik3aOtGdKGEnpqyC
+         HIma+9c42zoh9IyN7ATszGdxjlHsMqod7Vw/BIX9D8eKrL+h4xO3ucJqEYSPGaVubbV3
+         3EHcHVkaTf57RWC20Zz/AeNtQGoX6LFcmsgVkxHBMIAg8c+oiXqsYk0I3Nvo2c9Z+/H9
+         mlFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAe96EUQJW/t2YfQOYFjoHjjiIW4hHrPPaKyPCc7BE4=;
-        b=7V30WOVAS7Hp8wkXAJujWnzsvpMSwxLXgVm1NmJfhrGJWxeY961j3CLTS5OWJv4Vts
-         Af0iRPo8+K5j2oBg5EWjTlPRNC/ISUj3t1jcmefGIq3m9c/V8A0CQZoq/sSvUXZId9ex
-         wrJJnCSCDBWSh1tKKs9AvcID7WU0Zq5GYd8LWbmR9QJ4981GPqljpKR/n+Gh/XkKxEqI
-         RFz5/r9+PT1rUJhIw66zSZ/sNQB+zgCNZanVsxuRHxAnc2bSVKJaJZ4aeHQ355duhWPd
-         Xle1h1dUOV3pbPO64Sm0RaazA+9e//cQccXzfOYPHOkTS3i/ZrIMAYQM4JNynzMx8LdZ
-         xrwg==
-X-Gm-Message-State: ANoB5plZW5AYINXlJAUtYUGY5epCocyKWWkdF0poT/KXGuWsWJO3S1Os
-        Bi6jDuV6omFKVo71WifV1JAOkg==
-X-Google-Smtp-Source: AA0mqf6lo8pDgZCEf5cpGQ6TpOYX19afdgtwbFTqg3DuazhEzItnWlNNkGFC2exRFsAu0oB9C2ARJA==
-X-Received: by 2002:a05:651c:160f:b0:278:d847:1a8b with SMTP id f15-20020a05651c160f00b00278d8471a8bmr5107958ljq.17.1669031999150;
-        Mon, 21 Nov 2022 03:59:59 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p3-20020ac24ec3000000b00492e3a8366esm2005053lfr.9.2022.11.21.03.59.57
+        bh=5XQKcVJbCKdPNL3r284+FMGZ1NmD17SxEaB1YH/7mOI=;
+        b=voeVrHUmMK0HbOtThIwleYod0S+JDW74smH+cDkRkqxzY5AfThF4H8px9tCKMOglHk
+         PM1rCY3YNGRAAxzhu2tI7vBPfAFrIRD8f1wt8Y5G0djiV9XO4BMPZuRs68BNnKXAvID3
+         qqghvxt+7UpepKzNTDyNtUvAMOYhJFsnemAFoHB+Bfa3Fyvg8zClyqrQJsrRjZYQuoLU
+         QvclnWaT0D3j+OBnEiUyUEymu1haWSMveKQCA6jEoap5S1XruSYspvyzqxFi4AyK15M+
+         UDBLWdnRySAEHCA/HLob7GBbIbGei4z5+TE6HjKxOEZLwpStaNJWMNa4kA1eh0Hv+IiP
+         OM4g==
+X-Gm-Message-State: ANoB5pmQEFHdrX7kVy9BHNdrwUQmHqFDHcRPk6YwwRKJY7Vl2pzWI9Sa
+        E4OiA88c/OlMOO8PF2jASrg=
+X-Google-Smtp-Source: AA0mqf47dsNMrYKK7mFgXn4kWq2UQ8QtuBdL10SrDfVoUPuHM0hhxm2Q3t5E/IRwQgQzWf+z0J0ydQ==
+X-Received: by 2002:a05:6000:1181:b0:22e:53c0:ead8 with SMTP id g1-20020a056000118100b0022e53c0ead8mr10898826wrx.210.1669032210282;
+        Mon, 21 Nov 2022 04:03:30 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id z2-20020a1c4c02000000b003cfe1376f68sm13335036wmf.9.2022.11.21.04.03.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 03:59:58 -0800 (PST)
-Message-ID: <856449f3-6341-78d8-28db-3d4b8a0a25ad@linaro.org>
-Date:   Mon, 21 Nov 2022 12:59:57 +0100
+        Mon, 21 Nov 2022 04:03:28 -0800 (PST)
+Message-ID: <89ceb49a-edfc-2d55-ebf5-cc5ff6d2d52f@gmail.com>
+Date:   Mon, 21 Nov 2022 13:03:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/6] dt-bindings: phy: Add PCIe PHY bindings for FSD
+Subject: Re: [PATCH 0/8] ARM64 MediaTek devicetree fixes - Part 1
 Content-Language: en-US
-To:     Shradha Todi <shradha.t@samsung.com>, bhelgaas@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, lpieralisi@kernel.org,
-        kw@linux.com, mani@kernel.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, alim.akhtar@samsung.com,
-        ajaykumar.rs@samsung.com, rcsekar@samsung.com,
-        sriranjani.p@samsung.com, bharat.uppal@samsung.com,
-        s.prashar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, p.rajanbabu@samsung.com,
-        niyas.ahmed@samsung.com, chanho61.park@samsung.com
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20221121105210.68596-1-shradha.t@samsung.com>
- <CGME20221121104719epcas5p2f87febfba74a4ca6807b3095acf507d0@epcas5p2.samsung.com>
- <20221121105210.68596-2-shradha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121105210.68596-2-shradha.t@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sam.shih@mediatek.com, hanks.chen@mediatek.com,
+        weiyi.lu@mediatek.com, zhiyong.tao@mediatek.com,
+        andrew-sh.cheng@mediatek.com, viresh.kumar@linaro.org,
+        chunfeng.yun@mediatek.com, fparent@baylibre.com,
+        mars.cheng@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221013152212.416661-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221013152212.416661-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:52, Shradha Todi wrote:
-> Document the PCIe PHY device tree bindings for Tesla
-> FSD SoC
 
-Subject: drop second, redundant "bindings".
 
+On 13/10/2022 17:22, AngeloGioacchino Del Regno wrote:
+> This series fixes devicetree warnings for some MediaTek DTs.
 > 
-> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> ---
->  .../bindings/phy/phy-tesla-pcie.yaml          | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
+> Since there's a lot to be done and since not all fixes are trivial,
+> I decided to do this in more than one step, as to ease work for
+> reviewers, maintainers and for .. me.
+> This being part 1 means that there's more to come... a bit later :-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml b/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
-> new file mode 100644
-> index 000000000000..8fa9a050af7a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
+> AngeloGioacchino Del Regno (8):
+>    arm64: dts: mt7896a: Fix unit_address_vs_reg warning for oscillator
+>    arm64: dts: mt6779: Fix devicetree build warnings
+>    arm64: dts: mt2712e: Fix unit_address_vs_reg warning for oscillators
+>    arm64: dts: mt2712e: Fix unit address for pinctrl node
+>    arm64: dts: mt2712-evb: Fix vproc fixed regulators unit names
+>    arm64: dts: mt2712-evb: Fix usb vbus regulators unit names
+>    arm64: dts: mediatek: pumpkin-common: Fix devicetree warnings
+>    arm64: dts: mediatek: mt6797: Fix 26M oscillator unit name
+> 
 
-Filename based on compatible.
+Whole series applied, thanks!
 
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/phy-tesla-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Tesla FSD SoC PCIe PHY
-> +
-> +maintainers:
-> +  - Shradha Todi <shradha.t@samsung.com>
-> +
-> +properties:
-> +  "#phy-cells":
-> +    const: 0
 
-Put compatible as first.
-
-> +
-> +  compatible:
-> +    enum:
-> +      - tesla,fsd-pcie-phy
-> +
-> +  reg:
-> +    minItems: 2
-
-Drop minItems
-
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    maxItems: 2
-
-Drop both.
-
-> +    items:
-> +      enum: [phy, pcs]
-
-Instead list items one after another.
-
-> +    description: |
-> +      phy is the register access to PMA layer
-> +      pcs is the register access to PCS layer
-
-These go to describing items in 'reg:'
-
-> +
-> +  phy-mode:
-> +    description: |
-> +      Defines the bifurcation mode of the PHY
-
-enum, probably type as well... phy-mode is usually a string. Is it here?
-
-> +
-> +  tesla,pmureg-phandle:
-
-Drop phandle, so tesla,pmu-syscon
-
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-
-Drop quotes
-
-> +    description: phandle for PMU system controller interface used to
-> +                 control PMU register bits for PCIe PHY
-> +
-> +  tesla,pcie-sysreg:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-
-Drop quotes
-
-> +    description: phandle for system control registers, used to
-> +                 control phy signals at system level
-> +
-> +required:
-> +  - "#phy-cells"
-> +  - compatible
-
-compatible first.
-
-> +  - reg
-> +  - reg-names
-> +  - phy-mode
-> +  - tesla,pmureg-phandle
-> +  - tesla,pcie-sysreg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      pcie_phy0: pcie-phy@15080000 {
-> +        compatible = "tesla,fsd-pcie-phy";
-> +        #phy-cells = <0>;
-> +        reg = <0x0 0x15080000 0x0 0x2000>, <0x0 0x150A0000 0x0 0x1000>;
-> +        reg-names = "phy", "pcs";
-> +        tesla,pmureg-phandle = <&pmu_system_controller>;
-> +        tesla,pcie-sysreg = <&sysreg_fsys0>;
-> +        phy-mode = <0>;
-> +        status = "disabled";
-
-Drop status
-
-> +      };
-> +    };
-> +...
-
-Best regards,
-Krzysztof
-
+>   arch/arm64/boot/dts/mediatek/mt2712-evb.dts   | 12 +++++-----
+>   arch/arm64/boot/dts/mediatek/mt2712e.dtsi     | 22 +++++++++----------
+>   arch/arm64/boot/dts/mediatek/mt6779.dtsi      |  8 +++----
+>   arch/arm64/boot/dts/mediatek/mt6797.dtsi      |  2 +-
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  2 +-
+>   .../boot/dts/mediatek/pumpkin-common.dtsi     |  6 ++---
+>   6 files changed, 26 insertions(+), 26 deletions(-)
+> 
