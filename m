@@ -2,107 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BDD632B58
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57DC8632B70
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:49:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiKURp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36470 "EHLO
+        id S230246AbiKURtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:49:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbiKURpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:45:21 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6B057B69;
-        Mon, 21 Nov 2022 09:45:19 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id v8so6285261edi.3;
-        Mon, 21 Nov 2022 09:45:19 -0800 (PST)
+        with ESMTP id S230072AbiKURtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:49:43 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A464AD0DD4
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:49:41 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id a1-20020a17090abe0100b00218a7df7789so3904718pjs.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:49:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WNL6IfTe0wzPq8NWBK/D96/5y8l3oPapGeg3sP1iP80=;
-        b=dLhwAvRFJe9dchF5SlF7ogMjH13Pn6iK4bxfoIQiE97ocKlAgrKq3Ar3GgtgtJKfGJ
-         s/O72OTVsNvv/EiYuci7viuu6cDSVg22gjpQLhVYJHIlvsVhHPTbmiber2ea9U9GrLb3
-         JsVBE1OojpPa1oX3NA0Bk1bmjuH/4QGz35S4ErMgIwB7uRJ8VKuFHWGECFZOB1dM6QcM
-         u8P32EeuImZq7VHnVYE0Ity0o12rE81sECLWAV5Z+2oKSbokt9Rxkn/lq8ymXNoZORno
-         RA/kd0GE//5CNTFYaKh0Ox/dgx1dQYtgjQN1ilhQil8pIApqLdb6WEkjdYHpG+p36LzT
-         TogQ==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3GS4S6TK9ac+mMV5RelWbqbejWqPaxMDtgoM0e09ufE=;
+        b=K23iT4uUhWXdisaeHFsXa5oP4XerhQHl6k5ONgw0ex5HM7DXTbrXRzzW/QOn1enhdn
+         aqZd9nbAxgrRHvP3P1oKQjKiQDmsTwBV0ChQ6zyT8YudUQfaeC4CEm8OPw2nIYmPmAKR
+         90XBQFi9W7++dakVIep33AuUDrZWTaNSOW+l7jiB0kl8kmuHIp4qd1n16dL/erS1sHZy
+         aQdsmhCWAW4T24VYjTnv7jkZukRbScvkvqV5LmPP01vbcwg74ZwHSI6adPMohe4MOlK0
+         RtxbCeXQzySSGrnZhOsIBfGK65JpiiYd03I65nHqLKSq9UtdIhEu25Yj/QfjmxluMkHh
+         9G+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WNL6IfTe0wzPq8NWBK/D96/5y8l3oPapGeg3sP1iP80=;
-        b=AbaM6D/ukKbftvZX0twQfL93er2P7ivN+I/aqDDWCMLJpesLJTCE+C7J4lJL7fgCeW
-         JWjqbz5A+358e8SMEex+rrCWPEzrOJO4WBF72LhTXCWiniCedc6tS9GvS0qV+556vzSY
-         6IpScXvekBSrrZnUzZT0iikf3mw53tr3eY0ByLH0xObpddsrdZb+5L4GhDIZOEN3mRsw
-         YCBAwUFih/4/qesZGTGAVBnPbCMbTOE+xsTYUPeqQKBYZFWsVilDB52RoI4LN9nWV+kX
-         jy+vJ4QXWUnid3Qh5AqRD1xcWPjUVmQSTHkpKP5kko6UYdeURd3KU2QFlMnuomYPsUdt
-         NCtw==
-X-Gm-Message-State: ANoB5plmhIqrGY+lTY1g9k7kliHu167TIWNfZsinmMnuHic4bLnPC8D+
-        MTSBLdSrNKuzgnglBmtj/Xg=
-X-Google-Smtp-Source: AA0mqf5tktH45X/K7WSst1WSDXG6NCTfMsMwbFnE94eu773Cg61+GPcdMqm0ADWd+wNyEsvR1EuCxg==
-X-Received: by 2002:aa7:db90:0:b0:459:aa70:d4fd with SMTP id u16-20020aa7db90000000b00459aa70d4fdmr16907330edt.162.1669052717948;
-        Mon, 21 Nov 2022 09:45:17 -0800 (PST)
-Received: from localhost ([217.131.81.52])
-        by smtp.gmail.com with UTF8SMTPSA id g2-20020a056402428200b0046146c730easm5464345edc.75.2022.11.21.09.45.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 09:45:17 -0800 (PST)
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-To:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sasha Finkelstein <fnkl.kernel@gmail.com>
-Subject: [PATCH RESEND v3 4/4] MAINTAINERS: Add entries for Apple PWM driver
-Date:   Mon, 21 Nov 2022 20:42:28 +0300
-Message-Id: <20221121174228.93670-5-fnkl.kernel@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221121174228.93670-1-fnkl.kernel@gmail.com>
-References: <20221121174228.93670-1-fnkl.kernel@gmail.com>
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3GS4S6TK9ac+mMV5RelWbqbejWqPaxMDtgoM0e09ufE=;
+        b=e01jAn8dGF2gDO1+Br2NiFFVNL4aVfv8gYWkh9de9Uh0BKgnVNEQv8VDcEKBwp3L0S
+         fG8DHGNFt939uTHcaZ6hlbBYmXY73goV4I22AU9/IoZmvIvs0HXR3TahAHXnicG8wuUs
+         MMRm5SUIfOuxdWipPw3mhIEKQYxoARexXCvzqKcM5IMVpOY/7Zkrb5ulmYd/4vYKyfp0
+         ejnwsgTzmZEj5Em1RUk6dUl1nhxveArYG8pGkNKmX0XYSCRRkrGxgjErUOPH+IH+WduD
+         //wUQRLWnpkXYwmU1QvCWcG9u/GMl0dR+ADD64MDbPMBZDgwH+P5AWx5iqEY3ZisVnhP
+         10DQ==
+X-Gm-Message-State: ANoB5pl/C3V8ckeo5ExssvBIxwXY0gWQOOu2MLchI2pkyqPhy9PDC5kq
+        bUTPJUcmznjMno7bnIOk66QeBg==
+X-Google-Smtp-Source: AA0mqf7CRF91FsB17zC2mNmIoKsJZALDQyU/dQMgOu4ner59ZioiocUvdgIdRd7o6rlBd51scxg5/Q==
+X-Received: by 2002:a17:902:a511:b0:174:7d26:812f with SMTP id s17-20020a170902a51100b001747d26812fmr445499plq.63.1669052981121;
+        Mon, 21 Nov 2022 09:49:41 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:8b90:bf06:8462:1d8b])
+        by smtp.gmail.com with ESMTPSA id x187-20020a6231c4000000b0056bc30e618dsm9026287pfx.38.2022.11.21.09.49.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 09:49:40 -0800 (PST)
+Date:   Mon, 21 Nov 2022 10:49:38 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
+        srk@ti.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 2/6] remoteproc: pru: Add APIs to get and put the PRU
+ cores
+Message-ID: <20221121174938.GC457869@p14s>
+References: <20221118111924.3277838-1-danishanwar@ti.com>
+ <20221118111924.3277838-3-danishanwar@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221118111924.3277838-3-danishanwar@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the MAINTAINERS entries for the driver
+On Fri, Nov 18, 2022 at 04:49:20PM +0530, MD Danish Anwar wrote:
+> From: Tero Kristo <t-kristo@ti.com>
+> 
+> Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
+> driver to allow client drivers to acquire and release the remoteproc
+> device associated with a PRU core. The PRU cores are treated as
+> resources with only one client owning it at a time.
+> 
+> The pru_rproc_get() function returns the rproc handle corresponding
+> to a PRU core identified by the device tree "ti,prus" property under
+> the client node. The pru_rproc_put() is the complementary function
+> to pru_rproc_get().
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  drivers/remoteproc/pru_rproc.c | 134 ++++++++++++++++++++++++++++++++-
+>  include/linux/pruss.h          |  47 ++++++++++++
+>  2 files changed, 179 insertions(+), 2 deletions(-)
+>  create mode 100644 include/linux/pruss.h
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 128bf9912f2c..4769ade9c316 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -2,12 +2,14 @@
+>  /*
+>   * PRU-ICSS remoteproc driver for various TI SoCs
+>   *
+> - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
+>   *
+>   * Author(s):
+>   *	Suman Anna <s-anna@ti.com>
+>   *	Andrew F. Davis <afd@ti.com>
+>   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+> + *	Puranjay Mohan <p-mohan@ti.com>
+> + *	Md Danish Anwar <danishanwar@ti.com>
+>   */
+>  
+>  #include <linux/bitops.h>
+> @@ -16,6 +18,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/pruss.h>
+>  #include <linux/pruss_driver.h>
+>  #include <linux/remoteproc.h>
+>  
+> @@ -111,6 +114,8 @@ struct pru_private_data {
+>   * @rproc: remoteproc pointer for this PRU core
+>   * @data: PRU core specific data
+>   * @mem_regions: data for each of the PRU memory regions
+> + * @client_np: client device node
+> + * @lock: mutex to protect client usage
+>   * @fw_name: name of firmware image used during loading
+>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+> @@ -126,6 +131,8 @@ struct pru_rproc {
+>  	struct rproc *rproc;
+>  	const struct pru_private_data *data;
+>  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+> +	struct device_node *client_np;
+> +	struct mutex lock;
+>  	const char *fw_name;
+>  	unsigned int *mapped_irq;
+>  	struct pru_irq_rsc *pru_interrupt_map;
+> @@ -146,6 +153,125 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+>  }
+>  
+> +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+> +{
+> +	struct rproc *rproc;
+> +	phandle rproc_phandle;
+> +	int ret;
+> +
+> +	ret = of_property_read_u32_index(np, "ti,prus", index, &rproc_phandle);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	rproc = rproc_get_by_phandle(rproc_phandle);
+> +	if (!rproc) {
+> +		ret = -EPROBE_DEFER;
+> +		goto err_no_rproc_handle;
+> +	}
+> +
+> +	/* make sure it is PRU rproc */
+> +	if (!is_pru_rproc(rproc->dev.parent)) {
+> +		rproc_put(rproc);
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	return rproc;
+> +
+> +err_no_rproc_handle:
+> +	rproc_put(rproc);
+> +	return ERR_PTR(ret);
+> +}
+> +
+> +/**
+> + * pru_rproc_get() - get the PRU rproc instance from a device node
+> + * @np: the user/client device node
+> + * @index: index to use for the ti,prus property
+> + * @pru_id: optional pointer to return the PRU remoteproc processor id
+> + *
+> + * This function looks through a client device node's "ti,prus" property at
+> + * index @index and returns the rproc handle for a valid PRU remote processor if
+> + * found. The function allows only one user to own the PRU rproc resource at a
+> + * time. Caller must call pru_rproc_put() when done with using the rproc, not
+> + * required if the function returns a failure.
+> + *
+> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+> + * returned.
+> + *
+> + * Return: rproc handle on success, and an ERR_PTR on failure using one
+> + * of the following error values
+> + *    -ENODEV if device is not found
+> + *    -EBUSY if PRU is already acquired by anyone
+> + *    -EPROBE_DEFER is PRU device is not probed yet
+> + */
+> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+> +			    enum pruss_pru_id *pru_id)
+> +{
+> +	struct rproc *rproc;
+> +	struct pru_rproc *pru;
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	rproc = __pru_rproc_get(np, index);
+> +	if (IS_ERR(rproc))
+> +		return rproc;
+> +
+> +	pru = rproc->priv;
+> +	dev = &rproc->dev;
+> +
+> +	mutex_lock(&pru->lock);
+> +
+> +	if (pru->client_np) {
+> +		mutex_unlock(&pru->lock);
+> +		put_device(dev);
+> +		ret = -EBUSY;
+> +		goto err_no_rproc_handle;
+> +	}
+> +
+> +	pru->client_np = np;
+> +
+> +	mutex_unlock(&pru->lock);
+> +
+> +	if (pru_id)
+> +		*pru_id = pru->id;
+> +
+> +	return rproc;
+> +
+> +err_no_rproc_handle:
+> +	rproc_put(rproc);
+> +	return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(pru_rproc_get);
+> +
+> +/**
+> + * pru_rproc_put() - release the PRU rproc resource
+> + * @rproc: the rproc resource to release
+> + *
+> + * Releases the PRU rproc resource and makes it available to other
+> + * users.
+> + */
+> +void pru_rproc_put(struct rproc *rproc)
+> +{
+> +	struct pru_rproc *pru;
+> +
+> +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
+> +		return;
+> +
+> +	pru = rproc->priv;
+> +
+> +	mutex_lock(&pru->lock);
+> +
+> +	if (!pru->client_np) {
+> +		mutex_unlock(&pru->lock);
+> +		return;
+> +	}
+> +
+> +	pru->client_np = NULL;
+> +	mutex_unlock(&pru->lock);
+> +
+> +	rproc_put(rproc);
+> +}
+> +EXPORT_SYMBOL_GPL(pru_rproc_put);
+> +
+>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+>  {
+>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+> @@ -816,6 +942,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
+>  	pru->pruss = platform_get_drvdata(ppdev);
+>  	pru->rproc = rproc;
+>  	pru->fw_name = fw_name;
+> +	pru->client_np = NULL;
+> +	mutex_init(&pru->lock);
+>  
+>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+>  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> @@ -904,7 +1032,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
+>  
+>  static struct platform_driver pru_rproc_driver = {
+>  	.driver = {
+> -		.name   = "pru-rproc",
+> +		.name   = PRU_RPROC_DRVNAME,
+>  		.of_match_table = pru_rproc_match,
+>  		.suppress_bind_attrs = true,
+>  	},
+> @@ -916,5 +1044,7 @@ module_platform_driver(pru_rproc_driver);
+>  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+>  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+>  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
+> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
+>  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> new file mode 100644
+> index 000000000000..4909226f14a9
+> --- /dev/null
+> +++ b/include/linux/pruss.h
+> @@ -0,0 +1,47 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/**
+> + * PRU-ICSS Subsystem user interfaces
+> + *
+> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> + *	Suman Anna <s-anna@ti.com>
+> + */
+> +
+> +#ifndef __LINUX_PRUSS_H
+> +#define __LINUX_PRUSS_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define PRU_RPROC_DRVNAME "pru-rproc"
+> +
+> +struct device_node;
+> +
+> +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+> +
+> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+> +			    enum pruss_pru_id *pru_id);
 
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Acked-by: Sven Peter <sven@svenpeter.dev>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Did you really send me code that doesn't compile?  It sure looks that way... 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 046ff06ff97f..69f56f7cf907 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1908,6 +1908,7 @@ F:	Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
- F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
- F:	Documentation/devicetree/bindings/power/apple*
-+F:	Documentation/devicetree/bindings/pwm/pwm-apple.yaml
- F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
- F:	arch/arm64/boot/dts/apple/
- F:	drivers/clk/clk-apple-nco.c
-@@ -1921,6 +1922,7 @@ F:	drivers/mailbox/apple-mailbox.c
- F:	drivers/nvme/host/apple.c
- F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
-+F:	drivers/pwm/pwm-apple.c
- F:	drivers/soc/apple/*
- F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
--- 
-2.38.1
 
+  CC      drivers/remoteproc/pru_rproc.o
+In file included from /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:21:
+/home/mpoirier/work/remoteproc/kernel-review/include/linux/pruss.h:22:13: warning: ‘enum pruss_pru_id’ declared inside parameter list will not be visible outside of this definition or declaration
+   22 |        enum pruss_pru_id *pru_id);
+      |             ^~~~~~~~~~~~
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:207:13: warning: ‘enum pruss_pru_id’ declared inside parameter list will not be visible outside of this definition or declaration
+  207 |        enum pruss_pru_id *pru_id)
+      |             ^~~~~~~~~~~~
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:206:15: error: conflicting types for ‘pru_rproc_get’
+  206 | struct rproc *pru_rproc_get(struct device_node *np, int index,
+      |               ^~~~~~~~~~~~~
+In file included from /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:21:
+/home/mpoirier/work/remoteproc/kernel-review/include/linux/pruss.h:21:15: note: previous declaration of ‘pru_rproc_get’ was here
+   21 | struct rproc *pru_rproc_get(struct device_node *np, int index,
+      |               ^~~~~~~~~~~~~
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c: In function ‘pru_rproc_get’:
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:235:3: error: dereferencing pointer to incomplete type ‘enum pruss_pru_id’
+  235 |   *pru_id = pru->id;
+      |   ^~~~~~~
+In file included from /home/mpoirier/work/remoteproc/kernel-review/include/linux/linkage.h:7,
+                 from /home/mpoirier/work/remoteproc/kernel-review/include/linux/fs.h:5,
+                 from /home/mpoirier/work/remoteproc/kernel-review/include/linux/debugfs.h:15,
+                 from /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:16:
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c: At top level:
+/home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:243:19: error: conflicting types for ‘pru_rproc_get’
+  243 | EXPORT_SYMBOL_GPL(pru_rproc_get);
+
+> +void pru_rproc_put(struct rproc *rproc);
+> +
+> +#else
+> +
+> +static inline struct rproc *
+> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +static inline void pru_rproc_put(struct rproc *rproc) { }
+> +
+> +#endif /* CONFIG_PRU_REMOTEPROC */
+> +
+> +static inline bool is_pru_rproc(struct device *dev)
+> +{
+> +	const char *drv_name = dev_driver_string(dev);
+> +
+> +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +#endif /* __LINUX_PRUSS_H */
+> -- 
+> 2.25.1
+> 
