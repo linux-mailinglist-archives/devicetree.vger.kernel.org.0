@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74EEC6323EB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5709D6323F7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:39:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231264AbiKUNhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 08:37:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
+        id S231293AbiKUNjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:39:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231179AbiKUNhc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:37:32 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68508C4963;
-        Mon, 21 Nov 2022 05:37:20 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 95A7C6602A03;
-        Mon, 21 Nov 2022 13:37:18 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669037839;
-        bh=0ZarEsE3Y3qiEP5ljnmmLq9buKbi0r2iD6ogpZeIH6U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Z7AHKbYAMlBZMWLa6cbytuRAib1GjBl5guYz+SQ+3dE1dwTdhoQTbtZabVszQZ+Hj
-         Mg1pcLHqwiI4u9+ccKFDWx5pPikI6//1vPvO9vYFRl+KAgRrHtBTqh1dIii+x2fcsi
-         +a4My+eLhNZPB+wJOfVtmp+5p6d7UnoMATZuYxH1tyBkqC0LQzPf1vlkhnylob5t/m
-         /lFgrIot8ctoOkK3F8CTuMWfUhgHpx3NmJUU+nx3+qhYOg6goJR0anLia80aiciaH8
-         bRe5o/x/sDqtFWywSXnYYNYibaAF5DFZcuGubdPA/eXoYChjw21ow4yoAxkEaQDlbl
-         2xnSZ4WzKuHtg==
-Message-ID: <1b4b8b62-2768-24b6-08c9-0d05bd051199@collabora.com>
-Date:   Mon, 21 Nov 2022 14:37:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 4/7] arm64: dts: mediatek: mt6797: Make pin
- configuration nodes follow DT bindings
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231217AbiKUNjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:39:23 -0500
+Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A02AFE60
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:38:47 -0800 (PST)
+Date:   Mon, 21 Nov 2022 13:38:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1669037926; x=1669297126;
+        bh=kfk6bVEV/JyzyHMeoamDSd9as4fQPubMKRh8Hzvf9Ks=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=L/XaJhZD62TIcWJXINUUdKibeAUQ7Cw4kRK9ig//L8eGNIX1ZYRV1X1+Er84ZUYml
+         +TpExwwkAuCbnnfmvGAOIHQX4OW8xlnn3/MH9JLtwlSB4Oie7VWsJ14F9S41yZ0VB5
+         4XzJ7sKPtn0SUca4TXPxEHdCZ76xtDRd8POlctBcQNlAO3os0BeGGANPPgEqoZQGro
+         elt+kHEOHEbWueXuQu9wSfac1r14ynpeeiLXD03tvOJ2by9GxfJvIYUO0ij/BmJwus
+         pzqEW3nMzKiQo0rHX3Q2bMua2XdqaegI6dwYU14qK56Zsw9TkJZGkLxSgf0JMmv3Sr
+         0y8awmOqJGmUQ==
+To:     linux-kernel@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221118113028.145348-1-y.oudjana@protonmail.com>
- <20221118113028.145348-5-y.oudjana@protonmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221118113028.145348-5-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v4 0/3] arm64: dts: qcom: msm8916-acer-a1-724: Add initial device tree
+Message-ID: <20221121133732.207820-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/11/22 12:30, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Add -pins suffix to pin configuration nodes to follow DT bindings
-> and pass dtbs_check.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+v4: Sort properties in l11.
+v3: Set property status =3D "okay"; as the last property.
+Reword the bindings patch.
+v2: Fix a typo in dt-bindings commit message
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acer Iconia Talk S A1-724 is a tablet using the MSM8916 SoC released
+in 2014.
 
+Note: The original firmware from Acer can only boot 32-bit kernels.
+To boot arm64 kernels it is necessary to flash 64-bit TZ/HYP firmware
+with EDL, e.g. taken from the DragonBoard 410c. This works because Acer
+didn't set up (firmware) secure boot.
+
+Add a device tree for with initial support for:
+
+- GPIO keys
+- pm8916-vibrator
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART
+- WCNSS (WiFi/BT)
+- Regulators
+- Bosch BMC150 accelerometer/magnetometer
 
