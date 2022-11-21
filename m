@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC7E631AEA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E439631AF8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:07:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbiKUIEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:04:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38716 "EHLO
+        id S229883AbiKUIHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:07:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbiKUIEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:04:33 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA4B20F5E
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:04:32 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p8so17607938lfu.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:04:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SQXNwXriyENMBxcRvt5HwJj1BFFBn/vx8r8A40oB0Tc=;
-        b=DQqLRI7fYzNORFBvv3pu5HOUzWXdPDA+z+U4wFKW7mEn7VdJgPVSFdvA5APdkvf4mg
-         NJMOqaVt5aDPidpqNOcibQCfzw8GMcitQtUQN4bInHcEEoaKCkG2HXe8d4Sie1MSQ454
-         ibIbQ1JLCApYS1yvVIGhiY8hziX/Gv54o7RsymuCfL8je8yiiB+gjPhH1pK228inL3/Z
-         /GAaZOzBgLNcfqZX4UZ6uoJXuTAaStZAa7+fMaZiwMDh4C6Jp10AoCF3UPUFHThxnpoa
-         GeRskEkYHojOa6Y2jjTAG6J+aXj5BRbRUv6n2lQNpNKsOMKSRR+QLsvP4Y6EndzVeNdd
-         wtDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SQXNwXriyENMBxcRvt5HwJj1BFFBn/vx8r8A40oB0Tc=;
-        b=d/aRxj5pqMIdVXBzAmrZlz8qdDTdiUCfKJBfex3IMVWNubrea3yBb2IBJgD6UJxy+c
-         HKLbSy7UfjZjrbyIOGfJBhIinYot7A6WqGF6uwE125WgNcg1lB74XNj28X1AXbSQUol+
-         HkmKwmR5k/07SLFDHFVKZiNYSDXlaX1XtTVRJ5da5II1NiEU9wrwU8fBSNKEYLuad42E
-         LpTgYyeOL+qTlbZbtDrrWwld4rU+IXRYcxrvT6T63rTTOgaF8DbbbHuJilyLCnYWR508
-         1hM4gldLNhCQIfUHD4ZMX63SXVDkCIygkhQaY4l5a5StwQhS28GJXM4RMOJwY/1Kmt+K
-         /Tfg==
-X-Gm-Message-State: ANoB5pmmYaQrhMvznUKTfo1lbVz3/akBiAnCWhI4nm84RW/vR+uPBzDK
-        f40xlWxWHKBKlRpDnxhnjlck0Q==
-X-Google-Smtp-Source: AA0mqf4+Zek9Tov+SKx3s7/VKFuRhbRwGPPf2pj6BxCr9D6CuqD2m1NUJkKSuVjJ1ijnEZQWQbp+qA==
-X-Received: by 2002:a19:f010:0:b0:4a2:2e81:9be5 with SMTP id p16-20020a19f010000000b004a22e819be5mr5860494lfc.486.1669017870905;
-        Mon, 21 Nov 2022 00:04:30 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056512201900b00492dbf809e8sm1908442lfb.118.2022.11.21.00.04.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 00:04:30 -0800 (PST)
-Message-ID: <50024f2e-4820-ef78-d54d-5bfe53ccac7e@linaro.org>
-Date:   Mon, 21 Nov 2022 09:04:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 02/14] dt-bindings: media: rkisp1: Add i.MX8MP ISP
- example
-Content-Language: en-US
-To:     Paul Elder <paul.elder@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229598AbiKUIHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:07:37 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F95FF58B;
+        Mon, 21 Nov 2022 00:07:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45DEB60EF8;
+        Mon, 21 Nov 2022 08:07:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D821C433C1;
+        Mon, 21 Nov 2022 08:07:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669018055;
+        bh=JUZxOMccjGBqhxXgnzu5UUE3t55AOpU4fuF6iENXJVg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C7MMghyWerVrHyBAzc/S5wRhLzYhd7exfpqeiwKzZxTZTTxET6hK5R6nHfib2K+j/
+         cLOXcE8TGu7jMOvIUREzYC0SxQyxoMlwkWzisARrPTKIEeMx/UdaaC/6Ax6o752qGP
+         FP0FlDBzXsCbMnrKH9ZWw9BBCVR20bFVU6IhnpBFi1nxmNvf4At+ot3nMOzMJrhl4Y
+         T69Zq1lfr/Z0ilvEFyMjvoxLwmO76qRmOqEukXTVLsf1FEILQvh81KWyec0OJy6I4U
+         1YwV6ecI5wEIhV+hjc592jKhL4P40FbJeKgBZiMpugucY9EBZOxRlAyW6AFxn97rdT
+         kmzSfXukj4Fig==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ox1pZ-0006OI-Ka; Mon, 21 Nov 2022 09:07:05 +0100
+Date:   Mon, 21 Nov 2022 09:07:05 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
- <20221118093931.1284465-3-paul.elder@ideasonboard.com>
- <ca8a6070-3888-8d42-5974-d7c2adc62417@linaro.org>
- <Y3h93cLdEvMzInXe@pyrite.rasen.tech>
- <238f7bf8-578c-5bb4-9f00-50f36334c5cf@linaro.org>
- <Y3sIAHqd8Kd/XBB/@pyrite.rasen.tech>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3sIAHqd8Kd/XBB/@pyrite.rasen.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add sm6350
+ compatible
+Message-ID: <Y3sxqUu0dnaQfdFY@hovoldconsulting.com>
+References: <20221121075358.76582-1-luca.weiss@fairphone.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221121075358.76582-1-luca.weiss@fairphone.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 06:09, Paul Elder wrote:
-> On Sun, Nov 20, 2022 at 11:36:31AM +0100, Krzysztof Kozlowski wrote:
->> On 19/11/2022 07:55, Paul Elder wrote:
->>> On Fri, Nov 18, 2022 at 02:06:14PM +0100, Krzysztof Kozlowski wrote:
->>>> On 18/11/2022 10:39, Paul Elder wrote:
->>>>> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>>>
->>>>> Add an example to the rockchip-isp1 DT binding that showcases usage of
->>>>> the parallel input of the ISP, connected to the CSI-2 receiver internal
->>>>> to the i.MX8MP.
->>>>>
->>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>>
->>>> Missing SoB.
->>>
->>> I don't quite understand. I see an SoB right there.
->>
->> Laurent did not sent it. Did you run checkpatch before sending?
+On Mon, Nov 21, 2022 at 08:53:55AM +0100, Luca Weiss wrote:
+> Add the compatible describing the combo phy found on SM6350.
 > 
-> That's why he's on the "From:" in the beginning. checkpatch says it's
-> fine.
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> index 97a7ecafbf85..68aecb638870 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - qcom,sc8180x-qmp-usb3-dp-phy
+>        - qcom,sc8280xp-qmp-usb43dp-phy
+>        - qcom,sdm845-qmp-usb3-dp-phy
+> +      - qcom,sm6350-qmp-usb3-dp-phy
+>        - qcom,sm8250-qmp-usb3-dp-phy
+>    reg:
+>      items:
 
-Ah, indeed, checkpatch misses that feature (it's part of Greg's
-verify_signedoff.sh). Anyway, your SoB is missing, as Laurent did not
-send the patch.
+The current USB3-DP bindings are broken and we should no be adding
+further compatibles here. Please consider rebasing on:
 
-Best regards,
-Krzysztof
+	https://lore.kernel.org/all/20221115144005.2478-1-johan+linaro@kernel.org/
 
+Johan
