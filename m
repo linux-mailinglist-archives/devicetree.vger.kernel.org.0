@@ -2,179 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6884A631BCE
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB445631BD1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 09:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbiKUIrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 03:47:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40004 "EHLO
+        id S230137AbiKUIrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 03:47:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbiKUIrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:47:12 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5519A73408
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:47:11 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id s8so17764623lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:47:11 -0800 (PST)
+        with ESMTP id S230130AbiKUIrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 03:47:45 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C989A27927
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:47:43 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id s24so13683880ljs.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 00:47:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kndWz83Xral0dUFOAKp2Vmc6vOTcnvs9YYJQaOTyYnk=;
-        b=GkKeSc7TMYPu00JKJp1CrxzXew8hnss4sAxmBEZL77QYVr4TQJH3CCXlOHWB5jYFOF
-         HzIkSXnikeqEkdZyu1D7qCsup3SRNe6xlUC1+2kRq/nX5NtysB8HHy9EhYAdS12XIGou
-         Nnwg/xioCRfzd+sQtO0+Rmioz0ATbT1CqVn5bweUjOjxtQx/7N17UAAKTwTuK9gOfd9F
-         qUrlYnFdVJ91dUvpwZViz+sI6kdOXXqyvbmW9KvVZeaXAoDiTBdJVI4ntStblyflwU8P
-         +KAHYcDkP/CuCew59BihYdSHxSeWwPP9VH+LEQnl2aLMmHWfuZcba8oJp5tNYaoJn1pz
-         BV6g==
+        bh=O63hibjYAlrDnPNGTBFzJzkRraoluFL/kguca7bLrYo=;
+        b=EltU4fn2WwltWnxGtHI95UcKp8i7eq+YAlW2jT4kEfKWGeet48gr7Oebr6G+/JeJSN
+         k4nMJuCyQYSLAT3mCXCYXA0vJsbMZ0chZryjsRemEqhgCF5D/hp45PV24S9hXquP2v2i
+         7rroPLe7bCePychqzc4/nlgOSvGkHpxK6H6Zl/n/9H993Eg1Jvn1/CNXT7kq2og5Nx2C
+         /qENFve7xFzUK2ed0IXworEBRL/XR3xLN7GDis8GrvEyXRcEOeen5BaRKHVyix0FJR4a
+         /yoU/5sWtY42qhHP+t1+gnxEtXkA2T98wQCfFW91rGLMwhH571k3q1MI7/wZOQSBiBnF
+         P5gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kndWz83Xral0dUFOAKp2Vmc6vOTcnvs9YYJQaOTyYnk=;
-        b=MbVgGWs7diJcfw/as7n4iFedaEgWOt9foprWqDa7TBOzlSP9l1QSEoMa/x9azbPwzE
-         ErQH9/888vizoHVVwVWg5njc8abiR/di6jkYE135fyas+GhMKZmCMY3+r2YSgY6YZA0v
-         9a/eHowZZpwdbn543bTaHdMaE+mpeIRD3NRtfHhCCEA3OWXxbGqwX+9CLOYgBvoA37jO
-         Jw7mnzaBZrLr+vIM094b8UgcXHK/PQlS3iwJKMl9BRVdf60djmCl7rZAhWCbKdj6wCHq
-         5dnrIjMWASb/rvOLq6LkG1q2xEUPGk9vcrI/nnxEz5SXkhlJvlIC8wDkqNPJMumemrVV
-         6lnA==
-X-Gm-Message-State: ANoB5plcndzDXRV2qGfJT82UhITBbG6P18cWVk16oYzzYqff9FlROjKg
-        StFX8myHS3s3BPe1Qe2AeFts+A==
-X-Google-Smtp-Source: AA0mqf7ezaup3NdGbhw0Yyfz7OPrbPKKL4Om6RxHB8XBzBJN4qpHopH6igjgvEXoxu+a4RwhtFpnuA==
-X-Received: by 2002:ac2:508d:0:b0:4a4:72b0:9a2b with SMTP id f13-20020ac2508d000000b004a472b09a2bmr5324334lfm.469.1669020429698;
-        Mon, 21 Nov 2022 00:47:09 -0800 (PST)
+        bh=O63hibjYAlrDnPNGTBFzJzkRraoluFL/kguca7bLrYo=;
+        b=IlMSW4ROa7Oi/6kzDZMYtDeo7jkYpnd8Rb8xGBjWAKEf3FsdUN4oO/ICuH+VC74fVL
+         3/DjoRoWkVhSBPnKEw5y/f3V+mMwyd+uj3QDXPxEBT9g0v/+oxjTJy6uZsbgRpQZ1drg
+         xONhCFbFl57Sw3vJJP1wwt2O5NOO4YV2nWAN36F7zF9Vkl0pGTzh9Sm9AEe+EFUBkrFP
+         7YkaljYhWtCdEwlHOnq4jcI8hUMHq2FdjukJMP20xuhhsZn2H0P5HxAQHzc7eRKNF8ko
+         XuPsnwwP3Jgm6ggLB1DU66lxFy39u/v2TUVaEkefAL1MAGOV4Cf5dKq3aaDklnRNUpJx
+         jkVQ==
+X-Gm-Message-State: ANoB5pkWgmpTTxCXMj+hHgg3erYhrn15naJNh40sV6yLXQQEA0SyYFJi
+        /GnhAwQddfwdd3mQaRwaR7338Q==
+X-Google-Smtp-Source: AA0mqf6CP55rs1V20Qglel+czmAfoGR50CNjnpZfVEcHfcsCVlMnJzzXwnIjMoW1Yz0V7922SH02+Q==
+X-Received: by 2002:a05:651c:158a:b0:26f:c160:6dde with SMTP id h10-20020a05651c158a00b0026fc1606ddemr5035948ljq.20.1669020462193;
+        Mon, 21 Nov 2022 00:47:42 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t17-20020a056512209100b0049ebc44994fsm1944613lfr.128.2022.11.21.00.47.08
+        by smtp.gmail.com with ESMTPSA id t9-20020a056512030900b004a05837103csm1923980lfp.196.2022.11.21.00.47.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 00:47:09 -0800 (PST)
-Message-ID: <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
-Date:   Mon, 21 Nov 2022 09:47:08 +0100
+        Mon, 21 Nov 2022 00:47:41 -0800 (PST)
+Message-ID: <c75d1799-d7f7-d461-b412-27c084357c99@linaro.org>
+Date:   Mon, 21 Nov 2022 09:47:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 Subject: Re: [PATCH v2 09/14] dt-bindings: clock: Add StarFive JH7110 system
  clock and reset generator
 Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     Conor Dooley <conor@kernel.org>,
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Stephen Boyd <sboyd@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         linux-kernel@vger.kernel.org
 References: <20221118010627.70576-1-hal.feng@starfivetech.com>
  <20221118010627.70576-10-hal.feng@starfivetech.com>
+ <CAJM55Z_Gq22NiVYHawvjsehL8j3agvp_b2RCgabdTki+ovWa8Q@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118010627.70576-10-hal.feng@starfivetech.com>
+In-Reply-To: <CAJM55Z_Gq22NiVYHawvjsehL8j3agvp_b2RCgabdTki+ovWa8Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 02:06, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
+On 18/11/2022 17:50, Emil Renner Berthing wrote:
+> On Fri, 18 Nov 2022 at 02:06, Hal Feng <hal.feng@starfivetech.com> wrote:
+>>
+>> From: Emil Renner Berthing <kernel@esmil.dk>
+>>
+>> Add bindings for the system clock and reset generator (SYSCRG) on the
+>> JH7110 RISC-V SoC by StarFive Ltd.
+>>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> ---
+>>  .../clock/starfive,jh7110-syscrg.yaml         | 80 +++++++++++++++++++
+>>  MAINTAINERS                                   |  2 +-
+>>  2 files changed, 81 insertions(+), 1 deletion(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> new file mode 100644
+>> index 000000000000..a8cafbc0afe2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> @@ -0,0 +1,80 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 System Clock and Reset Generator
+>> +
+>> +maintainers:
+>> +  - Emil Renner Berthing <kernel@esmil.dk>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-syscrg
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Main Oscillator (24 MHz)
+>> +      - description: RMII reference clock
+>> +      - description: RGMII RX clock
+>> +      - description: I2S TX bit clock
+>> +      - description: I2S TX left/right clock
+>> +      - description: I2S RX bit clock
+>> +      - description: I2S RX left/right clock
+>> +      - description: TDM
+>> +      - description: mclk
 > 
-> Add bindings for the system clock and reset generator (SYSCRG) on the
-> JH7110 RISC-V SoC by StarFive Ltd.
-> 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> Maybe you could ask your colleagues for a better description of these clocks.
 
-Binding headers are coming with the file bringing bindings for the
-device, so you need to squash patches.
-
-> ---
->  .../clock/starfive,jh7110-syscrg.yaml         | 80 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  2 files changed, 81 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> new file mode 100644
-> index 000000000000..a8cafbc0afe2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 System Clock and Reset Generator
-> +
-> +maintainers:
-> +  - Emil Renner Berthing <kernel@esmil.dk>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-syscrg
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Main Oscillator (24 MHz)
-> +      - description: RMII reference clock
-> +      - description: RGMII RX clock
-> +      - description: I2S TX bit clock
-> +      - description: I2S TX left/right clock
-> +      - description: I2S RX bit clock
-> +      - description: I2S RX left/right clock
-> +      - description: TDM
-> +      - description: mclk
-> +
-> +  clock-names:
-> +    items:
-> +      - const: osc
-> +      - const: gmac1_rmii_refin
-> +      - const: gmac1_rgmii_rxin
-> +      - const: i2stx_bclk_ext
-> +      - const: i2stx_lrck_ext
-> +      - const: i2srx_bclk_ext
-> +      - const: i2srx_lrck_ext
-> +      - const: tdm_ext
-> +      - const: mclk_ext
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/clock/starfive-jh7110.h> for valid indices.
-
-Fix filename.
-
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/reset/starfive-jh7110.h> for valid indices.
-
-Fix filename.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +
+And drop "clock" from previous descriptions. All these are clocks, so no
+need to repeat it.
 
 Best regards,
 Krzysztof
