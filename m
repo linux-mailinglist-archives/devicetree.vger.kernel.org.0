@@ -2,144 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6B66632A59
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43ACC632A5D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbiKURGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:06:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
+        id S230438AbiKURHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:07:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbiKURGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:06:46 -0500
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 468BFC8454;
-        Mon, 21 Nov 2022 09:06:44 -0800 (PST)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1oxAFl-00041n-04; Mon, 21 Nov 2022 18:06:41 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 28364C1C88; Mon, 21 Nov 2022 18:06:12 +0100 (CET)
-Date:   Mon, 21 Nov 2022 18:06:12 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hauke@hauke-m.de,
-        zajec5@gmail.com, zhouyanjie@wanyeetech.com,
-        linux-mips@vger.kernel.org, arinc.unal@arinc9.com,
-        f.fainelli@gmail.com
-Subject: Re: [PATCH v8 0/2] dt-bindings: mips: add CPU bindings for MIPS
- architecture
-Message-ID: <20221121170612.GE3200@alpha.franken.de>
-References: <20221006042945.1038594-1-sergio.paracuellos@gmail.com>
+        with ESMTP id S230446AbiKURHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:07:11 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B17CB9EB
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:07:07 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id a15so15187594ljb.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 09:07:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rJQWLAZ4mdjMtlFjO7Mbh6mixzKo427eR1BTd1zJu8w=;
+        b=xm7lgVvTD8LiKUqo3lDgCROpVlzaUp5xR5oj/uRiSHOTCPkwI4ffK97ZDk4rAoIAHu
+         fVz6Lld5vc+StslDX8RTWnty/GGnaFYtvbJRFiPzzJ5l6tT7PfRlFKjNMcq4Qnuf+Oid
+         dbsUBp92BrrHS4gsjNnaBqtxcpyNJQv1bYODwQ6DqeE/cy4x/sfwOmwVeNUqZlUkACsO
+         Gr4GIZdS17SkCPci1YrZxAtXxJqTkk+gSJm99H92s4uJTlkg1OQ5o9MTpiGWoaSD6Xsf
+         6LETMkR8MSmJ72+cpP9MGYtzd8x3+5/LZKtPqxzCcKk+L2NVJJMUNb8h0xX4hzo9Jggx
+         hPwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rJQWLAZ4mdjMtlFjO7Mbh6mixzKo427eR1BTd1zJu8w=;
+        b=aqTEbqWi7rxz6zeFG+A5y3eHhhCMMonPrch0T2NNQehyZRMRJhd9qAS0xKTUGHBCgL
+         ulwao9szjdYiUhi8nzOa1QEN4/yqdWgLWSMfPTRfp2OGU3tzIC+rPSeD3AZSLB36/0H3
+         C9LG2kNPWXH1pqJVLw4SXUpTgWYaIuHQn7RFV8Pc40vi9eXxiqOuTFT744+8oNkZcZBY
+         5Rq4kiUlxOVoGsAVzmu4jYOjjrge/u85oDQ2FWlbo3bV3iyWaiJwKqXt6kg14VsKfTeD
+         Yr59fA+6kmrmsmqIPOioM+GOyhiWdKGtUg7kablFL0p+15eX8A+HQ6gFPWbpe4FKCGoa
+         nqsw==
+X-Gm-Message-State: ANoB5plLHzB2a4h6JpTzPQyn1X6uemHrtHXav/IYj3MugFoynzgG+MZD
+        16jYkoIuwVVE7YNeyUf769e1AQ==
+X-Google-Smtp-Source: AA0mqf6h+6xPI2dxU9CA3hVBJILkn7hxLyyKv1N7KNTixcKNfyb9AQn+ztPktj067WOaqKu+Ldpt/Q==
+X-Received: by 2002:a05:651c:205:b0:26c:5e3a:44d7 with SMTP id y5-20020a05651c020500b0026c5e3a44d7mr6573052ljn.471.1669050426022;
+        Mon, 21 Nov 2022 09:07:06 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v10-20020a2e87ca000000b0027712379ec8sm1552281ljj.28.2022.11.21.09.07.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 09:07:05 -0800 (PST)
+Message-ID: <1419e9da-98f7-c477-9f07-4b54e82be4c4@linaro.org>
+Date:   Mon, 21 Nov 2022 18:07:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221006042945.1038594-1-sergio.paracuellos@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/8] dt-bindings: power: supply: Add DT schema for
+ Qualcomm SMBCHG
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alejandro Tafalla <atafalla@dnyon.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>
+References: <20221120154625.57095-1-y.oudjana@protonmail.com>
+ <795deac4-71fe-d40b-a3b6-855eb3875ad1@linaro.org>
+ <1H1PLR.S9UFOHIJCU6S@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1H1PLR.S9UFOHIJCU6S@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 06, 2022 at 06:29:43AM +0200, Sergio Paracuellos wrote:
-> Hi all,
+On 21/11/2022 11:36, Yassine Oudjana wrote:
 > 
-> This series tries to make the correct thing to represent in schema
-> all the current documentation related with MIPS CPUs.
+> On Mon, Nov 21 2022 at 09:26:59 +01:00:00, Krzysztof Kozlowski 
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 20/11/2022 16:46, Yassine Oudjana wrote:
+>>>>>  +  interrupts:
+>>>>>  +    items:
+>>>>>  +      - description: Charger error
+>>>>>  +      - description: Charger inhibited
+>>>>>  +      - description: Charger precharge safety timer timeout
+>>>>>  +      - description: Charger charge safety timer timeout
+>>>>>  +      - description: Charger pre to fast charging switch 
+>>>>> threshold reached
+>>>>>  +      - description: Charger recharge threshold reached
+>>>>>  +      - description: Charger taper threshold reached
+>>>>>  +      - description: Charger charge termination threshold reached
+>>>>>  +      - description: Battery hot
+>>>>>  +      - description: Battery warm
+>>>>>  +      - description: Battery cold
+>>>>>  +      - description: Battery cool
+>>>>>  +      - description: Battery overvoltage
+>>>>>  +      - description: Battery low
+>>>>>  +      - description: Battery missing
+>>>>>  +      - description: Battery thermistor missing # unconfirmed
+>>>>>  +      - description: USB input undervolt
+>>>>>  +      - description: USB input overvolt
+>>>>>  +      - description: USB input source detected
+>>>>>  +      - description: OTG regulator failure
+>>>>>  +      - description: OTG regulator overcurrent
+>>>>>  +      - description: Automatic input current limiting done
+>>>>>  +      - description: USB ID pin changed
+>>>>>  +      - description: DC input undervolt
+>>>>>  +      - description: DC input overvolt
+>>>>>  +      - description: Power OK
+>>>>>  +      - description: Temperature shutdown
+>>>>>  +      - description: Watchdog timeout
+>>>>>  +      - description: Flash failure
+>>>>>  +      - description: OTST2 # unknown
+>>>>>  +      - description: OTST3 # unknown
+>>>>
+>>>>  It seems you listed register interrupts, not physical pins. This 
+>>>> should
+>>>>  be interrupt lines.
+>>>
+>>>  I'm not sure what I'm supposed to do here. I couldn't find an 
+>>> interrupt-lines
+>>>  property used anywhere so that's not what you meant, right?
+>>
+>> Are these physical interrupt lines this device has, register offsets 
+>> or
+>> virtual interrupts (e.g. passed via irq_chip)? Definitely not the 
+>> first
+>> and rather offsets for qpnpint_irq_domain_translate. Devicetree is not
+>> for describing register layout of devices. IOW, register layout does 
+>> not
+>> change on different boards, because the device is exactly the same, so
+>> there is no point to put it into DTS.
+>>
 > 
-> Broadcom cpus node is a bit special and need to use the property
-> 'mips-hpt-frequency' in the cpus node. Because of this I have introduced
-> brcm/soc.yaml schema with current broadcom SoCs and making this property
-> required as per Rob's v3 review comments.
-> 
-> Ingenic cpus have also its schema already mainlined. To unify things I
-> have also put this information in this mips/cpus.yaml schema and remove
-> the 'mips/ingenic/ingenic,cpu.yaml' schema. I have also added current
-> maintainer as maintainer for this 'mips/cpus.yaml' file.
-> 
-> Thomas, are these patches going through the mips git tree?
-> 
-> Thanks,
->     Sergio Paracuellos
-> 
-> Changes in v8:
->   - Remove Hauke Mehrtens from brcm/soc.yaml maintainers as per Hauke Mehrtens's
->     requested in v7 response.
-> 
-> Changes in v7:
->   - Remove Rafał Miłecki from brcm/soc.yaml maintainers as per Rafał Miłecki's
->     requested in v6 response.
-> 
-> Changes in v6:
->   - Avoid 'convert' in SoC's patch commit message since this is just an
->     addition and nothing is removed in this patch.
->   - Add Florian Fainelli to maintainers of Broadcom SoC bindings
->   - Add Florian's Acked-by for broadcom SoC PATCH.
->   - Collect Rob's Reviewed-by for both patches.
-> 
-> Changes in v5:
->   - Address Krzysztof comments in v4:
->       - change BMIPS SoC compatibles into an enum and drop descriptions,
->       - Add blank line.
->       - Redo commit message since it is not a conversion to schema.
->       - Drop 'device tree bindings' from description.
->       - Properly describe 'mips-hpt-frequency'.
->   - Review cpus node and add a sample to check schema correctness.    
-> 
-> Changes in v4:
-> - Address Rob's v3 review comments:
->     * Drop PATCH introducing special brcm,cpus.yaml only because properyu
->     'mips-hpt-frequency' is required and move this property to brcm/soc.yaml
->     schema.
->     * Remove 'Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml'
->     and add that information to general mips/cpus.yaml schema.
->     * Define all properties in mips/cpus.yaml and set 'additionalProperties'
->     to false.
-> 
-> Changes in v3:
-> - cpus.yaml:
->     * address Krzysztof comment in v2:
->     * add Thomas as maintainer since this is architecture binding.
->     * s/cpu/CPU
->     * compatible goes first
->     * Add compatible 'mips,mips4Kc' as per Thomas request.
-> - Introduce two new schemas for Broadcom BMIPS:
->     * soc.yaml: describing the BRCM SoC's
->     * brcm,bmips-cpus.yaml: describing the cpu nodes for this platform.
-> 
-> Previous series:
-> v1: https://lore.kernel.org/all/CAMhs-H-eUTOHjAXAbywOXQJgc_j5Ex-1sB7eBZU_bWt1fpNVzA@mail.gmail.com/T/
-> v2: https://lore.kernel.org/all/20220918112245.GA5555@alpha.franken.de/T/
-> v3: https://lore.kernel.org/linux-devicetree/20220929072004.874795-1-sergio.paracuellos@gmail.com/T/#t
-> v4: https://lore.kernel.org/linux-devicetree/20221001043855.933528-1-sergio.paracuellos@gmail.com/T/#t
-> v5: https://lore.kernel.org/linux-devicetree/20221002091611.946210-1-sergio.paracuellos@gmail.com/T/#t
-> v6: https://lore.kernel.org/linux-devicetree/20221004050924.986211-1-sergio.paracuellos@gmail.com/T/#t
-> 
-> Sergio Paracuellos (2):
->   dt-bindings: mips: add CPU bindings for MIPS architecture
->   dt-bindings: mips: brcm: add Broadcom SoCs bindings
-> 
->  .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
->  .../devicetree/bindings/mips/brcm/soc.yaml    |  97 +++++++++++++++
->  .../devicetree/bindings/mips/cpus.yaml        | 115 ++++++++++++++++++
->  .../bindings/mips/ingenic/ingenic,cpu.yaml    |  69 -----------
->  4 files changed, 212 insertions(+), 77 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
->  create mode 100644 Documentation/devicetree/bindings/mips/brcm/soc.yaml
->  create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
-> 
-> -- 
-> 2.25.1
+> So how would I describe the interrupts then? Or if you are saying I 
+> shouldn't have these interrupts in DT at all, how would I get them and 
+> register handlers for them in the driver? the PMIC arbiter takes 4 
+> interrupt cells, 3 of which are these offsets specifying the peripheral 
+> and interrupt. All other PMIC peripherals currently described in DT 
+> (examples being qcom,pm8916-wcd-analog-codec, qcom,pm8941-pwrkey and 
+> qcom-wled) have their interrupts (if any) described this way, with the 
+> only exceptions perhaps being the GPIO and MPP controllers which are 
+> themselves interrupt controllers. Changing the way PMIC peripheral 
+> interrupts are described would require changing PMIC arbiter bindings 
+> and code which I believe is out of the scope of this patch series.
 
-series applied to mips-next.
+I don't think this would touch PMIC arbiter bindings, rather the PMIC
+itself. Usually complex devices (like PMICs) have one few physical
+interrupt lines and many registers related to some specific interrupts.
+For example:
+1. One IRQ line,
+2. Register with bits for overvoltage, undervoltage, vharger error etc.
 
-Thomas.
+Now how the MFD child device accesses them. Since this is strictly
+related to hardware programming model, it's not something you put to
+Devicetree. Instead parent device (PMIC) registers IRQ chip for its one
+interrupt line with several Linux (or virtual) interrupts. The children
+then just get a virtual IRQ from the parent (PMIC) and setup a
+handler(s) for them.
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+You will find some examples for this, just grep for regmap_irq_get_virq,
+for the drivers using regmap_irq_chip (or irq_create_mapping for
+non-regmaps).
+
+Since it is *one* device - the PMIC and its child like charger - the
+register layout is fixed thus I think these virtual (or Linux)
+interrupts are fixed as well.
+
+I don't know why Qualcomm PMIC for SPMI is done differently.
+
+Best regards,
+Krzysztof
+
