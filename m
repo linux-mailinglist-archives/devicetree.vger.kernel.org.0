@@ -2,157 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E44632532
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39BBE63253C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 15:13:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbiKUOMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 09:12:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
+        id S230358AbiKUONI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 09:13:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiKUOLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:11:25 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CF61C909
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:08:40 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id s24so14583947ljs.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:08:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1q/66qpieV42ROuLl508/NOCtso5oX8ztxq7+MJZS74=;
-        b=aBTqybRW16+csQw2izdh0Z/Tj0Lsk9e5tDNHDVkqXxGVpi8ZGGdBefFmuZckcYvSNv
-         ccO8+0/zdZjQhZ8MdHSNKbiiuuTJjFTjrGFukfLj0UifJluWc05jb16j9SNKexFvRQE/
-         b35O3BsbViQVnWJJLT5DHrjfXxqe29OclCZHGU4/omQY8k9hXm6sJTeq7agyGviYdxK7
-         qEZnarT2xh3OChfxr2V3l6KbiAYMBdgAeNyb21DDtx1zbd0+eTf2BTey7Lz2QfOfUlcA
-         QwJ97wth0fIQCcSMT9Zi2WIyxqvK7fzJocKuMisbR1O0pX4kEYQWLu5iCl6hcNIlFrNg
-         YXGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1q/66qpieV42ROuLl508/NOCtso5oX8ztxq7+MJZS74=;
-        b=MicGCaa7e3w/mu0hfXBIHFuJ73qzV9/bsvt8qSNw5Y8P4Qz+zHbJjx95jkvQpWMFD9
-         FPKvJNZbLDX5BI808EGfedwh67sKsljrGjd466hSHiWz073u/NaCSMrlQaPcg2PdYZWf
-         wMx6RvtjpQzaWloeYDZ/KYbr9E9r3PWiSdsaMt435xE0yYfP5Z5YIdOuhlO0L/jiLZzZ
-         LMaGQBqTegZW3cVe05fKEC5+y3D+MY6oeC4N1bty16sOg71FX6bno6pX+Au8LD0NQ849
-         sKJM6nXRHlgzgI/D5CJSt5Fu6rsxA58ZmkeCLG681K63LhPXyJhsl+CbxQxnXadxdnVu
-         wg4w==
-X-Gm-Message-State: ANoB5plC8aBIN5iVt1ONZHGLIHz5ytn8+ljxA0//g3Ev8/jYovPgZ3l4
-        DfGh+X6gHLDxSGRihdY5HFUQAA==
-X-Google-Smtp-Source: AA0mqf6VveqNQ+m62AwB2rm6lHLBMfChSDcetgHGdiA1oaAB9sTaZG6t8MzhfxeZbmzwa2IBQ42MSw==
-X-Received: by 2002:a2e:aa25:0:b0:277:4a17:be66 with SMTP id bf37-20020a2eaa25000000b002774a17be66mr6572661ljb.232.1669039718755;
-        Mon, 21 Nov 2022 06:08:38 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f24-20020a193818000000b00492ceda336fsm2022674lfa.278.2022.11.21.06.08.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 06:08:38 -0800 (PST)
-Message-ID: <c397969d-0f6c-42c2-cf08-3be81257cc22@linaro.org>
-Date:   Mon, 21 Nov 2022 15:08:37 +0100
+        with ESMTP id S229840AbiKUOMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 09:12:19 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFF51408E
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 06:11:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669039876; x=1700575876;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EuKE8rPZGcZiD0oulV4LjEGLESrf/eVNaA3SrZP6qI4=;
+  b=FbKBGAEf/32rJ3pRwezRkVEUpNdHvchUBa0JyX2ygDGHkCP0fYKVL9rz
+   JbOq/6s+oSjHHRqdfpesy6KmdmXJ2jD16GYhFsAGo18PXK/XtMiSSzVaN
+   dpAXy13uuTBHrbnqcbChoLmh2VxBd+hsNsHGxIbQrabNE3JTq9HMhKb6s
+   oGT8JH1IUr9KoG/mgwbbsLpub4VSonVhNBBEghWcSo38PYk6ZVDz/OMRk
+   PSKzOZOWAv2xLmeN4Xb+Cbj6OyFPdZ75RYv5NbnjE9JOUbGpeD90xdys6
+   3Dz0nQbiC+v7Zm9mz2Dby4oshJ03KVc+MEnHDBC9YpEHMuaQQBkiZC3qI
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="399851810"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
+   d="scan'208";a="399851810"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 06:11:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="704573984"
+X-IronPort-AV: E=Sophos;i="5.96,181,1665471600"; 
+   d="scan'208";a="704573984"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP; 21 Nov 2022 06:11:11 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1ox7Vt-00FJ0N-1K;
+        Mon, 21 Nov 2022 16:11:09 +0200
+Date:   Mon, 21 Nov 2022 16:11:09 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: Mixed types of values inside a single property
+Message-ID: <Y3uG/XvhZzaIq5Zi@smile.fi.intel.com>
+References: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
+ <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: magnetometer: add ti tmag5273
- documentation file
-Content-Language: en-US
-To:     Gerald Loacker <gerald.loacker@wolfvision.net>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Jakob Hauser <jahau@rocketmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
- <20221121123542.1322367-2-gerald.loacker@wolfvision.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121123542.1322367-2-gerald.loacker@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 13:35, Gerald Loacker wrote:
-> Add bindings for TI TMAG5273.
+On Mon, Nov 21, 2022 at 02:52:37PM +0100, Krzysztof Kozlowski wrote:
+> On 21/11/2022 13:59, Andy Shevchenko wrote:
+> > 
+> > Hi, Rob and Krzysztof!
+> > 
+> > Today on SO one question [1] was popped up, and I, remembering a bit of
+> > the code of device properties in the Linux kernel, was a bit surprised of it
+> > in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
+> > that either.
+> > 
+> > Can the specification be a bit more clear about that? Or is it me and the OP of
+> > that question who missed something in the DT spec?
+> > 
+> > [1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
 > 
-> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
-> ---
-> Changes in v2:
->  - Removed nodename
->  - Changed angle-enable to angle-measurement and used strings
->  - Added interrupts
->  - Removed vcc-supply from required properties
->  - Changed i2c-0 to i2c in examples
->  .../iio/magnetometer/ti,tmag5273.yaml         | 75 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
-> new file mode 100644
-> index 000000000000..b2ecd7054a34
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/magnetometer/ti,tmag5273.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/magnetometer/ti,tmag5273.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor
-> +
-> +maintainers:
-> +  - Gerald Loacker <gerald.loacker@wolfvision.net>
-> +
-> +description:
-> +  The TI TMAG5273 is a low-power linear 3D Hall-effect sensor. This device
-> +  integrates three independent Hall-effect sensors in the X, Y, and Z axes.
-> +  The device has an integrated temperature sensor available. The TMAG5273
-> +  can be configured through the I2C interface to enable any combination of
-> +  magnetic axes and temperature measurements. An integrated angle calculation
-> +  engine (CORDIC) provides full 360° angular position information for both
-> +  on-axis and off-axis angle measurement topologies. The angle calculation is
-> +  performed using two user-selected magnetic axes.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,tmag5273
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +  ti,angle-measurement:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Enables angle measurement in the selected plane.
-> +      If not specified, "x-y" will be anables as default.
-> +    enum:
-> +      - "off"
-> +      - "x-y"
-> +      - "y-z"
-> +      - "x-z"
+> I saw question on Stackoverflow and I saw there answers, but what is the
+> question to us?
 
-Drop quotes from all these.
+Does the specification allows mixed types of the values in the same property?
+Because reading it doesn't give a hint.
 
-With this:
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
 
