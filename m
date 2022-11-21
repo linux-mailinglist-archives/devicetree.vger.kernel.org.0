@@ -2,84 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A24DA632A51
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCA3632A34
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbiKURGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:06:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
+        id S229987AbiKUREZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:04:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiKURGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:06:45 -0500
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB8DCC78F2;
-        Mon, 21 Nov 2022 09:06:43 -0800 (PST)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1oxAFl-00041n-00; Mon, 21 Nov 2022 18:06:41 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id C2930C1B8B; Mon, 21 Nov 2022 18:03:52 +0100 (CET)
-Date:   Mon, 21 Nov 2022 18:03:52 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
+        with ESMTP id S229915AbiKUREZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:04:25 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4116D79378;
+        Mon, 21 Nov 2022 09:04:24 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id t25-20020a1c7719000000b003cfa34ea516so10718120wmi.1;
+        Mon, 21 Nov 2022 09:04:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NoFx71q/N+0qvQAXga+00ibSeehFlmzztyqyJ4eQ8tU=;
+        b=SOzH1U73ZCGPIl43YAXV6NsMIfqJufbn/wt/jIDoIOp6GOyDnyNUbweXEzy6k7i/GC
+         U7kDF6zkGTZJaKsG8HlSLw6o4jH+zrzamUK2ttsK/v0Ev0UHeFKF0cgO56PL/UfJ/VJq
+         P5tegS169frMGQLFONlxqSDw7DKPL4qSX28m2Y8oxjCQK9OaNMfJcmdEA58NrNYCcXMD
+         tVeexNRwQNzZfTAaPFiTj34BZsAFgPj6pDjykwWIRKBwlD0kuFXmIK8+OSHKMvwmpdIz
+         xqrzkxoEMdn0qCvI3EfBZ+LkJcoeDhsKeEQYm3cS36/rtajPjkuv9RSkbX50qFpzKnan
+         569A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NoFx71q/N+0qvQAXga+00ibSeehFlmzztyqyJ4eQ8tU=;
+        b=NZZsSDuHCCaa1UHue9r6x4vrjP6SZCm9iuTOHBTaLkS4VywgVMMQ6ySXIF0d3BlEuO
+         RhlLJVVpA+FGhmPlKzWTG+if/gR71PigSII7wJeBfy5Bgbs3EgRNManjNF87Lyu3cKqA
+         VRyZPu4K0UVhRCKh47lSu/JYau7JFfZ8cydo7xz+Byz2bT6XNAQ2yAIakCrAiImONZlp
+         XkSDVGdYbXCn0ydlotTq43Mzv/rnhZTX1V7n+JcgqVsW5igGAED3gt0NHzCTkO4dFSoe
+         qINo4POl7iAbfvvba+GnAB3fDstw8yY878zxTF/QuZtBcjQyhFQisk4smesZlQXCquBT
+         bC5A==
+X-Gm-Message-State: ANoB5pnuQ+LeelLUL5FGc88+ljPk/bLy31MCCYWhiBo7tE4FwQQtvFMm
+        wbsd7B6/NeVqV7hHEptJKVxUM9W9SLA=
+X-Google-Smtp-Source: AA0mqf7NevCCp2kHDxm/siKILqFB87Rj2TAPdnv2R9chC5DSXsq7GJxVOqlYf2BRJ2sM75AZqf8HGg==
+X-Received: by 2002:a05:600c:35c8:b0:3cf:cf89:2f02 with SMTP id r8-20020a05600c35c800b003cfcf892f02mr2889036wmq.2.1669050262379;
+        Mon, 21 Nov 2022 09:04:22 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id g17-20020a05600c4ed100b003c701c12a17sm21447872wmq.12.2022.11.21.09.04.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 09:04:20 -0800 (PST)
+Message-ID: <a257049b-d3a8-e0ac-d887-5bb0420579ad@gmail.com>
+Date:   Mon, 21 Nov 2022 18:04:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v6 01/11] arm64: dts: mt7986: move wed_pcie node
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] MIPS: DTS: CI20: fix reset line polarity of the ethernet
- controller
-Message-ID: <20221121170352.GA3200@alpha.franken.de>
-References: <Y3e2Q9jeGotRlwqV@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3e2Q9jeGotRlwqV@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Bo Jiao <Bo.Jiao@mediatek.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20221118190126.100895-1-linux@fw-web.de>
+ <20221118190126.100895-2-linux@fw-web.de>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221118190126.100895-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 08:43:47AM -0800, Dmitry Torokhov wrote:
-> The reset line is called PWRST#, annotated as "active low" in the
-> binding documentation, and is driven low and then high by the driver to
-> reset the chip. However in device tree for CI20 board it was incorrectly
-> marked as "active high". Fix it.
+
+
+On 18/11/2022 20:01, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Because (as far as I know) the ci20.dts is always built in the kernel I
-> elected not to also add a quirk to gpiolib to force the polarity there.
+> Move the wed_pcie node to have node aligned by address.
 > 
-> Fixes: db49ca38579d ("net: davicom: dm9000: switch to using gpiod API")
-> Reported-by: Paul Cercueil <paul@crapouillou.net>
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Fixes: 00b9903996b3 ("arm64: dts: mediatek: mt7986: add support for Wireless Ethernet Dispatch")
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Applied, thanks!
+
 > ---
->  arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-> index 37c46720c719..f38c39572a9e 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -438,7 +438,7 @@ dm9000@6 {
->  		ingenic,nemc-tAW = <50>;
->  		ingenic,nemc-tSTRV = <100>;
->  
-> -		reset-gpios = <&gpf 12 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&gpf 12 GPIO_ACTIVE_LOW>;
->  		vcc-supply = <&eth0_power>;
->  
->  		interrupt-parent = <&gpe>;
-> -- 
-> 2.38.1.584.g0f3c55d4c2-goog
-
-applied to mips-next.
-
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> index a22e10e89ab9..afc01abfa99c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> @@ -112,6 +112,12 @@ infracfg: infracfg@10001000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> +		wed_pcie: wed-pcie@10003000 {
+> +			compatible = "mediatek,mt7986-wed-pcie",
+> +				     "syscon";
+> +			reg = <0 0x10003000 0 0x10>;
+> +		};
+> +
+>   		topckgen: topckgen@1001b000 {
+>   			compatible = "mediatek,mt7986-topckgen", "syscon";
+>   			reg = <0 0x1001B000 0 0x1000>;
+> @@ -257,12 +263,6 @@ ethsys: syscon@15000000 {
+>   			 #reset-cells = <1>;
+>   		};
+>   
+> -		wed_pcie: wed-pcie@10003000 {
+> -			compatible = "mediatek,mt7986-wed-pcie",
+> -				     "syscon";
+> -			reg = <0 0x10003000 0 0x10>;
+> -		};
+> -
+>   		wed0: wed@15010000 {
+>   			compatible = "mediatek,mt7986-wed",
+>   				     "syscon";
