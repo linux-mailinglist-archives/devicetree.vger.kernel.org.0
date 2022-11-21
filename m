@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7EF63235C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3CB632361
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 14:24:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiKUNYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 08:24:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
+        id S229685AbiKUNYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 08:24:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiKUNYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:24:10 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE452AC7D
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:24:08 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id i12so15979178wrb.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:24:07 -0800 (PST)
+        with ESMTP id S229796AbiKUNYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 08:24:38 -0500
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71E42FC21
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:24:36 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-3a3961f8659so21332097b3.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 05:24:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4LJ8G4Vlx63n7xBM1es556I3FKQ+mU4sDRzPoRdCeX0=;
-        b=kd74NXQh18wXsJRyAWwjOEZo6k21PuwDdsL4ZmNCSg8eLPjALRuiX3ZSZ5RiPInHwR
-         ObrJ3F6rZaax9BBwPZ/cvOeJc/ZhxFdPBuWApa+uEQBY4ySZcH21fNOOgG9TV+srlhDK
-         sJY+fpmEVh/moUjqN9GhrBjkFat4UZ8IPCrZJcTuBV4VqYDooAI7toY9pkzEJnVlkZWj
-         qUmdWlYDENIMiVkRQwvaCWjmxPhzMpVE2mkYaJ/24jawnIMbzkaIv0uj21BSneaHWECg
-         gpmHNhIRtXHe3dnyAW2YWKDFkDqeOKdHhwnrRqZAbHOXP2OpS8mCCYsDgrBvNp1LaXvE
-         p7eQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AMF5A9vgu2qUxvanROG2lGFbnRUFl67UAIh7zppvu2s=;
+        b=TmbfJOUCs+9U3Y6bfub3PFtiGVGewEjVOdg9ibhoZFqFo0VQROsNDGOe232bTYcwno
+         5nqd0DOxhqA6bA0YttR5LY+FLX4wteJz9Cc/1XcdHyytHpVctmPct40jtyyZ5MnojkF0
+         2Pbk/FtOnBcUpU4R/kY8nq/RN0p94iVCGbvDrcx3ova8WgSm6aJyVE9lZ4r50ncSvzMZ
+         VQ5zJAuCuSpRYXZ6/m0UYhLiV+7e9lklmlbR62aholORjxBsU59pGnY6HYG6Bx+X8MRe
+         LDlysTbmjyRNg32elTiD8oJPYkGCZlIqL99vOcJA6wLqB6aBysFjeHe7iFTIfzn/GPJ/
+         7iTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4LJ8G4Vlx63n7xBM1es556I3FKQ+mU4sDRzPoRdCeX0=;
-        b=lWU+pjmSAXHC1xNznY7FNgRql7R9lDQfX2W/zZAr3L6PtkIpBx8Bq9xf5gcHz6MEXn
-         ErO7T0W86Ml7aUO/H2dSu0V2QpJwLhwh2sAJrkR9OSzWT9UN20VYPQRbej+njYQ7xnW+
-         MW7fxzptTwfOqgp5YMGt+96eKCgYpjDOdJABqGvmBL6sb2RJCD9Slt+gq7io5Sq8kO2z
-         khSkwrNc1uH0J8YI1nc7cM+dJW5AqxGEbTz+VDpSuDH04jKRRNayn45//tmlDPlT9y7y
-         yPssyaV6cs1FSrJIOdsWHjIqhF6pZaQqziUImGVKvoOuZs9Lx4IxAjelp0x/aQbbhrWE
-         sV8A==
-X-Gm-Message-State: ANoB5plxfPJy0n6ACKk46Ui6XYSISiQDegpgPx4xquzyQqc8aGeCqkKj
-        Bu+xY+Xv2Sn1mrS2xfWSUqiHug==
-X-Google-Smtp-Source: AA0mqf751Fr4N3/875Urx0i7J1CeHvrpttXLjJgI9qnKrrIfoaIeZRF5J+hyjNgMQMilcVeGAzzvMw==
-X-Received: by 2002:adf:e98b:0:b0:241:dbf1:dad with SMTP id h11-20020adfe98b000000b00241dbf10dadmr363012wrm.130.1669037046505;
-        Mon, 21 Nov 2022 05:24:06 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05600c155300b003c6f3e5ba42sm20242257wmg.46.2022.11.21.05.24.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 05:24:05 -0800 (PST)
-Message-ID: <7815f518-c764-a3d8-cde6-89c1f17c2329@linaro.org>
-Date:   Mon, 21 Nov 2022 14:24:04 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AMF5A9vgu2qUxvanROG2lGFbnRUFl67UAIh7zppvu2s=;
+        b=hLVSS2QY9i5+1NIq1cgFlN52wPP9YkPIwW6Up19pe9PKi0n8L/fRC3N887JhFo/aOY
+         uFqvURdaehEdYbQABRhXyBedW+VBgd0GM063dGt02hb1EcUe1iM3+9Rk8al/68SsUW2G
+         KWzgK22YzaJjoir8KJg76QJ984kRw9OtAgZONQX+9t9VREEnxlja2e+dum8UzXZwP7xZ
+         WNpG/wwSm34bhTIs5I5CBq53lVW1rTisi9Lz0E56B0kHb0iqC9/WypWUEVrjrxkwz8aJ
+         R4YVDMMb8WwGc/2wLgiZ1KYLrqR4CxRxMad82vQ/jDMDxYq3ByPsJPHFSmrhgvAeKmKF
+         w1qQ==
+X-Gm-Message-State: ANoB5pmR/I741yfhngvqPKP+yucmMBeljTdglmFiadh1ugh8D2LF7efA
+        CRAZiHiu0Mn7I/Jvb3yzjLafoF5pwKFRq/9LmRaiMw==
+X-Google-Smtp-Source: AA0mqf4uBiIhiP9oP8YwfTs/QwKMT4Vn2rtMltIF40cPCUml7Dfu19+TajxNWcCL4Q6Um3PxxssXpQKIQueyzLOF1E4=
+X-Received: by 2002:a0d:fdc7:0:b0:37a:e8f:3cd3 with SMTP id
+ n190-20020a0dfdc7000000b0037a0e8f3cd3mr17017274ywf.187.1669037075837; Mon, 21
+ Nov 2022 05:24:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 10/14] dt-bindings: clock: Add StarFive JH7110
- always-on clock and reset generator
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
+In-Reply-To: <20221121123803.3786-2-zhuyinbo@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 21 Nov 2022 14:24:23 +0100
+Message-ID: <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-kernel@vger.kernel.org
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-11-hal.feng@starfivetech.com>
- <8153973d-e8ad-e47a-3808-bbcdbfd169a5@linaro.org>
- <CAJM55Z9ouj=jD2Otx3fK4W1wgnPjecUgFuKksw5CmU6SraM_Nw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJM55Z9ouj=jD2Otx3fK4W1wgnPjecUgFuKksw5CmU6SraM_Nw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,61 +80,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 12:38, Emil Renner Berthing wrote:
-> On Mon, 21 Nov 2022 at 09:49, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 18/11/2022 02:06, Hal Feng wrote:
->>> From: Emil Renner Berthing <kernel@esmil.dk>
->>>
->>> Add bindings for the always-on clock and reset generator (AONCRG) on the
->>> JH7110 RISC-V SoC by StarFive Ltd.
->>>
->>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->>> ---
->>>  .../clock/starfive,jh7110-aoncrg.yaml         | 76 +++++++++++++++++++
->>>  1 file changed, 76 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
->>> new file mode 100644
->>> index 000000000000..afbb205e294f
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
->>> @@ -0,0 +1,76 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-aoncrg.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: StarFive JH7110 Always-On Clock and Reset Generator
->>> +
->>> +maintainers:
->>> +  - Emil Renner Berthing <kernel@esmil.dk>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: starfive,jh7110-aoncrg
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: Main Oscillator
->>> +      - description: RTC clock
->>
->> Real Time Clock clock? :) I don't think the input to clock controller is
->> the output of RTC...
-> 
-> The description is bad, but even the documentation calls it "clk_rtc"
-> even though it's really an optional input from a 32k oscillator.
+On Mon, Nov 21, 2022 at 1:38 PM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
 
-Then description should match reality, not documentation. Documentation
-is often poor, so if possible better to extend it.
+> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
+> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
+> with other functions. Each GPIO can set input/output and has the
+> interrupt capability.
+>
+> This driver added support for Loongson GPIO controller and support to
+> use DTS or ACPI to descibe GPIO device resources.
+>
+> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
+> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
+> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v5:
 
-Best regards,
-Krzysztof
+This is starting to look really good! We are getting to the final polish.
 
+> +config GPIO_LOONGSON
+> +       tristate "Loongson GPIO support"
+> +       depends on LOONGARCH || COMPILE_TEST
+
+select GPIO_GENERIC
+
+You should use this in the "bit mode".
+
+>  obj-$(CONFIG_GPIO_LOONGSON1)           += gpio-loongson1.o
+> +obj-$(CONFIG_GPIO_LOONGSON)            += gpio-loongson.o
+
+Isn't this a bit confusing? What about naming it
+gpio-loongson2.c?
+
+> +enum loongson_gpio_mode {
+> +       BIT_CTRL_MODE,
+> +       BYTE_CTRL_MODE,
+> +};
+
+I don't think you will need to track this, jus assume BYTE_CTRL_MODE
+in your callbacks because we will replace the bit mode with assigned
+accessors from GPIO_GENERIC.
+
+> +
+> +struct loongson_gpio_platform_data {
+> +       const char              *label;
+> +       enum loongson_gpio_mode mode;
+
+So drop this.
+
+> +static int loongson_gpio_request(
+> +                       struct gpio_chip *chip, unsigned int pin)
+> +{
+> +       if (pin >= chip->ngpio)
+> +               return -EINVAL;
+
+This is not needed, the gpiolib core already checks this. Drop it.
+
+> +static inline void __set_direction(struct loongson_gpio_chip *lgpio,
+> +                       unsigned int pin, int input)
+> +{
+> +       u64 qval;
+> +       u8  bval;
+> +
+> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+> +               qval = readq(LOONGSON_GPIO_OEN(lgpio));
+> +               if (input)
+> +                       qval |= 1ULL << pin;
+> +               else
+> +                       qval &= ~(1ULL << pin);
+> +               writeq(qval, LOONGSON_GPIO_OEN(lgpio));
+> +       } else {
+> +               bval = input ? 1 : 0;
+> +               writeb(bval, LOONGSON_GPIO_OEN_BYTE(lgpio, pin));
+> +       }
+
+Drop bit mode keep only byte mode.
+
+> +static void __set_level(struct loongson_gpio_chip *lgpio, unsigned int pin,
+> +                       int high)
+> +{
+> +       u64 qval;
+> +       u8 bval;
+> +
+> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+> +               qval = readq(LOONGSON_GPIO_OUT(lgpio));
+> +               if (high)
+> +                       qval |= 1ULL << pin;
+> +               else
+> +                       qval &= ~(1ULL << pin);
+> +               writeq(qval, LOONGSON_GPIO_OUT(lgpio));
+> +       } else {
+> +               bval = high ? 1 : 0;
+> +               writeb(bval, LOONGSON_GPIO_OUT_BYTE(lgpio, pin));
+> +       }
+
+Dito.
+
+> +static int loongson_gpio_get(struct gpio_chip *chip, unsigned int pin)
+> +{
+> +       u64 qval;
+> +       u8  bval;
+> +       int val;
+> +
+> +       struct loongson_gpio_chip *lgpio =
+> +               container_of(chip, struct loongson_gpio_chip, chip);
+> +
+> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+> +               qval = readq(LOONGSON_GPIO_IN(lgpio));
+> +               val = (qval & (1ULL << pin)) != 0;
+> +       } else {
+> +               bval = readb(LOONGSON_GPIO_IN_BYTE(lgpio, pin));
+> +               val = bval & 1;
+> +       }
+
+Dito.
+
+> +static int loongson_gpio_to_irq(
+> +                       struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct platform_device *pdev =
+> +               container_of(chip->parent, struct platform_device, dev);
+> +       struct loongson_gpio_chip *lgpio =
+> +               container_of(chip, struct loongson_gpio_chip, chip);
+> +
+> +       if (offset >= chip->ngpio)
+> +               return -EINVAL;
+> +
+> +       if ((lgpio->gsi_idx_map != NULL) && (offset < lgpio->mapsize))
+> +               offset = lgpio->gsi_idx_map[offset];
+> +       else
+> +               return -EINVAL;
+> +
+> +       return platform_get_irq(pdev, offset);
+> +}
+
+I'm a bit suspicious about this. See the following in
+Documentation/driver-api/gpio/driver.rst:
+
+------------------
+It is legal for any IRQ consumer to request an IRQ from any irqchip even if it
+is a combined GPIO+IRQ driver. The basic premise is that gpio_chip and
+irq_chip are orthogonal, and offering their services independent of each
+other.
+
+gpiod_to_irq() is just a convenience function to figure out the IRQ for a
+certain GPIO line and should not be relied upon to have been called before
+the IRQ is used.
+
+Always prepare the hardware and make it ready for action in respective
+callbacks from the GPIO and irq_chip APIs. Do not rely on gpiod_to_irq() having
+been called first.
+------------------
+
+I am bit suspicious that your IRQchip implementation expects consumers
+to call gpiod_to_irq() first and this is not legal.
+
+> +static int loongson_gpio_init(
+> +                       struct device *dev, struct loongson_gpio_chip *lgpio,
+> +                       struct device_node *np, void __iomem *base)
+> +{
+
+Do something like this:
+
+#define LOONGSON_GPIO_IN(x)            (x->base + x->p_data->in_offset)
++#define LOONGSON_GPIO_OUT(x)           (x->base + x->p_data->out_offset)
++#define LOONGSON_GPIO_OEN(x)           (x->base + x->p_data->conf_offset)
+
+if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+       ret = bgpio_init(&g->gc, dev, 8,
+                         lgpio->base + lgpio->p_data->in_offset,
+                         lgpio->base + lgpio->p_data->out_offset,
+                         0,
+                         lgpio->base + lgpio->p_data->conf_offset,
+                         NULL,
+                         0);
+        if (ret) {
+                dev_err(dev, "unable to init generic GPIO\n");
+                goto dis_clk;
+        }
+
+If you actually have a special purpose clear register in your hardware
+which is not included here, then add it in the line with just 0 for that
+function.
+
+See the kerneldoc in bgpio_init() in drivers/gpio/gpio-mmio.c.
+
+Then:
+
+}  else {
+
+> +       lgpio->chip.request = loongson_gpio_request;
+> +       lgpio->chip.direction_input = loongson_gpio_direction_input;
+> +       lgpio->chip.get = loongson_gpio_get;
+> +       lgpio->chip.direction_output = loongson_gpio_direction_output;
+> +       lgpio->chip.set = loongson_gpio_set;
+
+Note also: implement loongson_gpio_get_direction(). To read the setting
+of the conf register on startup. You now only need to implement it for
+byte mode.
+
+}
+
+After this you should set ngpios, because bgpio_init() will overwrite it
+with 64, so it cannot be done directly when parsing platform data,
+cache it somewhere and write it here.
+
+(...)
+
+Yours,
+Linus Walleij
