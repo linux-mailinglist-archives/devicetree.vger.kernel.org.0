@@ -2,181 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C96726328EA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BD46328ED
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:01:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbiKUQBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 11:01:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34270 "EHLO
+        id S231224AbiKUQB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 11:01:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbiKUQBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:01:39 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C91D289F;
-        Mon, 21 Nov 2022 08:01:38 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id cl5so20548322wrb.9;
-        Mon, 21 Nov 2022 08:01:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=se+MAs3HPFJjq3A9atUw8nuqmBuPrTQxwBOsSaeeZ/M=;
-        b=M01iq+hGiBLlhv4xo7OLt1pSkljmKcyHE42TEXpwR3fT2o7x7AqEchub097biFmD9+
-         b78HOhBtRMwWoXgzFWQQwxz2rS0R/bvFz9uMUGv2kv8iOyBBpw7/y93ui20Gm950PjZX
-         A5qZoypqyLlUwAGuh4qrHFv3Ds0IDnnRlN2BqB3WNYTSs3+ZoO2Ehojm/uVtcXzaGMuX
-         9TPIe9Ja6pFKhH/LA2r7iNMV8sPH7IwBzsh8f0RU8Sgx3tfVFa4mx6y3vDjBJ2GTg74X
-         mvGDrO9DF1EZVUEbkeuWjYtCEDBW5Wisvc+P7Sg5SRr48f3c2Rg9gHswAUK5Qg8qjID+
-         Ccxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=se+MAs3HPFJjq3A9atUw8nuqmBuPrTQxwBOsSaeeZ/M=;
-        b=Zbzj9wWRhxxKroJf5z0igYCLiwY2kmZxBkusPPOl8PQxCuG4TjBB23C8aLYI5XnGfh
-         QH9uNU1SnfD/S+JCJiwd6lHJHN/JyClyO4QgpDNuNaPGS7b5M9xm6dhq+/SjymvQBjeq
-         +gGlVwcuM5YrB2/ZmzUuu0T0z422DB+xOQQpGoYe2/a9Z7aQme16/vHzINVpzTTECNoq
-         Ksh/bpiBROSLqs8rUc/ocWSm2WkV9rUdf6kPpUlWmosXBWW6L+Vi8uXhIEX8fQ/zlrAV
-         JpVs7+SVcFM8HDLuxNW/Smr9F49Ttzl/vIZGz0NeIT6bkGHS9jDuPUDwTcc2aRWllrx0
-         Svxg==
-X-Gm-Message-State: ANoB5pnq/eZ0POnI6mZH06XwzdMI+lmtuoY93yc29ls9IelGhihwO6kp
-        fVHLE4ZW39NLVKwyLg+JCxY=
-X-Google-Smtp-Source: AA0mqf5gLA5fhDHy2H4OoFEcT5qd8QgZCyHvhnj6qkFS6raf4HRUdXRYP+KL/PjWDptXygZ6jBH97g==
-X-Received: by 2002:adf:fb01:0:b0:22e:6556:da75 with SMTP id c1-20020adffb01000000b0022e6556da75mr5941260wrr.653.1669046496228;
-        Mon, 21 Nov 2022 08:01:36 -0800 (PST)
-Received: from [10.32.3.204] ([95.183.227.98])
-        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003cfd4cf0761sm20519888wmq.1.2022.11.21.08.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 08:01:35 -0800 (PST)
-Date:   Mon, 21 Nov 2022 19:01:25 +0300
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH v5 6/7] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
- Document MT6735 pin controller
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Message-Id: <DIGPLR.WRMNJFUPZ02P3@gmail.com>
-In-Reply-To: <1d27a496-b49c-94d5-e9e6-68c81195a69a@collabora.com>
-References: <20221118113028.145348-1-y.oudjana@protonmail.com>
-        <20221118113028.145348-7-y.oudjana@protonmail.com>
-        <1d27a496-b49c-94d5-e9e6-68c81195a69a@collabora.com>
-X-Mailer: geary/43.0
+        with ESMTP id S231691AbiKUQBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:01:48 -0500
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2090.outbound.protection.outlook.com [40.92.98.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D79D298D
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:01:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GZW/O3R7I9Qo/Rw1IiPa02XmOX293xB/0YXze8h0WQyEZEe32Uh8qGj+hEBUCflLYn/NyZS3VO+IZJdMreJazJX9RtiGu8nUSHbNnUIS4dtRBx5oM2/KeSDI2D6UHMcn+VFdrVzYOI0qszsD/AB7AJg91btdUK3+GxVT6VoVe7WWiDq3NSdtOk364HB2sRy7pMkNOUcJppZp+ioacQqoEKuz4KBSBUu5p/y5xsSCJLQVKi+eQVrPW4/syedUG8oGtj+sp8HjGmxVlzNNZjF3p3JqPMancwf4qNYJYZkbkjzRsvElKYT4KwP2sSYRUZ3m3JA2ppSKAtdafbdxfPK4rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H1VSsGMvsxYOIdsHHABy6Zg5qEfF6y/kAFj0GiyHGKo=;
+ b=TnzB6QOVptrw7J7knXFrFDWvIKXYTgparmh8MuLVQnuefnl3zcLkiCbPoU3tHQduQEB4/cREUTEsbhBdzVn0VJojbbdkApOMpau0guZat+GYVq2BHEp6i6xtri28XLVEHIMwrpypORFjFJA+sv6dPTTLIJoL/Xv4m7z1fZvuo6RRcSks4G+PneYeI5Pxus8vRZkyOrLadhR26GotxJ3QQEeeMfvE+uFjKKfiO36WvxoTnOsaZ6hIE4c5ihe2GxZOGrHGWi8f0f/W0PfXdR3A500kU4+1PYJzxVWHv44ZSr+p4GYaHaCoBOnNI5v0voPMO6XoZaCLSpDzIwx73Zwhug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H1VSsGMvsxYOIdsHHABy6Zg5qEfF6y/kAFj0GiyHGKo=;
+ b=MG2Ikk/zWUiWZ+HlmoP0tHt0gMLFlCXqK0EYBvl5cdi2HwZuNSc9ozJabRAIT1YI33O/Wjpabhtwa+cEa9LMqzKBgNeGExnEAzrMCD6NHB7Zd4uYML0EH7ybi/96S1WyhgVUur4TxN3fkHccdBglyYrE/ucjk7WmolqHq2MKaJC0+B6aO/1AjhD11Fr2fhzOyT6gbyCs0xY+aQGbt4LvtE0RTjYt2lFWCnXKI8YQs589lN7Jm/5EhSY0fBBbjiuFfsg/so+IewtH6xi28wlt1mmO3S4KEc7ctHSk6+sz99jr+ofQJiTmi0QpPz8sWSUniM7Zjgh13bw0KjQ1DcNmRQ==
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:252::12)
+ by TY3P286MB2482.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:22d::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Mon, 21 Nov
+ 2022 16:01:41 +0000
+Received: from TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::2fc3:974a:e206:6963]) by TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::2fc3:974a:e206:6963%9]) with mapi id 15.20.5834.015; Mon, 21 Nov 2022
+ 16:01:41 +0000
+Message-ID: <TY3P286MB2611FB223B1CC437B01BD984980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Date:   Tue, 22 Nov 2022 00:01:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+To:     m.tretter@pengutronix.de
+Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+        heiko@sntech.de, jacob-chen@iotwrt.com, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
+        robh+dt@kernel.org
+References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
+From:   Shengyu Qu <wiagn233@outlook.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
+In-Reply-To: <20221121151755.2072816-3-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:  [/XH+gykukm8vpG+vQt0b5vc9+sTKYTu2OFfLnk802LyeC6pD17WF9w==]
+X-ClientProxiedBy: SI2PR01CA0049.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::13) To TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:252::12)
+X-Microsoft-Original-Message-ID: <6eead96e-a254-3c3b-5891-2ec5c386ea8c@outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3P286MB2611:EE_|TY3P286MB2482:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b53d80b-7661-4fc6-9434-08dacbd9acdd
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eRAcW2iPHUFN/+/BMw0kJu6xgYPDupoySJwLMT6BEQkU2PW8Xt2YI1Lz/aLH1re/5GmJGxt5aLQWzMsVJPPjSuudohj2ox8/Sxn5dvA/o7IBw4pGyendBgMHnGmkyQzUSs0Xsb+qWmiVgsnF58RD7YD0UaqVte8mw/vh0B7olHlJTZfCPmr3o3WJSvImZNkz1iduqLwQTy1u52ByVQurSUhMoFIRT+I7J+zJuXtWlNS4+oVIZIpGw1OrwllYSr+kKEPAFU1LSKKoHDgIAK6k8cxcp5GWb4z6z9vFE2nHlYbuM7LHq7TwpIoBAlGNwjZtLnzHRD0NEcyUXoJYY64WG0S3rlRScvFDBXzWexthy2XtEt9qxUSGiNWQe1Krogb5fwYBZOOrYWUVPTDx8CCHN7Stz2zSKnfX/zZXXudq5kM2K05xSIDgKGZ3YBndS/sO3wUWBJD3svTtv3/4D2jDNPImvxUG7OaIYxHCJAwdR+mTgBHuNAEA8Pfp5xTELYBXhbLa5C/hHDY/B3DOq07xJ6iOiaHiJMJwyZL8DZAk/dGltKpr4oKVTWVfb0dKwBBZJq7SgdiO7bT4boAl8prl+dcdJ7PzWvxGTQZomOecrzxEsy77KspHYh/SL+PZeWc3yU9PZT4gKA8lNkBIyhlmpw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXhEdzQrUE9XclRiaVN5WWFvaG84Rm9jeWtBOVZGMDhKcnZuYzhDY2lEckZD?=
+ =?utf-8?B?b1ZGYXpieFMveG00ZC83REF1UVVIMDE3aEpZMkdPbzBITTJOaTM3VTNUV1BT?=
+ =?utf-8?B?Qk54THU4ZlNHaVJmN0hjSE5UM25XWHNBVnJMNDVUOGJEdlpEVnZpTTRQbHpF?=
+ =?utf-8?B?aFRCTnlBK1QrVFlTN0Z3VUVQQ2JQajF5VWMzR01QWXlVZ0NJelg1dzgzbWY1?=
+ =?utf-8?B?NHowREJESG4vcjNHaWNaZnBqbjYrL1VibWhBUUxmWWtqeG9hSmdPMW1neDdU?=
+ =?utf-8?B?Ym5MUUkxdVM4MmwzSERzZGJQdVJwOEpySnpYVlc0YmJMODZVVUp4SU5MUHdN?=
+ =?utf-8?B?bWZXTWdUY0NYZGNpQkdmUnNmQ2FQeEQ1eXlUL2U4SzNaYXlEbXJlM1hyZlkr?=
+ =?utf-8?B?M1VQUUxreDVtK2x6cEc3eWI2QkRVQUp5aHh2d04rUVdzRFFiV0RTdjFzc2FH?=
+ =?utf-8?B?cmhsWW56elhmeEhsdEwxTzZpakFTRldRY2l2aUEvYXQ1TXUySjZWdDlqNmNO?=
+ =?utf-8?B?T3o5VW9PTlJkWTk5RFhZSUNwS0wrRzBLekxuL1BxSGRuSk1sSHF1WjNuWVZJ?=
+ =?utf-8?B?ekdreTk1ay8rNWEzWTZYSE9oZU1DTUdEOTAxODlDYVlHUGxFN2RUWjRVbWRk?=
+ =?utf-8?B?eVk1ZnNnWDFVRWpidzNuMzJra3J1SDc1UDFBVDBqc0c5U3NaRzhMSVRvNDFu?=
+ =?utf-8?B?cmEyOEJDOEJ5ZHNNeWJTSnNvN3E2ZDZPekJhQnZCU3QvOG5pWFRCaTR0NTFS?=
+ =?utf-8?B?L3lTZ0VGbjBQWGphU04yazIxSitaMU9DS2ZweVA1Q1RFNTdreHpPUjUxTTVS?=
+ =?utf-8?B?NWVGQzBub2VqZEkwWFFMQW9rMWliL1hqcXlack5qVkxTLzhEM2JoZGRCV0J0?=
+ =?utf-8?B?NDczenVFOXErcCsrcGg0SlgrbFFFdXlBMkUvU3FrUkZlcmkrcmtHVWp0eTk4?=
+ =?utf-8?B?bHZucTIwV1NmaFRhVThSY2F4MFMzbm45SFNSRmlRVWpwdzBMenZXUFdvNVRm?=
+ =?utf-8?B?UDdWZjN2bVk1RlkrUG5mT3NTVmlwUmhSdFBsYjc3UzRQcEFOU00xMXpaSlBT?=
+ =?utf-8?B?VHhCd2hyS0JJbGtPeDhnWkpsdWEzbTZWcnhwNThDQ1hnWHlkdG90OTFmdE5k?=
+ =?utf-8?B?Y0ZQNHE2K0lPUXVPd1NvL0NXSk9HZERILzVPWThjem0xeEdpN3ZFR3hWWld3?=
+ =?utf-8?B?Snl5RGRUbEs1MC9Ddk5PbUZrbDNjR09zc2tKdTNQeFZ0M0x4OVpYL0J2SEpH?=
+ =?utf-8?B?NnNJUnBqbnc0NTdINlpJL2RzQXdBTi9tVFdXNDhKalhjMzVzU0ZaOUpLTEpI?=
+ =?utf-8?B?bkJaM1NITCtmTEdXcjZrTGkxWFp6blhIc0JZaWNlbFJTT21XemZQOUJ0ZUgv?=
+ =?utf-8?B?R2dtWnBxdk1sQkN2Z1JMUjYvaXdZR0FEdTA4SHlRUWJKZWhud1d4NHZtckxM?=
+ =?utf-8?B?OWZPTGJ5bTNlL2s2UE01TEkvY2hSSmFYWEFhRmwwUW00NDFwb2hYZUVTbTE0?=
+ =?utf-8?B?QS91VkVtVzVxTlU4YUhZb2F2VWtETEJ1VDZjYVdKeHNkWWF4VWZvT0Y0VXdN?=
+ =?utf-8?B?WjdYSFQrbUpudllFSHBxdmh0S01Hc0U5TlU4a3k5R3VYa3RORXZPRG5YSXVU?=
+ =?utf-8?B?ditLU2FHRmJHcFJrdWhvNGlqKzJvUytoeWFpS05WK1k2eWxreGxhRG8rS0Mw?=
+ =?utf-8?B?ckRnOXlrOVM3VGcvckpiOG5PVHllSmZWNEVTM0pRMWEwK0xyQkZuaTd3cE5u?=
+ =?utf-8?Q?pOA0E1XjQ/iCla03+fiuogiUPeGivjk669b6FVD?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b53d80b-7661-4fc6-9434-08dacbd9acdd
+X-MS-Exchange-CrossTenant-AuthSource: TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2022 16:01:41.2399
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB2482
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Michael,
 
-On Mon, Nov 21 2022 at 14:48:58 +01:00:00, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 18/11/22 12:30, Yassine Oudjana ha scritto:
->> From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->> Add bindings for the pin controller found on MediaTek MT6735 and
->> MT6735M SoCs, including describing a method to manually specify
->> a pin and function in the pinmux property making defining bindings
->> for each pin/function combination unnecessary. The pin controllers
->> on those SoCs are generally identical, with the only difference
->> being the lack of MSDC2 pins (198-203) on MT6735M.
->> 
->> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 55 
->> ++++++++++++++++++-
->>   MAINTAINERS                                   |  6 ++
->>   2 files changed, 60 insertions(+), 1 deletion(-)
->> 
-> 
-> ..snip..
-> 
->> @@ -352,18 +391,32 @@ examples:
->>               };
->>                 /* GPIO0 set as multifunction GPIO0 */
->> -            gpio-pins {
->> +            gpio0-pins {
->>                   pins {
->>                       pinmux = <PINMUX_GPIO0__FUNC_GPIO0>;
->>                   };
->>               };
->>   +            /* GPIO1 set to function 0 (GPIO) */
->> +            gpio1-pins {
->> +                pins {
->> +                    pinmux = <(MTK_PIN_NO(1) | 0)>;
-> 
-> Please follow the same format that you can find in all of the
-> mtXXXX-pinfunc.h.
-> 
-> What you wrote here (MTK_PIN_NO(x) | func) is defined in there for 
-> the purpose
-> of providing a definition name that actually means something (for 
-> both readability
-> and documentation purposes).
-> 
-> This means that your GPIO1 set to function 0 (gpio) should be
-> 
-> 			pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-> 
->> +                };
->> +            };
->> +
->>               /* GPIO52 set as multifunction SDA0 */
->>               i2c0-pins {
->>                   pins {
->>                     pinmux = <PINMUX_GPIO52__FUNC_SDA0>;
->>                   };
->>               };
->> +
->> +            /* GPIO62 set to function 1 (primary function) */
->> +            i2c1-pins {
->> +                pins {
->> +                    pinmux = <(MTK_PIN_NO(62) | 1)>;
-> 
-> pinmux = <PINMUX_GPIO62__FUNC_SDA1>; (is it sda1??)
-> 
-> This means that you should as well add a mediatek,mt6735-pinfunc.h 
-> binding...
+Someone from pine64 discord found that RGA2 doesn't work properly on over
 
-This is pretty much what I was trying to avoid by doing this. 
-Originally I tried to have something similar to qualcomm pin 
-controllers which use "pins" and "function" properties (but probably 
-with integer values rather than strings) without making any major 
-changes to pinctrl-paris or related DT bindings, but it quickly became 
-obvious that it wouldn't be possible when looking at how it does things 
-currently. pinctrl-moore was better in this aspect, actually making use 
-of pin groups to describe how sets of pins have shared functions 
-instead of making a group for each pin, and taking "groups" and 
-"function" properties. However, it wasn't fully suitable for the 
-hardware so I had to stick with pinctrl-paris. At that point I thought 
-of this to be the simplest way of doing it. I think it is unnecessary 
-to define every single pin-function combination. Yes, doing it this way 
-doesn't make it clear what function is being set right away, but a 
-quick look at pinctrl-mtk-mt6735.h is all it takes to find out. 
-Furthermore, in most cases functions 0 (GPIO) and 1 (primary, pin named 
-after it) are the only ones used so knowing the pin names is all it 
-takes to figure out the functions.
+4GB memory RK3568 devices. Are you sure current driver works now?
 
-With all of that being said however, I guess I don't mind following the 
-current convention for the time being. The pinctrl subsystem (not just 
-mediatek pin controllers) has some of the most inconsistent DT bindings 
-from what I've seen, specifically when it comes to specifying pin 
-functions, and I think it will end up having some major cleanup down 
-the line anyway.
-
-
+Shengyu
 
