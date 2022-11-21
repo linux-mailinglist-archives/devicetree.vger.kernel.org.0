@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C25E0632CA8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 20:11:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16292632CEE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 20:24:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiKUTLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 14:11:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
+        id S231344AbiKUTYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 14:24:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbiKUTLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 14:11:35 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7CCD329D
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:11:34 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id x21so15515106ljg.10
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:11:34 -0800 (PST)
+        with ESMTP id S229604AbiKUTYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 14:24:04 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350868C481
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:24:03 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so9552106wma.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:24:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C/Yb4u4vAXLl0RD4Ud1kZs2nHt/xeWgvV9BVqgCPKu0=;
-        b=i5UYUEBmzaGHMYjHmkixREUwgZanvPATQhd9asTEO89+W8hjFw2CIKoPE3Rs/uRI7E
-         LBQcvIHxm4gITtP9T/fULMgi/101lHNEbqJ6mtHkIuxpubVVJpB9ePYhVn+xX23N+aq/
-         AhMmJ2SDFAtSbCZDs1Utp3LNoi2cWpNHfKVGiNjOCJMygNjxyQ/DclkpE0nDO1nUFC5j
-         zrt7TlENYXMUSoX23I4nvohBNZHxRM1VP3d/R2Z1ftoCdOjgzxy3zVipFILFOe0H9YNv
-         XFnIWF/cccJWOjmwHVM7NSxA6wL7hsi0vCXs/7rfIS2AjutkuTD70Eq5skJbb5BfOOuc
-         Y/WA==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q7yjuaTmU30B2ndXLwDvA3orF0prJCoTO3PBsda6Mso=;
+        b=Lq2MCcmXbByZz8n8bCQiw1F9MhNq0JrLV+AN/G6ga3L/F+KO8oEKTZSX8iyfDJzc18
+         F1qp/9Y5tMkZy0aYAcIeLErdheQOOatdegri8jTA6yi1B2Aw7fJsg7HO21DCKGjlk+t0
+         PZcgXA8cSSinI//T0yiqwdIoU44DeLTK3rWBBErvvceLICrfKtgvJnux4MTTsRIjg68h
+         7C+PmA28a16huY1awhEw6YEwOxtZTjmH2YUur1tuR0aNk/oH7Ibhb9KYn/vTwUFxWqYu
+         cnRzYRj8mkR4q55BGhtPuUCzXU493vrN3l0od6eFozR59wGZFHrImeLixDfEWuUfQu4I
+         FStQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C/Yb4u4vAXLl0RD4Ud1kZs2nHt/xeWgvV9BVqgCPKu0=;
-        b=MfrVblBw/OcaNN2VdmuCQP2YgR82vJ0CAA6eN+XJRmn/b8XF5Huw31noXAeYrwULbJ
-         l7xFHAnItmFXoSVerUKFaWxMidX0rElgQdKsH9kM4NdoL1xjv9gfqweKWPfJAab4RWBk
-         t+Qk/BDee299xL+QYJl4ZLH3vFXogYv2S3lMmvNUlSWblHiaGLeIYxnpPA97h9geTZKm
-         bC/IHXD0sxmOTHlDHkrnpUze1b6IgrTV6k/VCBr8eqNXih6igXXfSkoZR7ljfZrVtMke
-         /NGA2DVkBN7BTL04I6fs8T0jpAfBmhn3H83kYYJRUWSoqkowXNFGWbuwBtDQgTxSRHjZ
-         loZg==
-X-Gm-Message-State: ANoB5pkbIUAUWOdj3kYYqVY4Ng10/LTveJkNYR3gpsVkBbU98SqMg75M
-        vC6e9e4SzsuAC0Gy3fUP3GbP5g==
-X-Google-Smtp-Source: AA0mqf6mzth+T/x/GDDSJFbvgPy6ZC11/l6SqsOPxNHA3Xe5b0AmoRJL5+vwtXNOt7YZwuQG7u32Dw==
-X-Received: by 2002:a2e:a5c6:0:b0:277:22c3:afbb with SMTP id n6-20020a2ea5c6000000b0027722c3afbbmr1798149ljp.204.1669057892774;
-        Mon, 21 Nov 2022 11:11:32 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm2111963lfh.197.2022.11.21.11.11.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 11:11:32 -0800 (PST)
-Message-ID: <9e16e159-2c3f-f6e1-7f94-09e94728fd7a@linaro.org>
-Date:   Mon, 21 Nov 2022 20:11:30 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q7yjuaTmU30B2ndXLwDvA3orF0prJCoTO3PBsda6Mso=;
+        b=lvf3xwkmcXxZEIfQ0L5PBI7akkj8W2vSzWTGGF/NLdFl2zB2T1BqTCuzq7mpDYyfVk
+         GHF199u9oq/FcqPCmmRlq7uLU3wt6ZIbdtaFAKmInCL0LCGeKHF4BaekIntFoOyFmJNd
+         sKqj6QsDGQaHmiRAKBa8ZUhx+1leByYXHYib2p4g4g3q1n68gKZQ1rNhfYOSd3PT7sjQ
+         CUjRTM9EA7XrATQ9R7as0unQdgn/SPLJtwP4+WAqcPdIdBrPaH+27/R6tjz+MZWaYvHI
+         KkcJUvGeUn1jR+FBINXEOD6XGHpZLwVAKi5vSG8WIbD3aLQSuHiGJPl5KbUOOuFw339d
+         EYeQ==
+X-Gm-Message-State: ANoB5pmLpPrAzZn7+QWRghNuTYJmpRflXkC7CK7fH2yoUzTWQH76USjr
+        I9dF1mbgrLTTa9JfQJZQ0THm0A==
+X-Google-Smtp-Source: AA0mqf5I7l+xZU0bxP2YmHwev2WHoKnWjIUCsQFjEBtn2eegBhb6RK+QTKrtjyegwF3X3SuwekMvSw==
+X-Received: by 2002:a05:600c:3514:b0:3cf:e0ef:1f6c with SMTP id h20-20020a05600c351400b003cfe0ef1f6cmr6974294wmq.75.1669058641627;
+        Mon, 21 Nov 2022 11:24:01 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id m16-20020adffe50000000b00241bee11825sm10860403wrs.103.2022.11.21.11.23.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 11:24:01 -0800 (PST)
+Date:   Mon, 21 Nov 2022 21:23:59 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-amarula@amarulasolutions.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, michael@amarulasolutions.com,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH 1/5] clk: imx8mn: rename vpu_pll to m7_alt_pll
+Message-ID: <Y3vQTwWSscwL0Qzq@linaro.org>
+References: <20221113180710.1625410-1-dario.binacchi@amarulasolutions.com>
+ <20221113180710.1625410-2-dario.binacchi@amarulasolutions.com>
+ <20221114083405.lpy2fjslfg644wex@pengutronix.de>
+ <CABGWkvoBnq7PCzbAcF1oFVr0ydnpWPs5z7vLWBAnuectetMoDw@mail.gmail.com>
+ <20221114182202.ejt3ug7vgjuvvkz5@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sc8280xp-x13s: Add soundcard
- support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221121130403.161817-1-srinivas.kandagatla@linaro.org>
- <20221121130403.161817-4-srinivas.kandagatla@linaro.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221121130403.161817-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221114182202.ejt3ug7vgjuvvkz5@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,289 +85,248 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 21.11.2022 14:04, Srinivas Kandagatla wrote:
-> Add support for SoundCard on X13s. This patch adds support for Headset
-> Playback, record and 2 DMICs on the Panel along with the regulators
-> required for powering up the LPASS codecs.
+On 22-11-14 19:22:02, Marco Felsch wrote:
+> Hi Dario,
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 213 ++++++++++++++++++
->  1 file changed, 213 insertions(+)
+> On 22-11-14, Dario Binacchi wrote:
+> > Hi Marco,
+> > 
+> > On Mon, Nov 14, 2022 at 9:34 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >
+> > > Hi Dario,
+> > >
+> > > On 22-11-13, Dario Binacchi wrote:
+> > > > There is no occurrence of vpu pll in the reference manual (document
+> > > > IMX8MNRM Rev 2, 07/2022). From an analysis of the code and the RM
+> > > > itself, I think vpu pll is used instead of m7 alternate pll, probably
+> > > > for copy and paste of code taken from modules of similar architectures.
+> > > >
+> > > > As an example for all, if we consider the second row of the "Clock Root"
+> > > > table of chapter 5 (Clocks and Power Management) of the RM:
+> > > >
+> > > >      Clock Root     offset     Source Select (CCM_TARGET_ROOTn[MUX])
+> > > >         ...          ...                    ...
+> > > >   ARM_M7_CLK_ROOT   0x8080            000 - 24M_REF_CLK
+> > > >                                       001 - SYSTEM_PLL2_DIV5
+> > > >                                     010 - SYSTEM_PLL2_DIV4
+> > > >                                     011 - M7_ALT_PLL_CLK
+> > > >                                     100 - SYSTEM_PLL1_CLK
+> > > >                                     101 - AUDIO_PLL1_CLK
+> > > >                                     110 - VIDEO_PLL_CLK
+> > > >                                     111 - SYSTEM_PLL3_CLK
+> > > >         ...          ...                    ...
+> > > >
+> > > > but in the source code, the imx8mn_m7_sels clocks list contains vpu_pll
+> > > > for the source select bits 011b.
+> > >
+> > > Thanks for the real detailed description. Maybe we should mention, that
+> > > the 8MN has no VPU complex at all.
+> > >
+> > > > So, let's rename "vpu_pll" to "m7_alt_pll" to be consistent with the RM.
+> > > >
+> > > > No functional changes intended.
+> > > >
+> > > > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > > > ---
+> > > >
+> > > >  drivers/clk/imx/clk-imx8mn.c             | 16 ++++++++--------
+> > > >  include/dt-bindings/clock/imx8mn-clock.h |  8 ++++----
+> > > >  2 files changed, 12 insertions(+), 12 deletions(-)
+> > > >
+> > > > diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
+> > > > index d37c45b676ab..72f9563a0ff6 100644
+> > > > --- a/drivers/clk/imx/clk-imx8mn.c
+> > > > +++ b/drivers/clk/imx/clk-imx8mn.c
+> > > > @@ -30,7 +30,7 @@ static const char * const audio_pll2_bypass_sels[] = {"audio_pll2", "audio_pll2_
+> > > >  static const char * const video_pll1_bypass_sels[] = {"video_pll1", "video_pll1_ref_sel", };
+> > > >  static const char * const dram_pll_bypass_sels[] = {"dram_pll", "dram_pll_ref_sel", };
+> > > >  static const char * const gpu_pll_bypass_sels[] = {"gpu_pll", "gpu_pll_ref_sel", };
+> > > > -static const char * const vpu_pll_bypass_sels[] = {"vpu_pll", "vpu_pll_ref_sel", };
+> > > > +static const char * const m7_alt_pll_bypass_sels[] = {"m7_alt_pll", "m7_alt_pll_ref_sel", };
+> > > >  static const char * const arm_pll_bypass_sels[] = {"arm_pll", "arm_pll_ref_sel", };
+> > > >  static const char * const sys_pll3_bypass_sels[] = {"sys_pll3", "sys_pll3_ref_sel", };
+> > > >
+> > > > @@ -40,7 +40,7 @@ static const char * const imx8mn_a53_sels[] = {"osc_24m", "arm_pll_out", "sys_pl
+> > > >
+> > > >  static const char * const imx8mn_a53_core_sels[] = {"arm_a53_div", "arm_pll_out", };
+> > > >
+> > > > -static const char * const imx8mn_m7_sels[] = {"osc_24m", "sys_pll2_200m", "sys_pll2_250m", "vpu_pll_out",
+> > > > +static const char * const imx8mn_m7_sels[] = {"osc_24m", "sys_pll2_200m", "sys_pll2_250m", "m7_alt_pll_out",
+> > > >                                      "sys_pll1_800m", "audio_pll1_out", "video_pll1_out", "sys_pll3_out", };
+> > > >
+> > > >  static const char * const imx8mn_gpu_core_sels[] = {"osc_24m", "gpu_pll_out", "sys_pll1_800m",
+> > > > @@ -252,10 +252,10 @@ static const char * const imx8mn_gpt6_sels[] = {"osc_24m", "sys_pll2_100m", "sys
+> > > >                                               "audio_pll1_out", "clk_ext1", };
+> > > >
+> > > >  static const char * const imx8mn_wdog_sels[] = {"osc_24m", "sys_pll1_133m", "sys_pll1_160m",
+> > > > -                                             "vpu_pll_out", "sys_pll2_125m", "sys_pll3_out",
+> > > > +                                             "m7_alt_pll_out", "sys_pll2_125m", "sys_pll3_out",
+> > > >                                               "sys_pll1_80m", "sys_pll2_166m", };
+> > > >
+> > > > -static const char * const imx8mn_wrclk_sels[] = {"osc_24m", "sys_pll1_40m", "vpu_pll_out",
+> > > > +static const char * const imx8mn_wrclk_sels[] = {"osc_24m", "sys_pll1_40m", "m7_alt_pll_out",
+> > > >                                                "sys_pll3_out", "sys_pll2_200m", "sys_pll1_266m",
+> > > >                                                "sys_pll2_500m", "sys_pll1_100m", };
+> > > >
+> > > > @@ -352,7 +352,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > > >       hws[IMX8MN_VIDEO_PLL1_REF_SEL] = imx_clk_hw_mux("video_pll1_ref_sel", base + 0x28, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > >       hws[IMX8MN_DRAM_PLL_REF_SEL] = imx_clk_hw_mux("dram_pll_ref_sel", base + 0x50, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > >       hws[IMX8MN_GPU_PLL_REF_SEL] = imx_clk_hw_mux("gpu_pll_ref_sel", base + 0x64, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > > -     hws[IMX8MN_VPU_PLL_REF_SEL] = imx_clk_hw_mux("vpu_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > > +     hws[IMX8MN_M7_ALT_PLL_REF_SEL] = imx_clk_hw_mux("m7_alt_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > >       hws[IMX8MN_ARM_PLL_REF_SEL] = imx_clk_hw_mux("arm_pll_ref_sel", base + 0x84, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > >       hws[IMX8MN_SYS_PLL3_REF_SEL] = imx_clk_hw_mux("sys_pll3_ref_sel", base + 0x114, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
+> > > >
+> > > > @@ -361,7 +361,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > > >       hws[IMX8MN_VIDEO_PLL1] = imx_clk_hw_pll14xx("video_pll1", "video_pll1_ref_sel", base + 0x28, &imx_1443x_pll);
+> > > >       hws[IMX8MN_DRAM_PLL] = imx_clk_hw_pll14xx("dram_pll", "dram_pll_ref_sel", base + 0x50, &imx_1443x_dram_pll);
+> > > >       hws[IMX8MN_GPU_PLL] = imx_clk_hw_pll14xx("gpu_pll", "gpu_pll_ref_sel", base + 0x64, &imx_1416x_pll);
+> > > > -     hws[IMX8MN_VPU_PLL] = imx_clk_hw_pll14xx("vpu_pll", "vpu_pll_ref_sel", base + 0x74, &imx_1416x_pll);
+> > > > +     hws[IMX8MN_M7_ALT_PLL] = imx_clk_hw_pll14xx("m7_alt_pll", "m7_alt_pll_ref_sel", base + 0x74, &imx_1416x_pll);
+> > > >       hws[IMX8MN_ARM_PLL] = imx_clk_hw_pll14xx("arm_pll", "arm_pll_ref_sel", base + 0x84, &imx_1416x_pll);
+> > > >       hws[IMX8MN_SYS_PLL1] = imx_clk_hw_fixed("sys_pll1", 800000000);
+> > > >       hws[IMX8MN_SYS_PLL2] = imx_clk_hw_fixed("sys_pll2", 1000000000);
+> > > > @@ -373,7 +373,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > > >       hws[IMX8MN_VIDEO_PLL1_BYPASS] = imx_clk_hw_mux_flags("video_pll1_bypass", base + 0x28, 16, 1, video_pll1_bypass_sels, ARRAY_SIZE(video_pll1_bypass_sels), CLK_SET_RATE_PARENT);
+> > > >       hws[IMX8MN_DRAM_PLL_BYPASS] = imx_clk_hw_mux_flags("dram_pll_bypass", base + 0x50, 16, 1, dram_pll_bypass_sels, ARRAY_SIZE(dram_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > >       hws[IMX8MN_GPU_PLL_BYPASS] = imx_clk_hw_mux_flags("gpu_pll_bypass", base + 0x64, 28, 1, gpu_pll_bypass_sels, ARRAY_SIZE(gpu_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > > -     hws[IMX8MN_VPU_PLL_BYPASS] = imx_clk_hw_mux_flags("vpu_pll_bypass", base + 0x74, 28, 1, vpu_pll_bypass_sels, ARRAY_SIZE(vpu_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > > +     hws[IMX8MN_M7_ALT_PLL_BYPASS] = imx_clk_hw_mux_flags("m7_alt_pll_bypass", base + 0x74, 28, 1, m7_alt_pll_bypass_sels, ARRAY_SIZE(m7_alt_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > >       hws[IMX8MN_ARM_PLL_BYPASS] = imx_clk_hw_mux_flags("arm_pll_bypass", base + 0x84, 28, 1, arm_pll_bypass_sels, ARRAY_SIZE(arm_pll_bypass_sels), CLK_SET_RATE_PARENT);
+> > > >       hws[IMX8MN_SYS_PLL3_BYPASS] = imx_clk_hw_mux_flags("sys_pll3_bypass", base + 0x114, 28, 1, sys_pll3_bypass_sels, ARRAY_SIZE(sys_pll3_bypass_sels), CLK_SET_RATE_PARENT);
+> > > >
+> > > > @@ -383,7 +383,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+> > > >       hws[IMX8MN_VIDEO_PLL1_OUT] = imx_clk_hw_gate("video_pll1_out", "video_pll1_bypass", base + 0x28, 13);
+> > > >       hws[IMX8MN_DRAM_PLL_OUT] = imx_clk_hw_gate("dram_pll_out", "dram_pll_bypass", base + 0x50, 13);
+> > > >       hws[IMX8MN_GPU_PLL_OUT] = imx_clk_hw_gate("gpu_pll_out", "gpu_pll_bypass", base + 0x64, 11);
+> > > > -     hws[IMX8MN_VPU_PLL_OUT] = imx_clk_hw_gate("vpu_pll_out", "vpu_pll_bypass", base + 0x74, 11);
+> > > > +     hws[IMX8MN_M7_ALT_PLL_OUT] = imx_clk_hw_gate("m7_alt_pll_out", "m7_alt_pll_bypass", base + 0x74, 11);
+> > > >       hws[IMX8MN_ARM_PLL_OUT] = imx_clk_hw_gate("arm_pll_out", "arm_pll_bypass", base + 0x84, 11);
+> > > >       hws[IMX8MN_SYS_PLL3_OUT] = imx_clk_hw_gate("sys_pll3_out", "sys_pll3_bypass", base + 0x114, 11);
+> > >
+> > > The driver changes looking good from my pov.
+> > >
+> > > > diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
+> > > > index 07b8a282c268..f103b008a12a 100644
+> > > > --- a/include/dt-bindings/clock/imx8mn-clock.h
+> > > > +++ b/include/dt-bindings/clock/imx8mn-clock.h
+> > > > @@ -19,7 +19,7 @@
+> > > >  #define IMX8MN_VIDEO_PLL1_REF_SEL            10
+> > > >  #define IMX8MN_DRAM_PLL_REF_SEL                      11
+> > > >  #define IMX8MN_GPU_PLL_REF_SEL                       12
+> > > > -#define IMX8MN_VPU_PLL_REF_SEL                       13
+> > > > +#define IMX8MN_M7_ALT_PLL_REF_SEL            13
+> > >
+> > > If we take backward compatibility serious we can't do that since this
+> > > may break existing device trees. What you can do is:
+> > >
+> > > #define IMX8MN_M7_ALT_PLL_REF_SEL               13
+> > > #define IMX8MN_VPU_PLL_REF_SEL                  IMX8MN_M7_ALT_PLL_REF_SEL
+> > >
+> > > and add a comment that we need this for backward compatibility. Same
+> > > applies for the below defines.
+> > 
+> > If I run the command "git grep IMX8MN_VPU_PLL", this is the output:
+> > drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_REF_SEL] =
+> > imx_clk_hw_mux("vpu_pll_ref_sel", base + 0x74, 0, 2, pll_ref_sels,
+> > ARRAY_SIZE(pll_ref_sels));
+> > drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL] =
+> > imx_clk_hw_pll14xx("vpu_pll", "vpu_pll_ref_sel", base + 0x74,
+> > &imx_1416x_pll);
+> > drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_BYPASS] =
+> > imx_clk_hw_mux_flags("vpu_pll_bypass", base + 0x74, 28, 1,
+> > vpu_pll_bypass_sels, ARRAY_SIZE(vpu_pll_bypass_sels),
+> > CLK_SET_RATE_PARENT);
+> > drivers/clk/imx/clk-imx8mn.c:   hws[IMX8MN_VPU_PLL_OUT] =
+> > imx_clk_hw_gate("vpu_pll_out", "vpu_pll_bypass", base + 0x74, 11);
+> > include/dt-bindings/clock/imx8mn-clock.h:#define
+> > IMX8MN_VPU_PLL_REF_SEL                 13
+> > include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL
+> >                  23
+> > include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL_BYPASS
+> >                  33
+> > include/dt-bindings/clock/imx8mn-clock.h:#define IMX8MN_VPU_PLL_OUT
+> >                  43
+> > 
+> > No device tree comes out.
+> > So can we say that backwards compatibility is guaranteed or am I
+> > missing something ?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 568c6be1ceaa..eefa22ea1ed7 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -172,6 +172,14 @@ vreg_wwan: regulator-wwan {
->  
->  		regulator-boot-on;
->  	};
-> +
-> +	vreg_vph_pwr: regulator-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VPH_VCC3R9";
-> +		regulator-min-microvolt = <3900000>;
-> +		regulator-max-microvolt = <3900000>;
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &apps_rsc {
-> @@ -181,6 +189,13 @@ pmc8280-1-rpmh-regulators {
->  
->  		vdd-l3-l5-supply = <&vreg_s11b>;
->  
-> +		vreg_s10b: smps10 {
-> +			regulator-name = "vreg_s10b";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_s11b: smps11 {
->  			regulator-name = "vreg_s11b";
->  			regulator-min-microvolt = <1272000>;
-> @@ -188,6 +203,13 @@ vreg_s11b: smps11 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> +		vreg_s12b: smps12 {
-> +			regulator-name = "vreg_s12b";
-> +			regulator-min-microvolt = <984000>;
-> +			regulator-max-microvolt = <984000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
->  		vreg_l3b: ldo3 {
->  			regulator-name = "vreg_l3b";
->  			regulator-min-microvolt = <1200000>;
-> @@ -216,6 +238,7 @@ vreg_l6b: ldo6 {
->  	pmc8280c-rpmh-regulators {
->  		compatible = "qcom,pm8350c-rpmh-regulators";
->  		qcom,pmic-id = "c";
-> +		vdd-bob-supply = <&vreg_vph_pwr>;
->  
->  		vreg_l1c: ldo1 {
->  			regulator-name = "vreg_l1c";
-> @@ -237,6 +260,13 @@ vreg_l13c: ldo13 {
->  			regulator-max-microvolt = <3072000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-name = "vreg_bob";
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-> +		};
->  	};
->  
->  	pmc8280-2-rpmh-regulators {
-> @@ -596,6 +626,161 @@ &remoteproc_nsp0 {
->  	status = "okay";
->  };
->  
-> +&soc {
-> +	wcd938x: codec {
-> +		compatible = "qcom,wcd9380-codec";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wcd_default>;
-> +		reset-gpios = <&tlmm 106 GPIO_ACTIVE_LOW>;
-> +		#sound-dai-cells = <1>;
-> +
-> +		vdd-buck-supply = <&vreg_s10b>;
-> +		vdd-rxtx-supply = <&vreg_s10b>;
-> +		vdd-io-supply = <&vreg_s10b>;
-> +		vdd-mic-bias-supply = <&vreg_bob>;
-> +		qcom,micbias1-microvolt = <1800000>;
-> +		qcom,micbias2-microvolt = <1800000>;
-> +		qcom,micbias3-microvolt = <1800000>;
-> +		qcom,micbias4-microvolt = <1800000>;
-> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-> +		qcom,rx-device = <&wcd_rx>;
-> +		qcom,tx-device = <&wcd_tx>;
-> +	};
-> +};
-> +
-> +&sound {
-> +	compatible = "qcom,sc8280xp-sndcard";
-> +	model = "SC8280XP-LENOVO-X13S";
-> +	audio-routing =
-> +		"SpkrLeft IN", "WSA_SPK1 OUT",
-> +		"SpkrRight IN", "WSA_SPK2 OUT",
-> +		"IN1_HPHL", "HPHL_OUT",
-> +		"IN2_HPHR", "HPHR_OUT",
-> +		"AMIC2", "MIC BIAS2",
-> +		"VA DMIC0", "MIC BIAS1",
-> +		"VA DMIC1", "MIC BIAS1",
-> +		"VA DMIC2", "MIC BIAS3",
-> +		"TX DMIC0", "MIC BIAS1",
-> +		"TX DMIC1", "MIC BIAS2",
-> +		"TX DMIC2", "MIC BIAS3",
-> +		"TX SWR_ADC1", "ADC2_OUTPUT";
-> +
-> +	wcd-playback-dai-link {
-> +		link-name = "WCD Playback";
-> +		cpu {
-> +			sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-> +		};
-> +
-> +		codec {
-> +			sound-dai = <&wcd938x 0>, <&swr1 0>, <&rxmacro 0>;
-> +		};
-> +
-> +		platform {
-> +			sound-dai = <&q6apm>;
-> +		};
-> +	};
-> +
-> +	wcd-capture-dai-link {
-> +		link-name = "WCD Capture";
-> +		cpu {
-> +			sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
-> +		};
-> +
-> +		codec {
-> +			sound-dai = <&wcd938x 1>, <&swr2 0>, <&txmacro 0>;
-> +		};
-> +
-> +		platform {
-> +			sound-dai = <&q6apm>;
-> +		};
-> +	};
-> +
-> +	wsa-dai-link {
-> +		link-name = "WSA Playback";
-> +		cpu {
-> +			sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
-> +		};
-> +
-> +		codec {
-> +			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
-> +		};
-> +
-> +		platform {
-> +			sound-dai = <&q6apm>;
-> +		};
-> +	};
-> +
-> +	va-dai-link {
-> +		link-name = "VA Capture";
-> +		cpu {
-> +			sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
-> +		};
-> +
-> +		platform {
-> +			sound-dai = <&q6apm>;
-> +		};
-> +
-> +		codec {
-> +			sound-dai = <&vamacro 0>;
-> +		};
-> +	};
-> +};
-> +
-> +&swr0 {
-> +	left_spkr: wsa8830-left@0,1 {
-> +		compatible = "sdw10217020200";
-> +		reg = <0 1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&spkr_1_sd_n_default>;
-> +		powerdown-gpios = <&tlmm 178 GPIO_ACTIVE_LOW>;
-> +		#thermal-sensor-cells = <0>;
-> +		sound-name-prefix = "SpkrLeft";
-> +		#sound-dai-cells = <0>;
-> +		vdd-supply = <&vreg_s10b>;
-> +	};
-> +
-> +	right_spkr: wsa8830-right@0,2{
-> +		compatible = "sdw10217020200";
-> +		reg = <0 2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&spkr_2_sd_n_default>;
-> +		powerdown-gpios = <&tlmm 179 GPIO_ACTIVE_LOW>;
-> +		#thermal-sensor-cells = <0>;
-> +		sound-name-prefix = "SpkrRight";
-> +		#sound-dai-cells = <0>;
-> +		vdd-supply = <&vreg_s10b>;
-> +	};
-> +};
-> +
-> +&swr1 {
-> +	status = "okay";
-> +
-> +	wcd_rx: wcd9380-rx@0,4 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 4>;
-> +		qcom,rx-port-mapping = <1 2 3 4 5>;
-> +	};
-> +};
-> +
-> +&swr2 {
-> +	status = "okay";
-> +
-> +	wcd_tx: wcd9380-tx@0,3 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 3>;
-> +		qcom,tx-port-mapping = <1 1 2 3>;
-> +	};
-> +};
-> +
-> +&vamacro {
-> +	pinctrl-0 = <&dmic01_default>, <&dmic02_default>;
-> +	pinctrl-names = "default";
-> +	vdd-micb-supply = <&vreg_s10b>;
-> +	qcom,dmic-sample-rate = <600000>;
-> +};
-> +
->  &usb_0 {
->  	status = "okay";
->  };
-> @@ -808,6 +993,26 @@ qup2_i2c5_default: qup2-i2c5-default-state {
->  		drive-strength = <16>;
->  	};
->  
-> +	spkr_1_sd_n_default: spkr-1-sd-n-default-state {
-> +		perst-n-pins {
-> +			pins = "gpio178";
-> +			function = "gpio";
-> +			drive-strength = <16>;
-> +			bias-disable;
-> +			output-high;
-> +		};
-> +	};
-> +
-> +	spkr_2_sd_n_default: spkr-2-sd-n-default-state {
-> +		perst-n-pins {
-> +			pins = "gpio179";
-> +			function = "gpio";
-> +			drive-strength = <16>;
-> +			bias-disable;
-> +			output-high;
-> +		};
-> +	};
-> +
->  	tpad_default: tpad-default-state {
->  		int-n-pins {
->  			pins = "gpio182";
-> @@ -830,4 +1035,12 @@ reset-n-pins {
->  			drive-strength = <16>;
->  		};
->  	};
-> +
-> +	wcd_default: wcd-default-state {
-> +		reset-pins {
-> +			pins = "gpio106";
-> +			function = "gpio";
-> +			bias-disable;
-> +		};
-> +	};
->  };
+> This depends on the maintainer POV since it is unfortunately quite usual
+> to not have the DTS files within the kernel repo. Also bootloaders may
+> use these defines.
+> 
+
+Yep, Marco is right. Please do it like he mentioned above.
+
+Thanks,
+Abel
+
+> Regards,
+>   Marco
+> 
+> > Thanks and regards,
+> > Dario
+> > 
+> > >
+> > > Regards,
+> > >   Marco
+> > >
+> > > >  #define IMX8MN_ARM_PLL_REF_SEL                       14
+> > > >  #define IMX8MN_SYS_PLL1_REF_SEL                      15
+> > > >  #define IMX8MN_SYS_PLL2_REF_SEL                      16
+> > > > @@ -29,7 +29,7 @@
+> > > >  #define IMX8MN_VIDEO_PLL1                    20
+> > > >  #define IMX8MN_DRAM_PLL                              21
+> > > >  #define IMX8MN_GPU_PLL                               22
+> > > > -#define IMX8MN_VPU_PLL                               23
+> > > > +#define IMX8MN_M7_ALT_PLL                    23
+> > > >  #define IMX8MN_ARM_PLL                               24
+> > > >  #define IMX8MN_SYS_PLL1                              25
+> > > >  #define IMX8MN_SYS_PLL2                              26
+> > > > @@ -39,7 +39,7 @@
+> > > >  #define IMX8MN_VIDEO_PLL1_BYPASS             30
+> > > >  #define IMX8MN_DRAM_PLL_BYPASS                       31
+> > > >  #define IMX8MN_GPU_PLL_BYPASS                        32
+> > > > -#define IMX8MN_VPU_PLL_BYPASS                        33
+> > > > +#define IMX8MN_M7_ALT_PLL_BYPASS             33
+> > > >  #define IMX8MN_ARM_PLL_BYPASS                        34
+> > > >  #define IMX8MN_SYS_PLL1_BYPASS                       35
+> > > >  #define IMX8MN_SYS_PLL2_BYPASS                       36
+> > > > @@ -49,7 +49,7 @@
+> > > >  #define IMX8MN_VIDEO_PLL1_OUT                        40
+> > > >  #define IMX8MN_DRAM_PLL_OUT                  41
+> > > >  #define IMX8MN_GPU_PLL_OUT                   42
+> > > > -#define IMX8MN_VPU_PLL_OUT                   43
+> > > > +#define IMX8MN_M7_ALT_PLL_OUT                        43
+> > > >  #define IMX8MN_ARM_PLL_OUT                   44
+> > > >  #define IMX8MN_SYS_PLL1_OUT                  45
+> > > >  #define IMX8MN_SYS_PLL2_OUT                  46
+> > > > --
+> > > > 2.32.0
+> > > >
+> > > >
+> > > >
+> > 
+> > 
+> > 
+> > -- 
+> > 
+> > Dario Binacchi
+> > 
+> > Embedded Linux Developer
+> > 
+> > dario.binacchi@amarulasolutions.com
+> > 
+> > __________________________________
+> > 
+> > 
+> > Amarula Solutions SRL
+> > 
+> > Via Le Canevare 30, 31100 Treviso, Veneto, IT
+> > 
+> > T. +39 042 243 5310
+> > info@amarulasolutions.com
+> > 
+> > www.amarulasolutions.com
+> > 
