@@ -2,162 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF41632169
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9561063217C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 13:00:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbiKULzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
+        id S231285AbiKUMAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 07:00:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiKULzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:55:36 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 57D1567F70;
-        Mon, 21 Nov 2022 03:55:35 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 46B2E81BC;
-        Mon, 21 Nov 2022 11:45:21 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: pwm: ti,pwm-omap-dmtimer: Update binding for yaml
-Date:   Mon, 21 Nov 2022 13:55:25 +0200
-Message-Id: <20221121115525.36362-2-tony@atomide.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221121115525.36362-1-tony@atomide.com>
-References: <20221121115525.36362-1-tony@atomide.com>
+        with ESMTP id S231265AbiKUMAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 07:00:02 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C937262DC
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:00:00 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id t10so14303042ljj.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 04:00:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gAe96EUQJW/t2YfQOYFjoHjjiIW4hHrPPaKyPCc7BE4=;
+        b=UVduBhk3PJQZkKzEskUrpKs00z1z4r/O7LnJCkT22HInQOeMTGaNIiUeqIGHvlHNel
+         8VqMPfMXtV6tMv9ea7G6sbKvzE3Fm/DlG1E+g8NcPhYe8kgMQ604qRLIDomYKgkO4nJm
+         nNM0oOsRVkJDTr9ybiWyVEr8r6WawaItHr7qHt8Sbx4Ok3kdRHr2SR9GXJjMcjqAyue3
+         iOGkflLwOC1bOY41x6zbbYbq9oqoBTN30Z/aCEk3crJLxYULIxr+CRUxsV3WKHgXoVok
+         yHMtfO5pYc15hhPs6wnzHYeNYaUln8nxRvBy6UGnsaaprdi+rLUUBCYXS1isltaJirK1
+         YmLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gAe96EUQJW/t2YfQOYFjoHjjiIW4hHrPPaKyPCc7BE4=;
+        b=7V30WOVAS7Hp8wkXAJujWnzsvpMSwxLXgVm1NmJfhrGJWxeY961j3CLTS5OWJv4Vts
+         Af0iRPo8+K5j2oBg5EWjTlPRNC/ISUj3t1jcmefGIq3m9c/V8A0CQZoq/sSvUXZId9ex
+         wrJJnCSCDBWSh1tKKs9AvcID7WU0Zq5GYd8LWbmR9QJ4981GPqljpKR/n+Gh/XkKxEqI
+         RFz5/r9+PT1rUJhIw66zSZ/sNQB+zgCNZanVsxuRHxAnc2bSVKJaJZ4aeHQ355duhWPd
+         Xle1h1dUOV3pbPO64Sm0RaazA+9e//cQccXzfOYPHOkTS3i/ZrIMAYQM4JNynzMx8LdZ
+         xrwg==
+X-Gm-Message-State: ANoB5plZW5AYINXlJAUtYUGY5epCocyKWWkdF0poT/KXGuWsWJO3S1Os
+        Bi6jDuV6omFKVo71WifV1JAOkg==
+X-Google-Smtp-Source: AA0mqf6lo8pDgZCEf5cpGQ6TpOYX19afdgtwbFTqg3DuazhEzItnWlNNkGFC2exRFsAu0oB9C2ARJA==
+X-Received: by 2002:a05:651c:160f:b0:278:d847:1a8b with SMTP id f15-20020a05651c160f00b00278d8471a8bmr5107958ljq.17.1669031999150;
+        Mon, 21 Nov 2022 03:59:59 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p3-20020ac24ec3000000b00492e3a8366esm2005053lfr.9.2022.11.21.03.59.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 03:59:58 -0800 (PST)
+Message-ID: <856449f3-6341-78d8-28db-3d4b8a0a25ad@linaro.org>
+Date:   Mon, 21 Nov 2022 12:59:57 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/6] dt-bindings: phy: Add PCIe PHY bindings for FSD
+Content-Language: en-US
+To:     Shradha Todi <shradha.t@samsung.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kishon@ti.com, vkoul@kernel.org, lpieralisi@kernel.org,
+        kw@linux.com, mani@kernel.org, arnd@arndb.de,
+        gregkh@linuxfoundation.org, alim.akhtar@samsung.com,
+        ajaykumar.rs@samsung.com, rcsekar@samsung.com,
+        sriranjani.p@samsung.com, bharat.uppal@samsung.com,
+        s.prashar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, p.rajanbabu@samsung.com,
+        niyas.ahmed@samsung.com, chanho61.park@samsung.com
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20221121105210.68596-1-shradha.t@samsung.com>
+ <CGME20221121104719epcas5p2f87febfba74a4ca6807b3095acf507d0@epcas5p2.samsung.com>
+ <20221121105210.68596-2-shradha.t@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221121105210.68596-2-shradha.t@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update for yaml and remove the old txt binding.
+On 21/11/2022 11:52, Shradha Todi wrote:
+> Document the PCIe PHY device tree bindings for Tesla
+> FSD SoC
 
-As we can replace most of the custom timer API with standard Linux
-frameworks such as clock framework, let's tag the properties for
-ti,prescaler and ti,clock-source as deprecated.
+Subject: drop second, redundant "bindings".
 
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
+> 
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> ---
+>  .../bindings/phy/phy-tesla-pcie.yaml          | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml b/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
+> new file mode 100644
+> index 000000000000..8fa9a050af7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/phy-tesla-pcie.yaml
 
-Changes since v1:
+Filename based on compatible.
 
-- Fix issues noticed by Krzysztof
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/phy-tesla-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tesla FSD SoC PCIe PHY
+> +
+> +maintainers:
+> +  - Shradha Todi <shradha.t@samsung.com>
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 0
 
----
- .../bindings/pwm/pwm-omap-dmtimer.txt         | 22 -------
- .../bindings/pwm/ti,omap-dmtimer-pwm.yaml     | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/ti,omap-dmtimer-pwm.yaml
+Put compatible as first.
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt b/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-omap-dmtimer.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--* OMAP PWM for dual-mode timers
--
--Required properties:
--- compatible: Shall contain "ti,omap-dmtimer-pwm".
--- ti,timers: phandle to PWM capable OMAP timer. See timer/ti,timer-dm.yaml for info
--  about these timers.
--- #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
--  the cells format.
--
--Optional properties:
--- ti,prescaler: Should be a value between 0 and 7, see the timers datasheet
--- ti,clock-source: Set dmtimer parent clock, values between 0 and 2:
--  - 0x00 - high-frequency system clock (timer_sys_ck)
--  - 0x01 - 32-kHz always-on clock (timer_32k_ck)
--  - 0x02 - external clock (timer_ext_ck, OMAP2 only)
--
--Example:
--	pwm9: dmtimer-pwm@9 {
--		compatible = "ti,omap-dmtimer-pwm";
--		ti,timers = <&timer9>;
--		#pwm-cells = <3>;
--	};
-diff --git a/Documentation/devicetree/bindings/pwm/ti,omap-dmtimer-pwm.yaml b/Documentation/devicetree/bindings/pwm/ti,omap-dmtimer-pwm.yaml
-new file mode 100644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/ti,omap-dmtimer-pwm.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/ti,omap-dmtimer-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI dual mode timer PWM controller
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description:
-+  TI dual mode timer instances have an IO pin for PWM capability
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    const: ti,omap-dmtimer-pwm
-+
-+  "#pwm-cells":
-+    const: 3
-+
-+  ti,timers:
-+    description: Timer instance phandle for the PWM
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  ti,prescaler:
-+    description: |
-+      Legacy clock prescaler for timer. The timer counter is prescaled
-+      with 2^n where n is the prescaler.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+    deprecated: true
-+
-+  ti,clock-source:
-+    description: |
-+      Legacy clock for timer, please use assigned-clocks instead.
-+      0x00 - high-frequency system clock (timer_sys_ck)
-+      0x01 - 32-kHz always-on clock (timer_32k_ck)
-+      0x02 - external clock (timer_ext_ck, OMAP2 only)
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2 ]
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - ti,timers
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    pwm9: pwm {
-+      compatible = "ti,omap-dmtimer-pwm";
-+      ti,timers = <&timer9>;
-+      #pwm-cells = <3>;
-+    };
--- 
-2.38.1
+> +
+> +  compatible:
+> +    enum:
+> +      - tesla,fsd-pcie-phy
+> +
+> +  reg:
+> +    minItems: 2
+
+Drop minItems
+
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    minItems: 2
+> +    maxItems: 2
+
+Drop both.
+
+> +    items:
+> +      enum: [phy, pcs]
+
+Instead list items one after another.
+
+> +    description: |
+> +      phy is the register access to PMA layer
+> +      pcs is the register access to PCS layer
+
+These go to describing items in 'reg:'
+
+> +
+> +  phy-mode:
+> +    description: |
+> +      Defines the bifurcation mode of the PHY
+
+enum, probably type as well... phy-mode is usually a string. Is it here?
+
+> +
+> +  tesla,pmureg-phandle:
+
+Drop phandle, so tesla,pmu-syscon
+
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+
+Drop quotes
+
+> +    description: phandle for PMU system controller interface used to
+> +                 control PMU register bits for PCIe PHY
+> +
+> +  tesla,pcie-sysreg:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+
+Drop quotes
+
+> +    description: phandle for system control registers, used to
+> +                 control phy signals at system level
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+
+compatible first.
+
+> +  - reg
+> +  - reg-names
+> +  - phy-mode
+> +  - tesla,pmureg-phandle
+> +  - tesla,pcie-sysreg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      pcie_phy0: pcie-phy@15080000 {
+> +        compatible = "tesla,fsd-pcie-phy";
+> +        #phy-cells = <0>;
+> +        reg = <0x0 0x15080000 0x0 0x2000>, <0x0 0x150A0000 0x0 0x1000>;
+> +        reg-names = "phy", "pcs";
+> +        tesla,pmureg-phandle = <&pmu_system_controller>;
+> +        tesla,pcie-sysreg = <&sysreg_fsys0>;
+> +        phy-mode = <0>;
+> +        status = "disabled";
+
+Drop status
+
+> +      };
+> +    };
+> +...
+
+Best regards,
+Krzysztof
+
