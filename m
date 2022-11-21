@@ -2,163 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42EB2631CD9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FFD631CE0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 10:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbiKUJ3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 04:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42912 "EHLO
+        id S230247AbiKUJdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 04:33:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbiKUJ3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:29:37 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B6D26139;
-        Mon, 21 Nov 2022 01:29:35 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id C20D01C0006;
-        Mon, 21 Nov 2022 09:29:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669022973;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=c/Vnj6MPjUKIBDRhrj8ixFI/juf2n4PkKcGC0BhMOmA=;
-        b=ngrxWGtv0zVvk4sWmRJqaVEY8vjSErYieuuHoJBEcDxkLetxG+O/372w40aGiHEMcU8fHB
-        tlncjX8G3cA/+qA95MCrxOpGbYpidkbdQltOZudwxNpYEnjU/OAz0Y/6RTZwylvVsaRPAq
-        C3QVw196EX0DWK4OzNMFyMTzuSaGLIavSVq/1l8Xh5dAnE1+JW/nA/KLtDDunhamMXfKwM
-        Cp4UkZ/59bsZp5BLHgtBKlxoDVTMbZnNmKXAAeUS2x/zq79tIesKT1IgsF74defA3WedcU
-        A47FXXAxSRK1Zqnz9jjOCGk/iIHKjHfBGG3I5ENDFFKMcbDoTqNWieTKv6/U7w==
-Date:   Mon, 21 Nov 2022 10:29:28 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Marcin Wojtas <mw@semihalf.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH net-next 6/6] net: mvpp2: Consider NVMEM cells as
- possible MAC address source
-Message-ID: <20221121102928.7b190296@xps-13>
-In-Reply-To: <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
-References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
-        <20221117215557.1277033-7-miquel.raynal@bootlin.com>
-        <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S230153AbiKUJdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 04:33:16 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A953E13EA5
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 01:33:13 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AF341FB;
+        Mon, 21 Nov 2022 01:33:19 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39A1D3F587;
+        Mon, 21 Nov 2022 01:33:11 -0800 (PST)
+Date:   Mon, 21 Nov 2022 09:33:08 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v4 0/3] phy: sun4i-usb: add support for the USB PHY on
+ F1C100s SoC
+Message-ID: <20221121093308.6c01140b@donnerap.cambridge.arm.com>
+In-Reply-To: <20221116151603.819533-1-andre.przywara@arm.com>
+References: <20221116151603.819533-1-andre.przywara@arm.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcin,
+On Wed, 16 Nov 2022 15:16:00 +0000
+Andre Przywara <andre.przywara@arm.com> wrote:
 
-mw@semihalf.com wrote on Sat, 19 Nov 2022 09:18:34 +0100:
+Hi Vinod, Kishon,
 
-> Hi Miquel,
->=20
->=20
-> czw., 17 lis 2022 o 22:56 Miquel Raynal <miquel.raynal@bootlin.com> napis=
-a=C5=82(a):
-> >
-> > The ONIE standard describes the organization of tlv (type-length-value)
-> > arrays commonly stored within NVMEM devices on common networking
-> > hardware.
-> >
-> > Several drivers already make use of NVMEM cells for purposes like
-> > retrieving a default MAC address provided by the manufacturer.
-> >
-> > What made ONIE tables unusable so far was the fact that the information
-> > where "dynamically" located within the table depending on the
-> > manufacturer wishes, while Linux NVMEM support only allowed statically
-> > defined NVMEM cells. Fortunately, this limitation was eventually tackled
-> > with the introduction of discoverable cells through the use of NVMEM
-> > layouts, making it possible to extract and consistently use the content
-> > of tables like ONIE's tlv arrays.
-> >
-> > Parsing this table at runtime in order to get various information is now
-> > possible. So, because many Marvell networking switches already follow
-> > this standard, let's consider using NVMEM cells as a new valid source of
-> > information when looking for a base MAC address, which is one of the
-> > primary uses of these new fields. Indeed, manufacturers following the
-> > ONIE standard are encouraged to provide a default MAC address there, so
-> > let's eventually use it if no other MAC address has been found using the
-> > existing methods.
-> >
-> > Link: https://opencomputeproject.github.io/onie/design-spec/hw_requirem=
-ents.html =20
->=20
-> Thanks for the patch. Did you manage to test in on a real HW? I am curiou=
-s about
+is there any chance you could take at least patch 1/3 and 2/3 through your
+tree? As suggested, I split this off the original series, which now
+somewhat depends on this one - at least dtbs_check and functionality wise,
+both series build cleanly in isolation.
 
-Yes, I have a Replica switch on which the commercial ports use the
-replica PCI IP while the config "OOB" port is running with mvpp2:
-[   16.737759] mvpp2 f2000000.ethernet eth52: Using nvmem cell mac address =
-18:be:92:13:9a:00
+Many thanks,
+Andre
 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/=
-net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > index eb0fb8128096..7c8c323f4411 100644
-> > --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > @@ -6104,6 +6104,12 @@ static void mvpp2_port_copy_mac_addr(struct net_=
-device *dev, struct mvpp2 *priv,
-> >                 }
-> >         }
-> >
-> > +       if (!of_get_mac_address(to_of_node(fwnode), hw_mac_addr)) { =20
->=20
-> Unfortunately, nvmem cells seem to be not supported with ACPI yet, so
-> we cannot extend fwnode_get_mac_address - I think it should be,
-> however, an end solution.
+> This is a spin-off of v3 of the suniv F1C100s USB support series[1], just
+> carrying the USB PHY bits. The H616 USB PHY support is already in
+> linux-phy.git/next, so this is rebased on top of that, to avoid
+> conflicts.
+> The actual binding and driver change in the first two patches is
+> straightforward. Since it came up in reviews, I reworked the quirk
+> handling in the phy-sun4i-usb.c driver, to become more maintainable and
+> readable, in patch 3/3. For a changelog, see below.
+> 
+> Cheers,
+> Andre
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20221106154826.6687-1-andre.przywara@arm.com/
+> 
+> Changelog v3 ... v4:
+> - split off from rest of suniv F1C100s USB series
+> - rebase on top of H616 USB PHY patches
+> - drop phy2_is_hsic in favour of reusing existing hsic_index member
+> - add tags
+> 
+> Changelog v2 ... v3:
+> - remove redundant "Device Tree Bindings" suffix in DT binding doc title
+> - add BSD license to binding doc file (as per checkpatch)
+> - use existing PHY sun4i_a10_phy type instead of inventing new one
+> - add patch to clean up sunxi USB PHY driver
+> 
+> Changelog v1 ... v2:
+> - USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+> 
+> 
+> 
+> Andre Przywara (1):
+>   phy: sun4i-usb: Replace types with explicit quirk flags
+> 
+> Icenowy Zheng (2):
+>   dt-bindings: phy: add binding document for Allwinner F1C100s USB PHY
+>   phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+> 
+>  .../phy/allwinner,suniv-f1c100s-usb-phy.yaml  | 83 +++++++++++++++++++
+>  drivers/phy/allwinner/phy-sun4i-usb.c         | 59 ++++++-------
+>  2 files changed, 107 insertions(+), 35 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-usb-phy.yaml
+> 
 
-Agreed.
-
-> As of now, I'd prefer to use of_get_mac_addr_nvmem directly, to avoid
-> parsing the DT again (after fwnode_get_mac_address) and relying
-> implicitly on falling back to nvmem stuff (currently, without any
-> comment it is not obvious).
-
-I did not do that in the first place because of_get_mac_addr_nvmem()
-was not exported, but I agree it would be the cleanest (and quickest)
-approach, so I'll attempt to export the function first, and then use it
-directly from the driver.
-
-> Best regards,
-> Marcin
->=20
-> > +               *mac_from =3D "nvmem cell";
-> > +               eth_hw_addr_set(dev, hw_mac_addr);
-> > +               return;
-> > +       }
-> > +
-> >         *mac_from =3D "random";
-> >         eth_hw_addr_random(dev);
-> >  }
-> > --
-> > 2.34.1
-> > =20
-
-Thanks a lot,
-Miqu=C3=A8l
