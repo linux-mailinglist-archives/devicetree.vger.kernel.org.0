@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B1D632CF9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 20:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5453C632D03
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 20:29:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231517AbiKUT0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 14:26:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54274 "EHLO
+        id S231533AbiKUT3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 14:29:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbiKUT0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 14:26:31 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCEB9B3B6
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:26:30 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id e11so8430440wru.8
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:26:30 -0800 (PST)
+        with ESMTP id S231526AbiKUT3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 14:29:21 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EEDC4B56
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:29:19 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id cl5so21368840wrb.9
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 11:29:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZL6rLSjizF6F00imfDrFMSQ/wOdXEjel6osgWFNPC0=;
-        b=atyYg8gYVIhmIFzcSF88hX9vc6gWRn7Z576mhNVRnpIrwfucmpdrazHU0U/N/xOSSX
-         B4afvQa36DDrPjinYnBlTUwpEoXoZhgJaqUM2ynKK1KGpbeRQL4atSL9F1oBI1rdCAmI
-         2yLr/tloD+Pg2+r08gGhfD31OjPg4qACJQ2kVvSO3DZBTQIDwcqinQ7RGLgSpwuY9RH+
-         GCAQQ2/5PBAJ2RhtXFtyyQRSB7MkhiKtTb+oLpwChX6lZU3fX9+wUwOXOX/VmU6oDEzR
-         wYEBGhA3V+3/spRDATk+YwzPmkXqUi2rsKKcnz58j0sWPNyP8ULT0AhNv+yw51W2UXXF
-         PJew==
+        bh=75vBWBM19+UHLSvv+yKI6bYsJIRXQLQc7YhBfHY2I5Q=;
+        b=IClFDSz+BFfQSzD7aT70HiDDUC1jHdNc6gyaeogYW7FUjnGiFam6+J531LwH8R9Yg+
+         vSzVKu/f/Wj82qZnlab9xnn6Z/8pmZTpfwJLgEbVN6mszpC6GBKSXslNZZIlRA4kqmKc
+         Qs8wuGkFB4efQRGUoA1mMBeyTzbjFN7TcdRqboT77Uq/EA0+1NPNodPTJl0rCAo6uv81
+         3IwxazhnvqppQxTtBUxFEB/PqzzLvMsPQNiaON+dyCIjliPx8lTKdZaZPfgYYKxGutTg
+         4QrwFxHQYuYSOvX0aXTS7XBJyAieggsM+7tIcqUgx9Ag8EmliBD6Gbywnk1GUL+cfMQl
+         YBFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/ZL6rLSjizF6F00imfDrFMSQ/wOdXEjel6osgWFNPC0=;
-        b=COAtsZBEsJKRYazOS32rPFasaVS2wZxGZPV2zfCoU6QHxByuwc+AyXYe9/JcBXf5lt
-         fBHyKInyjZTJ/y/AENnevMmsUOEudnVyx4ZBdnFQiyFWOLZkDVbFhby0O/g47lnb4yC/
-         zGKX1e7GtrLj3qg/xJpzMZLjvmfpg+EDz9pmaVeT0BvGdFaQTbSPXD9+5ml4JeYxsVS9
-         cdpYeclUXKFlTDVqWgpn/GlS8HktXY4gysmVNK0dnU0b2CJmxvB/SmMNABDuQbdpDDdz
-         YsAS3nEwCWorgECojpKbHaADjB9AWbBGCe/aBh2dGbtvmZkYThkWoGqUzinEEGP0gXIp
-         Rcew==
-X-Gm-Message-State: ANoB5pnod1UQHmnADXY+DV9ZGLD/DYPcQfHniJkx3S5yiXjHqn69C42u
-        zMxAdZQVY9pdrlCjW5DvAXgF5A==
-X-Google-Smtp-Source: AA0mqf78fNj3kHp6o5Hgjh/rdsY6F2cjjjqHn4aCQo9tYpssMt4RyiI+CAYKm2SYwU9+HoLc+FrBpA==
-X-Received: by 2002:adf:dd81:0:b0:236:88a2:f072 with SMTP id x1-20020adfdd81000000b0023688a2f072mr12136401wrl.516.1669058789434;
-        Mon, 21 Nov 2022 11:26:29 -0800 (PST)
+        bh=75vBWBM19+UHLSvv+yKI6bYsJIRXQLQc7YhBfHY2I5Q=;
+        b=h7rFFpGLyaix0/paeQHuW9/+RXNdhBbQgzBLGlaaMJ5A4x2+OxGGq5CsX4b1BNpy0s
+         n2txqh3otpwCekPfMQWrD29HO/8qBOJhXJ3rmLo2eggHKu0gPoxL7h9pGQO+aYB4RiRa
+         oqc5BgWW/mUYHDrzjcgsIFdxqRSHAhjybBeD4maHr+AFnRJzOv2pteuKt9GC5uc2kxMq
+         RQw9RJhJozYb71sUn4oekz1SDLCnWJCvq+mRiXOxhYs187b/g4NU1uati3uMDcb0ceCF
+         zabzOi3EcBHrwV0uhph67zzEvcYEBlSL2gMc7f5vkRNDzvM+7o7mi9VrT7L8IL1/Ryf8
+         ZHsg==
+X-Gm-Message-State: ANoB5pmAiQ2pERX3qeCaYrKc55XGDFsVFIUuUGQg1bS46DT2CccdeRoT
+        bLD5KUC9z6hfrDpSVhoLZ3gKBQ==
+X-Google-Smtp-Source: AA0mqf7+6SK7o4+TK+OIPnFSGL3QyPMMVUMCxCMGxIkuG2ps4F6Th6sFCHO3+g6S/TMl8KEzYZ+9vA==
+X-Received: by 2002:a5d:474c:0:b0:234:d495:d3ae with SMTP id o12-20020a5d474c000000b00234d495d3aemr5078372wrs.448.1669058958299;
+        Mon, 21 Nov 2022 11:29:18 -0800 (PST)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id c1-20020adffb01000000b0023657e1b980sm11878553wrr.53.2022.11.21.11.26.27
+        by smtp.gmail.com with ESMTPSA id y15-20020a1c4b0f000000b003cf7292c553sm14579060wma.13.2022.11.21.11.29.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 11:26:28 -0800 (PST)
-Date:   Mon, 21 Nov 2022 21:26:27 +0200
+        Mon, 21 Nov 2022 11:29:17 -0800 (PST)
+Date:   Mon, 21 Nov 2022 21:29:16 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Bough Chen <haibo.chen@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -63,16 +64,15 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Abel Vesa <abelvesa@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Bough Chen <haibo.chen@nxp.com>,
         Jesse Taube <mr.bossman075@gmail.com>
-Subject: Re: [PATCH v2 1/4] clk: imx: imxrt1050: fix IMXRT1050_CLK_LCDIF_APB
+Subject: Re: [PATCH 1/4] clk: imx: imxrt1050: fix IMXRT1050_CLK_LCDIF_APB
  offsets
-Message-ID: <Y3vQ47WJnC7yofwD@linaro.org>
-References: <20221115193244.10484-1-giulio.benetti@benettiengineering.com>
+Message-ID: <Y3vRjItCVhvCRLv4@linaro.org>
+References: <20221117181014.851505-1-giulio.benetti@benettiengineering.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221115193244.10484-1-giulio.benetti@benettiengineering.com>
+In-Reply-To: <20221117181014.851505-1-giulio.benetti@benettiengineering.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -83,15 +83,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-11-15 20:32:41, Giulio Benetti wrote:
+On 22-11-17 19:10:11, Giulio Benetti wrote:
+> Fix IMXRT1050_CLK_LCDIF_APB offsets.
+> 
+> Fixes: 7154b046d8f3 ("clk: imx: Add initial support for i.MXRT1050 clock driver")
 > Cc: Jesse Taube <mr.bossman075@gmail.com>
 > Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
 
-Missing commit message. Same for patch #2 and #4.
+You dropped the patch version from the subject line.
+
+Other than that:
+
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
 > ---
 > V1->V2:
 > * nothing done
+> V2->V3:
+> * added commit log and not only subject as suggested by Jesse Taube
+> V3->V4:
+> * added Fixes: as suggested by Fabio Estevam
 > ---
 >  drivers/clk/imx/clk-imxrt1050.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
