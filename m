@@ -2,155 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E008F632B8B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8555632B95
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 18:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbiKURz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 12:55:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45616 "EHLO
+        id S230444AbiKUR6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 12:58:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiKURz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:55:27 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC32D32AC;
-        Mon, 21 Nov 2022 09:55:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1669053324; x=1700589324;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=qfsa8AbMabrYEp+ISD3eb3o1sx27qrYMkB2inZEHjBw=;
-  b=ShAPLAOcKWM+5VyOVw+JzL5kp0IrmDdXZCcvRBYhqKIJx2vEJq5o66r4
-   gUq01KfJWM4XhskXz/Sw60K/Od3k5QZTEkYOv6XCfmoFbvMZKQkqD91bs
-   ITjx070s5qwZDP5k6b+XTqtgrWYzXbrvWz71zqVhBwEPBkZrWdmQbhWzW
-   Q=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Nov 2022 09:55:23 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2022 09:55:09 -0800
-Received: from [10.110.33.239] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 21 Nov
- 2022 09:55:08 -0800
-Message-ID: <76219489-99cc-7f2e-7df6-b11f6a2c1933@quicinc.com>
-Date:   Mon, 21 Nov 2022 11:55:07 -0600
+        with ESMTP id S229991AbiKUR62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 12:58:28 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D468B10B53;
+        Mon, 21 Nov 2022 09:58:26 -0800 (PST)
+Received: from jupiter.universe (dyndsl-037-138-187-016.ewe-ip-backbone.de [37.138.187.16])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5E7F466029B0;
+        Mon, 21 Nov 2022 17:58:25 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669053505;
+        bh=/1aNBsrAg1ZmHtEI6sPt/HBfhYWdbp35pT6ZJ1FP9bM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hZTCeTiOWQg+a8VqhxofVSM7tUg1jWLRzaJ2/2MmbpmRmnsNpMB9RNvCVwgm968X/
+         aQAbB6zUXEnFcvd2YDyyk4dssOTwodsyK9qR5b8A/LSnGMzN/P9a+U88ouf2BkSuQC
+         8jJxHkPYzAEL9DhQUCU4ajTr1t9d5MhkdCUgUlh8bIYDkTydv7AxT7uzZykJfTMzC2
+         YMhILLVjwL7kPQMwoC6QXg4CYv7TeHrvgcDsPtaow0gsf/icBf8ovaywIUE61bnnAK
+         ZavJMmsc+oAwzWZIJy5nPkXEJgasrI0SJ2aFert2MiqLdbwyvErEwgWuWKye2W74HU
+         fuIw6tZ29I3Nw==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 0B4E2480113; Mon, 21 Nov 2022 18:58:23 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv3 0/9] Initial rk3588 DT
+Date:   Mon, 21 Nov 2022 18:58:05 +0100
+Message-Id: <20221121175814.68927-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v4 3/3] interconnect: qcom: Add QDU1000/QRU1000
- interconnect driver
-Content-Language: en-US
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221118182245.31035-1-quic_molvera@quicinc.com>
- <20221118182245.31035-4-quic_molvera@quicinc.com>
- <6b68b7c2-e070-0a88-35ee-2060dcbdee91@wanadoo.fr>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <6b68b7c2-e070-0a88-35ee-2060dcbdee91@wanadoo.fr>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This adds initial rk3588(s) DT including two different board
+devicetrees. All required driver changes have been merged into
+the respective maintainer trees. There is one warning from the
+DT check:
 
-On 11/20/2022 6:19 AM, Christophe JAILLET wrote:
-> Le 18/11/2022 à 19:22, Melody Olvera a écrit :
->> Add interconnect provider driver for Qualcomm QDU1000 and QRU1000
->> platforms.
->>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>   drivers/interconnect/qcom/Kconfig   |    9 +
->>   drivers/interconnect/qcom/Makefile  |    2 +
->>   drivers/interconnect/qcom/qdu1000.c | 1079 +++++++++++++++++++++++++++
->>   drivers/interconnect/qcom/qdu1000.h |   95 +++
->>   4 files changed, 1185 insertions(+)
->>   create mode 100644 drivers/interconnect/qcom/qdu1000.c
->>   create mode 100644 drivers/interconnect/qcom/qdu1000.h
->>
->
-> [...]
->
->> +static int qnoc_probe(struct platform_device *pdev)
->> +{
->> +    int ret;
->> +
->> +    ret = qcom_icc_rpmh_probe(pdev);
->> +    if (ret)
->> +        dev_err(&pdev->dev, "failed to register ICC provider\n");
->> +
->> +    return ret;
->> +}
->> +
->> +static int qnoc_remove(struct platform_device *pdev)
->> +{
->> +    struct qcom_icc_provider *qp = platform_get_drvdata(pdev);
->> +
->> +    icc_nodes_remove(&qp->provider);
->> +    icc_provider_del(&qp->provider);
->
-> qcom_icc_rpmh_remove()?
->
-> (more future proof, less verbose and more consistent with qcom_icc_rpmh_probe() in the probe)
->
-> CJ
+$ make CHECK_DTBS=y rockchip/rk3588-evb1-v10.dtb rockchip/rk3588s-rock-5a.dtb
+  DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb
+/home/sre/src/collabora/rode/linux-rockchip-upstream/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb:
+    ethernet@fe1c0000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mdio',
+    'power-domains', 'reg', 'reset-names', 'resets', 'rx-queues-config', 'snps,axi-config', 'snps,mixed-burst',
+    'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'stmmac-axi-config', 'tx-queues-config' were unexpected)
+	From schema: /home/sre/src/collabora/rode/linux-rockchip-upstream/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
 
-Good call. Does it make sense to just set the .probe and .remove functions as
-qcom_icc_rpmh_probe() and qcom_icc_rpmh_remove(), respectively? Probe function
-is just reporting if qcom_icc_rpmh_probe fails.
+This is for gmac1. gmac0 has the same properties and there is no warning. Also
+rk3588s (and thus the Rock 5A) has only gmac1 and there is no warning for the
+Rock 5A. It looks like for some reason the referenced "snps,dwmac.yaml#"
+is only checked for the first node. I think it's a bug in dt-validate.
+Also the same issue can be seen with rk356x.
 
-Thanks,
-Melody
->
->> +
->> +    return 0;
->> +}
->> +
->> +static const struct of_device_id qnoc_of_match[] = {
->> +    { .compatible = "qcom,qdu1000-clk-virt",
->> +      .data = &qdu1000_clk_virt
->> +    },
->> +    { .compatible = "qcom,qdu1000-gem-noc",
->> +      .data = &qdu1000_gem_noc
->> +    },
->> +    { .compatible = "qcom,qdu1000-mc-virt",
->> +      .data = &qdu1000_mc_virt
->> +    },
->> +    { .compatible = "qcom,qdu1000-system-noc",
->> +      .data = &qdu1000_system_noc
->> +    },
->> +    { }
->> +};
->> +MODULE_DEVICE_TABLE(of, qnoc_of_match);
->> +
->> +static struct platform_driver qnoc_driver = {
->> +    .probe = qnoc_probe,
->> +    .remove = qnoc_remove,
->> +    .driver = {
->> +        .name = "qnoc-qdu1000",
->> +        .of_match_table = qnoc_of_match,
->> +    },
->> +};
->
-> [...]
->
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20221115161702.163057-1-sebastian.reichel@collabora.com/
+ * add minimal Radxa Rock 5B DT
+ * Add aliases for i2c, spi and gpio in rk3588s.dtsi
+ * Fix ethernet-phy node name and remove #phy-cells
+ * Sort nodes / includes in both boards
+ * Sort nodes in rk3588s.dtsi according to register address
+ * add missing spi4 node in rk3588s.dtsi
+ * split board specific dt-bindings into their own patches
+ * add board specific mmc alias following the downstream enumeration
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221108171500.99599-1-sebastian.reichel@collabora.com/
+ * Drop Acked-by from Krzysztof
+ * Add 'regulator-' prefix to VCC12V VCC5V0 regulators
+ * Change 'Radxa Rock 5A' to 'Radxa ROCK 5 Model A' in DT binding
+ * Update cover-letter (clock driver and some DT binding fixes got merged)
+
+-- Sebastian
+
+Christopher Obbard (2):
+  dt-bindings: arm: rockchip: add Rock 5 Model B
+  arm64: dts: rockchip: Add rock-5b board
+
+Jianqun Xu (1):
+  arm64: dts: rockchip: Add rk3588 pinctrl data
+
+Kever Yang (2):
+  arm64: dts: rockchip: Add base DT for rk3588 SoC
+  arm64: dts: rockchip: Add rk3588-evb1 board
+
+Sebastian Reichel (4):
+  dt-bindings: soc: rockchip: add initial rk3588 syscon compatibles
+  dt-bindings: arm: rockchip: add RK3588 EVB1
+  dt-bindings: arm: rockchip: add Rock 5 Model A
+  arm64: dts: rockchip: Add rock-5a board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   15 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    3 +
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |  159 +
+ .../boot/dts/rockchip/rk3588-pinctrl.dtsi     |  516 +++
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   43 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |   62 +
+ .../boot/dts/rockchip/rk3588s-pinctrl.dtsi    | 3403 +++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   66 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 1722 +++++++++
+ 10 files changed, 5994 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+
+-- 
+2.35.1
 
