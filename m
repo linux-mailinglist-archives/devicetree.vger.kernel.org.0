@@ -2,74 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 346A06329CB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB1F96329CE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 17:41:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbiKUQlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 11:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36434 "EHLO
+        id S229792AbiKUQll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 11:41:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiKUQlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:41:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B585592
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:41:23 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1ox9rF-0007nq-Pm; Mon, 21 Nov 2022 17:41:21 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1ox9rA-0003Ni-Ge; Mon, 21 Nov 2022 17:41:16 +0100
-Date:   Mon, 21 Nov 2022 17:41:16 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Shengyu Qu <wiagn233@outlook.com>
-Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
-        heiko@sntech.de, jacob-chen@iotwrt.com, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
-        robh+dt@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add RGA2 support to rk356x
-Message-ID: <20221121164116.GE15565@pengutronix.de>
-References: <20221121151755.2072816-3-m.tretter@pengutronix.de>
- <TY3P286MB2611FB223B1CC437B01BD984980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+        with ESMTP id S229834AbiKUQll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 11:41:41 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E76F11467
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:41:39 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id s8so19665759lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 08:41:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hETnp47GPkBfCDYgveE6+CDOudWSz0w3XG/QpSsWSLA=;
+        b=Sljwr6evv6j9XkziKUMPUpoldKWpZf08EjDHG1D6ZgRISmD4RNwb+/vZeQ7rLjSs9S
+         bUouI+BkCQJwltjhqdcMX+5/ncqvOCPg+nN+aOhhxxSTW0WNTbBss9YfxCETlPaq2AgS
+         ztwbl/sND+UOF5vYUMhSA0dblbl2kCcHnEIzWsaQU0oSrwvULKR7lbxZr4LjlTbD71wP
+         kweTn0pskRRRtBDHtOxyebZ3AFUqmQZIJxhI6HSU7E8nemrjPdscYHAXfawayUHJFUTD
+         o/jtHOh2c1EEjmSdgGEguohvfD1Ar153pe1kJtcce+cbRkA7Xdx87gd9xHVVcGmXRLGP
+         8Apg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hETnp47GPkBfCDYgveE6+CDOudWSz0w3XG/QpSsWSLA=;
+        b=oMjFcqU/FsONHwEd97grYrQVI8WXhhYPuQPlpWAtgSFwbSHYngVtSRo4lhl+zagsUV
+         2LwU/gFwx7ciyJUMvvprqeWLLejK3BwjxXFV7t+AnWDrPpvsfVk4qxhFqOMRaflmJk9X
+         fOmbL0DVAEABoyFfDqV9IlRhWtDeOqu6HhaRq3KcW/z/GhQ2IQcX6pdJkmSShw5nVgj0
+         gN9N0M2NM5f7olHW8M4EyF5pwh/Z+CMqxIEyA7qaTW3UOpBVVKyNwZf+lJjtOoDgOasB
+         xxV0btIYNxa0zor+/Xb6Ok73ltD/GDQsaXTUuIQmMKUxdVbbHoI8Y7Mx4nVkpFgMMte/
+         arsg==
+X-Gm-Message-State: ANoB5pn+rBbLpJP7zDbmNDyR5+WTgvaRzfuNhJEAOdSdddV3y43xUyBD
+        ZG6r84R8zbHFmI5FZdca+jS7gg==
+X-Google-Smtp-Source: AA0mqf681K6J2C3yPwMc1YNd9swupnJH2JoyPNOPzpchMzoFQRmftgxTWlMooFCjpJMrDIbwx2N7tA==
+X-Received: by 2002:a05:6512:4023:b0:4a2:5008:d235 with SMTP id br35-20020a056512402300b004a25008d235mr6897956lfb.7.1669048897832;
+        Mon, 21 Nov 2022 08:41:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q20-20020a056512211400b00497a1f92a72sm2099108lfr.221.2022.11.21.08.41.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 08:41:37 -0800 (PST)
+Message-ID: <2442d912-cc1c-7aac-face-b3a81456a162@linaro.org>
+Date:   Mon, 21 Nov 2022 17:41:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <TY3P286MB2611FB223B1CC437B01BD984980A9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 1/9] dt-bindings: arm: Add support for DSB element
+Content-Language: en-US
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org
+References: <1669018873-4718-1-git-send-email-quic_taozha@quicinc.com>
+ <1669018873-4718-2-git-send-email-quic_taozha@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1669018873-4718-2-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, 22 Nov 2022 00:01:28 +0800, Shengyu Qu wrote:
-> Someone from pine64 discord found that RGA2 doesn't work properly on over
+On 21/11/2022 09:21, Tao Zhang wrote:
+> Add property "qcom,dsb-elem-size" to support DSB(Discrete Single
+> Bit) element for TPDA. Specifies the DSB element size supported
+> by each monitor connected to the aggregator on each port. Should
+> be specified in pairs (port, dsb element size).
 > 
-> 4GB memory RK3568 devices. Are you sure current driver works now?
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> index c46ddea..e3b58b5 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> @@ -58,6 +58,13 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  qcom,dsb-elem-size:
+> +    description: |
+> +      Specifies the DSB element size supported by each monitor
+> +      connected to the aggregator on each port. Should be specified
+> +      in pairs (port, dsb element size).
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
 
-I am absolutely sure that the driver works on a 2GB ROCK3A board.
-Unfortunately, I don't have a device with 4GB or more memory and I cannot test
-the driver with such a device.
+Then you need items, probably with maxItems as well, like:
 
-As the documentation for the RGA2 is the same in the TRM of the rk3288 and
-rk3568, I would guess that the driver doesn't work on a rk3288 with more than
-4GB (if there is such a thing) either and the driver needs to be fixed for
-both SoCs.
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml#L278
 
-Michael
+> +
+>    clocks:
+>      maxItems: 1
+
+>  
+
+Best regards,
+Krzysztof
+
