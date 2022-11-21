@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BCE363211D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A00632161
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 12:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiKULrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 06:47:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46628 "EHLO
+        id S229657AbiKULyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 06:54:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbiKULrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:47:18 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B783899;
-        Mon, 21 Nov 2022 03:47:16 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id f7so15854343edc.6;
-        Mon, 21 Nov 2022 03:47:16 -0800 (PST)
+        with ESMTP id S229714AbiKULyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 06:54:39 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4532016589;
+        Mon, 21 Nov 2022 03:54:38 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso12557108wme.5;
+        Mon, 21 Nov 2022 03:54:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uJJXhf0ZouG6Lq8s9N2QMo51VNGYLGy26YpCtzoJ2sk=;
-        b=OMnwEgxNbalqU/91dk07RZKyJeY3LIN8hoJUoyi4ZUcDCO+SznDrmQyTrPKMwZ+6Wl
-         Qx6cuVY6MXEr6ldwwjhpkfF4DIr4risDwAoafJ8GuvHjrmIOZZoeOWz6sO48LUNvANFD
-         MqRyS29A1kTIVBC28vvCAw0lsAzuf9x7BfmPloqQ+vlgtaYm+mYM9h/RFXx5yW4CaF8M
-         9ROox944URXG6anEIGWGT4Ezw/LNG+Q24qfIP/fPe0SW7ms7CHGfVC0+iHDwsw/YpU2H
-         xO7Oo+mcOi0t2DpeAC8c7jJhjSId5Um7B0OqFN2SguJ8z+8Gar9OMea5VVmTWxIw9l8Y
-         S2Sw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QB3gNY6yaJMnXhVV7emf4yfo6x5OMz0IYCSWMhi+hEc=;
+        b=P+U1OHpHssZT7auV7/xQp9Brb8pDG6DU/KV7YI8GMe86bDpGxYvSv30QBbAWThUDJF
+         FY6ychSgiFKhH8qFbXbsbp0b2ZJ/nlQBVL8V9JRNA9DBgG8xFA3pF/bWQgjmD4OHCnZz
+         HmiJrKUozvlHT1cRscyxWXgUPsr+y47pZTb27di//zCtLKi2VxciO74sArOihoYsS8Uo
+         KE4UiSSAPhd24pzMvJRhGCvbjb5Fi0Byc3RtX9ZnLzZLHd178saR07bvEt4kLnQY2uIe
+         Mgvw+6FHZXZwL5CC5RAwblaXjI3voRomDYrV9M+zafQopTsTZB7v3a9gDlZibkSlbod4
+         eMPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uJJXhf0ZouG6Lq8s9N2QMo51VNGYLGy26YpCtzoJ2sk=;
-        b=5HXyZM4hHfu1T04WNQFR6Qp+tQkZeb7Rbi8/A8XQLbb6cNoJUIPsOhOXR2nRV7CTVJ
-         TB1EqQjroi14TbvhFXpFNRHg51kbXrlimzrr+KMedM/dNu1D3UqNL842TLuZ7S1BDPoa
-         s0s/FE7O9M9EWDRo+NwxTLB0D+ycxPRujW1EMryDclPFZLpsuWtYj7sq222DctKv8p1I
-         S36ghXNw6c63Bu9HCyPuKFAUnBr4yjruYe/PZY3Gjst7qSwkcp15Tlp2m8JmjhQFzLmo
-         DpjXLOarUNH8noleh2V+gOoY0XiKs7tnL4PFgsQTdw7aNqsszXuq6PqTB7iZfPKjEemn
-         Vtmw==
-X-Gm-Message-State: ANoB5pl9tM71OBOQRKbdBtMA4G12W0TlTBIw/eRNQwyvIQX4CTBuHBgU
-        UuMqt/IcJayXVY02H+vk4eY=
-X-Google-Smtp-Source: AA0mqf4aDDhBcDN72x3wx/EDR7Z7QMMR9UBxCv5euJ+PDL5gyJvUvP5LZEM7gvGXLJvBRYzMteJtaw==
-X-Received: by 2002:aa7:d3c9:0:b0:459:aa70:d4b6 with SMTP id o9-20020aa7d3c9000000b00459aa70d4b6mr16023510edr.224.1669031235224;
-        Mon, 21 Nov 2022 03:47:15 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id ay12-20020a170907900c00b00780982d77d1sm4913753ejc.154.2022.11.21.03.47.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Nov 2022 03:47:14 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 dt-schema.git] schemas: add NVMEM cell with #nvmem-cell-cells
-Date:   Mon, 21 Nov 2022 12:47:08 +0100
-Message-Id: <20221121114708.10161-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QB3gNY6yaJMnXhVV7emf4yfo6x5OMz0IYCSWMhi+hEc=;
+        b=anGYpwTKE5shp87AatpF0EXwlX8UCaS6wtQufF3oUXa4+c5lah0qGXAXnon5ggGQhv
+         uyIK3cnF1WD+AxTWMNoyOA/Jk4oiMoACfGeY6asB8KQJGD6I6zr1+DYHsPOLFtBlvaIA
+         kKV+sMxKTvBGhDsbJuMC0MH0arO4AHKvTfi9kfgFsxoyD5HUokz6TqN4bWKykgg4gsWW
+         onGvAAFtsPstSSCjoC/s9Tg3iN6FlsawTig85yea1nxvx8pdbsXmKNzDGk1Qwi3t2nSy
+         8x0KRCoJcmjUrqS3jitMFQ4R+uByelaewQgiks9FXuEOuiJQgmHlI9SsFz0eJXj0b9MV
+         TB6g==
+X-Gm-Message-State: ANoB5pkhvAXUVL1TYFWPnsZtSwkG+6IJNMQt8zQCKIVvi3XX/8rE6lKf
+        N3WhEWo0gpfwmRJIoa+byPc=
+X-Google-Smtp-Source: AA0mqf5yPHbwfASaKwZ0hgwUWI2wZ/5w3j0QHXDZp6K/Ira6H0o+d3uT1LxH0796iYp7TEGBTIBqDg==
+X-Received: by 2002:a7b:ce89:0:b0:3c6:c986:f2b9 with SMTP id q9-20020a7bce89000000b003c6c986f2b9mr12282679wmj.53.1669031676568;
+        Mon, 21 Nov 2022 03:54:36 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id i6-20020a05600c354600b003cf894c05e4sm18918780wmq.22.2022.11.21.03.53.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 03:54:34 -0800 (PST)
+Message-ID: <c1fbe477-8991-2ac4-7f0a-11360868ca11@gmail.com>
+Date:   Mon, 21 Nov 2022 12:53:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix CPUs capacity-dmips-mhz
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, tinghan.shen@mediatek.com,
+        seiya.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221005093404.33102-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221005093404.33102-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,67 +77,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-Some NVMEM cells may provide more than 1 value. An example can be base
-MAC address that is used for calculating multiple MACs (for few
-different devices). For specifying value to read phandle needs to be
-used with an argument.
 
-Cc: Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>
-Cc: Michael Walle <michael@walle.cc>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Drop redundant quotes (thanks Krzysztof)
+On 05/10/2022 11:34, AngeloGioacchino Del Regno wrote:
+> The capacity-dmips-mhz parameter was miscalculated: this SoC runs
+> the first (Cortex-A55) cluster at a maximum of 2000MHz and the
+> second (Cortex-A78) cluster at a maximum of 3000MHz.
+> 
+> In order to calculate the right capacity-dmips-mhz, the following
+> test was performed:
+> 1. CPUFREQ governor was set to 'performance' on both clusters
+> 2. Ran dhrystone with 500000000 iterations for 10 times on each cluster
+> 3. Calculate the mean result for each cluster
+> 4. Calculate DMIPS/MHz: dmips_mhz = dmips_per_second / cpu_mhz
+> 5. Scale results to 1024:
+>     result_c0 = (dmips_mhz_c0 - min_dmips_mhz(c0, c1)) /
+>                 (max_dmips_mhz(c0, c1) - min_dmips_mhz(c0, c1)) * 1024
+> 
+> The mean results for this SoC are:
+> Cluster 0 (LITTLE): 11990400 Dhry/s
+> Cluster 1 (BIG): 59809036 Dhry/s
+> 
+> The calculated scaled results are:
+> Cluster 0: 307,934312801831 (rounded to 308)
+> Cluster 1: 1024
+> 
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Please note there is ongoing work by Michael who chose to modify
-meta-schema in his work: https://github.com/devicetree-org/dt-schema/pull/89
+Applied,
 
-This bit is required for moving forward with the
-[PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
-https://lore.kernel.org/linux-arm-kernel/20220901221857.2600340-1-michael@walle.cc/
+Thanks!
 
-As pointed out by Rob #nvmem-cell-cells should be added to the dt-schema
-and not a Linux binding:
-Re: [PATCH v2 15/20] dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
-https://lore.kernel.org/linux-arm-kernel/20220912192038.GA1661550-robh@kernel.org/
-
-sl28 is one example that needs #nvmem-cell-cells
-u-boot,env is another one
----
- dtschema/schemas/nvmem/nvmem-cell.yaml | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100644 dtschema/schemas/nvmem/nvmem-cell.yaml
-
-diff --git a/dtschema/schemas/nvmem/nvmem-cell.yaml b/dtschema/schemas/nvmem/nvmem-cell.yaml
-new file mode 100644
-index 0000000..1a1741d
---- /dev/null
-+++ b/dtschema/schemas/nvmem/nvmem-cell.yaml
-@@ -0,0 +1,23 @@
-+# SPDX-License-Identifier: BSD-2-Clause
-+$id: http://devicetree.org/schemas/nvmem/nvmem-cell.yaml#
-+$schema: http://devicetree.org/meta-schemas/base.yaml#
-+
-+title: NVMEM Cell Common Properties
-+description: Schema for NVMEM cell devicetree bindings
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+# always select the core schema
-+select: true
-+
-+properties:
-+  "#nvmem-cell-cells":
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: >
-+      Some NVMEM cells may consist of raw data that requires some extra
-+      processing. They may provide more than 1 value.
-+
-+      Passing extra argument(s) allows selecting data to access.
-+
-+additionalProperties: true
--- 
-2.34.1
-
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..0b85b5874a4f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -36,7 +36,7 @@ cpu0: cpu@0 {
+>   			enable-method = "psci";
+>   			performance-domains = <&performance 0>;
+>   			clock-frequency = <1701000000>;
+> -			capacity-dmips-mhz = <578>;
+> +			capacity-dmips-mhz = <308>;
+>   			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+>   			next-level-cache = <&l2_0>;
+>   			#cooling-cells = <2>;
+> @@ -49,7 +49,7 @@ cpu1: cpu@100 {
+>   			enable-method = "psci";
+>   			performance-domains = <&performance 0>;
+>   			clock-frequency = <1701000000>;
+> -			capacity-dmips-mhz = <578>;
+> +			capacity-dmips-mhz = <308>;
+>   			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+>   			next-level-cache = <&l2_0>;
+>   			#cooling-cells = <2>;
+> @@ -62,7 +62,7 @@ cpu2: cpu@200 {
+>   			enable-method = "psci";
+>   			performance-domains = <&performance 0>;
+>   			clock-frequency = <1701000000>;
+> -			capacity-dmips-mhz = <578>;
+> +			capacity-dmips-mhz = <308>;
+>   			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+>   			next-level-cache = <&l2_0>;
+>   			#cooling-cells = <2>;
+> @@ -75,7 +75,7 @@ cpu3: cpu@300 {
+>   			enable-method = "psci";
+>   			performance-domains = <&performance 0>;
+>   			clock-frequency = <1701000000>;
+> -			capacity-dmips-mhz = <578>;
+> +			capacity-dmips-mhz = <308>;
+>   			cpu-idle-states = <&cpu_off_l &cluster_off_l>;
+>   			next-level-cache = <&l2_0>;
+>   			#cooling-cells = <2>;
