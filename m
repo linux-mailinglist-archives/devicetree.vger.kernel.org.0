@@ -2,90 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5B00631E98
-	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 907CF631EA2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Nov 2022 11:45:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbiKUKkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 05:40:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
+        id S229684AbiKUKph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 05:45:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiKUKkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:40:20 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B018919C31;
-        Mon, 21 Nov 2022 02:40:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229681AbiKUKpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 05:45:36 -0500
+Received: from mx1.emlix.com (mx1.emlix.com [136.243.223.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5862E7AF5B;
+        Mon, 21 Nov 2022 02:45:34 -0800 (PST)
+Received: from mailer.emlix.com (unknown [81.20.119.6])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5C60FB80E3E;
-        Mon, 21 Nov 2022 10:40:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EF7B6C433D7;
-        Mon, 21 Nov 2022 10:40:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669027216;
-        bh=lBiqzDRkZEo/yngzgO1ZDReCb0oZVmB/vSipjkPE9sU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=maeEusjEU3xdx6q1KVqJlC84er/pDJJmoXev4lrhLgu5kkNaq+20HeflAPftLM6v7
-         GlBlH5S0DbE8CZaAESCW2UPed+ZBuwZdS/gg4lYoTSa6zTG1TS+WC4aCsqogfBKCTa
-         W85XkL8Aa8j9WUBmp3wGL3pFG+KGvJijs/zJ0NveSdUiK8+4w4fsDvnIMH/FiCLK83
-         zmfKh09i9IG6TE/XZ9nFCnTMI8rI1PkNB4iAwm+fye5/2NCo5xZmHOVOQybKWEJLKK
-         3uwObUMl6e2s5wqs9pZtTFUaC42xRz+Wy5N4dko0i0DE7OKVCREB++vZJCGSWGxp7j
-         P/T/pkNzhd3oQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CA236E29F3F;
-        Mon, 21 Nov 2022 10:40:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        by mx1.emlix.com (Postfix) with ESMTPS id C94BA5FB8C;
+        Mon, 21 Nov 2022 11:45:32 +0100 (CET)
+Date:   Mon, 21 Nov 2022 11:45:32 +0100
+From:   Edmund Berenson <edmund.berenson@emlix.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: adc: ad7923: adjust documentation
+Message-ID: <20221121104532.dibxead6kiv3xqzw@emlix.com>
+References: <20221120153419.GA3094349-robh@kernel.org>
+ <20221120170630.29354-1-edmund.berenson@emlix.com>
+ <d83e9a3d-2482-4342-03c1-818a38bd4b7b@linaro.org>
+ <20221121102600.uwmgivssgy7oakxf@emlix.com>
+ <3a50ba73-aab7-f6db-5e42-beb7e193c5bf@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 net-next 0/3] net: axienet: Use a DT property to configure
- frequency of the MDIO bus
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166902721582.6572.2868204459150625114.git-patchwork-notify@kernel.org>
-Date:   Mon, 21 Nov 2022 10:40:15 +0000
-References: <20221117154014.1418834-1-andy.chiu@sifive.com>
-In-Reply-To: <20221117154014.1418834-1-andy.chiu@sifive.com>
-To:     Andy Chiu <andy.chiu@sifive.com>
-Cc:     davem@davemloft.net, andrew@lunn.ch, kuba@kernel.org,
-        michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, greentime.hu@sifive.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3a50ba73-aab7-f6db-5e42-beb7e193c5bf@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Thu, 17 Nov 2022 23:40:11 +0800 you wrote:
-> Some FPGA platforms have to set frequency of the MDIO bus lower than 2.5
-> MHz. Thus, we use a DT property, which is "clock-frequency", to work
-> with it at boot time. The default 2.5 MHz would be set if the property
-> is not pressent. Also, factor out mdio enable/disable functions due to
-> the api change since 253761a0e61b7.
+On Mon, Nov 21, 2022 at 11:31:33AM +0100, Krzysztof Kozlowski wrote:
+> On 21/11/2022 11:26, Edmund Berenson wrote:
+> > On Mon, Nov 21, 2022 at 10:13:57AM +0100, Krzysztof Kozlowski wrote:
+> >> On 20/11/2022 18:06, Edmund Berenson wrote:
+> >>> - Add the ad7927 compatibility string, with fallback compatibility
+> >>> to ad7928.
+> >>> - ad7923 and ad7924 are treated the same in the driver, show
+> >>> the relationship in the documentation.
+> >>>
+> >>> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> >>> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+> >>> ---
+> >>>  .../bindings/iio/adc/adi,ad7923.yaml          | 26 ++++++++++++-------
+> >>
+> >> Do not respond with new patch to some old thread. Each patchset starts a
+> >> new thread.
+> >>
+> > Sorry I didn't know this is the preferred way. I will send new patch
+> > version as new thread in the future.
+> >>>  1 file changed, 17 insertions(+), 9 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> >>> index 07f9d1c09c7d..e553853e25d5 100644
+> >>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> >>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> >>> @@ -11,7 +11,7 @@ maintainers:
+> >>>  
+> >>>  description: |
+> >>>    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
+> >>> -   AD7918, AD7928 8 Channels ADCs.
+> >>> +   AD7918, AD7927, AD7928 8 Channels ADCs.
+> >>>  
+> >>>    Specifications about the part can be found at:
+> >>>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
+> >>> @@ -20,14 +20,22 @@ description: |
+> >>>  
+> >>>  properties:
+> >>>    compatible:
+> >>> -    enum:
+> >>> -      - adi,ad7904
+> >>> -      - adi,ad7914
+> >>> -      - adi,ad7923
+> >>> -      - adi,ad7924
+> >>> -      - adi,ad7908
+> >>> -      - adi,ad7918
+> >>> -      - adi,ad7928
+> >>> +    oneOf:
+> >>> +      - enum:
+> >>> +          - adi,ad7904
+> >>> +          - adi,ad7914
+> >>> +          - adi,ad7908
+> >>
+> >> You already started shuffling the entries, so make them ordered. What's
+> >> the point of changing the order from one non-sorted to another non-sorted?
+> >>
+> >>> +          - adi,ad7918
+> >>> +          - adi,ad7923
+> >>> +          - adi,ad7924
+> >>
+> >> Then deprecate this as alone compatible.
+> >>
+> >>> +          - adi,ad7927> +          - adi,ad7928
+> >>
+> >> Ditto
+> >>
+> >>> +      - items:
+> >>> +          - const: adi,ad7923
+> >>> +          - const: adi,ad7924
+> >>
+> >> I would expect lower number as fallback.
+> > If I remove alone compatibility of 7924 and 7927 in the documentation,
 > 
-> Changelog:
+> I don't understand. 7924 and 7927 are not compatible with each other -
+> neither in old code nor in new - so what do you want to remove?
 > 
-> [...]
+> > I will have to remove explicit compatibility match on the driver side,
+> > correct?
+> > Just want to make sure I don't misunderstand you.
+> 
+> My comment to which you responded was about order of items. Usually
+> lower number means older device and usually older device is the fallback.
+My response was meant to respond to both your comment to "deprecate
+alone compatibility" and "lower number should be fallback"
+Which I understood in the following way: because 7923, 7924 for one and
+7927, 7928 are compatible with each other I will remove
+7924 compatible string from driver and not add 7927 to the driver and
+only add it to the documentation.
+> Best regards,
+> Krzysztof
+> 
 
-Here is the summary with links:
-  - [v5,net-next,1/3] net: axienet: Unexport and remove unused mdio functions
-    https://git.kernel.org/netdev/net-next/c/29f8eefba3ba
-  - [v5,net-next,2/3] dt-bindings: describe the support of "clock-frequency" in mdio
-    https://git.kernel.org/netdev/net-next/c/6830604ec0c7
-  - [v5,net-next,3/3] net: axienet: set mdio clock according to bus-frequency
-    https://git.kernel.org/netdev/net-next/c/2e1f2c1066c1
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Thank you and best regards,
+Edmund
