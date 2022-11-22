@@ -2,187 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12FEA63430D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:55:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A775663431D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:58:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234248AbiKVRzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 12:55:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39854 "EHLO
+        id S233106AbiKVR6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 12:58:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234629AbiKVRyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:54:35 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8878DFE;
-        Tue, 22 Nov 2022 09:52:36 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9BF001C0004;
-        Tue, 22 Nov 2022 17:52:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669139555;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LlhTz4hZ6khVI5ivLTLmhvJIL86V0Pr/7JrsMu5aav0=;
-        b=SMMCzrs0uEnKUmCsxVv/pVCvICUZCNmuXWZZXL23JO+6908+SKZxVrD1vJ5PGEahS1Ec7L
-        3jcXg8WpBne2CPMdi5l/I7JwAMrKwGpCzn2v9eeRDHPID4/v29t5XCNreDV8ZWFh55vtEa
-        IeGzEEha0XsOXpZzsUf1PfaU6A8cM8SgQ2ca9Wl/epKakpeeGCOwMPFfcJtqn9ob3cg/Vd
-        g3UwGMZYxk69xBvXoXb2vf4ObcCw9BK4hB0stTFZ8XkukCVFpyl3hoFeImcKW7Qj9wWeMc
-        fVFn9KMrmkRJ7en2XXVf3rp9StoYggUdwYTrHHFOeVNIf2m7+JI9N0Q7vnzbUA==
-Date:   Tue, 22 Nov 2022 18:52:31 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Marcin Wojtas <mw@semihalf.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH net-next 6/6] net: mvpp2: Consider NVMEM cells as
- possible MAC address source
-Message-ID: <20221122185231.6302874a@xps-13>
-In-Reply-To: <CAPv3WKds1gUN1V-AkdhPJ7W_G285Q4PmAbS0_nApPgU+3RK+fA@mail.gmail.com>
-References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
-        <20221117215557.1277033-7-miquel.raynal@bootlin.com>
-        <CAPv3WKdZ+tsW-jRJt_n=KqT+oEe+5QAEFOWKrXsTjHCBBzEh0A@mail.gmail.com>
-        <20221121102928.7b190296@xps-13>
-        <CAPv3WKds1gUN1V-AkdhPJ7W_G285Q4PmAbS0_nApPgU+3RK+fA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S233983AbiKVR6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:58:00 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B00E5F;
+        Tue, 22 Nov 2022 09:57:33 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AMHcrOl018112;
+        Tue, 22 Nov 2022 17:57:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=QC+M5hYOgPISCcR+K8EBr4ak/FF/squ8OZ69sQubXS0=;
+ b=ERhGTWhPnrCayuyQ/TXvDsyNmDGMcm4/GCOFB3jM+EiTKIInA0qEjBIqM4BoZCtSwgB1
+ z0518aQSTFRdk/9pnEyANFBMmUCfFqFToD3qe5+BXN9lwcCEFgsMX6sVToU85IS6kHgk
+ XiVxKgVRCzsJFHPNXoRzLnHwxQhXoYb924S4SUHEEpeof5QanxUk63ZY7fj7Xs+iTcHV
+ eNSzS9jkoua4+nv8240gwR8o+rioaJ85j3xOKU8+DXv/x+FehlXVbfnB+CzV/WOKPBBC
+ fTptL4aq903UnpGwvRIysf/r9D/JDUv9mutzVcoHCe0pTV1ZGNS6s9cAEtbm1QAFdHN/ kA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0twq9965-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Nov 2022 17:57:23 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AMHvMGJ032066
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Nov 2022 17:57:22 GMT
+Received: from [10.110.109.32] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 22 Nov
+ 2022 09:57:21 -0800
+Message-ID: <e6ae7c01-47ca-f1da-3b0b-1f17d9e862bf@quicinc.com>
+Date:   Tue, 22 Nov 2022 11:57:19 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 1/3] dt-bindings: interconnect: Add rpmh virt devices
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221118182245.31035-1-quic_molvera@quicinc.com>
+ <20221118182245.31035-2-quic_molvera@quicinc.com>
+ <536af0d9-aa00-ddf1-753d-670ec2adef91@linaro.org>
+ <3ada611b-96e0-5cf0-d79d-b90ca4202ddb@quicinc.com>
+ <b7cc4f5d-c1d6-919c-9604-7855ea802d17@linaro.org>
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <b7cc4f5d-c1d6-919c-9604-7855ea802d17@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RVBrSxMnNV_hb3ZYQ5poZWgop4M6XRe8
+X-Proofpoint-ORIG-GUID: RVBrSxMnNV_hb3ZYQ5poZWgop4M6XRe8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-22_11,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
+ adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ phishscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2210170000 definitions=main-2211220138
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcin,
 
-mw@semihalf.com wrote on Mon, 21 Nov 2022 15:46:44 +0100:
 
-> pon., 21 lis 2022 o 10:29 Miquel Raynal <miquel.raynal@bootlin.com> napis=
-a=C5=82(a):
-> >
-> > Hi Marcin,
-> >
-> > mw@semihalf.com wrote on Sat, 19 Nov 2022 09:18:34 +0100:
-> > =20
-> > > Hi Miquel,
-> > >
-> > >
-> > > czw., 17 lis 2022 o 22:56 Miquel Raynal <miquel.raynal@bootlin.com> n=
-apisa=C5=82(a): =20
-> > > >
-> > > > The ONIE standard describes the organization of tlv (type-length-va=
-lue)
-> > > > arrays commonly stored within NVMEM devices on common networking
-> > > > hardware.
-> > > >
-> > > > Several drivers already make use of NVMEM cells for purposes like
-> > > > retrieving a default MAC address provided by the manufacturer.
-> > > >
-> > > > What made ONIE tables unusable so far was the fact that the informa=
-tion
-> > > > where "dynamically" located within the table depending on the
-> > > > manufacturer wishes, while Linux NVMEM support only allowed statica=
-lly
-> > > > defined NVMEM cells. Fortunately, this limitation was eventually ta=
-ckled
-> > > > with the introduction of discoverable cells through the use of NVMEM
-> > > > layouts, making it possible to extract and consistently use the con=
-tent
-> > > > of tables like ONIE's tlv arrays.
-> > > >
-> > > > Parsing this table at runtime in order to get various information i=
-s now
-> > > > possible. So, because many Marvell networking switches already foll=
-ow
-> > > > this standard, let's consider using NVMEM cells as a new valid sour=
-ce of
-> > > > information when looking for a base MAC address, which is one of the
-> > > > primary uses of these new fields. Indeed, manufacturers following t=
-he
-> > > > ONIE standard are encouraged to provide a default MAC address there=
-, so
-> > > > let's eventually use it if no other MAC address has been found usin=
-g the
-> > > > existing methods.
-> > > >
-> > > > Link: https://opencomputeproject.github.io/onie/design-spec/hw_requ=
-irements.html =20
-> > >
-> > > Thanks for the patch. Did you manage to test in on a real HW? I am cu=
-rious about =20
-> >
-> > Yes, I have a Replica switch on which the commercial ports use the
-> > replica PCI IP while the config "OOB" port is running with mvpp2:
-> > [   16.737759] mvpp2 f2000000.ethernet eth52: Using nvmem cell mac addr=
-ess 18:be:92:13:9a:00
-> > =20
->=20
-> Nice. Do you have a DT snippet that can possibly be shared? I'd like
-> to recreate this locally and eventually leverage EDK2 firmware to
-> expose that.
+On 11/22/2022 1:50 AM, Krzysztof Kozlowski wrote:
+> On 21/11/2022 18:39, Melody Olvera wrote:
+>>
+>> On 11/20/2022 5:13 AM, Krzysztof Kozlowski wrote:
+>>> On 18/11/2022 19:22, Melody Olvera wrote:
+>>>> Add documentation for virtual rpmh devices. These interconnects
+>>>> are not controlled by the application processor and thus
+>>>> require separate bindings. Also, move compatibles for sm8450 to
+>>>> this document and add them for QDU1000/QRU1000 platforms.
+>>>>
+>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>>> ---
+>>>>  .../bindings/interconnect/qcom,rpmh-virt.yaml | 55 +++++++++++++++++++
+>>>>  .../bindings/interconnect/qcom,rpmh.yaml      |  2 -
+>>>>  2 files changed, 55 insertions(+), 2 deletions(-)
+>>>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..5cbaa51df863
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
+>>>> @@ -0,0 +1,55 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/interconnect/qcom,rpmh-virt.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Qualcomm RPMh Virtual Network-On-Chip Interconnect
+>>>> +
+>>>> +maintainers:
+>>>> +  - Georgi Djakov <georgi.djakov@linaro.org>
+>>>> +  - Odelu Kukatla <quic_okukatla@quicinc.com>
+>>>> +
+>>>> +description: |
+>>>> +   RPMh interconnect providers support system bandwidth requirements through
+>>>> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+>>>> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
+>>>> +   associated with each execution environment. Provider nodes must point to at
+>>>> +   least one RPMh device child node pertaining to their RSC and each provider
+>>>> +   can map to multiple RPMh resources. Virtual interconnect providers are not
+>>>> +   controlled by AP and do not support QoS; they should not have associated
+>>>> +   register regions.
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: qcom,rpmh-common.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - qcom,qdu1000-clk-virt
+>>>> +      - qcom,qdu1000-mc-virt
+>>>> +      - qcom,sm8450-clk-virt
+>>>> +      - qcom,sm8450-mc-virt
+>>> You should also move qcom,sdx65-mc-virt, qcom,sc8280xp-mc-virt,
+>>> qcom,sc8280xp-clk-virt and more.
+>> Ok. I wasn't sure since some of these entries don't seem to conform to
+>> these bindings, even though it seems they should.
+> I have impression that devices I listed conform to these bindings, this
+> is why I listed them. But if you are sure that they do not, then they
+> should not be moved.
 
-Yes of course, the DT is public on Sartura's Github, but here is the
-exact file I used showing the diff cleaning the Armada 7040 TN48M DT
-eeprom description and its use as an nvmem-cell provider):
-https://github.com/miquelraynal/linux/commit/230ee68728799454e2f07f61792e11=
-724e731d6d
-
->=20
-> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > > ---
-> > > >  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 6 ++++++
-> > > >  1 file changed, 6 insertions(+)
-> > > >
-> > > > diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/driv=
-ers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > > > index eb0fb8128096..7c8c323f4411 100644
-> > > > --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > > > +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> > > > @@ -6104,6 +6104,12 @@ static void mvpp2_port_copy_mac_addr(struct =
-net_device *dev, struct mvpp2 *priv,
-> > > >                 }
-> > > >         }
-> > > >
-> > > > +       if (!of_get_mac_address(to_of_node(fwnode), hw_mac_addr)) {=
- =20
-> > >
-> > > Unfortunately, nvmem cells seem to be not supported with ACPI yet, so
-> > > we cannot extend fwnode_get_mac_address - I think it should be,
-> > > however, an end solution. =20
-> >
-> > Agreed.
-> > =20
-> > > As of now, I'd prefer to use of_get_mac_addr_nvmem directly, to avoid
-> > > parsing the DT again (after fwnode_get_mac_address) and relying
-> > > implicitly on falling back to nvmem stuff (currently, without any
-> > > comment it is not obvious). =20
-> >
-> > I did not do that in the first place because of_get_mac_addr_nvmem()
-> > was not exported, but I agree it would be the cleanest (and quickest)
-> > approach, so I'll attempt to export the function first, and then use it
-> > directly from the driver.
-> > =20
->=20
-> That would be great, thank you. Please add one-comment in the
-> mvpp2_main.c, that this is valid for now only in DT world.
-
-Ack.
+You're correct; those you listed do conform to the new bindings and should be moved.
+I also caught qcom,sc7280-clk-virt which needs to be moved. I'll add to the new bindings.
 
 Thanks,
-Miqu=C3=A8l
+Melody
+>
+> Best regards,
+> Krzysztof
+>
+
