@@ -2,140 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E676D6348B8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 21:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6673634904
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 22:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233369AbiKVUvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 15:51:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58832 "EHLO
+        id S234164AbiKVVSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 16:18:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234134AbiKVUvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 15:51:09 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7B165E9
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 12:51:08 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id e11so13711335wru.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 12:51:08 -0800 (PST)
+        with ESMTP id S232723AbiKVVSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 16:18:03 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD4C898E3;
+        Tue, 22 Nov 2022 13:18:00 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id l24so9805947edj.8;
+        Tue, 22 Nov 2022 13:18:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gx+YWWCvKUmbpLOLiEAgZGjZu2bsrwzEPK49+jDiEKo=;
-        b=U56Z6HyNr+8U7X+k5HY107gitq8tL55XN2/davLUBfTrDuUK/wgOuxPbIhRlUiIVpO
-         DYiWZLrzE8vv1RgqzthucM0LGY5AejmXMIFCceBB+xXVc1q8laevMaTjTSQ1K4+yReCk
-         ivjrOu2Q+d1Az+uZFN3rQ3yjeChpiRD0cyV09df3LYnV1bxdwG8wFxGb7KHI+tSJWadR
-         lgWzcabIOJAqvnPLLZRT2k9d2q6BylVfP9uIudIU2iVIgFvIf31udR4aXIRRfUQQ7rIx
-         WX0fNWjMgCRBHI9FVZzxY8czhxUmgYfgFJzZV+XJ4X1WhNO7rTjq1YrZRlcqmNL9dSPM
-         b9Pw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4sZiP84p7jF0pvs4MBIhQmWYULIbZ0e6iwSZJzE5pwQ=;
+        b=XpOZcqaQ0eMy/qeOh4hvhz9LsEcgUzveEG9u9Fem4DsxLAHM9lStEAPal0RGO4cpki
+         zStG3ZXk7GTzR18Pv4KIzhH3tg9WjCLXjS9yxaLfFXMZR+5H7MrGL0B105PEdTkS1Lnf
+         Ijx3MsUFnkA8u7hJfAfZbtT3XzuUcCe6/q5rUFo2GacXNAWIsEa17ZghJE67RMQQmV2T
+         lSQdvM2f8VgGG+cyLRawFSkPzcus9keTYvs8A4i0vGuWHppRUMZXpVcRPwYo5a4VcWM/
+         oDl5vAiGKYINf+6OEfeDdWxchkocvnF+Yl+9ifT3QGszHng7uJwRtzrpMStHgGUJVAQy
+         aL5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gx+YWWCvKUmbpLOLiEAgZGjZu2bsrwzEPK49+jDiEKo=;
-        b=QgV8LXQdR9er7pplQzKXbdH0xi1XkJdBr3d5LRcqmw8kdgSgRV0h/whpeMbpLgZga+
-         Kpm45lpT/3Zdo8JPGIDtu3ZBOwBnHtIeH6gGpI1ivSmB47V2Eh7aQY0bIrZqHyYA/0Nk
-         pLPmmCkAIl0ePe724/Mv4HrO0EQLAEWqJ2RczU5Mv+2cllANZZFsz8F8Zn4QJzSH7xlt
-         o9qkrRdfkwFa+0Avikj56NjsL5pka0tXWiWcQ9p49fD37VKIzvnRl9yd1MrU/ye1lO+J
-         m/1Z5WauHyV/N72nHiEMiI9E+HFIIJqRcZyt4O92i0wxN6rLV898VfsW42mtCWH++RAe
-         pDIQ==
-X-Gm-Message-State: ANoB5pk9b9acDnhMKRPLqSjXVMa9IkqdDLdZ37ZfgQJSt46bEtpcX2bZ
-        sjjB6EJggiJwrgXU6GEOHrY0dxEp9CF3sg==
-X-Google-Smtp-Source: AA0mqf5rPIjXhCXwCsxypSw1YhJ5JSXNE50WJhrKBKNpz+S35+WjBJXucChHKXjjj5trZ8uCMH3gUw==
-X-Received: by 2002:a5d:6052:0:b0:241:eba1:84fd with SMTP id j18-20020a5d6052000000b00241eba184fdmr168609wrt.696.1669150267102;
-        Tue, 22 Nov 2022 12:51:07 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id t1-20020a1c7701000000b003cf4d99fd2asm17606458wmi.6.2022.11.22.12.51.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 12:51:06 -0800 (PST)
-Date:   Tue, 22 Nov 2022 22:51:04 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4sZiP84p7jF0pvs4MBIhQmWYULIbZ0e6iwSZJzE5pwQ=;
+        b=RdG9PL3YT1QaN+EYfSYxeO4yw7CxyOzOXx4/E0OPT/0NbbHIxdIjqJJJIoxRbzzOx+
+         VIEzdgmp18Ez/dAdufhwa2je0mkZBP4nmVKWwo9u7sPmldJK0Nc++UGL3KVTxYJ9QDVR
+         ckdT56Jd09Iw1qBjVaJ4Jtc/cs5HEgX9vLQIMOI6hutrtWSEmwcbp7nxjcwFi8EAIOCl
+         4mEPrMIJ78zFH70Bn/nstdYXIM6LURSc1UU0SAPFOxgkuJ0JIwTd5r7Xm5E4ANJKXDme
+         mze/V0kU6vwUF1WApNOIfhYnqGHjKdIFshDm4VsMJlPf8MzenU5zhloYoSsgpfwDiSnS
+         zLjw==
+X-Gm-Message-State: ANoB5pnGoFYaqYmNgGJp6aRv48LHW0/zOKr/8hnXLKhR946tDcHFMYpk
+        PEzjfoR7IOxETCHUGgvoHF/to6QLs3KoJEN0ORE=
+X-Google-Smtp-Source: AA0mqf7a2qbPeIAlQFrXSPAv9kBr2mK5cslq6jWPZVgJUbf8ANOsbilaUn7fkRFUZ8rW12ZdrinbI6kEnM+ZgCGI0OY=
+X-Received: by 2002:a05:6402:2987:b0:45c:a9d3:d535 with SMTP id
+ eq7-20020a056402298700b0045ca9d3d535mr22548328edb.0.1669151879209; Tue, 22
+ Nov 2022 13:17:59 -0800 (PST)
+MIME-Version: 1.0
+References: <20221102004329.5410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221102004329.5410-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y3yYkQhJJFLau08X@paasikivi.fi.intel.com> <CA+V-a8u9QS6Wk8SSmmJheHmtRiUWyOpv9DDJO6qDR8viz1Wp7A@mail.gmail.com>
+ <Y30jdErgPI223eoM@paasikivi.fi.intel.com>
+In-Reply-To: <Y30jdErgPI223eoM@paasikivi.fi.intel.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 22 Nov 2022 21:17:32 +0000
+Message-ID: <CA+V-a8uLWqqqhs=vkzSVeNegg8uEXfTgJe26Jpap=eOb85aSGg@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-mtp: Add UFS host
- controller and PHY node
-Message-ID: <Y302OBP1f8W6pr5A@linaro.org>
-References: <20221116125112.2788318-1-abel.vesa@linaro.org>
- <20221116125112.2788318-3-abel.vesa@linaro.org>
- <22a41a8c-9b4a-ecca-ddd2-5e217d00d20c@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22a41a8c-9b4a-ecca-ddd2-5e217d00d20c@linaro.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-11-16 13:56:36, Konrad Dybcio wrote:
-> 
-> 
-> On 16/11/2022 13:51, Abel Vesa wrote:
-> > Enable UFS host controller and PHY node on SM8550 MTP board.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
-> >   1 file changed, 22 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> > index d4c8d5b2497e..fef7793a7dec 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> > @@ -417,3 +417,25 @@ data-pins {
-> >   &uart7 {
-> >   	status = "okay";
-> >   };
-> > +
-> > +&ufs_mem_hc {
-> > +	status = "okay";
-> Status last, please.
+Hi Sakari,
 
-Yep. Will do.
+On Tue, Nov 22, 2022 at 7:31 PM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Nov 22, 2022 at 10:26:28AM +0000, Lad, Prabhakar wrote:
+> > Hi Sakari,
+> >
+> > On Tue, Nov 22, 2022 at 9:38 AM Sakari Ailus
+> > <sakari.ailus@linux.intel.com> wrote:
+> > >
+> > > Hi Prabhakar,
+> > >
+> > > On Wed, Nov 02, 2022 at 12:43:29AM +0000, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Add v4l driver for Renesas RZ/G2L Camera data Receiving Unit.
+> > > >
+> > > > Based on a patch in the BSP by Hien Huynh
+> > > > <hien.huynh.px@renesas.com>
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Laurent's comment arrive a little late but the patch does not compile
+> > > against the media tree anymore. The argument of the media_pipeline_start()
+> > > and media_pipeline_stop() is now a pad, not an entity. See what the changes
+> > > look like in other drivers (the commit id is
+> > > 12cecbf9150f67b0ce7d88bc2e243e67637726c2).
+> > >
+> > I'll go through them soon, when do you plan to close the v6.2 window?
+> >
+> > > I'll still take the DT binding patches.
+> > >
+> > Or maybe we could wait and get them alongside the drivers?
+>
+> Can you send a new version by tomorrow morning (Finnish time)? The needed
+> changes didn't seem too complicated, I wouldn't want to delay my PR much
+> later as chances slipping to 6.3 will increase.
+>
+Okay, I'll try and get this asap.
 
-> 
-> > +
-> > +	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-> > +
-> > +	vcc-supply = <&vreg_l17b_2p5>;
-> > +	vcc-max-microamp = <1300000>;
-> All these -microamp properties are downstream and do not exist in the
-> mainline kernel. Remove them.
-> 
-
-Actually, ufshcd-qcom complains if they are missing:
-
-[    3.287836] ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: unable
-to find vcc-max-microamp
-[    3.331904] ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: unable
-to find vccq-max-microamp
-[    3.346766] ufshcd-qcom 1d84000.ufshc: ufshcd_populate_vreg: unable
-to find vccq2-max-microamp
-
-> Konrad
-> > +	vccq-supply = <&vreg_l1g_1p2>;
-> > +	vccq-max-microamp = <1200000>;
-> > +	vccq2-supply = <&vreg_l3g_1p2>;
-> > +	vccq2-max-microamp = <100>;
-> > +};
-> > +
-> > +&ufs_mem_phy {
-> > +	status = "okay";
-> > +
-> > +	vdda-phy-supply = <&vreg_l1d_0p88>;
-> > +	vdda-phy-max-microamp = <188000>;
-
-These ones from PHY I can drop, since the driver won't complain.
-
-> > +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> > +	vdda-pll-max-microamp = <18300>;
-> > +};
+Cheers,
+Prabhakar
