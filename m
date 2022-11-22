@@ -2,89 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 919E063384E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB87F6338A0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbiKVJZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 04:25:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58110 "EHLO
+        id S231655AbiKVJhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 04:37:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232500AbiKVJZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:25:13 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D7949B7A
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:25:11 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id d6so22669513lfs.10
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:25:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O8HnwlLIuUW6GQ7MF6wb6CuJekIWr1nSvjXjmRhkscs=;
-        b=IiWqDjT6H1cRpC90wd65AWT/9WXUU+5hNY7FkQZBesPVQr9IdCFRIGTV34ehmgTZZK
-         3Jus1oyGfk+IMtnQAxdJLPDiOq9V8rNWApdkLIk+5alXBEh5o14B1MyG8uWIV2dzOuG8
-         toUTbMdScxGAqDtDb0qvamE57LbdJBuSEqdLOyuNLT5l/LGKQEuiZyH71dfr2IUMi0q6
-         /HKVLbgm1JY3WWz3viCNGwcOBt3cG7lrcIpnxAeIs2ULThxcyFaW0M58yA0S7mFSw+xQ
-         UNrZYm4Z5E5U0rleIsGfQlNV5rp5siEptUh093+4dlwIS7VXqJ063vgla6ASbpcWJ7++
-         9+dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O8HnwlLIuUW6GQ7MF6wb6CuJekIWr1nSvjXjmRhkscs=;
-        b=spU+6JuTgbAsp9Gf3YHFpufskHPdG8QGXyGJJs2OmUXRhNwrx/Bw0AvF2pSpz1pbA9
-         wpOtDmO6T8D7360sUp0++lLFFoiiIgj04MlSD/KCaCqT/yo8CUCP78Ll8bmhqJKTS2cm
-         5c627zSkSXFHdiuygnrsmqQN1Fe0NziQVpvQ15gVc2p8lj0xujVYnrjxkfxQIaO6guab
-         BMH1d8Az94UkR7YWtPvKl/PSiV/NspooTMkbSQ0mswf8Vik6+xxl84UJduzE8GsPYxuw
-         oijD1crcRYK5TdDipwYsqaoXhVYWI3Bj5iqY5klgQZvCpfdYG6gMgwiPy9f+DYjvu4ju
-         LggA==
-X-Gm-Message-State: ANoB5pkLZWiH1Wi2sF2NeUKxja99iX2RH14yaY1Tew0YzyCG7Zbu+H3g
-        DdnU6jS1UkUwcdFLNAss1Dfr7w==
-X-Google-Smtp-Source: AA0mqf5byVk5N0XWLkFNIEkusMvYIeYHdcBQgOYQ8RWpuWexV58KEhN68yvC6R+ZBH9j/xzMZoTDiw==
-X-Received: by 2002:ac2:4424:0:b0:4a2:2dc9:3e0e with SMTP id w4-20020ac24424000000b004a22dc93e0emr8339106lfl.272.1669109110296;
-        Tue, 22 Nov 2022 01:25:10 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q6-20020ac25fc6000000b004a45f2e49b1sm2378780lfg.273.2022.11.22.01.25.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 01:25:09 -0800 (PST)
-Message-ID: <09aaf26a-7377-a4f6-6145-5301304927b7@linaro.org>
-Date:   Tue, 22 Nov 2022 10:25:08 +0100
+        with ESMTP id S233218AbiKVJhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:37:01 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE74F4A055
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:36:59 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxPi1-00068k-KZ; Tue, 22 Nov 2022 10:36:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxPhz-005p96-Ci; Tue, 22 Nov 2022 10:36:52 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxPhz-000lf9-GB; Tue, 22 Nov 2022 10:36:51 +0100
+Date:   Tue, 22 Nov 2022 10:36:50 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in
+ addition to hex format
+Message-ID: <20221122093650.oouke2utlkvdd7r6@pengutronix.de>
+References: <20221121115525.36362-1-tony@atomide.com>
+ <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
+ <Y3uPvYqaILNiYW8K@atomide.com>
+ <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
+ <Y3xTi5JeLPSWchT7@atomide.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: gce: add gce header file for mt8188
-Content-Language: en-US
-To:     =?UTF-8?B?RWx2aXMgV2FuZyAo546L5YabKQ==?= <Elvis.Wang@mediatek.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        =?UTF-8?B?WW9uZ3FpYW5nIE5pdSAo54mb5rC45by6KQ==?= 
-        <yongqiang.niu@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20221104074443.26172-1-Elvis.Wang@mediatek.com>
- <20221104074443.26172-2-Elvis.Wang@mediatek.com>
- <bdb46b7c-6e08-26cf-491d-ca68d36f29af@linaro.org>
- <fcec5536-6ba8-9cac-2001-710a7170df70@gmail.com>
- <5ad6c51677e1476d08ae6de6bd5021384a689b31.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5ad6c51677e1476d08ae6de6bd5021384a689b31.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6a6iqm4s2kez5pu2"
+Content-Disposition: inline
+In-Reply-To: <Y3xTi5JeLPSWchT7@atomide.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,56 +62,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 10:10, Elvis Wang (王军) wrote:
-> On Mon, 2022-11-07 at 12:18 +0100, Matthias Brugger wrote:
->>
->> On 06/11/2022 11:27, Krzysztof Kozlowski wrote:
->>> On 04/11/2022 08:44, Elvis.Wang wrote:
->>>> From: Elvis Wang <Elvis.Wang@mediatek.com>
->>>>
->>>> add gce header file to define the gce thread priority, gce subsys
->>>> id,
->>>> event and constant for mt8188.
->>>>
->>>> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
->>>> ---
->>>> Thanks for the reviews, I have removed the incorrect reviewed
->>>> message.
->>>> ---
->>>>   include/dt-bindings/gce/mediatek,mt8188-gce.h | 966
->>>> ++++++++++++++++++
->>>>   1 file changed, 966 insertions(+)
->>>>   create mode 100644 include/dt-bindings/gce/mediatek,mt8188-
->>>> gce.h
->>>>
->>>> diff --git a/include/dt-bindings/gce/mediatek,mt8188-gce.h
->>>> b/include/dt-bindings/gce/mediatek,mt8188-gce.h
->>>> new file mode 100644
->>>> index 000000000000..e2e2c56016a1
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/gce/mediatek,mt8188-gce.h
->>>
->>>
->>> What is a "gce" subsystem or type of hardware? Why do you put
->>> headers in
->>> "gce"?
->>>
->>
->> Yes, I think we should move all header files from the gce folder into
->> the 
->> mailbox folder.
->>
->> Regards,
->> Matthias
-> 
-> There are still a lot of header files undre gce. If all of them are
-> moved, it will also involve the modification of yaml and corresponding
-> project dts files, which requires more effort. Can we deal with the
-> 8188 part first?
 
-Sure, just put the new bindings in proper location (mailbox if this is a
-Mailbox).
+--6a6iqm4s2kez5pu2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Tue, Nov 22, 2022 at 06:43:55AM +0200, Tony Lindgren wrote:
+> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
+> > On 21/11/2022 15:48, Tony Lindgren wrote:
+> > > * Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de> [221121 14:30]:
+> > >> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
+> > >>> Let's allow node numbering in decimal format too.
+> > >>>
+> > >>> Simple human-readable increments/IDs are usually decimal, hex is on=
+ly for
+> > >>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@lina=
+ro.org>.
+> > >>>
+> > >>> Cc: Thierry Reding <thierry.reding@gmail.com>
+> > >>> Cc: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+> > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Docum=
+entation/devicetree/bindings/pwm/pwm.yaml
+> > >>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > >>> @@ -13,7 +13,7 @@ select: false
+> > >>> =20
+> > >>>  properties:
+> > >>>    $nodename:
+> > >>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+> > >>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+> > >>
+> > >> I wonder why you don't make this:
+> > >>
+> > >> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
+> >=20
+> > Yes, the '*' should be within ().
+>=20
+> Sorry I guess I don't follow. So for what type of naming is the second '*'
+> actually needed here, or is it needed at all?
+>=20
+> We only want to match the following:
+>=20
+> pwm@1234
+>=20
+> pwm-0
+> ...
+> pwm-f
+>=20
+> And now also:
+>=20
+> pwm-0
+> ...
+> pwm-15
+>=20
+> Is there yet another format I'm missing?
 
+I think there is a misunderstanding about the type of pattern here. Do
+we talk about a shell pattern where "[0-9a-f]*" matches a name starting
+with a hex digit followed by any number of any caracter, or is it a
+regexp where the * means "any number of the preceding pattern", so
+effectively a word consisting of only hex digits.
+
+The .* part makes me think we're talking about a regexp, so the old
+pattern ("^pwm(@.*|-[0-9a-f])*$") means that
+
+	pwm-1-2-3-4
+
+is allowed but
+
+	pwm-10
+
+isn't. And I think what we want is:
+
+	"^pwm(@.*|-[0-9a-f]*)$"
+
+(or maybe better "^pwm(@.+|-[0-9a-f]+)$" ?)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--6a6iqm4s2kez5pu2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmN8mC8ACgkQwfwUeK3K
+7AnNhQf+PipBtjeFXiEjxBEMz1uj4WmFMbkGxvvhcqQNTWzitEXziNjFBi0SHa7B
+7STIIS1e4nLN3EVZeuJTJW7Ie/qzsPtLa56Pm0iuxON8fBNfHZVVsB0DIlhagbO7
+qGmMtfQa6z9FAppF9YNAecaNl4dAV3SNPsCxH23zcZdABJGSlDCHQPRQOUWE7Cf/
+PxVVN81Ht3znSVAxGkfpQz9pBJrF2CYW/6DhSbvHNzRqsnv2L/kwHSBQjqUKwLPs
+0ouZ5F5gv6Y+MGtEwpA9gBygA52sCAtNU3EDjXRfGxAFist7MQ8Niu+lJgESDZCg
+166Ym5weIFvH4hYqRVdTpgFhB5qZ9w==
+=Jhve
+-----END PGP SIGNATURE-----
+
+--6a6iqm4s2kez5pu2--
