@@ -2,96 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDB8633D5B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EB4633D72
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233716AbiKVNQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 08:16:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        id S233239AbiKVNWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 08:22:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233700AbiKVNQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:16:56 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E67E43;
-        Tue, 22 Nov 2022 05:16:55 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DB6B760015;
-        Tue, 22 Nov 2022 13:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669123013;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZMwT/FSkY5io09+90rBD+CBU928az5ldqanrkhXzXFw=;
-        b=A7p2c+EDjDMBLWcxzM+gWwMzThQT/UtLb49GtedPu/BfA5+UGXSU90gY8OQrgxLX8OHpmP
-        SYBRSwat4ySRRjkhDwU8Ss9gKgPTurZWzJkgpGM9i/rAQ/G2Dl9ZvIyTn1FWuLelUnvemw
-        OlNNAp3y3Fczvn9XToVhHNqQeWq8HE2RzMCEimgJyowUi6+QU8KWLnDzLacaklo9kx+wzg
-        3fDkMc3cyYXYoldOSwk9B8FbvfzvwozXrAzXEQ2FSB+5IYMiBZKN7dYDz9HJbtEu8HDV/+
-        HXxrmGrz0gSlGqrqTs5zbaAKReoPcMIR/DJC9iRL365P0IWuP9BDlz1Ca4WHsQ==
-Date:   Tue, 22 Nov 2022 14:16:51 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
- bbnsm
-Message-ID: <Y3zLw3z0HdiySOgP@mail.local>
-References: <20221121065144.3667658-1-ping.bai@nxp.com>
- <20221121065144.3667658-2-ping.bai@nxp.com>
- <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
- <Y3tEnxqWy6HCkpOd@mail.local>
- <AS8PR04MB8642503BF1172B707CB9F394870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
- <Y3tcix7xpgQ+kt9a@mail.local>
- <AS8PR04MB864255A4537CA5F23C49A6F4870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
+        with ESMTP id S233410AbiKVNWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:22:09 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7688764545;
+        Tue, 22 Nov 2022 05:22:06 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id D43AC24E1BB;
+        Tue, 22 Nov 2022 21:22:04 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
+ 2022 21:22:05 +0800
+Received: from [192.168.125.96] (113.72.144.23) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
+ 2022 21:22:03 +0800
+Message-ID: <f21b0aa9-2ac8-ae28-755a-d530171f930a@starfivetech.com>
+Date:   Tue, 22 Nov 2022 21:22:03 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AS8PR04MB864255A4537CA5F23C49A6F4870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 2/4] dt-bindings: power: Add starfive,jh71xx-power
+ bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118133216.17037-1-walker.chen@starfivetech.com>
+ <20221118133216.17037-3-walker.chen@starfivetech.com>
+ <99302e53-c0c9-cfe8-4e6a-c70e8428d9c3@linaro.org>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <99302e53-c0c9-cfe8-4e6a-c70e8428d9c3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.23]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 13:45:27+0000, Jacky Bai wrote:
-> > > > > Missing ref to rtc.yaml.
-> > > > >
-> > > >
-> > > > This is also missing start-year
-> > >
-> > > The RTC counter will be reset to 0 after PoR reset, do we still need
-> > > to add this property?
-> > >
-> > 
-> > Is this really an RTC then?
+On 2022/11/21 18:13, Krzysztof Kozlowski wrote:
+> On 18/11/2022 14:32, Walker Chen wrote:
+>> Add bindings for the power domain controller on the StarFive JH71XX SoC.
+>> 
 > 
-> Sorry, I think I misunderstand your previous comment. The 'start-year' is used to expand the rtc range,
-> I will add this property in V2. Thx.
+> Subject: drop second, redundant "bindings".
+
+Will fix.
+
 > 
+>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+>> ---
+>>  .../bindings/power/starfive,jh71xx-power.yaml | 46 +++++++++++++++++++
+> 
+> 1st patch should be squashed here. Headers are part of bindings file.
 
-I think my question is still valid, if the counter is reset to 0 on POR,
-what is the use case?
+Will be done in the next version of patch.
 
+> 
+>>  1 file changed, 46 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml b/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
+>> new file mode 100644
+>> index 000000000000..2537303b4829
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/starfive,jh71xx-power.yaml
+> 
+> Filename like compatible.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+As mentioned in the previous email, the compatible in the driver should be changed to "starfive,jh7110-power".
+
+> 
+>> @@ -0,0 +1,46 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/starfive,jh71xx-power.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH71xx Power Domains Controller
+>> +
+>> +maintainers:
+>> +  - Walker Chen <walker.chen@starfivetech.com>
+>> +
+>> +description: |
+>> +  StarFive JH71xx SoCs include support for multiple power domains which can be
+>> +  powered on/off by software based on different application scenes to save power.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+> 
+> No items. You have just one item,
+
+Yes, this issue will be fixed. Thank you for your advice.
+
+Best Regards,
+Walker Chen
+
