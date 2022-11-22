@@ -2,129 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 674D96333AB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 04:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F02076333C7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 04:14:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbiKVDFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 22:05:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
+        id S232159AbiKVDOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 22:14:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbiKVDFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 22:05:39 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477D21057D;
-        Mon, 21 Nov 2022 19:05:38 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 03279890;
-        Tue, 22 Nov 2022 04:05:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1669086336;
-        bh=OP7Y7hsHz9XtzH4OrAc1DG1nsm5BYY0TnHJs66LwpeA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ksEO7afwDfYQYLJcky9l5GiNb3FvnZiznXhKNyHfvPS+3j7Wy/APE98cIlCvCFA8G
-         URnoxdxXbXbeqdZ9BqABrFKnQUNm0HiyvAd0CCFNt43PkZgDUcA5r9BqJzIlNbHewe
-         /O5dUMsFzRHTQC3towY+Wt6Wty4luAbWXpoTk8aA=
-Date:   Tue, 22 Nov 2022 05:05:20 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Subject: Re: [PATCH v1 6/8] drm: rcar-du: Add r8a779g0 support
-Message-ID: <Y3w8cBh0uVaSPonO@pendragon.ideasonboard.com>
-References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com>
- <20221117122547.809644-7-tomi.valkeinen@ideasonboard.com>
- <166869771876.50677.1905794243575000038@Monstersaurus>
+        with ESMTP id S231675AbiKVDOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 22:14:00 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC2BC1E714;
+        Mon, 21 Nov 2022 19:13:57 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AM3DlYu008487;
+        Mon, 21 Nov 2022 21:13:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1669086827;
+        bh=TKEbhj1suQCIIV1Fk7hur1T6VW/Gs8A83nLvMiQ/5u4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=iRyshwd+3ylMP7KD5ULJ8zdk7c+mEL73bpS6cd5gnZBKNPrHDMXxwBNMfS3pW6lRW
+         5zms1JzESFTzxx+9roMNmtsNtWoDJE40JcaGVfQU2t7PdyW4jiVjoj79z0Q1nKOynv
+         4GOOk0jvRwYBXxavI1/NARfEQXUoqNavatQno3FY=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AM3DlxP012352
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 21 Nov 2022 21:13:47 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 21
+ Nov 2022 21:13:47 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 21 Nov 2022 21:13:47 -0600
+Received: from ubuntu (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id 2AM3DZl2094840;
+        Mon, 21 Nov 2022 21:13:37 -0600
+Date:   Mon, 21 Nov 2022 19:13:34 -0800
+From:   Matt Ranostay <mranostay@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 7/8] arm64: dts: ti: k3-j721s2-main: Add PCIe device
+ tree node
+Message-ID: <Y3w+Xmn2ttRHM8ZM@ubuntu>
+References: <20221119040906.9495-1-mranostay@ti.com>
+ <20221119040906.9495-8-mranostay@ti.com>
+ <dafbff84-209c-a4d5-1e84-f08e84156ed8@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <166869771876.50677.1905794243575000038@Monstersaurus>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <dafbff84-209c-a4d5-1e84-f08e84156ed8@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 03:08:38PM +0000, Kieran Bingham wrote:
-> Quoting Tomi Valkeinen (2022-11-17 12:25:45)
-> > From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+On Mon, Nov 21, 2022 at 11:12:18AM -0600, Andrew Davis wrote:
+> On 11/18/22 10:09 PM, Matt Ranostay wrote:
+> > From: Aswath Govindraju <a-govindraju@ti.com>
 > > 
-> > Add support for DU on r8a779g0, which is identical to DU on r8a779a0.
+> > Add PCIe device tree node (both RC and EP) for the single PCIe
+> > instance present in j721s2.
 > > 
-> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> 
+> So which is it, you have two nodes but this is one device. It can
+> switch between the two modes, a property should have been used to
+> select the mode for the device.
+> 
+> Making two nodes for the same device as examples of what they could
+> look like, then only enabling one of the two in the board level DT
+> is not how this is done anywhere else. Take the common parts and
+> make one node here with those. Then at the board level .dts where we
+> select what mode this driver will act in, add the specific bits for
+> the chosen mode.
+>
+
+This isn't how it is done in k3-j7200-common-proc-board.dts and k3-j7200-main.dtsi
+Now I'm fine with making it common node if that is way to go..
+
+- Matt
+
+> Andrew
+> 
+> > Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > Signed-off-by: Matt Ranostay <mranostay@ti.com>
 > > ---
-> >  drivers/gpu/drm/rcar-du/rcar_du_drv.c | 22 ++++++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
+> >   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 61 ++++++++++++++++++++++
+> >   1 file changed, 61 insertions(+)
 > > 
-> > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> > index d003e8d9e7a2..b1761d4ec4e5 100644
-> > --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> > +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-> > @@ -524,6 +524,27 @@ static const struct rcar_du_device_info rcar_du_r8a779a0_info = {
-> >         .dsi_clk_mask =  BIT(1) | BIT(0),
-> >  };
-> >  
-> > +static const struct rcar_du_device_info rcar_du_r8a779g0_info = {
-> > +       .gen = 3,
-> 
-> Given that this is the V4H ... I wonder if this should be bumped
-> already. I guess that has knock on effects through the driver though...
-
-rcar_du_group_setup_didsr() would need to be fixed to test gen >= 3
-instead of gen == 3. That seems to be the only problematic location. It
-could thus fairly easily be done in v2, but we can also delay it.
-
-> Aside from that, Which may need more work to handle correctly:
-> 
-> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> > +       .features = RCAR_DU_FEATURE_CRTC_IRQ
-> > +                 | RCAR_DU_FEATURE_VSP1_SOURCE
-> > +                 | RCAR_DU_FEATURE_NO_BLENDING,
-> > +       .channels_mask = BIT(1) | BIT(0),
-> > +       .routes = {
-> > +               /* R8A779G0 has two MIPI DSI outputs. */
-> > +               [RCAR_DU_OUTPUT_DSI0] = {
-> > +                       .possible_crtcs = BIT(0),
-> > +                       .port = 0,
-> > +               },
-> > +               [RCAR_DU_OUTPUT_DSI1] = {
-> > +                       .possible_crtcs = BIT(1),
-> > +                       .port = 1,
-> > +               },
-> > +       },
-> > +       .num_rpf = 5,
-> > +       .dsi_clk_mask =  BIT(1) | BIT(0),
-> > +};
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > index adbb172658b9..04294e25d587 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > @@ -841,6 +841,67 @@ serdes0: serdes@5060000 {
+> >   		};
+> >   	};
+> > +	pcie1_rc: pcie@2910000 {
+> > +		compatible = "ti,j7200-pcie-host", "ti,j721e-pcie-host";
+> > +		reg = <0x00 0x02910000 0x00 0x1000>,
+> > +		      <0x00 0x02917000 0x00 0x400>,
+> > +		      <0x00 0x0d800000 0x00 0x00800000>,
+> > +		      <0x00 0x18000000 0x00 0x00001000>;
+> > +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
+> > +		interrupt-names = "link_state";
+> > +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+> > +		device_type = "pci";
+> > +		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
+> > +		max-link-speed = <3>;
+> > +		num-lanes = <4>;
+> > +		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&k3_clks 276 41>;
+> > +		clock-names = "fck";
+> > +		#address-cells = <3>;
+> > +		#size-cells = <2>;
+> > +		bus-range = <0x0 0xff>;
+> > +		vendor-id = <0x104c>;
+> > +		device-id = <0xb013>;
+> > +		msi-map = <0x0 &gic_its 0x0 0x10000>;
+> > +		dma-coherent;
+> > +		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
+> > +			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
+> > +		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+> > +		#interrupt-cells = <1>;
+> > +		interrupt-map-mask = <0 0 0 7>;
+> > +		interrupt-map = <0 0 0 1 &pcie1_intc 0>, /* INT A */
+> > +				<0 0 0 2 &pcie1_intc 0>, /* INT B */
+> > +				<0 0 0 3 &pcie1_intc 0>, /* INT C */
+> > +				<0 0 0 4 &pcie1_intc 0>; /* INT D */
 > > +
-> >  static const struct of_device_id rcar_du_of_table[] = {
-> >         { .compatible = "renesas,du-r8a7742", .data = &rcar_du_r8a7790_info },
-> >         { .compatible = "renesas,du-r8a7743", .data = &rzg1_du_r8a7743_info },
-> > @@ -549,6 +570,7 @@ static const struct of_device_id rcar_du_of_table[] = {
-> >         { .compatible = "renesas,du-r8a77990", .data = &rcar_du_r8a7799x_info },
-> >         { .compatible = "renesas,du-r8a77995", .data = &rcar_du_r8a7799x_info },
-> >         { .compatible = "renesas,du-r8a779a0", .data = &rcar_du_r8a779a0_info },
-> > +       { .compatible = "renesas,du-r8a779g0", .data = &rcar_du_r8a779g0_info },
-> >         { }
-> >  };
-> >  
-
--- 
-Regards,
-
-Laurent Pinchart
+> > +		pcie1_intc: interrupt-controller {
+> > +			interrupt-controller;
+> > +			#interrupt-cells = <1>;
+> > +			interrupt-parent = <&gic500>;
+> > +			interrupts = <GIC_SPI 324 IRQ_TYPE_EDGE_RISING>;
+> > +		};
+> > +	};
+> > +
+> > +	pcie1_ep: pcie-ep@2910000 {
+> > +		compatible = "ti,j7200-pcie-ep", "ti,j721e-pcie-ep";
+> > +		reg = <0x00 0x02910000 0x00 0x1000>,
+> > +		      <0x00 0x02917000 0x00 0x400>,
+> > +		      <0x00 0x0d800000 0x00 0x00800000>,
+> > +		      <0x00 0x18000000 0x00 0x08000000>;
+> > +		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
+> > +		interrupt-names = "link_state";
+> > +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+> > +		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
+> > +		max-link-speed = <3>;
+> > +		num-lanes = <4>;
+> > +		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&k3_clks 276 41>;
+> > +		clock-names = "fck";
+> > +		max-functions = /bits/ 8 <6>;
+> > +		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
+> > +		dma-coherent;
+> > +	};
+> > +
+> >   	main_mcan0: can@2701000 {
+> >   		compatible = "bosch,m_can";
+> >   		reg = <0x00 0x02701000 0x00 0x200>,
