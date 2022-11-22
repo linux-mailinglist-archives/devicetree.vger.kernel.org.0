@@ -2,101 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EED634063
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE66A63406E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233966AbiKVPhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 10:37:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        id S229481AbiKVPjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 10:39:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233836AbiKVPhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:37:33 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED6810E0
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:37:28 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id f18so36711375ejz.5
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:37:28 -0800 (PST)
+        with ESMTP id S232849AbiKVPjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:39:40 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF917627FD
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:39:38 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id l8so18348398ljh.13
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:39:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ivYiES9sG14knWzvtjTCoJ1RoaioJgEMHFOyqeNjfZM=;
-        b=naVdW0+iM/irGeY01Hv1M1HkCwp49rOoym6hI1RT3vHD/OSogrNQi1/s9J6qi6CayR
-         zdaYyIAwDxLhtMTL7CefzThSXMbU7784fZ8U9cLxWPegw9Imz3oOogKztkxfqWBt0gHW
-         eySOyWfPEBPwUhv2k/Fsgyq/f1jy+52wQWqv/P2z7wWNe/KIR3CfT3Ljk3G52+/lOvNn
-         B7AG93ZJxenUgcWkV64Im/MT6EQfzii2fQny1jgDbwVAUFllistigQyM4doz+WOO72Py
-         58/3jGOI/oFZR+Nv8POqmgkAFh1gS/2XDDU4bqDK1vEt395Balnuwb0Y7tVQ/Y9ZpSDU
-         8LtQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ds8Sy9Qo0VlxaGfYZfQDdKcBEoXNjqFnH02Jzco/bEA=;
+        b=lk1QsjWdooS9s/Fhmb9/UR2iEAgaGSjYskun7Wnkf/gMr57Ths5J3/laG66JVjx0s7
+         r6SPRs/z6fKrAtfGZOu+Lrg8JyO7a9VdoZF8FXMhujUwbioAGHZCjp24aokB6xo4Mim2
+         PfAIUfSGsVn+NHg1Q+R0PiWmZhS5Y8w/a7OJF5r1WSM5uhPuw511WBMoZ0wpvLDBl6FE
+         BOBW+eShfw/V+dMLlSGDW3fJWoNzZYdX8pNMnPW2Myk3OizgIgayS+cPqogQchx8AFwL
+         tCn5Ejgh7kWV8J+ZxdiyzddH9iyRR4iaWAPSPp6X5qyPrVgkfNEblOI/z1THa46PFv/G
+         Ub2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ivYiES9sG14knWzvtjTCoJ1RoaioJgEMHFOyqeNjfZM=;
-        b=R8cklq5QYtrSvfE7+sJV62W5zuqByyntB5WKk67GRTjDg8N8PG1e9l05Ey7NIGKaQ4
-         Bn4eYkdvWv5QPWUH6kY6yWhcfCi6unA/EFlhjVEqlgesJC72c++5RZHTEUp7CB0FgpVu
-         VnbdF/Q9AjAyXVsnlyLtt+5WcVoBaSQiol3cfOmQFOHoeciTJG1miaYB2eAbyFOgAAFR
-         mKpMRrXm8rtknuwMj3b5Kau+u1Xei4JYYqCNosWxEpSkil+MK5JupFe/rue9zvVYMz6L
-         jSH6Mh5EypDxVIKHii8+GeT6PhYXSiIracvDXp+EKiUuunxkRPMuAqdPajDX1H8OUoS3
-         AGbQ==
-X-Gm-Message-State: ANoB5pnWFsyHcHvDYn4ABSY7VFmTh16pc6ebqmDqNN0rusrI+DRj0hkw
-        86zeyhhUEejGmxF717wHne7w1nYI24ri9q9qe/FBDA==
-X-Google-Smtp-Source: AA0mqf5lVD8Rk2AxeSj7tZ0Ls4Vp26eTLbI5+h+t7YH4u9mCkuwwfrmqgRV3Rsv9A3b2Gl79AHZFVdIXaWEGPf/ipBI=
-X-Received: by 2002:a17:906:52c8:b0:7ad:ba1e:1bac with SMTP id
- w8-20020a17090652c800b007adba1e1bacmr20202651ejn.528.1669131447035; Tue, 22
- Nov 2022 07:37:27 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ds8Sy9Qo0VlxaGfYZfQDdKcBEoXNjqFnH02Jzco/bEA=;
+        b=GvZloKOgqZf/DO9ommz6gKsm7PxdIkqpWPuqypKXIZfHvfo+ZBlqTnuVf+tgRSbXBC
+         sS2B/gxcDzYsmi6DST485t2dr0uIsT5VBTRrH6ig/BQX/jhiwgSOR6PIQ9DK6gVfRWQ/
+         38Srdt2MEk9Zp+rmOkLAoqysB3Wp0ox68XVbKRCpTX8DBiI4Tw7vUTPha909jCJVhTSR
+         SulKUAY1eE4lqZA6t0o2IEll602qf0cZEV4bEp02iPHGM3lM8nSUgjOs1iBODOCWBbqA
+         9iz6AnuwM0AWumdDvIPlx5+bK5tPO0zzGo8ypnXdhJ18qBYYnxc7vhTt+nhz9Z1RHrRY
+         h+FA==
+X-Gm-Message-State: ANoB5pl6GR7EuXrgST3irdJAkAEWyYmxe7OzH4FpIHh1EIQkb270+YZs
+        n9XA6s4Xk4kyru4+ejcBGeGWug==
+X-Google-Smtp-Source: AA0mqf5pPAK3W4v8an/eR+cieEGeNBfDtiHWiAnML0e5MFDjyCE5sQTecKnWv5WEaFVv9FlPUuqd/A==
+X-Received: by 2002:a05:651c:10a1:b0:26e:a:b5c9 with SMTP id k1-20020a05651c10a100b0026e000ab5c9mr2069061ljn.481.1669131576967;
+        Tue, 22 Nov 2022 07:39:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c4-20020ac25304000000b0049fff3f645esm2507227lfh.70.2022.11.22.07.39.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Nov 2022 07:39:36 -0800 (PST)
+Message-ID: <17b4eb3a-97ab-905d-f8f2-eb5669e4854f@linaro.org>
+Date:   Tue, 22 Nov 2022 16:39:35 +0100
 MIME-Version: 1.0
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-6-8210d955dd3d@baylibre.com> <47ae0770-1cd4-cfea-7222-f91d1d85f133@gmail.com>
-In-Reply-To: <47ae0770-1cd4-cfea-7222-f91d1d85f133@gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 22 Nov 2022 16:37:15 +0100
-Message-ID: <CAFGrd9rhKfMjGMeER4SBsU27qgN8P-axzG=gRtN=szBiV5jhvQ@mail.gmail.com>
-Subject: Re: [PATCH v5 06/10] dt-bindings: soc: mediatek: convert pwrap documentation
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Flora Fu <flora.fu@mediatek.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4] dt-bindings: iio: adc: ad7923: adjust documentation
+To:     Edmund Berenson <edmund.berenson@emlix.com>
+Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221122140543.11230-1-edmund.berenson@emlix.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122140543.11230-1-edmund.berenson@emlix.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeu. 17 nov. 2022 =C3=A0 17:06, Matthias Brugger
-<matthias.bgg@gmail.com> a =C3=A9crit :
-> On 16/11/2022 13:33, Alexandre Mergnat wrote:
-> > - Convert soc/mediatek/pwrap.txt to soc/mediatek/mediatek,pwrap.yaml
-> > - MT8365 SoC has 2 additional clock items and a yaml schema for its PMI=
-C
->
-> Should be an extra commit.
+On 22/11/2022 15:05, Edmund Berenson wrote:
+> - The ad7927 is fully compatible with ad7928 driver, add
+> documentation for device.
+> - ad7923 and ad7924 are treated the same in the driver, show
+> the relationship in the documentation.
+> 
+> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7923.yaml          | 25 ++++++++++++-------
+>  1 file changed, 16 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> index 07f9d1c09c7d..b6e2f1b41739 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+> @@ -11,7 +11,7 @@ maintainers:
+>  
+>  description: |
+>    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
+> -   AD7918, AD7928 8 Channels ADCs.
+> +   AD7918, AD7927, AD7928 8 Channels ADCs.
+>  
+>    Specifications about the part can be found at:
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
+> @@ -20,14 +20,21 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - adi,ad7904
+> -      - adi,ad7914
+> -      - adi,ad7923
+> -      - adi,ad7924
+> -      - adi,ad7908
+> -      - adi,ad7918
+> -      - adi,ad7928
+> +    oneOf:
+> +      - const: adi,ad7904
+> +      - const: adi,ad7908
+> +      - const: adi,ad7914
+> +      - const: adi,ad7918
+> +      - const: adi,ad7923
 
-It was explained in pwrap.txt. I've done extra work for the previous
-version but removed it for the current one. I think I can remove this
-line from the commit message.
+Keep all others as enum.
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
