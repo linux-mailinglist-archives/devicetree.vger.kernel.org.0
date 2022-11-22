@@ -2,155 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952216335ED
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7496335F3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:39:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232254AbiKVHg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:36:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48036 "EHLO
+        id S231923AbiKVHjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:39:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiKVHg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:36:56 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF795317C1
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:36:54 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id bp15so22296724lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:36:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uq8x1FvZ2uEwbe4/V8DB199OoK2b/lP8Y41BLE+I0bE=;
-        b=rWNPRBGm0URXEZopa+8WDX7Rzx3US+ec+m0iz0TUVLUMgGzIThatBejp6Of5HUXhzy
-         hb/7UK7kXUWEF9EHhhdFi/2znLv9U+0cDDgAT08JYGMiTDJ8hmjqexIqp5mP4jud549L
-         l/LaZPbh9qEj1govo14ortA/dskPiDBU18XEkqWzO7qh14JisJ1tNgrNaAXPxEL88Bot
-         NW+JTASnFtumH4ysbb7YIHArDfbvkR10hyLmn2YWBeCQm6i5YLevAnLokL4Uv1jmhoHG
-         gmkXgvoOYR/8EuCQgfromM/cmVsT7D3YIu0WFa8GHgpldxjh8MkdIUsIHeupDM1LkKl9
-         Br7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uq8x1FvZ2uEwbe4/V8DB199OoK2b/lP8Y41BLE+I0bE=;
-        b=tPcznqGEYqkJxdflhHqkUe5z/qiW/t4r9rAjP3Z19zRAbzhxQ8PdneMbaHcneBWe6D
-         wEPJiY6G3ZyJJcwvIXnlvM+JncVmLiIVnlCxGs76LO86FWbSThKnM+gvKWIEtdiS39BS
-         k5yWivDMqqFxlPMpTDoFx/1MjZRPKnasWYUq7V4v9R4HcIMCYOwlC+nKOiVvEVE38Uvb
-         8rgHzYep0s1/yYd/uW5NdIlk+Yc+wvh0PA1/t91JpEtJq7cnGn+aEag+eJaUvxTrHf89
-         H2q0B3h8XRaUvedyI5PDwieJcqVWHKd67PPRQrtXO1TRmIpwQJx2HqC+wpjE8Impn2N8
-         exyA==
-X-Gm-Message-State: ANoB5pnlyh+uEV9h2tyDDmOCB0Q2PR7LZWG1ZJDYfXlNS6efLVDv03do
-        hwPUBE7cPGNW00pUE6y/j/JayA==
-X-Google-Smtp-Source: AA0mqf6qifS0NcmndAPQz1+KIS+X+ObkeNCRNEe103YGGN3fVlWaUC/huvesOr+xfSGNOTYdcBDKhg==
-X-Received: by 2002:a19:f010:0:b0:4a2:2e81:9be5 with SMTP id p16-20020a19f010000000b004a22e819be5mr7786612lfc.486.1669102613104;
-        Mon, 21 Nov 2022 23:36:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f28-20020a05651c03dc00b0026fa9e19197sm1729259ljp.36.2022.11.21.23.36.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 23:36:52 -0800 (PST)
-Message-ID: <8c37d6a6-497c-f761-1e27-1ef5b3e64250@linaro.org>
-Date:   Tue, 22 Nov 2022 08:36:51 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in addition
- to hex format
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        with ESMTP id S229507AbiKVHjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:39:22 -0500
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130082.outbound.protection.outlook.com [40.107.13.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E3413F63;
+        Mon, 21 Nov 2022 23:39:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SPzU67N26Np4zd30zuqaswfzPtKRkSt1fullyhse9qOTtWv1wQLi0jSKkzBsALYa0cn/RU+ZO2Mi7jNdx40YeLzj4eVy7xjD0Z8aSYjHnAytuhKkzDzYsLZGLuOhsj3fxFVQ4q0RkesjnlTFmwpT3cytCizO77z3WZ3x7W6Lgn4VU3etpvebdnN4j8SR2NNEPnhvfnFrNPqOxmle2ui9pqcfkDhmnukQu/VB5TYrEInaAD03pm/pxDqySk8CQUDzYjWE3Rdn4gFjCyWow7NFZMo8VhEGSyv5WkKaSOewj5fhA7RINmba6osmP8f5dXRswpd3ilU87O0/6mdUGV8w+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fYXmiK/x2FsdVsmxLWWDay6WlFyS+ouqJ7rm/iUx5pU=;
+ b=MyuZnyxpRDIYCcTzCVThsOd5TyWXo/Q324Ty0cxe15sXMlbs/YCLr+dB9DKj0oVPMXxKrhwLd31+vUJNbnzk+GD6d816cz+IMVxajKg9SSs6O3/K4Eh5KiKRC1DG5iCiCx+NVqV/xQEiKQmiQPtQ0VNO0IqzEYSOciiopa1hPokOdhgHfM3dbs+0HX44qfqDLH0B9khfCVn3K9Sl2OhuZM/F/pGFC9nxNdBdMgfDIrVj95xrb8M4cEV/wDOXfITaqbFUjKuVDNwKyFPOo2B9B4xsclP08kHL2E+zZbksr55HMK0sJGU6NlCR9O/Lz9sfZpbazZQ6bTasZXKEh+sN6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fYXmiK/x2FsdVsmxLWWDay6WlFyS+ouqJ7rm/iUx5pU=;
+ b=rgZ9+VR6fZbe7mThV5DTyhCbd0+He6BCcFdY6dzuRL7k3bT6kbrHIcQuHVlnO4BjmV+hAy/nGkua0XDeCuatdF0vnXBF3Gmpsmi9QTm2pizjvQ1aOa+boQNwWdU3NlRmBiJoAhcih0FvXJo/QUEylhJ/tjy8Ud3nVHLbqMSVbrQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VI1PR08MB4544.eurprd08.prod.outlook.com (2603:10a6:803:100::13)
+ by DBBPR08MB6313.eurprd08.prod.outlook.com (2603:10a6:10:202::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.17; Tue, 22 Nov
+ 2022 07:39:18 +0000
+Received: from VI1PR08MB4544.eurprd08.prod.outlook.com
+ ([fe80::bcc7:bc51:bf44:1454]) by VI1PR08MB4544.eurprd08.prod.outlook.com
+ ([fe80::bcc7:bc51:bf44:1454%6]) with mapi id 15.20.5857.017; Tue, 22 Nov 2022
+ 07:39:18 +0000
+Message-ID: <031c895d-4694-96c2-62bb-e43a49001cd9@wolfvision.net>
+Date:   Tue, 22 Nov 2022 08:39:14 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 2/2] iio: magnetometer: add ti tmag5273 driver
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20221121115525.36362-1-tony@atomide.com>
- <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
- <Y3uPvYqaILNiYW8K@atomide.com>
- <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
- <Y3xTi5JeLPSWchT7@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3xTi5JeLPSWchT7@atomide.com>
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
+ <20221121123542.1322367-3-gerald.loacker@wolfvision.net>
+ <Y3uFWH5GV/x7UDcP@smile.fi.intel.com>
+ <96a632c2-7ac1-7b9d-0cb0-9874ae21a8eb@wolfvision.net>
+ <Y3vGNVZcSuILCHxW@smile.fi.intel.com>
+From:   Gerald Loacker <gerald.loacker@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <Y3vGNVZcSuILCHxW@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0195.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::16) To VI1PR08MB4544.eurprd08.prod.outlook.com
+ (2603:10a6:803:100::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR08MB4544:EE_|DBBPR08MB6313:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3088ee10-0c7e-401b-a95a-08dacc5ca98f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GujZ/hbIsjWcVemBwu72F+02GOsmA4nNvqKSErtDG+betpxH58LC+0QeDdLtx2cbVqzZt/wF4biKB2dGGcniK6L0FCWc8PTsci2PgZ2A5Ejat5g3CPLhm2XWDvIl/azZn2CWTysKK65KR0IiYlm2wRXAq1BUmD13n80Ys+eNk+N8qCdjvUulncak4uuCb3xbJz0O07lfkHjXV0rovoV/Q6vcqvCPLRE9AIKsc6F96361tEqgOEGkBCQ67cer8+BU7cXgqj5TeRBdvA0klVpso9FQ0LRlb7ptGNl5MTJiXVuVxc0qIzEvPspRXiAdndhwEL3JLV9ciSWRot0R3hAJmNaUVudA6tnOEk1AW7mLQzmyKaYEhgZmX4Om//uUhjPwOVC93lWIguflyKRlJIMzuLBR0O3EYSx/kEWk5vQ83YDjGRFr5unrjKChrLxUOt7TA/WYTXj+sPlmrl3Fzs2NPrGs22AItBlAlc5pIDOPIuOUTLgNixHrJjc1bDXTumx30uHOG2a4mLNDSyy8XfhbrrTfJ48umVIQ6LX1jTp4z+arGO+y00VX3EfI1Tc2r3fjVXOO3P7kOep3Xyn95z7Tc5U0A5wdqFAGFXzxQNmbbCbQZPY5Q7Zt4KlGIeHnW+8n0+h1irR2FneZMn6Oz5KJLAQLLwg7f6hRw3Kvg5qHXI5UP437V6jG2zXksaE+ZFaAmpLvqnk5pMnk/l/fmnZqfNtCnw3fJV1jglYT0d1J/AIS7ApoPuq8KTBv8DTNW8sS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR08MB4544.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(346002)(376002)(136003)(396003)(39850400004)(451199015)(41300700001)(31686004)(316002)(7416002)(44832011)(8936002)(6916009)(5660300002)(4326008)(8676002)(66556008)(54906003)(66946007)(66476007)(31696002)(36756003)(6486002)(86362001)(6666004)(478600001)(36916002)(26005)(6506007)(2906002)(6512007)(107886003)(186003)(2616005)(52116002)(38350700002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eS9mRG83R2drY2tEVTJuNmhUR1ZtZllWajlvcSt3dkF2blNFQitBNVJpYi9P?=
+ =?utf-8?B?YXM4ZDU0NUVicjMrYjRSc3NpY3VHREZPS2xGS3QyM2dhNDdvOWhocXk3OEVK?=
+ =?utf-8?B?akhZUFhzYlhPTDlVUXBIZ3UxOUROdW1raFVaeGJtY2szeW5XOUs2endYNjBz?=
+ =?utf-8?B?V0FEZnh2WW95M3V3ZTBIaUFUakhTelltMTFmd2pqQ2J5QXJqQ25pRk1TbFM0?=
+ =?utf-8?B?UnZNUHhYR0NHVGdlVEViQ0pHOHdsWFNSR3IySE9DOFhxSVQ0Uko3LzdLOStN?=
+ =?utf-8?B?M3NBVXFlSlNzYzc3ZWFBWFFCK3lJazhGOFljRDd4bEp1djlyQkx0aW14QTNW?=
+ =?utf-8?B?bkZZVHdFZjVqcmY2d1hHQytHdDJpTE16bXR0b0pHMzcvTkE2eUxZcnN5RXhQ?=
+ =?utf-8?B?aEpjNVUwZnV0MkJ2cUxSaDNMTFZBQ29nMW9vQTNvdWtqMmFZWmI2bFhPTm5y?=
+ =?utf-8?B?SVhBUEtLMlZLSmRma05tOXNoKzM0M3hOVnB6RnNSc0ZQZ1VtYms2WW1IekZC?=
+ =?utf-8?B?aVBkMEZ5OFU4WU91ZjJuRVNMQ1lEWU1FUnl4TzVnYXpsNnlLM0FtWVlOcnhF?=
+ =?utf-8?B?dHI1bGVZRXp4VnN5ZWxlNEdzV0VlUFhrY0JKSkRsNkt2M29GTi9ac1UzRnZP?=
+ =?utf-8?B?dTM1dWVnUEJld3FvSUdhdkpTS1g2cmE1SHJqVmFHSXR5bFk5YkVSb1hrQXEw?=
+ =?utf-8?B?eFhlV1JRcG5aVjAybkprY1FRblFMK2pnVzYxaWY3bkdCZGY3L0kwTkVTSUNG?=
+ =?utf-8?B?d211WXlXT3VmZWdsNUg4WFBXRW1nZ2MvWmVNZGF5UjFvY3FkclRhZ0thT3d4?=
+ =?utf-8?B?VUw5aHZ6aWI1TWYvazZvZVRPVllEZnJrVzJCWk9NMmRtWmhWbnZobE93a0ND?=
+ =?utf-8?B?YzFFdDNTODdBcUZsVk5ZMW56S1VhZ0lIY25hdURlOHV2VmpwczZ3bENuMVhX?=
+ =?utf-8?B?UEE3Z2FFWmV3Q1R1OTA3MkN0QUpWaU90WVYyaFNFMkhBL0Nrby9UckpMRHJ5?=
+ =?utf-8?B?QVduR01UNGh1c3o2eENWMkFpLzMyQngvVTVtY29LMzFrdmgvRkRsY1lWNFJp?=
+ =?utf-8?B?dWcrTXI1NGFFcjF5L2dNdlVpcUVkY0FpYVFETW9jS1kzTGYydlYyUEZWdHJu?=
+ =?utf-8?B?Wk5sZWlza1pzMFZDbzJac0I5YXlGcDRoTHlpYXdQa0FFaXBiNU9rK2dOeTBm?=
+ =?utf-8?B?dm84WStXWldZN3BrY3hLNW9kQ0lVb2FpcEhLSkg3ZjRQVktMNy9JazhJaVZ3?=
+ =?utf-8?B?OTlFK29NKzAyZFh1SXp0YTJEaFIvLzA0NkFRY25ETUhVUHZMRXR2VzgxTkhD?=
+ =?utf-8?B?aUVTNHJucTliODdkRFA4dHc0MkNhbk5FS0N4ZWI5TEQrRml6NTV2ZXVkamIx?=
+ =?utf-8?B?d0hKb2RwYU5JTS9UTzd0enlILzBJcnlZaFFQMldaQVRSc2U5NTVtUXZnb3lQ?=
+ =?utf-8?B?dnhwT0wyVjlRNWVCdm9SalcyeUVhQWFVNlRjU0VIOHVZQS9ScjFGMDg2YjFm?=
+ =?utf-8?B?TVNTbmhZcGlOY3ZSOWxTeGtJc210dTZGYXBUWHBkcHNSLzVLVDZYUXlJc2V0?=
+ =?utf-8?B?NDdhV0xkR003MzQrOGM2RGlIQVo5Vmw2bllCQU04bHU0M2c3SGRDYmlHT1dY?=
+ =?utf-8?B?cTVzckFkNC9Wb1NMQzNKZXZoYnB2cFdvcXhqZGE5TFR5c21YRDJmTW9GQlE4?=
+ =?utf-8?B?L1k3aUlHZWk5VXBPUS9tTS9UYkF2T1dRbm9USmRnTU02UGJZMXZ3TVVrSHVn?=
+ =?utf-8?B?VlFCcktydmRoeVBkc0pUcHhXdVlUbk5RZThwNXVDMFBtdWZJYmpCYUJIYjJj?=
+ =?utf-8?B?VjVjVmliTEIxektQUitDUXIxMzRrOVE5bGg3a2hjeUtQYnYzSGw0OWFZTWNU?=
+ =?utf-8?B?eW1IcCtBczloNkdPaXh3V3pjUGhON1pDb3NRWGNjcTBxNGlsa3dka0pyZ3V3?=
+ =?utf-8?B?aTRIQWg5SW1JREJOWlp6SXdYVW00d01LcDVzVUFWWVVjYmF1bng1RVhnVU45?=
+ =?utf-8?B?U094MFcvbFI3UzU3amlGQmlvdGZCQStoc3ZQeEpoaEE4YWxacFhBbWdrM3Uz?=
+ =?utf-8?B?TXI2dVo2Zkh1cGk5NmZBVTdERjAwUzFHSTdKcmF4Y3h6aVhrdHpkeE5ETlQ2?=
+ =?utf-8?B?UjNaajUwUmlZYVFpc21rdVh0MEQ0bEdTNTM3VVNhTW1adUYrWkVPZGJobVNM?=
+ =?utf-8?B?VEE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3088ee10-0c7e-401b-a95a-08dacc5ca98f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR08MB4544.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2022 07:39:18.2824
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bHoKuEkpEQZ2ggXJ/E9nv5+o7D2fZNAHWAocG9ooaqWdIPHuw2uFJvtGEqWm7mPo5tlgu6e7YZdDK2VD6sucDxSPbYWc7MSImxREcLwuNYI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR08MB6313
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 05:43, Tony Lindgren wrote:
-> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
->> On 21/11/2022 15:48, Tony Lindgren wrote:
->>> * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
->>>> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
->>>>> Let's allow node numbering in decimal format too.
->>>>>
->>>>> Simple human-readable increments/IDs are usually decimal, hex is only for
->>>>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
->>>>>
->>>>> Cc: Thierry Reding <thierry.reding@gmail.com>
->>>>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->>>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> Signed-off-by: Tony Lindgren <tony@atomide.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
->>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>> @@ -13,7 +13,7 @@ select: false
->>>>>  
->>>>>  properties:
->>>>>    $nodename:
->>>>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
->>>>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
->>>>
->>>> I wonder why you don't make this:
->>>>
->>>> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
->>
->> Yes, the '*' should be within ().
+
+
+Am 21.11.2022 um 19:40 schrieb Andy Shevchenko:
+> On Mon, Nov 21, 2022 at 06:24:18PM +0100, Gerald Loacker wrote:
+>> Am 21.11.2022 um 15:04 schrieb Andy Shevchenko:
+>>> On Mon, Nov 21, 2022 at 01:35:42PM +0100, Gerald Loacker wrote:
 > 
-> Sorry I guess I don't follow. So for what type of naming is the second '*'
-> actually needed here, or is it needed at all?
-> 
-> We only want to match the following:
-> 
-> pwm@1234
-> 
-> pwm-0
 > ...
-> pwm-f
 > 
-> And now also:
-> 
-> pwm-0
-> ...
-> pwm-15
-> 
-> Is there yet another format I'm missing?
-> 
->>> Hmm but I think this would also pass for node names like pwm-a-foo?
+>>>> +	if (!device_property_read_string(data->dev, "ti,angle-measurement",
+>>>> +					 &angle_measurement)) {
+>>>> +		if (!strcmp(angle_measurement, "off"))
+>>>> +			data->angle_measurement = TMAG5273_ANGLE_EN_OFF;
+>>>> +		else if (!strcmp(angle_measurement, "x-y"))
+>>>> +			data->angle_measurement = TMAG5273_ANGLE_EN_X_Y;
+>>>> +		else if (!strcmp(angle_measurement, "y-z"))
+>>>> +			data->angle_measurement = TMAG5273_ANGLE_EN_Y_Z;
+>>>> +		else if (!strcmp(angle_measurement, "x-z"))
+>>>> +			data->angle_measurement = TMAG5273_ANGLE_EN_X_Z;
+>>>> +		else
+>>>> +			dev_warn(data->dev,
+>>>> +				 "failed to read angle-measurement\n");
+>>>
+>>> Can't you use match_string()?
 >>>
 >>
->> No, how?
+>> Yes, I will use match_string().
+>>
+>>> And you actually can do a bit differently, can you?
+>>>
+>>> 	angle_measurement = "...default...";
+>>> 	if (device_property_...)
+>>> 		dev_warn(data->dev, "failed to read angle-measurement\n");
+>>
+>> I think we shouldn't warn here, as angle_measurement isn't a required
+>> property. Besides that I will do it this way.
+>>
+>>> 	ret = match_string();
+>>> 	if (ret < 0)
+>>> 		dev_warn(data->dev, "invalid angle-measurement value\n");
+>>> 	else
+>>> 		data->angle_measurement = ret;
+>>>
+>>>> +	}
 > 
-> Because of the second extra '*' there :)
-
-It cannot multiple dashes...
-
+> After looking into DT patch I think you can even use
+> device_property_match_string(),
 > 
-> Regards,
+> ...
 > 
-> Tony
 
-Best regards,
-Krzysztof
+device_property_match_string() is searching only for one string, so here
+match_string() you suggested before fits better.
+
+Regards,
+Gerald
 
