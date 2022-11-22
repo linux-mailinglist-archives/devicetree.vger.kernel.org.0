@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86EC06338AD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6834633901
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233132AbiKVJir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 04:38:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40198 "EHLO
+        id S233396AbiKVJuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 04:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233143AbiKVJiq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:38:46 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F20127B27;
-        Tue, 22 Nov 2022 01:38:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669109925; x=1700645925;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4YfwEoCNf9y2bbVgA0lkiee8S9bFPoPb39DN1uonMiY=;
-  b=OAs8IruyjG8128kcyK9MxwEvkeXKiw10xCUiGFoaRXdFL6Ac3Jtwjovj
-   ABhypCqsrZleCdwuknhEMDCnjDZIXRjF+4g+1uSGfxvCXTggfJwbRFn9D
-   PdyhuK3yOuwVo2p7mvYqMad2aAJtl5sHePNj22pse+jPb3jIB+DJgE3mb
-   myzLkIe8hTJy8KuGC5uy03OGRNv49J6LRPikPTVECxRY8evqGGNyD/r+K
-   OpmfFWhmYug+ZGtWGtTj7AMtECJrPDZqqVsieh7fbN23ntoQ1oaBa8XBp
-   x3fDV4H2hejiajKHd5qLCs1v1ww1RYBIr5SeSWotRo+/X5ZaCGvfp7JK2
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="312477955"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; 
-   d="scan'208";a="312477955"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2022 01:38:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10538"; a="816041518"
-X-IronPort-AV: E=Sophos;i="5.96,183,1665471600"; 
-   d="scan'208";a="816041518"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2022 01:38:28 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id D054C2015F;
-        Tue, 22 Nov 2022 11:38:25 +0200 (EET)
-Date:   Tue, 22 Nov 2022 09:38:25 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 4/4] media: platform: Add Renesas RZ/G2L CRU driver
-Message-ID: <Y3yYkQhJJFLau08X@paasikivi.fi.intel.com>
-References: <20221102004329.5410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221102004329.5410-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S232343AbiKVJt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:49:59 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0152FC0E;
+        Tue, 22 Nov 2022 01:49:58 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AM8SFA6009976;
+        Tue, 22 Nov 2022 09:49:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=dADRdeJhfcLVNECqNJsH9cCZ7N1ekDPfsaAxXCG77b4=;
+ b=pJNGjHIT+iG15Ep6oKcyrLFs+0TiPWKb37Ikb8SciuYPb9Koox+ae0keynsMRs+q0Aeb
+ 7tCwPzhK1J7bHSIeB+u8s90zOOsILlY29uYC919JzAAZLoX41moQW2IsVa5fSHr12g1y
+ EHtGPqmY00/T4c8sRoNZe2skj3Wm2aSS7zd5P51dUPhFgirTm+vIBmpOZsY9F9BNeP1I
+ qmOcOn/m5pPFGBiVFD4QmwSCdd370s1b7ceKoxd693TopPypTfoV28/yvM/rLuqygI/+
+ N2rJMzqSkSYTHr58kOK0XieW0vA7KFegWlhutaFzycHAzWrmndJd4yPMqZAa0TGmWBiY dg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0nsj8qub-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Nov 2022 09:49:54 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AM9nrr8010948
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Nov 2022 09:49:53 GMT
+Received: from blr-ubuntu-173.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 22 Nov 2022 01:49:49 -0800
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <konrad.dybcio@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dianders@chromium.org>,
+        <mka@chromium.org>, Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD Pro boards
+Date:   Tue, 22 Nov 2022 15:19:20 +0530
+Message-ID: <20221122094921.23109-1-quic_rjendra@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221102004329.5410-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9_nPgwKzXnzjApXSDOomZxNQ6kczKtrt
+X-Proofpoint-ORIG-GUID: 9_nPgwKzXnzjApXSDOomZxNQ6kczKtrt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-22_04,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 mlxscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0
+ mlxlogscore=745 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211220072
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Add compatibles for the Pro SKU of the sc7280 CRD boards
+which come with a Pro variant of the qcard.
+The Pro qcard variant has smps9 from pm8350c ganged up with
+smps7 and smps8.
 
-On Wed, Nov 02, 2022 at 12:43:29AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add v4l driver for Renesas RZ/G2L Camera data Receiving Unit.
-> 
-> Based on a patch in the BSP by Hien Huynh
-> <hien.huynh.px@renesas.com>
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Laurent's comment arrive a little late but the patch does not compile
-against the media tree anymore. The argument of the media_pipeline_start()
-and media_pipeline_stop() is now a pad, not an entity. See what the changes
-look like in other drivers (the commit id is
-12cecbf9150f67b0ce7d88bc2e243e67637726c2).
-
-I'll still take the DT binding patches.
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..2550ab251f7b 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -613,6 +613,11 @@ properties:
+           - const: google,hoglin
+           - const: qcom,sc7280
+ 
++      - description: Qualcomm Technologies, Inc. sc7280 CRD Pro platform (newest rev)
++        items:
++          - const: google,hoglin-sku1536
++          - const: qcom,sc7280
++
+       - description: Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform
+         items:
+           - const: qcom,sc7280-idp
 -- 
-Kind regards,
+2.17.1
 
-Sakari Ailus
