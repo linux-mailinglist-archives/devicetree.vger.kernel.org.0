@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9125A633844
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:23:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 919E063384E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 10:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231773AbiKVJXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 04:23:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
+        id S232343AbiKVJZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 04:25:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232738AbiKVJXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:23:53 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF8C49B52
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:23:52 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id a29so22630930lfj.9
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:23:52 -0800 (PST)
+        with ESMTP id S232500AbiKVJZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 04:25:13 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D7949B7A
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:25:11 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id d6so22669513lfs.10
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 01:25:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M0c8F3pQnElMN2xHZ1SlYuM5B9Kk5rY/ZkP6nm5e5lc=;
-        b=G51+QcNUVp8RdBw9DUif1oIad+gpYHbOn3VC/yZxItAe/z11obzxzv7FiExZRijbbv
-         +2pNbImieqLa2Q0zTYf6R93bsQih8yWPqAGTMRtkx9h8oDAySoW09w6SabpGnjzFQbUb
-         5BGW9VpfT57c99xjjuRxTeMP9Nt0bg8q4Esk0lMml1CDsKYD4z2wrZ8AJLYKxazAiJAq
-         DsqxDh8FWo3yh7tBkMIwEWvCmsvpvbEydbPDWgt0tiSw+Zd0hVlpp6aljXbXH6DPSApK
-         S/vqslIKIJmqr6NBymTRaDrN6fo6n8cYi8KACxcgIDConsENDlhMZI3kjYl8By4Tbjz5
-         x69w==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O8HnwlLIuUW6GQ7MF6wb6CuJekIWr1nSvjXjmRhkscs=;
+        b=IiWqDjT6H1cRpC90wd65AWT/9WXUU+5hNY7FkQZBesPVQr9IdCFRIGTV34ehmgTZZK
+         3Jus1oyGfk+IMtnQAxdJLPDiOq9V8rNWApdkLIk+5alXBEh5o14B1MyG8uWIV2dzOuG8
+         toUTbMdScxGAqDtDb0qvamE57LbdJBuSEqdLOyuNLT5l/LGKQEuiZyH71dfr2IUMi0q6
+         /HKVLbgm1JY3WWz3viCNGwcOBt3cG7lrcIpnxAeIs2ULThxcyFaW0M58yA0S7mFSw+xQ
+         UNrZYm4Z5E5U0rleIsGfQlNV5rp5siEptUh093+4dlwIS7VXqJ063vgla6ASbpcWJ7++
+         9+dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M0c8F3pQnElMN2xHZ1SlYuM5B9Kk5rY/ZkP6nm5e5lc=;
-        b=HgiyUiPTn0S+RCl//svDFB6JPj75woz7Udj43BMB/BaaTjhMbG5cnPX/CJMmhqeNnB
-         DWvvg4PMFC47BXaZqlIFyaEwC6vQl5b7aqziSVzYDZJ+we+RQQwor09RtLTPhWK751Ui
-         7inzsDZQAOlzahrGUnLNo14BQsXcwU4TKkIHXZnoaJ4X2RnrthcfEKDvVf17wpoFB6GP
-         WcI6nkLJyNTJ3D8vzC9NbNjHH4M/MVUrCxAWfc/vvGhH3/u52Ito0G3nOC51B/uL1V4E
-         BaVhSwaPrNG3AmObOzvXsFwikzcmS1x22oGUVNWsEH+5Fq9cnO7dxSZ5wE/SNdSegLqw
-         6gRg==
-X-Gm-Message-State: ANoB5pk1sOEEP+1UDYT5EdzBQCLPoMFM2Nun6MC9bZnD/NbB0jVHbDdM
-        asU8v0iEqKGpOprPqFRWc/ubPQ==
-X-Google-Smtp-Source: AA0mqf5AdJrX8WFVMBoVFTGinA3SdZzsjZQoovSzg0Up+RVmfUzWNY4fnyc8t+WkuDD21nhoSaBqNg==
-X-Received: by 2002:ac2:5e7a:0:b0:4a2:6238:e7f9 with SMTP id a26-20020ac25e7a000000b004a26238e7f9mr7285472lfr.294.1669109030754;
-        Tue, 22 Nov 2022 01:23:50 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id br31-20020a056512401f00b004b1a5086485sm2405609lfb.2.2022.11.22.01.23.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 01:23:49 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>
-Subject: [PATCH 2/2] dt-bindings: firmware: qcom,scm: narrow clocks and interconnects
-Date:   Tue, 22 Nov 2022 10:23:45 +0100
-Message-Id: <20221122092345.44369-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221122092345.44369-1-krzysztof.kozlowski@linaro.org>
-References: <20221122092345.44369-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O8HnwlLIuUW6GQ7MF6wb6CuJekIWr1nSvjXjmRhkscs=;
+        b=spU+6JuTgbAsp9Gf3YHFpufskHPdG8QGXyGJJs2OmUXRhNwrx/Bw0AvF2pSpz1pbA9
+         wpOtDmO6T8D7360sUp0++lLFFoiiIgj04MlSD/KCaCqT/yo8CUCP78Ll8bmhqJKTS2cm
+         5c627zSkSXFHdiuygnrsmqQN1Fe0NziQVpvQ15gVc2p8lj0xujVYnrjxkfxQIaO6guab
+         BMH1d8Az94UkR7YWtPvKl/PSiV/NspooTMkbSQ0mswf8Vik6+xxl84UJduzE8GsPYxuw
+         oijD1crcRYK5TdDipwYsqaoXhVYWI3Bj5iqY5klgQZvCpfdYG6gMgwiPy9f+DYjvu4ju
+         LggA==
+X-Gm-Message-State: ANoB5pkLZWiH1Wi2sF2NeUKxja99iX2RH14yaY1Tew0YzyCG7Zbu+H3g
+        DdnU6jS1UkUwcdFLNAss1Dfr7w==
+X-Google-Smtp-Source: AA0mqf5byVk5N0XWLkFNIEkusMvYIeYHdcBQgOYQ8RWpuWexV58KEhN68yvC6R+ZBH9j/xzMZoTDiw==
+X-Received: by 2002:ac2:4424:0:b0:4a2:2dc9:3e0e with SMTP id w4-20020ac24424000000b004a22dc93e0emr8339106lfl.272.1669109110296;
+        Tue, 22 Nov 2022 01:25:10 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q6-20020ac25fc6000000b004a45f2e49b1sm2378780lfg.273.2022.11.22.01.25.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Nov 2022 01:25:09 -0800 (PST)
+Message-ID: <09aaf26a-7377-a4f6-6145-5301304927b7@linaro.org>
+Date:   Tue, 22 Nov 2022 10:25:08 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/2] dt-bindings: gce: add gce header file for mt8188
+Content-Language: en-US
+To:     =?UTF-8?B?RWx2aXMgV2FuZyAo546L5YabKQ==?= <Elvis.Wang@mediatek.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        =?UTF-8?B?WW9uZ3FpYW5nIE5pdSAo54mb5rC45by6KQ==?= 
+        <yongqiang.niu@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20221104074443.26172-1-Elvis.Wang@mediatek.com>
+ <20221104074443.26172-2-Elvis.Wang@mediatek.com>
+ <bdb46b7c-6e08-26cf-491d-ca68d36f29af@linaro.org>
+ <fcec5536-6ba8-9cac-2001-710a7170df70@gmail.com>
+ <5ad6c51677e1476d08ae6de6bd5021384a689b31.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5ad6c51677e1476d08ae6de6bd5021384a689b31.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,89 +92,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SCM has clock inputs and interconnects only on some of the SoCs, so
-disallow them inb other cases, which makes the binding stricter.
+On 22/11/2022 10:10, Elvis Wang (王军) wrote:
+> On Mon, 2022-11-07 at 12:18 +0100, Matthias Brugger wrote:
+>>
+>> On 06/11/2022 11:27, Krzysztof Kozlowski wrote:
+>>> On 04/11/2022 08:44, Elvis.Wang wrote:
+>>>> From: Elvis Wang <Elvis.Wang@mediatek.com>
+>>>>
+>>>> add gce header file to define the gce thread priority, gce subsys
+>>>> id,
+>>>> event and constant for mt8188.
+>>>>
+>>>> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
+>>>> ---
+>>>> Thanks for the reviews, I have removed the incorrect reviewed
+>>>> message.
+>>>> ---
+>>>>   include/dt-bindings/gce/mediatek,mt8188-gce.h | 966
+>>>> ++++++++++++++++++
+>>>>   1 file changed, 966 insertions(+)
+>>>>   create mode 100644 include/dt-bindings/gce/mediatek,mt8188-
+>>>> gce.h
+>>>>
+>>>> diff --git a/include/dt-bindings/gce/mediatek,mt8188-gce.h
+>>>> b/include/dt-bindings/gce/mediatek,mt8188-gce.h
+>>>> new file mode 100644
+>>>> index 000000000000..e2e2c56016a1
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/gce/mediatek,mt8188-gce.h
+>>>
+>>>
+>>> What is a "gce" subsystem or type of hardware? Why do you put
+>>> headers in
+>>> "gce"?
+>>>
+>>
+>> Yes, I think we should move all header files from the gce folder into
+>> the 
+>> mailbox folder.
+>>
+>> Regards,
+>> Matthias
+> 
+> There are still a lot of header files undre gce. If all of them are
+> moved, it will also involve the modification of yaml and corresponding
+> project dts files, which requires more effort. Can we deal with the
+> 8188 part first?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sure, just put the new bindings in proper location (mailbox if this is a
+Mailbox).
 
----
-
-Cc: Abel Vesa <abel.vesa@linaro.org>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>
----
- .../bindings/firmware/qcom,scm.yaml           | 44 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-index fc986f2f5d30..8e6e9ebb343d 100644
---- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-+++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-@@ -82,6 +82,32 @@ properties:
-     description: TCSR hardware block
- 
- allOf:
-+  # Clocks
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,scm-apq8064
-+              - qcom,scm-apq8084
-+              - qcom,scm-mdm9607
-+              - qcom,scm-msm8226
-+              - qcom,scm-msm8660
-+              - qcom,scm-msm8916
-+              - qcom,scm-msm8953
-+              - qcom,scm-msm8960
-+              - qcom,scm-msm8974
-+              - qcom,scm-msm8976
-+              - qcom,scm-sm6375
-+    then:
-+      required:
-+        - clocks
-+        - clock-names
-+    else:
-+      properties:
-+        clock-names: false
-+        clocks: false
-+
-   - if:
-       properties:
-         compatible:
-@@ -100,10 +126,6 @@ allOf:
-         clocks:
-           maxItems: 1
- 
--      required:
--        - clocks
--        - clock-names
--
-   - if:
-       properties:
-         compatible:
-@@ -128,9 +150,17 @@ allOf:
-           minItems: 3
-           maxItems: 3
- 
--      required:
--        - clocks
--        - clock-names
-+  # Interconnects
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - qcom,scm-sm8450
-+    then:
-+      properties:
-+        interconnects: false
- 
- required:
-   - compatible
--- 
-2.34.1
+Best regards,
+Krzysztof
 
