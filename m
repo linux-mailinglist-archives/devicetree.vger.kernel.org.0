@@ -2,177 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A04AE63447E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 20:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42880634493
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 20:31:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233996AbiKVTZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 14:25:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50142 "EHLO
+        id S234799AbiKVTbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 14:31:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiKVTZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 14:25:33 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C887FF21;
-        Tue, 22 Nov 2022 11:25:32 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id n186so16862400oih.7;
-        Tue, 22 Nov 2022 11:25:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=09Fo0rR4StbdjPIIvlInIxSHew0e7ivCTP8R8vAEZ3Y=;
-        b=mUndDyNeXjHl/vP19NQ4bwpklc7wS/EV0Ci39R6mCfU+ZxAnNdZbU/36cdmGRifMcN
-         xzeEa2uMwqa1dKwsoh3qKVaQkCDmsxgHNYC1mpbtCEZIt4ZZ7OGdgdd3YEbaWrhFwIuK
-         4o45IeQ1Tmek/Jd6QWrtBJCLbIIYrJIOE6ClTzK7IauSF9VT5Yg3QoZQrObyxKe6yn0/
-         jqejpCxPOIp4DtUn8CMbZjKoP/Mo+yyarmZni20JTDTVHkSIPapnC7r/X0y/3Cxa8N1F
-         QvLN5GuMo+1ycb9EzV5h7bXZL/BA6gUFkbIzlxNz1zbJ+cvYGRARg3GuyBdgcx5qrnWQ
-         IckQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=09Fo0rR4StbdjPIIvlInIxSHew0e7ivCTP8R8vAEZ3Y=;
-        b=GInXFDXWz7Sk4S1UTP1A7x5CItkAoVvi2zW3Lw15YWhfbsKcYonOVBowgHtpfUCk6Y
-         qRpt3mQ3SVbvGM4Gt1JezsNbl3fCEr7KogR9efF11mnSg7tEkvGLA4RbHIcWgUd51h7G
-         6EPEfixNC6Sk/G4xTIZmCbxWW8HME1RmyMw4k7VneAlc1DZVsOgxUWI6ovlJIj/xpulC
-         SuOzhgYej7H16gkA27kLmvOePmvaahgOYXUar1FHB5+XGCKbZb66WqoSCVMcM5iQLcNm
-         vrMlL52MHmXwywilpghSf4TNOZBuwaRQBFnLZuYEQHnUSX2Ovvv1P8a0Evc4q/C1hE3E
-         uZTQ==
-X-Gm-Message-State: ANoB5pnCGGdqp3iD/LuPd1uoTw5pK94ux+DHDFDWu5pS8VW8TSG/2C90
-        AmdQ4mkEQjJfXkqSfRYJ1Vbf/YuCoiE=
-X-Google-Smtp-Source: AA0mqf6jwoymerXoL3TKr2O+FS3QfhwQkUTlFpCJoSPC9VFX60OhX6Tz5DTTYZX6ZvM7zf1RHow7+A==
-X-Received: by 2002:a54:4399:0:b0:355:bceb:2606 with SMTP id u25-20020a544399000000b00355bceb2606mr7342032oiv.188.1669145131637;
-        Tue, 22 Nov 2022 11:25:31 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i11-20020a9d53cb000000b00667ff6b7e9esm6491267oth.40.2022.11.22.11.25.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 11:25:30 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <25b37a72-4415-2ed5-0415-040af174a70a@roeck-us.net>
-Date:   Tue, 22 Nov 2022 11:25:29 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S234791AbiKVTbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 14:31:10 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FDBA91514;
+        Tue, 22 Nov 2022 11:31:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669145469; x=1700681469;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zyJQjgV0e1WVZZJXVzgDlssVZQ+0qMeIqZmVuMKL3lo=;
+  b=QX9lLB3juMy9qqcd6SfHgBWM4/rzkwewaLcCjsIHH6H0FKuX8TNhhCdN
+   SSBUfQLVDDuokBhewz5gSRQLt4tQwyvxZab0Y5ezwq/1hTmbDH1mWl5bJ
+   vBsAJNZhJNPbEDkD0p3gaubtSKpQSqPA3CIM7TxJM7hJ4jG/7ECbKEEbF
+   xSDiVAWCscblhZrNXufFiTHoM5P/+licIFsFgxSt9rqSvd4p4cdyyLoFN
+   G5rHdouoCcXBGesJsZsCw5G1EGMzi9i4xteH4lcB2XHiGtR+zFwGx1wRY
+   L6rIsLlq1W7wv0j8gPjSuZPNbkS+fkKwv0gu2RX8WYebPqrnR+G7vFvbx
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="400188230"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; 
+   d="scan'208";a="400188230"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2022 11:31:08 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10539"; a="674457700"
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; 
+   d="scan'208";a="674457700"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2022 11:31:04 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 74709201D2;
+        Tue, 22 Nov 2022 21:31:00 +0200 (EET)
+Date:   Tue, 22 Nov 2022 19:31:00 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221121122932.2493174-1-Naresh.Solanki@9elements.com>
- <20221121122932.2493174-2-Naresh.Solanki@9elements.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v7 1/4] dt-bindings: hwmon: fan: Add fan binding to schema
-In-Reply-To: <20221121122932.2493174-2-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+Message-ID: <Y30jdErgPI223eoM@paasikivi.fi.intel.com>
+References: <20221102004329.5410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221102004329.5410-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y3yYkQhJJFLau08X@paasikivi.fi.intel.com>
+ <CA+V-a8u9QS6Wk8SSmmJheHmtRiUWyOpv9DDJO6qDR8viz1Wp7A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8u9QS6Wk8SSmmJheHmtRiUWyOpv9DDJO6qDR8viz1Wp7A@mail.gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/21/22 04:29, Naresh Solanki wrote:
-> Add common fan properties bindings to a schema.
+Hi Prabhakar,
+
+On Tue, Nov 22, 2022 at 10:26:28AM +0000, Lad, Prabhakar wrote:
+> Hi Sakari,
 > 
-> Bindings for fan controllers can reference the common schema for the
-> fan
+> On Tue, Nov 22, 2022 at 9:38 AM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> > On Wed, Nov 02, 2022 at 12:43:29AM +0000, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add v4l driver for Renesas RZ/G2L Camera data Receiving Unit.
+> > >
+> > > Based on a patch in the BSP by Hien Huynh
+> > > <hien.huynh.px@renesas.com>
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Laurent's comment arrive a little late but the patch does not compile
+> > against the media tree anymore. The argument of the media_pipeline_start()
+> > and media_pipeline_stop() is now a pad, not an entity. See what the changes
+> > look like in other drivers (the commit id is
+> > 12cecbf9150f67b0ce7d88bc2e243e67637726c2).
+> >
+> I'll go through them soon, when do you plan to close the v6.2 window?
 > 
-> child nodes:
-> 
->    patternProperties:
->      "^fan@[0-2]":
->        type: object
->        $ref: fan-common.yaml#
-> 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->   .../devicetree/bindings/hwmon/fan-common.yaml | 47 +++++++++++++++++++
->   1 file changed, 47 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> new file mode 100644
-> index 000000000000..0535d37624cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common fan properties
-> +
-> +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  min-rpm:
-> +    description:
-> +      Min RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pulses-per-revolution:
-> +    description:
-> +      The number of pulse from fan sensor per revolution.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  target-rpm:
-> +    description:
-> +      Target RPM the fan should be configured during driver probe.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pwms:
-> +    description:
-> +      PWM provider.
-> +
-> +  label:
-> +    description:
-> +      Optional fan label
-> +
-> +  fan-supply:
-> +    description:
-> +      Power supply for fan.
-> +
-> +additionalProperties: true
-> +
-> +...
+> > I'll still take the DT binding patches.
+> >
+> Or maybe we could wait and get them alongside the drivers?
 
-Still, from my second reply to v6:
+Can you send a new version by tomorrow morning (Finnish time)? The needed
+changes didn't seem too complicated, I wouldn't want to delay my PR much
+later as chances slipping to 6.3 will increase.
 
- > Another property which is definitely missing and needed
- > will be DC vs. PWM control. That is currently pwm[1-*]_mode
- > in sysfs attributes, but it is really a fan attribute.
- >
- > Many fans are DC controlled, so this property is absolutely
- > necessary.
+-- 
+Kind regards,
 
-Plus, with DC control there is no pwm. It would be absolutely wrong
-to declare that a fan controller MUST be pwm based.
-
-Ultimately, there are three types of fan controllers:
-
-- PWM control, such as MAX6639
-- DC control, such as MAX6620 or MAX6650/6651
-- Configurable, such as MAX1669 or pretty much all fan controllers
-   included in SuperIO chips
-
-Generic fan control bindings simply _have_ to take this into account.
-
-Guenter
-
+Sakari Ailus
