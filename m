@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8CAA633676
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:59:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE05463367A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232399AbiKVH7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:59:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
+        id S232526AbiKVH7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:59:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231948AbiKVH73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:59:29 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C274E14D11
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:28 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id bp15so22366723lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:28 -0800 (PST)
+        with ESMTP id S231856AbiKVH7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:59:51 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B5314D11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:50 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id h12so17031875ljg.9
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+rHE42IRQEpvlYwnxD7VJSLOCSycuUnbcPRlGiT0VKU=;
-        b=LpaDHiyMjzQR8FLaKdwyzVpff27TYVCfaRKzwK0kUx3JMZmRxWEClaCfEnPyuwZ8Ez
-         7+qoE9IH/LdVFqIv8jr7jfgO/Kw4YjAdg3xyZMrZzID0hcsER8U9YuK7Cxq0Hv3IPxqM
-         yr9qr4okK75m/wpxI9ahqrP+Hs7YGVwZ4LF/Op/2VUbXwv3RsnATf7CmdBq8TTQ781q3
-         YOZTmhSzoVzENPcxqr2IjwT2uulEPnwYAjXj5McwjPJBrnZWf7dY5E1VH+NGMDCjIfkK
-         Y8LygON4f9I8qaf8k5rm0ciyyxQb5XFnUQBO95jU7DtC/oThJ72GmrucpalJamrgrLDn
-         rQvQ==
+        bh=jWIqopC5oQPso26xwMM2ZxOzw/xY+hIxzsNT5oqWCuo=;
+        b=eh14eu1+LOLsZ5dkoMts4lwZOZ1xQkKwMvfWlkfSgjYh5ypNrWQpUB841VQPPOxyF6
+         kxJ2v4CZvM6yZPHOTBR+nR3rOFGgdhdfOWE8ILvNS/QQ9LDu3PJkeC4QwIhio9AT3WbJ
+         +V/b1sMdJh/9Q+nYZrFGIev4G38Jpl+ceSbQSex1eG4nxsu2hlfZdeV6XkIob+O4haKi
+         u/AGkny/rZUqXSjl5+/kXsy04hqW6L0noshfsaVpmGrs2DWL+dK18OS1NMeblNSJ99hd
+         EN5KL882dv+NhQBLwYWGPLBQYWkbS2G8L/Doe5YRvxJ5ECzbof+ppjcCe4s5k4cI+NkX
+         sgCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+rHE42IRQEpvlYwnxD7VJSLOCSycuUnbcPRlGiT0VKU=;
-        b=nCwS0hVhUrd5jcLYkPu7jA3YpzAiO0SRT6RnIN2LW3mTdQicLhBu9HQdgV8UL5xw6M
-         TU0QgnXr94U5EV1efw5zZznHl0r99SNGpdn7fk3l/XxXpSLZMlETdybW0+nBvp6dAR2o
-         jEasWsc92sC5we8ggBm+/zyEKTlLOMSyy3SJomGxe1SErMBvyblhaJxR/je38kR6Dxxk
-         ALSkXwCP2/3zVhCr+yOwdua3EOUZ8kLbnko88+B/T19S5ivjWg6XySsi7A4jmqjyyO1b
-         6W+eEZVP0oQDHm12NAIPaqI0+YOaqVSsMPrtPGrBevQMLvHYQl/oGElP6HflgyGhdl6b
-         wSoQ==
-X-Gm-Message-State: ANoB5pmcFOmqkphD6roA7Kfg47J23STRo8z0WF/43j2Mv5cAev7QXty0
-        2zPLI8HUE2cmMy1pfOSD8rgbqg==
-X-Google-Smtp-Source: AA0mqf5576Smjd5iC86BrqdWj7qdQ3v5kGphmRORCZi8Fhqujqy/nP6bb0FfF7erLI3gpEizurjsEA==
-X-Received: by 2002:a05:6512:708:b0:4a2:6d30:fef2 with SMTP id b8-20020a056512070800b004a26d30fef2mr1699692lfs.324.1669103967144;
-        Mon, 21 Nov 2022 23:59:27 -0800 (PST)
+        bh=jWIqopC5oQPso26xwMM2ZxOzw/xY+hIxzsNT5oqWCuo=;
+        b=uEy6WXuwmamdCQSUPmfejB7ma19lAcu5ZFOofgFbaECe9h/3dBBHQe7jJ+8WOixViX
+         ZzIWLRPCSAZjmnBDCzl9jN2UBc1bbAsUx28uQGmkhx0fFaCao6GLA05vXGZdrVCrXyZc
+         Nb9HA+Vqr5H1TtsrU6hQ1owfyUWxu1rWS/+DJIonUsIBc9ilNRvf9NMNgXm4Bk79rc2M
+         yA3keiKXLnSnGC4BmzF4fQatvD7YVawIRWO0ASafnioDg7OwRrtTLdYsitb4ZqFLzXkj
+         iWJ/7f8JPOknCRUMXbOaDPX4knXQT85JMwNMz/oTT6pYRyLsAsDnzw4P58axjfgW0FGY
+         Ehuw==
+X-Gm-Message-State: ANoB5pmccJHoQAaua7VpMluK557kjT5/RbES5pOatwutPD4eJ4sUK7Wa
+        5AnmQ8kKpOR2yUDDUyKZVlqBlg==
+X-Google-Smtp-Source: AA0mqf6c25W2Jn92KK0myrgYdN6FS+g00Ifx7uFwXtc+3uia6hrGuTpxDqSirCDHAlAivqx5WDlzVw==
+X-Received: by 2002:a2e:9e8a:0:b0:277:13a1:187e with SMTP id f10-20020a2e9e8a000000b0027713a1187emr6674438ljk.498.1669103988853;
+        Mon, 21 Nov 2022 23:59:48 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l7-20020a2e7007000000b0027776efa48csm1768076ljc.91.2022.11.21.23.59.25
+        by smtp.gmail.com with ESMTPSA id m3-20020a056512114300b004afac783b5esm2334790lfg.238.2022.11.21.23.59.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 23:59:26 -0800 (PST)
-Message-ID: <6bb1ee6d-ab8c-824c-4a7d-29769189e4b4@linaro.org>
-Date:   Tue, 22 Nov 2022 08:59:25 +0100
+        Mon, 21 Nov 2022 23:59:48 -0800 (PST)
+Message-ID: <a7e1e1c4-cad9-988e-7a8e-32941d59214f@linaro.org>
+Date:   Tue, 22 Nov 2022 08:59:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
@@ -76,10 +76,10 @@ Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "festevam@gmail.com" <festevam@gmail.com>
 References: <20221121065144.3667658-1-ping.bai@nxp.com>
  <20221121065144.3667658-2-ping.bai@nxp.com>
- <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
- <AS8PR04MB864223C12564CB68F5836908870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
+ <1d93e843-d7bd-a4f7-bb99-4270d9333fa1@linaro.org>
+ <AS8PR04MB8642CE4F0DF34A998FBDB50E870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AS8PR04MB864223C12564CB68F5836908870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
+In-Reply-To: <AS8PR04MB8642CE4F0DF34A998FBDB50E870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,79 +91,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:26, Jacky Bai wrote:
+On 21/11/2022 11:30, Jacky Bai wrote:
 >> Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
 >> bbnsm
 >>
+>> Also few nits:
+>>
 >> On 21/11/2022 07:51, Jacky Bai wrote:
 >>> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
->>>
->>> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
->>> ---
-> 
-> ...
-> 
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        const: nxp,bbnsm-rtc
 >>
+>> Subject: drop second, redundant "bindings".
 >>
->> Missing ref to rtc.yaml.
 > 
-> Ok will include in v2.
->>
->>> +
->>> +      regmap:
->>
->> Use vendor prefix, descriptive name and description. Where is the type of
->> 'regmap' defined?
-> 
-> Type is missed. Will add a description and type define if necessary.
-> 
->>
->>> +        maxItems: 1
->>
->> I don't think this is correct. Rob explained the simple-mfd means children
-> do
->> not depend on anything from the parent, but taking a regmap from its
-> parent
->> contradicts it.
-> 
-> For this BBNSM module, basically, it provides two sperate & different
-> function: RTC and ON/OFF button control. But
-> no separate register offset range for each of these functions. For example,
-> the interrupt enable control,
-> Interrupt status and basic function control are mixed in the same registers'
-> different bit.
-> 
-> Any good suggestion on how to handle such case? ^_^
+> Do you mean the redundant 'bindings' in below title line?
 
-The solution for more complex common parts, dedicated device driver (MFD
-driver) with its own binding. However I understand why it would be
-overshoot here.
+No, I meant subject.
 
-> 
->>
->>> +
->>> +      interrupts:
->>> +        maxItems: 1
->>
->> You have same interrupt and same address space used by two devices.
->>
->> Both arguments (depending on parent regmap, sharing interrupt) suggests
->> that this is one device block, so describing it with simple-mfd is quite
->> unflexible.
->>
-> 
-> It is depends on how SoC integrates this BBNSM module. From the BBNSM side,
-> it has separate IRQ lines for RTC function and ON/OFF function. Different
-> IRQ lines
-> can be used for RTC and ON/OFF button. But in current i.MX93 SoC, those
-> interrupts
-> are ORed together at SoC level. That's why same interrupt in the example.
-
-It's fine then.
 
 Best regards,
 Krzysztof
