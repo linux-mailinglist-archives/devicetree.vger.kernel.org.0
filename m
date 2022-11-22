@@ -2,165 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C29633723
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6FC633725
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbiKVIav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:30:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
+        id S232888AbiKVIa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:30:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232846AbiKVIa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:30:26 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D779F43874
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:29:54 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id g7so22519145lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:29:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8+WSgTx4cT4ZBlmaUrz5K0AposnIERDeJo73rF4CmUg=;
-        b=MEujhAWSk3hCxepZRKacgo6OLEefJMq8GH6DyzqoIAFnTKYZTJ5T57HevAa/WwYegd
-         v7rcGgSQURI2WAfSbUs5NXQtMsC1U8e4nmNfbWtnEJlFQ4cO7uWE1DPk41RzgjKls9MD
-         f+WouBNFWzgnKKdAtCfJmkUegobLQmCYiG+jAc+TytRGOou0LAZskKb9zTMGI/oQNvvR
-         oR6FWQ1lggS8uw73HSbnCu/SWQMOW7aU2Yc+1FTlAVUBhMOvd8aYl3bB0IPzYE3bBwxl
-         8e4h+cZBfHU3amogGWDxP2evvFgQ081UqEckgVuasz6746GpVDSZVwQY2ZKD9k9kH/JV
-         GxFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8+WSgTx4cT4ZBlmaUrz5K0AposnIERDeJo73rF4CmUg=;
-        b=Uef8PjVYyOZS6uSEvHMOApXBOaK3DgM8wazdMDbE1OUdtlMOtMILT2dDBs3yTdNUQP
-         kh1a8vjmckYdbR3tScOi3IsVu8h8Jnla/fqEkwfmZmLBMsJbo/qb8+yYUQYn/odBlFzS
-         KvJhsI4t1wvGykuG6LBj7xxkn/HKgcpO2wH2/gYQf/z2cR0rtFGGPka2zuLjGflHSrRX
-         uAvbsaJ9FNcnK/F+suvxR9JUaNi2LRnhjk9uDXPX8eX4QXy+hcty9vYEPBwUanqHwaVu
-         uCIG76nba1EGF3hpGCooSG/vgfL2t3Y6fvOmplQTHbR46d8o8uFSVWCG7uiSXZREu2HE
-         SpsA==
-X-Gm-Message-State: ANoB5pmMy68dbmJ7d4rj2z6TXMDEKNWWvJV6kakb0bSEWpUH52emzNYn
-        JrV6LQ+AhrlYhGDj+Q3Au8Z8Vw==
-X-Google-Smtp-Source: AA0mqf6l2Nkxmg00sfH6f6iPzYskcRM8lk4i/i9M62O3kY7R4ojDl1BjcHnnEzy5oksSLxeO1Hfd9Q==
-X-Received: by 2002:a19:6913:0:b0:4a4:4735:c289 with SMTP id e19-20020a196913000000b004a44735c289mr7169278lfc.560.1669105793210;
-        Tue, 22 Nov 2022 00:29:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c16-20020a056512075000b0049462af8614sm2376542lfs.145.2022.11.22.00.29.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 00:29:52 -0800 (PST)
-Message-ID: <f505b138-16ae-8eef-3123-1cf9180a0a5d@linaro.org>
-Date:   Tue, 22 Nov 2022 09:29:51 +0100
+        with ESMTP id S232916AbiKVIac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:30:32 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A18A3F071;
+        Tue, 22 Nov 2022 00:30:10 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 81FEC24E238;
+        Tue, 22 Nov 2022 16:30:08 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
+ 2022 16:30:08 +0800
+Received: from [192.168.125.96] (113.72.144.23) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
+ 2022 16:30:07 +0800
+Message-ID: <2fd4d4f0-eade-3496-1b03-d980b190b3d5@starfivetech.com>
+Date:   Tue, 22 Nov 2022 16:30:07 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in addition
- to hex format
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 1/4] dt-bindings: power: Add StarFive JH7110 power
+ domain definitions
 Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20221121115525.36362-1-tony@atomide.com>
- <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
- <Y3uPvYqaILNiYW8K@atomide.com>
- <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
- <Y3xTi5JeLPSWchT7@atomide.com>
- <8c37d6a6-497c-f761-1e27-1ef5b3e64250@linaro.org>
- <Y3yEIch6IiLwuUZc@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y3yEIch6IiLwuUZc@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118133216.17037-1-walker.chen@starfivetech.com>
+ <20221118133216.17037-2-walker.chen@starfivetech.com>
+ <bc853d76-5b65-676a-040a-edf53034c9ad@linaro.org>
+ <98866fec-e88a-f241-bb42-78d33f051f11@starfivetech.com>
+ <65323df3-1102-8d95-7c13-80d9756c7c33@linaro.org>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <65323df3-1102-8d95-7c13-80d9756c7c33@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.23]
+X-ClientProxiedBy: EXCAS063.cuchost.com (172.16.6.23) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 09:11, Tony Lindgren wrote:
-> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221122 07:26]:
->> On 22/11/2022 05:43, Tony Lindgren wrote:
->>> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
->>>> On 21/11/2022 15:48, Tony Lindgren wrote:
->>>>> * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
->>>>>> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
->>>>>>> Let's allow node numbering in decimal format too.
->>>>>>>
->>>>>>> Simple human-readable increments/IDs are usually decimal, hex is only for
->>>>>>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
->>>>>>>
->>>>>>> Cc: Thierry Reding <thierry.reding@gmail.com>
->>>>>>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->>>>>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>> Signed-off-by: Tony Lindgren <tony@atomide.com>
->>>>>>> ---
->>>>>>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
->>>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>>>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
->>>>>>> @@ -13,7 +13,7 @@ select: false
->>>>>>>  
->>>>>>>  properties:
->>>>>>>    $nodename:
->>>>>>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
->>>>>>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
->>>>>>
->>>>>> I wonder why you don't make this:
->>>>>>
->>>>>> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
+On 2022/11/22 16:03, Krzysztof Kozlowski wrote:
+> On 22/11/2022 08:46, Walker Chen wrote:
+>> On 2022/11/21 18:12, Krzysztof Kozlowski wrote:
+>>> On 18/11/2022 14:32, Walker Chen wrote:
+>>>> Add power domain definitions for the StarFive JH7110 SoC.
 >>>>
->>>> Yes, the '*' should be within ().
->>>
->>> Sorry I guess I don't follow. So for what type of naming is the second '*'
->>> actually needed here, or is it needed at all?
->>>
->>> We only want to match the following:
->>>
->>> pwm@1234
->>>
->>> pwm-0
->>> ...
->>> pwm-f
->>>
->>> And now also:
->>>
->>> pwm-0
->>> ...
->>> pwm-15
->>>
->>> Is there yet another format I'm missing?
->>>
->>>>> Hmm but I think this would also pass for node names like pwm-a-foo?
->>>>>
+>>>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+>>>> ---
+>>>>  include/dt-bindings/power/jh7110-power.h | 18 ++++++++++++++++++
+>>>>  1 file changed, 18 insertions(+)
+>>>>  create mode 100644 include/dt-bindings/power/jh7110-power.h
 >>>>
->>>> No, how?
+>>>> diff --git a/include/dt-bindings/power/jh7110-power.h b/include/dt-bindings/power/jh7110-power.h
+>>>> new file mode 100644
+>>>> index 000000000000..24160c46fbaf
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/power/jh7110-power.h
 >>>
->>> Because of the second extra '*' there :)
->>
->> It cannot multiple dashes...
-
-Yeah, it should be - it cannot match multiple dashes...
-
+>>> Filename matching compatible or bindings file.
+>> 
+>> So the file name should be changed to "starfive,jh7110-power.h" and the compatible in the driver 
+>> should also be changed to "starfive,jh7110-power". Is it right ?
 > 
-> Sorry I'm still confused.. Care to specify what match do you want to
-> use here and why?
+> I said filename should be changed. I don't remember what was your
+> compatible, but if I did not comment there, in means it looked fine.
+> 
+>> 
+>>>
+>>>> @@ -0,0 +1,18 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0) */
+>>>
+>>> Dual license for bindings.
+>> 
+>> Ok, the license will be changed to GPL-2.0 or MIT in the patch v2. 
+> 
+> Any reasons why not using the licenses recommended by checkpatch?
+> 
+Well, it sounds like a better way to decide which license to use by checkpatch.
+Thanks for your tip.
 
-Pattern:
--[0-9a-f]*
-cannot match -1-2-3 because it does not cover the dash.
-
-Best regards,
-Krzysztof
+Best Regards,
+Walker Chen
 
