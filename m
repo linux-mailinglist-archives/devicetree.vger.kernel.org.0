@@ -2,356 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7463634B1C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 00:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0178634B27
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 00:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234936AbiKVXcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 18:32:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
+        id S235292AbiKVXhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 18:37:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234892AbiKVXck (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 18:32:40 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F8D1182D;
-        Tue, 22 Nov 2022 15:32:38 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id j12so15112755plj.5;
-        Tue, 22 Nov 2022 15:32:38 -0800 (PST)
+        with ESMTP id S235000AbiKVXhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 18:37:03 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE7C9DB84
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:01 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id f13so4285786lfa.6
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xR2vHmEP3Nm1DbSbyQP7SzQx10F473F5bKKnZx13bC0=;
-        b=dYmVd2MiANTX0LOYuPpcczwqS//BPZShmSmN8WMbFWu3X1jZqGGvGFkCIWxbuOFe0U
-         aTEhYrGuWgPc4pk+pxWyEFKONI3CGrbuk7UdjNdfYFhzg41OqYcjaYOJ+6h61JMPAqL/
-         QA2b4G4cGhTU6n7//d8ac4l8Ev9CVKkW+aDl/svzm2Ikmeu6C8TB+MbpNGjq1u9Gj5nl
-         +fDpfJpkp1K1SwHsL5YdmW+yndPj9wZHzPP7KuI65MXDnm+SojS0e8wZ5kGaJOTKzFMF
-         bXk7KiksmA2jVNb5pht9DpMRTe9PIlAEj8Gzz7qiqFgn4W6mIJCmeRuDkZA8OpKKriNt
-         uM3Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jiQzjk4U2HBL8m9nCmdH0QqbW0qnEDB7JZce1irB8qw=;
+        b=gGKAQKdv563C0u+WXaCrTOxSt4oi0Gzo9xbEyK0chJ5EkTcKRvEG7Chp7zHxOYhqBU
+         xuNHeX+I2qzo1Bb65t4nCoto3D19Npd11LkQvCygMMcnblKMIbwQbZe66b1NfkaRBqtU
+         NjP7rEVEXms5uh0ocz6cA72tmeEtp/7+DR4ub5CEW/zJTzFn1cxlxxfw6tcDfaQfFr3N
+         PiXhHoDN38B5dqHk3D3MlUy68kYLCgGelhayXsDx7XmGEmxoRn3u7UVp5H4+5Nbm9H9K
+         x7qG8BPSG/JBj02t2RUFCCNYdVZJj41myreXKfbExEFnTo03HpIYmNkz7iFD5no7/XuX
+         6H4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xR2vHmEP3Nm1DbSbyQP7SzQx10F473F5bKKnZx13bC0=;
-        b=1tOeZJm2ya0g0mj2NhPrJfhb94tXAOAXnZ7/FlM9+rHEp0PUPYx/CA5xYjWH/paqGP
-         H5xLckQ9qYxk/Xk+KtZV1Iu/2qiAknNLAqN+ojiMxUK4atVQNXDQp9X0g8Q04NKSULnA
-         /IxplDKtvAo8I3gP/xZcQYhW6kMB5eDX0wqrGfIUzeFXlrr8TYpuLFECzhtIbponqGeW
-         UIkB96Z/P2qS3EulHtSl/83WGmqm0bzyC1XdbF7dIB+hBcaFjxHiekwklsqLgqzC0jkq
-         mi+/+gGwMvJ5WFgEZ32jhFh0pU/EltigG7cyFUm+dfDkLjLSubhGbs9xywdvKRqSNVP8
-         2u+Q==
-X-Gm-Message-State: ANoB5pmGVT78bIPPwEU0tnqzyfAaunqWR44YolMyutSnIlHeWEz5ujSV
-        M8ucSLmk/+VN+MdT+W6PCGQ=
-X-Google-Smtp-Source: AA0mqf7BQH0z+CMvDPYj7fa/bQtmFUxOcVZjiCz5f7v/omcTuMmZRP/HAhi3Gu4DHVM3HC4uWZAyzg==
-X-Received: by 2002:a17:903:1206:b0:186:a2ef:7a74 with SMTP id l6-20020a170903120600b00186a2ef7a74mr9959273plh.148.1669159957386;
-        Tue, 22 Nov 2022 15:32:37 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:af8d:6047:29d5:446c])
-        by smtp.gmail.com with ESMTPSA id u15-20020a170902e80f00b001869581f7ecsm12712979plg.116.2022.11.22.15.32.35
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jiQzjk4U2HBL8m9nCmdH0QqbW0qnEDB7JZce1irB8qw=;
+        b=APmlLLza1pQQrAA7oBTEJuLkAt9oXhdqljY4+/UgQjbBOgvoOsvDsL5YIgszTMc/SD
+         6sz4fYCk5NI9hbXQ+3GhNNIWrCb9LxI9T3nC1n2jKpBRwOpkOFaNXgLndIEcUeAWR3G3
+         uD3R/CiuEBOqMjg4AI3n7ga+Bj33w6zVdE2TP6WeGxzZFQ6lWYke187BwBT/U6Wx5HSt
+         s7oZjownGEiNtDwz6cm1UFZMlqWfLsIfRHm3jaBIHocsOMcT1Hq+EMXR4CyhIs4REZyl
+         JUccS90AWgCMIIfY50GN52/RVcIxI2foFyfJk0vyG1atqmZfFI8jVq3Q95jGWGMeFhoX
+         Igug==
+X-Gm-Message-State: ANoB5pnEfWIBy9cutB+nDx1QqYlG0PCQwLUTZfYuqJJSejMoRpV/rXVR
+        YwF4n+pSqpJIaf4plxN3l1/edA==
+X-Google-Smtp-Source: AA0mqf4rbwu1mUCXJ+V4n19yRGiu6bs/kFIOG1QwdiwAGz+l+K+/1xXJzZ04Qsd1evUe7LbbLVzz7g==
+X-Received: by 2002:a05:6512:32d0:b0:4b4:b5ed:c71f with SMTP id f16-20020a05651232d000b004b4b5edc71fmr8410539lfg.227.1669160220307;
+        Tue, 22 Nov 2022 15:37:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (dzpbkzhtyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:a302:8a1a::1])
+        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm2666454lfm.186.2022.11.22.15.36.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 15:32:36 -0800 (PST)
-Date:   Tue, 22 Nov 2022 15:32:33 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, festevam@gmail.com
-Subject: Re: [PATCH 2/4] input: bbnsm_pwrkey: Add bbnsm power key support
-Message-ID: <Y31cES4SiUlG4mKd@google.com>
-References: <20221121065144.3667658-1-ping.bai@nxp.com>
- <20221121065144.3667658-3-ping.bai@nxp.com>
+        Tue, 22 Nov 2022 15:36:59 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v2 0/5] arm64: dts: qcom: sm8450-hdk: enable HDMI output
+Date:   Wed, 23 Nov 2022 01:36:54 +0200
+Message-Id: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221121065144.3667658-3-ping.bai@nxp.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
+Add device tree nodes for MDSS, DPU and DSI devices on Qualcomm SM8450
+platform. Enable these devices and add the HDMI bridge configuration on
+SM8450 HDK.
 
-On Mon, Nov 21, 2022 at 02:51:42PM +0800, Jacky Bai wrote:
-> The ON/OFF logic inside the BBNSM allows for connecting directly
-> into a PMIC or other voltage regulator device. The module has an
-> button input signal and a wakeup request input signal. It also
-> has two interrupts (set_pwr_off_irq and set_pwr_on_irq) and an
-> active-low PMIC enable (pmic_en_b) output.
-> 
-> Add the power key support for the ON/OFF button function found in
-> BBNSM module.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/input/keyboard/Kconfig        |  11 ++
->  drivers/input/keyboard/Makefile       |   1 +
->  drivers/input/keyboard/bbnsm_pwrkey.c | 196 ++++++++++++++++++++++++++
->  3 files changed, 208 insertions(+)
->  create mode 100644 drivers/input/keyboard/bbnsm_pwrkey.c
-> 
-> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-> index 00292118b79b..8efcd95492b3 100644
-> --- a/drivers/input/keyboard/Kconfig
-> +++ b/drivers/input/keyboard/Kconfig
-> @@ -456,6 +456,17 @@ config KEYBOARD_SNVS_PWRKEY
->  	  To compile this driver as a module, choose M here; the
->  	  module will be called snvs_pwrkey.
->  
-> +config KEYBOARD_BBNSM_PWRKEY
-> +	tristate "NXP BBNSM Power Key Driver"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on OF
-> +	help
-> +	  This is the bbnsm powerkey driver for the NXP i.MX application
-> +	  processors.
-> +
-> +	  To compile this driver as a module, choose M here; the
-> +	  module will be called bbnsm_pwrkey.
-> +
->  config KEYBOARD_IMX
->  	tristate "IMX keypad support"
->  	depends on ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-> index 5f67196bb2c1..0bc101e004ae 100644
-> --- a/drivers/input/keyboard/Makefile
-> +++ b/drivers/input/keyboard/Makefile
-> @@ -62,6 +62,7 @@ obj-$(CONFIG_KEYBOARD_QT2160)		+= qt2160.o
->  obj-$(CONFIG_KEYBOARD_SAMSUNG)		+= samsung-keypad.o
->  obj-$(CONFIG_KEYBOARD_SH_KEYSC)		+= sh_keysc.o
->  obj-$(CONFIG_KEYBOARD_SNVS_PWRKEY)	+= snvs_pwrkey.o
-> +obj-$(CONFIG_KEYBOARD_BBNSM_PWRKEY)	+= bbnsm_pwrkey.o
->  obj-$(CONFIG_KEYBOARD_SPEAR)		+= spear-keyboard.o
->  obj-$(CONFIG_KEYBOARD_STMPE)		+= stmpe-keypad.o
->  obj-$(CONFIG_KEYBOARD_STOWAWAY)		+= stowaway.o
-> diff --git a/drivers/input/keyboard/bbnsm_pwrkey.c b/drivers/input/keyboard/bbnsm_pwrkey.c
-> new file mode 100644
-> index 000000000000..288ee6844000
-> --- /dev/null
-> +++ b/drivers/input/keyboard/bbnsm_pwrkey.c
-> @@ -0,0 +1,196 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright 2022 NXP.
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/input.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_wakeirq.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/regmap.h>
-> +
-> +#define BBNSM_CTRL		0x8
-> +#define BBNSM_INT_EN		0x10
-> +#define BBNSM_EVENTS		0x14
-> +#define BBNSM_PAD_CTRL		0x24
-> +
-> +#define BBNSM_BTN_PRESSED	BIT(7)
-> +#define BBNSM_PWR_ON		BIT(6)
-> +#define BBNSM_BTN_OFF		BIT(5)
-> +#define BBNSM_EMG_OFF		BIT(4)
-> +#define BBNSM_PWRKEY_EVENTS	(BBNSM_PWR_ON | BBNSM_BTN_OFF | BBNSM_EMG_OFF)
-> +#define BBNSM_DP_EN		BIT(24)
-> +
-> +#define DEBOUNCE_TIME		30
-> +#define REPEAT_INTERVAL		60
-> +
-> +struct bbnsm_pwrkey {
-> +	struct regmap *regmap;
-> +	int irq;
-> +	int keycode;
-> +	int keystate;  /* 1:pressed */
-> +	struct timer_list check_timer;
-> +	struct input_dev *input;
-> +};
-> +
-> +static void bbnsm_pwrkey_check_for_events(struct timer_list *t)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm = from_timer(bbnsm, t, check_timer);
-> +	struct input_dev *input = bbnsm->input;
-> +	u32 state;
-> +
-> +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &state);
+Changes since v1:
+- Reorder properties, making status the last one
+- Rename opp nodes to follow the schema
+- Renamed display-controller and phy device nodes
+- Dropped phy-names for DSI PHYs
+- Renamed DSI and DSI PHY labels to include mdss_ prefix
+- Renamed 3v3 regulator device node to add -regulator suffix
 
-Can this fail?
+Dmitry Baryshkov (3):
+  arm64: dts: qcom: sm8450: add RPMH_REGULATOR_LEVEL_LOW_SVS_D1
+  arm64: dts: qcom: sm8450: add display hardware devices
+  arm64: dts: qcom: sm8450-hdk: enable display hardware
 
-> +
-> +	state = state & BBNSM_BTN_PRESSED ? 1 : 0;
-> +
-> +	/* only report new event if status changed */
-> +	if (state ^ bbnsm->keystate) {
-> +		bbnsm->keystate = state;
-> +		input_event(input, EV_KEY, bbnsm->keycode, state);
-> +		input_sync(input);
-> +		pm_relax(bbnsm->input->dev.parent);
-> +	}
-> +
-> +	/* repeat check if pressed long */
-> +	if (state) {
-> +		mod_timer(&bbnsm->check_timer,
-> +			  jiffies + msecs_to_jiffies(REPEAT_INTERVAL));
-> +	}
+Vinod Koul (2):
+  arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI bridge
+  arm64: dts: qcom: sm8450-hdk: Enable HDMI Display
 
-So interrupt is only generated once when key is pressed, but not on
-release?
-
-> +}
-> +
-> +static irqreturn_t bbnsm_pwrkey_interrupt(int irq, void *dev_id)
-> +{
-> +	struct platform_device *pdev = dev_id;
-> +	struct bbnsm_pwrkey *bbnsm = platform_get_drvdata(pdev);
-> +	struct input_dev *input = bbnsm->input;
-> +	u32 event;
-> +
-> +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &event);
-> +	if (event & BBNSM_BTN_OFF)
-> +		mod_timer(&bbnsm->check_timer, jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
-> +	else
-> +		return IRQ_NONE;
-> +
-> +	pm_wakeup_event(input->dev.parent, 0);
-> +
-> +	/* clear PWR OFF */
-> +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, BBNSM_BTN_OFF);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void bbnsm_pwrkey_act(void *pdata)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm = pdata;
-> +
-> +	del_timer_sync(&bbnsm->check_timer);
-> +}
-> +
-> +static int bbnsm_pwrkey_probe(struct platform_device *pdev)
-> +{
-> +	struct bbnsm_pwrkey *bbnsm;
-> +	struct input_dev *input;
-> +	struct device_node *np = pdev->dev.of_node;
-> +	int error;
-> +
-> +	bbnsm = devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
-> +	if (!bbnsm)
-> +		return -ENOMEM;
-> +
-> +	bbnsm->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "regmap");
-> +	if (IS_ERR(bbnsm->regmap)) {
-> +		dev_err(&pdev->dev, "bbnsm pwerkey get regmap failed\n");
-> +		return PTR_ERR(bbnsm->regmap);
-> +	}
-> +
-> +	if (of_property_read_u32(np, "linux,code", &bbnsm->keycode)) {
-
-Please use device_property_read_u32() here.
-
-> +		bbnsm->keycode = KEY_POWER;
-> +		dev_warn(&pdev->dev, "KEY_POWER without setting in dts\n");
-> +	}
-> +
-> +	bbnsm->irq = platform_get_irq(pdev, 0);
-> +	if (bbnsm->irq < 0)
-> +		return -EINVAL;
-> +
-> +	/* config the BBNSM power related register */
-> +	regmap_update_bits(bbnsm->regmap, BBNSM_CTRL, BBNSM_DP_EN, BBNSM_DP_EN);
-> +
-> +	/* clear the unexpected interrupt before driver ready */
-> +	regmap_write_bits(bbnsm->regmap, BBNSM_EVENTS, BBNSM_PWRKEY_EVENTS, BBNSM_PWRKEY_EVENTS);
-> +
-> +	timer_setup(&bbnsm->check_timer, bbnsm_pwrkey_check_for_events, 0);
-> +
-> +	input = devm_input_allocate_device(&pdev->dev);
-> +	if (!input) {
-> +		dev_err(&pdev->dev, "failed to allocate the input device\n");
-> +		error = -ENOMEM;
-> +		goto error_probe;
-
-Please return directly here and below, since there is not explicit
-cleanup.
-
-> +	}
-> +
-> +	input->name = pdev->name;
-> +	input->phys = "bbnsm-pwrkey/input0";
-> +	input->id.bustype = BUS_HOST;
-> +
-> +	input_set_capability(input, EV_KEY, bbnsm->keycode);
-> +
-> +	/* input customer action to cancel release timer */
-> +	error = devm_add_action(&pdev->dev, bbnsm_pwrkey_act, bbnsm);
-> +	if (error) {
-> +		dev_err(&pdev->dev, "failed to register remove action\n");
-> +		goto error_probe;
-> +	}
-> +
-> +	bbnsm->input = input;
-> +	platform_set_drvdata(pdev, bbnsm);
-> +
-> +	error = devm_request_irq(&pdev->dev, bbnsm->irq, bbnsm_pwrkey_interrupt,
-> +			       IRQF_SHARED, pdev->name, pdev);
-> +	if (error) {
-> +		dev_err(&pdev->dev, "interrupt not available.\n");
-> +		goto error_probe;
-> +	}
-> +
-> +	error = input_register_device(input);
-> +	if (error < 0) {
-> +		dev_err(&pdev->dev, "failed to register input device\n");
-> +		goto error_probe;
-> +	}
-> +
-> +	device_init_wakeup(&pdev->dev, true);
-> +	error = dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
-> +	if (error)
-> +		dev_err(&pdev->dev, "irq wake enable failed.\n");
-> +
-> +	return 0;
-> +
-> +error_probe:
-> +	return error;
-> +}
-> +
-> +static const struct of_device_id bbnsm_pwrkey_ids[] = {
-> +	{ .compatible = "nxp,bbnsm-pwrkey" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, bbnsm_pwrkey_ids);
-> +
-> +static struct platform_driver bbnsm_pwrkey_driver = {
-> +	.driver = {
-> +		.name = "bbnsm_pwrkey",
-> +		.of_match_table = bbnsm_pwrkey_ids,
-> +	},
-> +	.probe = bbnsm_pwrkey_probe,
-> +};
-> +module_platform_driver(bbnsm_pwrkey_driver);
-> +
-> +MODULE_AUTHOR("Jacky Bai <ping.bai@nxp.com>");
-> +MODULE_DESCRIPTION("NXP bbnsm power key Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.37.1
-> 
-
-Thanks.
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 119 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 304 +++++++++++++++++++++++-
+ include/dt-bindings/power/qcom-rpmpd.h  |   1 +
+ 3 files changed, 412 insertions(+), 12 deletions(-)
 
 -- 
-Dmitry
+2.35.1
+
