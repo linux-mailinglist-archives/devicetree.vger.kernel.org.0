@@ -2,110 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE246331BC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 02:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 756EE6331EA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 02:09:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231876AbiKVBCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Nov 2022 20:02:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
+        id S231967AbiKVBJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Nov 2022 20:09:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231772AbiKVBCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 20:02:51 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5112B1144F;
-        Mon, 21 Nov 2022 17:02:45 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id EFE6924E1B5;
-        Tue, 22 Nov 2022 09:02:37 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
- 2022 09:02:38 +0800
-Received: from [192.168.125.106] (113.72.144.23) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
- 2022 09:02:38 +0800
-Message-ID: <1db979d5-1fb6-f3c9-8ce0-e3e2e23e5d14@starfivetech.com>
-Date:   Tue, 22 Nov 2022 09:02:22 +0800
+        with ESMTP id S231876AbiKVBJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Nov 2022 20:09:15 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B3F54B0D
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 17:08:09 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id z20so17118387edc.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 17:08:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NXlietmMDnMDDCbd3vt3QmKB/26LHM3Ufg/KK8xRGJ8=;
+        b=m0TewJWW7KhTdSXchwcIkyxlc1EkvKyFWq5uJQv+yKMBp+IF5UtjELWqTQSb6qyCew
+         kJHBq5X2f6gtjHpqsgh3S4R+eSNqeSybw4Z++QF6NViBx9aQNs9n6HbaVslpThBjx+8Y
+         z85ErMR41r9qSXqg2hznA9QNL6CaZ4N3UymM3Ml9fqxpmgFNJHzKuK3g51mbb04B14oL
+         6Cc1EOYi14h1Qu7wmDAPRkY4+Ot8gdVQMu+ubmNtFivjU97hBzmtHhCtlwuUdI9UF9ee
+         kueWGK/JDg0GEw9aVPF4x3B+j2tCzomWngtlys7Z8cxOYlblZulqOdR0txPc88AqW6W2
+         nhPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NXlietmMDnMDDCbd3vt3QmKB/26LHM3Ufg/KK8xRGJ8=;
+        b=wcG+ux6FNGvI5RpvsFSWX3I2w9+Zjjnws+DDWT79Vc9LsukRvC/1pItGYdkeISJ2UX
+         0i35o3xFpGMv87zNBAj2uStwAKmgZIItWkWoACXnixOABAQ22hy/NpFX4rKg21VltdWn
+         7Zjot8t+tXIRC7+bdWU85dspgZbhiBXv9j+uOxzF+XmYZCWiR5sK8k/DKHswaG7G6kHJ
+         yyf+7HLWnpg6xeNZAzoxm5PskP9O9nUACmSScS7OZoLUMvyjxCJh6m+Ps+mP76LqZKvz
+         p3DCjpW0fojJ5XPD85L1SlpwCZAOzjUJcmR9b6aAhtcRBfmun3r5+/2AZK7HwwGNjK41
+         tPJQ==
+X-Gm-Message-State: ANoB5pnVJGDj1E8497CX+ZKyGdZOzY8QHs8n2WxpdkEMBbFdPJrNUlpj
+        36mmWujiw4eIcKA1vkEchz4HzYdpUj43OzKH
+X-Google-Smtp-Source: AA0mqf6YHtIfMeR6UPTvsarDA6CMoaDvypsfuFvEc487eJW3bla0HrQAC73iEkA2LGGrx+B9tWkmow==
+X-Received: by 2002:aa7:cc14:0:b0:468:58d4:a10e with SMTP id q20-20020aa7cc14000000b0046858d4a10emr19202803edt.222.1669079287797;
+        Mon, 21 Nov 2022 17:08:07 -0800 (PST)
+Received: from c64.fritz.box ([2a01:2a8:8108:8301:7643:bec8:f62b:b074])
+        by smtp.gmail.com with ESMTPSA id f13-20020a1709064dcd00b007030c97ae62sm5514683ejw.191.2022.11.21.17.08.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 17:08:07 -0800 (PST)
+From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        krzysztof.kozlowski@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, khilman@baylibre.com
+Subject: [PATCH v2 0/7] Remove the pins-are-numbered DT property
+Date:   Tue, 22 Nov 2022 02:07:46 +0100
+Message-Id: <20221122010753.3126828-1-bero@baylibre.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v2 07/14] dt-bindings: clock: Add StarFive JH7110 system
- and always-on clock definitions
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-8-hal.feng@starfivetech.com>
- <4d1fbddc-ee8b-1ab3-d1a9-8496bda3f668@linaro.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <4d1fbddc-ee8b-1ab3-d1a9-8496bda3f668@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.23]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Nov 2022 09:45:11 +0100, Krzysztof Kozlowski wrote:
-> On 18/11/2022 02:06, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> > 
-> > Add all clock outputs for the StarFive JH7110 system (SYS) and
-> > always-on (AON) clock generator.
-> > 
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > ---
-> >  MAINTAINERS                                 |   5 +-
-> >  include/dt-bindings/clock/starfive-jh7110.h | 234 ++++++++++++++++++++
-> >  2 files changed, 237 insertions(+), 2 deletions(-)
-> >  create mode 100644 include/dt-bindings/clock/starfive-jh7110.h
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index e6f1060e7964..e97dac9c0ee4 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -19598,12 +19598,13 @@ M:	Ion Badulescu <ionut@badula.org>
-> >  S:	Odd Fixes
-> >  F:	drivers/net/ethernet/adaptec/starfire*
-> >  
-> > -STARFIVE JH7100 CLOCK DRIVERS
-> > +STARFIVE CLOCK DRIVERS
-> >  M:	Emil Renner Berthing <kernel@esmil.dk>
-> > +M:	Hal Feng <hal.feng@starfivetech.com>
-> >  S:	Maintained
-> >  F:	Documentation/devicetree/bindings/clock/starfive,jh7100-*.yaml
-> >  F:	drivers/clk/starfive/
-> > -F:	include/dt-bindings/clock/starfive-jh7100*.h
-> > +F:	include/dt-bindings/clock/starfive*
-> >  
-> >  STARFIVE JH7100 PINCTRL DRIVER
-> >  M:	Emil Renner Berthing <kernel@esmil.dk>
-> > diff --git a/include/dt-bindings/clock/starfive-jh7110.h b/include/dt-bindings/clock/starfive-jh7110.h
-> 
-> Filename based / the same as compatible (or bindings filename).
+During the review of my MT8365 support patchset
+(https://lore.kernel.org/linux-mediatek/20221117210356.3178578-1-bero@baylibre.com/),
+the issue of the "pins-are-numbered" DeviceTree property has come up.
 
-Should I split this file into two files for "SYSCRG" and "AONCRG", which
-maybe named as "starfive-jh7110-sys.h" and "starfive-jh7110-aon.h". Ditto
-for the patch 8.
+This property is unique to Mediatek MT65xx and STM32 pinctrls, and
+doesn't seem to serve any purpose (both the Mediatek and STM32 drivers
+simply refuse to deal with a device unless pins-are-numbered is set to
+true).
 
-Best regards,
-Hal
+There is no other use of this property in the kernel or in other projects
+using DeviceTrees (checked u-boot and FreeBSD -- in both of those, the
+flag is present in Mediatek and STM devicetrees, but not used anywhere).
+
+There is also no known use in userspace (in fact, a userland application
+relying on the property would be broken because it would get true on
+any Mediatek or STM chipset and false on all others, even though other
+chipsets use numbered pins).
+
+This patchset removes all uses of pins-are-numbered and marks the
+property as deprecated.
+
+v2:
+  - Deprecate the property instead of removing it completely from
+    schemas
+  - squash some related commits
+
+ Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml | 5 ++---
+ Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml        | 7 +++----
+ arch/arm/boot/dts/mt2701.dtsi                                          | 1 -
+ arch/arm/boot/dts/mt7623.dtsi                                          | 1 -
+ arch/arm/boot/dts/mt8135.dtsi                                          | 1 -
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi                                 | 1 -
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi                                 | 1 -
+ arch/arm/boot/dts/stm32h743.dtsi                                       | 1 -
+ arch/arm/boot/dts/stm32mp131.dtsi                                      | 1 -
+ arch/arm/boot/dts/stm32mp151.dtsi                                      | 2 --
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi                              | 1 -
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi                               | 1 -
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi                           | 1 -
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi                               | 1 -
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi                               | 1 -
+ drivers/pinctrl/mediatek/pinctrl-mtk-common.c                          | 6 ------
+ drivers/pinctrl/stm32/pinctrl-stm32.c                                  | 5 -----
+ 17 files changed, 5 insertions(+), 32 deletions(-)
+
+
+
