@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91321634215
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B780E63421B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231842AbiKVRCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 12:02:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59502 "EHLO
+        id S233443AbiKVRDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 12:03:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231475AbiKVRCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:02:32 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 080DA3B9;
-        Tue, 22 Nov 2022 09:02:28 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id cl5so25688869wrb.9;
-        Tue, 22 Nov 2022 09:02:27 -0800 (PST)
+        with ESMTP id S234399AbiKVRDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:03:07 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BD5A442;
+        Tue, 22 Nov 2022 09:03:06 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id n3so9124194wrp.5;
+        Tue, 22 Nov 2022 09:03:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lUcHxKNUlASZz/X8KuXB0tRt7hDcsZtxJiE2XAUFgK0=;
-        b=QfIK0hXCjKJVeI0i0Z8r3P7A0TRBhzEwfNMv7GdcuQ8byRz9v9xDE1/xQXpXzScshj
-         gcRiFXtjXNZv8/4+2XGXaKQt8HqXk2FNxHeKAyh92mO8RGEB+hLOLB9m7vlps76+bIZs
-         +8VQgUPMrH3lPvJKzA8vevmS9h3ST7QFsdmJBR+FidD4wLQSSf8trA1H01D2AxOYnm2W
-         FmWn0UuBVuq5+M7gsiPS8D4iilJqrUkJeDotVIm2JtWeJw3UwpGxtlKBn4VOLRd2TSg9
-         LHOv924/g2YRJXGzw6O09VPW72nD14vEKGIey3znmEbYYiQC5/AG/ggvVYgqVastnsMC
-         OmGA==
+        bh=o2ESf2ffEWNtfVyM0ZPvb6Y0s026dxSYBpFrwcaZ3J0=;
+        b=jYH5L4jwO3/d+gHzNoEfN+SNyVccGsviLt9pM8GecpnpvqZNCOeanh91XhU9KlIWTa
+         Bt6yU12pdtmPRaYodwRAFupLAk80R4xeJedy9BnqAWYbi+2IlgQ1IIQ6+Wg5ddg+xZPg
+         Ne1X8dT2ltDivCtWGr1pN61s4Y5AN+S/DHlMq/+avsQLfAmXN8OX6XrzYMqC85/DYSgu
+         pyzckN2+ZJ4vRprzLunP04BTAZx7zqpINeHK41p7vDkE1Qc33XKR8wxcZAzoMl9XhnP8
+         ttx2giyAp2NdtLntxKdENItCv8OXzHTlqGOyTSCowzAoy20dgxe/3YcgnU0KNP8hZ9Kk
+         z43Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lUcHxKNUlASZz/X8KuXB0tRt7hDcsZtxJiE2XAUFgK0=;
-        b=7zKwhE5b8Bmr5c9wXyIqsKiREaTIELcbxKqtlwq4Tb6/ezppmfhUddHXZQAj3Kui7C
-         p+qM2wI7mCXsxQbxzvPjzbz7fPEI2f8YZlcz5P/+5oQJVJ6NUabnXhc16/jO8Q64SvDB
-         7ERrFJ05DFEbuUTAWWo7RJ3A8/vjOsArWpzE9OLdROCP5ehcokb2SL+Qatx2iIAAZ1J/
-         XueSp+9yMOsO/9yIKd61hiC6CnyANwO+c/0OCVyP5YQdwIH+FQQwAVBSRJzvAQ9l306b
-         ruwWqyn+AVk62WMZlhriOT7ouAyE4WPHfBieah4ZzT3Ie9gyiivD3IC7JstFiH9BMmav
-         KplQ==
-X-Gm-Message-State: ANoB5pnYJ+o2t0IB+Pymhbl2a51xF11U6wi9pViPrF4T1pABxqIeGqf1
-        8+YDnDRYEs8SRRea2U7UYGE=
-X-Google-Smtp-Source: AA0mqf49HIMZSzdOoEtBJ9tRmIBfPJn16ehrqs2keL04CLnigLwdWrXYnLZc4qam3NRENhayvSEnGA==
-X-Received: by 2002:adf:dd10:0:b0:22e:4f2e:e57 with SMTP id a16-20020adfdd10000000b0022e4f2e0e57mr15005618wrm.698.1669136546331;
-        Tue, 22 Nov 2022 09:02:26 -0800 (PST)
+        bh=o2ESf2ffEWNtfVyM0ZPvb6Y0s026dxSYBpFrwcaZ3J0=;
+        b=Pe8qG60YPyBdeyGXGNscvdgnrtpWbP4xILJmzmYVpu9x/prcc4GU26p2uZeuYCazCV
+         vdGWbIPfwBnSyszwgYbokFEZh/OhrsZGAsAJ6Er2Cemj5xh84TJP9tVtTXbzVvw2kcaI
+         /bRKRhbnoJRzZ4kgJCdT5/1v5jHXk2pUhN2tZvFLtXLFXuG/SsiUiGh/SIau7JX2q1oF
+         Zb8jJPxOo+xdonFVkCKMjtipB7DpjtAEeCCoeCueBlXDUXMhdc4LqIETpqnLN/7n4BDs
+         85HEUZZrpXZAUhzWaAKaJeje6q5ErYoQ/DQ7ALLV7ej34NtsCOAuLLlz6u3kuD1tYvbk
+         MlzQ==
+X-Gm-Message-State: ANoB5pm5CXRHbW6jhSNhyB87e7otQ9WX8D7Ks/Y2XsWZ72/nQj3UJshU
+        vTr7s3AyY2MP22REvp4hYZg=
+X-Google-Smtp-Source: AA0mqf5AAB2WpZpQrxG/QW1P9YfLF2voM76+7M892xh+AKLCme4WOa5olE+MEanw9+a/FkosbhcpOw==
+X-Received: by 2002:adf:ed8e:0:b0:241:d7ce:4395 with SMTP id c14-20020adfed8e000000b00241d7ce4395mr6251645wro.553.1669136584924;
+        Tue, 22 Nov 2022 09:03:04 -0800 (PST)
 Received: from [192.168.0.25] ([37.222.251.204])
-        by smtp.gmail.com with ESMTPSA id n27-20020a05600c3b9b00b003cfa81e2eb4sm19846292wms.38.2022.11.22.09.02.24
+        by smtp.gmail.com with ESMTPSA id c4-20020adfe704000000b00241cfe6e286sm8503223wrm.98.2022.11.22.09.03.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 09:02:25 -0800 (PST)
-Message-ID: <6945a20d-098b-fad3-766e-f4bcb3c37da8@gmail.com>
-Date:   Tue, 22 Nov 2022 18:02:23 +0100
+        Tue, 22 Nov 2022 09:03:03 -0800 (PST)
+Message-ID: <16774569-6dbe-3bc9-7471-f238e04e6050@gmail.com>
+Date:   Tue, 22 Nov 2022 18:03:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 3/7] dt-bindings: pinctrl: mediatek,mt65xx: Deprecate
+Subject: Re: [PATCH v2 4/7] dt-bindings: pinctrl: st,stm32: Deprecate
  pins-are-numbered
 Content-Language: en-US
 To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
@@ -66,9 +66,9 @@ Cc:     linux-mediatek@lists.infradead.org,
         krzysztof.kozlowski@linaro.org,
         angelogioacchino.delregno@collabora.com, khilman@baylibre.com
 References: <20221122010753.3126828-1-bero@baylibre.com>
- <20221122010753.3126828-4-bero@baylibre.com>
+ <20221122010753.3126828-5-bero@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221122010753.3126828-4-bero@baylibre.com>
+In-Reply-To: <20221122010753.3126828-5-bero@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,43 +84,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 22/11/2022 02:07, Bernhard Rosenkränzer wrote:
-> Make pins-are-numbered optional and deprecate it
+> Deprecate the pins-are-numbered property
 > 
 > Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 
 Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->   .../devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
+>   .../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml      | 7 +++----
+>   1 file changed, 3 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> index 33b5f79e741ab..1b44335b1e947 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> @@ -31,7 +31,8 @@ properties:
->     pins-are-numbered:
->       $ref: /schemas/types.yaml#/definitions/flag
->       description: |
-> -      Specify the subnodes are using numbered pinmux to specify pins.
-> +      Specify the subnodes are using numbered pinmux to specify pins. (UNUSED)
+> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> index 9d59208d83c18..eeb29b4ad4d1a 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> @@ -34,7 +34,9 @@ properties:
+>       const: 1
+>   
+>     ranges: true
+> -  pins-are-numbered: true
+> +  pins-are-numbered:
+> +    $ref: /schemas/types.yaml#/definitions/flag
 > +    deprecated: true
+>     hwlocks: true
 >   
->     gpio-controller: true
->   
-> @@ -62,7 +63,6 @@ properties:
->   
->   required:
->     - compatible
+>     interrupts:
+> @@ -206,7 +208,6 @@ required:
+>     - '#address-cells'
+>     - '#size-cells'
+>     - ranges
 > -  - pins-are-numbered
->     - gpio-controller
->     - "#gpio-cells"
 >   
-> @@ -150,7 +150,6 @@ examples:
->             compatible = "mediatek,mt8135-pinctrl";
->             reg = <0 0x1000B000 0 0x1000>;
->             mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
-> -          pins-are-numbered;
->             gpio-controller;
->             #gpio-cells = <2>;
->             interrupt-controller;
+>   additionalProperties: false
+>   
+> @@ -220,7 +221,6 @@ examples:
+>                 #size-cells = <1>;
+>                 compatible = "st,stm32f429-pinctrl";
+>                 ranges = <0 0x40020000 0x3000>;
+> -              pins-are-numbered;
+>   
+>                 gpioa: gpio@0 {
+>                         gpio-controller;
+> @@ -238,7 +238,6 @@ examples:
+>                 #size-cells = <1>;
+>                 compatible = "st,stm32f429-pinctrl";
+>                 ranges = <0 0x50020000 0x3000>;
+> -              pins-are-numbered;
+>   
+>                 gpiob: gpio@1000 {
+>                         gpio-controller;
