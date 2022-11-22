@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31CE063415C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 17:23:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D8763418F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 17:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234270AbiKVQXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 11:23:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57902 "EHLO
+        id S229507AbiKVQcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 11:32:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234091AbiKVQXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 11:23:11 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28DF1C402
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 08:23:08 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id y14-20020a17090a2b4e00b002189a1b84d4so8363589pjc.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 08:23:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ue9EDxh2qojVXmFN9RvpYTz/rVI4G/WOf5jkgr5avh0=;
-        b=LDOUMeLUyFATDS/+DT4WyniglISnUgAwwcB3WL4mvHq14NwZpdrA+n/1ffLEnYoY+Y
-         9+KkgXw5/sGDO9x63IGVWM23h3xZAy7n+AJR8tF7WCacuD1jZ0IIXawVRFre5ir6fF2w
-         ERTdlAm6qmlVDiyThKyhqvE7ghrMRHPkjx6D+WDpckOtiFyZpQjQdsUWmiZ143eJ+HQQ
-         k/c+mJPelDrGfF3UW0hTOl/334KdGGjuTaIdpNXFh8CKOpSHtyWvchfvxLwpTSTA8dN6
-         3IIJ7BE4ZX9a3fDv1oXttKb67+an4NexOflUS2TyAMDqTYtxz6fBgw+AFRBcHT5296+L
-         chNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ue9EDxh2qojVXmFN9RvpYTz/rVI4G/WOf5jkgr5avh0=;
-        b=n9kzaWnYfVa3RVexM0ByYMKPh6k1M8vuC3wR0jh5ZPO9yUM/PQUHyzk05RAj4BgrA8
-         8Wd7kXqOSfaskxrnKxBNFoMd1IQUzYcJdw/omNDh07V0180DS6kMvAi2HrXmoCNKoXPS
-         Xo1JuUo/DvStPXJeaUUoglpbLA/F4TaFBWEgA8wP4XM2snicIzW+7VmEi4FKrK0SYzOH
-         BA93MOozoYgCEvEMjYZjGKB0DP8D5UCEuoZUF8LrDE3hZ3G4PgveLA1CKpYwm309WA0Z
-         m2rTEkKV0FmsMlk5B0ZAgC0C11s4CLBSrgIgJ4PgfKgPjODFApVuNGcKTpb5CZ+7ZU/u
-         aOIg==
-X-Gm-Message-State: ANoB5plMHxCI1tO/8PfLdDRqsTsZHwXwdnseFPs3H6uZt/VPiVcWye7F
-        gupS3CmoCjS0auMkOceoINxp
-X-Google-Smtp-Source: AA0mqf4XagdHN/lPKo62pTMRpEMHACHdEvJpA6tV10xR66vw+jaqfssWJR5FI1MtF5k11dO9uUcj3Q==
-X-Received: by 2002:a17:902:7d89:b0:188:4ba9:79ee with SMTP id a9-20020a1709027d8900b001884ba979eemr4928697plm.83.1669134187482;
-        Tue, 22 Nov 2022 08:23:07 -0800 (PST)
-Received: from thinkpad ([117.202.191.0])
-        by smtp.gmail.com with ESMTPSA id y19-20020a1709027c9300b0017f9db0236asm12224560pll.82.2022.11.22.08.23.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 08:23:06 -0800 (PST)
-Date:   Tue, 22 Nov 2022 21:52:58 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v2 06/15] dt-bindings: ufs: Add "max-device-gear"
- property for UFS device
-Message-ID: <20221122162258.GG157542@thinkpad>
-References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
- <20221031180217.32512-7-manivannan.sadhasivam@linaro.org>
- <1fe8fd96-7770-0bda-c970-aa38d030ff3b@linaro.org>
- <20221103122850.GD8434@thinkpad>
- <a170e4e8-fc9d-9be1-35ba-733f24cb93e8@linaro.org>
+        with ESMTP id S232470AbiKVQce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 11:32:34 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DB69662D8;
+        Tue, 22 Nov 2022 08:32:31 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6644B1FB;
+        Tue, 22 Nov 2022 08:32:37 -0800 (PST)
+Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id BE2103F73D;
+        Tue, 22 Nov 2022 08:32:28 -0800 (PST)
+From:   Pierre Gondois <pierre.gondois@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Pierre Gondois <pierre.gondois@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/2] arm/arm64: dts: Update cache properties for broadcom
+Date:   Tue, 22 Nov 2022 17:32:05 +0100
+Message-Id: <20221122163208.3810985-1-pierre.gondois@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a170e4e8-fc9d-9be1-35ba-733f24cb93e8@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 11:23:17AM -0400, Krzysztof Kozlowski wrote:
-> On 03/11/2022 08:28, Manivannan Sadhasivam wrote:
-> > On Wed, Nov 02, 2022 at 03:09:50PM -0400, Krzysztof Kozlowski wrote:
-> >> On 31/10/2022 14:02, Manivannan Sadhasivam wrote:
-> >>> The maximum gear supported by the UFS device can be specified using the
-> >>> "max-device-gear" property. This allows the UFS controller to configure the
-> >>> TX/RX gear before starting communication with the UFS device.
-> >>
-> >> This is confusing. The UFS PHY provides gear capability, so what is the
-> >> "device" here? The attached memory? How could it report something else
-> >> than phy?
-> >>
-> > 
-> > This is the norm with any storage protocol, right? Both host and device
-> > (memory) can support different speeds and the OEM can choose to put any
-> > combinations (even though it might not be very efficient).
-> > 
-> > For instance,
-> > 
-> > PHY (G4) -> Device (G3)
-> 
-> Yes and look at MMC - no need to define "max mode" supported by eMMC.
-> You define the modes supported by controller but the memory capabilities
-> are being autodetected and negotiated.
-> 
-> > 
-> > From the host perspective we know what the PHY can support but that's not the
-> > same with the device until probing it. And probing requires using a minimum
-> > supported gear. For sure we can use something like G2/G3 and reinit later but
-> > as I learnt, that approach was rejected by the community when submitted
-> > by Qualcomm earlier.
-> 
-> It should be then referenced somewhere as it might be a reason to accept
-> the property.
-> 
-> > 
-> >> The last sentence also suggests that you statically encode gear to avoid
-> >> runtime negotiation.
-> >>
-> > 
-> > Yes, the OEM should know what the max gear speed they want to run, so getting
-> > this info from DT makes sense.
-> 
-> Not really if it is auto-detectable. Just because things are static is
-> not the sole reason to put them into DT. The reason is - they are not
-> detectable by OS/firmware thus we must have them in DT to be able to
-> know it.
-> 
+This patch is the v3 of the update of broadcom dts:
+  https://lore.kernel.org/all/20221107155825.1644604-7-pierre.gondois@arm.com/
 
-Since I'm not able to get a link to the previous discussion, I'm gonna
-implement the reinit support and post the next iteration. Let's see how it
-turns up.
+v3:
+ - Update the missed dtsi: bcm2836.dtsi, bcm47622.dtsi, bcm63148.dtsi,
+   bcm63178.dtsi, bcm6756.dtsi, bcm6846.dtsi, bcm6855.dtsi, bcm6878.dtsi
+ - Split the patch between arch/[arm|arm64] folders
 
-Thanks,
-Mani
+Note:
+As the 'cache-unified' property is only required by the DT spec when there
+is one of these properties in the cache node:
+ 'cache-[size|line-size|block-size|sets|level]'
+the 'cache-unified' property was added only when necessary, cf:
+  https://lore.kernel.org/all/433efe6b-858f-6777-0f46-fdf4f4a7e0ca@arm.com/#t
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Pierre Gondois (2):
+  arm: dts: Update cache properties for broadcom
+  arm64: dts: Update cache properties for broadcom
+
+ arch/arm/boot/dts/bcm2711.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm2836.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm2837.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm47622.dtsi                     | 1 +
+ arch/arm/boot/dts/bcm63148.dtsi                     | 1 +
+ arch/arm/boot/dts/bcm63178.dtsi                     | 1 +
+ arch/arm/boot/dts/bcm6756.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm6846.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm6855.dtsi                      | 1 +
+ arch/arm/boot/dts/bcm6878.dtsi                      | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63146.dtsi   | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi   | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6813.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 4 ++++
+ 19 files changed, 22 insertions(+)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
