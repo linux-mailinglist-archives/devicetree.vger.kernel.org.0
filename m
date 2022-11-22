@@ -2,103 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 775DB63362B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:46:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D58F5633640
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:49:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbiKVHqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:46:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56770 "EHLO
+        id S232312AbiKVHtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:49:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229946AbiKVHqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:46:42 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E2E31375;
-        Mon, 21 Nov 2022 23:46:37 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id ABB6B24E2D9;
-        Tue, 22 Nov 2022 15:46:35 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
- 2022 15:46:35 +0800
-Received: from [192.168.125.96] (113.72.144.23) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 22 Nov
- 2022 15:46:34 +0800
-Message-ID: <98866fec-e88a-f241-bb42-78d33f051f11@starfivetech.com>
-Date:   Tue, 22 Nov 2022 15:46:34 +0800
+        with ESMTP id S232552AbiKVHs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:48:59 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0482326CD
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:48:53 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id g12so22384024lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:48:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w8q3Tqkz8w1zflvZZbd0OuOuonoFEDMsSq7hmze9ZXs=;
+        b=f22yi+xqcXW5FuVe86BK3lfg/qHcmgA6lPlQYRor0guywILgg2/Eu8BXRhWBeHNqZW
+         7disWPEBD8MNJ8mTXIA93ijDCHLI+xvcdLJAMrwPhMYSAOBEZNNJ5QEbh2Ayzg9MOwjY
+         xXcJqUrJAK92bqRiUG/odLy246dSDHkG/MdDWCDR18UqrhOwDRT3SaZ2itdY/L3RVkOB
+         RHIwgY16YjxMa0hGGdzcEmj9D6+rRNeLQUEsmaupAOrrt8o9NQ8wRms+G+suKoY1kk7T
+         ZghDqMaNX/onLP8n7MOm/ztfRlJxJlD0NFSjopAtEaZJcg632nwzMk1CYHuWVlr75KBG
+         vp/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w8q3Tqkz8w1zflvZZbd0OuOuonoFEDMsSq7hmze9ZXs=;
+        b=lFidARIbbHVmIFaF9zvz5utbTXgjxmvaQ/38WXAEYlMVL4DClpw6/jP4shk95x+LBy
+         ihoukuUMSzq1KgQP+HyWW/l8iyLG3v+b/niGhrmach+4ZlOfbfLzSN4nbAooxMUZpneM
+         r4gqMpKOw+Ob3dbXvX8ogIiMq+4+CL0AOxrY9sXeuUA8T1LfI6LD9NuOuMELjHy94nJX
+         DQbqSiwpvHxnJv3oKIJEYOxfMk4SjqTO+uPmXj42k8Dh5fofIezsyHUPdXcedJk51q4C
+         iCkbgW7qakQ5hhH0//FtUIEz9VlVFc3IAcAL9kskqYvVx42X2XZM5zAXKYkULZrjNFiE
+         2K7A==
+X-Gm-Message-State: ANoB5pmI3rUQSe71HNCoWQs13dGKQKnO60rGzmIHxPG1FoNMx9xlJa5X
+        Ep+I6nVe1wWudSP/wkw4XRFnIA==
+X-Google-Smtp-Source: AA0mqf6WFY2yzKLlEyj7ARsSRDcmrYj2hSJMjEFCY4gK/zwWuhI0/ySHS9KM1Lz0QLbU+127L2b44Q==
+X-Received: by 2002:ac2:4c29:0:b0:497:a1fe:b0ef with SMTP id u9-20020ac24c29000000b00497a1feb0efmr8392775lfq.311.1669103332101;
+        Mon, 21 Nov 2022 23:48:52 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id be34-20020a05651c172200b0026bf43a4d72sm1719731ljb.115.2022.11.21.23.48.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 23:48:51 -0800 (PST)
+Message-ID: <03174a04-440d-a840-1e54-fbdbdfe296c3@linaro.org>
+Date:   Tue, 22 Nov 2022 08:48:50 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-From:   Walker Chen <walker.chen@starfivetech.com>
-Subject: Re: [PATCH v1 1/4] dt-bindings: power: Add StarFive JH7110 power
- domain definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
- <20221118133216.17037-2-walker.chen@starfivetech.com>
- <bc853d76-5b65-676a-040a-edf53034c9ad@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
+ QRU1000 pinctrl
 Content-Language: en-US
-In-Reply-To: <bc853d76-5b65-676a-040a-edf53034c9ad@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221118182039.29236-1-quic_molvera@quicinc.com>
+ <20221118182039.29236-2-quic_molvera@quicinc.com>
+ <528648f2-17df-ab19-8ad4-76423bbc0ae4@linaro.org>
+ <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.23]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/21 18:12, Krzysztof Kozlowski wrote:
-> On 18/11/2022 14:32, Walker Chen wrote:
->> Add power domain definitions for the StarFive JH7110 SoC.
->>
->> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
->> ---
->>  include/dt-bindings/power/jh7110-power.h | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
->>  create mode 100644 include/dt-bindings/power/jh7110-power.h
->>
->> diff --git a/include/dt-bindings/power/jh7110-power.h b/include/dt-bindings/power/jh7110-power.h
->> new file mode 100644
->> index 000000000000..24160c46fbaf
->> --- /dev/null
->> +++ b/include/dt-bindings/power/jh7110-power.h
+On 21/11/2022 21:38, Melody Olvera wrote:
 > 
-> Filename matching compatible or bindings file.
+> 
+> On 11/20/2022 4:58 AM, Krzysztof Kozlowski wrote:
+>> On 18/11/2022 19:20, Melody Olvera wrote:
+>>> Add device tree bindings for QDU1000 and QRU1000 TLMM devices.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>> ---
+>>>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 134 ++++++++++++++++++
+>>>  1 file changed, 134 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>> new file mode 100644
+>>> index 000000000000..cb0c496d8666
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>> @@ -0,0 +1,134 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
+>>> +
+>>> +maintainers:
+>>> +  - Melody Olvera <quic_molvera@quicinc.com>
+>>> +
+>>> +description: |
+>>> +  This Top Level Mode Multiplexer block (TLMM) is found in the QDU1000 and
+>>> +  QRU1000 platforms.
+>> It's better to keep consistent style which allows to do easy
+>> search/replace, than to have new files using their own sentences. So
+>> keep it the same as was unified in few recent commits.
+> 
+> Ok... Just making sure that's what you want. Last PS you gave comments to change
+> the wording of this description to remove "This binding describes..." as we've done
+> in all the other qcom pinctrl/tlmm bindings. I can change the wording back to the
+> original, just want to be clear here.
 
-So the file name should be changed to "starfive,jh7110-power.h" and the compatible in the driver 
-should also be changed to "starfive,jh7110-power". Is it right ?
+I propose to have the same wording as other Qualcomm TLMM bindings,
+however you changed it to something not the same. Therefore I wonder -
+why having here different wording than all other bindings?
 
-> 
->> @@ -0,0 +1,18 @@
->> +/* SPDX-License-Identifier: (GPL-2.0) */
-> 
-> Dual license for bindings.
+By going back to original - what do you mean? If it matches all others,
+then yes, but I doubt it.
 
-Ok, the license will be changed to GPL-2.0 or MIT in the patch v2. 
+Just to be sure - are you working on proper (recent) trees or something old?
 
-> 
->> +/*
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + * Author: Walker Chen <walker.chen@starfivetech.com>
->> + */
->> +#ifndef __DT_BINDINGS_POWER_JH7110_POWER_H__
->> +#define __DT_BINDINGS_POWER_JH7110_POWER_H__
-> 
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+Krzysztof
 
