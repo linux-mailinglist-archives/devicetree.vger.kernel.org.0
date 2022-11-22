@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D1F633AB8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 12:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF01633AC8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 12:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232664AbiKVLD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 06:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54826 "EHLO
+        id S232269AbiKVLKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 06:10:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbiKVLD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 06:03:57 -0500
+        with ESMTP id S232839AbiKVLKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 06:10:44 -0500
 Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E5DF006
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 03:03:56 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id r12so23076874lfp.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 03:03:56 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1DBC2EF5E
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 03:10:41 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id p8so23026614lfu.11
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 03:10:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zcinWTUxzmlD4ETHKdNfDgH3HuvcezRo5wS9GT3LS6U=;
-        b=VK+gZmXqaDrn/uu3zDv9bml7Bq/CdP84f5gKch5vTxrzFx0j4BF1qx5rzxGApvrIsA
-         5Eu7PO9kyK0VwIqazcJxh2hYz7i2k8jEEBSlkpVTryuIZRc+zdiP654jBspBaGwmlwky
-         5XyO2IKbwxQFsOHAYo+cKtAPwbnQjQZnXzWYCB3K9N0Hn4HIYtI/Eq/yVhCysKjCZbVl
-         cXuuet/YXxh1Hw6v29pwAlo2Z8vk/9Uy0aKFIWwbpOQVPFAEwqTE7AfILmhvnZVok35Y
-         +BCLX8hiXgBjwWfjZy0cgkvgczMFCqY8LWjPFSQh2DX2XnReiBmIpLGVtX6v4jSV+dt2
-         zM8Q==
+        bh=a+lumkSANeVYN39oKSfvZrAR/Mw6IxYn5W+438PdGoU=;
+        b=GpncHk39WOYTmUb3Rr+o4xTv2bRvSTGGcDX/29Os+HHdP2Y1LWP+6hxUdJjsvvuaCi
+         3WJgK23q7GcS1S0BVWjNRWqBKYUEselyQgin/9cX40QvnJudtpmSJiRXvC3bTHzFfJh/
+         shYj7o8cuBbW0Wkq2tauFVFhR2koue7P6pNa3lc0xJV8fP8IXBPfVaY8gmQ5B0eEdMk1
+         n65TIwn8lw781l+Ti4+48cCHHvCS7GM64Ns1R7K1lG7ZZiGaLoE0bDVDQOqCYLuJVwc0
+         KbYcxH7Kl7n4OHklKL+bL+qv6kb2UoZQX/5suvprSfjQxrEP4dPH6uOCamO2W4ZWxI+f
+         g9/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zcinWTUxzmlD4ETHKdNfDgH3HuvcezRo5wS9GT3LS6U=;
-        b=dkxJ2kZIhOR8zQ8owGD1M6Yl3MrbEx4AIAayzFUEpnB+0bWMex0yG3Y9QaA1SbVQWS
-         LxYjRkhdoWcvx1T+TC6xIVBIXaITb/Mon75YpaDXjLli7fBKUyO2uCo+Uea7MwMszIUZ
-         VPSZ3BDq1XDxCA1j5Kp/yE7e8MJvj3fqJ2RVWQpnlOi6bdnG34/3dWqMY69mIuewkN/k
-         93eh/LFPun30NeZuKFnifDdGaGGLs8dANHPmA0ZSbs05cjs8eh08IhZ8MuQBvCt+CpLj
-         AM6yHB/37FWz+i22a+pxTC82yimtel6Ryh7L0HFRZq69ob2Q98g/Iafv/So7GYu5el0M
-         aUhQ==
-X-Gm-Message-State: ANoB5pkxh6UPlMWzVtDzAnNuCICanaQq6O+5mxOAaQIaaFmHemOQSb1h
-        S94GRPMArwbpuA6PCCfikYeoCw==
-X-Google-Smtp-Source: AA0mqf5e0DuqvZwYG6CYp8J8pYkWb7Fa/PJ9p3aq6DrglvSC6J24tlD1cUzaZ9rzXnecRgt0Ah/ddg==
-X-Received: by 2002:ac2:5618:0:b0:4a2:455c:622a with SMTP id v24-20020ac25618000000b004a2455c622amr998103lfd.508.1669115034440;
-        Tue, 22 Nov 2022 03:03:54 -0800 (PST)
+        bh=a+lumkSANeVYN39oKSfvZrAR/Mw6IxYn5W+438PdGoU=;
+        b=O/SqqeefCTNwynRD7V5HUE19VM/L4fUa2A3lrIwrFkwlAmCOdsi22WKDCoOOmGhSCo
+         11lmQDVMGEQa7CtggWY6TSrkDgja4yk4gXDprPpCY3ZUdt7ciegl4KA1caykvkByaa41
+         TN9Iagxpn7I6CKeHiFizfFyNcurMIKcFaLIus3RL2znJkyME6cItcsOV3FRFOfZlymxa
+         NRsf8hrpqjZyi7HJmLIdbdSIOGks7gAtlHZqlgwfilFTE3dabbTxSN3H4RAQTlF7RaZx
+         dBAl0CKbyENG/xSuHYyFzdrMSzCxFmy9vtxKikjB59qiQ/DC2HmGJqV1LoMJRZ76DN+H
+         AhcA==
+X-Gm-Message-State: ANoB5pmvgnI9bEkNTRxvaRMZFxwKJNOXx0Pn1UhPSZg8rQ40WhoEmduf
+        0eVClQjuu2H5U4Uu/oLolB60ag==
+X-Google-Smtp-Source: AA0mqf7czya88nL8uLXBENV8SqQL7ahBZMH/wfPdIKsODvU5jhTA4yZHA2oF8xUGBTDiY0eAjtCl5w==
+X-Received: by 2002:a05:6512:3147:b0:4a7:7daf:905b with SMTP id s7-20020a056512314700b004a77daf905bmr7353168lfi.665.1669115440128;
+        Tue, 22 Nov 2022 03:10:40 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d3-20020a05651233c300b004a0589786ddsm2431100lfg.69.2022.11.22.03.03.51
+        by smtp.gmail.com with ESMTPSA id o15-20020a05651205cf00b0049ad2619becsm2451218lfo.131.2022.11.22.03.10.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 03:03:53 -0800 (PST)
-Message-ID: <bea11c30-09a1-2b13-db7e-25dadc6e43ec@linaro.org>
-Date:   Tue, 22 Nov 2022 12:03:51 +0100
+        Tue, 22 Nov 2022 03:10:39 -0800 (PST)
+Message-ID: <e74b7496-cd3d-0f20-0308-ce285e7e5dd6@linaro.org>
+Date:   Tue, 22 Nov 2022 12:10:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 09/10] dt-bindings: phy: Add Cadence HDP-TX HDMI PHY
+Subject: Re: [PATCH net-next V3] dt-bindings: net: xlnx,axi-ethernet: convert
+ bindings document to yaml
 Content-Language: en-US
-To:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        kishon@ti.com, vkoul@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        alexander.stein@ew.tq-group.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
-References: <cover.1669013346.git.Sandor.yu@nxp.com>
- <2c5da069419541e22b29079467887f1a1bd3cc69.1669013346.git.Sandor.yu@nxp.com>
+To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        anirudha.sarangi@amd.com, harini.katakam@amd.com, git@amd.com
+References: <20221122102437.1702630-1-sarath.babu.naidu.gaddam@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2c5da069419541e22b29079467887f1a1bd3cc69.1669013346.git.Sandor.yu@nxp.com>
+In-Reply-To: <20221122102437.1702630-1-sarath.babu.naidu.gaddam@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,51 +79,203 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 08:23, Sandor Yu wrote:
-> Add bindings for Cadence HDP-TX HDMI PHY.
+On 22/11/2022 11:24, Sarath Babu Naidu Gaddam wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 > 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> Convert the bindings document for Xilinx AXI Ethernet Subsystem
+> from txt to yaml. No changes to existing binding description.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
 > ---
->  .../bindings/phy/cdns,hdptx-hdmi-phy.yaml     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/cdns,hdptx-hdmi-phy.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/cdns,hdptx-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/cdns,hdptx-hdmi-phy.yaml
+> Changes in V3:
+> 1) Moved RFC to PATCH.
+> 2) Addressed below review comments
+> 	a) Indentation.
+> 	b) maxItems:3 does not match your description.
+> 	c) Filename matching compatibles.
+> 
+> Changes in V2:
+> 1) remove .txt and change the name of file to xlnx,axiethernet.yaml.
+> 2) Fix DT check warning('device_type' does not match any of the regexes:
+>    'pinctrl-[0-9]+' From schema: Documentation/devicetree/bindings/net
+>     /xilinx_axienet.yaml).
+> ---
+>  .../bindings/net/xilinx_axienet.txt           |  99 ------------
+>  .../bindings/net/xlnx,axi-ethernet.yaml       | 150 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 151 insertions(+), 99 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/xilinx_axienet.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> deleted file mode 100644
+> index 1aa4c6006cd0..000000000000
+> --- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> +++ /dev/null
+> @@ -1,99 +0,0 @@
+> -XILINX AXI ETHERNET Device Tree Bindings
+> ---------------------------------------------------------
+> -
+> -Also called  AXI 1G/2.5G Ethernet Subsystem, the xilinx axi ethernet IP core
+> -provides connectivity to an external ethernet PHY supporting different
+> -interfaces: MII, GMII, RGMII, SGMII, 1000BaseX. It also includes two
+> -segments of memory for buffering TX and RX, as well as the capability of
+> -offloading TX/RX checksum calculation off the processor.
+> -
+> -Management configuration is done through the AXI interface, while payload is
+> -sent and received through means of an AXI DMA controller. This driver
+> -includes the DMA driver code, so this driver is incompatible with AXI DMA
+> -driver.
+> -
+> -For more details about mdio please refer phy.txt file in the same directory.
+> -
+> -Required properties:
+> -- compatible	: Must be one of "xlnx,axi-ethernet-1.00.a",
+> -		  "xlnx,axi-ethernet-1.01.a", "xlnx,axi-ethernet-2.01.a"
+> -- reg		: Address and length of the IO space, as well as the address
+> -                  and length of the AXI DMA controller IO space, unless
+> -                  axistream-connected is specified, in which case the reg
+> -                  attribute of the node referenced by it is used.
+> -- interrupts	: Should be a list of 2 or 3 interrupts: TX DMA, RX DMA,
+> -		  and optionally Ethernet core. If axistream-connected is
+> -		  specified, the TX/RX DMA interrupts should be on that node
+> -		  instead, and only the Ethernet core interrupt is optionally
+> -		  specified here.
+> -- phy-handle	: Should point to the external phy device if exists. Pointing
+> -		  this to the PCS/PMA PHY is deprecated and should be avoided.
+> -		  See ethernet.txt file in the same directory.
+> -- xlnx,rxmem	: Set to allocated memory buffer for Rx/Tx in the hardware
+> -
+> -Optional properties:
+> -- phy-mode	: See ethernet.txt
+> -- xlnx,phy-type	: Deprecated, do not use, but still accepted in preference
+> -		  to phy-mode.
+> -- xlnx,txcsum	: 0 or empty for disabling TX checksum offload,
+> -		  1 to enable partial TX checksum offload,
+> -		  2 to enable full TX checksum offload
+> -- xlnx,rxcsum	: Same values as xlnx,txcsum but for RX checksum offload
+> -- xlnx,switch-x-sgmii : Boolean to indicate the Ethernet core is configured to
+> -		  support both 1000BaseX and SGMII modes. If set, the phy-mode
+> -		  should be set to match the mode selected on core reset (i.e.
+> -		  by the basex_or_sgmii core input line).
+> -- clock-names: 	  Tuple listing input clock names. Possible clocks:
+> -		  s_axi_lite_clk: Clock for AXI register slave interface
+> -		  axis_clk: AXI4-Stream clock for TXD RXD TXC and RXS interfaces
+> -		  ref_clk: Ethernet reference clock, used by signal delay
+> -			   primitives and transceivers
+> -		  mgt_clk: MGT reference clock (used by optional internal
+> -			   PCS/PMA PHY)
+> -
+> -		  Note that if s_axi_lite_clk is not specified by name, the
+> -		  first clock of any name is used for this. If that is also not
+> -		  specified, the clock rate is auto-detected from the CPU clock
+> -		  (but only on platforms where this is possible). New device
+> -		  trees should specify all applicable clocks by name - the
+> -		  fallbacks to an unnamed clock or to CPU clock are only for
+> -		  backward compatibility.
+> -- clocks: 	  Phandles to input clocks matching clock-names. Refer to common
+> -		  clock bindings.
+> -- axistream-connected: Reference to another node which contains the resources
+> -		       for the AXI DMA controller used by this device.
+> -		       If this is specified, the DMA-related resources from that
+> -		       device (DMA registers and DMA TX/RX interrupts) rather
+> -		       than this one will be used.
+> - - mdio		: Child node for MDIO bus. Must be defined if PHY access is
+> -		  required through the core's MDIO interface (i.e. always,
+> -		  unless the PHY is accessed through a different bus).
+> -
+> - - pcs-handle: 	  Phandle to the internal PCS/PMA PHY in SGMII or 1000Base-X
+> -		  modes, where "pcs-handle" should be used to point
+> -		  to the PCS/PMA PHY, and "phy-handle" should point to an
+> -		  external PHY if exists.
+> -
+> -Example:
+> -	axi_ethernet_eth: ethernet@40c00000 {
+> -		compatible = "xlnx,axi-ethernet-1.00.a";
+> -		device_type = "network";
+> -		interrupt-parent = <&microblaze_0_axi_intc>;
+> -		interrupts = <2 0 1>;
+> -		clock-names = "s_axi_lite_clk", "axis_clk", "ref_clk", "mgt_clk";
+> -		clocks = <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>, <&mgt_clk>;
+> -		phy-mode = "mii";
+> -		reg = <0x40c00000 0x40000 0x50c00000 0x40000>;
+> -		xlnx,rxcsum = <0x2>;
+> -		xlnx,rxmem = <0x800>;
+> -		xlnx,txcsum = <0x2>;
+> -		phy-handle = <&phy0>;
+> -		axi_ethernetlite_0_mdio: mdio {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -			phy0: phy@0 {
+> -				device_type = "ethernet-phy";
+> -				reg = <1>;
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
 > new file mode 100644
-> index 000000000000..99352e655eec
+> index 000000000000..5dc41ab7584b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/cdns,hdptx-hdmi-phy.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> @@ -0,0 +1,150 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/phy/cdns,hdptx-hdmi-phy.yaml#
+> +$id: http://devicetree.org/schemas/net/xlnx,axi-ethernet.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Cadence HDP-TX(HDMI/DisplayPort) PHY for HDMI protocol
+> +title: AXI 1G/2.5G Ethernet Subsystem
+> +
+> +description: |
+> +  Also called  AXI 1G/2.5G Ethernet Subsystem, the xilinx axi ethernet IP core
+> +  provides connectivity to an external ethernet PHY supporting different
+> +  interfaces: MII, GMII, RGMII, SGMII, 1000BaseX. It also includes two
+> +  segments of memory for buffering TX and RX, as well as the capability of
+> +  offloading TX/RX checksum calculation off the processor.
+> +
+> +  Management configuration is done through the AXI interface, while payload is
+> +  sent and received through means of an AXI DMA controller. This driver
+> +  includes the DMA driver code, so this driver is incompatible with AXI DMA
+> +  driver.
+> +
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
 > +
 > +maintainers:
-> +  - Sandor Yu <sandor.yu@nxp.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - cdns,hdptx-hdmi-phy
+> +      - xlnx,axi-ethernet-1.00.a
+> +      - xlnx,axi-ethernet-1.01.a
+> +      - xlnx,axi-ethernet-2.01.a
 > +
 > +  reg:
-> +    maxItems: 1
+> +    description:
+> +      Address and length of the IO space, as well as the address
+> +      and length of the AXI DMA controller IO space, unless
+> +      axistream-connected is specified, in which case the reg
+> +      attribute of the node referenced by it is used.
+> +    maxItems: 2
 > +
-> +  clocks:
-> +    items:
-> +      - description: PHY reference clock.
-> +      - description: APB clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: refclk
-> +      - const: apbclk
+> +  interrupts:
+> +    description:
+> +      Ethernet core interrupt is optional. If axistream-connected property is
+> +      present DMA node should contains TX/RX DMA interrupts else DMA interrupt
+> +      resources are mentioned on ethernet node.
+> +    maxItems: 3
 
-Drop "clk" suffix.
+This does not fully match the old bindings and you did not mention in
+commit msg any changes during conversion. IOW, old binding allowed only
+core interrupt. You do not allow it. Was this your intention?
+
+This affects both reg and interrupts which otherwise should have
+allOf:if:then constraints.
+
 
 Best regards,
 Krzysztof
