@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 904D4633708
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2C29633723
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:30:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232276AbiKVI2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:28:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60662 "EHLO
+        id S232898AbiKVIav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:30:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232394AbiKVI2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:28:06 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED341F629
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:27:54 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id f13so966886lfa.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:27:54 -0800 (PST)
+        with ESMTP id S232846AbiKVIa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:30:26 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D779F43874
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:29:54 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id g7so22519145lfv.5
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:29:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NBwxUgJR8NGe1DGEeONE6WsC29VoXRjD7bpTza6BfUg=;
-        b=hYAbwKH5QwjJOnfG9yEqUEgsnSseVoMPMrJp+TMXhBuNDQRxQ7RGD2NZcJx5RF+zdA
-         zUEk6UCdzfHcUK/i4onhOvHK87UBvBaTtB6peOCWfiL0E9taxsBJKQAuhXQwodrEkVkC
-         xL4sq0zWy3xh5+IAfFLbnPn5FT4ksU/GwbnVR5jX1LdlxqpGUKomwAIjVft2/AjPof62
-         nm50CPe+4nUcYIm+1y65yNh83iK7eQx3FdObF/vzsX2WvFcNjpF1qtxTlHNfXSG4+isj
-         phqUXSEniYZJ9DRmp46DvhNRcA2pOtPfiMCiJJGMU5CJvzQiRv4Avf8fRcdDjWA1DeiX
-         dzGw==
+        bh=8+WSgTx4cT4ZBlmaUrz5K0AposnIERDeJo73rF4CmUg=;
+        b=MEujhAWSk3hCxepZRKacgo6OLEefJMq8GH6DyzqoIAFnTKYZTJ5T57HevAa/WwYegd
+         v7rcGgSQURI2WAfSbUs5NXQtMsC1U8e4nmNfbWtnEJlFQ4cO7uWE1DPk41RzgjKls9MD
+         f+WouBNFWzgnKKdAtCfJmkUegobLQmCYiG+jAc+TytRGOou0LAZskKb9zTMGI/oQNvvR
+         oR6FWQ1lggS8uw73HSbnCu/SWQMOW7aU2Yc+1FTlAVUBhMOvd8aYl3bB0IPzYE3bBwxl
+         8e4h+cZBfHU3amogGWDxP2evvFgQ081UqEckgVuasz6746GpVDSZVwQY2ZKD9k9kH/JV
+         GxFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NBwxUgJR8NGe1DGEeONE6WsC29VoXRjD7bpTza6BfUg=;
-        b=Z0peXk45F05ee0eWsmw2ipg/OgviqnSpKd9sxOFr/SDOdK/qBCDdSwEneboCV6pDfc
-         1h7gfiBvfARdnEe3IgFpUod2EyonOAPlC5biXS/6cPgdK9TXFSGI1rAK5Vv/EuJr7Mba
-         BOuPOTaMtR7G+YZQ7C//Wjj8zqUR6cLXv3f8PmDM9mF6NS54HFOCDFeXszTcdMHIdA59
-         0+IO+lRiHFdZEeHcC5CDtnbiMSBfJbIFstUg93S8FbmEDPWecMKqyGM36zSBnO9+UEYr
-         lzVuCbZAuNpIkf+HSBHb27b8Mnx3BAeZU65K9/HWjy5QY3YXfIrKJ5P0okb7QQVDasDU
-         VziA==
-X-Gm-Message-State: ANoB5pkWzMnc+w9BzG7NMO6CMEYk5/Ea7N/uwne4UY2Of56DerECxQQ2
-        fYhMk6Zjw9Ps0/Z7fQ+IiT96EQ==
-X-Google-Smtp-Source: AA0mqf7G3s5VlmrKWGE9XYyV7u93v/W4UcZyLl6VtWdTS85QQiPrOv2z7E7k5phTypSWytOq0S/ANA==
-X-Received: by 2002:a05:6512:a93:b0:4a2:6337:872d with SMTP id m19-20020a0565120a9300b004a26337872dmr1801184lfu.35.1669105673210;
-        Tue, 22 Nov 2022 00:27:53 -0800 (PST)
+        bh=8+WSgTx4cT4ZBlmaUrz5K0AposnIERDeJo73rF4CmUg=;
+        b=Uef8PjVYyOZS6uSEvHMOApXBOaK3DgM8wazdMDbE1OUdtlMOtMILT2dDBs3yTdNUQP
+         kh1a8vjmckYdbR3tScOi3IsVu8h8Jnla/fqEkwfmZmLBMsJbo/qb8+yYUQYn/odBlFzS
+         KvJhsI4t1wvGykuG6LBj7xxkn/HKgcpO2wH2/gYQf/z2cR0rtFGGPka2zuLjGflHSrRX
+         uAvbsaJ9FNcnK/F+suvxR9JUaNi2LRnhjk9uDXPX8eX4QXy+hcty9vYEPBwUanqHwaVu
+         uCIG76nba1EGF3hpGCooSG/vgfL2t3Y6fvOmplQTHbR46d8o8uFSVWCG7uiSXZREu2HE
+         SpsA==
+X-Gm-Message-State: ANoB5pmMy68dbmJ7d4rj2z6TXMDEKNWWvJV6kakb0bSEWpUH52emzNYn
+        JrV6LQ+AhrlYhGDj+Q3Au8Z8Vw==
+X-Google-Smtp-Source: AA0mqf6l2Nkxmg00sfH6f6iPzYskcRM8lk4i/i9M62O3kY7R4ojDl1BjcHnnEzy5oksSLxeO1Hfd9Q==
+X-Received: by 2002:a19:6913:0:b0:4a4:4735:c289 with SMTP id e19-20020a196913000000b004a44735c289mr7169278lfc.560.1669105793210;
+        Tue, 22 Nov 2022 00:29:53 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id n4-20020a195504000000b00492ce573726sm2418776lfe.47.2022.11.22.00.27.51
+        by smtp.gmail.com with ESMTPSA id c16-20020a056512075000b0049462af8614sm2376542lfs.145.2022.11.22.00.29.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 00:27:52 -0800 (PST)
-Message-ID: <d2f90ade-70ff-b05e-9643-cda25a4fd6ff@linaro.org>
-Date:   Tue, 22 Nov 2022 09:27:50 +0100
+        Tue, 22 Nov 2022 00:29:52 -0800 (PST)
+Message-ID: <f505b138-16ae-8eef-3123-1cf9180a0a5d@linaro.org>
+Date:   Tue, 22 Nov 2022 09:29:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 02/10] dt-bindings: display: bridge: Add MHDP DP for
- i.MX8MQ
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in addition
+ to hex format
 Content-Language: en-US
-To:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        kishon@ti.com, vkoul@kernel.org, dri-devel@lists.freedesktop.org,
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        alexander.stein@ew.tq-group.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
-References: <cover.1669013346.git.Sandor.yu@nxp.com>
- <f09833038399e4ed0ff845724fc99bcf8b2793c9.1669013346.git.Sandor.yu@nxp.com>
+        linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20221121115525.36362-1-tony@atomide.com>
+ <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
+ <Y3uPvYqaILNiYW8K@atomide.com>
+ <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
+ <Y3xTi5JeLPSWchT7@atomide.com>
+ <8c37d6a6-497c-f761-1e27-1ef5b3e64250@linaro.org>
+ <Y3yEIch6IiLwuUZc@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f09833038399e4ed0ff845724fc99bcf8b2793c9.1669013346.git.Sandor.yu@nxp.com>
+In-Reply-To: <Y3yEIch6IiLwuUZc@atomide.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -84,116 +87,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 08:23, Sandor Yu wrote:
-> Add bindings for i.MX8MQ MHDP DisplayPort.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  .../display/bridge/cdns,mhdp-imx8mq-dp.yaml   | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> new file mode 100644
-> index 000000000000..d82f3ceddaa8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-dp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MHDP Displayport bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
-> +
-> +description:
-> +  The Cadence MHDP Displayport TX interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,mhdp-imx8mq-dp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: MHDP DP APB clock.
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Hotplug cable plugin.
-> +      - description: Hotplug cable plugout.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Input port from display controller output.
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output port to DP connector.
-> +
-> +    required:
-> +      - port@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-> +  - interrupt-names
-> +  - phys
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mq-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mhdp_dp: dp-bridge@32c00000 {
-> +        compatible = "cdns,mhdp-imx8mq-dp";
-> +        reg = <0x32c00000 0x100000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "plug_in", "plug_out";
-> +        clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>;
-> +        phys = <&dp_phy>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +
-> +                mhdp_in: endpoint {
-> +                    remote-endpoint = <&dcss_out>;
-> +                };
+On 22/11/2022 09:11, Tony Lindgren wrote:
+> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221122 07:26]:
+>> On 22/11/2022 05:43, Tony Lindgren wrote:
+>>> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
+>>>> On 21/11/2022 15:48, Tony Lindgren wrote:
+>>>>> * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
+>>>>>> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
+>>>>>>> Let's allow node numbering in decimal format too.
+>>>>>>>
+>>>>>>> Simple human-readable increments/IDs are usually decimal, hex is only for
+>>>>>>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
+>>>>>>>
+>>>>>>> Cc: Thierry Reding <thierry.reding@gmail.com>
+>>>>>>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>>>>>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+>>>>>>> ---
+>>>>>>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+>>>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>>>>>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+>>>>>>> @@ -13,7 +13,7 @@ select: false
+>>>>>>>  
+>>>>>>>  properties:
+>>>>>>>    $nodename:
+>>>>>>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+>>>>>>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+>>>>>>
+>>>>>> I wonder why you don't make this:
+>>>>>>
+>>>>>> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
+>>>>
+>>>> Yes, the '*' should be within ().
+>>>
+>>> Sorry I guess I don't follow. So for what type of naming is the second '*'
+>>> actually needed here, or is it needed at all?
+>>>
+>>> We only want to match the following:
+>>>
+>>> pwm@1234
+>>>
+>>> pwm-0
+>>> ...
+>>> pwm-f
+>>>
+>>> And now also:
+>>>
+>>> pwm-0
+>>> ...
+>>> pwm-15
+>>>
+>>> Is there yet another format I'm missing?
+>>>
+>>>>> Hmm but I think this would also pass for node names like pwm-a-foo?
+>>>>>
+>>>>
+>>>> No, how?
+>>>
+>>> Because of the second extra '*' there :)
+>>
+>> It cannot multiple dashes...
 
-As Rob suggested, you allowed property for output to DP port. However it
-is not in the example. If this is a bridge, what does it bridge if there
-is no output connector?
+Yeah, it should be - it cannot match multiple dashes...
 
+> 
+> Sorry I'm still confused.. Care to specify what match do you want to
+> use here and why?
+
+Pattern:
+-[0-9a-f]*
+cannot match -1-2-3 because it does not cover the dash.
 
 Best regards,
 Krzysztof
