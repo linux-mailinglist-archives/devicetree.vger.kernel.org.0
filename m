@@ -2,142 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08D08633CC4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 13:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE466633CCB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 13:47:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbiKVMnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 07:43:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
+        id S232697AbiKVMrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 07:47:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231864AbiKVMnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 07:43:31 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AC164CC;
-        Tue, 22 Nov 2022 04:43:30 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id 6CD801F86C;
-        Tue, 22 Nov 2022 12:43:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1669121009; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+LttO4rwpoEUKx+mKrlRotB9foBpDXaTdB6zGT0DKgM=;
-        b=ECk0gdBvt1mE2jQiltgYhsFiQNQPIPXHcekRdV1hpQDSitwE3iuuWa2Nl+Yuv4JL+Xb7qX
-        wgSOiTlj8GL42umxGL1Ajp3XsnlksRR9pDJV92RYvqEHo1At21rVmtPN7zv9gZ3FI/qxdB
-        0bICCWaFXg9/uyIBG8u7x6+OEwXd3k8=
-Received: from suse.cz (unknown [10.100.201.202])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id C30942C142;
-        Tue, 22 Nov 2022 12:43:28 +0000 (UTC)
-Date:   Tue, 22 Nov 2022 13:43:28 +0100
-From:   Petr Mladek <pmladek@suse.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH v3 2/7] lib/vsprintf: Add support for generic FOURCCs by
- extending %p4cc
-Message-ID: <Y3zD8DSB7zZK0M13@alley>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
- <Y3Jf7xz2CQjJuEeT@alley>
- <Y3Jptob4bGL9Weel@shell.armlinux.org.uk>
+        with ESMTP id S233237AbiKVMrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 07:47:07 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7773B5BD47;
+        Tue, 22 Nov 2022 04:47:06 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3C9BE1FB;
+        Tue, 22 Nov 2022 04:47:12 -0800 (PST)
+Received: from [10.57.71.118] (unknown [10.57.71.118])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AED973F73B;
+        Tue, 22 Nov 2022 04:47:01 -0800 (PST)
+Message-ID: <916a6953-d9b4-c257-c08b-f5277ead71af@arm.com>
+Date:   Tue, 22 Nov 2022 12:46:56 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3Jptob4bGL9Weel@shell.armlinux.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH RFC v2 5/7] arm64: dts: imx: fix touchscreen reset GPIO
+ polarity
+Content-Language: en-GB
+To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Quentin Schulz <foss+kernel@0leil.net>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Samuel Holland <samuel@sholland.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Bastien Nocera <hadess@hadess.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20221103-upstream-goodix-reset-v2-0-2c38fb03a300@theobroma-systems.com>
+ <20221103-upstream-goodix-reset-v2-5-2c38fb03a300@theobroma-systems.com>
+ <CAOMZO5BzWsHAy7KjZe+KEiXVq-Mfpggqjk0vswuzx7nkups3gA@mail.gmail.com>
+ <20221122081851.6cb762d8@erd992>
+ <907b9321-14dc-dc99-80fc-e1a20ee33a1e@theobroma-systems.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <907b9321-14dc-dc99-80fc-e1a20ee33a1e@theobroma-systems.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 2022-11-14 16:15:50, Russell King (Oracle) wrote:
-> On Mon, Nov 14, 2022 at 04:34:07PM +0100, Petr Mladek wrote:
-> > On Tue 2022-11-08 16:33:22, Russell King wrote:
-> > > From: Hector Martin <marcan@marcan.st>
-> > > 
-> > > %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
-> > > it's useful to be able to print generic 4-character codes formatted as
-> > > an integer. Extend it to add format specifiers for printing generic
-> > > 32-bit FOURCCs with various endian semantics:
-> > > 
-> > > %p4ch   Host-endian
-> > > %p4cl	Little-endian
-> > > %p4cb	Big-endian
-> > > %p4cr	Reverse-endian
-> > > 
-> > > The endianness determines how bytes are interpreted as a u32, and the
-> > > FOURCC is then always printed MSByte-first (this is the opposite of
-> > > V4L/DRM FOURCCs). This covers most practical cases, e.g. %p4cr would
-> > > allow printing LSByte-first FOURCCs stored in host endian order
-> > > (other than the hex form being in character order, not the integer
-> > > value).
-> > > 
-> > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > 
-> > Reviewed-by: Petr Mladek <pmladek@suse.com>
-> > 
-> > See one nit below.
-> > 
-> > > --- a/lib/vsprintf.c
-> > > +++ b/lib/vsprintf.c
-> > > @@ -1762,27 +1762,50 @@ char *fourcc_string(char *buf, char *end, const u32 *fourcc,
-> > >  	char output[sizeof("0123 little-endian (0x01234567)")];
-> > >  	char *p = output;
-> > >  	unsigned int i;
-> > > +	bool pixel_fmt = false;
-> > >  	u32 orig, val;
-> > >  
-> > > -	if (fmt[1] != 'c' || fmt[2] != 'c')
-> > > +	if (fmt[1] != 'c')
-> > >  		return error_string(buf, end, "(%p4?)", spec);
-> > >  
-> > >  	if (check_pointer(&buf, end, fourcc, spec))
-> > >  		return buf;
-> > >  
-> > >  	orig = get_unaligned(fourcc);
-> > > -	val = orig & ~BIT(31);
-> > > +	switch (fmt[2]) {
-> > > +	case 'h':
-> > > +		val = orig;
-> > > +		break;
-> > > +	case 'r':
-> > > +		val = orig = swab32(orig);
-> > 
-> > I do not like much these multi assignments. I think that the result
-> > was not even defined in some older C standards. Though, I can't find
-> > it now. And even make W=3 does not warn about it.
+On 2022-11-22 09:58, Quentin Schulz wrote:
+> Hi David,
 > 
-> Err.
+> Thanks Fabio for the Cc.
 > 
-> It's been supported for decades. I learnt about it back in 1992 when
-> I was introduced to C by another experienced C programmer. It's been
-> supported in ANSI C compilers. The Norcroft C compiler (which is
-> strict ANSI) on Acorn platforms back in the late 1980s/1990s even
-> supported it.
+> On 11/22/22 08:18, David Jander wrote:
+>> On Mon, 21 Nov 2022 15:18:32 -0300
+>> Fabio Estevam <festevam@gmail.com> wrote:
+>>
+>>> [Adding Angus and David]
+>>
+>> Thanks. This was apparently necessary ;-)
+>>
+>>> On Mon, Nov 21, 2022 at 3:12 PM Quentin Schulz 
+>>> <foss+kernel@0leil.net> wrote:
+>>>>
+>>>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>>>>
+>>>> The reset line is active low for the Goodix touchscreen controller so
+>>>> let's fix the polarity in the Device Tree node.
+>>>>
+>>>> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts         | 2 +-
+>>>>   arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 2 +-
+>>>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts 
+>>>> b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+>>>> index 9fbbbb556c0b3..df7e5ae9698e1 100644
+>>>> --- a/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+>>>> @@ -107,7 +107,7 @@ touchscreeen@5d {
+>>>>                  interrupt-parent = <&gpio1>;
+>>>>                  interrupts = <8 IRQ_TYPE_NONE>;
+>>>>                  irq-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
+>>>> -               reset-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+>>>> +               reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+>>
+>> NACK!
+>>
+>> The PRT8MM has an inverter in the reset line. The reason for that is 
+>> that the
+>> reset line needs to be inactive when the driving side is unpowered.
+>> The DT was correct, this change will break it.
+>>
+> 
+> The DT was correct. The implementation in the driver is changed (the 
+> polarity is swapped) in this patch series, therefore the DT isn't 
+> correct anymore, hence this patch.
 
-Ah, the problem probably was with a more complicated assignment.
-For example, the result of the following code is not obvious:
+I'm not sure it's quite that simple... FWIW I'm using an add-on LCD 
+module with a GT9271[1] (and I won't be the only one - Raspberry Pi and 
+other SBC users using DT overlays or custom-built DTBs are a whole other 
+can of worms here), where GPIO_ACTIVE_LOW is correctly specified per the 
+schematics, thus "wrong" for the current driver behaviour, yet it *is* 
+working OK as-is. I guess that's because /RSTB ends up driven low for 
+long enough between the current "deassertion" by 
+gpiod_direction_output(1) and gpiod_direction_input() allowing the 
+external pull-up to take it high again.
 
-	  a = b = a++;
+Robin.
 
-Best Regards,
-Petr
+[1] 
+https://www.friendlyelec.com/index.php?route=product/product&path=81&product_id=230
+
+> 
+> See 
+> https://lore.kernel.org/linux-input/20221103-upstream-goodix-reset-v2-0-2c38fb03a300@theobroma-systems.com/ for the whole patch series.
+> 
+> This DT patch alone is obviously incorrect, but the context around it 
+> matters. I could/should have made it all into one big patch, the 
+> question is then how this big tree-crossing patch would be merged into 
+> Linux (if there's consensus). We're not there yet.
+> 
+> For some additional background on the discussion that was had in the v1:
+> https://lore.kernel.org/all/267de96a-0129-a97d-9bf6-e1001b422a1a@theobroma-systems.com/
+> I messed up the Cc list in the v1, apologies for the missing context in 
+> the archived mails, I think one should be able to understand the 
+> important bits by reading the answers in-mail. There, Dmitry, Hans and I 
+> discussed the meaning of the active level of GPIOs/reset lines and I 
+> expressed the reasons for such a change (which are also listed in the 
+> cover letter of this patch series).
+> 
+> As stated in v1 cover letter, no implementation will satisfy every one. 
+> We either make the DT binding implementation specific (which is what it 
+> shouldn't be), or we swap the polarity in the Linux implementation and 
+> thus the DT but then break DT backward compatibility.
+> 
+> Cheers,
+> Quentin
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
