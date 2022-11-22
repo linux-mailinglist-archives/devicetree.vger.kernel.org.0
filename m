@@ -2,155 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC52634502
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 20:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6375663480C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 21:24:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234672AbiKVT4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 14:56:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41138 "EHLO
+        id S234549AbiKVUYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 15:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbiKVTz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 14:55:59 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9DBB4804;
-        Tue, 22 Nov 2022 11:55:25 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D5FCD1180;
-        Tue, 22 Nov 2022 20:55:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1669146924;
-        bh=WzSIMsYU/d0WawMrnTfWGlU2lh42HVvfA1ZXrsZQ8Vo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZjYdwgMsbM8ZAaPlzEDK2CdVIx6eK0fFuLDugYhF3gP6vzmzs8smoGxsGli7mWQOP
-         EMKEKdts/wzBrmMOMz4nLcbkh5v/S32IDK3icQhWFkx9VdSfafCod/sj/SVFPnH1jh
-         7ei384tPz5nsrKmd/S1YbPgr6eT6DJLMeVfNiEPw=
-Date:   Tue, 22 Nov 2022 21:55:08 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Enable ADV7535 on
- carrier board
-Message-ID: <Y30pHOylptuMxFgX@pendragon.ideasonboard.com>
-References: <20221122185802.1853648-1-biju.das.jz@bp.renesas.com>
- <Y30j7Q6Jc/y8mGTu@pendragon.ideasonboard.com>
- <OS0PR01MB59224A76B83B9A2318A8D4E9860D9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        with ESMTP id S234043AbiKVUYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 15:24:31 -0500
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ABE1021251
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 12:24:30 -0800 (PST)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 722A11C8116A;
+        Wed, 23 Nov 2022 04:12:36 +0800 (CST)
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Wed, 23 Nov
+ 2022 04:12:36 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Wed, 23 Nov 2022 04:12:35 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 2301663A0A; Tue, 22 Nov 2022 22:12:35 +0200 (IST)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <arnd@arndb.de>,
+        <hasegawa-hitomi@fujitsu.com>, <marcan@marcan.st>,
+        <nicolas.ferre@microchip.com>, <conor.dooley@microchip.com>,
+        <heiko@sntech.de>, <sven@svenpeter.dev>,
+        <briannorris@chromium.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <openbmc@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/2] soc: add NPCM LPC BPC driver support 
+Date:   Tue, 22 Nov 2022 22:12:30 +0200
+Message-ID: <20221122201232.107065-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB59224A76B83B9A2318A8D4E9860D9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+This patch set adds LPC BIOS Post code (BPC) support for the
+Nuvoton NPCM Baseboard Management Controller (BMC).
 
-On Tue, Nov 22, 2022 at 07:41:13PM +0000, Biju Das wrote:
-> > Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Enable ADV7535 on
-> > carrier board
-> > 
-> > Hi Biju,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Tue, Nov 22, 2022 at 06:58:02PM +0000, Biju Das wrote:
-> > > Enable ADV7535 (MIPI DSI Receiver with HDMI Transmitter) on RZ/G2L
-> > > SMARC EVK.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > >  arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 44
-> > > ++++++++++++++++++++
-> > >  1 file changed, 44 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > index e180a955b6ac..01ea8759c192 100644
-> > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > @@ -16,12 +16,56 @@ aliases {
-> > >  		serial1 = &scif2;
-> > >  		i2c3 = &i2c3;
-> > >  	};
-> > > +
-> > > +	hdmi-out {
-> > > +		compatible = "hdmi-connector";
-> > > +		type = "d";
-> > > +
-> > > +		port {
-> > > +			hdmi_con_out: endpoint {
-> > > +				remote-endpoint = <&adv7535_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > >  };
-> > >
-> > >  &cpu_dai {
-> > >  	sound-dai = <&ssi0>;
-> > >  };
-> > >
-> > > +&i2c1 {
-> > > +	pinctrl-0 = <&i2c1_pins>;
-> > > +	pinctrl-names = "default";
-> > > +
-> > > +	status = "okay";
-> > > +
-> > > +	adv7535: hdmi@3d {
-> > > +		compatible = "adi,adv7535";
-> > > +		reg = <0x3d>;
-> > > +
-> > > +		avdd-supply = <&reg_1p8v>;
-> > > +		dvdd-supply = <&reg_1p8v>;
-> > > +		pvdd-supply = <&reg_1p8v>;
-> > > +		a2vdd-supply = <&reg_1p8v>;
-> > > +		v3p3-supply = <&reg_3p3v>;
-> > > +		v1p2-supply = <&reg_1p8v>;
-> > > +
-> > > +		adi,dsi-lanes = <4>;
-> > > +
-> > > +		ports {
-> > > +			#address-cells = <1>;
-> > > +			#size-cells = <0>;
-> > > +
-> > 
-> > How about port@0 ? That's the DSI input, I expect it should be connected
-> > to the DSI encoder output.
-> 
-> Yes, I will enable DSI node and link with port@0.  Since both RZ/G2L and RZ/V2L
-> uses same Carrier board, I need to send binding patch for RZ/V2L.
-> 
-> dts Patches for enabling DSI for RZ/G2L ready. But V2L there is dependency on bindings.
-> 
-> If you prefer both ports together, then I can defer this later.
+Nuvoton BMC NPCM LPC BIOS Post Code (BPC) monitoring two
+configurable I/O addresses written by the host on the
+Low Pin Count (LPC) bus, the capture data stored in 128-word FIFO.
 
-It could be easier to review (not to mention testing). I'll let Geert
-decide.
+NPCM BPC can support capture double words.
 
-> > > +			port@1 {
-> > > +				reg = <1>;
-> > > +				adv7535_out: endpoint {
-> > > +					remote-endpoint = <&hdmi_con_out>;
-> > > +				};
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >  &i2c3 {
-> > >  	pinctrl-0 = <&i2c3_pins>;
-> > >  	pinctrl-names = "default";
+The NPCM LPC BPC driver tested on NPCM750 Olympus board and NPCM845 EVB.
+
+Tomer Maimon (2):
+  dt-binding: soc: nuvoton: Add NPCM BPC LPC documentation
+  soc: nuvoton: add NPCM LPC BPC driver
+
+ .../bindings/soc/nuvoton/npcm-lpc-bpc.yaml    | 112 +++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/nuvoton/Kconfig                   |  24 ++
+ drivers/soc/nuvoton/Makefile                  |   3 +
+ drivers/soc/nuvoton/npcm-lpc-bpc.c            | 396 ++++++++++++++++++
+ 6 files changed, 537 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
+ create mode 100644 drivers/soc/nuvoton/Kconfig
+ create mode 100644 drivers/soc/nuvoton/Makefile
+ create mode 100644 drivers/soc/nuvoton/npcm-lpc-bpc.c
 
 -- 
-Regards,
+2.33.0
 
-Laurent Pinchart
