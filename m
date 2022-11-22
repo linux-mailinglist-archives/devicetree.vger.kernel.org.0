@@ -2,118 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB80633A44
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C13633A52
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:42:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232835AbiKVKkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 05:40:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37854 "EHLO
+        id S230468AbiKVKmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 05:42:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232252AbiKVKjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:39:18 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F238E5B869
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:34:38 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id u2so17475058ljl.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:34:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2brHgcpqZ3sRW8QtL8T8B27UN1AKl4DJcgIUeewysA4=;
-        b=p0yUndpK8dpgvTxWvPB+vCisDccNYmwB0OHdaYLnZ5hhRNvI7Qfi1VJG4paULDzFTC
-         8jDLoPW7LQIy09ZhRUyu1QXaVhkNanAupvnfWeubnusfDh/vifoOLc5gO53ZjWw4RFZm
-         t30qpOHoOF64pwZdYGvRXFs4ckkqSOEZrS1VuV2Zesw0PXrG21NecmoffChaAZotTtFi
-         DfAP4LXphvPe1yGTbcG5JYhEiJqRHmoAX/Tk2+8lmmu/v+BSQyJoLiDdK3Voh8jAvaT6
-         aGpugge2eQghIGe7Xx5j2arlc8riS61AjGIRpZ5Fx6osgeSqDyiGuWKZUaRhA34hLAcK
-         GGiw==
+        with ESMTP id S232378AbiKVKk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:40:57 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669E2192A5
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:35:47 -0800 (PST)
+Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1D2483F1D5
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 10:35:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1669113346;
+        bh=5zJKgeVGZmLVAXevDGlsNfSshltWSGYw3d8eMnb+lIA=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=pR0iPF1enR7Jq9/RDdOxOf1jYD5l1wvWmsz16U0qqUWVlmHvYzZFC7bX0hqNHpJqU
+         Y/VowcpNaADz6osxPwpWFyfkxgKZGW714yr+ot64/jNj81HUTDOpKSsKR48Bq3W0cZ
+         +yaIh05OJdtTnzF8sPx0D0kOd6aAZHA/5nWHNSB8YVm1KV3TLH2EjYp0r4EIceX/2a
+         HHdAllHgPpSrSmGFISjsk8p47ZiIat+FxcyiMaLbNt3woCGIQfLdto4MfoLr1Y6GUR
+         L7lXKSPfg1z3FQFTX5dWiNNXMvqw3lEt4hK/fqA7e+BHCrMvP1EO5kgCKf25e6qOyP
+         YZVe6IbAZ3F9A==
+Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-399c3d7b039so80813297b3.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:35:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2brHgcpqZ3sRW8QtL8T8B27UN1AKl4DJcgIUeewysA4=;
-        b=H/EstdXvHAU4M8I8rU6ZaL2TbrigWbbOcfy0BtKH2YIYX2VRhD8dgVSDgF4rjndQjy
-         YB+osrqaY/wZjxU0LmkuHgfSZPfDY+V1uMIqtIaI3M6CT2vdA3nKWdsAqJm27MAefoSU
-         H6ZLJyQCRMc+EJ0McVblu4/umSvQCUm3CvSR31M/pcB2c8WWrd9P9XIVI8B+5o0YxF94
-         64OaM80RSccywa2ib4JmkF6WwnLFYlRvRFIgZBzPoG1cMIFcPPLuhYU8Q2wzxhutwRKW
-         yo9Myi3vuHA1XuqqtBH5MiZgfX2GtXFjWh8q/S+51VJwt7W6x0llel7p/BZuahvKhYjR
-         7Txw==
-X-Gm-Message-State: ANoB5pm1yn0zRVQ+zhV4QoIaXYAuqqT4muRk2VO+M6PAYKJtQUA63ZXR
-        RnksULWhb6bY470aMP4f5OLVCw==
-X-Google-Smtp-Source: AA0mqf6SsLxXTEF8mHl/LmmFJKIv4PhzJgH4lI+svd/KdU0oqhomtBRLBiH9/98X+t0V1WUqHo+TMg==
-X-Received: by 2002:a2e:a274:0:b0:278:eef5:8d07 with SMTP id k20-20020a2ea274000000b00278eef58d07mr6762130ljm.61.1669113277356;
-        Tue, 22 Nov 2022 02:34:37 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d3-20020a05651233c300b004a0589786ddsm2421049lfg.69.2022.11.22.02.34.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 02:34:36 -0800 (PST)
-Message-ID: <b38d5824-67c6-f8be-80a4-d797c500ca99@linaro.org>
-Date:   Tue, 22 Nov 2022 11:34:35 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5zJKgeVGZmLVAXevDGlsNfSshltWSGYw3d8eMnb+lIA=;
+        b=JlGWIczuXmU2HYNCmyaHe1dNZCUFI4BiTtbHbq8I8uQl7IhkxJA0FhhKM6GEpzwaAO
+         12Y4Rfp2b4W3XZ0kU61OhQZ4b1GdZv3QsaMIZhWS01yAARWaiKrSbLTLJ0Kd9thcAcrx
+         8H8y6E5jahEwqxf1yNZLHOrCkl3BeJ4jQ5kgQc9As5nlEMmsbuFsgEr5OjbGtv9hnqUf
+         qW9RVdQA9PnsQgzrlkAw9KQMMNVi/7dFxPMynKCBgSqIfWkJDwOm4t/qsIAzLjsqMJP+
+         owzlb9DBs0pV8VhMu0ri/AH3NENED1PrB615nIcwu2j97rpnsGczHdGqJJdlEalJCK/E
+         6NFg==
+X-Gm-Message-State: ANoB5pnWtS/YlOO33NMN4hk2d4IaTpxGEE04RL9t2py49OQN8DukeRFq
+        rlo1IjF+ikHa+ZUAgxSa//JsJ2IfwHw4M+1RYiNcwwTC9JDwuq5h2GoXkgeR2qSh0XmUYGbrzQF
+        +RSiJSPc8KeYFVmbAJpydN2nGpAzmr0MdX6giiKaCbTAIW+Qum9Lecg8=
+X-Received: by 2002:a81:4ed0:0:b0:39b:2705:501 with SMTP id c199-20020a814ed0000000b0039b27050501mr6707284ywb.326.1669113344955;
+        Tue, 22 Nov 2022 02:35:44 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5vKLtUztzm9gaB/lzhK2k8U2ZuZGMCv5M6kPMPlh1R0C7N1egHiQAH8o2IMhW9OMm3sahzXcklxwXcPjKUzns=
+X-Received: by 2002:a81:4ed0:0:b0:39b:2705:501 with SMTP id
+ c199-20020a814ed0000000b0039b27050501mr6707261ywb.326.1669113344732; Tue, 22
+ Nov 2022 02:35:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
- h2mode property
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+ <20221118011714.70877-5-hal.feng@starfivetech.com> <Y3duiJguYE6VrVLP@spud>
+ <Y3dvCPP1g0LzzHFO@spud> <a5193e23-efe1-fa65-15de-d53b80b87d63@starfivetech.com>
+ <Y3yRTuo69JUsfLqk@wendy> <0f9e423e-37c0-a838-bf25-f9b6784a31d0@starfivetech.com>
+ <Y3yd+tfFl4yvXOx6@wendy> <b57bdf1c-19f4-3d70-7618-16817669abc5@starfivetech.com>
+In-Reply-To: <b57bdf1c-19f4-3d70-7618-16817669abc5@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Tue, 22 Nov 2022 11:35:28 +0100
+Message-ID: <CAJM55Z-aQfvUZXNtaorAk4acpbbVsj-f-8TQn6uZXQosD=MORA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] dt-bindings: sifive,ccache0: Support StarFive
+ JH7110 SoC
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-3-herve.codina@bootlin.com>
- <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
- <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
- <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
- <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
- <20221121165921.559d6538@bootlin.com>
- <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
- <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
- <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
- <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
- <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
- <CAMuHMdVbzg8y2So+A=z8nUwHMoL+XKUrvoXp9QdbCnUve1_Atw@mail.gmail.com>
- <191a7f3e-0733-8058-5829-fe170a06dd5a@linaro.org>
- <CAMuHMdV1Y4Ldq2Hu5X8awTOWYTHq4DPYWCMkyg-9TQY=DaxREg@mail.gmail.com>
- <978fb5a1-64f3-7ee6-3e98-1e31b8b6a88b@linaro.org>
- <CAMuHMdXMoYnCHBmSwgzriOhL=EEibzsUsMKnnMK_9sZ20339Bw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdXMoYnCHBmSwgzriOhL=EEibzsUsMKnnMK_9sZ20339Bw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 11:26, Geert Uytterhoeven wrote:
->>
->> If not clocks, what else is guaranteeing the ordering? You did not
->> express it in DT.
-> 
-> clocks and power-domains
-> 
-> And if not clocks and power-domains... Oops, we didn't express in DT
-> that the SoC needs to be powered at all ;-)
+On Tue, 22 Nov 2022 at 11:16, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> On Tue, 22 Nov 2022 10:01:30 +0000, Conor Dooley wrote:
+> > On Tue, Nov 22, 2022 at 05:55:57PM +0800, Hal Feng wrote:
+> > > On Tue, 22 Nov 2022 09:07:26 +0000, Conor Dooley wrote:
+> > > > On Tue, Nov 22, 2022 at 04:40:23PM +0800, Hal Feng wrote:
+> > > > > On Fri, 18 Nov 2022 19:39:52 +0800, Conor Dooley wrote:
+> > > > > > On Fri, Nov 18, 2022 at 11:37:50AM +0000, Conor Dooley wrote:
+> > > > > > > On Fri, Nov 18, 2022 at 09:17:10AM +0800, Hal Feng wrote:
+> > > > > > > > From: Emil Renner Berthing <kernel@esmil.dk>
+> > > > > > > >
+> > > > > > > > This cache controller is also used on the StarFive JH7110 SoC.
+> > > > > > >
+> > > > > > > "... and configured identically to that of the FU740"?
+> > > > > > > Anyways,
+> > > > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > >
+> > > > > > Actually, after looking at the next patch - why can you not fall back to
+> > > > > > the fu740 one since you appear to have the same configuration as it?
+> > > > >
+> > > > > Right, I will drop this patch and use "sifive,fu740-c000-ccache" as
+> > > > > compatible in dts.
+> > > >
+> > > > Uh, that's not quite what I was suggesting. Rather than using that one
+> > > > in isolation, you can do the following in your dt:
+> > > > "starfive,jh7110-ccache", "sifive,fu740-c000-ccache"
+> > > >
+> > > > And then in the driver we need to make no changes - unless down the line
+> > > > we find some sort of issue that requires special handling etc. There's
+> > > > no harm in having a "starfive,jh7110-ccache" IMO.
+> > >
+> > > Just like what microchip did as blow?
+>
+> below
+>
+> > >
+> > > Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml:
+> > > properties:
+> > >   compatible:
+> > >     oneOf:
+> > >       - items:
+> > >           - enum:
+> > >               - sifive,ccache0
+> > >               - sifive,fu540-c000-ccache
+> > >               - sifive,fu740-c000-ccache
+> > >               - starfive,jh7110-ccache
+> > >           - const: cache
+> > >       - items:
+> > >           - const: microchip,mpfs-ccache
+> > >           - const: sifive,fu540-c000-ccache
+> > >           - const: cache
+> >
+> > No, I don't think this is correct either. You'd do something like:
+> >
+> > >       - items:
+> > >           - const: starfive,jh7110-ccache
+> > >           - const: sifive,fu740-c000-ccache
 
-The SoC is a parent of that device, so you have an expressed dependency...
+For the record I don't think the line above should be there. The
+fu7400-c000 is a specific tapeout and pretending the JH7110 is that
+tapeout is not right. Especially when there is already the
+"sifive,ccache0" string for the generic IP.
 
-Best regards,
-Krzysztof
-
+> > >           - const: cache
+>
+> Yeah, this is what I mean. Thanks.
+>
+> Best regards,
+> Hal
+>
+> >
+> > And then the driver needs no changes.
+>
