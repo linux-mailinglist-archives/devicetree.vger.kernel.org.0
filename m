@@ -2,94 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B41C633C5D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 13:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 986F7633C81
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 13:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233680AbiKVMXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 07:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
+        id S233759AbiKVMch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 07:32:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233653AbiKVMXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 07:23:41 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84ECDFEE;
-        Tue, 22 Nov 2022 04:23:40 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 673F61C09F2; Tue, 22 Nov 2022 13:23:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1669119819;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=B/qC9A+c96fltWQ0jx0zekHGH7vfyaOxpjrp7KPGnco=;
-        b=dNtpYE+qkWfkXFeXDHTrkXuU3GRbui8evW9J4sSqQByyflRCrzVux6dZZzvbFHkzctn+Kw
-        BRiIfk3xEDSIfqnsBsUn9jaB+VHHguxxSlgYrSFJIoXlGtsH8deAuvIbfS69OCFiSiKm7B
-        MZeL/aeaYneFGR4lrSv/OjO6vA3SaNw=
-Date:   Tue, 22 Nov 2022 13:23:39 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
-Message-ID: <Y3y/S5COG7VPbsqL@duo.ucw.cz>
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
+        with ESMTP id S233764AbiKVMcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 07:32:32 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5712462E3;
+        Tue, 22 Nov 2022 04:32:31 -0800 (PST)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 1887D8061;
+        Tue, 22 Nov 2022 12:22:14 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v3 1/2] dt-bindings: pwm: Allow decimal format in addition to hex format
+Date:   Tue, 22 Nov 2022 14:32:24 +0200
+Message-Id: <20221122123225.59106-1-tony@atomide.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="VyfgN6AwUCzyVCrs"
-Content-Disposition: inline
-In-Reply-To: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Let's allow node numbering in decimal format too.
 
---VyfgN6AwUCzyVCrs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Simple human-readable increments/IDs are usually decimal, hex is only for
+addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
 
-Hi!
+Let's use an improved match suggested by Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> and improved a bit by Uwe Kleine-König
+<u.kleine-koenig@pengutronix.de>.
 
-> Mark the label property as deprecated as it is mentioned
-> in the description.
+Cc: linux-pwm@vger.kernel.org
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Suggested-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
 
-Lets do it the other way around. Functions (etc) don't really provide
-good enough description of LED, and label is still needed.
+Changes since v2:
 
-Best regards,
-								Pavel
+- Use pattern suggested by Krzysztof and Uwe
 
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -52,6 +52,7 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> =20
->    label:
-> +    deprecated: true
->      description:
->        The label for this LED. If omitted, the label is taken from the no=
-de name
->        (excluding the unit address). It has to uniquely identify a device=
-, i.e.
+Changes since v1:
 
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+- New patch added to deal with pwm-omap-dmtimer binding
 
---VyfgN6AwUCzyVCrs
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+ Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY3y/SgAKCRAw5/Bqldv6
-8obHAJ4rdy+92y95pekz/iaFXd8abIXxLgCgtN2eCbZ/5S8XCtmWj8JwCw2wQXs=
-=e4f1
------END PGP SIGNATURE-----
-
---VyfgN6AwUCzyVCrs--
+diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+--- a/Documentation/devicetree/bindings/pwm/pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+@@ -13,7 +13,7 @@ select: false
+ 
+ properties:
+   $nodename:
+-    pattern: "^pwm(@.*|-[0-9a-f])*$"
++    pattern: "^pwm(@.+|-[0-9a-f]+)?$"
+ 
+   "#pwm-cells":
+     description:
+-- 
+2.38.1
