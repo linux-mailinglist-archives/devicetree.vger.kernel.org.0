@@ -2,174 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7104633DAC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED81633DB0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:30:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbiKVNaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 08:30:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        id S233560AbiKVNak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 08:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233189AbiKVNaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:30:20 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DEAE654E2
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 05:30:18 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id h206so10885739iof.10
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 05:30:18 -0800 (PST)
+        with ESMTP id S233202AbiKVNaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:30:39 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45873654F0
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 05:30:35 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id p81so9590285yba.4
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 05:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dm0//d6JJKLg4z718XzAPVhh62trEUD6ZDpSJwczExg=;
-        b=BtF8ulQZQ4WXR4TMGpJnAXggX7Iyf3LmIN4v5nSyI/bX0bQrETvbHcz8yreip0lSar
-         GBwUwowvPSWfXP+ONRjQz/Fr6Yqkm9AnfX22hXG9/mXvJ7DL0FqVEctbecc6s2FpO4VE
-         awmQGKnECC+H0Zx0Fih2CBanENIboX45FNQeU=
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3u1XUALavBeR1kKMHVM25AVpNdjJ1fTh/8LVQ3pBSzA=;
+        b=F9q4drH+N1IMCom8ENOvIuU/6OCrrvFECfe5ScOD77fy2QwKAMMxA7EE6TKqT6530F
+         6nVxgo5aulAAf2ZrYhuBo85xMfsvLOcbefPxASO07ofisIfgC+TtyUbafZXMN6/Wng7z
+         TGbjSdoURgZWqEPBx/hqTTCOIjhT/A3Ln5BpM3NpiHauoJwVZXMhCFtmR5rWsbElSFty
+         Qf0AtzT33ML4bIhCbGPUDSL13uA80Tfv6XWhJf2wX9Kg713AQLgqm0w0LDvAn9IaNsr4
+         heAkQ0FiTsh4B1f1WF82/rvezusxEiStHkHoRmAn5P0QUTTxgwaqo6kyUShLBjkrYhwz
+         x0nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dm0//d6JJKLg4z718XzAPVhh62trEUD6ZDpSJwczExg=;
-        b=fagHWqqpT4/qCPGDpzf2NLcUhG4XpRErT2r+m7kRSMulK423CvsbtZX1efoDaRpT3k
-         D9DoqZcknKSRs3PH94Nf92VGF3rAt8ndc76udz7UTiZ5DjTIHdtzBSlzYIpqmf1V3HCa
-         X/mNn3TnRbp4Kat97sruaW2uMbL6FCiFbD33Q+IQb1z7HH2Pg6Uqqry6m9DDPIKej5c+
-         orwvRjIe9rknSKbi7OefKi+cnZQ/zziGGwkGGYS8HYmARZcwr2N9I2/097Wuef8oMB6E
-         WswekGuk4MsAXkTtML7Lzomp6DXEGmzYzvLj2H6NWMras6HpK2nmdGIUeZw2ouvrmT50
-         5GMQ==
-X-Gm-Message-State: ANoB5pk1gc/5sVupLlu4HBKzI3chqVMJZc2F7uzO9P1uMLiAp1uKPtw4
-        ZgCUNcE+hXsUfUI7SS6sLQ8JlQ==
-X-Google-Smtp-Source: AA0mqf7ciSA6ysbKaiV1F9m5x7GxJbpxiDud1qi2X/OVChX0uyWBaPCya1+b8FznPwhLnvSzubr/qQ==
-X-Received: by 2002:a02:6d53:0:b0:372:f7ed:9f78 with SMTP id e19-20020a026d53000000b00372f7ed9f78mr4228223jaf.245.1669123817846;
-        Tue, 22 Nov 2022 05:30:17 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id h16-20020a05660208d000b006a49722dc6dsm5207186ioz.11.2022.11.22.05.30.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 05:30:17 -0800 (PST)
-Date:   Tue, 22 Nov 2022 13:30:17 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Owen Yang <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3u1XUALavBeR1kKMHVM25AVpNdjJ1fTh/8LVQ3pBSzA=;
+        b=Shumf6XtP1UFKzDMdNCLjgg+rw3uiPgGUpLQm7Byd6Aehqa3qPlVYA4HJNiQKkz3wt
+         Rr4kVFXK1a1tyWWMgmKdkGkAdt54xV6+5PkE9ZlYVlFynCPrOVz4NaWBeOsa2ISK05bU
+         E9TVRvE9b1C8prs08T9Me6xkF3TZ5dcT3D/d73ApxqMdRPpc6UmOrNFclddVdc8G2DLb
+         fjvR0AFOWDsFDyDek6P1hy6Jr+JIS4UwrnQH/qvp1PO82Xd4nKnmiNMbByJZaaPWTNo7
+         i/V6ZlySt26FMm0BzfBbiw+NiNCXsydPTUl6jEbxXa+FBZH966I7efTqf9e65BGkrBTG
+         XZOw==
+X-Gm-Message-State: ANoB5pn8BJB9bJyzLnLkJBzEeJIlb91kWYNXJs2G/uRAOTe5tvOzToDi
+        7BZPPTJx8ZCmJJGM1kfgJ7gZbdxQC85ieq9RgFtdYg==
+X-Google-Smtp-Source: AA0mqf5bV7d8p5GauuDP4eZ44mV+c9M00UQOg+30Bt/xSqVCkfos0pcbeU+IN+5jK9Mr48pUHWNEzE7YWUNQ3XsXAsE=
+X-Received: by 2002:a25:510:0:b0:6d2:e45c:71c0 with SMTP id
+ 16-20020a250510000000b006d2e45c71c0mr3906010ybf.153.1669123834422; Tue, 22
+ Nov 2022 05:30:34 -0800 (PST)
+MIME-Version: 1.0
+References: <20221120154625.57095-1-y.oudjana@protonmail.com>
+ <795deac4-71fe-d40b-a3b6-855eb3875ad1@linaro.org> <1H1PLR.S9UFOHIJCU6S@gmail.com>
+ <1419e9da-98f7-c477-9f07-4b54e82be4c4@linaro.org>
+In-Reply-To: <1419e9da-98f7-c477-9f07-4b54e82be4c4@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 22 Nov 2022 15:30:23 +0200
+Message-ID: <CAA8EJpor_LnxLGYy25i-D6RBBO+-G9MsVWw=Qfm1Emp88KRJzQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: power: supply: Add DT schema for
+ Qualcomm SMBCHG
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Add DT for
- sc7280-herobrine-zombie
-Message-ID: <Y3zO6aY0xANk4Qlb@google.com>
-References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
- <20221122203635.v2.2.I4d4d860a675d86d328135e5e5f88aefb69a852ab@changeid>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221122203635.v2.2.I4d4d860a675d86d328135e5e5f88aefb69a852ab@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alejandro Tafalla <atafalla@dnyon.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 08:37:03PM +0800, Owen Yang wrote:
-> Add DT for sc7280-herobrine-zombie
-> 
-> arch/arm64/boot/dts/qcom/Makefile
-> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-> arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+Hi,
 
-Drop this
+On Mon, 21 Nov 2022 at 19:07, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/11/2022 11:36, Yassine Oudjana wrote:
+> >
+> > On Mon, Nov 21 2022 at 09:26:59 +01:00:00, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 20/11/2022 16:46, Yassine Oudjana wrote:
+> >>>>>  +  interrupts:
+> >>>>>  +    items:
+> >>>>>  +      - description: Charger error
+> >>>>>  +      - description: Charger inhibited
+> >>>>>  +      - description: Charger precharge safety timer timeout
+> >>>>>  +      - description: Charger charge safety timer timeout
+> >>>>>  +      - description: Charger pre to fast charging switch
+> >>>>> threshold reached
+> >>>>>  +      - description: Charger recharge threshold reached
+> >>>>>  +      - description: Charger taper threshold reached
+> >>>>>  +      - description: Charger charge termination threshold reached
+> >>>>>  +      - description: Battery hot
+> >>>>>  +      - description: Battery warm
+> >>>>>  +      - description: Battery cold
+> >>>>>  +      - description: Battery cool
+> >>>>>  +      - description: Battery overvoltage
+> >>>>>  +      - description: Battery low
+> >>>>>  +      - description: Battery missing
+> >>>>>  +      - description: Battery thermistor missing # unconfirmed
+> >>>>>  +      - description: USB input undervolt
+> >>>>>  +      - description: USB input overvolt
+> >>>>>  +      - description: USB input source detected
+> >>>>>  +      - description: OTG regulator failure
+> >>>>>  +      - description: OTG regulator overcurrent
+> >>>>>  +      - description: Automatic input current limiting done
+> >>>>>  +      - description: USB ID pin changed
+> >>>>>  +      - description: DC input undervolt
+> >>>>>  +      - description: DC input overvolt
+> >>>>>  +      - description: Power OK
+> >>>>>  +      - description: Temperature shutdown
+> >>>>>  +      - description: Watchdog timeout
+> >>>>>  +      - description: Flash failure
+> >>>>>  +      - description: OTST2 # unknown
+> >>>>>  +      - description: OTST3 # unknown
+> >>>>
+> >>>>  It seems you listed register interrupts, not physical pins. This
+> >>>> should
+> >>>>  be interrupt lines.
+> >>>
+> >>>  I'm not sure what I'm supposed to do here. I couldn't find an
+> >>> interrupt-lines
+> >>>  property used anywhere so that's not what you meant, right?
+> >>
+> >> Are these physical interrupt lines this device has, register offsets
+> >> or
+> >> virtual interrupts (e.g. passed via irq_chip)? Definitely not the
+> >> first
+> >> and rather offsets for qpnpint_irq_domain_translate. Devicetree is not
+> >> for describing register layout of devices. IOW, register layout does
+> >> not
+> >> change on different boards, because the device is exactly the same, so
+> >> there is no point to put it into DTS.
+> >>
+> >
+> > So how would I describe the interrupts then? Or if you are saying I
+> > shouldn't have these interrupts in DT at all, how would I get them and
+> > register handlers for them in the driver? the PMIC arbiter takes 4
+> > interrupt cells, 3 of which are these offsets specifying the peripheral
+> > and interrupt. All other PMIC peripherals currently described in DT
+> > (examples being qcom,pm8916-wcd-analog-codec, qcom,pm8941-pwrkey and
+> > qcom-wled) have their interrupts (if any) described this way, with the
+> > only exceptions perhaps being the GPIO and MPP controllers which are
+> > themselves interrupt controllers. Changing the way PMIC peripheral
+> > interrupts are described would require changing PMIC arbiter bindings
+> > and code which I believe is out of the scope of this patch series.
+>
+> I don't think this would touch PMIC arbiter bindings, rather the PMIC
+> itself. Usually complex devices (like PMICs) have one few physical
+> interrupt lines and many registers related to some specific interrupts.
+> For example:
+> 1. One IRQ line,
+> 2. Register with bits for overvoltage, undervoltage, vharger error etc.
+>
+> Now how the MFD child device accesses them. Since this is strictly
+> related to hardware programming model, it's not something you put to
+> Devicetree. Instead parent device (PMIC) registers IRQ chip for its one
+> interrupt line with several Linux (or virtual) interrupts. The children
+> then just get a virtual IRQ from the parent (PMIC) and setup a
+> handler(s) for them.
 
-> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
-> ---
-> 
-> (no changes since v1)
+Unfortunately this is not how SPMI PMICs work (at least on the
+Qualcomm platforms). Access to interrupt registers is handled via the
+SPMI bus arbiter writes, not through the GPIO pin or typical spmi's
+bus interface (in the other words, not through the PMIC's SPMI
+regmap). I guess we can add an intermediate irq chip to automatically
+handle the USID, etc. However I doubt that it will really bring a lot
+in our case.
 
-A diff between v1 and v2 shows that this is not correct, please provide
-accurate change logs
+> You will find some examples for this, just grep for regmap_irq_get_virq,
+> for the drivers using regmap_irq_chip (or irq_create_mapping for
+> non-regmaps).
+>
+> Since it is *one* device - the PMIC and its child like charger - the
+> register layout is fixed thus I think these virtual (or Linux)
+> interrupts are fixed as well.
+>
+> I don't know why Qualcomm PMIC for SPMI is done differently.
+>
+> Best regards,
+> Krzysztof
+>
 
->  arch/arm64/boot/dts/qcom/Makefile             |   2 +
->  .../dts/qcom/sc7280-herobrine-zombie-lte.dts  |  15 +
->  .../boot/dts/qcom/sc7280-herobrine-zombie.dts |  16 +
->  .../dts/qcom/sc7280-herobrine-zombie.dtsi     | 310 ++++++++++++++++++
->  4 files changed, 343 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 384f2fa50646..e3226d7894ad 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -101,6 +101,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1-lte.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-> new file mode 100644
-> index 000000000000..2f1da87e5005
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +/dts-v1/;
-> +
-> +#include "sc7280-herobrine-zombie.dtsi"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Zombie with LTE";
-> +	compatible = "google,zombie-sku512", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-> new file mode 100644
-> index 000000000000..0246c12b2f40
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sc7280-herobrine-zombie.dtsi"
-> +#include "sc7280-herobrine-wifi-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Zombie";
-> +	compatible = "google,zombie", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-> new file mode 100644
-> index 000000000000..15832620ff5d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-> @@ -0,0 +1,310 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +/dts-v1/;
 
-This was added in v2. It isn't needed, the .dts files which include this file
-already make this declaration.
+-- 
+With best wishes
+Dmitry
