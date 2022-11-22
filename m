@@ -2,100 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 118556339BC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:21:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E6F9633A0D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:26:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232753AbiKVKVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 05:21:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
+        id S233580AbiKVK0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 05:26:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233492AbiKVKUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:20:47 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23CFD2B63E
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:19:14 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id bp15so22849591lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:19:14 -0800 (PST)
+        with ESMTP id S230468AbiKVK0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:26:02 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54CFD5A6C5
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:23:27 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id c1so22888914lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:23:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JfLIpkOTN7mnH1pqkEcUyKs3y8dy0IMYzeie/rgKHMQ=;
-        b=jnlqjhLudUc6ZW0+QJnNeONAY3SPc6ywVgAxCssWrw5bFnoqo1RSzRqExLKKA++v7H
-         DM/ChKhWdAi7fi6K4kD5f8LwR5RjqHsDgT4CtjQlUDllG9PAe6hAUabjNYS9VZfI+/xB
-         RJe2IN0kHOkRVJ61wHvm3GeiA0sVTFRwFwj4pFALtrq3X7RXEgeBzbLGUP54dlNfdUyK
-         ggnXS7n3hgWZKWrMPQJpJ5ENbI7KAS00J3nVTYLi0YreQfQ/nj8iEwdHsH6jZdJ44ADV
-         60QUHwfQObNe6zYOvDAmKfJJz6LSdPEAwZz3x7YyzTK5Lz/03cxAdWA53ZP1fxtKAfVu
-         VObw==
+        bh=0Yj0M1bMmbdKFFTTckTCvLOTvIkEcWiR3kfqmSgD6y8=;
+        b=wAZWXtrJYq1AenjRU4kv0MsmrW2tSVFiT1n+v9ooRLoo0kJtrcR8RuK6TZClhUa6D9
+         u+NtLawrfXsV1u2C37WdIfa27+hzDXBv8NRDYybaxi/w3BHJX/eQSPYpKR/uzx8ZIOdv
+         0ChGx1jjHC82HW72XfwLrq2mlQWntB8UmEyrwU0dXd+VRtIZD2uE75w6NEfYS3sDk6T/
+         zuEvfaoHOcacuUxwqZNC4rR/kltP4xe/KBF+8qxPd4BPhDdHL9amhspCUaeD+JDX+K4B
+         9awLFmU5hiYNucDapSabsshzkDPURMmgdJhbKrjabfDq9upQ1Bn5jmqiD3u/wJERjHBA
+         AyPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JfLIpkOTN7mnH1pqkEcUyKs3y8dy0IMYzeie/rgKHMQ=;
-        b=Vp3Xf5mwVd+DZdAslo8LZIO166sHFlS+u8E0Ch2qxON6Pp/cWAbyz/2lwk3WKD3AQc
-         sf80CbxXP48iKF3XdPC3sFhX3M4uyAoDaJGiaMhSlReeMA/2cv00CZcWMXOEqH/CkQLw
-         DxBZJgjtnCs7g+DhAbjP7lfF/UcQrlhB78RB+LWdRsmIbo10of8GAb/RoMQFpST1CG6a
-         Z21IZWciPEtgXcrCZTCg9J3SgzXmvok6cNioXrYkTGsnWwekgu3AxecCefSoex/k7BFa
-         0P6gt1JYPK7ZJfbRpxAmEcl6yLVexrye/giKzGXYBhUlOM4c6/XcxnWe8meYycYbM0yM
-         zGuA==
-X-Gm-Message-State: ANoB5plKP87E3velUxJG+xsY1Q4ePGNPkctdR9/M6Bhe2Ft1Hfxa6CCz
-        zuBzuEtmhcKhzevhgEpxVewIPw==
-X-Google-Smtp-Source: AA0mqf7uvNwaFNT5aVok49cOQrvlBp+Mf8/NctCjOga1BXBHs3KEoUjBhmzaRyCxc2l02l0HmCOk7A==
-X-Received: by 2002:a05:6512:3282:b0:4a2:4b1b:6ad9 with SMTP id p2-20020a056512328200b004a24b1b6ad9mr8549363lfe.296.1669112352299;
-        Tue, 22 Nov 2022 02:19:12 -0800 (PST)
+        bh=0Yj0M1bMmbdKFFTTckTCvLOTvIkEcWiR3kfqmSgD6y8=;
+        b=OcfJUHAJkMIk5kD1nlB1qm/YyCoKK0GFjRvT/kQOqPE8j6j3HAyFDNJ18D9+lf0ZYR
+         hBegxkMTCi40u4YgvEJiq1t+lji574pd+D5PgUoprmza+veDAHkA99eb2r+2fBe7Cs+I
+         esG4ti5t/GwVNDZ+2z4luhkZl+uC3694t0Fbpyk4Wl/YzOaxqeXBht+M/DQFfWltEp8E
+         ie+W46JElkKXQpRa0lX64InqAtwVBvI84P0tIvoo1UpKd33zBfhCDn3Es3tWwaVtqFcw
+         2mz5rk3dyszBaiIPAq1NfOonQz3zQB+pPu/QISdkB8WSaPWnPNQWkUcvTtPDEeSCZyjf
+         XMSA==
+X-Gm-Message-State: ANoB5pk/dQkVEB7NuDnD8kdMSAFuvdh52hc4JXIlcI02/oKzNoJ31Db4
+        bQvcbDAnF973S+r9CgjwNgycAg==
+X-Google-Smtp-Source: AA0mqf5pd8PVIs8/Ql6U/zFqZV1tfqOoykt04iqd21gEWRtqayriGev9ZhmOeMT5nGB6uP9ivuQ9Sw==
+X-Received: by 2002:a19:6406:0:b0:4b4:e438:e753 with SMTP id y6-20020a196406000000b004b4e438e753mr241230lfb.460.1669112605677;
+        Tue, 22 Nov 2022 02:23:25 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac2415a000000b0048a8c907fe9sm2432513lfi.167.2022.11.22.02.19.10
+        by smtp.gmail.com with ESMTPSA id o15-20020ac24bcf000000b004b1907d85e9sm2440982lfq.161.2022.11.22.02.23.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 02:19:11 -0800 (PST)
-Message-ID: <3160a4dd-f8c0-5cce-8c15-c9a4c173ef1e@linaro.org>
-Date:   Tue, 22 Nov 2022 11:19:09 +0100
+        Tue, 22 Nov 2022 02:23:25 -0800 (PST)
+Message-ID: <978fb5a1-64f3-7ee6-3e98-1e31b8b6a88b@linaro.org>
+Date:   Tue, 22 Nov 2022 11:23:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] dt-bindings: phy-j721e-wiz: add j721s2 compatible
- string
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
+ h2mode property
 Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, r-gunasekaran@ti.com,
-        rogerq@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vigneshr@ti.com
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221122092203.762308-1-mranostay@ti.com>
- <20221122092203.762308-2-mranostay@ti.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-3-herve.codina@bootlin.com>
+ <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
+ <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
+ <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
+ <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
+ <20221121165921.559d6538@bootlin.com>
+ <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
+ <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
+ <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
+ <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
+ <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
+ <CAMuHMdVbzg8y2So+A=z8nUwHMoL+XKUrvoXp9QdbCnUve1_Atw@mail.gmail.com>
+ <191a7f3e-0733-8058-5829-fe170a06dd5a@linaro.org>
+ <CAMuHMdV1Y4Ldq2Hu5X8awTOWYTHq4DPYWCMkyg-9TQY=DaxREg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122092203.762308-2-mranostay@ti.com>
+In-Reply-To: <CAMuHMdV1Y4Ldq2Hu5X8awTOWYTHq4DPYWCMkyg-9TQY=DaxREg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 10:22, Matt Ranostay wrote:
-> Add ti,j721s2-wiz-10g compatible string to binding documentation.
+On 22/11/2022 10:01, Geert Uytterhoeven wrote:
+>>>>> The h2mode bit (and probably a few other controls we haven't figured out
+>>>>> yet) in the sysctrl must be set before any of the USB devices is active.
+>>>>> Hence it's safest for the sysctrl to do this before any of the USB drivers
+>>>>> probes.
+>>>>
+>>>> Again, this does not differ from many, many of other devices. All of
+>>>> them must set something in system controller block, before they start
+>>>> operating (or at specific time). It's exactly the same everywhere.
+>>>
+>>> The issue here is that there are two _different drivers_ (USB host
+>>> and device). When both are modular, and the driver that depends on the
+>>> sysctrl setting is loaded second, you have a problem: the sysctrl change
+>>> must not be done when the first driver is already using the hardware.
+>>>
+>>> Hence the sysctrl driver should take care of it itself during early
+>>> initialization (it's the main clock controller, so it's a dependency
+>>> for all other I/O device drivers).
+>>
+>> I assumed you have there bit for the first device (which can switch
+>> between USB host and USB device) to choose appropriate mode. The
+>> bindings also expressed this - "the USBs are". Never said anything about
+>> dependency between these USBs.
+>>
+>> Are you saying that the mode for first device cannot be changed once the
+>> second device (which is only host) is started? IOW, the mode setup must
+>> happen before any of these devices are started?
 > 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Exactly.
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> index a9e38739c010..b837748f33d1 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> @@ -18,6 +18,7 @@ properties:
->        - ti,am64-wiz-10g
->        - ti,j7200-wiz-10g
->        - ti,j784s4-wiz-10g
-> +      - ti,j721s2-wiz-10g
->  
-Keep items sorted.
+>> Anyway with sysctrl approach you will have dependency and you cannot
+>> rely on clock provider-consumer relationship to order that dependency.
+>> What if you make all clocks on and do not take any clocks in USB device?
+> 
+> Enabling the clocks does not have anything to do with this ordering.
+
+That was the argument from Herve, that ordering is guaranteed by clocks.
+
+> Clock consumers that are part of the clock domain are probed after
+> clock providers.  If the clock is missing, that would be an incorrect
+> description in DTS.
+
+If not clocks, what else is guaranteeing the ordering? You did not
+express it in DT.
 
 Best regards,
 Krzysztof
