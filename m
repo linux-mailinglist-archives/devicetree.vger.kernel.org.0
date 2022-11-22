@@ -2,167 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C13633A52
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9AA633A55
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230468AbiKVKmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 05:42:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38012 "EHLO
+        id S232816AbiKVKnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 05:43:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232378AbiKVKk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:40:57 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669E2192A5
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:35:47 -0800 (PST)
-Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1D2483F1D5
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 10:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1669113346;
-        bh=5zJKgeVGZmLVAXevDGlsNfSshltWSGYw3d8eMnb+lIA=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=pR0iPF1enR7Jq9/RDdOxOf1jYD5l1wvWmsz16U0qqUWVlmHvYzZFC7bX0hqNHpJqU
-         Y/VowcpNaADz6osxPwpWFyfkxgKZGW714yr+ot64/jNj81HUTDOpKSsKR48Bq3W0cZ
-         +yaIh05OJdtTnzF8sPx0D0kOd6aAZHA/5nWHNSB8YVm1KV3TLH2EjYp0r4EIceX/2a
-         HHdAllHgPpSrSmGFISjsk8p47ZiIat+FxcyiMaLbNt3woCGIQfLdto4MfoLr1Y6GUR
-         L7lXKSPfg1z3FQFTX5dWiNNXMvqw3lEt4hK/fqA7e+BHCrMvP1EO5kgCKf25e6qOyP
-         YZVe6IbAZ3F9A==
-Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-399c3d7b039so80813297b3.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:35:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5zJKgeVGZmLVAXevDGlsNfSshltWSGYw3d8eMnb+lIA=;
-        b=JlGWIczuXmU2HYNCmyaHe1dNZCUFI4BiTtbHbq8I8uQl7IhkxJA0FhhKM6GEpzwaAO
-         12Y4Rfp2b4W3XZ0kU61OhQZ4b1GdZv3QsaMIZhWS01yAARWaiKrSbLTLJ0Kd9thcAcrx
-         8H8y6E5jahEwqxf1yNZLHOrCkl3BeJ4jQ5kgQc9As5nlEMmsbuFsgEr5OjbGtv9hnqUf
-         qW9RVdQA9PnsQgzrlkAw9KQMMNVi/7dFxPMynKCBgSqIfWkJDwOm4t/qsIAzLjsqMJP+
-         owzlb9DBs0pV8VhMu0ri/AH3NENED1PrB615nIcwu2j97rpnsGczHdGqJJdlEalJCK/E
-         6NFg==
-X-Gm-Message-State: ANoB5pnWtS/YlOO33NMN4hk2d4IaTpxGEE04RL9t2py49OQN8DukeRFq
-        rlo1IjF+ikHa+ZUAgxSa//JsJ2IfwHw4M+1RYiNcwwTC9JDwuq5h2GoXkgeR2qSh0XmUYGbrzQF
-        +RSiJSPc8KeYFVmbAJpydN2nGpAzmr0MdX6giiKaCbTAIW+Qum9Lecg8=
-X-Received: by 2002:a81:4ed0:0:b0:39b:2705:501 with SMTP id c199-20020a814ed0000000b0039b27050501mr6707284ywb.326.1669113344955;
-        Tue, 22 Nov 2022 02:35:44 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5vKLtUztzm9gaB/lzhK2k8U2ZuZGMCv5M6kPMPlh1R0C7N1egHiQAH8o2IMhW9OMm3sahzXcklxwXcPjKUzns=
-X-Received: by 2002:a81:4ed0:0:b0:39b:2705:501 with SMTP id
- c199-20020a814ed0000000b0039b27050501mr6707261ywb.326.1669113344732; Tue, 22
- Nov 2022 02:35:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20221118011714.70877-1-hal.feng@starfivetech.com>
- <20221118011714.70877-5-hal.feng@starfivetech.com> <Y3duiJguYE6VrVLP@spud>
- <Y3dvCPP1g0LzzHFO@spud> <a5193e23-efe1-fa65-15de-d53b80b87d63@starfivetech.com>
- <Y3yRTuo69JUsfLqk@wendy> <0f9e423e-37c0-a838-bf25-f9b6784a31d0@starfivetech.com>
- <Y3yd+tfFl4yvXOx6@wendy> <b57bdf1c-19f4-3d70-7618-16817669abc5@starfivetech.com>
-In-Reply-To: <b57bdf1c-19f4-3d70-7618-16817669abc5@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Tue, 22 Nov 2022 11:35:28 +0100
-Message-ID: <CAJM55Z-aQfvUZXNtaorAk4acpbbVsj-f-8TQn6uZXQosD=MORA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] dt-bindings: sifive,ccache0: Support StarFive
- JH7110 SoC
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        with ESMTP id S232378AbiKVKmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:42:40 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 21A2E5FAA;
+        Tue, 22 Nov 2022 02:37:28 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 20AEF8061;
+        Tue, 22 Nov 2022 10:27:14 +0000 (UTC)
+Date:   Tue, 22 Nov 2022 12:37:26 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in
+ addition to hex format
+Message-ID: <Y3ymZphck8JM6g9B@atomide.com>
+References: <20221121115525.36362-1-tony@atomide.com>
+ <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
+ <Y3uPvYqaILNiYW8K@atomide.com>
+ <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
+ <Y3xTi5JeLPSWchT7@atomide.com>
+ <20221122093650.oouke2utlkvdd7r6@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221122093650.oouke2utlkvdd7r6@pengutronix.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Nov 2022 at 11:16, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> On Tue, 22 Nov 2022 10:01:30 +0000, Conor Dooley wrote:
-> > On Tue, Nov 22, 2022 at 05:55:57PM +0800, Hal Feng wrote:
-> > > On Tue, 22 Nov 2022 09:07:26 +0000, Conor Dooley wrote:
-> > > > On Tue, Nov 22, 2022 at 04:40:23PM +0800, Hal Feng wrote:
-> > > > > On Fri, 18 Nov 2022 19:39:52 +0800, Conor Dooley wrote:
-> > > > > > On Fri, Nov 18, 2022 at 11:37:50AM +0000, Conor Dooley wrote:
-> > > > > > > On Fri, Nov 18, 2022 at 09:17:10AM +0800, Hal Feng wrote:
-> > > > > > > > From: Emil Renner Berthing <kernel@esmil.dk>
-> > > > > > > >
-> > > > > > > > This cache controller is also used on the StarFive JH7110 SoC.
-> > > > > > >
-> > > > > > > "... and configured identically to that of the FU740"?
-> > > > > > > Anyways,
-> > > > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > >
-> > > > > > Actually, after looking at the next patch - why can you not fall back to
-> > > > > > the fu740 one since you appear to have the same configuration as it?
-> > > > >
-> > > > > Right, I will drop this patch and use "sifive,fu740-c000-ccache" as
-> > > > > compatible in dts.
-> > > >
-> > > > Uh, that's not quite what I was suggesting. Rather than using that one
-> > > > in isolation, you can do the following in your dt:
-> > > > "starfive,jh7110-ccache", "sifive,fu740-c000-ccache"
-> > > >
-> > > > And then in the driver we need to make no changes - unless down the line
-> > > > we find some sort of issue that requires special handling etc. There's
-> > > > no harm in having a "starfive,jh7110-ccache" IMO.
-> > >
-> > > Just like what microchip did as blow?
->
-> below
->
-> > >
-> > > Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml:
-> > > properties:
-> > >   compatible:
-> > >     oneOf:
-> > >       - items:
-> > >           - enum:
-> > >               - sifive,ccache0
-> > >               - sifive,fu540-c000-ccache
-> > >               - sifive,fu740-c000-ccache
-> > >               - starfive,jh7110-ccache
-> > >           - const: cache
-> > >       - items:
-> > >           - const: microchip,mpfs-ccache
-> > >           - const: sifive,fu540-c000-ccache
-> > >           - const: cache
-> >
-> > No, I don't think this is correct either. You'd do something like:
-> >
-> > >       - items:
-> > >           - const: starfive,jh7110-ccache
-> > >           - const: sifive,fu740-c000-ccache
+* Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221122 09:26]:
+> On Tue, Nov 22, 2022 at 06:43:55AM +0200, Tony Lindgren wrote:
+> > * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
+> > > On 21/11/2022 15:48, Tony Lindgren wrote:
+> > > > * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
+> > > >> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
+> > > >>> Let's allow node numbering in decimal format too.
+> > > >>>
+> > > >>> Simple human-readable increments/IDs are usually decimal, hex is only for
+> > > >>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
+> > > >>>
+> > > >>> Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > >>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > > >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > >>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > >>> ---
+> > > >>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+> > > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >>>
+> > > >>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > >>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > >>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > >>> @@ -13,7 +13,7 @@ select: false
+> > > >>>  
+> > > >>>  properties:
+> > > >>>    $nodename:
+> > > >>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+> > > >>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+> > > >>
+> > > >> I wonder why you don't make this:
+> > > >>
+> > > >> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
+> > > 
+> > > Yes, the '*' should be within ().
+> > 
+> > Sorry I guess I don't follow. So for what type of naming is the second '*'
+> > actually needed here, or is it needed at all?
+> > 
+> > We only want to match the following:
+> > 
+> > pwm@1234
+> > 
+> > pwm-0
+> > ...
+> > pwm-f
+> > 
+> > And now also:
+> > 
+> > pwm-0
+> > ...
+> > pwm-15
+> > 
+> > Is there yet another format I'm missing?
+> 
+> I think there is a misunderstanding about the type of pattern here. Do
+> we talk about a shell pattern where "[0-9a-f]*" matches a name starting
+> with a hex digit followed by any number of any caracter, or is it a
+> regexp where the * means "any number of the preceding pattern", so
+> effectively a word consisting of only hex digits.
+> 
+> The .* part makes me think we're talking about a regexp, so the old
+> pattern ("^pwm(@.*|-[0-9a-f])*$") means that
+> 
+> 	pwm-1-2-3-4
+> 
+> is allowed but
+> 
+> 	pwm-10
+> 
+> isn't. And I think what we want is:
+> 
+> 	"^pwm(@.*|-[0-9a-f]*)$"
 
-For the record I don't think the line above should be there. The
-fu7400-c000 is a specific tapeout and pretending the JH7110 is that
-tapeout is not right. Especially when there is already the
-"sifive,ccache0" string for the generic IP.
+Heh so this fails for just node name pwm:
 
-> > >           - const: cache
->
-> Yeah, this is what I mean. Thanks.
->
-> Best regards,
-> Hal
->
-> >
-> > And then the driver needs no changes.
->
+pwm: $nodename:0: 'pwm' does not match '^pwm(@.*|-[0-9a-f]*)$'
+
+Maybe that's why the second '..)*$' was there originally for?
+And adding it back there fixes pwm but allows pwm-1-2-3..
+
+> (or maybe better "^pwm(@.+|-[0-9a-f]+)$" ?)
+
+And this too fails for just pwm node name.
+
+Regards,
+
+Tony
