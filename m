@@ -2,100 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49B53633998
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7166339A3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233019AbiKVKRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 05:17:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43788 "EHLO
+        id S233509AbiKVKR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 05:17:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233522AbiKVKRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:17:07 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1FD554D6;
-        Tue, 22 Nov 2022 02:17:03 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AMAGx7d096045;
-        Tue, 22 Nov 2022 04:16:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669112219;
-        bh=cN2rqEsmXZ3LoONcfjQ9oRQd9dmNmx7VWNhQa5s4nMQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=qMoBQ3A5gutUxye5sZgifXP12FkJVMXlFleeEMFHbiMvvpsaBecI2Y6W30TRdc5ET
-         vFB1NIv9clqbs9bcbNlbcnwp24WNaygv6y5itflvBfBYRYXo+x2RftVMVSppCE33CY
-         V260ZHSgNcWpCi4NH05Q9sgZZpffmHS8rFV2bfDE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AMAGx0C079817
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Nov 2022 04:16:59 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 22
- Nov 2022 04:16:58 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 22 Nov 2022 04:16:58 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AMAGuUm089004;
-        Tue, 22 Nov 2022 04:16:57 -0600
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 8/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Tue, 22 Nov 2022 02:16:16 -0800
-Message-ID: <20221122101616.770050-9-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.GIT
-In-Reply-To: <20221122101616.770050-1-mranostay@ti.com>
-References: <20221122101616.770050-1-mranostay@ti.com>
+        with ESMTP id S233578AbiKVKRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:17:25 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967BD54B02
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:17:22 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id b8so9146276edf.11
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RfsviaYrCHk+orZnQxhCW/tSY7SqhA88C4nRk5RLhn4=;
+        b=nsZaO2DRwFAc4rjB6uyOdsgV2qnJRlhTAaxcp6DcNAUBBj2nPshRzUP4N/D6Rxd8rA
+         ky/cOc0LG5gTFprBYSy6bh/RkbcZJONOdOXu30UM7fNd2l9IY7ySOuHuVBssSTQ93ZA1
+         prNTPcQAeUK5BGT6J46WNCFi/fjn3Lru9/agxjDreFNjtjQzfzRmBCOEHZN+3VPQ6Wat
+         ParuKV4Ci6bOD5Ylx/v4RMfLShM2papdJvzXOaa4rXEQw3v9TfVS9fXbg2zgiWFpPuZw
+         Ax+dP/MXKqqESw2wPBUX3MLYYHavKeUJcdXgnc5U1EdrswtoJEPo4wmqPB+OSbc77Dj0
+         dQyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RfsviaYrCHk+orZnQxhCW/tSY7SqhA88C4nRk5RLhn4=;
+        b=6pchCaArGtRXPorvOu3KXgh37mXJBjh0HXj8Zam3Hj7b+0iF/s6K1EhBwAfIAsxeIr
+         kehcoGvDShAWOFySoywh5jj7HqjTBp0z2u/vSwZXDy36bL7otT9cE3knAcslxADh8x22
+         Z7OOlyvdKvIim5UTpkC7Kz/b1QVuLNPNwaxWqOjQSLIlNGyQAeT+vzZcCv7vIWaZEklX
+         MLNK67lcGKX7lKhFhpB3RBrfCfi60OBFbwa1cLxQrsDKwI332NKTH8bjT3k7VGq3kHO6
+         n0zLnJp1qSELINdilBKaSrZRCOrVhxvPqAuySjROjlyP5l6pEhR7W3dpFb3fOiJaPWW5
+         027w==
+X-Gm-Message-State: ANoB5ply0cSqCL2eyn6YJoJ6fKItqlo9SqLULzDg9HjB/bJss+niPINH
+        Mupk+BlMRmLen+MdSEuTn3jYrh6rB75aAEbsEb7tJQ==
+X-Google-Smtp-Source: AA0mqf4jC92x9fBcJ6kZVpXXpGOto9tN/vDeHuKP47U3FQADYdyZsI9IQuoKOU7TlLdKAIR1mXQ8TVvK2WabZCkVSOo=
+X-Received: by 2002:aa7:cf07:0:b0:469:5aae:5807 with SMTP id
+ a7-20020aa7cf07000000b004695aae5807mr11819758edy.133.1669112241094; Tue, 22
+ Nov 2022 02:17:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
+ <20221005-mt6357-support-v5-9-8210d955dd3d@baylibre.com> <d61d8c22-fce5-74d5-6d2b-0eda6f2ace9e@gmail.com>
+In-Reply-To: <d61d8c22-fce5-74d5-6d2b-0eda6f2ace9e@gmail.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Tue, 22 Nov 2022 11:17:10 +0100
+Message-ID: <CAFGrd9rcDyZxnL5W0PvGyYyq6s+=imqvxM05nOeAqL4trgCDXQ@mail.gmail.com>
+Subject: Re: [PATCH v5 09/10] regulator: add mt6357 regulator
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Flora Fu <flora.fu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+Le mer. 16 nov. 2022 =C3=A0 15:17, Matti Vaittinen
+<mazziesaccount@gmail.com> a =C3=A9crit :
+>
+> Hi Alexandre, All
+>
+> Please, treat my review more as initiation for discussion than 'hard
+> requirements' for this driver. I am in no point or no "confidence level"
+> to give you any requirements ;)
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+Hi Matti,
+Understood, thanks for clarifying this.
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+>
+> If I read this right, the device has separate register(s) for writing
+> and reading the voltage? I wonder if this is a completely unique setup?
+>
+> If this is not unique, then it might be worth adding another field for
+> 'vsel_get' register and a flag in regulator desc - and modify the
+> generic regmap helpers to handle this in common code if the special
+> register? Not sure if this HW design is common enough to warrant the
+> added confusion though. You and Mark may have more insight.
+>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 0503e690cfaf..561d70cdee9b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -374,6 +374,13 @@ flash@0{
- 	};
- };
- 
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
- &mcu_mcan0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.38.GIT
+I didn't write this driver and when I handled it, I found this weird.
+In the datasheet, registers access are read and write.
+After some read/write tests in the registers, I understood that read
+vosel_reg always returns the wrong value.
+That's why the debug register is used to get the value.
+I'm not sure I understand your proposal, but it seems to add more
+custom stuff and modify generic regmap instead of using the generic
+regmap which already allows us to customize get and set functions
+properly.
+IMHO, modifying the generic regmap isn't a good solution because I
+think this HW design isn't common.
 
+> > +
+> > +static const struct linear_range buck_volt_range1[] =3D {
+> > +     REGULATOR_LINEAR_RANGE(518750, 0, 0x7f, 6250),
+> > +};
+> > +
+> > +static const struct linear_range buck_volt_range2[] =3D {
+> > +     REGULATOR_LINEAR_RANGE(500000, 0, 0x7f, 6250),
+> > +};
+> > +
+> > +static const struct linear_range buck_volt_range3[] =3D {
+> > +     REGULATOR_LINEAR_RANGE(500000, 0, 0x3f, 50000),
+> > +};
+> > +
+> > +static const struct linear_range buck_volt_range4[] =3D {
+> > +     REGULATOR_LINEAR_RANGE(1200000, 0, 0x7f, 12500),
+> > +};
+>
+> I am unsure if we should aim for dropping the REGULATOR_LINEAR_RANGE()
+> and using the LINEAR_RANGE(). If yes, then it might simplify things if
+> new drivers used LINEAR_RANGE() from the day 1. If we don't, then it
+> makes sense to keep consistently using REGULATOR_LINEAR_RANGE() for all
+> of the drivers. I am not sure which way is the right way.
+
+Good catch.
+LINEAR_RANGE() is defined in "linear_range.h"
+REGULATOR_LINEAR_RANGE() is defined in "regulator/driver.h"
+"linear_range.h" is included in "regulator/driver.h"
+
+Then, I would like to say that regulator drivers should use
+REGULATOR_LINEAR_RANGE(). But duplicating the definition is weird,
+this is probably something which needs to be fixed or clarified.
+Also, that means mt6357-regulator.c no longer needs "#include
+<linux/linear_range.h>". Then I will remove it.
+
+>
+> > +static int mt6357_regulator_probe(struct platform_device *pdev)
+> > +{
+> > +     struct mt6397_chip *mt6357 =3D dev_get_drvdata(pdev->dev.parent);
+>
+> I am unsure what data do you need from the parent. If it is just the
+> regmap / device-tree node / device, then it does not (in my opinion)
+> really warrant using parent's drvdata. One can often get away with the
+> dev_get_regmap(pdev->dev.parent, NULL).
+
+Ok thanks, I wasn't aware of that. I tried to apply this change but
+I've got a kernel panic at boot because "mt6357_get_buck_voltage_sel"
+needs to retrieve the regmap.
