@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9CF634B2C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 00:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A23634B30
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 00:37:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234470AbiKVXhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 18:37:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49610 "EHLO
+        id S233443AbiKVXhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 18:37:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235119AbiKVXhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 18:37:05 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425CE9DB84
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:04 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id k19so19653166lji.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:04 -0800 (PST)
+        with ESMTP id S235192AbiKVXhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 18:37:06 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E2EC605E
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:05 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id z24so19650992ljn.4
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 15:37:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/kArATDXyd0v10YSpzBFZj7xDn7196LQ8mvJQOtKXJc=;
-        b=DdGctuyybWE7Q0hGSsNO/mzjqftRZGwcyHbOP64Bo62pNJ02747bjFH+ixj9A4hmYN
-         t9aMdf7cICumuX8AVvrIESiqHeoWosu9R+9fKWO98P/Rt8edjdF56iN0Hxj8RgflwBO9
-         d05LZhQY1KOPcMNwpH7JwlclcigBIvpDHGghDaJxMzY12Qa98ymV2YsIi/52Kg+OeNyQ
-         RBZheWF4HiKtntUiVSUINYGNIA97jqzNhq2E4paNEqC48ujoslmNelRlAknCqGU46Ymd
-         b23sF0gkDyz8HRcJ+8n/Mf/Kj3EPVXR96CUbfqst/RM703Df7y1QpRwBD36xt6xfyY9j
-         y60g==
+        bh=FM4K/pkHjLHkAOvfw4d2cino7N9sUMcIq1wxV3ai/bY=;
+        b=KOsB3D1ho5/J9eaOkqkoyZqIaHUjyVggsLvtTrZLamLCBMyz4E88xUqGZ2H+bpAswX
+         IlRtdpWMlod+j3hCE2lNqqbs1FXOKze37Yerp8Wis/uSMcQ8CuVRKIxYxPlSpOchQOuL
+         isc/9GPdtC+dQaG7sOwDslT+51chZzcLUyRilb4yadGv2IJftqTXphuIYgtaVHJ10DW0
+         GjgbYDubU+k2xnWtJyTZCdBjZd2I8QRl21jn8MJOX3TM85gCor1QSVl2WHg6TNhdK9dV
+         efOdBWkihJP5oju4p1IVqPoGW/xSh5u8RpJ1U8hbG9XJkzYM5ds1x/hwifd9xslXWTc1
+         mmUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/kArATDXyd0v10YSpzBFZj7xDn7196LQ8mvJQOtKXJc=;
-        b=oyJ1sO8JMmPpFXoLZykSJXtQc4wyR9UR4bW7Rf3Odhs6qMtbk1YL8aifzyMA279dSt
-         7Ef3EgVbAVtK3faC9GPBEhBCqJ8FxJrareCojMtf18G7tPt3vJTdxKy75ycN1Q2KA81p
-         SJklv26bR4gU5uFe+tTP61Zk3pLVDmX39fCcKZ5zfl3LTz7nNFprqlMvEAznJZb9U0Tm
-         XEbH1NHKEqK8D3h5f1akL5YisrMr5tvIF77v9nr7eixKQzlCf1rwfUUtlTlPjiiXWB+n
-         M7ppvToGEBiAawTwqIgF3BqG2AluLw/PLk42+bpg77WLtrvdrpNUeV2VpdiBQ2aW8UIQ
-         3I2g==
-X-Gm-Message-State: ANoB5pnvhZLNmPJqC3qltiOEJAJ0z3dtU6313JJVtJKDWqCZYZ2y74kQ
-        +EQRaHY6AZNQ66U984GRku/HrA==
-X-Google-Smtp-Source: AA0mqf4B6xZl3zEIx+pTp2bO6JbfguaAicxjLecA9B1vl7PGNv1MTBTvSOsjPGIipSp9nPPCxiTAhw==
-X-Received: by 2002:a05:651c:2004:b0:277:9e5:6cc4 with SMTP id s4-20020a05651c200400b0027709e56cc4mr8742268ljo.137.1669160222608;
-        Tue, 22 Nov 2022 15:37:02 -0800 (PST)
+        bh=FM4K/pkHjLHkAOvfw4d2cino7N9sUMcIq1wxV3ai/bY=;
+        b=XLv5sQHLfTILMLnyz1ILWhiMplPCWG9U6izFrny1CAZcc+sgyNSf+7KSN51ZlnXM5P
+         +nln/QfpIs+VV1KBuwwGSujrTly3C8C/hxNwNXSGSw9vt3ETepTRsq/ou6zV9eruYyU/
+         SIyNejPMDMNix0C+pYdKeGERoxMu1D0hHytbo6NSmwkJbUN29JvBJ5dbkavursMSTtSO
+         cKTUe0WbsyjvmDs/EkyatscjMdwtCzL7AjNvAP0ngQo5r9iBX7ntENvjTElIc+F7Q7Nj
+         JcbaPlTjbFdO8j1UrcAoe6G6BFkGoA0L5IDzYicExlBCdWvNL6G9QM1YOf1zvE5t0e5K
+         E/1g==
+X-Gm-Message-State: ANoB5pl2CJHc5jZhKFj2gKpZ+1SrdFwjA+K1dv9DXQqM2VGpFhM3rUAt
+        nqGqB6IaegDM/1LoBthUGwqUjg==
+X-Google-Smtp-Source: AA0mqf5bZVQDunR4a0/2DQ93hnQZnrAIyyh6AoqyqeMzmVooT0FTtKSReZ5efjgw/D1ntdL5r9UMaQ==
+X-Received: by 2002:a2e:b55b:0:b0:26c:554f:87a5 with SMTP id a27-20020a2eb55b000000b0026c554f87a5mr5067918ljn.452.1669160223739;
+        Tue, 22 Nov 2022 15:37:03 -0800 (PST)
 Received: from eriador.lumag.spb.ru (dzpbkzhtyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:a302:8a1a::1])
-        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm2666454lfm.186.2022.11.22.15.37.01
+        by smtp.gmail.com with ESMTPSA id h3-20020ac250c3000000b00492c463526dsm2666454lfm.186.2022.11.22.15.37.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 22 Nov 2022 15:37:02 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -61,10 +61,10 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH v2 3/5] arm64: dts: qcom: sm8450-hdk: enable display hardware
-Date:   Wed, 23 Nov 2022 01:36:57 +0200
-Message-Id: <20221122233659.3308175-4-dmitry.baryshkov@linaro.org>
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v2 4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI bridge
+Date:   Wed, 23 Nov 2022 01:36:58 +0200
+Message-Id: <20221122233659.3308175-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
 References: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
@@ -72,55 +72,117 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
-configuration (yet).
+From: Vinod Koul <vkoul@kernel.org>
 
+Add the LT9611uxc DSI-HDMI bridge and supplies
+
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 61 +++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index 2dd4f8c8f931..75b7aecb7d8e 100644
+index 75b7aecb7d8e..6b6dcd0e0052 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
 +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -349,6 +349,28 @@ vreg_l7e_2p8: ldo7 {
+@@ -20,6 +20,28 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
  	};
+ 
++	lt9611_1v2: lt9611-vdd12-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "LT9611_1V2";
++
++		vin-supply = <&vph_pwr>;
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		gpio = <&tlmm 9 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	lt9611_3v3: lt9611-3v3-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "LT9611_3V3";
++
++		vin-supply = <&vreg_bob>;
++		gpio = <&tlmm 109 GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		enable-active-high;
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -353,6 +375,27 @@ &dispcc {
+ 	status = "okay";
  };
  
-+&dispcc {
++&i2c9 {
++	clock-frequency = <400000>;
 +	status = "okay";
++
++	lt9611_codec: hdmi-bridge@2b {
++		compatible = "lontium,lt9611uxc";
++		reg = <0x2b>;
++
++		interrupts-extended = <&tlmm 44 IRQ_TYPE_EDGE_FALLING>;
++
++		reset-gpios = <&tlmm 107 GPIO_ACTIVE_HIGH>;
++
++		vdd-supply = <&lt9611_1v2>;
++		vcc-supply = <&lt9611_3v3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
++
++	};
 +};
 +
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l6b_1p2>;
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l5b_0p88>;
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &pcie0 {
+ &mdss {
  	status = "okay";
- 	max-link-speed = <2>;
+ };
+@@ -416,6 +459,10 @@ &qupv3_id_0 {
+ 	status = "okay";
+ };
+ 
++&qupv3_id_1 {
++	status = "okay";
++};
++
+ &sdhc_2 {
+ 	cd-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+ 	pinctrl-names = "default", "sleep";
+@@ -431,6 +478,20 @@ &sdhc_2 {
+ &tlmm {
+ 	gpio-reserved-ranges = <28 4>, <36 4>;
+ 
++	lt9611_irq_pin: lt9611-irq {
++		pins = "gpio44";
++		function = "gpio";
++		bias-disable;
++	};
++
++	lt9611_rst_pin: lt9611-rst-state {
++		pins = "gpio107";
++		function = "normal";
++
++		output-high;
++		input-disable;
++	};
++
+ 	sdc2_card_det_n: sd-card-det-n-state {
+ 		pins = "gpio92";
+ 		function = "gpio";
 -- 
 2.35.1
 
