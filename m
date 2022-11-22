@@ -2,161 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB96633F3E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 15:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34F81633FA3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 15:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233434AbiKVOt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 09:49:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35498 "EHLO
+        id S234031AbiKVO7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 09:59:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233435AbiKVOtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 09:49:51 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D74A96BDF3;
-        Tue, 22 Nov 2022 06:49:46 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 7D40A21BE4;
-        Tue, 22 Nov 2022 14:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1669128585; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=j9AuGuLYTdJN+k3uXzcchb8mQnKbhGw+TLUgV+tqJrU=;
-        b=MEQS0+y9gcppN8qOpnYaqU7svgu2b3vPgGRXci1z6NL61cL4i98zh4U8k84lKJCd/gXFRo
-        Yn4RT0BvfG/CQMNRq0mzn65SnyEDIOv0RYOvo1nC+Uhzpjf3f12g+C8FW74uxEvRhF8K98
-        wR702WHORWcWBEPCtw7JhNzXykfXhKY=
-Received: from suse.cz (unknown [10.100.201.202])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 6EEC42C142;
-        Tue, 22 Nov 2022 14:49:44 +0000 (UTC)
-Date:   Tue, 22 Nov 2022 15:49:40 +0100
-From:   Petr Mladek <pmladek@suse.com>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
+        with ESMTP id S234058AbiKVO7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 09:59:07 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB019592;
+        Tue, 22 Nov 2022 06:57:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669129052; x=1700665052;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ptcKDaqf3gRRwrB0yaoMEgRygHe9Kq+LCx/IHTSE3fY=;
+  b=hHDXnX/8KESKJDqzyI6WdbBytWghshqQwu9FzutiFD/19vhpLLkqC4nE
+   XrwJzYrEiuqvO6ELjgFLaO6AFdY01hajrzLsG+ZftzIOvHOlb90k4CO+S
+   5UET+WrQ38u+2y49C8I0hMRX1gHoYSlvlVn3J6QgrJk+oxlNpS9iSZeTB
+   OKbA+Wmn/V+O8JnMW7IFooZS17cpu49R8+1wpXjN5LX9vw26n3bRDWXuR
+   Zo/hLMbFSS/tOZhng44F/BN7PuiagDTUvMX1eD6h7QXwX3YDLbmPP1CZm
+   q+xciUx4Ymqv2tcNPysDXD5VEn7CT/wwpXCuCAWg5wCaSYosbRFvQkM7u
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,184,1665471600"; 
+   d="scan'208";a="124605464"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Nov 2022 07:57:30 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 22 Nov 2022 07:57:26 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Tue, 22 Nov 2022 07:57:23 -0700
+Date:   Tue, 22 Nov 2022 14:57:05 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Anup Patel <anup@brainfault.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH v3 2/7] lib/vsprintf: Add support for generic FOURCCs by
- extending %p4cc
-Message-ID: <Y3zhhLoqAOaZ7rMz@alley>
-References: <Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk>
- <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
+ riscv,timer-can-wake-cpu
+Message-ID: <Y3zjQXqEHsaoVVvf@wendy>
+References: <20220727114302.302201-1-apatel@ventanamicro.com>
+ <20220727114302.302201-2-apatel@ventanamicro.com>
+ <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
+ <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
+ <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
+ <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <E1osRXO-002mvw-Fp@rmk-PC.armlinux.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 2022-11-08 16:33:22, Russell King wrote:
-> From: Hector Martin <marcan@marcan.st>
+Hey Anup,
+
+I've been meaning to get back to you on this stuff for quite a while,
+but unfortunately I've gotten distracted with other stuff every time I
+got close. Apologies for that :(
+
+On Wed, Jul 27, 2022 at 07:04:57PM +0530, Anup Patel wrote:
+> On Wed, Jul 27, 2022 at 6:05 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 27/07/2022 14:21, Anup Patel wrote:
+> > > On Wed, Jul 27, 2022 at 5:37 PM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 27/07/2022 13:43, Anup Patel wrote:
+> > >
+> > > Since, there is no dedicated timer node, we use CPU compatible string
+> > > for probing the per-CPU timer.
+> >
+> > Next time you add a properties:
+> > riscv,saata-can-wake-cpu
+> > riscv,usb-can-wake-cpu
+> > riscv,interrupt-controller-can-wake-cpu
+> >
+> > and so on and keep explaining that "historically" you did not define
+> > separate nodes, so thus must be in CPU node.
 > 
-> %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
-> it's useful to be able to print generic 4-character codes formatted as
-> an integer. Extend it to add format specifiers for printing generic
-> 32-bit FOURCCs with various endian semantics:
-> 
-> %p4ch   Host-endian
-> %p4cl	Little-endian
-> %p4cb	Big-endian
-> %p4cr	Reverse-endian
-> 
-> The endianness determines how bytes are interpreted as a u32, and the
-> FOURCC is then always printed MSByte-first (this is the opposite of
-> V4L/DRM FOURCCs). This covers most practical cases, e.g. %p4cr would
-> allow printing LSByte-first FOURCCs stored in host endian order
-> (other than the hex form being in character order, not the integer
-> value).
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  Documentation/core-api/printk-formats.rst | 32 +++++++++++++++++++
->  lib/test_printf.c                         | 39 +++++++++++++++++++----
->  lib/vsprintf.c                            | 35 ++++++++++++++++----
->  3 files changed, 93 insertions(+), 13 deletions(-)
-> 
-> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
-> index dbe1aacc79d0..92a488884cf8 100644
-> --- a/Documentation/core-api/printk-formats.rst
-> +++ b/Documentation/core-api/printk-formats.rst
-> @@ -625,6 +625,38 @@ Passed by reference.
->  	%p4cc	Y10  little-endian (0x20303159)
->  	%p4cc	NV12 big-endian (0xb231564e)
->  
-> +Generic FourCC code
-> +-------------------
-> +
-> +::
-> +	%p4c[hrbl]	gP00 (0x67503030)
-> +
-> +Print a generic FourCC code, as both ASCII characters and its numerical
-> +value as hexadecimal.
-> +
-> +The additional ``h``, ``r``, ``b``, and ``l`` specifiers are used to specify
-> +host, reversed, big or little endian order data respectively. Host endian
-> +order means the data is interpreted as a 32-bit integer and the most
-> +significant byte is printed first; that is, the character code as printed
-> +matches the byte order stored in memory on big-endian systems, and is reversed
-> +on little-endian systems.
+> This is a one-of-case with RISC-V DeviceTree where we are living with
+> the fact that there is no timer DT node. If we add a timer DT node now
+> then we have to deal with compatibility for existing platforms.
 
-I though a bit more about the semantic and got a bit confused.
-It might be because I am not familiar with FourCC. Anyway,
-the description in the commit message provided some more clues.
+I don't really understand the argument here. Perhaps this made sense a
+few months ago, but it no longer does IMO.
 
-The following documentation looks be more clear to me:
+We have existing platforms that interpreted the SBI spec (or perhaps
+predated the SBI spec in the relevant form?) differently. I've pasted it
+several times now I feel but it's relevant so pasting it here again...
 
-<proposal>
-Generic FourCC code
--------------------
+On the subject of suspend, the RISC-V SBI spec states:
+> Request the SBI implementation to put the calling hart in a platform
+> specific suspend (or low power) state specified by the suspend_type
+> parameter. The hart will automatically come out of suspended state and
+> resume normal execution when it receives an interrupt or platform
+> specific hardware event.
 
-::
-	%p4c[hrbl]	gP00 (0x67503030)
+This does not cover whether a given event actually reaches the hart or
+not, just what the hart will do if it receives an event. For the
+implementation on the Allwinner D1, timer events are not received during
+suspend.
 
-Print a generic FourCC code, as both ASCII characters and its numerical
-value as hexadecimal.
+Through-out the various bits of conversation so far, I have been
+operating on the assumption that on PolarFire SoC, and potentially other
+SiFive based implementations, events from the RISC-V timer do reach a
+hart during suspend.
+I realised while writing this response that I have never actually tested
+it - the C3STOP flag caused problems for me during regular operation &
+not while using some DT defined sleep states.
+I've been learning/piecing together the bits of what is happening here as
+time goes on, so I made an assumption that may or may not be correct, and
+I am still oh-so-far from an understanding.
+I just took it for granted that the existing driver worked correctly for
+"old" SiFive stuff which MPFS is based on & figured that with ~the same
+core complex as the fu540 that we'd behave similarly.
+Perhaps that was not a good idea & please let me know if I've been
+barking up the wrong tree.
 
-The generic FourCC code is always printed in the the big-endian format,
-the most significant byte first. This is the opposite of V4L/DRM
-FOURCCs.
+Do we know definitively what is/isn't the case for any of the existing
+platforms?
+I can test some stuff, but it'll take some time as it's a bad week in
+my neck of the woods.
 
-The additional ``h``, ``r``, ``b``, and ``l`` specifiers define what
-endianes is used to load the stored value as 32-bit integer. The value
-might be stored as host-endian, reverse-host-endian, big-endian,
-or little endian.
+> If we add a timer DT node now
+> then we have to deal with compatibility for existing platforms.
 
-Examples for a little-endian machine, host native load &(u32)0x67503030::
+In terms of what to encode in a DT, and given the spec never says that
+the timer interrupt must arrive during suspend, we must assume, by
+default, that no timer events arrive during suspend.
 
-	%p4ch	gP00 (0x67503030)
-	%p4cr	00Pg (0x30305067)
-	%p4cb	00Pg (0x30305067)
-	%p4cl	gP00 (0x67503030)
+We have a bunch of existing platforms that may (do?) get timer events
+during suspend, the opposite of the proposed default behaviour.
 
-Examples for a big-endian machine, host native load &(u32)0x67503030::
+I'm trying to follow the line of reasoning but I fail to see how taking
+either the property or node approach allows us to maintain behaviour for
+exiting platforms that that do see timer events during suspend without
+adding *something* to the DT. No matter what we add, we've got some sort
+of backwards compatibility issue, right?
 
-	%p4ch	gP00 (0x67503030)
-	%p4cr	00Pg (0x30305067)
-	%p4cb	gP00 (0x67503030)
-	%p4cl	00Pg (0x30305067)
-</proposal>
+I noted the above:
 
-Best Regards,
-Petr
+> Since, there is no dedicated timer node, we use CPU compatible string
+> for probing the per-CPU timer.
+
+If we could rely on the cpu compatible why would we need to add a
+dt-property anyway? Forgive my naivety here, but is the timer event in
+suspend behaviour not a "core complex" level attribute rather than a
+something that can be consistently determined by the cpu compatible?
+
+Either way, we need to figure out why enabling C3STOP is causing other
+timer issues even when we are not in some sort of sleep state & do
+something about that - or figure out some different way to communicate
+the behavioural differences.
+I would expect timers to continue working "normally" with the flag set,
+even if how they work is subtly different?
+On a D1, with the C3STOP "feature" flag set, and it's custom timer
+implementation unused, how do timers behave?
+
+Hopefully I've missed something blatant here Anup!
+
+Thanks,
+Conor.
+
