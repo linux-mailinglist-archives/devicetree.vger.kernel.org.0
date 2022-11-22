@@ -2,80 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C199633668
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8CAA633676
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232499AbiKVHzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:55:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37014 "EHLO
+        id S232399AbiKVH7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:59:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232254AbiKVHzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:55:36 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A10326D2
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:55:33 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id x2so19510926edd.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:55:33 -0800 (PST)
+        with ESMTP id S231948AbiKVH73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:59:29 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C274E14D11
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:28 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id bp15so22366723lfb.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:59:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7VrZzkD1Cr8qqJBfT7GRoGj/Crlh358pGAEmxK6rqjY=;
-        b=s+8VCn4820xwQ6YRzOkeml1/cJ9VNCx8dMHCmCyqHZqwkYfdwL9GLdq/RQQlBSX5Dd
-         C6OQhf5D8ZhMXDKtQBqvIgm5bw/WLtw//GlfI7TRzN5QHIRwDIHRDoXz7nQgW5hiyfdm
-         QVVTxQ7ST2ouMebLDuo+sTVOnWyoVFqQ5Eyab7hX0Zc3xpubLYf2C51rWya/uY/frYO7
-         aoxZ27bQWrxsTjE5Xt9AaMxdtH5Al+EWVCw/M5Itc7xoxDQMQRKoSAUe29qrYmkwcOjW
-         B4MnwRvMzn1XlM0aDSY50uU0jCAINlpv5FU5OY+UCeZlOaubWjRB2uaRKC8+5lT/zM5c
-         Ll1w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+rHE42IRQEpvlYwnxD7VJSLOCSycuUnbcPRlGiT0VKU=;
+        b=LpaDHiyMjzQR8FLaKdwyzVpff27TYVCfaRKzwK0kUx3JMZmRxWEClaCfEnPyuwZ8Ez
+         7+qoE9IH/LdVFqIv8jr7jfgO/Kw4YjAdg3xyZMrZzID0hcsER8U9YuK7Cxq0Hv3IPxqM
+         yr9qr4okK75m/wpxI9ahqrP+Hs7YGVwZ4LF/Op/2VUbXwv3RsnATf7CmdBq8TTQ781q3
+         YOZTmhSzoVzENPcxqr2IjwT2uulEPnwYAjXj5McwjPJBrnZWf7dY5E1VH+NGMDCjIfkK
+         Y8LygON4f9I8qaf8k5rm0ciyyxQb5XFnUQBO95jU7DtC/oThJ72GmrucpalJamrgrLDn
+         rQvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7VrZzkD1Cr8qqJBfT7GRoGj/Crlh358pGAEmxK6rqjY=;
-        b=rfXg1EjS9FPWSZ79kt0B0h1MHCOq+6+Wh7yKv/p+XoHNkpq3nj9tkoYMHMdDspcgoY
-         IJLyJkBC4hpAOyAEAuShgp7QU43TY9mVsG3T76NQlcJQ0/9v/Dawwkwp3OnLINE5sQYq
-         BtNkh9WrgkgyYfKJBOfEZlhH2jVHJxPEt8qj3h5e6Szmr8p0HRipZACvEAbA8ybF3aZ2
-         j/LGzcLQJHz1WX0iyz+JHNFuYvhKnEdmQTtQYfUsmTwk68QDnRDEQI2Vox93ZxcH/3gI
-         gsGoWlQENYQkKqfUI3nGm4k8Apapk/X+EnP2hJfsHp1CgQR8oJ25h8LQE3RzzpgUY+RN
-         XzLw==
-X-Gm-Message-State: ANoB5pk0vSD685Yc6IP6iJ7gSXkuk4pC/zZBp5Hpr6XV9iRHHdNEGuwz
-        gRUhobZ454F2b3+e6E2fRwzTMg==
-X-Google-Smtp-Source: AA0mqf67m24Zi4PkGBuuRliY4SRbPsAGjpoT1+hR7vl2WAj0bSh/UQQm8M20UDO4OcQhMd2cFKGIKg==
-X-Received: by 2002:aa7:cd8d:0:b0:463:19ca:a573 with SMTP id x13-20020aa7cd8d000000b0046319caa573mr19884464edv.31.1669103732262;
-        Mon, 21 Nov 2022 23:55:32 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 15-20020a170906310f00b0078cf8a743d6sm5695025ejx.100.2022.11.21.23.55.31
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+rHE42IRQEpvlYwnxD7VJSLOCSycuUnbcPRlGiT0VKU=;
+        b=nCwS0hVhUrd5jcLYkPu7jA3YpzAiO0SRT6RnIN2LW3mTdQicLhBu9HQdgV8UL5xw6M
+         TU0QgnXr94U5EV1efw5zZznHl0r99SNGpdn7fk3l/XxXpSLZMlETdybW0+nBvp6dAR2o
+         jEasWsc92sC5we8ggBm+/zyEKTlLOMSyy3SJomGxe1SErMBvyblhaJxR/je38kR6Dxxk
+         ALSkXwCP2/3zVhCr+yOwdua3EOUZ8kLbnko88+B/T19S5ivjWg6XySsi7A4jmqjyyO1b
+         6W+eEZVP0oQDHm12NAIPaqI0+YOaqVSsMPrtPGrBevQMLvHYQl/oGElP6HflgyGhdl6b
+         wSoQ==
+X-Gm-Message-State: ANoB5pmcFOmqkphD6roA7Kfg47J23STRo8z0WF/43j2Mv5cAev7QXty0
+        2zPLI8HUE2cmMy1pfOSD8rgbqg==
+X-Google-Smtp-Source: AA0mqf5576Smjd5iC86BrqdWj7qdQ3v5kGphmRORCZi8Fhqujqy/nP6bb0FfF7erLI3gpEizurjsEA==
+X-Received: by 2002:a05:6512:708:b0:4a2:6d30:fef2 with SMTP id b8-20020a056512070800b004a26d30fef2mr1699692lfs.324.1669103967144;
+        Mon, 21 Nov 2022 23:59:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id l7-20020a2e7007000000b0027776efa48csm1768076ljc.91.2022.11.21.23.59.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 23:55:31 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Mon, 21 Nov 2022 23:59:26 -0800 (PST)
+Message-ID: <6bb1ee6d-ab8c-824c-4a7d-29769189e4b4@linaro.org>
+Date:   Tue, 22 Nov 2022 08:59:25 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
+ bbnsm
+Content-Language: en-US
+To:     Jacky Bai <ping.bai@nxp.com>, "lee@kernel.org" <lee@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>
+References: <20221121065144.3667658-1-ping.bai@nxp.com>
+ <20221121065144.3667658-2-ping.bai@nxp.com>
+ <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
+ <AS8PR04MB864223C12564CB68F5836908870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AS8PR04MB864223C12564CB68F5836908870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 22 Nov 2022 08:55:31 +0100
-Message-Id: <COINW4PF8OS8.2QJZZKVL58FJG@otso>
-Cc:     <linux-arm-msm@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Wesley Cheng" <quic_wcheng@quicinc.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add sm6350
- compatible
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Johan Hovold" <johan@kernel.org>
-X-Mailer: aerc 0.13.0
-References: <20221121075358.76582-1-luca.weiss@fairphone.com>
- <Y3sxqUu0dnaQfdFY@hovoldconsulting.com>
-In-Reply-To: <Y3sxqUu0dnaQfdFY@hovoldconsulting.com>
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,43 +91,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
+On 21/11/2022 11:26, Jacky Bai wrote:
+>> Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
+>> bbnsm
+>>
+>> On 21/11/2022 07:51, Jacky Bai wrote:
+>>> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
+>>>
+>>> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+>>> ---
+> 
+> ...
+> 
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: nxp,bbnsm-rtc
+>>
+>>
+>> Missing ref to rtc.yaml.
+> 
+> Ok will include in v2.
+>>
+>>> +
+>>> +      regmap:
+>>
+>> Use vendor prefix, descriptive name and description. Where is the type of
+>> 'regmap' defined?
+> 
+> Type is missed. Will add a description and type define if necessary.
+> 
+>>
+>>> +        maxItems: 1
+>>
+>> I don't think this is correct. Rob explained the simple-mfd means children
+> do
+>> not depend on anything from the parent, but taking a regmap from its
+> parent
+>> contradicts it.
+> 
+> For this BBNSM module, basically, it provides two sperate & different
+> function: RTC and ON/OFF button control. But
+> no separate register offset range for each of these functions. For example,
+> the interrupt enable control,
+> Interrupt status and basic function control are mixed in the same registers'
+> different bit.
+> 
+> Any good suggestion on how to handle such case? ^_^
 
-On Mon Nov 21, 2022 at 9:07 AM CET, Johan Hovold wrote:
-> On Mon, Nov 21, 2022 at 08:53:55AM +0100, Luca Weiss wrote:
-> > Add the compatible describing the combo phy found on SM6350.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy=
-.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-> > index 97a7ecafbf85..68aecb638870 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >        - qcom,sc8180x-qmp-usb3-dp-phy
-> >        - qcom,sc8280xp-qmp-usb43dp-phy
-> >        - qcom,sdm845-qmp-usb3-dp-phy
-> > +      - qcom,sm6350-qmp-usb3-dp-phy
-> >        - qcom,sm8250-qmp-usb3-dp-phy
-> >    reg:
-> >      items:
->
-> The current USB3-DP bindings are broken and we should no be adding
-> further compatibles here. Please consider rebasing on:
->
-> 	https://lore.kernel.org/all/20221115144005.2478-1-johan+linaro@kernel.or=
-g/
+The solution for more complex common parts, dedicated device driver (MFD
+driver) with its own binding. However I understand why it would be
+overshoot here.
 
-I'm not quite clear what you want me to do. Just rebase this change on
-top of your patchset and resend or something else?
+> 
+>>
+>>> +
+>>> +      interrupts:
+>>> +        maxItems: 1
+>>
+>> You have same interrupt and same address space used by two devices.
+>>
+>> Both arguments (depending on parent regmap, sharing interrupt) suggests
+>> that this is one device block, so describing it with simple-mfd is quite
+>> unflexible.
+>>
+> 
+> It is depends on how SoC integrates this BBNSM module. From the BBNSM side,
+> it has separate IRQ lines for RTC function and ON/OFF function. Different
+> IRQ lines
+> can be used for RTC and ON/OFF button. But in current i.MX93 SoC, those
+> interrupts
+> are ORed together at SoC level. That's why same interrupt in the example.
 
-Regards
-Luca
+It's fine then.
 
->
-> Johan
+Best regards,
+Krzysztof
 
