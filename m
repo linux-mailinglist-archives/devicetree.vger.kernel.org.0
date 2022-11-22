@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA02A633766
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE7463376B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232649AbiKVIrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:47:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49772 "EHLO
+        id S232707AbiKVItR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:49:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbiKVIrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:47:46 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B68DED4
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:47:44 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id r8so6572954ljn.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:47:44 -0800 (PST)
+        with ESMTP id S232445AbiKVItR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:49:17 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290BB2E6BA
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:49:16 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id a29so22508229lfj.9
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:49:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PVyULofyXcnVVQ29vB0Fko3SwHgoM4faRFcX0yYLiSg=;
-        b=LLjsjh325lx3Ti3P8ylbumojC9SaeLhxq9yEV0Q0SYfFQK5mGtZk+nObijV1kB+VVw
-         3bXGTyizOVpbY4Bd1q0DMHkF5f8iB9R07KTEkpBUWl4BcgWCSTHc/O0mVCs+qCQLWIA8
-         HgwdruD1rJo8CnOjo6Kv5cxkt1inlFBsl0+Ck/yd3F9Y5JbEq7Iwj160Jf+O5OyXzEKx
-         J+gMFN1dnt/nI/XKsgJvJNn7Dzu9+NXYMsjK9uLw8EA9H5wz7tiUQpI1FTwF3rU9xctL
-         VLa6UElvOQK1EwiaJji5baNFknS9WtFELui4kkgJNnqEp+v6u8Ss1MfaixIfyrqt7x7I
-         CKDg==
+        bh=jEnkh3zk4jO+MDyInigAIrpi1FWlUFSvLcU2rQzTmRQ=;
+        b=KwrNqp1P7h9O4XSWXQdKrnp9jleHGWBxdWetGuugUOnrGaqRc7JWf2hvz1nHeE85zO
+         tq/tkRftw/5q7lyH9RgHkbYo/Xx6ST+xmgL//90Im9eZyhzzSYhgwOOZcm49xSbfx5kU
+         rMUBqLnU+v+Ve+O9r15k1JovIBOQ0vsRclfcXNH7r3HritjeRcIlIWcSL3BOZJ5sBMHG
+         FXXJNWvpPxhKwmYhTNSSgDH9p92dYPe9LJ7b7Lnx94OspR7cqLq0LS96rkydHMVTMWGN
+         HxVyoLAuHPF0AaUpfdSqLwsKnmRyM34boTp6kpvqQfqYi/4QDOfO5TDOsGm1Em5gnkdP
+         xnVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PVyULofyXcnVVQ29vB0Fko3SwHgoM4faRFcX0yYLiSg=;
-        b=VZeL4F+CTdWI61/OUB5SkBql/oiT+fRq6PBTbzkHySkK8paohimQVtBYTu94Ma5xHW
-         fcBQ1oC9e3o6sVQZAztLcVQ5DimqIhovgeu+ylXrpR6nw4LBQMDqhPO9sx7BaAWQSzpE
-         pkzaDaZD7e7UxlQT41uS/75aJMNCObluym2v8Uc6UZpzX+3flrDWQVJvxbtQJ7g1MOFn
-         NOr22bmzpjryjyqfxR+tJKCchG6dV510a98g8IkE2GudstBCo8J0VXoVD2qIXC4b4IBz
-         LqHp1N0gC4sHpcpYqDGuyOzpyvYy2buoxn8f2ySCmRI4bp2lBYKRfPZDyAhVJUiGaWeD
-         yamg==
-X-Gm-Message-State: ANoB5pkacGe3HkLAICfRNo59gJqtcsLo0Fdvv/eOcxqYj+35xeQna61C
-        CFToFlZXSq+HPXd5AdKnXVF4+A==
-X-Google-Smtp-Source: AA0mqf7k5iwY141yncd+8E0m1ND/kel/yIq78tBa2St5zPKWuRN693lQjtLUesOm2KUbPH4OKCzj3w==
-X-Received: by 2002:a2e:a4b4:0:b0:26c:5cf3:cc89 with SMTP id g20-20020a2ea4b4000000b0026c5cf3cc89mr7258771ljm.483.1669106863018;
-        Tue, 22 Nov 2022 00:47:43 -0800 (PST)
+        bh=jEnkh3zk4jO+MDyInigAIrpi1FWlUFSvLcU2rQzTmRQ=;
+        b=xp5rD41Xm+rlXlpH6EDosgqJvFMhyuDHYEcC6LrS4XReZorsPr/iWRXVu1dJ3X5xEB
+         RwKxiiheqbkAp4Zw+2lx2DcY5O/j84mHDsNgJH95DWp8If1+TVvPrPQJX63k6uHvWjIP
+         TdHJDEN/0w2m8Z4ZoIdkygPsB/n8X3oaWMXritCSfnuBMMwauc7U+WO+kgur2Atjb50y
+         1+c8Kp5ZmEoKaLL7F9kBaoGamZtj/7oLd9XOoBWbOT2z/KETAj4W9GsukrE2eGs27Svv
+         Wy7XHI9X7PRnDhEnyDb1GtWlSMM1cNp5KLeZlQ1Cx5FxPOU8+2VG9cEqBKJs31du8kn2
+         xFKg==
+X-Gm-Message-State: ANoB5plI9sVHE9k4Lv1AV/g41uaeiHhh6OLYJGn0DEHlnoYudnLSLVSj
+        tyaw18P/MnQPD0ReDn4HsOqYVw==
+X-Google-Smtp-Source: AA0mqf4r+HSOOP4lvZPpqedwiqd5uq37QoTBeb8cGRzkem43lIfDYDA63nIfFrpb4g0hBbDIy3ZvfA==
+X-Received: by 2002:a19:3818:0:b0:4a2:4e8f:746 with SMTP id f24-20020a193818000000b004a24e8f0746mr2325218lfa.528.1669106954522;
+        Tue, 22 Nov 2022 00:49:14 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l7-20020a2e7007000000b0027776efa48csm1784076ljc.91.2022.11.22.00.47.41
+        by smtp.gmail.com with ESMTPSA id dw7-20020a0565122c8700b004a91df49508sm2403562lfb.177.2022.11.22.00.49.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 00:47:42 -0800 (PST)
-Message-ID: <46ce4cdd-45c4-3470-d89c-b58219d90838@linaro.org>
-Date:   Tue, 22 Nov 2022 09:47:41 +0100
+        Tue, 22 Nov 2022 00:49:13 -0800 (PST)
+Message-ID: <53909e4f-ecab-b942-82cc-3b882c7d1938@linaro.org>
+Date:   Tue, 22 Nov 2022 09:49:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible for
- OpenC906
+Subject: Re: [PATCH] dt-bindings: Move fixed string node names under
+ 'properties'
 Content-Language: en-US
-To:     Icenowy Zheng <uwu@icenowy.me>, Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20221121041757.418645-1-uwu@icenowy.me>
- <20221121041757.418645-3-uwu@icenowy.me>
- <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
- <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
- <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
- <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jerome Neanne <jerome.neanne@baylibre.com>,
+        Andrew Davis <afd@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20221118223708.1721134-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+In-Reply-To: <20221118223708.1721134-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -87,61 +82,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 08:41, Icenowy Zheng wrote:
+On 18/11/2022 23:37, Rob Herring wrote:
+> Fixed string node names should be under 'properties' rather than
+> 'patternProperties'. Additionally, without beginning and end of line
+> anchors, any prefix or suffix is allowed on the specified node name.
+> These cases don't appear to want a prefix or suffix, so move them under
+> 'properties'.
 > 
-> 
-> 于 2022年11月22日 GMT+08:00 下午3:35:48, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 写到:
->> On 22/11/2022 08:18, Icenowy Zheng wrote:
->>> 在 2022-11-21星期一的 11:06 +0100，Krzysztof Kozlowski写道：
->>>> On 21/11/2022 05:17, Icenowy Zheng wrote:
->>>>> T-Head OpenC906 is a open-source-licensed fixed-configuration of
->>>>> C906,
->>>>> which is now public and able to be integrated.
->>>>>
->>>>> Add a compatible for the CLINT shipped as part of OpenC906, which
->>>>> should
->>>>> just be ordinary C9xx CLINT.
->>>>>
->>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>>> b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>>> index aada6957216c..86703e995e31 100644
->>>>> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>>> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>>> @@ -35,6 +35,7 @@ properties:
->>>>>            - const: sifive,clint0
->>>>>        - items:
->>>>>            - enum:
->>>>> +              - thead,openc906-clint
->>>>>                - allwinner,sun20i-d1-clint
->>>>
->>>> Add entries sorted alphabetically. This should be squashed with
->>>> previous
->>>> patch.
->>>
->>> I make it a seperated patch because I think it's a questionable
->>> approach.
->>>
->>> If you think it's okay, I will just squash it and put it as the second
->>> patch in the next iteration, with adding openc906-plic as the first
->>> one.
->>
->> What is a questionable approach? Why commit msg is not saying this?
-> 
-> Ah I mentioned it in the cover letter. The problem is just I doubt whether
-> binding strings for single SoCs are necessary.
+> In some cases, the diff turns out to look like we're moving some
+> patterns rather than the fixed string properties.
 > 
 
-There is no question in cover letter. Just some minor remark *at the
-end* of it...
+Yeah, quite confusing.
 
-If you have questions, be explicit, not force people to grep through
-several paragraphs and figure out your concerns.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
