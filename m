@@ -2,172 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7166339A3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C04616339B9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 11:20:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233509AbiKVKR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 05:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
+        id S231368AbiKVKU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 05:20:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233578AbiKVKRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:17:25 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967BD54B02
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:17:22 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id b8so9146276edf.11
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:17:22 -0800 (PST)
+        with ESMTP id S233348AbiKVKUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 05:20:05 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846425ADE0
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:18:45 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id x21so17381435ljg.10
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 02:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RfsviaYrCHk+orZnQxhCW/tSY7SqhA88C4nRk5RLhn4=;
-        b=nsZaO2DRwFAc4rjB6uyOdsgV2qnJRlhTAaxcp6DcNAUBBj2nPshRzUP4N/D6Rxd8rA
-         ky/cOc0LG5gTFprBYSy6bh/RkbcZJONOdOXu30UM7fNd2l9IY7ySOuHuVBssSTQ93ZA1
-         prNTPcQAeUK5BGT6J46WNCFi/fjn3Lru9/agxjDreFNjtjQzfzRmBCOEHZN+3VPQ6Wat
-         ParuKV4Ci6bOD5Ylx/v4RMfLShM2papdJvzXOaa4rXEQw3v9TfVS9fXbg2zgiWFpPuZw
-         Ax+dP/MXKqqESw2wPBUX3MLYYHavKeUJcdXgnc5U1EdrswtoJEPo4wmqPB+OSbc77Dj0
-         dQyA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zq7tmKJ3jQgpCTzdBQLwKgRjaok1pzij/wh5lhMwLR8=;
+        b=gTVnveVqIDUqidOeC1pnL3BaDpkAul1iDPFrsgX3ZS9dOcmSuBLumcYOdiz7+Jt1mP
+         iLA01i7jfc0PaHmvMbfdOmIBKC8Ic32lb9y9bUURD/kBp2sykD5HxxrMgyOaEig3lgeV
+         FzU8X6g/uinHHoQp3CFINNTJqU1Mo/nFKSEtwMeU9ksM68ZITCKJ4UKnghtHYWz5TIxm
+         o/Wd1OGsL0qF/cYzkXLQLzvqjjyY+KxPyAuenwkrtaJRpchsaAN9Hq5cX/nU5dhVO5pv
+         izYTo5FWF11miqJv1CM8Hi3Vozg6PrBOWaX/e+PymH4PJwxTPrMyyA5rYCKzAUxEUmJh
+         iDmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RfsviaYrCHk+orZnQxhCW/tSY7SqhA88C4nRk5RLhn4=;
-        b=6pchCaArGtRXPorvOu3KXgh37mXJBjh0HXj8Zam3Hj7b+0iF/s6K1EhBwAfIAsxeIr
-         kehcoGvDShAWOFySoywh5jj7HqjTBp0z2u/vSwZXDy36bL7otT9cE3knAcslxADh8x22
-         Z7OOlyvdKvIim5UTpkC7Kz/b1QVuLNPNwaxWqOjQSLIlNGyQAeT+vzZcCv7vIWaZEklX
-         MLNK67lcGKX7lKhFhpB3RBrfCfi60OBFbwa1cLxQrsDKwI332NKTH8bjT3k7VGq3kHO6
-         n0zLnJp1qSELINdilBKaSrZRCOrVhxvPqAuySjROjlyP5l6pEhR7W3dpFb3fOiJaPWW5
-         027w==
-X-Gm-Message-State: ANoB5ply0cSqCL2eyn6YJoJ6fKItqlo9SqLULzDg9HjB/bJss+niPINH
-        Mupk+BlMRmLen+MdSEuTn3jYrh6rB75aAEbsEb7tJQ==
-X-Google-Smtp-Source: AA0mqf4jC92x9fBcJ6kZVpXXpGOto9tN/vDeHuKP47U3FQADYdyZsI9IQuoKOU7TlLdKAIR1mXQ8TVvK2WabZCkVSOo=
-X-Received: by 2002:aa7:cf07:0:b0:469:5aae:5807 with SMTP id
- a7-20020aa7cf07000000b004695aae5807mr11819758edy.133.1669112241094; Tue, 22
- Nov 2022 02:17:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zq7tmKJ3jQgpCTzdBQLwKgRjaok1pzij/wh5lhMwLR8=;
+        b=6buPi8Aq7Ict/bPisk5i1ExpKfdWp89FDJN6ZWZ+gVnMgK5S95WyST4G/1w1tZjq6C
+         AOSvGl69Q2hmrifx2pMrK84rXcEBXvRr3iaI3m+Qk+fMil9/henoz7pTspkml0rA5IYp
+         GIKBRPCiHKp9bkvCS7x0QFxr1Bc7QVRbGrUhrF4u6EhijwHpMAkwp0hgDUNAkEbznmIp
+         yNnKyLZKpta+yKhnncERDm6N7cYrRFPWajcjb99aFAPoQ/OTeMzP4NDStis/4b8MNe5b
+         8+LIkF71ItBeZSDkVTgnFrir82ObCA2Vtthwc/2lv2NojtqxOnSlVGUmb1LPAyinv1gT
+         jzLg==
+X-Gm-Message-State: ANoB5pmRRwpexqLCsFvuQvCdfU7Zl7pXlqCnbG2Ik5UZt9nDujh3bzdP
+        NFrGEj8bwzD8HFv/M1NBMwX0PhimOIB9jw5A
+X-Google-Smtp-Source: AA0mqf5XK+Ix5qrPZfrW2slmEaLXx6QSiA+XPrgfYDyqjWtz8aMClg9ViQTKO0zivhN/lKUVQw92RQ==
+X-Received: by 2002:a05:651c:1511:b0:279:4212:f1d9 with SMTP id e17-20020a05651c151100b002794212f1d9mr4372272ljf.433.1669112322476;
+        Tue, 22 Nov 2022 02:18:42 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p2-20020ac24ec2000000b0049b8c0571e5sm5202lfr.113.2022.11.22.02.18.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Nov 2022 02:18:42 -0800 (PST)
+Message-ID: <f7334274-3c49-6f8b-48eb-12ec5b3a8e95@linaro.org>
+Date:   Tue, 22 Nov 2022 11:18:40 +0100
 MIME-Version: 1.0
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-9-8210d955dd3d@baylibre.com> <d61d8c22-fce5-74d5-6d2b-0eda6f2ace9e@gmail.com>
-In-Reply-To: <d61d8c22-fce5-74d5-6d2b-0eda6f2ace9e@gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 22 Nov 2022 11:17:10 +0100
-Message-ID: <CAFGrd9rcDyZxnL5W0PvGyYyq6s+=imqvxM05nOeAqL4trgCDXQ@mail.gmail.com>
-Subject: Re: [PATCH v5 09/10] regulator: add mt6357 regulator
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Flora Fu <flora.fu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: da9062: Move IRQ to optional
+ properties
+Content-Language: en-US
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Support Opensource <support.opensource@diasemi.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        devicetree@vger.kernel.org
+References: <20221122095833.3957-1-cniedermaier@dh-electronics.com>
+ <20221122095833.3957-2-cniedermaier@dh-electronics.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122095833.3957-2-cniedermaier@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mer. 16 nov. 2022 =C3=A0 15:17, Matti Vaittinen
-<mazziesaccount@gmail.com> a =C3=A9crit :
->
-> Hi Alexandre, All
->
-> Please, treat my review more as initiation for discussion than 'hard
-> requirements' for this driver. I am in no point or no "confidence level"
-> to give you any requirements ;)
+On 22/11/2022 10:58, Christoph Niedermaier wrote:
+> Move IRQ to optional properties, because the MFD DA9061/62
+> is usable without IRQ. This makes the chip usable for designs
+> that don't have the IRQ pin connected.
+> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> ---
+> Cc: Support Opensource <support.opensource@diasemi.com>
+> Cc: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> To: linux-kernel@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/mfd/da9062.txt | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 
-Hi Matti,
-Understood, thanks for clarifying this.
 
->
-> If I read this right, the device has separate register(s) for writing
-> and reading the voltage? I wonder if this is a completely unique setup?
->
-> If this is not unique, then it might be worth adding another field for
-> 'vsel_get' register and a flag in regulator desc - and modify the
-> generic regmap helpers to handle this in common code if the special
-> register? Not sure if this HW design is common enough to warrant the
-> added confusion though. You and Mark may have more insight.
->
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I didn't write this driver and when I handled it, I found this weird.
-In the datasheet, registers access are read and write.
-After some read/write tests in the registers, I understood that read
-vosel_reg always returns the wrong value.
-That's why the debug register is used to get the value.
-I'm not sure I understand your proposal, but it seems to add more
-custom stuff and modify generic regmap instead of using the generic
-regmap which already allows us to customize get and set functions
-properly.
-IMHO, modifying the generic regmap isn't a good solution because I
-think this HW design isn't common.
+Best regards,
+Krzysztof
 
-> > +
-> > +static const struct linear_range buck_volt_range1[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(518750, 0, 0x7f, 6250),
-> > +};
-> > +
-> > +static const struct linear_range buck_volt_range2[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000, 0, 0x7f, 6250),
-> > +};
-> > +
-> > +static const struct linear_range buck_volt_range3[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000, 0, 0x3f, 50000),
-> > +};
-> > +
-> > +static const struct linear_range buck_volt_range4[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(1200000, 0, 0x7f, 12500),
-> > +};
->
-> I am unsure if we should aim for dropping the REGULATOR_LINEAR_RANGE()
-> and using the LINEAR_RANGE(). If yes, then it might simplify things if
-> new drivers used LINEAR_RANGE() from the day 1. If we don't, then it
-> makes sense to keep consistently using REGULATOR_LINEAR_RANGE() for all
-> of the drivers. I am not sure which way is the right way.
-
-Good catch.
-LINEAR_RANGE() is defined in "linear_range.h"
-REGULATOR_LINEAR_RANGE() is defined in "regulator/driver.h"
-"linear_range.h" is included in "regulator/driver.h"
-
-Then, I would like to say that regulator drivers should use
-REGULATOR_LINEAR_RANGE(). But duplicating the definition is weird,
-this is probably something which needs to be fixed or clarified.
-Also, that means mt6357-regulator.c no longer needs "#include
-<linux/linear_range.h>". Then I will remove it.
-
->
-> > +static int mt6357_regulator_probe(struct platform_device *pdev)
-> > +{
-> > +     struct mt6397_chip *mt6357 =3D dev_get_drvdata(pdev->dev.parent);
->
-> I am unsure what data do you need from the parent. If it is just the
-> regmap / device-tree node / device, then it does not (in my opinion)
-> really warrant using parent's drvdata. One can often get away with the
-> dev_get_regmap(pdev->dev.parent, NULL).
-
-Ok thanks, I wasn't aware of that. I tried to apply this change but
-I've got a kernel panic at boot because "mt6357_get_buck_voltage_sel"
-needs to retrieve the regmap.
