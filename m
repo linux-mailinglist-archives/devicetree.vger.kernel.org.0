@@ -2,130 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA50633DBF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B4C633DD7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 14:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233697AbiKVNck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 08:32:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60408 "EHLO
+        id S232976AbiKVNiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 08:38:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233802AbiKVNch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:32:37 -0500
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1959C74;
-        Tue, 22 Nov 2022 05:32:33 -0800 (PST)
-Date:   Tue, 22 Nov 2022 13:32:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1669123951; x=1669383151;
-        bh=pMgyj6309dziadQUAmdkN8/52Ea7gPzJRy2Jf1geJQ0=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=mjtT6EgCEwE8+XuS8+w0R+4ofsX1V819BBmdonEiDDR39lUerGE3a+lF9NFEYql9J
-         tGaDwLhfACpoopmLOVgzncL0p5dyhK1jyYBZ6l0HZjgEpI2zK0Y3rxHBsHm0ghxde9
-         DvuWbrFAFqodjCN5qwGn4VKZ1YYy9Nq2R9cJxE8MgPrIccQRmtLt888aKgYczzYYho
-         aZhg0KlT5ka0m38acxmUVZ0roCtZeRFtOZiI2YLenbqGvsayE5Jq/k/PDP3zSayjB2
-         eyuZH/N87Dtc9Puezvty+hmpf0EPCLD5KlMZt/l7+MK1aiKBNCs6hLvj7bsxFmSbq4
-         Gxp/Bfyjh/7Zw==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233834AbiKVNik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 08:38:40 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3063E28E24
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 05:38:35 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxTTp-0004vK-FC; Tue, 22 Nov 2022 14:38:29 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxTTm-005rZX-0P; Tue, 22 Nov 2022 14:38:26 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oxTTl-000o5y-RL; Tue, 22 Nov 2022 14:38:25 +0100
+Date:   Tue, 22 Nov 2022 14:38:25 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [RESEND PATCH v5 4/4] dts: arm64: qcom: msm8916-acer-a1-724: Add touchscreen
-Message-ID: <20221122133141.258357-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20221122132816.257717-1-linmengbo0689@protonmail.com>
-References: <20221122132816.257717-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Allow decimal format in
+ addition to hex format
+Message-ID: <20221122133825.d67q4q6k3wkncucj@pengutronix.de>
+References: <20221122123225.59106-1-tony@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4vb7eimw6h63aqds"
+Content-Disposition: inline
+In-Reply-To: <20221122123225.59106-1-tony@atomide.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
-Add it to the device tree.
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+--4vb7eimw6h63aqds
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/=
-boot/dts/qcom/msm8916-acer-a1-724.dts
-index bea0d022dd9a..5b216107f69b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-@@ -81,6 +81,30 @@ magnetometer@12 {
- =09};
- };
-=20
-+&blsp_i2c5 {
-+=09status =3D "okay";
-+
-+=09touchscreen@38 {
-+=09=09/* Actually ft5446 */
-+=09=09compatible =3D "edt,edt-ft5406";
-+=09=09reg =3D <0x38>;
-+
-+=09=09interrupt-parent =3D <&msmgpio>;
-+=09=09interrupts =3D <13 IRQ_TYPE_LEVEL_LOW>;
-+
-+=09=09reset-gpios =3D <&msmgpio 12 GPIO_ACTIVE_LOW>;
-+
-+=09=09vcc-supply =3D <&pm8916_l16>;
-+=09=09iovcc-supply =3D <&pm8916_l6>;
-+
-+=09=09touchscreen-size-x =3D <720>;
-+=09=09touchscreen-size-y =3D <1280>;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&touchscreen_default>;
-+=09};
-+};
-+
- &blsp1_uart2 {
- =09status =3D "okay";
- };
-@@ -245,6 +269,24 @@ gpio_keys_default: gpio-keys-default-state {
- =09=09bias-pull-up;
- =09};
-=20
-+=09touchscreen_default: touchscreen-default-state {
-+=09=09reset-pins {
-+=09=09=09pins =3D "gpio12";
-+=09=09=09function =3D "gpio";
-+
-+=09=09=09drive-strength =3D <2>;
-+=09=09=09bias-disable;
-+=09=09};
-+
-+=09=09touchscreen-pins {
-+=09=09=09pins =3D "gpio13";
-+=09=09=09function =3D "gpio";
-+
-+=09=09=09drive-strength =3D <2>;
-+=09=09=09bias-pull-up;
-+=09=09};
-+=09};
-+
- =09usb_id_default: usb-id-default-state {
- =09=09pins =3D "gpio110";
- =09=09function =3D "gpio";
+On Tue, Nov 22, 2022 at 02:32:24PM +0200, Tony Lindgren wrote:
+> Let's allow node numbering in decimal format too.
+>=20
+> Simple human-readable increments/IDs are usually decimal, hex is only for
+> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org=
+>.
+>=20
+> Let's use an improved match suggested by Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> and improved a bit by Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de>.
+>=20
+> Cc: linux-pwm@vger.kernel.org
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Suggested-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Which tree should this merged through? The obvious candidates are pwm,
+dt and omap.
+
+Best regards
+Uwe
+
 --=20
-2.30.2
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
+--4vb7eimw6h63aqds
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmN80M4ACgkQwfwUeK3K
+7Al/Hgf/T8WrsKj9Va/XMq4b+dz2KEAoeMJolD8jiaNVghYiXDGCcG7QkgovEv1k
+RaUWlSXWrGAJBv90zZ7AcGcKHZO1VNLOZhk5qXU59d5FOzYCSm+wf53lpap7i81x
+GhxeZwlsxySwhQ7LRGddfG7V6PfL9KqMYY83Sf3Y5nDadCycChfIaD3o1hOh2Ko3
+vZDplHOiTJ15fvqLiVBp7mKORZ93/9ixtmz8ud9qVv5bxz/9VZabF4hycX5Svl2v
+PJW2MG463pTuSth6EsjXet2i+xySpbzP0I96og9hChEraaucDnyzYMpVfO2qAfkX
+0jp2crJzI0L8jmhq6wtmfhRoOU7n2g==
+=CVSO
+-----END PGP SIGNATURE-----
+
+--4vb7eimw6h63aqds--
