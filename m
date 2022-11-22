@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B780E63421B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59B46634220
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 18:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233443AbiKVRDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 12:03:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        id S233620AbiKVRDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 12:03:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234399AbiKVRDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:03:07 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BD5A442;
-        Tue, 22 Nov 2022 09:03:06 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id n3so9124194wrp.5;
-        Tue, 22 Nov 2022 09:03:06 -0800 (PST)
+        with ESMTP id S233252AbiKVRDe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 12:03:34 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7984A18F;
+        Tue, 22 Nov 2022 09:03:33 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id p16so11183234wmc.3;
+        Tue, 22 Nov 2022 09:03:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o2ESf2ffEWNtfVyM0ZPvb6Y0s026dxSYBpFrwcaZ3J0=;
-        b=jYH5L4jwO3/d+gHzNoEfN+SNyVccGsviLt9pM8GecpnpvqZNCOeanh91XhU9KlIWTa
-         Bt6yU12pdtmPRaYodwRAFupLAk80R4xeJedy9BnqAWYbi+2IlgQ1IIQ6+Wg5ddg+xZPg
-         Ne1X8dT2ltDivCtWGr1pN61s4Y5AN+S/DHlMq/+avsQLfAmXN8OX6XrzYMqC85/DYSgu
-         pyzckN2+ZJ4vRprzLunP04BTAZx7zqpINeHK41p7vDkE1Qc33XKR8wxcZAzoMl9XhnP8
-         ttx2giyAp2NdtLntxKdENItCv8OXzHTlqGOyTSCowzAoy20dgxe/3YcgnU0KNP8hZ9Kk
-         z43Q==
+        bh=6nhEEaoh/VcXJH4n5hY98SxMNK4kG9V8xGcvOhwOUOA=;
+        b=ey4I+T4vbFBZcvd6BvzRMjTIz59KfQQfa6B849ysx9rZqbkcIR0s8BJyLfeTNOLRU3
+         BtUfba4qm1vJvxtixgSLo+oATBWNkSFax+j6HO1vUpzovNblxSuZt/tkPnFSbr3t1Poz
+         rl9xRtU6HA1nWn7Y54XMDxlund8gOrmAVmndv4BjnZswrzDavoAt/rIEPcOGwRWTIKCm
+         s5OrgAmWjOFVyNYgI+RhdxN1x808VrVMX/1AfZ/M71khiA7og+TzRUz2r0M4oCe2maFY
+         7OPuCVn9IeVAToljsMqDxgXvE8PypYjPcoLtysfpQhPS0Q+gr0hql5O96lGoVP0EXAap
+         IgfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o2ESf2ffEWNtfVyM0ZPvb6Y0s026dxSYBpFrwcaZ3J0=;
-        b=Pe8qG60YPyBdeyGXGNscvdgnrtpWbP4xILJmzmYVpu9x/prcc4GU26p2uZeuYCazCV
-         vdGWbIPfwBnSyszwgYbokFEZh/OhrsZGAsAJ6Er2Cemj5xh84TJP9tVtTXbzVvw2kcaI
-         /bRKRhbnoJRzZ4kgJCdT5/1v5jHXk2pUhN2tZvFLtXLFXuG/SsiUiGh/SIau7JX2q1oF
-         Zb8jJPxOo+xdonFVkCKMjtipB7DpjtAEeCCoeCueBlXDUXMhdc4LqIETpqnLN/7n4BDs
-         85HEUZZrpXZAUhzWaAKaJeje6q5ErYoQ/DQ7ALLV7ej34NtsCOAuLLlz6u3kuD1tYvbk
-         MlzQ==
-X-Gm-Message-State: ANoB5pm5CXRHbW6jhSNhyB87e7otQ9WX8D7Ks/Y2XsWZ72/nQj3UJshU
-        vTr7s3AyY2MP22REvp4hYZg=
-X-Google-Smtp-Source: AA0mqf5AAB2WpZpQrxG/QW1P9YfLF2voM76+7M892xh+AKLCme4WOa5olE+MEanw9+a/FkosbhcpOw==
-X-Received: by 2002:adf:ed8e:0:b0:241:d7ce:4395 with SMTP id c14-20020adfed8e000000b00241d7ce4395mr6251645wro.553.1669136584924;
-        Tue, 22 Nov 2022 09:03:04 -0800 (PST)
+        bh=6nhEEaoh/VcXJH4n5hY98SxMNK4kG9V8xGcvOhwOUOA=;
+        b=6nDoETRhM3GwMYdtI3rYqD6pL8FhnG1X4zRvUsvpwQ1lFWuh208jwyUUgQPbjHnEwE
+         GD2sK0No7wx8fPQJTlQAqp9AnB8LH1goZHiX1phjwDQthPknD4b0jOW9tYsgcYN8v/Em
+         ebW2dFsb84aMQ9O7cznwI796hFVfoeEW3fQOekLJjPUDunJAnYNmQpvNwzuKTLPrwnJo
+         vua9Brf5bulubCqC8JuS80BSMbIo4VAc3V5t08qhAZawKqoltOHkmHW+184jm2UxARDX
+         F1JZQRMFAsrbifO4lS08pt1qoqLi/9TFi20fss8eYwQ2yz3Y1tNVZW6Vc0JWQXDM29Ww
+         1cJw==
+X-Gm-Message-State: ANoB5plMl+unTIOUNm0DnQbtOOSdQjXcNDO3p+fXrZxP0tSpixlUYQ3p
+        TnBP6yg3iEF9loJzQjcQVLQ=
+X-Google-Smtp-Source: AA0mqf5aTg8+S6uKEPj96utoXf8duBP36uWZVEQIF3e+FSkl7cFIK1CtvtjgkYxB8bZEzb9G39gmIA==
+X-Received: by 2002:a1c:7513:0:b0:3cf:8896:e1c9 with SMTP id o19-20020a1c7513000000b003cf8896e1c9mr20286552wmc.119.1669136612325;
+        Tue, 22 Nov 2022 09:03:32 -0800 (PST)
 Received: from [192.168.0.25] ([37.222.251.204])
-        by smtp.gmail.com with ESMTPSA id c4-20020adfe704000000b00241cfe6e286sm8503223wrm.98.2022.11.22.09.03.03
+        by smtp.gmail.com with ESMTPSA id q3-20020adfcd83000000b0022eafed36ebsm14609696wrj.73.2022.11.22.09.03.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 09:03:03 -0800 (PST)
-Message-ID: <16774569-6dbe-3bc9-7471-f238e04e6050@gmail.com>
-Date:   Tue, 22 Nov 2022 18:03:02 +0100
+        Tue, 22 Nov 2022 09:03:31 -0800 (PST)
+Message-ID: <992ba484-b1d3-4ea6-1904-78b0dd913380@gmail.com>
+Date:   Tue, 22 Nov 2022 18:03:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 4/7] dt-bindings: pinctrl: st,stm32: Deprecate
- pins-are-numbered
+Subject: Re: [PATCH v2 7/7] ARM: dts: stm32: Remove the pins-are-numbered
+ property
 Content-Language: en-US
 To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
         devicetree@vger.kernel.org
@@ -66,9 +66,9 @@ Cc:     linux-mediatek@lists.infradead.org,
         krzysztof.kozlowski@linaro.org,
         angelogioacchino.delregno@collabora.com, khilman@baylibre.com
 References: <20221122010753.3126828-1-bero@baylibre.com>
- <20221122010753.3126828-5-bero@baylibre.com>
+ <20221122010753.3126828-8-bero@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221122010753.3126828-5-bero@baylibre.com>
+In-Reply-To: <20221122010753.3126828-8-bero@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,52 +84,85 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 22/11/2022 02:07, Bernhard Rosenkränzer wrote:
-> Deprecate the pins-are-numbered property
+> Remove the pins-are-numbered property from STM32 DeviceTrees
 > 
 > Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 
 Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->   .../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml      | 7 +++----
->   1 file changed, 3 insertions(+), 4 deletions(-)
+>   arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 1 -
+>   arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 1 -
+>   arch/arm/boot/dts/stm32h743.dtsi       | 1 -
+>   arch/arm/boot/dts/stm32mp131.dtsi      | 1 -
+>   arch/arm/boot/dts/stm32mp151.dtsi      | 2 --
+>   5 files changed, 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> index 9d59208d83c18..eeb29b4ad4d1a 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> @@ -34,7 +34,9 @@ properties:
->       const: 1
+> diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
+> index 500bcc302d422..4523c63475e4c 100644
+> --- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
+> @@ -51,7 +51,6 @@ pinctrl: pinctrl@40020000 {
+>   			ranges = <0 0x40020000 0x3000>;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&syscfg 0x8>;
+> -			pins-are-numbered;
 >   
->     ranges: true
-> -  pins-are-numbered: true
-> +  pins-are-numbered:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    deprecated: true
->     hwlocks: true
+>   			gpioa: gpio@40020000 {
+>   				gpio-controller;
+> diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+> index 8f37aefa73150..c8e6c52fb248e 100644
+> --- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+> @@ -15,7 +15,6 @@ pinctrl: pinctrl@40020000 {
+>   			ranges = <0 0x40020000 0x3000>;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&syscfg 0x8>;
+> -			pins-are-numbered;
 >   
->     interrupts:
-> @@ -206,7 +208,6 @@ required:
->     - '#address-cells'
->     - '#size-cells'
->     - ranges
-> -  - pins-are-numbered
+>   			gpioa: gpio@40020000 {
+>   				gpio-controller;
+> diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
+> index 28e3deb20e1e1..f30796f7adf36 100644
+> --- a/arch/arm/boot/dts/stm32h743.dtsi
+> +++ b/arch/arm/boot/dts/stm32h743.dtsi
+> @@ -588,7 +588,6 @@ pinctrl: pinctrl@58020000 {
+>   			ranges = <0 0x58020000 0x3000>;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&syscfg 0x8>;
+> -			pins-are-numbered;
 >   
->   additionalProperties: false
+>   			gpioa: gpio@58020000 {
+>   				gpio-controller;
+> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+> index 2a9b3a5bba830..adaee0f9e1263 100644
+> --- a/arch/arm/boot/dts/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
+> @@ -549,7 +549,6 @@ pinctrl: pinctrl@50002000 {
+>   			ranges = <0 0x50002000 0x8400>;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&exti 0x60 0xff>;
+> -			pins-are-numbered;
 >   
-> @@ -220,7 +221,6 @@ examples:
->                 #size-cells = <1>;
->                 compatible = "st,stm32f429-pinctrl";
->                 ranges = <0 0x40020000 0x3000>;
-> -              pins-are-numbered;
+>   			gpioa: gpio@50002000 {
+>   				gpio-controller;
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index 5491b6c4dec20..4e437d3f2ed66 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1660,7 +1660,6 @@ pinctrl: pinctrl@50002000 {
+>   			ranges = <0 0x50002000 0xa400>;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&exti 0x60 0xff>;
+> -			pins-are-numbered;
 >   
->                 gpioa: gpio@0 {
->                         gpio-controller;
-> @@ -238,7 +238,6 @@ examples:
->                 #size-cells = <1>;
->                 compatible = "st,stm32f429-pinctrl";
->                 ranges = <0 0x50020000 0x3000>;
-> -              pins-are-numbered;
+>   			gpioa: gpio@50002000 {
+>   				gpio-controller;
+> @@ -1789,7 +1788,6 @@ pinctrl_z: pinctrl@54004000 {
+>   			#size-cells = <1>;
+>   			compatible = "st,stm32mp157-z-pinctrl";
+>   			ranges = <0 0x54004000 0x400>;
+> -			pins-are-numbered;
+>   			interrupt-parent = <&exti>;
+>   			st,syscfg = <&exti 0x60 0xff>;
 >   
->                 gpiob: gpio@1000 {
->                         gpio-controller;
