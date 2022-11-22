@@ -2,97 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 989A9633E9A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 15:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 887AA633EA1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 15:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbiKVON0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 09:13:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
+        id S233906AbiKVOO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 09:14:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233194AbiKVONW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 09:13:22 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446252BB0F
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 06:13:21 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AMEDCjT009946;
-        Tue, 22 Nov 2022 08:13:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669126392;
-        bh=V8LkFZIM3tGLhnTmS1ipkc+xFqua74H2fHbU7YYtILA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=N+Q/20DwesScmiGcoDN/AsLpjHH1iEY75mbL0+/Dh/S18VWE5+hcf9cLYUrlYNcWQ
-         NqXot91yTCNqAI8iMxYqJroEQw+7e/a8EXCqZWD6gf3FoRkU+Cy0oA2bduWEzmbBaJ
-         OJKZOI01FkFZChXXSeO33IG4EE8oQZpO7t8/2/R0=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AMEDCBI029736
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Nov 2022 08:13:12 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 22
- Nov 2022 08:13:12 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 22 Nov 2022 08:13:12 -0600
-Received: from ubuntu (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id 2AMED3Z5031729;
-        Tue, 22 Nov 2022 08:13:05 -0600
-Date:   Tue, 22 Nov 2022 06:13:01 -0800
-From:   Matt Ranostay <mranostay@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <r-gunasekaran@ti.com>, <rogerq@kernel.org>, <vkoul@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vigneshr@ti.com>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: phy-j721e-wiz: add j721s2 compatible
- string
-Message-ID: <Y3zY7QIpj+7gPvO0@ubuntu>
-References: <20221122092203.762308-1-mranostay@ti.com>
- <20221122092203.762308-2-mranostay@ti.com>
- <3160a4dd-f8c0-5cce-8c15-c9a4c173ef1e@linaro.org>
+        with ESMTP id S231993AbiKVOO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 09:14:56 -0500
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C183317D6
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 06:14:53 -0800 (PST)
+Received: by mail-il1-x12b.google.com with SMTP id h17so3019553ila.6
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 06:14:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LEL1JXswoOciVAB7l+D8H9Ys9DuQbRdeYUgr6HvaLqw=;
+        b=MhoLcQBFckWDFoDg/M7iUydo9q5aZ7pkg26LYanhGBenLbgjSmIVEERV9lkhER7B3+
+         o1VsgYj4gLYiRVz5vDSqPbBNDpkJW5F/kisyISsnQbUcjt921Uyp1vYOn/UPubl9D0fH
+         8l5DjTTDDuQ54KdbZtmr4qbj0vMMrL0pXjCBo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LEL1JXswoOciVAB7l+D8H9Ys9DuQbRdeYUgr6HvaLqw=;
+        b=4GiAVoZOwOt0COmv52jm27a8jUcIjrRxDWZZQ/ilYa1O699gThFd1o5VCmXHbbfMeJ
+         sT8HhXW8GDWJo4N1zoV/VPGS9Zdr9hd0ccuT1J6fr8r/82x9g4OxdKwOmETFojHs/mx/
+         q6Sx5Pqt+ihaom3xenHnIuE6GnBv6lclAJpU5FNt9bkTxKU9qlMG0GN7tlwEFl6qZ79+
+         fGyMiyJhs3kKWdS9UuECrg78K76Er20s2CHmGl0FZC+fhcX16zPmcTOxWhqKfEAh0RLg
+         UW7uzvqYLPUwtsOZIRezA8jNXEhNPJzozl5xvKTEMYRpZ3EQPv2vYB9Oh58Qo51HyTO2
+         MFYw==
+X-Gm-Message-State: ANoB5pml1YPkuEunNABcdsPKVk5crcn+FSo5gldDBo3zoH4H0YgBKEt3
+        d5jLzrs11hgQF/zDFxi9xIXJIQ==
+X-Google-Smtp-Source: AA0mqf6AvoSY6d8Nm2gnt1RXrtBwi6z5AKeyinvHIG5EWef+8UxlGGkkQm3AESyFb45bS39V7A2tIA==
+X-Received: by 2002:a92:d702:0:b0:302:5898:73d1 with SMTP id m2-20020a92d702000000b00302589873d1mr1738474iln.65.1669126492985;
+        Tue, 22 Nov 2022 06:14:52 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id y18-20020a92d212000000b002ffbf49a0d2sm4887435ily.84.2022.11.22.06.14.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Nov 2022 06:14:52 -0800 (PST)
+Date:   Tue, 22 Nov 2022 14:14:49 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Owen Yang <ecs.taipeikernel@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Adding DT binding for
+ zombie
+Message-ID: <Y3zZWWCJ8aYphD7f@google.com>
+References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3160a4dd-f8c0-5cce-8c15-c9a4c173ef1e@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 11:19:09AM +0100, Krzysztof Kozlowski wrote:
-> On 22/11/2022 10:22, Matt Ranostay wrote:
-> > Add ti,j721s2-wiz-10g compatible string to binding documentation.
-> > 
-> > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> > index a9e38739c010..b837748f33d1 100644
-> > --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >        - ti,am64-wiz-10g
-> >        - ti,j7200-wiz-10g
-> >        - ti,j784s4-wiz-10g
-> > +      - ti,j721s2-wiz-10g
-> >  
-> Keep items sorted.
->
+On Tue, Nov 22, 2022 at 08:37:02PM +0800, Owen Yang wrote:
+> Add an entry in the device tree binding for sc7280-zombie.
 
-Noted. Will correct in v2
+nit: s/an entry/entries/ (there are two of them)
 
-- Matt
+> 
+> Documentation/devicetree/bindings/arm/qcom.yaml
 
-> Best regards,
-> Krzysztof
+Drop this
+
+> 
+> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+> ---
+> 
+> Changes in v2:
+> - Move binding item to Google series bottom.
+> - Modify DT file for zombie.
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index c15a729a6852..f617923f7485 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -538,6 +538,16 @@ properties:
+>            - const: google,villager-sku512
+>            - const: qcom,sc7280
+>  
+> +      - description: Google Zombie (newest rev)
+> +        items:
+> +          - const: google,zombie
+> +          - const: qcom,sc7280
+> +
+> +      - description: Google Zombie with LTE (newest rev)
+> +        items:
+> +          - const: google,zombie-sku512
+> +          - const: qcom,sc7280
+> +
+>        - items:
+>            - enum:
+>                - xiaomi,lavender
+> -- 
+> 2.17.1
 > 
