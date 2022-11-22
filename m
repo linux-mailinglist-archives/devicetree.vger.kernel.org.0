@@ -2,123 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB196340C0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 17:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 049376340E2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 17:08:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234057AbiKVQCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 11:02:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35696 "EHLO
+        id S234060AbiKVQH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 11:07:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233990AbiKVQCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 11:02:11 -0500
-X-Greylist: delayed 438 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 22 Nov 2022 08:02:07 PST
-Received: from smtp-bc0a.mail.infomaniak.ch (smtp-bc0a.mail.infomaniak.ch [45.157.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D30F725CA
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 08:02:07 -0800 (PST)
-Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4NGpjg41VhzMq8yR;
-        Tue, 22 Nov 2022 16:54:47 +0100 (CET)
-Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
-        by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4NGpjg0WF3zMpqZ7;
-        Tue, 22 Nov 2022 16:54:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1669132487;
-        bh=Y7RPRDcaRxdv85eSDu9iEGiAtGxkmXgrVv83frg2xSo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FPHkXLErAdYmECbFvecqMoG91x0nJkTuOSBoku8p7B6jS+CI28nlNe3VV6a0b0iJN
-         7jwTbJnzIeOZMe8RzexLrLOfj6IBY8Hupdnil7yhG0i/f7fEMwEBhvV6DZdyGFxi8Z
-         LtWHC/DNYEw3eiwTCUGs5sBa2H0pT1mRJWqGKTu8=
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
-Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/5] arm64: dts: verdin-imx8mm: Disable usb over-current
-Date:   Tue, 22 Nov 2022 16:54:38 +0100
-Message-Id: <20221122155439.456142-6-dev@pschenker.ch>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221122155439.456142-1-dev@pschenker.ch>
-References: <20221122155439.456142-1-dev@pschenker.ch>
+        with ESMTP id S234075AbiKVQH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 11:07:57 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10DEB4AF2A;
+        Tue, 22 Nov 2022 08:07:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B5F20B81BE8;
+        Tue, 22 Nov 2022 16:07:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE8EC433D6;
+        Tue, 22 Nov 2022 16:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1669133273;
+        bh=9d709dY27e9sKclMchjHuvqwPGttUZYMm9Spd9lti9c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A5KY8IuePGA9asotPaACLp34JRBmK2B7AAP9OE8pWdL2/7aBDQYScnqLQghEXx6YB
+         gHOH9OP1kJj7U46pZTixFjPyDjgvKDabw26Ax6rUGl4OjTn1ntawUcdqHAvJ9fQ4T5
+         1K8gTY+XmPgXHzonLqWpMZJ0sORsipciU5k+6e0s=
+Date:   Tue, 22 Nov 2022 17:07:49 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        vkoul@kernel.org, treding@nvidia.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-tegra@vger.kernel.org, waynec@nvidia.com,
+        Sing-Han Chen <singhanc@nvidia.com>
+Subject: Re: [PATCH V4 5/6] usb: host: xhci-tegra: Add Tegra234 XHCI support
+Message-ID: <Y3zz1YHu1643ppuS@kroah.com>
+References: <20221118154006.173082-1-jonathanh@nvidia.com>
+ <20221118154006.173082-6-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221118154006.173082-6-jonathanh@nvidia.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+On Fri, Nov 18, 2022 at 03:40:05PM +0000, Jon Hunter wrote:
+> From: Sing-Han Chen <singhanc@nvidia.com>
+> 
+> This change adds Tegra234 XUSB host mode controller support.
+> 
+> In Tegra234, some of the registers have moved to bar2 space.
+> The new soc variable has_bar2 indicates the chip with bar2
+> area. This patch adds new reg helper to let the driver reuse
+> the same code for those chips with bar2 support.
+> 
+> Signed-off-by: Sing-Han Chen <singhanc@nvidia.com>
+> Co-developed-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 
-Disable usb over-current of the chipidea driver on all Carrier-Boards
-used by Toradex. Do this as we don't want to use this functionality on
-our Carrier Boards and to leave it open to someone who includes our
-module-level device-trees.
+This is should be much slower with the additional redirection.  Is it
+noticable on this hardware platform with, and without this change?  Or
+is the hardware slow enough that it doesn't even show up as a speed
+decrease?
 
-Remove the now obsolete disable-over-current flag from module-level
-device-tree imx8mm-verdin.dtsi and leave it as already mentioned to
-the people actually implementing the carrier-board to implement this.
+thanks,
 
-This will prevent the warning "No over current polarity defined" from
-being printed on boot.
-
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-
----
-
- arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi | 2 ++
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi        | 2 --
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-index c2a5c2f7b204..0360f6a08d30 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-@@ -136,11 +136,13 @@ &uart3 {
- 
- /* Verdin USB_1 */
- &usbotg1 {
-+	disable-over-current;
- 	status = "okay";
- };
- 
- /* Verdin USB_2 */
- &usbotg2 {
-+	disable-over-current;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 0d454e0e2f7c..0680cee9aeb0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -741,7 +741,6 @@ &usbotg1 {
- 	adp-disable;
- 	dr_mode = "otg";
- 	hnp-disable;
--	over-current-active-low;
- 	samsung,picophy-dc-vol-level-adjust = <7>;
- 	samsung,picophy-pre-emp-curr-control = <3>;
- 	srp-disable;
-@@ -751,7 +750,6 @@ &usbotg1 {
- /* Verdin USB_2 */
- &usbotg2 {
- 	dr_mode = "host";
--	over-current-active-low;
- 	samsung,picophy-dc-vol-level-adjust = <7>;
- 	samsung,picophy-pre-emp-curr-control = <3>;
- 	vbus-supply = <&reg_usb_otg2_vbus>;
--- 
-2.38.1
-
+greg k-h
