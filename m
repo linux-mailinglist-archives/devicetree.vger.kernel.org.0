@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D58F5633640
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31CE1633649
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:50:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232312AbiKVHtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:49:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S232577AbiKVHup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:50:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232552AbiKVHs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:48:59 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0482326CD
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:48:53 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id g12so22384024lfh.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:48:53 -0800 (PST)
+        with ESMTP id S232430AbiKVHuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:50:44 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD12326C0
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:50:42 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id a15so17024902ljb.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:50:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w8q3Tqkz8w1zflvZZbd0OuOuonoFEDMsSq7hmze9ZXs=;
-        b=f22yi+xqcXW5FuVe86BK3lfg/qHcmgA6lPlQYRor0guywILgg2/Eu8BXRhWBeHNqZW
-         7disWPEBD8MNJ8mTXIA93ijDCHLI+xvcdLJAMrwPhMYSAOBEZNNJ5QEbh2Ayzg9MOwjY
-         xXcJqUrJAK92bqRiUG/odLy246dSDHkG/MdDWCDR18UqrhOwDRT3SaZ2itdY/L3RVkOB
-         RHIwgY16YjxMa0hGGdzcEmj9D6+rRNeLQUEsmaupAOrrt8o9NQ8wRms+G+suKoY1kk7T
-         ZghDqMaNX/onLP8n7MOm/ztfRlJxJlD0NFSjopAtEaZJcg632nwzMk1CYHuWVlr75KBG
-         vp/Q==
+        bh=TPz0CfRWtJWXgtCnS7ds9MNbespiiT1+KjVHD4pisS8=;
+        b=iQY5Gfp6qXqtdYsRxjlZyiRx0Lu7vUpss+/51LGs4B9Rax4lUDwTJTfPULQaneuMtx
+         QxBz/8vp5w5UuTi4oMwlEZ08NG7BLC4yVhJdWzFywiQHu7I6HAaTXebE/d2+kFxT8ssW
+         hf2MaaFx1n5tUCwJLhOffFqymyQoE2PSbVa620USjXi8xbuMJ7oz0LtAOhSh8Y/G60m5
+         TCwc6gaVzqpHMVsgOH0HPH0+BO+xqTgU2x04wjDPgx2TGsAhlEqdg+yI0Jsl9GRzUSKD
+         Yfl64D4P8HpC+JCofEHK0hGvo5SDNfSufHR560B+Q9lFuvN5elrb3hrLqEVwipxAAraE
+         3Kqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w8q3Tqkz8w1zflvZZbd0OuOuonoFEDMsSq7hmze9ZXs=;
-        b=lFidARIbbHVmIFaF9zvz5utbTXgjxmvaQ/38WXAEYlMVL4DClpw6/jP4shk95x+LBy
-         ihoukuUMSzq1KgQP+HyWW/l8iyLG3v+b/niGhrmach+4ZlOfbfLzSN4nbAooxMUZpneM
-         r4gqMpKOw+Ob3dbXvX8ogIiMq+4+CL0AOxrY9sXeuUA8T1LfI6LD9NuOuMELjHy94nJX
-         DQbqSiwpvHxnJv3oKIJEYOxfMk4SjqTO+uPmXj42k8Dh5fofIezsyHUPdXcedJk51q4C
-         iCkbgW7qakQ5hhH0//FtUIEz9VlVFc3IAcAL9kskqYvVx42X2XZM5zAXKYkULZrjNFiE
-         2K7A==
-X-Gm-Message-State: ANoB5pmI3rUQSe71HNCoWQs13dGKQKnO60rGzmIHxPG1FoNMx9xlJa5X
-        Ep+I6nVe1wWudSP/wkw4XRFnIA==
-X-Google-Smtp-Source: AA0mqf6WFY2yzKLlEyj7ARsSRDcmrYj2hSJMjEFCY4gK/zwWuhI0/ySHS9KM1Lz0QLbU+127L2b44Q==
-X-Received: by 2002:ac2:4c29:0:b0:497:a1fe:b0ef with SMTP id u9-20020ac24c29000000b00497a1feb0efmr8392775lfq.311.1669103332101;
-        Mon, 21 Nov 2022 23:48:52 -0800 (PST)
+        bh=TPz0CfRWtJWXgtCnS7ds9MNbespiiT1+KjVHD4pisS8=;
+        b=EYw9OoUksZ/xwS+9ch4ll1ZCG0H0vWO+yrZpiZL/d784wI02vsipr8A/QH/IGDU4bW
+         hvuqWHC88JArivCMYeQXeZua2HGtC4rLXGbNH4+TGaqof8xyt71YsrrZ4OGYvejG5dcR
+         7qzhvwJh/ZJIxYMnslSTh8i9BU/NDLPjxELxMyar/r4vOKhQgj9/tnle/vGK082lzinO
+         kb4N1XMKEZL5iOYZBp3No1SFHinC9SrWft/JvsCCiDZDcYexp5zsJ8N48XffdeSc4fce
+         tqsUWSNBoPIqlR1/XxrMLARW4FhY3dhjLULkJfsN2fw5kD4ovSD3MoKiGlIzOpLJfoCn
+         RK6Q==
+X-Gm-Message-State: ANoB5pl8b05SWPJimWLxdlgKYaqoGfy0vKmlweW43E/OozW8TXvHrarU
+        H5RLIhrMrIEwuBDhUGB3rFLF+A==
+X-Google-Smtp-Source: AA0mqf7dyX3euZowNC8FGmmtOg2WzEtwBgoJjCmNcNFKoHc5tllPD4n+7B4F81hioDrq3Gxi8dQULA==
+X-Received: by 2002:a2e:a37c:0:b0:26e:93:980d with SMTP id i28-20020a2ea37c000000b0026e0093980dmr7466963ljn.488.1669103440836;
+        Mon, 21 Nov 2022 23:50:40 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id be34-20020a05651c172200b0026bf43a4d72sm1719731ljb.115.2022.11.21.23.48.50
+        by smtp.gmail.com with ESMTPSA id a4-20020a056512200400b004a01105eea2sm2354702lfb.150.2022.11.21.23.50.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 23:48:51 -0800 (PST)
-Message-ID: <03174a04-440d-a840-1e54-fbdbdfe296c3@linaro.org>
-Date:   Tue, 22 Nov 2022 08:48:50 +0100
+        Mon, 21 Nov 2022 23:50:40 -0800 (PST)
+Message-ID: <b7cc4f5d-c1d6-919c-9604-7855ea802d17@linaro.org>
+Date:   Tue, 22 Nov 2022 08:50:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
- QRU1000 pinctrl
+Subject: Re: [PATCH v4 1/3] dt-bindings: interconnect: Add rpmh virt devices
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221118182039.29236-1-quic_molvera@quicinc.com>
- <20221118182039.29236-2-quic_molvera@quicinc.com>
- <528648f2-17df-ab19-8ad4-76423bbc0ae4@linaro.org>
- <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
+References: <20221118182245.31035-1-quic_molvera@quicinc.com>
+ <20221118182245.31035-2-quic_molvera@quicinc.com>
+ <536af0d9-aa00-ddf1-753d-670ec2adef91@linaro.org>
+ <3ada611b-96e0-5cf0-d79d-b90ca4202ddb@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
+In-Reply-To: <3ada611b-96e0-5cf0-d79d-b90ca4202ddb@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,56 +84,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 21:38, Melody Olvera wrote:
+On 21/11/2022 18:39, Melody Olvera wrote:
 > 
 > 
-> On 11/20/2022 4:58 AM, Krzysztof Kozlowski wrote:
->> On 18/11/2022 19:20, Melody Olvera wrote:
->>> Add device tree bindings for QDU1000 and QRU1000 TLMM devices.
+> On 11/20/2022 5:13 AM, Krzysztof Kozlowski wrote:
+>> On 18/11/2022 19:22, Melody Olvera wrote:
+>>> Add documentation for virtual rpmh devices. These interconnects
+>>> are not controlled by the application processor and thus
+>>> require separate bindings. Also, move compatibles for sm8450 to
+>>> this document and add them for QDU1000/QRU1000 platforms.
 >>>
 >>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 >>> ---
->>>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 134 ++++++++++++++++++
->>>  1 file changed, 134 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>>  .../bindings/interconnect/qcom,rpmh-virt.yaml | 55 +++++++++++++++++++
+>>>  .../bindings/interconnect/qcom,rpmh.yaml      |  2 -
+>>>  2 files changed, 55 insertions(+), 2 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
 >>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
 >>> new file mode 100644
->>> index 000000000000..cb0c496d8666
+>>> index 000000000000..5cbaa51df863
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
->>> @@ -0,0 +1,134 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-virt.yaml
+>>> @@ -0,0 +1,55 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 >>> +%YAML 1.2
 >>> +---
->>> +$id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+>>> +$id: http://devicetree.org/schemas/interconnect/qcom,rpmh-virt.yaml#
 >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
+>>> +title: Qualcomm RPMh Virtual Network-On-Chip Interconnect
 >>> +
 >>> +maintainers:
->>> +  - Melody Olvera <quic_molvera@quicinc.com>
+>>> +  - Georgi Djakov <georgi.djakov@linaro.org>
+>>> +  - Odelu Kukatla <quic_okukatla@quicinc.com>
 >>> +
 >>> +description: |
->>> +  This Top Level Mode Multiplexer block (TLMM) is found in the QDU1000 and
->>> +  QRU1000 platforms.
->> It's better to keep consistent style which allows to do easy
->> search/replace, than to have new files using their own sentences. So
->> keep it the same as was unified in few recent commits.
+>>> +   RPMh interconnect providers support system bandwidth requirements through
+>>> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+>>> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
+>>> +   associated with each execution environment. Provider nodes must point to at
+>>> +   least one RPMh device child node pertaining to their RSC and each provider
+>>> +   can map to multiple RPMh resources. Virtual interconnect providers are not
+>>> +   controlled by AP and do not support QoS; they should not have associated
+>>> +   register regions.
+>>> +
+>>> +allOf:
+>>> +  - $ref: qcom,rpmh-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,qdu1000-clk-virt
+>>> +      - qcom,qdu1000-mc-virt
+>>> +      - qcom,sm8450-clk-virt
+>>> +      - qcom,sm8450-mc-virt
+>> You should also move qcom,sdx65-mc-virt, qcom,sc8280xp-mc-virt,
+>> qcom,sc8280xp-clk-virt and more.
 > 
-> Ok... Just making sure that's what you want. Last PS you gave comments to change
-> the wording of this description to remove "This binding describes..." as we've done
-> in all the other qcom pinctrl/tlmm bindings. I can change the wording back to the
-> original, just want to be clear here.
+> Ok. I wasn't sure since some of these entries don't seem to conform to
+> these bindings, even though it seems they should.
 
-I propose to have the same wording as other Qualcomm TLMM bindings,
-however you changed it to something not the same. Therefore I wonder -
-why having here different wording than all other bindings?
-
-By going back to original - what do you mean? If it matches all others,
-then yes, but I doubt it.
-
-Just to be sure - are you working on proper (recent) trees or something old?
+I have impression that devices I listed conform to these bindings, this
+is why I listed them. But if you are sure that they do not, then they
+should not be moved.
 
 Best regards,
 Krzysztof
