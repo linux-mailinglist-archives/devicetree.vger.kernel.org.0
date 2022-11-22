@@ -2,126 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CF06336CD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 209C96336E6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:20:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbiKVIOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:14:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50690 "EHLO
+        id S232249AbiKVIUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:20:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232333AbiKVIOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:14:52 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B71324F27
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:14:50 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id gv23so33982812ejb.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:14:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jM+75qOkESHdT/LFEmzbTRIChEQ87MS6sqDcZEDZv3g=;
-        b=422yluu6GBF7Zr8QFIXloUOKlAx11LZ27aEbqh7AODAtsk61284Y3nnC+EgMqu/9WL
-         6jS2Z79QFgqsYOKlQWq6JPzOBQcZlx5JIrOzqgveXm47bKryMuC5Xf5vrlJvt8kY8q30
-         ZUX8nrNp2bxl4EQ9SdPNsbgF4Eudy1KG6fhl6775TBIErHLldgVq7KzcdAg3Uj8jtdWj
-         MEhvKmxAo3OyI4JWdAG1OyRXomAEgtfnxhUzlipXJcOBQqEFazeagbMDnKIKK7bFKrDF
-         2wL5qv7dljBITPw0xbj1QyPIE7K2gSV4Sjz8AN1RbNAUqDGOD2w/C/GmHzTKvFvSPG1K
-         IkPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jM+75qOkESHdT/LFEmzbTRIChEQ87MS6sqDcZEDZv3g=;
-        b=AhtTHqb6Nq+9LDePQLlyBRwRV7EZm5O8LFcqIY7WDaYTcaxfhOomRePclFlkdd31nK
-         q3NznSGq4xHUM1AQXQkScxLYOM3V71FUZa8eBE3MQC+VPCUJAaGamjkz/j58EsxV86zC
-         FwC8bn26H1f5oJoPLqUDP9yuKbYG3CgVqFXiOAIpzTStguro8uJ0Etn/qEp8rMjFDeJJ
-         8fahzxfX3s8RaQ9V+76Y74OwHq6sqDfeJ5vThpsIdiiW65/IWmxAXsrfWZL2PBWrQdZu
-         HShER5VGGreX/vJyYDtBPhLrZSqLr/MKR6VsDehAAoBpGqHNYfjY4c2OVzMYpnCwzGg2
-         J27A==
-X-Gm-Message-State: ANoB5pndlkwvJ6gBCya4AdyT9yPnquck72OjTH64v/smQiToVNwPqb8h
-        1K5qf+/qn52d7d08VZdUvM67SqHJHCzii5oLDbchfQ==
-X-Google-Smtp-Source: AA0mqf714aLOvgKM5W9MtFw+gOA+gv/Zq8lXPGhFeko4gMI2aAQta5XL7+Zp40MYnqfj6bo3sT/69zgTGr4hP81odgU=
-X-Received: by 2002:a17:906:4a55:b0:7ad:9ada:79c6 with SMTP id
- a21-20020a1709064a5500b007ad9ada79c6mr19023201ejv.86.1669104889006; Tue, 22
- Nov 2022 00:14:49 -0800 (PST)
+        with ESMTP id S229515AbiKVIUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:20:34 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CE425C5F;
+        Tue, 22 Nov 2022 00:20:32 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9D7562D9;
+        Tue, 22 Nov 2022 09:20:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1669105230;
+        bh=LbhkI5gTxUpZ5zOH7qkzXvnWyaWWN/TtRQOMEKSf+Ek=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BIn+/o9sLB4fhpniMBPR5FGDY6rMZv8mtuV3Zhg9sZYYRJC43TVHcxpbcR1B3ecSo
+         MPTi0cfj4bWfL6C6lh4e5h8RJV+bEkmqIxqzyQYjCNpGZR6cfhcJc5+N3O7d9k3Lc7
+         veSkg2Un1xdQOnXuaM/p7zpM694sNw7KVlv1ix7I=
+Message-ID: <f5df3cb8-d315-b06b-aa04-f0b4af64a1c2@ideasonboard.com>
+Date:   Tue, 22 Nov 2022 10:20:26 +0200
 MIME-Version: 1.0
-References: <20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com>
- <20221005-mt6357-support-v5-6-8210d955dd3d@baylibre.com> <47ae0770-1cd4-cfea-7222-f91d1d85f133@gmail.com>
-In-Reply-To: <47ae0770-1cd4-cfea-7222-f91d1d85f133@gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 22 Nov 2022 09:14:38 +0100
-Message-ID: <CAFGrd9rWHdwSaDv7L7XGnBiPp-HHXTqvMToeHLoQsH_9qxhTsg@mail.gmail.com>
-Subject: Re: [PATCH v5 06/10] dt-bindings: soc: mediatek: convert pwrap documentation
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Flora Fu <flora.fu@mediatek.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 2/8] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
+ Add r8a779g0
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-leds@vger.kernel.org, Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com>
+ <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com>
+ <CAMuHMdWUvLzCtFRXvUpCxczpkpaunb==gjBMwdniXY4UBVuMUw@mail.gmail.com>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <CAMuHMdWUvLzCtFRXvUpCxczpkpaunb==gjBMwdniXY4UBVuMUw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeu. 17 nov. 2022 =C3=A0 17:06, Matthias Brugger
-<matthias.bgg@gmail.com> a =C3=A9crit :
-> > +              - mediatek,mt8173-pwrap
-> > +              - mediatek,mt8183-pwrap
->
-> Missing mediatek,mt8186-pwrap
+On 17/11/2022 17:14, Geert Uytterhoeven wrote:
+> Hi Tomi,
+> 
+> On Thu, Nov 17, 2022 at 1:26 PM Tomi Valkeinen
+> <tomi.valkeinen@ideasonboard.com> wrote:
+>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>
+>> Extend the Renesas DSI display bindings to support the r8a779g0 V4H.
+>>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>> ---
+>>   .../bindings/display/bridge/renesas,dsi-csi2-tx.yaml           | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> index afeeb967393d..bc3101f77e5a 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> @@ -11,13 +11,14 @@ maintainers:
+>>
+>>   description: |
+>>     This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
+>> -  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
+>> +  R-Car V3U/V4H SoC. The encoder can operate in either DSI or CSI-2 mode, with up
+> 
+> Perhaps "R-Car Gen4 SoCs", so we stay within 80 chars, and don't have
+> to update this when the next member of the family is around the block?
 
-I add it
+Is V3U gen 4? Or do you mean "R-Car V3U and Gen 4 SoCs"?
 
->
-> > +              - mediatek,mt8188-pwrap
->
-> mt8188 has mt8195 as fallback, that must be kept as otherwise the driver =
-does
-> not bind.
+> Is there anything that might be SoC-specific?
+> If not, perhaps the time is ripe for a family-specific compatible value?
 
-I add it
+At least v3u and v4h DSIs are slightly different. Well, the DSI IP block 
+itself looks the same, but the PLL and PHY are different.
 
->
-> > +              - mediatek,mt8365-pwrap
-> > +              - mediatek,mt8516-pwrap
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-pwrap
-> > +              - mediatek,mt8195-pwrap
-> > +          - const: syscon
->
-> Not in the original txt binding, maybe add that in a first patch and then=
- convert.
+  Tomi
 
-I think, instead of fixing a deprecated file, I should fix it directly
-here. Actually, I forgot to
-mention this change in the commit message, but I will add it for the
-next version.
-
-Thanks,
-Alex
