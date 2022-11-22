@@ -2,64 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2A8633602
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B5463361F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 08:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbiKVHlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 02:41:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51934 "EHLO
+        id S232542AbiKVHpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 02:45:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbiKVHlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:41:47 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB10430557;
-        Mon, 21 Nov 2022 23:41:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669102896; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=YqA87QW/3JpiBXgyEi1gDKmIXTOzfkgeskrWThHVTE0RU4KYBbUSNif8Yq3An2qcs6xPdK+de0Uq0akZOx6zd6elX4WnE4uj6F41Kx1qiPo40yjj+QuF663EwFt6y8bCPOwQM7c4ZOsqQXfQ4alnyxi6oUw1VqaUE6ItRGgIc00=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669102896; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=b7Rx3DilGCP5lCz1j9EnhzYAfhA1dEnQkYpfsFyULHI=; 
-        b=cO7egFhVwCWN1RbtDPLu8iKeqwMuCrqrCstEi/qtFyXJnQQt7fGUUmrIRIB/JGajK2Cq7nIMTlp7pQcK7mq0tlXsGHiQFeh+SQtLqv/NlWy3e4u8+FCeFf+tYiLbXeZOEO4ZJk6R0Ts4qg9mMBOOTXeZ0qrDx99AjTxX6nsdnfI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669102896;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Date:Date:From:From:To:To:CC:Subject:Subject:In-Reply-To:References:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
-        bh=b7Rx3DilGCP5lCz1j9EnhzYAfhA1dEnQkYpfsFyULHI=;
-        b=QGs2QRaSj4ngLjmlTGF03F2rC6ETgz/rwmuxWNjPybZ3seTFe5ktcgC+muA7qRfs
-        +VRS/cQffh9aLTVBt7HrZt2P0YX6G0q7wbFRCle038WN1Zyv9C1H5tbY67otH9MNJjo
-        MKadpz7RZ2mNgx9JbscAoCJYULO9PRJMLc7GJE0w=
-Received: from [127.0.0.1] (112.94.100.29 [112.94.100.29]) by mx.zohomail.com
-        with SMTPS id 1669102895638415.06106473348734; Mon, 21 Nov 2022 23:41:35 -0800 (PST)
-Date:   Tue, 22 Nov 2022 15:41:27 +0800
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S232563AbiKVHpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 02:45:24 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873B931DFF
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:45:23 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id f13so825718lfa.6
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 23:45:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q4rrJuYa2IECxYwiMtNKNlK59Iea73AY9K3iEfBn864=;
+        b=qI9mYP9YrNMrTKAOvaJOh4GRWwwM/3IgTKmSqgVcJmA7D6iSjNZhRAolaPzQoRu+Wp
+         lbnrAX7sa8i8vvP5uJ3eI76jX6DYCxXUgSf9nwNTjbokm2DNtvEFBdM6Nb2f/ZBmSqp/
+         s/tHvdYJjyyucQGCdSA+MNhfozef7sylRmt16DDk9bsap0MCo0oG1sWZuutDo5oU4jII
+         Ttrms9agzxXacQehSTNOaMzT7NdQgybNevGco8tRCfEl8eFfSP7csmS/sBC3ZrO4dmvE
+         vu1wuC+2dhgtXJtmgu0NoxtDTk44FG5O5OavksNE8A+D3GF3Xr+rV1wvjYwIXbI+S0K2
+         iRVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q4rrJuYa2IECxYwiMtNKNlK59Iea73AY9K3iEfBn864=;
+        b=btRk4N6haUOmr1oJGf2qMBKCW5TX77lbgDyhk6sUZRLDwNA47WkpmtzRHeJgI1XAvc
+         lU1weFvJrfIz4UD1VIR9Uv/eyWixElQb6qtU06Az9eLuZ59RPmRc4QYipZAuxMeA99CH
+         7lqKOgARiKC9Y1umHpKKtEueDYRsHGPLOYw3icEFkS3SqwDBgc4yPgvA0pfyI9FmsKXq
+         QsJscl4owCQzHPBawZKmZT/1r9qUpt08L/NL7XZllYd7Mswgzx/UQWdemHtOUjVjVsLg
+         00wP1CoVlq9TkqIo0iQohzhkgHHxgH9bATz/XGVmVXd9Et9otMx9Bpmoq7oK68ChRGtF
+         pe0w==
+X-Gm-Message-State: ANoB5plT0mizdorhlef4Sr/7eMKq6f4b95MxtXQbQZ0rq3NXLa0eO5p1
+        4Lde3/8x4FzHMcNPxtnWkzI6Ew==
+X-Google-Smtp-Source: AA0mqf7QDPXGNntVFgiI4Zonhd/+zfJ/KN6RfygStEreI1d2N6+3gTxCPRXsuOKpXmIESg3lrt+hUQ==
+X-Received: by 2002:a19:4f46:0:b0:49f:5ddb:f8af with SMTP id a6-20020a194f46000000b0049f5ddbf8afmr7239230lfk.184.1669103121908;
+        Mon, 21 Nov 2022 23:45:21 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s1-20020a056512214100b004a45ed1ae21sm2344717lfr.224.2022.11.21.23.45.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Nov 2022 23:45:21 -0800 (PST)
+Message-ID: <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
+Date:   Tue, 22 Nov 2022 08:45:19 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
+ h2mode property
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-CC:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/3=5D_dt-bindings=3A_timer=3A_si?= =?US-ASCII?Q?five=2Cclint=3A_add_compatible_for_OpenC906?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
-References: <20221121041757.418645-1-uwu@icenowy.me> <20221121041757.418645-3-uwu@icenowy.me> <98005150-83a7-5439-0db1-d93d459c3809@linaro.org> <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me> <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
-Message-ID: <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-3-herve.codina@bootlin.com>
+ <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
+ <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
+ <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
+ <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
+ <20221121165921.559d6538@bootlin.com>
+ <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
+ <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
+ <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
+ <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,63 +96,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21/11/2022 21:46, Geert Uytterhoeven wrote:
+>> This does not change anything. Herve wrote:
+>>
+>>> probe some devices (USB host and probably others)
+>>
+>> Why some can be probed earlier and some not, if there are no
+>> dependencies? If there are dependencies, it's the same case with sysctrl
+>> touching the register bit and the USB controller touching it (as well
+>> via syscon, but that's obvious, I assume).
+>>
+>> Where is the synchronization problem?
+> 
+> The h2mode bit (and probably a few other controls we haven't figured out
+> yet) in the sysctrl must be set before any of the USB devices is active.
+> Hence it's safest for the sysctrl to do this before any of the USB drivers
+> probes.
 
+Again, this does not differ from many, many of other devices. All of
+them must set something in system controller block, before they start
+operating (or at specific time). It's exactly the same everywhere.
 
-=E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
-3:35:48, Krzysztof Kozlowski <krzysztof=2Ekozlowski@linaro=2Eorg> =E5=86=99=
-=E5=88=B0:
->On 22/11/2022 08:18, Icenowy Zheng wrote:
->> =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:06 +0100=EF=
-=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
->>> On 21/11/2022 05:17, Icenowy Zheng wrote:
->>>> T-Head OpenC906 is a open-source-licensed fixed-configuration of
->>>> C906,
->>>> which is now public and able to be integrated=2E
->>>>
->>>> Add a compatible for the CLINT shipped as part of OpenC906, which
->>>> should
->>>> just be ordinary C9xx CLINT=2E
->>>>
->>>> Signed-off-by: Icenowy Zheng <uwu@icenowy=2Eme>
->>>> ---
->>>> =C2=A0Documentation/devicetree/bindings/timer/sifive,clint=2Eyaml | 1=
- +
->>>> =C2=A01 file changed, 1 insertion(+)
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/timer/sifive,clint=2Eyaml
->>>> b/Documentation/devicetree/bindings/timer/sifive,clint=2Eyaml
->>>> index aada6957216c=2E=2E86703e995e31 100644
->>>> --- a/Documentation/devicetree/bindings/timer/sifive,clint=2Eyaml
->>>> +++ b/Documentation/devicetree/bindings/timer/sifive,clint=2Eyaml
->>>> @@ -35,6 +35,7 @@ properties:
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const:=
- sifive,clint0
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
->>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 - thead,openc906-clint
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
->>>
->>> Add entries sorted alphabetically=2E This should be squashed with
->>> previous
->>> patch=2E
->>=20
->> I make it a seperated patch because I think it's a questionable
->> approach=2E
->>=20
->> If you think it's okay, I will just squash it and put it as the second
->> patch in the next iteration, with adding openc906-plic as the first
->> one=2E
->
->What is a questionable approach? Why commit msg is not saying this?
+Best regards,
+Krzysztof
 
-Ah I mentioned it in the cover letter=2E The problem is just I doubt wheth=
-er
-binding strings for single SoCs are necessary=2E
-
->
->Best regards,
->Krzysztof
->
